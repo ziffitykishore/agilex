@@ -6,12 +6,11 @@
     "lang"   : "scss",
     "postcss": ["plugins.autoprefixer()"]
   },
-  "custom": {
-    "src"             : "vendor/snowdog/theme-custom",
-    "dest"            : "pub/static/frontend/Snowdog/custom",
+  "sd": {
+    "src"             : "vendor/somethingdigital/blank",
+    "dest"            : "pub/static/frontend/SomethingDigital/blank",
     "parent"          : "blank",
-    "locale"          : ["en_US", "pl_PL"],
-    "localeOverwrites": true,
+    "locale"          : ["en_US"],
     "lang"            : "scss",
     "postcss"         : ["plugins.autoprefixer()"]
   }
