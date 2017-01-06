@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5935a82662241ab0a254681eaf2bfef8",
+    "content-hash": "07f757586e9d840bc9803a7dd08f4a44",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9153,6 +9153,36 @@
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
             "time": "2016-12-01T09:31:40+00:00"
+        },
+        {
+            "name": "snowdog/theme-blank-sass",
+            "version": "0.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SnowdogApps/magento2-theme-blank-sass.git",
+                "reference": "18a53a7f4517ee3b523313c53425d72a3161db77"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/18a53a7f4517ee3b523313c53425d72a3161db77",
+                "reference": "18a53a7f4517ee3b523313c53425d72a3161db77",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "100.1.*"
+            },
+            "type": "magento2-theme",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "SASS based version of Magento 2 Blank theme",
+            "time": "2016-11-08T12:49:12+00:00"
         },
         {
             "name": "solarium/solarium",
