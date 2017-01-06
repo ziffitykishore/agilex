@@ -1,0 +1,18 @@
+{
+  "blank": {
+    "src"    : "vendor/snowdog/theme-blank-sass",
+    "dest"   : "pub/static/frontend/Snowdog/blank",
+    "locale" : ["en_US"],
+    "lang"   : "scss",
+    "postcss": ["plugins.autoprefixer()"]
+  },
+  "custom": {
+    "src"             : "vendor/snowdog/theme-custom",
+    "dest"            : "pub/static/frontend/Snowdog/custom",
+    "parent"          : "blank",
+    "locale"          : ["en_US", "pl_PL"],
+    "localeOverwrites": true,
+    "lang"            : "scss",
+    "postcss"         : ["plugins.autoprefixer()"]
+  }
+}
