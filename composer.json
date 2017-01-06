@@ -14,7 +14,8 @@
     ],
     "require": {
         "magento/product-enterprise-edition": "2.1.3",
-        "composer/composer": "@alpha"
+        "composer/composer": "@alpha",
+        "snowdog/frontools": "^1.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
