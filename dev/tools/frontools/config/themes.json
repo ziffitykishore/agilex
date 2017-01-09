@@ -7,7 +7,7 @@
     "postcss": ["plugins.autoprefixer()"]
   },
   "sd": {
-    "src"             : "vendor/somethingdigital/blank",
+    "src"             : "vendor/somethingdigital/magento2-theme-blank",
     "dest"            : "pub/static/frontend/SomethingDigital/blank",
     "parent"          : "blank",
     "locale"          : ["en_US"],
