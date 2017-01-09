@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "07f757586e9d840bc9803a7dd08f4a44",
+    "content-hash": "50f2fa0575460137a6ac608a1d094904",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9239,6 +9239,32 @@
             "time": "2014-11-12T06:53:41+00:00"
         },
         {
+            "name": "somethingdigital/magento2-theme-blank",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
+                "reference": "58785d10ee016d38cd08d09400b6c41182fa42e2"
+            },
+            "require": {
+                "magento/framework": "100.1.*",
+                "magento/magento-composer-installer": "*",
+                "php": "~7.0.0",
+                "snowdog/theme-blank-sass": "0.9.*"
+            },
+            "type": "magento2-theme",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Something Digital Magento2 Blank Child Theme",
+            "time": "2016-12-13 15:02:05"
+        },
+        {
             "name": "symfony/console",
             "version": "v2.6.13",
             "target-dir": "Symfony/Component/Console",
@@ -12498,6 +12524,7 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "composer/composer": 15,
+        "somethingdigital/magento2-theme-blank": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
