@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "50f2fa0575460137a6ac608a1d094904",
+    "content-hash": "e90335654eb5d8c8127676344de623b8",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9156,16 +9156,16 @@
         },
         {
             "name": "snowdog/theme-blank-sass",
-            "version": "0.9.2",
+            "version": "0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnowdogApps/magento2-theme-blank-sass.git",
-                "reference": "18a53a7f4517ee3b523313c53425d72a3161db77"
+                "reference": "9ea38f8f24d66a42a382300d653d761076a57acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/18a53a7f4517ee3b523313c53425d72a3161db77",
-                "reference": "18a53a7f4517ee3b523313c53425d72a3161db77",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/9ea38f8f24d66a42a382300d653d761076a57acd",
+                "reference": "9ea38f8f24d66a42a382300d653d761076a57acd",
                 "shasum": ""
             },
             "require": {
@@ -9182,7 +9182,7 @@
                 "MIT"
             ],
             "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2016-11-08T12:49:12+00:00"
+            "time": "2017-02-08T19:06:34+00:00"
         },
         {
             "name": "solarium/solarium",
@@ -9244,13 +9244,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
-                "reference": "58785d10ee016d38cd08d09400b6c41182fa42e2"
+                "reference": "6202c92548864cd39ec480dd0e837f8f6905eed7"
             },
             "require": {
                 "magento/framework": "100.1.*",
                 "magento/magento-composer-installer": "*",
                 "php": "~7.0.0",
-                "snowdog/theme-blank-sass": "0.9.*"
+                "snowdog/theme-blank-sass": "0.10.*"
             },
             "type": "magento2-theme",
             "autoload": {
@@ -9262,7 +9262,7 @@
                 "proprietary"
             ],
             "description": "Something Digital Magento2 Blank Child Theme",
-            "time": "2016-12-13 15:02:05"
+            "time": "2017-02-08 19:55:30"
         },
         {
             "name": "symfony/console",
