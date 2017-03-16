@@ -21,7 +21,8 @@
         "composer/composer": "@alpha",
         "snowdog/frontools": "1.1.2",
         "snowdog/theme-blank-sass": "0.10.0",
-        "somethingdigital/magento2-theme-blank": "dev-master"
+        "somethingdigital/magento2-theme-blank": "dev-master",
+        "gene/bluefoot": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
