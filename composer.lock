@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "720e772fc439210a94ba60758e6d18f5",
-    "content-hash": "e90335654eb5d8c8127676344de623b8",
+    "hash": "b71d6e360d9b1fafd3e2e5564ba6c424",
+    "content-hash": "9d51ba228c62d9cc71d05fea7fe17c11",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9142,16 +9142,16 @@
         },
         {
             "name": "snowdog/frontools",
-            "version": "1.4.3",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnowdogApps/magento2-frontools.git",
-                "reference": "ad6e1249cedd6106222ddd66c6a1932cf31ae0be"
+                "reference": "a7fb2edc96dfaadb9f8e8c4e73b49680cdf25a60"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/ad6e1249cedd6106222ddd66c6a1932cf31ae0be",
-                "reference": "ad6e1249cedd6106222ddd66c6a1932cf31ae0be",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/a7fb2edc96dfaadb9f8e8c4e73b49680cdf25a60",
+                "reference": "a7fb2edc96dfaadb9f8e8c4e73b49680cdf25a60",
                 "shasum": ""
             },
             "type": "magento2-component",
@@ -9160,20 +9160,20 @@
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2017-03-16 09:27:26"
+            "time": "2016-12-01 09:31:40"
         },
         {
             "name": "snowdog/theme-blank-sass",
-            "version": "0.10.1",
+            "version": "0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnowdogApps/magento2-theme-blank-sass.git",
-                "reference": "6237540974247ed101668c1c9cf3447ee274b8f2"
+                "reference": "9ea38f8f24d66a42a382300d653d761076a57acd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/6237540974247ed101668c1c9cf3447ee274b8f2",
-                "reference": "6237540974247ed101668c1c9cf3447ee274b8f2",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/9ea38f8f24d66a42a382300d653d761076a57acd",
+                "reference": "9ea38f8f24d66a42a382300d653d761076a57acd",
                 "shasum": ""
             },
             "require": {
@@ -9190,7 +9190,7 @@
                 "MIT"
             ],
             "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2017-02-21 17:39:01"
+            "time": "2017-02-08 19:06:34"
         },
         {
             "name": "solarium/solarium",
