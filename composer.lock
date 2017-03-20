@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b71d6e360d9b1fafd3e2e5564ba6c424",
-    "content-hash": "9d51ba228c62d9cc71d05fea7fe17c11",
+    "hash": "5c326d61294e60b98e3f44363ae82b0f",
+    "content-hash": "4748d89362624e9f40d451bdcbdb3901",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -454,6 +454,41 @@
                 "search"
             ],
             "time": "2016-11-30 17:15:05"
+        },
+        {
+            "name": "gene/bluefoot",
+            "version": "1.0.30",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/gene/bluefoot/gene-bluefoot-1.0.30.0.zip",
+                "reference": null,
+                "shasum": "74533d5e2b525019028e5174b77da45f8a12a881"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Gene\\BlueFoot\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Dave Macaulay",
+                    "homepage": "http://gene.co.uk/",
+                    "role": "Senior Developer"
+                },
+                {
+                    "name": "Hob Adams",
+                    "homepage": "http://gene.co.uk/",
+                    "role": "Senior Developer"
+                }
+            ],
+            "description": "BlueFoot CMS & PageBuilder for Magento 2"
         },
         {
             "name": "guzzlehttp/ringphp",
