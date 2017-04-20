@@ -18,7 +18,7 @@ We've also got a growing list of [Magento 2 guides](https://github.com/sdinterac
 
 ### Setup Box
 0. Download the box: `scp <user>@23.253.174.210:/environment/boxes/centos-7.2.vmware.box ./`
-1. Clone [Operations-Development ](https://github.com/sdinteractive/Operations-Development) if you have no already then `cd Operations-Development/boxes/Magento-BaseBuild2`
+1. Clone [Operations-Development ](https://github.com/sdinteractive/Operations-Development) if you haven't already then `cd Operations-Development/boxes/Magento-BaseBuild2`
 2. `vagrant box add sd/centos-7.2 <location/of/box>`
 3. `vagrant up`
 4. `vagrant ssh`
