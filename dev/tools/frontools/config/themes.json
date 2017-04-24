@@ -12,6 +12,7 @@
     "parent"          : "blank",
     "locale"          : ["en_US"],
     "lang"            : "scss",
-    "postcss"         : ["plugins.autoprefixer()"]
+    "postcss"         : ["plugins.autoprefixer()"],
+    "ignore"          : ["node_modules/**"]
   }
 }
