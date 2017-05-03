@@ -17,13 +17,11 @@ We've also got a growing list of [Magento 2 guides](https://github.com/sdinterac
 ## Setup Instructions
 
 ### Setup Box
-Follow the Something Digital Magento2 dev box [instructions](https://github.com/sdinteractive/Operations-Development/tree/master/boxes/Magento-BaseBuild2) for setting up the basebuild.
+Follow the Something Digital Magento2 dev box [instructions](https://github.com/sdinteractive/Operations-Development/tree/master/boxes/Magento-BaseBuild2) for setting up the basebuild. For vanilla Magento installation instructions, checkout the semi-detailed [SD guide](https://github.com/sdinteractive/SomethingDigital-Guides/tree/master/Workflows/Magento2/Installation.md).
 
-For vanilla Magento installation instructions, checkout the semi-detailed [SD guide](https://github.com/sdinteractive/SomethingDigital-Guides/tree/master/Workflows/Magento2/Installation.md).
+**NOTE:** *./app/etc/config.php* AND *./app/etc/env.php* [replace local.xml in Magento2](http://devdocs.magento.com/guides/v2.0/config-guide/config/config-php.html).
 
-	> **NOTE:** *./app/etc/config.php* AND *./app/etc/env.php* [replace local.xml in Magento2](http://devdocs.magento.com/guides/v2.0/config-guide/config/config-php.html).
-
-	> **PROTIP:** Map the Magento CLI to your PATH by adding the following to your bash/terminal profile (.bashrc, .bash_profile, etc.):
+> **PROTIP:** Map the Magento CLI to your PATH by adding the following to your bash/terminal profile (.bashrc, .bash_profile, etc.):
 	`export PATH=$PATH:/var/www/html/magento2/bin` otherwise run inside Magento project root, `bin/magento <command>`.
 
 ### Install Magento (if not using dev box)
@@ -32,13 +30,14 @@ You can use the official [Magento 2 Docker DevBox](http://devdocs.magento.com/gu
 
 1. Time to install Magento via cli (as long as app/etc/env.php exists):
 
-	```bash
+```bash
 bin/magento setup:install --admin-user="ggreenberg" --admin-email="ggreenberg@somethingdigital.com" --admin-password="H4ck3rZ" --admin-firstname="Gil" --admin-lastname="Greenberg"
-	```
+```
 
-	If no env.php file exists, you will need to specify database parameters inline:
+If no env.php file exists, you will need to specify database parameters inline:
 
-	```bash
+
+```bash
 bin/magento setup:install --admin-user="ggreenberg" --admin-email="ggreenberg@somethingdigital.com" --admin-password="H4ck3rZ" --admin-firstname="Gil" --admin-lastname="Greenberg" --db-name="magento_database" --db-user="magento_user" --db-password="magento_password"
 ```
 
@@ -67,10 +66,10 @@ Run `gulp --tasks` to see full list of gulp tasks.
 
 Task Name              | Unicode Value | What it do?!?
 :---------------------- |:---: | :-----------------
-`gulp sd:watch`        | 👀👀 | Hook into snowdog's watch task and add SVG and Styleguide rebuild.
-`gulp sd:styleguide`   | 🎨 📓 | Build the theme's Hologram Style Guide
-`gulp sd:svg`          | 🎏🆒 | Combine theme SVGs into a **symbols.svg** file and place in *pub/static*
-`gulp sd:images`       | 📸 🔍 | Minify the theme */web/images* folder.
+<kbd>gulp sd:watch</kbd>        | 👀👀 | Hook into snowdog's watch task and add SVG and Styleguide rebuild.
+<kbd>gulp sd:styleguide</kbd>   | 🎨 📓 | Build the theme's Hologram Style Guide
+<kbd>gulp sd:svg</kbd>          | 🎏🆒 | Combine theme SVGs into a **symbols.svg** file and place in *pub/static*
+<kbd>gulp sd:images</kbd>       | 📸 🔍 | Minify the theme */web/images* folder.
 
 > **TIP:** The theme's gulpfile can be run from the Magento root BUT it's located @ `app/design/frontend/SomethingDigital/blank/gulpfile.js`
 
