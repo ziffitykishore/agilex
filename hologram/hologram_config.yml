@@ -3,8 +3,8 @@
 
 # The directory containing the source files to parse recursively
 source:
-  #- ../vendor/somethingdigital/magento2-theme-blank/styles
-  - ../app/design/frontend/SomethingDigital/blank/styles
+  - ../vendor/somethingdigital/magento2-theme-blank/styles
+  #- ../app/design/frontend/SomethingDigital/blank/styles
 
 
 # The directory that hologram will build to
