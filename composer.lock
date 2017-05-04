@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "17e05afee9a8c939f56441e75acf1e60",
+    "content-hash": "dc0f2a54b13d18b1c22852a28aed19f4",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9278,6 +9278,36 @@
             "time": "2014-11-12T06:53:41+00:00"
         },
         {
+            "name": "somethingdigital/magento2-bluefoot",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Bluefoot.git",
+                "reference": "945aea726741b29066881afbf07f5c6f2196ed83"
+            },
+            "require": {
+                "magento/framework": "^100.1.0",
+                "magento/module-cms": "^101.0.0",
+                "magento/module-email": "^100.1.0",
+                "magento/module-store": "^100.1.0",
+                "php": ">= 5.6.0 <7.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "SomethingDigital\\Bluefoot\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Module to implement custom Bluefoot templates.",
+            "time": "2017-05-04 22:08:25"
+        },
+        {
             "name": "somethingdigital/magento2-migration",
             "version": "1.0.0",
             "source": {
@@ -12600,6 +12630,7 @@
         "composer/composer": 15,
         "snowdog/theme-blank-sass": 20,
         "somethingdigital/magento2-theme-blank": 20,
+        "somethingdigital/magento2-bluefoot": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
