@@ -13,6 +13,10 @@
         },
         {
             "type": "git",
+            "url": "https://github.com/sdinteractive/magento2-theme-blank-sass.git"
+        },
+        {
+            "type": "git",
             "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git"
         },
         {
@@ -24,7 +28,7 @@
         "magento/product-enterprise-edition": "2.1.6",
         "composer/composer": "@alpha",
         "snowdog/frontools": "1.1.2",
-        "snowdog/theme-blank-sass": "0.10.0",
+        "snowdog/theme-blank-sass": "dev-develop",
         "somethingdigital/magento2-theme-blank": "dev-master",
         "somethingdigital/magento2-migration": "1.0.0",
         "gene/bluefoot": "^1.0"
