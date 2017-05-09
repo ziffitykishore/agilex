@@ -53,3 +53,9 @@ atlassian*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
+
+## SD Ignored Files
+/pub/media/gene-cms/*
+!/pub/media/gene-cms/.htaccess
+/CONTRIBUTING.md
+/README_EE.md
