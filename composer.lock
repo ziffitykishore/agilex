@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dc0f2a54b13d18b1c22852a28aed19f4",
+    "content-hash": "2486db6dcc7282bd60ffc78dd0886f35",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9180,16 +9180,16 @@
         },
         {
             "name": "snowdog/frontools",
-            "version": "1.1.2",
+            "version": "1.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SnowdogApps/magento2-frontools.git",
-                "reference": "a7fb2edc96dfaadb9f8e8c4e73b49680cdf25a60"
+                "reference": "dd9a05ed49839c6ef3349ccd2f25f5838f410f15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/a7fb2edc96dfaadb9f8e8c4e73b49680cdf25a60",
-                "reference": "a7fb2edc96dfaadb9f8e8c4e73b49680cdf25a60",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/dd9a05ed49839c6ef3349ccd2f25f5838f410f15",
+                "reference": "dd9a05ed49839c6ef3349ccd2f25f5838f410f15",
                 "shasum": ""
             },
             "type": "magento2-component",
@@ -9198,7 +9198,7 @@
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2016-12-01T09:31:40+00:00"
+            "time": "2017-04-19T22:32:56+00:00"
         },
         {
             "name": "snowdog/theme-blank-sass",
@@ -9343,7 +9343,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
-                "reference": "e6e7e704b91d8c5501f633af3b6f1f0a217edfe9"
+                "reference": "cf2b11d7d644bb35fa9842a528b72ecdbdd31cac"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9361,7 +9361,7 @@
                 "proprietary"
             ],
             "description": "Something Digital Magento2 Blank Child Theme",
-            "time": "2017-05-09 17:56:44"
+            "time": "2017-05-10 17:00:58"
         },
         {
             "name": "symfony/console",
