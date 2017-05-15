@@ -28,7 +28,9 @@ class M20170515113803GridViewOnlyCatalog implements MigrationInterface
     {
         /*
 
-        Switch Catalog Grid/List View to GRID ONLY
+           Switch Catalog Grid/List View to GRID ONLY
+
+        */
 
         $this->resourceConfig->saveConfig(
             'catalog/frontend/list_mode',
@@ -36,6 +38,5 @@ class M20170515113803GridViewOnlyCatalog implements MigrationInterface
             'default',
             0
         );
-        */
     }
 }
