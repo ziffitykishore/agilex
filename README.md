@@ -26,12 +26,13 @@ Run `gulp --tasks` to see full list of gulp tasks.
 
 | Gulp Task Name        | Result            |
 | -------------------   | ----------------- |
-| `gulp styleguide`     | Build the theme's Hologram Style Guide
-| `gulp svg`            | Combine theme SVGs into a **symbols.svg** file and place in `pub/static`
+| `gulp svg`            | Combine theme SVGs into a **symbols.svg** file and place in `pub/static`.
 | `gulp images`         | Minify the theme `/web/images` folder.
-| `gulp scripts`        | Run Webpack against scripts in `/js`, and place result in `pub/static`
+| `gulp scripts`        | Run Webpack against scripts in `/js`, and place result in `pub/static`.
+| `gulp styles`         | Process all `.scss` files.
 | `gulp`                | Run all the above tasks.
-| `gulp watch`          | Hook into snowdog's watch task and add SVG and Styleguide rebuild.
+| `gulp styleguide`     | Build the theme's Hologram style guide.
+| `gulp watch`          | Start Browsersync and watch for style and JS changes.
 
 
 > **TIP:** The theme's gulpfile can be run from the Magento root BUT it's located @ `app/design/frontend/SomethingDigital/blank/gulpfile.js`
@@ -45,7 +46,7 @@ Note that in order to run Webpack you'll need to have the `pub/static` RequireJS
 
 ### Style Guide
 
-Like in Magento 1, we utilize Hologram to build an HTML Style Guide for both QA & reference on what components are available in the theme. Check the styleguide before writing new Sass to ensure you are not able to extend existing styling.
+Like in Magento 1, we utilize Hologram to build an HTML style guide for both QA & reference on what components are available in the theme. Check the styleguide before writing new Sass to ensure you are not able to extend existing styling.
 
 ##### How to access style guide?
 
@@ -64,11 +65,6 @@ Accessibility is becoming more important. When possible, utilize WCAG 2.0 AA sta
 - Aria tags, correct form markup for buttons, visuallyhidden tags for icon buttons, img alt tags, etc.
 
 > **TIP:** For more information, checkout the SD accessibility [checklist](https://github.com/sdinteractive/SomethingDigital-Guides/tree/master/Standards/Accessibility).
-
-
-## Deployments
-
-🕳 n/a
 
 ## Help
 
