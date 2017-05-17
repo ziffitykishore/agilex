@@ -12,7 +12,7 @@
     "parent"          : "blank",
     "locale"          : ["en_US"],
     "lang"            : "scss",
-    "postcss"         : ["plugins.autoprefixer()"],
+    "postcss"         : ["plugins.autoprefixer()", "plugins.postcssInlineSvg()"],
     "ignore"          : ["node_modules/**"]
   }
 }
