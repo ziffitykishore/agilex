@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2486db6dcc7282bd60ffc78dd0886f35",
+    "content-hash": "e09849c40afe3db6bdadc71e62a8cf6b",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9183,8 +9183,8 @@
             "version": "1.4.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/SnowdogApps/magento2-frontools.git",
-                "reference": "dd9a05ed49839c6ef3349ccd2f25f5838f410f15"
+                "url": "https://github.com/sdinteractive/magento2-frontools.git",
+                "reference": "4c36fdc76f293052ae1774e11a0bc98c7a07b51b"
             },
             "dist": {
                 "type": "zip",
@@ -9343,7 +9343,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
-                "reference": "cf2b11d7d644bb35fa9842a528b72ecdbdd31cac"
+                "reference": "f1215fbf968b16e533bcbd7d0c8a25170248fb6c"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9361,7 +9361,7 @@
                 "proprietary"
             ],
             "description": "Something Digital Magento2 Blank Child Theme",
-            "time": "2017-05-10 17:00:58"
+            "time": "2017-05-13 00:10:38"
         },
         {
             "name": "symfony/console",

@@ -17,6 +17,10 @@
         },
         {
             "type": "git",
+            "url": "https://github.com/sdinteractive/magento2-frontools.git"
+        },
+        {
+            "type": "git",
             "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git"
         },
         {
