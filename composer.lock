@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e09849c40afe3db6bdadc71e62a8cf6b",
+    "content-hash": "4af58b7482ff973b2bc23e5bd9e74837",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9180,25 +9180,18 @@
         },
         {
             "name": "snowdog/frontools",
-            "version": "1.4.4",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/magento2-frontools.git",
-                "reference": "4c36fdc76f293052ae1774e11a0bc98c7a07b51b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/dd9a05ed49839c6ef3349ccd2f25f5838f410f15",
-                "reference": "dd9a05ed49839c6ef3349ccd2f25f5838f410f15",
-                "shasum": ""
+                "reference": "073a758"
             },
             "type": "magento2-component",
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2017-04-19T22:32:56+00:00"
+            "time": "2017-05-18 17:09:29"
         },
         {
             "name": "snowdog/theme-blank-sass",
@@ -12628,6 +12621,7 @@
     "minimum-stability": "alpha",
     "stability-flags": {
         "composer/composer": 15,
+        "snowdog/frontools": 20,
         "snowdog/theme-blank-sass": 20,
         "somethingdigital/magento2-theme-blank": 20,
         "somethingdigital/magento2-bluefoot": 20,
