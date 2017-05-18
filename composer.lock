@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4af58b7482ff973b2bc23e5bd9e74837",
+    "content-hash": "d6df46bf2c828c613f3b8020e3e5266b",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9332,11 +9332,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-blank",
-            "version": "dev-master",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
-                "reference": "f1215fbf968b16e533bcbd7d0c8a25170248fb6c"
+                "reference": "f1cd074a66441dd7c9f99338f38f7e5f7eda31b1"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9354,7 +9354,7 @@
                 "proprietary"
             ],
             "description": "Something Digital Magento2 Blank Child Theme",
-            "time": "2017-05-13 00:10:38"
+            "time": "2017-05-18 17:10:06"
         },
         {
             "name": "symfony/console",
