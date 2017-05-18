@@ -35,7 +35,7 @@
     "require": {
         "magento/product-enterprise-edition": "2.1.6",
         "composer/composer": "@alpha",
-        "snowdog/frontools": "1.4.4",
+        "snowdog/frontools": "dev-develop#073a758",
         "snowdog/theme-blank-sass": "dev-develop",
         "somethingdigital/magento2-theme-blank": "dev-master",
         "somethingdigital/magento2-migration": "1.0.0",
