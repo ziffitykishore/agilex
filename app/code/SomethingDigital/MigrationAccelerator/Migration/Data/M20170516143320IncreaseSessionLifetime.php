@@ -1,6 +1,6 @@
 <?php
 
-namespace SomethingDigital\CommerceAccelerator\Migration\Data;
+namespace SomethingDigital\MigrationAccelerator\Migration\Data;
 
 use Magento\Framework\Setup\SetupInterface;
 use SomethingDigital\Migration\Api\MigrationInterface;
@@ -9,7 +9,7 @@ use SomethingDigital\Migration\Helper\Cms\Block as BlockHelper;
 use SomethingDigital\Migration\Helper\Email\Template as EmailHelper;
 use Magento\Config\Model\ResourceModel\Config as ResourceConfig;
 
-class M20170515113803GridViewOnlyCatalog implements MigrationInterface
+class M20170516143320IncreaseSessionLifetime implements MigrationInterface
 {
     protected $page;
     protected $block;
@@ -26,15 +26,10 @@ class M20170515113803GridViewOnlyCatalog implements MigrationInterface
 
     public function execute(SetupInterface $setup)
     {
-        /*
-
-           Switch Catalog Grid/List View to GRID ONLY
-
-        */
-
+        // increase customer sesion lifetime
         $this->resourceConfig->saveConfig(
-            'catalog/frontend/list_mode',
-            'grid',
+            'web/cookie/cookie_lifetime',
+            '86400',
             'default',
             0
         );

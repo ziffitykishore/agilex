@@ -1,6 +1,6 @@
 <?php
 
-namespace SomethingDigital\CommerceAccelerator\Migration\Data;
+namespace SomethingDigital\MigrationAccelerator\Migration\Data;
 
 use Magento\Framework\Setup\SetupInterface;
 use SomethingDigital\Migration\Api\MigrationInterface;
