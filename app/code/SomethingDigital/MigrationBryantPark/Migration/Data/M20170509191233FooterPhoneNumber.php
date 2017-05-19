@@ -1,6 +1,6 @@
 <?php
 
-namespace SomethingDigital\BryantPark\Migration\Data;
+namespace SomethingDigital\MigrationBryantPark\Migration\Data;
 
 use Magento\Framework\Setup\SetupInterface;
 use SomethingDigital\Migration\Api\MigrationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SomethingDigital\BryantPark\Setup;
+namespace SomethingDigital\MigrationBryantPark\Setup;
 
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
@@ -18,6 +18,6 @@ class RecurringData implements InstallDataInterface
 
     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
     {
-        $this->migrator->execute($setup, 'SomethingDigital_BryantPark', 'data');
+        $this->migrator->execute($setup, 'SomethingDigital_MigrationBryantPark', 'data');
     }
 }
