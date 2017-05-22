@@ -4,9 +4,9 @@
     <system>
         <section id="checkout">
             <group id="sidebar" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <field id="enable_minicart_sidebar" translate="label comment" type="select" sortOrder="2"  showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="enable_minicart_sidebar" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enable Minicart Slide-in Minicart</label>
-                    <comment>Full-Height Sidebar versus a dropdown</comment>
+                    <comment>Full-height sidebar versus a dropdown</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="display">1</field>
