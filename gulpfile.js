@@ -1,5 +1,5 @@
 // Theme Gulpfile Path
-var PATH = process.cwd() + '/vendor/somethingdigital/magento2-theme-blank';
+var PATH = process.cwd() + '/vendor/somethingdigital/magento2-theme-bryantpark';
 
 process.chdir(PATH);
 

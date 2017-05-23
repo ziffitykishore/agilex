@@ -1,1 +1,1 @@
-For detailed list of changes see the [commit history](https://github.com/sdinteractive/SomethingDigital-Magento2-Template/commits/develop), otherwise browse the [release log](https://github.com/sdinteractive/SomethingDigital-Magento2-Template/releases) for major point releases.
+For detailed list of changes see the [commit history](https://github.com/sdinteractive/SomethingDigital-Magento2-Package-Accelerator/commits/develop), otherwise browse the [release log](https://github.com/sdinteractive/SomethingDigital-Magento2-Package-Accelerator/releases) for major point releases.

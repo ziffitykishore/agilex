@@ -18,7 +18,7 @@ Magento 2 OOB themes are built with LESS. Due to various reasons we have decided
 
 Magento 2 OOB utilizes Grunt to pre-process the Blank & Luma LESS [themes and handle cache clearing](http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css_debug.html#grunt_commands). For the Magento 2 base build, we will be utilizing the Snowdog [Frontools](https://github.com/SnowdogApps/magento2-frontools) package which utilizes Gulp and the Snowdog [Sass blank theme](https://github.com/SnowdogApps/magento2-theme-blank-sass).
 
-In order to have a certain level of customization, the *SomethingDigital/Blank* theme inherits the Frontools Gulp file and adds its own set of tasks as listed in the table below.
+In order to have a certain level of customization, the *SomethingDigital/bryantpark* theme inherits the Frontools Gulp file and adds its own set of tasks as listed in the table below.
 
 ##### Gulp Tasks
 
@@ -35,7 +35,7 @@ Run `gulp --tasks` to see full list of gulp tasks.
 | `gulp watch`          | Start Browsersync and watch for style and JS changes.
 
 
-> **TIP:** The theme's gulpfile can be run from the Magento root BUT it's located @ `app/design/frontend/SomethingDigital/blank/gulpfile.js`
+> **TIP:** The theme's gulpfile can be run from the Magento root BUT it's located @ `vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js`
 
 
 ### JS & Webpack

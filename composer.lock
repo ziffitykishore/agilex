@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d6df46bf2c828c613f3b8020e3e5266b",
+    "content-hash": "f11237ffd193538201995ca5fcfd9a36",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9331,17 +9331,17 @@
             "time": "2017-03-30T14:58:15+00:00"
         },
         {
-            "name": "somethingdigital/magento2-theme-blank",
+            "name": "somethingdigital/magento2-theme-bryantpark",
             "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
-                "reference": "7a31fa3171394c63c33f636ef2f2ffa028983182"
+                "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
+                "reference": "e1f74953cf5592ff9ce6d3af0ee24c32057d77eb"
             },
             "require": {
                 "magento/framework": "100.1.*",
                 "magento/magento-composer-installer": "*",
-                "php": "~7.0.0",
+                "php": "~7.0.0||~7.1.0",
                 "snowdog/theme-blank-sass": "dev-develop"
             },
             "type": "magento2-theme",
@@ -9353,8 +9353,8 @@
             "license": [
                 "proprietary"
             ],
-            "description": "Something Digital Magento2 Blank Child Theme",
-            "time": "2017-05-22 20:57:02"
+            "description": "Bryant Park base theme for Magento 2 by Something Digital",
+            "time": "2017-05-23 22:12:24"
         },
         {
             "name": "symfony/console",
@@ -12623,7 +12623,7 @@
         "composer/composer": 15,
         "snowdog/frontools": 20,
         "snowdog/theme-blank-sass": 20,
-        "somethingdigital/magento2-theme-blank": 20,
+        "somethingdigital/magento2-theme-bryantpark": 20,
         "somethingdigital/magento2-bluefoot": 20,
         "phpmd/phpmd": 0
     },

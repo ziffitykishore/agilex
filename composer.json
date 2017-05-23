@@ -21,7 +21,7 @@
         },
         {
             "type": "git",
-            "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git"
+            "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git"
         },
         {
             "type": "git",
@@ -37,7 +37,7 @@
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#073a758",
         "snowdog/theme-blank-sass": "dev-develop",
-        "somethingdigital/magento2-theme-blank": "dev-develop",
+        "somethingdigital/magento2-theme-bryantpark": "dev-develop",
         "somethingdigital/magento2-migration": "1.0.0",
         "somethingdigital/magento2-bluefoot": "dev-master",
         "gene/bluefoot": "^1.0"
