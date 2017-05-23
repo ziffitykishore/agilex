@@ -9336,7 +9336,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-magento2-blank-theme.git",
-                "reference": "46a0937dc447146cec46b56debc91e58925bf2eb"
+                "reference": "7a31fa3171394c63c33f636ef2f2ffa028983182"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9354,7 +9354,7 @@
                 "proprietary"
             ],
             "description": "Something Digital Magento2 Blank Child Theme",
-            "time": "2017-05-22 16:27:59"
+            "time": "2017-05-22 20:57:02"
         },
         {
             "name": "symfony/console",
