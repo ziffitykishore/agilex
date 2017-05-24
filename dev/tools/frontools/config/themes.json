@@ -8,7 +8,7 @@
   },
   "sd": {
     "src"             : "vendor/somethingdigital/magento2-theme-bryantpark",
-    "dest"            : "pub/static/frontend/SomethingDigital/byrantpark",
+    "dest"            : "pub/static/frontend/SomethingDigital/bryantpark",
     "parent"          : "blank",
     "locale"          : ["en_US"],
     "lang"            : "scss",
