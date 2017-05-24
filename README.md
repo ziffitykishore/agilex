@@ -27,13 +27,13 @@ Run `gulp --tasks` to see full list of gulp tasks.
 | Gulp Task Name        | Result            |
 | -------------------   | ----------------- |
 | `gulp svg`            | Combine theme SVGs into a **symbols.svg** file and place in `pub/static`.
-| `gulp images`         | Minify the theme `/web/images` folder.
 | `gulp scripts`        | Run Webpack against scripts in `/js`, and place result in `pub/static`.
 | `gulp styles`         | Process all `.scss` files.
 | `gulp`                | Run all the above tasks.
 | `gulp styleguide`     | Build the theme's Hologram style guide.
 | `gulp watch`          | Start Browsersync and watch for style and JS changes.
 
+> **TIP:** `gulp watch` will, by default, compile the styleguide on each SCSS change. Don't want that overhead? Run `gulp watch --nostyleguide`
 
 > **TIP:** The theme's gulpfile can be run from the Magento root BUT it's located @ `vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js`
 
