@@ -1,3 +1,9 @@
 {
-  "proxy": "https://magento2.dev"
+  "proxy": "https://magento2.dev",
+  "rewriteRules": [
+    {
+      "match": ".magento2.dev",
+      "replace": ""
+    }
+  ]
 }
