@@ -9336,7 +9336,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "a9507e16e5edd471b4a3a7061eaafd05b2b253da"
+                "reference": "3fc74bfa21882178b08e32d38e5c99999c18ba84"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9354,7 +9354,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2017-05-31 15:07:07"
+            "time": "2017-05-31 16:56:38"
         },
         {
             "name": "symfony/console",
