@@ -9276,7 +9276,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Bluefoot.git",
-                "reference": "f9a4e0657379cfd80615c062ee45e87725d2b9e0"
+                "reference": "b3cfbaded8a4b90e57504e066c48fed371dcd192"
             },
             "require": {
                 "magento/framework": "^100.1.0",
@@ -9298,7 +9298,7 @@
                 "proprietary"
             ],
             "description": "Module to implement custom Bluefoot templates.",
-            "time": "2017-05-30 21:38:22"
+            "time": "2017-05-31 14:11:18"
         },
         {
             "name": "somethingdigital/magento2-migration",
@@ -9336,7 +9336,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "a7194aeb5133c3c45b526cdd42816ba864050557"
+                "reference": "a9507e16e5edd471b4a3a7061eaafd05b2b253da"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9354,7 +9354,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2017-05-30 21:41:49"
+            "time": "2017-05-31 15:07:07"
         },
         {
             "name": "symfony/console",
