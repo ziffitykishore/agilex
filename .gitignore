@@ -1,3 +1,11 @@
+### System Files
+.DS_Store
+
+# We're not using grunt, so ignore the base file.
+/Gruntfile.js
+/CHANGELOG.md
+
+### Magento OOB .gitignore
 /.buildpath
 /.cache
 /.metadata
@@ -49,3 +57,10 @@ atlassian*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
+
+## SD Ignored Files
+/pub/media/gene-cms/*
+!/pub/media/gene-cms/.htaccess
+/CONTRIBUTING.md
+/README_EE.md
+/pub/styleguide

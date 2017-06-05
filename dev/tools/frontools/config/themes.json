@@ -7,11 +7,13 @@
     "postcss": ["plugins.autoprefixer()"]
   },
   "sd": {
-    "src"             : "vendor/somethingdigital/blank",
-    "dest"            : "pub/static/frontend/SomethingDigital/blank",
+    "src"             : "vendor/somethingdigital/magento2-theme-bryantpark",
+    "dest"            : "pub/static/frontend/SomethingDigital/bryantpark",
     "parent"          : "blank",
     "locale"          : ["en_US"],
     "lang"            : "scss",
-    "postcss"         : ["plugins.autoprefixer()"]
+    "disableSuffix"   : true,
+    "postcss"         : ["plugins.autoprefixer()", "plugins.postcssInlineSvg()"],
+    "ignore"          : ["node_modules/**"]
   }
 }
