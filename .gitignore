@@ -1,6 +1,9 @@
 ### System Files
 .DS_Store
 
+# We're not using grunt, so ignore the base file.
+/Gruntfile.js
+
 ### Magento OOB .gitignore
 /.buildpath
 /.cache
