@@ -1,8 +1,12 @@
-# Something Digital Magento 2 Base Build
+# Something Digital Magento 2 Ecommerce Accelerator Package
 
 Something Digital's standard Magento 2 setup. Makes use of Gulp, [Hologram](https://trulia.github.io/hologram/), SCSS and [Webpack](https://webpack.github.io/).
 
 ## Setup Instructions
+
+### New Build
+
+See [CHECKLIST.md](CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
 
 ### Vagrant
 
