@@ -59,4 +59,4 @@ atlassian*
 !/pub/media/gene-cms/.htaccess
 /CONTRIBUTING.md
 /README_EE.md
-/styleguide
+/pub/styleguide
