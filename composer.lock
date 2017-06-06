@@ -9200,7 +9200,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/magento2-theme-blank-sass.git",
-                "reference": "cebec0cb5611887f491885977cbdb78112fc93ce"
+                "reference": "af56dea817f9c5401ce90ddaab2fb9b4e0a3b5ed"
             },
             "require": {
                 "magento/framework": "100.1.*"
@@ -9215,7 +9215,7 @@
                 "MIT"
             ],
             "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2017-05-09 17:34:37"
+            "time": "2017-06-05 19:07:46"
         },
         {
             "name": "solarium/solarium",
@@ -9337,7 +9337,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "651d7db5be1ddbd7fca414ebea73c78a7b8ffa1d"
+                "reference": "f1d2ef7e718f0ee83a6689e22f046c05a928d7e0"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9355,7 +9355,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2017-06-05 14:22:46"
+            "time": "2017-06-06 21:26:44"
         },
         {
             "name": "symfony/console",
@@ -9526,16 +9526,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.3.0",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "30cb2a2c09627823a7243638dd456de4e2748fed"
+                "reference": "baea7f66d30854ad32988c11a09d7ffd485810c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/30cb2a2c09627823a7243638dd456de4e2748fed",
-                "reference": "30cb2a2c09627823a7243638dd456de4e2748fed",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/baea7f66d30854ad32988c11a09d7ffd485810c4",
+                "reference": "baea7f66d30854ad32988c11a09d7ffd485810c4",
                 "shasum": ""
             },
             "require": {
@@ -9571,7 +9571,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2017-05-25T23:10:31+00:00"
+            "time": "2017-06-01T21:01:25+00:00"
         },
         {
             "name": "symfony/process",
@@ -12481,7 +12481,7 @@
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.3.0",
+            "version": "v3.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
