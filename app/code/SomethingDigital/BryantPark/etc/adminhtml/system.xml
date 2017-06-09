@@ -3,16 +3,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <!-- for add new tab in Magento2 system configuration section -->
-        <tab id="bryantpark" translate="label" sortOrder="10">
-             <label>Bryant Park Theme</label>
+        <tab id="themeoptions" translate="label" sortOrder="10">
+             <label>Theme Options</label>
         </tab>
         <section id="socialprofiles" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Social Profiles</label>
-            <tab>bryantpark</tab>
+            <tab>themeoptions</tab>
             <resource>SomethingDigital_BryantPark::configuration</resource>
 
             <group id="profiles" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Social Profiles Urls</label>
+                <label>Social Profiles URLs</label>
                 <field id="social_facebook" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Facebook</label>
                     <comment>Example: https://www.facebook.com/somethingdigitl</comment>
