@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "01546c7480ebbd1905de9af247a93e0f",
+    "content-hash": "a837345450e3ec353228c202ccac784e",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9200,7 +9200,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/magento2-theme-blank-sass.git",
-                "reference": "af56dea817f9c5401ce90ddaab2fb9b4e0a3b5ed"
+                "reference": "6a7ff153db3310e3437815657d1c250a877aa132"
             },
             "require": {
                 "magento/framework": "100.1.*"
@@ -9215,7 +9215,7 @@
                 "MIT"
             ],
             "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2017-06-05 19:07:46"
+            "time": "2017-06-13 15:07:29"
         },
         {
             "name": "solarium/solarium",
@@ -9333,11 +9333,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "1.0.0",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "5993ebf8b6e5e68f1adc70f5fc32716937ee9579"
+                "reference": "69152f9cffc88e962a6486499c44af2867359623"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9355,7 +9355,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2017-06-09T20:54:32+00:00"
+            "time": "2017-06-13T15:29:22+00:00"
         },
         {
             "name": "symfony/console",
