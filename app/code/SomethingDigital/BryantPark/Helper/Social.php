@@ -4,6 +4,8 @@ namespace SomethingDigital\BryantPark\Helper;
  
 class Social extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    const CONFIG_PATH = 'design/socialprofiles/';
+
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager
@@ -24,41 +26,41 @@ class Social extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getFacebook()
     {
-        return $this->getConfig('socialprofiles/profiles/social_facebook');
+        return $this->getConfig(CONFIG_PATH + 'social_facebook');
     }
 
     public function getTwitter()
     {
-        return $this->getConfig('socialprofiles/profiles/social_twitter');
+        return $this->getConfig(CONFIG_PATH + 'social_twitter');
     }
 
     public function getInstagram()
     {
-        return $this->getConfig('socialprofiles/profiles/social_instagram');
+        return $this->getConfig(CONFIG_PATH + 'social_instagram');
     }
 
     public function getPinterest()
     {
-        $this->getConfig('socialprofiles/profiles/social_pinterest');
+        $this->getConfig(CONFIG_PATH + 'social_pinterest');
     }
 
     public function getGooglePlus()
     {
-        $this->getConfig('socialprofiles/profiles/social_googleplus');
+        $this->getConfig(CONFIG_PATH + 'social_googleplus');
     }
 
     public function getSnapchat()
     {
-        $this->getConfig('socialprofiles/profiles/social_snapchat');
+        $this->getConfig(CONFIG_PATH + 'social_snapchat');
     }
 
     public function getHouzz()
     {
-        $this->getConfig('socialprofiles/profiles/social_houzz');
+        $this->getConfig(CONFIG_PATH + 'social_houzz');
     }
 
     public function getLinkedIn()
     {
-        $this->getConfig('socialprofiles/profiles/social_linkedin');
+        $this->getConfig(CONFIG_PATH + 'social_linkedin');
     }
 }
