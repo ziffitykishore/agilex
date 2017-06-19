@@ -4,7 +4,7 @@ namespace SomethingDigital\BryantPark\Helper;
  
 class Social extends \Magento\Framework\App\Helper\AbstractHelper
 {
-    const CONFIG_PATH = 'design/socialprofiles/';
+    protected $moduleConfigPath;
 
     public function __construct(
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
@@ -12,6 +12,7 @@ class Social extends \Magento\Framework\App\Helper\AbstractHelper
     ) {
         $this->_scopeConfig = $scopeConfig;
         $this->_storeManager = $storeManager;
+        $this->moduleConfigPath = 'design/socialprofiles/';
     }
 
     public function getConfig($config_path)
@@ -26,41 +27,41 @@ class Social extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getFacebook()
     {
-        return $this->getConfig(CONFIG_PATH + 'social_facebook');
+        return $this->getConfig($this->moduleConfigPath . 'social_facebook');
     }
 
     public function getTwitter()
     {
-        return $this->getConfig(CONFIG_PATH + 'social_twitter');
+        return $this->getConfig($this->moduleConfigPath . 'social_twitter');
     }
 
     public function getInstagram()
     {
-        return $this->getConfig(CONFIG_PATH + 'social_instagram');
+        return $this->getConfig($this->moduleConfigPath . 'social_instagram');
     }
 
     public function getPinterest()
     {
-        $this->getConfig(CONFIG_PATH + 'social_pinterest');
+        return $this->getConfig($this->moduleConfigPath . 'social_pinterest');
     }
 
     public function getGooglePlus()
     {
-        $this->getConfig(CONFIG_PATH + 'social_googleplus');
+        return $this->getConfig($this->moduleConfigPath . 'social_googleplus');
     }
 
     public function getSnapchat()
     {
-        $this->getConfig(CONFIG_PATH + 'social_snapchat');
+        return $this->getConfig($this->moduleConfigPath . 'social_snapchat');
     }
 
     public function getHouzz()
     {
-        $this->getConfig(CONFIG_PATH + 'social_houzz');
+        return $this->getConfig($this->moduleConfigPath . 'social_houzz');
     }
 
     public function getLinkedIn()
     {
-        $this->getConfig(CONFIG_PATH + 'social_linkedin');
+        return $this->getConfig($this->moduleConfigPath . 'social_linkedin');
     }
 }
