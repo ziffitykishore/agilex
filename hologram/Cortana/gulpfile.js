@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     notify = require('gulp-notify'),
     jshint = require('gulp-jshint'),
-    sass = require('gulp-ruby-sass'),
+    sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     browserSync = require('browser-sync'),
@@ -14,11 +14,8 @@ var gulp = require('gulp'),
 
 // SASS compile, autoprefix and minify task
 gulp.task('styles', function() {
-  return sass('assets/sass/cortana.scss')
-    .on('error', gutil.beep)
-    .on('error', notify.onError("Error: <%= error.message %>"))
-    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-    .pipe(minifycss())
+  return gulp.src('assets/sass/cortana.scss')
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('theme-build/css'));
 });
 
