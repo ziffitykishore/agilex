@@ -41,7 +41,8 @@ class AssetParams
     public function getAssetRepo($params)
     {
         // Needed to generate SSL requirejs/etc. assets.
-        $this->request->getServer()->set('HTTPS', 'on');
+        $https = $params['https'] ? 'on' : 'off';
+        $this->request->getServer()->set('HTTPS', $https);
 
         /** @var AssetRepository $assetRepo */
         $assetRepo = $this->assetRepoFactory->create([

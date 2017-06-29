@@ -50,7 +50,7 @@ class StaticCommand extends Command
     {
         $appMode = $this->state->getMode();
         // We can only generate requirejs-config.js in production mode.
-        if ($appMode == State::MODE_PRODUCTION && !$this->getOption('requirejs-only')) {
+        if ($appMode == State::MODE_PRODUCTION && !$input->getOption('requirejs-only')) {
             $output->writeln('<error>Not supported in production mode yet.</error>');
             return 1;
         }
@@ -64,7 +64,13 @@ class StaticCommand extends Command
                 'theme' => $theme,
                 'locale' => $input->getOption('locale'),
                 'requirejs-only' => $input->getOption('requirejs-only'),
+                'https' => true,
             ];
+            $this->deploy->generateTheme($params);
+
+            // Now generate the non-HTTPS requirejs-config, for good measure.
+            $params['https'] = false;
+            $params['requirejs-only'] = true;
             $this->deploy->generateTheme($params);
         }
 
