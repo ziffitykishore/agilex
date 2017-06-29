@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="design">
+            <group id="socialprofiles" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social Profiles URLs</label>
+                <field id="social_facebook" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook</label>
+                    <comment>Example: https://www.facebook.com/somethingdigitl</comment>
+                </field>
+                <field id="social_twitter" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter</label>
+                    <comment>Example: https://twitter.com/somethingdigitl</comment>
+                </field>
+                <field id="social_instagram" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Instagram</label>
+                    <comment>Example: https://www.instagram.com/somethingdigitl</comment>
+                </field>
+                <field id="social_pinterest" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pinterest</label>
+                    <comment>Example: https://www.pinterest.com/pinterest/</comment>
+                </field>
+                <field id="social_googleplus" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Plus</label>
+                    <comment>Example: https://plus.google.com/+google</comment>
+                </field>
+                <field id="social_houzz" translate="label comment" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Houzz</label>
+                    <comment>Example: https://www.houzz.com/pro/brand/brand</comment>
+                </field>
+                <field id="social_snapchat" translate="label comment" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Snpachat</label>
+                    <comment>Example: http://www.snapchat.com/add/intradox</comment>
+                </field>
+                <field id="social_linkedin" translate="label comment" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>LinkedIn</label>
+                    <comment>Example: https://www.linkedin.com/company/something-digital</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

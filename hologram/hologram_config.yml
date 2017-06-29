@@ -32,6 +32,10 @@ css_include:
 - /static/frontend/SomethingDigital/bryantpark/en_US/css/styles.css
 - /static/frontend/SomethingDigital/bryantpark/en_US/css/styleguide.css
 
+js_include:
+- https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js
+- https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js
+
 # Any other asset folders that need to be copied to the destination
 # folder. Typically this will include the css that you are trying to
 # document. May also include additional folders as needed.
