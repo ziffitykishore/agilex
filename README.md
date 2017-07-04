@@ -8,6 +8,17 @@ Something Digital's standard Magento 2 setup. Makes use of Gulp, [Hologram](http
 
 See [CHECKLIST.md](CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
 
+#### Keeping Other M2 Builds Up-To-Date with Accelerator
+```bash
+git remote add accelerator git@github.com:sdinteractive/SomethingDigital-Magento2-Package-Accelerator.git
+git fetch accelerator
+git merge {version tag} --no-ff
+```
+
+##### Things to note:
+  - Merge a tagged release instead of the latest from a branch
+  - The generated commit message will be something like "Merge tag 'v1.2.1' into develop". Append "from accelerator" to it so that's it's clear.
+ 
 ### Vagrant
 
 Instructions on getting the Something Digital Magento 2 Vagrant box up and running can be found in the [Operations-Development](https://github.com/sdinteractive/Operations-Development/tree/master/boxes/Magento-BaseBuild2) repo.
