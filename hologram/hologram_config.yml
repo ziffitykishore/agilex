@@ -2,9 +2,10 @@
 # All paths should be relative to there
 
 # The directory containing the source files to parse recursively
+# The project theme must be loaded BEFORE bryant park.
 source:
-  - ../vendor/somethingdigital/magento2-theme-bryantpark/styles
   #- ../app/design/frontend/SomethingDigital/bryantpark/styles
+  - ../vendor/somethingdigital/magento2-theme-bryantpark/styles
 
 
 # The directory that hologram will build to
@@ -42,9 +43,9 @@ js_include:
 #dependencies:
 
 # Mark which category should be the index page
-# Alternatively, you may have an index.md in the documentation assets
+# Alternatively, you may have an index.md in the source directory root
 # folder instead of specifying this config.
-index: basics
+# index: basics
 
 # To additionally output navigation for top level sections, set the value to
 # 'section'. To output navigation for sub-sections,
