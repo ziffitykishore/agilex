@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed67137a8882d5de00356d6b12b4b9f0",
+    "content-hash": "810818415bb47a6db79472a54253ea0e",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9200,7 +9200,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/magento2-theme-blank-sass.git",
-                "reference": "b5e3ac021eefe6748c5f8cde8914a40ce8e1f9a5"
+                "reference": "062284fd8eba46019d946b6b5037cab73fe4a28b"
             },
             "require": {
                 "magento/framework": "100.1.*"
@@ -9215,7 +9215,7 @@
                 "MIT"
             ],
             "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2017-07-06 21:29:46"
+            "time": "2017-07-13 03:36:02"
         },
         {
             "name": "solarium/solarium",
@@ -9333,11 +9333,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "4040b65bd13fea9aeee24eafee4cd19fb7d9d21d"
+                "reference": "9b6daa3b3442223b93c4af938c9288c6861c956f"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9355,7 +9355,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2017-07-10T17:57:47+00:00"
+            "time": "2017-07-13T19:48:06+00:00"
         },
         {
             "name": "symfony/console",
@@ -9874,7 +9874,7 @@
         },
         {
             "name": "zendframework/zend-crypt",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-crypt.git",
@@ -9977,7 +9977,7 @@
         },
         {
             "name": "zendframework/zend-escaper",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-escaper.git",
@@ -10124,7 +10124,7 @@
         },
         {
             "name": "zendframework/zend-form",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-form.git",
@@ -10195,7 +10195,7 @@
         },
         {
             "name": "zendframework/zend-http",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
@@ -10310,7 +10310,7 @@
         },
         {
             "name": "zendframework/zend-inputfilter",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-inputfilter.git",
@@ -10631,7 +10631,7 @@
         },
         {
             "name": "zendframework/zend-mvc",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-mvc.git",
@@ -11071,7 +11071,7 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.4.12",
+            "version": "2.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
