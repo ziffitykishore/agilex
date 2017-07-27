@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c3b446de8432032256c7265058884bbd",
+    "content-hash": "02c2b7a954651e5829ca0f707522ab5e",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9303,15 +9303,17 @@
         },
         {
             "name": "somethingdigital/magento2-migration",
-            "version": "1.1.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Migration.git",
-                "reference": "56dc0e0726108a420b55d0812ac97dc7155e16dd"
+                "reference": "782014e6dfd0d99cb8374014025231de2e87b075"
             },
             "require": {
+                "gene/bluefoot": "^1.0.30",
                 "magento/framework": "^100.1.0",
                 "magento/module-cms": "^101.0.0",
+                "magento/module-eav": "^100.1.0",
                 "magento/module-email": "^100.1.0",
                 "magento/module-store": "^100.1.0",
                 "php": ">= 5.6.0 <7.2.0"
@@ -9329,7 +9331,7 @@
                 "proprietary"
             ],
             "description": "Utility library to allow migration-style data upgrade scripts.",
-            "time": "2017-05-26T19:02:08+00:00"
+            "time": "2017-07-27T15:04:03+00:00"
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
