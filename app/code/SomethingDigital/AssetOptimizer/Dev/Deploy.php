@@ -44,6 +44,7 @@ class Deploy
         if (empty($params['requirejs-only'])) {
             $this->enqueueModules($params['area']);
             $this->enqueueThemes($params['area']);
+            $this->enqueueJson();
             $this->enqueueLib();
         }
 
@@ -78,5 +79,10 @@ class Deploy
     {
         $path = $this->dirList->getPath(DirectoryList::LIB_WEB);
         $this->assetQueue->enqueue($path);
+    }
+
+    protected function enqueueJson()
+    {
+        $this->assetQueue->enqueueAsset(null, 'js-translation.json');
     }
 }
