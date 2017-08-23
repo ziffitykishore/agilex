@@ -1,6 +1,6 @@
 <?php
 
-namespace SomethingDigital\BryantPark\Migration\Data;
+namespace SomethingDigital\MigrationBryantPark\Migration\Data;
 
 use Magento\Framework\Setup\SetupInterface;
 use SomethingDigital\Migration\Api\MigrationInterface;
@@ -10,7 +10,7 @@ use SomethingDigital\Migration\Helper\Cms\Bluefoot as BluefootHelper;
 use SomethingDigital\Migration\Helper\Email\Template as EmailHelper;
 use Magento\Config\Model\ResourceModel\Config as ResourceConfig;
 
-class M20170822140418AddJsHideToPromo implements MigrationInterface
+class M20170823134733AddJsHideToPromo implements MigrationInterface
 {
     protected $page;
     protected $block;
