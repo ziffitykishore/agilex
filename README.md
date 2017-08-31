@@ -57,7 +57,13 @@ Run `gulp --tasks` to see full list of gulp tasks.
 
 The blank theme makes use of [Webpack](https://webpack.github.io/) to process and bundle its JS files. `gulp scripts` will start up Webpack using the `webpack.config.js` configuration file. If you need to create new bundled Webpack files, specify them in the configuration file under `entry`.
 
-Note that in order to run Webpack you'll need to have the `pub/static` RequireJS config generated. This will automatically be created if you load the site in a browser, or it can be created from the CLI with an HTTPS-configured static content deploy: `export HTTPS=on; magento setup:static-content:deploy`
+Note that in order to run Webpack you'll need to have the `pub/static` RequireJS config generated. This will automatically be created if you load the site in a browser, or it can be created from the CLI with an HTTPS-configured static content deploy: `export HTTPS=on; magento setup:static-content:deploy` / `magento sd:dev:static`.
+
+### Enabling CSS / JS Minification
+
+1. Make sure app/etc/config.local.php has been generated, i.e. via `magento app:config:dump`.
+2. Update `minify_files` in app/etc/config.local.php to 1.
+3. Remove `disableSuffix` from dev/tools/frontools/config/themes.json.
 
 ### Style Guide
 
