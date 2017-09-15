@@ -33,7 +33,7 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.1.8",
+        "magento/product-enterprise-edition": "2.1.9",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "dev-develop",
