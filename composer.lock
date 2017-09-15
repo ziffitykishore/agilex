@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "10207c0f7aafbded0d7a507ebfa548c0",
+    "content-hash": "2b36b6321c4f61922dcc13d41440ee3d",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9344,11 +9344,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "2.2.3",
+            "version": "2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "e5bf8e0844e3db8d8284a11f035e72bf2056520a"
+                "reference": "30df65ce1bc62c408f10ba70418690530816f424"
             },
             "require": {
                 "magento/framework": "100.1.*",
@@ -9366,7 +9366,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2017-09-12T20:00:37+00:00"
+            "time": "2017-09-15T14:12:00+00:00"
         },
         {
             "name": "symfony/console",
