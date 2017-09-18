@@ -30,6 +30,10 @@
         {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Bluefoot.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/sdinteractive/composer-patcher.git"
         }
     ],
     "require": {
@@ -40,7 +44,8 @@
         "somethingdigital/magento2-theme-bryantpark": "2.2.5",
         "somethingdigital/magento2-migration": "1.2.4",
         "somethingdigital/magento2-bluefoot": "dev-master",
-        "gene/bluefoot": "^1.0"
+        "gene/bluefoot": "^1.0",
+        "jamescowie/composer-patcher": "^0.1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",

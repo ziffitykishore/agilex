@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2b36b6321c4f61922dcc13d41440ee3d",
+    "content-hash": "e9e7cc8aab509a56fe43b1f87c920db7",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -589,6 +589,36 @@
                 "stream"
             ],
             "time": "2014-10-12T19:18:40+00:00"
+        },
+        {
+            "name": "jamescowie/composer-patcher",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sdinteractive/composer-patcher.git",
+                "reference": "5c19c426f641bdb2f9adefd37b84f5efd9105c96"
+            },
+            "require": {
+                "symfony/console": "2.6.*",
+                "symfony/process": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Inviqa\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "jamescowie",
+                    "email": "james@jcowie.co.uk"
+                }
+            ],
+            "description": "Apply patches using composer",
+            "time": "2015-05-15T11:24:50+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
