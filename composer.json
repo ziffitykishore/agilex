@@ -90,6 +90,40 @@
         "post-update-cmd": "Inviqa\\Command::patch"
     },
     "extra": {
-        "magento-force": "override"
+        "magento-force": "override",
+        "patches": {
+            "magento-hotfix-patches": {
+                "SD-001_EE_2.1.7_v1_composer": {
+                    "title": "Fixes layout handle encoding in FPC",
+                    "url": "composer-patches/SD-001_EE_2.1.7_v1_composer.patch",
+                    "type": "patch"
+                },
+                "199180_MDVA-5954_BLUEFOOT_v1": {
+                    "title": "199180_MDVA-5954_BLUEFOOT_v1",
+                    "url": "composer-patches/199180_MDVA-5954_BLUEFOOT_v1_composer.patch",
+                    "type": "patch"
+                },
+                "520-MAGETWO_58033_2_1_2_v1": {
+                    "title": "520-MAGETWO_58033_2_1_2_v1",
+                    "url": "composer-patches/520-MAGETWO_58033_2_1_2_v1_composer.patch",
+                    "type": "patch"
+                },
+                "MAGETWO-71363_EE_2.1.4": {
+                    "title": "MAGETWO-71363_EE_2.1.4",
+                    "url": "composer-patches/MAGETWO-71363_EE_2.1.4_composer_v1.patch",
+                    "type": "patch"
+                },
+                "MDVA-2957_EE_2.1.2_v1": {
+                    "title": "MDVA-2957_EE_2.1.2_v1",
+                    "url": "composer-patches/MDVA-2957_EE_2.1.2_v1_composer.patch",
+                    "type": "patch"
+                },
+                "composer-MAGETWO-62197": {
+                    "title": "composer-MAGETWO-62197",
+                    "url": "composer-patches/composer-MAGETWO-62197.patch",
+                    "type": "patch"
+                }
+            }
+        }
     }
 }
