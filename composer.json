@@ -85,6 +85,10 @@
     },
     "minimum-stability": "alpha",
     "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": "Inviqa\\Command::patch",
+        "post-update-cmd": "Inviqa\\Command::patch"
+    },
     "extra": {
         "magento-force": "override"
     }
