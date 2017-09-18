@@ -73,6 +73,24 @@ Like in Magento 1, we utilize Hologram to build an HTML style guide for both QA 
 
 Navigate to [https://magento2.dev/styleguide](https://magento2.dev/styleguide) and you can then open the left hamburger menu to jump between sections.
 
+### Patch Application
+Magento hotfix patches should be placed in `composer-patches` and added to `composer.json` with the following syntax:  
+```json
+"extra": {
+    ...
+    "patches": {
+        "magento-hotfix-patches": {
+            "{{unique-patch-name}}": {
+                "title": "{{patch-title}}",
+                "url": "composer-patches/{{patch-filename}}",
+                "type": "patch"
+            },
+        }
+    }
+    ...
+}
+```
+
 ## Coding Standards
 
 For CSS, HTML, & JS SD best practices and coding styles, view the [SD Code Style document](https://github.com/sdinteractive/SomethingDigital-Guides/blob/master/Standards/CodeStyle.md).
