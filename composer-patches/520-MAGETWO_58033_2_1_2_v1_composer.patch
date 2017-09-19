@@ -1,0 +1,110 @@
+Index: vendor/magento/module-configurable-product/etc/frontend/di.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- a/vendor/magento/module-configurable-product/etc/frontend/di.xml	(date 1476140097000)
++++ b/vendor/magento/module-configurable-product/etc/frontend/di.xml	(revision )
+@@ -14,4 +14,7 @@
+             </argument>
+         </arguments>
+     </type>
++    <type name="Magento\Catalog\Model\Product">
++        <plugin name="configurable_status" type="Magento\ConfigurableProduct\Plugin\Model\ProductStatus" />
++    </type>
+ </config>
+Index: vendor/magento/module-configurable-product/Plugin/Model/ProductStatus.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- a/vendor/magento/module-configurable-product/Plugin/Model/ProductStatus.php	(revision )
++++ b/vendor/magento/module-configurable-product/Plugin/Model/ProductStatus.php	(revision )
+@@ -0,0 +1,62 @@
++<?php
++/**
++ *
++ * Copyright © 2016 Magento. All rights reserved.
++ * See COPYING.txt for license details.
++ */
++
++namespace Magento\ConfigurableProduct\Plugin\Model;
++
++use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
++use Magento\Catalog\Model\Product\Attribute\Source\Status;
++
++/**
++ * Plugin for Product Status
++ */
++class ProductStatus
++{
++    /**
++     * @var \Magento\Catalog\Api\ProductRepositoryInterface
++     */
++    private $productRepository;
++
++    /**
++     * Initialize dependencies.
++     *
++     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
++     */
++    public function __construct(\Magento\Catalog\Api\ProductRepositoryInterface $productRepository)
++    {
++        $this->productRepository = $productRepository;
++    }
++
++    /**
++     * Return 'disabled' status for configurable produce which has all of its options disabled/out of stock
++     *
++     * @param \Magento\Catalog\Model\Product $product
++     * @param int $result
++     * @return int
++     */
++    public function afterGetStatus(\Magento\Catalog\Model\Product $product, $result)
++    {
++        /** @var Configurable $productType */
++        $productType = $product->getTypeInstance();
++        if ($productType instanceof Configurable) {
++            if ($result == Status::STATUS_ENABLED) {
++                $result = Status::STATUS_DISABLED;
++                /** @var int $productId */
++                foreach ($productType->getChildrenIds($product->getId())[0] as $productId) {
++                    /** @var \Magento\Catalog\Api\Data\ProductInterface $childProduct */
++                    $childProduct = $this->productRepository->getById($productId);
++                    if ((int)$childProduct->getStatus() === Status::STATUS_ENABLED
++                        && (bool)$childProduct->getExtensionAttributes()->getStockItem()->getIsInStock() === true
++                    ) {
++                        $result = Status::STATUS_ENABLED;
++                        break;
++                    }
++                }
++            }
++        }
++        return $result;
++    }
++}
+Index: vendor/magento/module-catalog/view/frontend/templates/product/list.phtml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- a/vendor/magento/module-catalog/view/frontend/templates/product/list.phtml	(date 1476140097000)
++++ b/vendor/magento/module-catalog/view/frontend/templates/product/list.phtml	(revision )
+@@ -4,6 +4,7 @@
+  * See COPYING.txt for license details.
+  */
+ use Magento\Framework\App\Action\Action;
++use Magento\Catalog\Model\Product\Attribute\Source\Status;
+
+ // @codingStandardsIgnoreFile
+
+@@ -46,6 +47,9 @@
+         <ol class="products list items product-items">
+             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+             <?php foreach ($_productCollection as $_product): ?>
++                <?php if ((int)$_product->getStatus() === Status::STATUS_DISABLED): ?>
++                    <?php continue; ?>
++                <?php endif; ?>
+                 <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                 <div class="product-item-info" data-container="product-grid">
+                     <?php

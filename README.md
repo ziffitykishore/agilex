@@ -16,6 +16,7 @@ git merge {version tag} --no-ff
 ```
 
 ##### Things to note:
+  - When making major version updates (e.g. v2.1.x to v2.2.x) patches should be removed from `composer.json` and the `composer-patches` directory.
   - Merge a tagged release instead of the latest from a branch
   - The generated commit message will be something like "Merge tag 'v1.2.1' into develop". Append "from accelerator" to it so that's it's clear.
  
@@ -72,6 +73,24 @@ Like in Magento 1, we utilize Hologram to build an HTML style guide for both QA 
 ##### How to access style guide?
 
 Navigate to [https://magento2.dev/styleguide](https://magento2.dev/styleguide) and you can then open the left hamburger menu to jump between sections.
+
+### Patch Application
+Magento hotfix patches should be placed in `composer-patches` and added to `composer.json` with the following syntax:  
+```json
+"extra": {
+    ...
+    "patches": {
+        "magento-hotfix-patches": {
+            "{{unique-patch-name}}": {
+                "title": "{{patch-title}}",
+                "url": "composer-patches/{{patch-filename}}",
+                "type": "patch"
+            },
+        }
+    }
+    ...
+}
+```
 
 ## Coding Standards
 
