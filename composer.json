@@ -122,6 +122,11 @@
                     "title": "Fixes admin product save with > 20 custom options",
                     "url": "composer-patches/composer-MAGETWO-62197.patch",
                     "type": "patch"
+                },
+                "MDVA-5257_2.1.7": {
+                    "title": "Fixes the cart/minicart mismatches we sometimes see",
+                    "url": "composer-patches/MDVA-5257_2.1.7_composer.patch",
+                    "type": "patch"
                 }
             }
         }
