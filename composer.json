@@ -127,6 +127,11 @@
                     "title": "Fixes the cart/minicart mismatches we sometimes see",
                     "url": "composer-patches/MDVA-5257_2.1.7_composer.patch",
                     "type": "patch"
+                },
+                "MDVA-2105_COMPOSER_v1": {
+                    "title": "Add patch to show all matching filters on a page.",
+                    "url": "composer-patches/MDVA-2105_COMPOSER_v1.patch",
+                    "type": "patch"
                 }
             }
         }
