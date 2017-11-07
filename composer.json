@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.1.7",
+    "version": "2.2.0",
     "license": [
         "proprietary"
     ],
@@ -37,25 +37,23 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.1.9",
+        "magento/product-enterprise-edition": "2.2.0",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "dev-develop",
-        "somethingdigital/magento2-theme-bryantpark": "2.2.5",
-        "somethingdigital/magento2-migration": "1.2.4",
-        "somethingdigital/magento2-bluefoot": "dev-master",
-        "gene/bluefoot": "^1.0",
-        "jamescowie/composer-patcher": "^0.1.0"
+        "somethingdigital/magento2-theme-bryantpark": "2.2.8",
+        "somethingdigital/magento2-migration": "v1.3.0-alpha.2",
+        "somethingdigital/magento2-bluefoot": "1.1.4",
+        "gene/bluefoot": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.1.0",
-        "squizlabs/php_codesniffer": "1.5.3",
+        "phpunit/phpunit": "~6.2.0",
+        "squizlabs/php_codesniffer": "3.0.1",
         "phpmd/phpmd": "@stable",
-        "pdepend/pdepend": "2.2.2",
-        "sjparkinson/static-review": "~4.1",
-        "fabpot/php-cs-fixer": "~1.2",
-        "lusitanian/oauth": "~0.3 <=0.7.0",
-        "sebastian/phpcpd": "2.0.0"
+        "pdepend/pdepend": "2.5.0",
+        "friendsofphp/php-cs-fixer": "~2.1.1",
+        "lusitanian/oauth": "~0.8.10",
+        "sebastian/phpcpd": "2.0.4"
     },
     "config": {
         "use-include-path": true
@@ -85,55 +83,10 @@
     },
     "minimum-stability": "alpha",
     "prefer-stable": true,
-    "scripts": {
-        "post-install-cmd": "Inviqa\\Command::patch",
-        "post-update-cmd": "Inviqa\\Command::patch"
-    },
     "extra": {
         "magento-force": "override",
         "patches": {
-            "magento-hotfix-patches": {
-                "SD-001_EE_2.1.7_v1_composer": {
-                    "title": "Fixes layout handle encoding in FPC",
-                    "url": "composer-patches/SD-001_EE_2.1.7_v1_composer.patch",
-                    "type": "patch"
-                },
-                "199180_MDVA-5954_BLUEFOOT_v1": {
-                    "title": "Resolves Bluefoot slider loading race condition",
-                    "url": "composer-patches/199180_MDVA-5954_BLUEFOOT_v1_composer.patch",
-                    "type": "patch"
-                },
-                "520-MAGETWO_58033_2_1_2_v1": {
-                    "title": "Skips disabled products in categories to workaround blank pages",
-                    "url": "composer-patches/520-MAGETWO_58033_2_1_2_v1_composer.patch",
-                    "type": "patch"
-                },
-                "MAGETWO-71363_EE_2.1.4": {
-                    "title": "Resets free shipping promo on lowering quantity",
-                    "url": "composer-patches/MAGETWO-71363_EE_2.1.4_composer_v1.patch",
-                    "type": "patch"
-                },
-                "MDVA-2957_EE_2.1.2_v1": {
-                    "title": "Prevents out of stock products from causing blank category pages",
-                    "url": "composer-patches/MDVA-2957_EE_2.1.2_v1_composer.patch",
-                    "type": "patch"
-                },
-                "composer-MAGETWO-62197": {
-                    "title": "Fixes admin product save with > 20 custom options",
-                    "url": "composer-patches/composer-MAGETWO-62197.patch",
-                    "type": "patch"
-                },
-                "MDVA-5257_2.1.7": {
-                    "title": "Fixes the cart/minicart mismatches we sometimes see",
-                    "url": "composer-patches/MDVA-5257_2.1.7_composer.patch",
-                    "type": "patch"
-                },
-                "MDVA-2105_COMPOSER_v1": {
-                    "title": "Add patch to show all matching filters on a page.",
-                    "url": "composer-patches/MDVA-2105_COMPOSER_v1.patch",
-                    "type": "patch"
-                }
-            }
+            
         }
     }
 }
