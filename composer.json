@@ -41,7 +41,7 @@
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "dev-develop",
-        "somethingdigital/magento2-theme-bryantpark": "2.2.8",
+        "somethingdigital/magento2-theme-bryantpark": "2.2.11",
         "somethingdigital/magento2-migration": "v1.3.0-alpha.2",
         "somethingdigital/magento2-bluefoot": "1.1.4",
         "gene/bluefoot": "^1.0"
