@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "gulp": "^3.9.1"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "build:production": "gulp build --prod --ci",
+    "start": "gulp watch"
   }
 }
