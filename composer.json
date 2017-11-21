@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.1.7",
+    "version": "2.1.10",
     "license": [
         "proprietary"
     ],
@@ -37,7 +37,7 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.1.9",
+        "magento/product-enterprise-edition": "2.1.10",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "dev-develop",
@@ -96,11 +96,6 @@
                 "SD-001_EE_2.1.7_v1_composer": {
                     "title": "Fixes layout handle encoding in FPC",
                     "url": "composer-patches/SD-001_EE_2.1.7_v1_composer.patch",
-                    "type": "patch"
-                },
-                "199180_MDVA-5954_BLUEFOOT_v1": {
-                    "title": "Resolves Bluefoot slider loading race condition",
-                    "url": "composer-patches/199180_MDVA-5954_BLUEFOOT_v1_composer.patch",
                     "type": "patch"
                 },
                 "520-MAGETWO_58033_2_1_2_v1": {
