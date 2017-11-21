@@ -55,6 +55,8 @@
             <constraint name="Magento\GiftCard\Test\Constraint\AssertGiftCardProductAddToCartForm" />
         </variation>
         <variation name="UpdateGiftCardProductEntityTestVariation3" ticketId="MAGETWO-69604">
+            <data name="tag" xsi:type="string">stable:no</data>
+            <data name="issue" xsi:type="string">MAGETWO-75593: Amount doesn't deleting from giftcard</data>
             <data name="description" xsi:type="string">update gift card with fixed amount to gift card with open amount</data>
             <data name="productOriginal/dataset" xsi:type="string">fixed_amount</data>
             <data name="product/data/url_key" xsi:type="string">gift-card-product-%isolation%</data>
