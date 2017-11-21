@@ -24,5 +24,15 @@
             <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
             <field name="description" xsi:type="string">Staging description</field>
         </dataset>
+        <dataset name="temporary_update_with_date_plus_2_days">
+            <field name="start_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +2 days</item>
+            </field>
+            <field name="end_time" xsi:type="array">
+                <item name="pattern" xsi:type="string">m/d/Y g:i A +1 month</item>
+            </field>
+            <field name="name" xsi:type="string">Test_Staging_%isolation%</field>
+            <field name="description" xsi:type="string">Staging description</field>
+        </dataset>
     </repository>
 </config>
