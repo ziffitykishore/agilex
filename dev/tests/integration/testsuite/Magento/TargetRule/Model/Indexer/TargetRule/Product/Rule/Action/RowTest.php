@@ -46,6 +46,7 @@ class RowTest extends \Magento\TestFramework\Indexer\TestCase
      */
     public function testReindexRow()
     {
+        $this->markTestSkipped('MAGETWO-81306');
         $this->_processor->getIndexer()->setScheduled(false);
         $this->assertFalse($this->_processor->getIndexer()->isScheduled());
 
