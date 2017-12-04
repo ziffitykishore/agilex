@@ -16,6 +16,11 @@ class TileTest extends \PHPUnit\Framework\TestCase
     const SECOND_WEBSITE_SECOND_STORE = 3;
 
     /**
+     * @var string
+     */
+    private $positionCacheKey;
+
+    /**
      * @var \Magento\VisualMerchandiser\Block\Adminhtml\Category\Merchandiser\Tile
      */
     private $tile;
@@ -24,6 +29,11 @@ class TileTest extends \PHPUnit\Framework\TestCase
      * @var \Magento\TestFramework\ObjectManager
      */
     private $objectManager;
+
+    /**
+     * @var \Magento\VisualMerchandiser\Model\Position\Cache
+     */
+    private $positionCache;
 
     protected function setUp()
     {
@@ -34,7 +44,10 @@ class TileTest extends \PHPUnit\Framework\TestCase
         $this->tile = $layout->createBlock(
             \Magento\VisualMerchandiser\Block\Adminhtml\Category\Merchandiser\Tile::class
         );
-        $this->tile->setPositionCacheKey('cache_key');
+        $this->positionCacheKey = 'cache_key';
+        $this->tile->setPositionCacheKey($this->positionCacheKey);
+
+        $this->positionCache = $this->objectManager->get(\Magento\VisualMerchandiser\Model\Position\Cache::class);
     }
 
     /**
@@ -133,6 +146,8 @@ class TileTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEmpty(array_diff($expectProductNames, $productNames));
         $this->assertEmpty(array_diff($productNames, $expectProductNames));
+
+        $this->positionCache->saveData($this->positionCacheKey, null);
     }
 
     /**
