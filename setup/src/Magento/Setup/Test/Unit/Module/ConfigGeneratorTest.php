@@ -5,18 +5,11 @@
  */
 namespace Magento\Setup\Test\Unit\Module;
 
-use Magento\Framework\App\DeploymentConfig;
-use Magento\Framework\Config\Data\ConfigData;
-use Magento\Framework\Config\Data\ConfigDataFactory;
 use Magento\Framework\Config\File\ConfigFilePool;
-use Magento\Framework\Math\Random;
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Magento\Setup\Model\ConfigGenerator;
 use Magento\Framework\Config\ConfigOptionsListConstants;
-use Magento\Setup\Model\CryptKeyGenerator;
-use PHPUnit\Framework\TestCase;
 
-class ConfigGeneratorTest extends TestCase
+class ConfigGeneratorTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ConfigGenerator
@@ -25,31 +18,11 @@ class ConfigGeneratorTest extends TestCase
 
     protected function setUp()
     {
-        /** @var DeploymentConfig|\PHPUnit_Framework_MockObject_MockObject $deployConfig */
-        $deployConfig = $this->createMock(DeploymentConfig::class);
+        $random = $this->createMock(\Magento\Framework\Math\Random::class);
+        $random->expects($this->any())->method('getRandomString')->willReturn('key');
+        $deployConfig= $this->createMock(\Magento\Framework\App\DeploymentConfig::class);
         $deployConfig->expects($this->any())->method('isAvailable')->willReturn(false);
-
-        /** @var Random|\PHPUnit_Framework_MockObject_MockObject $randomMock */
-        $randomMock = $this->createMock(Random::class);
-        $randomMock->expects($this->any())->method('getRandomString')->willReturn('key');
-
-        $cryptKeyGenerator = new CryptKeyGenerator($randomMock);
-
-        $objectManagerMock = $this->getMockBuilder(\Magento\Framework\App\ObjectManager::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $objectManagerMock->method('create')->willReturn(new ConfigData('app_env'));
-
-        $configDataFactoryMock = (new ObjectManager($this))
-            ->getObject(ConfigDataFactory::class, ['objectManager' => $objectManagerMock]);
-
-        $this->configGeneratorObject = new ConfigGenerator(
-            $randomMock,
-            $deployConfig,
-            $configDataFactoryMock,
-            $cryptKeyGenerator
-        );
+        $this->configGeneratorObject = new ConfigGenerator($random, $deployConfig);
     }
 
     public function testCreateCryptConfigWithInput()

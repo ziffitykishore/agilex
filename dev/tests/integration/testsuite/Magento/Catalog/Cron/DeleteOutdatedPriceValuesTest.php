@@ -54,8 +54,6 @@ class DeleteOutdatedPriceValuesTest extends \PHPUnit\Framework\TestCase
      */
     public function testExecute()
     {
-        $defaultStorePrice = 10.00;
-        $secondStorePrice = 9.99;
         $secondStoreId = $this->store->load('fixture_second_store')->getId();
         /** @var \Magento\Catalog\Model\Product\Action $productAction */
         $productAction = $this->objectManager->create(
@@ -87,7 +85,7 @@ class DeleteOutdatedPriceValuesTest extends \PHPUnit\Framework\TestCase
             'add'
         );
         $product->setStoreId($secondStoreId);
-        $product->setPrice($secondStorePrice);
+        $product->setPrice(9.99);
 
         $productResource->save($product);
         $attribute = $this->objectManager->get(\Magento\Eav\Model\Config::class)
@@ -96,25 +94,13 @@ class DeleteOutdatedPriceValuesTest extends \PHPUnit\Framework\TestCase
                 'price'
             );
         $this->assertEquals(
-            $secondStorePrice,
+            '9.99',
             $productResource->getAttributeRawValue($productId, $attribute->getId(), $secondStoreId)
         );
         /** @var MutableScopeConfigInterface $config */
         $config = $this->objectManager->get(
             MutableScopeConfigInterface::class
         );
-
-        $config->setValue(
-            \Magento\Store\Model\Store::XML_PATH_PRICE_SCOPE,
-            null,
-            ScopeConfigInterface::SCOPE_TYPE_DEFAULT
-        );
-        $this->cron->execute();
-        $this->assertEquals(
-            $secondStorePrice,
-            $productResource->getAttributeRawValue($productId, $attribute->getId(), $secondStoreId)
-        );
-
         $config->setValue(
             \Magento\Store\Model\Store::XML_PATH_PRICE_SCOPE,
             \Magento\Store\Model\Store::PRICE_SCOPE_GLOBAL,
@@ -123,7 +109,7 @@ class DeleteOutdatedPriceValuesTest extends \PHPUnit\Framework\TestCase
         /** @var \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig */
         $this->cron->execute();
         $this->assertEquals(
-            $defaultStorePrice,
+            '10.0000',
             $productResource->getAttributeRawValue($productId, $attribute->getId(), $secondStoreId)
         );
     }
