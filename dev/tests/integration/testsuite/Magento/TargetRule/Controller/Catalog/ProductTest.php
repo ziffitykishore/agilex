@@ -5,6 +5,10 @@
  */
 namespace Magento\TargetRule\Controller\Catalog;
 
+/**
+ * @magentoDbIsolation enabled
+ * @magentoAppIsolation enabled
+ */
 class ProductTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     /**

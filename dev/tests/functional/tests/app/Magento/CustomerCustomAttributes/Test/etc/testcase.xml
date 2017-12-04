@@ -15,15 +15,4 @@
         <step name="proceedToCheckout" module="Magento_Checkout" next="addNewShippingAddress"/>
         <step name="addNewShippingAddress" module="Magento_Checkout"/>
     </scenario>
-    <scenario name="CustomerAddressAttributeVisibilityTest" firstStep="createCustomer">
-        <step name="createCustomer" module="Magento_Customer" next="createCustomerAddressAttribute"/>
-        <step name="createCustomerAddressAttribute" module="Magento_CustomerCustomAttributes" next="loginCustomerOnFrontend"/>
-        <step name="loginCustomerOnFrontend" module="Magento_Customer" next="openEditAddress"/>
-        <step name="openEditAddress" module="Magento_CustomerCustomAttributes"/>
-    </scenario>
-    <scenario name="DefaultCustomerAddressAttributesVisibilityTest" firstStep="createCustomer">
-        <step name="createCustomer" module="Magento_Customer" next="loginCustomerOnFrontend"/>
-        <step name="loginCustomerOnFrontend" module="Magento_Customer" next="openEditAddress"/>
-        <step name="openEditAddress" module="Magento_CustomerCustomAttributes"/>
-    </scenario>
 </config>
