@@ -13,6 +13,9 @@ use Magento\TargetRule\Test\Page\Adminhtml\TargetRuleEdit;
 use Magento\TargetRule\Test\Page\Adminhtml\TargetRuleIndex;
 use Magento\TargetRule\Test\Page\Adminhtml\TargetRuleNew;
 use Magento\Mtf\TestCase\Injectable;
+use Magento\Catalog\Test\Fixture\CatalogProductAttribute;
+use Magento\Catalog\Test\Page\Adminhtml\CatalogProductAttributeIndex;
+use Magento\Catalog\Test\Page\Adminhtml\CatalogProductAttributeNew;
 
 /**
  * Parent class for TargetRule tests.
@@ -34,6 +37,11 @@ abstract class AbstractTargetRuleEntityTest extends Injectable
     protected $targetRuleNew;
 
     /**
+     * @var  CatalogProductAttribute
+     */
+    protected $productAttribute;
+
+    /**
      * Target rule edit page.
      *
      * @var TargetRuleEdit
@@ -48,21 +56,42 @@ abstract class AbstractTargetRuleEntityTest extends Injectable
     protected $targetRuleName;
 
     /**
-     * Injection data.
+     *  Attribute grid page
+     *
+     * @var CatalogProductAttributeIndex
+     */
+    protected $attributeIndex;
+
+    /**
+     * @var CatalogProductAttributeNew
+     */
+    protected $attributeNew;
+
+    /**
+     * Injection data
      *
      * @param TargetRuleIndex $targetRuleIndex
      * @param TargetRuleNew $targetRuleNew
      * @param TargetRuleEdit $targetRuleEdit
+     * @param CatalogProductAttributeIndex $attributeIndex
+     * @param CatalogProductAttributeNew $attributeNew
+     * @param CatalogProductAttribute $productAttribute
      * @return void
      */
     public function __inject(
         TargetRuleIndex $targetRuleIndex,
         TargetRuleNew $targetRuleNew,
-        TargetRuleEdit $targetRuleEdit
+        TargetRuleEdit $targetRuleEdit,
+        CatalogProductAttributeIndex $attributeIndex,
+        CatalogProductAttributeNew $attributeNew,
+        CatalogProductAttribute $productAttribute
     ) {
         $this->targetRuleIndex = $targetRuleIndex;
         $this->targetRuleNew = $targetRuleNew;
         $this->targetRuleEdit = $targetRuleEdit;
+        $this->attributeIndex = $attributeIndex;
+        $this->attributeNew = $attributeNew;
+        $this->productAttribute = $productAttribute;
     }
 
     /**
@@ -110,19 +139,25 @@ abstract class AbstractTargetRuleEntityTest extends Injectable
         $conditionEntity = null,
         CustomerSegment $customerSegment = null
     ) {
-        $customerSegmentName = ($customerSegment && $customerSegment->hasData()) ? $customerSegment->getName() : '';
+        if ($conditionEntity !== 'attributeProductName') {
+            $customerSegmentName = ($customerSegment && $customerSegment->hasData()) ? $customerSegment->getName() : '';
 
-        return [
-            'rule_information' => [
-                'customer_segment_ids' => [
-                    '%customer_segment%' => $customerSegmentName,
+            return [
+                'rule_information' => [
+                    'customer_segment_ids' => [
+                        '%customer_segment%' => $customerSegmentName,
+                    ],
                 ],
-            ],
-            'products_to_match' =>
-                $this->getProductsConditionsData($product, $promotedProduct, $conditionEntity)['products_to_match'],
-            'products_to_display' =>
-                $this->getProductsConditionsData($product, $promotedProduct, $conditionEntity)['products_to_display'],
-        ];
+                'products_to_match' =>
+                    $this->getProductsConditionsData($product, $promotedProduct, $conditionEntity)['products_to_match'],
+                'products_to_display' =>
+                    $this->getProductsConditionsData(
+                        $product,
+                        $promotedProduct,
+                        $conditionEntity
+                    )['products_to_display'],
+            ];
+        }
     }
 
     /**

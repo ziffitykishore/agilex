@@ -10,6 +10,7 @@ use Magento\Catalog\Test\Fixture\CatalogProductSimple;
 use Magento\CustomerSegment\Test\Fixture\CustomerSegment;
 use Magento\TargetRule\Test\Fixture\TargetRule;
 use Magento\Mtf\Fixture\FixtureFactory;
+use Magento\Catalog\Test\Fixture\CatalogProductAttribute;
 
 /**
  * Preconditions:
@@ -56,16 +57,20 @@ class CreateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
      *
      * @param FixtureFactory $fixtureFactory
      * @param TargetRule $targetRule
+     * @param CatalogProductAttribute $attribute
+     * @param CatalogProductAttribute $productAttribute
      * @param CatalogProductSimple $product
      * @param CatalogProductSimple|null $promotedProduct
-     * @param string|null $conditionEntity
+     * @param null $conditionEntity
      * @param CustomerSegment|null $customerSegment
-     * @param $promotedProductWithSameCategory
+     * @param bool $promotedProductWithSameCategory
      * @return array
      */
     public function test(
         FixtureFactory $fixtureFactory,
         TargetRule $targetRule,
+        CatalogProductAttribute $attribute,
+        CatalogProductAttribute $productAttribute,
         CatalogProductSimple $product,
         CatalogProductSimple $promotedProduct = null,
         $conditionEntity = null,
@@ -103,6 +108,16 @@ class CreateTargetRuleEntityTest extends AbstractTargetRuleEntityTest
         $promotedProduct->persist();
         if ($customerSegment->hasData()) {
             $customerSegment->persist();
+        }
+        if ($conditionEntity === 'attributeProductName') {
+            $filter = [
+                'attribute_code' => $productAttribute->getAttributeCode(),
+            ];
+            // Steps
+            $this->attributeIndex->open();
+            $this->attributeIndex->getGrid()->searchAndOpen($filter);
+            $this->attributeNew->getAttributeForm()->fill($attribute);
+            $this->attributeNew->getPageActions()->save();
         }
         $replace = $this->getReplaceData($product, $promotedProduct, $conditionEntity, $customerSegment);
 
