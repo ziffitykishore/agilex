@@ -31,7 +31,8 @@ code_example_renderers: ./code_example_renderers
 # List all css to include for the styleguide render examples (path from styleguide directory)
 css_include:
 - /static/frontend/SomethingDigital/bryantpark/en_US/css/styles.css
-- /static/frontend/SomethingDigital/bryantpark/en_US/css/styleguide.css
+# Commenting out styleguide.css as it tends to overwrite styles.css typography styles
+#- /static/frontend/SomethingDigital/bryantpark/en_US/css/styleguide.css
 
 js_include:
 - https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js
