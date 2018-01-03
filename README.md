@@ -8,18 +8,21 @@ Something Digital's standard Magento 2 setup. Makes use of Gulp, [Hologram](http
 
 See [CHECKLIST.md](CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
 
-#### Keeping Other M2 Builds Up-To-Date with Accelerator
+### How to Update to Latest Accelerator
+
+If you need to update the Magento 2 build to latest version of accelerator, run the following commands:
+
 ```bash
 git remote add accelerator git@github.com:sdinteractive/SomethingDigital-Magento2-Package-Accelerator.git
 git fetch accelerator
 git merge {version tag} --no-ff
 ```
 
-##### Things to note:
+### Things to note:
   - When making major version updates (e.g. v2.1.x to v2.2.x) patches should be removed from `composer.json` and the `composer-patches` directory.
   - Merge a tagged release instead of the latest from a branch
   - The generated commit message will be something like "Merge tag 'v1.2.1' into develop". Append "from accelerator" to it so that's it's clear.
- 
+
 ### Vagrant
 
 Instructions on getting the Something Digital Magento 2 Vagrant box up and running can be found in the [Operations-Development](https://github.com/sdinteractive/Operations-Development/tree/master/boxes/Magento-BaseBuild2) repo.
@@ -28,11 +31,11 @@ Vagrant is Something Digital's preferred environment in which to develop Magento
 
 ## Development
 
-Magento 2 OOB themes are built with LESS. Due to various reasons we have decided to go with the Snowdog open-source Sass port of the Magento blank theme. It can be found in `vendor/snowdog/theme-blank-sass`.
+Magento 2 OOB themes are built with LESS. Due to various reasons we have decided to go with a Sass port of the Magento blank theme called [Magento2-Theme-BryantPark](https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark). It can be found in `vendor/somethingdigital/magento2-theme-bryantpark` and is a fork of the [Snowdog theme blank sass](https://github.com/SnowdogApps/magento2-theme-blank-sass).
 
 ### Gulp
 
-Magento 2 OOB utilizes Grunt to pre-process the Blank & Luma LESS [themes and handle cache clearing](http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css_debug.html#grunt_commands). For the Magento 2 base build, we will be utilizing the Snowdog [Frontools](https://github.com/SnowdogApps/magento2-frontools) package which utilizes Gulp and the Snowdog [Sass blank theme](https://github.com/SnowdogApps/magento2-theme-blank-sass).
+Magento 2 OOB utilizes Grunt to pre-process the Blank & Luma LESS [themes and handle cache clearing](http://devdocs.magento.com/guides/v2.0/frontend-dev-guide/css-topics/css_debug.html#grunt_commands). For the Magento 2 base build, we will be utilizing the Snowdog [Frontools](https://github.com/SnowdogApps/magento2-frontools) package which utilizes Gulp.
 
 In order to have a certain level of customization, the *SomethingDigital/bryantpark* theme inherits the Frontools Gulp file and adds its own set of tasks as listed in the table below.
 
@@ -75,7 +78,7 @@ Like in Magento 1, we utilize Hologram to build an HTML style guide for both QA 
 Navigate to [https://magento2.dev/styleguide](https://magento2.dev/styleguide) and you can then open the left hamburger menu to jump between sections.
 
 ### Patch Application
-Magento hotfix patches should be placed in `composer-patches` and added to `composer.json` with the following syntax:  
+Magento hotfix patches should be placed in `composer-patches` and added to `composer.json` with the following syntax:
 ```json
 "extra": {
     ...
