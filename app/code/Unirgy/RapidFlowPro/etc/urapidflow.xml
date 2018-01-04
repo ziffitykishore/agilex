@@ -297,10 +297,11 @@
                 <data_type>eav_struct</data_type>
                 <columns>
                     <attribute_code><col>1</col><key>1</key></attribute_code>
-                    <option_name><col>2</col><key>1</key></option_name>
-                    <sort_order><col>3</col></sort_order>
-                    <type><col>4</col></type>
-                    <entity_type><col>5</col><key>1</key></entity_type>
+                    <swatch_name><col>2</col><key>1</key></swatch_name>
+                    <option_name><col>3</col><key>1</key></option_name>
+                    <sort_order><col>4</col></sort_order>
+                    <type><col>5</col></type>
+                    <entity_type><col>6</col><key>1</key></entity_type>
                 </columns>
             </EAOS>
 
@@ -351,6 +352,7 @@
                     <label><col>3</col></label>
                     <position><col>4</col></position>
                     <disabled><col>5</col></disabled>
+                    <media_type><col>6</col></media_type>
                 </columns>
             </CPI>
 

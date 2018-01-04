@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,7 +8,6 @@ namespace Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Section;
 
 use Magento\Mtf\Client\Element\SimpleElement;
 use Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Section\Options\Search\Grid;
-use Magento\Mtf\ObjectManager;
 use Magento\Mtf\Client\ElementInterface;
 use Magento\Mtf\Client\Locator;
 use Magento\Ui\Test\Block\Adminhtml\Section;
@@ -141,7 +140,7 @@ class Options extends Section
     protected function getSearchGridBlock()
     {
         return $this->blockFactory->create(
-            'Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Section\Options\Search\Grid',
+            \Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Section\Options\Search\Grid::class,
             ['element' => $this->browser->find($this->importGrid)]
         );
     }
@@ -157,7 +156,7 @@ class Options extends Section
     {
         $element = $element ?: $this->_rootElement;
         return $this->blockFactory->create(
-            'Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Section\Options\Row',
+            \Magento\Catalog\Test\Block\Adminhtml\Product\Edit\Section\Options\Row::class,
             ['element' => $element->find(sprintf($this->dynamicDataRow, ++$index))]
         );
     }
@@ -348,38 +347,41 @@ class Options extends Section
     }
 
     /**
-     * Process field data.
+     * Get values data for option as array.
      *
-     * @param string|int $keyRoot
-     * @param array $field
-     * @return void
+     * @param array $options
+     * @param string $optionType
+     * @param string $optionTitle
+     * @return array
      */
-    private function processField($keyRoot, array $field)
+    public function getValuesDataForOption(array $options, string $optionType, string $optionTitle)
     {
-        $options = null;
+        $rootLocator = sprintf($this->customOptionRow, $optionTitle);
+        $rootElement = $this->_rootElement->find($rootLocator, Locator::SELECTOR_XPATH);
 
-        $actionType = isset($field['action_type']) ? $field['action_type'] : self::ACTION_ADD;
-        unset($field['action_type']);
-
-        if ($actionType == self::ACTION_ADD) {
-            $this->_rootElement->find($this->buttonAddOption)->click();
-        }
-
-        if (!empty($field['options'])) {
-            $options = $field['options'];
-            unset($field['options']);
-        }
-
-        $rootElement = $this->_rootElement->find(
-            sprintf($this->newCustomOptionRow, $keyRoot + 1),
-            Locator::SELECTOR_XPATH
+        $formDataItem = [];
+        /** @var AbstractOptions $optionsForm */
+        $optionsForm = $this->blockFactory->create(
+            __NAMESPACE__ . '\Options\Type\\' . $this->optionNameConvert($optionType),
+            ['element' => $rootElement]
         );
-        $data = $this->dataMapping($field);
-        $this->_fill($data, $rootElement);
+        $context = $rootElement->find($this->addValue)->isVisible()
+            ? $this->dynamicDataRow
+            : $this->staticDataRow;
+        foreach (array_keys($options) as $key) {
+            $element = $rootElement->find(sprintf($context, $key + 1));
 
-        // Fill subform
-        if (isset($field['type']) && !empty($options)) {
-            $this->setOptionTypeData($options, $field['type'], $rootElement);
+            $dataOptions = $optionsForm->getDataOptions(null, $element);
+
+            $addBefore = $optionsForm->getTextForOptionValues(
+                [
+                    'add_before' => []
+                ],
+                $element
+            );
+            $formDataItem[$key] = array_merge($dataOptions, $addBefore);
         }
+
+        return $formDataItem;
     }
 }

@@ -1,3 +1,27 @@
+===== 2017-11-06 3.0.26 =====
+
+  * EAXP: Fixed setting `frontend_input_renderer` and `additional_data` to NULL when empty
+  * Fixed batch image downloading
+
+===== 2017-10-25 3.0.25 =====
+
+  * Fixed errors for existing records during CPCOS import
+  * Fixed Notice: Undefined index: entity_id in Unirgy/RapidFlowPro/Model/ResourceModel/Category/AbstractCategory.php on line 1384
+
+===== 2017-09-30 3.0.24 =====
+
+  * fixes categories issues for EE
+
+===== 2017-07-28 3.0.23 =====
+
+  * added error message for not supported codes
+  * fixes for CPBOS
+
+===== 2017-07-18 3.0.22 =====
+
+  * changed how EAOS works, it now accepts attribute option name for which the swatch should be bound.
+  If swatch for option does not exist, it is added. If exists, its value or sort order can be updated.
+
 ===== 2017-04-19 3.0.21 =====
 
   * fixed issue with EAOL bad left join condition
