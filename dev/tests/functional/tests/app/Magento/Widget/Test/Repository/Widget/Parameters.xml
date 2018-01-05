@@ -79,11 +79,5 @@
             <field name="show_pager" xsi:type="string">No</field>
             <field name="products_count" xsi:type="string">1</field>
         </dataset>
-
-        <dataset name="catalogNewProductsListNewOnly">
-            <field name="display_type" xsi:type="string">New products</field>
-            <field name="show_pager" xsi:type="string">No</field>
-            <field name="products_count" xsi:type="string">1</field>
-        </dataset>
     </repository>
 </config>

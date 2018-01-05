@@ -67,7 +67,6 @@ class SelectCheckoutMethodStep implements TestStepInterface
      * @param LogoutCustomerOnFrontendStep $logoutCustomerOnFrontend
      * @param ClickProceedToCheckoutStep $clickProceedToCheckoutStep
      * @param string $checkoutMethod
-     * @param array $shipping
      */
     public function __construct(
         CheckoutOnepage $checkoutOnepage,
@@ -83,7 +82,6 @@ class SelectCheckoutMethodStep implements TestStepInterface
         $this->logoutCustomerOnFrontend = $logoutCustomerOnFrontend;
         $this->clickProceedToCheckoutStep = $clickProceedToCheckoutStep;
         $this->checkoutMethod = $checkoutMethod;
-        $this->shipping = $shipping;
     }
 
     /**

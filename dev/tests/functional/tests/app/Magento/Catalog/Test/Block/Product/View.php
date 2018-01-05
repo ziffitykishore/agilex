@@ -309,7 +309,6 @@ class View extends AbstractConfigureBlock
     public function clickAddToCart()
     {
         $this->_rootElement->find($this->addToCart, Locator::SELECTOR_CSS)->click();
-        $this->waitForElementVisible($this->addToCartSuccess);
     }
 
     /**

@@ -11,7 +11,6 @@ $eavConfig = Bootstrap::getObjectManager()->get(\Magento\Eav\Model\Config::class
 $attribute = $eavConfig->getAttribute('catalog_product', 'test_configurable');
 
 $eavConfig->clear();
-$attribute = $eavConfig->getAttribute('catalog_product', 'test_configurable');
 
 /** @var $installer \Magento\Catalog\Setup\CategorySetup */
 $installer = Bootstrap::getObjectManager()->create(\Magento\Catalog\Setup\CategorySetup::class);

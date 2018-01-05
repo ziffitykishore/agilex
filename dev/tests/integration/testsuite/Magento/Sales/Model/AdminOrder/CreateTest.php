@@ -9,15 +9,6 @@ use Magento\Sales\Api\OrderManagementInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Sales\Model\Order;
 use Magento\Framework\Registry;
-use Magento\Framework\Message\ManagerInterface;
-use Magento\Backend\Model\Session\Quote;
-use Magento\Wishlist\Model\Wishlist;
-use Magento\Quote\Model\Quote\Address;
-use Magento\Customer\Model\Customer;
-use Magento\Catalog\Model\Product;
-use Magento\Quote\Model\Quote\Address\Rate;
-use Magento\Customer\Api\CustomerRepositoryInterface;
-use Magento\Customer\Api\AddressRepositoryInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -246,7 +237,7 @@ class CreateTest extends \PHPUnit\Framework\TestCase
         $session->setCustomerId($customerIdFromFixture);
 
         /** Test new wishlist creation for the customer specified above */
-        /** @var Wishlist $wishlist */
+        /** @var \Magento\Wishlist\Model\Wishlist $wishlist */
         $wishlist = $this->_model->getCustomerWishlist(true);
         $this->assertInstanceOf(
             \Magento\Wishlist\Model\Wishlist::class,
@@ -841,7 +832,7 @@ class CreateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return CustomerRepositoryInterface
+     * @return \Magento\Customer\Api\CustomerRepositoryInterface
      */
     private function getCustomerRepository()
     {
@@ -858,7 +849,7 @@ class CreateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return AddressRepositoryInterface
+     * @return \Magento\Customer\Api\AddressRepositoryInterface
      */
     private function getAddressRepository()
     {

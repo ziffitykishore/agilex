@@ -13,17 +13,14 @@ use Magento\Catalog\Model\ProductRepository;
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\TestFramework\TestCase\WebapiAbstract;
 
-/**
- * Tests Magento\Catalog\Model\Product\Option\Repository.
- */
 class ProductCustomOptionRepositoryTest extends WebapiAbstract
 {
-    const SERVICE_NAME = 'catalogProductCustomOptionRepositoryV1';
-
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
     protected $objectManager;
+
+    const SERVICE_NAME = 'catalogProductCustomOptionRepositoryV1';
 
     /**
      * @var \Magento\Catalog\Model\ProductFactory
@@ -39,7 +36,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
     /**
      * @magentoApiDataFixture Magento/Catalog/_files/product_with_options.php
      * @magentoAppIsolation enabled
-     * @return void
      */
     public function testRemove()
     {
@@ -73,7 +69,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
     /**
      * @magentoApiDataFixture Magento/Catalog/_files/product_with_options.php
      * @magentoAppIsolation enabled
-     * @return void
      */
     public function testGet()
     {
@@ -105,7 +100,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
     /**
      * @magentoApiDataFixture Magento/Catalog/_files/product_with_options.php
      * @magentoAppIsolation enabled
-     * @return void
      * @SuppressWarnings(PHPMD.UnusedLocalVariable)
      */
     public function testGetList()
@@ -150,7 +144,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
      * @magentoAppIsolation enabled
      * @dataProvider optionDataProvider
      * @param array $optionData
-     * @return void
      */
     public function testSave($optionData)
     {
@@ -181,9 +174,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
         $this->assertEquals($optionData, $result);
     }
 
-    /**
-     * @return array
-     */
     public function optionDataProvider()
     {
         $fixtureOptions = [];
@@ -201,7 +191,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
      * @magentoApiDataFixture Magento/Catalog/_files/product_without_options.php
      * @magentoAppIsolation enabled
      * @dataProvider optionNegativeDataProvider
-     * @return void
      */
     public function testAddNegative($optionData)
     {
@@ -232,9 +221,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
         $this->_webApiCall($serviceInfo, ['option' => $optionDataPost]);
     }
 
-    /**
-     * @return array
-     */
     public function optionNegativeDataProvider()
     {
         $fixtureOptions = [];
@@ -251,7 +237,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
     /**
      * @magentoApiDataFixture Magento/Catalog/_files/product_with_options.php
      * @magentoAppIsolation enabled
-     * @return void
      */
     public function testUpdate()
     {
@@ -305,7 +290,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
 
     /**
      * @param string $optionType
-     * @return void
      *
      * @magentoApiDataFixture Magento/Catalog/_files/product_with_options.php
      * @magentoAppIsolation enabled
@@ -388,9 +372,6 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
         $this->assertEquals(100, $values['sort_order']);
     }
 
-    /**
-     * @return array
-     */
     public function validOptionDataProvider()
     {
         return [
@@ -407,10 +388,8 @@ class ProductCustomOptionRepositoryTest extends WebapiAbstract
      * @dataProvider optionNegativeUpdateDataProvider
      * @param array $optionData
      * @param string $message
-     * @param int $exceptionCode
-     * @return void
      */
-    public function testUpdateNegative($optionData, $message, $exceptionCode)
+    public function testUpdateNegative($optionData, $message)
     {
         $this->_markTestAsRestOnly();
         $productSku = 'simple';

@@ -47,11 +47,5 @@
             <data name="update/dataset" xsi:type="string">temporary_update_with_date_plus_2_days</data>
             <constraint name="Magento\CatalogStaging\Test\Constraint\AssertUpdateSavedForProductWithCustomOptions" />
         </variation>
-        <variation name="CreateScheduledProductUpdateTestWithCustomOptions" summary="created scheduled update for product with custom options and verify it is saved successfully" ticketId="MAGETWO-64819">
-            <data name="tag" xsi:type="string">severity:S2</data>
-            <data name="product/dataset" xsi:type="string">with_two_custom_option</data>
-            <data name="update/dataset" xsi:type="string">temporary_update_with_date_plus_2_days</data>
-            <constraint name="Magento\CatalogStaging\Test\Constraint\AssertUpdateVisibleAfterSave" />
-        </variation>
     </testCase>
 </config>

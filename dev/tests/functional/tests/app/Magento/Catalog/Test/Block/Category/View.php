@@ -95,20 +95,4 @@ class View extends Block
         }
         return $products;
     }
-
-    /**
-     * Get products from Catalog New Products List block.
-     *
-     * @return array
-     */
-    public function getProductsFromCatalogNewProductsListBlock()
-    {
-        $products = [];
-        $this->waitForElementVisible($this->newProducts, Locator::SELECTOR_XPATH);
-        $productNames = $this->_rootElement->getElements($this->newProducts, Locator::SELECTOR_XPATH);
-        foreach ($productNames as $productName) {
-            $products[] = $productName->getText();
-        }
-        return $products;
-    }
 }

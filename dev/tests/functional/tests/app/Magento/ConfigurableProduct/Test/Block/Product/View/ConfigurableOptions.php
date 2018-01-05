@@ -47,20 +47,6 @@ class ConfigurableOptions extends CustomOptions
     private $configurableOptionElement = '#product-options-wrapper > * > .configurable';
 
     /**
-     * Selector for tier prices.
-     *
-     * @var string
-     */
-    private $tierPricesSelector = '.prices-tier li';
-
-    /**
-     * Product info main block.
-     *
-     * @var string
-     */
-    private $mainBlockSelector = '.product-info-main';
-
-    /**
      * Get configurable product options
      *
      * @param FixtureInterface|null $product [optional]

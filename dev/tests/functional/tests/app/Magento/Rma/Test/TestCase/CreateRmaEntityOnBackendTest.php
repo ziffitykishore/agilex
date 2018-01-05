@@ -129,7 +129,6 @@ class CreateRmaEntityOnBackendTest extends AbstractRmaEntityTest
 
         $rmaId = $this->getRmaId($rma);
         $rma = $this->createRma($rma, ['entity_id' => $rmaId]);
-
         return ['rma' => $rma];
     }
 

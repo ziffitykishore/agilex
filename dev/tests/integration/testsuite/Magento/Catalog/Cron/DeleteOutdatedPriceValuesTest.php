@@ -120,6 +120,7 @@ class DeleteOutdatedPriceValuesTest extends \PHPUnit\Framework\TestCase
             \Magento\Store\Model\Store::PRICE_SCOPE_GLOBAL,
             ScopeConfigInterface::SCOPE_TYPE_DEFAULT
         );
+        /** @var \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig */
         $this->cron->execute();
         $this->assertEquals(
             $defaultStorePrice,

@@ -74,7 +74,6 @@ class NewRma extends FormTabs
                 $items[$productKey]['additional_attributes'] = $additionalAttributes;
             }
         }
-
         return $items;
     }
 }

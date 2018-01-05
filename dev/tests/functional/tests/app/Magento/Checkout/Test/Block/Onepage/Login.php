@@ -51,13 +51,6 @@ class Login extends Form
     protected $loadingMask = '.loading-mask';
 
     /**
-     * Selector for checkout email input.
-     *
-     * @var string
-     */
-    private $emailSelector = '[name="username"]';
-
-    /**
      * Select how to perform checkout whether guest or registered customer.
      *
      * @param FixtureInterface $fixture

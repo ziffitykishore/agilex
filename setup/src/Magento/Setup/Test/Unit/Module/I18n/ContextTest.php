@@ -117,27 +117,7 @@ class ContextTest extends \PHPUnit\Framework\TestCase
             [
                 BP . '/app/code/Magento/Module/i18n/',
                 [Context::CONTEXT_TYPE_MODULE, 'Magento_Module'],
-                [[ComponentRegistrar::MODULE, 'Magento_Module', BP . '/app/code/Magento/Module']],
-            ],
-            [
-                BP . '/app/design/frontend/Magento/luma/i18n/',
-                [Context::CONTEXT_TYPE_THEME, 'frontend/Magento/luma'],
-                [[ComponentRegistrar::THEME, 'frontend/Magento/luma', BP . '/app/design/frontend/Magento/luma']],
-            ],
-            [
-                null,
-                [Context::CONTEXT_TYPE_MODULE, 'Unregistered_Module'],
-                [[ComponentRegistrar::MODULE, 'Unregistered_Module', null]],
-            ],
-            [
-                null,
-                [Context::CONTEXT_TYPE_THEME, 'frontend/Magento/unregistered'],
-                [[ComponentRegistrar::THEME, 'frontend/Magento/unregistered', null]],
-            ],
-            [
-                BP . '/lib/web/i18n/',
-                [Context::CONTEXT_TYPE_LIB, 'lib/web/module/test.phtml'],
-                [],
+                [[ComponentRegistrar::MODULE, 'Magento_Module', BP . '/app/code/Magento/Module']]
             ],
             [
                 BP . '/app/design/frontend/Magento/luma/i18n/',
