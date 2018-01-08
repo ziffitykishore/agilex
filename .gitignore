@@ -57,6 +57,7 @@ atlassian*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
+generated/code/
 
 ## SD Ignored Files
 /pub/media/gene-cms/*
