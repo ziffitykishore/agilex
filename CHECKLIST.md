@@ -9,6 +9,15 @@
 
 Now you have a new repo.
 
+## Files to Change
+
+- Update `./README.md` with site name.
+
+## createTheme.sh
+- CD to BryantPark bin directory: `cd ./vendor/somethingdigital/magento2-theme-bryantpark/bin`.
+- Run the **createTheme.sh** shell file to create a new theme based off BryantPark/default: `./createTheme <VendorName>` replacing `<VendorName>` with something such as `./ceateTheme Amazon` which will create `Amazon/default`.
+- After running **createTheme.sh**, make sure to update the files it asks.
+
 ## TODO
 
  * Files that need to be changed.

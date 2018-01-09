@@ -4,8 +4,8 @@
     <default>
         <Unirgy_RapidFlow>
             <usimpleup>
-                <remote>http://download.unirgy.com/simple/client_api/version/</remote>
-                <changelog>http://unirgy.com/support/portal/announcements</changelog>
+                <remote>https://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>https://unirgy.com/support/portal/announcements</changelog>
             </usimpleup>
         </Unirgy_RapidFlow>
         <urapidflow>
@@ -15,6 +15,8 @@
                 <page_sleep_delay>0</page_sleep_delay>
                 <status_refresh_delay>3</status_refresh_delay>
                 <debug_sql>1</debug_sql>
+                <curl_connect_timeout>5</curl_connect_timeout>
+                <curl_timeout>10</curl_timeout>
             </finetune>
             <dirs>
                 <import_dir>{var}/urapidflow/import</import_dir>
@@ -29,8 +31,8 @@
         </urapidflow>
         <Unirgy_RapidFlow>
             <usimpleup>
-                <remote>http://download.unirgy.com/simple/client_api/version/</remote>
-                <changelog>http://unirgy.com/support/portal/announcements</changelog>
+                <remote>https://download.unirgy.com/simple/client_api/version/</remote>
+                <changelog>https://unirgy.com/support/portal/announcements</changelog>
             </usimpleup>
         </Unirgy_RapidFlow>
     </default>
