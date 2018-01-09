@@ -43,7 +43,7 @@ function runRfProfile(ObjectManagerInterface $om, $profile)
     $helper->run($profile);
 }
 
-runRfProfile($om, 5);
+//runRfProfile($om, 5);
 //testRfEavExport($om);
 //
 //testRfCatExport($om);

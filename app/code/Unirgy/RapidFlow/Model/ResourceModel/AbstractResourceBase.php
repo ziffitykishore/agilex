@@ -45,8 +45,10 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
     const TABLE_CATALOG_CATEGORY_ENTITY                           = 'catalog_category_entity';
     const TABLE_CATALOG_CATEGORY_PRODUCT                          = 'catalog_category_product';
     const TABLE_CATALOG_EAV_ATTRIBUTE                             = 'catalog_eav_attribute';
+    const TABLE_CATALOG_PRODUCT_BUNDLE_OPTION_SEQ                 = 'sequence_product_bundle_option';
     const TABLE_CATALOG_PRODUCT_BUNDLE_OPTION                     = 'catalog_product_bundle_option';
     const TABLE_CATALOG_PRODUCT_BUNDLE_OPTION_VALUE               = 'catalog_product_bundle_option_value';
+    const TABLE_CATALOG_PRODUCT_BUNDLE_SELECTION_SEQ              = 'sequence_product_bundle_selection';
     const TABLE_CATALOG_PRODUCT_BUNDLE_SELECTION                  = 'catalog_product_bundle_selection';
     const TABLE_CATALOG_PRODUCT_BUNDLE_SELECTION_PRICE            = 'catalog_product_bundle_selection_price';
     const TABLE_CATALOG_PRODUCT_ENTITY                            = 'catalog_product_entity';
@@ -125,6 +127,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
     const IMPORT_ROW_RESULT_EMPTY = 'empty';
 
     const ROW_ID = 'row_id';
+    const BUNDLE_SEQ = 'bundle_seq';
 
     /**
      * @var
@@ -260,6 +263,12 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
      * @var int
      */
     protected $_pageSleepDelay = 0;
+
+    protected $_curlConnectTimeout = 5;
+    protected $_curlTimeout = 10;
+    protected $_curlUserAgent;
+    protected $_curlHeaders;
+    protected $_curlCustomRequest;
 
     /**
      * @var FormatInterface
@@ -858,6 +867,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
         $ds = '/';
 
         $remote = preg_match('#^https?:#', $filename);
+        $isRemoteBatch = $remote && $this->_downloadRemoteImagesBatch;
         if ($remote && !$this->_downloadRemoteImages) {
             // when image is remote, and remote images are not allowed, do nothing and reset imported value
             $this->_profile->getLogger()->warning($this->__('Skipping: %1, remote images download is disabled.',
@@ -891,7 +901,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                                                                 $fromFilename, $filename));
                 $fromFilename = $this->_remoteImagesCache[$fromFilename]['path'];
                 $fromRemote = false;
-                $fromExists = is_readable($fromFilename);
+                $fromExists = $isRemoteBatch || is_readable($fromFilename);
                 $slashPos = strpos($filename, $ds);
             } else {  // remote file is not yet downloaded
                 if ($this->_remoteImageSubfolderLevel) {
@@ -1032,6 +1042,14 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                     if (!($ch = curl_init($fromFilename))) {
                         throw new \Exception(__('Unable to open remote file: %1', $fromFilename));
                     }
+                    if ($this->_curlCustomRequest) curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->_curlCustomRequest);
+                    if ($this->_curlUserAgent) curl_setopt($ch, CURLOPT_USERAGENT, $this->_curlUserAgent);
+                    if ($this->_curlHeaders) {
+                        curl_setopt($ch, CURLOPT_HEADER, true);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->_curlHeaders);
+                    }
+                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->_curlConnectTimeout);
+                    curl_setopt($ch, CURLOPT_TIMEOUT, $this->_curlTimeout);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                     curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
                     curl_setopt($ch, CURLOPT_NOBODY, 1);
@@ -1078,7 +1096,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                 return false;
             }
         } else {
-            if ($fromFilename === $toFilename && filesize($fromFilename) === filesize($toFilename)){
+            if ($fromFilename === $toFilename && ($isRemoteBatch || filesize($fromFilename) === filesize($toFilename))) {
                 return true; // do not try to copy same image over itself
             }
             if($toExists){
@@ -1136,6 +1154,14 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                     throw new \Exception(__('Unable to open local file for writing: %1', $toFilename));
                 }
                 //error_log("STARTED: {$fromFilename} => {$toFilename}\n", 3, '/var/www/html/var/log/unirgy.log');
+                if ($this->_curlCustomRequest) curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->_curlCustomRequest);
+                if ($this->_curlUserAgent) curl_setopt($ch, CURLOPT_USERAGENT, $this->_curlUserAgent);
+                if ($this->_curlHeaders) {
+                    curl_setopt($ch, CURLOPT_HEADER, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $this->_curlHeaders);
+                }
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $this->_curlConnectTimeout);
+                curl_setopt($ch, CURLOPT_TIMEOUT, $this->_curlTimeout);
                 curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
                 curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                 curl_setopt($ch, CURLOPT_USERAGENT, 'curl/7.5.4');
@@ -1424,8 +1450,8 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             if (!empty($urlKeys)) {
                 $path = implode("/", $urlKeys);
             }
-        } else {
-            $this->_profile->getLogger()->warning(sprintf('Category: %s is missing url_key', $eId ?: 'N/A'));
+        } elseif (!(!empty($row['path']) && $row['path'] === '1' || $row['path'] === "1/{$rcID}")) {
+            $this->_profile->getLogger()->warning(sprintf('Category: %s is missing url_key: ' . print_r($row, 1) . ', '. $rootPath, $eId ?: 'N/A'));
         }
 
         return $path;
@@ -1496,7 +1522,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             }
         }
         if (empty($this->_tablesByType[$type])) {
-            $this->_tablesByType[$type] = !empty($attrTable) ? $attrTable : $this->_t("{$baseTable}_{$attr['backend_type']}");
+            $this->_tablesByType[$type] = !empty($attrTable) ? $attrTable : "{$baseTable}_{$attr['backend_type']}";
         }
         return $type;
     }

@@ -1,3 +1,22 @@
+===== 2018-01-02 3.0.32 =====
+  * Added compatibility with EE 2.2 bundle option/selection sequence
+
+===== 2017-12-20 3.0.31 =====
+  * Fixed EASI rows import
+
+===== 2017-12-15 3.0.30 =====
+  * Fixed import/delete of linked products (upsell,crossell,related) in EE > 2.1
+
+===== 2017-12-15 3.0.29 =====
+  * Fixed EAOS option value auto-create
+
+===== 2017-11-21 3.0.28 =====
+  * Fixed -CPV issue "Requested store is not found" error
+
+===== 2017-11-21 3.0.27 =====
+
+  * Fixed url rewrites db entries not deleted after -CP
+
 ===== 2017-11-06 3.0.26 =====
 
   * EAXP: Fixed setting `frontend_input_renderer` and `additional_data` to NULL when empty

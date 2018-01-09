@@ -66,10 +66,17 @@ class Product
      */
     protected $_urlUpdates = [];
 
+    protected $_mediaUpdates = [];
+
     /**
      * @var \Unirgy\RapidFlow\Helper\Url
      */
     protected $_urlHelper;
+
+    /**
+     * @var \Unirgy\RapidFlow\Helper\ImageCache
+     */
+    protected $_imageCacheHelper;
 
     protected function setupProductFlatIdx()
     {
@@ -83,6 +90,7 @@ class Product
     {
         parent::_construct();
         $this->_urlHelper = $this->_context->urlHelper;
+        $this->_imageCacheHelper = $this->_context->imageCacheHelper;
     }
 
     /**
@@ -102,6 +110,21 @@ class Product
         }
         if (!empty($tune['page_sleep_delay'])) {
             $this->_pageSleepDelay = (int)$tune['page_sleep_delay'];
+        }
+        if (!empty($tune['curl_connect_timeout'])) {
+            $this->_curlConnectTimeout = (int)$tune['curl_connect_timeout'];
+        }
+        if (!empty($tune['curl_timeout'])) {
+            $this->_curlTimeout = (int)$tune['curl_timeout'];
+        }
+        if (!empty($tune['curl_useragent'])) {
+            $this->_curlUserAgent = $tune['curl_useragent'];
+        }
+        if (!empty($tune['curl_customrequest'])) {
+            $this->_curlCustomRequest = $tune['curl_customrequest'];
+        }
+        if (!empty($tune['curl_headers'])) {
+            $this->_curlHeaders = array_filter(preg_split("/\r\n|\n\r|\r|\n/", $tune['curl_headers']));
         }
         /** @var ProductProfile $profile */
         $profile = $this->_profile;
@@ -490,6 +513,21 @@ class Product
         if (!empty($tune['page_sleep_delay'])) {
             $this->_pageSleepDelay = (int)$tune['page_sleep_delay'];
         }
+        if (!empty($tune['curl_connect_timeout'])) {
+            $this->_curlConnectTimeout = (int)$tune['curl_connect_timeout'];
+        }
+        if (!empty($tune['curl_timeout'])) {
+            $this->_curlTimeout = (int)$tune['curl_timeout'];
+        }
+        if (!empty($tune['curl_useragent'])) {
+            $this->_curlUserAgent = $tune['curl_useragent'];
+        }
+        if (!empty($tune['curl_customrequest'])) {
+            $this->_curlCustomRequest = $tune['curl_customrequest'];
+        }
+        if (!empty($tune['curl_headers'])) {
+            $this->_curlHeaders = array_filter(preg_split("/\r\n|\n\r|\r|\n/", $tune['curl_headers']));
+        }
 
         $profile = $this->_profile;
 
@@ -645,6 +683,7 @@ class Product
                     #$this->_profile->realtimeReindex(array_keys($this->_productIdsUpdated));
                     $this->_importRealtimeReindex();
                     $this->_enqueueUrlUpdates();
+                    $this->_enqueueImageCacheFlush();
 
                     $this->_eventManager->dispatch('urapidflow_product_import_after_rtidx',
                                                    array('vars' => $eventVars));
@@ -1250,6 +1289,7 @@ class Product
         $dryRun = (bool)$profile->getData('options/import/dryrun');
         $stockZeroOut = $profile->getData('options/import/stock_zero_out');
 
+        $forceUrlRewritesRefresh = $profile->getData('options/import/force_urlrewrite_refresh');
         $deleteOldCat = $profile->getData('options/import/delete_old_category_products');
         $sameAsDefault = $profile->getData('options/import/store_value_same_as_default');
         $importImageFiles = $profile->getData('options/import/image_files');
@@ -1454,6 +1494,9 @@ class Product
                                 $isValueChanged = false;
                             }
                         }
+                        if ($isValueChanged) {
+                            $this->addProductForImageCacheFlush($sku);
+                        }
                         if ($newValue !== $oldValue && !$isNew) {
                             $this->_mediaChanges[$sku . '-' . $k] = [$newValue, $oldValue, $sku];
                         }
@@ -1493,6 +1536,10 @@ class Product
                         $this->addProductForUrlUpdate($sku);
                     }
                 } // foreach ($p as $k=>$newValue)
+                if ($forceUrlRewritesRefresh) {
+                    $this->addProductForUrlUpdate($sku);
+                    $isUpdated = true;
+                }
 
                 if ($isUpdated) {
                     $profile->addValue('rows_success');
@@ -1681,6 +1728,26 @@ class Product
         $this->_prepareEntityIdField();
     }
 
+    protected function _enqueueImageCacheFlush()
+    {
+        $productsForImageCacheFlush = $this->getProductsForImageCacheFlush();
+        $this->resetProductsForImageCacheFlush();
+        if(count($productsForImageCacheFlush) === 0){
+            return;
+        }
+        $productIds = [];
+        foreach ($productsForImageCacheFlush as $sku) {
+            if (!isset($this->_skus[$sku])) {
+                $this->_profile->getLogger()->warning($this->__('Product id for %1 not found', $sku));
+                continue;
+            }
+            $productIds[$sku] = $this->_skus[$sku];
+        }
+        foreach ($productIds as $sku => $productId) {
+            $this->_imageCacheHelper->addProductIdForFlushCache($productId);
+        }
+    }
+
     private function _enqueueUrlUpdates()
     {
         $productsForUrlUpdates = $this->getProductsForUrlUpdates();
@@ -1758,6 +1825,23 @@ class Product
     protected function resetProductsForUrlUpdates()
     {
         $this->_urlUpdates = [];
+    }
+
+    protected function addProductForImageCacheFlush($sku)
+    {
+        if(!array_key_exists($sku, $this->_mediaUpdates)){
+            $this->_mediaUpdates[$sku] = 1;
+        }
+    }
+
+    protected function getProductsForImageCacheFlush()
+    {
+        return array_unique(array_keys($this->_mediaUpdates));
+    }
+
+    protected function resetProductsForImageCacheFlush()
+    {
+        $this->_mediaUpdates = [];
     }
 
     /**
