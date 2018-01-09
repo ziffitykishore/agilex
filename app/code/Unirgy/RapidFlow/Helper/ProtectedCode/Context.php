@@ -136,6 +136,16 @@ class Context
     public $websiteRepository;
 
     /**
+     * @var \Magento\Indexer\Model\Config
+     */
+    public $indexerConfig;
+
+    /**
+     * @var \Unirgy\RapidFlow\Helper\ImageCache
+     */
+    public $imageCacheHelper;
+
+    /**
      * Context constructor.
      * @param FullTextIndexer $fullTextIndexer
      * @param ScopeConfigInterface $scopeConfig
@@ -165,6 +175,8 @@ class Context
      * @param \Magento\Framework\Event\ManagerInterface $eventManager
      * @param \Unirgy\RapidFlow\Helper\Url $urlHelper
      * @param \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository
+     * @param \Magento\Indexer\Model\Config $indexerConfig
+     * @param \Unirgy\RapidFlow\Helper\ImageCache $imageCacheHelper
      */
     public function __construct(
         FullTextIndexer $fullTextIndexer,
@@ -194,7 +206,9 @@ class Context
         \Magento\Framework\Filesystem\Directory\WriteFactory $writeFactory,
         \Magento\Framework\Event\ManagerInterface $eventManager,
         \Unirgy\RapidFlow\Helper\Url $urlHelper,
-        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository
+        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository,
+        \Magento\Indexer\Model\Config $indexerConfig,
+        \Unirgy\RapidFlow\Helper\ImageCache $imageCacheHelper
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->productCollection = $catalogProductCollection;
@@ -225,5 +239,7 @@ class Context
         $this->eventManager = $eventManager;
         $this->urlHelper = $urlHelper;
         $this->websiteRepository = $websiteRepository;
+        $this->indexerConfig = $indexerConfig;
+        $this->imageCacheHelper = $imageCacheHelper;
     }
 }

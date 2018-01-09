@@ -886,8 +886,8 @@ class Profile extends AbstractModel
             switch ($code) {
                 case 'clean_media':
                     $this->activity(__('Refreshing: %1', $code));
-                    $this->_imageModel->clearCache();
-                    $this->_eventManager->dispatch('clean_catalog_images_cache_after');
+                    //$this->_imageModel->clearCache();
+                    //$this->_eventManager->dispatch('clean_catalog_images_cache_after');
                     $this->_mergedService->cleanMergedJsCss();
                     $this->_eventManager->dispatch('clean_media_cache_after');
                     break;

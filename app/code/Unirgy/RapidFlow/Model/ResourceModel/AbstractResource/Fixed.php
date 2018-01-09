@@ -89,6 +89,21 @@ class Fixed
         if (!empty($tune['page_sleep_delay'])) {
             $this->_pageSleepDelay = (int)$tune['page_sleep_delay'];
         }
+        if (!empty($tune['curl_connect_timeout'])) {
+            $this->_curlConnectTimeout = (int)$tune['curl_connect_timeout'];
+        }
+        if (!empty($tune['curl_timeout'])) {
+            $this->_curlTimeout = (int)$tune['curl_timeout'];
+        }
+        if (!empty($tune['curl_useragent'])) {
+            $this->_curlUserAgent = $tune['curl_useragent'];
+        }
+        if (!empty($tune['curl_customrequest'])) {
+            $this->_curlCustomRequest = $tune['curl_customrequest'];
+        }
+        if (!empty($tune['curl_headers'])) {
+            $this->_curlHeaders = array_filter(preg_split("/\r\n|\n\r|\r|\n/", $tune['curl_headers']));
+        }
 
         $this->_cnt = [];
         $rowNum = 0;
@@ -343,6 +358,21 @@ class Fixed
         }
         if (!empty($tune['page_sleep_delay'])) {
             $this->_pageSleepDelay = (int)$tune['page_sleep_delay'];
+        }
+        if (!empty($tune['curl_connect_timeout'])) {
+            $this->_curlConnectTimeout = (int)$tune['curl_connect_timeout'];
+        }
+        if (!empty($tune['curl_timeout'])) {
+            $this->_curlTimeout = (int)$tune['curl_timeout'];
+        }
+        if (!empty($tune['curl_useragent'])) {
+            $this->_curlUserAgent = $tune['curl_useragent'];
+        }
+        if (!empty($tune['curl_customrequest'])) {
+            $this->_curlCustomRequest = $tune['curl_customrequest'];
+        }
+        if (!empty($tune['curl_headers'])) {
+            $this->_curlHeaders = array_filter(preg_split("/\r\n|\n\r|\r|\n/", $tune['curl_headers']));
         }
 
         $this->_profile->activity(__('Preparing data'));

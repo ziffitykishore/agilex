@@ -36,6 +36,7 @@ use Unirgy\RapidFlow\Model\ResourceModel\AbstractResource;
 use Unirgy\RapidFlow\Model\ResourceModel\Catalog\Product as RfProduct;
 use Magento\Framework\Module\ModuleListInterface;
 use Unirgy\RapidFlow\Model\ResourceModel\Catalog\Product;
+use Magento\Framework\DB\Adapter\AdapterInterface;
 
 class Data extends AbstractHelper
 {
@@ -329,6 +330,9 @@ class Data extends AbstractHelper
                 case RfProduct::ROW_ID:
                     $flag = $this->isEnterpriseEdition() && $this->compareMageVer('2.1.0');
                     break;
+                case RfProduct::BUNDLE_SEQ:
+                    $flag = $this->isEnterpriseEdition() && $this->compareMageVer('2.2.0');
+                    break;
             }
             $this->_hasMageFeature[$feature] = $flag;
         }
@@ -458,6 +462,7 @@ class Data extends AbstractHelper
         foreach (array_unique(array_filter($this->_categoryIdsToUpdate)) as $cId) {
             $this->updateCategoryUrlRewritesById($cId, $store_id);
         }
+        $this->restoreUrlPath($this->_categoryIdsToUpdate);
     }
 
     /**
@@ -514,6 +519,8 @@ class Data extends AbstractHelper
         return date($dayOnly ? 'Y-m-d' : 'Y-m-d H:i:s');
     }
 
+    protected $_urlPathTmpTable = 'tmp_category_url_path';
+
     protected function clearUrlPaths($categoryIds)
     {
         if (count($categoryIds) === 0) {
@@ -533,8 +540,34 @@ class Data extends AbstractHelper
                 new \Zend_Db_Expr('(SELECT attribute_id FROM ' . AbstractResource::TABLE_EAV_ATTRIBUTE . ' WHERE attribute_code=\'url_path\' AND entity_type_id=3)'))
             ->where($idField . ' IN (?)', $categoryIds);
 
+        $con->createTemporaryTableLike($this->_urlPathTmpTable, $table, true);
+
+        $tmpQ = $con->insertFromSelect($select, $this->_urlPathTmpTable, [], AdapterInterface::INSERT_IGNORE);
+
+        $con->query($tmpQ);
+
         $query = $con->deleteFromSelect($select, $table);
 
         return $con->query($query);
+    }
+    protected function restoreUrlPath($categoryIds)
+    {
+        if (count($categoryIds) === 0) {
+            return;
+        }
+        $idField = 'entity_id';
+        if ($this->hasMageFeature(AbstractResource::ROW_ID)) {
+            $idField = 'row_id';
+        }
+        $res = $this->categoryFactory->create()->getResource();
+        $table = AbstractResource::TABLE_CATALOG_CATEGORY_ENTITY . '_varchar';
+        $con = $res->getConnection();
+        $select = $con->select()
+            ->from($this->_urlPathTmpTable)
+            ->where($idField . ' IN (?)', $categoryIds);
+
+        $tmpQ = $con->insertFromSelect($select, $table, [], AdapterInterface::INSERT_IGNORE);
+        $con->query($tmpQ);
+        $con->delete($this->_urlPathTmpTable, [$idField . ' IN (?)' => $categoryIds]);
     }
 }

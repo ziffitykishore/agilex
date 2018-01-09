@@ -1,6 +1,26 @@
+===== 2017-01-02 3.0.36 =====
+  * Added compatibility with EE 2.2 bundle option/selection sequence
+
+===== 2017-12-21 3.0.35 =====
+  * Added CURL options in "Fine Tuning" section of global config
+
+===== 2017-12-07 3.0.34 =====
+  * Excluded configurable from "apply to" ('special_price','special_from_date','special_to_date') attributes definition
+
+===== 2017-12-04 3.0.33 =====
+  * Added flush only effected products image cache
+
+===== 2017-11-30 3.0.32 =====
+  * Fixed category url_path attribute deleted after refresh url rewrites
+  * Fixed remote batch image download does not set small_image and thumbnail
+
+===== 2017-11-21 3.0.31 =====
+
+  * Added "Force URL Rewrites Refresh" products import configuration option
+
 ===== 2017-11-10 3.0.30 =====
 
-  * Fixed 2.2.x compilation without db access
+  * Fixed 2.2.x compilation without db access (for Magento EE Cloud)
 
 ===== 2017-11-06 3.0.29 =====
 

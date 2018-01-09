@@ -132,6 +132,13 @@ class Import extends Generic
             'value' => $profile->getData('options/import/stock_zero_out'),
         ]);
 
+        $fieldset->addField('import_force_urlrewrite_refresh', 'select', [
+            'label' => __('Force URL Rewrites Refresh'),
+            'name' => 'options[import][force_urlrewrite_refresh]',
+            'values' => $source->setPath('yesno')->toOptionArray(),
+            'value' => $profile->getData('options/import/force_urlrewrite_refresh'),
+        ]);
+
         $enableUrlKeyIncrementField = $fieldset->addField('increment_url_key', 'select', [
             'label' => __('Try to auto increment duplicate url_key'),
             'name' => 'options[import][increment_url_key]',
