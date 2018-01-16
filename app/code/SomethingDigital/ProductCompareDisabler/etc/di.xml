@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Helper\Product\Compare">
+        <plugin name="SomethingDigital-ProductCompareDisabler" type="SomethingDigital\ProductCompareDisabler\Plugin\CompareDisabler" sortOrder="0" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare">
+        <plugin name="SomethingDigital-ProductCompareDisabler-ProductList" type="SomethingDigital\ProductCompareDisabler\Plugin\ListAddToCompare" sortOrder="0" />
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\AddTo\Compare">
+        <plugin name="SomethingDigital-ProductCompareDisabler-Product-View" type="SomethingDigital\ProductCompareDisabler\Plugin\ViewAddToCompare" sortOrder="0" />
+    </type>
+
+</config>
