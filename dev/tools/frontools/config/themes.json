@@ -12,7 +12,6 @@
     "parent"          : "blank",
     "locale"          : ["en_US"],
     "lang"            : "scss",
-    "disableSuffix"   : true,
     "postcss"         : ["plugins.autoprefixer()", "plugins.postcssInlineSvg()", "plugins.postcssObjectFitImages()"],
     "ignore"          : ["node_modules/**"]
   }
