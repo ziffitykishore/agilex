@@ -37,6 +37,10 @@
                     <label>LinkedIn</label>
                     <comment>Example: https://www.linkedin.com/company/something-digital</comment>
                 </field>
+                <field id="social_youtube" translate="label comment" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Youtube</label>
+                    <comment>Example: https://www.youtube.com/user/SomethingDigitalNYC</comment>
+                </field>
             </group>
         </section>
     </system>
