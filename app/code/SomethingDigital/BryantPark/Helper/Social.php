@@ -1,7 +1,7 @@
 <?php
 
 namespace SomethingDigital\BryantPark\Helper;
- 
+
 class Social extends \Magento\Framework\App\Helper\AbstractHelper
 {
     protected $moduleConfigPath;
@@ -63,5 +63,10 @@ class Social extends \Magento\Framework\App\Helper\AbstractHelper
     public function getLinkedIn()
     {
         return $this->getConfig($this->moduleConfigPath . 'social_linkedin');
+    }
+
+    public function getYoutube()
+    {
+        return $this->getConfig($this->moduleConfigPath . 'social_youtube');
     }
 }
