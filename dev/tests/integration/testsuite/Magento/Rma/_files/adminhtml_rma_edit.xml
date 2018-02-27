@@ -37,7 +37,7 @@
             </block>
         </container>
         <container name="before_body_end" as="before_body_end" label="Before Body End">
-            <block class="Magento\Backend\Block\Template" template="Magento_Rma::edit/mask.phtml" />
+            <block class="Magento\Backend\Block\Template" template="Magento_Rma::edit/mask.phtml" name="magento_rma_edit_mask" />
             <block class="Magento\Rma\Block\Adminhtml\Rma\Edit\Js" template="Magento_Rma::edit/js.phtml" name="magento_rma_js_create" />
         </container>
     </body>
