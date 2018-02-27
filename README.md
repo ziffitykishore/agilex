@@ -22,6 +22,7 @@ git merge {version tag} --no-ff
   - When making major version updates (e.g. v2.1.x to v2.2.x) patches should be removed from `composer.json` and the `composer-patches` directory.
   - Merge a tagged release instead of the latest from a branch
   - The generated commit message will be something like "Merge tag 'v1.2.1' into develop". Append "from accelerator" to it so that's it's clear.
+  - If you run into a 500 Internal Server Error, please run `sudo a2enmod version`. For existing boxes, this is caused by new versions of Magento using IfVersion in .htaccess.
 
 ### Vagrant
 
