@@ -106,9 +106,9 @@ class ConfigTest extends \PHPUnit\Framework\TestCase
     {
         $invoker = new \Magento\Framework\App\Utility\AggregateInvoker($this);
         $invoker(
-        /**
-         * @param string $file
-         */
+            /**
+             * @param string $file
+             */
             function ($file) {
                 $xml = simplexml_load_file($file);
                 $nodes = $xml->xpath(\Magento\Test\Integrity\Magento\AdminGws\ConfigTest::CLASSES_XPATH) ?: [];
