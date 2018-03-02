@@ -1,15 +1,7 @@
 {
-  "blank": {
-    "src"    : "vendor/snowdog/theme-blank-sass",
-    "dest"   : "pub/static/frontend/Snowdog/blank",
-    "locale" : ["en_US"],
-    "lang"   : "scss",
-    "postcss": ["plugins.autoprefixer()"]
-  },
   "sd": {
     "src"             : "vendor/somethingdigital/magento2-theme-bryantpark",
     "dest"            : "pub/static/frontend/SomethingDigital/bryantpark",
-    "parent"          : "blank",
     "locale"          : ["en_US"],
     "lang"            : "scss",
     "postcss"         : ["plugins.autoprefixer()", "plugins.postcssInlineSvg()", "plugins.postcssObjectFitImages()"],
