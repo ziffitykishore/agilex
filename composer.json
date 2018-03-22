@@ -86,7 +86,13 @@
     "extra": {
         "magento-force": "override",
         "patches": {
-
+            "magento-hotfix-patches": {
+                "MDVA_8762_EE_2.2.1_COMPOSER_v1.patch": {
+                    "title": "Fixes issue with product list in Bluefoot",
+                    "url": "composer-patches/MDVA_8762_EE_2.2.1_COMPOSER_v1.patch",
+                    "type": "patch"
+                }
+            }
         }
     }
 }
