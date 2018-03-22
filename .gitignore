@@ -1,20 +1,35 @@
-### System Files
-.DS_Store
+### SD Ignored Files
 
-# We're not using grunt, so ignore the base file.
-/Gruntfile.js
+## Unused M2 files
 /CHANGELOG.md
+/CONTRIBUTING.md
+/README_EE.md
+# We've got our own PR template
+/PULL_REQUEST_TEMPLATE.md
+# BlueFoot
+/pub/media/gene-cms/*
+!/pub/media/gene-cms/.htaccess
+# Hologram
+/pub/styleguide
+
 
 ### Magento OOB .gitignore
+### Do not edit anything below this line
+
 /.buildpath
 /.cache
 /.metadata
 /.project
 /.settings
+/.vscode
 atlassian*
 /nbproject
+/robots.txt
+/pub/robots.txt
 /sitemap
 /sitemap.xml
+/pub/sitemap
+/pub/sitemap.xml
 /.idea
 /.gitattributes
 /app/config_sandbox
@@ -31,17 +46,28 @@ atlassian*
 /lib/internal/flex/varien/.settings
 /node_modules
 /.grunt
+/Gruntfile.js
+/package.json
+/.php_cs
+/.php_cs.cache
+/grunt-config.json
+/dev/tools/grunt/configs/local-themes.js
 
 /pub/media/*.*
 !/pub/media/.htaccess
+/pub/media/attribute/*
+!/pub/media/attribute/.htaccess
+/pub/media/analytics/*
 /pub/media/catalog/*
 !/pub/media/catalog/.htaccess
 /pub/media/customer/*
 !/pub/media/customer/.htaccess
 /pub/media/downloadable/*
 !/pub/media/downloadable/.htaccess
+/pub/media/favicon/*
 /pub/media/import/*
 !/pub/media/import/.htaccess
+/pub/media/logo/*
 /pub/media/theme/*
 /pub/media/theme_customization/*
 !/pub/media/theme_customization/.htaccess
@@ -57,11 +83,6 @@ atlassian*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
-generated/code/
-
-## SD Ignored Files
-/pub/media/gene-cms/*
-!/pub/media/gene-cms/.htaccess
-/CONTRIBUTING.md
-/README_EE.md
-/pub/styleguide
+/generated/*
+!/generated/.htaccess
+.DS_Store
