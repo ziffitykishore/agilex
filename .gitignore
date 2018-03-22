@@ -1,11 +1,26 @@
 ### System Files
 .DS_Store
 
+### SD Ignored Files
+
+## Unused M2 files
+/CHANGELOG.md
+/CONTRIBUTING.md
+/README_EE.md
 # We're not using grunt, so ignore the base file.
 /Gruntfile.js
-/CHANGELOG.md
+# We've got our own PR template
+/PULL_REQUEST_TEMPLATE.md
+# BlueFoot
+/pub/media/gene-cms/*
+!/pub/media/gene-cms/.htaccess
+# Hologram
+/pub/styleguide
+
 
 ### Magento OOB .gitignore
+### Do not edit anything below this line
+
 /.buildpath
 /.cache
 /.metadata
@@ -58,10 +73,3 @@ atlassian*
 /vendor/*
 !/vendor/.htaccess
 generated/code/
-
-## SD Ignored Files
-/pub/media/gene-cms/*
-!/pub/media/gene-cms/.htaccess
-/CONTRIBUTING.md
-/README_EE.md
-/pub/styleguide
