@@ -1,0 +1,19 @@
+{
+    "name": "somethingdigital/module-virtual-themes",
+    "description": "Avoids automatic virtual theme change.",
+    "require": {
+        "magento/module-paypal": "100.1.* || 100.2.*",
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SomethingDigital\\VirtualThemes\\": ""
+        }
+    }
+}
+
