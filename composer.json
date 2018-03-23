@@ -41,7 +41,7 @@
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "1.100.4",
-        "somethingdigital/magento2-theme-bryantpark": "2.6.1",
+        "somethingdigital/magento2-theme-bryantpark": "2.6.3",
         "somethingdigital/magento2-migration": "v1.3.0",
         "somethingdigital/magento2-bluefoot": "1.1.4",
         "gene/bluefoot": "^1.0"
@@ -86,7 +86,13 @@
     "extra": {
         "magento-force": "override",
         "patches": {
-
+            "magento-hotfix-patches": {
+                "MDVA_8762_EE_2.2.1_COMPOSER_v1.patch": {
+                    "title": "Fixes issue with product list in Bluefoot",
+                    "url": "composer-patches/MDVA_8762_EE_2.2.1_COMPOSER_v1.patch",
+                    "type": "patch"
+                }
+            }
         }
     }
 }
