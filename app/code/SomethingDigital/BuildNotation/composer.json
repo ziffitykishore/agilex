@@ -2,7 +2,7 @@
     "name": "somethingdigital/module-build-notation",
     "description": "Applies Build Notation for partners.",
     "require": {
-        "magento/module-paypal": "100.1.* || 100.2.*",
+        "magento/module-paypal": "100.1.* || 100.2.*"
     },
     "type": "magento2-module",
     "version": "1.0.0",
