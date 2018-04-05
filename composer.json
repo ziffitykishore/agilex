@@ -44,7 +44,8 @@
         "somethingdigital/magento2-theme-bryantpark": "2.6.3",
         "somethingdigital/magento2-migration": "v1.3.0",
         "somethingdigital/magento2-bluefoot": "1.1.4",
-        "gene/bluefoot": "^1.0"
+        "gene/bluefoot": "^1.0",
+        "jamescowie/composer-patcher": "1.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
