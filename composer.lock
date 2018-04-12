@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7fa6e41677314f4af3d59eadb6f883f",
+    "content-hash": "86d763f1159a9d44bb19378b977d7612",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -751,11 +751,11 @@
         },
         {
             "name": "jamescowie/composer-patcher",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/composer-patcher.git",
-                "reference": "39711ae4bc6838c6738b71b77dfc5e982a9ca873"
+                "reference": "36d9f283d56faff6d747bfaa581ebe9c59852a1c"
             },
             "require": {
                 "composer/composer": "~1.0",
@@ -783,7 +783,7 @@
                 }
             ],
             "description": "Apply patches using composer",
-            "time": "2018-03-06T15:19:20+00:00"
+            "time": "2018-04-12T14:49:06+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
