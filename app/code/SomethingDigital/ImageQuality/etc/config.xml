@@ -3,7 +3,7 @@
     <default>
         <dev>
             <image>
-                <sd_image_quality>100</sd_image_quality>
+                <sd_image_quality>80</sd_image_quality>
             </image>
         </dev>
     </default>
