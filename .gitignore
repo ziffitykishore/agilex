@@ -1,14 +1,11 @@
-# ignore everything in the root except the "wp-content" directory.
-/*
-!wp-content/
-
-# ignore everything in the "wp-content" directory, except:
-# mu-plugins, plugins, and themes directories
-wp-content/*
-!wp-content/mu-plugins/
-!wp-content/plugins/
-!wp-content/themes/
-
+wp-config.php
+wp-content/uploads
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/wp-cache-config.php
 # ignore all mu-plugins, plugins, and themes
 # unless explicitly whitelisted at the end of this file
 #wp-content/mu-plugins/*
@@ -79,4 +76,4 @@ Thumbs.db
 # add your own entries here
 #!wp-content/mu-plugins/example-mu-plugin/
 #!wp-content/plugins/example-plugin/
-#!wp-content/themes/example-theme/
+#!wp-content/themes/example-th:eme/
