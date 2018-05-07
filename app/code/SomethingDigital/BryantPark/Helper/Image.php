@@ -1,20 +1,23 @@
 <?php
 
 namespace SomethingDigital\BryantPark\Helper;
- 
+
 class Image extends \Magento\Framework\App\Helper\AbstractHelper
 {
     protected $_imageFactory;
     protected $_mediaDirectory;
     protected $_filesystem;
+    protected $_storeManager;
 
-    public function __construct(            
-        \Magento\Framework\Filesystem $filesystem,         
-        \Magento\Framework\Image\AdapterFactory $imageFactory         
+    public function __construct(
+        \Magento\Framework\Filesystem $filesystem,
+        \Magento\Framework\Image\AdapterFactory $imageFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
         $this->_filesystem = $filesystem;
-        $this->_mediaDirectory = $filesystem->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+        $this->_mediaDirectory = $filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
         $this->_imageFactory = $imageFactory;
+        $this->_storeManager = $storeManager;
     }
 
     /**
@@ -23,9 +26,9 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
      * @param string $filename
      * @return bool
      */
-    protected function _fileExists($filename)
+    protected function isImageFile($filename)
     {
-        return $this->_mediaDirectory->isFile($filename) && strpos($filename, '.svg') === false;
+        return $this->_mediaDirectory->isFile($filename) && substr($filename, -4) !== '.svg';
     }
 
     /**
@@ -44,7 +47,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         }
 
         return $imageObj->getOriginalHeight();
-    } 
+    }
 
     /**
      * Get Image's Width
@@ -78,7 +81,7 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         if ($imageObj === NULL) {
             return 0;
         }
-        
+
         $width = $imageObj->getOriginalWidth();
         $height = $imageObj->getOriginalHeight();
 
@@ -91,6 +94,52 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
         return $ratio;
     }
 
+     /**
+     * Resize an Image
+     *
+     * @param string $filename
+     * @param int $width
+     * @param int $height
+     * @param string $pathPrefix
+     * @return string
+     */
+    public function resize($image, $width = 40, $height = 22, $pathPrefix = 'gene-cms')
+    {
+        $urlPrefix = $pathPrefix . '/sd-resized/'. $width;
+        $srcFile = $pathPrefix . $image;
+        $destFile = $urlPrefix . $image;
+
+        if (!$this->isImageFile($destFile) && $this->isImageFile($srcFile)) {
+            // Ok. Looks like we don't have a resized image. Let's create one!
+            $absolutePath = $this->_mediaDirectory->getAbsolutePath($srcFile);
+            $destination = $this->_mediaDirectory->getAbsolutePath($destFile);
+
+            $imageResize = $this->_imageFactory->create();
+            $imageResize->open($absolutePath);
+            $imageResize->constrainOnly(true);
+            $imageResize->keepTransparency(true);
+            $imageResize->keepFrame(false);
+            $imageResize->keepAspectRatio(true);
+            $imageResize->resize($width, $height);
+            $imageResize->quality(50);
+
+            $imageResize->save($destination);
+        }
+
+        return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA). $destFile;
+    }
+
+    /**
+     * Provide a transparent Gif in Base64 format.
+     * Mostly used with lazysizes blur-up
+     *
+     * @return string
+     */
+    public function getBase64TransparentGif()
+    {
+        return 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+    }
+
     /**
      * Create Image Object
      *
@@ -98,14 +147,14 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
      * @param string $folder
      * @return object
      */
-    protected function _getImageObj($image, $folder) 
+    protected function _getImageObj($image, $folder)
     {
-        if ($this->_fileExists($folder . $image)) {
-            $absolutePath = $this->_filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath(). $folder . $image;
+        if ($this->isImageFile($folder . $image)) {
+            $absolutePath = $this->_mediaDirectory->getAbsolutePath(). $folder . $image;
         } else {
             return null;
         }
-        
+
         //create image factory...
         $imageObj = $this->_imageFactory->create();
         $imageObj->open($absolutePath);
