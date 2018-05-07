@@ -41,11 +41,11 @@
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "1.100.4",
-        "somethingdigital/magento2-theme-bryantpark": "2.6.3",
+        "somethingdigital/magento2-theme-bryantpark": "2.8.0",
         "somethingdigital/magento2-migration": "v1.3.0",
         "somethingdigital/magento2-bluefoot": "1.1.4",
         "gene/bluefoot": "^1.0",
-        "jamescowie/composer-patcher": "1.0.1"
+        "jamescowie/composer-patcher": "1.0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -84,6 +84,10 @@
     },
     "minimum-stability": "alpha",
     "prefer-stable": true,
+    "scripts": {
+        "post-install-cmd": "Inviqa\\Command::patch",
+        "post-update-cmd": "Inviqa\\Command::patch"
+    },
     "extra": {
         "magento-force": "override",
         "patches": {
