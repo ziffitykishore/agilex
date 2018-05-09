@@ -11,7 +11,7 @@
 ?>
     </div><!-- /.container -->
 
-    <footer class="footer-wrap">
+    <div class="footer-wrap">
         <div class="footer-content">
             <div class="container">
                 <?php if (is_active_sidebar('footer-kick-area')) : ?>
@@ -74,7 +74,7 @@
             <div class="scroll-top">
                 <a href="#"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></a>
             </div>
-                    </footer>
+    </div>
 
     <?php
 	  /*

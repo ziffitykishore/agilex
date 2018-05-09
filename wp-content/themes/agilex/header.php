@@ -36,53 +36,108 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
   </head>
   <body <?php body_class(); ?>>
+
+  <div class="loader">
+		<div class="loader-inner">
+			
+		</div>
+	</div>
     <header>
         <div class="header-container">
             <div class="logo-wrap pull-left">
                 <?php if (function_exists('the_custom_logo')) :
                       the_custom_logo();
                   endif; ?>
+                  <a  class="white-logo" href="<?php echo esc_url(home_url()); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>">
+					<img src="/wp-content/uploads/2018/05/logo_agilex_fragrances_white.png" alt="<?php bloginfo( 'name' ); ?>">
+				</a>
             </div>
             <div class="right-block pull-right">
                 <div class="search-wrap ">
-                    <i class="fa fa-search"></i>
+                    <a class="search-trigger"><i class="fa fa-search"></i></a>
                     <div class="search-form">
-                        <form role="search" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+                        <a  class="search-close"></a>
+                        <form role="search" autocomplete="off" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 
                             <label class="screen-reader-text" for="s"><?php _x( 'Search for:', 'label' ); ?></label>
-                            <input type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" />
-                            <input type="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" />
+                            <input autofocus type="text" placeholder="Search here...." value="<?php echo get_search_query(); ?>" name="s" id="s" />
+                            <!-- <input type="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" /> -->
+                            <button type="submit" id="searchsubmit"><span class="sr-only">Search</span> <i class="fa fa-search"></i></button>
                         </form>
                     </div>
                 </div>
 
                 <div class="contact-wrap">
-                    <a href="#" class="btn btn-sm border-btn txt-upper btn-ripple">Contact Us</a>
+                    <a class="btn btn-sm border-btn txt-upper btn-ripple">Contact Us</a>
                 </div>
-                <div class="hambur-wrap">
-                    <div class="hambur-inner">
-                        <span class="bar bar-1"></span>
-                        <span class="bar bar-2"></span>
-                        <span class="bar bar-3"></span>
+                
+                <a href="#cd-nav" class="cd-nav-trigger">Menu
+                    <span class="cd-nav-icon"></span>
+                    <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54">
+                        <circle fill="transparent" stroke="#ffffff" stroke-width="1" cx="27" cy="27" r="25" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
+                    </svg>
+                </a>
+            </div>
+
+            
+                <div id="cd-nav" class="cd-nav">
+                    <div class="cd-navigation-wrapper">
+                        <div class="col-xs-12 col-sm-6 left-side">
+                            <h2>Navigation</h2>
+                                
+                                <div class="menu-wrap">
+                                    <nav id="site-navigation" class="navigation main-navigation cd-primary-nav" role="navigation">
+                                        <ul id="primary-menu" class="nav navbar-nav">
+                                            <?php
+                                            wp_nav_menu(array(
+                                                'theme_location' => 'top-menu',
+                                                'menu_class' => 'primary-menu',
+                                                'container' => 'false',
+                                                'items_wrap' => '%3$s',
+                                                'fallback_cb' => 'bootstrap_canvas_wp_menu_fallback',
+                                            ));
+                                            ?>
+                                        </ul>
+                                    </nav><!-- #site-navigation -->
+                                </div>
+                        </div>
+                    <div class="col-xs-12 col-sm-6 right-side">
+                            
+                                <div class="cd-contact-info">
+                                    <?php if (is_active_sidebar('footer-contact-us')) : ?>
+                                        <?php dynamic_sidebar('footer-contact-us'); ?>
+                                    <?php endif; ?>
+                                </div>
+
+                                <div class="social-links  ">
+                                    <h2>Follows us on</h2>
+                                    <?php if (is_active_sidebar('footer-social-links')) : ?>
+                                        <?php dynamic_sidebar('footer-social-links'); ?>
+                                    <?php endif; ?>
+                                </div>
+                            
+                        </div> 
                     </div>
                 </div>
-            </div>
-            <div class="sidebar-push">
-                <nav id="site-navigation menu-wrap" class="navigation main-navigation" role="navigation">
-                    <ul id="primary-menu" class="nav navbar-nav">
-                        <?php
-                        wp_nav_menu(array(
-                            'theme_location' => 'top-menu',
-                            'menu_class' => 'primary-menu',
-                            'container' => 'false',
-                            'items_wrap' => '%3$s',
-                            'fallback_cb' => 'bootstrap_canvas_wp_menu_fallback',
-                        ));
-                        ?>
-                    </ul>
-                </nav><!-- #site-navigation -->
+            <!-- <div class="sidebar-push">
+                <span class="overlay"></span>
+                <div class="menu-wrap">
+                    <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+                        <ul id="primary-menu" class="nav navbar-nav">
+                            <?php
+                            wp_nav_menu(array(
+                                'theme_location' => 'top-menu',
+                                'menu_class' => 'primary-menu',
+                                'container' => 'false',
+                                'items_wrap' => '%3$s',
+                                'fallback_cb' => 'bootstrap_canvas_wp_menu_fallback',
+                            ));
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
 
-            </div>
+            </div> -->
         </div>
     </header>
     <div class="main-content">
