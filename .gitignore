@@ -1,3 +1,7 @@
+#ignore the file permissions
+
+git config core.fileMode false 
+
 wp-config.php
 wp-content/uploads
 wp-content/advanced-cache.php
