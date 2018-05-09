@@ -58,11 +58,8 @@
             font-size: 1.5rem;
             margin-bottom: 5.6em
         }
-        .cd-nav .cd-primary-nav a {
-            font-size: 3rem
-        }
         .cd-nav .cd-contact-info {
-            margin-top: 190px;
+            margin: 190px 0 200px;
             text-align: right
         }
         .cd-nav .social-links>div {
@@ -70,6 +67,7 @@
         }
         .cd-nav .social-links h2 {
             text-align: right;
+            margin-bottom: 50px;
         }
         .cd-nav .social-links h2:after {
             left: auto;

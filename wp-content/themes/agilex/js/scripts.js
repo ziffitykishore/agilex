@@ -8,11 +8,9 @@
  /* preloader */
 
 
- jQuery(window).on('load', function(){
-			
-  jQuery('.loader').fadeOut('slow');
-    
-});
+
+
+
 
 
 function myFunction() {
@@ -25,6 +23,20 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
+
+    $('body').addClass('loading');
+    jQuery(window).on('load', function(){
+			
+      jQuery('.loader').removeClass('scale');
+      
+      $('body').removeClass('loading');
+    });
+
+    $('.fancybox').fancybox({
+      padding: 0,
+      aspectRatio : true
+    });
+
     $("#searchsubmit, #commentform #submit").addClass("btn btn-default");
     $(
       'button, html input[type="button"], input[type="reset"], input[type="submit"]'
@@ -121,12 +133,9 @@ function myFunction() {
     .removeAttr("width")
     .removeAttr("height");
 
-  $(".hambur-wrap").on("click", function(e) {
-    $(this).toggleClass("js-hambur-active");
-    $(".sidebar-push").toggleClass("js-slide-active");
+  
 
-    e.stopPropagation();
-  });
+  $(window).on('load', function(){
 
   $("#hero-slider").slick({
     dots: true,
@@ -134,11 +143,12 @@ function myFunction() {
     speed: 2500,
     fade: true,
     cssEase: 'linear',
-    arrows: false,
-    
+    arrows: false,    
     autoplay: true,
-autoplaySpeed: 8000
+    autoplaySpeed: 8000
   });
+
+});
 
 
   jQuery('#hero-slider').on('init', function(e, slick) {
@@ -261,20 +271,35 @@ function doAnimations(elements) {
 
   //TO TOP BUTTON ---------------------------------------------------------------------/
 
-  $(window).scroll(function() {
-    if ($(window).scrollTop() > 0) {
-    }
-  });
+/******************************
+      BOTTOM SCROLL TOP BUTTON
+   ******************************/
 
-  jQuery(".scroll-top a").click(function() {
-    jQuery("body,html").animate(
-      {
-        scrollTop: 0
-      },
-      2000
-    );
+  // declare variable
+  var scrollTop = $(".scroll-top");
+
+  $(window).scroll(function() {
+    // declare variable
+    var topPos = $(this).scrollTop();
+
+    // if user scrolls down - show scroll to top button
+    if (topPos > 100) {
+      $(scrollTop).css("opacity", "1");
+
+    } else {
+      $(scrollTop).css("opacity", "0");
+    }
+
+  }); // scroll END
+
+  //Click event to scroll to top
+  $(scrollTop).click(function() {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 800);
     return false;
-  });
+
+  }); // click() scroll top EMD
 
   //HEADER SHADOW ---------------------------------------------------------------------/
   var animatedHeader = false,
