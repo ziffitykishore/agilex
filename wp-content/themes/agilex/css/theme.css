@@ -955,8 +955,10 @@ nav.main-navigation {
     line-height: 50px;
     display: inline-block;
     text-align: center;
-    background: #174a79;
+    background: none;
     border-radius: 50%;
+    top: -55px;
+    right: -10px;
 }
 
 .fancybox-wrap .fancybox-close:before {
@@ -966,7 +968,6 @@ nav.main-navigation {
 .fancybox-wrap .fancybox-close:before,
 .fancybox-wrap .fancybox-close:after {
     content: '';
-    width: 50%;
     height: 2px;
     display: block;
     background: #fff;
