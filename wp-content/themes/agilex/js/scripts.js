@@ -23,6 +23,12 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
+/* Scroll down based on Hash tag */
+var header = jQuery('.header-container ').outerHeight(); /* Get the Height from .header-container */
+jQuery('.scroll-down').on('click', function(e) {
+    e.preventDefault();
+    jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr('href')).offset().top - header}, 500, 'linear');
+  });
 
     $('body').addClass('loading');
     jQuery(window).on('load', function(){
@@ -32,10 +38,7 @@ function myFunction() {
       $('body').removeClass('loading');
     });
 
-    $('.fancybox').fancybox({
-      padding: 0,
-      aspectRatio : true
-    });
+    
 
     $("#searchsubmit, #commentform #submit").addClass("btn btn-default");
     $(
@@ -127,13 +130,19 @@ function myFunction() {
     });
   });
 
+
+
+
+
   /* reset the image tag */
 
   jQuery("img")
     .removeAttr("width")
     .removeAttr("height");
 
-  
+  /* Home page slider settings */
+
+
 
   $(window).on('load', function(){
 
@@ -190,6 +199,9 @@ function doAnimations(elements) {
 
     img.hide();
   });
+
+
+  
 
   $(".btn-ripple").click(function(e) {
     // Remove any old one
@@ -315,6 +327,9 @@ function doAnimations(elements) {
     }
   });
 
+
+  /* Sticky footer */
+
   function footerFixed() {
     if ($(window).width() > 768) {
       var footer = $(".footer-wrap"),
@@ -326,6 +341,16 @@ function doAnimations(elements) {
   }
   footerFixed();
   $(window).on("load resize", footerFixed);
+
+
+
+  /* Fancybox load */
+
+  $('.fancybox').fancybox({
+    padding: 0,
+    aspectRatio : true,
+    'allowfullscreen'	: 'true'
+  });
 
   /*----- Add active class for opended panel */
   $(".panel-group .panel-collapse.in")

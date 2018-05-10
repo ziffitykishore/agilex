@@ -70,10 +70,11 @@
                     
                 </div>
             </div>
-        </div>
             <div class="scroll-top">
             <a href="#"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-arrow-up"></i></a>
             </div>
+        </div>
+          
                     </footer>
 
     <?php
