@@ -58,11 +58,8 @@
             font-size: 1.5rem;
             margin-bottom: 5.6em
         }
-        .cd-nav .cd-primary-nav a {
-            font-size: 3rem
-        }
         .cd-nav .cd-contact-info {
-            margin-top: 190px;
+            margin: 190px 0 200px;
             text-align: right
         }
         .cd-nav .social-links>div {
@@ -70,6 +67,7 @@
         }
         .cd-nav .social-links h2 {
             text-align: right;
+            margin-bottom: 50px;
         }
         .cd-nav .social-links h2:after {
             left: auto;
@@ -124,6 +122,9 @@
     }
     
     @media screen and (max-width: 768px) {
+        .btn-lg {
+            min-width: 150px;
+        }
         .heading .heading-title {
             font-size: 20px;
         }
@@ -156,6 +157,9 @@
         .slider-content .slider-heading {
             font-size: 25px;
         }
+        .slider-homepage .social-links-sec {
+            display: none;
+        }
         .uniques-inner .tab-content {
             padding: 0;
         }
@@ -167,6 +171,12 @@
         }
         .who-we-are .inner-content-wrap {
             padding: 65px 30px 0%
+        }
+        .who-we-are:before {
+            display: none;
+        }
+        .who-we-are .parallax-move {
+            display: none;
         }
         .what-we-do .thumbnail .img-sec {
             height: auto;
@@ -185,11 +195,18 @@
             text-align: center;
         }
         .footer_menu .navbar-nav li+li {
-            margin: 5px 0;
+            margin-left: 0;
+        }
+        .footer_menu .navbar-nav li {
+            margin: 15px 0;
         }
         .copyright-content {
             margin-top: 20px;
             text-align: center;
+        }
+        .scroll-top {
+            top: -50px;
+            bottom: auto;
         }
     }
     
