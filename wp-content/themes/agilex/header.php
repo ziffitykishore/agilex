@@ -37,9 +37,10 @@
   </head>
   <body <?php body_class(); ?>>
 
-  <div class="loader">
+  <div class="loader scale">
+        <div class="circular circular-animate"></div>
 		<div class="loader-inner">
-			
+        
 		</div>
 	</div>
     <header>

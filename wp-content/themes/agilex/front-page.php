@@ -73,7 +73,7 @@ if (is_front_page()) { ?>
                         $agilex_unique_query->the_post(); ?>
                 <div class="tab-pane fade <?php if($i == 0) { echo "active in"; } ?> " role="tabpanel" id="<?php echo strtolower(str_replace(' ', '-', get_the_title())); ?>" aria-labelledby="<?php echo strtolower(str_replace(' ', '-', get_the_title())); ?>-tab">
                     <div class="row">
-                        <div class="col-sm-4 wow fadeInUp">
+                        <div class="col-sm-4 wow slideInLeft">
                             <div class="img-sec">
                                 <?php //the_post_thumbnail('thumbnail'); ?>
 
@@ -91,7 +91,7 @@ if (is_front_page()) { ?>
                                     <?php } ?>
                             </div>
                         </div>
-                        <div class="col-sm-8 content-wrap wow fadeInUp">
+                        <div class="col-sm-8 content-wrap wow slideInRight">
                             <?php echo the_Content(); $i++; ?>
                         </div>
                     </div>
@@ -131,10 +131,10 @@ if (is_front_page()) { ?>
             </div>
     </div>
 
-      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="50%" data-ps-horizontal-position="0"/>
+      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="500" data-ps-horizontal-position="0"/>
 <img src="/wp-content/uploads/2018/05/who_we_are_element_02.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
 <img src="/wp-content/uploads/2018/05/who_we_are_element_03.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="75%"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="50%" data-ps-horizontal-position="85%"/>
+<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="500" data-ps-horizontal-position="85%"/>
       
     
     </section>
