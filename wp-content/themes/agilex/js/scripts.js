@@ -342,6 +342,30 @@ function doAnimations(elements) {
   footerFixed();
   $(window).on("load resize", footerFixed);
 
+  /* Parallax effects */
+
+  function parallaxIt(container, target, movement) {
+    $(container).mousemove(function(e) {
+    var $this = $(container);
+    var relX = e.pageX - $this.offset().left;
+    var relY = e.pageY - $this.offset().top;
+  
+    TweenMax.to(target, 1, {
+      x: (relX - $this.width() / 2) / $this.width() * movement,
+      y: (relY - $this.height() / 2) / $this.height() * movement
+    });
+  });
+  }
+
+
+function paparallaxImgEffects(){
+  parallaxIt('.img-sec', '.feature-image', -100);
+  parallaxIt('.img-sec', '.seconday-image', -30);
+}
+
+
+$(window).trigger('resize', paparallaxImgEffects());
+
 
 
   /* Fancybox load */

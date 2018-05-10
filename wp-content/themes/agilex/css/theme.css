@@ -131,8 +131,12 @@ body {
     overflow-x: hidden;
 }
 
-.loading {
-    overflow: hidden;
+.nicescroll-rails {
+    z-index: 99999 !important;
+}
+
+#ascrail2000-hr {
+    display: none !important;
 }
 
 .loader {
@@ -141,16 +145,49 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-    background: #174a7a;
+    background: -webkit-radial-gradient(50% 50%, circle cover, #ffffff 0, #dadada 100%);
+    background: radial-gradient(50% 50%, circle cover, #ffffff 0, #dadada 100%);
+    /* W3C */
     z-index: 99999;
     transition: all 0.5s ease-in-out 0s;
     opacity: 0;
     visibility: hidden;
 }
 
+.loader-inner {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .loader.scale {
     visibility: visible;
     opacity: 1;
+}
+
+.loader-inner a {
+    position: none;
+}
+
+.loader-inner img {
+    animation: heartbeat 2s linear 0s infinite alternate;
+    margin: 0;
+}
+
+@keyframes heartbeat {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.05, 1.05, 1.05);
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
 }
 
 
@@ -162,7 +199,7 @@ body {
     right: 0;
     width: 300px;
     height: 300px;
-    background: #fff;
+    background: #174a79;
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
     -webkit-transform: translateX(100%) translateY(-100%) rotate(45deg);
@@ -184,7 +221,7 @@ body {
     bottom: 30px;
     left: 50%;
     display: block;
-    border: 5px solid #174a7a;
+    border: 5px solid #000;
     border-radius: 50%;
     content: '';
 }
@@ -193,8 +230,8 @@ body {
     margin-left: -40px;
     width: 80px;
     height: 80px;
-    border-right-color: #03A9F4;
-    border-left-color: #03A9F4;
+    border-right-color: #fff;
+    border-left-color: #fff;
     -webkit-animation: rotation 3s linear infinite;
     animation: rotation 3s linear infinite;
 }
@@ -204,8 +241,8 @@ body {
     margin-left: -20px;
     width: 40px;
     height: 40px;
-    border-top-color: #03A9F4;
-    border-bottom-color: #03A9F4;
+    border-top-color: #fff;
+    border-bottom-color: #fff;
     -webkit-animation: rotation 1s linear infinite;
     animation: rotation 1s linear infinite;
 }
@@ -273,7 +310,6 @@ div.container {
     padding: 30px 30px;
     width: 100%;
     transition: all 0.5s ease 0s;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
 }
 
 .header-sticky {
@@ -281,6 +317,7 @@ div.container {
     top: 0px;
     padding: 15px 30px;
     background: #174a7a;
+    z-index: 99;
 }
 
 .header-sticky .white-logo {
@@ -555,10 +592,6 @@ form#searchform {
     transition: stroke-dashoffset .4s 0s
 }
 
-.navigation-is-open {
-    overflow: hidden;
-}
-
 .navigation-is-open .cd-nav-trigger {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -787,7 +820,6 @@ nav.main-navigation {
     color: #fff;
     outline: none;
     line-height: normal;
-    padding-right: 60px;
     display: inline-block;
     vertical-align: middle;
     padding-left: 0;
@@ -983,9 +1015,15 @@ nav.main-navigation {
 /* Home Page Styles */
 
 .main-content {
-    position: relative;
     z-index: 1;
     background: #fff;
+    position: relative;
+    transition: transform 0.5s;
+    box-shadow: 0 10px 10px -3px rgba(0, 0, 0, .12);
+}
+
+.js .main-wrap--move {
+    transform: scale3d(0.9, 0.9, 0.9)
 }
 
 
@@ -1121,6 +1159,8 @@ nav.main-navigation {
 
 
 /* Home page slider end */
+
+.main-content {}
 
 .tab-section .nav-tabs {
     border: transparent;
@@ -1337,6 +1377,9 @@ nav.main-navigation {
     position: relative;
     padding: 20%;
     text-align: center;
+}
+
+.home .video-content {
     top: 50px;
 }
 
@@ -1423,6 +1466,7 @@ nav.main-navigation {
 .what-we-do .thumbnail .img-sec {
     height: 250px;
     overflow: hidden;
+    display: block;
 }
 
 .what-we-do .thumbnail:hover .img-sec:before {
@@ -1436,6 +1480,7 @@ nav.main-navigation {
     background: #174a7a69;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     left: 0;
     right: 0;
     top: 0;
@@ -1513,7 +1558,6 @@ nav.main-navigation {
 
 .testimonials {
     padding: 50px 0;
-    box-shadow: 0 10px 10px -3px rgba(0, 0, 0, .12);
 }
 
 .testimonials .dots-bar .slick-dots li.slick-active button {
@@ -1554,13 +1598,4 @@ nav.main-navigation {
     margin-bottom: 10px;
     color: #174b7d;
     font-size: 18px;
-}
-
-.main-content {
-    position: relative;
-    transition: transform 0.5s;
-}
-
-.js .main-wrap--move {
-    transform: scale3d(0.9, 0.9, 0.9)
 }
