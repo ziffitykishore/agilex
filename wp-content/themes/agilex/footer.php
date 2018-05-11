@@ -12,7 +12,7 @@
     </div><!-- /.container -->
 
     <footer class="footer-wrap">
-        <div class="footer-content">
+        <div class="footer-content wow fadeInUp">
             <div class="container">
                 <?php if (is_active_sidebar('footer-kick-area')) : ?>
                     <?php dynamic_sidebar('footer-kick-area'); ?>
@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="scroll-top ">
-            <a href="#" class="btn-ripple"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-arrow-up"></i></a>
+            <a href="#" class="btn-ripple"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-chevron-up"></i></a>
             </div>
         </div>
           

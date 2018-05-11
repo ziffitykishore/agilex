@@ -8,10 +8,12 @@
 get_header(); ?>
 <div class="main-banner">
         <img src="/wp-content/uploads/2018/05/sub_banner_who_we_are.jpg" alt=""/>
+        <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
          <h2><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
         </div>     
+      </div>
 </div>
 <div class="main-who-we">
 <div class="container">
