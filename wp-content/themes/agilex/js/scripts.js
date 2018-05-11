@@ -142,7 +142,7 @@ jQuery('.scroll-down').on('click', function(e) {
 
   /* Home page slider settings */
 
-  $('body').toggleClass('animsition');
+  $('body').toggleClass('');
 
   $(window).on('load', function(){
 
@@ -434,12 +434,23 @@ $('.slider-for').slick({
   asNavFor: '.slider-nav'
 });
 $('.slider-nav').slick({
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScroll: 1,
   asNavFor: '.slider-for',
-  arrows: true,
-  
-  focusOnSelect: true
+  arrows: true,  
+  focusOnSelect: true,
+  responsive: [{
+    breakpoint: 768,
+    settings: {
+
+      slidesToShow: 3
+    }
+  }, {
+    breakpoint: 628,
+    settings: {
+      slidesToShow: 2
+    }
+  }]
 });
 
 
@@ -447,7 +458,24 @@ $('#affiliate-slider').slick({
   slidesToShow: 5,
   slidesToScroll: 1,
   arrows: true,
-  dots: false
+  dots: false,
+  responsive: [{
+    breakpoint: 1024,
+    settings: {
+
+      slidesToShow: 3
+    }
+  },{
+    breakpoint: 768,
+    settings: {
+      slidesToShow: 2
+    }
+  }, {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 1
+    }
+  }]
   
 });
 
@@ -466,24 +494,27 @@ if (jQuery().niceScroll) {
 }
 
 
-  //      fakewaffle.responsiveTabs(['xs', 'sm']);
+  // fakewaffle.responsiveTabs(['xs', 'sm']);
   fakewaffle.responsiveTabs(["xs"]);
-
-})(jQuery);
-
 
   /* Parallax effects */
 
   function parallaxIt(container, target, movement) {
     $(container).mousemove(function(e) {
-    var $this = $(container);
+    var $this = $(container),
+        targetElm = $this.find(target);
+
     var relX = e.pageX - $this.offset().left;
     var relY = e.pageY - $this.offset().top;
   
-    TweenMax.to(target, 1, {
+    TweenMax.to(targetElm, 1, {
       x: (relX - $this.width() / 2) / $this.width() * movement,
       y: (relY - $this.height() / 2) / $this.height() * movement
     });
+  }).mouseleave(function(e){
+    var $this = $(container),
+    targetElm = $this.find(target);
+    targetElm.removeAttr('style');
   });
   }
 
@@ -518,4 +549,11 @@ function ResponsiveView(){
 ResponsiveView();
 
 $(window).on("load resize", ResponsiveView);
+
+
+
+})(jQuery);
+
+
+  
 

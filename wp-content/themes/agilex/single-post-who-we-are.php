@@ -15,7 +15,7 @@ get_header(); ?>
         </div>     
       </div>
 </div>
-<div class="main-who-we">
+<div class="main-who-we margin-30">
 <div class="container">
 
 <?php 
@@ -28,7 +28,7 @@ endif;?>
 </div>
 </div>
 
-<div class="executive-wrap">
+<div class="executive-wrap margin-30">
   <div class="container">
     <div class="heading" >
       <div class="heading-title">Executive Leadership</div>
@@ -144,7 +144,7 @@ endif;?>
         </div>
         
       </div>
-      <div class="slider-nav col-sm-6 col-sm-offset-3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ">
+      <div class="slider-nav">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ">
           <div class="exe-thumb-inner"><div class="exe-thumb"><img src="/wp-content/uploads/2018/05/joy_atkinson.jpg" alt=""></div></div>
           <div class="exe-thumb-inner"><div class="exe-thumb"><img src="/wp-content/uploads/2018/05/photo_2.jpg" alt=""></div></div>
           <div class="exe-thumb-inner"><div class="exe-thumb"><img src="/wp-content/uploads/2018/05/photo_3.jpg" alt=""></div></div>
@@ -159,7 +159,7 @@ endif;?>
 </div>
 
 
-<div class="our-history pos-rel text-center" style="background: url(/wp-content/uploads/2018/05/our_history_parallex.jpg) no-repeat center center; background-attachment: fixed; background-size: cover; padding: 8% 0;">
+<div class="our-history pos-rel text-center margin-30" style="background: url(/wp-content/uploads/2018/05/our_history_parallex.jpg) no-repeat center center; background-attachment: fixed; background-size: cover; padding: 8% 0;">
   <div class="our-history-outer">
     <img src="/wp-content/uploads/2018/05/our_history_parallex.jpg" style="display: none;"/> 
     <div class="container">
@@ -179,7 +179,7 @@ endif;?>
 </div>
 
 
-<div class="affiliations-wrap">
+<div class="affiliations-wrap  margin-30">
     <div class="container">
       <div class="heading">
       <div class="heading-title">Our Affiliations</div>

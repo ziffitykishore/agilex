@@ -131,10 +131,10 @@ if (is_front_page()) { ?>
             </div>
     </div>
 
-      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="500" data-ps-horizontal-position="0"/>
+      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="395" data-ps-horizontal-position="0"/>
 <img src="/wp-content/uploads/2018/05/who_we_are_element_02.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
 <img src="/wp-content/uploads/2018/05/who_we_are_element_03.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="75%"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="500" data-ps-horizontal-position="85%"/>
+<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="390" data-ps-horizontal-position="85%"/>
       
     
     </section>
