@@ -163,11 +163,13 @@
         .uniques-inner .tab-content {
             padding: 0;
         }
+        .uniques-inner .seconday-image,
+        .uniques-inner .feature-image {
+            transform: none !important;
+        }
         .uniques-inner .seconday-image {
-            top: 50%;
-            left: 50%;
-            width: 50%;
-            transform: translate(-50%, -50%);
+            top: 10px;
+            left: 10px;
         }
         .who-we-are .inner-content-wrap {
             padding: 65px 30px 0%

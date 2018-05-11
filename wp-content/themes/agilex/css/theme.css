@@ -15,6 +15,13 @@ p:empty {
 }
 
 
+/* Mixins styles */
+
+.pos-rel {
+    position: relative;
+}
+
+
 /* ripple effects */
 
 .ripple {
@@ -56,10 +63,6 @@ p:empty {
 
 /* Button styles */
 
-.btn-blue {
-    background: #174a7a;
-}
-
 .btn-ripple {
     display: inline-block;
     overflow: hidden;
@@ -70,6 +73,7 @@ p:empty {
 
 .btn {
     border-radius: 0;
+    transition: all 0.5s ease 0s;
 }
 
 .btn-sm {
@@ -84,12 +88,24 @@ p:empty {
     line-height: 40px;
 }
 
+.btn-blue {
+    background: #174a7a;
+}
+
 .border-btn {
     border: 1px solid #174a7a;
     color: #174a7a;
     text-transform: uppercase;
     position: relative;
     transition: all 0.5s ease-in-out 0s;
+}
+
+.btn-txt-white {
+    color: #fff;
+}
+
+.border-white-2x {
+    border: 2px solid #fff;
 }
 
 .btn:hover,
@@ -167,7 +183,7 @@ body {
 }
 
 .loader-inner a {
-    position: none;
+    pointer-events: none;
 }
 
 .loader-inner img {
@@ -289,6 +305,10 @@ div.container {
     margin-bottom: 15px;
 }
 
+.heading-white .heading-title {
+    color: #fff;
+}
+
 .sub-heading {
     color: #6f6f6f;
     font-family: 'Poppins', sans-serif;
@@ -302,7 +322,6 @@ div.container {
     position: absolute;
     width: 100%;
     z-index: 99;
-    box-shadow: none;
 }
 
 .header-container {
@@ -318,6 +337,7 @@ div.container {
     padding: 15px 30px;
     background: #174a7a;
     z-index: 99;
+    box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.5);
 }
 
 .header-sticky .white-logo {
@@ -359,6 +379,10 @@ header .right-block {
 .right-block>div {
     display: inline-block;
     vertical-align: middle;
+}
+
+.contact-wrap {
+    margin-right: 20px;
 }
 
 .header-sticky .contact-wrap a {
@@ -538,7 +562,7 @@ form#searchform {
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     background-color: inherit;
@@ -564,7 +588,8 @@ form#searchform {
     -moz-transform: translateY(-6px);
     -ms-transform: translateY(-6px);
     -o-transform: translateY(-6px);
-    transform: translateY(-6px)
+    transform: translateY(-6px);
+    width: 18px;
 }
 
 .cd-nav-trigger .cd-nav-icon::after {
@@ -577,7 +602,8 @@ form#searchform {
     -moz-transform: translateY(6px);
     -ms-transform: translateY(6px);
     -o-transform: translateY(6px);
-    transform: translateY(6px)
+    transform: translateY(6px);
+    width: 14px;
 }
 
 .cd-nav-trigger svg {
@@ -607,6 +633,8 @@ form#searchform {
 .navigation-is-open .cd-nav-trigger .cd-nav-icon::after,
 .navigation-is-open .cd-nav-trigger .cd-nav-icon::before {
     width: 50%;
+    left: auto;
+    right: 0;
     -webkit-transition: -webkit-transform .5s, width .5s;
     -moz-transition: -moz-transform .5s, width .5s;
     transition: transform .5s, width .5s
@@ -931,17 +959,6 @@ nav.main-navigation {
     margin-left: 20px;
 }
 
-.footer-copy {
-    padding: 30px 0;
-    color: #fff;
-    position: relative;
-}
-
-.footer-copy p {
-    margin-bottom: 0;
-    line-height: normal;
-}
-
 .footer_menu .navbar-nav {
     margin-right: 0;
 }
@@ -950,10 +967,26 @@ nav.main-navigation {
     margin-left: 56px;
 }
 
+.footer_menu .navbar-nav li a,
+.footer-copy p {
+    font-size: 12px;
+    color: #6f6f6f;
+}
+
 .footer_menu .navbar-nav li a {
-    color: #fff;
-    font-size: 14px;
     text-transform: uppercase;
+}
+
+.footer-copy {
+    padding: 30px 0;
+    color: #fff;
+    position: relative;
+}
+
+.footer-copy p {
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: normal;
 }
 
 .scroll-top {
@@ -1019,7 +1052,7 @@ nav.main-navigation {
     background: #fff;
     position: relative;
     transition: transform 0.5s;
-    box-shadow: 0 10px 10px -3px rgba(0, 0, 0, .12);
+    box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.10);
 }
 
 .js .main-wrap--move {
@@ -1315,8 +1348,7 @@ nav.main-navigation {
     position: relative;
 }
 
-.who-we-are:before,
-.who-we-are:after {
+.who-we-are:before {
     width: 100%;
     height: 50px;
     content: '';
@@ -1327,11 +1359,6 @@ nav.main-navigation {
 .who-we-are:before {
     background: linear-gradient(to bottom, #fff 35%, rgba(255, 255, 255, 0));
     top: 0;
-}
-
-.who-we-are:after {
-    background: linear-gradient(to top, #fff 35%, rgba(255, 255, 255, 0));
-    bottom: 0;
 }
 
 .who-we-are .inner-content-wrap {
@@ -1377,13 +1404,15 @@ nav.main-navigation {
     position: relative;
     padding: 20%;
     text-align: center;
+    display: block;
+    color: #174a79;
 }
 
 .home .video-content {
     top: 50px;
 }
 
-.video-content a {
+.video-content .fancybox {
     position: relative;
     display: inline-block;
 }
@@ -1413,9 +1442,11 @@ nav.main-navigation {
     text-align: center;
     border-radius: 50%;
     cursor: pointer;
+    z-index: 1;
 }
 
-.video-content .fancybox:before {
+.video-content .fancybox:before,
+.video-content .fancybox:after {
     content: '';
     width: 80px;
     height: 80px;
@@ -1425,13 +1456,21 @@ nav.main-navigation {
     bottom: 0;
     top: 0;
     margin: auto;
-    background: rgba(255, 255, 255, 0.5);
     border-radius: 50%;
     transition: all .5s ease-in-out 0s;
     transform: scale(0);
 }
 
-.video-content:hover .fancybox:before {
+.video-content .fancybox:before {
+    transform: scale(1.1, 1.1);
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.video-content .fancybox:after {
+    background: #174a79;
+}
+
+.video-content:hover .fancybox:after {
     transform: scale(1.1, 1.1);
 }
 
@@ -1461,6 +1500,11 @@ nav.main-navigation {
     overflow: hidden;
     position: relative;
     padding-bottom: 176px;
+    transition: all 0.5s ease-in-out 0s;
+}
+
+.what-we-do .grid-content div.thumbnail:hover {
+    box-shadow: 0px 10px 21px 0px rgba(0, 0, 0, 0.2);
 }
 
 .what-we-do .thumbnail .img-sec {
@@ -1598,4 +1642,59 @@ nav.main-navigation {
     margin-bottom: 10px;
     color: #174b7d;
     font-size: 18px;
+}
+
+
+/* Inner Pages */
+
+.main-banner {
+    position: relative;
+}
+
+.main-banner:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* Who We are */
+
+.executive-wrap .exe-thumb {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+}
+
+.our-history:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: '';
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.our-history .our-history-outer {
+    position: relative;
+    z-index: 1;
+}
+
+.history-content {
+    margin-bottom: 50px;
+    color: #fff;
+    line-height: 30px;
+}
+
+.history-content p+p {
+    margin-top: 30px;
+}
+
+.affiliate-thumb img {
+    margin: 0 auto;
 }
