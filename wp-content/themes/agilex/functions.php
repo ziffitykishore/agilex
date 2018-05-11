@@ -146,7 +146,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_style( 'slick-theme-css', get_template_directory_uri() . '/css/slick-theme.css' );
     wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/css/animate.min.css' );
     wp_enqueue_style( 'fancy-css', get_template_directory_uri() . '/css/jquery.fancybox.css' );
-    wp_enqueue_style( 'fancy-css', get_template_directory_uri() . '/css/animsition.min.css' );
+    /* wp_enqueue_style( 'animsition-css', get_template_directory_uri() . '/css/animsition.min.css' ); */
    
     if ( is_rtl() ) {
         wp_enqueue_style( 'blog-rtl-css', get_template_directory_uri() . '/css/blog-rtl.css' );

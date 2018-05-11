@@ -59,7 +59,7 @@
             margin-bottom: 5.6em
         }
         .cd-nav .cd-contact-info {
-            margin: 190px 0 200px;
+            margin: 172px 0 200px;
             text-align: right
         }
         .cd-nav .social-links>div {
@@ -78,11 +78,6 @@
         }
         .cd-nav .cd-contact-info li {
             margin-bottom: 2.4em
-        }
-        .cd-nav .cd-contact-info li,
-        .cd-nav .cd-contact-info a,
-        .cd-nav .cd-contact-info span {
-            font-size: 25px;
         }
     }
     
@@ -213,7 +208,7 @@
             text-align: center;
         }
         .scroll-top {
-            top: -50px;
+            top: -55px;
             bottom: auto;
         }
     }
