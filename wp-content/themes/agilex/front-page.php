@@ -76,13 +76,13 @@ if (is_front_page()) { ?>
                         <div class="col-sm-4 wow slideInLeft">
                             <div class="img-sec">
                                 <?php //the_post_thumbnail('thumbnail'); ?>
-
+                                <figure class="feature-image">
                                 <?php if ( has_post_thumbnail() ) {
                                     the_post_thumbnail('full');
                                 } else { ?>
                                     <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
                                 <?php } ?>
-                                
+                                </figure>
                                 <?php if (get_field('secondary_image', get_the_ID())){ ?>
                                     <?php $image = get_field('secondary_image'); ?>
                                     <img class="seconday-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
@@ -165,13 +165,13 @@ if (is_front_page()) { ?>
                     ?>
                     <div class="col-xs-6 col-sm-6 col-md-4  wow fadeInUp">
                         <div class="thumbnail">
-                            <div class="img-sec">
+                            <a href="<?php echo get_permalink() ?>" class="img-sec">
                             <?php if ( has_post_thumbnail() ) {
                                     the_post_thumbnail('full');
                                 } else { ?>
                                     <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X250.png" alt="<?php the_title(); ?>" />
                                 <?php } ?>
-                            </div>
+                                </a>
                             <div class="caption">
                                 <a href="<?php echo get_permalink() ?>">
                                     <h4><?php echo the_Title(); ?></h4></a>

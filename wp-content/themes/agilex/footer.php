@@ -12,7 +12,7 @@
     </div><!-- /.container -->
 
     <footer class="footer-wrap">
-        <div class="footer-content">
+        <div class="footer-content wow fadeInUp">
             <div class="container">
                 <?php if (is_active_sidebar('footer-kick-area')) : ?>
                     <?php dynamic_sidebar('footer-kick-area'); ?>
@@ -64,14 +64,14 @@
                         <?php if ( $copyright_text !== '' ) : ?>
                             <p class="copyright"><?php echo $copyright_text; ?></p>
                         <?php else: ?>
-                            <p class="copyright">&copy; Copyright <?php echo date(Y); ?> Agilex. All Rights Reserved.</p>
+                            <p class="copyright">&copy; <?php echo date(Y) ." ". get_bloginfo( 'name' ); ?>. All Rights Reserved.</p>
                         <?php endif; ?>
                     </div>
                     
                 </div>
             </div>
-            <div class="scroll-top">
-            <a href="#"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-arrow-up"></i></a>
+            <div class="scroll-top ">
+            <a href="#" class="btn-ripple"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-chevron-up"></i></a>
             </div>
         </div>
           
