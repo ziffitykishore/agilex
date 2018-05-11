@@ -40,7 +40,9 @@
   <div class="loader scale">
         <div class="circular circular-animate"></div>
 		<div class="loader-inner">
-        
+        <?php if (function_exists('the_custom_logo')) :
+                      the_custom_logo();
+                  endif; ?>
 		</div>
 	</div>
     <header>
