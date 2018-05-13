@@ -53,7 +53,7 @@ Run `gulp --tasks` to see full list of gulp tasks.
 | `gulp styleguide`     | Build the theme's Hologram style guide.
 | `gulp watch`          | Start Browsersync and watch for style and JS changes.
 
-> **TIP:** `gulp watch` will, by default, compile the styleguide on each SCSS change. Don't want that overhead? Run `gulp watch --nostyleguide`
+> **TIP:** Want `gulp watch` to also compile the styleguide on each SCSS change? Run `gulp watch --styleguide`
 
 > **TIP:** The theme's gulpfile can be run from the Magento root BUT it's located @ `vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js`
 
