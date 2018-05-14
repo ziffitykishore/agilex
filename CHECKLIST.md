@@ -25,7 +25,8 @@ Now you have a new repo.
  
        composer require magento/sample-data-media magento/module-catalog-sample-data magento/module-configurable-sample-data \
          magento/module-bundle magento/module-grouped-product-sample-data magento/module-gift-card-sample-data \
-         magento/module-product-links-sample-data magento/module-review-sample-data magento/module-swatches-sample-data
+         magento/module-product-links-sample-data magento/module-review-sample-data magento/module-swatches-sample-data \
+         magento/sample-data-media
 
  - If the project doesn't use bundles, gift cards, etc. remove them from the above command.
  - This will only create products/relationships, not other more dangerous sample data like discount rules.
