@@ -6,8 +6,8 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
-<div class="main-banner">
-        <img src="/wp-content/uploads/2018/05/sub_banner_who_we_are.jpg" alt=""/>
+<div class="main-banner" style="background: url(/wp-content/uploads/2018/05/sub_banner_who_we_are.jpg) no-repeat center center; background-size: cover;">
+        <img src="" alt=""/>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
@@ -15,7 +15,7 @@ get_header(); ?>
         </div>     
       </div>
 </div>
-<div class="main-who-we margin-30">
+<div class="main-who-we margin-30 wow fadeInUp">
 <div class="container">
 
 <?php 
@@ -28,7 +28,7 @@ endif;?>
 </div>
 </div>
 
-<div class="executive-wrap margin-30">
+<div class="executive-wrap margin-30 wow fadeInUp">
   <div class="container">
     <div class="heading" >
       <div class="heading-title">Executive Leadership</div>
@@ -159,7 +159,7 @@ endif;?>
 </div>
 
 
-<div class="our-history pos-rel text-center margin-30" style="background: url(/wp-content/uploads/2018/05/our_history_parallex.jpg) no-repeat center center; background-attachment: fixed; background-size: cover; padding: 8% 0;">
+<div class="our-history pos-rel text-center margin-30 wow fadeInUp" style="background: url(/wp-content/uploads/2018/05/our_history_parallex.jpg) no-repeat center center; background-attachment: fixed; background-size: cover; padding: 8% 0;">
   <div class="our-history-outer">
     <img src="/wp-content/uploads/2018/05/our_history_parallex.jpg" style="display: none;"/> 
     <div class="container">
@@ -179,7 +179,7 @@ endif;?>
 </div>
 
 
-<div class="affiliations-wrap  margin-30">
+<div class="affiliations-wrap  margin-30 wow fadeInUp">
     <div class="container">
       <div class="heading">
       <div class="heading-title">Our Affiliations</div>
