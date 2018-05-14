@@ -42,7 +42,7 @@ if (is_front_page()) { ?>
         </div>
              </section>
     <?php /** Makes Agilex Unique Section -- Start **/ ?>
-    <section class="tab-section uniques wow fadeInUp" id="unique-section">
+    <section class="tab-section uniques wow fadeInUp" id="unique-section" >
         <div class="container">
         <div class="heading">
                 <div class="heading-title">What Makes Agliex Unique</div>
@@ -131,10 +131,10 @@ if (is_front_page()) { ?>
             </div>
     </div>
 
-      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="395" data-ps-horizontal-position="0"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_02.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_03.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="75%"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="390" data-ps-horizontal-position="85%"/>
+      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="400" data-ps-horizontal-position="-50"/>
+<img src="/wp-content/uploads/2018/05/who_we_are_element_02.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="-80"/>
+<img src="/wp-content/uploads/2018/05/who_we_are_element_03.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="-20" data-ps-horizontal-position="75%"/>
+<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
       
     
     </section>

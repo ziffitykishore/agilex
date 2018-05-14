@@ -19,7 +19,7 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="footer-contact">
+        <div class="footer-contact wow fadeInUp">
             <div class="container">
                 <div class="row">
                     <div class="footer-contact-us col-sm-6">
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="footer-copy black-bg">
+        <div class="footer-copy black-bg wow fadeInUp">
             <div class="container">
                 <div class="row">
                 <div class="col-md-6 col-md-push-6 footer_menu ">
