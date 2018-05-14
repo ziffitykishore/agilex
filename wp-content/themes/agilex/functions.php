@@ -1299,6 +1299,91 @@ function testimonial_init() {
 }
 add_action( 'init', 'testimonial_init' );
 
+
+/**Executive Leadership */
+function member_init() {
+    // set up Executive Leadership labels
+    $labels = array(
+        'name' => 'Executive Members',
+        'singular_name' => 'Executive Member',
+        'add_new' => 'Add New Executive Member',
+        'add_new_item' => 'Add New Executive Member',
+        'edit_item' => 'Edit Executive Member',
+        'new_item' => 'New Executive Member',
+        'all_items' => 'All Executive Members',
+        'view_item' => 'View Executive Member',
+        'search_items' => 'Search Members',
+        'not_found' =>  'No Member Found',
+        'not_found_in_trash' => 'No Member found in Trash',
+        'parent_item_colon' => '',
+        'menu_name' => 'Executive Members',
+    );
+
+    // register post type
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'member'),
+        'query_var' => true,
+        'menu_icon' => 'dashicons-randomize',
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail',
+            'author',
+        )
+    );
+    register_post_type( 'member', $args );
+}
+add_action( 'init', 'member_init' );
+
+
+
+/**Affiliation  */
+function affiliation_init() {
+    // set up Executive Leadership labels
+    $labels = array(
+        'name' => 'Affiliations',
+        'singular_name' => 'Affiliation',
+        'add_new' => 'Add New Affiliation',
+        'add_new_item' => 'Add New Affiliation',
+        'edit_item' => 'Edit Affiliation',
+        'new_item' => 'New Affiliation',
+        'all_items' => 'All Affiliation',
+        'view_item' => 'View Affiliation',
+        'search_items' => 'Search Affiliation',
+        'not_found' =>  'No affiliation Found',
+        'not_found_in_trash' => 'No affiliation found in Trash',
+        'parent_item_colon' => '',
+        'menu_name' => 'Affiliation',
+    );
+
+    // register post type
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'affiliation'),
+        'query_var' => true,
+        'menu_icon' => 'dashicons-randomize',
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail',
+            'author',
+        )
+    );
+    register_post_type( 'affiliation', $args );
+}
+add_action( 'init', 'affiliation_init' );
+
 /* -----------------------------------------
  * Put excerpt meta-box before editor
  * ----------------------------------------- */
@@ -1570,3 +1655,4 @@ function update_post_gallery( $post_id, $post_object )
         delete_post_meta( $post_id, 'gallery_data' );
     }
 }
+

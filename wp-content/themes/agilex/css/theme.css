@@ -838,7 +838,7 @@ form#searchform {
 
 .cd-nav h2 {
     position: relative;
-    margin-bottom: 1.7em;
+    margin-bottom: 3em;
     font-size: 1.3rem;
     font-weight: 800;
     color: #fff;
@@ -864,7 +864,7 @@ form#searchform {
 }
 
 .cd-nav .cd-contact-info {
-    margin: 100px 0;
+    margin: 172px 0 100px;
 }
 
 .cd-nav .cd-contact-info li {
@@ -964,7 +964,7 @@ nav.main-navigation {
     display: inline-block;
     vertical-align: middle;
     padding-left: 0;
-    font-size: 1.5rem;
+    font-size: 18px;
     transition: all 0.5s ease-in-out 0s;
 }
 
@@ -1205,6 +1205,19 @@ nav.main-navigation {
     position: relative;
 }
 
+.slider-homepage .slick-slide:nth-child(n+4) .slider-content .slider-heading {
+    color: #174a79;
+}
+
+.slider-homepage .slick-slide:nth-child(n+4) .slider-content .btn-more {
+    border-color: #174a7a;
+    color: #174a7a;
+}
+
+.slider-homepage .slick-slide:nth-child(n+4) .slider-content .btn-more:hover {
+    color: #fff;
+}
+
 .slider-content {
     position: absolute;
     width: 100%;
@@ -1236,20 +1249,32 @@ nav.main-navigation {
     font-family: 'Lato', sans-serif;
 }
 
+.slider-content .btn-more {
+    border-color: #fff;
+    color: #fff;
+}
+
+.slider-content .btn-more:hover {
+    border-color: #174a79;
+    color: #fff;
+}
+
 #hero-slider .slick-dots {
     bottom: 40px;
 }
 
-.dots-bar .slick-dots li {
-    width: auto;
-    height: auto;
-}
+.dots-bar .slick-dots li {}
 
 .dots-bar .slick-dots li button {
     padding: 0;
     width: 25px;
     height: 2px;
     background-color: #174b7d;
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
 
 .dots-bar .slick-dots li.slick-active button {
@@ -1295,12 +1320,18 @@ nav.main-navigation {
     margin: auto;
     display: block;
     text-align: center;
-    bottom: 64px;
+    bottom: 90px;
     height: 66px;
+    color: #174a79;
     -webkit-animation: sdb04 2s infinite;
     animation: sdb04 2s infinite;
     width: 46px;
     line-height: 60px;
+    transition: all 0.5s ease 0s;
+}
+
+.scroll-down:hover {
+    color: #fff;
 }
 
 .scroll-down:before,
@@ -1443,7 +1474,8 @@ nav.main-navigation {
 }
 
 .uniques-inner .tab-content {
-    padding: 50px 0;
+    padding: 50px 0 68px;
+    overflow: hidden;
 }
 
 .uniques .panel-group {
@@ -1743,6 +1775,7 @@ nav.main-navigation {
     background: #fff;
     position: relative;
     height: 100%;
+    min-height: 176px;
     width: 100%;
     z-index: 12;
     -webkit-transition: all 0.5s ease-in-out 0s;
@@ -1876,6 +1909,16 @@ nav.main-navigation {
     margin-bottom: 30px;
 }
 
+.executive-carousel {
+    margin-top: 20px;
+}
+
+.slider-sec {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 6px;
+}
+
 .executive-wrap .exe-thumb {
     width: 200px;
     height: 200px;
@@ -1883,9 +1926,49 @@ nav.main-navigation {
     margin: 0 auto;
 }
 
-.slider-nav {
-    max-width: 700px;
+.executive-wrap .member-img {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.exe-personal {
+    padding-bottom: 25px;
+    border-color: #192a3e;
+    margin-top: 0;
+}
+
+.executive-wrap .exe-name {
+    font-size: 30px;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 5px;
+    color: #174a79;
+    text-transform: uppercase;
+}
+
+.executive-wrap .exe-pos {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #192a3e;
+    font-family: 'Lato', sans-serif;
+}
+
+.executive-wrap .mem-info {
+    box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+}
+
+.exe-desc p {
+    color: #174a79;
+}
+
+.exe-desc p+p {
+    margin-top: 25px;
+}
+
+.executive-wrap .slider-nav {
+    max-width: 80%;
     margin: 0 auto;
+    margin-top: -50px;
 }
 
 .our-history:before {
@@ -1929,23 +2012,30 @@ nav.main-navigation {
 }
 
 .slick-slider .slick-arrow {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    z-index: 9;
 }
 
 .slick-slider .slick-next {
-    right: 0;
+    right: -18px;
 }
 
 .slick-slider .slick-prev {
-    left: 0;
+    left: -18px;
 }
 
 .slick-slider .slick-arrow::before {
     font-family: 'FontAwesome';
     color: #174a79;
+    font-size: 14px;
+}
+
+.slick-slider .slick-arrow:hover {
+    background: #fff;
 }
 
 .slick-slider .slick-next::before {
@@ -1985,7 +2075,7 @@ nav.main-navigation {
 
 .morphing-btn-clone {
     position: fixed;
-    background: #FF6666;
+    background: #174a79;
     border-radius: 50%;
     z-index: 3;
     -webkit-transition: all 0.5s cubic-bezier(.65, .05, .36, 1);
@@ -2006,7 +2096,7 @@ nav.main-navigation {
 }
 
 .fancybox-morphing .fancybox-bg {
-    background: #FF6666;
+    background: #174a79;
     opacity: 1;
 }
 
