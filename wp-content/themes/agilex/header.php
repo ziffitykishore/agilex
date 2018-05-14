@@ -114,7 +114,7 @@
                                 </div>
 
                                 <div class="social-links  ">
-                                    <h2>Follows us on</h2>
+                                    <h2>Follow us on</h2>
                                     <?php if (is_active_sidebar('footer-social-links')) : ?>
                                         <?php dynamic_sidebar('footer-social-links'); ?>
                                     <?php endif; ?>

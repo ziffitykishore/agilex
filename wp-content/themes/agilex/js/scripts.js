@@ -212,7 +212,8 @@ function myFunction() {
       });
   }
 
-  $("#hero-slider .slider-blk").each(function() {
+  function bgSource(imgcontainer){
+  $(imgcontainer).each(function() {
       var img = $(this).find("img");
       var height = img.height();
       var img_src = img.attr("src");
@@ -226,6 +227,12 @@ function myFunction() {
 
       img.hide();
   });
+}
+
+bgSource('#hero-slider .slider-blk');
+
+
+
 
 
 
