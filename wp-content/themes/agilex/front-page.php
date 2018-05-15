@@ -45,7 +45,7 @@ if (is_front_page()) { ?>
     <section class="tab-section uniques wow fadeInUp" id="unique-section" >
         <div class="container">
         <div class="heading">
-                <div class="heading-title">What Makes Agliex Unique</div>
+                <div class="heading-title">What Makes Agilex Unique</div>
                 <div class="sub-heading">Nesciunt tofu stumptown aliqua retro synth master cleanse</div>
             </div>
             <div class="uniques-inner">

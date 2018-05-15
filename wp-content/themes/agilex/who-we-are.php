@@ -6,13 +6,15 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
-
-<div class="main-banner" style="background: url(/wp-content/uploads/2018/05/sub_banner_who_we_are.jpg) no-repeat center center; background-size: cover;">
-        <img src="" alt=""/>
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?> 
+         
+<div class="main-banner" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-size: cover;">
+        <img src="<?php echo $featured_img_url; ?>" class="hidden" alt=""/>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
          <h2><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
+         
         </div>     
       </div>
       
