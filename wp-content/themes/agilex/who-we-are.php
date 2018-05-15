@@ -68,17 +68,18 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
               <div class="col-sm-8 mem-info">
                 <div class="exe-personal page-header">
                   <div class="exe-name"><?php echo the_Title(); ?></div>
+                  <?php if (get_field('linkedin-link')){ ?>
+                    <a href="<?php the_field('linkedin-link'); ?>" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
+                    <?php } else { ?>
+                      <a href="#" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
+                    <?php } ?>
                   <div class="exe-pos">
                     <?php if (get_field('executive_position')){ ?>
                      <?php the_field('executive_position'); ?>
                     <?php } else { echo 'Lorem Ipsum' ?>
                     <?php } ?>
                   </div>
-                  <?php if (get_field('linkedin-link')){ ?>
-                    <a href="<?php the_field('linkedin-link'); ?>" class="btn btn-ripple"><i class="fa fa-linkedin"></i></a>
-                    <?php } else { ?>
-                      <a href="#" class="btn btn-ripple"><i class="fa fa-linkedin"></i></a>
-                    <?php } ?>
+                 
                   
                   </div>
                 <div class="exe-desc">
