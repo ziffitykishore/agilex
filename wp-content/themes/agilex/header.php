@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="contact-wrap">
-                    <a class="btn btn-sm border-btn txt-upper btn-ripple">Contact Us</a>
+                    <a class="btn btn-sm border-btn txt-upper btn-ripple">#Let's Talk Fragrance</a>
                 </div>
                 
                 <a href="#cd-nav" class="cd-nav-trigger">Menu

@@ -1359,7 +1359,7 @@ function affiliation_init() {
         'not_found' =>  'No affiliation Found',
         'not_found_in_trash' => 'No affiliation found in Trash',
         'parent_item_colon' => '',
-        'menu_name' => 'Affiliation',
+        'menu_name' => 'Our Affiliations',
     );
 
     // register post type

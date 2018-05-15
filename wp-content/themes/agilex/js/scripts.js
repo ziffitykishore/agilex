@@ -77,7 +77,7 @@ function myFunction() {
       $(
           '<span class="caret"></span>'
       ).insertBefore("#primary-menu .menu-item-has-children > .sub-menu");
-      $("#primary-menu a").addClass("ripple");
+      $("#primary-menu a").addClass("ripple-link");
 
       jQuery("#primary-menu .caret").on("click", function(e) {
           if (
@@ -324,7 +324,7 @@ bgSource('#hero-slider .slider-blk');
   // declare variable
   var scrollTop = $(".scroll-top");
 
-  $(window).scroll(function() {
+ /* $(window).scroll(function() {
       // declare variable
       var topPos = $(this).scrollTop();
 
@@ -336,15 +336,16 @@ bgSource('#hero-slider .slider-blk');
           $(scrollTop).css("opacity", "0");
       }
 
-  }); // scroll END
+  }); */ // scroll END
 
   //Click event to scroll to top
   $(scrollTop).click(function() {
+      
       $('html, body').animate({
           scrollTop: 0
       }, 800);
-      return false;
-
+      
+      
   }); // click() scroll top EMD
 
   //HEADER SHADOW ---------------------------------------------------------------------/
