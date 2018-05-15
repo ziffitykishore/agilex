@@ -2,6 +2,12 @@
     .header-container {
         padding: 15px;
     }
+    .logo-wrap img {
+        height: 90px;
+    }
+    header .right-block {
+        margin: 20px 0;
+    }
     .main-navigation .navbar-nav li a {
         font-size: 15px;
     }

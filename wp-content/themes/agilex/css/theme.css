@@ -31,13 +31,13 @@ p:empty {
 
 /* ripple effects */
 
-.ripple {
+.ripple-link {
     position: relative;
     overflow: hidden;
     transform: translate3d(0, 0, 0)
 }
 
-.ripple:after {
+.ripple-link:after {
     content: "";
     display: block;
     position: absolute;
@@ -59,7 +59,7 @@ p:empty {
     transition: transform .5s, opacity 1s
 }
 
-.ripple:active:after {
+.ripple-link:active:after {
     -webkit-transform: scale(0, 0);
     -moz-transform: scale(0, 0);
     transform: scale(0, 0);
@@ -408,7 +408,7 @@ div.container {
 
 .header-container {
     display: inline-block;
-    padding: 30px 30px;
+    padding: 17px 30px;
     width: 100%;
     transition: all 0.5s ease 0s;
 }
@@ -451,11 +451,10 @@ div.container {
     margin-top: 0;
     margin-right: 0;
     width: auto;
-    height: 75px;
 }
 
 header .right-block {
-    margin: 12px 0;
+    margin: 30px 0;
 }
 
 .right-block>div {
@@ -1128,7 +1127,6 @@ nav.main-navigation {
 }
 
 .scroll-top {
-    opacity: 0;
     transition: all 0.5s ease-in-out 0s;
     position: absolute;
     bottom: 55px;
@@ -1136,7 +1134,8 @@ nav.main-navigation {
     left: 0;
 }
 
-.scroll-top a {
+.scroll-top .scroll-up {
+    position: relative;
     width: 50px;
     height: 50px;
     background: #fff;
@@ -1146,6 +1145,7 @@ nav.main-navigation {
     border-radius: 50%;
     color: #174a79;
     margin: auto;
+    cursor: pointer;
     box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -1898,6 +1898,16 @@ nav.main-navigation {
     text-align: center;
 }
 
+.page-header-content h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.page-header-content h2 {
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+}
+
 
 /* Who We are */
 
@@ -1935,6 +1945,20 @@ nav.main-navigation {
     padding-bottom: 25px;
     border-color: #192a3e;
     margin-top: 0;
+}
+
+.linkedin {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    z-index: 9;
+    float: right;
+    position: relative;
+    top: -30px;
+    line-height: 32px;
+    font-size: 20px;
 }
 
 .executive-wrap .exe-name {
@@ -2001,9 +2025,8 @@ nav.main-navigation {
 }
 
 .affiliations-outer {
-    padding: 30px;
+    padding: 30px 50px;
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.2);
-    max-width: 80%;
     margin: 0 auto 50px;
 }
 

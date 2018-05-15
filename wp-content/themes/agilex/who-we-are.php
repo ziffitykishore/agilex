@@ -6,6 +6,7 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
+
 <div class="main-banner" style="background: url(/wp-content/uploads/2018/05/sub_banner_who_we_are.jpg) no-repeat center center; background-size: cover;">
         <img src="" alt=""/>
         <div class="page-header-content">
@@ -14,19 +15,30 @@ get_header(); ?>
          <h2><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
         </div>     
       </div>
+      
+
+
+
 </div>
+<?php 
+$whoweare_args = array(
+'name' => 'who-we-are',
+'post_status'     => 'publish'
+); 
+$whoweare_arg_query = new WP_Query($whoweare_args);
+while ($whoweare_arg_query->have_posts()) {
+$whoweare_arg_query->the_post(); 
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?> 
 <div class="main-who-we margin-30 wow fadeInUp">
 <div class="container">
 
 <?php 
-if ( have_posts() ) : while ( have_posts() ) : the_post();
-  the_content();
-endwhile;
-else: ?>
-  <p><?php _e('Sorry, no posts matched your criteria.'); ?></p><?php 
-endif;?>
+  the_content(); ?>
+
+
 </div>
 </div>
+<?php }?>
 
   <div class="executive-wrap margin-30 wow fadeInUp">
     <div class="container">
@@ -56,11 +68,19 @@ endif;?>
               <div class="col-sm-8 mem-info">
                 <div class="exe-personal page-header">
                   <div class="exe-name"><?php echo the_Title(); ?></div>
+                  <?php if (get_field('linkedin-link')){ ?>
+                    <a href="<?php the_field('linkedin-link'); ?>" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
+                    <?php } else { ?>
+                      <a href="#" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
+                    <?php } ?>
                   <div class="exe-pos">
                     <?php if (get_field('executive_position')){ ?>
                      <?php the_field('executive_position'); ?>
                     <?php } else { echo 'Lorem Ipsum' ?>
-                    <?php } ?></div>
+                    <?php } ?>
+                  </div>
+                 
+                  
                   </div>
                 <div class="exe-desc">
                   <?php echo the_Content(); ?>
@@ -95,7 +115,7 @@ $history_arg_query = new WP_Query($history_args);
 while ($history_arg_query->have_posts()) {
 $history_arg_query->the_post(); 
 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>    
-  <div class="our-history pos-rel text-center margin-30 wow fadeInUp" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-attachment: fixed; background-size: cover; padding: 8% 0;">
+  <div class="our-history pos-rel text-center margin-30 wow fadeInUp" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-attachment: fixed; background-size: cover; padding: 50px 0;">
     <div class="our-history-outer">
       <img src="/wp-content/uploads/2018/05/our_history_parallex.jpg" style="display: none;"/> 
       <div class="container">
@@ -135,10 +155,10 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 
           <div class="affiliate-thumb">
           <?php if ( has_post_thumbnail() ) {
-                  the_post_thumbnail('full');
-              } else { ?>
-                  <div class="placeholder"><i class="fa fa-image"></i></div>
-           <?php } ?>
+                                    the_post_thumbnail('full');
+                                } else { ?>
+                                    <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php the_title(); ?>" />
+          <?php } ?>
           </div>
           
           
