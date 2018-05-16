@@ -71,7 +71,7 @@
                 </div>
             </div>
             <div class="scroll-top ">
-            <a href="#" class="btn-ripple"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-chevron-up"></i></a>
+            <span class="scroll-up btn-ripple"><span class="sr-only"><?php _e( 'Back to top', 'bootstrapcanvaswp' ); ?></span> <i class="fa fa-chevron-up"></i></span>
             </div>
         </div>
           
@@ -84,6 +84,7 @@
 	   * generally use this hook to reference JavaScript files.
 	   */
 	  wp_footer();
-	?>
+    ?>
+    <div class="overlaybgDark"></div>
   </body>
 </html>

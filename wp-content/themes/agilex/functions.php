@@ -1166,6 +1166,7 @@ function banner_slider_init() {
             'editor',
             'thumbnail',
             'author',
+            'excerpt'
         )
     );
     register_post_type( 'banner_slider', $args );
@@ -1207,6 +1208,7 @@ function makes_agilex_unique_init() {
             'editor',
             'thumbnail',
             'author',
+            'excerpt'
         )
     );
     register_post_type( 'makes_agilex_unique', $args );
@@ -1244,7 +1246,7 @@ function what_we_do_init() {
         'show_ui' => true,
         'capability_type' => 'post',
         'hierarchical' => false,
-        'rewrite' => array('slug' => 'what-we-do'),
+        'rewrite' => array('slug' => 'what_we_do'),
         'query_var' => true,
         'menu_icon' => 'dashicons-randomize',
         'supports' => array(
@@ -1252,6 +1254,7 @@ function what_we_do_init() {
             'editor',
             'thumbnail',
             'author',
+            'excerpt'
         )
     );
     register_post_type( 'what_we_do', $args );
@@ -1293,6 +1296,7 @@ function testimonial_init() {
             'editor',
             'thumbnail',
             'author',
+            'excerpt'
         )
     );
     register_post_type( 'testimonial', $args );
@@ -1335,6 +1339,7 @@ function member_init() {
             'editor',
             'thumbnail',
             'author',
+            'excerpt'
         )
     );
     register_post_type( 'member', $args );
@@ -1359,7 +1364,7 @@ function affiliation_init() {
         'not_found' =>  'No affiliation Found',
         'not_found_in_trash' => 'No affiliation found in Trash',
         'parent_item_colon' => '',
-        'menu_name' => 'Affiliation',
+        'menu_name' => 'Our Affiliations',
     );
 
     // register post type
@@ -1378,6 +1383,7 @@ function affiliation_init() {
             'editor',
             'thumbnail',
             'author',
+            'excerpt'
         )
     );
     register_post_type( 'affiliation', $args );

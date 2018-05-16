@@ -63,7 +63,7 @@
                         <form role="search" autocomplete="off" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 
                             <label class="screen-reader-text" for="s"><?php _x( 'Search for:', 'label' ); ?></label>
-                            <input autofocus type="text" placeholder="Search here...." value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
+                            <input autofocus type="text" placeholder="Lorem Ipsum" value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
                             <!-- <input type="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" /> -->
                             <button type="submit" id="searchsubmit"><span class="sr-only">Search</span></button>
                             <span class="search__info">Hit enter to search or ESC to close</span>
@@ -72,22 +72,27 @@
                 </div>
 
                 <div class="contact-wrap">
-                    <a class="btn btn-sm border-btn txt-upper btn-ripple">Contact Us</a>
+                    <a class="btn btn-sm border-btn txt-upper btn-ripple">#Let's Talk Fragrance</a>
                 </div>
                 
-                <a href="#cd-nav" class="cd-nav-trigger">Menu
-                    <span class="cd-nav-icon"></span>
-                    <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54">
-                        <circle fill="transparent" stroke="#ffffff" stroke-width="1" cx="27" cy="27" r="25" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
-                    </svg>
-                </a>
+                
+                <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
+                    <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                    </div>
+                </div>
             </div>
 
             
                 <div id="cd-nav" class="cd-nav">
+                <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
                     <div class="cd-navigation-wrapper">
-                        <div class="col-xs-12 col-sm-6 left-side">
-                            <h2>Navigation</h2>
+                    
+                    
                                 
                                 <div class="menu-wrap">
                                     <nav id="site-navigation" class="navigation main-navigation cd-primary-nav" role="navigation">
@@ -104,23 +109,8 @@
                                         </ul>
                                     </nav><!-- #site-navigation -->
                                 </div>
-                        </div>
-                    <div class="col-xs-12 col-sm-6 right-side">
-                            
-                                <div class="cd-contact-info">
-                                    <?php if (is_active_sidebar('footer-contact-us')) : ?>
-                                        <?php dynamic_sidebar('footer-contact-us'); ?>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="social-links  ">
-                                    <h2>Follow us on</h2>
-                                    <?php if (is_active_sidebar('footer-social-links')) : ?>
-                                        <?php dynamic_sidebar('footer-social-links'); ?>
-                                    <?php endif; ?>
-                                </div>
-                            
-                        </div> 
+                        
+                   
                     </div>
                 </div>
             <!-- <div class="sidebar-push">

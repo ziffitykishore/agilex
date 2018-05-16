@@ -2,13 +2,31 @@
     .header-container {
         padding: 15px;
     }
+    .logo-wrap img {
+        height: 85px;
+    }
+    header .right-block {
+        margin: 15px 0;
+    }
     .main-navigation .navbar-nav li a {
         font-size: 15px;
     }
-    .cd-nav .cd-contact-info li,
-    .cd-nav .cd-contact-info a,
-    .cd-nav .cd-contact-info span {
-        font-size: 15px;
+    .cd-nav .cd-navigation-wrapper {
+        width: 300px;
+    }
+    .cd-nav .hamburger {
+        position: absolute;
+        right: 15px;
+        top: 37px;
+    }
+    .executive-wrap .mem-info {
+        padding-top: 30px;
+    }
+    .executive-wrap .exe-name {
+        font-size: 22px;
+    }
+    .executive-wrap .slider-nav {
+        margin-top: -60px;
     }
 }
 
@@ -34,11 +52,11 @@
     .header-container {
         padding: 10px 15px;
     }
-    header .right-block {
-        margin: 5px 0;
+    .cd-nav .hamburger {
+        top: 32px;
     }
     .cd-nav .cd-navigation-wrapper {
-        padding: 40px 5%
+        padding: 40px 50px 40px 5%;
     }
     .cd-nav h2 {
         margin-bottom: 3em;
@@ -67,6 +85,13 @@
     }
     .footer-wrap .footer-kick-module h4 {
         font-size: 30px;
+    }
+    .executive-wrap .mem-info {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .page-desc {
+        padding: 50px;
     }
 }
 
@@ -105,19 +130,6 @@
     }
 }
 
-@media screen and (min-height: 865px) {
-    .cd-nav h2 {
-        font-size: 1.5rem;
-        margin-bottom: 5em
-    }
-}
-
-@media screen and (min-height: 655px)and (max-height: 768px) {
-    .cd-nav .cd-contact-info {
-        margin: 110px 0 100px;
-    }
-}
-
 @media screen and (max-width: 991px) {
     .slider-content .slider-heading {
         font-size: 30px;
@@ -131,9 +143,18 @@
     .footer_menu .navbar-nav li+li {
         margin-left: 25px;
     }
+    .affiliations-outer {
+        max-width: 700px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
+    .cd-nav .cd-primary-nav {
+        margin-top: 25px;
+    }
+    .search-open .search-form {
+        width: 450px;
+    }
     .tab-section .nav-tabs>li+li {
         margin-left: 10px;
     }
@@ -178,6 +199,7 @@
 @media screen and (max-width: 768px) {
     .btn-lg {
         min-width: 150px;
+        font-size: 16px;
     }
     .heading {
         margin-bottom: 20px;
@@ -202,15 +224,15 @@
     .search-wrap {
         margin-right: 0;
     }
-    .search-form {
+    /* .search-form {
         padding-left: 25px;
         padding-right: 25px;
-    }
+    } */
     header .contact-wrap {
         display: none;
     }
     .logo-wrap img {
-        height: 60px;
+        height: 80px;
     }
     .home .main-content>section:not(:first-child) {
         padding: 25px 0;
@@ -280,12 +302,24 @@
         top: -28px;
         bottom: auto;
     }
+    .page-header-content h1 {
+        font-size: 35px;
+    }
     .executive-wrap .slick-slide img {
         margin: 0 auto;
     }
 }
 
 @media screen and (max-width: 767px) {
+    .cd-nav .cd-primary-nav {
+        margin-top: 30px;
+    }
+    .main-navigation .navbar-nav li a {
+        padding: 8px 18px 8px 0;
+    }
+    .search-open .search-form {
+        width: 300px;
+    }
     #hero-slider {
         margin-bottom: 0;
     }
@@ -295,6 +329,21 @@
     .executive-wrap .slider-sec {
         padding: 10px;
     }
+    .executive-wrap .slider-nav {
+        max-width: 480px;
+    }
+    .what-we-do-wrap .categories-blk {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 627px) {
+    .executive-wrap .slider-nav {
+        max-width: 320px;
+    }
+    .our-history .our-history-outer a.btn {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -303,5 +352,112 @@
     }
     .what-we-do .grid-content div[class*="col-"] {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .search-open .search-form {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 667px) {
+    .search-wrap {
+        position: static;
+    }
+    .search-form .search-close {
+        display: block;
+        width: 25px;
+        right: 15px;
+        top: 0;
+    }
+    .search-form {
+        visibility: hidden;
+        position: fixed;
+        width: 100%;
+        top: -100%;
+        left: 0;
+        bottom: auto;
+        right: 0;
+        opacity: 0;
+        /* transform: scale(0); */
+        transition: all 0.5s ease-in-out 0s;
+        padding: 50px;
+        z-index: 999;
+    }
+    .search-open .search-form {
+        visibility: visible;
+        /* transform: scale(1); */
+        padding: 35px 12px 36px;
+        background: #174a7a;
+        width: auto;
+        opacity: 1;
+        top: 0;
+    }
+    form#searchform {
+        position: relative;
+        top: 5px;
+        max-width: 800px;
+        margin: auto;
+    }
+    .search-open .search-form {
+        display: block;
+    }
+    .search-form .form-control:focus {
+        box-shadow: none;
+    }
+    .search-form .form-control {
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        width: 0;
+        transition: all 0.5s ease-in-out 0.5s;
+    }
+    .search-open .form-control {
+        width: 100%;
+    }
+    .search-form .form-control::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search-form .form-control:-moz-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search-form .form-control::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search-form .form-control:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search__info {
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+        margin: 0 auto;
+        padding: 0.85em 0;
+        text-align: right;
+        color: #fff;
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+        transition: opacity 0.4s, transform 0.4s;
+    }
+    .search-form #searchsubmit {
+        margin: 4px 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: none;
+        font-size: 50px;
+        border: none;
+        color: #fff;
+    }
+}
+
+@media screen and (max-width: 657px) {
+    .what-we-do-wrap .categories-blk {
+        padding: 30px;
+    }
+    .what-we-do-wrap .categories-content {
+        width: auto;
+        float: none;
+        padding: 30px;
     }
 }
