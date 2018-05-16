@@ -84,6 +84,7 @@
 	   * generally use this hook to reference JavaScript files.
 	   */
 	  wp_footer();
-	?>
+    ?>
+    <div class="overlaybgDark"></div>
   </body>
 </html>

@@ -13,7 +13,23 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php wp_title(); ?></title>
+    <title><?php
+if (is_home()) {
+	echo bloginfo('name');
+} elseif (is_404()) {
+	echo '404 Not Found';
+} elseif (is_category()) {
+	echo 'Category:'; wp_title('');
+} elseif (is_search()) {
+	echo 'Search Results';
+} elseif (is_day() || is_month() || is_year() ) {
+	echo 'Archives:'; wp_title('');
+} elseif (is_tag()) {
+	echo 'Tag:'; wp_title('');
+} else {
+	echo wp_title('');
+}
+?></title>
 
 	<?php
 	  /*
@@ -75,19 +91,24 @@
                     <a class="btn btn-sm border-btn txt-upper btn-ripple">#Let's Talk Fragrance</a>
                 </div>
                 
-                <a href="#cd-nav" class="cd-nav-trigger">Menu
-                    <span class="cd-nav-icon"></span>
-                    <svg x="0px" y="0px" width="54px" height="54px" viewBox="0 0 54 54">
-                        <circle fill="transparent" stroke="#ffffff" stroke-width="1" cx="27" cy="27" r="25" stroke-dasharray="157 157" stroke-dashoffset="157"></circle>
-                    </svg>
-                </a>
+                
+                <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
+                    <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                    </div>
+                </div>
             </div>
 
             
                 <div id="cd-nav" class="cd-nav">
+                <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
+                        <div class="hamburger-box">
+                            <div class="hamburger-inner"></div>
+                        </div>
+                    </div>
                     <div class="cd-navigation-wrapper">
-                        <div class="col-xs-12 col-sm-6 left-side">
-                            <h2>Navigation</h2>
+                    
+                    
                                 
                                 <div class="menu-wrap">
                                     <nav id="site-navigation" class="navigation main-navigation cd-primary-nav" role="navigation">
@@ -104,23 +125,8 @@
                                         </ul>
                                     </nav><!-- #site-navigation -->
                                 </div>
-                        </div>
-                    <div class="col-xs-12 col-sm-6 right-side">
-                            
-                                <div class="cd-contact-info">
-                                    <?php if (is_active_sidebar('footer-contact-us')) : ?>
-                                        <?php dynamic_sidebar('footer-contact-us'); ?>
-                                    <?php endif; ?>
-                                </div>
-
-                                <div class="social-links  ">
-                                    <h2>Follow us on</h2>
-                                    <?php if (is_active_sidebar('footer-social-links')) : ?>
-                                        <?php dynamic_sidebar('footer-social-links'); ?>
-                                    <?php endif; ?>
-                                </div>
-                            
-                        </div> 
+                        
+                   
                     </div>
                 </div>
             <!-- <div class="sidebar-push">

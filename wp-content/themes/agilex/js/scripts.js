@@ -74,6 +74,17 @@ function myFunction() {
           } */
       });
 
+      $(".overlaybgDark").on("click", function(event) {
+        $("body").removeClass("navigation-is-open");
+        event.preventDefault();
+    });
+
+    var isLateralNavAnimating = false;
+    $(".cd-nav-trigger").on("click", function(event) {
+        $("body").toggleClass("navigation-is-open").removeClass('search-open');
+        event.preventDefault();
+    });
+
       $(
           '<span class="caret"></span>'
       ).insertBefore("#primary-menu .menu-item-has-children > .sub-menu");
@@ -108,6 +119,10 @@ function myFunction() {
 
 
       /* search container */
+
+      $(document).click(function() {
+        $('body').removeClass('search-open');
+    });
       var mainContainer = $('.main-content'),
           openCtrl = $('.search-trigger'),
           closeCtrl = $('.search-close'),
@@ -117,6 +132,9 @@ function myFunction() {
 
       initEvents();
 
+        searchContainer.on('click', function(e){
+            e.stopPropagation();
+        });
 
       function initEvents() {
           openCtrl.on('click', openSearch);
@@ -129,19 +147,24 @@ function myFunction() {
           });
       }
 
-      function openSearch() {
-          $('body').toggleClass('js-search ');
+      function openSearch(e) {
+
+          $('body').toggleClass('search-open').removeClass('navigation-is-open');
           mainContainer.toggleClass('main-wrap--move');
-          searchContainer.toggleClass('search-open');
+          
+          
+          
           setTimeout(function() {
               inputSearch.focus();
           }, 600);
+
+          
       }
 
       function closeSearch() {
-          $('body').removeClass('js-search ');
+          $('body').removeClass('search-open');
           mainContainer.removeClass('main-wrap--move');
-          searchContainer.removeClass('search-open');
+          
           inputSearch.blur();
           inputSearch.value = '';
       }
@@ -394,13 +417,8 @@ bgSource('#hero-slider .slider-blk');
   });
 
 
-  var isLateralNavAnimating = false;
-  $(".cd-nav-trigger").on("click", function(event) {
-      $("body").toggleClass("navigation-is-open");
-      event.preventDefault();
 
-  });
-
+  
 
   /* initialize the wow script */
   var wow = new WOW({
@@ -417,7 +435,7 @@ bgSource('#hero-slider .slider-blk');
   });
   wow.init();
 
-
+  
 
 
 
@@ -464,8 +482,8 @@ bgSource('#hero-slider .slider-blk');
       slidesToShow: 5,
       slidesToScroll: 1,
       arrows: true,
-      prevArrow: '<button class="slick-prev btn btn-ripple" aria-label="Previous" type="button">Previous</button>',
-      nextArrow: '<button class="slick-next btn btn-ripple" aria-label="Next" type="button">Next</button>',
+      prevArrow: '<button class="slick-prev btn btn-ripple ripple-link" aria-label="Previous" type="button">Previous</button>',
+      nextArrow: '<button class="slick-next btn btn-ripple ripple-link" aria-label="Next" type="button">Next</button>',
       dots: false,
       responsive: [{
           breakpoint: 1024,
@@ -566,3 +584,5 @@ bgSource('#hero-slider .slider-blk');
 
 
 })(jQuery);
+
+

@@ -3,18 +3,30 @@
         padding: 15px;
     }
     .logo-wrap img {
-        height: 90px;
+        height: 85px;
     }
     header .right-block {
-        margin: 20px 0;
+        margin: 15px 0;
     }
     .main-navigation .navbar-nav li a {
         font-size: 15px;
     }
-    .cd-nav .cd-contact-info li,
-    .cd-nav .cd-contact-info a,
-    .cd-nav .cd-contact-info span {
-        font-size: 15px;
+    .cd-nav .cd-navigation-wrapper {
+        width: 300px;
+    }
+    .cd-nav .hamburger {
+        position: absolute;
+        right: 15px;
+        top: 42px;
+    }
+    .executive-wrap .mem-info {
+        padding-top: 30px;
+    }
+    .executive-wrap .exe-name {
+        font-size: 22px;
+    }
+    .executive-wrap .slider-nav {
+        margin-top: -60px;
     }
 }
 
@@ -40,11 +52,11 @@
     .header-container {
         padding: 10px 15px;
     }
-    header .right-block {
-        margin: 5px 0;
+    .cd-nav .hamburger {
+        top: 37px;
     }
     .cd-nav .cd-navigation-wrapper {
-        padding: 40px 5%
+        padding: 40px 50px 40px 5%;
     }
     .cd-nav h2 {
         margin-bottom: 3em;
@@ -140,6 +152,12 @@
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
+    .cd-nav .cd-primary-nav {
+        margin-top: 25px;
+    }
+    .search-open .search-form {
+        width: 450px;
+    }
     .tab-section .nav-tabs>li+li {
         margin-left: 10px;
     }
@@ -208,15 +226,15 @@
     .search-wrap {
         margin-right: 0;
     }
-    .search-form {
+    /* .search-form {
         padding-left: 25px;
         padding-right: 25px;
-    }
+    } */
     header .contact-wrap {
         display: none;
     }
     .logo-wrap img {
-        height: 60px;
+        height: 80px;
     }
     .home .main-content>section:not(:first-child) {
         padding: 25px 0;
@@ -292,6 +310,12 @@
 }
 
 @media screen and (max-width: 767px) {
+    .cd-nav .cd-primary-nav {
+        margin-top: 30px;
+    }
+    .main-navigation .navbar-nav li a {
+        padding: 8px 18px 8px 0;
+    }
     #hero-slider {
         margin-bottom: 0;
     }
@@ -303,11 +327,127 @@
     }
 }
 
+@media screen and (max-width: 767px) {
+    .search-open .search-form {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .search-open .search-form {
+        width: 250px;
+    }
+}
+
 @media screen and (max-width: 600px) {
     #wpadminbar {
         position: fixed;
     }
     .what-we-do .grid-content div[class*="col-"] {
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .search-wrap {
+        position: static;
+    }
+    .search-form .search-close {
+        display: block;
+        width: 25px;
+        right: 15px;
+        top: 0;
+    }
+    .search-form {
+        visibility: hidden;
+        position: fixed;
+        width: 100%;
+        top: -100%;
+        left: 0;
+        bottom: auto;
+        right: 0;
+        opacity: 0;
+        /* transform: scale(0); */
+        transition: all 0.5s ease-in-out 0s;
+        padding: 50px;
+        z-index: 999;
+    }
+    .search-open .search-form {
+        visibility: visible;
+        /* transform: scale(1); */
+        padding: 12px 12px 15px;
+        background: #174a7a;
+        width: auto;
+        opacity: 1;
+        top: 0;
+    }
+    form#searchform {
+        position: relative;
+        top: 20px;
+        max-width: 800px;
+        margin: auto;
+    }
+    .search-open .search-form {
+        display: block;
+    }
+    .search-form .form-control:focus {
+        box-shadow: none;
+    }
+    .search-form .form-control {
+        height: auto;
+        background: transparent;
+        box-shadow: none;
+        color: #fff;
+        border: 0;
+        font-size: 16px;
+        border-bottom: 2px solid #fff;
+        padding-right: 75px;
+        border-radius: 0;
+        width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        transition: all 0.5s ease-in-out 0.5s;
+    }
+    .search-open .form-control {
+        width: 100%;
+    }
+    .search-form .form-control::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search-form .form-control:-moz-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search-form .form-control::-moz-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search-form .form-control:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 0.3) !important;
+    }
+    .search__info {
+        font-size: 12px;
+        font-weight: bold;
+        display: block;
+        margin: 0 auto;
+        padding: 0.85em 0;
+        text-align: right;
+        color: #fff;
+        opacity: 0;
+        transform: translate3d(0, 50px, 0);
+        transition: opacity 0.4s, transform 0.4s;
+    }
+    .search-open .search__info {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+        transition-delay: 0.6s;
+    }
+    .search-form #searchsubmit {
+        margin: 4px 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: none;
+        font-size: 50px;
+        border: none;
+        color: #fff;
     }
 }
