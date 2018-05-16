@@ -17,7 +17,7 @@
     .cd-nav .hamburger {
         position: absolute;
         right: 15px;
-        top: 42px;
+        top: 37px;
     }
     .executive-wrap .mem-info {
         padding-top: 30px;
@@ -53,7 +53,7 @@
         padding: 10px 15px;
     }
     .cd-nav .hamburger {
-        top: 37px;
+        top: 32px;
     }
     .cd-nav .cd-navigation-wrapper {
         padding: 40px 50px 40px 5%;
@@ -85,6 +85,13 @@
     }
     .footer-wrap .footer-kick-module h4 {
         font-size: 30px;
+    }
+    .executive-wrap .mem-info {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .page-desc {
+        padding: 50px;
     }
 }
 
@@ -123,19 +130,6 @@
     }
 }
 
-@media screen and (min-height: 865px) {
-    .cd-nav h2 {
-        font-size: 1.5rem;
-        margin-bottom: 5em
-    }
-}
-
-@media screen and (min-height: 655px)and (max-height: 768px) {
-    .cd-nav .cd-contact-info {
-        margin: 110px 0 100px;
-    }
-}
-
 @media screen and (max-width: 991px) {
     .slider-content .slider-heading {
         font-size: 30px;
@@ -148,6 +142,9 @@
     }
     .footer_menu .navbar-nav li+li {
         margin-left: 25px;
+    }
+    .affiliations-outer {
+        max-width: 700px;
     }
 }
 
@@ -202,6 +199,7 @@
 @media screen and (max-width: 768px) {
     .btn-lg {
         min-width: 150px;
+        font-size: 16px;
     }
     .heading {
         margin-bottom: 20px;
@@ -304,6 +302,9 @@
         top: -28px;
         bottom: auto;
     }
+    .page-header-content h1 {
+        font-size: 35px;
+    }
     .executive-wrap .slick-slide img {
         margin: 0 auto;
     }
@@ -316,6 +317,9 @@
     .main-navigation .navbar-nav li a {
         padding: 8px 18px 8px 0;
     }
+    .search-open .search-form {
+        width: 300px;
+    }
     #hero-slider {
         margin-bottom: 0;
     }
@@ -325,17 +329,20 @@
     .executive-wrap .slider-sec {
         padding: 10px;
     }
-}
-
-@media screen and (max-width: 767px) {
-    .search-open .search-form {
-        width: 300px;
+    .executive-wrap .slider-nav {
+        max-width: 480px;
+    }
+    .what-we-do-wrap .categories-blk {
+        margin-bottom: 30px;
     }
 }
 
-@media screen and (max-width: 580px) {
-    .search-open .search-form {
-        width: 250px;
+@media screen and (max-width: 627px) {
+    .executive-wrap .slider-nav {
+        max-width: 320px;
+    }
+    .our-history .our-history-outer a.btn {
+        font-size: 14px;
     }
 }
 
@@ -348,7 +355,13 @@
     }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 580px) {
+    .search-open .search-form {
+        width: 250px;
+    }
+}
+
+@media screen and (max-width: 667px) {
     .search-wrap {
         position: static;
     }
@@ -375,7 +388,7 @@
     .search-open .search-form {
         visibility: visible;
         /* transform: scale(1); */
-        padding: 12px 12px 15px;
+        padding: 35px 12px 36px;
         background: #174a7a;
         width: auto;
         opacity: 1;
@@ -383,7 +396,7 @@
     }
     form#searchform {
         position: relative;
-        top: 20px;
+        top: 5px;
         max-width: 800px;
         margin: auto;
     }
@@ -394,18 +407,9 @@
         box-shadow: none;
     }
     .search-form .form-control {
-        height: auto;
-        background: transparent;
-        box-shadow: none;
         color: #fff;
-        border: 0;
-        font-size: 16px;
-        border-bottom: 2px solid #fff;
-        padding-right: 75px;
-        border-radius: 0;
+        border-bottom: 1px solid #fff;
         width: 0;
-        padding-left: 0;
-        padding-right: 0;
         transition: all 0.5s ease-in-out 0.5s;
     }
     .search-open .form-control {
@@ -435,11 +439,6 @@
         transform: translate3d(0, 50px, 0);
         transition: opacity 0.4s, transform 0.4s;
     }
-    .search-open .search__info {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-        transition-delay: 0.6s;
-    }
     .search-form #searchsubmit {
         margin: 4px 0;
         position: absolute;
@@ -449,5 +448,16 @@
         font-size: 50px;
         border: none;
         color: #fff;
+    }
+}
+
+@media screen and (max-width: 657px) {
+    .what-we-do-wrap .categories-blk {
+        padding: 30px;
+    }
+    .what-we-do-wrap .categories-content {
+        width: auto;
+        float: none;
+        padding: 30px;
     }
 }

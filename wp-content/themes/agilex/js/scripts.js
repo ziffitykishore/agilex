@@ -243,9 +243,6 @@ function myFunction() {
 
       $(this).css({
           "background-image": "url(" + img_src + ")",
-          "background-repeat": "no-repeat",
-          "background-size": "cover",
-          "background-position": "center"
       });
 
       img.hide();
@@ -254,7 +251,7 @@ function myFunction() {
 
 bgSource('#hero-slider .slider-blk');
 
-
+bgSource('#what-we-do .categories-blk');
 
 
 
@@ -462,6 +459,8 @@ bgSource('#hero-slider .slider-blk');
       slidesToScroll: 1,
       asNavFor: '.slider-for',
       arrows: true,
+      prevArrow: '<a href="#" class="slick-prev btn btn-ripple ripple-link" aria-label="Previous">Previous</a>',
+      nextArrow: '<a href="#" class="slick-next btn btn-ripple ripple-link" aria-label="Next">Next</a>',
       focusOnSelect: true,
       responsive: [{
           breakpoint: 768,

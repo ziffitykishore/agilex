@@ -13,23 +13,7 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php
-if (is_home()) {
-	echo bloginfo('name');
-} elseif (is_404()) {
-	echo '404 Not Found';
-} elseif (is_category()) {
-	echo 'Category:'; wp_title('');
-} elseif (is_search()) {
-	echo 'Search Results';
-} elseif (is_day() || is_month() || is_year() ) {
-	echo 'Archives:'; wp_title('');
-} elseif (is_tag()) {
-	echo 'Tag:'; wp_title('');
-} else {
-	echo wp_title('');
-}
-?></title>
+    <title><?php wp_title(); ?></title>
 
 	<?php
 	  /*
@@ -79,7 +63,7 @@ if (is_home()) {
                         <form role="search" autocomplete="off" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 
                             <label class="screen-reader-text" for="s"><?php _x( 'Search for:', 'label' ); ?></label>
-                            <input autofocus type="text" placeholder="Search here...." value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
+                            <input autofocus type="text" placeholder="Lorem Ipsum" value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
                             <!-- <input type="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" /> -->
                             <button type="submit" id="searchsubmit"><span class="sr-only">Search</span></button>
                             <span class="search__info">Hit enter to search or ESC to close</span>
