@@ -6,6 +6,12 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
+
+
+
+
+
+
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?> 
          
 <div class="main-banner" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-size: cover;">
@@ -13,7 +19,7 @@ get_header(); ?>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
-         <h2><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></h2>
+         <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></hp>
          
         </div>     
       </div>
@@ -43,13 +49,28 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <?php }?>
 
   <div class="executive-wrap margin-30 wow fadeInUp">
+  <?php $query_args = array(
+'name' => 'executive-leadership',
+'post_status'     => 'publish'
+);  
+$exe_arg_query = new WP_Query($query_args);
+while ($exe_arg_query->have_posts()) {
+$exe_arg_query->the_post();  ?>
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     <div class="container">
       <div class="heading" >
-        <div class="heading-title">Executive Leadership</div>
-        <div class="sub-heading">Nesciunt tofu stumptown aliqua retro synth master cleanse</div>
+        <div class="heading-title"><?php echo the_Title(); ?></div>
+        <div class="sub-heading"><?php echo get_the_excerpt();?></div>
       </div>
       <div class="executive-inner">
-        <img src="/wp-content/uploads/2018/05/executive_group_photo.jpg" alt=""/>
+      
+        
+        <?php if ( has_post_thumbnail() ) {
+          the_post_thumbnail('full');
+        } else { ?>
+          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X550.png" alt="<?php the_title(); ?>" />
+        <?php } ?> 
+
         <div class="executive-carousel slider-for">
         <?php $testi_args = array(
         'post_type' => 'member',
@@ -65,7 +86,11 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
           $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
             <div class="slider-sec">
               <div class="col-sm-4 member-img">
-               <?php the_post_thumbnail('full'); ?>
+              <?php if ( has_post_thumbnail() ) {
+                the_post_thumbnail('full');
+              } else { ?>
+                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_400X550.png" alt="<?php the_title(); ?>" />
+        <?php } ?>
               </div>
               <div class="col-sm-8 mem-info">
                 <div class="exe-personal page-header">
@@ -100,6 +125,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
       </div>
     </div>
     </div>
+    <?php } ?>
   </div>
 
 
