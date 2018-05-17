@@ -1396,6 +1396,14 @@ nav.main-navigation {
     font-size: 14px;
 }
 
+.slider-content .btn:hover {
+    color: #174a79;
+}
+
+.slider-content .btn:before {
+    background: #fff;
+}
+
 .admin-bar .slider-blk {
     height: calc(100vh - 32px);
 }
