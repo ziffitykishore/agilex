@@ -168,7 +168,7 @@ if (is_front_page()) { ?>
                             <a href="<?php echo get_permalink() ?>" class="img-sec">
                             
                                 <?php if (get_field('thumb_image', get_the_ID())){ ?>
-                                    <?php $image = get_field('secondary_image'); ?>
+                                    <?php $image = get_field('thumb_image'); ?>
                                     <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                 <?php } else { ?>
                                     <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
