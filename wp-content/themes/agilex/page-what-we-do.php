@@ -57,9 +57,9 @@ get_header(); ?>
               <?php echo wp_trim_words( get_the_content(), 35, '' ); ?>
               </div>
               <?php if (get_field('learn_more_text')){ ?>
-                <a href="<?php echo get_permalink() ?>" class="btn btn-more btn-blue btn-ripple"><?php the_field('learn_more_text'); ?></a>
+                <a href="<?php echo get_permalink() ?>" class="btn btn-more btn-blue btn-ripple btn-ani"><?php the_field('learn_more_text'); ?></a>
               <?php } else { ?>
-                <a href="<?php echo get_permalink() ?>" class="btn btn-more btn-blue btn-ripple">Learn More</a>
+                <a href="<?php echo get_permalink() ?>" class="btn btn-more btn-blue btn-ripple btn-ani">Learn More</a>
               <?php } ?>
               
             </div>       
