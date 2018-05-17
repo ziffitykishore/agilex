@@ -1391,19 +1391,6 @@ nav.main-navigation {
     text-align: center;
 }
 
-.slider-content .btn-more {
-    margin-top: 30px;
-    font-size: 14px;
-}
-
-.slider-content .btn:hover {
-    color: #174a79;
-}
-
-.slider-content .btn:before {
-    background: #fff;
-}
-
 .admin-bar .slider-blk {
     height: calc(100vh - 32px);
 }
@@ -1426,16 +1413,22 @@ nav.main-navigation {
     color: #fff;
 }
 
+.slider-content .btn-more {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.slider-content .btn:before {
+    background: #fff;
+}
+
 .slider-content .btn-more:hover {
-    border-color: #174a79;
-    color: #fff;
+    color: #174a79;
 }
 
 #hero-slider .slick-dots {
     bottom: 40px;
 }
-
-.dots-bar .slick-dots li {}
 
 .dots-bar .slick-dots li button {
     padding: 0;
