@@ -203,6 +203,30 @@ img {
     position: relative;
 }
 
+.btn-door {
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.btn-door::before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    height: 0px;
+    width: 100%;
+    z-index: -1;
+    content: '';
+    color: #000 !important;
+    background: #fff;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.btn-door:hover:before {
+    top: 0%;
+    bottom: auto;
+    height: 100%;
+}
+
 .btn-white-border {
     border: 1px solid #fff;
 }
@@ -540,12 +564,24 @@ header .right-block {
     margin-right: 20px;
 }
 
+.contact-wrap a:hover {
+    color: #fff;
+}
+
+.contact-wrap a:hover:before {
+    background: #174a79;
+}
+
 .header-sticky .contact-wrap a {
     border-color: #fff;
     color: #fff;
 }
 
 .header-sticky .contact-wrap a:hover {
+    color: #174a79;
+}
+
+.header-sticky .contact-wrap a:hover:before {
     background: #fff;
     color: #174a7a;
 }
@@ -1614,9 +1650,7 @@ nav.main-navigation {
     border-radius: 0;
 }
 
-.panel-group .panel-title>a {
-    border: 1px solid #174a79;
-}
+.panel-group .panel-title>a {}
 
 .uniques .panel-group {
     margin-bottom: 0;
@@ -1635,6 +1669,7 @@ nav.main-navigation {
 .uniques .panel-title>a[aria-expanded="true"] {
     background: #174a7a;
     color: #fff;
+    border: 1px solid #174a79;
 }
 
 .uniques .panel-title>a[aria-expanded="false"] {
@@ -1672,7 +1707,7 @@ nav.main-navigation {
 /* Who we are */
 
 .who-we-are {
-    padding: 50px 0 50px;
+    padding: 50px 0 120px;
     position: relative;
 }
 
@@ -1717,6 +1752,7 @@ nav.main-navigation {
     filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#fff', GradientType='1');
     /* for IE */
     background: linear-gradient(to top, #fff 35%, rgba(255, 255, 255, 0)100%);
+    bottom: 0;
     /* W3C */
 }
 
@@ -1860,7 +1896,6 @@ nav.main-navigation {
     background: url('/wp-content/uploads/2018/05/bg_top_what_we_do.png') center -15px no-repeat, url('/wp-content/uploads/2018/05/bg_bottom_what_we_do.png') center bottom no-repeat;
     background-color: #f6f5f1;
     padding: 70px 0;
-    margin-top: 70px;
 }
 
 .what-we-do .grid-content div.thumbnail {

@@ -155,6 +155,14 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
         </div>
         <div class="history-content-inner col-sm-8 col-sm-offset-2">
           <?php echo the_Content(); ?>
+
+          <?php if (get_field('learn_more_text')){ ?>
+                <a href="<?php echo get_permalink() ?>" class="text-uppercase btn btn-lg btn-more btn-ripple btn-door"><?php the_field('learn_more_text'); ?></a>
+              <?php } else { ?>
+                
+                <a href="#" class="text-uppercase btn btn-lg btn-more btn-ripple btn-door">Learn More</a>
+              <?php } ?>
+          
         </div>
       </div>
     </div>
