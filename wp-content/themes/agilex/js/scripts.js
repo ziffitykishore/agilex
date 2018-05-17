@@ -243,6 +243,9 @@ function myFunction() {
 
       $(this).css({
           "background-image": "url(" + img_src + ")",
+          "background-size": "cover",
+          "background-repeat": "no-repeat",
+          "background-position": "center"
       });
 
       img.hide();

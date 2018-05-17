@@ -41,7 +41,7 @@
         <div class="footer-copy black-bg">
             <div class="container">
                 <div class="row">
-                <div class="col-sm-12 col-md-6 col-md-push-6 footer_menu ">
+                <div class="col-md-7 col-md-push-5 footer_menu ">
                         <ul class=" navbar-nav navbar-right">
                         <?php
                             wp_nav_menu(array(
@@ -53,7 +53,7 @@
                         ?>
                         </ul>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-md-pull-6 copyright-content">
+                    <div class=" col-md-5 col-md-pull-7 copyright-content">
                         <?php
                         $copyright_text = get_theme_mod( 'copyrighttext', '' );
                         $year = (int) preg_replace('/[^0-9]/', '', $copyright_text);
