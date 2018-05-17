@@ -85,6 +85,7 @@ $exe_arg_query->the_post();  ?>
           $agilex_test_query->the_post();
           $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
             <div class="slider-sec">
+              <div class="exe-slider-inner">
               <div class="col-sm-4 member-img">
               <?php if ( has_post_thumbnail() ) {
                 the_post_thumbnail('full');
@@ -113,6 +114,7 @@ $exe_arg_query->the_post();  ?>
                   <?php echo the_Content(); ?>
                 </div>
               </div>
+            </div>
             </div>
         <?php }?>
       </div>
