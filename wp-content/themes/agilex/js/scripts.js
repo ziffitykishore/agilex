@@ -513,13 +513,13 @@ bgSource('#what-we-do .categories-blk');
   if (jQuery().niceScroll) {
       $("html").niceScroll({
 
-        /*   
+          mousescrollstep: 38,
           cursorwidth: 5,
           cursorborder: 0,
           cursorcolor: '#174a79',
           cursorborderradius: 0,
           autohidemode: false,
-          horizrailenabled: false */
+          horizrailenabled: false
       });
   }
 

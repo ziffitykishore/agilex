@@ -1557,12 +1557,25 @@ nav.main-navigation {
     overflow: hidden;
 }
 
+.panel-group .panel {
+    border-radius: 0
+}
+
+.panel-default>.panel-heading {
+    border-radius: 0;
+}
+
+.panel-group .panel-title>a {
+    border: 1px solid #174a79;
+}
+
 .uniques .panel-group {
     margin-bottom: 0;
 }
 
 .uniques .panel-heading {
     padding: 0;
+    background: transparent;
 }
 
 .uniques .panel-title>a {
@@ -1656,7 +1669,6 @@ nav.main-navigation {
     /* for IE */
     background: linear-gradient(to top, #fff 35%, rgba(255, 255, 255, 0)100%);
     /* W3C */
-    bottom: -18px;
 }
 
 .who-we-are .inner-content-wrap {
@@ -2015,11 +2027,22 @@ nav.main-navigation {
 
 .main-who-we {
     margin-top: -45px;
+    margin-bottom: 0;
+}
+
+.main-who-we .video-content-inner {
+    padding-bottom: 50px;
+    border-bottom: 1px solid #192a3e;
 }
 
 .main-who-we .video-content {
     margin-bottom: 30px;
     padding: 16%;
+}
+
+.executive-wrap {
+    margin-top: 0;
+    padding-top: 50px;
 }
 
 .executive-carousel {
