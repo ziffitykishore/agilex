@@ -6,18 +6,15 @@
         height: 85px;
     }
     header .right-block {
-        margin: 15px 0;
-    }
-    .main-navigation .navbar-nav li a {
-        font-size: 15px;
+        margin: 20px 0;
     }
     .cd-nav .cd-navigation-wrapper {
-        width: 300px;
+        width: 280px;
     }
     .cd-nav .hamburger {
         position: absolute;
         right: 15px;
-        top: 37px;
+        top: 42px;
     }
     .executive-wrap .mem-info {
         padding-top: 30px;
@@ -53,7 +50,7 @@
         padding: 10px 15px;
     }
     .cd-nav .hamburger {
-        top: 32px;
+        top: 37px;
     }
     .cd-nav .cd-navigation-wrapper {
         padding: 40px 50px 40px 5%;
@@ -140,9 +137,6 @@
     .footer-copy .footer_menu {
         text-align: center;
     }
-    .footer_menu .navbar-nav li+li {
-        margin-left: 25px;
-    }
     .affiliations-outer {
         max-width: 700px;
     }
@@ -187,6 +181,15 @@
     }
     footer .footer-social-links>div {
         text-align: right;
+    }
+    .footer_menu .navbar-nav li+li:before {
+        content: '';
+        display: inline-block;
+        margin: 0 5px;
+        width: 1px;
+        height: 12px;
+        background: #6f6f6f;
+        vertical-align: middle;
     }
 }
 
@@ -278,8 +281,11 @@
     .what-we-do .thumbnail .caption {
         padding: 30px;
     }
+    .footer-contact {
+        padding: 30px 0;
+    }
     .social-icon-footer {
-        margin-top: 50px;
+        margin-top: 30px;
     }
     .footer-wrap .footer-kick-module h4 {
         font-size: 25px;
@@ -287,6 +293,9 @@
     .footer-wrap .footer-contact-us>div,
     .footer-wrap .footer-social-links>div {
         text-align: center;
+    }
+    .footer-copy {
+        padding: 20px 0;
     }
     .footer_menu .navbar-nav li+li {
         margin-left: 0;
@@ -296,7 +305,8 @@
     }
     .copyright-content {
         margin-top: 20px;
-        text-align: center;
+        padding-top: 18px;
+        border-top: 1px solid #232020;
     }
     .scroll-top {
         top: -28px;
@@ -307,6 +317,9 @@
     }
     .executive-wrap .slick-slide img {
         margin: 0 auto;
+    }
+    .page-desc {
+        padding: 30px;
     }
 }
 
@@ -334,6 +347,9 @@
     }
     .what-we-do-wrap .categories-blk {
         margin-bottom: 30px;
+    }
+    .copyright-content {
+        text-align: center;
     }
 }
 
