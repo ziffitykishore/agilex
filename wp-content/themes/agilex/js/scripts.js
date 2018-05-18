@@ -256,7 +256,7 @@ bgSource('#hero-slider .slider-blk');
 
 bgSource('#what-we-do .categories-blk');
 
-
+bgSource('.news-sec-blk .image-sec');
 
 
 
@@ -554,10 +554,22 @@ bgSource('#what-we-do .categories-blk');
 
 
   function paparallaxImgEffects() {
-      parallaxIt('.no-touch .img-sec', '.feature-image', -100);
-      parallaxIt('.no-touch .img-sec', '.seconday-image', -30);
+      parallaxIt('.no-touch #unique-section .img-sec', '.feature-image', -100);
+      parallaxIt('.no-touch #unique-section .img-sec', '.seconday-image', -30);
   }
 
+
+  /* text wrap */
+function textWrap(content){
+  $(content).each(function() {
+    var html = $(this).text();
+    var word = html .substr(0, html.indexOf(" "));
+    var rest = html .substr(html.indexOf(" "));
+    $(this).html(rest).prepend($("<span class='first'/>").html(word));
+ });
+}
+
+textWrap('.timeline-title');
 
 
 
@@ -565,11 +577,36 @@ bgSource('#what-we-do .categories-blk');
   /* Responsive View */
 
 
+
+function checkScrollBar() {
+    var hContent = $("body").height(); // get the height of your content
+    var hWindow = $(window).height();  // get the height of the visitor's browser window
+
+    // if the height of your content is bigger than the height of the
+    // browser window, we have a scroll bar
+    if(hContent>hWindow) {        
+       
+        stickyFooter();
+        $('body').addClass('sticky-footer');     
+    } else {
+        $('body').removeClass('sticky-footer');     
+    }
+    
+}
+
+checkScrollBar();
+
+
+function stickyFooter(){
+    var footer = $(".footer-wrap"),
+    footerHeight = footer.outerHeight(); /* get the height from footer */
+    $(".main-content").css("margin-bottom", footerHeight);
+}
+
+
   function ResponsiveView() {
       if ($(window).width() > 768) {
-          var footer = $(".footer-wrap"),
-              footerHeight = footer.outerHeight(); /* get the height from footer */
-          $(".main-content").css("margin-bottom", footerHeight);
+        checkScrollBar();
 
           paparallaxImgEffects();
 
@@ -579,7 +616,7 @@ bgSource('#what-we-do .categories-blk');
 
   }
 
-  ResponsiveView();
+  
 
   $(window).on("load resize", ResponsiveView);
 

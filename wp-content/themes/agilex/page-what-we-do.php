@@ -45,7 +45,8 @@ get_header(); ?>
         $agilex_test_query->the_post();
         $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     
-          <div class="categories-blk clearfix wow fadeInUp">
+          <div class="categories-blk clearfix wow fadeInUp border-efx ">
+            <div class="border-ani"></div>
           <?php if ( has_post_thumbnail() ) {
                                     the_post_thumbnail('full');
                                 } else { ?>
