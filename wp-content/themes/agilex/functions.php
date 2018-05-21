@@ -1390,6 +1390,49 @@ function affiliation_init() {
 }
 add_action( 'init', 'affiliation_init' );
 
+
+/**Affiliation  */
+function ourHistory_init() {
+    // set up Executive Leadership labels
+    $labels = array(
+        'name' => 'Our History',
+        'singular_name' => 'History',
+        'add_new' => 'Add New History',
+        'add_new_item' => 'Add New History',
+        'edit_item' => 'Edit History',
+        'new_item' => 'New History',
+        'all_items' => 'All History',
+        'view_item' => 'View History',
+        'search_items' => 'Search History',
+        'not_found' =>  'No history Found',
+        'not_found_in_trash' => 'No history found in Trash',
+        'parent_item_colon' => '',
+        'menu_name' => 'Our History',
+    );
+
+    // register post type
+    $args = array(
+        'labels' => $labels,
+        'public' => true,
+        'has_archive' => true,
+        'show_ui' => true,
+        'capability_type' => 'post',
+        'hierarchical' => false,
+        'rewrite' => array('slug' => 'our_history'),
+        'query_var' => true,
+        'menu_icon' => 'dashicons-randomize',
+        'supports' => array(
+            'title',
+            'editor',
+            'thumbnail',
+            'author',
+            'excerpt'
+        )
+    );
+    register_post_type( 'our_history', $args );
+}
+add_action( 'init', 'ourHistory_init' );
+
 /* -----------------------------------------
  * Put excerpt meta-box before editor
  * ----------------------------------------- */

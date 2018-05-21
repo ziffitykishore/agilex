@@ -21,66 +21,57 @@ get_header(); ?>
         </div>
     </div>
 
-    <div class="timeline-sec" id="our-history">
-        <div class="container">
-            <div class="margin-top--70  white-bg timeline-outer">
-                <div class="timeline-inner pad-70">
-                    <div class="timeline-item flex-sec ">
-                    <div class="timeline-image flex-50 wow fadeInUp">
-                            <div class="img-sec">
-                                <figure class="feature-image">
-                                    <img  class="" src="/wp-content/uploads/2018/05/01_history.jpg" alt="<?php the_title(); ?>" />
-                                </figure>
-                                                               
+<div class="timeline-sec" id="our-history">
+    <div class="container">
+        <div class="margin-top--70  white-bg timeline-outer">
+            <div class="timeline-inner pad-70">
+                <?php $args = array(
+                'post_type' => 'our_history',
+                'posts_per_page' => -1,
+                'post_status' => 'publish',
+                'order_by' => 'date',
+                'order' => 'ASC'
+                );
+                $agilex_history_query = new WP_Query($args); ?>
+                <?php 
+                while ($agilex_history_query->have_posts()) {
+                $agilex_history_query->the_post();
+                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+                <div class="timeline-item flex-sec ">
+                    <div class="timeline-image flex-xs-100 flex-50 wow fadeInUp">
+                        <div class="img-sec">
+                            
+                            <figure class="feature-image">
+                            <?php if ( has_post_thumbnail() ) {
+                                    the_post_thumbnail('full');
+                                } else { ?>
+                                    <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="Placeholder" />
+                            <?php } ?>
                                 
-                                <figure class="seconday-image">
-                                    <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="<?php the_title(); ?>" />
-                                </figure>
-                            </div>    
+                            </figure>
+                            <figure class="seconday-image">
+                                <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="<?php the_title(); ?>" />
+                            </figure>
+                        </div>    
+                    </div>
+                    <div class=" timeline-content flex-xs-100 flex-50 wow fadeInUp">
+                        <div class="timeline-heading">
+                            <div class="timeline-title"><?php echo the_Title(); ?></div>
+                            <?php if (get_field('year', get_the_ID())){ ?>
+                                <div class="timeline-year"><?php echo get_field('year'); ?></div>
+                            <?php } else { ?>
+                                <div class="timeline-year">0000</div>
+                            <?php } ?>
                         </div>
-                        <div class=" timeline-content flex-50 wow fadeInUp">
-                            <div class="timeline-heading">
-                                <div class="timeline-title">The Beginning</div>
-                                <div class="timeline-year">1950</div>
-                            </div>
-                            <div class="timeline-desc">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-                            </div>
+                        <div class="timeline-desc">
+                        <?php echo the_Content(); ?>
                         </div>
-                       
-
-                    </div>   
-                    <div class="timeline-item flex-sec ">
-                    <div class="timeline-image flex-50 wow fadeInUp">
-                            <div class="img-sec">
-                                <figure class="feature-image">
-                                    <img  class="" src="/wp-content/uploads/2018/05/01_history.jpg" alt="<?php the_title(); ?>" />
-                                </figure>
-                                                               
-                                
-                                <figure class="seconday-image">
-                                    <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="<?php the_title(); ?>" />
-                                </figure>
-                            </div>    
-                        </div>
-                        <div class=" timeline-content flex-50 wow fadeInUp">
-                            <div class="timeline-heading">
-                                <div class="timeline-title">The Beginning</div>
-                                <div class="timeline-year">1950</div>
-                            </div>
-                            <div class="timeline-desc">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
-                            </div>
-                        </div>
-                       
-
-                    </div>   
-                      
-                </div>
-                
+                    </div>
+                </div>   
+                <?php } ?>   
             </div>
-        
-      </div>
+        </div>
     </div>
+</div>
 
     <?php get_footer(); ?>

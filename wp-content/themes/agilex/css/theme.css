@@ -2115,7 +2115,7 @@ nav.main-navigation {
 
 .page-header-content h1 {
     font-size: 50px;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
     color: #fff;
 }
 
@@ -2695,7 +2695,7 @@ nav.main-navigation {
 
 .timeline-inner {
     position: relative;
-    margin-bottom: 50px;
+    padding-bottom: 100px;
 }
 
 .timeline-inner:before {
@@ -2716,22 +2716,8 @@ nav.main-navigation {
     flex-direction: row-reverse;
 }
 
-.timeline-item {
+.timeline-inner .timeline-item {
     justify-content: space-between;
-}
-
-.timeline-item .timeline-image {
-    padding-right: 25px;
-    padding-left: 25px;
-    width: 48%;
-    flex: 0 0 48%;
-}
-
-.timeline-item .timeline-content {
-    padding-left: 25px;
-    padding-right: 25px;
-    width: 45%;
-    flex: 0 0 45%;
 }
 
 .timeline-heading {
@@ -2763,8 +2749,24 @@ nav.main-navigation {
     margin-top: 25px;
 }
 
+.timeline-item .timeline-image {
+    padding-right: 25px;
+    padding-left: 25px;
+    width: 48%;
+    flex: 0 0 48%;
+}
+
 .timeline-image .img-sec {
     position: static;
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -webkit-transition: 0.5s ease-in-out 0s;
+    transition: 0.5s ease-in-out 0s;
+}
+
+.timeline-item:hover .timeline-image .img-sec {
+    filter: grayscale(0);
+    -webkit-filter: grayscale(0);
 }
 
 .timeline-image .feature-image {
@@ -2776,4 +2778,11 @@ nav.main-navigation {
     left: 45px;
     top: 25px;
     z-index: 1;
+}
+
+.timeline-item .timeline-content {
+    padding-left: 25px;
+    padding-right: 25px;
+    width: 45%;
+    flex: 0 0 45%;
 }

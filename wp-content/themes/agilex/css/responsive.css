@@ -544,7 +544,7 @@
 }
 
 @media screen and (max-width: 568px) {
-    .flex-xs-100 {
+    .flex-sec .flex-xs-100 {
         flex: 0 0 100%;
         width: 100%;
     }
@@ -554,5 +554,11 @@
     .news-sec-blk img {
         width: 100%;
         display: block !important;
+    }
+    .timeline-sec .timeline-inner:before {
+        left: 20px;
+    }
+    .timeline-item .timeline-image {
+        margin-bottom: 50px;
     }
 }
