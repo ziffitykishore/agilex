@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.2.3",
+    "version": "2.2.4",
     "license": [
         "proprietary"
     ],
@@ -37,11 +37,11 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.2.3",
+        "magento/product-enterprise-edition": "2.2.4",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "1.100.4",
-        "somethingdigital/magento2-theme-bryantpark": "2.8.0",
+        "somethingdigital/magento2-theme-bryantpark": "2.9.0",
         "somethingdigital/magento2-migration": "~1.4.1",
         "somethingdigital/magento2-bluefoot": "1.1.4",
         "gene/bluefoot": "^1.0",
