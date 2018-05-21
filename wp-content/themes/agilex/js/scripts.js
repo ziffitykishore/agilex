@@ -140,7 +140,7 @@ function myFunction() {
           openCtrl.on('click', openSearch);
           closeCtrl.on('click', closeSearch);
           $(document).on('keyup', function(ev) {
-              // escape key.
+              /*  escape key. */
               if (ev.keyCode == 27) {
                   closeSearch();
               }
@@ -256,35 +256,35 @@ bgSource('#hero-slider .slider-blk');
 
 bgSource('#what-we-do .categories-blk');
 
-
+bgSource('.news-sec-blk .image-sec');
 
 
 
   $(".btn-ripple").click(function(e) {
-      // Remove any old one
+     /* Remove any old one */
       $(".ripple").remove();
 
-      // Setup
+      /*  Setup */
       var posX = $(this).offset().left,
           posY = $(this).offset().top,
           buttonWidth = $(this).width(),
           buttonHeight = $(this).height();
 
-      // Add the element
+      /* Add the element */
       $(this).prepend("<span class='ripple'></span>");
 
-      // Make it round!
+      /*  Make it round! */
       if (buttonWidth >= buttonHeight) {
           buttonHeight = buttonWidth;
       } else {
           buttonWidth = buttonHeight;
       }
 
-      // Get the center of the element
+      /* Get the center of the element */
       var x = e.pageX - posX - buttonWidth / 2;
       var y = e.pageY - posY - buttonHeight / 2;
 
-      // Add the ripples CSS and start the animation
+      /*  Add the ripples CSS and start the animation */
       $(".ripple")
           .css({
               width: buttonWidth,
@@ -344,7 +344,7 @@ bgSource('#what-we-do .categories-blk');
         BOTTOM SCROLL TOP BUTTON
      ******************************/
 
-  // declare variable
+  /*  declare variable */
   var scrollTop = $(".scroll-top");
 
  /* $(window).scroll(function() {
@@ -359,7 +359,7 @@ bgSource('#what-we-do .categories-blk');
           $(scrollTop).css("opacity", "0");
       }
 
-  }); */ // scroll END
+  }); */ 
 
   //Click event to scroll to top
   $(scrollTop).click(function() {
@@ -369,7 +369,7 @@ bgSource('#what-we-do .categories-blk');
       }, 800);
       
       
-  }); // click() scroll top EMD
+  }); /*  click() scroll top End */
 
   //HEADER SHADOW ---------------------------------------------------------------------/
   var animatedHeader = false,
@@ -422,16 +422,13 @@ bgSource('#what-we-do .categories-blk');
 
   /* initialize the wow script */
   var wow = new WOW({
-      boxClass: 'wow', // animated element css class (default is wow)
-      animateClass: 'animated', // animation css class (default is animated)
-      offset: 150, // distance to the element when triggering the animation (default is 0)
-      mobile: true, // trigger animations on mobile devices (default is true)
-      live: true, // act on asynchronously loaded content (default is true)
-      callback: function(box) {
-          // the callback is fired every time an animation is started
-          // the argument that is passed in is the DOM node being animated
-      },
-      scrollContainer: null // optional scroll container selector, otherwise use window
+      boxClass: 'wow', 
+      animateClass: 'animated', 
+      offset: 150, 
+      mobile: true,
+      live: true, 
+     
+      scrollContainer: null 
   });
   wow.init();
 
@@ -440,8 +437,8 @@ bgSource('#what-we-do .categories-blk');
 
 
   var parallaxSettings = {
-      initialOpacity: 1, //from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque
-      opacitySpeed: 0.1, //values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px
+      initialOpacity: 1, /* from 0 to 1, e.g. 0.34 is a valid value. 0 = transparent, 1 = Opaque */
+      opacitySpeed: 0.1, /* values from 0.01 to 1 -> 0.01: slowly appears on screen; 1: appears as soon as the user scrolls 1px */
       pageLoader: false
   };
 
@@ -527,7 +524,7 @@ bgSource('#what-we-do .categories-blk');
   }
 
 
-  // fakewaffle.responsiveTabs(['xs', 'sm']);
+/* fakewaffle.responsiveTabs(['xs', 'sm']); */
   fakewaffle.responsiveTabs(["xs"]);
 
   /* Parallax effects */
@@ -554,10 +551,22 @@ bgSource('#what-we-do .categories-blk');
 
 
   function paparallaxImgEffects() {
-      parallaxIt('.no-touch .img-sec', '.feature-image', -100);
-      parallaxIt('.no-touch .img-sec', '.seconday-image', -30);
+      parallaxIt('.no-touch #unique-section .img-sec', '.feature-image', -100);
+      parallaxIt('.no-touch #unique-section .img-sec', '.seconday-image', -30);
   }
 
+
+  /* text wrap */
+function textWrap(content){
+  $(content).each(function() {
+    var html = $(this).text();
+    var word = html .substr(0, html.indexOf(" "));
+    var rest = html .substr(html.indexOf(" "));
+    $(this).html(rest).prepend($("<span class='first'/>").html(word));
+ });
+}
+
+textWrap('.timeline-title');
 
 
 
@@ -565,11 +574,36 @@ bgSource('#what-we-do .categories-blk');
   /* Responsive View */
 
 
+
+function checkScrollBar() {
+    var hContent = $("body").height(); /*  get the height of your content */
+    var hWindow = $(window).height();  /* get the height of the visitor's browser window */
+
+    /* if the height of your content is bigger than the height of the
+    browser window, we have a scroll bar */
+    if(hContent>hWindow) {        
+       
+        stickyFooter();
+        $('body').addClass('sticky-footer');     
+    } else {
+        $('body').removeClass('sticky-footer');     
+    }
+    
+}
+
+checkScrollBar();
+
+
+function stickyFooter(){
+    var footer = $(".footer-wrap"),
+    footerHeight = footer.outerHeight(); /* get the height from footer */
+    $(".main-content").css("margin-bottom", footerHeight);
+}
+
+
   function ResponsiveView() {
       if ($(window).width() > 768) {
-          var footer = $(".footer-wrap"),
-              footerHeight = footer.outerHeight(); /* get the height from footer */
-          $(".main-content").css("margin-bottom", footerHeight);
+        checkScrollBar();
 
           paparallaxImgEffects();
 
@@ -579,7 +613,7 @@ bgSource('#what-we-do .categories-blk');
 
   }
 
-  ResponsiveView();
+  
 
   $(window).on("load resize", ResponsiveView);
 

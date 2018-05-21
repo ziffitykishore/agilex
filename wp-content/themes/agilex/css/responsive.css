@@ -25,6 +25,18 @@
     .executive-wrap .slider-nav {
         margin-top: -60px;
     }
+    .curated-news-inner {
+        padding: 30px;
+    }
+    .timeline-inner {
+        padding: 50px 40px;
+    }
+    .timeline-item+.timeline-item {
+        margin-top: 80px;
+    }
+    .timeline-item .timeline-year {
+        font-size: 150px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -89,6 +101,22 @@
     }
     .page-desc {
         padding: 50px;
+    }
+    .news-sec .news-content {
+        padding: 30px;
+    }
+    .timeline-inner {
+        padding: 50px 25px;
+    }
+    .timeline-item .timeline-year {
+        font-size: 100px;
+    }
+    .timeline-item .timeline-title {
+        font-size: 18px;
+        line-height: normal;
+    }
+    .timeline-item .timeline-content {
+        padding: 0 20px;
     }
 }
 
@@ -174,7 +202,7 @@
     .uniques-inner .content-wrap {
         padding-left: 132px;
     }
-    .footer-wrap {
+    .sticky-footer .footer-wrap {
         position: fixed;
         width: 100%;
         bottom: 0;
@@ -338,6 +366,12 @@
     .page-desc {
         padding: 30px;
     }
+    .timeline-item .timeline-year {
+        font-size: 80px;
+    }
+    .timeline-item .timeline-title {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -373,6 +407,14 @@
     }
     .copyright-content {
         text-align: center;
+    }
+    .quotes-sec {
+        padding: 15px 20px 45px;
+    }
+    .quotes-content-inner:before,
+    .quotes-content-inner:after {
+        width: 30px;
+        height: 34px;
     }
 }
 
@@ -498,5 +540,25 @@
         width: auto;
         float: none;
         padding: 30px;
+    }
+}
+
+@media screen and (max-width: 568px) {
+    .flex-sec .flex-xs-100 {
+        flex: 0 0 100%;
+        width: 100%;
+    }
+    .quotes-content-inner {
+        padding: 0 25px;
+    }
+    .news-sec-blk img {
+        width: 100%;
+        display: block !important;
+    }
+    .timeline-sec .timeline-inner:before {
+        left: 20px;
+    }
+    .timeline-item .timeline-image {
+        margin-bottom: 50px;
     }
 }
