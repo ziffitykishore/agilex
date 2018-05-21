@@ -2615,7 +2615,8 @@ nav.main-navigation {
 
 .heading-strip:before {
     content: '';
-    background: url('../images/pattern_dot.png');
+    background: url('../images/pattern_dot.png'), url('../images/pattern_dot.png'), url('../images/pattern_dot.png');
+    background-position: 0 0, 15px 20px, -12px 10px;
     display: block;
     left: 0;
     position: absolute;
