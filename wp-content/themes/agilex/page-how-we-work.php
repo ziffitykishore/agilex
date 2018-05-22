@@ -8,20 +8,28 @@
 get_header(); ?>
 
 <style>
-  .cd-icons-filling {
+.cd-icons-filling {
   width: 90%;
   max-width: 1170px;
   margin: 0 auto;
   /* hide ::after pseudo element - fix for Edge 15 and below */
   overflow: hidden;
+  position: relative;
 }
 
-/* .cd-icons-filling::before, .cd-icons-filling::after {
- 
+.cd-icons-filling .before-bg{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.cd-icons-filling .before-bg:before, .cd-icons-filling .before-bg:after {
+  /* the 2 underneath colored sections */
+  /* fix flickering on Edge 15 and below */
   content: '/';
   color: transparent;
   position: fixed;
- 
+  /* trick to remove flickering on resize */
   width: calc(90% - 2px);
   max-width: 1170px;
   left: 50%;
@@ -31,9 +39,9 @@ get_header(); ?>
           transform: translateX(-50%);
   height: 50vh;
   z-index: -1;
-} */
+}
 
-.cd-icons-filling::before {
+.cd-icons-filling .before-bg:before {
   /* fix bug - ::before element visible before starting scrolling */
   top: -1px;
   background-color: #f4bd89;
@@ -41,7 +49,7 @@ get_header(); ?>
   transition: all 0.8s;
 }
 
-.cd-icons-filling::after {
+.cd-icons-filling .before-bg:after {
   top: 50%;
   background-color: #71495b;
 }
@@ -139,7 +147,7 @@ get_header(); ?>
   }
   .cd-service::after {
     top: 325px;
-    background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-pattern-small.svg");
+    background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-pattern-large.svg");
   }
   .cd-service.cd-service--divider:first-child, .cd-service.cd-service--divider:last-child {
     min-height: 50px;
@@ -149,7 +157,7 @@ get_header(); ?>
     display: block;
   }
   .cd-service.cd-service--1::before {
-    background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-1-small.svg");
+    background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-1-large.svg");
   }
   .cd-service.cd-service--2::before {
     background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-2-large.svg");
@@ -158,7 +166,7 @@ get_header(); ?>
     background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-3-large.svg");
   }
   .cd-service.cd-service--4::before {
-    background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-4-small.svg");
+    background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-4-large.svg");
   }
   .cd-service h2, .cd-service p {
     color: #71495b;
@@ -192,6 +200,8 @@ get_header(); ?>
  </div>
 
 <ul class="cd-icons-filling js-cd-icons-filling">
+
+  <div class="before-bg"></div>
 		<li class="cd-service cd-service--divider"></li>
 
 		<li class="cd-service cd-service--1 js-cd-service">

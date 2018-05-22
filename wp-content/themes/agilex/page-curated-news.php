@@ -41,8 +41,8 @@ get_header(); ?>
                     </div>
 
                     <div class="news-sec-inner">
-                        <div class="news-sec-blk flex-sec border-efx">
-                            <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_01.jpg" alt=""/></div>
+                        <div class="news-sec-blk flex-sec border-efx effect-milo">
+                            <div class="image-sec  flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_01.jpg" alt=""/></div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
                                 <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
@@ -54,11 +54,11 @@ get_header(); ?>
                                     <div class="col-sm-6 news-author">Author: Micael Jordan</div>
                                     <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
                                 </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-ani text-uppercase">Learn More</a>
+                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
                             </div>
                             
                         </div>
-                        <div class="news-sec-blk flex-sec border-efx">
+                        <div class="news-sec-blk flex-sec border-efx effect-milo">
                             <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_02.jpg" alt=""/></div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
@@ -71,11 +71,11 @@ get_header(); ?>
                                     <div class="col-sm-6 news-author">Author: Micael Jordan</div>
                                     <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
                                 </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-ani text-uppercase">Learn More</a>
+                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
                             </div>
                             
                         </div>
-                        <div class="news-sec-blk flex-sec border-efx">
+                        <div class="news-sec-blk flex-sec border-efx effect-milo">
                             <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_03.jpg" alt=""/></div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
@@ -88,11 +88,11 @@ get_header(); ?>
                                     <div class="col-sm-6 news-author">Author: Micael Jordan</div>
                                     <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
                                 </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-ani text-uppercase">Learn More</a>
+                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
                             </div>
                             
                         </div>
-                        <div class="news-sec-blk flex-sec border-efx">
+                        <div class="news-sec-blk flex-sec border-efx effect-milo">
                             <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div>
                               <img src="/wp-content/uploads/2018/05/curated_news_04.jpg" alt="" /></div>
                             
@@ -106,7 +106,7 @@ get_header(); ?>
                                     <div class="col-sm-6 news-author">Author: Micael Jordan</div>
                                     <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
                                 </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-ani text-uppercase">Learn More</a>
+                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
                             </div>
                             
                         </div>
@@ -114,7 +114,7 @@ get_header(); ?>
                         
                     </div>
                     <div class="load-section text-center">
-                      <a href="#" class="btn ">Load More</a>
+                      <a href="#" class="btn text-uppercase btn-load">Load More</a>
                     </div>
                 </div>
 
