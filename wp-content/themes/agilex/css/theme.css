@@ -139,6 +139,12 @@ img {
     font-family: 'Poppins', sans-serif;
 }
 
+.btn:hover,
+.btn:focus,
+.btn.focus {
+    color: #192a3e;
+}
+
 .btn-sm {
     min-width: 140px;
     height: 40px;
@@ -150,6 +156,15 @@ img {
     min-width: 200px;
     height: 60px;
     line-height: 40px;
+}
+
+.btn-load:after {
+    content: '...';
+    display: inline-block;
+    vertical-align: top;
+    color: currentColor;
+    letter-spacing: 3px;
+    margin-left: 5px;
 }
 
 .btn-blue {
@@ -238,9 +253,23 @@ img {
     width: 100%;
     z-index: -1;
     content: '';
-    color: #000 !important;
     background: #fff;
     transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.btn-door.btn-blue {
+    background: #174a79;
+    color: #fff;
+}
+
+.btn-door.btn-blue:hover,
+.btn-door.btn-blue:focus {
+    color: #fff;
+}
+
+.btn-door.btn-blue::before {
+    background: #192a3e;
+    color: #fff;
 }
 
 .btn-door:hover:before {
@@ -285,6 +314,28 @@ img {
         transform: scale(2);
         opacity: 0;
     }
+}
+
+
+/* img effects */
+
+.effect-milo .image-sec {
+    max-width: none;
+    /* width: -webkit-calc(100% + 60px); */
+    width: calc(100% + 60px);
+    opacity: 1;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: translate3d(-30px, 0, 0) scale(1.12);
+    transform: translate3d(-30px, 0, 0) scale(1.12);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    overflow: hidden;
+}
+
+.effect-milo:hover .image-sec {
+    -webkit-transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
 }
 
 body {
@@ -2547,11 +2598,31 @@ nav.main-navigation {
 
 .quotes-sec {
     margin-bottom: 30px;
-    padding: 15px 40px 45px;
+    padding: 30px 40px 45px;
+}
+
+.quotes-sec .heading-title {
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.quotes-sec .heading-title:before {
+    content: '';
+    width: 142px;
+    height: 1px;
+    background: #192a3e;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -20px;
 }
 
 .quotes-content-inner {
-    padding: 0 70px;
+    padding: 0 100px;
     position: relative;
 }
 
@@ -2611,6 +2682,7 @@ nav.main-navigation {
     position: relative;
     font-size: 20px;
     font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .heading-strip:before {
@@ -2632,6 +2704,10 @@ nav.main-navigation {
 
 .flex-sec>* {
     position: relative;
+}
+
+.news-sec-blk {
+    overflow: hidden;
 }
 
 .news-sec-blk+.news-sec-blk {
