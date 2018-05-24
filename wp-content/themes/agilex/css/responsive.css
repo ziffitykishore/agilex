@@ -121,6 +121,12 @@
 }
 
 @media only screen and (min-width:992px) {
+    .search-open .search-form {
+        width: 450px;
+    }
+    .col-md-20 {
+        width: 20%;
+    }
     .cd-nav .cd-navigation-wrapper::after {
         clear: both;
         content: "";
@@ -153,6 +159,17 @@
     .cd-nav .cd-contact-info li {
         margin-bottom: 2.4em
     }
+    .uniques-inner .content-wrap {
+        padding-left: 132px;
+    }
+    .seconday-image {
+        position: absolute;
+        top: 70px;
+        left: 70px;
+    }
+    .sub-category .tab-content {
+        padding: 50px 0;
+    }
 }
 
 @media screen and (max-width: 991px) {
@@ -174,34 +191,21 @@
     .cd-nav .cd-primary-nav {
         margin-top: 25px;
     }
-    .search-open .search-form {
-        width: 450px;
-    }
     .tab-section .nav-tabs>li+li {
         margin-left: 10px;
     }
     .tab-section .nav-tabs>li>a {
         font-size: 1.2vw;
-        padding-left: 7px;
-        padding-right: 7px;
     }
     .uniques-inner .content-wrap p {
         font-size: 14px;
     }
+    .address-section h2 {
+        font-size: 16px;
+    }
 }
 
 @media screen and (min-width: 769px) {
-    .home .video-content {
-        top: 160px;
-    }
-    .home .who-we-are .content-desc {
-        position: absolute;
-        top: 0;
-        width: 100%;
-    }
-    .uniques-inner .content-wrap {
-        padding-left: 132px;
-    }
     .sticky-footer .footer-wrap {
         position: fixed;
         width: 100%;
@@ -219,12 +223,44 @@
         background: #6f6f6f;
         vertical-align: middle;
     }
+    .contact-form-sec .form-sec-inner {
+        margin-top: -250px;
+    }
+    .page-template-page-contact-us .page-header-content {
+        -webkit-transform: translateY(-160%);
+        -moz-transform: translateY(-160%);
+        transform: translateY(-160%);
+    }
+    .contact-form .wpcf7-form .mdc-layout-grid__cell:not(.cf7md-submit) {
+        width: 48% !important;
+    }
 }
 
-@media screen and (min-width: 769px) and (max-width: 868px) {
+@media screen and (min-width: 769px) and (max-width: 992px) {
     .footer_menu .navbar-nav li a,
     .footer-copy p {
         font-size: 10px;
+    }
+    .uniques-inner .content-wrap {
+        padding-left: 25px;
+    }
+    .contact-form .wpcf7-form .mdc-layout-grid__cell:not(.cf7md-submit) {
+        width: 100% !important;
+    }
+    .flex-md-60 {
+        width: 60%;
+        flex: 0 0 60%;
+    }
+    .flex-md-40 {
+        width: 40%;
+        flex: 0 0 40%;
+    }
+    .flex-md-30 {
+        width: 30%;
+        flex: 0 0 30%;
+    }
+    .sub-category .tab-content {
+        padding: 30px 0;
     }
 }
 
@@ -272,11 +308,8 @@
     .slider-content .slider-heading {
         font-size: 25px;
     }
-    .slider-homepage .social-links-sec {
-        display: none;
-    }
     .uniques-inner .tab-content {
-        padding: 30px;
+        padding: 30px 0 38px;
     }
     .uniques-inner .panel .content-wrap {
         padding-top: 40px;
@@ -353,8 +386,15 @@
         top: -28px;
         bottom: auto;
     }
+    .main-banner {
+        min-height: 300px;
+    }
     .page-header-content h1 {
-        font-size: 35px;
+        font-size: 30px;
+    }
+    .page-header-content p {
+        font-size: 14px;
+        line-height: normal;
     }
     .executive-wrap .slick-slide img {
         margin: 0 auto;
@@ -371,6 +411,32 @@
     }
     .timeline-item .timeline-title {
         font-size: 16px;
+    }
+    .flex-sm-100 {
+        width: 100%;
+        flex: 0 0 100%;
+    }
+    .flex-sm-60 {
+        width: 60%;
+        flex: 0 0 60%;
+    }
+    .flex-sm-50 {
+        width: 50%;
+        flex: 0 0 50%;
+    }
+    .flex-sm-40 {
+        width: 40%;
+        flex: 0 0 40%;
+    }
+    .flex-sm-30 {
+        width: 30%;
+        flex: 0 0 30%;
+    }
+    .contact-form-sec .form-sec-inner {
+        flex-direction: column-reverse;
+    }
+    .related-categories-wrap .category-blk figure img {
+        height: auto;
     }
 }
 
@@ -416,6 +482,12 @@
         width: 30px;
         height: 34px;
     }
+    .slider-homepage .social-links-sec {
+        display: none;
+    }
+    .contact-form .wpcf7-form .mdc-layout-grid__cell:not(.cf7md-submit) {
+        width: 100% !important;
+    }
 }
 
 @media screen and (max-width: 627px) {
@@ -423,7 +495,9 @@
         max-width: 320px;
     }
     .our-history .our-history-outer a.btn {
-        font-size: 14px;
+        font-size: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 

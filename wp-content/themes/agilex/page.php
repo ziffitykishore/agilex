@@ -11,7 +11,22 @@
  * @since Bootstrap Canvas WP 1.0
  */
 
-	get_header(); ?>
+  get_header(); ?>
+  
+  <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+    <div class="main-banner" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-size: cover;">
+        <img src="<?php echo $featured_img_url; ?>" class="hidden" alt="" />
+        <div class="page-header-content">
+            <div class="container">
+                <h1>
+                    <?php echo the_Title(); ?>
+                </h1>
+                <p>
+                    <?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?>
+                </p>
+            </div>
+        </div>
+    </div>
 
       <div class="row">
 
