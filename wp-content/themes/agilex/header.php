@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="contact-wrap">
-                    <a class="btn btn-sm border-btn txt-upper btn-ripple btn-door">#Let's Talk Fragrance</a>
+                    <a href="/lets-talk-fragrance/" class="btn btn-sm border-btn txt-upper btn-ripple btn-door">#Let's Talk Fragrance</a>
                 </div>
                 
                 
