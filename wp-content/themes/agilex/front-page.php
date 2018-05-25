@@ -158,7 +158,11 @@ $unique_arg_query->the_post();  ?>
                             <span class="fa fa-play"></span>
                         </span>
                     </span> 
-                    <span class="text-content lined">Play Video</span>
+                    <?php if (get_field('play_video')){ ?>
+                      <span class="text-content lined"><?php the_field('play_video'); ?></span>
+                    <?php } else { ?>
+                      <span class="text-content lined">Play Video</span>
+                    <?php } ?> 
                 </a>
                 <div class=" content-desc">
                 <?php if (get_field('short_description', get_the_ID())){ 

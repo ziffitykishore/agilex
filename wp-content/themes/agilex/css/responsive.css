@@ -185,6 +185,9 @@
     .affiliations-outer {
         max-width: 700px;
     }
+    .sub-category .content-wrap {
+        padding: 30px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
@@ -437,6 +440,9 @@
     }
     .related-categories-wrap .category-blk figure img {
         height: auto;
+    }
+    .sub-category .image-sec {
+        background-image: none !important;
     }
 }
 

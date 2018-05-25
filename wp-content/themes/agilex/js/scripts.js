@@ -272,6 +272,10 @@ bgSource('#what-we-do .categories-blk');
 
 bgSource('.news-sec-blk .image-sec');
 
+bgSource('.news-sec-blk .image-sec');
+
+bgSource('.no-touch .sub-category .image-sec');
+
 
 
   $(".btn-ripple").click(function(e) {
@@ -533,14 +537,7 @@ sliderHover('.affiliate-thumb');
   });
 
 
-  if (jQuery().niceScroll) {
-      $("html").niceScroll({
-
-        scrollspeed: 300,
-              autohidemode: false,
-          horizrailenabled: false
-      });
-  } 
+ 
 
 
 /* fakewaffle.responsiveTabs(['xs', 'sm']); */
@@ -562,6 +559,30 @@ sliderHover('.affiliate-thumb');
           });
       });
   }
+
+
+
+  $.fn.parallax = function ( resistance, mouse ) 
+{
+	$el = $( this );
+	TweenLite.to( $el, 0.2, 
+	{
+		x : -(( mouse.clientX - (window.innerWidth/2) ) / resistance ),
+		y : -(( mouse.clientY - (window.innerHeight/2) ) / resistance )
+	});
+
+};
+
+
+$('.no-touch .uniques .img-sec').each(function(){
+$(this).mousemove( function( e ) {
+    $( '.feature-image' ).parallax( -30, e );
+    $( '.seconday-image' )	  .parallax( 10	, e );
+   
+});
+
+})
+
 
 
 
@@ -588,59 +609,77 @@ $(".no-touch .project").hover3d({
     selector: ".project__card"
 });
 
+  
 
-/* over lay effects */
+$(window).on('load', function(){
+    if (jQuery().niceScroll) {
+        $("html").niceScroll({
+  
+          scrollspeed: 100,
+          cursorcolor: "#174a7a",
+          cursorborder: "1px solid #174a7a",
+            autohidemode: false,
+            horizrailenabled: false
+        });
+    } 
+});
 
 
 
+function stickyFooter(status) {
+    var footer = $(".footer-wrap"),
+    footerHeight = footer.outerHeight(); /* get the height from footer */
+    
+	if(status == 'enable') {
+        $(".main-content").css("margin-bottom", footerHeight);
+    } else {
+        $(".main-content").css("margin-bottom", 0);
+    }
+}
 
-  /* Responsive View */
 
-
-
-function checkScrollBar() {
+function checkScrollBar(status) {
     var hContent = $("body").height(); /*  get the height of your content */
     var hWindow = $(window).height();  /* get the height of the visitor's browser window */
 
     /* if the height of your content is bigger than the height of the
     browser window, we have a scroll bar */
-    if(hContent>hWindow) {        
-       
-        stickyFooter();
-        $('body').addClass('sticky-footer');     
+    if(status == 'enable') {
+        if(hContent>hWindow) {             
+            stickyFooter('enable');
+            $('body').toggleClass('sticky-footer');     
+        }
     } else {
+        stickyFooter('disable');
         $('body').removeClass('sticky-footer');     
     }
     
 }
 
-checkScrollBar();
 
-
-function stickyFooter(){
-    var footer = $(".footer-wrap"),
-    footerHeight = footer.outerHeight(); /* get the height from footer */
-    $(".main-content").css("margin-bottom", footerHeight);
+var responsiveflag = false;
+function responsiveResize() {
+	
+	if (($(window).width()) <= 767 && responsiveflag == false)
+	{
+		
+        checkScrollBar('disable');
+        stickyFooter('disable');
+		responsiveflag = true;
+	}
+	else if (($(window).width()) >= 768)
+	{
+		checkScrollBar('enable');
+		stickyFooter('enable');
+		responsiveflag = false;
+		
+	}
+	
 }
 
 
-  function ResponsiveView() {
-      if ($(window).width() > 768) {
-        checkScrollBar();
-
-          paparallaxImgEffects();
-
-      } else {
-          $(".main-content").css("margin-bottom", 0);
-      }
-
-  }
-
-  
-
-  $(window).on("load resize", ResponsiveView);
-
-
+    responsiveResize();
+	$(window).resize(responsiveResize);
 
 })(jQuery);
 

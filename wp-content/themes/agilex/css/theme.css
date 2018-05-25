@@ -663,6 +663,10 @@ img,
     transform: rotate(0deg);
 }
 
+.effect-milo {
+    overflow: hidden;
+}
+
 .effect-milo .image-sec {
     max-width: none;
     /* width: -webkit-calc(100% + 60px); */
@@ -670,11 +674,12 @@ img,
     opacity: 1;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
-    -webkit-transform: translate3d(-30px, 0, 0) scale(1.12);
-    transform: translate3d(-30px, 0, 0) scale(1.12);
+    -webkit-transform: translate3d(-28px, 0, 0) scale(1.12);
+    transform: translate3d(-28px, 0, 0) scale(1.12);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     overflow: hidden;
+    height: 100%;
 }
 
 .effect-milo:hover .image-sec {
@@ -2136,6 +2141,7 @@ nav.main-navigation {
     float: left;
     text-decoration: none;
     text-transform: uppercase;
+    padding-bottom: 20px;
 }
 
 .nav-tabs li a:hover {
@@ -2971,6 +2977,9 @@ nav.main-navigation {
     background: #fff;
     z-index: 9;
     line-height: 50px;
+    position: absolute;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
 }
 
 .slick-slider .slick-next {
@@ -3243,6 +3252,16 @@ nav.main-navigation {
     overflow: hidden;
 }
 
+.related-categories-wrap .category-blk figure:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+}
+
 .related-categories-wrap .category-blk figure img {
     display: block;
     height: 180px;
@@ -3258,13 +3277,16 @@ nav.main-navigation {
     left: 0;
     color: #fff;
     font-size: 20px;
+}
+
+.no-touch .related-categories-wrap .category-blk figcaption {
     -webkit-transition: -webkit-transform 0.35s;
     transition: transform 0.35s;
     -webkit-transform: translate3d(0, 100%, 0);
     transform: translate3d(0, 100%, 0);
 }
 
-.related-categories-wrap .category-blk figure:hover figcaption {
+.no-touch .related-categories-wrap .category-blk figure:hover figcaption {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
@@ -3284,13 +3306,17 @@ nav.main-navigation {
     color: #fff;
     text-transform: none;
     font-size: 20px;
+    font-weight: bold;
+}
+
+.no-touch .category-title {
     opacity: 0;
     -webkit-transition: opacity 0.35s;
     transition: opacity 0.35s;
     -webkit-backface-visibility: hidden;
 }
 
-.related-categories-wrap .category-blk figure:hover .category-title {
+.no-touch .related-categories-wrap .category-blk figure:hover .category-title {
     opacity: 1;
 }
 
