@@ -40,8 +40,42 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <div class="main-who-we margin-30 wow fadeInUp">
 <div class="container">
 
-<?php 
-  the_content(); ?>
+<div class="inner-content video-content-inner">
+                <?php if (get_field('video_image', get_the_ID())){ ?>
+                    <?php $image = get_field('video_image'); ?>
+                <?php } ?>
+                <a 
+                    data-fancybox tabindex="0" 
+                    href="<?php if (get_field('video_link', get_the_ID())): ?><?php the_field('video_link', get_the_ID()); ?><?php endif; ?> " 
+                    data-fancybox-type="iframe" 
+                    class="video-content" 
+                    style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: 100%;">
+                    <span  class="btn-fancy" > 
+                        <span class="play-icon-block">
+                            <span class="fa fa-play"></span>
+                        </span>
+                    </span>
+                    <?php if (get_field('play_video')){ ?>
+                      <span class="text-content lined"><?php the_field('play_video'); ?></span>
+                    <?php } else { ?>
+                      <span class="text-content lined">Play Video</span>
+                    <?php } ?> 
+                    
+                </a>
+                <div class=" content-desc">
+                <?php if (get_field('short_description', get_the_ID())){ 
+                    the_field('short_description'); }
+                    else {
+                        echo '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>';
+                    }?>
+
+                    <?php if (get_field('learn_more_text')){ ?>
+                        <a href="#" class="btn-more"><?php the_field('learn_more_text'); ?></a>
+                    <?php } else { ?>
+                        <a href="#" class="btn-more">Learn More</a>
+                    <?php } ?>
+                </div>
+            </div>
 
 
 </div>
@@ -191,7 +225,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
           $agilex_test_query->the_post();
           $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 
-          <div class="affiliate-thumb">
+          <div class="affiliate-thumb hover_ani">
           <?php if ( has_post_thumbnail() ) {
                                     the_post_thumbnail('full');
                                 } else { ?>

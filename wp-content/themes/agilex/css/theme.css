@@ -608,7 +608,60 @@ img,
 }
 
 
-/* img effects */
+/* effects */
+
+.border-scale .icon {
+    position: relative;
+}
+
+.border-scale .icon:before {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    content: '';
+    left: 0;
+    transform: scale(0);
+    transition: all 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0s;
+}
+
+.border-scale:hover .icon:before {
+    transform: scale(1.2);
+}
+
+.box-effects {
+    position: relative;
+}
+
+.box-effects:after {
+    top: -8px;
+    left: -8px;
+    padding: 8px;
+    z-index: 1;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    content: '';
+    box-shadow: 3px 3px rgba(255, 255, 255, 1);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-transition: opacity .2s, -webkit-transform .2s;
+    -moz-transition: opacity .2s, -moz-transform .2s;
+    transition: opacity .2s, transform .2s;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.box-effects:hover:after {
+    opacity: 1;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
 
 .effect-milo .image-sec {
     max-width: none;
@@ -629,10 +682,57 @@ img,
     transform: translate3d(0, 0, 0) scale(1);
 }
 
+.hover_ani img {
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -o-transition: all .5s ease 0s;
+    -ms-transition: all .5s ease 0s;
+    transition: all .5s ease 0s
+}
+
+.hover_ani a {
+    display: block
+}
+
+.hover_ani.js_active img {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -webkit-transition-duration: 500ms;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transform: scale(1);
+    -moz-transition-duration: 500ms;
+    -moz-transition-timing-function: ease-out;
+    -o-transform: scale(1);
+    -o-transition-duration: 500ms;
+    -p-transition-timing-function: ease-out;
+    -ms-transform: scale(1);
+    -ms-transform-duration: 500ms;
+    -ms-transform-timing-function: ease-out
+}
+
+.hover_ani.no_active img {
+    opacity: .4;
+    -webkit-transform: scale(0.8);
+    -webkit-transition-duration: 500ms;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transform: scale(0.8);
+    -moz-transition-duration: 500ms;
+    -moz-transition-timing-function: ease-out;
+    -o-transform: scale(0.8);
+    -o-transition-duration: 500ms;
+    -p-transition-timing-function: ease-out;
+    -ms-transform: scale(0.8);
+    -ms-transform-duration: 500ms;
+    -ms-transform-timing-function: ease-out
+}
+
 body {
     color: #6f6f6f;
     font-size: 14px;
     font-family: 'Lato', 'Poppins', sans-serif;
+}
+
+.no-touch body {
     overflow: hidden;
 }
 
@@ -3513,6 +3613,12 @@ nav.main-navigation {
 
 /* Contact us page */
 
+.page-template-page-contact-us .page-header-content {
+    -webkit-transform: translateY(-120%);
+    -moz-transform: translateY(-120%);
+    transform: translateY(-120%);
+}
+
 .page-template-page-contact-us .main-content {
     box-shadow: none;
     box-shadow: none;
@@ -3520,7 +3626,6 @@ nav.main-navigation {
 
 .page-template-page-contact-us footer.footer-wrap {
     position: static;
-    padding-top: 0;
 }
 
 .page-template-page-contact-us .footer-content,
@@ -3568,6 +3673,15 @@ nav.main-navigation {
 
 #cf7md-form .mdc-layout-grid .mdc-select {
     font-size: 14px;
+    position: relative;
+}
+
+.nice-select .list {
+    width: 100%;
+}
+
+div.nice-select:after {
+    display: none;
 }
 
 #cf7md-form .mdc-select,
@@ -3705,4 +3819,33 @@ nav.main-navigation {
 
 .address-section .social-links a {
     margin-left: 20px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+.address-section .social-links a:hover {
+    background: #fff;
+    color: #174a7a;
+}
+
+.diamond-efx {
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.diamond-efx i {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
