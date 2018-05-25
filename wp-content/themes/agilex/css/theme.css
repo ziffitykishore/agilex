@@ -3717,7 +3717,7 @@ div.nice-select:after {
 #cf7md-form .cf7md-textarea textarea {
     height: 50px;
     resize: none;
-    padding: 0 !important;
+    padding: 15px 0 0 !important;
 }
 
 #cf7md-form .cf7md-item {
