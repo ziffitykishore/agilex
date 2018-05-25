@@ -34,6 +34,8 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+    
   </head>
   <body <?php body_class(); ?>>
 
@@ -63,7 +65,7 @@
                         <form role="search" autocomplete="off" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 
                             <label class="screen-reader-text" for="s"><?php _x( 'Search for:', 'label' ); ?></label>
-                            <input autofocus type="text" placeholder="Lorem Ipsum" value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
+                            <input autofocus type="text" placeholder="Search..." value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
                             <!-- <input type="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" /> -->
                             <button type="submit" id="searchsubmit"><span class="sr-only">Search</span></button>
                             <span class="search__info">Hit enter to search or ESC to close</span>
@@ -72,7 +74,7 @@
                 </div>
 
                 <div class="contact-wrap">
-                    <a class="btn btn-sm border-btn txt-upper btn-ripple btn-door">#Let's Talk Fragrance</a>
+                    <a href="/lets-talk-fragrance/" class="btn btn-sm border-btn txt-upper btn-ripple btn-door">#Let's Talk Fragrance</a>
                 </div>
                 
                 
@@ -85,11 +87,11 @@
 
             
                 <div id="cd-nav" class="cd-nav">
-                <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
+                <!-- <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
                         <div class="hamburger-box">
                             <div class="hamburger-inner"></div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="cd-navigation-wrapper">
                     
                     

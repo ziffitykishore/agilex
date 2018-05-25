@@ -44,10 +44,18 @@ if (is_front_page()) { ?>
     <?php /** Makes Agilex Unique Section -- Start **/ ?>
     <section class="tab-section uniques wow fadeInUp" id="unique-section" >
         <div class="container">
+        <?php $args = array(
+'name' => 'agilex-unique',
+'post_status'     => 'publish'
+); 
+$unique_arg_query = new WP_Query($args);
+while ($unique_arg_query->have_posts()) {
+$unique_arg_query->the_post();  ?>
         <div class="heading">
-                <div class="heading-title">What Makes Agilex Unique</div>
-                <div class="sub-heading">Nesciunt tofu stumptown aliqua retro synth master cleanse</div>
+                <div class="heading-title"><?php echo the_Title(); ?></div>
+                <div class="sub-heading"><?php echo get_the_excerpt();?></div>
             </div>
+<?php } ?>
             <div class="uniques-inner">
             <?php
             $args = array(
@@ -74,7 +82,8 @@ if (is_front_page()) { ?>
                 <div class="tab-pane fade <?php if($i == 0) { echo "active in"; } ?> " role="tabpanel" id="<?php echo strtolower(str_replace(' ', '-', get_the_title())); ?>" aria-labelledby="<?php echo strtolower(str_replace(' ', '-', get_the_title())); ?>-tab">
                     <div class="row">
                         <div class="col-sm-4 wow slideInLeft">
-                            <div class="img-sec">
+                            <div class="project">
+                            <div class="img-sec project__card">
                                 <?php //the_post_thumbnail('thumbnail'); ?>
                                 <figure class="feature-image">
                                 <?php if ( has_post_thumbnail() ) {
@@ -90,9 +99,15 @@ if (is_front_page()) { ?>
                                     <img  class="seconday-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
                                     <?php } ?>
                             </div>
+                                </div>
                         </div>
                         <div class="col-sm-8 content-wrap wow slideInRight">
                             <?php echo the_Content(); $i++; ?>
+                            <?php if (get_field('learn_more_text')){ ?>
+                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40"><?php the_field('learn_more_text'); ?></a>
+              <?php } else { ?>
+                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40">Learn More</a>
+              <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -124,17 +139,56 @@ if (is_front_page()) { ?>
     </div>
 
     <div class="content-outer-wrap">
-           
-                <div class="inner-content-wrap">
-                    <?php echo the_Content(); ?>
+        <div class="inner-content-wrap">
+            <div class="inner-content video-content-inner">
+                <?php if (get_field('video_image', get_the_ID())){ ?>
+                    <?php $image = get_field('video_image'); ?>
+                <?php } ?>
+                <a 
+                    data-fancybox tabindex="0" 
+                    href="
+                    <?php if (get_field('video_link', get_the_ID())): ?>
+                    <?php the_field('video_link', get_the_ID()); ?>
+                    <?php endif; ?> " 
+                    data-fancybox-type="iframe" 
+                    class="video-content" 
+                    style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: 100%;">
+                    <span  class="btn-fancy" > 
+                        <span class="play-icon-block">
+                            <span class="fa fa-play"></span>
+                        </span>
+                    </span> 
+                    <span class="text-content lined">Play Video</span>
+                </a>
+                <div class=" content-desc">
+                <?php if (get_field('short_description', get_the_ID())){ 
+                    the_field('short_description'); }
+                    else {
+                        echo '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>';
+                    }?>
+
+                    <?php if (get_field('learn_more_text')){ ?>
+                        <a href="#" class="btn-more"><?php the_field('learn_more_text'); ?></a>
+                    <?php } else { ?>
+                        <a href="#" class="btn-more">Learn More</a>
+                    <?php } ?>
                 </div>
             </div>
+        </div>
     </div>
+</div>
 
-      <img src="/wp-content/uploads/2018/05/who_we_are_element_01.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="400" data-ps-horizontal-position="-50"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_02.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="-80"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_03.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="-20" data-ps-horizontal-position="75%"/>
-<img src="/wp-content/uploads/2018/05/who_we_are_element_04.png" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
+
+<?php 
+    $top_left_image = get_field('top_left_image');
+    $top_right_image = get_field('top_right_image');
+    $bottom_left_image = get_field('bottom_left_image');
+    $bottom_right_image = get_field('bottom_right_image');
+ ?>
+<img src="<?php echo $top_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="400" data-ps-horizontal-position="-50"/>
+<img src="<?php echo $bottom_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="-80"/>
+<img src="<?php echo $bottom_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="-20" data-ps-horizontal-position="75%"/>
+<img src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
       
     
     </section>
@@ -144,10 +198,18 @@ if (is_front_page()) { ?>
     /** Who We Are Section -- End * */ ?>
     <section class="what-we-do">
         <div class="container">
-            <div class="heading wow fadeInUp" >
-                <div class="heading-title">What We Do</div>
-                <div class="sub-heading">Nesciunt tofu stumptown aliqua retro synth master cleanse</div>
-            </div>
+        <?php $args = array(
+            'name' => 'what-we-do',
+            'post_status'     => 'publish'
+            ); 
+            $unique_arg_query = new WP_Query($args);
+            while ($unique_arg_query->have_posts()) {
+            $unique_arg_query->the_post();  ?>
+                    <div class="heading text-center">
+                            <div class="heading-title"><?php echo the_Title(); ?></div>
+                            <div class="sub-heading"><?php echo get_the_excerpt();?></div>
+                        </div>
+            <?php } ?>
             <div class="grid-content row">
                 <?php
                 /** What We Do Section -- Start * */
@@ -178,12 +240,13 @@ if (is_front_page()) { ?>
                                 <a href="<?php echo get_permalink() ?>">
                                     <h4><?php echo the_Title(); ?></h4></a>
                                     <div class="content-desc">
-                                     <?php if (get_field('short_description', get_the_ID())): ?>
+                                     <?php if (get_field('short_description', get_the_ID())){ 
                                         
-                                        <?php echo wp_trim_words( get_field('short_description'), 15, ' ' ); ?>
+                                        echo wp_trim_words( get_field('short_description'), 15, ' ' );
+                                     } else {
 
-                                       
-                                        <?php endif; ?>
+                                        echo wp_trim_words( get_the_content(), 15, ' ' );
+                                     } ?>
                                          
                                         
                                     </div>
@@ -203,14 +266,18 @@ if (is_front_page()) { ?>
 <?php  /** What We Do Section -- End * */ ?>
     <section class="testimonials wow fadeInUp">
         <div class="container">
-            <div class="heading text-center">
-                <div class="heading-title">
-                    Here's what our customers say about us
-                </div>
-                <div class="sub-heading">
-                    Lorem ipsum dolor sit amet, consectetur
-                </div>
-            </div>
+        <?php $args = array(
+            'name' => 'testimonials',
+            'post_status'     => 'publish'
+            ); 
+            $unique_arg_query = new WP_Query($args);
+            while ($unique_arg_query->have_posts()) {
+            $unique_arg_query->the_post();  ?>
+                    <div class="heading text-center">
+                            <div class="heading-title"><?php echo the_Title(); ?></div>
+                            <div class="sub-heading"><?php echo get_the_excerpt();?></div>
+                        </div>
+            <?php } ?>
             <div class="testimonials-outer">
                 <div class="reviews-inner dots-bar">
                     

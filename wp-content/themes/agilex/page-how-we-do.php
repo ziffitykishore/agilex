@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page What We Do
+ * Template Name: Page How We Do                                                                          
  *
  * @package Agilex
  * @since Agilex 1.0
@@ -20,7 +20,10 @@ get_header(); ?>
 .cd-icons-filling .before-bg{
   position: absolute;
   top: 0;
+  right: 0;
   bottom: 0;
+  left: 0;
+  width: 421px;
 }
 
 .cd-icons-filling .before-bg:before, .cd-icons-filling .before-bg:after {
@@ -30,13 +33,11 @@ get_header(); ?>
   color: transparent;
   position: fixed;
   /* trick to remove flickering on resize */
-  width: calc(90% - 2px);
-  max-width: 1170px;
-  left: 50%;
+  width: inherit;
+  
+  
   right: auto;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
+
   height: 50vh;
   z-index: -1;
 }
@@ -71,7 +72,7 @@ get_header(); ?>
   z-index: 2;
   min-height: 50px;
   margin-left: 56px;
-  background-color: #3e253c;
+  
   padding: 1em 1em 4em;
 }
 
@@ -122,7 +123,7 @@ get_header(); ?>
 
 .cd-service h2 {
   text-transform: uppercase;
-  color: white;
+  
   margin-bottom: 1em;
   font-family: "Merriweather Sans", sans-serif;
 }
@@ -130,14 +131,14 @@ get_header(); ?>
 .cd-service p {
   font-size: 1.4rem;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.5);
+  
 }
 
 @media only screen and (min-width: 1170px) {
   .cd-service {
-    min-height: 525px;
+
     margin-left: 420px;
-    padding: 6em 2em;
+    
   }
   .cd-service::before, .cd-service::after {
     width: 420px;
@@ -169,7 +170,7 @@ get_header(); ?>
     background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-4-large.svg");
   }
   .cd-service h2, .cd-service p {
-    color: #71495b;
+    
     -webkit-transition: color 0.5s;
     transition: color 0.5s;
   }
@@ -180,12 +181,7 @@ get_header(); ?>
     font-size: 1.8rem;
     line-height: 1.6;
   }
-  .cd-service.cd-service--focus h2 {
-    color: white;
-  }
-  .cd-service.cd-service--focus p {
-    color: rgba(255, 255, 255, 0.5);
-  }
+
 }
 </style>
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
@@ -198,6 +194,21 @@ get_header(); ?>
         </div>     
       </div>
  </div>
+
+ <div class="how-we-work " id="how-we-work">
+  <div class="container">
+    <div class="page-desc margin-top--70 wow fadeInUp">
+    <?php
+    // TO SHOW THE PAGE CONTENTS
+    while ( have_posts() ) : the_post(); ?>
+   <?php echo get_the_content(); ?>
+   <?php
+    endwhile; //resetting the page loop
+    wp_reset_query(); //resetting the page query
+    ?>
+    </div>   
+  </div>
+  
 
 <ul class="cd-icons-filling js-cd-icons-filling">
 
@@ -226,7 +237,7 @@ get_header(); ?>
 
 		<li class="cd-service cd-service--divider"></li>
 	</ul> <!-- cd-services -->
-
+  </div>
 <script>
   (function(){
 	function IconsFilling( element ) {
