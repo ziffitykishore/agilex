@@ -147,6 +147,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/css/animate.min.css' );
     wp_enqueue_style( 'fancy-css', get_template_directory_uri() . '/css/jquery.fancybox.css' );
     wp_enqueue_style( 'selectbox-css', get_template_directory_uri() . '/css/nice-select.css' );
+    wp_enqueue_style( 'mCustomScrollbar-css', get_template_directory_uri() . '/css/jquery.mCustomScrollbar.min.css' );
     wp_enqueue_style( 'theme-css', get_template_directory_uri() . '/css/theme.css' );
     wp_enqueue_style( 'responsive-css', get_template_directory_uri() . '/css/responsive.css' );
     /* wp_enqueue_style( 'animsition-css', get_template_directory_uri() . '/css/animsition.min.css' ); */
@@ -168,8 +169,10 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'wow-min-js', get_template_directory_uri() . '/js/wow.min.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'parallaxImg-js', get_template_directory_uri() . '/js/parallaxImg.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'fancybox-js', get_template_directory_uri() . '/js/jquery.fancybox.js', array( 'jquery' ), '', true );
-    wp_enqueue_script( 'nicescroll-js', get_template_directory_uri() . '/js/masonry.pkgd.js', array( 'jquery' ), '', true );
-    wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/masonry.pkgd.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'mousewheel-js', get_template_directory_uri() . '/js/jquery.mousewheel.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'mCustomScrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'nicescroll-js', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'hover3d-js', get_template_directory_uri() . '/js/jquery.hover3d.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'TweenMax-js', get_template_directory_uri() . '/js/TweenMax.min.js', array( 'jquery' ), '', true );
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
