@@ -628,6 +628,16 @@ $(window).on('load', function(){
 
 
 
+
+$(".feature-desc").mCustomScrollbar({
+    
+    theme:"minimal-dark",
+    
+});
+
+
+
+
 function stickyFooter(status) {
     var footer = $(".footer-wrap"),
     footerHeight = footer.outerHeight(); /* get the height from footer */
@@ -687,5 +697,8 @@ function responsiveResize() {
 	$(window).resize(responsiveResize);
 
 })(jQuery);
+
+
+
 
 

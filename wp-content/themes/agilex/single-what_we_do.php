@@ -51,16 +51,16 @@ if($tabdetails) { ?>
         <div id="tab-<?php echo $i; ?>" class="tab-pane fade <?php echo ($i == 1) ? "active": '';?> in">
        
           <div class="tab-inner flex-sec">
-            <div class="effect-milo flex-sm-100 flex-50">
+            <div class="effect-milo flex-sm-100 flex-50 <?php if(empty($tabdetail["tab-image"])) { echo "hidden" ;} ?>">
               <div class="image-sec">
-              <?php if($tabdetail["tab-sec-image"]) { ?>
-              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-sec-image"]); ?>" alt="" class="visible-xs-block"/>
+              <?php if($tabdetail["tab-image"]) { ?>
+              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-image"]); ?>" alt="<?php echo $tabdetail["tab-title"]; ?>" class="visible-xs-block"/>
               <?php } else {?>
-                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="" class="visible-xs-block"/>
+                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="Agilex Fragrances" class="visible-xs-block"/>
               <?php }?>
               </div>
             </div>
-            <div class="content-wrap flex-sm-100 flex-50">
+            <div class="content-wrap flex-sm-100 <?php if(empty($tabdetail["tab-image"])) {  echo "flex-100";  } else { echo "flex-50" ;}  ?>">
               <div class="feature-title"><?php echo $tabdetail["tab-title"]; ?></div>
               <div class="feature-desc">
                 <?php echo $tabdetail["tab-content"]; ?>
@@ -74,7 +74,7 @@ if($tabdetails) { ?>
     </div>
   </div>
 <?php } ?>
-
+ 
 
 
 <?php $exclude_post = $post->ID;
@@ -93,7 +93,7 @@ while ( $query->have_posts() ) { $query->the_post(); ?>
       <?php $image = get_field('thumb_image'); ?>
       <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
   <?php } else { ?>
-      <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
+      <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_218X180.png" alt="<?php the_title(); ?>" />
       <?php } ?>
       <figcaption><div class="category-title"><?php echo  get_the_title(); ?></div></figcaption>
   </figure>

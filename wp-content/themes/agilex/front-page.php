@@ -103,7 +103,12 @@ $unique_arg_query->the_post();  ?>
                                 </div>
                         </div>
                         <div class="col-sm-8 content-wrap wow slideInRight">
-                            <?php echo the_Content(); $i++; ?>
+                            <?php  $i++; ?>
+
+                            <?php if (get_field('short_description', get_the_ID())){ 
+                    the_field('short_description'); } ?>
+                    
+                            
                             <?php if (get_field('learn_more_text')){ ?>
                 <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40"><?php the_field('learn_more_text'); ?></a>
               <?php } else { ?>
