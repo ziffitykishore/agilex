@@ -7,8 +7,12 @@
  */
 get_header(); ?>
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
-<div class="main-banner" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-size: cover;">
-        <img src="<?php echo $featured_img_url; ?>" class="hidden" alt=""/>
+<div class="main-banner">
+        <?php if ($featured_img_url){ ?>
+        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+        <?php } else  { ?>
+          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+        <?php }?>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
@@ -17,7 +21,7 @@ get_header(); ?>
       </div>
  </div>
 
-<div class="what-we-do-wrap " id="what-we-do">
+<div class="page-content-wrap" id="page-content">
   <div class="container">
     <div class="page-desc margin-top--70 wow fadeInUp">
     <?php
@@ -32,16 +36,55 @@ get_header(); ?>
   </div>
   </div> 
 
-<?php if (get_field('tab_content', get_the_ID())): ?>
-      <?php the_field('tab_content', get_the_ID()); ?>
-  <?php endif; ?>
+
+<?php $tabdetails = get_post_meta( get_the_ID(), 'tabcontent', true );
+if($tabdetails) { ?>
+  <div class="tab-section sub-category wow fadeInUp">
+    <div class="container">
+      <ul id="myTabs" class="nav nav-tabs responsive" role="tablist">
+      <?php $i = 1; foreach( $tabdetails  as $tabdetail){ ?>
+      <li class="<?php echo ($i == 1) ? "active": '';?>"><a role="tab" class="text-uppercase btn-ripple" href="#tab-<?php echo $i; ?>" data-toggle="tab"><?php echo $tabdetail["tab-title"]; ?></a></li>
+      <?php $i++; } ?> 
+      </ul>
+      <div class="tab-content">
+      <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
+        <div id="tab-<?php echo $i; ?>" class="tab-pane fade <?php echo ($i == 1) ? "active": '';?> in">
+       
+          <div class="tab-inner flex-sec">
+            <div class="effect-milo flex-sm-100 flex-50">
+              <div class="image-sec">
+              <?php if($tabdetail["tab-sec-image"]) { ?>
+              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-sec-image"]); ?>" alt="" class="visible-xs-block"/>
+              <?php } else {?>
+                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="" class="visible-xs-block"/>
+              <?php }?>
+              </div>
+            </div>
+            <div class="content-wrap flex-sm-100 flex-50">
+              <div class="feature-title"><?php echo $tabdetail["tab-title"]; ?></div>
+              <div class="feature-desc">
+                <?php echo $tabdetail["tab-content"]; ?>
+              </div>
+            </div>
+          </div>
+       
+        </div>
+        <?php  $i++; } ?> 
+      </div>
+    </div>
+  </div>
+<?php } ?>
+
+
+
+<?php $exclude_post = $post->ID;
+$query = new WP_Query( array( 'post_type' => 'what_we_do', 'order_by' => 'date', 'order' => 'ASC', 'post__not_in' => array( $exclude_post ) ) ); 
+if($query->have_posts()){ ?>
 
 <div class="related-categories-wrap wow fadeInUp">
   <div class="container">
   <div class="related-categories-innner flex-sec">
-<?php $exclude_post = $post->ID;
-$query = new WP_Query( array( 'post_type' => 'what_we_do', 'order_by' => 'date', 'order' => 'ASC', 'post__not_in' => array( $exclude_post ) ) ); 
-$query->have_posts();
+<?php 
 while ( $query->have_posts() ) { $query->the_post(); ?>
   <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20">
   <a href="<?php echo get_permalink() ?>" class="img-sec">
@@ -60,6 +103,7 @@ while ( $query->have_posts() ) { $query->the_post(); ?>
   </div>
   </div>
 </div>
+  <?php }?>
 	  
                                                                                                                                                                                                                             
 <?php get_footer(); ?>                                                                        

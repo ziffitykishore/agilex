@@ -8,6 +8,11 @@
 get_header(); ?>
 
 <style>
+
+  .page-template-page-how-we-do .main-banner{
+    position: relative;
+    z-index: 2;
+  }
 .cd-icons-filling {
   width: 90%;
   max-width: 1170px;
@@ -51,8 +56,8 @@ get_header(); ?>
 }
 
 .cd-icons-filling .before-bg:after {
-  top: 50%;
-  background-color: #71495b;
+  top: 58px;
+  background-color: #174b7d;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -121,18 +126,15 @@ get_header(); ?>
   background-image: url("https://codyhouse.co/demo/icons-filling-effect/img/cd-icon-4-small.svg");
 }
 
-.cd-service h2 {
+.cd-service .heading .heading-title {
   text-transform: uppercase;
-  
+  font-size: 25px;
   margin-bottom: 1em;
-  font-family: "Merriweather Sans", sans-serif;
+  font-weight: normal;
+  
 }
 
-.cd-service p {
-  font-size: 1.4rem;
-  line-height: 1.4;
-  
-}
+
 
 @media only screen and (min-width: 1170px) {
   .cd-service {
@@ -178,15 +180,18 @@ get_header(); ?>
     font-size: 3rem;
   }
   .cd-service p {
-    font-size: 1.8rem;
-    line-height: 1.6;
+
   }
 
 }
 </style>
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
-<div class="main-banner" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-size: cover;">
-        <img src="<?php echo $featured_img_url; ?>" class="hidden" alt=""/>
+<div class="main-banner">
+        <?php if ($featured_img_url){ ?>
+        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+        <?php } else  { ?>
+          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+        <?php }?>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
@@ -197,7 +202,7 @@ get_header(); ?>
 
  <div class="how-we-work " id="how-we-work">
   <div class="container">
-    <div class="page-desc margin-top--70 wow fadeInUp">
+    <div class="page-desc margin-top--70 wow fadeInUp white-bg">
     <?php
     // TO SHOW THE PAGE CONTENTS
     while ( have_posts() ) : the_post(); ?>
@@ -216,22 +221,30 @@ get_header(); ?>
 		<li class="cd-service cd-service--divider"></li>
 
 		<li class="cd-service cd-service--1 js-cd-service">
-			<h2>Web Design</h2>
+			<div class="heading">
+        <h2 class="heading-title">Web Design</h2>
+  </div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis pariatur tenetur quod veritatis nulla aspernatur architecto! Fugit, reprehenderit amet deserunt molestiae ut libero facere quasi velit perferendis ullam quis necessitatibus!</p>
 		</li> <!-- cd-service -->
 
 		<li class="cd-service cd-service--2 js-cd-service">
-			<h2>Responsive Approach</h2>
+    <div class="heading">
+        <h2 class="heading-title">Responsive Approach</h2>
+  </div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis pariatur tenetur quod veritatis nulla aspernatur architecto! Fugit, reprehenderit amet deserunt molestiae ut libero facere quasi velit perferendis ullam quis necessitatibus!</p>
 		</li> <!-- cd-service -->
 
 		<li class="cd-service cd-service--3 js-cd-service">
-			<h2>E-commerce</h2>
+    <div class="heading">
+        <h2 class="heading-title">E-commerce</h2>
+  </div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis pariatur tenetur quod veritatis nulla aspernatur architecto! Fugit, reprehenderit amet deserunt molestiae ut libero facere quasi velit perferendis ullam quis necessitatibus!</p>
 		</li> <!-- cd-service -->
 
 		<li class="cd-service cd-service--4 js-cd-service">
-			<h2>CMS Integration</h2>
+    <div class="heading">
+        <h2 class="heading-title">CMS Integration</h2>
+  </div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis pariatur tenetur quod veritatis nulla aspernatur architecto! Fugit, reprehenderit amet deserunt molestiae ut libero facere quasi velit perferendis ullam quis necessitatibus!</p>
 		</li> <!-- cd-service -->
 
