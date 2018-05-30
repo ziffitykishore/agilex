@@ -46,8 +46,11 @@
                       the_custom_logo();
                   endif; ?>
 		</div>
-	</div>
-    <header>
+    </div>
+    
+    <div class="temp-wrapper">
+
+    <header class="main-header">
         <div class="header-container">
             <div class="logo-wrap pull-left">
                 <?php if (function_exists('the_custom_logo')) :
@@ -92,6 +95,7 @@
                             <div class="hamburger-inner"></div>
                         </div>
                     </div> -->
+                    <div class="overlaybgDark"></div>
                     <div class="cd-navigation-wrapper">
                     
                     
