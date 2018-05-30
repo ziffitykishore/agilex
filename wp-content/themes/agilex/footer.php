@@ -85,6 +85,6 @@
 	   */
 	  wp_footer();
     ?>
-    <div class="overlaybgDark"></div>
+    </div>
   </body>
 </html>
