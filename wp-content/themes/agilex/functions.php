@@ -1715,3 +1715,14 @@ function update_post_gallery( $post_id, $post_object )
     }
 }
 
+
+
+/**
+ * Add automatic image sizes
+ */
+if ( function_exists( 'add_image_size' ) ) { 
+	add_image_size( 'post-feature-img', 770, 120, true ); //(cropped)
+	add_image_size( 'member-img', 200, 200, false ); //(scaled)
+	add_image_size( 'people-img', 360, 360, true ); //(cropped)
+	add_image_size( 'related-img', 180, 180, true ); //(cropped)
+}
