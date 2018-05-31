@@ -23,6 +23,7 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
+    $('body').addClass('loading');
 
     $('select').niceSelect();
 
@@ -33,7 +34,7 @@ function myFunction() {
           jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr('href')).offset().top - header }, 500, 'linear');
       });
 
-      $('body').addClass('loading');
+      
       jQuery(window).on('load', function() {
 
           jQuery('.loader').removeClass('scale');
@@ -275,6 +276,8 @@ bgSource('.news-sec-blk .image-sec');
 bgSource('.news-sec-blk .image-sec');
 
 bgSource('.no-touch .sub-category .image-sec');
+
+bgSource('.main-banner');
 
 
 
@@ -626,12 +629,25 @@ $(window).on('load', function(){
 
 
 
+
+$(".feature-desc").mCustomScrollbar({
+    
+    theme:"minimal-dark",
+    
+});
+
+
+
+
 function stickyFooter(status) {
     var footer = $(".footer-wrap"),
     footerHeight = footer.outerHeight(); /* get the height from footer */
-    
+    var hContent = $("body").height(); /*  get the height of your content */
+    var hWindow = $(window).height();
 	if(status == 'enable') {
-        $(".main-content").css("margin-bottom", footerHeight);
+        if(hContent>hWindow) {     
+            $(".main-content").css("margin-bottom", footerHeight);
+        }
     } else {
         $(".main-content").css("margin-bottom", 0);
     }
@@ -647,11 +663,11 @@ function checkScrollBar(status) {
     if(status == 'enable') {
         if(hContent>hWindow) {             
             stickyFooter('enable');
-            $('body').toggleClass('sticky-footer');     
+            $('body').addClass('sticky-footer');     
+        }  else {
+            stickyFooter('disable');
+            $('body').removeClass('sticky-footer');     
         }
-    } else {
-        stickyFooter('disable');
-        $('body').removeClass('sticky-footer');     
     }
     
 }
@@ -660,14 +676,14 @@ function checkScrollBar(status) {
 var responsiveflag = false;
 function responsiveResize() {
 	
-	if (($(window).width()) <= 767 && responsiveflag == false)
+	if (($(window).width()) <= 768 && responsiveflag == false)
 	{
 		
         checkScrollBar('disable');
         stickyFooter('disable');
 		responsiveflag = true;
 	}
-	else if (($(window).width()) >= 768)
+	else if (($(window).width()) >= 769)
 	{
 		checkScrollBar('enable');
 		stickyFooter('enable');
@@ -682,5 +698,8 @@ function responsiveResize() {
 	$(window).resize(responsiveResize);
 
 })(jQuery);
+
+
+
 
 

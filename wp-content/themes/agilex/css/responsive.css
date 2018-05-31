@@ -1,3 +1,14 @@
+@media screen and (min-width: 1367px) {
+    .cd-nav .cd-navigation-wrapper {
+        width: 350px;
+    }
+    .sub-category {
+        margin-top: -50px;
+        position: relative;
+        z-index: 10;
+    }
+}
+
 @media screen and (max-width: 1366px) {
     .header-container {
         padding: 15px;
@@ -29,7 +40,7 @@
         padding: 30px;
     }
     .timeline-inner {
-        padding: 50px 40px;
+        padding: 50px 40px 100px;
     }
     .timeline-item+.timeline-item {
         margin-top: 80px;
@@ -118,6 +129,10 @@
     .timeline-item .timeline-content {
         padding: 0 20px;
     }
+    .careers-wrap .pad-70,
+    .careers-inner-wrap>div {
+        padding: 30px;
+    }
 }
 
 @media only screen and (min-width:992px) {
@@ -168,7 +183,7 @@
         left: 70px;
     }
     .sub-category .tab-content {
-        padding: 50px 0;
+        padding: 30px 0;
     }
 }
 

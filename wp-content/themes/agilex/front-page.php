@@ -86,11 +86,12 @@ $unique_arg_query->the_post();  ?>
                             <div class="img-sec project__card">
                                 <?php //the_post_thumbnail('thumbnail'); ?>
                                 <figure class="feature-image">
-                                <?php if ( has_post_thumbnail() ) {
-                                    the_post_thumbnail('full');
-                                } else { ?>
-                                    <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
-                                <?php } ?>
+                                <?php if (get_field('primary_image', get_the_ID())){ ?>
+                                    <?php $image = get_field('primary_image'); ?>
+                                    <img class="primary-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                <?php } else { ?>
+                                    <img  class="primary-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
+                                    <?php } ?>
                                 </figure>
                                 <?php if (get_field('secondary_image', get_the_ID())){ ?>
                                     <?php $image = get_field('secondary_image'); ?>
@@ -102,7 +103,12 @@ $unique_arg_query->the_post();  ?>
                                 </div>
                         </div>
                         <div class="col-sm-8 content-wrap wow slideInRight">
-                            <?php echo the_Content(); $i++; ?>
+                            <?php  $i++; ?>
+
+                            <?php if (get_field('short_description', get_the_ID())){ 
+                    the_field('short_description'); } ?>
+                    
+                            
                             <?php if (get_field('learn_more_text')){ ?>
                 <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40"><?php the_field('learn_more_text'); ?></a>
               <?php } else { ?>
