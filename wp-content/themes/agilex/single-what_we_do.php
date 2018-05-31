@@ -50,8 +50,9 @@ if($tabdetails) { ?>
       <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
         <div id="tab-<?php echo $i; ?>" class="tab-pane fade <?php echo ($i == 1) ? "active": '';?> in">
        
-          <div class="tab-inner flex-sec">
-            <div class="effect-milo flex-sm-100 flex-50 <?php if(empty($tabdetail["tab-image"])) { echo "hidden" ;} ?>">
+          <div class="tab-inner flex-sec effect-milo border-efx">
+            <div class="image-wrap flex-sm-100 flex-50 <?php if(empty($tabdetail["tab-image"])) { echo "hidden" ;} ?>">
+            <div class="border-ani"></div>
               <div class="image-sec">
               <?php if($tabdetail["tab-image"]) { ?>
               <img src="<?php echo wp_get_attachment_url($tabdetail["tab-image"]); ?>" alt="<?php echo $tabdetail["tab-title"]; ?>" class="visible-xs-block"/>
@@ -89,6 +90,7 @@ while ( $query->have_posts() ) { $query->the_post(); ?>
   <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20">
   <a href="<?php echo get_permalink() ?>" class="img-sec">
     <figure>
+      
   <?php if (get_field('thumb_image', get_the_ID())){ ?>
       <?php $image = get_field('thumb_image'); ?>
       <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />

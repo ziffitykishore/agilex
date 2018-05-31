@@ -45,14 +45,14 @@ if (is_front_page()) { ?>
     <section class="tab-section uniques wow fadeInUp" id="unique-section" >
         <div class="container">
         <?php $args = array(
-'name' => 'agilex-unique',
+'name' => 'what-makes-agilex-unique',
 'post_status'     => 'publish'
 ); 
 $unique_arg_query = new WP_Query($args);
 while ($unique_arg_query->have_posts()) {
 $unique_arg_query->the_post();  ?>
         <div class="heading">
-                <div class="heading-title"><?php echo the_Title(); ?></div>
+        <a href="<?php echo get_permalink() ?>"><div class="heading-title"><?php echo the_Title(); ?></div></a>
                 <div class="sub-heading"><?php echo get_the_excerpt();?></div>
             </div>
 <?php } ?>
@@ -110,9 +110,9 @@ $unique_arg_query->the_post();  ?>
                     
                             
                             <?php if (get_field('learn_more_text')){ ?>
-                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40"><?php the_field('learn_more_text'); ?></a>
+                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40 text-uppercase"><?php the_field('learn_more_text'); ?></a>
               <?php } else { ?>
-                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40">Learn More</a>
+                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40 text-uppercase">Learn More</a>
               <?php } ?>
                         </div>
                     </div>
@@ -195,10 +195,10 @@ $unique_arg_query->the_post();  ?>
     $bottom_left_image = get_field('bottom_left_image');
     $bottom_right_image = get_field('bottom_right_image');
  ?>
-<img src="<?php echo $top_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="400" data-ps-horizontal-position="-50"/>
-<img src="<?php echo $bottom_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="-80"/>
-<img src="<?php echo $bottom_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="-20" data-ps-horizontal-position="75%"/>
-<img src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
+<img src="<?php echo $top_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="360" data-ps-horizontal-position="0"/>
+<img src="<?php echo $bottom_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
+<img src="<?php echo $bottom_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="50" data-ps-horizontal-position="75%"/>
+<img src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="360" data-ps-horizontal-position="85%"/>
       
     
     </section>
@@ -216,7 +216,7 @@ $unique_arg_query->the_post();  ?>
             while ($unique_arg_query->have_posts()) {
             $unique_arg_query->the_post();  ?>
                     <div class="heading text-center">
-                            <div class="heading-title"><?php echo the_Title(); ?></div>
+                            <a href="<?php echo get_permalink() ?>"><div class="heading-title"><?php echo the_Title(); ?></div></a>
                             <div class="sub-heading"><?php echo get_the_excerpt();?></div>
                         </div>
             <?php } ?>
@@ -237,33 +237,26 @@ $unique_arg_query->the_post();  ?>
                     ?>
                     <div class="col-xs-6 col-sm-6 col-md-4  wow fadeInUp">
                         <div class="thumbnail">
-                            <a href="<?php echo get_permalink() ?>" class="img-sec">
-                            
-                                <?php if (get_field('thumb_image', get_the_ID())){ ?>
-                                    <?php $image = get_field('thumb_image'); ?>
-                                    <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-                                <?php } else { ?>
-                                    <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
-                                    <?php } ?>
-                                </a>
-                            <div class="caption">
-                                <a href="<?php echo get_permalink() ?>">
-                                    <h4><?php echo the_Title(); ?></h4></a>
+                            <a href="<?php echo get_permalink() ?>">
+                                <div class="img-sec">
+                                    <?php if (get_field('thumb_image', get_the_ID())){ ?>
+                                        <?php $image = get_field('thumb_image'); ?>
+                                        <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <?php } else { ?>
+                                        <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
+                                        <?php } ?>
+                                </div>
+                                <div class="caption">
+                                    <h4><?php echo the_Title(); ?></h4>
                                     <div class="content-desc">
-                                     <?php if (get_field('short_description', get_the_ID())){ 
-                                        
-                                        echo wp_trim_words( get_field('short_description'), 15, ' ' );
-                                     } else {
-
-                                        echo wp_trim_words( get_the_content(), 15, ' ' );
-                                     } ?>
-                                         
-                                        
+                                        <?php if (get_field('short_description', get_the_ID())){ 
+                                        echo wp_trim_words( get_field('short_description'), 15, '...' );
+                                        } else {
+                                        echo wp_trim_words( get_the_content(), 15, '...' );
+                                        } ?>
                                     </div>
-                                
-                             
-                                
-                            </div>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 <?php }

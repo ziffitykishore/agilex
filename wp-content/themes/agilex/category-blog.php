@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page Blog
+ * Template Name: Category Blog
  *
  * @package Agilex
  * @since Agilex 1.0
@@ -21,11 +21,57 @@ get_header(); ?>
       </div>
  </div>
 
-    <div class="blog-grid-wrap">
-        <div class="container">
-        <ul class="grid effect-8" id="grid">
 
-            <li class="blog-item">
+ <section id="primary" class="site-content">
+<div id="content" role="main">
+ 
+<?php 
+// Check if there are any posts to display
+if ( have_posts() ) : ?>
+ 
+<header class="archive-header">
+<h1 class="archive-title">Category: <?php single_cat_title( '', false ); ?></h1>
+ 
+ 
+<?php
+// Display optional category description
+ if ( category_description() ) : ?>
+<div class="archive-meta"><?php echo category_description(); ?></div>
+<?php endif; ?>
+</header>
+ 
+<?php
+ 
+// The Loop
+while ( have_posts() ) : the_post(); ?>
+<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+<small><?php the_time('F jS, Y') ?> by <?php the_author_posts_link() ?></small>
+ 
+<div class="entry">
+<?php the_content(); ?>
+ 
+ <p class="postmetadata"><?php
+  comments_popup_link( 'No comments yet', '1 comment', '% comments', 'comments-link', 'Comments closed');
+?></p>
+</div>
+ 
+<?php endwhile; 
+ 
+else: ?>
+<p>Sorry, no posts matched your criteria.</p>
+ 
+ 
+<?php endif; ?>
+</div>
+</section>
+
+    <div class="blog-wrap">
+        <div class="container">
+            <div class="blog-inner-section row">
+            <div class="col-sm-9 blog-grid-sec">
+        <ul class="grid effect-8 row" id="grid">
+
+            <li class="blog-item col-sm-6 col-md-4">
                  <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -44,7 +90,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/candle.png"/>
@@ -63,7 +109,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -82,7 +128,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -101,7 +147,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -120,7 +166,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -139,7 +185,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -158,7 +204,7 @@ get_header(); ?>
             </div> 
         </div> 
     </li>
-    <li class="blog-item">
+    <li class="blog-item col-sm-6 col-md-4">
         <div class="blog-inner">
             <div class="blog-image">
                 <img src="/wp-content/uploads/2018/05/natural_Ingredients_02.jpg"/>
@@ -179,13 +225,15 @@ get_header(); ?>
     </li>
 
         </ul>
-            
+        </div>
+        <?php get_sidebar(); ?>
+        </div>
         </div>
     </div>
 
 
 
-<?php get_sidebar(); ?>
+
 
 
     <style>
@@ -194,7 +242,7 @@ get_header(); ?>
 .grid {
     
     list-style: none;
-    margin: 30px auto;
+    
     padding: 0;
     color: #fff;
 }
@@ -206,10 +254,9 @@ get_header(); ?>
 }
 
 .grid li {
-    display: block;
-    float: left;
-    padding: 15px;
-    width: 33%;
+ 
+    padding-top: 15px;
+    padding-bottom: 15px;
     opacity: 0;
 }
 

@@ -326,7 +326,7 @@ class CF7_Material_Design
         if ( $label !== '' ) {
             ?>
 				<label class="cf7md-label cf7md-label--static"><?php 
-            echo  ( $is_required ? $label . '*' : $label ) ;
+            echo  ( $is_required ? $label : $label ) ;
             ?></label>
 			<?php 
         }
@@ -489,7 +489,7 @@ class CF7_Material_Design
         if ( $label !== '' ) {
             ?>
 				<label class="cf7md-label cf7md-label--static"><?php 
-            echo  ( $is_required ? $label . '*' : $label ) ;
+            echo  ( $is_required ? $label : $label ) ;
             ?></label>
 			<?php 
         }
