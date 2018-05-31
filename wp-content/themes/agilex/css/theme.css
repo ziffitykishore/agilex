@@ -2211,13 +2211,14 @@ nav.main-navigation {
 
 .nav-tabs li a {
     color: #767676;
-    font-weight: bold;
-    font-size: 14px;
+    font-weight: 600;
+    font-size: 13px;
     display: block;
     float: left;
     text-decoration: none;
     text-transform: uppercase;
     padding-bottom: 20px;
+    font-family: 'Lato', sans-serif;
 }
 
 .nav-tabs li a:hover {
@@ -3347,12 +3348,13 @@ html {
     list-style-type: disc;
 }
 
-.feature-title {
+.sub-category .feature-title {
     text-transform: uppercase;
     color: #174a7a;
-    font-size: 16px;
+    font-size: 22px;
     margin-bottom: 20px;
-    font-weight: bold;
+    font-weight: 400;
+    font-family: 'Lato', sans-serif;
 }
 
 .related-categories-wrap {
@@ -3423,11 +3425,11 @@ html {
     left: 0;
     right: 0;
     padding: 10px;
+    font-family: 'Lato', sans-serif;
     text-align: center;
     text-transform: uppercase;
     color: #fff;
-    text-transform: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
 }
 
