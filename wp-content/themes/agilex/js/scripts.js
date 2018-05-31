@@ -23,6 +23,7 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
+    $('body').addClass('loading');
 
     $('select').niceSelect();
 
@@ -33,7 +34,7 @@ function myFunction() {
           jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr('href')).offset().top - header }, 500, 'linear');
       });
 
-      $('body').addClass('loading');
+      
       jQuery(window).on('load', function() {
 
           jQuery('.loader').removeClass('scale');
