@@ -23,7 +23,7 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
-    $('body').addClass('loading');
+    
 
     $('select').niceSelect();
 
@@ -39,7 +39,7 @@ function myFunction() {
 
           jQuery('.loader').removeClass('scale');
 
-          $('body').removeClass('loading');
+          $('body').addClass('page-loaded');
       });
 
 
@@ -269,11 +269,11 @@ function myFunction() {
 
 bgSource('#hero-slider .slider-blk');
 
-bgSource('#what-we-do .categories-blk');
+bgSource('.sub-service-wrap .categories-blk');
 
 bgSource('.news-sec-blk .image-sec');
 
-bgSource('.news-sec-blk .image-sec');
+
 
 bgSource('.no-touch .sub-category .image-sec');
 

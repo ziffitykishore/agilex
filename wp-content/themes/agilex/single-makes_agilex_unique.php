@@ -53,8 +53,9 @@ if($tabdetails) { ?>
       <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
         <div id="tab-<?php echo $i; ?>" class="tab-pane fade <?php echo ($i == 1) ? "active": '';?> in">
        
-          <div class="tab-inner flex-sec">
-            <div class="effect-milo flex-sm-100 flex-50 <?php if(empty($tabdetail["tab-sec-image"])) { echo "hidden" ;} ?>">
+          <div class="tab-inner flex-sec effect-milo border-efx">
+            <div class="image-wrap flex-sm-100 flex-50 <?php if(empty($tabdetail["tab-sec-image"])) { echo "hidden" ;} ?>">
+            <div class="border-ani"></div>
               <div class="image-sec">
               <?php if($tabdetail["tab-sec-image"]) { ?>
               <img src="<?php echo wp_get_attachment_url($tabdetail["tab-sec-image"]); ?>" alt="<?php echo $tabdetail["tab-sec-title"]; ?>" class="visible-xs-block"/>
