@@ -1,11 +1,12 @@
 <?php
 /**
- * Template Name: Page What We Do
+ * Template Name: Single What We Do
  *
  * @package Agilex
  * @since Agilex 1.0
  */
 get_header(); ?>
+<div class="main-banner-wrap">
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
 <div class="main-banner">
         <?php if ($featured_img_url){ ?>
@@ -13,13 +14,15 @@ get_header(); ?>
         <?php } else  { ?>
           <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
         <?php }?>
+        </div>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
          <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
         </div>     
-      </div>
+      
  </div>
+        </div>
 
 <div class="page-content-wrap" id="page-content">
   <div class="container">
@@ -85,12 +88,12 @@ if($query->have_posts()){ ?>
 <div class="related-categories-wrap wow fadeInUp">
   <div class="container">
   <div class="related-categories-innner flex-sec">
-<?php 
+<?php $delay=0;
 while ( $query->have_posts() ) { $query->the_post(); ?>
-  <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20">
+  <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20 wow fadeInUp"  data-wow-delay="<?php echo $delay; ?>s">
   <a href="<?php echo get_permalink() ?>" class="img-sec">
     <figure>
-      
+
   <?php if (get_field('thumb_image', get_the_ID())){ ?>
       <?php $image = get_field('thumb_image'); ?>
       <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
@@ -101,7 +104,7 @@ while ( $query->have_posts() ) { $query->the_post(); ?>
   </figure>
   </a>
   </div>
-<?php } ?>
+<?php  $delay+=0.2; } ?>
   </div>
   </div>
 </div>

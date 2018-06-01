@@ -231,11 +231,12 @@ $unique_arg_query->the_post();  ?>
                     'order' => 'ASC'
                 );
                 $agilex_whatwe_query = new WP_Query($whatArgs);
-                while ($agilex_whatwe_query->have_posts()) {
+                $delay = 0;
+                while ($agilex_whatwe_query->have_posts()) { 
                     $agilex_whatwe_query->the_post();
                     $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
                     ?>
-                    <div class="col-xs-6 col-sm-6 col-md-4  wow fadeInUp">
+                    <div class="col-xs-6 col-sm-6 col-md-4  wow fadeInUp" data-wow-delay="<?php echo $delay; ?>s" >
                         <div class="thumbnail">
                             <a href="<?php echo get_permalink() ?>">
                                 <div class="img-sec">
@@ -259,7 +260,7 @@ $unique_arg_query->the_post();  ?>
                             </a>
                         </div>
                     </div>
-                <?php }
+                <?php $delay+=0.2;}
                 /* Restore original Post Data */
                 wp_reset_postdata();
                 ?>
