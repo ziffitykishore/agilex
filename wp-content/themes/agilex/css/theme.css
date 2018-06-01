@@ -1110,6 +1110,10 @@ div.container {
     z-index: 2;
 }
 
+.home .header-container {
+    position: fixed;
+}
+
 .header-container {
     display: inline-block;
     padding: 17px 30px;
