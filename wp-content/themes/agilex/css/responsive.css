@@ -7,6 +7,10 @@
         position: relative;
         z-index: 10;
     }
+    .nav-tabs li a {
+        padding-left: 34px;
+        padding-right: 34px;
+    }
 }
 
 @media screen and (max-width: 1366px) {
@@ -136,6 +140,13 @@
 }
 
 @media only screen and (min-width:992px) {
+    .related-categories-wrap .category-blk {
+        flex: 0 0 18%;
+        width: 18%;
+    }
+}
+
+@media only screen and (min-width:992px) {
     .search-open .search-form {
         width: 450px;
     }
@@ -176,6 +187,7 @@
     }
     .uniques-inner .content-wrap {
         padding-left: 132px;
+        top: 70px;
     }
     .seconday-image {
         position: absolute;

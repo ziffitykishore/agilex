@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page What We Do
+ * Template Name: Page What Makes Agilex Unique
  *
  * @package Agilex
  * @since Agilex 1.0
@@ -24,7 +24,7 @@ get_header(); ?>
  </div>
         </div>
 
-<div class="sub-service-wrap" id="what-we-do">
+<div class="sub-service-wrap" id="agilex-unique">
   <div class="container">
     <div class="page-desc margin-top--70 wow fadeInUp">
     <?php
@@ -41,7 +41,7 @@ get_header(); ?>
     <div class="container">
       <div class="categories-inner-wrap">
         <?php $testi_args = array(
-        'post_type' => 'what_we_do',
+        'post_type' => 'makes_agilex_unique',
         'posts_per_page' => -1,
         'post_status' => 'publish',
         'order_by' => 'date',
@@ -60,7 +60,7 @@ get_header(); ?>
                                     <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
                                 <?php } ?>
             <div class="categories-content  wow fadeInUp">
-            <a href="<?php echo get_permalink() ?>"><h2><?php echo the_Title(); ?></h2></a>
+              <h2><a href="<?php echo get_permalink() ?>"><?php echo the_Title(); ?></a></h2>
               <div class="short-desc">
               <?php echo wp_trim_words( get_the_content(), 35, '...' ); ?>
               </div>

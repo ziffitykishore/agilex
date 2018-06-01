@@ -6,21 +6,25 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
-    <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
-    <div class="main-banner" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-size: cover;">
-        <img src="<?php echo $featured_img_url; ?>" class="hidden" alt="" />
-        <div class="page-header-content">
-            <div class="container">
-                <h1>
-                    <?php echo the_Title(); ?>
-                </h1>
-                <p>
-                    <?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?>
-                </p>
-            </div>
+<div class="main-banner-wrap">
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
+<div class="main-banner">
+        <?php if ($featured_img_url){ ?>
+        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+        <?php } else  { ?>
+          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+        <?php }?>
         </div>
-    </div>
+        <div class="page-header-content">
+       <div class="container">
+         <h1><?php echo the_Title(); ?></h1>
+         <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
+        </div>     
+      
+ </div>
+        </div>
 
+        
     <div class="curated-news-wrap" id="curated-news">
         <div class="container">
             <div class="margin-top--70 pad-70 white-bg curated-news-inner">
@@ -42,7 +46,11 @@ get_header(); ?>
 
                     <div class="news-sec-inner">
                         <div class="news-sec-blk flex-sec border-efx effect-milo">
-                            <div class="image-sec  flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_01.jpg" alt=""/></div>
+                            <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
+                                <div class="image-sec">
+                                    <img src="/wp-content/uploads/2018/05/curated_news_01.jpg" alt=""/>
+                                </div>
+                            </div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
                                 <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
@@ -59,7 +67,11 @@ get_header(); ?>
                             
                         </div>
                         <div class="news-sec-blk flex-sec border-efx effect-milo">
-                            <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_02.jpg" alt=""/></div>
+                        <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
+                                <div class="image-sec">
+                                    <img src="/wp-content/uploads/2018/05/curated_news_02.jpg" alt=""/>
+                                </div>
+                            </div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
                                 <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
@@ -76,7 +88,11 @@ get_header(); ?>
                             
                         </div>
                         <div class="news-sec-blk flex-sec border-efx effect-milo">
-                            <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div><img src="/wp-content/uploads/2018/05/curated_news_03.jpg" alt=""/></div>
+                        <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
+                                <div class="image-sec">
+                                    <img src="/wp-content/uploads/2018/05/curated_news_03.jpg" alt=""/>
+                                </div>
+                            </div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
                                 <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
@@ -93,8 +109,11 @@ get_header(); ?>
                             
                         </div>
                         <div class="news-sec-blk flex-sec border-efx effect-milo">
-                            <div class="image-sec flex-xs-100 flex-50"><div class="border-ani"></div>
-                              <img src="/wp-content/uploads/2018/05/curated_news_04.jpg" alt="" /></div>
+                        <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
+                                <div class="image-sec">
+                                    <img src="/wp-content/uploads/2018/05/curated_news_04.jpg" alt=""/>
+                                </div>
+                            </div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
                                 <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
