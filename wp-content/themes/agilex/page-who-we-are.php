@@ -7,20 +7,23 @@
  */
 get_header(); ?>
 
+<div class="main-banner-wrap">
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
 <div class="main-banner">
-    <?php if ($featured_img_url){ ?>
-      <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
-    <?php } else  { ?>
-      <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
-    <?php }?>
-  <div class="page-header-content">
-    <div class="container">
-      <h1><?php echo the_Title(); ?></h1>
-      <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
-    </div>     
-  </div>     
-</div>
+        <?php if ($featured_img_url){ ?>
+        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+        <?php } else  { ?>
+          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+        <?php }?>
+        </div>
+        <div class="page-header-content">
+       <div class="container">
+         <h1><?php echo the_Title(); ?></h1>
+         <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
+        </div>     
+      
+ </div>
+        </div>
 
 
 
@@ -162,7 +165,7 @@ $history_arg_query = new WP_Query($history_args);
 while ($history_arg_query->have_posts()) {
 $history_arg_query->the_post(); 
 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>    
-<div class="our-history pos-rel text-center margin-30 wow fadeInUp" style="background: url('<?php echo $featured_img_url; ?>') no-repeat center center; background-attachment: fixed; background-size: cover; padding: 50px 0;">
+<div class="our-history pos-rel text-center margin-30 wow fadeInUp" style="background-image: url('<?php echo $featured_img_url; ?>'); padding: 50px 0;">
 <div class="our-history-outer">
 <img src="/wp-content/uploads/2018/05/our_history_parallex.jpg" style="display: none;"/> 
 <div class="container">

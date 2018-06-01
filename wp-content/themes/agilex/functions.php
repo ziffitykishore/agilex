@@ -1716,13 +1716,26 @@ function update_post_gallery( $post_id, $post_object )
 }
 
 
-
-/**
- * Add automatic image sizes
- */
-if ( function_exists( 'add_image_size' ) ) { 
-	add_image_size( 'post-feature-img', 770, 120, true ); //(cropped)
-	add_image_size( 'member-img', 200, 200, false ); //(scaled)
-	add_image_size( 'people-img', 360, 360, true ); //(cropped)
-	add_image_size( 'related-img', 180, 180, true ); //(cropped)
+function m1_customize_register( $wp_customize ) {
+    $wp_customize->add_setting( 'm1_logo' ); // Add setting for logo uploader
+         
+    // Add control for logo uploader (actual uploader)
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'm1_logo', array(
+        'label'    => __( 'White Logo', 'm1' ),
+        'section'  => 'title_tagline',
+        'settings' => 'm1_logo',
+    ) ) );
 }
+add_action( 'customize_register', 'm1_customize_register' );
+
+function fav_customize_register( $wp_customize ) {
+    $wp_customize->add_setting( 'fav_icon' ); // Add setting for logo uploader
+         
+    // Add control for logo uploader (actual uploader)
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'fav_icon', array(
+        'label'    => __( 'Fav Icon', 'm1' ),
+        'section'  => 'title_tagline',
+        'settings' => 'fav_icon',
+    ) ) );
+}
+add_action( 'customize_register', 'fav_customize_register' );

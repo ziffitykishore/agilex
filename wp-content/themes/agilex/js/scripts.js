@@ -392,20 +392,76 @@ bgSource('.main-banner');
       
   }); /*  click() scroll top End */
 
-  //HEADER SHADOW ---------------------------------------------------------------------/
-  var animatedHeader = false,
-      header = $(".header-container"),
-      headerOffset = header.offset().top;
 
+/* Main Banner */
+
+var introSection = $('.main-banner'),
+introSectionHeight = introSection.height(),
+//change scaleSpeed if you want to change the speed of the scale effect
+scaleSpeed = 0.3,
+//change opacitySpeed if you want to change the speed of opacity reduction effect
+opacitySpeed = 1; 
+
+//update this value if you change this breakpoint in the style.css file (or _layout.scss if you use SASS)
+var MQ = 1170;
+
+triggerAnimation();
+$(window).on('resize', function(){
+triggerAnimation();
+});
+
+//bind the scale event to window scroll if window width > $MQ (unbind it otherwise)
+function triggerAnimation(){
+if($(window).width()>= MQ) {
+    $(window).on('scroll', function(){
+        //The window.requestAnimationFrame() method tells the browser that you wish to perform an animation- the browser can optimize it so animations will be smoother
+        window.requestAnimationFrame(animateIntro);
+    });
+} else {
+    $(window).off('scroll');
+    introSection.css({ 'transform' : 'none', 'opacity' : '' });
+}
+}
+//assign a scale transformation to the introSection element and reduce its opacity
+function animateIntro () {
+var scrollPercentage = ($(window).scrollTop()/introSectionHeight).toFixed(5),
+    scaleValue = 1 - scrollPercentage*scaleSpeed;
+//check if the introSection is still visible
+if( $(window).scrollTop() < introSectionHeight) {
+    introSection.css({
+        '-moz-transform': 'scale(' + scaleValue + ') translateZ(0)',
+        '-webkit-transform': 'scale(' + scaleValue + ') translateZ(0)',
+        '-ms-transform': 'scale(' + scaleValue + ') translateZ(0)',
+        '-o-transform': 'scale(' + scaleValue + ') translateZ(0)',
+        'transform': 'scale(' + scaleValue + ') translateZ(0)',
+        'opacity': 1 - scrollPercentage*opacitySpeed
+    });
+}
+}
+
+
+  //HEADER SHADOW ---------------------------------------------------------------------/
+  function headerSticky(){
+      var header = $(".header-container"),
+      headerOffset = header.offset().top;
+    headerHeight = header.outerHeight();
+
+    if($('body').hasClass('home') != 1){
+       // $('.main-content').css('margin-top', headerHeight);
+    }
+      
   $(window).scroll(function() {
-      if ($(window).scrollTop() > headerOffset) {
+      if ($(window).scrollTop() > 100) {
           header.addClass("header-sticky");
       } else {
           header.removeClass("header-sticky");
-          header.removeClass("header-top");
+          
       }
   });
+  }
 
+  headerSticky();
+  $(window).on('resize', headerSticky);
 
 function sliderHover(element){
   $(element).mouseover(function(){
@@ -454,7 +510,7 @@ sliderHover('.affiliate-thumb');
   var wow = new WOW({
       boxClass: 'wow', 
       animateClass: 'animated', 
-      offset: 150, 
+      offset: 100, 
       mobile: true,
       live: true, 
      
@@ -616,7 +672,7 @@ $(".no-touch .project").hover3d({
 
 $(window).on('load', function(){
     if (jQuery().niceScroll) {
-        $("html").niceScroll({
+        $(".no-touch body").niceScroll({
   
           scrollspeed: 100,
           cursorcolor: "#174a7a",
@@ -671,6 +727,9 @@ function checkScrollBar(status) {
     }
     
 }
+
+
+ 
 
 
 var responsiveflag = false;
