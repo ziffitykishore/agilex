@@ -671,7 +671,7 @@ $(".no-touch .project").hover3d({
 
 $(window).on('load', function(){
     if (jQuery().niceScroll) {
-        $("html").niceScroll({
+        $(".no-touch body").niceScroll({
   
           scrollspeed: 100,
           cursorcolor: "#174a7a",
