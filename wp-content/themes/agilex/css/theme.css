@@ -1089,12 +1089,6 @@ div.container {
 
 /* header Styles */
 
-.home .header-container {
-    position: absolute;
-    width: 100%;
-    z-index: 99;
-}
-
 .main-header {
     background: #fff;
     position: relative;
@@ -1106,15 +1100,14 @@ div.container {
     padding: 17px 30px;
     width: 100%;
     transition: all 0.5s ease 0s;
+    position: fixed;
+    top: 0;
+    z-index: 99;
 }
 
 .header-sticky {
-    position: fixed !important;
-    top: 0px;
     background: #174a7a;
-    z-index: 99;
     box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.5);
-    animation: stickHeader 0.8s ease-in-out alternate;
 }
 
 @keyframes stickHeader {
@@ -1178,12 +1171,28 @@ header .right-block {
     background: #174a79;
 }
 
-.header-sticky .contact-wrap a {
+home .contact-wrap a {
     border-color: #fff;
     color: #fff;
 }
 
-.header-sticky .contact-wrap a:hover {
+.contact-wrap a {
+    border-color: #174a79;
+    color: #174a79;
+}
+
+.header-sticky .contact-wrap a,
+.home .contact-wrap a {
+    border-color: #fff;
+    color: #fff;
+}
+
+.home .contact-wrap a:before {
+    background: #fff;
+}
+
+.header-sticky .contact-wrap a:hover,
+.home .contact-wrap a:hover {
     color: #174a79;
 }
 
@@ -1197,6 +1206,10 @@ header .right-block {
     font-size: 18px;
     color: #174a7a;
     position: relative;
+}
+
+.home .search-wrap a {
+    color: #fff;
 }
 
 .search-wrap a {
@@ -1519,7 +1532,10 @@ form#searchform {
 
 .header-sticky .hamburger-inner,
 .header-sticky .hamburger-inner:after,
-.header-sticky .hamburger-inner:before {
+.header-sticky .hamburger-inner:before,
+.home .hamburger-inner,
+.home .hamburger-inner:after,
+.home .hamburger-inner:before {
     background-color: #fff;
 }
 
@@ -2069,7 +2085,7 @@ nav.main-navigation {
     padding: 0;
     width: 25px;
     height: 2px;
-    background-color: #174b7d;
+    background-color: #192a3e;
     position: relative;
     top: 50%;
     -webkit-transform: translateY(-50%);
@@ -2078,7 +2094,8 @@ nav.main-navigation {
 }
 
 .dots-bar .slick-dots li.slick-active button {
-    background-color: #fff;
+    background: #174a79;
+    height: 4px;
 }
 
 .dots-bar .slick-dots li button::before {
@@ -2101,6 +2118,7 @@ nav.main-navigation {
     background: transparent;
     text-align: center;
     line-height: 32px;
+    color: #fff;
 }
 
 .main-content .slider-homepage .social-links-sec a+a {
@@ -2108,8 +2126,17 @@ nav.main-navigation {
 }
 
 .slider-homepage .social-links-sec a:hover {
-    background: #174a7a;
-    color: #fff;
+    background: #fff;
+    color: #174a7a;
+}
+
+.slider-homepage .dots-bar .slick-dots li button {
+    background: #fff;
+}
+
+.slider-homepage .dots-bar .slick-dots li.slick-active button {
+    height: 4px;
+    background: #fff;
 }
 
 .scroll-down {
@@ -2122,7 +2149,7 @@ nav.main-navigation {
     text-align: center;
     bottom: 90px;
     height: 66px;
-    color: #174a79;
+    color: #fff;
     -webkit-animation: sdb04 2s infinite;
     animation: sdb04 2s infinite;
     width: 46px;
@@ -2139,7 +2166,7 @@ nav.main-navigation {
     width: 100%;
     content: '';
     height: 28px;
-    border: 2px solid #535353;
+    border: 2px solid #fff;
     position: absolute;
     margin: auto;
     left: 0;
@@ -2848,9 +2875,16 @@ p+p {
 
 /* Inner Pages */
 
-.main-banner {
+.main-banner-wrap {
     position: relative;
-    min-height: 450px;
+    height: 450px;
+    background: #192a3e;
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.main-banner {
+    height: 100%;
+    width: 100%;
 }
 
 .main-banner:before {
@@ -3016,17 +3050,17 @@ p+p {
     z-index: 1;
 }
 
-.history-content {
+.our-history .history-content {
     margin-bottom: 50px;
     color: #fff;
     line-height: 30px;
 }
 
-.history-content p {
+.our-history .history-content p {
     color: #fff;
 }
 
-.history-content p+p {
+.our-history .history-content p+p {
     margin-top: 30px;
 }
 
