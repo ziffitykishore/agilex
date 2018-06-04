@@ -227,7 +227,7 @@
      * @since 2.0
      */
     function wprss_show_feed_item_custom_columns( $column, $post_id ) {
-
+        $description = get_post_meta( $post_id, 'wprss_item_description', true);
         switch ( $column ) {
             case "permalink":
                 $url = get_post_meta( $post_id, 'wprss_item_permalink', true);
@@ -247,38 +247,22 @@
                 echo $source;
                 break;
             case "description":
-                $description = get_post_meta( $post_id, 'wprss_item_description', true);
-                //echo $description;
-                $start = strpos($description,'<figure>');
-                $end = strpos($description,'</figure>');
-                $image = substr($description, $start, $end);
-                $len = strlen($description);
-                $desc = substr($description, $end, $len);
-                if($desc){
-                $desc = esc_attr( wp_trim_words( $desc, 55) );
-                    echo $desc;
-                }
+                $desc = esc_attr( wp_trim_words( $description, 55) );
+                echo $desc;
                 break;
             case 'image':
-            $description = get_post_meta( $post_id, 'wprss_item_description', true);
-            $start = strpos($description,'<figure>');
-            $end = strpos($description,'</figure>');
-            $image = substr($description, $start, $end);
-            if ($image) {
+            if(preg_match('/<img/', $description)) {
                 // here's the actual work being done:
                 $doc = new DOMDocument();
-                $doc->loadHTML($image);
+                $doc->loadHTML($description);
                 foreach($doc->getElementsByTagName('img') as $img)
                 {
-                   $img->setAttribute('width','100px');
-                   $img->setAttribute('height','auto');
-                }
-                foreach($doc->getElementsByTagName('figure') as $fig){
-                   $fig->setAttribute('style', 'margin:0;');
+                   $imgSrc = $img->getAttribute('src');
                 }
                 $image = $doc->saveHTML();
-                echo $image;
-            }
+               ?>
+                <img src="<?php echo $imgSrc; ?>" class="" alt="" width="100px" height="auto"/>
+            <?php  }
             else { ?>
                 <img src="<?php bloginfo('template_directory'); ?>/images/image-placeholder.png" class="" alt=""/>
             <?php }

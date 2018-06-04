@@ -601,8 +601,9 @@
 	function wprss_items_insert_post_meta( $inserted_ID, $item, $feed_ID, $permalink, $enclosure_url ) {
 		update_post_meta( $inserted_ID, 'wprss_item_permalink', $permalink );
 		update_post_meta( $inserted_ID, 'wprss_item_enclosure', $enclosure_url );
-		$desc = $item->get_description();
-		$description = esc_attr( wp_trim_words( $desc, 80) );
+		$desc= $item->get_description();
+		$description = substr($desc, 0, 200);
+		//$description = esc_attr( wp_trim_words( $desc, 80) );
 		$author = $item->get_author();
 		if ( $author ) {
 			update_post_meta( $inserted_ID, 'wprss_item_author', $author->get_name() );

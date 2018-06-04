@@ -431,8 +431,8 @@ class WPRSS_SimplePie_File extends SimplePie_File {
 					$this->headers = explode( "\r\n\r\n", $this->headers, $info['redirect_count'] + 1 );
 					$this->headers = array_pop( $this->headers );
 					$parser = new SimplePie_HTTP_Parser( $this->headers );
-					//echo "<pre>";
-					//print_r($parser);
+					// echo "<pre>";
+					// print_r($parser);
 					if ( $parser->parse() ) {
 						$this->headers = $parser->headers;
 						$this->body = trim( $parser->body );
