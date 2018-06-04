@@ -46,6 +46,7 @@ if (is_front_page()) { ?>
         <div class="container">
         <?php $args = array(
 'name' => 'what-makes-agilex-unique',
+'post_type' => 'page',
 'post_status'     => 'publish'
 ); 
 $unique_arg_query = new WP_Query($args);
@@ -53,7 +54,7 @@ while ($unique_arg_query->have_posts()) {
 $unique_arg_query->the_post();  ?>
         <div class="heading">
         <a href="<?php echo get_permalink() ?>"><div class="heading-title"><?php echo the_Title(); ?></div></a>
-                <div class="sub-heading"><?php echo get_the_excerpt();?></div>
+                <div class="sub-heading"><?php echo wp_trim_words( get_the_content(), 100, '' ); ?></div>
             </div>
 <?php } ?>
             <div class="uniques-inner">
@@ -89,16 +90,12 @@ $unique_arg_query->the_post();  ?>
                                 <?php if (get_field('primary_image', get_the_ID())){ ?>
                                     <?php $image = get_field('primary_image'); ?>
                                     <img class="primary-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-                                <?php } else { ?>
-                                    <img  class="primary-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
-                                    <?php } ?>
+                                <?php }  ?>
                                 </figure>
                                 <?php if (get_field('secondary_image', get_the_ID())){ ?>
                                     <?php $image = get_field('secondary_image'); ?>
                                     <img class="seconday-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-                                <?php } else { ?>
-                                    <img  class="seconday-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
-                                    <?php } ?>
+                                <?php }  ?>
                             </div>
                                 </div>
                         </div>
@@ -130,6 +127,7 @@ $unique_arg_query->the_post();  ?>
     /** Who We Are Section -- Start **/ ?>
     <?php $who_args = array(
         'name' => 'who-we-are',
+        
         'post_status'     => 'publish'
     );
     $who_we_are_query = new WP_Query($who_args);
@@ -198,7 +196,7 @@ $unique_arg_query->the_post();  ?>
 <img src="<?php echo $top_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="360" data-ps-horizontal-position="0"/>
 <img src="<?php echo $bottom_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
 <img src="<?php echo $bottom_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="50" data-ps-horizontal-position="75%"/>
-<img src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="360" data-ps-horizontal-position="85%"/>
+<img src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
       
     
     </section>
@@ -210,6 +208,7 @@ $unique_arg_query->the_post();  ?>
         <div class="container">
         <?php $args = array(
             'name' => 'what-we-do',
+            'post_type' => 'page',
             'post_status'     => 'publish'
             ); 
             $unique_arg_query = new WP_Query($args);
@@ -217,7 +216,7 @@ $unique_arg_query->the_post();  ?>
             $unique_arg_query->the_post();  ?>
                     <div class="heading text-center">
                             <a href="<?php echo get_permalink() ?>"><div class="heading-title"><?php echo the_Title(); ?></div></a>
-                            <div class="sub-heading"><?php echo get_the_excerpt();?></div>
+                            <div class="sub-heading"><?php echo wp_trim_words( get_the_content(), 100, '' ); ?></div>
                         </div>
             <?php } ?>
             <div class="grid-content row">
