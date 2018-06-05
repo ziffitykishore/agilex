@@ -63,10 +63,8 @@ else {
 echo '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>';
 }?>
 <?php if (get_field('learn_more_text')){ ?>
-<a href="#" class="btn-more"><?php the_field('learn_more_text'); ?></a>
-<?php } else { ?>
-<a href="#" class="btn-more">Learn More</a>
-<?php } ?>
+<a href="#" class="btn-more btn-blue btn-door btn-md btn"><?php the_field('learn_more_text'); ?></a>
+<?php }  ?>
 </div>
 </div>
 </div>
@@ -120,15 +118,12 @@ the_post_thumbnail('full');
 <div class="exe-name"><?php echo the_Title(); ?></div>
 <?php if (get_field('linkedin-link')){ ?>
 <a href="<?php the_field('linkedin-link'); ?>" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
-<?php } else { ?>
-<a href="#" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
 <?php } ?>
-<div class="exe-pos">
+
 <?php if (get_field('executive_position')){ ?>
-<?php the_field('executive_position'); ?>
-<?php } else { echo 'Lorem Ipsum' ?>
+  <div class="exe-pos"><?php the_field('executive_position'); ?></div>
 <?php } ?>
-</div>
+
 </div>
 <div class="exe-desc">
 <?php echo the_Content(); ?>
@@ -177,9 +172,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <?php echo the_Content(); ?>
 <?php if (get_field('learn_more_text')){ ?>
 <a href="<?php echo get_permalink() ?>" class="text-uppercase btn btn-lg btn-more btn-ripple btn-door"><?php the_field('learn_more_text'); ?></a>
-<?php } else { ?>
-<a href="#" class="text-uppercase btn btn-lg btn-more btn-ripple btn-door">Learn More</a>
-<?php } ?>
+<?php }  ?>
 </div>
 </div>
 </div>
@@ -191,34 +184,43 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 
 
 <div class="affiliations-wrap  margin-30 wow fadeInUp">
-<div class="container">
-<div class="heading text-center">
-<div class="heading-title">Our Affiliations</div>
-<div class="sub-heading">Nesciunt tofu stumptown aliqua retro synth master cleanse</div>
-</div>
-<div class="affiliations-outer" id="affiliate-slider">
-<?php $testi_args = array(
-'post_type' => 'affiliation',
-'posts_per_page' => -1,
-'post_status' => 'publish',
-'order_by' => 'date',
-'order' => 'ASC'
-);
-$agilex_test_query = new WP_Query($testi_args); ?>
-<?php 
-while ($agilex_test_query->have_posts()) {
-$agilex_test_query->the_post();
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
-<div class="affiliate-thumb hover_ani">
-<?php if ( has_post_thumbnail() ) {
-the_post_thumbnail('full');
-} else { ?>
-<img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php the_title(); ?>" />
-<?php } ?>
-</div>
-<?php }?>
-</div>
-</div>
+  <div class="container">
+    <?php $args = array(
+    'name' => 'our-affiliations',
+    'post_type' => 'page',
+    'post_status'     => 'publish'
+    ); 
+    $unique_arg_query = new WP_Query($args);
+    while ($unique_arg_query->have_posts()) {
+      $unique_arg_query->the_post();  ?>
+      <div class="heading text-center">
+        <div class="heading-title"><?php echo the_Title(); ?></div>
+        <div class="sub-heading"><?php  echo get_the_excerpt();?></div>
+      </div>
+    <?php } ?>
+    <div class="affiliations-outer" id="affiliate-slider">
+      <?php $testi_args = array(
+      'post_type' => 'affiliation',
+      'posts_per_page' => -1,
+      'post_status' => 'publish',
+      'order_by' => 'date',
+      'order' => 'ASC'
+      );
+      $agilex_test_query = new WP_Query($testi_args); ?>
+    <?php 
+    while ($agilex_test_query->have_posts()) {
+      $agilex_test_query->the_post();
+      $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+        <div class="affiliate-thumb hover_ani">
+          <?php if ( has_post_thumbnail() ) {
+            the_post_thumbnail('full');
+          } else { ?>
+            <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php the_title(); ?>" />
+          <?php } ?>
+        </div>
+    <?php }?>
+    </div>
+  </div>
 </div>
 
 

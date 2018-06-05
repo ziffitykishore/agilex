@@ -161,6 +161,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ), '3.3.0', true );
     wp_enqueue_script( 'html5shiv-js', get_template_directory_uri() . '/js/html5shiv.js', array( 'jquery' ), '3.7.2' );
     wp_enqueue_script( 'modernizr-js', get_template_directory_uri() . '/js/modernizr.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'color-js', get_template_directory_uri() . '/js/jquery.color-2.1.2.min.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'ie-10-viewport-bug-workaround-js', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.js', array( 'jquery' ), '3.3.0', true );
     wp_enqueue_script( 'respond-js', get_template_directory_uri() . '/js/respond.js', array( 'jquery' ), '1.4.2' );
     wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/js/slick.js', array( 'jquery' ), '', true );
@@ -1739,3 +1740,26 @@ function fav_customize_register( $wp_customize ) {
     ) ) );
 }
 add_action( 'customize_register', 'fav_customize_register' );
+
+
+
+
+/**
+ * Custom Search Form of Blog section
+ * @param string $form
+ * @param string $value
+ * @param string $post_type
+ * @return string
+ */
+function customSearchForm( $form, $value = "Search", $post_type = 'post', $cat = null ) {
+    $form_value = (isset($value)) ? $value : attribute_escape(apply_filters('the_search_query', get_search_query()));
+    $form = '<form method="get" id="searchform" action="' . get_option('home') . '/" >
+    <div>
+        <input type="hidden" name="post_type" value="'.$post_type.'" />
+        <input type="hidden" name="cat" value="'.$cat.'" />
+        <input type="text" value="" name="s" id="s" />
+        <input type="submit" id="searchsubmit" value="'.attribute_escape(__('Search')).'" />
+    </div>
+    </form>';
+    return $form;
+}
