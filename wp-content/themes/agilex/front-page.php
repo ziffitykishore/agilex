@@ -138,7 +138,7 @@ $unique_arg_query->the_post();  ?>
             <div class="heading-title"><?php echo the_Title(); ?></div>
         </a>
         <?php if(get_the_excerpt()) {?>
-        <div class="sub-heading"></div>
+        <div class="sub-heading"><?php echo get_the_excerpt(); ?></div>
     <?php } ?>
     </div>
 

@@ -30,15 +30,11 @@
   </div>
 </div>
 
-      <div class="row">
-
-        <div class="col-sm-8 blog-main">
-
+        <div class="main-content-wrapper"> 
+          <div class="container">
           <?php get_template_part( 'loop', 'page' ); ?>
-
-        </div><!-- /.blog-main -->
-
-        <?php get_sidebar(); ?>
+      </div>
+        
 
       </div><!-- /.row -->
       

@@ -58,9 +58,9 @@ if($tabdetails) { ?>
             <div class="border-ani"></div>
               <div class="image-sec">
               <?php if($tabdetail["tab-image"]) { ?>
-              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-image"]); ?>" alt="<?php echo $tabdetail["tab-title"]; ?>" class="visible-xs-block"/>
+              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-image"]); ?>" alt="<?php echo $tabdetail["tab-title"]; ?>"/>
               <?php } else {?>
-                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="Agilex Fragrances" class="visible-xs-block"/>
+                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="Agilex Fragrances" />
               <?php }?>
               </div>
             </div>
