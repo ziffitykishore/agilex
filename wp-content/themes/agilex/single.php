@@ -25,16 +25,20 @@
   </div>
 </div>
 
-      <div class="row">
+<div class="page-content">
+<div class="container">
+      
 
-        <div class="col-sm-8 blog-main">
+        <div class="blog-main">
 
           <?php get_template_part( 'loop', 'single' ); ?>
 
         </div><!-- /.blog-main -->
 
-        <?php get_sidebar(); ?>
+        <?php //get_sidebar(); ?>
 
-      </div><!-- /.row -->
+      
+      </div>
+      </div>
       
 	<?php get_footer(); ?>

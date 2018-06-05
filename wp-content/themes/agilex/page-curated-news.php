@@ -53,6 +53,10 @@ get_header(); ?>
                             </div>
                             
                             <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
+                            <?php
+                                $rssFeeds = do_shortcode('[wp-rss-aggregator]'); 
+                                echo $rssFeeds; 
+                            ?>
                                 <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
                                 <div class="news-desc">
                                   <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,</p>
