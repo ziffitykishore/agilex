@@ -61,9 +61,9 @@ if($tabdetails) { ?>
             <div class="border-ani"></div>
               <div class="image-sec">
               <?php if($tabdetail["tab-sec-image"]) { ?>
-              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-sec-image"]); ?>" alt="<?php echo $tabdetail["tab-sec-title"]; ?>" class="visible-xs-block"/>
+              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-sec-image"]); ?>" alt="<?php echo $tabdetail["tab-sec-title"]; ?>"/>
               <?php } else {?>
-                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="" class="visible-xs-block"/>
+                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt=""/>
               <?php }?>
               </div>
             </div>
