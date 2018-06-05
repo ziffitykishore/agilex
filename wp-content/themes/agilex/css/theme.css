@@ -717,7 +717,6 @@ img,
 .effect-milo .image-sec {
     max-width: none;
     /* width: -webkit-calc(100% + 60px); */
-    width: calc(100% + 60px);
     opacity: 1;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
@@ -1128,6 +1127,8 @@ div.container {
     animation: stickHeader 0.5s forwards 0s alternate;
 }
 
+.touch .header-sticky {}
+
 .home .header-sticky {}
 
 @keyframes stickHeader {
@@ -1493,7 +1494,7 @@ form#searchform {
 
 .cd-nav-trigger {
     position: relative;
-    z-index: 15;
+    z-index: 10;
     display: inline-block;
     vertical-align: middle;
 }
@@ -1731,9 +1732,7 @@ form#searchform {
     background-color: currentColor
 }
 
-.cd-nav .cd-primary-nav {
-    margin-top: 60px
-}
+.cd-nav .cd-primary-nav {}
 
 .cd-nav .cd-primary-nav a.selected {
     color: #fff
@@ -1900,6 +1899,9 @@ nav.main-navigation {
 .footer-wrap {
     padding-top: 50px;
     background: #fff;
+    box-shadow: inset 0px 2px 10px -2px rgba(0, 0, 0, 0.5), inset -10px -15px 0px 20px #fff;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-wrap .footer-kick-module {
@@ -2207,7 +2209,8 @@ nav.main-navigation {
     transition: all 0.5s ease 0s;
 }
 
-.scroll-down:hover {
+.scroll-down:hover,
+.scroll-down:focus {
     color: #fff;
 }
 
@@ -3072,6 +3075,7 @@ p+p {
     width: 100%;
     color: #fff;
     text-align: center;
+    z-index: 5;
 }
 
 .page-header-content h1 {
@@ -3535,6 +3539,11 @@ html {
 .sub-category .content-wrap {
     padding: 60px;
     background: #f3f6f9;
+}
+
+.sub-category .image-sec img {
+    height: 100%;
+    width: 100%;
 }
 
 .sub-category .feature-desc {
@@ -4036,7 +4045,7 @@ html {
 }
 
 .page-template-page-contact-us .main-content {
-    box-shadow: none;
+    margin-bottom: 50px !important;
     box-shadow: none;
 }
 
@@ -4191,24 +4200,24 @@ div.nice-select:after {
     margin-top: 30px;
 }
 
-.address-section {
-    background: -moz-linear-gradient(125deg, #3a90e8 0, rgba(0, 0, 0, 0.8) 100%);
+.contact-form-sec .address-section {
+    background: -moz-linear-gradient(125deg, #3a90e8 0, #174a7a 100%);
     /* FF3.6+ */
-    background: -webkit-gradient(linear, 125deg, color-stop(0, 1301FE), color-stop(100%, F4F60C));
+    background: -webkit-gradient(linear, 125deg, color-stop(0, #3a90e8), color-stop(100%, #174a7a));
     /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(125deg, #3a90e8 0, rgba(0, 0, 0, 0.8) 100%);
+    background: -webkit-linear-gradient(125deg, #3a90e8 0, #174a7a 100%);
     /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(125deg, #3a90e8 0, rgba(0, 0, 0, 0.8) 100%);
+    background: -o-linear-gradient(125deg, #3a90e8 0, #174a7a 100%);
     /* Opera 11.10+ */
-    background: -ms-linear-gradient(125deg, #3a90e8 0, rgba(0, 0, 0, 0.8) 100%);
+    background: -ms-linear-gradient(125deg, #3a90e8 0, #174a7a 100%);
     /* IE10+ */
-    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#1301FE', endColorstr='#F4F60C', GradientType='1');
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#3a90e8', endColorstr='#174a7a', GradientType='1');
     /* for IE */
-    background: linear-gradient(125deg, #3a90e8 0, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(125deg, #3a90e8 0, #174a7a 100%);
     /* W3C */
 }
 
-.address-section>* {
+.contact-form-sec .address-section>* {
     color: #fff;
 }
 
@@ -4289,6 +4298,118 @@ div.nice-select:after {
 .address-section .social-links a:hover {
     background: #fff;
     color: #174a7a;
+}
+
+
+/* Page How We do It Starts */
+
+.page-template-page-how-we-do .main-banner {
+    position: relative;
+    z-index: 2;
+}
+
+.cd-icons-filling .img-blk img {
+    display: block;
+}
+
+#how-we-work .cd-icons-filling {
+    margin: 0px auto 0;
+    /* hide ::after pseudo element - fix for Edge 15 and below */
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 58px;
+    padding-top: 0;
+}
+
+.cd-icons-filling:before,
+.cd-icons-filling:after {
+    position: absolute;
+    content: '';
+    background: #fff;
+    height: 70px;
+    width: 100%;
+    z-index: 1;
+}
+
+.cd-icons-filling:before {
+    top: 0;
+    display: none;
+}
+
+.cd-icons-filling:after {
+    bottom: 0;
+}
+
+.cd-icons-filling .before-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 70px;
+    width: 210px;
+}
+
+.cd-icons-filling .content-detail {
+    padding-top: 68px;
+    padding-bottom: 68px;
+    background: #fff;
+}
+
+.cd-icons-filling li:last-of-type .content-detail {
+    padding-bottom: 0;
+}
+
+.cd-service {
+    position: relative;
+    z-index: 2;
+    min-height: 50px;
+}
+
+.cd-service .heading {
+    margin-bottom: 0;
+}
+
+.cd-service .heading .heading-title {
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.cd-icons-filling .content-desc {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.cd-icons-filling .content-desc p {
+    font-size: 13px;
+    line-height: normal;
+    text-align: justify;
+}
+
+.cd-icons-filling .before-bg .inner-elment {
+    /* the 2 underneath colored sections */
+    /* fix flickering on Edge 15 and below */
+    color: transparent;
+    position: absolute;
+    /* trick to remove flickering on resize */
+    width: inherit;
+    right: auto;
+    height: 50vh;
+    z-index: -1;
+}
+
+.cd-icons-filling .before-bg .top-bg {
+    /* fix bug - ::before element visible before starting scrolling */
+    top: 0;
+    background-color: #174a7a;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+}
+
+.cd-icons-filling .before-bg .bottom-bg {
+    top: 50%;
+    background-color: #e5e5e5;
 }
 
 
