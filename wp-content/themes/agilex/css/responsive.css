@@ -1,6 +1,6 @@
 @media screen and (min-width: 1367px) {
     .cd-nav .cd-navigation-wrapper {
-        width: 350px;
+        width: 320px;
     }
     .sub-category {
         margin-top: -50px;
@@ -8,8 +8,11 @@
         z-index: 10;
     }
     .nav-tabs li a {
-        padding-left: 34px;
-        padding-right: 34px;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+    .what-we-do {
+        margin-top: 60px;
     }
 }
 
@@ -186,7 +189,6 @@
         margin-bottom: 2.4em
     }
     .uniques-inner .content-wrap {
-        padding-left: 132px;
         top: 70px;
     }
     .seconday-image {
@@ -271,9 +273,7 @@
     .footer-copy p {
         font-size: 10px;
     }
-    .uniques-inner .content-wrap {
-        padding-left: 25px;
-    }
+    .uniques-inner .content-wrap {}
     .contact-form .wpcf7-form .mdc-layout-grid__cell:not(.cf7md-submit) {
         width: 100% !important;
     }

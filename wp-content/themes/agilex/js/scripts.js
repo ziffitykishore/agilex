@@ -318,6 +318,10 @@ bgSource('.main-banner');
 
   /* Magic line floating effects */
 
+
+
+ 
+
   var $el,
       leftPos,
       newWidth,
@@ -326,28 +330,51 @@ bgSource('.main-banner');
       $mainNav.append("<span id='magic-line'></span>");
       var $magicLine = $("#magic-line");
 
+      $("#myTabs li.active").each(function(){
+        var activeElm = $(this).find('a'),
+        color= activeElm.attr('rel');
+        activeElm.css('color', color);
+        $magicLine.css('background-color', color);
+        linkId = activeElm.attr('id');
+        $magicLine.addClass(linkId);
+  });
+      
+
+
       $magicLine
           .width($(".active").width())
           .css("left", $(".active a").position().left)
           .data("origLeft", $magicLine.position().left)
-          .data("origWidth", $magicLine.width());
+          .data("origWidth", $magicLine.width())
+          .data("origColor", $(".active a").attr("rel"));
 
+          
       $("#myTabs li a").hover(
           function() {
               $el = $(this);
+              $el.parent().siblings().find('a').removeAttr('style');
+              linkId = $el.attr('id');
+              $el.css('color', $el.attr("rel"));
               leftPos = $el.position().left;
               newWidth = $el.parent().width();
+              $magicLine.removeClass();
+              $magicLine.addClass(linkId);
+              
               $magicLine.stop().animate({
                   left: leftPos,
-                  width: newWidth
+                  width: newWidth,
+                  backgroundColor: $el.attr("rel")
+
               });
-          }
-          /* , function() {
-                      $magicLine.stop().animate({
-                          left: $magicLine.data("origLeft"),
-                          width: $magicLine.data("origWidth")
-                      });
-                  } */
+          }   , function() {
+                        $el.removeAttr('style');
+                       $magicLine.stop().animate({
+                          /* left: $magicLine.data("origLeft"),
+                          width: $el.parent().width(),  */
+                          backgroundColor: $el.attr("rel")
+
+                      }); 
+                  }  
       );
   }
 
@@ -463,24 +490,6 @@ if( $(window).scrollTop() < introSectionHeight) {
   headerSticky();
   $(window).on('resize', headerSticky);
 
-function sliderHover(element){
-  $(element).mouseover(function(){
-    $(element).removeClass("js_active").addClass("no_active");
-    $(this).removeClass( "no_active").addClass("js_active");
-}).mouseout(function(){
-    $(element).removeClass( "no_active").removeClass("js_active");
-});
-}
-
-
-sliderHover('.affiliate-thumb');
-
-
-
- 
-
-
-
 
   /* Fancybox load */
 
@@ -510,7 +519,7 @@ sliderHover('.affiliate-thumb');
   var wow = new WOW({
       boxClass: 'wow', 
       animateClass: 'animated', 
-      offset: 100, 
+      offset: 0, 
       mobile: true,
       live: true, 
      
@@ -678,7 +687,8 @@ $(window).on('load', function(){
           cursorcolor: "#174a7a",
           cursorborder: "1px solid #174a7a",
             autohidemode: false,
-            horizrailenabled: false
+            horizrailenabled: false,
+            zindex: 99
         });
     } 
 });
@@ -729,6 +739,8 @@ function checkScrollBar(status) {
 }
 
 
+
+
  
 
 
@@ -754,7 +766,20 @@ function responsiveResize() {
 
 
     responsiveResize();
-	$(window).resize(responsiveResize);
+    $(window).resize(responsiveResize);
+    
+
+    function sliderHover(element){
+        $(element).mouseover(function(){
+          $(element).removeClass("js_active").addClass("no_active");
+          $(this).removeClass( "no_active").addClass("js_active");
+      }).mouseout(function(){
+          $(element).removeClass( "no_active").removeClass("js_active");
+      });
+      }
+      
+      
+      sliderHover('.affiliate-thumb');
 
 })(jQuery);
 
