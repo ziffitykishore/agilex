@@ -73,45 +73,94 @@ $pageargs = array(
             <?php /**Search Form */
             $cat_id = $category->cat_ID; ?>
         <?= customSearchForm(null, 'Search', 'post', $cat_id ); ?>
-        <?php /**Recent Posts**/?>
+            <?php /**Recent Posts**/?>
+
            <?php $catquery = new WP_Query([
                'cat' => $category->cat_ID,
                'posts_per_page' => 5 ]); ?>
-            <h3>Recent Posts</h3>
-            <ul>
-                <?php while($catquery->have_posts()) : $catquery->the_post(); ?>
-                <li>
-                    <?php /* if (has_post_thumbnail( $post->ID ) ): ?>
-                        <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>">
-                            <?php the_post_thumbnail('thumbnail'); ?></a>
-                    <?php endif; */ ?>
-                    <h3><a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><?php the_Title(); ?></a></h3>
-                    <!-- <span>Date: <?php the_date('d M, Y'); ?></span> -->
-                </li>
-                <?php endwhile; ?>
-            </ul>
-        <?php wp_reset_postdata(); ?>
-        <?php /**Popular Posts**/?>
-           <?php $catPopular = new WP_Query([
+            <?php /**Popular Posts**/?>
+                 <?php $catPopular = new WP_Query([
                'cat' => $category->cat_ID,
                'posts_per_page' => 5 ]);  ?>
+            
+            <ul class="nav nav-tabs">
+                 <li class="active" role="presentation"><a href="#recent" role="tab" data-toggle="tab">Recent Posts</a></li>
+                 <li role="presentation"><a href="#popular" role="tab" data-toggle="tab">Popular Posts</a></li>
+           </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="recent">
+                <?php if ( have_posts() ) : ?>
+                    <ul>
+                        <?php while($catquery->have_posts()) : $catquery->the_post(); ?>
+                        <li>
+                            <?php  if (has_post_thumbnail( $post->ID ) ): ?>
+                                <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>">
+                                    <?php the_post_thumbnail('thumbnail'); ?></a>
+                            <?php endif;  ?>
+                            <h3><a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><?php the_Title(); ?></a></h3>
+                            <!-- <span>Date: <?php //the_date('d M, Y'); ?></span> -->
+                        </li>
+                        <?php endwhile; ?>
+                    </ul>
+                    <?php else: ?>
+                    <p>Sorry, no posts matched your criteria.</p>
+                    <?php endif; ?>
+                </div>
+                <div class="tab-pane fade in" id="popular">
+                <?php if ( have_posts() ) : ?>
+                    <ul>
+                    <?php while($catPopular->have_posts()) : $catPopular->the_post();
+                        if (get_post_meta( $post->ID, '_li_love_count', true) > 0) { ?>
+                        <li>
+                            <?php if (has_post_thumbnail( $post->ID ) ): ?>
+                                <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>">
+                                    <?php the_post_thumbnail('featured-small'); ?></a>
+                            <?php endif;  ?>
+                            <h3><a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><?php the_Title(); ?></a></h3>
+                            <!-- <span>Date: <?php the_date('d M, Y'); ?></span> -->
+                        </li>
+
+                        <?php } endwhile; ?>
+                    </ul>
+                    <?php else: ?>
+                    <p>Sorry, no posts matched your criteria.</p>
+                    <?php endif; ?>
+                   
+                </div>
+           </div>
+           
+                
+   
+         
             <h3>Popular Posts</h3>
             <ul>
-                <?php while($catPopular->have_posts()) : $catPopular->the_post();
-                if (get_post_meta( $post->ID, '_li_love_count', true) > 0) { ?>
-                <li>
-                    <?php /*if (has_post_thumbnail( $post->ID ) ): ?>
-                        <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>">
-                            <?php the_post_thumbnail('thumbnail'); ?></a>
-                    <?php endif; */ ?>
-                    <h3><a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><?php the_Title(); ?></a></h3>
-                    <!-- <span>Date: <?php the_date('d M, Y'); ?></span> -->
-                </li>
-
-                <?php } endwhile; ?>
+                
             </ul>
         <?php wp_reset_postdata(); ?>
+
+
+<div class="categories">
+    <h2>categories</h2>
+    <ul>
+    <?php
+                $args = array(
+  'orderby' => 'name',
+  'parent' => '5',
+  'taxonomy' => 'category',
+  'hide_empty' => 1 ,
+  'number' => '5'
+  );
+$categories = get_categories( $args );
+$content='';
+foreach ( $categories as $category ) { ?>
+    <li><a href="<?php echo get_category_link( $category->term_id ); ?>"><?php echo $category->name; ?></a></li>
+    
+<?php } ?>
+                </ul>
+
                 </div>
+
         <?php //get_sidebar(); ?>
         </div>
     </div>

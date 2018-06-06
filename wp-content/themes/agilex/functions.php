@@ -1763,3 +1763,16 @@ function customSearchForm( $form, $value = "Search", $post_type = 'post', $cat =
     </form>';
     return $form;
 }
+
+
+// Register the three useful image sizes for use in Add Media modal
+add_filter( 'image_size_names_choose', 'wpshout_custom_sizes' );
+function wpshout_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'medium-width' => __( 'Medium Width' ),
+        'medium-height' => __( 'Medium Height' ),
+        'medium-something' => __( 'Medium Something' ),
+    ) );
+}
+
+add_image_size( 'featured-small', 50, 50, true );

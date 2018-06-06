@@ -1108,6 +1108,7 @@ div.container {
 }
 
 .home .header-container {
+    background: transparent;
     position: fixed;
 }
 
@@ -1117,7 +1118,12 @@ div.container {
     width: 100%;
     transition: all 0.5s ease 0s;
     top: 0;
+    background: #fff;
     z-index: 99;
+}
+
+.no-sticky {
+    top: -100%;
 }
 
 .header-sticky {
@@ -1796,7 +1802,7 @@ nav.main-navigation {
     display: block;
     padding-left: 0;
     font-size: 18px;
-    padding: 12px 0px 12px 0;
+    padding: 8px 0px 8px 0;
     transition: all 0.5s ease-in-out 0s;
 }
 
@@ -3051,6 +3057,26 @@ p+p {
     box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
+.main-banner-wrap:before {
+    position: absolute;
+    height: 150px;
+    top: -150px;
+    width: 100%;
+    content: '';
+    background: #fff;
+    z-index: 9;
+}
+
+.main-banner-wrap:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: #192a3e;
+}
+
 .main-banner {
     height: 100%;
     width: 100%;
@@ -3521,6 +3547,7 @@ p+p {
 
 html {
     height: 100%;
+    overflow-x: hidden;
 }
 
 .mCS-minimal-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -4315,7 +4342,7 @@ div.nice-select:after {
 #how-we-work .cd-icons-filling {
     margin: 0px auto 0;
     /* hide ::after pseudo element - fix for Edge 15 and below */
-    overflow: hidden;
+    overflow: hiddhtmlen;
     position: relative;
     padding-bottom: 58px;
     padding-top: 0;

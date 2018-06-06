@@ -12,14 +12,14 @@
     </div><!-- /.container -->
 
     <footer class="footer-wrap">
-        <div class="footer-content wow fadeInUp">
+        <div class="footer-content">
             <div class="container">
                 <?php if (is_active_sidebar('footer-kick-area')) : ?>
                     <?php dynamic_sidebar('footer-kick-area'); ?>
                 <?php endif; ?>
             </div>
         </div>
-        <div class="footer-contact wow fadeInUp">
+        <div class="footer-contact">
             <div class="container">
                 <div class="row">
                     <div class="footer-contact-us col-sm-6">
