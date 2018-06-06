@@ -7,9 +7,22 @@
  */
 
   get_header(); ?>
-  
+<?php  $slugs = explode('/', get_query_var('category_name'));
+        $currentCategory = get_category_by_slug('/'.end($slugs));
+	$category = &get_category($currentCategory->category_parent);
+    if($category->slug == 'blog' ) { ?>
+        <?php
+            $args = array(
+
+                'post_type' => 'page',
+                'name' => 'blog'
+            );
+            $blog_query = new WP_Query($args);
+            $blog_query->have_posts();
+            $blog_query->the_post();
+    } ?>
   <div class="main-banner-wrap">
-    <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
+    <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     <div class="main-banner">
         <?php if ($featured_img_url){ ?>
             <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
@@ -20,23 +33,18 @@
     <div class="page-header-content">
         <div class="container">
             <h1><?php echo the_Title(); ?></h1>
-            <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
-        </div>     
+            <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>
+        </div>
     </div>
-</div>
+    </div>
+    <?php $loopCategory = 'loop';
+    if($category->slug == 'blog' ) {
+        $loopCategory = 'loop_category';
+    }
+    get_template_part( $loopCategory, 'category' ); ?>
 
-      <div class="row">
+    <!-- /.blog-main -->
+    <?php get_sidebar('category'); ?>
 
-        <div class="col-sm-8 blog-main">
 
-          <h1><?php printf( __( 'Category Archives: %s', 'bootstrapcanvaswp' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?></h1>
-		  <hr />
-		  <?php get_template_part( 'loop', 'category' ); ?>
-
-        </div><!-- /.blog-main -->
-
-        <?php get_sidebar(); ?>
-
-      </div><!-- /.row -->
-      
 	<?php get_footer(); ?>
