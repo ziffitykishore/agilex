@@ -47,6 +47,20 @@ function myFunction() {
       });
 
 
+      var field = $('.search_input'),
+      placeholdertext = field.attr('placeholder');
+  
+      field.bind('onblur', function() {
+          if (field.text() === '') {
+              field.text(placeholdertext);
+          }
+      });
+  
+      field.bind('onfocus', function() {
+          if (field.text() === '') {
+              field.text(placeholdertext);
+          }
+      });
 
       $("#searchsubmit, #commentform #submit").addClass("btn btn-default");
       $(
@@ -914,6 +928,10 @@ function responsiveResize() {
       
       
       sliderHover('.affiliate-thumb');
+
+      var socialShare = $('.social_sharing-content');
+      var shareWidth = socialShare.outerWidth();
+      socialShare.css('width', shareWidth);
 
 })(jQuery);
 

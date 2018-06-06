@@ -7,7 +7,7 @@
         position: relative;
         z-index: 10;
     }
-    .nav-tabs li a {
+    .nav-tabs.responsive li a {
         padding-left: 35px;
         padding-right: 35px;
     }

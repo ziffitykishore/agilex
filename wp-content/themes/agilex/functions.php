@@ -1753,12 +1753,14 @@ add_action( 'customize_register', 'fav_customize_register' );
  */
 function customSearchForm( $form, $value = "Search", $post_type = 'post', $cat = null ) {
     $form_value = (isset($value)) ? $value : attribute_escape(apply_filters('the_search_query', get_search_query()));
-    $form = '<form method="get" id="searchform" action="' . get_option('home') . '/" >
-    <div>
+    $form = '<form method="get" id="searchform" autocomplete="off" action="' . get_option('home') . '/" >
+    <div class="input-group">
         <input type="hidden" name="post_type" value="'.$post_type.'" />
         <input type="hidden" name="cat" value="'.$cat.'" />
-        <input type="text" value="" name="s" id="s" />
-        <input type="submit" id="searchsubmit" value="'.attribute_escape(__('Search')).'" />
+        <input type="text" class="search_input" value="" name="s" id="s" placeholder="Enter Search Keyword" />
+        <span class="input-group-btn">
+            <button type="submit" id="searchsubmit"><i class="fa fa-search"></i></button>
+        </span>
     </div>
     </form>';
     return $form;
