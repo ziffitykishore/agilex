@@ -23,7 +23,11 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
-    
+    /* browser detection */
+
+    if (navigator.userAgent.match(/msie/i) || navigator.userAgent.match(/trident/i) ){
+        $("html").addClass("ie");
+    }
 
     $('select').niceSelect();
 
@@ -43,6 +47,20 @@ function myFunction() {
       });
 
 
+      var field = $('.search_input'),
+      placeholdertext = field.attr('placeholder');
+  
+      field.bind('onblur', function() {
+          if (field.text() === '') {
+              field.text(placeholdertext);
+          }
+      });
+  
+      field.bind('onfocus', function() {
+          if (field.text() === '') {
+              field.text(placeholdertext);
+          }
+      });
 
       $("#searchsubmit, #commentform #submit").addClass("btn btn-default");
       $(
@@ -474,21 +492,68 @@ if( $(window).scrollTop() < introSectionHeight) {
     headerHeight = header.outerHeight();
 
     if($('body').hasClass('home') != 1){
-       // $('.main-content').css('margin-top', headerHeight);
+     //$('.main-content').css('margin-top', headerHeight);
     }
       
   $(window).scroll(function() {
-      if ($(window).scrollTop() > 150) {
-          header.addClass("header-sticky");
-      } else {
-          header.removeClass("header-sticky");
-          
-      }
+      
   });
   }
 
   headerSticky();
   $(window).on('resize', headerSticky);
+
+
+
+
+// Hide Header on on scroll down
+var didScroll;
+var lastScrollTop = 0;
+var delta = 0;
+var navbarHeight = $('.header-container').outerHeight();
+
+function headerStick(){
+$(window).scroll(function(event){
+    didScroll = true;
+    if(jQuery('.header-container').offset().top == 0){
+        
+    }
+});
+}
+
+headerStick();
+$(window).on('resize', headerStick);
+setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 500);
+
+function hasScrolled() {
+    var st = $(this).scrollTop();
+    
+    // Make sure they scroll more than delta
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    // If they scrolled down and are past the navbar, add class .nav-up.
+    // This is necessary so you never see what is "behind" the navbar.
+    if(st===0){
+        $('.header-container').removeClass('header-sticky');
+    } else {
+    if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('.header-container').removeClass('header-sticky').addClass('no-sticky');
+    } else {
+        // Scroll Up
+        if(st + $(window).height() < $(document).height()) {
+            $('.header-container').removeClass('no-sticky').addClass('header-sticky');
+        }
+    }}
+    
+    lastScrollTop = st;
+}
 
 
   /* Fancybox load */
@@ -681,7 +746,7 @@ $(".no-touch .project").hover3d({
 
 $(window).on('load', function(){
     if (jQuery().niceScroll) {
-        $(".no-touch body").niceScroll({
+        $("html.no-touch").niceScroll({
   
           scrollspeed: 100,
           cursorcolor: "#174a7a",
@@ -863,6 +928,10 @@ function responsiveResize() {
       
       
       sliderHover('.affiliate-thumb');
+
+      var socialShare = $('.social_sharing-content');
+      var shareWidth = socialShare.outerWidth();
+      socialShare.css('width', shareWidth);
 
 })(jQuery);
 

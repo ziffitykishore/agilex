@@ -7,7 +7,7 @@
         position: relative;
         z-index: 10;
     }
-    .nav-tabs li a {
+    .nav-tabs.responsive li a {
         padding-left: 35px;
         padding-right: 35px;
     }
@@ -143,8 +143,14 @@
     }
 }
 
+@media only screen and (min-width:992px) and (max-width:1100px) {
+    .cd-icons-filling .content-detail {
+        padding-top: 60px;
+    }
+}
+
 @media only screen and (min-width:992px) {
-    .related-categories-wrap .category-blk {
+    .ie .related-categories-wrap .category-blk {
         flex: 0 0 18%;
         width: 18%;
     }

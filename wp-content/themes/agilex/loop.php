@@ -19,7 +19,7 @@
 ?>
 	  <?php 
 	  /* Start the Loop */
-	  if (have_posts()) : while (have_posts()) : the_post(); 
+	  if (have_posts()) : while (have_posts()) : the_post();
 	  $date_format = get_option( 'date_format' );
 	  ?>
       <div class="blog-post" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -43,7 +43,7 @@
         <p class="blog-post-meta"><span class="glyphicon glyphicon-calendar"></span> <?php the_time( $date_format ) ?> by <span class="glyphicon glyphicon-user"></span> <?php the_author_link() ?></p>
         <?php endif; ?>
 
-        <?php 
+        <?php
 		/* Include the post format-specific template for the content. If you want to
 		 * this in a child theme then include a file called called content-___.php
 		 * (where ___ is the post format) and that will be used instead.
@@ -62,12 +62,12 @@
         ?>
         <p class="blog-post-meta">
         <?php if ( is_single() ) : ?>
-        <span class="glyphicon glyphicon-folder-open"></span> Posted in <?php the_category(', ') ?> 
+        <span class="glyphicon glyphicon-folder-open"></span> Posted in <?php the_category(', ') ?>
         <strong>|</strong>
-        <?php endif; ?> 
+        <?php endif; ?>
         <?php if ( is_user_logged_in() ) : ?>
-        <?php edit_post_link(__( 'Edit', 'bootstrapcanvaswp' ),'<span class="glyphicon glyphicon-pencil"></span> ','<strong> |</strong>'); ?> 
-        <?php endif; ?> 
+        <?php edit_post_link(__( 'Edit', 'bootstrapcanvaswp' ),'<span class="glyphicon glyphicon-pencil"></span> ','<strong> |</strong>'); ?>
+        <?php endif; ?>
         <span class="glyphicon glyphicon-comment"></span> <?php comments_popup_link( __( 'No Comments', 'bootstrapcanvaswp' ), __( '1 Comment', 'bootstrapcanvaswp' ), __( '% Comments', 'bootstrapcanvaswp' ) ); ?></p>
         <?php if ( has_tag() ) : ?>
           <p class="blog-post-meta"><span class="glyphicon glyphicon-tags"></span> <?php the_tags( __( 'Tags: ', 'bootstrapcanvaswp' ) ); ?></p>
@@ -79,9 +79,9 @@
       -->
       <?php endwhile; ?>
 
-      <?php 
-	  global $wp_query; 
-	  if ( $wp_query->max_num_pages > 1 ) : 
+      <?php
+	  global $wp_query;
+	  if ( $wp_query->max_num_pages > 1 ) :
 	  ?>
       <nav>
         <ul class="pager">
@@ -90,7 +90,7 @@
         </ul>
       </nav>
       <?php endif; ?>
-      
+
       <?php else : ?>
         <?php if ( current_user_can( 'edit_posts' ) ) :
 			// Show a different message to a logged-in user who can add posts.
