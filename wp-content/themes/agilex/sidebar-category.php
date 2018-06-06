@@ -93,3 +93,4 @@
     ?>
 
 <?php /**Instagram Feed */
+echo do_shortcode('[instagram-feed showfollow=false showbio=false showheader=false]'); ?>

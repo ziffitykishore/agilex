@@ -27,7 +27,8 @@
                                             <a href="#"><i class="fa fa-comment-o"></i> <span class="comments-count"> <?php
                                             echo get_comments_number();
                                             ?></span></a>
-                                            <a href="#"><i class="fa fa-share"></i></a>
+                                            <a href="#" class="social_sharing_click"><i class="fa fa-share"></i></a>
+                                            <div class="social_sharing" ><?php echo do_shortcode('[wp_social_sharing]'); ?></div>
                                         </div>
                                     </div>
                                 </div>
