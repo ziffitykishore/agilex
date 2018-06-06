@@ -37,14 +37,16 @@
         </div>
     </div>
     </div>
-    <?php $loopCategory = 'loop';
+    <?php
     if($category->slug == 'blog' ) {
-        $loopCategory = 'loop_category';
-    }
-    get_template_part( $loopCategory, 'category' ); ?>
+        get_template_part( 'loop_category', 'category' );
+        get_sidebar('category');
+    } else {
+        get_template_part( 'loop', 'category' );
+    ?>
 
     <!-- /.blog-main -->
-    <?php get_sidebar('category'); ?>
+    <?php get_sidebar('category'); } ?>
 
 
 	<?php get_footer(); ?>
