@@ -156,7 +156,7 @@ $unique_arg_query->the_post();  ?>
                     <?php endif; ?> " 
                     data-fancybox-type="iframe" 
                     class="video-content" 
-                    style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: 100%;">
+                    style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: cover;">
                     <span  class="btn-fancy" > 
                         <span class="play-icon-block">
                             <span class="fa fa-play"></span>
