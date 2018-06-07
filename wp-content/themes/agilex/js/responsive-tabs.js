@@ -182,10 +182,18 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				var panelGroup = $( e.currentTarget ).closest( '.panel-group.responsive' );
 				$( panelGroup ).find( '.panel-body' ).removeClass( 'active' );
 				$( e.currentTarget ).find( '.panel-body' ).addClass( 'active' );
+				var $card = $(this).closest('.panel');
+		$('html,body').animate({
+		  scrollTop: $card.offset().top
+		}, 500);
 			}
 
 		} );
 	};
+
+	$('.collapse').on('shown.bs.collapse', function(e) {
+		
+	  });
 
 	$( window ).resize( function () {
 		fakewaffle.checkResize();
