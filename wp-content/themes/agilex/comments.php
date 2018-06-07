@@ -18,7 +18,7 @@ if ( post_password_required() ) {
 ?>
 
 <?php if ( comments_open() ) : ?>
-<hr />
+
 
 <div id="comments" class="comments-area">
 	

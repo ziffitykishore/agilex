@@ -76,7 +76,7 @@
                         <form role="search" autocomplete="off" method="get" id="searchform" class="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 
                             <label class="screen-reader-text" for="s"><?php _x( 'Search for:', 'label' ); ?></label>
-                            <input autofocus type="text" placeholder="Search..." value="<?php echo get_search_query(); ?>" name="s" id="search__input" />
+                            <input autofocus type="text" placeholder="Search..." value="" name="s" id="search__input" />
                             <!-- <input type="submit" id="searchsubmit" value="<?php echo esc_attr_x( 'Search', 'submit button' ); ?>" /> -->
                             <button type="submit" id="searchsubmit"><span class="sr-only">Search</span></button>
                             <span class="search__info">Hit enter to search or ESC to close</span>

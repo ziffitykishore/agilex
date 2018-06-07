@@ -210,7 +210,7 @@ $unique_arg_query->the_post();  ?>
     /* Restore original Post Data */
     wp_reset_postdata();
     /** Who We Are Section -- End * */ ?>
-    <section class="what-we-do">
+    <section class="what-we-do  wow fadeInUp">
         <div class="container">
         <?php $args = array(
             'name' => 'what-we-do',
