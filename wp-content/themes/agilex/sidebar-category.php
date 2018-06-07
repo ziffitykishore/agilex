@@ -55,7 +55,7 @@
                         'meta_key' => '_li_love_count',
                         'orderby' => 'meta_value',
                         'order' => 'DESC']); ?>
-                    
+
                     <ul class="sidebar-post">
                     <?php while ($catPopular->have_posts()) : $catPopular->the_post(); ?>
                         <li>
@@ -89,36 +89,35 @@
         'order_by' => 'date',
         'order' => 'ASC',
         'exclude' => $cat_id,
-        'hierarchical' => true
+        'hierarchical' => true,
+        'show_post_count' => true
     );
     $categories = get_categories($argsCat);
     $output = '';
     if (!empty($categories)) {
         echo __("Categories"); ?>
-    <ul> <?php
+    <?php
         foreach ($categories as $category) {
             $output .= '<li><a href="' . esc_url(get_category_link($category->term_id)) . '" alt="' . esc_attr(sprintf(__('View all posts in %s', 'textdomain'),
-                    $category->name)) . '">' . esc_html($category->name) . '</a></li>' ;
-    } ?>
-    </ul><?php
-    echo trim($output);
+                    $category->name)) . '">' . esc_html($category->name) . '</a><span>('.$category->count.')</li>' ;
+    }
+    echo "<ul>".trim($output)."</ul>";
 }
 ?>
 <?php /**Archives */
     $args = array(
-        'cat' => $cat_id,
         'type' => 'monthly',
-        'limit' => '',
         'format' => 'html',
-        'before' => '',
-        'after' => '',
         'show_post_count' => false,
         'echo' => 1,
         'order' => 'DESC',
         'post_type' => 'post'
     );
-    echo __("Archive");
-    wp_get_archives($args);
+    if (customArchievesLink($cat_id, $args)) {
+        echo __("Archive");
+        echo "<ul>".customArchievesLink($cat_id, $args)."</ul>";
+    }
+
     ?>
 
 <?php /**Instagram Feed */

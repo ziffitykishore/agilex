@@ -35,5 +35,4 @@ get_header(); ?>
     </div>
     <!-- Loop the post of categories blog -->
     <?php get_template_part( 'loop_category', 'category' ); ?>
-
 <?php get_footer(); ?>
