@@ -805,7 +805,11 @@ body {
 }
 
 .no-touch .page-loaded {
-    overflow: hidden;
+    overflow-y: auto;
+}
+
+.touch .page-loaded {
+    overflow-y: auto;
 }
 
 p {
@@ -1797,7 +1801,8 @@ form#searchform {
     right: 0;
     z-index: 35;
     top: 0;
-    background: #fff;
+    background: #fff no-repeat bottom center;
+    background-size: cover;
     -webkit-overflow-scrolling: touch;
     padding: 85px 55px 50px 35px;
     -webkit-backface-visibility: hidden;
@@ -2173,7 +2178,7 @@ nav.main-navigation {
     background: #fff;
     position: relative;
     transition: transform 0.5s;
-    box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.10);
+    /* box-shadow: 0px 10px 10px -8px rgba(0, 0, 0, 0.10); */
 }
 
 
@@ -3653,7 +3658,7 @@ html {
 }
 
 html.no-touch {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .mCS-minimal-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -4180,9 +4185,9 @@ html.no-touch {
 /* Contact us page */
 
 .page-template-page-lets-talk-fragrance .page-header-content {
-    -webkit-transform: translateY(-150%);
-    -moz-transform: translateY(-150%);
-    transform: translateY(-150%);
+    -webkit-transform: translateY(-300%);
+    -moz-transform: translateY(-300%);
+    transform: translateY(-300%);
 }
 
 .page-template-page-lets-talk-fragrance .main-content {
@@ -4192,6 +4197,7 @@ html.no-touch {
 
 .contact-form-sec .form-sec-inner {
     z-index: 5;
+    margin-bottom: 50px;
 }
 
 .page-template-page-lets-talk-fragrance footer.footer-wrap {
@@ -4694,35 +4700,59 @@ div.nice-select:after {
 .blog-grid-sec .blog-detail {
     padding: 15px 0;
     border-bottom: 1px solid #fff;
+    color: #999fa8;
+}
+
+.blog-detail-wrap {
+    color: #fff;
+}
+
+.main-banner-wrap .blog-detail-wrap {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 9;
+}
+
+.blog-detail-wrap .blog-detail {
     font-size: 12px;
     display: flex;
 }
 
-.blog-grid-sec .blog-detail .blog-year:before {
-    margin: 0 5px;
+.blog-detail-wrap .blog-detail .blog-year:before {
+    margin: 0 12px;
     width: 1px;
-    height: 100%;
+    height: 15px;
     content: '';
-    vertical-align: top;
+    vertical-align: middle;
     display: inline-block;
     background: #fff;
+    position: relative;
+    top: -1px;
 }
 
 .blog-grid-sec .blog-extras {
     padding: 15px 0;
 }
 
-.blog-grid-sec .blog-extras .extras-link {
+.blog-detail-wrap .blog-extras .extras-link {
     color: #fff;
     cursor: pointer;
 }
 
-.blog-grid-sec .blog-extras .comment-sec {
+.blog-detail-wrap .blog-extras .comment-sec {
     cursor: default;
 }
 
-.blog-grid-sec .blog-extras .extras-link+.extras-link {
+.blog-detail-wrap .blog-extras .extras-link+.extras-link {
     margin-left: 10px;
+}
+
+.main-banner-wrap .blog-detail-wrap .extras-link+.extras-link {
+    margin-left: 20px;
 }
 
 .blog-extras .social_sharing {
@@ -4733,14 +4763,19 @@ div.nice-select:after {
     position: absolute;
     background: #174a79;
     border-radius: 2px;
-    min-width: 130px;
+    min-width: 150px;
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease 0s;
-    right: -100px;
-    top: -100%;
-    padding: 2px;
+    left: -100px;
+    top: -120%;
+    padding: 5px 2px;
     border-radius: 2px;
+}
+
+.social_sharing-content .social-sharing {
+    display: flex;
+    justify-content: space-between;
 }
 
 .social_sharing-content .social-sharing a {
@@ -4749,7 +4784,7 @@ div.nice-select:after {
     height: auto;
     text-indent: 0;
     font-size: 0;
-    padding: 0 5px;
+    padding: 0 6px;
 }
 
 .social_sharing-content .social-sharing a:before {
@@ -4823,6 +4858,10 @@ div.nice-select:after {
 
 .sidebar-blog .stack-list li+li {
     padding-top: 15px;
+}
+
+.sidebar-blog .stack-list a {
+    text-transform: uppercase;
 }
 
 .sidebar-blog .box-shadow {
@@ -4928,9 +4967,103 @@ div.nice-select:after {
 
 .single-page-wrap .blog-post .blog-post-title,
 .single-page-wrap .blog-post .blog-post-meta,
-.single-page-wrap .blog-post .entry,
+.single-page-wrap .blog-post .social-sharing,
+.single-page-wrap .blog-post .love-it,
 .single-page-wrap .blog-post .comments-area {
     display: none
+}
+
+.single-page-wrap .single-content-inner {
+    box-shadow: 1px 1px 10px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 125px;
+}
+
+.single-page-wrap .single-content-inner .blog-post,
+.single-page-wrap .single-content-inner .entry {
+    margin-bottom: 0;
+}
+
+.single-page-wrap .single-content-inner h2,
+.single-page-wrap .single-content-inner h3,
+.single-page-wrap .single-content-inner h4,
+.single-page-wrap .single-content-inner h5,
+.single-page-wrap .single-content-inner h6 {
+    color: #174a79;
+}
+
+.single-page-wrap .single-content-inner p+p {
+    margin-top: 30px;
+}
+
+.author-details-outer {
+    max-width: 635px;
+    padding: 70px 30px 30px;
+    margin: 0 auto 20px;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.author-details-inner {
+    text-align: center;
+}
+
+.author-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.author-name {
+    color: #174a79;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    z-index: 10;
+    left: 0;
+    right: 0;
+    top: -50px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
+}
+
+.user-avatar img {
+    padding: 8px;
+}
+
+.single .pagination-wrap {
+    padding: 30px 0;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    margin: 50px 0px;
+}
+
+.pagination-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagination-inner .post-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    text-align: center;
+    line-height: 28px;
+}
+
+.pagination-inner .cat-link {
+    color: #6f6f6f;
+    line-height: 38px;
+    font-size: 38px;
 }
 
 

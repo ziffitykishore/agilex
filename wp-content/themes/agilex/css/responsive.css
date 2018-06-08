@@ -57,6 +57,13 @@
     }
 }
 
+@media screen and (max-width: 1360px) {
+    .single-page-wrap .single-content-outer {
+        margin: 0;
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 1200px) {
     .who-we-are .inner-content-wrap {
         padding: 65px 100px 0%
@@ -269,7 +276,7 @@
         vertical-align: middle;
     }
     .contact-form-sec .form-sec-inner {
-        margin-top: -250px;
+        margin-top: -300px;
     }
     .page-template-page-contact-us .page-header-content {
         -webkit-transform: translateY(-160%);
