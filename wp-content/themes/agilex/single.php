@@ -59,12 +59,12 @@
 <div class="author-details-wrap">
   <div class="container">
         <div class="author-details-outer">
-          <?php if(get_avatar_url()) {?>
+          
           <div class="user-avatar">
             
-            <img class="img-circle" src="<?php echo get_avatar_url(); ?>"/>
+              <i class="fa fa-user fa-4x"></i>
             </div>
-      <?php } ?>
+      
           <div class="author-details-inner">
               <div class="text-uppercase author-text">Author</div>
               <div class="author-name text-uppercase"><?php  the_author_meta( 'display_name', $postData[0]->post_author ) ?></div>
