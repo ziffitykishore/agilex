@@ -64,15 +64,4 @@
 </div>
 
 
-<script src="<?php echo get_template_directory_uri(); ?>/js/masonry.pkgd.min.js"></script>
-		<script src="<?php echo get_template_directory_uri(); ?>/js/imagesloaded.js"></script>
-		<script src="<?php echo get_template_directory_uri(); ?>/js/classie.js"></script>
-		<script src="<?php echo get_template_directory_uri(); ?>/js/AnimOnScroll.js"></script>
-<script>
-   new AnimOnScroll( document.getElementById( 'grid' ), {
-				minDuration : 0.4,
-				maxDuration : 0.6,
-				viewportFactor : 0.2
-			} );
-    </script>
 

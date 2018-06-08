@@ -96,7 +96,7 @@
 
         <div id="cd-nav" class="cd-nav">
             <div class="overlaybgDark"></div>
-        <div class="cd-navigation-wrapper">
+        <div class="cd-navigation-wrapper" style="background-image: url('<?php echo get_theme_mod( 'menu_bg' ); ?>')">
             <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
                 <div class="hamburger-box">
                     <div class="hamburger-inner"></div>

@@ -48,35 +48,64 @@
 <div class="single-page-wrap">
   <div class="container">
     <div class="single-content-outer col-sm-12 col-md-8 col-md-offset-2 margin-top--70 white-bg">
-      <div class="single-content-inner pad-70 ">
+      <div class="single-content-inner pad-70 row">
         <?php get_template_part( 'loop', 'single' ); ?>
       </div>
     </div>
   </div>
 </div>
 
-<div class="pagination">
-    <?php //previous_post_link(); ?>    <?php //next_post_link(); ?>
-    <?php
-    $post_id = $post->ID; // Get current post ID
-    $cat = get_the_category(); 
-    $current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
-    $args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC');
-    $posts = get_posts($args);
-    // Get IDs of posts retrieved by get_posts function
-    $ids = array();
-    foreach ($posts as $thepost) {
-    $ids[] = $thepost->ID;
-    }
-    // Get and Echo the Previous and Next post link within same Category
-    $index = array_search($post->ID, $ids);
-    $prev_post = $ids[$index-1];
-    $next_post = $ids[$index+1];
-    ?>
-    <?php if (!empty($prev_post)){ ?> <a class="previous-post" rel="prev" href="<?php echo get_permalink($prev_post) ?>"> <span class="meta-icon"><i class="fa fa-angle-left fa-lg"></i></span> Previous</a> <?php } ?>
-    <a href="<?php echo get_category_link($cat[0]->cat_ID); ?>"><?php $cat[0]->cat_name; ?></a>
 
-    <?php if (!empty($next_post)){ ?> <a class="next-post" rel="next" href="<?php echo get_permalink($next_post) ?>">Next <span class="meta-icon"><i class="fa fa-angle-right fa-lg"></i></span> </a> <?php } ?>
+<div class="author-details-wrap">
+  <div class="container">
+        <div class="author-details-outer">
+          <?php if(get_avatar_url()) {?>
+          <div class="user-avatar">
+            
+            <img class="img-circle" src="<?php echo get_avatar_url(); ?>"/>
+            </div>
+      <?php } ?>
+          <div class="author-details-inner">
+              <div class="text-uppercase author-text">Author</div>
+              <div class="author-name text-uppercase"><?php  the_author_meta( 'display_name', $postData[0]->post_author ) ?></div>
+              <?php
+		// Author bio.
+		if ( is_single() && get_the_author_meta( 'description' ) ) :
+			get_template_part( 'author-bio' );
+		endif;
+	?>
+          </div>
+      </div>
+      </div>
+      </div>
+
+<div class="pagination-wrap">
+  <div class="container">
+    <?php //previous_post_link(); ?>    <?php //next_post_link(); ?>
+    <div class="pagination-inner">
+    <?php
+$post_id = $post->ID; // Get current post ID
+$cat = get_the_category(); 
+$current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
+$args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC');
+$posts = get_posts($args);
+// Get IDs of posts retrieved by get_posts function
+$ids = array();
+foreach ($posts as $page) {
+$posts[] += $page->ID;
+}
+
+$current = array_search(get_the_ID(), $posts);
+$prevID = $posts[$current-1];
+$nextID = $posts[$current+1];
+?>
+    <?php if (!empty($prevID)){ ?> <a  rel="prev" href="<?php echo get_permalink($prevID); ?>" title="<?php echo get_the_title($prevID); ?>" class="post-link btn btn-ripple"><i class="fa fa fa-chevron-left"></i></a> <?php } ?>
+    <a class="cat-link" href="<?php echo get_category_link($cat[0]->cat_ID); ?>" title=""><i class="fa fa-th"></i></a>
+
+    <?php if (!empty($nextID)){ ?> <a  rel="next" href="<?php echo get_permalink($nextID); ?>" title="<?php echo get_the_title($nextID); ?>" class="post-link btn btn-ripple"><i class="fa fa fa-chevron-right"></i></a> <?php } ?>
+  </div>
+
+  </div>
 </div>
 
 <?php //get_sidebar(); ?>
