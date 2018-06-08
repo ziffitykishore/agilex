@@ -141,6 +141,9 @@
     .careers-inner-wrap>div {
         padding: 30px;
     }
+    .sub-service-wrap .categories-blk {
+        margin-bottom: 40px;
+    }
 }
 
 @media only screen and (min-width:992px) and (max-width:1100px) {
@@ -223,6 +226,12 @@
     }
     .sub-category .content-wrap {
         padding: 30px;
+    }
+    .sub-service-wrap .categories-blk {
+        padding: 30px;
+    }
+    .sub-service-wrap .categories-content {
+        padding: 25px;
     }
 }
 
@@ -497,6 +506,9 @@
     .sub-category .image-sec {
         background-image: none !important;
     }
+    .sub-service-wrap .categories-content h2 {
+        font-size: 18px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -549,6 +561,9 @@
     }
     .cd-icons-filling:before,
     .cd-icons-filling:after {}
+    .sub-service-wrap .categories-content {
+        width: auto;
+    }
 }
 
 @media screen and (max-width: 627px) {
