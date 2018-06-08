@@ -20,7 +20,7 @@ get_header(); ?>
         <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'full'); ?>
         <div class="main-banner">
             <?php if ($featured_img_url){ ?>
-                <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+                <img src="<?php echo $featured_img_url; ?>" class="" alt="<?php $featured_img_url['alt']; ?>"/>
             <?php } else  { ?>
                 <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
             <?php }?>

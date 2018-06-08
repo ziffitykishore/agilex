@@ -37,10 +37,10 @@ $whoweare_arg_query = new WP_Query($whoweare_args);
 while ($whoweare_arg_query->have_posts()) {
 $whoweare_arg_query->the_post(); 
 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?> 
-<div class="main-who-we margin-30 wow fadeInUp">
+<div class="main-who-we margin-30  ">
 <div class="container">
 
-<div class="inner-content video-content-inner">
+<div class="inner-content video-content-inner white-bg">
 <?php if (get_field('video_image', get_the_ID())){ ?>
 <?php $image = get_field('video_image'); ?>
 <?php } ?>
@@ -73,6 +73,8 @@ echo '<p>Lorem Ipsum is simply dummy text of the printing and typesetting indust
 
 <div class="executive-wrap margin-30 wow fadeInUp">
 <?php $query_args = array(
+
+'post_type' => 'page',
 'name' => 'executive-leadership',
 'post_status'     => 'publish'
 );  
@@ -153,6 +155,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>         
 
 <?php 
 $history_args = array(
+  'post_type' => 'page',
 'name' => 'our-history',
 'post_status'     => 'publish'
 ); 
@@ -169,7 +172,12 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <div class="sub-heading"><?php echo get_the_excerpt();?> </div>
 </div>
 <div class="history-content-inner col-sm-8 col-sm-offset-2">
-<?php echo the_Content(); ?>
+
+<?php if (get_field('short_description')){ ?>
+  <div class="history-content">
+<?php the_field('short_description') ?>
+</div>
+<?php }  ?>
 <?php if (get_field('learn_more_text')){ ?>
 <a href="<?php echo get_permalink() ?>" class="text-uppercase btn btn-lg btn-more btn-ripple btn-door"><?php the_field('learn_more_text'); ?></a>
 <?php }  ?>

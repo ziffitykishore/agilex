@@ -102,9 +102,10 @@ $unique_arg_query->the_post();  ?>
                         <div class="col-sm-6 content-wrap wow slideInRight">
                             
 
-                            <?php if (get_field('short_description', get_the_ID())){ 
-                    the_field('short_description'); } ?>
-                    
+                            <?php if (get_field('short_description', get_the_ID())){  ?>
+                                <div class="short-desc">
+                    <?php the_field('short_description'); ?>
+                            </div> <?php }?>
                             
                             <?php if (get_field('learn_more_text')){ ?>
                 <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40 text-uppercase btn-tab_<?php echo $i; ?>"><?php the_field('learn_more_text'); ?></a>
@@ -170,10 +171,7 @@ $unique_arg_query->the_post();  ?>
                 </a>
                 <div class=" content-desc">
                 <?php if (get_field('short_description', get_the_ID())){ 
-                    the_field('short_description');  }  
-                    else {
-                        echo '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>';
-                    }?>
+                    the_field('short_description');  }  ?>
 
                     <?php if (get_field('learn_more_text')){ ?>
                         <a href="#" class="btn-more btn btn-blue btn-door btn-md"><?php the_field('learn_more_text'); ?></a>
