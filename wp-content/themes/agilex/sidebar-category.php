@@ -23,6 +23,8 @@
     <?php
     $catquery = new WP_Query([
         'cat' => $cat_id,
+        'order' => 'DESC',
+        'orderby' => 'date',
         'posts_per_page' => 3]);
     ?>
     <ul class="nav nav-tabs">
@@ -42,7 +44,7 @@
                             </a>
                             <div class="media-body">
                                 <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><span class="media-heading"><?php the_Title(); ?></span></a>
-                                <span class="post-date">Date: <?php the_date('d F, Y'); ?></span>
+                                <span class="post-date">Date: <?php echo get_the_date('d F, Y', $post->ID); ?></span>
                             </div>
                         </div>
                     </li>
@@ -52,30 +54,40 @@
                 </div>
                 <div class="tab-pane fade in active" id="popular">
                 <?php /* * Popular Posts* */
-                    $catPopular = new WP_Query([
+                     $args =  array(
                         'meta_key' => '_li_love_count',
                         'orderby' => 'meta_value',
-                        'order' => 'ASC',
-                        'posts_per_page' => 3]); ?>
+                        'order' => 'DESC',
+                         'posts_per_page' => 3);
+                    $posts = get_posts($args);
+                    foreach ($posts as $post) {
+                        $event[$post->ID] = get_post_meta($post->ID, '_li_love_count', true);
+                        $whilistPosts[] = $post;
+                    }
+                    arsort($event, SORT_NUMERIC);
+                    $events = array_keys($event);
+                    usort($whilistPosts, function ($a, $b) use ($events) {
+                        $pos_a = array_search($a->ID, $events);
+                        $pos_b = array_search($b->ID, $events);
+                        return $pos_a - $pos_b;
+                    }); ?>
 
                     <ul class="sidebar-post">
-                    <?php while ($catPopular->have_posts()) : $catPopular->the_post(); ?>
+                    <?php foreach ($whilistPosts as $whilistPost) { ?>
                     <li class="">
                         <div class="media">
-                            <a class="media-left post-thumb" href="<?php the_permalink() ?>" rel="<?php the_title() ?>">
-                            <?php $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "thumbnail" ); ?>
-                                    <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php the_title() ?>"/>
+                            <a class="media-left post-thumb" href="<?php echo get_permalink( $whilistPost->ID ); ?>" rel="<?php echo $whilistPost->post_title ?>">
+                            <?php  $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $whilistPost->ID ), "thumbnail" ); ?>
+                                    <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $whilistPost->post_title ?>"/>
                             </a>
+
                             <div class="media-body">
-                                <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><span class="media-heading"><?php the_Title(); ?></span></a>
-                                <span class="post-date">Date: <?php the_date('d F, Y'); ?></span>
+                                <a href="<?php echo get_permalink( $whilistPost->ID ); ?>" rel="<?php echo $whilistPost->post_title ?>"><span class="media-heading"><?php echo $whilistPost->post_title ?></span></a>
+                                <span class="post-date">Date: <?php echo get_the_date('d F, Y', $whilistPost->ID); ?></span>
                             </div>
                         </div>
                     </li>
-
-
-
-                    <?php endwhile; ?>
+                   <?php } ?>
                     </ul>
                     <?php wp_reset_postdata(); ?>
                 </div>
