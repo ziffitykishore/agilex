@@ -5027,10 +5027,14 @@ div.nice-select:after {
     margin: 0 auto;
     z-index: 10;
     left: 0;
+    text-align: center;
     right: 0;
     top: -50px;
     border-radius: 50%;
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .user-avatar img {

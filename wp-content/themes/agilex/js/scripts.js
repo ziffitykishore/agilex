@@ -524,7 +524,7 @@ $(window).scroll(function(event){
 
 //reset the scroll to 0 (top of page)
 $(window).on('beforeunload', function() {
-    $(this).scrollTop(0);
+   // $(this).scrollTop(0);
     if($(this).scrollTop() === 0){
         $('.header-container').removeClass('slideUp slideDown');
     }
