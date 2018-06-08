@@ -35,7 +35,7 @@ function myFunction() {
       var header = jQuery('.header-container ').outerHeight(); /* Get the Height from .header-container */
       jQuery('.scroll-down').on('click', function(e) {
           e.preventDefault();
-          jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr('href')).offset().top - header }, 500, 'linear');
+          jQuery('html, body').animate({ scrollTop: jQuery(jQuery(this).attr('href')).offset().top  }, 500, 'linear');
       });
 
       
@@ -51,14 +51,14 @@ function myFunction() {
       placeholdertext = field.attr('placeholder');
   
       field.bind('onblur', function() {
-          if (field.text() === '') {
-              field.text(placeholdertext);
+          if (field.val() === '') {
+              field.val(placeholdertext);
           }
       });
   
       field.bind('onfocus', function() {
-          if (field.text() === '') {
-              field.text(placeholdertext);
+          if (field.val() === '') {
+              field.val(placeholdertext);
           }
       });
 
@@ -492,7 +492,7 @@ if( $(window).scrollTop() < introSectionHeight) {
     headerHeight = header.outerHeight();
 
     if($('body').hasClass('home') != 1){
-     //$('.main-content').css('margin-top', headerHeight);
+     $('.main-content').css('margin-top', headerHeight);
     }
       
   $(window).scroll(function() {
@@ -511,7 +511,7 @@ var didScroll;
 var lastScrollTop = 0;
 var delta = 0;
 var navbarHeight = $('.header-container').outerHeight();
-
+$('.header-container').addClass('header-ani');
 function headerStick(){
 $(window).scroll(function(event){
     didScroll = true;
@@ -544,11 +544,11 @@ function hasScrolled() {
     } else {
     if (st > lastScrollTop && st > navbarHeight){
         // Scroll Down
-        $('.header-container').removeClass('header-sticky').addClass('no-sticky');
+        $('.header-container').removeClass('header-sticky slideDown').addClass('slideUp');
     } else {
         // Scroll Up
         if(st + $(window).height() < $(document).height()) {
-            $('.header-container').removeClass('no-sticky').addClass('header-sticky');
+            $('.header-container').removeClass('slideUp').addClass('header-sticky slideDown');
         }
     }}
     
@@ -900,7 +900,9 @@ function responsiveResize() {
 		
         checkScrollBar('disable');
         stickyFooter('disable');
-		responsiveflag = true;
+        $('.wow').removeClass('slideInLeft').addClass('fadeInUp').css('animation-name', 'fadeInUp');
+        responsiveflag = true;
+        
 	}
 	else if (($(window).width()) >= 769)
 	{

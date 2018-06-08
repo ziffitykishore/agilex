@@ -140,8 +140,8 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_style( 'bootstrap-css', get_template_directory_uri() . '/css/bootstrap.css', '3.3.0' );
     wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
     wp_enqueue_style( 'normalize-css', get_template_directory_uri() . '/css/normalize.css');
-    
-    
+
+
     wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/css/slick.css' );
     wp_enqueue_style( 'slick-theme-css', get_template_directory_uri() . '/css/slick-theme.css' );
     wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/css/animate.min.css' );
@@ -151,7 +151,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_style( 'theme-css', get_template_directory_uri() . '/css/theme.css' );
     wp_enqueue_style( 'responsive-css', get_template_directory_uri() . '/css/responsive.css' );
     /* wp_enqueue_style( 'animsition-css', get_template_directory_uri() . '/css/animsition.min.css' ); */
-   
+
     if ( is_rtl() ) {
         wp_enqueue_style( 'blog-rtl-css', get_template_directory_uri() . '/css/blog-rtl.css' );
         wp_enqueue_style( 'bootstrap-rtl-css', get_template_directory_uri() . '/css/bootstrap-rtl.css', '3.3.0' );
@@ -179,7 +179,7 @@ function bootstrapcanvaswp_scripts() {
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
 
     wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ), '', true );
-    
+
 
 }
 add_action( 'wp_enqueue_scripts', 'bootstrapcanvaswp_scripts' );
@@ -1719,7 +1719,7 @@ function update_post_gallery( $post_id, $post_object )
 
 function m1_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'm1_logo' ); // Add setting for logo uploader
-         
+
     // Add control for logo uploader (actual uploader)
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'm1_logo', array(
         'label'    => __( 'White Logo', 'm1' ),
@@ -1731,7 +1731,7 @@ add_action( 'customize_register', 'm1_customize_register' );
 
 function fav_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'fav_icon' ); // Add setting for logo uploader
-         
+
     // Add control for logo uploader (actual uploader)
     $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'fav_icon', array(
         'label'    => __( 'Fav Icon', 'm1' ),
@@ -1757,7 +1757,7 @@ function customSearchForm( $form, $value = "Search", $post_type = 'post', $cat =
     <div class="input-group">
         <input type="hidden" name="post_type" value="'.$post_type.'" />
         <input type="hidden" name="cat" value="'.$cat.'" />
-        <input type="text" class="search_input" value="" name="s" id="s" placeholder="Enter Search Keyword" />
+        <input type="text" class="search_input" value="" name="s" id="s" placeholder="Search Blog" />
         <span class="input-group-btn">
             <button type="submit" id="searchsubmit"><i class="fa fa-search"></i></button>
         </span>
@@ -1778,3 +1778,81 @@ function wpshout_custom_sizes( $sizes ) {
 }
 
 add_image_size( 'featured-small', 50, 50, true );
+
+
+
+function customArchievesLink($cat_id, $args = '') {
+    global $wpdb, $wp_locale;
+    $defaults = array(
+        'type' => 'monthly', 'limit' => '',
+	'format' => 'html', 'before' => '',
+	'after' => '', 'show_post_count' => false,
+	'echo' => 1, 'order' => 'DESC',
+	'post_type' => 'post'
+    );
+    $r = wp_parse_args( $args, $defaults );
+    $post_type_object = get_post_type_object( $r['post_type'] );
+    if (!is_post_type_viewable($post_type_object)) {
+        return;
+    }
+    $r['post_type'] = $post_type_object->name;
+
+    if ('' == $r['type']) {
+        $r['type'] = 'monthly';
+    }
+
+    if (!empty($r['limit'])) {
+        $r['limit'] = absint($r['limit']);
+        $r['limit'] = ' LIMIT ' . $r['limit'];
+    }
+
+    $order = strtoupper($r['order']);
+    if ($order !== 'ASC') {
+        $order = 'DESC';
+    }
+    $sql_where = $wpdb->prepare( "WHERE post_type = %s AND post_status = 'publish'", $r['post_type']);
+    /**
+     * Filters the SQL WHERE clause for retrieving archives.
+     *
+     * @since 2.2.0
+     *
+     * @param string $sql_where Portion of SQL query containing the WHERE clause.
+     * @param array  $r         An array of default arguments.
+     */
+    $where = apply_filters('getarchives_where', $sql_where, $r);
+
+    /**
+     * Filters the SQL JOIN clause for retrieving archives.
+     *
+     * @since 2.2.0
+     *
+     * @param string $sql_join Portion of SQL query containing JOIN clause.
+     * @param array  $r        An array of default arguments.
+     */
+    $join = apply_filters('getarchives_join', '', $r);
+    $output = '';
+    $limit = $r['limit'];
+    $query = "SELECT YEAR(post_date) AS `year`, MONTH(post_date) AS `month`, count(ID) as posts FROM $wpdb->posts $join $where GROUP BY YEAR(post_date), MONTH(post_date) ORDER BY post_date $order $limit";
+    $results = $wpdb->get_results($query);
+    if ($results) {
+        $after = $r['after'];
+        foreach ((array) $results as $result) {
+            $url = get_month_link($result->year, $result->month);
+            if ('post' !== $r['post_type']) {
+                $url = add_query_arg('post_type', $r['post_type'], $url);
+            }
+            /* translators: 1: month name, 2: 4-digit year */
+            $text = sprintf(__('%1$s %2$d'), $wp_locale->get_month($result->month), $result->year);
+            if ($r['show_post_count']) {
+                $r['after'] = '&nbsp;(' . $result->posts . ')' . $after;
+            }
+            $url = $url.'?cat='.$cat_id;
+            $output .= get_archives_link($url, $text, $r['format'], $r['before'], $r['after']);
+        }
+    }
+    return $output;
+}
+
+
+
+

@@ -23,18 +23,14 @@
       </div>
  </div>
 
-      <div class="row">
 
-        <div class="col-sm-8 blog-main">
 
-          <h1><?php printf( __( 'Search Results for: %s', 'bootstrapcanvaswp' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
-		  <hr />
-		  <?php get_template_part( 'loop', 'search' ); ?>
 
-        </div><!-- /.blog-main -->
-
-        <?php get_sidebar(); ?>
-
-      </div><!-- /.row -->
+       <div class="blog-wrap "> 
+        <div class="container">
+        <h1><?php printf( __( 'Search Results for: %s', 'bootstrapcanvaswp' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+        <?php get_template_part( 'loop', 'search' ); ?>
+        </div>
+      </div>
       
 	<?php get_footer(); ?>

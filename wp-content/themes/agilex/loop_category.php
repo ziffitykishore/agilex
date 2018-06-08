@@ -7,14 +7,28 @@
 <div class="blog-wrap">
     <div class="container">
         <div class="blog-inner-section row">
-            <div class="col-sm-9 blog-grid-sec">
+            <div class=" col-md-12 col-lg-9 blog-grid-sec">
             <?php if ( have_posts() ) : ?>
                     <ul class="grid-sec effect-8 row" id="grid">
                         <?php while ( have_posts() ) : the_post(); ?>
                             <li class="blog-item col-sm-6 col-md-4">
                                 <div class="blog-inner">
                                     <div class="blog-image">
-                                        <img src="<?php echo the_cfc_field('thumbnail', 'post-thumbnail');?>" alt=""/>
+                                        <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
+                                            
+
+                                                <?php 
+                                                global $post;
+                                                $image_object = get_cfc_field('thumbnail', 'post-thumbnail', $post->ID );
+                                                ?>
+                                                <?php if($image_object){ ?>
+                                                <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/> 
+                                                <?php } else {?>
+                                                    <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
+                                                    <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
+                                                <?php }?>
+
+                                        </a>
                                     </div>
                                     <div class="blog-detail-wrap">
                                         <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php the_title(); ?></div></a>
@@ -27,10 +41,9 @@
                                             <span class="comment-sec extras-link"><i class="fa fa-comment-o"></i> <span class="comments-count"> <?php
                                             echo get_comments_number();
                                             ?></span></span>
-                                            <span  class="social_sharing extras-link"><i class="fa fa-share"></i>
+                                            <span  class="social_sharing extras-link"><i class="fa fa-share-alt"></i>
                                                 <div class="social_sharing-content" ><?php echo do_shortcode('[wp_social_sharing]'); ?></div>
                                             </span>
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -41,7 +54,7 @@
                     <p>Sorry, no posts matched your criteria.</p>
                 <?php endif; ?>
             </div>
-            <div class="col-sm-3 sidebar-blog">
+            <div class="col-md-12 col-lg-3  sidebar-blog">
             <?php get_sidebar('category'); ?>
                 </div>
 
