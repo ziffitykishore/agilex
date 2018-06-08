@@ -4989,6 +4989,7 @@ div.nice-select:after {
 .single-page-wrap .single-content-inner h5,
 .single-page-wrap .single-content-inner h6 {
     color: #174a79;
+    font-weight: bold;
 }
 
 .single-page-wrap .single-content-inner p+p {
