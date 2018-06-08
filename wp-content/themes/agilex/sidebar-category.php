@@ -44,7 +44,7 @@
                             </a>
                             <div class="media-body">
                                 <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><span class="media-heading"><?php the_Title(); ?></span></a>
-                                <span class="post-date">Date: <?php the_date('d F, Y'); ?></span>
+                                <span class="post-date">Date: <?php echo get_the_date('d F, Y', $post->ID); ?></span>
                             </div>
                         </div>
                     </li>
