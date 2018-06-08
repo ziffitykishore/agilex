@@ -98,6 +98,7 @@ img,
 .white-bg {
     background: #fff;
     position: relative;
+    z-index: 5;
 }
 
 .alice-blue-bg {
@@ -1124,7 +1125,7 @@ div.container {
     top: 0;
     background: #fff;
     position: fixed;
-    z-index: 99;
+    z-index: 25;
 }
 
 .no-sticky {
@@ -1146,7 +1147,7 @@ div.container {
     -moz-animation-fill-mode: both;
     -o-animation-fill-mode: both;
     animation-fill-mode: both;
-    will-change: transform, opacity
+    will-change: transform, opacity;
 }
 
 @-webkit-keyframes slideDown {
@@ -1749,12 +1750,10 @@ form#searchform {
     width: 100%;
 }
 
-.cd-nav {}
-
 .overlaybgDark {
     background-color: rgba(0, 0, 0, 0.6);
     position: fixed;
-    z-index: 10;
+    z-index: 30;
     top: 0;
     left: 0;
     height: 100%;
@@ -1796,7 +1795,7 @@ form#searchform {
     position: fixed;
     width: 320px;
     right: 0;
-    z-index: 12;
+    z-index: 35;
     top: 0;
     background: #fff;
     -webkit-overflow-scrolling: touch;
@@ -2892,9 +2891,7 @@ p+p {
     display: inline-block;
 }
 
-.video-content .btn-fancy {
-    display: none;
-}
+.video-content .btn-fancy {}
 
 .video-content:before {
     background: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(25, 75, 125, 0.9) 100%);
@@ -2976,9 +2973,7 @@ p+p {
     z-index: 9;
 }
 
-.video-content .text-content {
-    display: none;
-}
+.video-content .text-content {}
 
 .what-we-do {
     background: url('/wp-content/uploads/2018/05/bg_top_what_we_do.png') center -15px no-repeat, url('/wp-content/uploads/2018/05/bg_bottom_what_we_do.png') center bottom no-repeat;
@@ -3218,6 +3213,7 @@ p+p {
     font-size: 16px;
     font-family: 'Poppins', sans-serif;
     color: #fff;
+    display: none;
 }
 
 
@@ -3231,6 +3227,8 @@ p+p {
 .main-who-we .video-content-inner {
     padding-bottom: 50px;
     border-bottom: 1px solid #192a3e;
+    position: relative;
+    z-index: 5;
 }
 
 .main-who-we .video-content {
@@ -4106,6 +4104,14 @@ html.no-touch {
 
 /* Careers page */
 
+.inner-section {
+    z-index: 5;
+}
+
+.careers-wrap .inner-section {
+    margin-top: -70px;
+}
+
 .careers-wrap .content-wrap .heading {
     text-align: left;
     margin-bottom: 20px;
@@ -4124,7 +4130,7 @@ html.no-touch {
     font-size: 20px;
 }
 
-.careers-form {
+.careers-wrap .careers-form {
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -4162,7 +4168,7 @@ html.no-touch {
     top: auto;
 }
 
-.careers-form #cf7md-form .cf7md-textarea textarea {
+.page-template-page-careers .careers-form #cf7md-form .cf7md-textarea textarea {
     height: 100px !important;
 }
 
@@ -4173,13 +4179,13 @@ html.no-touch {
 
 /* Contact us page */
 
-.page-template-page-contact-us .page-header-content {
-    -webkit-transform: translateY(-120%);
-    -moz-transform: translateY(-120%);
-    transform: translateY(-120%);
+.page-template-page-lets-talk-fragrance .page-header-content {
+    -webkit-transform: translateY(-150%);
+    -moz-transform: translateY(-150%);
+    transform: translateY(-150%);
 }
 
-.page-template-page-contact-us .main-content {
+.page-template-page-lets-talk-fragrance .main-content {
     margin-bottom: 50px !important;
     box-shadow: none;
 }
@@ -4188,12 +4194,12 @@ html.no-touch {
     z-index: 5;
 }
 
-.page-template-page-contact-us footer.footer-wrap {
+.page-template-page-lets-talk-fragrance footer.footer-wrap {
     position: static;
 }
 
-.page-template-page-contact-us .footer-content,
-.page-template-page-contact-us .footer-contact {
+.page-template-page-lets-talk-fragrance .footer-content,
+.page-template-page-lets-talk-fragrance .footer-contact {
     display: none;
 }
 
@@ -4925,4 +4931,14 @@ div.nice-select:after {
 .single-page-wrap .blog-post .entry,
 .single-page-wrap .blog-post .comments-area {
     display: none
+}
+
+
+/* search page */
+
+.search-results .blog-post .blog-post-image,
+.search-results .blog-post .blog-post-meta,
+.search-results .blog-post .entry,
+.search-results .blog-post .blog-post-meta {
+    display: none;
 }

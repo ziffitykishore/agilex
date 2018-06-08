@@ -1757,7 +1757,7 @@ function customSearchForm( $form, $value = "Search", $post_type = 'post', $cat =
     <div class="input-group">
         <input type="hidden" name="post_type" value="'.$post_type.'" />
         <input type="hidden" name="cat" value="'.$cat.'" />
-        <input type="text" class="search_input" value="" name="s" id="s" placeholder="Enter Search Keyword" />
+        <input type="text" class="search_input" value="" name="s" id="s" placeholder="Search Blog" />
         <span class="input-group-btn">
             <button type="submit" id="searchsubmit"><i class="fa fa-search"></i></button>
         </span>
@@ -1852,3 +1852,7 @@ function customArchievesLink($cat_id, $args = '') {
     }
     return $output;
 }
+
+
+
+

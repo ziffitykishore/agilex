@@ -23,7 +23,7 @@
     <?php
     $catquery = new WP_Query([
         'cat' => $cat_id,
-        'posts_per_page' => 5]);
+        'posts_per_page' => 3]);
     ?>
     <ul class="nav nav-tabs">
                 <li  class="active" role="presentation"><a href="#popular" role="tab" data-toggle="tab">Popular</a></li>
@@ -55,7 +55,8 @@
                     $catPopular = new WP_Query([
                         'meta_key' => '_li_love_count',
                         'orderby' => 'meta_value',
-                        'order' => 'DESC']); ?>
+                        'order' => 'ASC',
+                        'posts_per_page' => 3]); ?>
 
                     <ul class="sidebar-post">
                     <?php while ($catPopular->have_posts()) : $catPopular->the_post(); ?>
@@ -99,9 +100,9 @@
     <?php
         foreach ($categories as $category) {
             $output .= '<li><a href="' . esc_url(get_category_link($category->term_id)) . '" alt="' . esc_attr(sprintf(__('View all posts in %s', 'textdomain'),
-                    $category->name)) . '">' . esc_html($category->name) . '</a><span>('.$category->count.')</li>' ;
+                    $category->name)) . '">' . esc_html($category->name) . '</a> <span>('.$category->count.')</li>' ;
     }
-    echo "<ul>".trim($output)."</ul>";
+    echo "<ul class='stack-list'>".trim($output)."</ul>";
 }
 ?>
 </div>
@@ -118,13 +119,13 @@
         'post_type' => 'post'
     );
     if (customArchievesLink($cat_id, $args)) { ?>
-        <h2 class="heading-title"><?php echo __("Archive"); ?></h2><ul>
-        <?php echo customArchievesLink($cat_id, $args)."</ul>";
-    }
-    ?>
-
+        <h2 class="heading-title"><?php echo __("Archive"); ?></h2><ul class="stack-list">
+        <?php echo customArchievesLink($cat_id, $args) ?>
+        </ul>
+    <?php }    ?>
+    </div>
     <div class="instagram-wrap box-shadow margin-bottom-30">
-    <h2 class="heading-title"><?php echo __("Instgram"); ?></h2>
+    <h2 class="heading-title"><?php echo __("Instagram"); ?></h2>
 <?php /**Instagram Feed */
 echo do_shortcode('[instagram-feed showfollow=false showbio=false showheader=false]'); ?>
 

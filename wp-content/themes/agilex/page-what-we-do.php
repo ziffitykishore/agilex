@@ -61,13 +61,18 @@ get_header(); ?>
                                 <?php } ?>
             <div class="categories-content  wow fadeInUp">
             <a href="<?php echo get_permalink() ?>"><h2><?php echo the_Title(); ?></h2></a>
+            <?php if (get_field('short_description')){ ?>
               <div class="short-desc">
-              <?php echo wp_trim_words( get_the_content(), 35, '...' ); ?>
+              <?php echo wp_trim_words( get_field('short_description'), 35, '...' ); ?>
               </div>
+              <?php } else{ ?>
+                <div class="short-desc">
+                  <?php echo wp_trim_words( get_the_content(), 35, '...' ); ?>
+                 </div>
+                 <?php } ?>
               <?php if (get_field('learn_more_text')){ ?>
                 <a href="<?php echo get_permalink() ?>" class="btn btn-more btn-blue btn-ripple btn-door"><?php the_field('learn_more_text'); ?></a>
-              <?php } else { ?>
-                <a href="<?php echo get_permalink() ?>" class="btn btn-more btn-blue btn-ripple btn-door">Learn More</a>
+              
               <?php } ?>
               
             </div>       

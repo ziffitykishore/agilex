@@ -14,7 +14,21 @@
                             <li class="blog-item col-sm-6 col-md-4">
                                 <div class="blog-inner">
                                     <div class="blog-image">
-                                        <img src="<?php echo the_cfc_field('thumbnail', 'post-thumbnail');?>" alt=""/>
+                                        <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
+                                            
+
+                                                <?php 
+                                                global $post;
+                                                $image_object = get_cfc_field('thumbnail', 'post-thumbnail', $post->ID );
+                                                ?>
+                                                <?php if($image_object){ ?>
+                                                <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/> 
+                                                <?php } else {?>
+                                                    <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
+                                                    <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
+                                                <?php }?>
+
+                                        </a>
                                     </div>
                                     <div class="blog-detail-wrap">
                                         <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php the_title(); ?></div></a>

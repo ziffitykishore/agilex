@@ -26,7 +26,11 @@
  </div>
         </div>
 
-     
+ 
+ 
+ 
+ <div class="main-content-wrapper"> 
+
      <?php 
       // TO SHOW THE PAGE CONTENTS
     while ( have_posts() ) : the_post(); ?>
@@ -35,5 +39,5 @@
      endwhile; //resetting the page loop
      wp_reset_query(); //resetting the page query
       ?>
-      
+      </div>
 	<?php get_footer(); ?>
