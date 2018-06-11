@@ -515,11 +515,20 @@ $('.header-container').addClass('header-ani');
 function headerStick(){
 $(window).scroll(function(event){
     didScroll = true;
-    if(jQuery('.header-container').offset().top == 0){
-        
+    if($(this).scrollTop() === 0){
+        $('.header-container').removeClass('slideUp slideDown');
     }
 });
 }
+
+
+//reset the scroll to 0 (top of page)
+$(window).on('beforeunload', function() {
+   // $(this).scrollTop(0);
+    if($(this).scrollTop() === 0){
+        $('.header-container').removeClass('slideUp slideDown');
+    }
+  });
 
 headerStick();
 $(window).on('resize', headerStick);
@@ -542,18 +551,20 @@ function hasScrolled() {
     if(st===0){
         $('.header-container').removeClass('header-sticky');
     } else {
-    if (st > lastScrollTop && st > navbarHeight){
+    if (st > lastScrollTop && st > navbarHeight - 20){
         // Scroll Down
         $('.header-container').removeClass('header-sticky slideDown').addClass('slideUp');
     } else {
         // Scroll Up
-        if(st + $(window).height() < $(document).height()) {
+        if(st + navbarHeight + $(window).height() < $(document).height()) {
             $('.header-container').removeClass('slideUp').addClass('header-sticky slideDown');
         }
     }}
     
     lastScrollTop = st;
 }
+
+
 
 
   /* Fancybox load */
@@ -746,7 +757,7 @@ $(".no-touch .project").hover3d({
 
 $(window).on('load', function(){
     if (jQuery().niceScroll) {
-        $("html.no-touch").niceScroll({
+       /*  $("html.no-touch").niceScroll({
   
           scrollspeed: 100,
           cursorcolor: "#174a7a",
@@ -754,7 +765,7 @@ $(window).on('load', function(){
             autohidemode: false,
             horizrailenabled: false,
             zindex: 99
-        });
+        }); */
     } 
 });
 
@@ -889,9 +900,17 @@ function removeClassPrefix(el, prefix) {
 
 
 /* icon filling effects */
- 
 
 
+/*  blog */
+var myNiceVar = document.getElementById( 'grid' );
+if (myNiceVar !== null ) {
+new AnimOnScroll( myNiceVar, {
+    minDuration : 0.4,
+    maxDuration : 0.6,
+    viewportFactor : 0.2
+} );
+}
 var responsiveflag = false;
 function responsiveResize() {
 	iconFilling();

@@ -161,6 +161,10 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ), '3.3.0', true );
     wp_enqueue_script( 'html5shiv-js', get_template_directory_uri() . '/js/html5shiv.js', array( 'jquery' ), '3.7.2' );
     wp_enqueue_script( 'modernizr-js', get_template_directory_uri() . '/js/modernizr.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'imagesloaded-js', get_template_directory_uri() . '/js/imagesloaded.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'classie-js', get_template_directory_uri() . '/js/classie.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'AnimOnScroll-js', get_template_directory_uri() . '/js/AnimOnScroll.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'color-js', get_template_directory_uri() . '/js/jquery.color-2.1.2.min.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'ie-10-viewport-bug-workaround-js', get_template_directory_uri() . '/js/ie10-viewport-bug-workaround.js', array( 'jquery' ), '3.3.0', true );
     wp_enqueue_script( 'respond-js', get_template_directory_uri() . '/js/respond.js', array( 'jquery' ), '1.4.2' );
@@ -1742,6 +1746,17 @@ function fav_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'fav_customize_register' );
 
 
+function menu_customize_register( $wp_customize ) {
+    $wp_customize->add_setting( 'menu_bg' ); // Add setting for logo uploader
+
+    // Add control for logo uploader (actual uploader)
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'menu_bg', array(
+        'label'    => __( 'Main Menu Pattern', 'm1' ),
+        'section'  => 'header_image',
+        'settings' => 'menu_bg',
+    ) ) );
+}
+add_action( 'customize_register', 'menu_customize_register' );
 
 
 /**

@@ -13,10 +13,7 @@ V.1.2.5 - MIT license. Allowed for commercial
 and personal use =D
 */
 
-//reset the scroll to 0 (top of page)
-$(window).on('beforeunload', function() {
-  $(window).scrollTop(0);
-});
+
 
 function parallaxImgScroll(settings) {
 
