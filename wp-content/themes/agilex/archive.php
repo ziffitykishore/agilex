@@ -14,7 +14,7 @@
 	get_header(); ?>
 
 	<div class="main-banner-wrap">
-    <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
+    <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     <div class="main-banner">
         <?php if ($featured_img_url){ ?>
             <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
@@ -24,18 +24,18 @@
     </div>
     <div class="page-header-content">
         <div class="container">
-            <h1><?php if ( is_day() ) : 
-		      printf( __( 'Daily Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date() ); 
-		    elseif ( is_month() ) : 
-			  printf( __( 'Monthly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bootstrapcanvaswp' ) ) ); 
-			elseif ( is_year() ) : 
+            <h1><?php if ( is_day() ) :
+		      printf( __( 'Daily Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date() );
+		    elseif ( is_month() ) :
+			  printf( __( 'Monthly Arcsshives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bootstrapcanvaswp' ) ) );
+			elseif ( is_year() ) :
 			  printf( __( 'Yearly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'Y', 'yearly archives date format', 'bootstrapcanvaswp' ) ) );
-			else : 
-			  _e( 'Blog Archives', 'bootstrapcanvaswp' ); 
-			endif; 
+			else :
+			  _e( 'Blog Archives', 'bootstrapcanvaswp' );
+			endif;
 		  ?></h1>
-            <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
-        </div>     
+            <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>
+        </div>
     </div>
 </div>
 
@@ -44,19 +44,19 @@
         <div class="col-sm-8 blog-main">
 
           <h1>
-		  <?php 
-		    if ( is_day() ) : 
-		      printf( __( 'Daily Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date() ); 
-		    elseif ( is_month() ) : 
-			  printf( __( 'Monthly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bootstrapcanvaswp' ) ) ); 
-			elseif ( is_year() ) : 
+		  <?php
+		    if ( is_day() ) :
+		      printf( __( 'Daily Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date() );
+		    elseif ( is_month() ) :
+			  printf( __( 'Monthly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bootstrapcanvaswp' ) ) );
+			elseif ( is_year() ) :
 			  printf( __( 'Yearly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'Y', 'yearly archives date format', 'bootstrapcanvaswp' ) ) );
-			else : 
-			  _e( 'Blog Archives', 'bootstrapcanvaswp' ); 
-			endif; 
+			else :
+			  _e( 'Blog Archives', 'bootstrapcanvaswp' );
+			endif;
 		  ?>
 		  </h1>
-          <hr /> 
+          <hr />
 		  <?php get_template_part( 'loop', 'archive' ); ?>
 
         </div><!-- /.blog-main -->
@@ -64,5 +64,5 @@
         <?php get_sidebar(); ?>
 
       </div><!-- /.row -->
-      
+
 	<?php get_footer(); ?>

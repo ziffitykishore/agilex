@@ -15,14 +15,14 @@
                                 <div class="blog-inner">
                                     <div class="blog-image">
                                         <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
-                                            
 
-                                                <?php 
+
+                                                <?php
                                                 global $post;
                                                 $image_object = get_cfc_field('thumbnail', 'post-thumbnail', $post->ID );
                                                 ?>
                                                 <?php if($image_object){ ?>
-                                                <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/> 
+                                                <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/>
                                                 <?php } else {?>
                                                     <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
                                                     <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
@@ -33,7 +33,7 @@
                                     <div class="blog-detail-wrap">
                                         <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php the_title(); ?></div></a>
                                             <div class="blog-detail text-uppercase">
-                                            <div class="blog-author">By <?php  the_author_meta( 'display_name', $postData[0]->post_author ) ?></div>
+                                            <div class="blog-author">By <?php the_author_meta( 'display_name', $postValue[0]->post_author ) ?></div>
                                             <div class="blog-year"><?php the_time('j F Y') ?></div>
                                         </div>
                                         <div class="blog-extras">

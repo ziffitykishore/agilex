@@ -115,36 +115,39 @@
         // Print the links before
         echo $link_before;
 
-        // The Title
-        $item_title = wprss_link_display( $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link') );
-        $item_title = apply_filters('wprss_item_title', $item_title, $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link'));
-        echo $item_title;
 
-        do_action( 'wprss_after_feed_item_title', $extra_meta, $display_settings, $ID );
-        
         // The IMAGE
-        echo '<span class="feed-image">';
+        echo '<div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div><div class="image-sec">';
         $start = strpos($description,'<figure>');
         $end = strpos($description,'</figure>');
         $image = substr($description, $start, $end);
-        if($image){
-            echo $image;
-        }
-        echo "</span>";
+        echo ($image)?:'<img src="/wp-content/uploads/2018/06/no-image-placeholder.gif" />';
+
+        echo "</div></div>";
+
+
+        // The Title
+        echo '<div class="news-content flex-xs-100 flex-50 alice-blue-bg">';
+        $item_title = wprss_link_display( $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link') );
+        $item_title = apply_filters('wprss_item_title', $item_title, $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link'));
+        echo '<div class="news-title">';
+        echo $item_title.'</div>';
+        do_action( 'wprss_after_feed_item_title', $extra_meta, $display_settings, $ID );
+
 
         // The DESCRIPTION
-        echo '<span class="feed-description">';
+        echo '<div class="news-desc">';
         $len = strlen($description);
         $desc = substr($description, $end, $len);
         if($desc){
             $desc = esc_attr( wp_trim_words( $desc, 80) );
             echo $desc;
         }
-        
-        echo '</span>';
-      
+
+        echo '</div>';
+
         // FEED ITEM META
-        echo '<div class="wprss-feed-meta">';
+        echo '<div class="news-info-details text-uppercase row">';
 
         // SOURCE
        /* if ( wprss_get_general_setting('source_enable') == 1 ) {
@@ -157,32 +160,32 @@
 
         // DATE
         if ( wprss_get_general_setting('date_enable') == 1 ) {
-            echo '<span class="feed-date">';
+            echo '<div class="col-sm-6 news-date">';
             $date_text = apply_filters( 'wprss_item_date', $date );
             $date_text = $text_preceding_date . $date_text;
             echo $date_text;
-            echo '</span>';
+            echo '</div>';
         }
 
         // AUTHOR
         $author = get_post_meta( $ID, 'wprss_item_author', TRUE );
        // if ( wprss_get_general_setting('authors_enable') == 1 && $author !== NULL && is_string( $author ) && $author !== '' ) {
         if ( $author !== NULL && is_string( $author ) && $author !== '' ) {
-            echo '<span class="feed-author">';
+            echo '<div class="col-sm-6 news-author">';
             $author_text = apply_filters( 'wprss_item_author', $author );
             $author_prefix_text = apply_filters( 'wprss_author_prefix_text', 'AUTHOR' );
             _e( $author_prefix_text, WPRSS_TEXT_DOMAIN );
             echo ' ' . $author_text;
-            echo '</span>';
+            echo '</div>';
         }
 
          // WEBSITE
         if ( wprss_get_general_setting('source_enable') == 1 ) {
-            echo '<span class="feed-source">';
+            echo '<div class="col-sm-12 news-website">';
             //$source_link_text = apply_filters('wprss_item_source_link', wprss_link_display( $source_url, $source_name, $source_link ) );
             $source_link_text = $text_preceding_website . $source_url;
             echo $source_link_text;
-            echo '</span>';
+            echo '</div>';
         }
 
         echo '</div>';
@@ -195,7 +198,9 @@
             printf( __( '%1$s ago', WPRSS_TEXT_DOMAIN ), $time_ago_text );
             echo '</div>';
         }
-
+        //Learn More
+        echo '<a href="'.$permalink.'" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>';
+        echo '</div>';
         // END TEMPLATE - Retrieve buffered output
         $output .= ob_get_clean();
         $output = apply_filters( 'wprss_single_feed_output', $output, $permalink );
@@ -256,14 +261,20 @@
      * @since 3.0
      */
     function wprss_get_shortcode_default_args( $args ) {
+	$posts_per_page = wprss_get_general_setting('feed_limit');
+
+        $count_posts = wp_count_posts('wprss_feed_item');
+        $published_posts = $count_posts->publish;
         // Default shortcode/function arguments for displaying feed items
         $shortcode_args = apply_filters(
                             'wprss_shortcode_args',
                             array(
-                                  'links_before' => '<ul class="rss-aggregator">',
-                                  'links_after'  => '</ul>',
-                                  'link_before'  => '<li class="feed-item">',
-                                  'link_after'   => '</li>'
+                                  'links_before' => '<input id="post_per_page" type="hidden" value='.$posts_per_page .'></input>'
+                                .'<input id="published_posts" type="hidden" value='.$published_posts .'></input>'
+                                . '<div class="news-sec-inner curated-container">',
+                                  'links_after'  => '</div>',
+                                  'link_before'  => '<article class="curated-content news-sec-blk flex-sec border-efx effect-milo">',
+                                  'link_after'   => '</article>'
                             )
         );
 
@@ -296,12 +307,14 @@
 
 		$feed_items_args = array(
 			'post_type'        => 'wprss_feed_item',
-            'posts_per_page'   => $posts_per_page,
 			'orderby'          => 'date',
 			'order'            => 'DESC',
-            'paged'            => $paged,
-            'suppress_filters' => true
+                        'suppress_filters' => true,
+                        'posts_per_page' => $posts_per_page,
+                        'paged' => $paged,
 		);
+
+
 
         if ( isset($settings['pagination']) ) {
             $pagination = strtolower( $settings['pagination'] );
@@ -428,11 +441,12 @@
      */
     function wprss_pagination_links( $output ) {
 		// Get the general setting
-		$pagination = wprss_get_general_setting( 'pagination' );;
+		$pagination = wprss_get_general_setting( 'pagination' );
 
 		// Check the pagination setting, if using page numbers
 		if ( $pagination === 'numbered' ) {
 			global $wp_query;
+
 			$big = 999999999; // need an unlikely integer
 			$output .= paginate_links( array(
 				'base'		=> str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
@@ -444,8 +458,9 @@
 		}
 		// Otherwise, using default paginations
 		else {
+
 			$output .= '<div class="nav-links">';
-			$output .= '    <div class="nav-previous alignleft">' . get_next_posts_link( __( 'Older posts', WPRSS_TEXT_DOMAIN ) ) . '</div>';
+			$output .= '    <div class="nav-previous alignleft"></div>';
 			$output .= '    <div class="nav-next alignright">' . get_previous_posts_link( __( 'Newer posts', WPRSS_TEXT_DOMAIN ) ) . '</div>';
 			$output .= '</div>';
 			return $output;

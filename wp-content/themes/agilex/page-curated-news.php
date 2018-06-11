@@ -6,8 +6,9 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
+<script src="<?php echo get_template_directory_uri(); ?>/js/infinite-scroll.pkgd.min.js"></script>
 <div class="main-banner-wrap">
-<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <div class="main-banner">
         <?php if ($featured_img_url){ ?>
         <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
@@ -18,13 +19,13 @@ get_header(); ?>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
-         <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
-        </div>     
-      
+         <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>
+        </div>
+
  </div>
         </div>
 
-        
+
     <div class="curated-news-wrap" id="curated-news">
         <div class="container">
             <div class="margin-top--70 pad-70 white-bg curated-news-inner">
@@ -44,106 +45,44 @@ get_header(); ?>
                         Things happening this week
                     </div>
 
-                    <div class="news-sec-inner">
-                        <div class="news-sec-blk flex-sec border-efx effect-milo">
-                            <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
-                                <div class="image-sec">
-                                    <img src="/wp-content/uploads/2018/05/curated_news_01.jpg" alt=""/>
-                                </div>
-                            </div>
-                            
-                            <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
-                            <?php
-                                $rssFeeds = do_shortcode('[wp-rss-aggregator]'); 
-                                echo $rssFeeds; 
-                            ?>
-                                <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
-                                <div class="news-desc">
-                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,</p>
-                                </div>
-                                <div class="news-info-details text-uppercase row">
-                                    <div class="col-sm-6 news-date">Published Date: April 23, 2018</div>
-                                    <div class="col-sm-6 news-author">Author: Micael Jordan</div>
-                                    <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
-                                </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
-                            </div>
-                            
-                        </div>
-                        <div class="news-sec-blk flex-sec border-efx effect-milo">
-                        <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
-                                <div class="image-sec">
-                                    <img src="/wp-content/uploads/2018/05/curated_news_02.jpg" alt=""/>
-                                </div>
-                            </div>
-                            
-                            <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
-                                <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
-                                <div class="news-desc">
-                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,</p>
-                                </div>
-                                <div class="news-info-details text-uppercase row">
-                                    <div class="col-sm-6 news-date">Published Date: April 23, 2018</div>
-                                    <div class="col-sm-6 news-author">Author: Micael Jordan</div>
-                                    <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
-                                </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
-                            </div>
-                            
-                        </div>
-                        <div class="news-sec-blk flex-sec border-efx effect-milo">
-                        <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
-                                <div class="image-sec">
-                                    <img src="/wp-content/uploads/2018/05/curated_news_03.jpg" alt=""/>
-                                </div>
-                            </div>
-                            
-                            <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
-                                <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
-                                <div class="news-desc">
-                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,</p>
-                                </div>
-                                <div class="news-info-details text-uppercase row">
-                                    <div class="col-sm-6 news-date">Published Date: April 23, 2018</div>
-                                    <div class="col-sm-6 news-author">Author: Micael Jordan</div>
-                                    <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
-                                </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
-                            </div>
-                            
-                        </div>
-                        <div class="news-sec-blk flex-sec border-efx effect-milo">
-                        <div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div>
-                                <div class="image-sec">
-                                    <img src="/wp-content/uploads/2018/05/curated_news_04.jpg" alt=""/>
-                                </div>
-                            </div>
-                            
-                            <div class="news-content flex-xs-100 flex-50 alice-blue-bg">
-                                <div class="news-title"><a href="#">Mimosa - Fragrances</a></div>
-                                <div class="news-desc">
-                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s,</p>
-                                </div>
-                                <div class="news-info-details text-uppercase row">
-                                    <div class="col-sm-6 news-date">Published Date: April 23, 2018</div>
-                                    <div class="col-sm-6 news-author">Author: Micael Jordan</div>
-                                    <div class="col-sm-12 news-website">Website: <span class="website-url">http://www.fragrance.org/fftv/</span></div>
-                                </div>
-                                <a href="#" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>
-                            </div>
-                            
-                        </div>
-                        
-                        
+                    <?php /** Rss Aggregator **/
+                        $rssFeeds = do_shortcode('[wp-rss-aggregator]');
+                        echo $rssFeeds;
+                    ?>
+                    <div class="page-load-status">
+                      <p class="infinite-scroll-request">Loading...</p>
+                      <p class="infinite-scroll-last">End of content</p>
+                      <p class="infinite-scroll-error">No more pages to load</p>
                     </div>
-                    <div class="load-section text-center">
-                      <a href="#" class="btn text-uppercase btn-load">Load More</a>
-                    </div>
-                </div>
-
             </div>
         </div>
       </div>
     </div>
 
+    <script type="text/javascript" charset="utf-8">
+        var postPage = jQuery("#post_per_page").val();
+        var publishedPost = jQuery("#published_posts").val();
+        var pageUrl = <?php echo $_SERVER['REQUEST_URI']; ?>;
+        jQuery('.curated-container').infiniteScroll({
+            // options
+            path: function() {
+                console.log(Math.round(publishedPost/postPage));
+                console.log(parseInt(this.loadCount + 2));
+                if ((Math.round(publishedPost/postPage) + 1) == parseInt(this.loadCount + 2)  ) {
+                    return false;
+                }
+                if (jQuery().niceScroll) {
+                    jQuery("html.no-touch").getNiceScroll().hide();
+                }
+                jQuery('html, body').css({overflow: 'visible'});
+                var pageNumber = ( this.loadCount + 2 );
+                return pageUrl+'page/' + pageNumber;
+            },
+            status: '.page-load-status',
+            append: '.curated-content',
+            history: false,
+        });
+
+
+    </script>
     <?php get_footer(); ?>
