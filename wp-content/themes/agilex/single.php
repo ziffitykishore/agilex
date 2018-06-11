@@ -7,9 +7,9 @@
  */
 
   get_header(); ?>
-  
+<?php $postDataValue = get_post(); ?>
 <div class="main-banner-wrap">
-  <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
+  <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     <div class="main-banner">
       <?php if ($featured_img_url){ ?>
         <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
@@ -20,13 +20,13 @@
     <div class="page-header-content">
       <div class="container">
         <h1><?php echo the_Title(); ?></h1>
-        <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
-      </div>     
-        
+        <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>
+      </div>
+
     </div>
     <div class="blog-detail-wrap">
           <div class="blog-detail text-uppercase">
-            <div class="blog-author">By <?php  the_author_meta( 'display_name', $postData[0]->post_author ) ?></div>
+              <div class="blog-author">By <?php  the_author_meta( 'display_name', $postDataValue->post_author ) ?></div>
             <div class="blog-year"><?php the_time('j F Y') ?></div>
           </div>
           <div class="blog-extras">
@@ -41,10 +41,6 @@
       </div>
 </div>
 
-
-
-      
-      <? echo get_avatar( get_the_author_meta('user_email'), $size = '50'); ?>
 <div class="single-page-wrap">
   <div class="container">
     <div class="single-content-outer col-sm-12 col-md-8 col-md-offset-2 margin-top--70 white-bg">
@@ -54,20 +50,17 @@
     </div>
   </div>
 </div>
-
-
 <div class="author-details-wrap">
   <div class="container">
         <div class="author-details-outer">
-          
+
           <div class="user-avatar">
-            
-              <i class="fa fa-user fa-4x"></i>
+              <?php echo get_avatar(get_the_author_meta('ID'), ''); ?>
             </div>
-      
+
           <div class="author-details-inner">
               <div class="text-uppercase author-text">Author</div>
-              <div class="author-name text-uppercase"><?php  the_author_meta( 'display_name', $postData[0]->post_author ) ?></div>
+              <div class="author-name text-uppercase"><?php  the_author_meta( 'display_name', $postDataValue->post_author ) ?></div>
               <?php
 		// Author bio.
 		if ( is_single() && get_the_author_meta( 'description' ) ) :
@@ -85,8 +78,8 @@
     <div class="pagination-inner">
     <?php
 $post_id = $post->ID; // Get current post ID
-$cat = get_the_category(); 
-$current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
+$cat = get_the_category();
+$current_cat_id = get_queried_object_id();  // Get current Category ID
 $args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC');
 $posts = get_posts($args);
 // Get IDs of posts retrieved by get_posts function
@@ -110,5 +103,5 @@ $nextID = $posts[$current+1];
 
 <?php //get_sidebar(); ?>
 
-      
+
 	<?php get_footer(); ?>
