@@ -510,7 +510,7 @@
 				$item = apply_filters( 'wprss_insert_post_item_conditionals', $item, $feed_ID, $permalink );
 
 				// Check if the imported count should still be updated, even if the item is NULL
-                $still_update_count = apply_filters( 'wprss_still_update_import_count', FALSE );
+                                $still_update_count = apply_filters( 'wprss_still_update_import_count', FALSE );
 
 				// If the item is not NULL, continue to inserting the feed item post into the DB
 				if ( $item !== NULL && !is_bool($item) ) {
