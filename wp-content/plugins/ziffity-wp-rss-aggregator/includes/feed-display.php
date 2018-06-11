@@ -69,7 +69,6 @@
         // Get the item meta
         $permalink       = get_post_meta( $ID, 'wprss_item_permalink', true );
         $enclosure       = get_post_meta( $ID, 'wprss_item_enclosure', true );
-        $enclosure       = get_post_meta( $ID, 'wprss_item_enclosure', true );
         $feed_source_id  = get_post_meta( $ID, 'wprss_feed_id', true );
         $link_enclosure  = get_post_meta( $feed_source_id, 'wprss_enclosure', true );
         $source_name     = get_the_title( $feed_source_id );
