@@ -47,13 +47,18 @@ get_header(); ?>
 
                     <?php /** Rss Aggregator **/
                         $rssFeeds = do_shortcode('[wp-rss-aggregator]');
+
+                        if($rssFeeds){
                         echo $rssFeeds;
+                        }
                     ?>
-                    <div class="page-load-status">
+                    <?php if($rssFeeds){ ?>
+                    <div class="page-load-status load-section text-center text-uppercase">
                       <p class="infinite-scroll-request">Loading...</p>
                       <p class="infinite-scroll-last">End of content</p>
                       <p class="infinite-scroll-error">No more pages to load</p>
                     </div>
+                    <?php }?>
             </div>
         </div>
       </div>

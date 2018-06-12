@@ -404,7 +404,7 @@
     .home .video-content {
         top: 0;
         margin-bottom: 30px;
-        min-height: auto;
+        min-height: initial;
     }
     .who-we-are .parallax-move {
         width: 100px;
@@ -525,6 +525,20 @@
     }
     .careers-wrap .careers-form-wrap {
         padding: 0;
+    }
+    .opening-wrap {
+        padding-bottom: 20px;
+    }
+    .opening-wrap .opening-list {
+        text-align: center;
+    }
+    .opening-wrap .opening-list .post-name-wrap {
+        margin-bottom: 30px;
+        padding-right: 0;
+    }
+    .opening-wrap .opening-list .job-desc {
+        padding-left: 0;
+        border: none;
     }
     .careers-wrap+.image-gallery {
         padding-top: 30px;

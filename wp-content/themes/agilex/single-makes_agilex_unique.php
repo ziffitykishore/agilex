@@ -45,7 +45,7 @@ get_header(); ?>
 
 <?php $tabdetails = get_post_meta( get_the_ID(), 'tabcontents', true );
 if($tabdetails) { ?>
-  <div class="tab-section sub-category wow fadeInUp">
+  <div class="tab-section sub-category wow fadeIn">
     <div class="container">
       <ul id="myTabs" class="nav nav-tabs responsive" role="tablist">
       <?php $i = 1; foreach( $tabdetails  as $tabdetail){ ?>

@@ -925,7 +925,7 @@ function responsiveResize() {
 		
         checkScrollBar('disable');
         stickyFooter('disable');
-        $('.wow').removeClass('slideInLeft').addClass('fadeInUp').css('animation-name', 'fadeInUp');
+        $('#collapse-myTabs .wow').removeClass('slideInLeft').addClass('fadeInUp').css('animation-name', 'fadeInUp');
         responsiveflag = true;
         
 	}

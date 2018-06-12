@@ -490,7 +490,7 @@ img,
 }
 
 .btn-md {
-    min-width: 160px;
+    padding: 6px 30px;
     height: 50px;
     line-height: 40px;
 }
@@ -639,6 +639,10 @@ img,
     transform: scale(0);
     position: absolute;
     opacity: 1;
+}
+
+.btn-blue-ripple .ripple {
+    background: rgb(23, 74, 121, 0.5);
 }
 
 .btn-ripple .rippleEffect {
@@ -895,6 +899,10 @@ p {
 .image-gallery .img-sec img {
     display: block;
     width: 100%;
+}
+
+.clear-both {
+    clear: both;
 }
 
 .nicescroll-rails {}
@@ -3197,7 +3205,7 @@ p+p {
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .page-header-content {
@@ -3983,13 +3991,15 @@ html.no-touch {
     color: #174a79;
     font-size: 18px;
     font-weight: bold;
+    line-height: normal;
 }
 
-.news-desc {
+.curated-content .news-desc {
     margin: 20px 0;
 }
 
-.news-desc p {
+.curated-content .news-desc p,
+.curated-content .news-desc {
     line-height: normal;
     font-size: 16px;
 }
@@ -4003,6 +4013,7 @@ html.no-touch {
     padding-top: 8px;
     padding-bottom: 8px;
     color: #6f6f6f;
+    line-height: normal;
 }
 
 .news-info-details span {
@@ -4121,7 +4132,7 @@ html.no-touch {
     margin-top: -70px;
 }
 
-.careers-wrap .heading {
+.careers-wrap .content-wrap .heading {
     text-align: left;
     margin-bottom: 20px;
 }
@@ -4135,13 +4146,17 @@ html.no-touch {
     border-top: 1px solid #e2e2e2;
 }
 
-.careers-wrap .heading .heading-title {
+.careers-wrap .content-wrap .heading .heading-title {
     font-size: 20px;
     margin-top: 0;
 }
 
 .careers-wrap .careers-form {
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.careers-wrap .careers-form .heading-title {
+    font-size: 20px;
 }
 
 .careers-form #cf7md-form .cf7md-file .wpcf7-form-control-wrap {
@@ -4184,6 +4199,47 @@ html.no-touch {
 
 #cf7md-form .ajax-loader {
     display: none;
+}
+
+.opening-wrap .heading .sub-heading {
+    color: #192a3e;
+}
+
+.opening-wrap .opening-list {
+    padding: 30px;
+    border: 1px solid #e5e5e5;
+    align-items: center;
+    justify-content: center;
+    -webkit-transition: all 0.5s ease-in;
+    -moz-transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
+}
+
+.opening-wrap .opening-list+.opening-list {
+    margin-top: 30px;
+}
+
+.opening-wrap .opening-list:hover {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+.opening-wrap .post-name-wrap {
+    padding-right: 30px;
+}
+
+.opening-wrap .job-desc {
+    padding-left: 30px;
+    border-left: 1px solid #f3f3f3;
+}
+
+.opening-wrap .job-desc p {
+    font-size: 13px;
+    line-height: normal;
+}
+
+.opening-wrap .opening-list .post-name {
+    margin-bottom: 20px;
+    color: #192a3e;
 }
 
 
@@ -4338,6 +4394,7 @@ div.nice-select:after {
     position: relative;
     top: 5px;
     font-size: 10px;
+    display: inline-block;
 }
 
 #cf7md-form .cf7md-submit {
@@ -4566,6 +4623,25 @@ div.nice-select:after {
     top: 50%;
     background-color: #e5e5e5;
 }
+
+
+/* .cd-service .img-blk:before,
+.cd-service .img-blk:after {
+    position: absolute;
+    width: 49%;
+    content: '';
+    background: #fff;
+    height: 30px;
+    left: 0;
+    bottom: -15px;
+    z-index: 99;
+}
+
+.cd-service .img-blk:after {
+    left: auto;
+    right: 0;
+}
+ */
 
 
 /* blog */
@@ -4805,17 +4881,17 @@ div.nice-select:after {
     padding-bottom: 30px;
 }
 
-.sidebar-blog .blog-search {
+.blog-search {
     margin-bottom: 30px;
     padding: 30px;
     box-shadow: 0px 5px 10px -1px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar-blog .blog-search .input-group {
+.blog-search .input-group {
     border: 1px solid #f2eeec;
 }
 
-.sidebar-blog .blog-search .form-control {
+.blog-search .form-control {
     height: 50px;
     border-radius: 0;
     text-transform: uppercase;
@@ -4827,11 +4903,11 @@ div.nice-select:after {
     box-shadow: none;
 }
 
-.sidebar-blog .blog-search .input-group-btn {
+.blog-search .input-group-btn {
     background: transparent;
 }
 
-.sidebar-blog .blog-search #searchsubmit {
+.blog-search #searchsubmit {
     color: #174a79;
     margin: 0;
     border: none;
@@ -5000,6 +5076,18 @@ div.nice-select:after {
     margin-top: 30px;
 }
 
+.single .entry {
+    text-align: center;
+}
+
+.single .entry p {
+    text-align: justify;
+}
+
+.single .entry img {
+    margin: 15px auto;
+}
+
 .author-details-outer {
     max-width: 635px;
     padding: 70px 30px 30px;
@@ -5045,6 +5133,8 @@ div.nice-select:after {
 
 .user-avatar img {
     padding: 8px;
+    width: 100%;
+    border-radius: 50%;
 }
 
 .single .pagination-wrap {
@@ -5057,6 +5147,8 @@ div.nice-select:after {
 .pagination-inner {
     display: flex;
     justify-content: space-between;
+    position: relative;
+    text-align: center;
     align-items: center;
 }
 
@@ -5074,6 +5166,12 @@ div.nice-select:after {
     color: #6f6f6f;
     line-height: 38px;
     font-size: 38px;
+}
+
+.pagination-inner .cat-link {
+    position: absolute;
+    left: 0;
+    right: 0;
 }
 
 

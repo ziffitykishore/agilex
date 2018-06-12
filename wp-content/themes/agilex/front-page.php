@@ -42,7 +42,7 @@ if (is_front_page()) { ?>
         </div>
              </section>
     <?php /** Makes Agilex Unique Section -- Start **/ ?>
-    <section class="tab-section uniques wow fadeInUp" id="unique-section" >
+    <section class="tab-section uniques wow fadeIn" id="unique-section" >
         <div class="container">
         <?php $args = array(
 'name' => 'what-makes-agilex-unique',
@@ -132,7 +132,7 @@ $unique_arg_query->the_post();  ?>
     $who_we_are_query = new WP_Query($who_args);
     while ($who_we_are_query->have_posts()) {
         $who_we_are_query->the_post(); ?>
-    <section class="who-we-are wow fadeInUp parallax-img-container">
+    <section class="who-we-are wow fadeIn parallax-img-container">
     <div class="container">
     <div class="heading">
         <a href="<?php echo get_permalink() ?>">
@@ -208,7 +208,7 @@ $unique_arg_query->the_post();  ?>
     /* Restore original Post Data */
     wp_reset_postdata();
     /** Who We Are Section -- End * */ ?>
-    <section class="what-we-do  wow fadeInUp">
+    <section class="what-we-do  wow fadeIn">
         <div class="container">
         <?php $args = array(
             'name' => 'what-we-do',
@@ -239,7 +239,7 @@ $unique_arg_query->the_post();  ?>
                     $agilex_whatwe_query->the_post();
                     $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
                     ?>
-                    <div class="col-xs-6 col-sm-6 col-md-4  wow fadeInUp" data-wow-delay="<?php echo $delay; ?>s" >
+                    <div class="col-xs-6 col-sm-6 col-md-4  wow fadeIn" data-wow-delay="<?php echo $delay; ?>s" >
                         <div class="thumbnail">
                             <a href="<?php echo get_permalink() ?>">
                                 <div class="img-sec">
@@ -271,7 +271,7 @@ $unique_arg_query->the_post();  ?>
         </div>
                 </section>
 <?php  /** What We Do Section -- End * */ ?>
-    <section class="testimonials wow fadeInUp">
+    <section class="testimonials wow fadeIn">
         <div class="container">
         <?php $args = array(
             'name' => 'testimonials',
