@@ -1871,3 +1871,29 @@ function customArchievesLink($cat_id, $args = '') {
 
 
 
+
+function highlight_results($text){
+    if(is_search()){
+		$keys = implode('|', explode(' ', get_search_query()));
+		$text = preg_replace('/(' . $keys .')/iu', '<span class="search-highlight">\0</span>', $text);
+    }
+    return $text;
+}
+add_filter('the_content', 'highlight_results');
+add_filter('the_excerpt', 'highlight_results');
+add_filter('the_title', 'highlight_results');
+ 
+function highlight_results_css() {
+	?>
+	<style>
+	.search-highlight { background-color:#FF0; font-weight:bold; }
+	</style>
+	<?php
+}
+add_action('wp_head','highlight_results_css');
+
+
+
+add_filter('the_content', 'highlight_results');
+add_filter('the_excerpt', 'highlight_results');
+add_filter('the_title', 'highlight_results');
