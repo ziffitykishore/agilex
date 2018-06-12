@@ -8,22 +8,32 @@
 
   get_header(); ?>
   
-  <div class="main-banner-wrap">
-  <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
-    <div class="main-banner">
-      <?php if ($featured_img_url){ ?>
-        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
-      <?php } else  { ?>
-        <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
-      <?php }?>
+  <?php
+    $pageargs = array(
+
+            'post_type' => 'page',
+            'name' => 'no-page-found'
+        );
+        $postValues = get_posts($pageargs);
+    ?>
+    <div class="main-banner-wrap">
+        <?php foreach($postValues as $postValue): ?>
+        <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'full'); ?>
+        <div class="main-banner">
+            <?php if ($featured_img_url){ ?>
+                <img src="<?php echo $featured_img_url; ?>" class="" alt="<?php $featured_img_url['alt']; ?>"/>
+            <?php } else  { ?>
+                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+            <?php }?>
+
+        </div>
+        <div class="page-header-content">
+            <div class="container">
+                <h1><?php echo $postValue->post_title ?></h1>
+                <p><?php echo $postValue->post_excerpt ?></p>
+            </div>
+        </div><?php endforeach;?>
     </div>
-    <div class="page-header-content">
-      <div class="container">
-        <h1><?php echo the_Title(); ?></h1>
-        <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
-      </div>     
-    </div>
-</div>
 
 <div class="err-page-wrap pad-30">
       <div class="container">

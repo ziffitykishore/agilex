@@ -30,7 +30,8 @@
   <div class="container">
     <div class="form-sec-inner flex-sec margin-top--150 white-bg">
       <div class="flex-sm-100 flex-md-60  pad-25 contact-form <?php if($contact_sidebar){ echo 'flex-70'; } else { echo 'flex-100'; } ?>">
-        <?php echo do_shortcode('[contact-form-7 id="300" title="Contact Us"]') ?>
+         
+         <?php echo get_field('contact_form_7');  ?>
       </div>
 
       

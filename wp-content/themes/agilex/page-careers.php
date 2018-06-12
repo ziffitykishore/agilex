@@ -46,7 +46,7 @@
           <div class="heading text-uppercase text-center">
             <div class="heading-title">Apply Today!</div>
           </div>
-          <?php echo do_shortcode('[contact-form-7 id="255" title="Contact form 1"]'); ?>
+          <?php echo get_field('contact_form_7');  ?> ?>
         </div>
       </div>
       <div class="opening-wrap pad-tb-50 clear-both">
