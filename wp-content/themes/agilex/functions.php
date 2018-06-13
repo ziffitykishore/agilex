@@ -177,7 +177,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/masonry.pkgd.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'mousewheel-js', get_template_directory_uri() . '/js/jquery.mousewheel.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'mCustomScrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '', true );
-    wp_enqueue_script( 'nicescroll-js', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array( 'jquery' ), '', true );
+    /* wp_enqueue_script( 'nicescroll-js', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array( 'jquery' ), '', true ); */
     wp_enqueue_script( 'hover3d-js', get_template_directory_uri() . '/js/jquery.hover3d.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'TweenMax-js', get_template_directory_uri() . '/js/TweenMax.min.js', array( 'jquery' ), '', true );
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
