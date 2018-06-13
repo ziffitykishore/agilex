@@ -39,11 +39,12 @@
     </div>
 </div>
 
-      <div class="row">
 
-        <div class="col-sm-8 blog-main">
 
-          <h1>
+<div class="blog-wrap">
+      <div class="container">
+
+       <!--    <h1>
 		  <?php
 		    if ( is_day() ) :
 		      printf( __( 'Daily Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date() );
@@ -55,14 +56,11 @@
 			  _e( 'Blog Archives', 'bootstrapcanvaswp' );
 			endif;
 		  ?>
-		  </h1>
-          <hr />
-		  <?php get_template_part( 'loop', 'archive' ); ?>
+		  </h1> -->
+        
+		  <?php get_template_part( 'loop_archive', 'archive' ); ?>
 
-        </div><!-- /.blog-main -->
-
-        <?php get_sidebar(); ?>
-
+				
       </div><!-- /.row -->
 
 	<?php get_footer(); ?>

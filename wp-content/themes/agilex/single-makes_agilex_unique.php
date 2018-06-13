@@ -45,7 +45,7 @@ get_header(); ?>
 
 <?php $tabdetails = get_post_meta( get_the_ID(), 'tabcontents', true );
 if($tabdetails) { ?>
-  <div class="tab-section sub-category wow fadeInUp">
+  <div class="tab-section sub-category wow fadeIn">
     <div class="container">
       <ul id="myTabs" class="nav nav-tabs responsive" role="tablist">
       <?php $i = 1; foreach( $tabdetails  as $tabdetail){ ?>
@@ -88,7 +88,7 @@ if($tabdetails) { ?>
 $query = new WP_Query( array( 'post_type' => 'makes_agilex_unique', 'order_by' => 'date', 'order' => 'ASC', 'post__not_in' => array( $exclude_post ) ) ); 
 if($query->have_posts()){ ?>
 
-<div class="related-categories-wrap wow fadeInUp">
+<div class="related-categories-wrap wow fadeIn">
   <div class="container">
   <div class="related-categories-innner flex-sec">
 <?php  $delay=0;

@@ -86,5 +86,17 @@
 	  wp_footer();
     ?>
     </div>
+   
+
+    <script type="text/javascript" id="cookieinfo"
+        src="<?php echo get_template_directory_uri(); ?>/js/cookieinfo.min.js"
+        data-bg="#174a79"
+        data-fg="#FFFFFF"
+        data-link="#F1D600"
+        data-cookie="CookieInfoScript"
+        data-text-align="left"
+        data-close-text="Got it!">
+</script>
+
   </body>
 </html>
