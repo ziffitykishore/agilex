@@ -90,7 +90,7 @@ if($query->have_posts()){ ?>
   <div class="related-categories-innner flex-sec">
 <?php $delay=0;
 while ( $query->have_posts() ) { $query->the_post(); ?>
-  <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20 wow fadeIn"  data-wow-delay="<?php echo $delay; ?>s">
+  <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20 wow fadeInUp"  data-wow-delay="<?php echo $delay; ?>s">
   <a href="<?php echo get_permalink() ?>" class="img-sec">
     <figure>
 
