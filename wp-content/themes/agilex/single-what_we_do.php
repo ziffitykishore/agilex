@@ -85,7 +85,7 @@ if($tabdetails) { ?>
 $query = new WP_Query( array( 'post_type' => 'what_we_do', 'order_by' => 'date', 'order' => 'ASC', 'post__not_in' => array( $exclude_post ) ) ); 
 if($query->have_posts()){ ?>
 
-<div class="related-categories-wrap wow fadeInUp">
+<div class="related-categories-wrap wow fadeIn">
   <div class="container">
   <div class="related-categories-innner flex-sec">
 <?php $delay=0;

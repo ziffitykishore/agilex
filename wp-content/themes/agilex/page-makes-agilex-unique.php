@@ -26,7 +26,7 @@ get_header(); ?>
 
 <div class="sub-service-wrap" id="agilex-unique">
   <div class="container">
-    <div class="page-desc margin-top--70 wow fadeInUp">
+    <div class="page-desc margin-top--70 wow fadeIn">
     <?php
     // TO SHOW THE PAGE CONTENTS
     while ( have_posts() ) : the_post(); ?>
@@ -52,14 +52,14 @@ get_header(); ?>
         $agilex_test_query->the_post();
         $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     
-          <div class="categories-blk clearfix wow fadeInUp border-efx ">
+          <div class="categories-blk clearfix wow fadeIn border-efx ">
             <div class="border-ani"></div>
           <?php if ( has_post_thumbnail() ) {
                                     the_post_thumbnail('full');
                                 } else { ?>
                                     <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
                                 <?php } ?>
-            <div class="categories-content  wow fadeInUp">
+            <div class="categories-content  wow fadeIn">
               <h2><a href="<?php echo get_permalink() ?>"><?php echo the_Title(); ?></a></h2>
               <div class="short-desc">
               <?php echo wp_trim_words( get_the_content(), 35, '...' ); ?>

@@ -172,7 +172,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'responsive-tabs-js', get_template_directory_uri() . '/js/responsive-tabs.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'select-js', get_template_directory_uri() . '/js/jquery.nice-select.min.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'wow-min-js', get_template_directory_uri() . '/js/wow.min.js', array( 'jquery' ), '', true );
-    wp_enqueue_script( 'parallaxImg-js', get_template_directory_uri() . '/js/parallaxImg.js', array( 'jquery' ), '', true );
+    /* wp_enqueue_script( 'parallaxImg-js', get_template_directory_uri() . '/js/parallaxImg.js', array( 'jquery' ), '', true ); */
     wp_enqueue_script( 'fancybox-js', get_template_directory_uri() . '/js/jquery.fancybox.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/masonry.pkgd.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'mousewheel-js', get_template_directory_uri() . '/js/jquery.mousewheel.js', array( 'jquery' ), '', true );
@@ -1871,3 +1871,29 @@ function customArchievesLink($cat_id, $args = '') {
 
 
 
+
+function highlight_results($text){
+    if(is_search()){
+		$keys = implode('|', explode(' ', get_search_query()));
+		$text = preg_replace('/(' . $keys .')/iu', '<span class="search-highlight">\0</span>', $text);
+    }
+    return $text;
+}
+add_filter('the_content', 'highlight_results');
+add_filter('the_excerpt', 'highlight_results');
+add_filter('the_title', 'highlight_results');
+ 
+function highlight_results_css() {
+	?>
+	<style>
+	.search-highlight { background-color:#FF0; font-weight:bold; }
+	</style>
+	<?php
+}
+add_action('wp_head','highlight_results_css');
+
+
+
+add_filter('the_content', 'highlight_results');
+add_filter('the_excerpt', 'highlight_results');
+add_filter('the_title', 'highlight_results');

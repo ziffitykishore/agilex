@@ -79,7 +79,7 @@
     <?php
 $post_id = $post->ID; // Get current post ID
 $cat = get_the_category();
-$current_cat_id = get_queried_object_id();  // Get current Category ID
+$current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
 $args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC');
 $posts = get_posts($args);
 // Get IDs of posts retrieved by get_posts function

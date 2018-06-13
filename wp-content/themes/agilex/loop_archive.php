@@ -14,24 +14,24 @@
                             <li class="blog-item col-sm-6 col-md-4">
                                 <div class="blog-inner">
                                     <div class="blog-image">
-                                    <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
+                                        <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>">
 
 
-                                            <?php
-                                            global $post;
-                                            $image_object = get_cfc_field('thumbnail', 'post-thumbnail', $post->ID );
-                                            ?>
-                                            <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
-                                            <?php if($image_object){ ?>
-                                            <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/>
-                                            <?php } elseif($featured_img_url) {?>
-                                                
-                                                <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
-                                            <?php } else { ?>
-                                                <img src="<?php echo get_template_directory_uri()?>/images/placeholder_360X510.png"/>                    
-                                            <?php  }?>
+                                                <?php
+                                                global $post;
+                                                $image_object = get_cfc_field('thumbnail', 'post-thumbnail', $post->ID );
+                                                ?>
+                                                <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
+                                                <?php if($image_object){ ?>
+                                                <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/>
+                                                <?php } elseif($featured_img_url) {?>
+                                                    
+                                                    <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
+                                                <?php } else { ?>
+                                                     <img src="<?php echo get_template_directory_uri()?>/images/placeholder_360X510.png"/>                    
+                                               <?php  }?>
 
-                                            </a>
+                                        </a>
                                     </div>
                                     <div class="blog-detail-wrap">
                                         <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php the_title(); ?></div></a>
@@ -54,11 +54,11 @@
                     <?php endwhile; ?>
                     </ul>
                 <?php else: ?>
-                    <p class="text-center">Sorry, no posts matched your criteria.</p>
+                <p class="text-center">Sorry, no posts matched your criteria.</p>
                 <?php endif; ?>
             </div>
             <div class="col-md-12 col-lg-3  sidebar-blog">
-            <?php get_sidebar('category'); ?>
+            <?php get_sidebar('archive'); ?>
                 </div>
 
 
