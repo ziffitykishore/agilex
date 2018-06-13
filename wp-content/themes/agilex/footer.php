@@ -95,7 +95,7 @@
         data-link="#bba999"
         data-message = "This website intends to use cookies to improve the site and your experience. By continuing to browse the site you are agreeing to accept our use of cookies. If you require further information and/or do not wish to have cookies placed when using the site, visit "
         data-linkmsg = "Cookies page."
-        data-moreinfo: "http://wikipedia.org/wiki/HTTP_cookie",
+        data-moreinfo: "http://wikipedia.org/wiki/HTTP_cookie"
         data-cookie="CookieInfoScript"
         data-text-align="left"
         data-fontSize = "10px"
