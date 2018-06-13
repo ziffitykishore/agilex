@@ -42,7 +42,7 @@
         get_template_part( 'loop_category', 'category' );
         get_sidebar('category');
     } else {
-        get_template_part( 'loop', 'category' );
+        get_template_part( 'loop_category', 'category' );
     ?>
 
     <!-- /.blog-main -->

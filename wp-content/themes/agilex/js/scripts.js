@@ -23,6 +23,8 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
+
+    iconFilling();
     /* browser detection */
 
     if (navigator.userAgent.match(/msie/i) || navigator.userAgent.match(/trident/i) ){
@@ -345,27 +347,35 @@ bgSource('.main-banner');
       newWidth,
       $mainNav = $("#myTabs");
   if ($mainNav.length) {
-      $mainNav.append("<span id='magic-line'></span>");
+      $mainNav.append("<span id='magic-line'><span class='line'></span><span class='arrow'></span></span>");
       var $magicLine = $("#magic-line");
 
       $("#myTabs li.active").each(function(){
         var activeElm = $(this).find('a'),
         color= activeElm.attr('rel');
         activeElm.css('color', color);
-        $magicLine.css('background-color', color);
+        $magicLine.find('.line').css('background-color', color);
+        $magicLine.find('.arrow').css('border-color', color);
         linkId = activeElm.attr('id');
         $magicLine.addClass(linkId);
   });
       
 
 
-      $magicLine
+      /* $magicLine
           .width($(".active").width())
           .css("left", $(".active a").position().left)
           .data("origLeft", $magicLine.position().left)
           .data("origWidth", $magicLine.width())
+          .data("origColor", $(".active a").attr("rel")); */
+          $magicLine
+          .width($(".active").width())
+          
+          .css("left", $(".active  a").position().left)
+          .data("origLeft", $(".active a").offset().left)
+          .data("origWidth", $(".active a").innerWidth())
           .data("origColor", $(".active a").attr("rel"));
-
+                  
           
       $("#myTabs li a").hover(
           function() {
@@ -373,6 +383,9 @@ bgSource('.main-banner');
               $el.parent().siblings().find('a').removeAttr('style');
               linkId = $el.attr('id');
               $el.css('color', $el.attr("rel"));
+              activeElm = $('.active').find('a').attr('rel');
+              actElmWidth = $('.active').width();
+              actElmLeft = $('.active').offset().left;
               leftPos = $el.position().left;
               newWidth = $el.parent().width();
               $magicLine.removeClass();
@@ -380,18 +393,38 @@ bgSource('.main-banner');
               
               $magicLine.stop().animate({
                   left: leftPos,
-                  width: newWidth,
-                  backgroundColor: $el.attr("rel")
+                  width: newWidth
 
               });
+
+              $magicLine.find('.line').stop().animate({
+                
+                  backgroundColor: $el.attr("rel")
+              });
+              $magicLine.find('.arrow').stop().animate({
+                
+                borderColor: $el.attr("rel")
+            });
           }   , function() {
-                        $el.removeAttr('style');
+                       $el.removeAttr('style');
                        $magicLine.stop().animate({
-                          /* left: $magicLine.data("origLeft"),
-                          width: $el.parent().width(),  */
-                          backgroundColor: $el.attr("rel")
+                        left:  $('.active a').position().left,
+                        width: $('.active a').innerWidth(),
+                          //backgroundColor: $el.attr("rel")
 
                       }); 
+                      
+                      $magicLine.find('.line').stop().animate({
+                       
+                        backgroundColor:$('.active a').attr('rel')
+                        
+                        
+                    });
+                    $magicLine.find('.arrow').stop().animate({
+                
+                        
+                        borderColor: $('.active a').attr('rel')
+                    });
                   }  
       );
   }
@@ -524,7 +557,11 @@ $(window).scroll(function(event){
 
 //reset the scroll to 0 (top of page)
 $(window).on('beforeunload', function() {
-   // $(this).scrollTop(0);
+    setInterval(function(){
+    $(this).scrollTop(0);
+    $('body').fadeOut('slow');
+}, 500);
+    $('body').addClass('loader');
     if($(this).scrollTop() === 0){
         $('.header-container').removeClass('slideUp slideDown');
     }
@@ -613,7 +650,7 @@ function hasScrolled() {
       pageLoader: false
   };
 
-  parallaxImgScroll(parallaxSettings);
+  //parallaxImgScroll(parallaxSettings);
 
 
   /* executive slider */
@@ -814,9 +851,16 @@ function checkScrollBar(status) {
     
 }
 
-  
 
-
+/*  blog */
+var myNiceVar = document.getElementById( 'grid' );
+if (myNiceVar !== null ) {
+new AnimOnScroll( myNiceVar, {
+    minDuration : 0.4,
+    maxDuration : 0.6,
+    viewportFactor : 0.2
+} );
+}
 
 
 function iconFilling(){
@@ -902,15 +946,8 @@ function removeClassPrefix(el, prefix) {
 /* icon filling effects */
 
 
-/*  blog */
-var myNiceVar = document.getElementById( 'grid' );
-if (myNiceVar !== null ) {
-new AnimOnScroll( myNiceVar, {
-    minDuration : 0.4,
-    maxDuration : 0.6,
-    viewportFactor : 0.2
-} );
-}
+
+
 var responsiveflag = false;
 function responsiveResize() {
 	iconFilling();
@@ -919,7 +956,7 @@ function responsiveResize() {
 		
         checkScrollBar('disable');
         stickyFooter('disable');
-        $('.wow').removeClass('slideInLeft').addClass('fadeInUp').css('animation-name', 'fadeInUp');
+        $('#collapse-myTabs .wow').removeClass('slideInLeft').addClass('fadeInUp').css('animation-name', 'fadeInUp');
         responsiveflag = true;
         
 	}
@@ -953,6 +990,23 @@ function responsiveResize() {
       var socialShare = $('.social_sharing-content');
       var shareWidth = socialShare.outerWidth();
       socialShare.css('width', shareWidth);
+
+
+     /*  $('.image-gallery').masonry({
+        //itemSelector: '.img-sec',
+       // columnWidth: 50
+      }); */
+
+      /* Search query */
+
+      $('.search-results .entry').each(function() {
+        var maxchars = 250;
+        var seperator = '...';
+    
+        if ($(this).text().length > (maxchars - seperator.length)) {
+            $(this).text($(this).text().substr(0, maxchars-seperator.length) + seperator).wrapInner('<p>');
+        }
+    });
 
 })(jQuery);
 

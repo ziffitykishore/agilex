@@ -62,6 +62,9 @@
         margin: 0;
         width: 100%;
     }
+    .careers-wrap .inner-section {
+        padding: 30px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -144,18 +147,18 @@
     .timeline-item .timeline-content {
         padding: 0 20px;
     }
-    .careers-wrap .pad-70,
-    .careers-inner-wrap>div {
-        padding: 30px;
-    }
     .sub-service-wrap .categories-blk {
         margin-bottom: 40px;
+    }
+    .single .single-page-wrap .single-content-inner {
+        padding: 30px;
     }
 }
 
 @media only screen and (min-width:992px) and (max-width:1100px) {
     .cd-icons-filling .content-detail {
-        padding-top: 60px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
@@ -316,8 +319,8 @@
 
 @media screen and (min-width: 800px) and (max-width: 992px) {
     .cd-icons-filling .content-detail {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
     }
 }
 
@@ -401,6 +404,7 @@
     .home .video-content {
         top: 0;
         margin-bottom: 30px;
+        min-height: initial;
     }
     .who-we-are .parallax-move {
         width: 100px;
@@ -516,6 +520,29 @@
     .sub-service-wrap .categories-content h2 {
         font-size: 18px;
     }
+    .careers-wrap .inner-section {
+        padding: 30px 15px;
+    }
+    .careers-wrap .careers-form-wrap {
+        padding: 0;
+    }
+    .opening-wrap {
+        padding-bottom: 20px;
+    }
+    .opening-wrap .opening-list {
+        text-align: center;
+    }
+    .opening-wrap .opening-list .post-name-wrap {
+        margin-bottom: 30px;
+        padding-right: 0;
+    }
+    .opening-wrap .opening-list .job-desc {
+        padding-left: 0;
+        border: none;
+    }
+    .careers-wrap+.image-gallery {
+        padding-top: 30px;
+    }
 }
 
 @media screen and (max-width: 767px) {
@@ -570,6 +597,15 @@
     .cd-icons-filling:after {}
     .sub-service-wrap .categories-content {
         width: auto;
+    }
+    .main-banner-wrap .blog-detail-wrap {
+        padding: 15px 30px;
+        flex-direction: column;
+        text-align: center;
+    }
+    .blog-detail-wrap .blog-detail {
+        justify-content: center;
+        margin-bottom: 10px;
     }
 }
 

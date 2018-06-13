@@ -28,8 +28,8 @@
         'posts_per_page' => 3]);
     ?>
     <ul class="nav nav-tabs">
-                <li  class="active" role="presentation"><a href="#popular" role="tab" data-toggle="tab">Popular</a></li>
-                <li role="presentation"><a href="#recent" role="tab" data-toggle="tab">Recent</a></li>
+                <li  class="active" role="presentation"><a href="#popular" class="btn-ripple btn-blue-ripple" role="tab" data-toggle="tab">Popular</a></li>
+                <li role="presentation"><a href="#recent" role="tab" class="btn-ripple btn-blue-ripple" data-toggle="tab">Recent</a></li>
 
         </ul>
         <div class="tab-content">
