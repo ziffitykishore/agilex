@@ -649,7 +649,7 @@ function hasScrolled() {
       pageLoader: false
   };
 
-  parallaxImgScroll(parallaxSettings);
+  //parallaxImgScroll(parallaxSettings);
 
 
   /* executive slider */
@@ -792,7 +792,7 @@ $(".no-touch .project").hover3d({
   
 
 $(window).on('load', function(){
-    if (jQuery().niceScroll) {
+  /*   if (jQuery().niceScroll) {
         $(".no-touch body").niceScroll({
   
           scrollspeed: 100,
@@ -802,7 +802,7 @@ $(window).on('load', function(){
             horizrailenabled: false,
             zindex: 99
         });
-    } 
+    }  */
 });
 
 

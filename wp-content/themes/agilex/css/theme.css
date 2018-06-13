@@ -812,8 +812,12 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-html.no-touch {
+.no-touch body {
     overflow: hidden;
+}
+
+.no-touch .page-loaded {
+    overflow-y: auto;
 }
 
 p {
@@ -2807,6 +2811,23 @@ p+p {
     margin-top: 20px;
 }
 
+.parallax-img-container {
+    position: relative;
+}
+
+.parallax-img-container .parallax-move {
+    position: absolute;
+    left: 0;
+    top: 20px;
+}
+
+.parallax-img-container .parallax-move+.parallax-move {
+    right: -15px;
+    bottom: 20px;
+    left: auto;
+    top: auto;
+}
+
 
 /* Who we are */
 
@@ -3136,7 +3157,7 @@ p+p {
 }
 
 .testimonials {
-    padding: 50px 0;
+    padding: 80px 0;
 }
 
 .testimonials .dots-bar .slick-dots li.slick-active button {

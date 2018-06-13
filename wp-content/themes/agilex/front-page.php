@@ -342,7 +342,7 @@ $unique_arg_query->the_post();  ?>
             $unique_arg_query = new WP_Query($args);
             while ($unique_arg_query->have_posts()) {
             $unique_arg_query->the_post();  ?>
-    <section class="testimonials wow fadeInUp parallax-img-container">
+    <section class="testimonials wow fadeIn parallax-img-container">
 
     
 
