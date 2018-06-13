@@ -619,7 +619,7 @@ function hasScrolled() {
       pageLoader: false
   };
 
-  parallaxImgScroll(parallaxSettings);
+  //parallaxImgScroll(parallaxSettings);
 
 
   /* executive slider */

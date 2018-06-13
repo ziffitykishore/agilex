@@ -606,7 +606,12 @@ img,
 }
 
 .btn-door.btn-blue:hover,
-.btn-door.btn-blue:focus {
+.btn-door.btn-blue:focus,
+{
+    color: #174a79;
+}
+
+.btn-door.btn-blue:hover {
     color: #174a79;
 }
 
