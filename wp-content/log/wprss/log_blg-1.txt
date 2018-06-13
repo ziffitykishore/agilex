@@ -22,3 +22,26 @@ Sorted:
 Sorted: 
 
 
+[13-06-2018 08:54:19] [Error] WPRSS > 2:
+Sorted: 
+
+
+[13-06-2018 09:54:36] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://archive.nytimes.com/www.nytimes.com/services/xml/rss/index.html?8dpc". cURL error 6: Could not resolve host: archive.nytimes.com
+
+[13-06-2018 09:54:36] [Error] WPRSS > 2:
+Sorted: 
+
+
+[13-06-2018 10:51:26] [Error] WPRSS > 2:
+Sorted: 
+
+
+[13-06-2018 11:51:00] [Error] WPRSS > 2:
+Sorted: 
+
+
+[13-06-2018 12:51:02] [Error] WPRSS > 2:
+Sorted: 
+
+
