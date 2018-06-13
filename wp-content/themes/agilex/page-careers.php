@@ -80,7 +80,7 @@
 
 
 
-      <div class="image-gallery row pad-tb-50">
+      <!-- <div class="image-gallery row pad-tb-50">
         <div class="container">
       <?php 
     $image_1 = get_field('image_1');
@@ -117,9 +117,37 @@
               <?php } ?>
           </div>
           </div>
-          </div>
+          </div> -->
 
 
+
+
+<?php $tabdetails = get_post_meta( get_the_ID(), 'img-gallery', true );
+if($tabdetails) { ?>
+  <div class="image-gallery  pad-tb-50">
+        <div class="container">
+            <div class="gallery-inner flex-sec">
+      <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
+    
+       
+         
+            
+           
+              <div class="image-sec">
+              <?php if($tabdetail["img-show"]) { ?>
+              <img src="<?php echo wp_get_attachment_url($tabdetail["img-show"]); ?>" alt=""/>
+              <?php }?>
+              </div>
+           
+            
+         
+       
+      
+        <?php  $i++; } ?> 
+              </div>
+   
+              </div></div>
+<?php } ?>
  
 
 

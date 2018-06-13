@@ -42,9 +42,8 @@ if (is_front_page()) { ?>
         </div>
              </section>
     <?php /** Makes Agilex Unique Section -- Start **/ ?>
-    <section class="tab-section uniques wow fadeInUp" id="unique-section" >
-        <div class="container">
-        <?php $args = array(
+    <section class="tab-section uniques wow fadeInUp parallax-img-container" id="unique-section" >
+    <?php $args = array(
 'name' => 'what-makes-agilex-unique',
 'post_type' => 'page',
 'post_status'     => 'publish'
@@ -52,11 +51,28 @@ if (is_front_page()) { ?>
 $unique_arg_query = new WP_Query($args);
 while ($unique_arg_query->have_posts()) {
 $unique_arg_query->the_post();  ?>
+        <?php 
+    $parallax_image_1 = get_field('parallax_image_1');
+    $parallax_image_1_x = get_field('parallax_image_1_x');
+    $parallax_image_1_y = get_field('parallax_image_1_y');
+    $parallax_image_2 = get_field('parallax_image_2');
+    $parallax_image_2_x = get_field('parallax_image_2_x');
+    $parallax_image_2_y = get_field('parallax_image_2_y');
+ ?>
+
+  <?php if($parallax_image_1) {?>
+<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+  <?php } ?>
+  <?php if($parallax_image_2) {?>
+<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<?php } ?>
+        <div class="container">
+
         <div class="heading">
         <div class="heading-title"><?php echo the_Title(); ?></div>
                 <div class="sub-heading"><?php echo wp_trim_words( get_the_content(), 100, '' ); ?></div>
             </div>
-<?php } ?>
+
             <div class="uniques-inner">
             <?php
             $args = array(
@@ -118,6 +134,11 @@ $unique_arg_query->the_post();  ?>
     <?php /* Restore original Post Data */
         wp_reset_postdata();?>
         </div>
+
+
+
+
+      <?php } ?>
     </section>
 
     <?php
@@ -126,13 +147,31 @@ $unique_arg_query->the_post();  ?>
     /** Who We Are Section -- Start **/ ?>
     <?php $who_args = array(
         'name' => 'who-we-are',
-        
+        'post_type' => 'page',
         'post_status'     => 'publish'
     );
     $who_we_are_query = new WP_Query($who_args);
     while ($who_we_are_query->have_posts()) {
         $who_we_are_query->the_post(); ?>
     <section class="who-we-are wow fadeInUp parallax-img-container">
+
+            <?php 
+    $parallax_image_1 = get_field('parallax_image_1');
+    $parallax_image_1_x = get_field('parallax_image_1_x');
+    $parallax_image_1_y = get_field('parallax_image_1_y');
+    $parallax_image_2 = get_field('parallax_image_2');
+    $parallax_image_2_x = get_field('parallax_image_2_x');
+    $parallax_image_2_y = get_field('parallax_image_2_y');
+ ?>
+
+  <?php if($parallax_image_1) {?>
+<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+  <?php } ?>
+  <?php if($parallax_image_2) {?>
+<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<?php } ?>
+
+
     <div class="container">
     <div class="heading">
         <a href="<?php echo get_permalink() ?>">
@@ -208,9 +247,8 @@ $unique_arg_query->the_post();  ?>
     /* Restore original Post Data */
     wp_reset_postdata();
     /** Who We Are Section -- End * */ ?>
-    <section class="what-we-do  wow fadeIn">
-        <div class="container">
-        <?php $args = array(
+    <section class="what-we-do  wow fadeIn parallax-img-container">
+    <?php $args = array(
             'name' => 'what-we-do',
             'post_type' => 'page',
             'post_status'     => 'publish'
@@ -218,11 +256,30 @@ $unique_arg_query->the_post();  ?>
             $unique_arg_query = new WP_Query($args);
             while ($unique_arg_query->have_posts()) {
             $unique_arg_query->the_post();  ?>
+
+      <?php 
+    $parallax_image_1 = get_field('parallax_image_1');
+    $parallax_image_1_x = get_field('parallax_image_1_x');
+    $parallax_image_1_y = get_field('parallax_image_1_y');
+    $parallax_image_2 = get_field('parallax_image_2');
+    $parallax_image_2_x = get_field('parallax_image_2_x');
+    $parallax_image_2_y = get_field('parallax_image_2_y');
+ ?>
+
+  <?php if($parallax_image_1) {?>
+<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+  <?php } ?>
+  <?php if($parallax_image_2) {?>
+<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<?php } ?>
+
+        <div class="container">
+       
                     <div class="heading text-center">
                             <a href="<?php echo get_permalink() ?>"><div class="heading-title"><?php echo the_Title(); ?></div></a>
                             <div class="sub-heading"><?php echo wp_trim_words( get_the_content(), 100, '' ); ?></div>
                         </div>
-            <?php } ?>
+          
             <div class="grid-content row">
                 <?php
                 /** What We Do Section -- Start * */
@@ -269,22 +326,50 @@ $unique_arg_query->the_post();  ?>
                 ?>
             </div>
         </div>
+        <?php } ?>
                 </section>
+
+
+
+
+
 <?php  /** What We Do Section -- End * */ ?>
-    <section class="testimonials wow fadeInUp">
-        <div class="container">
-        <?php $args = array(
+
+ <?php $args = array(
             'name' => 'testimonials',
             'post_status'     => 'publish'
             ); 
             $unique_arg_query = new WP_Query($args);
             while ($unique_arg_query->have_posts()) {
             $unique_arg_query->the_post();  ?>
+    <section class="testimonials wow fadeInUp parallax-img-container">
+
+    
+
+             <?php 
+    $parallax_image_1 = get_field('parallax_image_1');
+    $parallax_image_1_x = get_field('parallax_image_1_x');
+    $parallax_image_1_y = get_field('parallax_image_1_y');
+    $parallax_image_2 = get_field('parallax_image_2');
+    $parallax_image_2_x = get_field('parallax_image_2_x');
+    $parallax_image_2_y = get_field('parallax_image_2_y');
+ ?>
+
+  <?php if($parallax_image_1) {?>
+<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+  <?php } ?>
+  <?php if($parallax_image_2) {?>
+<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<?php } ?>
+
+
+        <div class="container">
+       
                     <div class="heading text-center">
                             <div class="heading-title"><?php echo the_Title(); ?></div>
                             <div class="sub-heading"><?php echo get_the_excerpt();?></div>
                         </div>
-            <?php } ?>
+      
             <div class="testimonials-outer">
                 <div class="reviews-inner dots-bar">
                     
@@ -333,8 +418,9 @@ $unique_arg_query->the_post();  ?>
             </div>
             
         </div>
+       
     </section>
-
+    <?php } ?>
 
     
     
