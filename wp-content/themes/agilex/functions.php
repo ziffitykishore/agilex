@@ -183,7 +183,31 @@ function bootstrapcanvaswp_scripts() {
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
 
     wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ), '', true );
-
+    $the_page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
+    if ('careers' == $the_page->post_name) {
+        // Register the script
+        wp_register_script( 'career-job-js', get_template_directory_uri() .'/js/career-job.js' );
+        // Localize the script with new data
+        $translation_array =
+            array(
+                'ajaxurl'              => esc_js( admin_url('admin-ajax.php') ),
+                'setting_extensions'   => is_array( get_option('job_board_upload_file_ext') ) ? array_map( 'esc_js', get_option('job_board_upload_file_ext') ) : esc_js( get_option('job_board_upload_file_ext') ),
+                'all_extensions_check' => esc_js( get_option('job_board_all_extensions_check') ),
+                'allowed_extensions'   => is_array( get_option('job_board_allowed_extensions') ) ? array_map( 'esc_js', get_option('job_board_allowed_extensions') ) : esc_js( get_option('job_board_allowed_extensions') ),
+                'job_listing_content'  => esc_js( get_option('job_board_listing') ),
+                'jobpost_content'      => esc_js( get_option('job_board_jobpost_content') ),
+                'jquery_alerts'        => array(
+                    'invalid_extension'         => apply_filters( 'sjb_invalid_file_ext_alert', esc_html__( 'This is not an allowed file extension.', 'simple-job-board' ) ),
+                    'application_not_submitted' => apply_filters( 'sjb_job_not_submitted_alert', esc_html__('Your application could not be processed.', 'simple-job-board') ),
+                ),
+                'file' =>array(
+                    'browse' => esc_html__('Browse', 'simple-job-board'),
+                    'no_file_chosen' => esc_html__('No file chosen', 'simple-job-board'),
+                ) );
+        wp_localize_script( 'career-job-js', 'application_form', $translation_array );
+        // Enqueued script with localized data.
+        wp_enqueue_script( 'career-job-js' );
+    }
 
 }
 add_action( 'wp_enqueue_scripts', 'bootstrapcanvaswp_scripts' );
@@ -1882,7 +1906,7 @@ function highlight_results($text){
 add_filter('the_content', 'highlight_results');
 add_filter('the_excerpt', 'highlight_results');
 add_filter('the_title', 'highlight_results');
- 
+
 function highlight_results_css() {
 	?>
 	<style>
