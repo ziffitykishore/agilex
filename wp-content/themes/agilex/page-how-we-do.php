@@ -69,7 +69,7 @@ get_header(); ?>
 function iconFilling(){
     if($('.cd-icons-filling').length){
     var offset = $(".img-blk img").offset().left;
-  var width = $(".img-blk img").outerWidth();
+  var width = $(".img-blk img").width();
   jQuery('.before-bg').css('left', offset);
   jQuery('.before-bg').css('width', width);
     }
@@ -79,7 +79,9 @@ function iconFilling(){
   })
   }
   
-  iconFilling();
+  $(document).on('ready', function(){
+iconFilling();		
+	});
   $(window).on('resize', iconFilling);
   
 
