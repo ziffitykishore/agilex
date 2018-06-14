@@ -2223,6 +2223,10 @@ nav.main-navigation {
     background-size: cover;
 }
 
+.touch .slider-blk {
+    background-attachment: scroll;
+}
+
 .slider-content .slider-heading {
     font-size: 50px;
     color: #fff;
@@ -2457,6 +2461,7 @@ span.line {
 #magic-line .arrow {
     /* content: ''; */
     border: 10px solid;
+    border-top-color: #174a79;
     border-left-color: transparent !important;
     border-right-color: transparent !important;
     border-bottom-color: transparent !important;
@@ -2819,10 +2824,11 @@ p+p {
     position: absolute;
     left: 0;
     top: 20px;
+    z-index: 20;
 }
 
 .parallax-img-container .parallax-move+.parallax-move {
-    right: -15px;
+    right: 0;
     bottom: 20px;
     left: auto;
     top: auto;
@@ -2832,7 +2838,7 @@ p+p {
 /* Who we are */
 
 .who-we-are {
-    padding: 50px 0 200px;
+    padding: 50px 0 120px;
     position: relative;
 }
 
@@ -3244,7 +3250,7 @@ p+p {
     right: 0;
     top: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.2);
 }
 
 .page-header-content {
@@ -3289,8 +3295,7 @@ p+p {
 
 .main-who-we .video-content {
     margin-bottom: 30px;
-    padding: 16%;
-    min-height: 450px;
+    padding: 20%;
 }
 
 .executive-wrap {
@@ -3321,6 +3326,7 @@ p+p {
 
 .executive-wrap .slick-slide img {
     margin: 0 auto;
+    width: 100%;
 }
 
 .exe-personal {
@@ -3450,6 +3456,12 @@ p+p {
 
 .affiliate-thumb img {
     margin: 0 auto;
+}
+
+.affiliations-outer .slick-slide {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }
 
 .slick-slider .slick-arrow,
@@ -4568,6 +4580,10 @@ div.nice-select:after {
     z-index: 2;
 }
 
+.page-template-page-how-we-do .footer-wrap {
+    z-index: 2;
+}
+
 .cd-icons-filling .img-blk img {
     display: block;
 }
@@ -4805,6 +4821,7 @@ div.nice-select:after {
     left: 0;
     position: absolute;
     right: 0;
+    pointer-events: none;
 }
 
 .blog-item .blog-detail-wrap {
@@ -5219,6 +5236,7 @@ div.nice-select:after {
     position: absolute;
     left: 0;
     right: 0;
+    font-size: 20px;
 }
 
 
@@ -5268,6 +5286,39 @@ div.nice-select:after {
 
 /* cookie */
 
+.cookieinfo>span {}
+
 .cookieinfo span a {
     font-weight: bold;
+}
+
+.cookieinfo-close {
+    border: 1px solid #fff;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+    position: relative;
+    border-radius: 0 !important;
+}
+
+.cookieinfo-close:hover {
+    color: #174a79 !important;
+}
+
+.cookieinfo-close:before {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: -2px;
+    height: 0px;
+    width: 100%;
+    z-index: -1;
+    content: '';
+    background: #fff;
+    transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.cookieinfo-close:hover:before {
+    top: 0%;
+    bottom: auto;
+    height: 100%;
 }

@@ -30,6 +30,7 @@ get_header(); ?>
 
 <?php 
 $whoweare_args = array(
+  'post_type' => 'page',
 'name' => 'who-we-are',
 'post_status'     => 'publish'
 ); 
@@ -44,7 +45,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <?php if (get_field('video_image', get_the_ID())){ ?>
 <?php $image = get_field('video_image'); ?>
 <?php } ?>
-<a data-fancybox tabindex="0" href="<?php if (get_field('video_link', get_the_ID())): ?><?php the_field('video_link', get_the_ID()); ?><?php endif; ?> " data-fancybox-type="iframe" class="video-content" style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: 100%;">
+<a data-fancybox tabindex="0" href="<?php if (get_field('video_link', get_the_ID())): ?><?php the_field('video_link', get_the_ID()); ?><?php endif; ?> " data-fancybox-type="iframe" class="video-content" style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: cover;">
 <span  class="btn-fancy" > 
 <span class="play-icon-block">
 <span class="fa fa-play"></span>
@@ -107,19 +108,19 @@ while ($agilex_test_query->have_posts()) {
 $agilex_test_query->the_post();
 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <div class="slider-sec">
-<div class="exe-slider-inner">
-<div class="col-sm-4 member-img">
+<div class="exe-slider-inner flex-sec">
+<div class="col-sm-4 col-xs-12 member-img">
 <?php if ( has_post_thumbnail() ) {
 the_post_thumbnail('full');
 } else { ?>
 <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_400X550.png" alt="<?php the_title(); ?>" />
 <?php } ?>
 </div>
-<div class="col-sm-8 mem-info">
+<div class="col-sm-8 col-xs-12 mem-info">
 <div class="exe-personal page-header">
 <div class="exe-name"><?php echo the_Title(); ?></div>
-<?php if (get_field('linkedin-link')){ ?>
-<a href="<?php the_field('linkedin-link'); ?>" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
+<?php if (get_field('linkedin_link')){ ?>
+<a href="<?php the_field('linkedin_link'); ?>" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
 <?php } ?>
 
 <?php if (get_field('executive_position')){ ?>
@@ -138,8 +139,16 @@ the_post_thumbnail('full');
 <div class="slider-nav"> 
 <?php  while ($agilex_test_query->have_posts()) {
 $agilex_test_query->the_post();
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                              ">
-<div class="exe-thumb-inner"><div class="exe-thumb"><?php the_post_thumbnail('full'); ?></div></div>
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'thumbnail'); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                              ">
+<div class="exe-thumb-inner">
+  <div class="exe-thumb">
+    <?php if($featured_img_url) {?>
+    <img src="<?php echo $featured_img_url ?>" alt="<?php echo the_Title(); ?>"/>
+    <?php } else { ?>
+      <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php echo the_Title(); ?>"/>
+    <?php }?>
+  </div>
+</div>
 <?php }?>
 </div>
 </div>
