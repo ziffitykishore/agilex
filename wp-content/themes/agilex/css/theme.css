@@ -4012,6 +4012,11 @@ html.no-touch {
     width: 30%;
 }
 
+.ie .flex-50 {
+    width: 44%;
+    flex: 0 0 44%;
+}
+
 .flex-50 {
     width: 50%;
     flex: 0 0 50%;
@@ -5302,6 +5307,10 @@ div.nice-select:after {
 
 
 /* cookie */
+
+.ie .cookieinfo {
+    background: #174a79;
+}
 
 .cookieinfo>span {}
 
