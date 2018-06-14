@@ -867,7 +867,7 @@ function iconFilling(){
     var offset = $(".cd-service .img-blk img").offset().left;
   var width = $(".cd-service .img-blk img").width();
   jQuery('.before-bg').css('left', offset);
-  //jQuery('.before-bg').css('width', width);
+  jQuery('.before-bg').css('width', width);
     }
   
   $(window).scroll(function() {
@@ -875,15 +875,10 @@ function iconFilling(){
   });
   }
   
-  $(window).resize(function(){
-    if($('.cd-icons-filling').length){
-   
-      var width = $(".cd-service .img-blk img").width();
 
-      jQuery('.before-bg').css('width', width);
-        }
+  $(window).on('load', function(){
+    iconFilling();		
   });
-  
 iconFilling();		
 	
   
