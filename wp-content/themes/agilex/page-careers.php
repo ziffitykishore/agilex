@@ -55,13 +55,11 @@
         } ?>
     </select>
 <div id="update"><?php
-    $general_post_args = array('post_type' => 'jobpost');
+    $general_post_args = array('post_type' => 'jobpost', 'name' => 'general-post');
     $general_post = get_posts( $general_post_args );
-    $i = 1;
     foreach ( $general_post as $post ):
         setup_postdata($post);
-        echo ($i == 1) ? sjb_job_listing_application_form($post):'';
-        $i++;
+        echo  sjb_job_listing_application_form($post);
     endforeach; ?>
  </div>
       <div class="col-sm-6  col-md-5 careers-form-wrap ">
@@ -69,7 +67,7 @@
           <div class="heading text-uppercase text-center">
             <div class="heading-title">Apply Today!</div>
           </div>
-          <?php echo get_field('contact_form_7');  ?>
+
         </div>
       </div>
       <div class="opening-wrap pad-tb-50 clear-both">
@@ -157,8 +155,8 @@
 
 
 
-<?php $tabdetails = get_post_meta( get_the_ID(), 'img-gallery', true );
-if($tabdetails) { ?>
+<?php $tabdetails = get_post_meta( get_the_ID(), 'img-gallery', true ); ?>
+
   <div class="image-gallery  pad-tb-50">
         <div class="container">
             <div class="gallery-inner flex-sec">
@@ -182,7 +180,7 @@ if($tabdetails) { ?>
               </div>
    
               </div></div>
-<?php } ?>
+
 
 
 

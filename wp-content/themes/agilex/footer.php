@@ -92,7 +92,7 @@
         src="<?php echo get_template_directory_uri(); ?>/js/cookieinfo.min.js"
         data-bg="#174a79a6"
         data-fg="#FFFFFF"
-        data-link="#bba999"
+        data-link="#fff"
         data-message = "This website intends to use cookies to improve the site and your experience. By continuing to browse the site you are agreeing to accept our use of cookies. If you require further information and/or do not wish to have cookies placed when using the site, visit "
         data-linkmsg = "Cookies page."
         data-moreinfo: "http://wikipedia.org/wiki/HTTP_cookie"
@@ -100,7 +100,7 @@
         data-text-align="left"
         data-fontSize = "10px"
         data-fontFamily = "Popins, arial, sans-serif"
-        data-divlinkbg = "#bba999"
+        data-divlinkbg = "transparent"
         data-divlink = "#fff"
         data-zindex = "8888"
         data-close-text="Got it!">
