@@ -106,52 +106,6 @@
             }
         });
 
-        /**
-         * Initialize TelInput Plugin
-         * 
-         * @since   2.2.0
-         */
-        if ($('.sjb-phone-number').length) {
-            var telInput_id = $('.sjb-phone-number').map(function () {
-                return this.id;
-            }).get();
-
-            for (var input_ID in telInput_id) {
-                var telInput = $('#' + telInput_id[input_ID]);
-                telInput.intlTelInput({
-                    initialCountry: "auto",
-                    geoIpLookup: function (callback) {
-                        $.get('https://ipinfo.io', function () {
-                        }, "jsonp").always(function (resp) {
-                            var countryCode = (resp && resp.country) ? resp.country : "";
-                            callback(countryCode);
-                        });
-                    },
-                });
-            }
-        }
-
-        /**
-         * Application Form -> Phone Number Validation
-         * 
-         * @since 2.2.0
-         */
-        $('.sjb-phone-number').on('input', function () {
-            var telInput = $(this);
-            var telInput_id = $(this).attr('id');
-            var error_element = $("#" + telInput_id + "-invalid-phone");
-            error_element.hide();
-            
-            // Validate Phone Number
-            if ($.trim(telInput.val())) {
-                if (telInput.intlTelInput("isValidNumber")) {
-                    telInput.removeClass("invalid").addClass("valid");
-                    error_element.hide();
-                } else {
-                    telInput.removeClass("valid").addClass("invalid");
-                }
-            }
-        });
 
         /** 
          * Check for Allowable Extensions of Uploaded File

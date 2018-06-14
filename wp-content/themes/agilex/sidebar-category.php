@@ -35,12 +35,18 @@
         <div class="tab-content">
                 <div class="tab-pane fade in " id="recent">
                 <ul class="sidebar-post">
+                    <?php if(have_posts()) {?>
+
                     <?php while ($catquery->have_posts()) : $catquery->the_post(); ?>
                     <li class="">
                         <div class="media">
                             <a class="media-left post-thumb" href="<?php the_permalink() ?>" rel="<?php the_title() ?>">
                             <?php $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), "thumbnail" ); ?>
+                            <?php if($thumbnail) {?>
                                     <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php the_title() ?>"/>
+                                <?php } else { ?>
+                                    <img src="<?php echo get_template_directory_uri()?>/images/placeholder_50X50.png" alt="<?php the_Title(); ?>"/>                    
+                                <?php }?>
                             </a>
                             <div class="media-body">
                                 <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><span class="media-heading"><?php the_Title(); ?></span></a>
@@ -49,6 +55,9 @@
                         </div>
                     </li>
                 <?php endwhile; ?>
+                                <?php } else { ?>
+                                    <li>No Recent post </li>
+                                <?php } ?>
                 </ul>
                 <?php wp_reset_postdata(); ?>
                 </div>
@@ -73,12 +82,18 @@
                     }); ?>
 
                     <ul class="sidebar-post">
+                    <?php if($whilistPosts){ ?>
                     <?php foreach ($whilistPosts as $whilistPost) { ?>
                     <li class="">
                         <div class="media">
                             <a class="media-left post-thumb" href="<?php echo get_permalink( $whilistPost->ID ); ?>" rel="<?php echo $whilistPost->post_title ?>">
                             <?php  $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $whilistPost->ID ), "thumbnail" ); ?>
+                                    <?php if($thumbnail) {?>
                                     <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $whilistPost->post_title ?>"/>
+                                    <?php } else {?>
+                                        
+                                        <img src="<?php echo get_template_directory_uri()?>/images/placeholder_50X50.png" alt="<?php echo $whilistPost->post_title ?>"/>                    
+                                    <?php } ?>
                             </a>
 
                             <div class="media-body">
@@ -87,6 +102,8 @@
                             </div>
                         </div>
                     </li>
+                   <?php } }else { ?>
+                        <li>No Popular post here</li>
                    <?php } ?>
                     </ul>
                     <?php wp_reset_postdata(); ?>
