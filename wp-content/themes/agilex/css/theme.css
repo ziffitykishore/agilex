@@ -3298,9 +3298,9 @@ p+p {
     min-height: 176px;
     width: 100%;
     z-index: 12;
-    -webkit-transition: all 0.5s ease-in-out 0s;
-    -moz-transition: all 0.5s ease-in-out 0s;
-    transition: all 0.5s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
 }
 
 .what-we-do .thumbnail:hover .caption {
@@ -4504,7 +4504,7 @@ html.no-touch {
 }
 
 .gallery-inner .image-sec {
-    padding: 10px;
+    padding: 8px;
 }
 
 .gallery-inner .image-sec img {

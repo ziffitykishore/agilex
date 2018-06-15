@@ -110,52 +110,28 @@ endforeach; ?>
 
 
 
-
-
-      <!-- <div class="image-gallery row pad-tb-50">
-        <div class="container">
-      <?php
-    $image_1 = get_field('image_1');
-    $image_2 = get_field('image_2');
-    $image_3 = get_field('image_3');
-    $image_4 = get_field('image_4');
-    $image_5 = get_field('image_5');
- ?>
-          <div class="col-sm-6 no-pad">
-          <div class="col-sm-6 img-sec wow fadeIn ">
-
-              <div class="img-diagonal alignnone"><img src="<?php echo $image_1['url']; ?>" alt="" class=" size-full wp-image-363" /></div>
-
-          </div>
-          <div class="col-sm-6 img-sec wow fadeIn ">
-         <?php if($image_2) {?>
-              <div class="img-diagonal alignnone"><img src="<?php echo $image_2['url']; ?>" alt="" class=" size-full wp-image-363" /></div>
-              <?php } ?>
-          </div>
-          </div>
-          <div class="col-sm-6 img-sec  no-padd wow fadeIn">
-          <?php if($image_3) {?>
-              <div class="img-diagonal alignnone"><img src="<?php echo $image_3['url']; ?>" alt="" class=" size-full wp-image-363" /></div>
-              <?php } ?>
-          </div>
-          <div class="col-sm-8 img-sec wow fadeIn">
-          <?php if($image_4) {?>
-              <div class="img-diagonal alignnone"><img src="<?php echo $image_4['url']; ?>" alt="" class=" size-full wp-image-363" /></div>
-              <?php } ?>
-          </div>
-          <div class="col-sm-4 img-sec wow fadeIn">
-          <?php if($image_5) {?>
-              <div class="img-diagonal alignnone"><img src="<?php echo $image_5['url']; ?>" alt="" class=" size-full wp-image-363" /></div>
-              <?php } ?>
-          </div>
-          </div>
-          </div> -->
+  <div class="image-gallery  pad-tb-50">
+      <div class="container">
+      <div class="gallery-inner flex-sec">
+          <div class="image-sec">
+              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image1.jpg" alt=""/>
+                </div>
+                <div class="image-sec">
+              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image2.jpg" alt=""/>
+                </div>
+                <div class="image-sec">
+              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image3.jpg" alt=""/>
+                </div>
+      </div>
+                </div>
+                </div>
+ 
 
 
 
 
 
-<?php $tabdetails = get_post_meta( get_the_ID(), 'img-gallery', true ); ?>
+<!-- <?php $tabdetails = get_post_meta( get_the_ID(), 'img-gallery', true ); ?>
 
   <div class="image-gallery  pad-tb-50">
         <div class="container">
@@ -179,7 +155,7 @@ endforeach; ?>
         <?php  $i++; } ?> 
               </div>
    
-              </div></div>
+              </div></div> -->
 
 
 
