@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page What We Do
+ * Template Name: Archieve What We Do
  *
  * @package Agilex
  * @since Agilex 1.0
