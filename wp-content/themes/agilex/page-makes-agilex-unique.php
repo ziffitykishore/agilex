@@ -54,11 +54,12 @@ get_header(); ?>
     
           <div class="categories-blk clearfix wow fadeIn border-efx ">
             <div class="border-ani"></div>
-          <?php if ( has_post_thumbnail() ) {
-                                    the_post_thumbnail('full');
-                                } else { ?>
-                                    <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
-                                <?php } ?>
+            <?php if (get_field('full_image', get_the_ID())){ ?>
+                    <?php $image = get_field('full_image'); ?>
+                      <img class="full-image" src="<?php echo $image['url']; ?>" alt="<?php echo the_Title(); ?>" />
+                  <?php } else { ?>
+                      <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
+            <?php } ?>
             <div class="categories-content  wow fadeIn">
               <h2><a href="<?php echo get_permalink() ?>"><?php echo the_Title(); ?></a></h2>
               <div class="short-desc">
