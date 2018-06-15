@@ -68,6 +68,9 @@
     .careers-wrap .inner-section {
         padding: 30px;
     }
+    .home .parallax-move {
+        width: 50px;
+    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -409,9 +412,6 @@
         margin-bottom: 30px;
         min-height: initial;
     }
-    .who-we-are .parallax-move {
-        width: 100px;
-    }
     .what-we-do {
         margin-top: 25px;
     }
@@ -609,6 +609,14 @@
     .blog-detail-wrap .blog-detail {
         justify-content: center;
         margin-bottom: 10px;
+    }
+    .legal-inner .blue-strip {
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+    .legal-inner .blue-strip .download-link {
+        margin-top: 15px;
     }
 }
 

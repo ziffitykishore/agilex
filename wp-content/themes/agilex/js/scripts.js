@@ -353,11 +353,13 @@ bgSource('.main-banner');
       $("#myTabs li.active").each(function(){
         var activeElm = $(this).find('a'),
         color= activeElm.attr('rel');
+        if (typeof attr !== typeof undefined && attr !== false) {
         activeElm.css('color', color);
         $magicLine.find('.line').css('background-color', color);
         $magicLine.find('.arrow').css('border-color', color);
         linkId = activeElm.attr('id');
         $magicLine.addClass(linkId);
+        }
   });
       
 
@@ -718,6 +720,56 @@ function hasScrolled() {
 
 
  
+//grabs the hash tag from the url
+/* var hash = window.location.hash;
+//checks whether or not the hash tag is set
+if (hash != "") {
+  //removes all active classes from tabs
+  $('.nav-tabs li').each(function() {
+    $(this).removeClass('active');
+  });
+  $('.tab-content > div').each(function() {
+    $(this).removeClass('active');
+  });
+  //this will add the active class on the hashtagged value
+  var link = "";
+  $('.nav-tabs li').each(function() {
+    link = $(this).find('a').attr('href');
+    if (link == hash) {
+      $(this).addClass('active');
+      
+      $('.magic-line').css('left', $(this).find('a').offset().left, 'width', $(this).find('a').innerWidth());
+    }
+  });
+  $('.tab-content > div').each(function() {
+    link = $(this).attr('id');
+    if ('#'+link == hash) {
+      $(this).addClass('active in');
+    }
+  });
+} */
+
+var hash = window.location.hash;
+hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+$('.nav-tabs a').click(function (e) {
+    var activeElm = $(this).parent('active');
+    var activeWidth = activeElm.innerWidth();
+    var activeOffset = activeElm.offset().left; 
+    $('magic-line').stop().animate({
+        left: activeOffset,
+        width: activeWidth
+
+    });
+  $(this).tab('show');
+  var scrollmem = $('body').scrollTop('slow');
+  window.location.hash = this.hash;
+  $('html,body').scrollTop(scrollmem);
+  e.preventDefault();
+});
+
+
+
 
 
 /* fakewaffle.responsiveTabs(['xs', 'sm']); */
@@ -1011,6 +1063,56 @@ function responsiveResize() {
         }
     });
 
+
+
+
+    /* form validation */
+
+$(window).load(function(){
+    $('.form-group .btn').addClass('btn-door btn-blue');
+$('form').attr('autocomplete', 'off');
+
+jQuery('.form-group .form-control:not(input[type="file"])').on('focus', function () {
+    if ($(this).val() == "") {
+        jQuery(this).parents('.form-group').toggleClass('focused');
+    }
+}).blur(function(){
+    if ($(this).val() == "") {
+        jQuery(this).parents('.form-group').toggleClass('err').removeClass('focused');
+    } else if($(this).val()){
+        jQuery(this).parents('.form-group').removeClass('err');
+    }
+});
+
+if(jQuery('.form-group input[type="file"]').hasClass('invalid')){
+    jQuery(this).parents('.form-group').toggleClass('err');
+}
+
+
+
+
+
+/* $('.form-group input[type="email"]').first().keyup(function () {
+    var $email = this.value;
+    if(!validateEmail($email)) { 
+        $(this).parent('.form-group').addClass('err').removeClass('valid');
+     } else {
+        $(this).parent('.form-group').removeClass('err').addClass('valid');
+     }
+
+}); */
+
+function validateName($name) {
+    var nameReg = /^[a-zA-Z]+$/;
+    return nameReg.test( $name );
+  }
+
+function validateEmail($email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    return emailReg.test( $email );
+  }
+
+});
 })(jQuery);
 
 
