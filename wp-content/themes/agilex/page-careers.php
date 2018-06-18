@@ -96,7 +96,7 @@ endforeach; ?>
                 <div class="flex-30 flex-sm-100 post-name-wrap">
                     <div class="post-name"><?php echo $job_list->post_title; ?></div>
 
-                    <a href="#" class="btn btn-md btn-door btn-blue btn-job" data-val="<?php echo $job_list->ID; ?>"><?php echo __('Apply Now'); ?></a>                 
+                    <a href="#" class="btn btn-md btn-door btn-blue btn-job app-button" data-val="<?php echo $job_list->ID; ?>"><?php echo __('Apply Now'); ?></a>                 
                     <input type="hidden" name="job-id" value="<?php echo $job_list->ID; ?>">
 
                 </div>
