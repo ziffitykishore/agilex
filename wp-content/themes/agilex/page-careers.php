@@ -112,7 +112,21 @@ endforeach; ?>
   </div>
 </div>
 
-
+<div class="image-gallery  pad-tb-50">
+      <div class="container">
+      <div class="gallery-inner flex-sec">
+          <div class="image-sec">
+              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image1.jpg" alt=""/>
+                </div>
+                <div class="image-sec">
+              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image2.jpg" alt=""/>
+                </div>
+                <div class="image-sec">
+              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image3.jpg" alt=""/>
+                </div>
+      </div>
+                </div>
+                </div>
 
 <div class="image-gallery  pad-tb-50">
     <div class="container">
