@@ -41,7 +41,7 @@
       endwhile; //resetting the page loop
       wp_reset_query(); //resetting the page query
       ?>
-         
+
       <div class="col-sm-6  col-md-5 careers-form-wrap ">
         <div class="careers-form pad-30">
           <div class="heading text-uppercase text-center">
@@ -95,6 +95,7 @@ endforeach; ?>
                 <div class="flex-30 flex-sm-100 post-name-wrap">
                     <div class="post-name"><?php echo $job_list->post_title; ?></div>
                     <a href="#" class="btn btn-md btn-door btn-blue app-button"><?php echo __('Apply Now'); ?></a>
+                    <input type="hidden" name="job-id" value="<?php echo $job_list->ID; ?>">
                 </div>
                 <div class="flex-70 flex-sm-100 job-desc">
                     <p><?php echo $job_list->post_content; ?></p>
@@ -125,7 +126,7 @@ endforeach; ?>
       </div>
                 </div>
                 </div>
- 
+
 
 
 
@@ -137,24 +138,24 @@ endforeach; ?>
         <div class="container">
             <div class="gallery-inner flex-sec">
       <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
-    
-       
-         
-            
-           
+
+
+
+
+
               <div class="image-sec">
               <?php if($tabdetail["img-show"]) { ?>
               <img src="<?php echo wp_get_attachment_url($tabdetail["img-show"]); ?>" alt=""/>
               <?php }?>
               </div>
-           
-            
-         
-       
-      
-        <?php  $i++; } ?> 
+
+
+
+
+
+        <?php  $i++; } ?>
               </div>
-   
+
               </div></div> -->
 
 
