@@ -28,6 +28,8 @@
         $('.app-button').click(function(event) {
             event.preventDefault();
             $('input[name=job_id]').val($(this).next().val());
+            $('#job-post-list').val($(this).next().val());
+            $('#job-post-list').niceSelect('update'); 
         });
         $('#job-post-list').change(function(event) {
             event.preventDefault();

@@ -41,7 +41,7 @@
       endwhile; //resetting the page loop
       wp_reset_query(); //resetting the page query
       ?>
-         
+
       <div class="col-sm-6  col-md-5 careers-form-wrap ">
         <div class="careers-form pad-30">
           <div class="heading text-uppercase text-center">
@@ -95,7 +95,10 @@ endforeach; ?>
             <div class="opening-list flex-sec ">
                 <div class="flex-30 flex-sm-100 post-name-wrap">
                     <div class="post-name"><?php echo $job_list->post_title; ?></div>
-                    <a href="#" class="btn btn-md btn-door btn-blue btn-job" data-val="<?php echo $job_list->ID; ?>"><?php echo __('Apply Now'); ?></a>
+
+                    <a href="#" class="btn btn-md btn-door btn-blue btn-job" data-val="<?php echo $job_list->ID; ?>"><?php echo __('Apply Now'); ?></a>                 
+                    <input type="hidden" name="job-id" value="<?php echo $job_list->ID; ?>">
+
                 </div>
                 <div class="flex-70 flex-sm-100 job-desc">
                     <p><?php echo $job_list->post_content; ?></p>
@@ -126,7 +129,7 @@ endforeach; ?>
       </div>
                 </div>
                 </div>
- 
+
 
 
 
@@ -138,24 +141,24 @@ endforeach; ?>
         <div class="container">
             <div class="gallery-inner flex-sec">
       <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
-    
-       
-         
-            
-           
+
+
+
+
+
               <div class="image-sec">
               <?php if($tabdetail["image-thumbnail"]) { ?>
               <img src="<?php echo wp_get_attachment_url($tabdetail["image-thumbnail"]); ?>" alt=""/>
               <?php }?>
               </div>
-           
-            
-         
-       
-      
-        <?php  $i++; } ?> 
+
+
+
+
+
+        <?php  $i++; } ?>
               </div>
-   
+
               </div></div> -->
 
 <script>
@@ -170,6 +173,8 @@ endforeach; ?>
             }
         });
 
+
+        
         
         function scrollPostion(){
         var  careerForm = $('.careers-form').offset().top;
@@ -181,6 +186,7 @@ endforeach; ?>
     }
         $('.btn-job').click(function() { 
             scrollPostion();
+            $('#job-post-list').val($(this).data('val')).trigger('change');
         });
     });
 </script>
