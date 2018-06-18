@@ -114,21 +114,30 @@ endforeach; ?>
 
 
 
-  <div class="image-gallery  pad-tb-50">
-      <div class="container">
-      <div class="gallery-inner flex-sec">
-          <div class="image-sec">
-              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image1.jpg" alt=""/>
-                </div>
+<div class="image-gallery  pad-tb-50">
+    <div class="container">
+        <div class="gallery-inner flex-sec">
+            <?php $file = get_field('image_1'); ?>
+            <?php if( $file ): ?>
                 <div class="image-sec">
-              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image2.jpg" alt=""/>
+                    <img src="<?php echo $file['url']; ?>" />
                 </div>
+            <?php endif; ?>
+            <?php $file = get_field('image_2'); ?>
+            <?php if( $file ): ?>
                 <div class="image-sec">
-              <img src="/wp-content/uploads/2018/06/Agilex-Careers-BottomGrid-Image3.jpg" alt=""/>
+                    <img src="<?php echo $file[url]; ?>" />
                 </div>
-      </div>
+            <?php endif; ?>
+            <?php $file = get_field('image_3'); ?>
+            <?php if( $file ): ?>
+                <div class="image-sec">
+                    <img src="<?php echo $file[url]; ?>" />
                 </div>
-                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 
 
 
@@ -165,7 +174,7 @@ endforeach; ?>
     $(function(){
         var currentValue = $('.nice-select .current').text();
         $(window).on('load', function(){
-        $('.nice-select .list').prepend('<li data-value="0" class="label-content">Apply for</li>');
+        $('.nice-select .list').prepend('<li data-value class="label-content">Apply for</li>');
             
             var noOption = $('.label-content').text();
             if( currentValue !== noOption){
@@ -187,6 +196,7 @@ endforeach; ?>
         $('.btn-job').click(function() { 
             scrollPostion();
             $('#job-post-list').val($(this).data('val')).trigger('change');
+            $('select').niceSelect('update');
         });
     });
 </script>

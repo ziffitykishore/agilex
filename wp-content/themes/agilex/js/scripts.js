@@ -33,6 +33,14 @@ function myFunction() {
 
     $('select').niceSelect();
 
+    
+    $('.nice-select li[data-value=""]').hide();
+
+    
+    
+
+
+
       /* Scroll down based on Hash tag */
       var header = jQuery('.header-container ').outerHeight(); /* Get the Height from .header-container */
       jQuery('.scroll-down').on('click', function(e) {

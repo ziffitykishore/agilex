@@ -4647,6 +4647,7 @@ html.no-touch {
     border-radius: 0;
     padding-left: 0;
     border: none;
+    box-shadow: none;
 }
 
 .nice-select:before {}
@@ -4667,10 +4668,6 @@ html.no-touch {
     font-size: 12px;
     white-space: normal;
     line-height: 16px;
-}
-
-.nice-select .list li:first-child {
-    display: none;
 }
 
 div.nice-select:after {
