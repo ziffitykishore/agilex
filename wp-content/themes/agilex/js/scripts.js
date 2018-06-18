@@ -23,7 +23,7 @@ function myFunction() {
 }
 (function($) {
   $(document).ready(function() {
-
+    
     
     /* browser detection */
 
@@ -46,6 +46,8 @@ function myFunction() {
           jQuery('.loader').removeClass('scale');
 
           $('body').addClass('page-loaded');
+
+         
       });
 
 
@@ -347,19 +349,50 @@ bgSource('.main-banner');
       newWidth,
       $mainNav = $("#myTabs");
   if ($mainNav.length) {
+
+
+
+var hash = window.location.hash;
+hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+
+$('.footer_menu a').click(function (e) {
+    
+  $(this).tab('show');
+  var scrollmem = $('body').scrollTop('slow');
+  window.location.hash = this.hash;
+  $('html,body').scrollTop(scrollmem);
+  
+});
+
+$('.footer_menu a').on('shown.bs.tab', function (e) {
+    var target = this.href.split('#');
+    $('.legal-inner .nav a').filter('a[href="#'+target[1]+'"]').tab('show');
+    var link = $('.legal-inner .nav a').filter('a[href="#'+target[1]+'"]');
+    var linkOffset = link.position().left;
+    console.log(linkOffset);
+    var linkWidth = link.innerWidth();
+    $magicLine.stop().animate({
+        left: linkOffset,
+        width: linkWidth
+
+    });
+})
+
+
+
       $mainNav.append("<span id='magic-line'><span class='line'></span><span class='arrow'></span></span>");
       var $magicLine = $("#magic-line");
 
       $("#myTabs li.active").each(function(){
         var activeElm = $(this).find('a'),
         color= activeElm.attr('rel');
-        if (typeof attr !== typeof undefined && attr !== false) {
+      
         activeElm.css('color', color);
         $magicLine.find('.line').css('background-color', color);
         $magicLine.find('.arrow').css('border-color', color);
         linkId = activeElm.attr('id');
         $magicLine.addClass(linkId);
-        }
+        
   });
       
 
@@ -719,59 +752,6 @@ function hasScrolled() {
   });
 
 
- 
-//grabs the hash tag from the url
-/* var hash = window.location.hash;
-//checks whether or not the hash tag is set
-if (hash != "") {
-  //removes all active classes from tabs
-  $('.nav-tabs li').each(function() {
-    $(this).removeClass('active');
-  });
-  $('.tab-content > div').each(function() {
-    $(this).removeClass('active');
-  });
-  //this will add the active class on the hashtagged value
-  var link = "";
-  $('.nav-tabs li').each(function() {
-    link = $(this).find('a').attr('href');
-    if (link == hash) {
-      $(this).addClass('active');
-      
-      $('.magic-line').css('left', $(this).find('a').offset().left, 'width', $(this).find('a').innerWidth());
-    }
-  });
-  $('.tab-content > div').each(function() {
-    link = $(this).attr('id');
-    if ('#'+link == hash) {
-      $(this).addClass('active in');
-    }
-  });
-} */
-
-var hash = window.location.hash;
-hash && $('ul.nav a[href="' + hash + '"]').tab('show');
-
-$('.nav-tabs a').click(function (e) {
-    var activeElm = $(this).parent('active');
-    var activeWidth = activeElm.innerWidth();
-    var activeOffset = activeElm.offset().left; 
-    $('magic-line').stop().animate({
-        left: activeOffset,
-        width: activeWidth
-
-    });
-  $(this).tab('show');
-  var scrollmem = $('body').scrollTop('slow');
-  window.location.hash = this.hash;
-  $('html,body').scrollTop(scrollmem);
-  e.preventDefault();
-});
-
-
-
-
-
 /* fakewaffle.responsiveTabs(['xs', 'sm']); */
   fakewaffle.responsiveTabs(["xs"]);
 
@@ -1066,6 +1046,9 @@ function responsiveResize() {
 
 
 
+  
+
+
     /* form validation */
 
 $(window).load(function(){
@@ -1113,6 +1096,8 @@ function validateEmail($email) {
   }
 
 });
+
+
 })(jQuery);
 
 
