@@ -112,6 +112,12 @@
 			// Generate a list of items fetched, that are not already in the DB
 			$new_items = array();
 			foreach ( $items_to_insert as $item ) {
+                            $filterAuthor = ['Lebermuth', 'Ungerer', 'Arylessence', 'IFF', 'Givaudan', 'Mane', 'Robertet', 'Takasago', 'Symrise'];
+                            $filterAuthor = array_map('strtoupper', $filterAuthor);
+                            $author = $item->get_author();
+                            if(in_array(strtoupper($author->get_name()), $filterAuthor)) {
+                                continue;
+                            }
 
 				$permalink = wprss_normalize_permalink( $item->get_permalink(), $item, $feed_ID );
 				wprss_log_obj( 'Normalized permalink', sprintf('%1$s -> %2$s', $item->get_permalink(), $permalink), null, WPRSS_LOG_LEVEL_SYSTEM );
@@ -469,6 +475,11 @@
 		$items_inserted = 0;
 
 		foreach ( $items as $item ) {
+                     $filterAuthor = ['SAMANTHA SASSO'];
+            $filterAuthor = array_map('strtoupper', $filterAuthor);
+//            if(!in_array(strtoupper($item->get_author()), $filterAuthor)) {
+//continue;
+//            }
 
 			// Normalize the URL
                     $permalink = $item->get_permalink(); // Link or enclosure URL
@@ -599,6 +610,14 @@
 	 * @since 2.3
 	 */
 	function wprss_items_insert_post_meta( $inserted_ID, $item, $feed_ID, $permalink, $enclosure_url ) {
+            $filterAuthor = ['Lebermuth', 'Ungerer', 'Arylessence', 'IFF', 'Givaudan', 'Mane', 'Robertet', 'Takasago', 'Symrise'];
+           $filterAuthor = array_map('strtoupper', $filterAuthor);
+           $author = $item->get_author();
+           if(in_array(strtoupper($author->get_name()), $filterAuthor)) {
+               wprss_blacklist_item($inserted_ID);
+               wp_delete_post( $inserted_ID, TRUE );
+               return;
+           }
 		update_post_meta( $inserted_ID, 'wprss_item_permalink', $permalink );
 		update_post_meta( $inserted_ID, 'wprss_item_enclosure', $enclosure_url );
 		$desc= $item->get_description();
@@ -614,6 +633,7 @@
 
 		update_post_meta( $inserted_ID, 'wprss_feed_id', $feed_ID);
 		do_action( 'wprss_items_create_post_meta', $inserted_ID, $item, $feed_ID );
+         // }
 	}
 
 
