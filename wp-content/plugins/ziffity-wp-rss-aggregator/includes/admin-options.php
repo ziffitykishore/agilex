@@ -900,7 +900,7 @@
     function wprss_settings_blacklist_feed_words_callback( $field ) {
         $blacklist_feed = wprss_get_general_setting( 'blacklist-feed-limit' );
         ?>
-		<input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[blacklist-feed-limit]" type="textarea" value="<?php echo $blacklist_feed ?>" />
+                <textarea id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[blacklist-feed-limit]" rows="3" cols="50"> <?php echo $blacklist_feed ?> </textarea>
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
