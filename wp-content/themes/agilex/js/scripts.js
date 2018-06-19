@@ -822,7 +822,15 @@ function textWrap(content){
  });
 }
 
-textWrap('.timeline-title');
+jQuery('.timeline-title').html(function (i, html) {
+    if(/<[a-z][\s\S]*>/i.test(html)) {
+      html = jQuery.parseHTML(html);
+      return html[0].innerHTML.replace(/(\w+\s\w+)/, '<span class="first">$1</span>');
+    }
+    return html.replace(/(\w+\s\w+)/, '<span class="first">$1</span>');
+  });
+
+//textWrap('.timeline-title');
 
 
 /* $(".no-touch .project").hover3d({
@@ -1075,9 +1083,13 @@ jQuery('.form-group .form-control:not(input[type="file"])').on('focus', function
     }
 });
 
-if(jQuery('.form-group input[type="file"]').hasClass('invalid')){
-    jQuery(this).parents('.form-group').toggleClass('err');
-}
+$('input[type="file"]').change(function(){
+    if($(this).hasClass('valid')){
+        $(this).parents('.form-group').addClass('valid-file').removeClass('invalid-file');
+    } else {
+        $(this).parents('.form-group').removeClass('valid-file').addClass('invalid-file');
+    }
+});
 
 
 

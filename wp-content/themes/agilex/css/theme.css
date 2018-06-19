@@ -1059,6 +1059,14 @@ p {
 
 .careers-form .form-group .file span {
     display: none;
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.careers-form .form-group.valid-file .file span,
+.careers-form .form-group.invalid-file .file span {
+    display: inline;
 }
 
 .careers-form .form-group .file:before,
@@ -4356,26 +4364,28 @@ html.no-touch {
     color: #eeeeef;
     font-size: 160px;
     font-weight: bold;
-}
-
-.timeline-item .timeline-year-from {
-    font-size: 138px;
     position: relative;
 }
 
-.timeline-item .timeline-year-from:before {
-    width: 50px;
-    height: 18px;
-    background: #eeeeef;
-    content: '';
-    top: 0;
+.timeline-item .timeline-year-from,
+.timeline-item .timeline-year-beyond {
+    font-size: 85px;
+}
+
+.timeline-item .timeline-year .additional {
     display: block;
-    position: absolute;
-    left: auto;
-    right: 20px;
-    margin: auto;
-    top: 0;
-    bottom: 0;
+}
+
+.timeline-item .timeline-year-from .current-year:after,
+.timeline-item .timeline-year-beyond .current-year:after {
+    content: '-';
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.timeline-item .timeline-year-beyond .current-year:after {
+    content: '&';
+    background: none;
 }
 
 .timeline-desc {
@@ -4407,6 +4417,7 @@ html.no-touch {
     -webkit-transition: 0.5s ease-in-out 0s;
     transition: 0.5s ease-in-out 0s;
     position: relative;
+    display: inline-block;
 }
 
 .timeline-item:hover .timeline-image .img-sec {
