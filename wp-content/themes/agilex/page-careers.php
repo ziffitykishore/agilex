@@ -88,14 +88,17 @@ endforeach; ?>
                 if($count_posts>0) {
                 foreach ( $job_lists as $job_list ):
                     setup_postdata($job_list);
+                    //var_dump($job_list);
                 if ($job_list->post_name != 'general-post') { ?>
 
           <div class="opening-list-sec">
             <div class="opening-list flex-sec ">
                 <div class="flex-30 flex-sm-100 post-name-wrap">
                     <div class="post-name"><?php echo $job_list->post_title; ?></div>
-                    <a href="#" class="btn btn-md btn-door btn-blue app-button"><?php echo __('Apply Now'); ?></a>
+
+                    <a href="#" class="btn btn-md btn-door btn-blue btn-job app-button" data-val="<?php echo $job_list->ID; ?>"><?php echo __('Apply Now'); ?></a>                 
                     <input type="hidden" name="job-id" value="<?php echo $job_list->ID; ?>">
+
                 </div>
                 <div class="flex-70 flex-sm-100 job-desc">
                     <p><?php echo $job_list->post_content; ?></p>
@@ -109,9 +112,7 @@ endforeach; ?>
   </div>
 </div>
 
-
-
-  <div class="image-gallery  pad-tb-50">
+<div class="image-gallery  pad-tb-50">
       <div class="container">
       <div class="gallery-inner flex-sec">
           <div class="image-sec">
@@ -127,14 +128,39 @@ endforeach; ?>
                 </div>
                 </div>
 
+<div class="image-gallery  pad-tb-50">
+    <div class="container">
+        <div class="gallery-inner flex-sec">
+            <?php $file = get_field('image_1'); ?>
+            <?php if( $file ): ?>
+                <div class="image-sec">
+                    <img src="<?php echo $file['url']; ?>" />
+                </div>
+            <?php endif; ?>
+            <?php $file = get_field('image_2'); ?>
+            <?php if( $file ): ?>
+                <div class="image-sec">
+                    <img src="<?php echo $file[url]; ?>" />
+                </div>
+            <?php endif; ?>
+            <?php $file = get_field('image_3'); ?>
+            <?php if( $file ): ?>
+                <div class="image-sec">
+                    <img src="<?php echo $file[url]; ?>" />
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
 
 
 
 
 
-<!-- <?php $tabdetails = get_post_meta( get_the_ID(), 'img-gallery', true ); ?>
 
-  <div class="image-gallery  pad-tb-50">
+<?php $tabdetails = get_post_meta( get_the_ID(), 'img-show', true ); ?>
+
+  <!-- <div class="image-gallery  pad-tb-50">
         <div class="container">
             <div class="gallery-inner flex-sec">
       <?php $i = 1;   foreach( $tabdetails  as $tabdetail){ ?>
@@ -144,8 +170,8 @@ endforeach; ?>
 
 
               <div class="image-sec">
-              <?php if($tabdetail["img-show"]) { ?>
-              <img src="<?php echo wp_get_attachment_url($tabdetail["img-show"]); ?>" alt=""/>
+              <?php if($tabdetail["image-thumbnail"]) { ?>
+              <img src="<?php echo wp_get_attachment_url($tabdetail["image-thumbnail"]); ?>" alt=""/>
               <?php }?>
               </div>
 
@@ -158,6 +184,34 @@ endforeach; ?>
 
               </div></div> -->
 
+<script>
+    $(function(){
+        var currentValue = $('.nice-select .current').text();
+        $(window).on('load', function(){
+        $('.nice-select .list').prepend('<li data-value class="label-content">Apply for</li>');
+            
+            var noOption = $('.label-content').text();
+            if( currentValue !== noOption){
+            $('.nice-select .current').text(noOption);
+            }
+        });
 
 
+        
+        
+        function scrollPostion(){
+        var  careerForm = $('.careers-form').offset().top;
+        header = $('.header-container').height();
+            $('html, body').animate({
+                scrollTop: careerForm - header
+            }, 800);
+        
+    }
+        $('.btn-job').click(function() { 
+            scrollPostion();
+            $('#job-post-list').val($(this).data('val')).trigger('change');
+            $('select').niceSelect('update');
+        });
+    });
+</script>
     <?php get_footer(); ?>

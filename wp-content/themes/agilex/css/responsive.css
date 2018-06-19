@@ -53,7 +53,7 @@
         margin-top: 80px;
     }
     .timeline-item .timeline-year {
-        font-size: 150px;
+        font-size: 130px;
     }
     .uniques-inner .tab-content {
         padding: 30px 0 0;
@@ -147,7 +147,7 @@
         font-size: 100px;
     }
     .timeline-item .timeline-title {
-        font-size: 18px;
+        font-size: 16px;
         line-height: normal;
     }
     .timeline-item .timeline-content {
@@ -170,8 +170,9 @@
 
 @media only screen and (min-width:992px) {
     .ie .related-categories-wrap .category-blk {
-        flex: 0 0 18%;
-        width: 18%;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 18%;
     }
 }
 
@@ -307,15 +308,18 @@
         width: 100% !important;
     }
     .flex-md-60 {
-        width: 60%;
+        max-width: 60%;
+        -ms-flex: 0 0 60%;
         flex: 0 0 60%;
     }
     .flex-md-40 {
-        width: 40%;
+        max-width: 40%;
+        -ms-flex: 0 0 40%;
         flex: 0 0 40%;
     }
     .flex-md-30 {
-        width: 30%;
+        max-width: 30%;
+        -ms-flex: 0 0 30%;
         flex: 0 0 30%;
     }
     .sub-category .tab-content {
@@ -492,26 +496,37 @@
         font-size: 16px;
     }
     .flex-sm-100 {
-        width: 100%;
+        max-width: 100%;
+        -ms-flex: 0 0 100%;
+        -webkit-flex: 10;
         flex: 0 0 100%;
     }
     .flex-sm-60 {
-        width: 60%;
+        max-width: 60%;
+        -ms-flex: 0 0 60%;
+        -webkit-flex: 0 0 60%;
         flex: 0 0 60%;
     }
     .flex-sm-50 {
-        width: 50%;
+        max-width: 50%;
+        -ms-flex: 0 0 50%;
+        -webkit-flex: 0 0 50%;
         flex: 0 0 50%;
     }
     .flex-sm-40 {
-        width: 40%;
+        max-width: 40%;
+        -ms-flex: 0 0 40%;
+        -webkit-flex: 0 0 40%;
         flex: 0 0 40%;
     }
     .flex-sm-30 {
-        width: 30%;
+        max-width: 30%;
+        -ms-flex: 0 0 30%;
+        -webkit-flex: 0 0 30%;
         flex: 0 0 30%;
     }
     .contact-form-sec .form-sec-inner {
+        -ms-flex-direction: column-reverse;
         flex-direction: column-reverse;
     }
     .related-categories-wrap .category-blk figure img {
@@ -749,8 +764,9 @@
 
 @media screen and (max-width: 568px) {
     .flex-sec .flex-xs-100 {
+        -ms-flex: 0 0 100%;
         flex: 0 0 100%;
-        width: 100%;
+        max-width: 100%;
     }
     .quotes-content-inner {
         padding: 0 25px;
