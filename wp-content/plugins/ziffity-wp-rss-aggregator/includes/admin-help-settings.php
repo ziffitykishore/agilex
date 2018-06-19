@@ -80,6 +80,9 @@ function wprss_settings_add_tooltips() {
 				// Custom Feed Limit
 				'custom-feed-limit'         => __('The maximum number of feed items in the custom feed.', WPRSS_TEXT_DOMAIN),
 
+                                // BlackList Words
+				'blacklist-feed-limit'         => __('Ignore the feeds from importing. Multiselect values are separated by comma values', WPRSS_TEXT_DOMAIN),
+
 				/* --------------------------
 				 *  General Display Settings
 				 * --------------------------
@@ -142,7 +145,7 @@ function wprss_settings_add_tooltips() {
 				'styles-disable'            => __('Check this box to disable all plugin styles used for displaying feed items.
 
 '.											'This will allow you to provide your own custom CSS styles for displaying the feed items.', WPRSS_TEXT_DOMAIN),
-		
+
 				/*
 				 * -------
 				 *  Other
@@ -164,7 +167,7 @@ function wprss_settings_add_tooltips() {
 '.                                          'Some servers react in unexpected ways to the default value. In such cases, try changing this to something else.
 
 '.                                          'The default value is determined by the SimplePie library, and reflects its name, version and build numbers, and some other information.'),
-		
+
 		);
 		$help->add_tooltips( $tooltips, $prefix );
 
