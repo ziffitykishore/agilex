@@ -5676,6 +5676,7 @@ div.nice-select:after {
     display: flex;
     display: -webkit-flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .main-content .legal-inner .blue-strip .heading-sec>div {
