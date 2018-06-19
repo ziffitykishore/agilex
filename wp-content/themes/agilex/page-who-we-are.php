@@ -113,7 +113,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <?php if ( has_post_thumbnail() ) {
 the_post_thumbnail('full');
 } else { ?>
-<img src="<?php bloginfo('template_directory'); ?>/images/placeholder_400X550.png" alt="<?php the_title(); ?>" />
+<div class="user-icon-wrap"><div class="user-icon"><i class="fa fa-user fa-4x"></i></div></div>
 <?php } ?>
 </div>
 <div class="col-sm-8 col-xs-12 mem-info">
@@ -145,7 +145,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'thumbnail'); ?>    
     <?php if($featured_img_url) {?>
     <img src="<?php echo $featured_img_url ?>" alt="<?php echo the_Title(); ?>"/>
     <?php } else { ?>
-      <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php echo the_Title(); ?>"/>
+      <div class="user-icon-wrap"><div class="user-icon"><i class="fa fa-user fa-4x"></i></div></div>
     <?php }?>
   </div>
 </div>

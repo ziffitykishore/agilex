@@ -61,7 +61,7 @@ get_header(); ?>
                         <div class="timeline-heading">
                             <div class="timeline-title"><?php echo the_Title(); ?></div>
                             <?php if (get_field('year', get_the_ID())){ ?>
-                                <div class="timeline-year"><?php echo get_field('year'); ?></div>
+                                <div class="timeline-year <?php if (get_field('from_year', get_the_ID())) { echo 'timeline-year-from'; } if (get_field('beyond', get_the_ID())) { echo 'timeline-year-beyond'; } ?> "><span class="current-year"><?php echo get_field('year'); ?></span> <?php if (get_field('from_year', get_the_ID())){ ?> <span class="additional"><?php echo get_field('from_year');?></span>  <?php }?> <?php if (get_field('beyond', get_the_ID())){?> <span class="additional"><?php echo get_field('beyond');?></span> <?php }?></div>
                             <?php } else { ?>
                                 <div class="timeline-year">0000</div>
                             <?php } ?>
