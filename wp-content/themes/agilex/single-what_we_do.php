@@ -91,7 +91,7 @@ if($query->have_posts()){ ?>
 <?php $delay=0;
 while ( $query->have_posts() ) { $query->the_post(); ?>
   <div class="category-blk flex-xs-100 flex-sm-30 flex-md-30 flex-20 wow fadeInUp"  data-wow-delay="<?php echo $delay; ?>s">
-  <a href="<?php echo get_permalink() ?>" class="img-sec">
+  <a class="btn-more text-uppercase" href="<?php echo get_permalink() ?>" class="img-sec">
     <figure>
 
   <?php if (get_field('thumb_image', get_the_ID())){ ?>

@@ -3993,6 +3993,27 @@ html.no-touch {
     font-family: 'Lato', sans-serif;
 }
 
+.sub-category .feature-desc .btn-more {
+    position: relative;
+}
+
+.sub-category .feature-desc .btn-more:before {
+    content: '';
+    margin: auto;
+    max-width: 0;
+    height: 2px;
+    background: #174a79;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px;
+    transition: all 0.5s ease 0s;
+}
+
+.sub-category .feature-desc .btn-more:hover:before {
+    max-width: 100%;
+}
+
 .related-categories-wrap {
     padding: 0px 0 60px;
 }
