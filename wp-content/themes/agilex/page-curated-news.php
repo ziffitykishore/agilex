@@ -71,9 +71,8 @@ get_header(); ?>
         jQuery('.curated-container').infiniteScroll({
             // options
             path: function() {
-                console.log(Math.round(publishedPost/postPage));
-                console.log(parseInt(this.loadCount + 2));
-                if ((Math.round(publishedPost/postPage) + 1) == parseInt(this.loadCount + 2)  ) {
+                if (publishedPost < 15 ||
+                        (Math.round(publishedPost/postPage) + 1) == parseInt(this.loadCount + 2)  ) {
                     return false;
                 }
                 if (jQuery().niceScroll) {
