@@ -35,9 +35,9 @@ get_header(); ?>
                     </div>
                     <div class="quotes-content-inner">
                         <div class="quotes-content">
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type</p>
+                            <p><?php echo wprss_get_general_setting( 'quote-content' ) ?></p>
                         </div>
-                        <div class="quote-author">Smith</div>
+                        <div class="quote-author"><?php echo wprss_get_general_setting( 'quote-author' ) ?></div>
                     </div>
                 </div>
                 <div class="news-sec">
