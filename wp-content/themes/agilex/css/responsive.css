@@ -282,6 +282,10 @@
     .address-section h2 {
         font-size: 16px;
     }
+    .footer_menu .navbar-nav li a,
+    .footer-copy p {
+        font-size: 10px;
+    }
 }
 
 @media screen and (min-width: 769px) {
@@ -316,10 +320,6 @@
 }
 
 @media screen and (min-width: 769px) and (max-width: 992px) {
-    .footer_menu .navbar-nav li a,
-    .footer-copy p {
-        font-size: 10px;
-    }
     .uniques-inner .content-wrap {}
     .contact-form .wpcf7-form .mdc-layout-grid__cell:not(.cf7md-submit) {
         width: 100% !important;
