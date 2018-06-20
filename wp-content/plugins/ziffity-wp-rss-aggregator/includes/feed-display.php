@@ -169,7 +169,8 @@
 
         // The Title
         echo '<div class="news-content flex-xs-100 flex-';
-        echo ($image)?50:100 .' alice-blue-bg">';
+        echo ($image)?50:100;
+        echo ' alice-blue-bg">';
         $item_title = wprss_link_display( $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link') );
         $item_title = apply_filters('wprss_item_title', $item_title, $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link'));
         echo '<div class="news-title">';
