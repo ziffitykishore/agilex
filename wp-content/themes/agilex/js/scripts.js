@@ -34,7 +34,7 @@ function myFunction() {
     $('select').niceSelect();
 
     
-    $('.nice-select li[data-value=""]').hide();
+    
 
     
     
@@ -50,13 +50,30 @@ function myFunction() {
 
       
       jQuery(window).on('load', function() {
-
+        $('.nice-select li[data-value=""]').hide();
           jQuery('.loader').removeClass('scale');
 
           $('body').addClass('page-loaded');
 
          
       });
+
+
+      /* external links */
+
+      
+      window.onload = function(){
+        var anchors = document.getElementsByTagName('a');
+        for (var i=0; i<anchors.length; i++){
+          if (anchors[i].hostname != window.location.hostname) {
+              anchors[i].setAttribute('target', '_blank');
+          }
+        }
+      }
+
+
+
+      /* Search */
 
 
       var field = $('.search_input'),
@@ -644,6 +661,23 @@ function hasScrolled() {
 }
 
 
+
+
+/* function call stick  */
+function stickyBar(elm){
+var elment = $(elm);    
+    if(elment.length){
+        var stickyOffset = elment.offset().top;
+        $(window).scroll(function(){
+        var sticky = elment,
+            scroll = $(window).scrollTop();
+        if (scroll >= stickyOffset) sticky.addClass('fixed');
+        else sticky.removeClass('fixed');
+        });
+    }
+}
+
+stickyBar('.heading-strip');
 
 
   /* Fancybox load */
