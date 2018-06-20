@@ -36,7 +36,16 @@
         }
         return $content;
     }
-
+    function match($needles, $haystack)
+    {
+        foreach ($needles as $needle) {
+            if (strpos($haystack,
+                    $needle) !== false) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /**
      * Renders a single feed item.
@@ -68,6 +77,15 @@
 
         // Get the item meta
         $permalink       = get_post_meta( $ID, 'wprss_item_permalink', true );
+        //echo $permalink;
+        $filterAuthors = array_map('trim', explode(',', wprss_get_general_setting( 'blacklist-feed-limit' )));
+       // $filterAuthors = array_map('trim_spaces_and_quotes', $filterAuthors);
+        $filterAuthors = array_map('strtoupper', $filterAuthors);
+
+        if(match($filterAuthors, urlencode(strtoupper($permalink)))){
+            return;
+        }
+        //echo "Matching pet.";
         $enclosure       = get_post_meta( $ID, 'wprss_item_enclosure', true );
         $feed_source_id  = get_post_meta( $ID, 'wprss_feed_id', true );
         $link_enclosure  = get_post_meta( $feed_source_id, 'wprss_enclosure', true );
@@ -75,6 +93,10 @@
         $source_url      = get_post_meta( $feed_source_id, 'wprss_site_url', true );
         $timestamp       = get_the_time( 'U', $ID );
         $description     = get_post_meta( $ID, 'wprss_item_description', true );
+        $author = get_post_meta( $ID, 'wprss_item_author', TRUE );
+        if ( $author !== NULL && is_string( $author ) && $author !== '' ) {
+            $author_text = apply_filters( 'wprss_item_author', $author );
+        }
 
         $general_source_link = isset( $general_settings['source_link'] ) ? $general_settings['source_link'] : 0;
         $feed_source_link = get_post_meta( $feed_source_id, 'wprss_source_link', true );
@@ -91,6 +113,16 @@
         // Prepare the title
         $feed_item_title = get_the_title();
         $feed_item_title_link = ( $link_enclosure === 'true' && $enclosure !== '' )? $enclosure : $permalink;
+
+        $itemTitle = wprss_link_display( $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link') );
+        $itemTitle = apply_filters('wprss_item_title', $item_title, $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link'));
+
+        if(match($filterAuthors, strtoupper($source_name))
+            || match($filterAuthors, strtoupper($description))
+            || match($filterAuthors, strtoupper($author_text))
+            || match($filterAuthors, strtoupper($itemTitle))){
+            return;
+        }
 
         // Prepare the text that precedes the source
         //$text_preceding_source = wprss_get_general_setting('text_preceding_source');
@@ -201,6 +233,7 @@
         //Learn More
         echo '<a href="'.$permalink.'" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>';
         echo '</div>';
+
         // END TEMPLATE - Retrieve buffered output
         $output .= ob_get_clean();
         $output = apply_filters( 'wprss_single_feed_output', $output, $permalink );
