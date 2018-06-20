@@ -241,5 +241,16 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 </div>
 
 
+<script>
+  $(function(){
+      function memberImage(){
+        var memImg = $('.member-img').find('img'),
+            memimgHeight = memImg.height();
+            $('.member-img .user-icon-wrap').css('height', memimgHeight);
 
+      }
+      memberImage();
+      $(window).on('resize', memberImage);
+  });
+</script>
 <?php get_footer(); ?>                                                                        
