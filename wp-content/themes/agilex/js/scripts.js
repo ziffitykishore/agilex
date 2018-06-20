@@ -300,16 +300,17 @@ function myFunction() {
   function bgSource(imgcontainer){
   $(imgcontainer).each(function() {
       var img = $(this).find("img");
-      var height = img.height();
-      var img_src = img.attr("src");
+      if(img.length){
+        var height = img.height();
+        var img_src = img.attr("src");
 
-      $(this).css({
-          "background-image": "url(" + img_src + ")",
-          "background-size": "cover",
-          "background-repeat": "no-repeat",
-          "background-position": "center"
-      });
-
+        $(this).css({
+            "background-image": "url(" + img_src + ")",
+            "background-size": "cover",
+            "background-repeat": "no-repeat",
+            "background-position": "center"
+        });
+    }
       img.hide();
   });
 }
@@ -1102,8 +1103,9 @@ function responsiveResize() {
     /* form validation */
 
 $(window).load(function(){
-    $('.form-group .btn').addClass('btn-door btn-blue');
-$('form').attr('autocomplete', 'off');
+    $('.jobpost-form .form-group .btn').addClass('btn-door btn-blue');
+    $('form').attr('autocomplete', 'off');
+    jQuery('input[type="checkbox"], input[type="radio"]').removeClass('form-control');
 
 jQuery('.form-group .form-control:not(input[type="file"])').on('focus', function () {
     if ($(this).val() == "") {
