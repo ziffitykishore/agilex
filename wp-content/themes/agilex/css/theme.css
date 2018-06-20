@@ -4718,6 +4718,7 @@ html.no-touch {
     border-radius: 0;
     margin-top: 0;
     width: 100%;
+    box-shadow: 3px 5px 10px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nice-select .list li {
