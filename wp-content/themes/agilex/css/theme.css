@@ -2720,6 +2720,10 @@ span.line {
     overflow: hidden;
 }
 
+.uniques-inner .feature-image {
+    text-align: center;
+}
+
 .uniques-inner li::after {
     content: '';
     border: 10px solid #174a7a;
@@ -3971,7 +3975,7 @@ html.no-touch {
 
 .feature-desc h2 {
     font-size: 16px;
-    margin: 20px 0;
+    margin: 20px 0 8px;
     font-weight: 600;
     color: #174a79;
 }
@@ -4254,11 +4258,25 @@ html.no-touch {
     max-width: 30%;
 }
 
+.flex-40 {
+    max-width: 40%;
+    -webkit-flex: 0 0 40%;
+    -ms-flex: 0 0 40%;
+    flex: 0 0 40%;
+}
+
 .flex-50 {
     max-width: 50%;
     -webkit-flex: 0 0 50%;
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
+}
+
+.flex-60 {
+    max-width: 60%;
+    -webkit-flex: 0 0 60%;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
 }
 
 .flex-70 {
@@ -4942,7 +4960,7 @@ div.nice-select:after {
     /* hide ::after pseudo element - fix for Edge 15 and below */
     overflow: hiddhtmlen;
     position: relative;
-    padding-bottom: 58px;
+    padding-bottom: 70px;
     padding-top: 0;
 }
 
@@ -5592,6 +5610,10 @@ div.nice-select:after {
 
 
 /* search page */
+
+.search-results-inner .searchform {
+    margin-top: 20px;
+}
 
 .search-results .blog-post .blog-post-image,
 .search-results .blog-post .blog-post-meta,

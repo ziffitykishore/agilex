@@ -117,17 +117,21 @@
 
 
         // The IMAGE
-        echo '<div class="image-wrap flex-xs-100 flex-50"><div class="border-ani"></div><div class="image-sec">';
         $start = strpos($description,'<figure>');
         $end = strpos($description,'</figure>');
         $image = substr($description, $start, $end);
-        echo ($image);
+        echo '<div class="image-wrap flex-xs-100 flex-50';
+        echo ($image)?'':' hidden';
+        echo '"><div class="border-ani"></div><div class="image-sec">';
+       
+        echo ($image)?:'';
 
         echo "</div></div>";
 
 
         // The Title
-        echo '<div class="news-content flex-xs-100 flex-50 alice-blue-bg">';
+        echo '<div class="news-content flex-xs-100 flex-';
+        echo ($image)?50:100 .' alice-blue-bg">';
         $item_title = wprss_link_display( $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link') );
         $item_title = apply_filters('wprss_item_title', $item_title, $feed_item_title_link, $feed_item_title, wprss_get_general_setting('title_link'));
         echo '<div class="news-title">';
