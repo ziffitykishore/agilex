@@ -81,8 +81,8 @@
 				wprss_log( 'Items were NULL. Using empty array', null, WPRSS_LOG_LEVEL_WARNING );
 			}
 
-            // See `wprss_item_comparators` filter
-            wprss_sort_items($items);
+                        // See `wprss_item_comparators` filter
+                        wprss_sort_items($items);
 
 			// If using a limit ...
 			if ( $feed_limit === NULL ) {
@@ -112,22 +112,16 @@
 			// Generate a list of items fetched, that are not already in the DB
 			$new_items = array();
 			foreach ( $items_to_insert as $item ) {
-                             if(!empty(wprss_get_general_setting( 'blacklist-feed-limit' ))) {
+                            if(!empty(wprss_get_general_setting( 'blacklist-feed-limit' ))) {
                             $filterAuthors = array_map('trim', explode(',', wprss_get_general_setting( 'blacklist-feed-limit' )));
                             $filterAuthors = array_map('strtoupper', $filterAuthors);
                             $author = $item->get_author();
-                            if(in_array(strtoupper($author->get_name()), $filterAuthors)) {
+                            if(in_array(strtoupper($author->get_name()), $filterAuthors)
+                                || match($filterAuthors, urlencode(strtoupper($item->get_permalink())))
+                                    || match($filterAuthors, strtoupper($item->get_title()))) {
                                 continue;
-                            } else {
-                                foreach($filterAuthors as $filterAuthor) {
-                                    $link = strpos($item->get_permalink(), $filterAuthor);
-                                    $itemttitle = strpos($item->get_title(), $filterAuthor);
-                                    if($link == true || $itemttitle == true) {
-                                        continue;
-                                    }
-                                }
                             }
-                             }
+                            }
 
 				$permalink = wprss_normalize_permalink( $item->get_permalink(), $item, $feed_ID );
 				wprss_log_obj( 'Normalized permalink', sprintf('%1$s -> %2$s', $item->get_permalink(), $permalink), null, WPRSS_LOG_LEVEL_SYSTEM );
@@ -467,7 +461,21 @@
 
 		return $permalink;
 	}
-
+        /**
+         *
+         * @param type $needles
+         * @param type $haystack
+         * @return boolean
+         */
+        function getMatchWords($needles, $haystack)
+        {
+            foreach ($needles as $needle) {
+                if (strpos($haystack, $needle) !== false) {
+                    return true;
+                }
+            }
+            return false;
+        }
 
 	/**
 	 * Insert wprss_feed_item posts into the DB
@@ -622,19 +630,14 @@
            $author = $item->get_author();
            $desc= $item->get_description();
             $description = substr($desc, 0, 200);
-           if(in_array(strtoupper($author->get_name()), $filterAuthors)) {
-               wprss_blacklist_item($inserted_ID);
-               wp_delete_post( $inserted_ID, TRUE );
-               return;
-           } else {
-                 foreach($filterAuthors as $filterAuthor) {
-                                    $link = strpos(strtoupper($item->get_permalink()), $filterAuthor);
-                                    $itemdes = strpos(strtoupper($description), $filterAuthor);
-                                    if($link == true || $itemdes == true) {
-                                        return;
-                                    }
-                                }
-                 }
+            if(in_array(strtoupper($author->get_name()), $filterAuthors)
+                || match($filterAuthors, urlencode(strtoupper($item->get_permalink())))
+                || match($filterAuthors, strtoupper($description))
+                || match($filterAuthors, strtoupper($author->get_name()))) {
+                wprss_blacklist_item($inserted_ID);
+                wp_delete_post( $inserted_ID, TRUE );
+                return;
+            }
             }
 
 		update_post_meta( $inserted_ID, 'wprss_item_permalink', $permalink );

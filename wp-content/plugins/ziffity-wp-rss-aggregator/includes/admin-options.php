@@ -53,6 +53,7 @@
         $sections = apply_filters(
             'wprss_settings_sections_array',
             array(
+                'quotes'   =>  __( 'Quote Of The Week settings', WPRSS_TEXT_DOMAIN ),
                 'general'  =>  __( 'General plugin settings', WPRSS_TEXT_DOMAIN ),
                 'display'  =>  __( 'General display settings', WPRSS_TEXT_DOMAIN ),
                 'source'   =>  __( 'Source display settings', WPRSS_TEXT_DOMAIN ),
@@ -65,6 +66,18 @@
         $settings = apply_filters(
             'wprss_settings_array',
             array(
+                //Quotes
+                'quotes' => array(
+                    'quote-content' => array(
+                        'label'     =>  __( 'Quote Content', WPRSS_TEXT_DOMAIN ),
+                        'callback'  =>  'wprss_setting_quote_content'
+                    ),
+                    'quote-author' => array(
+                        'label'     =>  __( 'Quote Author', WPRSS_TEXT_DOMAIN ),
+                        'callback'  =>  'wprss_setting_quote_author'
+                    ),
+
+                ),
                 'general'   =>  array(
                     'limit-feed-items-by-age' => array(
                         'label'     =>  __( 'Limit feed items stored by age', WPRSS_TEXT_DOMAIN ),
@@ -115,6 +128,7 @@
 //                        'callback'  =>  'wprss_tracking_callback',
 //                    )
                 ),
+
 
                 'display'   =>  array(
                     // Title options
@@ -432,6 +446,14 @@
         echo wpautop( __( 'These are the general settings for WP RSS Aggregator.', WPRSS_TEXT_DOMAIN ) );
     }
 
+    /**
+     * Quote section header
+     * @since 3.0
+     */
+    function wprss_settings_quotes_callback() {
+        echo wpautop( __( 'These are the quote of the week settings for WP RSS Aggregator.', WPRSS_TEXT_DOMAIN ) );
+    }
+
 
     /**
      * General settings display section header
@@ -569,7 +591,28 @@
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
-
+    /**
+     * Set quote author
+     * @since 2.0
+     */
+    function wprss_setting_quote_author( $field ) {
+        $quote_author = wprss_get_general_setting( 'quote-author' );
+        ?>
+		<input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[quote-author]" type="text" value="<?php echo $quote_author ?>" />
+		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
+    }
+    /**
+     * Set quote content
+     * @since 2.0
+     */
+    function wprss_setting_quote_content( $field ) {
+        $quote_content = wprss_get_general_setting( 'quote-content' );
+        ?>
+                <textarea id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[quote-content]" rows="3" cols="50">
+                    <?php echo $quote_content ?>
+                </textarea>
+		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
+    }
     /**
      * Set date format
      * @since 3.0
