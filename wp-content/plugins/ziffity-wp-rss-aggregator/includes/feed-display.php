@@ -92,11 +92,11 @@
         $source_name     = get_the_title( $feed_source_id );
         $source_url      = get_post_meta( $feed_source_id, 'wprss_site_url', true );
         $timestamp       = get_the_time( 'U', $ID );
-        $FirstDay = strtotime('sunday last week');
+        $FirstDay = strtotime('monday this week');
         $LastDay = strtotime('sunday this week');
         if($timestamp < $FirstDay || $timestamp > $LastDay) {
             return;
-        } 
+        }
 
         $description     = get_post_meta( $ID, 'wprss_item_description', true );
         $author = get_post_meta( $ID, 'wprss_item_author', TRUE );
