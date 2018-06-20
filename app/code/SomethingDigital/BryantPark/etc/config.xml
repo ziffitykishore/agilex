@@ -8,5 +8,10 @@
                 <social_instagram>https://www.instagram.com/somethingdigitl</social_instagram>
             </socialprofiles>
         </design>
+        <customer>
+            <create_account>
+                <subscribe_by_default>No</subscribe_by_default>
+            </create_account>
+        </customer>
     </default>
 </config>
