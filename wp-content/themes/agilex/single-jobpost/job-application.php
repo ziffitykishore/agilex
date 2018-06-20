@@ -174,7 +174,7 @@ do_action('sjb_job_application_before');
             $term_conditions_label = get_option('job_board_term_conditions_label', '');
             $term_conditions_content = get_option('job_board_term_conditions_content', '');
 
-            if ('yes' == $sjb_gdpr_settings) {
+           /*  if ('yes' == $sjb_gdpr_settings) {
                 ?>
                 <?php if ($privacy_policy_content) { ?>
                     <div class="form-group">
@@ -195,7 +195,7 @@ do_action('sjb_job_application_before');
                     </div>
                     <?php
                 }
-            }
+            } */
 
             /**
              * Fires on job detail page before job submit button.

@@ -39,7 +39,9 @@
        <div class="blog-wrap search-results-wrap pad-tb-50"> 
         <div class="container">
         <div class="search-results-inner">
+        <div class="blog-search box-shadow margin-bottom-30 margin-top-40">
         <?php get_template_part( 'loop', 'search' ); ?>
+            </div>
             </div>
         </div>
       </div>
