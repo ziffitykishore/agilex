@@ -1,3 +1,9 @@
+@media screen and (min-width: 1600px) {
+    .parallax-img-container .parallax-move {
+        width: auto;
+    }
+}
+
 @media screen and (min-width: 1367px) {
     .cd-nav .cd-navigation-wrapper {
         width: 320px;
@@ -257,6 +263,9 @@
     }
     .sub-service-wrap .categories-content {
         padding: 25px;
+    }
+    .home .heading .sub-heading {
+        padding: 0 50px;
     }
 }
 

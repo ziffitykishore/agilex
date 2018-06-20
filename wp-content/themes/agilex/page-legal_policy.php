@@ -49,9 +49,10 @@ get_header(); ?>
             $agilex_unique_query = new WP_Query($args); $i = 1; ?>
             <ul class="nav nav-tabs responsive ord-tab" id="myTabs" role="tablist">
                 <?php while ($agilex_unique_query->have_posts()) {
-                $agilex_unique_query->the_post(); ?>
+                $agilex_unique_query->the_post();
+                $slug = get_post_field( 'post_name', get_post() );  ?>
                 <li role="presentation" class="<?php if($i == 1) { echo "active"; } ?> ">
-                    <a href="#tab-<?php echo $i; ?>" class="text-uppercase btn-ripple" id="tab-link_<?php echo $i; ?>" role="tab" rel="<?php echo the_field('tab_color'); ?>" data-toggle="tab" aria-controls="<?php echo strtolower(str_replace('', '-', get_the_title())); ?>" aria-expanded="true">
+                    <a href="#<?php echo $slug; ?>" class="text-uppercase btn-ripple" id="tab-link_<?php echo $i; ?>" role="tab" rel="<?php echo the_field('tab_color'); ?>" data-toggle="tab" aria-controls="<?php echo $slug; ?>" aria-expanded="true">
                         <?php echo the_Title(); $i++; ?>
                     </a>
                 </li>
@@ -59,8 +60,8 @@ get_header(); ?>
             </ul>
             <div class="tab-content" id="myTabContent">
                 <?php $i = 1; while ($agilex_unique_query->have_posts()) {
-                        $agilex_unique_query->the_post(); ?>
-                <div class="tab-pane fade <?php if($i == 1) { echo "active in"; } ?> tab-pane_<?php echo $i; ?>" role="tabpanel" id="tab-<?php echo $i; ?>" aria-labelledby="<?php echo strtolower(str_replace('', '-', get_the_title())); ?>-tab">
+                        $agilex_unique_query->the_post();  $slug = get_post_field( 'post_name', get_post() );?>
+                <div class="tab-pane fade <?php if($i == 1) { echo "active in"; } ?> tab-pane_<?php echo $i; ?>" role="tabpanel" id="<?php echo $slug; ?>" aria-labelledby="<?php echo $slug; ?>">
                    
                         <div class="blue-strip">
                             <div class="heading-sec">
