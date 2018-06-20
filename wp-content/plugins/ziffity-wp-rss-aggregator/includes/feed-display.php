@@ -153,7 +153,7 @@
         $start = strpos($description,'<figure>');
         $end = strpos($description,'</figure>');
         $image = substr($description, $start, $end);
-        echo ($image)?:'<img src="/wp-content/uploads/2018/06/no-image-placeholder.gif" />';
+        echo ($image);
 
         echo "</div></div>";
 
