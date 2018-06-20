@@ -1,13 +1,13 @@
-<?php  
+<?php
     /**
-     * Plugin settings related functions 
-     * 
-     * Note: Wording of options and settings is confusing, due to the plugin originally only having 
-     * an 'options' page to enter feed sources, and now needing two screens, one for feed sources and one for 
+     * Plugin settings related functions
+     *
+     * Note: Wording of options and settings is confusing, due to the plugin originally only having
+     * an 'options' page to enter feed sources, and now needing two screens, one for feed sources and one for
      * general settings. Might implement something cleaner in the future.
      *
      * @package WP PRSS Aggregator
-     */ 
+     */
 
 
 
@@ -24,7 +24,7 @@
         return ( ( isset( $options[ $option_name ] ) )? $options[$option_name] : $defaults[$option_name] );
     }
 
-    
+
     add_action( 'admin_init', 'wprss_admin_init' );
     /**
      * Register and define options and settings
@@ -48,7 +48,7 @@
             'wprss_settings_license_keys',
             'wprss_settings_license_keys_validate'
         );
-        
+
 
         $sections = apply_filters(
             'wprss_settings_sections_array',
@@ -106,6 +106,10 @@
                         'label'     =>  __( 'Custom feed limit', WPRSS_TEXT_DOMAIN ),
                         'callback'  =>  'wprss_setings_custom_feed_limit_callback'
                     ),
+                    'blacklist-feed-limit' => array(
+                        'label'     =>  __( 'Black List Words', WPRSS_TEXT_DOMAIN ),
+                        'callback'  =>  'wprss_settings_blacklist_feed_words_callback'
+                    ),
 //                    'tracking'  =>  array(
 //                        'label'     =>  __( 'Anonymous tracking', WPRSS_TEXT_DOMAIN ),
 //                        'callback'  =>  'wprss_tracking_callback',
@@ -123,7 +127,7 @@
                         'callback'  =>  'wprss_setting_title_length_callback'
                     ),
 
-                    
+
 
                     // Misc Options
                     'authors-enable' =>    array(
@@ -196,11 +200,11 @@
                 )
             )
         );
-        
+
         if ( apply_filters( 'wprss_use_fixed_feed_limit', FALSE ) === FALSE ) {
             unset( $settings['general']['limit-feed-items-db'] );
         }
-		
+
 		$setting_field_id_prefix = 'wprss-settings-';
 
 
@@ -228,8 +232,8 @@
 						'field_label'			=> isset( $data['label'] ) ? $data['label'] : null,
 						'tooltip'				=> isset( $data['tooltip'] ) ? $data['tooltip'] : null
 					);
-					
-					
+
+
                     add_settings_field(
                         $setting_field_id_prefix . $id,
                         $data['label'],
@@ -246,12 +250,12 @@
 
         /*
         // SECURE RESET OPTION
-        register_setting( 
+        register_setting(
             'wprss_secure_reset',                           // A settings group name.
             'wprss_secure_reset_code',                      // The name of an option to sanitize and save.
             ''                                              // A callback function that sanitizes the option's value.
         );
-        add_settings_section( 
+        add_settings_section(
             'wprss_secure_reset_section',                   // ID of section
             __( 'Secure Reset', WPRSS_TEXT_DOMAIN ),                  // Title of section
             'wprss_secure_reset_section_callback',          // Callback that renders the section header
@@ -267,23 +271,23 @@
         */
 
         //If user requested to download system info, generate the download.
-        if ( isset( $_POST['wprss-sysinfo'] ) ) 
+        if ( isset( $_POST['wprss-sysinfo'] ) )
             do_action( 'wprss_download_sysinfo' );
         if ( isset( $_POST['wprss-sysinfo'] ) ) {
-         //   do_action( 'wprss_download_log' );            
+         //   do_action( 'wprss_download_log' );
         }
 
         do_action( 'wprss_admin_init' );
     }
-	
-	
+
+
 	/**
 	 * Returns the HTML of a tooltip handle.
-	 * 
+	 *
 	 * Filters used:
 	 * - `wprss_settings_inline_help_default_options` - The default options for "Settings" page's tooltips
 	 * - `wprss_settings_inline_help_id_prefix` - The prefix for all tooltip IDs for the "Settings" page.
-	 * 
+	 *
 	 * @param string $id The ID of the tooltip
 	 * @param string|null $text Text for this tooltip, if any.
 	 * @param array $options Any options for this setting.
@@ -291,23 +295,23 @@
 	 */
 	function wprss_settings_inline_help( $id, $text = null, $options = array() ) {
 		$help = WPRSS_Help::get_instance();
-		
+
 		// Default options, entry point
 		$defaults = apply_filters( 'wprss_settings_inline_help_default_options', array(
 			'tooltip_handle_class_extra'	=> $help->get_options('tooltip_handle_class_extra') . ' ' . $help->get_options('tooltip_handle_class') . '-setting'
 		));
 
 		$options = $help->array_merge_recursive_distinct( $defaults, $options );
-		
+
 		// ID Prefix
 		$id = apply_filters( 'wprss_settings_inline_help_id_prefix', 'setting-' ) . $id;
-		
+
 		return $help->tooltip( $id, $text, $options );
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param type $string
 	 * @return type
 	 */
@@ -316,17 +320,17 @@
 		$prefix = apply_filters( 'wprss_settings_field_name_prefix', 'wprss_settings_', $string );
 		return $prefix . $string;
 	}
-	
-	
+
+
 	/**
 	 * Generates a uniform setting field name for use in HTML.
 	 * The parts used are the ID of the field, the section it is in, and an optional prefix.
 	 * All parts are optional, but, if they appear, they shall appear in this order: $prefix, $section, $id.
-	 * 
+	 *
 	 * If only the section is not specified, the $id will be simply prefixed by $prefix.
 	 * If either the $id or the $section are empty (but not both), $prefix will be stripped of known separators.
 	 * Empty parts will be excluded.
-	 * 
+	 *
 	 * @param string $id ID of the field.
 	 * @param string|null $section Name of the section, to which this field belongs.
 	 * @param string|null $prefix The string to prefix the name with; appears first. If boolean false, no prefix will be applied. Default: return value of {@link wprss_settings_field_name_prefix()}.
@@ -335,15 +339,15 @@
 	function wprss_settings_field_name( $id = null, $section = null, $prefix = null ) {
 		if( $prefix !== false ) $prefix = is_null( $prefix ) ? wprss_settings_field_name_prefix() : $prefix;
 		else $prefix = '';
-		
+
 		$section = (string) $section;
-		
+
 		$format = '';
 		if( !strlen( $section ) xor !strlen($id) ) $prefix = trim ( $prefix, "\t\n\r _-:" );
 		if( strlen( $prefix ) ) $format .= '%3$s';
 		if( strlen( $section ) ) $format .= '%2$s';
 		if( strlen( $id ) ) $format .= ( !strlen( $section ) ? '%1$s' : '[%1$s]' );
-		
+
 		return apply_filters( 'wprss_settings_field_name', sprintf( $format, $id, $section, $prefix ), $id, $section, $prefix );
 	}
 
@@ -351,22 +355,22 @@
     /**
      * Build the plugin settings page, used to save general settings like whether a link should be follow or no follow
      * @since 1.1
-     */ 
+     */
     function wprss_settings_page_display() {
         ?>
         <div class="wrap">
-            <?php screen_icon( 'wprss-aggregator' ); ?>            
-        
-            <h2><?php _e( 'WP RSS Aggregator Settings', WPRSS_TEXT_DOMAIN ); ?></h2>   
+            <?php screen_icon( 'wprss-aggregator' ); ?>
 
-            <?php settings_errors(); ?> 
+            <h2><?php _e( 'WP RSS Aggregator Settings', WPRSS_TEXT_DOMAIN ); ?></h2>
+
+            <?php settings_errors(); ?>
 
             <?php $active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general_settings'; ?>
 
             <?php
 
             $default_tabs = array(
-				'general' => array( 
+				'general' => array(
 					'label' => __( 'General', WPRSS_TEXT_DOMAIN ),
 					'slug'  => 'general_settings',
 				),
@@ -384,20 +388,20 @@
 
             if ( $show_tabs ) { ?>
             <h2 class="nav-tab-wrapper">
-                <?php 
+                <?php
                 foreach ( $tabs as $tab => $tab_property ) { ?>
                     <a href="?post_type=wprss_feed&page=wprss-aggregator-settings&tab=<?php echo esc_attr( $tab_property['slug'] ); ?>"
                         class="nav-tab <?php echo $active_tab == $tab_property['slug']  ? 'nav-tab-active' : ''; ?>"><?php echo esc_html( $tab_property['label'] ); ?></a>
                 <?php } ?>
-            <?php } ?>                
-            </h2>            
+            <?php } ?>
+            </h2>
 
-            <form action="options.php" method="post">   
-            
+            <form action="options.php" method="post">
+
                 <?php
 
                 if ( $active_tab === 'general_settings' ) {
-                    settings_fields( 'wprss_settings_general' ); 
+                    settings_fields( 'wprss_settings_general' );
                     //settings_fields( 'wprss_secure_reset' );
                     do_settings_sections( 'wprss_settings_general' );
                 }
@@ -407,7 +411,7 @@
                         settings_fields( 'wprss_settings_license_keys' );
                         do_settings_sections( 'wprss_settings_license_keys' );
                     }
-                    
+
                     do_action( 'wprss_add_settings_fields_sections', $active_tab );
                 }
 
@@ -420,7 +424,7 @@
     }
 
 
-    /** 
+    /**
      * General settings section header
      * @since 3.0
      */
@@ -429,7 +433,7 @@
     }
 
 
-    /** 
+    /**
      * General settings display section header
      * @since 3.5
      */
@@ -457,7 +461,7 @@
     }
 
 
-    /** 
+    /**
      * General settings styles section header
      * @since 3.0
      */
@@ -466,7 +470,7 @@
     }
 
 
-    /** 
+    /**
      * General settings scure reset section header
      * @since 3.0
      */
@@ -475,7 +479,7 @@
     }
 
 
-    /** 
+    /**
      * Tracking settings section header
      * @since 3.0
      */
@@ -484,7 +488,7 @@
     }
 
 
-    /** 
+    /**
      * Follow or No Follow dropdown
      * @since 1.1
      */
@@ -499,7 +503,7 @@
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
-	
+
 	/**
 	 * Use original video link, or embedded video links dropwdown
 	 * @since 3.4
@@ -527,16 +531,16 @@
         </p>
 		<?php
 	}
-	
 
-    /** 
+
+    /**
      * Link open setting dropdown
      * @since 1.1
      */
     function wprss_setting_open_dd_callback( $field ) {
         $open_dd = wprss_get_general_setting('open_dd');
 
-        $items = array( 
+        $items = array(
             'lightbox'   => __( 'Lightbox', WPRSS_TEXT_DOMAIN ),
             'blank' => __( 'New window', WPRSS_TEXT_DOMAIN ),
             'self'       => __( 'Self', WPRSS_TEXT_DOMAIN )
@@ -554,7 +558,7 @@
     }
 
 
-    /** 
+    /**
      * Set limit for feeds on frontend
      * @since 2.0
      */
@@ -566,8 +570,8 @@
     }
 
 
-    /** 
-     * Set date format 
+    /**
+     * Set date format
      * @since 3.0
      */
     function wprss_setting_date_format_callback( $field ) {
@@ -585,7 +589,7 @@
 
 
 
-    /** 
+    /**
      * Enable linked title
      * @since 3.0
      */
@@ -598,7 +602,7 @@
 
 
 
-    /** 
+    /**
      * Set the title length limit
      * @since 3.0
      */
@@ -610,7 +614,7 @@
     }
 
 
-    /** 
+    /**
      * Enable source
      * @since 3.0
      */
@@ -621,7 +625,7 @@
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
-    /** 
+    /**
      * Enable linked title
      * @since 3.0
      */
@@ -682,7 +686,7 @@
     }
 
 
-    /** 
+    /**
      * Set text preceding source
      * @since 3.0
      */
@@ -692,7 +696,7 @@
         <input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[text_preceding_source]" type="text" value="<?php echo $text_preceding_source ?>" />
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
-    /** 
+    /**
      * Enable date
      * @since 3.0
      */
@@ -701,9 +705,9 @@
 		?>
         <input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[date_enable]" type="checkbox" value="1" <?php echo checked( 1, $date_enable, false ) ?> />
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
-    }    
+    }
 
-    /** 
+    /**
      * Set text preceding date
      * @since 3.0
      */
@@ -715,7 +719,7 @@
     }
 
 
-    /** 
+    /**
      * Shows the feed item authors option
      *
      * @since 4.2.4
@@ -728,9 +732,9 @@
     }
 
 
-	/** 
+	/**
      * Pagination Type
-     * 
+     *
      * @since 4.2.3
      */
     function wprss_setting_pagination_type_callback( $field ) {
@@ -753,7 +757,7 @@
 
 
 
-    /** 
+    /**
      * Limit number of feed items stored by their age
      * @since 3.0
      */
@@ -763,7 +767,7 @@
         $units = wprss_age_limit_units();
 //		echo wprss_settings_field_name( $field_info['field_id'], $field_info['section_id'], $field_info['field_name_prefix'] )
         ?>
-		
+
         <input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[limit_feed_items_age]" type="number" min="0"
             class="wprss-number-roller" placeholder="<?php _e( 'No limit', WPRSS_TEXT_DOMAIN ) ?>" value="<?php echo $limit_feed_items_age; ?>" />
 
@@ -773,14 +777,14 @@
         <?php endforeach ?>
         </select>
         <?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] ) ?>
-		
+
         <br/>
         <?php
     }
 
 
 
-    /** 
+    /**
      * Limit number of feed items stored
      * @since 3.0
      */
@@ -792,7 +796,7 @@
     }
 
 
-    /** 
+    /**
      * Limit number of feed items imported per feed
      * @since 3.1
      */
@@ -815,20 +819,20 @@
     }
 
 
-    /** 
+    /**
      * Cron interval dropdown callback
      * @since 3.0
      */
     function wprss_setting_cron_interval_callback( $field ) {
-        $options = get_option( 'wprss_settings_general' );  
+        $options = get_option( 'wprss_settings_general' );
         $current = $options['cron_interval'];
 
-        $schedules = wprss_get_schedules();    
-        // Set the allowed Cron schedules, we don't want any intervals that can lead to issues with server load 
-        $wprss_schedules = apply_filters( 
+        $schedules = wprss_get_schedules();
+        // Set the allowed Cron schedules, we don't want any intervals that can lead to issues with server load
+        $wprss_schedules = apply_filters(
                             'wprss_schedules',
                             array( 'fifteen_min', 'thirty_min', 'hourly', 'two_hours', 'twicedaily', 'daily' )
-        );        
+        );
         ?>
 		<select id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[cron_interval]">
 		<?php
@@ -889,7 +893,18 @@
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
-    /** 
+    /**
+     * Sets the BlackList feed Words
+     * @since 3.3
+     */
+    function wprss_settings_blacklist_feed_words_callback( $field ) {
+        $blacklist_feed = wprss_get_general_setting( 'blacklist-feed-limit' );
+        ?>
+                <textarea id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[blacklist-feed-limit]" rows="3" cols="50"> <?php echo $blacklist_feed ?> </textarea>
+		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
+    }
+
+    /**
      * Disable styles
      * @since 3.0
      */
@@ -1025,12 +1040,12 @@
      */
     function wprss_time_since( $older_date, $newer_date ) {
         return wprss_interval( $newer_date - $older_date );
-    }    
+    }
 
     /**
      * Calculates difference between times
-     * 
-     * Taken from the WP-Crontrol plugin 
+     *
+     * Taken from the WP-Crontrol plugin
      * @link http://wordpress.org/extend/plugins/wp-crontrol/
      * @since 3.0
      *
@@ -1093,28 +1108,28 @@
     }
 
 
-    /** 
+    /**
      * Validate inputs from the general settings page
      * @since 3.0
      */
     function wprss_settings_general_validate( $input ) {
-        $options = get_option( 'wprss_settings_general' );  
+        $options = get_option( 'wprss_settings_general' );
         $current_cron_interval = $options['cron_interval'];
 
         // Create our array for storing the validated options
         $output = array();
-        
+
         // Loop through each of the incoming options
         foreach( $input as $key => $value ) {
-            
+
             // Check to see if the current option has a value. If so, process it.
             if( isset( $input[ $key ] ) ) {
-            
+
                 // Strip all HTML and PHP tags and properly handle quoted strings
                 $output[ $key ] = strip_tags( stripslashes( $input[ $key ] ) );
-                
+
             } // end if
-            
+
         } // end foreach
 
         // If limit_feed_items_age_unit is not set or it set to zero, set it to empty
@@ -1122,33 +1137,33 @@
             $output['limit_feed_items_age'] = '';
         }
 
-        if (  ! isset( $input['title_link'] )  ||  $input['title_link'] != '1' ) 
-            $output['title_link'] = 0; 
-        else 
-            $output['title_link'] = 1;  
+        if (  ! isset( $input['title_link'] )  ||  $input['title_link'] != '1' )
+            $output['title_link'] = 0;
+        else
+            $output['title_link'] = 1;
 
-        if (  ! isset( $input['source_enable'] )  ||  $input['source_enable'] != '1' ) 
-            $output['source_enable'] = 0; 
-        else 
-            $output['source_enable'] = 1;        
+        if (  ! isset( $input['source_enable'] )  ||  $input['source_enable'] != '1' )
+            $output['source_enable'] = 0;
+        else
+            $output['source_enable'] = 1;
 
         if ( ! isset( $input['date_enable'] ) || $input['date_enable'] != '1' )
             $output['date_enable'] = 0;
         else
-            $output['date_enable'] = 1;      
+            $output['date_enable'] = 1;
 
         if ( ! isset( $input['styles_disable'] ) || $input['styles_disable'] != '1' )
             $output['styles_disable'] = 0;
         else
-            $output['styles_disable'] = 1;     
-        
+            $output['styles_disable'] = 1;
+
 		if ( ! isset( $input['video_link'] ) || strtolower( $input['video_link'] ) !== 'true' )
 			$output['video_link'] = 'false';
 		else
 			$output['video_link'] = 'true';
-		
+
         if ( $input['cron_interval'] != $current_cron_interval ) {
-            wp_clear_scheduled_hook( 'wprss_fetch_all_feeds_hook' );    
+            wp_clear_scheduled_hook( 'wprss_fetch_all_feeds_hook' );
             wp_schedule_event( time(), $input['cron_interval'], 'wprss_fetch_all_feeds_hook' );
         }
 
@@ -1165,7 +1180,7 @@
 
     /**
      * Validates the licenses settings
-     * 
+     *
      * @since 3.8
      */
     function wprss_settings_license_keys_validate( $input ) {
@@ -1182,12 +1197,12 @@
             // Only save if the entry does not exist OR the code is different
             if ( array_key_exists( $addon, $licenses ) && $license_code === $licenses[ $addon ] )
 				continue;
-			
+
 			$is_valid = apply_filters( 'wprss_settings_license_key_is_valid', true, $license_code );
 			if( $addon_code )
 				$is_valid = apply_filters( "wprss_settings_license_key_{$addon_code}_is_valid", $is_valid, $license_code );
 			if( !$is_valid ) continue;
-			
+
 			// Save it to the licenses option
 			$licenses[ $addon ] = $license_code;
         }
@@ -1201,7 +1216,7 @@
     add_action( 'wprss_check_license_statuses', 'wprss_check_license_statuses' );
     /**
      * Checks the license statuses
-     * 
+     *
      * @since 3.8.1
      */
     function wprss_check_license_statuses() {
@@ -1226,7 +1241,7 @@
 
     /**
      * Validates the wprss_secure_reset_code option
-     * 
+     *
      * @since 3.7.1
      */
     function wprss_secure_reset_code_validate( $input ) {
@@ -1252,7 +1267,7 @@
 
     /**
      * Returns the units used for the limit by age option.
-     * 
+     *
      * @since 3.8
      */
     function wprss_age_limit_units() {
