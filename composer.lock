@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e40da377dc36a655527c56600e672340",
+    "content-hash": "14d8eb123fa508adf67d3d06bd274ab5",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -750,16 +750,16 @@
         },
         {
             "name": "donatj/phpuseragentparser",
-            "version": "v0.9.0",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/donatj/PhpUserAgent.git",
-                "reference": "ea79de6a18e52285e62cd75cf1cebe276ecaf503"
+                "reference": "9de58cc2a3e986bfee7f4cea3365c830b765cf65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/donatj/PhpUserAgent/zipball/ea79de6a18e52285e62cd75cf1cebe276ecaf503",
-                "reference": "ea79de6a18e52285e62cd75cf1cebe276ecaf503",
+                "url": "https://api.github.com/repos/donatj/PhpUserAgent/zipball/9de58cc2a3e986bfee7f4cea3365c830b765cf65",
+                "reference": "9de58cc2a3e986bfee7f4cea3365c830b765cf65",
                 "shasum": ""
             },
             "require": {
@@ -797,20 +797,15 @@
                 "user agent",
                 "useragent"
             ],
-            "time": "2017-10-23T16:52:52+00:00"
+            "time": "2018-06-21T15:54:46+00:00"
         },
         {
             "name": "dotmailer/dotmailer-magento2-extension",
             "version": "2.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dotmailer/dotmailer-magento2-extension.git",
-                "reference": "cd5237b4b4ef0a373726637ccd7c239b213d7491"
-            },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotmailer/dotmailer-magento2-extension/zipball/cd5237b4b4ef0a373726637ccd7c239b213d7491",
-                "reference": "cd5237b4b4ef0a373726637ccd7c239b213d7491",
+                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension/dotmailer-dotmailer-magento2-extension-2.5.0.0.zip",
+                "reference": null,
                 "shasum": "7a1c72694c12b2011faf02ef580e3026d6d0fda3"
             },
             "require": {
@@ -1000,6 +995,40 @@
             ],
             "abandoned": "endroid/qr-code",
             "time": "2018-05-09T20:26:30+00:00"
+        },
+        {
+            "name": "ethanyehuda/magento2-cronjobmanager",
+            "version": "v1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ethan3600/magento2-CronjobManager.git",
+                "reference": "413c28fae1ac66b18f35ade96d016b3bb3fce908"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ethan3600/magento2-CronjobManager/zipball/413c28fae1ac66b18f35ade96d016b3bb3fce908",
+                "reference": "413c28fae1ac66b18f35ade96d016b3bb3fce908",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "~100.3.0-dev|~101.0.0",
+                "php": "~7.0.0||~7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "EthanYehuda\\CronjobManager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "description": "A module for managing scheduled cron jobs from magento's admin panel",
+            "time": "2018-05-14T02:44:32+00:00"
         },
         {
             "name": "gene/bluefoot",
