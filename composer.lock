@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "14d8eb123fa508adf67d3d06bd274ab5",
+    "content-hash": "78c40acdd9f3c354c109e950ab745192",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -1349,11 +1349,11 @@
         },
         {
             "name": "jamescowie/composer-patcher",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/composer-patcher.git",
-                "reference": "36d9f283d56faff6d747bfaa581ebe9c59852a1c"
+                "reference": "db75e17702ad9cb0ccad801e35fdb56ee056ee1d"
             },
             "require": {
                 "composer/composer": "~1.0",
@@ -1381,7 +1381,7 @@
                 }
             ],
             "description": "Apply patches using composer",
-            "time": "2018-04-12T14:49:06+00:00"
+            "time": "2018-04-27T19:47:13+00:00"
         },
         {
             "name": "justinrainbow/json-schema",
