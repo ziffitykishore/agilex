@@ -53,13 +53,16 @@ $postArg = array('post_type' => 'jobpost');
 $jobPosts = get_posts( $postArg );
 $countPosts = count($jobPosts);
 if ($countPosts > 0) { ?>
-<select id="job-post-list" class="job-list">
+<div class="select-box">
+<select id="job-post-list" class="job-list" name="job-post-list">
+    <option value>Apply For</option>
 <?php foreach ( $jobPosts as $jobPost ) {
         //setup_postdata($jobPost);
         echo '<option class="post-id" value='.$jobPost->ID. '>'.$jobPost->post_title.'</option>';
     }
 } ?>
 </select>
+</div>
 <div id="update"><?php
 $general_post_args = array('post_type' => 'jobpost', 'name' => 'general-post');
 $general_post = get_posts( $general_post_args );
@@ -131,13 +134,27 @@ endforeach; ?>
 <script>
     $(function(){
         var currentValue = $('.nice-select .current').text();
+
+        $('.jobpost-form').submit(function(){
+            if($('#job-post-list').val() == ''){
+                $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
+            }    
+        });
+
+        $(".jobpost-form .btn").on('click', function () {
+        if ($('#job-post-list').val() == '') {
+            $('select').niceSelect('update');
+            alert("Please select the job");
+        }
+    });
+
         $(window).on('load', function(){
-        $('.nice-select .list').prepend('<li data-value class="label-content">Apply for</li>');
+       /*  $('.nice-select .list').prepend('<li data-value class="label-content">Apply for</li>');
 
             var noOption = $('.label-content').text();
             if( currentValue !== noOption){
             $('.nice-select .current').text(noOption);
-            }
+            } */
         });
 
 

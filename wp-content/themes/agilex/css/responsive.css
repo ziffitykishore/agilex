@@ -188,6 +188,13 @@
         flex: 0 0 20%;
         max-width: 18%;
     }
+    .contact-form-sec .form-sec-inner {
+        margin-top: -330px;
+        margin-bottom: 0;
+    }
+    .page-template-page-lets-talk-fragrance .main-content {
+        margin-bottom: 0 !important;
+    }
 }
 
 @media only screen and (min-width:992px) {
@@ -267,6 +274,9 @@
     .home .heading .sub-heading {
         padding: 0 50px;
     }
+    .contact-form-sec .form-group {
+        max-width: 100%;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1200px) {
@@ -306,9 +316,6 @@
         background: #6f6f6f;
         vertical-align: middle;
     }
-    .contact-form-sec .form-sec-inner {
-        margin-top: -300px;
-    }
     .page-template-page-contact-us .page-header-content {
         -webkit-transform: translateY(-160%);
         -moz-transform: translateY(-160%);
@@ -323,6 +330,11 @@
     .uniques-inner .content-wrap {}
     .contact-form .wpcf7-form .mdc-layout-grid__cell:not(.cf7md-submit) {
         width: 100% !important;
+    }
+    .flex-md-100 {
+        max-width: 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
     }
     .flex-md-60 {
         max-width: 60%;

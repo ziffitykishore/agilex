@@ -30,15 +30,7 @@ function myFunction() {
     if (navigator.userAgent.match(/msie/i) || navigator.userAgent.match(/trident/i) ){
         $("html").addClass("ie");
     }
-
-    $('select').niceSelect();
-
-    
-    
-
-    
-    
-
+  
 
 
       /* Scroll down based on Hash tag */
@@ -300,7 +292,7 @@ function myFunction() {
   function bgSource(imgcontainer){
   $(imgcontainer).each(function() {
       var img = $(this).find("img");
-      if(img.length){
+      
         var height = img.height();
         var img_src = img.attr("src");
 
@@ -310,7 +302,7 @@ function myFunction() {
             "background-repeat": "no-repeat",
             "background-position": "center"
         });
-    }
+    
       img.hide();
   });
 }
@@ -848,21 +840,27 @@ $(this).mousemove( function( e ) {
 
 
   /* text wrap */
-function textWrap(content){
-  $(content).each(function() {
-    var html = $(this).text();
-    var word = html .substr(0, html.indexOf(" "));
-    var rest = html .substr(html.indexOf(" "));
-    $(this).html(rest).prepend($("<span class='first'/>").html(word));
- });
-}
-
-jQuery('.timeline-title').html(function (i, html) {
-    if(/<[a-z][\s\S]*>/i.test(html)) {
-      html = jQuery.parseHTML(html);
-      return html[0].innerHTML.replace(/(\w+\s\w+)/, '<span class="first">$1</span>');
-    }
-    return html.replace(/(\w+\s\w+)/, '<span class="first">$1</span>');
+  $(".timeline-title").each(function() {
+  
+    /*  Some Vars */
+    var elText,
+        openSpan = '<span class="first-word">',
+        closeSpan = '</span>';
+    
+    /* Make the text into array */
+    elText = $(this).text().split(" ");
+    
+    /* Adding the open span to the beginning of the array */
+    elText.unshift(openSpan);
+    
+    /* Adding span closing after the first word in each sentence */
+    elText.splice(3, 0, closeSpan);
+    
+    /* Make the array into string */
+    elText = elText.join(" ");
+    
+    /* Change the html of each element to style it */
+    $(this).html(elText);
   });
 
 //textWrap('.timeline-title');
@@ -1103,19 +1101,71 @@ function responsiveResize() {
     /* form validation */
 
 $(window).load(function(){
+    $('.select-box').prependTo($('.jobpost-form > div > div'));
+
+
+
+   
+    $('select').niceSelect();
+
+    function selectBox(selectElm, parent){
+        $(selectElm).each(function(){
+        
+            var label = $(this).parents(parent).find('label'),
+                labelText = label.text();
+                console.log(labelText);
+                if($(this).find('option').val()==''){
+                    
+                    $(this).find('option:eq(0)').text(labelText);                           
+                } 
+                $(this).change(function(){
+                    $(this).parents('.form-group, .hbspt-form .field').removeClass('focused');
+                    $('select').niceSelect('update');
+                });
+                $('select').niceSelect('update');
+    
+                   label.hide();
+                
+                
+        });
+    }
+
+    selectBox('.wpcf7-form select', '.select-box');
+    selectBox('.hbspt-form select', '.hs-fieldtype-select');
+
+
+/*     $('.wpcf7-form select, .hbspt-form select').each(function(){
+        
+        var label = $(this).parents('.select-box, .hs-fieldtype-select').find('label'),
+            labelText = label.text();
+            console.log(labelText);
+            if($(this).find('option').val()==''){
+                
+                $(this).find('option:eq(0)').text(labelText);                           
+            } 
+            
+            $('select').niceSelect('update');
+
+               label.hide();
+            
+            
+    }); */
+
+
+    $('.hs-submit .hs-button').wrap('<button class="btn btn-blue btn-md btn-door"/>');
     $('.jobpost-form .form-group .btn').addClass('btn-door btn-blue');
     $('form').attr('autocomplete', 'off');
     jQuery('input[type="checkbox"], input[type="radio"]').removeClass('form-control');
 
-jQuery('.form-group .form-control:not(input[type="file"])').on('focus', function () {
+jQuery('.form-group .form-control:not(input[type="file"]), .contact-form .hbspt-form .hs-form-field .hs-input').on('focus', function () {
     if ($(this).val() == "") {
-        jQuery(this).parents('.form-group').toggleClass('focused');
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').toggleClass('focused');
     }
 }).blur(function(){
-    if ($(this).val() == "") {
-        jQuery(this).parents('.form-group').toggleClass('err').removeClass('focused');
+    if( ($(this).val() == "") && $(this).hasClass('invalid') ){
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').toggleClass('err').removeClass('focused');
     } else if($(this).val()){
-        jQuery(this).parents('.form-group').removeClass('err');
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').removeClass('err').addClass('focused');
     }
 });
 

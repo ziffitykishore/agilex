@@ -14,7 +14,7 @@
       <?php if ($featured_img_url){ ?>
         <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
       <?php } else  { ?>
-        <img src="<?php bloginfo('template_directory'); ?>/images/blog-pattern.jpg" class="" alt=""/>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt=""/>
       <?php }?>
     </div>
     <div class="page-header-content">
@@ -92,10 +92,10 @@ $current = array_search(get_the_ID(), $posts);
 $prevID = $posts[$current-1];
 $nextID = $posts[$current+1];
 ?>
-    <?php if (!empty($prevID)){ ?> <a  rel="prev" href="<?php echo get_permalink($prevID); ?>" title="<?php echo get_the_title($prevID); ?>" class="post-link btn btn-ripple"><i class="fa fa fa-chevron-left"></i></a> <?php } ?>
+    <?php if (!empty($prevID)){ ?> <a  rel="prev" href="<?php echo get_permalink($prevID); ?>" title="<?php echo get_the_title($prevID); ?>" class="post-link btn btn-ripple btn-prev"><i class="fa fa fa-chevron-left"></i></a> <?php } ?>
     <a class="cat-link" href="<?php echo get_category_link($cat[0]->cat_ID); ?>" title=""><i class="fa fa-th"></i></a>
 
-    <?php if (!empty($nextID)){ ?> <a  rel="next" href="<?php echo get_permalink($nextID); ?>" title="<?php echo get_the_title($nextID); ?>" class="post-link btn btn-ripple"><i class="fa fa fa-chevron-right"></i></a> <?php } ?>
+    <?php if (!empty($nextID)){ ?> <a  rel="next"  href="<?php echo get_permalink($nextID); ?>" title="<?php echo get_the_title($nextID); ?>" class="post-link btn btn-ripple btn-next"><i class="fa fa fa-chevron-right"></i></a> <?php } ?>
   </div>
 
   </div>
