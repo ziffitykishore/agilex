@@ -14,7 +14,7 @@
       <?php if ($featured_img_url){ ?>
         <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
       <?php } else  { ?>
-        <img src="<?php bloginfo('template_directory'); ?>/images/blog-pattern.jpg" class="" alt=""/>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt=""/>
       <?php }?>
     </div>
     <div class="page-header-content">

@@ -533,7 +533,8 @@ img,
 .btn-blue:hover,
 .btn-blue:focus {
     color: #174a79;
-    background: transparent
+    background: transparent;
+    border-color: #174a79;
 }
 
 .btn-blue:before {
@@ -973,7 +974,8 @@ p {
     transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.careers-form .form-group.focused label {
+.careers-form .form-group.focused label,
+.wpcf7-form .form-group.focused label {
     top: 0;
     transform: translateY(0) scale(0.75, 0.75);
 }
@@ -4702,13 +4704,14 @@ html.no-touch {
 }
 
 .nice-select {
-    background-image: url('../images/download.svg');
-    background-position: right center;
-    background-repeat: no-repeat;
+    background-image: url('../images/download.svg') !important;
+    background-position: right center !important;
+    background-repeat: no-repeat !important;
     width: 100%;
     border-radius: 0;
     padding-left: 0;
     border: none;
+    float: none;
     box-shadow: none;
 }
 
@@ -4838,6 +4841,117 @@ div.nice-select:after {
 
 .contact-form-sec #cf7md-form .cf7md-submit {
     margin-top: 30px;
+}
+
+
+/* cf7 normal */
+
+.contact-form-sec .form-inner {
+    justify-content: space-between;
+}
+
+.contact-form-sec .form-group {
+    max-width: 48%;
+}
+
+.contact-form-sec .form-group textarea.form-control {
+    padding-top: 12px;
+}
+
+.checkbox input[type='checkbox'] {
+    position: absolute;
+    z-index: 99;
+    width: 26px;
+    height: 26px;
+    opacity: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+.checkbox [type='checkbox']+.wpcf7-list-item-label {
+    line-height: 15px;
+    font-size: 12px;
+    padding-left: 25px;
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    cursor: pointer;
+}
+
+.checkbox input[type='checkbox']+.wpcf7-list-item-label:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    top: 0px;
+    left: 5px;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    background-color: #174a79;
+    transform: scale(0);
+    -webkit-transform: scale(0);
+    transition: all .4s cubic-bezier(1, 0, .4, .5);
+    -webkit-transition: all .4s cubic-bezier(1, 0, .4, .5);
+}
+
+.checkbox span.wpcf7-list-item {
+    margin-left: 0;
+}
+
+.checkbox label {
+    padding-left: 0;
+}
+
+.checkbox input[type='checkbox']:checked+.wpcf7-list-item-label:before {
+    transition: all .4s cubic-bezier(1, 0, .4, 1);
+    -webkit-transition: all .4s cubic-bezier(1, 0, .4, 1);
+    transform: scale(1);
+    -webkit-transform: scale(1);
+}
+
+.checkbox input[type='checkbox']+.wpcf7-list-item-label:after {
+    border: 1px solid #dfdfdf;
+    content: '';
+    width: 20px;
+    height: 20px;
+    top: -5px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.form-inner .btn-group {
+    text-align: center;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.form-inner .btn-group .btn-blue {
+    float: none;
+    color: #fff;
+    min-width: 150px;
+}
+
+div.wpcf7 .ajax-loader {
+    display: none;
+}
+
+.form-inner .btn-group .btn:hover input {
+    color: #174a79;
+}
+
+.form-inner .btn-group input {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #fff;
+    text-transform: uppercase;
 }
 
 .contact-form-sec .address-section {
