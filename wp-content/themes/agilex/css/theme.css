@@ -3867,7 +3867,7 @@ p+p {
 }
 
 .border-efx:hover .border-ani {
-    background: rgba(25, 42, 62, 0.7);
+    background: rgba(25, 42, 62, 0.3);
 }
 
 .border-ani:before,
