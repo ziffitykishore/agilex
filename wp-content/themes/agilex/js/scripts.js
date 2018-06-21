@@ -1108,9 +1108,35 @@ $(window).load(function(){
    
     $('select').niceSelect();
 
-    $('.wpcf7-form select').each(function(){
+    function selectBox(selectElm, parent){
+        $(selectElm).each(function(){
         
-        var label = $(this).parents('.select-box').find('label'),
+            var label = $(this).parents(parent).find('label'),
+                labelText = label.text();
+                console.log(labelText);
+                if($(this).find('option').val()==''){
+                    
+                    $(this).find('option:eq(0)').text(labelText);                           
+                } 
+                $(this).change(function(){
+                    $(this).parents('.form-group, .hbspt-form .field').removeClass('focused');
+                    $('select').niceSelect('update');
+                });
+                $('select').niceSelect('update');
+    
+                   label.hide();
+                
+                
+        });
+    }
+
+    selectBox('.wpcf7-form select', '.select-box');
+    selectBox('.hbspt-form select', '.hs-fieldtype-select');
+
+
+/*     $('.wpcf7-form select, .hbspt-form select').each(function(){
+        
+        var label = $(this).parents('.select-box, .hs-fieldtype-select').find('label'),
             labelText = label.text();
             console.log(labelText);
             if($(this).find('option').val()==''){
@@ -1123,20 +1149,23 @@ $(window).load(function(){
                label.hide();
             
             
-    });
+    }); */
+
+
+    $('.hs-submit .hs-button').wrap('<button class="btn btn-blue btn-md btn-door"/>');
     $('.jobpost-form .form-group .btn').addClass('btn-door btn-blue');
     $('form').attr('autocomplete', 'off');
     jQuery('input[type="checkbox"], input[type="radio"]').removeClass('form-control');
 
-jQuery('.form-group .form-control:not(input[type="file"])').on('focus', function () {
+jQuery('.form-group .form-control:not(input[type="file"]), .contact-form .hbspt-form .hs-form-field .hs-input').on('focus', function () {
     if ($(this).val() == "") {
-        jQuery(this).parents('.form-group').toggleClass('focused');
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').toggleClass('focused');
     }
 }).blur(function(){
-    if ($(this).val() == "") {
-        jQuery(this).parents('.form-group').toggleClass('err').removeClass('focused');
+    if( ($(this).val() == "") && $(this).hasClass('invalid') ){
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').toggleClass('err').removeClass('focused');
     } else if($(this).val()){
-        jQuery(this).parents('.form-group').removeClass('err').addClass('focused');
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').removeClass('err').addClass('focused');
     }
 });
 

@@ -45,7 +45,7 @@
                             <?php if($thumbnail) {?>
                                     <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php the_title() ?>"/>
                                 <?php } else { ?>
-                                    <img src="<?php echo get_template_directory_uri()?>/images/placeholder_50X50.png" alt="<?php the_Title(); ?>"/>                    
+                                    <img src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" alt="<?php the_Title(); ?>"/>                    
                                 <?php }?>
                             </a>
                             <div class="media-body">
@@ -92,7 +92,7 @@
                                     <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $whilistPost->post_title ?>"/>
                                     <?php } else {?>
                                         
-                                        <img src="<?php echo get_template_directory_uri()?>/images/placeholder_50X50.png" alt="<?php echo $whilistPost->post_title ?>"/>                    
+                                        <img src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" alt="<?php echo $whilistPost->post_title ?>"/>                    
                                     <?php } ?>
                             </a>
 
