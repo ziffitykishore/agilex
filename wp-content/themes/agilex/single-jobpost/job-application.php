@@ -174,6 +174,11 @@ do_action('sjb_job_application_before');
             $term_conditions_label = get_option('job_board_term_conditions_label', '');
             $term_conditions_content = get_option('job_board_term_conditions_content', '');
 
+            echo '<div class="checkbox">'
+                    .'<div><label><input type="checkbox" name="acceptance" value="1" aria-invalid="false" required checked="checked" class="">'
+                    .'<span class="wpcf7-list-item-label">Yes I\'ve read the <a href="/legal-policy/#privacy-policy">Privacy Policy</a> & I accept it</span></label></div>'
+                    .'</div>';
+
            /*  if ('yes' == $sjb_gdpr_settings) {
                 ?>
                 <?php if ($privacy_policy_content) { ?>

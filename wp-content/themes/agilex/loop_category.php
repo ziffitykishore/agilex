@@ -28,7 +28,7 @@
                                                 
                                                 <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
                                             <?php } else { ?>
-                                                <img src="<?php echo get_template_directory_uri()?>/images/placeholder_360X510.png"/>                    
+                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg"/>                    
                                             <?php  }?>
 
                                             </a>
