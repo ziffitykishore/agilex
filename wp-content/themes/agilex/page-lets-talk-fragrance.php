@@ -31,7 +31,8 @@
     <div class="form-sec-inner flex-sec margin-top--150 white-bg">
       <div class="flex-sm-100 flex-md-60  pad-25 contact-form <?php if($contact_sidebar){ echo 'flex-70'; } else { echo 'flex-100'; } ?>">
          
-         <?php echo get_field('contact_form_7');  ?>
+         <?php echo get_field('contact_form');  ?>
+          
       </div>
 
       
