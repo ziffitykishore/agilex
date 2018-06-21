@@ -49,7 +49,7 @@
         "somethingdigital/magento2-migration": "~1.4.1",
         "somethingdigital/magento2-bluefoot": "1.1.4",
         "gene/bluefoot": "^1.0",
-        "jamescowie/composer-patcher": "1.0.2",
+        "jamescowie/composer-patcher": "1.0.3",
         "somethingdigital/module-admin-notify": "^1.0",
         "msp/adminrestriction": "^1.3",
         "msp/twofactorauth": "^2.1",
