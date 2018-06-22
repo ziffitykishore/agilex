@@ -32,13 +32,10 @@
 	  wp_head();
     ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700,800" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
-
-     <?php if ( get_theme_mod( 'm1_logo' ) ) : ?>
-    <link rel="shortcut icon" href="<?php echo get_theme_mod( 'fav_icon' ); ?>" />
-    <?php endif; ?>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Poppins" rel="stylesheet">
     
+
+   
   </head>
   <body <?php body_class(); ?>>
 

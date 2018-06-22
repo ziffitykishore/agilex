@@ -361,3 +361,50 @@ Sorted:
 Sorted: 
 
 
+[22-06-2018 06:31:10] [Error] WPRSS > 2:
+Sorted: 
+
+[22-06-2018 06:31:16] [Error] WPRSS > 2:
+Sorted: 
+
+
+[22-06-2018 06:52:18] [Error] WPRSS > 2:
+Sorted: 
+
+[22-06-2018 06:52:37] [Error] WPRSS > 2:
+Sorted: 
+
+
+[22-06-2018 07:52:29] [Error] WPRSS > 2:
+Sorted: 
+
+[22-06-2018 07:52:31] [Error] WPRSS > 2:
+Sorted: 
+
+
+[22-06-2018 08:52:51] [Error] WPRSS > 2:
+Sorted: 
+
+[22-06-2018 08:52:52] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://web.stagram.com/rss/n/pantonecolor". The resource could not be retrieved because of a server error with code 500
+Server returned 0 characters:
+
+
+[22-06-2018 08:52:52] [Error] WPRSS > 2:
+Sorted: 
+
+
+[22-06-2018 09:53:07] [Error] WPRSS > 2:
+Sorted: 
+
+[22-06-2018 09:53:09] [Error] WPRSS > 2:
+Sorted: 
+
+
+[22-06-2018 10:51:35] [Error] WPRSS > 2:
+Sorted: 
+
+[22-06-2018 10:51:36] [Error] WPRSS > 2:
+Sorted: 
+
+

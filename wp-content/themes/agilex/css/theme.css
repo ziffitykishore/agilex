@@ -534,7 +534,6 @@ img,
 .btn-blue:focus {
     color: #174a79;
     background: transparent;
-    border: 1px solid #174a79;
 }
 
 .btn-blue:before {
@@ -846,6 +845,10 @@ body {
     overflow-y: auto;
 }
 
+.no-touch body.navigation-is-open {
+    overflow-y: hidden;
+}
+
 p {
     font-size: 14px;
     color: #192a3e;
@@ -957,7 +960,7 @@ p {
     width: 100%;
 }
 
-.careers-form .form-group>div,
+.jobpost-form .form-group>div,
 .wpcf7-form .form-group>div {
     position: absolute;
     pointer-events: none;
@@ -969,12 +972,16 @@ p {
     position: relative;
 }
 
-.careers-form .form-group label,
+.sjb-page .sjb-detail .jobpost-form label {
+    padding-left: 0;
+}
+
+.jobpost-form .form-group label,
 .wpcf7-form .form-group label,
 .contact-form .hbspt-form .hs-form-field>label {
     position: absolute;
     top: 18px;
-    font-size: 12px;
+    font-size: 12px !important;
     transform-origin: left top;
     font-weight: normal;
     z-index: 5;
@@ -983,7 +990,7 @@ p {
     transition: transform 180ms cubic-bezier(0.4, 0, 0.2, 1), color 180ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.careers-form .form-group.focused label,
+.jobpost-form .form-group.focused label,
 .wpcf7-form .form-group.focused label,
 .contact-form .hbspt-form .hs-form-field.focused>label {
     top: 0;
@@ -994,12 +1001,12 @@ p {
     position: relative;
 }
 
-.careers-form .form-group>div:before,
-.careers-form .form-group>div:after,
+.jobpost-form .form-group>div:before,
+.jobpost-form .form-group>div:after,
 .contact-form .wpcf7-form .form-group>div:before,
 .contact-form .wpcf7-form .form-group>div:after,
-.careers-form .nice-select:before,
-.careers-form .nice-select:after,
+.jobpost-form .nice-select:before,
+.jobpost-form .nice-select:after,
 .contact-form .hbspt-form .field:not(.hs-fieldtype-booleancheckbox) div.input:before,
 .contact-form .hbspt-form .field:not(.hs-fieldtype-booleancheckbox) div.input:after {
     width: 100%;
@@ -1014,37 +1021,37 @@ p {
     right: 0;
 }
 
-.careers-form .form-group>div:after,
+.jobpost-form .form-group>div:after,
 .wpcf7-form .form-group>div:after,
 .contact-form .hbspt-form .field div.input:after {
     max-width: 0;
 }
 
-.careers-form .form-group.focused>div:after,
+.jobpost-form .form-group.focused>div:after,
 .wpcf7-form .form-group.focused>div:after,
-.careers-form .nice-select.open:after,
+.jobpost-form .nice-select.open:after,
 .contact-form .hbspt-form .field.focused div.input:after {
     max-width: 100%;
     background: #174a79;
 }
 
-.careers-form .form-group.err>div label,
+.jobpost-form .form-group.err>div label,
 .wpcf7-form .form-group.err>div label {
     color: #d50000;
 }
 
-.careers-form .form-group.err>div:after,
+.jobpost-form .form-group.err>div:after,
 .wpcf7-form .form-group.err>div:after {
     background: #d50000;
     max-width: 100%;
 }
 
-.careers-form .form-group .form-control,
+.jobpost-form .form-group .form-control,
 .contact-form .wpcf7-form .form-group .form-control {
     height: 50px !important;
 }
 
-.careers-form .form-group .form-control,
+.jobpost-form .form-group .form-control,
 .contact-form .wpcf7-form .form-group .form-control,
 .contact-form .hbspt-form .hs-form-field:not(.hs-fieldtype-booleancheckbox) .hs-input {
     font-size: 13px;
@@ -1058,18 +1065,23 @@ p {
     margin: 0;
 }
 
-.careers-form .form-group textarea.form-control {
+.jobpost-form .form-group textarea.form-control {
     height: 150px !important;
     resize: none;
     padding-top: 20px;
 }
 
-.careers-form .form-group .file {
+.jobpost-form .form-group .file {
     position: relative;
     pointer-events: initial;
 }
 
-.careers-form .form-group .file div:before {
+.sjb-page .sjb-detail .jobpost-form .file {
+    border: none;
+    box-shadow: none;
+}
+
+.jobpost-form .form-group .file div:before {
     content: "\f093";
     font-family: 'FontAwesome';
     position: static;
@@ -1079,27 +1091,35 @@ p {
     background: transparent;
 }
 
-.careers-form .form-group .file div {
+.sjb-page .sjb-detail .jobpost-form .file div {
+    background: transparent !important;
+    height: auto;
+    border-radius: 0;
+    padding: 0;
+    font-size: 0;
+}
+
+.jobpost-form .form-group .file div {
     position: absolute;
     right: 0;
     font-size: 0;
     top: 20px;
 }
 
-.careers-form .form-group .file span {
+.jobpost-form .form-group .file span {
     display: none;
     font-size: 12px;
     position: absolute;
     bottom: 5px;
 }
 
-.careers-form .form-group.valid-file .file span,
-.careers-form .form-group.invalid-file .file span {
+.jobpost-form .form-group.valid-file .file span,
+.jobpost-form .form-group.invalid-file .file span {
     display: inline;
 }
 
-.careers-form .form-group .file:before,
-.careers-form .form-group .file:after {
+.jobpost-form .form-group .file:before,
+.jobpost-form .form-group .file:after {
     display: none;
 }
 
@@ -3404,9 +3424,9 @@ p+p {
     position: relative;
 }
 
-.review-content:before {
+.review-content .quotes {
     content: '';
-    background: url('/wp-content/uploads/2018/05/icon_quote_testimonial.png') no-repeat center center;
+    background: url('../images/icon_quote_testimonial.png') no-repeat center center;
     background-size: 100%;
     width: 100px;
     height: 100px;
@@ -3966,11 +3986,6 @@ p+p {
 
 html {
     height: 100%;
-    overflow-x: hidden;
-}
-
-html.no-touch {
-    overflow-x: hidden;
 }
 
 .mCS-minimal-dark.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -4655,6 +4670,31 @@ html.no-touch {
 .gallery-inner .image-sec img {
     width: 100%;
 }
+
+.sjb-content .sjb-page .sjb-detail .list-data .job-detail h3,
+.sjb-content .sjb-page .list-data .job-type,
+.sjb-content .sjb-page .list-data .job-location,
+.sjb-content .sjb-page .list-data .job-date,
+.sjb-content .sjb-page a {
+    color: #174a79;
+}
+
+.sjb-page .jobpost-form .btn-primary {
+    background: #174a79;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+
+.sjb-page .jobpost-form .btn-primary:hover {
+    background: #174a79;
+    color: #174a79;
+}
+
+.sjb-page .jobpost-form .btn-primary,
+.sjb-page .jobpost-form .btn-primary:hover,
+.sjb-page .jobpost-form .btn-primary:active:hover,
+.sjb-page .jobpost-form .btn-primary:active:focus {}
 
 
 /* Contact us page */

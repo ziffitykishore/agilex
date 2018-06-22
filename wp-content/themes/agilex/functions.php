@@ -158,7 +158,7 @@ function bootstrapcanvaswp_scripts() {
     }
     wp_enqueue_style( 'style-css', get_stylesheet_uri() );
     wp_enqueue_script( 'jquery-js', get_template_directory_uri() . '/js/jquery.js', array( 'jquery' ), true );
-    wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ), '3.3.0', true );
+    wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.3.0', true );
     wp_enqueue_script( 'html5shiv-js', get_template_directory_uri() . '/js/html5shiv.js', array( 'jquery' ), '3.7.2' );
     wp_enqueue_script( 'modernizr-js', get_template_directory_uri() . '/js/modernizr.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array( 'jquery' ), '', true );
@@ -182,7 +182,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'TweenMax-js', get_template_directory_uri() . '/js/TweenMax.min.js', array( 'jquery' ), '', true );
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
 
-    wp_enqueue_script( 'scripts-js', get_template_directory_uri() . '/js/scripts.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'main-js', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), '', true );
     $the_page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
     if ('careers' == $the_page->post_name) {
         // Register the script
@@ -1757,7 +1757,30 @@ function m1_customize_register( $wp_customize ) {
 }
 add_action( 'customize_register', 'm1_customize_register' );
 
-function fav_customize_register( $wp_customize ) {
+
+function somename_customize_register( $wp_customize ) {
+    $wp_customize->get_setting( 'image_control_one' )->transport = 'postMessage';
+    // Add and manipulate theme images to be used.
+    $wp_customize->add_section('imageoner', array(
+    "title" => 'Home Page Images',
+    "priority" => 28,
+    "description" => __( 'Upload images to display on the homepage.', 'theme-slug' )
+    ));
+    $wp_customize->add_setting('image_control_one', array(
+    'default' => '',
+    'type' => 'theme_mod',
+    'capability' => 'edit_theme_options',
+    ));
+    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'image_control_one', array(
+    'label' => __( 'Featured Home Page Image One', 'theme-slug' ),
+    'section' => 'imageoner',
+    'settings' => 'image_control_one',
+    ))
+    );
+    }
+    add_action( 'customize_register', 'somename_customize_register' );
+
+/* function fav_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'fav_icon' ); // Add setting for logo uploader
 
     // Add control for logo uploader (actual uploader)
@@ -1767,7 +1790,7 @@ function fav_customize_register( $wp_customize ) {
         'settings' => 'fav_icon',
     ) ) );
 }
-add_action( 'customize_register', 'fav_customize_register' );
+add_action( 'customize_register', 'fav_customize_register' ); */
 
 
 function menu_customize_register( $wp_customize ) {

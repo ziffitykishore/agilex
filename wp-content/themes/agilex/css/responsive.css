@@ -78,14 +78,14 @@
     .careers-wrap .inner-section {
         padding: 30px;
     }
-    .home .parallax-move {
-        width: 50px;
-    }
 }
 
 @media screen and (max-width: 1200px) {
     .who-we-are .inner-content-wrap {
         padding: 65px 100px 0%
+    }
+    .home .parallax-move {
+        width: 50px;
     }
 }
 
@@ -274,8 +274,12 @@
     .home .heading .sub-heading {
         padding: 0 50px;
     }
-    .contact-form-sec .form-group {
+    .contact-form-sec .form-group,
+    .contact-form .hbspt-form .field {
         max-width: 100%;
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%;
     }
 }
 
@@ -598,6 +602,28 @@
     }
     #hero-slider {
         margin-bottom: 0;
+    }
+    .slider-content .slider-heading {
+        font-size: 20px;
+    }
+    .slider-homepage .slider-content .btn-more {
+        height: 50px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    #hero-slider .slick-dots,
+    .slider-homepage .social-links-sec {
+        bottom: 10px;
+    }
+    .slider-homepage .scroll-down {
+        bottom: 35px;
+        font-size: 25px;
+        height: 40px;
+        width: 30px;
+    }
+    .slider-homepage .scroll-down:before,
+    .slider-homepage .scroll-down:after {
+        height: 15px;
     }
     .uniques-inner .tab-content {
         padding: 0;
