@@ -304,7 +304,7 @@ $unique_arg_query->the_post();  ?>
                                         <?php $image = get_field('thumb_image'); ?>
                                         <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                     <?php } else { ?>
-                                        <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X480.png" alt="<?php the_title(); ?>" />
+                                        <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X250.png" alt="<?php the_title(); ?>" />
                                         <?php } ?>
                                 </div>
                                 <div class="caption">
@@ -391,6 +391,7 @@ $unique_arg_query->the_post();  ?>
                                 <div class="review-details text-center col-sm-10 col-sm-offset-1">
                                     
                                     <div class="review-content ">
+                                        <span class="quotes"></span>
                                         <?php echo the_Content(); ?>
                                     </div>
                                     <div class="author-details">

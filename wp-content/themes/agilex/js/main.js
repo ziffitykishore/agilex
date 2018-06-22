@@ -254,7 +254,7 @@ function myFunction() {
           cssEase: 'linear',
           arrows: false,
           autoplay: true,
-          autoplaySpeed: 8000
+          autoplaySpeed: 3000
       });
 
 
@@ -1162,10 +1162,10 @@ jQuery('.form-group .form-control:not(input[type="file"]), .contact-form .hbspt-
         jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').toggleClass('focused');
     }
 }).blur(function(){
-    if( ($(this).val() == "") && $(this).hasClass('invalid') ){
+    if($(this).val() == ""){
         jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').toggleClass('err').removeClass('focused');
     } else if($(this).val()){
-        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').removeClass('err').addClass('focused');
+        jQuery(this).parents('.form-group, .field:not(.hs-fieldtype-booleancheckbox)').removeClass('err');
     }
 });
 
