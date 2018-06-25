@@ -220,7 +220,7 @@ $unique_arg_query->the_post();  ?>
                     the_field('short_description');  }  ?>
 
                     <?php if (get_field('learn_more_text')){ ?>
-                        <a href="#" class="btn-more btn btn-blue btn-door btn-md"><?php the_field('learn_more_text'); ?></a>
+                        <a href="<?php echo get_permalink() ?>" class="btn-more btn btn-blue btn-door btn-md"><?php the_field('learn_more_text'); ?></a>
                     <?php } ?>
                 </div>
             </div>
