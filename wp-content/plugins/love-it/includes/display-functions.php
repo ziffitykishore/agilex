@@ -35,7 +35,7 @@ function li_love_link($love_text = null) {
 add_shortcode('wishlist-feed', 'getwishlistContent');
 // adds the Love It link and count to post/page content automatically
 function getwishlistContent( $content ) {
-	$types = apply_filters( 'li_display_love_links_on', array( 'blog' ) );
+	$types = apply_filters( 'li_display_love_links_on', array( 'blog', 'news-release' ) );
 	if( in_category( $types ) || is_singular($types)) {
 		$content .= li_love_link();
 	}

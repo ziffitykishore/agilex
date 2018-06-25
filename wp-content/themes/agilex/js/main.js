@@ -394,7 +394,12 @@ $('.footer_menu a').on('shown.bs.tab', function (e) {
         width: linkWidth
 
     });
-})
+
+    var href = $(this).attr('href');
+        $('html, body').animate({
+            scrollTop: $(href).offset().top
+        }, 'slow');
+});
 
 
 
