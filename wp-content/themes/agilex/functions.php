@@ -141,7 +141,7 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_style( 'font-awesome-css', get_template_directory_uri() . '/css/font-awesome.min.css' );
     wp_enqueue_style( 'normalize-css', get_template_directory_uri() . '/css/normalize.css');
 
-
+    wp_enqueue_style( 'fonts-css', get_template_directory_uri() . '/css/fonts.css' );
     wp_enqueue_style( 'slick-css', get_template_directory_uri() . '/css/slick.css' );
     wp_enqueue_style( 'slick-theme-css', get_template_directory_uri() . '/css/slick-theme.css' );
     wp_enqueue_style( 'animate-css', get_template_directory_uri() . '/css/animate.min.css' );
