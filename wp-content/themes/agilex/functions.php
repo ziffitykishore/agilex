@@ -1758,27 +1758,6 @@ function m1_customize_register( $wp_customize ) {
 add_action( 'customize_register', 'm1_customize_register' );
 
 
-function somename_customize_register( $wp_customize ) {
-    $wp_customize->get_setting( 'image_control_one' )->transport = 'postMessage';
-    // Add and manipulate theme images to be used.
-    $wp_customize->add_section('imageoner', array(
-    "title" => 'Home Page Images',
-    "priority" => 28,
-    "description" => __( 'Upload images to display on the homepage.', 'theme-slug' )
-    ));
-    $wp_customize->add_setting('image_control_one', array(
-    'default' => '',
-    'type' => 'theme_mod',
-    'capability' => 'edit_theme_options',
-    ));
-    $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'image_control_one', array(
-    'label' => __( 'Featured Home Page Image One', 'theme-slug' ),
-    'section' => 'imageoner',
-    'settings' => 'image_control_one',
-    ))
-    );
-    }
-    add_action( 'customize_register', 'somename_customize_register' );
 
 /* function fav_customize_register( $wp_customize ) {
     $wp_customize->add_setting( 'fav_icon' ); // Add setting for logo uploader
@@ -1941,6 +1920,3 @@ add_action('wp_head','highlight_results_css');
 
 
 
-add_filter('the_content', 'highlight_results');
-add_filter('the_excerpt', 'highlight_results');
-add_filter('the_title', 'highlight_results');
