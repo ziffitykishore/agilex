@@ -23,7 +23,14 @@ if (is_front_page()) { ?>
             $banner_slider_query = new WP_Query($slider_args); ?>
              <?php while ($banner_slider_query->have_posts()) {
                 $banner_slider_query->the_post(); ?>
-            <div class="slider-blk">
+                <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+            <div class="slider-blk <?php if(!$featured_img_url){ echo 'slider-overlay'; }?>">
+                
+               <?php if($featured_img_url){ ?>
+                    <img src="<?php echo $featured_img_url; ?>" alt=""/>
+                <?php } else {?>
+                    <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X930.png" alt="Agilex Fragrances"/>
+                <?php }?>
                 <?php the_post_thumbnail('full'); ?>
                 <div class="slider-content">
                     <div class="container">
