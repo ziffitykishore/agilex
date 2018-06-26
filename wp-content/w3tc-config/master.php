@@ -7,8 +7,8 @@
     "cluster.messagebus.sns.api_secret": "",
     "cluster.messagebus.sns.topic_arn": "",
     "dbcache.configuration_overloaded": false,
-    "dbcache.debug": "0",
-    "dbcache.enabled": "1",
+    "dbcache.debug": false,
+    "dbcache.enabled": false,
     "dbcache.engine": "file",
     "dbcache.file.gc": 3600,
     "dbcache.file.locking": false,
@@ -56,11 +56,11 @@
         "\\bfound_rows\\(\\)"
     ],
     "objectcache.configuration_overloaded": false,
-    "objectcache.enabled": "1",
-    "objectcache.debug": "0",
+    "objectcache.enabled": false,
+    "objectcache.debug": false,
     "objectcache.enabled_for_wp_admin": true,
     "objectcache.fallback_transients": true,
-    "objectcache.engine": "apc",
+    "objectcache.engine": "file",
     "objectcache.file.gc": 3600,
     "objectcache.file.locking": false,
     "objectcache.memcached.servers": [
@@ -97,11 +97,11 @@
     "objectcache.lifetime": 180,
     "objectcache.purge.all": false,
     "pgcache.configuration_overloaded": false,
-    "pgcache.enabled": "1",
-    "pgcache.comment_cookie_ttl": "1800",
-    "pgcache.debug": "0",
+    "pgcache.enabled": false,
+    "pgcache.comment_cookie_ttl": 1800,
+    "pgcache.debug": false,
     "pgcache.engine": "file_generic",
-    "pgcache.file.gc": "3600",
+    "pgcache.file.gc": 3600,
     "pgcache.file.nfs": false,
     "pgcache.file.locking": false,
     "pgcache.lifetime": 3600,
@@ -119,11 +119,11 @@
     "pgcache.redis.password": "",
     "pgcache.redis.dbid": 0,
     "pgcache.cache.query": false,
-    "pgcache.cache.home": "1",
-    "pgcache.cache.feed": "0",
-    "pgcache.cache.nginx_handle_xml": "0",
-    "pgcache.cache.ssl": "1",
-    "pgcache.cache.404": "0",
+    "pgcache.cache.home": true,
+    "pgcache.cache.feed": false,
+    "pgcache.cache.nginx_handle_xml": false,
+    "pgcache.cache.ssl": true,
+    "pgcache.cache.404": false,
     "pgcache.cache.headers": [
         "Last-Modified",
         "Content-Type",
@@ -131,7 +131,7 @@
         "P3P",
         "Link"
     ],
-    "pgcache.compatibility": "0",
+    "pgcache.compatibility": false,
     "pgcache.remove_charset": false,
     "pgcache.accept.uri": [
         "sitemap(_index)?\\.xml(\\.gz)?",
@@ -143,70 +143,52 @@
         "wp-links-opml.php",
         "wp-locations.php"
     ],
-    "pgcache.accept.qs": [
-        ""
-    ],
-    "pgcache.late_init": "0",
-    "pgcache.late_caching": "0",
-    "pgcache.mirrors.enabled": "0",
-    "pgcache.mirrors.home_urls": [
-        ""
-    ],
-    "pgcache.reject.front_page": "0",
-    "pgcache.reject.logged": "1",
-    "pgcache.reject.logged_roles": "0",
-    "pgcache.reject.roles": [
-        ""
-    ],
+    "pgcache.accept.qs": [],
+    "pgcache.late_init": false,
+    "pgcache.late_caching": false,
+    "pgcache.mirrors.enabled": false,
+    "pgcache.mirrors.home_urls": [],
+    "pgcache.reject.front_page": false,
+    "pgcache.reject.logged": true,
+    "pgcache.reject.logged_roles": false,
+    "pgcache.reject.roles": [],
     "pgcache.reject.uri": [
         "wp-.*\\.php",
         "index\\.php"
     ],
-    "pgcache.reject.categories": [
-        ""
-    ],
-    "pgcache.reject.tags": [
-        ""
-    ],
-    "pgcache.reject.authors": [
-        ""
-    ],
-    "pgcache.reject.custom": [
-        ""
-    ],
-    "pgcache.reject.ua": [
-        ""
-    ],
+    "pgcache.reject.categories": [],
+    "pgcache.reject.tags": [],
+    "pgcache.reject.authors": [],
+    "pgcache.reject.custom": [],
+    "pgcache.reject.ua": [],
     "pgcache.reject.cookie": [
         "wptouch_switch_toggle"
     ],
     "pgcache.reject.request_head": false,
-    "pgcache.purge.front_page": "0",
-    "pgcache.purge.home": "1",
-    "pgcache.purge.post": "1",
-    "pgcache.purge.comments": "0",
-    "pgcache.purge.author": "0",
-    "pgcache.purge.terms": "0",
-    "pgcache.purge.archive.daily": "0",
-    "pgcache.purge.archive.monthly": "0",
-    "pgcache.purge.archive.yearly": "0",
-    "pgcache.purge.feed.blog": "1",
-    "pgcache.purge.feed.comments": "0",
-    "pgcache.purge.feed.author": "0",
-    "pgcache.purge.feed.terms": "0",
+    "pgcache.purge.front_page": false,
+    "pgcache.purge.home": true,
+    "pgcache.purge.post": true,
+    "pgcache.purge.comments": false,
+    "pgcache.purge.author": false,
+    "pgcache.purge.terms": false,
+    "pgcache.purge.archive.daily": false,
+    "pgcache.purge.archive.monthly": false,
+    "pgcache.purge.archive.yearly": false,
+    "pgcache.purge.feed.blog": true,
+    "pgcache.purge.feed.comments": false,
+    "pgcache.purge.feed.author": false,
+    "pgcache.purge.feed.terms": false,
     "pgcache.purge.feed.types": [
         "rss2"
     ],
-    "pgcache.purge.postpages_limit": "10",
-    "pgcache.purge.pages": [
-        ""
-    ],
+    "pgcache.purge.postpages_limit": 10,
+    "pgcache.purge.pages": [],
     "pgcache.purge.sitemap_regex": "([a-z0-9_\\-]*?)sitemap([a-z0-9_\\-]*)?\\.xml",
-    "pgcache.prime.enabled": "0",
-    "pgcache.prime.interval": "1800",
-    "pgcache.prime.limit": "10",
+    "pgcache.prime.enabled": false,
+    "pgcache.prime.interval": 900,
+    "pgcache.prime.limit": 10,
     "pgcache.prime.sitemap": "",
-    "pgcache.prime.post.enabled": "0",
+    "pgcache.prime.post.enabled": false,
     "pgcache.rest": "",
     "pgcache.cookiegroups.enabled": false,
     "pgcache.cookiegroups.groups": {
@@ -234,11 +216,11 @@
             ]
         }
     },
-    "stats.enabled": "0",
+    "stats.enabled": false,
     "minify.configuration_overloaded": false,
-    "minify.enabled": "1",
-    "minify.auto": "0",
-    "minify.debug": "0",
+    "minify.enabled": false,
+    "minify.auto": true,
+    "minify.debug": false,
     "minify.engine": "file",
     "minify.error.notification": "",
     "minify.file.gc": 86400,
@@ -336,7 +318,7 @@
     ],
     "minify.cache.files_regexp": false,
     "cdn.configuration_overloaded": false,
-    "cdn.enabled": "0",
+    "cdn.enabled": false,
     "cdn.debug": false,
     "cdn.engine": "maxcdn",
     "cdn.uploads.enable": true,
@@ -469,7 +451,7 @@
         "{plugins_dir}\/wp-fb-autoconnect\/facebook-platform\/channel.html"
     ],
     "cdn.reject.ssl": false,
-    "cdnfsd.enabled": "0",
+    "cdnfsd.enabled": false,
     "cdnfsd.engine": "",
     "cdnfsd.debug": false,
     "cdnfsd.cloudfront.access_key": "",
@@ -483,13 +465,11 @@
     "cdnfsd.stackpath.api_key": "",
     "cdnfsd.stackpath.zone_id": 0,
     "varnish.configuration_overloaded": false,
-    "varnish.enabled": "1",
-    "varnish.debug": "0",
-    "varnish.servers": [
-        "127.0.0.1"
-    ],
+    "varnish.enabled": false,
+    "varnish.debug": false,
+    "varnish.servers": [],
     "browsercache.configuration_overloaded": false,
-    "browsercache.enabled": "1",
+    "browsercache.enabled": true,
     "browsercache.rewrite": false,
     "browsercache.no404wp": false,
     "browsercache.no404wp.exceptions": [
@@ -719,16 +699,16 @@
         }
     },
     "common.support": "",
-    "common.track_usage": "0",
+    "common.track_usage": false,
     "common.tweeted": false,
-    "config.check": "1",
+    "config.check": true,
     "config.path": "",
     "widget.latest.items": 3,
     "widget.latest_news.items": 5,
-    "widget.pagespeed.enabled": "1",
+    "widget.pagespeed.enabled": true,
     "widget.pagespeed.key": "",
     "widget.pagespeed.key.restrict.referrer": "",
-    "widget.pagespeed.show_in_admin_bar": "0",
+    "widget.pagespeed.show_in_admin_bar": false,
     "timelimit.email_send": 180,
     "timelimit.varnish_purge": 300,
     "timelimit.cache_flush": 600,
@@ -741,7 +721,7 @@
     "timelimit.cdn_container_create": 300,
     "timelimit.domain_rename": 120,
     "timelimit.minify_recommendations": 600,
-    "common.instance_id": 1255436218,
+    "common.instance_id": 123264245,
     "common.force_master": true,
     "extensions.active": {
         "newrelic": "w3-total-cache\/Extension_NewRelic_Plugin.php",
@@ -750,8 +730,5 @@
     },
     "extensions.active_frontend": [],
     "plugin.license_key": "",
-    "plugin.type": "",
-    "fragmentcache": {
-        "engine": ""
-    }
+    "plugin.type": ""
 }
