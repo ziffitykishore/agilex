@@ -2808,20 +2808,20 @@ span.line {
 }
 
 .uniques-inner li.active:first-child a {
-    color: #d23382 !important;
+    color: #ce5dad !important;
 }
 
 .uniques-inner .btn-tab_1.btn-blue,
 .uniques-inner .panel:nth-child(1) .panel-title>a[aria-expanded="true"] {
-    background: #d23382;
+    background: #ce5dad;
 }
 
 .uniques-inner .panel:nth-child(1) .panel-title>a[aria-expanded="true"] {
-    border-color: #d23382;
+    border-color: #ce5dad;
 }
 
 .uniques-inner .btn-tab_1.btn-blue:hover {
-    color: #d23382;
+    color: #ce5dad;
 }
 
 .uniques-inner li.active:nth-child(2) a {
@@ -2873,22 +2873,6 @@ span.line {
 
 .uniques-inner .btn-tab_4.btn-blue:hover {
     color: #bcb692;
-}
-
-.uniques-inner #magic-line.tab-link_1::before {
-    border-color: #d23382 transparent transparent transparent;
-}
-
-.uniques-inner #magic-line.tab-link_2::before {
-    border-color: #c6d55d transparent transparent transparent;
-}
-
-.uniques-inner #magic-line.tab-link_3::before {
-    border-color: #8f44be transparent transparent transparent;
-}
-
-.uniques-inner #magic-line.tab-link_4::before {
-    border-color: #bcb692 transparent transparent transparent;
 }
 
 .panel-group .panel {

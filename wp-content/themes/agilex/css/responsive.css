@@ -860,6 +860,10 @@
         flex: 0 0 100%;
         max-width: 100%;
     }
+    .testimonials .heading,
+    .testimonials .testimonials-outer {
+        padding: 0 30px;
+    }
     .quotes-content-inner {
         padding: 0 25px;
     }
