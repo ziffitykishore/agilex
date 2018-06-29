@@ -1906,8 +1906,8 @@ function highlight_results($text){
     return $text;
 }
 add_filter('the_content', 'highlight_results');
-add_filter('the_excerpt', 'highlight_results');
-add_filter('the_title', 'highlight_results');
+//add_filter('the_excerpt', 'highlight_results');
+//add_filter('the_title', 'highlight_results');
 
 function highlight_results_css() {
 	?>

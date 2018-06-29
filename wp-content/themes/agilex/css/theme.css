@@ -972,6 +972,10 @@ p {
     position: relative;
 }
 
+.hbspt-form .hs-form-field .hs-form-required {
+    color: #6f6f6f;
+}
+
 .sjb-page .sjb-detail .jobpost-form label {
     padding-left: 0;
 }
@@ -1066,7 +1070,7 @@ p {
 }
 
 .jobpost-form .form-group textarea.form-control {
-    height: 150px !important;
+    height: 100px !important;
     resize: none;
     padding-top: 20px;
 }
@@ -2780,6 +2784,10 @@ span.line {
     padding: 50px 0;
 }
 
+.uniques .nav-tabs.responsive li a {
+    color: #6f6f6f;
+}
+
 .uniques-inner .tab-content {
     padding: 50px 0 0px;
     overflow: hidden;
@@ -2811,68 +2819,20 @@ span.line {
     color: #ce5dad !important;
 }
 
-.uniques-inner .btn-tab_1.btn-blue,
-.uniques-inner .panel:nth-child(1) .panel-title>a[aria-expanded="true"] {
-    background: #ce5dad;
-}
-
 .uniques-inner .panel:nth-child(1) .panel-title>a[aria-expanded="true"] {
     border-color: #ce5dad;
-}
-
-.uniques-inner .btn-tab_1.btn-blue:hover {
-    color: #ce5dad;
 }
 
 .uniques-inner li.active:nth-child(2) a {
     color: #c6d55d !important;
 }
 
-.uniques-inner .btn-tab_2.btn-blue,
-.uniques-inner .panel:nth-child(2) .panel-title>a[aria-expanded="true"] {
-    background: #c6d55d;
-}
-
-.uniques-inner .panel:nth-child(2) .panel-title>a[aria-expanded="true"] {
-    border-color: #c6d55d;
-}
-
-.uniques-inner .btn-tab_2.btn-blue:hover {
-    color: #c6d55d;
-}
-
 .uniques-inner li.active:nth-child(3) a {
     color: #8f44be !important;
 }
 
-.uniques-inner .btn-tab_3.btn-blue,
-.uniques-inner .panel:nth-child(3) .panel-title>a[aria-expanded="true"] {
-    background: #8f44be;
-}
-
-.uniques-inner .panel:nth-child(3) .panel-title>a[aria-expanded="true"] {
-    border-color: #8f44be;
-}
-
-.uniques-inner .btn-tab_3.btn-blue:hover {
-    color: #8f44be;
-}
-
 .uniques-inner li.active:nth-child(4) a {
     color: #bcb692 !important;
-}
-
-.uniques-inner .btn-tab_4.btn-blue,
-.uniques-inner .panel:nth-child(4) .panel-title>a[aria-expanded="true"] {
-    background: #bcb692;
-}
-
-.uniques-inner .panel:nth-child(4) .panel-title>a[aria-expanded="true"] {
-    border-color: #bcb692;
-}
-
-.uniques-inner .btn-tab_4.btn-blue:hover {
-    color: #bcb692;
 }
 
 .panel-group .panel {
@@ -3361,7 +3321,7 @@ p+p {
     background: #fff;
     position: relative;
     height: 100%;
-    min-height: 176px;
+    min-height: 180px;
     width: 100%;
     z-index: 12;
     -webkit-transition: all 0.3s ease-in-out 0s;
@@ -3422,6 +3382,12 @@ p+p {
 
 .review-content {
     position: relative;
+    min-height: 150px;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .review-content .quotes {
@@ -5229,14 +5195,19 @@ div.wpcf7 .ajax-loader {
     z-index: 2;
 }
 
+.cd-icons-filling .img-blk {
+    margin-top: -1px;
+}
+
 .cd-icons-filling .img-blk img {
     display: block;
+    margin: 0 auto;
 }
 
 #how-we-work .cd-icons-filling {
-    margin: 0px auto 0;
+    margin: 0px auto -1px;
     /* hide ::after pseudo element - fix for Edge 15 and below */
-    overflow: hiddhtmlen;
+    overflow: hidden;
     position: relative;
     padding-bottom: 70px;
     padding-top: 0;
@@ -5247,8 +5218,10 @@ div.wpcf7 .ajax-loader {
     position: absolute;
     content: '';
     background: #fff;
-    height: 70px;
-    width: 100%;
+    height: 72px;
+    left: 0;
+    right: 0;
+    margin: 0 -10px;
     z-index: 1;
 }
 
