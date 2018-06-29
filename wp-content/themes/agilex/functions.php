@@ -1906,8 +1906,8 @@ function highlight_results($text){
     return $text;
 }
 add_filter('the_content', 'highlight_results');
-add_filter('the_excerpt', 'highlight_results');
-add_filter('the_title', 'highlight_results');
+//add_filter('the_excerpt', 'highlight_results');
+//add_filter('the_title', 'highlight_results');
 
 function highlight_results_css() {
 	?>
@@ -1920,3 +1920,45 @@ add_action('wp_head','highlight_results_css');
 
 
 
+/* Remove the custom post type slug from url */
+
+function my_custom_post_types(){
+    return array(
+        'what_we_do',
+        'makes_agilex_unique'
+    );
+}
+
+add_action( 'parse_request','my_custom_post_types_parse_request', 999);
+
+function my_custom_post_types_parse_request( $query ){
+
+    if( isset($query->request) )
+    {
+        $req = explode('/', ltrim($query->request,'/'));
+        if( !is_admin() && isset($req['0']) )
+        {
+            global $wpdb;
+            $name = stripslashes($req['0']);
+            $_post = $wpdb->get_row( "SELECT * FROM $wpdb->posts WHERE post_status = 'publish' AND post_name ='". $name ."' AND post_type IN ('" . join("', '", my_custom_post_types() ) . "')" );
+
+            if( $_post )
+            {
+                $query->query_vars['error'] = '';
+                $query->query_vars['post_type'] = $_post->post_type;
+                $query->query_vars['name'] = $name;
+            }
+        }
+    }
+}
+
+add_filter( 'post_type_link', 'my_custom_post_types_permalink', 10, 2);
+
+function my_custom_post_types_permalink( $post_link, $post ){
+    if( in_array( $post->post_type, my_custom_post_types() ) && !empty($post->post_name) && $post->post_status == 'publish' && '' != get_option('permalink_structure') )
+    {
+        $post_name = $post->post_name;
+        $post_link = home_url("/$post_name/");
+    }
+    return $post_link;
+}
