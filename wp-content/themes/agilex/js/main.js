@@ -959,7 +959,7 @@ new AnimOnScroll( myNiceVar, {
 
 
 
-
+/* responsive View */
 
 
 var responsiveflag = false;
