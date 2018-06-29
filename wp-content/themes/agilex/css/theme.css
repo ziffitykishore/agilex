@@ -845,10 +845,6 @@ body {
     overflow-y: auto;
 }
 
-.no-touch body.navigation-is-open {
-    overflow-y: hidden;
-}
-
 p {
     font-size: 14px;
     color: #192a3e;
@@ -5949,7 +5945,7 @@ div.wpcf7 .ajax-loader {
     background: transparent !important;
     position: absolute;
     right: 20px;
-    top: 12px;
+    top: 8px;
 }
 
 #cookie_action_close_header:hover {
