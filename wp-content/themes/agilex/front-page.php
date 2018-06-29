@@ -131,7 +131,7 @@ $unique_arg_query->the_post();  ?>
                             </div> <?php }?>
                             
                             <?php if (get_field('learn_more_text')){ ?>
-                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40 text-uppercase btn-tab_<?php echo $i; ?>"><?php the_field('learn_more_text'); ?></a>
+                <a href="<?php echo get_permalink() ?>" class=" btn btn-md btn-blue btn-ripple btn-door margin-top-40 text-uppercase btn-tab_<?php echo $i; ?>" rel="<?php echo the_field('tab_color'); ?>"><?php the_field('learn_more_text'); ?></a>
               <?php } ?>
                         </div>
                     </div>
