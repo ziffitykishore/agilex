@@ -1962,3 +1962,8 @@ function my_custom_post_types_permalink( $post_link, $post ){
     }
     return $post_link;
 }
+
+
+/* Shortlink Removal */
+remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
+

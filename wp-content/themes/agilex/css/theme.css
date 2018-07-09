@@ -6084,10 +6084,6 @@ div.wpcf7 .ajax-loader {
     color: #174a79;
 }
 
-.main-content .legal-inner li {}
-
-.main-content .legal-inner li {}
-
 .main-content .legal-inner li li,
 .single .entry li li {
     margin: 10px 0;
@@ -6109,8 +6105,12 @@ div.wpcf7 .ajax-loader {
 }
 
 .main-content .legal-inner ul ul,
+.main-content .legal-inner ul ol,
 .main-content .legal-inner ol ol,
+.main-content .legal-inner ol ul,
 .single .entry ul ul,
-.single .entry ol ol {
+.single .entry ul ol,
+.single .entry ol ol,
+.single .entry ol ul {
     margin-left: 30px;
 }

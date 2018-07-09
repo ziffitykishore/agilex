@@ -24,11 +24,12 @@
                                             <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
                                             <?php if($image_object){ ?>
                                             <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/>
-                                            <?php } elseif($featured_img_url) {?>
-                                                
-                                                <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
+                                            <?php } elseif($featured_img_url) {
+                                                $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                                                $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
+                                                <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
                                             <?php } else { ?>
-                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg"/>                    
+                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg" alt="Agilex Fragrances"/>                    
                                             <?php  }?>
 
                                             </a>
