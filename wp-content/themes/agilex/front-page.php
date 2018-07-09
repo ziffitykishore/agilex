@@ -26,12 +26,14 @@ if (is_front_page()) { ?>
                 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
             <div class="slider-blk <?php if(!$featured_img_url){ echo 'slider-overlay'; }?>">
                 
-               <?php if($featured_img_url){ ?>
-                    <img src="<?php echo $featured_img_url; ?>" alt=""/>
+               <?php if($featured_img_url){     
+                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
+                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
                 <?php } else {?>
                     <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X930.png" alt="Agilex Fragrances"/>
                 <?php }?>
-                <?php the_post_thumbnail('full'); ?>
+                <?php //the_post_thumbnail('full'); ?>
                 <div class="slider-content">
                     <div class="container">
                         <?php echo the_Content();  ?>
@@ -115,10 +117,7 @@ $unique_arg_query->the_post();  ?>
                                     <img class="primary-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                 <?php }  ?>
                                 </figure>
-                                <?php if (get_field('secondary_image', get_the_ID())){ ?>
-                                    <?php $image = get_field('secondary_image'); ?>
-                                    <img class="seconday-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
-                                <?php }  ?>
+                                
                             </div>
                                 </div>
                         </div>
