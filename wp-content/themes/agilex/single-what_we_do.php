@@ -67,7 +67,7 @@ if($tabdetails) { ?>
               </div>
             </div>
             <div class="content-wrap flex-sm-100 <?php if(empty($tabdetail["tab-image"])) {  echo "flex-100";  } else { echo "flex-50" ;}  ?>">
-              <div class="feature-title"><?php echo $tabdetail["tab-title"]; ?></div>
+              <h3 class="feature-title"><?php echo $tabdetail["tab-title"]; ?></h3>
               <div class="feature-desc">
                 <?php echo $tabdetail["tab-content"]; ?>
               </div>

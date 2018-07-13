@@ -1351,6 +1351,7 @@ div.container {
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     margin-bottom: 15px;
+    margin-top: 0;
 }
 
 .heading-white .heading-title {
@@ -1528,6 +1529,10 @@ div.container {
 .logo-wrap a {
     margin-top: 8px;
     transition: all 0.5s ease 0s;
+}
+
+.logo-wrap h1{
+    margin: 0;
 }
 
 .white-logo {
@@ -2692,6 +2697,15 @@ nav.main-navigation {
     font-family: 'Lato', sans-serif;
 }
 
+.tab-section .nav-tabs>li>a .tab-title,
+.tab-section .panel-title>a .tab-title{
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    margin: 0;
+}
+
 .nav-tabs.responsive li a:hover {
     color: #174a7a;
 }
@@ -2854,6 +2868,8 @@ span.line {
     padding: 15px;
     display: block;
 }
+
+
 
 .tab-section .panel-title>a[aria-expanded="true"] {
     background: #174a7a;
@@ -3332,9 +3348,10 @@ p+p {
     background: #fff;
 }
 
-.what-we-do .thumbnail .caption h4 {
+.what-we-do .thumbnail .caption .title {
     color: #174a7a;
     text-transform: uppercase;
+    margin-top: 0;
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 15px;
@@ -3347,7 +3364,7 @@ p+p {
     font-family: 'Lato', sans-serif;
 }
 
-.what-we-do .thumbnail .caption h4:before {
+.what-we-do .thumbnail .caption .title:before {
     content: '';
     bottom: -5px;
     width: 0;
@@ -3358,7 +3375,7 @@ p+p {
     transition: all 0.5s ease 0s;
 }
 
-.what-we-do .thumbnail:hover h4:before {
+.what-we-do .thumbnail:hover .title:before {
     width: 100%;
 }
 
