@@ -78,7 +78,7 @@ $unique_arg_query->the_post();  ?>
         <div class="container">
 
         <div class="heading">
-        <div class="heading-title"><?php echo the_Title(); ?></div>
+        <h2 class="heading-title"><?php echo the_Title(); ?></h2>
                 <div class="sub-heading"><?php echo wp_trim_words( get_the_content(), 100, '' ); ?></div>
             </div>
 
@@ -97,8 +97,9 @@ $unique_arg_query->the_post();  ?>
                 $agilex_unique_query->the_post(); ?>
                 <li role="presentation" class="<?php if($i == 1) { echo "active"; } ?> ">
                     <a href="#tab-<?php echo $i; ?>" class="text-uppercase btn-ripple" id="tab-link_<?php echo $i; ?>" role="tab" rel="<?php echo the_field('tab_color'); ?>" data-toggle="tab" aria-controls="<?php echo strtolower(str_replace('', '-', get_the_title())); ?>" aria-expanded="true">
-                        <?php echo the_Title(); $i++; ?>
+                    <h3 class="tab-title"><?php echo the_Title(); $i++; ?></h3>
                     </a>
+                
                 </li>
                 <?php } ?>
             </ul>
@@ -181,7 +182,7 @@ $unique_arg_query->the_post();  ?>
     <div class="container">
     <div class="heading">
         <a href="<?php echo get_permalink() ?>">
-            <div class="heading-title"><?php echo the_Title(); ?></div>
+            <h2 class="heading-title"><?php echo the_Title(); ?></h2>
         </a>
         <?php if(get_the_excerpt()) {?>
         <div class="sub-heading"><?php echo get_the_excerpt(); ?></div>
@@ -282,7 +283,7 @@ $unique_arg_query->the_post();  ?>
         <div class="container">
        
                     <div class="heading text-center">
-                            <a href="<?php echo get_permalink() ?>"><div class="heading-title"><?php echo the_Title(); ?></div></a>
+                            <a href="<?php echo get_permalink() ?>"><h2 class="heading-title"><?php echo the_Title(); ?></h2></a>
                             <div class="sub-heading"><?php echo wp_trim_words( get_the_content(), 100, '' ); ?></div>
                         </div>
           
@@ -314,7 +315,7 @@ $unique_arg_query->the_post();  ?>
                                         <?php } ?>
                                 </div>
                                 <div class="caption">
-                                    <h4><?php echo the_Title(); ?></h4>
+                                    <h3 class="title"><?php echo the_Title(); ?></h3>
                                     <div class="content-desc">
                                         <?php if (get_field('short_description', get_the_ID())){ 
                                         echo wp_trim_words( get_field('short_description'), 15, '...' );
@@ -372,7 +373,7 @@ $unique_arg_query->the_post();  ?>
         <div class="container">
        
                     <div class="heading text-center">
-                            <div class="heading-title"><?php echo the_Title(); ?></div>
+                            <h2 class="heading-title"><?php echo the_Title(); ?></h2>
                             <div class="sub-heading"><?php echo get_the_excerpt();?></div>
                         </div>
       

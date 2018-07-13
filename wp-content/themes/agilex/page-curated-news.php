@@ -33,7 +33,7 @@ get_header(); ?>
             <div class="margin-top--70 pad-70 white-bg curated-news-inner">
                 <div class="quotes-sec alice-blue-bg  text-center">
                     <div class="heading bor-bot">
-                        <div class="heading-title">Quote of the week</div>
+                        <h2 class="heading-title">Quote of the week</h2>
                     </div>
                     <div class="quotes-content-inner">
                         <div class="quotes-content">

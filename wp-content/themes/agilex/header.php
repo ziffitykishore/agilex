@@ -63,15 +63,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="main-header">
         <div class="header-container">
             <div class="logo-wrap pull-left">
+
+             <?php if(is_front_page()): ?>
+                <h1>
+                    <?php if (function_exists('the_custom_logo')) :
+                    the_custom_logo();
+                    endif; ?> 
+                </h1>
+                <?php else: ?>
                 <?php if (function_exists('the_custom_logo')) :
-                the_custom_logo();
-                endif; ?>
+                    the_custom_logo();
+                    endif; ?> 
+            <?php endif; ?>
+                
 
                 <?php if ( get_theme_mod( 'm1_logo' ) ) : ?>
                     <a  class="white-logo"  href="<?php echo esc_url( home_url( '/' ) ); ?>" id="site-logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
                         <img src="<?php echo get_theme_mod( 'm1_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
                     </a>
                 <?php endif; ?>
+
+               
             </div>
             <div class="right-block pull-right">
                 <div class="search-wrap ">
