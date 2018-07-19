@@ -576,6 +576,9 @@
     .sub-category .image-sec {
         background-image: none !important;
     }
+    .related-categories-wrap .category-title{
+        font-size: 14px;
+    }
     .sub-service-wrap .categories-content h2 {
         font-size: 18px;
     }
