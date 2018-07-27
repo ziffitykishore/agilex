@@ -749,3 +749,142 @@ Server returned 0 characters:
 Sorted: 
 
 
+[13-07-2018 13:52:35] [Error] WPRSS > 2:
+Sorted: 
+
+[13-07-2018 13:52:40] [Error] WPRSS > 2:
+Sorted: 
+
+
+[19-07-2018 10:09:47] [Error] WPRSS > 2:
+Sorted: 
+
+[19-07-2018 10:10:15] [Error] WPRSS > 2:
+Sorted: 
+
+
+[19-07-2018 10:10:29] [Error] WPRSS > 2:
+Sorted: 
+
+[19-07-2018 10:10:36] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 10:00:39] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://www.refinery29.com/rss.xml". cURL error 6: Could not resolve host: www.refinery29.com
+
+[25-07-2018 10:00:39] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 10:00:43] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 11:31:26] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 11:31:44] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 11:54:06] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 11:54:08] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 12:51:08] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 12:51:14] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 13:52:38] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 13:52:40] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://web.stagram.com/rss/n/pantonecolor". The resource could not be retrieved because of a server error with code 500
+Server returned 0 characters:
+
+
+[25-07-2018 13:52:40] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 14:51:27] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 14:51:29] [Error] WPRSS > 2:
+Sorted: 
+
+
+[25-07-2018 15:51:08] [Error] WPRSS > 2:
+Sorted: 
+
+[25-07-2018 15:51:10] [Error] WPRSS > 2:
+Sorted: 
+
+
+[26-07-2018 08:50:21] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://www.refinery29.com/rss.xml". cURL error 35: Unknown SSL protocol error in connection to www.refinery29.com:443 
+
+[26-07-2018 08:50:21] [Error] WPRSS > 2:
+Sorted: 
+
+[26-07-2018 08:50:22] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://web.stagram.com/rss/n/pantonecolor". cURL error 35: Unknown SSL protocol error in connection to web.stagram.com:443 
+
+[26-07-2018 08:50:22] [Error] WPRSS > 2:
+Sorted: 
+
+
+[26-07-2018 10:51:25] [Error] WPRSS > 2:
+Sorted: 
+
+[26-07-2018 10:51:51] [Error] WPRSS > 2:
+Sorted: 
+
+
+[26-07-2018 12:02:58] [Error] WPRSS > 2:
+Sorted: 
+
+[26-07-2018 12:03:01] [Error] WPRSS > 2:
+Sorted: 
+
+
+[26-07-2018 13:59:43] [Error] WPRSS > 2:
+Sorted: 
+
+[26-07-2018 13:59:48] [Error] WPRSS > 2:
+Sorted: 
+
+
+[26-07-2018 14:53:13] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://www.refinery29.com/rss.xml". cURL error 6: Could not resolve host: www.refinery29.com
+
+[26-07-2018 14:53:13] [Error] WPRSS > 2:
+Sorted: 
+
+[26-07-2018 14:53:35] [Error] WPRSS > wprss_get_feed_items:
+Failed to fetch feed "https://web.stagram.com/rss/n/pantonecolor". cURL error 6: Could not resolve host: web.stagram.com
+
+[26-07-2018 14:53:35] [Error] WPRSS > 2:
+Sorted: 
+
+
+[27-07-2018 06:38:47] [Error] WPRSS > 2:
+Sorted: 
+
+[27-07-2018 06:39:01] [Error] WPRSS > 2:
+Sorted: 
+
+
+[27-07-2018 06:39:26] [Error] WPRSS > 2:
+Sorted: 
+
+[27-07-2018 06:39:28] [Error] WPRSS > 2:
+Sorted: 
+
+
