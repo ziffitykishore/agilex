@@ -2139,7 +2139,7 @@ nav.main-navigation {
 }
 
 .main-navigation .menu-item-has-children .caret {
-    display: inline-block;
+    display: none;
     vertical-align: middle;
     top: 20px;
     border: none;
@@ -6055,10 +6055,13 @@ div.wpcf7 .ajax-loader {
 
 .main-content .legal-inner li>h2,
 .single .entry li>h2,
+.single .entry h2,
 .main-content .legal-inner li>h3,
 .single .entry li>h3,
+.single .entry h3,
 .main-content .legal-inner li>h4,
-.single .entry li>h4 {
+.single .entry li>h4,
+.single .entry h4 {
     font-size: 16px;
     color: #174a79;
     margin-bottom: 15px;
@@ -6081,9 +6084,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .main-content .legal-inner .content-wrap>ol>li,
-.main-content .legal-inner .content-wrap>ul>li,
-.single .entry>ul>li,
-.single .entry>ol>li {
+.main-content .legal-inner .content-wrap>ul>li {
     margin-bottom: 30px;
 }
 
@@ -6130,4 +6131,42 @@ div.wpcf7 .ajax-loader {
 .single .entry ol ol,
 .single .entry ol ul {
     margin-left: 30px;
+}
+
+.single .entry .alignleft{
+    margin-right: 15px;
+}
+
+.single .entry .alignright{
+    margin-left: 15px;
+}
+
+
+/*----- Page Site map -----*/
+.sitemap-wrap{
+    margin: 50px 0;
+}
+.sitemap-wrap .sub-menu{
+    display: block;
+    position: static;
+    box-shadow: none;
+    background: none;
+    margin-left: 20px;
+    width: auto;
+}
+
+.sitemap-wrap  .sub-menu > li > a{
+    width: auto;
+    display: inline-block;
+}
+
+.sitemap-wrap .nav > li > a{
+    display: inline-block;
+}
+
+.sitemap-wrap .nav > li > a:hover, 
+.sitemap-wrap .nav > li > a:focus,
+.sitemap-wrap .sub-menu > li > a:hover{
+    background: none;
+    color: #192a3e;
 }
