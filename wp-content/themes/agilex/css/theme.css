@@ -5493,14 +5493,14 @@ div.wpcf7 .ajax-loader {
 }
 
 .blog-detail-wrap .blog-detail {
-    font-size: 12px;
+    font-size: 10px;
     display: flex;
 }
 
 .blog-detail-wrap .blog-detail .blog-year:before {
     margin: 0 12px;
     width: 1px;
-    height: 15px;
+    height: 12px;
     content: '';
     vertical-align: middle;
     display: inline-block;
@@ -5524,6 +5524,10 @@ div.wpcf7 .ajax-loader {
 
 .blog-detail-wrap .blog-extras .extras-link+.extras-link {
     margin-left: 10px;
+}
+
+.blog-detail-wrap .blog-extras .comment-sec{
+    display: none;
 }
 
 .main-banner-wrap .blog-detail-wrap .extras-link+.extras-link {
@@ -6117,7 +6121,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .main-content .legal-inner li li:before,
-.single .entry li li:before {
+.single .entry li:before {
     content: "("counter(item, lower-roman) ") ";
     counter-increment: item;
 }
