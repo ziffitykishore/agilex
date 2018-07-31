@@ -5448,7 +5448,7 @@ div.wpcf7 .ajax-loader {
     bottom: 0;
     content: "";
     display: block;
-    height: 50%;
+    height: 55%;
     left: 0;
     position: absolute;
     right: 0;
@@ -5460,6 +5460,10 @@ div.wpcf7 .ajax-loader {
     bottom: 0;
     padding: 0 30px;
     width: 100%;
+}
+
+.blog-item .blog-detail-wrap a{
+    display: block;
 }
 
 .blog-grid-sec .blog-tile {
@@ -5475,7 +5479,7 @@ div.wpcf7 .ajax-loader {
 .blog-grid-sec .blog-detail {
     padding: 15px 0;
     border-bottom: 1px solid #fff;
-    color: #999fa8;
+    color: #fff;
 }
 
 .blog-detail-wrap {
@@ -5550,6 +5554,11 @@ div.wpcf7 .ajax-loader {
     top: -120%;
     padding: 5px 2px;
     border-radius: 2px;
+}
+
+
+.blog-item .blog-extras .social_sharing-content{
+    left: 0;
 }
 
 .social_sharing-content .social-sharing {

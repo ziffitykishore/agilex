@@ -50,7 +50,7 @@
                             </a>
                             <div class="media-body">
                                 <a href="<?php the_permalink() ?>" rel="<?php the_title() ?>"><span class="media-heading"><?php wp_trim_words(the_Title(), 8, '...'); ?></span></a>
-                                <span class="post-date">Date: <?php echo get_the_date('d F, Y', $post->ID); ?></span>
+                                <span class="post-date">Date: <?php echo get_the_date('d M, Y', $post->ID); ?></span>
                             </div>
                         </div>
                     </li>
@@ -98,7 +98,7 @@
 
                             <div class="media-body">
                                 <a href="<?php echo get_permalink( $whilistPost->ID ); ?>" rel="<?php echo $whilistPost->post_title ?>"><span class="media-heading"><?php echo wp_trim_words($whilistPost->post_title, 8, '...') ?></span></a>
-                                <span class="post-date">Date: <?php echo get_the_date('d F, Y', $whilistPost->ID); ?></span>
+                                <span class="post-date">Date: <?php echo get_the_date('d M, Y', $whilistPost->ID); ?></span>
                             </div>
                         </div>
                     </li>
