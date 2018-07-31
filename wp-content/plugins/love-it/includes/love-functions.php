@@ -33,4 +33,4 @@ function li_process_love() {
     }
     die();
 }
-add_action('wp_ajax_love_it', 'li_process_love');
+add_action('wp_ajax_nopriv_love_it', 'li_process_love');

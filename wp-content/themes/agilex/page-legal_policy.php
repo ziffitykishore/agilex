@@ -75,7 +75,7 @@ get_header(); ?>
                                 <?php endif; ?>
                                 <div class="legal-heading-inner">
                                     <h2><?php echo the_Title(); ?></h2>
-                                    <span>Updated on <?php the_time('F j, Y') ?></span>
+                                    <span>Updated on <?php the_time('F, Y') ?></span>
                                 </div>
                             </div>  
 

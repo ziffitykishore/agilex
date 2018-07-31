@@ -13,7 +13,7 @@ function li_love_link($love_text = null) {
 
     $love_text = is_null($love_text) ? __('Love It', 'love_it') : $love_text;
     // only show the Love It link if the user has NOT previously loved this item
-    echo '<span class="love-it extras-link" data-post-id="' . esc_attr(get_the_ID()) . '" ><i class="fa fa-heart-o"></i> <span class="love-count">' . sprintf("%02d", $love_count) . '</span></span>';
+    echo '<span class="love-it extras-link" data-post-id="' . esc_attr(get_the_ID()) . '" ><i class="fa fa-heart-o"></i> <span class="love-count">' . sprintf("%d", $love_count) . '</span></span>';
 
 
     // append our "Love It" link to the item content.
