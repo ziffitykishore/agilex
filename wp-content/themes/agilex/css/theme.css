@@ -4402,7 +4402,7 @@ html {
 .timeline-inner:before {
     content: '';
     position: absolute;
-    width: 5px;
+    width: 2px;
     background: #d8d7e4;
     left: 50%;
     top: 0;
@@ -4445,7 +4445,7 @@ html {
 
 .timeline-item .timeline-year {
     color: #eeeeef;
-    font-size: 160px;
+    font-size: 180px;
     font-weight: bold;
     position: relative;
 }
@@ -4476,7 +4476,7 @@ html {
 }
 
 .timeline-desc ul {
-    padding-left: 40px;
+    padding-left: 10px;
     list-style-type: disc;
 }
 
