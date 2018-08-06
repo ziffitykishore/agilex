@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header-wrapper" >
+            <container name="user.actionlist" htmlTag="div" htmlClass="user-actionlist" after="top.search" >
+                <container name="user.welcome" htmlTag="ul" />
+            </container>
+        </referenceContainer>
+       <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_img_width" xsi:type="number">148</argument>
+                <argument name="logo_img_height" xsi:type="number">43</argument>
+            </arguments>
+        </referenceBlock>     
+      <move element="header" destination="user.welcome" />
+      <move element="minicart" destination="header-wrapper" after="user.actionlist" />
+      <move element="top.links" destination="user.actionlist" after="user.welcome" />
+      <referenceBlock name="header.panel" remove="true" />
+      <referenceBlock name="advanced-search-link" remove="true"/>
+
+
+      <!-- <referenceContainer name="footer">
+            <block class="Magento\Store\Block\Switcher" name="store_switcher" as="store_switcher" after="footer_links" template="Magento_Store::switch/stores.phtml"/>
+ <container name="footerlinks" as="footer" label="Footer Links" htmlTag="div"  htmlClass="footer-links">
+            <block class="Magento\Cms\Block\Block" name="footer.links" >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links</argument>
+                    </arguments>
+                </block>
+                          </container> 
+
+            <container name="footerlogo" label="Footer Logo" htmlTag="div" after="newsletter" htmlClass="footer-logo">
+            <block class="Magento\Cms\Block\Block" name="footer.logo" >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_logo</argument>
+                    </arguments>
+                </block>
+                          </container> 
+
+
+                         
+
+        </referenceContainer>
+        
+         <referenceBlock name="footer_links" remove="true"/> 
+        <referenceBlock name="report.bugs" remove="true"/>
+        <move element="copyright" destination="before.body.end"/> -->
+
+
+        <referenceContainer name="footer" htmlClass="page-footer__content">
+                        <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
+                        <container name="footerlogo" label="Footer Logo" htmlTag="div" after="footer.news-wrapper" htmlClass="footer-logo text-center">
+                        <container name="footer.logo-container" htmlClass="container" htmlTag="div">
+                            <block class="Magento\Cms\Block\Block" name="footer.logo" >
+                                    <arguments>
+                                        <argument name="block_id" xsi:type="string">footer_logo</argument>
+                                    </arguments>
+                                </block>
+                                </container>
+                          </container>
+
+            <container name="footer.grid-wrapper" htmlClass="footer-links-wrapper" htmlTag="div">
+                <container name="footer.grid-container" htmlClass="container" htmlTag="div">
+                 <container name="footerlinks" as="footer" label="Footer Links" htmlTag="div"  htmlClass="footer-links">
+            <block class="Magento\Cms\Block\Block" name="footer.links" >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links</argument>
+                    </arguments>
+                </block>
+                          </container> 
+                    <!-- <container name="footer.grid-col1" htmlClass="col-sm-3" htmlTag="div">
+                        <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_1">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_col_1</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="footer.grid-col2" htmlClass="col-sm-3" htmlTag="div">
+                        <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_2" before="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_col_2</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="footer.grid-col3" htmlClass="col-sm-3" htmlTag="div">
+                        <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_3" before="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_col_3</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="footer.grid-col4" htmlClass="col-sm-3" htmlTag="div">
+                        <block type="cms/block" class="Magento\Cms\Block\Block" name="footer_col_4" before="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">footer_col_4</argument>
+                            </arguments>
+                        </block>
+                    </container> -->
+                </container>
+            </container>
+            <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">
+             <container name="footer.copy-container" htmlClass="container" htmlTag="div"/>
+            </container>
+
+             
+            
+        </referenceContainer>
+
+        
+        
+        <!-- Footer blocks END-->
+        <move element="form.subscribe" destination="footer.news-wrapper"/>
+        <move element="copyright" destination="footer.copy-container"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+    </body>
+</page> 
