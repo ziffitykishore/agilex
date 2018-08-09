@@ -7,13 +7,13 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="css/style.css" order="100"/>
-        <css src="css/bootstrap.min.css" order="100"/>
-        <css src="css/slick.css" order="100"/>
-        <css src="css/slick-theme.css" order="100"/>
-         <css src="css/font-awesome.css" order="100"/>
-     <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+        <css src="css/style.css"/>
+        <css src="css/bootstrap.min.css"/>
+        <css src="css/slick.css" />
+        <css src="css/slick-theme.css"/>
+         <css src="css/font-awesome.css" />
+<!--     <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>-->
     </head>
     <body>
          <referenceContainer name="header-wrapper" >
@@ -67,7 +67,8 @@
         
         <!-- Footer blocks END-->
         <move element="form.subscribe" destination="footer.news-wrapper"/>
-        <move element="copyright" destination="footer.copy-container"/>
+        <move element="copyright" destination="footer.copy-container" />
+<!--        <move element="footer.copy-wrapper" destination="footerlinks" after="footer-list payment-method" />-->
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
         
