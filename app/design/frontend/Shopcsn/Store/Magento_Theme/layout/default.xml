@@ -11,27 +11,21 @@
         <css src="css/bootstrap.min.css"/>
         <css src="css/slick.css" />
         <css src="css/slick-theme.css"/>
-         <css src="css/font-awesome.css" />
-<!--     <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>-->
+        <css src="css/font-awesome.css" />
+        
     </head>
     <body>
-         <referenceContainer name="header-wrapper" >
-             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist" after="top.search">
-            <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
-                <arguments>
-                    <argument name="css_class" xsi:type="string">header links</argument>
-                </arguments>
-            </block>
-             </container>
+        <referenceContainer name="header-wrapper" >
+            <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist" after="top.search">
+                <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">header links</argument>
+                    </arguments>
+                </block>
+            </container>
         </referenceContainer>
-<!--        <referenceBlock name="logo">
-            <arguments>
-                <argument name="logo_img_width" xsi:type="number">116</argument>
-                <argument name="logo_img_height" xsi:type="number">22</argument>
-            </arguments>
-        </referenceBlock>-->
-          <referenceContainer name="footer" htmlClass="page-footer__content">
+       
+        <referenceContainer name="footer" htmlClass="page-footer__content">
             <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
             <container name="footerlogo" label="Footer Logo" htmlTag="div" after="footer.news-wrapper" htmlClass="footer-logo text-center">
                 <container name="footer.logo-container" htmlClass="container" htmlTag="div">
@@ -68,13 +62,13 @@
         <!-- Footer blocks END-->
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
-<!--        <move element="footer.copy-wrapper" destination="footerlinks" after="footer-list payment-method" />-->
+        <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
         
        
         <move element="header.panel" destination="header-wrapper" after="top.search"/>
-<!--         <referenceBlock name="header.panel" remove="true" />-->
-      <referenceBlock name="advanced-search-link" remove="true"/>
+        <referenceBlock name="header.panel" remove="true" />
+        <referenceBlock name="advanced-search-link" remove="true"/>
     </body>
 </page>
