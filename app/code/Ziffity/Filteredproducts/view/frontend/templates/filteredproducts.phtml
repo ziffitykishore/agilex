@@ -1,0 +1,94 @@
+<?php
+/**
+ * Copyright © 2015 ziffitycommerce. All rights reserved.
+ */
+?>
+
+         <?php   $_productCollection = $block->getLoadedProductCollection(); ?>
+<?php //$_productCollection = $block->bestsellerProducts(); ?>
+<?php if(!$_productCollection->count()):
+?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+
+            <div class="block widget block-products-list grid">
+                <div class="block-content">
+                    <!-- new_products_content_widget_grid-->
+                    <div class="products-grid grid">
+                        <ol class="product-items widget-product-grid list-unstyled clearfix">
+                            <?php foreach ($_productCollection as $products): ?>
+                            <?php
+                            $product_id = $products->getProductId();
+                            $productImage = $this->helper('Ziffity\Filteredproducts\Helper\Data')->getProductDetails($product_id);
+                            $productName = $products->getProductName();
+                            $productPrice = $products->getProductPrice();
+                            ?>
+
+                            <li class="product-item col-sm-20">
+                                <div class="product-item-info">
+                                    <a href="http://magento2-demo.nexcess.net/lifelong-fitness-iv.html" class="product-item-photo">
+
+                                        <span class="product-image-container">
+                                            <span class="product-image-wrapper">
+
+                                                <?php if (!empty($productImage)): ?>
+                                                <img class="product-image-photo" src="<?php
+                                                echo $helper = $this->helper('Magento\Catalog\Helper\Image')
+                                                ->keepAspectRatio(true)
+                                                ->keepFrame(false)
+                                                ->setImageFile($productImage)
+                                                ->resize(360)
+                                                ->getUrl();
+                                                ?>" alt="LifeLong Fitness IV"/> 
+                                                     <?php endif; ?></span></span>
+                                    </a>
+                                    <div class="product-item-details">
+                                        <strong class="product-item-name">
+                                            <a title="LifeLong Fitness IV" href="http://magento2-demo.nexcess.net/lifelong-fitness-iv.html" class="product-item-link">
+                                                <?php echo $productName; ?></a>
+                                        </strong>
+                                        <div class="price-box price-final_price" data-role="priceBox" data-product-id="46">
+
+
+                                            <span class="price-container price-final_price tax weee">
+                                                <span id="old-price-46-widget-product-grid" data-price-amount="14" data-price-type="finalPrice" class="price-wrapper ">
+                                                    <span class="price"><?php echo $productPrice; ?></span> </span>
+                                            </span>
+
+                                        </div>
+
+                                        <div class="product-item-actions">
+                                            <div class="actions-primary">
+                                                <button class="action qview primary" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/checkout\/cart\/add\/uenc\/aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv\/product\/46\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
+                                                        type="button" title="Quick View">
+                                                    <span>Quick View</span>
+                                                </button>
+                                                <button class="action tocart primary" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/checkout\/cart\/add\/uenc\/aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv\/product\/46\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
+                                                        type="button" title="Add to Cart">
+                                                    <span>Add to Cart</span>
+                                                </button>
+                                            </div>
+                                            <div class="actions-secondary" data-role="add-to-links">
+                                                <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}" class="action towishlist"
+                                                   data-action="add-to-wishlist" title="Add to Wish List">
+                                                    <span class="fa fa-heart-o"></span>
+                                                </a>
+                                                <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
+                                                   title="Add to Compare">
+                                                    <span>Add to Compare</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <?php endforeach;
+                            ?>
+
+
+
+                        </ol>
+                    </div></div></div>
+<?php endif; ?>
+

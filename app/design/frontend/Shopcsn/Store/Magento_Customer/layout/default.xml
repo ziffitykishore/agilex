@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links" before="top.search">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer" template="Magento_Customer::account/customer.phtml" before="-"/>
+<!--            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link-login" template="Magento_Customer::account/link/authorization.phtml">
+                <arguments>
+                    <argument name="sortOrder" xsi:type="number">10</argument>
+                </arguments>
+            </block>-->
+             <block class="Magento\Framework\View\Element\Html\Link\Current" name="my-orders" after="wish-list-link" >
+                    <arguments>
+                        <argument name="path" xsi:type="string">sales/order/history</argument>
+                        <argument name="label" xsi:type="string" translate="true">My Orders</argument>
+                    </arguments>
+                </block>    
+        </referenceBlock>
+<!--        <block class="Magento\Theme\Block\Html\Header" name="header" as="header">
+            <arguments>
+                <argument name="show_part" xsi:type="string">welcome</argument>
+            </arguments>
+        </block>-->
+<!--        <move element="header" destination="header.links" before="-"/>-->
+<referenceBlock name="header" remove="true"/>
+  <move element="minicart" destination="header-wrapper" after="user.actionlist" />
+<!--        <move element="minicart" destination="header-wrapper" after="top.search" />-->
+<!--        <move element="register-link" destination="header.links"/>-->
+        <move element="top.links" destination="customer"/>
+<!--        <move element="my-orders" destination="header.links"/>-->
+        <move element="authorization-link" destination="top.links" after="-"/>
+    </body>
+</page>
