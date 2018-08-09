@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+    <add id="Ziffity_Reports::ziffity_reports" title="Product Sale Status" module="Ziffity_Reports" sortOrder="1" parent="Magento_Reports::report_salesroot" action="productreports/salestatus/index" resource="Magento_Reports::ziffity_reports"/>
+    </menu>
+</config>

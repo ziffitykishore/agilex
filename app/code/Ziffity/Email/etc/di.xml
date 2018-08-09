@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Email\Model\AbstractTemplate" type="Ziffity\Email\Model\Bugfix" />
+
+
+<!--<type name="Magento\Email\Model\AbstractTemplate">
+        <plugin name="ziffity_bugfix" type="Ziffity\Email\Model\Plugin\Bugfix" sortOrder="1" />
+    </type> --> 
+    </config>
