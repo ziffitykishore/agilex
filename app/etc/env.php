@@ -1,7 +1,7 @@
 <?php
 return [
     'backend' => [
-        'frontName' => 'admin_13wx30'
+        'frontName' => 'admin_dev'
     ],
     'crypt' => [
         'key' => '71725434c31e28d655290bb16aa04747'
@@ -32,19 +32,19 @@ return [
         'save' => 'files'
     ],
     'cache_types' => [
-        'config' => 0,
-        'layout' => 0,
-        'block_html' => 0,
-        'collections' => 0,
-        'reflection' => 0,
-        'db_ddl' => 0,
-        'eav' => 0,
-        'customer_notification' => 0,
-        'config_integration' => 0,
-        'config_integration_api' => 0,
-        'full_page' => 0,
-        'translate' => 0,
-        'config_webservice' => 0
+        'config' => 1,
+        'layout' => 1,
+        'block_html' => 1,
+        'collections' => 1,
+        'reflection' => 1,
+        'db_ddl' => 1,
+        'eav' => 1,
+        'customer_notification' => 1,
+        'config_integration' => 1,
+        'config_integration_api' => 1,
+        'full_page' => 1,
+        'translate' => 1,
+        'config_webservice' => 1
     ],
     'install' => [
         'date' => 'Thu, 12 Jul 2018 12:40:35 +0000'
