@@ -11,7 +11,7 @@ return [
         'connection' => [
             'default' => [
                 'host' => 'localhost',
-                'dbname' => 'devshopcsnnew3',
+                'dbname' => 'devshopcsnnew31',
                 'username' => 'root',
                 'password' => 'admin123',
                 'active' => '1'
