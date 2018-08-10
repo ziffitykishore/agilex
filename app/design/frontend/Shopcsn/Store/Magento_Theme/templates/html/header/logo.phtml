@@ -11,10 +11,9 @@
  */
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-<span data-action="toggle-nav" class="action nav-toggle"><span><?= /* @escapeNotVerified */ __('Toggle Nav') ?></span></span>
- <div class="page-header">
-        <div class="header content container">
-<div class="logo-wrap">
+<!--<span data-action="toggle-nav" class="action nav-toggle"><span><?= /* @escapeNotVerified */ __('Toggle Nav') ?></span></span>-->
+
+                <div class="logo-wrap">
     <strong class="logo">
     <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
         <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
@@ -24,7 +23,6 @@
         /></a>
     </strong>
 </div>
-</div>
-</div>
+
     
 
