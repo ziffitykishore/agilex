@@ -66,3 +66,8 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
+
+/index.php
+/app/bootstrap.php
+/setup/*
+/composer.json
