@@ -33,8 +33,6 @@ class Header extends \Magento\Framework\View\Element\Template
                 $storeScope);
         $storeInfo['store_timings'] = $this->_scopeConfig->getValue('general/store_information/hours',
                 $storeScope);
-//        $storeInfo['store_timezone'] = $this->_scopeConfig->getValue('general/locale/timezone',
-//                $storeScope);
         return $storeInfo;
     }
 }

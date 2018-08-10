@@ -5,13 +5,14 @@
 ?>
 <div class="header-promo clearfix">
     <div class="col-sm-9 text-center">
-<?php $storeInfo = $block->getConfigValue();
-      echo $storeInfo['welcome_header']; ?>
-</div>
+        <?php $storeInfo = $block->getConfigValue();
+        echo $storeInfo['welcome_header'];
+        ?>
+    </div>
     <div class="col-sm-3 text-center">
-                        Monday to Friday <?php echo $storeInfo['store_timings']; ?> 
-                        <div class="ph">
-                            <strong> <?php echo $storeInfo['store_phone']; ?></strong>
-                        </div>
-                    </div>
+<?php echo $storeInfo['store_timings']; ?> 
+        <div class="ph">
+            <strong> <?php echo $storeInfo['store_phone']; ?></strong>
+        </div>
+    </div>
 </div>
