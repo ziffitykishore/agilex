@@ -1,0 +1,109 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .footer-news-wrapper{
+        background: #32529e;
+        padding: 30px 0;
+            
+    }
+
+    //  Newsletter subscription
+    .block.newsletter {
+        margin-bottom: 0;
+           
+        .sign-up {
+            color: #fff;
+            h3 {
+                margin: 0;
+                line-height: normal;
+                font-size: 18px;
+                
+            }
+        }
+         .action.subscribe{
+            background-color: #e42129;
+            border:1px solid #e42129;
+        }
+        .fa-chevron-right {
+            color:#fff;
+        }
+        .form.subscribe {
+            
+            width: 100%;
+            position: relative;
+            background: @color-white;
+        }
+        
+        .field {
+            margin: 0;
+
+            .control {
+                
+                display: block;
+
+                &:before {
+                    position: absolute;
+                }
+            }
+        }
+
+        input {
+            padding-left: 20px;
+            padding-right: 50px;
+            background: transparent;
+            border: none;
+            height: 44px;
+            color: #d7dded;
+            font-size: 13px;
+            font-weight: normal;
+
+        }
+
+
+        input, button{
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .title {
+            display: none;
+        }
+
+        .label {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        .actions {
+            position: absolute;
+            top: 0;
+            right: 0;
+            
+        }
+
+        .action.subscribe {
+            margin-left: -1px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 0;
+
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+
+
+
