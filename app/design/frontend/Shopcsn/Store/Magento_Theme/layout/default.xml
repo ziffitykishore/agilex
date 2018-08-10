@@ -17,10 +17,7 @@
                 </block>
             </container>
         </referenceContainer>
-        <referenceBlock name="store.men" >
-            
-            
-        </referenceBlock>
+        
         
         <referenceContainer name="footer" htmlClass="page-footer__content">
             <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
@@ -49,23 +46,18 @@
             <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">
                 <container name="footer.copy-container" htmlClass="container" htmlTag="div"/>
             </container>
-
-             
-            
+ 
         </referenceContainer>
-
-        
-        
         <!-- Footer blocks END-->
+        
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
         <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
-       
-<!--         <move element="catalog.topnav" destination="header-wrapper" after="header-outer"/>-->
-           <move element="store.menu" destination="header-wrapper" after="logo"/>
-<!--        <move element="header.panel" destination="header-wrapper" after="top.search"/>-->
+        <move element="user.welcome" destination="page.top" after="header-wrapper" />
+        <move element="store.menu" destination="header-wrapper" after="logo"/>
+        <referenceBlock name="navigation.sections" remove="true" />
         <referenceBlock name="header.panel" remove="true" />
         
         <referenceBlock name="advanced-search-link" remove="true"/>
