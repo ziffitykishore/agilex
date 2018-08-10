@@ -16,6 +16,10 @@
                     </arguments>
                 </block>
             </container>
+            <container name="csn-info">
+                 <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />
+            </container>  
+           
         </referenceContainer>
         
         
@@ -49,17 +53,16 @@
  
         </referenceContainer>
         <!-- Footer blocks END-->
-        
+          <move element="header" destination="user.welcome" />
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
         <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
-        <move element="user.welcome" destination="page.top" after="header-wrapper" />
         <move element="store.menu" destination="header-wrapper" after="logo"/>
         <referenceBlock name="navigation.sections" remove="true" />
         <referenceBlock name="header.panel" remove="true" />
-        
+        <move element="csn-info" destination="main" before="-" />
         <referenceBlock name="advanced-search-link" remove="true"/>
     </body>
 </page>
