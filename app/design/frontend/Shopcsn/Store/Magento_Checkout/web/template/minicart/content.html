@@ -47,7 +47,7 @@
     <ifnot args="getCartParam('summary_count')">
         <strong class="subtitle empty"
                 data-bind="visible: closeSidebar()"
-                translate="'There are no items in your cart. Please select a category or enter a keyword in the search field to begin shopping.'"
+                translate="'There are no items in your cart.'"
         />
         <if args="getCartParam('cart_empty_message')">
             <p class="minicart empty text" text="getCartParam('cart_empty_message')"/>
@@ -83,7 +83,7 @@
                 </a>
             </div>
             <div class="primary">
-                <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                <a class="action viewcart" data-bind="attr: {href: window.checkout.checkoutUrl}">
                 <button type="button" class="action primary checkout" translate="'CheckOut'" />
                 </a>
             </div>
