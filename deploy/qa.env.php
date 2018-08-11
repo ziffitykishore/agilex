@@ -10,7 +10,7 @@ return [
         'table_prefix' => '',
         'connection' => [
             'default' => [
-                'host' => 'localhost',
+                'host' => '127.0.0.1',
                 'dbname' => 'mtwoshop_mage2',
                 'username' => 'mtwoshop_mage2',
                 'password' => 'B0HNNf79bSe0f0x27G',
