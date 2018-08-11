@@ -74,10 +74,13 @@
     @_breadcrumbs-link-gradient-color-end-active: @breadcrumbs-link__active__gradient-color-end
 ) {
     .lib-css(margin, @_breadcrumbs-container-margin);
+    .lib-css(background-color, @color-darkslateblue);
     .items {
         .lib-font-size(@_breadcrumbs-font-size);
         .lib-css(color, @_breadcrumbs-current-color);
         .lib-list-inline();
+        padding-top: 25px;
+        padding-bottom:  25px;
     }
 
     .item {

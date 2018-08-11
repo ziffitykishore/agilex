@@ -175,15 +175,11 @@
     }
     .minicart-wrapper {
         .lib-dropdown( @_toggle-selector: ~'.action.showcart', @_options-selector: ~'.block-minicart', @_dropdown-toggle-icon-content: @icon-cart, @_dropdown-toggle-active-icon-content: @icon-cart, @_dropdown-list-item-padding: false, @_dropdown-list-item-hover: false, @_icon-font-position: before, @_icon-font-size: 22px, @_icon-font-line-height: 28px, @_icon-font-color: @minicart-icons-color, @_icon-font-color-hover: @minicart-icons-color-hover, @_icon-font-color-active: @minicart-icons-color);
-        float: right;
         .block-minicart {
             padding: 0;
             right: 3px;
             width: 320px;
             z-index: 101;
-            .block-title {
-                display: none;
-            }
             &:after {
                 left: auto;
                 right: 25px;
@@ -240,12 +236,16 @@
                 height: 40px;
                 position: absolute;
                 color: #fff;
-                right: 0;
-                top: 0;
+                right: 20px;
+                top: 20px;
                 width: 30px;
                 height: 26px;
                 .lib-button-reset();
                 .lib-button-icon( @icon-remove, @_icon-font-color: @minicart-icons-color, @_icon-font-size: 16px, @_icon-font-line-height: 16px, @_icon-font-text-hide: true);
+                &:before{
+                    color: @color-white;
+                    vertical-align: middle;
+                }
             }
             &.showcart {
                 &:before{
@@ -272,7 +272,7 @@
                     position: relative;
                     left: -10px; */
                     &.empty {
-                        visibility: hidden;
+                       
                     }
                     .loader {
                         >img {
@@ -497,7 +497,6 @@
 //  _____________________________________________
 .media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__m) {
     .minicart-wrapper {
-        margin-left: 13px;
         .block-minicart {
             min-width: auto;
         }
@@ -512,10 +511,11 @@
 
 
 .minicart-wrapper{
-    max-width: 165px;
+    max-width: 80px;
     margin: 0 auto;
     text-align: center;
-    
+    padding-top: 15px;
+    padding-bottom: 15px;
 
     .counter-number.empty, .showcart .text{
         .disp(none);
@@ -523,8 +523,11 @@
     .action.showcart{
         color: @color-white;
         font-size: @f-size-xl;
-        padding: 15px;
-        .disp(block);
+        .pos(relative);
+        .disp(inline-block);
+        .text1{
+            .disp(none);
+        }
         .fa{
             .hw(38px, 38px);
             background: #23438c;
@@ -533,9 +536,17 @@
             margin-right: 5px;
         }
         .counter.qty{
-            background: transparent;
+            background: #e32129;
             .pos(static);
             color: @color-white;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            .br-radius(50%);
+            .disp(block);
+            .pos(absolute);
+            right: -10px;
+            top: -10px;
         }
     }
 
@@ -546,7 +557,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        width: 405px;
+        width: 445px;
         margin: 0;
         z-index: 5;
         background: @color-white;
@@ -556,11 +567,12 @@
         }
         .block-title{
             background: @color-darkslateblue;
-            padding: 28px 20px;
+            padding: 30px 50px;
             text-transform: uppercase;
             color: @color-white;
             font-size: @f-size;
             font-weight: bold;
+            text-align: left;
             .qty:before, .qty:after{
                 .disp(inline-block);
             }
@@ -578,7 +590,7 @@
         
 
         .items-total, .subtitle{
-            .disp(none);
+            
         }
 
         .options, .product .primary{

@@ -236,12 +236,17 @@
             @_icon-font-text-hide: true,
             @_icon-font-color: @header-icons-color
             );
-            .lib-button-reset();
+            //.lib-button-reset();
+            opacity: 1;
             padding: @indent__xs 0;
             position: absolute;
             right: 10px;
             top: 0;
             z-index: 1;
+
+            &:before{
+                color: @color-white;
+            }
 
             &:focus {
                 &:before {

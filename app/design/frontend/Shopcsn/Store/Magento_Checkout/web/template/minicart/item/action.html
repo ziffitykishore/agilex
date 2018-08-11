@@ -9,7 +9,8 @@
         <!-- ko if: product_has_url -->
         <a data-bind="attr: {href: product_url, title: product_name}" tabindex="-1" class="product-item-photo">
             <!-- ko foreach: $parent.getRegion('itemImage') -->
-            <!-- ko template: {name: getTemplate(), data: item.product_image} --><!-- /ko -->
+            <!-- ko template: {name: getTemplate(), data: item.product_image} -->
+            <!-- /ko -->
             <!-- /ko -->
         </a>
         <!-- /ko -->
@@ -64,7 +65,8 @@
                 <!-- /ko -->
                 <!-- ko ifnot: canApplyMsrp -->
                 <!-- ko foreach: $parent.getRegion('priceSidebar') -->
-                <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} --><!-- /ko -->
+                <!-- ko template: {name: getTemplate(), data: item.product_price, as: 'price'} -->
+                <!-- /ko -->
                 <!-- /ko -->
                 <!-- /ko -->
 
@@ -78,17 +80,13 @@
                            'data-item-qty': qty,
                            'data-cart-item-id': product_sku,
                            title: $t('Qty')
-                           }, value: qty"
-                           type="number"
-                           size="4"
-                           class="item-qty cart-item-qty">
+                           }, value: qty" type="number" size="4" class="item-qty cart-item-qty">
                     <button data-bind="attr: {
                             id: 'update-cart-item-'+item_id,
                             class:'update-cart-item data-prod-id-'+item.product_id,
                             'data-cart-item': item_id,
                             title: $t('Update')
-                            }"
-                            style="display: none">
+                            }" style="display: none">
                         <span data-bind="i18n: 'Update'"></span>
                     </button>
                 </div>
@@ -103,8 +101,7 @@
                                 </div>-->
                 <!-- /ko -->
                 <div class="secondary">
-                    <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}"
-                       class="action delete">
+                    <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}" class="action close">
                         <span data-bind="i18n: 'Remove'"></span>
                     </a>
                 </div>
