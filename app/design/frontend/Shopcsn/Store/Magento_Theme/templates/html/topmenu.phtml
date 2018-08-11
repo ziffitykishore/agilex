@@ -18,8 +18,13 @@
 <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
 <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
 <div class="menu-wrap">
-                    <div data-action="toggle-nav" class="action nav-toggle"><span class="fa fa-bars"></span> Shop by
-                        <div class="text-uppercase">Category</div>
+                    <div data-action="toggle-nav" class="action nav-toggle">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>  
+                        <div class="text-uppercase cat-trigger"><span>Shop By</span>Category</div>
                     </div>
 <nav class="navigation" data-action="navigation">
     <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>

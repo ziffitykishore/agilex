@@ -13,7 +13,7 @@
     <a class="action showcart" href="<?= /* @escapeNotVerified */ $block->getShoppingCartUrl() ?>"
        data-bind="scope: 'minicart_content'">
         <i class="fa fa-shopping-cart"></i>
-        <span class="text1"><?= /* @escapeNotVerified */ __('My Cart') ?></span>
+        
         <span class="counter qty empty"
               data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
             <span class="counter-number"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
@@ -28,6 +28,7 @@
             <!-- /ko -->
             </span>
         </span>
+        <span class="text1"><?= /* @escapeNotVerified */ __('Items') ?></span>
     </a>
     <?php if ($block->getIsNeedToDisplaySideBar()): ?>
         <div class="block block-minicart empty"

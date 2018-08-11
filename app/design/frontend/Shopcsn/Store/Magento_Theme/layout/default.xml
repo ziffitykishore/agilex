@@ -64,5 +64,6 @@
         <referenceBlock name="header.panel" remove="true" />
         <move element="csn-info" destination="main" before="-" />
         <referenceBlock name="advanced-search-link" remove="true"/>
+        <referenceBlock name="catalog.compare.link" remove="true"/>
     </body>
 </page>
