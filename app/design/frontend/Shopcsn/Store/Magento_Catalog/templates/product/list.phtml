@@ -105,7 +105,10 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                                 <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
                                             </button>
                                         </form>
-                                        <a href="#" class="action quick-view">Quick View</a>
+                                        <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
+                                            <span><?php echo __('Quickview') ?></span>
+                                        </a>
+                                        
                                     <?php else: ?>
                                         <?php if ($_product->isAvailable()): ?>
                                             <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
