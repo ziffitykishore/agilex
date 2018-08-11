@@ -26,15 +26,17 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
     <?= $block->getAdditionalHtml() ?>
     <?php
     if ($block->getMode() == 'grid') {
-        $viewMode = 'grid';
-        $image = 'category_page_grid';
-        $showDescription = false;
-        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+        $viewMode           = 'grid';
+        $itemLiClass        = 'col-sm-3';
+        $image              = 'category_page_grid';
+        $showDescription    = false;
+        $templateType       = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
     } else {
-        $viewMode = 'list';
-        $image = 'category_page_list';
-        $showDescription = true;
-        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+        $viewMode           = 'list';
+        $itemLiClass        = '';
+        $image              = 'category_page_list';
+        $showDescription    = true;
+        $templateType       = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
     }
     /**
      * Position for actions regarding image size changing in vde if needed
@@ -43,10 +45,19 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
     ?>
     <div class="products wrapper <?= /* @escapeNotVerified */ $viewMode ?> products-<?= /* @escapeNotVerified */ $viewMode ?>">
         <?php $iterator = 1; ?>
-        <ol class="products list items product-items">
+        <ol class="products list items product-items clearfix">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
-                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+            
+                <?php 
+                    
+                    /* @escapeNotVerified */ 
+                    if($iterator++ == 1) { 
+                        echo '<li class="item product product-item '. $itemLiClass .'">'; 
+                    } else { 
+                        echo '</li><li class="item product product-item '. $itemLiClass .'">';
+                    } 
+                ?>
                 <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);
@@ -69,11 +80,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                 <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                             </a>
                         </strong>
-                        <div class="sku-avali">
-                                    <div class="sku-sec"><strong class="text-uppercase">SKU:</strong>032908</div>
-                                    <div class="avaiablity"><strong>Status:</strong><span class="text-success">Available</span></div>
-                                </div>
-                        <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
                         <?= $block->getProductDetailsHtml($_product) ?>
 
