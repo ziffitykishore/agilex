@@ -61,16 +61,19 @@
                 padding: 8px;
                 height: 36px;
                 margin: 0;
+                label{
+                    .ptb(30px);
+                }
                 .label,
                 .price-container {
                     float: left;
                     width: 50%;
-                    color: #53565a;
-                    font-size: 13px;
                 }
                 .price-container {
-                    text-align: left;
-                    font-weight: normal;
+                    text-align: center;
+                    .price {
+                        font-size: @f-size-xxl;
+                    }
                 }
             }
             P {
@@ -120,9 +123,7 @@
             .price-wrapper {
                 &:first-child {
                     .price {
-                        font-weight: normal;
-                        font-size: 15px;
-                        padding-left: 3px;
+                    
                     }
                 }
             }
@@ -511,11 +512,11 @@
 
 
 .minicart-wrapper{
-    max-width: 80px;
+    max-width: 155px;
     margin: 0 auto;
     text-align: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 18px;
+    padding-bottom: 18px;
 
     .counter-number.empty, .showcart .text{
         .disp(none);
@@ -525,9 +526,6 @@
         font-size: @f-size-xl;
         .pos(relative);
         .disp(inline-block);
-        .text1{
-            .disp(none);
-        }
         .fa{
             .hw(38px, 38px);
             background: #23438c;
@@ -536,17 +534,7 @@
             margin-right: 5px;
         }
         .counter.qty{
-            background: #e32129;
-            .pos(static);
-            color: @color-white;
-            width: 30px;
-            height: 30px;
-            line-height: 30px;
-            .br-radius(50%);
-            .disp(block);
-            .pos(absolute);
-            right: -10px;
-            top: -10px;
+            color: @color-white;            
         }
     }
 
@@ -679,3 +667,7 @@
 
     }
 }
+
+
+
+

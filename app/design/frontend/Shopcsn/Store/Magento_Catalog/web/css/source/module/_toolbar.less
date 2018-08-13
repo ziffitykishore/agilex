@@ -28,8 +28,6 @@
         line-height: @toolbar-mode-icon-font-size + 2;
         margin: 0;
         padding: 8px 0 0;
-        vertical-align: middle;
-
         .products.wrapper ~ .toolbar & {
             display: none;
         }
@@ -37,9 +35,11 @@
 
     .toolbar-products {
         margin-bottom: @indent__xl;
-        padding: 0 @indent__s;
+        padding: 8px 30px;
         text-align: center;
         &:extend(.abs-add-clearfix all);
+        background: @color-whitesmoke;
+        border: 1px solid @color-gainsboro;
 
         .pages {
             display: none;
@@ -57,10 +57,30 @@
     }
 
     .sorter {
-        padding: 4px 0 0;
-
+        .lib-css(color, @color-black);
+        text-transform: uppercase;
+        font-size: @f-size-xs;
+        label{
+            padding: 8px 5px;
+            font-weight: normal;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+        border: 1px solid @color-gainsboro;
+        background: @color-whitesmoke;
         .products.wrapper ~ .toolbar & {
             display: none;
+        }
+        select{
+            border-left: 1px solid @color-gainsboro;
+            text-transform: uppercase;
+            background: transparent;
+            border-color: transparent;
+            vertical-align: middle;
+            &:focus{
+                outline: none;
+                box-shadow: none;
+            }
         }
     }
 
@@ -79,6 +99,7 @@
         @_icon-font-color-hover: @header-icons-color-hover,
         @_icon-font-text-hide: true
         );
+        .disp(none);
     }
 
     .sorter {
@@ -151,18 +172,20 @@
     }
 
     .modes-mode {
-        .lib-css(color, @text__color__muted);
-        border: 1px solid @border-color__base;
+        .lib-css(color, @color-lightgray);
+        border: 1px solid @color-gainsboro;
         border-right: 0;
         float: left;
         font-weight: @font-weight__regular;
         line-height: 1;
-        padding: 7px 10px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
         text-align: center;
 
         &:not(.active) {
             &:hover {
-                .lib-css(color, @text__color__muted);
+                .lib-css(color, @color-darkslateblue);
                 background: darken(@toolbar-element-background, 7%);
             }
         }
@@ -172,16 +195,26 @@
         }
 
         &.active {
-            .lib-css(color, @primary__color__light);
+            .lib-css(color, @color-darkslateblue);
+            &.active:before{
+                color: @color-darkslateblue;
+            }
         }
 
         .lib-icon-font(
         @icon-grid,
         @_icon-font-size: @toolbar-mode-icon-font-size,
-        @_icon-font-text-hide: true,
-        @_icon-font-color: @text__color__muted,
-        @_icon-font-color-hover: @text__color__muted
+        @_icon-font-text-hide: true
         );
+
+        &:before{
+            color: @color-lightgray;
+            font-size: @f-size-xs;
+        }
+
+        &:hover:before{
+            color: @color-darkslateblue;
+        }
     }
 
     .mode-list {

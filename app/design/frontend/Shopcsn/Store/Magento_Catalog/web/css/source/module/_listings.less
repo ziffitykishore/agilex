@@ -102,10 +102,7 @@
 
             &-info {
                 max-width: 100%;
-                width: 152px;
-
                 .page-products & {
-                    width: 240px;
                 }
             }
 
@@ -283,6 +280,95 @@
         }
     } */
 
+
+
+    .products-grid {
+        .product-item-info {
+            background: @color-white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            
+            .sale-promo{
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+            .product-item-photo {
+                display: block;
+                margin-bottom: 20px;
+            }
+            .product-item-name {
+                font-weight: normal;
+                color: #020202;
+                font-size: @f-size-s;
+                margin-bottom: 20px;
+                display: block;
+                min-height: 50px;
+                a {
+                    color: inherit;
+                    font-size: inherit;
+                }
+            }
+            .price {
+                font-size: @f-size;
+                color: #020202;
+                font-weight: bold;
+            }
+            .product-item-actions {
+                .tocompare {
+                    display: none;
+                }
+                .towishlist{
+                    position: absolute;
+                    right: 20px;
+                    top: 20px;
+                    color: #c2c2c2;
+                    opacity: 0;
+                    visibility: hidden;
+                    .transition(all 0.5s ease 0s);
+                }
+                .actions-primary {
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    visibility: hidden;
+                    opacity: 0;
+                    .transition(all 0.5s ease 0s);
+                }
+                .actions-primary .action {
+                    background: #020202;
+                    border: none;
+                    color: @color-white;
+                    padding: 15px 20px;
+                    width: 50%;
+                    float: left;
+                    min-height: 50px;
+                    font-weight: bold;
+                    font-size: @f-size-xs;
+                    text-transform: uppercase;
+                    position: relative;
+                    text-decoration: none;
+                }
+                .actions-primary .action +.action:before{
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    height: 100%;
+                    width: 1px;
+                    background: #404040;
+                }
+            }
+        &:hover .actions-primary,
+        &:hover .towishlist {
+            visibility: visible;
+            opacity: 1;
+        }
+        }
+    }
+
     .products-list .product-item + .product-item{
         margin-top: 30px;
     }
@@ -446,10 +532,9 @@
             &:hover,
             &.active {
                 .lib-css(background, @product-item__hover__background-color);
-                .lib-css(box-shadow, @product-item__hover__box-shadow);
-                border: 1px solid @color-gray-light2;
-                margin: -10px;
-                padding: 9px;
+                //.lib-css(box-shadow, @product-item__hover__box-shadow);
+                //border: 1px solid @color-gray-light2;
+                
                 position: relative;
                 z-index: 2;
 
@@ -469,12 +554,11 @@
     .product-item-inner {
         .products-grid & {
             .lib-css(background, @product-item__hover__background-color);
-            .lib-css(box-shadow, @product-item__hover__box-shadow);
-            border: 1px solid @color-gray-light2;
+            //.lib-css(box-shadow, @product-item__hover__box-shadow);
+            //border: 1px solid @color-gray-light2;
             border-top: none;
             left: 0;
-            margin: 9px 0 0 -1px;
-            padding: 0 9px 9px;
+            bottom: 0;
             position: absolute;
             right: -1px;
             z-index: 2;
@@ -485,7 +569,6 @@
         display: block;
 
         .products-grid & {
-            margin: -@indent__s 0 @indent__s;
         }
 
         .actions-primary + .actions-secondary {
@@ -624,7 +707,6 @@
 
             .product-item {
                 margin-left: calc(~'(100% - 4 * 24.439%) / 3');
-                padding: 0;
                 width: 24.439%;
 
                 &:nth-child(4n + 1) {
