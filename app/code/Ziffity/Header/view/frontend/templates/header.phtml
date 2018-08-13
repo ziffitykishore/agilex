@@ -5,16 +5,28 @@
 ?>
 <div class="header-promo clearfix">
     <div class="container">
+        <?php $storeInfo = $block->getConfigValue(); ?>
+        <?php if($block->isHomePage()): ?>
     <div class="col-sm-9 text-center">
-        <?php $storeInfo = $block->getConfigValue();
+        <?php 
         echo $storeInfo['welcome_header'];
         ?>
     </div>
+        
     <div class="col-sm-3 text-center">
 <?php echo $storeInfo['store_timings']; ?> 
         <div class="ph">
             <strong> <?php echo $storeInfo['store_phone']; ?></strong>
         </div>
     </div>
+        <?php else: ?>
+         <div class="col-sm-3 text-center">
+<?php echo $storeInfo['store_timings']; ?> 
+        <div class="ph">
+            <strong> <?php echo $storeInfo['store_phone']; ?></strong>
+        </div>
+    </div>
+        <?php endif; ?>
     </div>  
 </div>
+

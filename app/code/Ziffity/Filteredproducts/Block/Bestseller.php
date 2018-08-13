@@ -19,7 +19,7 @@ class Bestseller extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory $collectionFactory,
         \Magento\Reports\Block\Product\Viewed $recentlyViewed,
-        array $data = array()
+        array $data = []
     )
     {     
         $this->_collectionFactory = $collectionFactory;

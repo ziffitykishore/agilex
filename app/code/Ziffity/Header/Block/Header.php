@@ -17,7 +17,7 @@ class Header extends \Magento\Framework\View\Element\Template
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        array $data = array()
+       array $data = []
     )
     {
         $this->_scopeConfig = $scopeConfig;
@@ -35,4 +35,12 @@ class Header extends \Magento\Framework\View\Element\Template
                 $storeScope);
         return $storeInfo;
     }
+    
+    public function isHomePage()
+    {
+        $currentUrl = $this->getUrl('', ['_current' => true]);
+        $urlRewrite = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+        return $currentUrl == $urlRewrite;
+    }
+
 }
