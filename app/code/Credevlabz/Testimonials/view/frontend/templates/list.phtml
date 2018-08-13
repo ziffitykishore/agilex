@@ -1,0 +1,27 @@
+<?php
+/*
+ * @var $block \Credevlabz\Testimonials\Block\TestimonialsList 
+ * @package Credevlabz/Testimonials
+ * @author Aman Srivastava <http://amansrivastava.in>
+ */
+?>
+
+<div class="testi-slider__inner">
+                    <?php /** @var $testimonial \Credevlabz\Testimonials\Model\Testimonial */ ?>
+                    <?php foreach ($block->getTestimonials() as $testimonial): ?>
+                        
+                            <div class="testi-slider">
+                                <div class="testi-content__inner">
+                                    <div class="testi-content">
+                                        <?php echo $testimonial->getContent(); ?>
+                                    </div>
+                                    <div class="testi-author">
+
+                                        <strong><?php echo __('-') ?></strong> <?php echo $testimonial->getName() ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+
+                   

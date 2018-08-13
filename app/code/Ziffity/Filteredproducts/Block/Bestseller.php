@@ -21,7 +21,7 @@ class Bestseller extends \Magento\Framework\View\Element\Template
         \Magento\Reports\Block\Product\Viewed $recentlyViewed,
         array $data = array()
     )
-    {
+    {     
         $this->_collectionFactory = $collectionFactory;
         $this->_recentlyViewed = $recentlyViewed;
         parent::__construct($context, $data);
@@ -40,7 +40,10 @@ class Bestseller extends \Magento\Framework\View\Element\Template
         
     }
     
-    public function recentProducts(){     
-        return $this->_recentlyViewed->getItemsCollection();
-    }
+//    public function recentProducts(){     
+//        return $this->_recentlyViewed->getItemsCollection();
+//    }
+//    
+  
+
 }

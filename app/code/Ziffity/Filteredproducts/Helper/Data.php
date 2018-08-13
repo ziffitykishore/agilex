@@ -13,6 +13,7 @@ namespace Ziffity\Filteredproducts\Helper;
  */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    protected $productRepositoryFactory;
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Catalog\Api\ProductRepositoryInterfaceFactory $productRepositoryFactory
@@ -25,7 +26,10 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getProductDetails($productId){
         try{
             $product = $this->_productRepositoryFactory->create()->getById($productId);
-            $image = $product->getData('image');
+//        $image = $this->image->init($product, 'product_base_image')
+//                            ->setImageFile($product->getFile())->resize("100", "100")->getUrl();
+//      echo $image;exit;  
+ $image = $product->getData('image');
         } catch (\Magento\Framework\Exception\NoSuchEntityException $ex) {
              $image = false;
         }
