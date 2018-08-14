@@ -7,13 +7,13 @@
     <div class="container">
         <?php $storeInfo = $block->getConfigValue(); ?>
         <?php if($block->isHomePage()): ?>
-    <div class="col-sm-9 text-center">
+    <div class="col-sm-9 promotion-text text-center">
         <?php 
         echo $storeInfo['welcome_header'];
         ?>
     </div>
         
-    <div class="col-sm-3 text-center">
+    <div class="col-sm-3 contact-info text-center">
 <?php echo $storeInfo['store_timings']; ?> 
         <div class="ph">
             <strong> <?php echo $storeInfo['store_phone']; ?></strong>
