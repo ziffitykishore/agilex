@@ -33,15 +33,17 @@
             <?php foreach ($block->getFilters() as $filter): ?>
                 <?php if (!$wrapOptions): ?>
                     <!-- <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong> -->
-                    <dl class="filter-options" id="narrow-by-list">
+                    <div class="filter-options" id="narrow-by-list">
                 <?php $wrapOptions = true; endif; ?>
                     <?php if ($filter->getItemsCount()): ?>
-                        <dt role="heading" aria-level="3" class="filter-options-title <?= strtolower($block->escapeHtml(__($filter->getName()))) ?>"><?= $block->escapeHtml(__($filter->getName())) ?></dt>
-                        <dd class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></dd>
+                        <div class="filter-option-wrap <?= strtolower($block->escapeHtml(__($filter->getName()))) ?>">
+                            <div role="heading" aria-level="3" class="filter-options-title"><?= $block->escapeHtml(__($filter->getName())) ?></div>
+                            <div class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
+                        </div>
                     <?php endif; ?>
             <?php endforeach; ?>
             <?php if ($wrapOptions): ?>
-                </dl>
+                </div>
             <?php endif; ?>
         </div>
     </div>

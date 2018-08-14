@@ -14,13 +14,18 @@
         background: @color-whitesmoke;
          
         .filter-title {
-            margin-bottom: @indent__base;
             padding: 15px 30px;
             text-transform: uppercase;
             color: @color-darkslateblue;
+            border-bottom: 1px dotted @color-darkslateblue;
             strong {
                 font-size: 18px;
             }
+        }
+
+        a{
+            font-size: @f-size-xs;
+            color: @color-black;
         }
     }
 
@@ -30,6 +35,7 @@
     }
 
     .filter-current {
+        padding: 0 20px;
         .item {
             margin-bottom: @indent__s;
         }
@@ -45,6 +51,7 @@
 
         + .filter-actions {
             margin-bottom: @indent__l;
+            padding: 0 20px;
         }
     }
 
@@ -62,7 +69,39 @@
 
     .filter-options {
         margin: 0;
-        padding: 0 20px;
+        padding: 20px;
+
+        .price{
+            .filter-options-content{
+                label{
+                    display: none;
+                }
+
+                input{
+                    background: transparent;
+                    color: @color-darkslateblue !important;
+                    font-size: @f-size-xs;
+                }
+                #price-slider{
+                    height: 2px;
+                    background: @color-black;
+                .ui-widget-header{
+                    height: 100%;
+                    position: absolute;
+                    z-index: 1;
+                    font-size: .7em;
+                    display: block;
+                    border: 0;
+                    background: @color-darkslateblue;
+                }
+                .ui-slider-handle{
+                    background: @color-darkslateblue;
+                    top: -4px;
+                }
+            }
+
+            }
+        }
         .filter-options-title {
             .lib-heading(h4);
             margin: 0 0 @indent__s;
@@ -71,6 +110,9 @@
 
         .filter-options-content {
             margin: 0 0 @indent__m;
+            a{
+                font-size: @f-size-xs;
+            }
 
             .item {
                 margin-bottom: 3px;

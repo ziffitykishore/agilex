@@ -379,9 +379,7 @@
                 position: relative;
                 height: 27px;
                 margin-top: 0 !important;
-                span {
-                    font-weight: normal;
-                }
+                
                 button:active{
                     box-shadow: none;
                 }
@@ -392,10 +390,11 @@
                 button {
                     width: 30px;
                     height: 40px;
-                    font-size: 13px;
+                    font-size: 14px;
                     padding: 0;
                     background: @color-white;
                     border-radius: 0;
+                    font-weight: bold;
                 }
                 .update-cart-item{
                     width: 40px;
@@ -531,11 +530,21 @@
 
 
 .minicart-wrapper{
-    max-width: 100px;
+    max-width: 90px;
     margin: 0 auto;
     text-align: center;
     padding-top: 18px;
     padding-bottom: 18px;
+
+    &.active:after{
+        content: '';
+        position: fixed;
+        width: 100%;
+        top: 75px;
+        left: 0;
+        height: 100%;
+        background: fadeout(@color-black, 50%);
+    }
 
     .counter-number.empty, .showcart .text{
         .disp(none);
@@ -545,6 +554,9 @@
         font-size: @f-size-xl;
         .pos(relative);
         .disp(inline-block);
+        &:focus{
+            outline: none;
+        }
         .fa{
             .hw(38px, 38px);
             background: #23438c;
@@ -577,7 +589,7 @@
         }
         .block-title{
             background: @color-darkslateblue;
-            padding: 30px 50px;
+            padding: 28px 50px;
             text-transform: uppercase;
             color: @color-white;
             font-size: @f-size;
@@ -663,6 +675,7 @@
             bottom: 78px;
             padding: 0;
             height: auto;
+            z-index: 10;
             > * {
            .disp(inline-block);
            vertical-align: middle;

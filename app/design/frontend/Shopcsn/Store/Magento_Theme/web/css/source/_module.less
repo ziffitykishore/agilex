@@ -124,6 +124,10 @@ a:hover {
         padding: 18px 15px;
         display: block;
         line-height: normal;
+
+        &:hover{
+            color: @color-white;
+        }
         
         .fa{
             .hw(38px, 38px);
@@ -269,6 +273,12 @@ a:hover {
                     text-decoration: none;
                 }
             }
+        }
+    }
+
+    .payment-method{
+        .links{
+            margin-top: 15px;
         }
     }
 
@@ -541,6 +551,7 @@ a:hover {
         > .page-title-wrapper {
             .page-title {
                 display: inline-block;
+                margin-bottom: 20px;
             }
 
             .page-title + .action {
@@ -554,6 +565,7 @@ a:hover {
 
         img {
             max-height: inherit;
+            margin: 0 auto;
         }
     }
 
@@ -661,7 +673,7 @@ a:hover {
         visibility: hidden;
         opacity: 0;
         z-index: 10;
-        .nav-open &, .acc-opened &, .cart-opened &{
+        .nav-open &, .acc-opened &{
             visibility: visible;
             opacity: 1;
         }
@@ -934,19 +946,36 @@ a:hover {
     .page-header {
         .header {
             .block-search {
-                max-width: 1000px;
+                max-width: 1100px;
 
                 .minisearch {
-                    max-width: 650px;
+                    max-width: 600px;
                 }
             }
             .acc-links {
-                max-width: 185px;
+                max-width: 180px;
             }
         }
     }
 }
 
+
+@media screen and (max-width: 1700px){
+    .page-header {
+        .header {
+            .block-search {
+                max-width: 1020px;
+
+                .minisearch {
+                    max-width: 600px;
+                }
+            }
+            .acc-links {
+                max-width: 180px;
+            }
+        }
+    }
+}
 
 @media screen and (max-width: 1666px){
     .page-header {
