@@ -80,7 +80,7 @@
                            'data-cart-item': item_id,
                            'data-item-qtydec': item_id+'-decc',
                            title: $t('Qty Dec')
-                           }, value: qty" class="item-qty cart-item-qtydec">
+                    }, value: qty" class="item-qty cart-item-qtydec add-sub">
                             <span>-</span>
                     </button>
                     <input data-bind="attr: {
@@ -96,7 +96,7 @@
                            'data-cart-item': item_id,
                            'data-item-qtyinc': item_id+'-inc',
                            title: $t('Qty Inc')
-                           }, value: qty" class="item-qty cart-item-qtyinc">
+                           }, value: qty" class="item-qty cart-item-qtyinc add-sub">
                                <span>+</span>
                     </button>
                     <button data-bind="attr: {
@@ -105,18 +105,18 @@
                             'data-cart-item': item_id,
                             title: $t('Update')
                             }" style="display: none">
-                        <span data-bind="i18n: 'Update'"></span>
+                        <span class="fa fa-refresh"></span>
                     </button>
                 </div>
             </div>
 
             <div class="product actions">
                 <!-- ko if: is_visible_in_site_visibility -->
-                    <div class="primary">
-                        <a data-bind="attr: {href: configure_url, title: $t('Edit item')}" class="action edit">
-                            <span data-bind="i18n: 'Edit'"></span>
-                        </a>
-                    </div>
+                <div class="primary">
+                    <a data-bind="attr: {href: configure_url, title: $t('Edit item')}" class="action edit">
+                        <span data-bind="i18n: 'Edit'"></span>
+                    </a>
+                </div>
                 <!-- /ko -->
                 <div class="secondary">
                     <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}" class="action delete">

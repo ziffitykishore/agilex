@@ -36,7 +36,7 @@
                     <dl class="filter-options" id="narrow-by-list">
                 <?php $wrapOptions = true; endif; ?>
                     <?php if ($filter->getItemsCount()): ?>
-                        <dt role="heading" aria-level="3" class="filter-options-title"><?= $block->escapeHtml(__($filter->getName())) ?></dt>
+                        <dt role="heading" aria-level="3" class="filter-options-title <?= strtolower($block->escapeHtml(__($filter->getName()))) ?>"><?= $block->escapeHtml(__($filter->getName())) ?></dt>
                         <dd class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></dd>
                     <?php endif; ?>
             <?php endforeach; ?>

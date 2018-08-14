@@ -231,8 +231,7 @@
                     }
                     .delete {
                         font-weight: normal;
-                        color: #06B;
-                        line-height: 15px;
+                        
                         &:hover {
                             color: #5D4C84;
                         }
@@ -342,10 +341,12 @@
             margin-bottom: @indent__xs;
         }
         .product-item-name {
-            font-weight: @font-weight__regular;
+            
+            padding-right: 30px;
             margin: 0;
             a {
-                .lib-css(color, @link__color);
+                font-size: @f-size-xs;
+                color: @color-black;
             }
         }
         .product.options {
@@ -357,16 +358,14 @@
                 a {
                     display: block;
                     text-align: left;
-                    color: #727272;
-                    font-weight: bold;
-                    line-height: 20px;
                     text-decoration: none;
                 }
             }
             .product-item-pricing {
                 text-align: left;
+                margin-top: 15px;
                 .price-container {
-                    height: 19px;
+                    float: right;
                     span {
                         display: inline-block;
                         font-weight: normal;
@@ -383,27 +382,35 @@
                 span {
                     font-weight: normal;
                 }
+                button:active{
+                    box-shadow: none;
+                }
+                > *{
+                    float: left;
+                    margin-right: 0;
+                }
+                button {
+                    width: 30px;
+                    height: 40px;
+                    font-size: 13px;
+                    padding: 0;
+                    background: @color-white;
+                    border-radius: 0;
+                }
+                .update-cart-item{
+                    width: 40px;
+                    border-left: 0;
+                }
                 input {
-                    margin-left: 10px;
-                    max-height: 20px;
-                    border: 1px solid #e3e3e3;
+                    border-left: transparent;
+                    border-right: transparent;
+                    border-radius: 0;
+                    width: 40px;
+                    height: 40px;
                     &:focus {
                         box-shadow: 0 0 0 0;
                     }
-                    &+button {
-                        position: absolute;
-                        font-family: "Gotham SSm A", "Gotham SSm B";
-                        color: #fff;
-                        background-color: #f68d2e;
-                        border: 0;
-                        border-radius: 0;
-                        font-size: 12px;
-                        left: 89px;
-                        top: 4px;
-                        font-weight: normal;
-                        padding: 4px 8px;
-                        line-height: 22px;
-                    }
+                    
                 }
             }
             .price {
@@ -524,7 +531,7 @@
 
 
 .minicart-wrapper{
-    max-width: 155px;
+    max-width: 100px;
     margin: 0 auto;
     text-align: center;
     padding-top: 18px;
@@ -641,6 +648,7 @@
 
         .product-item-name-qty, .product-item-pricing{
             .disp(inline-block);
+            width: 100%;
             
         }
 
