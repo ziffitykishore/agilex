@@ -61,9 +61,9 @@ class Topmenu extends \Magento\Theme\Block\Html\Topmenu
                 $childrenWrapClass,
                 $limit
             ) . '</li>';
-                        if($counter == $childrenCount && $childLevel !=0 ){
+                        if($counter == $childrenCount && $childLevel ==2 ){
                             
-                $html .= '<a class="image_anchor -'.$childLevel.'" href="' . $child->getUrl() . '" ' . $outermostClassCode . '><img src="http://shopcsntv.com/media/catalog/product/cache/1/small_image/200x/05e17a266b0e9cc26fb81a2e0bed7e78/0/3/034386_2018_noahs_ark_bu.jpg"></a>';
+                $html .= '<a class="image_anchor -'.$childLevel.'" href="' . $child->getUrl() . '" ' . $outermostClassCode . '><img src="http://shopcsntv.com/media/catalog/product/cache/1/thumbnail/115x115/c96a280f94e22e3ee3823dd0a1a87606/1/8/1875_type2_gold_liberty_o.jpeg"></a>';
             }
             $itemPosition++;
             $counter++;
