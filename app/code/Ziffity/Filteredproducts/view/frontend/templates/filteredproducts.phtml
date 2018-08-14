@@ -47,7 +47,7 @@ use Magento\Framework\App\Action\Action;
                         $productPrice = $_product->getProductPrice();
                         ?>
 
-                        <li class="product-item col-sm-20">
+                        <li class="product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">
                             <div class="product-item-info">
                                 <a href="http://magento2-demo.nexcess.net/lifelong-fitness-iv.html" class="product-item-photo">
 
@@ -75,6 +75,7 @@ use Magento\Framework\App\Action\Action;
 
                                     <div class="product-item-actions">
                                         <div class="actions-primary">
+
                                             <?php if ($_product->isSaleable()): ?>
             <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                         <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
@@ -97,11 +98,12 @@ use Magento\Framework\App\Action\Action;
                                                     <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
                                                 <?php endif; ?>
         <?php endif; ?>
+
                                         </div>
                                         <div class="actions-secondary" data-role="add-to-links">
                                             <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}" class="action towishlist"
                                                data-action="add-to-wishlist" title="Add to Wish List">
-                                                <span class="fa fa-heart-o"></span>
+                                                <i class="fa fa-heart-o"></i>
                                             </a>
                                             <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
                                                title="Add to Compare">
