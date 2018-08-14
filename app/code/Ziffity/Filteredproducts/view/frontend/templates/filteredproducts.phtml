@@ -1,11 +1,30 @@
 <?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+?>
+<?php
 /**
  * Copyright © 2015 ziffitycommerce. All rights reserved.
  */
 ?>
 
 <?php $_productCollection = $block->getLoadedProductCollection(); ?>
-<?php //$_productCollection = $block->bestsellerProducts(); ?>
+<?php
+// $product = "";
+// foreach ($_bestsellingCollection as $products): 
+?>
+<?php // $product.= $products->getProductId().","; ?>
+<?php //endforeach;   ?>
+
+
+<?php //$_productCollection = $block->getList($product);  ?>
+
 <?php if (!$_productCollection->count()):
     ?>
     <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
@@ -16,24 +35,25 @@
             <!-- new_products_content_widget_grid-->
             <div class="products-grid grid">
                 <ol class="product-items widget-product-grid list-unstyled clearfix">
-                    <?php foreach ($_productCollection as $products): ?>
+                    <?php foreach ($_productCollection as $_product): ?>
+
                         <?php
 //                            echo "<pre>";
-//                            print_r($products->getData());exit;
-                        $product_id = $products->getProductId();
+//                            print_r($_product->getData());exit;
+                        $product_id = $_product->getProductId();
                         //$productImage = $this->helper('Ziffity\Filteredproducts\Helper\Data')->getProductDetails($product_id);
 
-                        $productName = $products->getProductName();
-                        $productPrice = $products->getProductPrice();
+                        $productName = $_product->getProductName();
+                        $productPrice = $_product->getProductPrice();
                         ?>
 
-                        <li class="product-item col-sm-20">
+                        <li class="product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">
                             <div class="product-item-info">
                                 <a href="http://magento2-demo.nexcess.net/lifelong-fitness-iv.html" class="product-item-photo">
 
                                     <span class="product-image-container">
                                         <span class="product-image-wrapper">
- 
+
 
                                             <img class="product-image-photo" src="http://shopcsntv.com/media/catalog/product/cache/1/small_image/200x/05e17a266b0e9cc26fb81a2e0bed7e78/0/3/034386_2018_noahs_ark_bu.jpg" alt="LifeLong Fitness IV"/> 
                                         </span></span>
@@ -41,7 +61,7 @@
                                 <div class="product-item-details">
                                     <strong class="product-item-name">
                                         <a title="LifeLong Fitness IV" href="http://magento2-demo.nexcess.net/lifelong-fitness-iv.html" class="product-item-link">
-                                            <?php echo $productName; ?></a>
+        <?php echo $productName; ?></a>
                                     </strong>
                                     <div class="price-box price-final_price" data-role="priceBox" data-product-id="46">
 
@@ -55,19 +75,35 @@
 
                                     <div class="product-item-actions">
                                         <div class="actions-primary">
-                                            <button class="action qview primary" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/checkout\/cart\/add\/uenc\/aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv\/product\/46\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
-                                                    type="button" title="Quick View">
-                                                <span>Quick View</span>
+
+                                            <?php if ($_product->isSaleable()): ?>
+            <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                        <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
+                                            <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+                                            <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                            <?= $block->getBlockHtml('formkey') ?>
+                                            <button type="submit"
+                                                    title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                                    class="action tocart primary">
+                                                <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
                                             </button>
-                                            <button class="action tocart primary" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/checkout\/cart\/add\/uenc\/aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv\/product\/46\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
-                                                    type="button" title="Add to Cart">
-                                                <span>Add to Cart</span>
-                                            </button>
+                                        </form>
+                                     <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $product_id;?>" href="javascript:void(0);">
+                                            <span><?php echo __('Quickview') ?></span>
+                                        </a>
+                                            <?php else: ?>
+                                                <?php if ($_product->isAvailable()): ?>
+                                                    <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+        <?php endif; ?>
+
                                         </div>
                                         <div class="actions-secondary" data-role="add-to-links">
                                             <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}" class="action towishlist"
                                                data-action="add-to-wishlist" title="Add to Wish List">
-                                                <span class="fa fa-heart-o"></span>
+                                                <i class="fa fa-heart-o"></i>
                                             </a>
                                             <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
                                                title="Add to Compare">
@@ -87,4 +123,6 @@
                 </ol>
             </div></div></div>
 <?php endif; ?>
+
+
 

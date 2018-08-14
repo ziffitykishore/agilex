@@ -15,15 +15,19 @@ class Bestseller extends \Magento\Framework\View\Element\Template
 {
     protected $collectionFactory;
     protected $recentlyViewed;
+    protected $productFactory;
+    protected $listProductBlock;
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Sales\Model\ResourceModel\Report\Bestsellers\CollectionFactory $collectionFactory,
-        \Magento\Reports\Block\Product\Viewed $recentlyViewed,
+        \Magento\Catalog\Block\Product\ListProduct $listProductBlock,
+        \Magento\Catalog\Model\ProductFactory $productFactory,
         array $data = []
     )
     {     
         $this->_collectionFactory = $collectionFactory;
-        $this->_recentlyViewed = $recentlyViewed;
+        $this->listProductBlock = $listProductBlock;
+        $this->_productFactory = $productFactory;
         parent::__construct($context, $data);
     }
     
@@ -40,10 +44,20 @@ class Bestseller extends \Magento\Framework\View\Element\Template
         
     }
     
-//    public function recentProducts(){     
-//        return $this->_recentlyViewed->getItemsCollection();
-//    }
-//    
+    public function getList($products){ 
+        $array_list = explode(",",$products);
+        
+        $model = $this->_productFactory->create();
+        $productCollection = $model->getCollection()
+            ->addFieldToFilter('entity_id', array('in'=> $array_list));
+        //$productCollection->load();
+        return $productCollection;
+    }
+    public function getAddToCartPostParams($product)
+    { 
+        return $this->listProductBlock->getAddToCartPostParams($product);
+    }
+    
   
 
 }
