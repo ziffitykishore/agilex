@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -6,7 +7,6 @@
 use Magento\Framework\App\Action\Action;
 
 // @codingStandardsIgnoreFile
-
 ?>
 <?php
 /**
@@ -41,34 +41,35 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
      * Position for actions regarding image size changing in vde if needed
      */
     $pos = $block->getPositioned();
-    $i =1;
+    $i = 1;
     ?>
     <div class="products wrapper <?= /* @escapeNotVerified */ $viewMode ?> products-<?= /* @escapeNotVerified */ $viewMode ?>">
         <?php $iterator = 1; ?>
         <ol class="products list items product-items">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
+            
                 <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
                 <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);
                     if ($pos != null) {
                         $position = ' style="left:' . $productImage->getWidth() . 'px;'
-                            . 'top:' . $productImage->getHeight() . 'px;"';
+                                . 'top:' . $productImage->getHeight() . 'px;"';
                     }
                     ?>
                     <?php // Product Image ?>
                     <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
-                        <?= $productImage->toHtml() ?>
+                        <img  src="http://shopcsntv.com/media/catalog/product/cache/1/small_image/200x/05e17a266b0e9cc26fb81a2e0bed7e78/0/3/034386_2018_noahs_ark_bu.jpg" alt="LifeLong Fitness IV"/>
                     </a>
                     <div class="product details product-item-details">
                         <?php
-                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                        $_productNameStripped = $block->stripTags($_product->getName(), null, true);
                         ?>
                         <strong class="product name product-item-name">
                             <a class="product-item-link"
                                href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
-                                <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                   <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                             </a>
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
@@ -90,6 +91,9 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                                 <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
                                             </button>
                                         </form>
+                                     <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
+                                            <span><?php echo __('Quickview') ?></span>
+                                        </a>
                                     <?php else: ?>
                                         <?php if ($_product->isAvailable()): ?>
                                             <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
@@ -104,7 +108,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <?php if ($showDescription):?>
+                            <?php if ($showDescription): ?>
                                 <div class="product description product-item-description">
                                     <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                                     <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" title="<?= /* @escapeNotVerified */ $_productNameStripped ?>"
@@ -114,20 +118,26 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         </div>
                     </div>
                 </div>
-           <?php   if ($i++ == 5) break; ?>
+                <?php if ($i++ == 5) break; ?>
             <?php endforeach; ?>
         </ol>
     </div>
     <?= $block->getToolbarHtml() ?>
     <?php if (!$block->isRedirectToCartEnabled()) : ?>
         <script type="text/x-magento-init">
-        {
+            {
             "[data-role=tocart-form], .form.map.checkout": {
-                "catalogAddToCart": {
-                    "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
-                }
+            "catalogAddToCart": {
+            "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
             }
-        }
+            }
+            }
         </script>
     <?php endif; ?>
 <?php endif; ?>
+
+
+
+
+
+
