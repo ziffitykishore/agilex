@@ -80,6 +80,16 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                 <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                             </a>
                         </strong>
+                        <div class="sku-avali">
+                        <div class="sku-sec"><strong class="text-uppercase">SKU: <span><?php echo $_product->getSku(); ?></span></strong></div>
+                            <div class="avaiablity">
+                        <?php if ($_product->isAvailable()): ?>
+                                            <div class="stock available text-success"><strong>Status: <span><?= /* @escapeNotVerified */ __('In stock') ?></strong></div>
+                                        <?php else: ?>
+                                            <div class="stock unavailable text-primary"><strong>Status: <span><?= /* @escapeNotVerified */ __('Out of stock') ?></strong></div>
+                                        <?php endif; ?>
+                </div>
+                </div>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
                         <?= $block->getProductDetailsHtml($_product) ?>
 
@@ -108,8 +118,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                         <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
                                             <span><?php echo __('Quickview') ?></span>
                                         </a>
-                             
-      
+                                        
                                     <?php endif; ?>
                                 </div>
                                 <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
