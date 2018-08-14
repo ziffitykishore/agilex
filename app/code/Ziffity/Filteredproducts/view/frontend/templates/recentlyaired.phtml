@@ -45,10 +45,10 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
     ?>
     <div class="products wrapper <?= /* @escapeNotVerified */ $viewMode ?> products-<?= /* @escapeNotVerified */ $viewMode ?>">
         <?php $iterator = 1; ?>
-        <ol class="products list items product-items">
+        <ol class="products list items product-items clearfix">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
-                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">' : '</li><li class="item product product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">' ?>
                 <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);
@@ -90,6 +90,9 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                                 <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
                                             </button>
                                         </form>
+                                        <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
+                                            <span><?php echo __('Quickview') ?></span>
+                                        </a>
                                     <?php else: ?>
                                         <?php if ($_product->isAvailable()): ?>
                                             <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>

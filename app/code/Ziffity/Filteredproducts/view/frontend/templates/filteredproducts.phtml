@@ -27,7 +27,7 @@
                         $productPrice = $products->getProductPrice();
                         ?>
 
-                        <li class="product-item col-sm-20">
+                        <li class="product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">
                             <div class="product-item-info">
                                 <a href="http://magento2-demo.nexcess.net/lifelong-fitness-iv.html" class="product-item-photo">
 
@@ -55,19 +55,19 @@
 
                                     <div class="product-item-actions">
                                         <div class="actions-primary">
-                                            <button class="action qview primary" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/checkout\/cart\/add\/uenc\/aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv\/product\/46\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
-                                                    type="button" title="Quick View">
-                                                <span>Quick View</span>
-                                            </button>
+                                            
                                             <button class="action tocart primary" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/checkout\/cart\/add\/uenc\/aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv\/product\/46\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
                                                     type="button" title="Add to Cart">
                                                 <span>Add to Cart</span>
                                             </button>
+                                            <a class="action quick-view" href="javascript:void(0);">
+                                            <span><?php echo __('Quickview') ?></span>
+                                        </a>
                                         </div>
                                         <div class="actions-secondary" data-role="add-to-links">
                                             <a href="#" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/wishlist\/index\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}" class="action towishlist"
                                                data-action="add-to-wishlist" title="Add to Wish List">
-                                                <span class="fa fa-heart-o"></span>
+                                                <i class="fa fa-heart-o"></i>
                                             </a>
                                             <a href="#" class="action tocompare" data-post="{&quot;action&quot;:&quot;http:\/\/magento2-demo.nexcess.net\/catalog\/product_compare\/add\/&quot;,&quot;data&quot;:{&quot;product&quot;:&quot;46&quot;,&quot;uenc&quot;:&quot;aHR0cDovL21hZ2VudG8yLWRlbW8ubmV4Y2Vzcy5uZXQv&quot;}}"
                                                title="Add to Compare">
