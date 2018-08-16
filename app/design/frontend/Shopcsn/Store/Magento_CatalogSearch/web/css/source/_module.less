@@ -32,6 +32,7 @@
         }
 
         .label {
+            
             .lib-icon-font(
             @_icon-font-content: @icon-search,
             @_icon-font-size: 35px,
@@ -41,9 +42,7 @@
             @_icon-font-color-active: @minicart-icons-color-hover,
             @_icon-font-text-hide: true
             );
-            display: inline-block;
-            float: right;
-
+            .disp(none);
             &.active {
                 + .control {
                     input {
@@ -54,21 +53,24 @@
         }
 
         .action.search {
-            display: none;
+            opacity: 1;
+            padding: @indent__xs 0;
+            position: absolute;
+            right: 10px;
+            top: 0;
+            z-index: 1;
         }
 
         .control {
-            border-top: 1px solid @border-color__base;
+            
             clear: both;
-            margin: 0 -@layout__width-xs-indent -1px;
+            
             padding: 0;
         }
 
         input {
-            left: -300%;
-            margin: 15px 0;
-            position: absolute;
-        }
+            border: none;
+         }
 
         .nested {
             display: none;
@@ -237,12 +239,6 @@
             @_icon-font-color: @header-icons-color
             );
             //.lib-button-reset();
-            opacity: 1;
-            padding: @indent__xs 0;
-            position: absolute;
-            right: 10px;
-            top: 0;
-            z-index: 1;
 
             &:before{
                 color: @color-white;
@@ -281,7 +277,7 @@
              outline: none;
          }
 
-        .search{
+        div.search{
             display: inline-block;
             width: 100%;
             background: @color-white;
