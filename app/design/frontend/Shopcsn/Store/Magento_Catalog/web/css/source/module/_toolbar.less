@@ -50,13 +50,28 @@
         }
 
         .limiter {
+            .pos(relative);
             .control {
                 display: inline-block;
+            }
+            
+            label{
+                color: @color-black;
+                padding: 8px 8px;
+                text-align: center;
+            }
+            margin-right: 80px;
+            .limiter-text{
+                .pos(absolute);
+                font-size: @f-size-xs;
+                display: block;
+                top: 10px;
+                right: -80px;
             }
         }
     }
 
-    .sorter {
+    .sorter , .limiter {
         .lib-css(color, @color-black);
         text-transform: uppercase;
         font-size: @f-size-xs;
@@ -65,6 +80,7 @@
             font-weight: normal;
             margin-bottom: 0;
             vertical-align: middle;
+            min-width: 80px;
         }
         border: 1px solid @color-gainsboro;
         background: @color-whitesmoke;
@@ -72,11 +88,12 @@
             display: none;
         }
         select{
-            border-left: 1px solid @color-gainsboro;
+            border-color: transparent;
+            border-left: 1px solid @color-gainsboro; 
             text-transform: uppercase;
             background: transparent;
-            border-color: transparent;
             vertical-align: middle;
+            margin: 0;
             &:focus{
                 outline: none;
                 box-shadow: none;

@@ -49,7 +49,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
 
-                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">' : '</li><li class="item product product-item col-xs-6 col-sm-3 col-md-3 col-lg-20">' ?>
+                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item col-xs-6 col-sm-4 col-md-3 col-lg-20">' : '</li><li class="item product product-item col-xs-6 col-sm-4 col-md-3 col-lg-20">' ?>
                 <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);

@@ -10,6 +10,13 @@ var config = {
         'slick' :{
            deps : ['jquery']
        }
-    }
+    },
+    map: {
+        '*': {
+            'Magento_Checkout/js/sidebar':'js/sidebar',
+            'Magento_Checkout/js/view/minicart':'js/minicart',
+            
+        }
+    } 
 };
 

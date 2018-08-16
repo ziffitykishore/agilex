@@ -1,0 +1,183 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .block.filter {
+        margin-bottom: @indent__xl;
+        background: @color-whitesmoke;
+         
+        .filter-title {
+            padding: 15px 30px;
+            text-transform: uppercase;
+            color: @color-darkslateblue;
+            border-bottom: 1px dotted @color-darkslateblue;
+            strong {
+                font-size: 18px;
+            }
+        }
+
+        a{
+            font-size: @f-size-xs;
+            color: @color-black;
+        }
+
+        .action{
+            color: @color-darkslateblue;
+        }
+    }
+
+    .block-subtitle {
+        display: inline-block;
+        margin-bottom: @indent__s;
+    }
+
+    .filter-current {
+        padding: 20px 20px 0;
+        .item {
+            margin-bottom: @indent__s;
+        }
+
+        .filter-label {
+            display: block;
+            font-weight: @font-weight__bold;
+
+            &:after {
+                content: ':';
+            }
+        }
+
+        + .filter-actions {
+            margin-bottom: @indent__l;
+            padding: 0 20px;
+        }
+    }
+
+    .filter-options-content {
+        .filter-count-label {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        label{
+        }
+        .amount{
+            .disp(none);
+        }
+    }
+
+    .filter-options {
+        margin: 0;
+        padding: 20px;
+
+        .price{
+            .filter-options-content{
+                label{
+                    display: none;
+                }
+
+                input{
+                    background: transparent;
+                    color: @color-darkslateblue !important;
+                    font-size: @f-size-xs;
+                }
+                #price-slider{
+                    height: 2px;
+                    background: @color-black;
+                .ui-widget-header{
+                    height: 100%;
+                    position: absolute;
+                    z-index: 1;
+                    font-size: .7em;
+                    display: block;
+                    border: 0;
+                    background: @color-darkslateblue;
+                }
+                .ui-slider-handle{
+                    background: @color-darkslateblue;
+                    top: -4px;
+                }
+            }
+
+            }
+        }
+        .filter-options-title {
+            .lib-heading(h4);
+            margin: 0 0 @indent__s;
+            word-break: break-all;
+        }
+
+        .filter-options-content {
+            margin: 0 0 @indent__m;
+            a{
+                font-size: @f-size-xs;
+            }
+
+            .item {
+                margin-bottom: 3px;
+            }
+        }
+
+        .count {
+            .lib-css(color, @text__color__muted);
+
+            &:before {
+                content: '(';
+            }
+
+            &:after {
+                content: ')';
+            }
+        }
+    }
+
+    .items {
+        &:extend(.abs-reset-list all);
+    }
+
+    .filtered {
+        .items {
+            margin: 15px 0;
+        }
+
+        .item {
+            margin-bottom: 6px;
+            padding-left: 22px;
+            position: relative;
+
+            .label {
+                font-weight: @font-weight__bold;
+            }
+
+            .action.remove {
+                &:extend(.abs-remove-button-for-blocks all);
+                left: -6px;
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        & + .actions {
+            margin-bottom: 35px;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .page-with-filter {
+        .columns {
+            .sidebar-main {
+                .lib-vendor-prefix-order(0);
+            }
+        }
+    }
+}
