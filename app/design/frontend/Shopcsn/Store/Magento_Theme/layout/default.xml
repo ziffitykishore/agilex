@@ -51,7 +51,7 @@
                 </container>
             </container>
             <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">
-                <container name="footer.copy-container" htmlClass="container" htmlTag="div"/>
+                <container name="footer.copy-container" htmlClass="copyright-inner" htmlTag="div"/>
             </container>
  
         </referenceContainer>
