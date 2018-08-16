@@ -8,6 +8,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     
     <body>
+        <referenceContainer name="before.body.end">
+            <block  class="Magento\Framework\View\Element\Template" template="Magento_Theme::social-block.phtml" name="social.icons" />
+        </referenceContainer>
         <referenceContainer name="header-wrapper" >
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
                 <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
@@ -48,7 +51,7 @@
                 </container>
             </container>
             <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">
-                <container name="footer.copy-container" htmlClass="container" htmlTag="div"/>
+                <container name="footer.copy-container" htmlClass="copyright-inner" htmlTag="div"/>
             </container>
  
         </referenceContainer>

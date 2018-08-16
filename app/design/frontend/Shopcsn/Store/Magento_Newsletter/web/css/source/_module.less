@@ -12,7 +12,10 @@
     .footer-news-wrapper{
         background: #32529e;
         padding: 30px 0;
-            
+        
+        .cms-index-index &{
+            margin-top: 50px;
+        }
     }
 
     //  Newsletter subscription
@@ -99,12 +102,25 @@
             border-radius: 0;
 
         }
+
+        
     }
 }
 
 //
 //  Desktop
 //  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+.block.newsletter {
+    .sign-up {
+        margin-bottom: 30px;
+    }
+
+}
+
+}
 
 
 
