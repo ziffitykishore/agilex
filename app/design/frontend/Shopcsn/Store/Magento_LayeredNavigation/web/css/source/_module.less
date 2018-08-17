@@ -12,6 +12,7 @@
     .block.filter {
         margin-bottom: @indent__xl;
         background: @color-whitesmoke;
+        padding-bottom: 50px;
          
         .filter-title {
             padding: 15px 30px;
@@ -73,8 +74,11 @@
 
     .filter-options {
         margin: 0;
-        padding: 20px;
 
+        .filter-option-wrap{    
+            padding: 20px;
+            border-bottom: 1px dotted @color-darkslateblue;
+        }
         .price{
             .filter-options-content{
                 label{
@@ -110,10 +114,16 @@
             .lib-heading(h4);
             margin: 0 0 @indent__s;
             word-break: break-all;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted @color-darkslateblue;
+            .pos(relative);
+            .fa {
+                .pos(absolute);
+                right: 0;
+            }
         }
 
         .filter-options-content {
-            margin: 0 0 @indent__m;
             a{
                 font-size: @f-size-xs;
             }
@@ -164,6 +174,17 @@
 
         & + .actions {
             margin-bottom: 35px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 1024px) {
+    .block.filter {
+        .filter-title {
+            strong {
+                font-size: 14px;
+            }
         }
     }
 }

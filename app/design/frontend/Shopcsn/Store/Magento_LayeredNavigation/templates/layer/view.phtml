@@ -37,7 +37,7 @@
                 <?php $wrapOptions = true; endif; ?>
                     <?php if ($filter->getItemsCount()): ?>
                         <div class="filter-option-wrap <?= strtolower($block->escapeHtml(__($filter->getName()))) ?>">
-                            <div role="heading" aria-level="3" class="filter-options-title"><?= $block->escapeHtml(__($filter->getName())) ?></div>
+                            <div role="heading" aria-level="3" class="filter-options-title"><?= $block->escapeHtml(__($filter->getName())) ?> <i class="fa fa-caret-down"></i></div>
                             <div class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></div>
                         </div>
                     <?php endif; ?>

@@ -688,7 +688,7 @@ a:hover {
         visibility: hidden;
         opacity: 0;
         z-index: 10;
-        .nav-open &, .acc-opened &{
+        .nav-open &, .acc-opened &, .cart-opened &{
             visibility: visible;
             opacity: 1;
         }
@@ -841,6 +841,7 @@ a:hover {
             margin-bottom: 0;
             .slick-dots {
                 text-align: right;
+                .pos(static);
             }
         }
         .testi-content__inner {
@@ -1073,6 +1074,17 @@ a:hover {
             }
         }
     }
+
+    .cat-item {
+        .cat-item__inner {
+            
+            .cat-title {
+                
+                font-size: @f-size-xl;
+                
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 1280px){
@@ -1144,6 +1156,9 @@ a:hover {
 }
 
 }
+
+
+
 
 @media screen and (max-width: 768px) {
     .page-header {
