@@ -125,34 +125,54 @@
     $categories = get_categories($argsCat);
     $output = '';
     if (!empty($categories)) {?>
+    
         <h2 class="heading-title"><?php echo __("Categories"); ?></h2>
+        <div class="inner-sec stack-list">
     <?php
         foreach ($categories as $category) {
-            $output .= '<li><a href="' . esc_url(get_category_link($category->term_id)) . '" alt="' . esc_attr(sprintf(__('View all posts in %s', 'textdomain'),
+            $output .= '<li class=""><a href="' . esc_url(get_category_link($category->term_id)) . '" alt="' . esc_attr(sprintf(__('View all posts in %s', 'textdomain'),
                     $category->name)) . '">' . esc_html($category->name) . '</a> <span>('.$category->count.')</li>' ;
     }
-    echo "<ul class='stack-list'>".trim($output)."</ul>";
+    echo "<ul>".trim($output)."</ul></div>";
 }
 ?>
 </div>
 
-<div class="archieve-wrap box-shadow margin-bottom-30">
 
-<?php /**Archives */
-    $args = array(
-        'type' => 'monthly',
-        'format' => 'html',
-        'show_post_count' => false,
-        'echo' => 1,
-        'order' => 'DESC',
-        'post_type' => 'post'
-    );
-    if (customArchievesLink($cat_id, $args)) { ?>
-        <h2 class="heading-title"><?php echo __("Archive"); ?></h2><ul class="stack-list">
-        <?php echo customArchievesLink($cat_id, $args) ?>
-        </ul>
-    <?php }    ?>
+<?php /**Archives */ ?>
+
+<div class="archieve-wrap box-shadow margin-bottom-30">
+        <h2 class="heading-title"><?php echo __("Archive"); ?></h2>
+        <div class="inner-sec stack-list">
+        <?php
+            global $wpdb;
+            $limit = 0;
+            $year_prev = null;
+            $months = $wpdb->get_results("SELECT DISTINCT MONTH( post_date ) AS month ,	YEAR( post_date ) AS year, COUNT( id ) as post_count FROM $wpdb->posts WHERE post_status = 'publish' and post_date <= now( ) and post_type = 'post' GROUP BY month , year ORDER BY post_date DESC");
+            foreach($months as $month) :
+        	$year_current = $month->year;
+	            if ($year_current != $year_prev) {
+                    if($year_current != date('Y')) {?>
+                </ul>
+                    <?php }?>
+                <h3 class="list-trigger">
+                    <a href="<?php bloginfo('url') ?>/<?php echo $month->year; ?>/"><?php echo $month->year; ?></a>
+                    <span class="fa fa-plus"></span>
+                </h3>	
+                <ul class="post-list">			
+                <?php } ?>
+                <li>
+                    <a href="<?php bloginfo('url') ?>/<?php echo $month->year; ?>/<?php echo date("m", mktime(0, 0, 0, $month->month, 1, $month->year)) ?>"><span class="archive-month"><?php echo date_i18n("F", mktime(0, 0, 0, $month->month, 1, $month->year)) ?></span></a>
+                    &nbsp;<span>(<?php echo $month->post_count; ?>)</span>
+                </li>
+                <?php $year_prev = $year_current;
+                    endforeach; ?>
+                </ul>
+                </div> 
     </div>
+
+
+
     <div class="instagram-wrap box-shadow margin-bottom-30">
     <h2 class="heading-title"><?php echo __("Instagram"); ?></h2>
 <?php /**Instagram Feed */
