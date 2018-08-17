@@ -1351,6 +1351,7 @@ div.container {
     font-family: 'Lato', sans-serif;
     font-weight: 600;
     margin-bottom: 15px;
+    margin-top: 0;
 }
 
 .heading-white .heading-title {
@@ -1528,6 +1529,10 @@ div.container {
 .logo-wrap a {
     margin-top: 8px;
     transition: all 0.5s ease 0s;
+}
+
+.logo-wrap h1 {
+    margin: 0;
 }
 
 .white-logo {
@@ -2134,7 +2139,7 @@ nav.main-navigation {
 }
 
 .main-navigation .menu-item-has-children .caret {
-    display: inline-block;
+    display: none;
     vertical-align: middle;
     top: 20px;
     border: none;
@@ -2690,6 +2695,15 @@ nav.main-navigation {
     text-transform: uppercase;
     padding-bottom: 20px;
     font-family: 'Lato', sans-serif;
+}
+
+.tab-section .nav-tabs>li>a .tab-title,
+.tab-section .panel-title>a .tab-title {
+    font-size: inherit;
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    margin: 0;
 }
 
 .nav-tabs.responsive li a:hover {
@@ -3332,9 +3346,10 @@ p+p {
     background: #fff;
 }
 
-.what-we-do .thumbnail .caption h4 {
+.what-we-do .thumbnail .caption .title {
     color: #174a7a;
     text-transform: uppercase;
+    margin-top: 0;
     margin-bottom: 15px;
     font-weight: bold;
     font-size: 15px;
@@ -3347,7 +3362,7 @@ p+p {
     font-family: 'Lato', sans-serif;
 }
 
-.what-we-do .thumbnail .caption h4:before {
+.what-we-do .thumbnail .caption .title:before {
     content: '';
     bottom: -5px;
     width: 0;
@@ -3358,7 +3373,7 @@ p+p {
     transition: all 0.5s ease 0s;
 }
 
-.what-we-do .thumbnail:hover h4:before {
+.what-we-do .thumbnail:hover .title:before {
     width: 100%;
 }
 
@@ -3981,7 +3996,7 @@ html {
     padding-right: 20px;
 }
 
-.feature-desc h2 {
+.feature-desc h3 {
     font-size: 16px;
     margin: 20px 0 8px;
     font-weight: 600;
@@ -4385,7 +4400,7 @@ html {
 .timeline-inner:before {
     content: '';
     position: absolute;
-    width: 5px;
+    width: 2px;
     background: #d8d7e4;
     left: 50%;
     top: 0;
@@ -4428,7 +4443,7 @@ html {
 
 .timeline-item .timeline-year {
     color: #eeeeef;
-    font-size: 160px;
+    font-size: 180px;
     font-weight: bold;
     position: relative;
 }
@@ -4459,7 +4474,7 @@ html {
 }
 
 .timeline-desc ul {
-    padding-left: 40px;
+    padding-left: 10px;
     list-style-type: disc;
 }
 
@@ -5431,7 +5446,7 @@ div.wpcf7 .ajax-loader {
     bottom: 0;
     content: "";
     display: block;
-    height: 50%;
+    height: 55%;
     left: 0;
     position: absolute;
     right: 0;
@@ -5443,6 +5458,10 @@ div.wpcf7 .ajax-loader {
     bottom: 0;
     padding: 0 30px;
     width: 100%;
+}
+
+.blog-item .blog-detail-wrap a {
+    display: block;
 }
 
 .blog-grid-sec .blog-tile {
@@ -5458,7 +5477,7 @@ div.wpcf7 .ajax-loader {
 .blog-grid-sec .blog-detail {
     padding: 15px 0;
     border-bottom: 1px solid #fff;
-    color: #999fa8;
+    color: #fff;
 }
 
 .blog-detail-wrap {
@@ -5476,14 +5495,14 @@ div.wpcf7 .ajax-loader {
 }
 
 .blog-detail-wrap .blog-detail {
-    font-size: 12px;
+    font-size: 10px;
     display: flex;
 }
 
 .blog-detail-wrap .blog-detail .blog-year:before {
     margin: 0 12px;
     width: 1px;
-    height: 15px;
+    height: 12px;
     content: '';
     vertical-align: middle;
     display: inline-block;
@@ -5509,6 +5528,10 @@ div.wpcf7 .ajax-loader {
     margin-left: 10px;
 }
 
+.blog-detail-wrap .blog-extras .comment-sec {
+    display: none;
+}
+
 .main-banner-wrap .blog-detail-wrap .extras-link+.extras-link {
     margin-left: 20px;
 }
@@ -5529,6 +5552,10 @@ div.wpcf7 .ajax-loader {
     top: -120%;
     padding: 5px 2px;
     border-radius: 2px;
+}
+
+.blog-item .blog-extras .social_sharing-content {
+    left: 0;
 }
 
 .social_sharing-content .social-sharing {
@@ -5604,6 +5631,29 @@ div.wpcf7 .ajax-loader {
 
 .sidebar-blog .stack-list {
     padding: 30px;
+}
+
+.sidebar-blog .list-trigger {
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+.sidebar-blog h3+.post-list {
+    display: none;
+    padding: 10px 0 0 20px;
+}
+
+.sidebar-blog .list-trigger span {
+    position: absolute;
+    right: 0;
+    top: 8px;
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 25px;
 }
 
 .sidebar-blog .stack-list li:last-of-type {
@@ -6038,10 +6088,13 @@ div.wpcf7 .ajax-loader {
 
 .main-content .legal-inner li>h2,
 .single .entry li>h2,
+.single .entry h2,
 .main-content .legal-inner li>h3,
 .single .entry li>h3,
+.single .entry h3,
 .main-content .legal-inner li>h4,
-.single .entry li>h4 {
+.single .entry li>h4,
+.single .entry h4 {
     font-size: 16px;
     color: #174a79;
     margin-bottom: 15px;
@@ -6064,9 +6117,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .main-content .legal-inner .content-wrap>ol>li,
-.main-content .legal-inner .content-wrap>ul>li,
-.single .entry>ul>li,
-.single .entry>ol>li {
+.main-content .legal-inner .content-wrap>ul>li {
     margin-bottom: 30px;
 }
 
@@ -6084,10 +6135,6 @@ div.wpcf7 .ajax-loader {
     color: #174a79;
 }
 
-.main-content .legal-inner li {}
-
-.main-content .legal-inner li {}
-
 .main-content .legal-inner li li,
 .single .entry li li {
     margin: 10px 0;
@@ -6103,14 +6150,58 @@ div.wpcf7 .ajax-loader {
 }
 
 .main-content .legal-inner li li:before,
-.single .entry li li:before {
+.single .entry li:before {
     content: "("counter(item, lower-roman) ") ";
     counter-increment: item;
 }
 
 .main-content .legal-inner ul ul,
+.main-content .legal-inner ul ol,
 .main-content .legal-inner ol ol,
+.main-content .legal-inner ol ul,
 .single .entry ul ul,
-.single .entry ol ol {
+.single .entry ul ol,
+.single .entry ol ol,
+.single .entry ol ul {
     margin-left: 30px;
+}
+
+.single .entry .alignleft {
+    margin-right: 15px;
+}
+
+.single .entry .alignright {
+    margin-left: 15px;
+}
+
+
+/*----- Page Site map -----*/
+
+.sitemap-wrap {
+    margin: 50px 0;
+}
+
+.sitemap-wrap .sub-menu {
+    display: block;
+    position: static;
+    box-shadow: none;
+    background: none;
+    margin-left: 20px;
+    width: auto;
+}
+
+.sitemap-wrap .sub-menu>li>a {
+    width: auto;
+    display: inline-block;
+}
+
+.sitemap-wrap .nav>li>a {
+    display: inline-block;
+}
+
+.sitemap-wrap .nav>li>a:hover,
+.sitemap-wrap .nav>li>a:focus,
+.sitemap-wrap .sub-menu>li>a:hover {
+    background: none;
+    color: #192a3e;
 }

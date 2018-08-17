@@ -10,8 +10,10 @@ get_header(); ?>
 <div class="main-banner-wrap">
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
 <div class="main-banner">
-        <?php if ($featured_img_url){ ?>
-        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+<?php if($featured_img_url){     
+                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
+                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
         <?php } else  { ?>
           <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
         <?php }?>
@@ -85,7 +87,7 @@ $exe_arg_query->the_post();  ?>
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <div class="container">
 <div class="heading text-center" >
-<div class="heading-title"><?php echo the_Title(); ?></div>
+<h2 class="heading-title"><?php echo the_Title(); ?></h2>
 <div class="sub-heading"><?php echo get_the_excerpt();?></div>
 </div>
 <div class="executive-inner">
@@ -118,7 +120,7 @@ the_post_thumbnail('full');
 </div>
 <div class="col-sm-8 col-xs-12 mem-info">
 <div class="exe-personal page-header">
-<div class="exe-name"><?php echo the_Title(); ?></div>
+<h3 class="exe-name"><?php echo the_Title(); ?></h3>
 <?php if (get_field('linkedin_link')){ ?>
 <a href="<?php the_field('linkedin_link'); ?>" class="btn btn-ripple linkedin"><i class="fa fa-linkedin"></i></a>
 <?php } ?>
@@ -177,7 +179,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <img src="/wp-content/uploads/2018/05/our_history_parallex.jpg" style="display: none;"/> 
 <div class="container">
 <div class="heading heading-white" >
-<div class="heading-title"><?php echo the_Title(); ?></div>
+<h2 class="heading-title"><?php echo the_Title(); ?></h2>
 <div class="sub-heading"><?php echo get_the_excerpt();?> </div>
 </div>
 <div class="history-content-inner col-sm-8 col-sm-offset-2">
@@ -211,7 +213,7 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     while ($unique_arg_query->have_posts()) {
       $unique_arg_query->the_post();  ?>
       <div class="heading text-center">
-        <div class="heading-title"><?php echo the_Title(); ?></div>
+        <h2 class="heading-title"><?php echo the_Title(); ?></h2>
         <div class="sub-heading"><?php  echo get_the_excerpt();?></div>
       </div>
     <?php } ?>

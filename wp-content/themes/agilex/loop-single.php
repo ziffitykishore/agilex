@@ -31,12 +31,12 @@
         <?php the_post_thumbnail( 'thumbnail' ); ?>
         </a> -->
         <?php endif; ?>
-        <?php if ( !is_singular() ) : ?>
+        <?php /* if ( !is_singular() ) : ?>
         <h2 class="blog-post-title"><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php esc_attr_e( 'Permanent Link to ', 'bootstrapcanvaswp' ) . esc_attr( the_title_attribute() ); ?>">
         <?php the_title(); ?></a></h2>
         <?php else : ?>
         <h2 class="blog-post-title"><?php the_title(); ?></a></h2>
-        <?php endif; ?>
+        <?php endif; */ ?>
         <?php if ( !get_the_title() ) : ?>
         <p class="blog-post-meta"><span class="glyphicon glyphicon-calendar"></span> <a href="<?php the_permalink() ?>" rel="bookmark" title="<?php esc_attr_e( 'Permanent Link to ', 'bootstrapcanvaswp' ) . get_the_title() ? esc_attr( the_title_attribute() ) : esc_attr_e( '[No Title]', 'bootstrapcanvaswp' ); ?>"><?php the_time( $date_format ) ?></a> by <span class="glyphicon glyphicon-user"></span> <?php the_author_link() ?></p>
         <?php else : ?>

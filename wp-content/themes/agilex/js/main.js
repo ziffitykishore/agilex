@@ -481,6 +481,16 @@ function myFunction() {
     arrows: false
   });
 
+
+  /* blog sidebar */
+
+  $('.list-trigger span').click(function(){
+    $(this).parent().next('ul').slideToggle('500');
+    $(this).toggleClass('fa-plus fa-minus');
+});
+
+
+
   //TO TOP BUTTON ---------------------------------------------------------------------/
 
   /******************************

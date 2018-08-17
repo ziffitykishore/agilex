@@ -11,10 +11,12 @@
 <div class="main-banner-wrap">
   <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     <div class="main-banner">
-      <?php if ($featured_img_url){ ?>
-        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+    <?php if($featured_img_url){     
+                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
+                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
       <?php } else  { ?>
-        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt=""/>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="Agilex Fragrances"/>
       <?php }?>
     </div>
     <div class="page-header-content">
@@ -34,7 +36,7 @@
     <div class="blog-detail-wrap">
           <div class="blog-detail text-uppercase">
               <div class="blog-author">By <?php  the_author_meta( 'display_name', $postDataValue->post_author ) ?></div>
-            <div class="blog-year"><?php the_time('j F Y') ?></div>
+            <div class="blog-year"><?php the_time('j M Y') ?></div>
           </div>
           <div class="blog-extras">
               <?php echo do_shortcode('[wishlist-feed]'); ?>

@@ -27,7 +27,7 @@
     <div class="blog-detail-wrap">
           <div class="blog-detail text-uppercase">
               <div class="blog-author">By <?php  the_author_meta( 'display_name', $postDataValue->post_author ) ?></div>
-            <div class="blog-year"><?php the_time('j F Y') ?></div>
+            <div class="blog-year"><?php the_time('j M Y') ?></div>
           </div>
           <div class="blog-extras">
               <?php echo do_shortcode('[wishlist-feed]'); ?>

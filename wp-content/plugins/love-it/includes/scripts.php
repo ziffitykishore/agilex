@@ -1,7 +1,7 @@
 <?php
 
 function li_front_end_js() {
-     if (is_user_logged_in()) {
+   //  if (is_user_logged_in()) {
         wp_enqueue_script('love-it', LI_BASE_URL . '/includes/js/love-it.js',
             array('jquery'));
         wp_localize_script('love-it', 'love_it_vars',
@@ -13,6 +13,6 @@ function li_front_end_js() {
                 'love_it')
             )
         );
-    }
+   // }
 }
 add_action('wp_enqueue_scripts', 'li_front_end_js');

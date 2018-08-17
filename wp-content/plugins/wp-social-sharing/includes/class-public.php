@@ -130,12 +130,12 @@ class SS_Public {
 	        	switch($o) {
 	        		case 'f':
 	        			if(in_array('facebook', $social_options)){
-	        			?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_facebook;?>" href="http://www.facebook.com/sharer/sharer.php?u=<?php echo $url; ?>" target="_blank" ><?php echo $facebook_text; ?></a><?php
+	        			?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_facebook;?>" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url; ?>" target="_blank" ><?php echo $facebook_text; ?></a><?php
 	        			}
 	        		break;
 	        		case 't':
 	        			if(in_array('twitter', $social_options)){
-	        			?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_twitter;?>" href="http://twitter.com/intent/tweet/?text=<?php echo $title; ?>&url=<?php echo $url; ?><?php if(!empty($twitter_username)) {  echo '&via=' . $twitter_username; } ?>" target="_blank"><?php echo $twitter_text; ?></a><?php
+	        			?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_twitter;?>" href="https://twitter.com/intent/tweet/?text=<?php echo $title; ?>&url=<?php echo $url; ?><?php if(!empty($twitter_username)) {  echo '&via=' . $twitter_username; } ?>" target="_blank"><?php echo $twitter_text; ?></a><?php
 	        			}
 	        		break;
 	        		case 'g':
@@ -145,12 +145,12 @@ class SS_Public {
 	        		break;
 					case 'l':
 						if(in_array('linkedin', $social_options)){
-							?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_linkedin;?>" href="http://www.linkedin.com/shareArticle?mini=true&url=<?php echo substr($url,0,1024);?>&title=<?php echo substr($title,0,200);?>" target="_blank" ><?php echo $linkedin_text; ?></a><?php
+							?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_linkedin;?>" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo substr($url,0,1024);?>&title=<?php echo substr($title,0,200);?>" target="_blank" ><?php echo $linkedin_text; ?></a><?php
 						}
 	        		break;
 	        		case 'p':
 	        			if(in_array('pinterest', $social_options)){
-	        				?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_pinterest;?>" href="http://pinterest.com/pin/create/button/?url=<?php echo $url;?>&media=<?php echo $social_image;?>&description=<?php echo $title;?>" target="_blank" ><?php echo $pinterest_text; ?></a><?php
+	        				?><a <?php echo $loadjs;?> rel="external nofollow" class="<?php echo $ssbutton_pinterest;?>" href="https://pinterest.com/pin/create/button/?url=<?php echo $url;?>&media=<?php echo $social_image;?>&description=<?php echo $title;?>" target="_blank" ><?php echo $pinterest_text; ?></a><?php
 	        			}
 					break;
                     case 'x':
@@ -160,7 +160,7 @@ class SS_Public {
 	        		break;
 					case 'r':
 						if(in_array('reddit', $social_options)){
-							?><a <?php echo $loadjs;?> rel="external nofollow"  class="<?php echo $ssbutton_reddit;?>" href="http://reddit.com/submit?url=<?php echo $url;?>&amp;title=<?php echo $title?>" target="_blank"><?php echo $reddit_text;?></a><?php
+							?><a <?php echo $loadjs;?> rel="external nofollow"  class="<?php echo $ssbutton_reddit;?>" href="https://reddit.com/submit?url=<?php echo $url;?>&amp;title=<?php echo $title?>" target="_blank"><?php echo $reddit_text;?></a><?php
                         }
                     break;
           		}

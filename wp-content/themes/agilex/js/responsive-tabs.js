@@ -59,7 +59,7 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 				collapseDiv.append(
 					$( '<div>' ).attr( 'class', newParentClass ).html(
 						$( '<div>' ).attr( 'class', 'panel-heading' ).html(
-							$( '<h4>' ).attr( 'class', 'panel-title' ).html(
+							$( '<div>' ).attr( 'class', 'panel-title' ).html(
 								$( '<a>', {
 									'class'       : newLinkClass,
 									'data-toggle' : 'collapse',

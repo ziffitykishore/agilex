@@ -9,10 +9,12 @@ get_header(); ?>
 <div class="main-banner-wrap">
 <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
 <div class="main-banner">
-        <?php if ($featured_img_url){ ?>
-        <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
+<?php if($featured_img_url){     
+                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
+                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
         <?php } else  { ?>
-          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt="Agilex Fragrances"/>
         <?php }?>
         </div>
         <div class="page-header-content">
@@ -65,7 +67,7 @@ if($tabdetails) { ?>
               </div>
             </div>
             <div class="content-wrap flex-sm-100 <?php if(empty($tabdetail["tab-image"])) {  echo "flex-100";  } else { echo "flex-50" ;}  ?>">
-              <div class="feature-title"><?php echo $tabdetail["tab-title"]; ?></div>
+              <h2 class="feature-title"><?php echo $tabdetail["tab-title"]; ?></h2>
               <div class="feature-desc">
                 <?php echo $tabdetail["tab-content"]; ?>
               </div>
