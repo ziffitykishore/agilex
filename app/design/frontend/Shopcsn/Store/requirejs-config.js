@@ -1,8 +1,7 @@
 var config = {
     paths: {
             'bminjs' : 'js/bootstrap.min',
-            'slick'  : 'js/slick.min',
-            'mainjs'   : 'js/main'
+            'slick'  : 'js/slick.min'
     },
     shim: {
         'bminjs': {
@@ -10,10 +9,7 @@ var config = {
         },
         'slick' :{
            deps : ['jquery']
-       },
-       'mainjs' :{
-            deps : ['jquery']
-        }
+       }
     },
     map: {
         '*': {

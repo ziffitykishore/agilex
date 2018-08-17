@@ -1,0 +1,221 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Responsive
+//  _____________________________________________
+
+//
+//  Media variables, that can be used for splitting styles into several files
+//  ---------------------------------------------
+
+@media-common: true; // Sets whether to output common styles (true|false)
+@media-target: 'all'; // Sets target device for styles output (all|desktop|mobile)
+
+//
+//  Media width mixin used to group styles output based on media queries
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+}
+
+//
+//  Style groups for 'mobile' devices
+//  ---------------------------------------------
+
+& when (@media-target = 'mobile'), (@media-target = 'all') {
+
+    @media only screen and (max-width: (@screen__xxs - 1)) {
+        .media-width('max', @screen__xxs);
+    }
+
+    @media only screen and (max-width: (@screen__xs - 1)) {
+        .media-width('max', @screen__xs);
+    }
+
+    @media only screen and (max-width: (@screen__s - 1)) {
+        .media-width('max', @screen__s);
+    }
+
+    @media only screen and (max-width: (@screen__m - 1)) {
+        .media-width('max', @screen__m);
+    }
+
+    @media only screen and (max-width: @screen__m) {
+        .media-width('max', (@screen__m + 1));
+    }
+
+    @media all and (min-width: @screen__s) {
+        .media-width('min', @screen__s);
+    }
+
+}
+
+//
+//  Style groups for 'desktop' devices
+//  ---------------------------------------------
+
+& when (@media-target = 'desktop'), (@media-target = 'all') {
+
+    @media all and (min-width: @screen__m),
+    print {
+        .media-width('min', @screen__m);
+    }
+
+    @media all and (min-width: (@screen__m + 1)),
+    print {
+        .media-width('min', (@screen__m + 1));
+    }
+
+    @media all and (min-width: @screen__l),
+    print {
+        .media-width('min', @screen__l);
+    }
+
+    @media all and (min-width: @screen__xl),
+    print {
+        .media-width('min', @screen__xl);
+    }
+}
+
+
+
+/* custom values */
+
+@media all and (min-width: @desk) {
+    .media-width('min', @desk);
+}
+@media all and (min-width: @desktop) {
+    .media-width('min', @desktop);
+}
+@media all and (min-width: @touch) {
+    .media-width('min', @touch);
+}
+@media all and (max-width: @mobile_cart) {
+    .media-width('max', @mobile_cart);
+}
+@media all and (min-width: @tablet) {
+    .media-width('min', @tablet);
+}
+@media all and (min-width: @lg_desktop) {
+    .media-width('min', @lg_desktop);
+}
+@media all and (min-width: @mobile) {
+    .media-width('min', @mobile);
+}
+@media all and (max-width: @mobile_free_store) {
+    .media-width('max', @mobile_free_store);
+}
+@media all and (min-width: @xlg_desktop) {
+    .media-width('min', @xlg_desktop);
+}
+@media all and (max-width: @cap_lg_desktop) {
+    .media-width('max', @cap_lg_desktop);
+}
+@media all and (max-width: @mxlg_desktop) {
+    .media-width('max', @mxlg_desktop);
+}
+@media all and (min-width: @mobile_portrait) {
+    .media-width('min', @mobile_portrait);
+}
+@media all and (max-width: @mlg_desktop) {
+    .media-width('max', @mlg_desktop);
+}
+@media all and (max-width: @desktop) {
+    .media-width('max', @desktop);
+}
+@media all and (max-width: @touch) {
+    .media-width('max', @touch);
+}
+@media all and (max-width: @min-touch) {
+    .media-width('max', @min-touch);
+}
+@media all and (min-width: @max-touch) {
+    .media-width('min', @max-touch);
+}
+@media all and (max-width: @tablet) {
+    .media-width('max', @tablet);
+}
+@media all and (max-width: @mobile) {
+    .media-width('max', @mobile);
+}
+@media all and (max-width: @desk) {
+    .media-width('max', @desk);
+}
+@media all and (max-width: @mobile_portrait) {
+    .media-width('max', @mobile_portrait);
+}
+@media all and (max-width: @v_mobile_portrait) {
+    .media-width('max', @v_mobile_portrait);
+}
+@media all and (max-width: @mobile_mini) {
+    .media-width('max', @mobile_mini);
+}
+@media all and (max-width: @lg_desktop) {
+    .media-width('max', @lg_desktop);
+}
+@media all and (max-width: @mobile_small) {
+    .media-width('max', @mobile_small);
+}
+@media all and (max-width: @xlg_desktop) {
+    .media-width('max', @xlg_desktop);
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @xlg_desktop) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @mobile_free_store) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @xlg_desktop) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @mxlg_desktop) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @cap_lg_desktop) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @mobile_cart) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @lg_desktop) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @mlg_desktop) {
+    
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @mobile_small) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @lg_desktop) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @desktop) {
+
+} 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @min-touch) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @touch) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @touch) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @tablet) {
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @desk) {
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @desktop) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @tablet) {
+
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @mobile) {
+
+
+}

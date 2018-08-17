@@ -110,7 +110,7 @@
 
             }
         }
-        .filter-options-title {
+        &-title {
             .lib-heading(h4);
             margin: 0 0 @indent__s;
             word-break: break-all;
@@ -121,9 +121,17 @@
                 .pos(absolute);
                 right: 0;
             }
+            &.active{
+                border-bottom: none;
+                margin-bottom: 0;
+                padding-bottom: 0;
+                .fa {
+                    .transform(rotate(180deg));
+                }
+            }
         }
 
-        .filter-options-content {
+        &-content {
             a{
                 font-size: @f-size-xs;
             }

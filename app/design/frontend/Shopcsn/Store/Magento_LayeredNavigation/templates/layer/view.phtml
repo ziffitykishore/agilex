@@ -48,3 +48,21 @@
         </div>
     </div>
 <?php endif; ?>
+
+<script>
+require([
+    'jquery',  
+    'jquery/ui'
+], function ($){
+
+//     `use strict`;
+    console.log("Price Slider");
+//require(["jquery" , "jquery/jquery-ui"], function($){
+    // ...
+    $('.filter-options-title').on('click', function(){
+        $(this).toggleClass('active');
+        $(this).next().toggle();
+    });
+    
+});
+</script>
