@@ -23,14 +23,13 @@
             <?php if ($featured_img_url){ ?>
                 <img src="<?php echo $featured_img_url; ?>" class="" alt="<?php $featured_img_url['alt']; ?>"/>
             <?php } else  { ?>
-                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+                <img src="<?php bloginfo('template_directory'); ?>/images/404.jpg" class="" alt=""/>
             <?php }?>
 
         </div>
         <div class="page-header-content">
             <div class="container">
-                <h1><?php echo $postValue->post_title ?></h1>
-                <p><?php echo $postValue->post_excerpt ?></p>
+                
             </div>
         </div><?php endforeach;?>
     </div>

@@ -8,8 +8,12 @@
 ?>
 
 <div class="blog-search box-shadow margin-bottom-30">
-<?php get_search_form(); ?>
-</div>
+<?php /* * Search Form */ $cat_id = get_queried_object_id(); ?>
+    <?= customSearchForm(null,
+        'Search',
+        'post',
+        $cat_id); ?>
+        </div>
 
 <div class="categories-wrap box-shadow margin-bottom-30">
 <?php /** Categories */

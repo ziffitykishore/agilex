@@ -180,17 +180,25 @@ $unique_arg_query->the_post();  ?>
 
 
     <div class="container">
-    <div class="heading">
-        <a href="<?php echo get_permalink() ?>">
-            <h2 class="heading-title"><?php echo the_Title(); ?></h2>
-        </a>
-        <?php if(get_the_excerpt()) {?>
-        <div class="sub-heading"><?php echo get_the_excerpt(); ?></div>
-    <?php } ?>
-    </div>
+
 
     <div class="content-outer-wrap">
         <div class="inner-content-wrap">
+            <div class="heading">
+                <a href="<?php echo get_permalink() ?>">
+                    <h2 class="heading-title"><?php echo the_Title(); ?></h2>
+                </a>
+                <?php if(get_the_excerpt()) {?>
+                    <div class="sub-heading"><?php echo get_the_excerpt(); ?></div>
+                <?php } ?>
+            </div>
+
+            <div class=" content-desc text-center">
+                     <?php if (get_field('learn_more_text')){ ?>
+                        <a href="<?php echo get_permalink() ?>" class="btn-more btn btn-blue btn-door btn-md"><?php the_field('learn_more_text'); ?></a>
+                    <?php } ?>
+                </div>
+
             <div class="inner-content video-content-inner">
                 <?php if (get_field('video_image', get_the_ID())){ ?>
                     <?php $image = get_field('video_image'); ?>
@@ -215,14 +223,7 @@ $unique_arg_query->the_post();  ?>
                       <span class="text-content lined">Play Video</span>
                     <?php } ?> 
                 </a>
-                <div class=" content-desc">
-                <?php if (get_field('short_description', get_the_ID())){ 
-                    the_field('short_description');  }  ?>
-
-                    <?php if (get_field('learn_more_text')){ ?>
-                        <a href="<?php echo get_permalink() ?>" class="btn-more btn btn-blue btn-door btn-md"><?php the_field('learn_more_text'); ?></a>
-                    <?php } ?>
-                </div>
+                
             </div>
         </div>
     </div>
@@ -318,9 +319,12 @@ $unique_arg_query->the_post();  ?>
                                     <h3 class="title"><?php echo the_Title(); ?></h3>
                                     <div class="content-desc">
                                         <?php if (get_field('short_description', get_the_ID())){ 
-                                        echo wp_trim_words( get_field('short_description'), 15, '...' );
+
+                                            // trim character length substr(strip_tags(get_the_content()), 0, 15);
+
+                                        echo wp_trim_words( get_field('short_description'), 14, '...' );
                                         } else {
-                                        echo wp_trim_words( get_the_content(), 15, '...' );
+                                        echo wp_trim_words( get_the_content(), 14, '...' );
                                         } ?>
                                     </div>
                                 </div>
@@ -402,6 +406,11 @@ $unique_arg_query->the_post();  ?>
                                         <?php echo the_Content(); ?>
                                     </div>
                                     <div class="author-details">
+                                    <div class="author-pos">
+                                            <?php if (get_field('position', get_the_ID())): ?>
+                                                <?php the_field('position', get_the_ID()); ?>
+                                            <?php endif; ?>
+                                        </div>
                                         <div class="author-name">
                                             <strong>
                                                 <?php if (get_field('name_testimonial', get_the_ID())): ?>
@@ -409,11 +418,7 @@ $unique_arg_query->the_post();  ?>
                                                 <?php endif; ?>
                                             </strong>
                                         </div>
-                                        <div class="author-pos">
-                                            <?php if (get_field('position', get_the_ID())): ?>
-                                                <?php the_field('position', get_the_ID()); ?>
-                                            <?php endif; ?>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 </div>

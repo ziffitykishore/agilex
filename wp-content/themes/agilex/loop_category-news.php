@@ -29,7 +29,7 @@
                                                 $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
                                                 <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
                                             <?php } else { ?>
-                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg" alt="Agilex Fragrances"/>                    
+                                                <img src="<?php echo get_template_directory_uri()?>/images/blog_thumb-sm.jpg" alt="Agilex Fragrances"/>                    
                                             <?php  }?>
 
                                             </a>
@@ -37,18 +37,10 @@
                                     <div class="blog-detail-wrap">
                                         <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php echo wp_trim_words(get_the_title(),12, '...'); ?></div></a>
                                             <div class="blog-detail text-uppercase">
-                                            <div class="blog-author">By <?php the_author_meta( 'display_name', $postValue[0]->post_author ) ?></div>
-                                            <div class="blog-year"><?php the_time('j M Y') ?></div>
-                                        </div>
-                                        <div class="blog-extras">
-                                            <?php echo do_shortcode('[wishlist-feed]'); ?>
-                                            <span class="comment-sec extras-link"><i class="fa fa-comment-o"></i> <span class="comments-count"> <?php
-                                            echo get_comments_number();
-                                            ?></span></span>
-                                            <span  class="social_sharing extras-link"><i class="fa fa-share-alt"></i>
-                                                <div class="social_sharing-content" ><?php echo do_shortcode('[wp_social_sharing]'); ?></div>
-                                            </span>
-                                        </div>
+                                                <div class="blog-author">By <?php the_author_meta( 'display_name', $postValue[0]->post_author ) ?></div>
+                                                <div class="blog-year"><?php the_time('j M Y') ?></div>
+                                            </div>
+                                        
                                     </div>
                                 </div>
                             </li>
