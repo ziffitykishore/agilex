@@ -2,6 +2,27 @@
     .parallax-img-container .parallax-move {
         width: auto;
     }
+    .nav-tabs.responsive li a {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .nav-tabs.responsive li+li {
+        margin-left: 35px;
+    }
+}
+
+@media screen and (min-width: 1301px) and (max-width: 1600px) {
+    .nav-tabs.responsive li a {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1300px) {
+    .tab-section .uniques-inner .tab-content {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
 }
 
 @media screen and (min-width: 1367px) {
@@ -12,10 +33,6 @@
         margin-top: -50px;
         position: relative;
         z-index: 10;
-    }
-    .nav-tabs.responsive li a {
-        padding-left: 35px;
-        padding-right: 35px;
     }
     .what-we-do {
         margin-top: 35px;
@@ -52,16 +69,13 @@
     .curated-news-inner {
         padding: 30px;
     }
-
     .timeline-item .timeline-year {
         font-size: 160px;
     }
-
     .timeline-item .timeline-year-from,
     .timeline-item .timeline-year-beyond {
         font-size: 90px;
     }
-
     .uniques-inner .tab-content {
         padding: 30px 0 0;
     }
@@ -75,7 +89,6 @@
     .careers-wrap .inner-section {
         padding: 30px;
     }
-
     .timeline-inner {
         padding: 50px 40px 100px;
     }
@@ -375,9 +388,6 @@
     }
 }
 
-
-
-
 @media screen and (min-width: 769px) {
     .sticky-footer .footer-wrap {
         position: fixed;
@@ -449,8 +459,8 @@
     }
 }
 
-@media screen and (min-width: 768px){
-    .timeline-item .timeline-title{
+@media screen and (min-width: 768px) {
+    .timeline-item .timeline-title {
         margin: 0;
     }
 }
@@ -553,7 +563,6 @@
     .cd-icons-filling {
         padding: 30px;
     }
-
     .flex-sm-100 {
         max-width: 100%;
         -ms-flex: 0 0 100%;
@@ -594,7 +603,7 @@
     .sub-category .image-sec {
         background-image: none !important;
     }
-    .related-categories-wrap .category-title{
+    .related-categories-wrap .category-title {
         font-size: 14px;
     }
     .sub-service-wrap .categories-content h2 {

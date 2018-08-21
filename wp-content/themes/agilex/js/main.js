@@ -475,7 +475,7 @@ function myFunction() {
 
   $(".reviews-inner").slick({
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 8000,
     dots: true,
     fade: true,
     arrows: false

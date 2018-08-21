@@ -848,7 +848,7 @@ body {
 p {
     font-size: 14px;
     color: #192a3e;
-    line-height: 30px;
+    line-height: 20px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -1048,7 +1048,7 @@ p {
 
 .jobpost-form .form-group .form-control,
 .contact-form .wpcf7-form .form-group .form-control {
-    height: 50px !important;
+    height: 34px !important;
 }
 
 .jobpost-form .form-group .form-control,
@@ -1066,7 +1066,7 @@ p {
 }
 
 .jobpost-form .form-group textarea.form-control {
-    height: 100px !important;
+    height: 75px !important;
     resize: none;
     padding-top: 20px;
 }
@@ -1084,10 +1084,11 @@ p {
 .jobpost-form .form-group .file div:before {
     content: "\f093";
     font-family: 'FontAwesome';
-    position: static;
+    position: relative;
     color: #174a79;
     font-size: 16px;
     opacity: 1;
+    top: -5px;
     background: transparent;
 }
 
@@ -1335,6 +1336,8 @@ p {
 div.container {
     max-width: 1200px;
     width: 100% !important;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .heading {
@@ -1362,6 +1365,11 @@ div.container {
     color: #6f6f6f;
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
+    text-align: justify;
+}
+
+.home .sub-heading {
+    text-align: justify;
 }
 
 
@@ -2665,6 +2673,7 @@ nav.main-navigation {
     border: none;
     position: relative;
     text-align: center;
+    line-height: 25px;
 }
 
 #myTabs {
@@ -3024,7 +3033,7 @@ span.line {
 
 .uniques-inner .content-wrap p {
     font-size: 16px;
-    line-height: 28px;
+    line-height: 22px;
     color: #192a3e;
     letter-spacing: 1px;
     font-family: 'Lato', sans-serif;
@@ -3117,7 +3126,7 @@ p+p {
 }
 
 .who-we-are .inner-content-wrap {
-    padding: 65px 200px 0%;
+    padding: 65px 30px 0%;
     box-shadow: 0 12px 20px 4px rgba(0, 0, 0, 0.2);
     margin-bottom: 100px;
     height: 550px;
@@ -3137,7 +3146,7 @@ p+p {
 
 .video-content-inner p {
     font-size: 14px;
-    line-height: 30px;
+    line-height: 20px;
     color: #192a3e;
     font-family: 'Poppins', sans-serif;
     display: inline-block;
@@ -3157,11 +3166,11 @@ p+p {
 }
 
 .heading .sub-heading {
-    font-size: 13px;
-    line-height: 18px;
+    font-size: 14px;
+    line-height: 20px;
     max-width: 1024px;
     margin: 0 auto;
-    color: #6f6f6f;
+    color: #192a3e;
 }
 
 .video-content {
@@ -3175,6 +3184,10 @@ p+p {
 .home .video-content {
     min-height: 400px;
     top: 30px;
+    padding: 15%;
+    max-width: 850px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .video-content .btn-fancy {
@@ -3399,6 +3412,7 @@ p+p {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: justify;
 }
 
 .review-content .quotes {
@@ -3425,10 +3439,14 @@ p+p {
 
 .author-details {
     margin: 35px 0 25px;
+    text-align: center;
+}
+
+.author-details>* {
+    margin: 10px 0;
 }
 
 .author-details .author-name {
-    margin-bottom: 10px;
     color: #174b7d;
     font-size: 18px;
 }
@@ -3620,8 +3638,7 @@ p+p {
 }
 
 .exe-desc p {
-    color: #174a79;
-    line-height: 18px;
+    line-height: 20px;
 }
 
 .exe-desc p+p {
@@ -3675,10 +3692,11 @@ p+p {
 
 .our-history .history-content p {
     color: #fff;
+    text-align: justify;
 }
 
 .our-history .history-content p+p {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .our-history .history-content-inner a.btn {
@@ -3907,10 +3925,15 @@ p+p {
 }
 
 .page-desc {
-    padding: 70px;
+    padding: 50px 70px 50px;
     background: #fff;
     position: relative;
     z-index: 3;
+}
+
+.sub-service-wrap .page-desc {
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 .sub-service-wrap .categories-blk {
@@ -3948,9 +3971,9 @@ p+p {
 
 .sub-service-wrap .categories-content .short-desc,
 .sub-service-wrap .categories-content p {
-    color: #6f6f6f;
+    color: #192a3e;
     font-size: 14px;
-    line-height: 30px;
+    line-height: 20px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -4480,7 +4503,7 @@ html {
 
 .timeline-desc ul li {
     color: #192a3e;
-    line-height: 30px;
+    line-height: 20px;
     margin: 10px;
 }
 
@@ -4560,6 +4583,10 @@ html {
 
 .careers-wrap .careers-form {
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.careers-wrap .careers-form .heading {
+    margin-bottom: 20px;
 }
 
 .careers-wrap .careers-form .heading-title {
@@ -4644,7 +4671,6 @@ html {
 }
 
 .opening-wrap .job-desc p {
-    font-size: 13px;
     line-height: normal;
 }
 
@@ -5478,6 +5504,7 @@ div.wpcf7 .ajax-loader {
     padding: 15px 0;
     border-bottom: 1px solid #fff;
     color: #fff;
+    margin-bottom: 15px;
 }
 
 .blog-detail-wrap {
@@ -5512,7 +5539,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .blog-grid-sec .blog-extras {
-    padding: 15px 0;
+    padding: 0px 0 15px;
 }
 
 .blog-detail-wrap .blog-extras .extras-link {
@@ -5803,7 +5830,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .single-page-wrap .single-content-inner p+p {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .single .entry {
@@ -6127,7 +6154,7 @@ div.wpcf7 .ajax-loader {
 .single .entry li p {
     font-size: 14px;
     color: #192a3e;
-    line-height: 28px;
+    line-height: 20px;
     text-align: justify;
 }
 
