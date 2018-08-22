@@ -25,7 +25,7 @@ a:focus {
 
 h1,
 h2 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 h2 {
@@ -1351,7 +1351,7 @@ div.container {
 .heading .heading-title {
     color: #174a7a;
     font-size: 30px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     margin-bottom: 15px;
     margin-top: 0;
@@ -1366,6 +1366,7 @@ div.container {
     font-family: 'Poppins', sans-serif;
     font-size: 13px;
     text-align: justify;
+    padding: 0 25px;
 }
 
 .home .sub-heading {
@@ -2504,7 +2505,7 @@ nav.main-navigation {
     font-size: 50px;
     color: #fff;
     line-height: normal;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .slider-content .btn-more {
@@ -2703,7 +2704,7 @@ nav.main-navigation {
     text-decoration: none;
     text-transform: uppercase;
     padding-bottom: 20px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .tab-section .nav-tabs>li>a .tab-title,
@@ -3036,7 +3037,7 @@ span.line {
     line-height: 22px;
     color: #192a3e;
     letter-spacing: 1px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .tab-section .content-wrap p {
@@ -3151,6 +3152,7 @@ p+p {
     font-family: 'Poppins', sans-serif;
     display: inline-block;
     text-align: justify;
+    padding: 0 25px;
 }
 
 .video-content-inner .btn-more {
@@ -3372,7 +3374,7 @@ p+p {
     transition: all 0.5s ease 0s;
     transition: all 0.5s ease 0s;
     position: relative;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .what-we-do .thumbnail .caption .title:before {
@@ -3434,7 +3436,7 @@ p+p {
     font-size: 16px;
     line-height: 25px;
     letter-spacing: 1px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .author-details {
@@ -3514,6 +3516,7 @@ p+p {
     font-size: 50px;
     margin: 0 0 10px;
     color: #fff;
+    font-weight: 600;
 }
 
 .page-header-content p {
@@ -3617,7 +3620,7 @@ p+p {
 
 .executive-wrap .exe-name {
     font-size: 20px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin-bottom: 10px;
     font-weight: bold;
     color: #174a79;
@@ -3629,7 +3632,7 @@ p+p {
     text-transform: uppercase;
     color: #192a3e;
     font-weight: 500;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .executive-wrap .mem-info {
@@ -3961,12 +3964,13 @@ p+p {
     font-size: 22px;
     color: #174a79;
     line-height: normal;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    margin-top: 0;
     font-weight: bold;
 }
 
 .sub-service-wrap .categories-content .short-desc {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .sub-service-wrap .categories-content .short-desc,
@@ -4044,7 +4048,7 @@ html {
     font-size: 22px;
     margin-bottom: 20px;
     font-weight: 400;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 .sub-category .feature-desc .btn-more {
@@ -4136,7 +4140,7 @@ html {
     left: 0;
     right: 0;
     padding: 10px;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
     text-transform: uppercase;
     color: #fff;
@@ -4431,7 +4435,7 @@ html {
 }
 
 .timeline-item+.timeline-item {
-    margin-top: 180px;
+    margin-top: 80px;
 }
 
 .timeline-item:nth-child(odd) {
@@ -4469,6 +4473,11 @@ html {
     font-size: 180px;
     font-weight: bold;
     position: relative;
+    transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
 }
 
 .timeline-item .timeline-year-from,
@@ -4493,7 +4502,7 @@ html {
 }
 
 .timeline-desc {
-    margin-top: 25px;
+    margin-top: 15px;
 }
 
 .timeline-desc ul {
@@ -4508,8 +4517,14 @@ html {
 }
 
 .timeline-item .timeline-image {
-    padding-right: 25px;
-    padding-left: 25px;
+    padding-right: 0px;
+    padding-left: 0px;
+    max-width: 45%;
+    -ms-flex: 4;
+    flex: 0 0 45%;
+}
+
+.timeline-item:nth-child(odd) .timeline-image {
     max-width: 48%;
     -ms-flex: 4;
     flex: 0 0 48%;
@@ -4541,14 +4556,27 @@ html {
     background: #e5e5e5;
     width: 100%;
     height: 100%;
+    -webkit-transition: all 0.5s ease 0s;
+    -moz-transition: all 0.5s ease 0s;
+    -ms-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ease 0s;
+    transition: all 0.5s ease 0s;
+}
+
+.timeline-inner .timeline-item:hover .seconday-image {
+    background: #174a79;
+}
+
+.timeline-image .seconday-image img {
+    display: none;
 }
 
 .timeline-item .timeline-content {
-    padding-left: 25px;
-    padding-right: 25px;
-    max-width: 45%;
-    -ms-flex: 0 0 45%;
-    flex: 0 0 45%;
+    padding-left: 0px;
+    padding-right: 0px;
+    max-width: 48%;
+    -ms-flex: 0 0 48%;
+    flex: 0 0 48%;
 }
 
 
@@ -5719,7 +5747,7 @@ div.wpcf7 .ajax-loader {
     border-radius: 0;
     background: #f2eeec;
     color: #192a3e;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Poppins', sans-serif;
     border-color: #f2eeec;
     border-top: 2px solid #f2eeec;
     margin: 0;
