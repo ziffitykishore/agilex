@@ -38,9 +38,10 @@
         <move element="product.info.main" destination="pdp-container" after="product.info.media" />
         <referenceBlock name="product.info.review" remove="true"/>
         <referenceBlock name="product.info.mailto" remove="true"/>
+         <referenceBlock name="view.addto.compare" remove="true" />
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
-     
+        
         <move element="product.info.overview" destination="product.info.main" after="product.info.price" />
     </body>
 </page>
