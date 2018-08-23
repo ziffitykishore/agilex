@@ -19,11 +19,14 @@
                     </arguments>
                 </block>
             </container>
-            <container name="csn-info">
-                 <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />
-            </container>  
            
         </referenceContainer>
+        <container name="csn-info" htmlClass="csn-info" htmlTag="div">
+            <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />           
+        </container>  
+           
+        <move element="csn-info" destination="page.top"/>
+        <move element="breadcrumbs" destination="csn-info" before="csn.info" />
         
         
         <referenceContainer name="footer" htmlClass="page-footer__content">
