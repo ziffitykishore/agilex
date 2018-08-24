@@ -22,18 +22,12 @@ $_postCollection = $block->getPostCollection();
     <?php echo $block->getAdditionalHtml() ?>
     <div class="post-list-wrapper">
         <?php $iterator = 1; ?>
-        <ol class="post-list">
+        <div class="blog-content-wrap clearfix">
             <?php foreach ($_postCollection as $_post): ?>
                 <?php echo $block->getPostHtml($_post) ?>
             <?php endforeach; ?>
-            <li class="hidden">
-                <script type="text/javascript">
-                    if (window.addthis) {
-                        addthis.toolbox('.addthis_toolbox');
-                    }
-                </script>
-            </li>
-        </ol>
+            
+        </div>
     </div>
 
     <?php echo $block->getToolbarHtml() ?>
