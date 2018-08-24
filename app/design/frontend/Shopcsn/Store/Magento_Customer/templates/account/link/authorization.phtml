@@ -14,7 +14,7 @@ if ($block->isLoggedIn()) {
 }
 ?>
 <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
-    <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+    <a <?= /* @noEscape */ ($block->isLoggedIn()) ? $block->getLinkAttributes() : 'id="login-popup" href="javascript:void(0)" class="trigger-auth-popup"'; ?><?= /* @noEscape */ $dataPostParam ?>>
     <i class="fa fa-user"></i><?= $block->escapeHtml($block->getLabel()) ?>
     </a>
 </li>

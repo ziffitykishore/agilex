@@ -45,7 +45,7 @@
                                 <li><input type="checkbox" class="txt-grey"><span class="txt-grey"> Remember me</span></li>
                                 <li class="pull-right">
                                     <div class="secondary">
-                                        <a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>">
+                                        <a class="action remind" href="javascript:void(0);" id="forget-pwd">
                                             <span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span>
                                         </a>
                                     </div>
@@ -60,7 +60,7 @@
                                 </button>
                             </div>
                             <div class="new-signup text-center">
-                                <p><?= __('New User?') ?><a href="javascript:void(0);" id="signup-modal"><?= __('Sign Up') ?></a></p>
+                                <p><?= __('New User ? ') ?><a href="javascript:void(0);" id="signup-modal"><?= __('Sign Up') ?></a></p>
                             </div>
                         </div>
                     </fieldset>
@@ -152,7 +152,7 @@
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="send2"><span>Sign Up</span></button></div>                     
                 </div>
                 <div class="already-account text-center">
-                    <p><?= __('Already have an account? Click') ?><a href="javascript:void(0);" id="login-popup1"><?= __('here') ?></a> <?= __('to Sign In.') ?></p>
+                    <p><?= __('Already have an account? Click') ?><a href="javascript:void(0);" id="login-popup-form"><?= __('here') ?></a> <?= __('to Sign In.') ?></p>
                 </div>
             </fieldset> 
         </form>
@@ -181,6 +181,40 @@
         </div>
     </div>
 </div>
+<!-- Forget Password -->
+<div class="log-in" id="forget-popup" style="display: none;" >
+    <div class="sign-in-page">
+        <div><h1>We are here to help you!</h1></div>
+        <div><p>America's Trusted Source of Numismatic Treasures</p></div>
+    </div>
+    <div class="block block-customer-login">
+       <div class="common-form forgot-password">
+            <div class="block-title main-head text-center mb-20">
+                <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password ?') ?></strong></h3>
+            </div>
+            <div class="block-content">
+                <form class="form password forget" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
+                    <fieldset class="fieldset" data-hasrequired="* Required Fields">
+                        <div class="field note text-center mb-20"><?= __('Sign In by entering the information below') ?></div>
+                        <div class="field email required mb-20 form-group">
+                            <label for="email_forget" class="label txt-grey"><span><?= __('Email') ?></span></label>
+                            <div class="control wpcf7-form-control-wrap">
+                                <input type="email" name="email" alt="email" id="email_forget" class="input-text form-control" value="" data-validate="{required:true, 'validate-email':true}" aria-required="true">
+                            </div>
+                        </div>
+                            </fieldset>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="button-full action submit primary text-uppercase"><span>continue</span></button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
 require(['jquery','Magento_Ui/js/modal/modal'],
 function($, modal) {
@@ -191,12 +225,12 @@ function($, modal) {
         modalClass: 'custom-block-customer-login',
         buttons: false,
     };
-    $('#login-popup, #login-popup1').on("click", function(){
+    $('#login-popup, #login-popup-form').on("click", function(){
         var popup = modal(options, $('#popup-modal'));
-        $('#popup-modal-signup').modal('closeModal');
+        //$('#popup-modal-signup').modal('closeModal');
         $('#popup-modal').modal('openModal');
     });
-    var options = {
+    var optsignup = {
         type: 'popup',
         responsive: true,
         innerScroll: true,
@@ -205,8 +239,21 @@ function($, modal) {
     };
     $('#signup-modal').on("click", function(){
         $('#popup-modal').modal('closeModal');
-        var popup = modal(options, $('#popup-modal-signup'));
+        var popup = modal(optsignup, $('#popup-modal-signup'));
         $('#popup-modal-signup').modal('openModal');
     });
+    var optforget = {
+        type: 'popup',
+        responsive: true,
+        innerScroll: true,
+        modalClass: 'customer-forgetpassword-popup',
+        buttons: false,
+    };
+    $('#forget-pwd').on("click", function(){
+        $('#popup-modal').modal('closeModal');
+        var popup = modal(optforget, $('#forget-popup'));
+        $('#forget-popup').modal('openModal');
+    });
+    
 });
 </script>
