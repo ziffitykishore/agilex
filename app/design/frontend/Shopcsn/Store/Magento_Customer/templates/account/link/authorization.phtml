@@ -13,6 +13,7 @@ if ($block->isLoggedIn()) {
     $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
 }
 ?>
+
 <?php 
 if ($block->isLoggedIn()) {?>
 <li class="authorization-link <?php if ($block->isLoggedIn()) { echo 'logged'; } ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
