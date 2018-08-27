@@ -23,7 +23,7 @@
         <strong><?php echo __('Categories') ?></strong>
     </div>
 
-	<ul class="accordion"  id="accordion-2">
+	<ul class="accordion list-unstyled"  id="accordion-2">
 	<?php
 		$level = 0;
 		$first = true;
@@ -45,13 +45,16 @@
 			}
 
 			?>
-				<li>
+				<li class="item">
 					<a href="<?php echo $item->getCategoryUrl() ?>">
 						<?php echo $block->escapeHtml($item->getTitle()) ?>
+						<span class="count">
+							<?php if ($block->showPostsCount()) { ?>
+							(<?php echo $block->escapeHtml($item->getPostsCount()) ?>)
+						<?php } ?>
+						</span>
 					</a>
-					<?php if ($block->showPostsCount()) { ?>
-					(<?php echo $block->escapeHtml($item->getPostsCount()) ?>)
-					<?php } ?>
+					
 			<?php
 			$level = $newLevel;
 			$first = false;
