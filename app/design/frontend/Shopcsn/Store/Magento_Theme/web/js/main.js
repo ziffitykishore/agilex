@@ -11,7 +11,7 @@ define([
 
 
     //     `use strict`;
-    console.log("Price Slider !.......");
+    console.log("I'm Ready!.......");
     //require(["jquery" , "jquery/jquery-ui"], function($){ 
 
     $('.overlay').on('click', function() {
