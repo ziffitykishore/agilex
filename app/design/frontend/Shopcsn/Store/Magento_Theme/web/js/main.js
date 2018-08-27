@@ -35,7 +35,6 @@ define([
                 $('html').removeClass('nav-open');
             });      
         });      
-});
 
 
 $(".form-group input.form-control").on("focus blur", function() {
@@ -45,6 +44,9 @@ $(".form-group input.form-control").on("focus blur", function() {
           .toggleClass("focused");
   }
 });
+});
+
+
 
 
 
