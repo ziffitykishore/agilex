@@ -32,7 +32,7 @@
     </div>
     <div class="page-header-content">
         <div class="container">
-            <h1><?php echo the_Title(); ?></h1>
+            <h1><?php echo str_replace("Category: ", "", get_the_archive_title()); ?></h1>
             <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>
         </div>
     </div>
