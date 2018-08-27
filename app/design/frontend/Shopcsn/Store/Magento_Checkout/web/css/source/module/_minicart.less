@@ -106,13 +106,13 @@
             }
             .action {
                 &:before {
-                    background: #999;
-                    color: #fff !important;
-                    font-size: 8px !important;
-                    line-height: 8px !important;
+                    color: #d7dded !important;
+                    font-size: 14px !important;
+                    line-height: 8px;
                     border-radius: 50%;
-                    padding: 3px;
-                    top: 2px;
+                    top: 0;
+                    right: 0;
+                    vertical-align: top;
                     position: relative;
                 }
             }
@@ -159,6 +159,7 @@
         .block-content {
             >.actions {
                 margin-top: 15px;
+                
                 .action{
                     background: #020202;
                     padding: 30px 20px;
@@ -171,6 +172,19 @@
                     border-radius: 0;
                     font-weight: bold;
                     text-transform: uppercase;
+
+                    &.primary{
+                        position: relative;
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            height: 100%;
+                            width: 1px;
+                            background: #404040;
+                        }
+                    }
                 }
                 .paypal-logo {
                     margin-top: 15px;
@@ -204,13 +218,12 @@
             li {
                 float: left;
                 width: 100%;
-                padding: 10px;
                 height: auto;
                 &:before {
                     display: none;
                 }
                 .product-image-container {
-                    max-width: 50px;
+                    max-width: 60px;
                     img {
                         max-width: 100%;
                         height: auto !important;
@@ -235,10 +248,7 @@
                         &:hover {
                             color: #5D4C84;
                         }
-                        &:before {
-                            content: '\e616';
-                            top: 0;
-                        }
+                        
                     }
                 }
             }
@@ -353,7 +363,7 @@
             display: none;
         }
         .product-item-details {
-            padding-left: 65px;
+            padding-left: 80px;
             .product-item-name {
                 a {
                     display: block;
@@ -564,6 +574,9 @@
 
 
     .block-minicart{
+        .cart-opened &{
+            .disp(block);
+        }
         .disp(none);
         .pos(fixed);
         right: 0;
@@ -571,7 +584,7 @@
         bottom: 0;
         width: 445px;
         margin: 0;
-        z-index: 5;
+        z-index: 20;
         background: @color-white;
         border: none;
         &:before{
@@ -632,7 +645,7 @@
                 top: 0;
                 width: 30px;
                 height: 30px;
-                background: @color-gainsboro;
+                border: 1px solid #d7dded;
                 color: @color-black;
                 text-align: center;
                 line-height: 30px;
