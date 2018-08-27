@@ -529,7 +529,6 @@
         margin-bottom: 25px;
     }
     .home .video-content {
-        top: 0;
         margin-bottom: 30px;
         min-height: initial;
     }
@@ -736,6 +735,9 @@
     .legal-inner .blue-strip .download-link {
         margin-top: 15px;
     }
+    .timeline-item .timeline-content {
+        padding: 0;
+    }
     .timeline-inner .timeline-item>div {
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
@@ -816,7 +818,7 @@
         visibility: visible;
         /* transform: scale(1); */
         padding: 35px 12px 36px;
-        background: #174a7a;
+        background: #fff;
         width: auto;
         opacity: 1;
         top: 0;
@@ -834,8 +836,8 @@
         box-shadow: none;
     }
     .search-form .form-control {
-        color: #fff;
-        border-bottom: 1px solid #fff;
+        color: #174a79 !important;
+        border-bottom: 1px solid #174a79 !important;
         width: 0;
         transition: all 0.5s ease-in-out 0.5s;
     }
