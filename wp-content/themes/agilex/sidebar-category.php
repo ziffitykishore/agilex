@@ -115,10 +115,10 @@
 <div class="categories-wrap box-shadow margin-bottom-30">
 <?php /** Categories */
     $argsCat = array(
-        'parent' => $cat_id,
+        'parent' =>  get_cat_ID('blog'),
         'order_by' => 'date',
         'order' => 'ASC',
-        'exclude' => $cat_id,
+        'exclude' => get_cat_ID('blog'),
         'hierarchical' => true,
         'show_post_count' => true
     );
