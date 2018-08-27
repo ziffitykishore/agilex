@@ -27,7 +27,7 @@
             <h1><?php if ( is_day() ) :
 		      printf( __( 'Daily Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date() );
 		    elseif ( is_month() ) :
-			  printf( __( 'Monthly Arcsshives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bootstrapcanvaswp' ) ) );
+			  printf( __( 'Monthly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'bootstrapcanvaswp' ) ) );
 			elseif ( is_year() ) :
 			  printf( __( 'Yearly Archives: <span>%s</span>', 'bootstrapcanvaswp' ), get_the_date( _x( 'Y', 'yearly archives date format', 'bootstrapcanvaswp' ) ) );
 			else :
