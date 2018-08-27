@@ -123,6 +123,10 @@
                         'label'     =>  __( 'Black List Words', WPRSS_TEXT_DOMAIN ),
                         'callback'  =>  'wprss_settings_blacklist_feed_words_callback'
                     ),
+                    'whitelist-feed-limit' => array(
+                        'label'     =>  __( 'White List Words', WPRSS_TEXT_DOMAIN ),
+                        'callback'  =>  'wprss_settings_whitelist_feed_words_callback'
+                    ),
 //                    'tracking'  =>  array(
 //                        'label'     =>  __( 'Anonymous tracking', WPRSS_TEXT_DOMAIN ),
 //                        'callback'  =>  'wprss_tracking_callback',
@@ -944,6 +948,16 @@
         $blacklist_feed = wprss_get_general_setting( 'blacklist-feed-limit' );
         ?>
                 <textarea id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[blacklist-feed-limit]" rows="3" cols="50"> <?php echo $blacklist_feed ?> </textarea>
+		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
+    }
+    /**
+     * Sets the WhiteList feed Words
+     * @since 3.3
+     */
+    function wprss_settings_whitelist_feed_words_callback( $field ) {
+        $whitelist_feed = wprss_get_general_setting( 'whitelist-feed-limit' );
+        ?>
+                <textarea id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[whitelist-feed-limit]" rows="3" cols="50"> <?php echo $whitelist_feed ?> </textarea>
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 

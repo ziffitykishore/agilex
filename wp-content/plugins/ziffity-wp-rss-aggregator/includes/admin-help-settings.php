@@ -82,6 +82,8 @@ function wprss_settings_add_tooltips() {
 
                                 // BlackList Words
 				'blacklist-feed-limit'         => __('Ignore the feeds from importing. Multiselect values are separated by comma values', WPRSS_TEXT_DOMAIN),
+                                // WhiteList Words
+				'whitelist-feed-limit'         => __('Whitelist the key words from the feed importing. Multiselect values are separated by comma values', WPRSS_TEXT_DOMAIN),
 
 				/* --------------------------
 				 *  General Display Settings
