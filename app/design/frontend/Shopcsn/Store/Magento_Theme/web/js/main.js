@@ -6,7 +6,7 @@
 define([
     'jquery',
     'domReady!'
-], function ($, jQuery) {
+], function($, jQuery) {
     'use strict';
     console.log("I'm Ready!.......");
 
@@ -39,11 +39,3 @@ define([
         }
     });
 });
-
-
-
-
-
-
-
-
