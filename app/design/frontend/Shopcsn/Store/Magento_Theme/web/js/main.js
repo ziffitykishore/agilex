@@ -11,8 +11,10 @@ define([
 
 
     //     `use strict`;
-    console.log("I'm Ready!.......");
+
+        console.log("I'm Ready!.......");
     //require(["jquery" , "jquery/jquery-ui"], function($){ 
+
 
     $('.overlay').on('click', function() {
         $('html').removeClass('nav-open');
@@ -28,6 +30,10 @@ define([
             $('.showcart').trigger('click');
         }
     });
+
+    $('#btn-close').on('click', function(){
+      $('body').removeClass('cart-opened');
+  });
 
     $(document).on('click', function() {
         $('.nav-sections').on('click', function(e) {
@@ -45,7 +51,6 @@ define([
                 .toggleClass("focused");
         }
     });
-
 
 
 });
