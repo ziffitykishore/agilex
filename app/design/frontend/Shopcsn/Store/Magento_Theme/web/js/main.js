@@ -8,7 +8,9 @@ define([
     'domReady!'
 ], function($, jQuery) {
     'use strict';
+
     console.log("I'm Ready!.......");
+
 
     $('.overlay').on('click', function() {
         $('html').removeClass('nav-open');
@@ -17,6 +19,10 @@ define([
 
     $('.showcart').on('click', function() {
         $('html').removeClass('nav-open');
+    });
+
+    $('#btn-close').on('click', function() {
+        $('body').removeClass('cart-opened');
     });
 
     $('#btn-close').on('click', function() {

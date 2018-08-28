@@ -10,7 +10,7 @@
 ?>
 <?php if ($block->isWishListAllowed()) : ?>
     <a href="#"
-       class="action towishlist"
+       class="action towishlist" title="Add-to-Wishlist"
        data-post='<?= /* @noEscape */ $block->getWishlistParams() ?>'
        data-action="add-to-wishlist"><span class="fa fa-heart-o"><?= $block->escapeHtml(__('')) ?></span></a>
 <?php endif; ?>

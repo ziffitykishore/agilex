@@ -193,7 +193,50 @@
         }
         .product-social-links {
             margin: 0;
-            display: none;
+            >div {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .towishlist {
+                border: 1px solid #d7dded;                
+                color: #d7dded;
+                width: 40px;
+                height: 40px;
+                display: block;
+                &:before {
+                    display: none;
+                }
+                .fa-heart-o {
+                             display: block;
+                            line-height: 40px;
+                            text-align: center;
+                }
+            }
+            .addthis_toolbox {
+                a:not(.addthis_button_compact),
+                .addthis_counter {
+                    display: none !important;
+                }
+                .addthis_button_compact {
+                    .at-icon-wrapper {
+                        display: none;
+                    }
+                    .share-ic {
+                        border: 1px solid #d7dded;
+                        color: #d7dded;
+                        width: 40px;
+                        height: 40px;
+                        display: block;
+                        .fa-share-alt {
+                            display: block;
+                            line-height: 40px;
+                            text-align: center;
+                        }
+                    }
+                
+                }
+            }
+           
         }
     
     }

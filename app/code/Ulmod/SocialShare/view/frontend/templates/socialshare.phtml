@@ -62,7 +62,9 @@ $_helper = $this->helper('Ulmod\SocialShare\Helper\Data');
          <a class="addthis_button_email"></a> 
           <?php endif; ?>
           <?php if ($_helper->getDisplayCompact()) :?>    
-         <a class="addthis_button_compact"></a>
+         <a class="addthis_button_compact">
+            
+         </a>
           <?php endif; ?>
           <?php if ($_helper->getDisplayCounter()) :?>    
          <a class="addthis_counter"></a>  
@@ -93,7 +95,8 @@ $_helper = $this->helper('Ulmod\SocialShare\Helper\Data');
         pi:pinit:layout="horizontal"></a> 
           <?php endif; ?>
           <?php if ($_helper->getDisplayCompact()) :?>    
-         <a class="addthis_button_compact"></a>
+         <a class="addthis_button_compact">
+                  </a>
           <?php endif; ?>
           <?php if ($_helper->getDisplayCounter()) :?>    
          <a class="addthis_counter"></a>  
@@ -669,7 +672,9 @@ $_helper = $this->helper('Ulmod\SocialShare\Helper\Data');
              <a class="addthis_button_google_plusone_share"></a>
              <a class="addthis_button_pinterest_share"></a>
              <a class="addthis_button_email"></a>   
-             <a class="addthis_button_compact"></a> 
+             <a class="addthis_button_compact"><span class="share-ic">
+                  <span class="fa fa-share-alt"></span>
+            </span></a> 
              <a class="addthis_counter"></a>                
           </div>
       <?php endif;?>
