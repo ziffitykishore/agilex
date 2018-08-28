@@ -26,7 +26,7 @@ get_header(); ?>
  </div>
         </div>
 
-<div class="timeline-sec" id="our-history">
+<!-- <div class="timeline-sec" id="our-history">
     <div class="container">
         <div class="margin-top--70  white-bg timeline-outer">
             <div class="timeline-inner pad-70">
@@ -77,6 +77,88 @@ get_header(); ?>
             </div>
         </div>
     </div>
+</div> -->
+
+
+
+
+<section class="timeline-section" >
+
+
+<div class="container">
+
+
+
+    <div class="timeline-inner margin-top--70 white-bg pad-tb-50 pad-30">
+    <?php $args = array(
+                'post_type' => 'our_history',
+                'posts_per_page' => -1,
+                'post_status' => 'publish',
+                'order_by' => 'date',
+                'order' => 'ASC'
+                );
+    $agilex_unique_query = new WP_Query($args); ?>
+    <ul class="nav ord-tab list slider-nav" role="tablist">
+        <?php while ($agilex_unique_query->have_posts()) {
+        $agilex_unique_query->the_post(); ?>
+        <li role="presentation">
+            
+        <?php if (get_field('year', get_the_ID())){ ?>
+                                <div class="timeline-year <?php if (get_field('from_year', get_the_ID())) { echo 'timeline-year-from'; } if (get_field('beyond', get_the_ID())) { echo 'timeline-year-beyond'; } ?> "><span class="current-year"><?php echo get_field('year'); ?></span> <?php if (get_field('from_year', get_the_ID())){ ?> - <span class="additional"><?php echo get_field('from_year');?></span>  <?php }?> <?php if (get_field('beyond', get_the_ID())){?> & <span class="additional"><?php echo get_field('beyond');?></span> <?php }?></div>
+                            <?php } else { ?>
+                                <div class="timeline-year">0000</div>
+                            <?php } ?>
+                
+            
+        </li>
+        <?php } ?>
+    </ul>
+    <div class="tab-content slider-for">
+        <?php  while ($agilex_unique_query->have_posts()) {
+                $agilex_unique_query->the_post();?>
+        <div class="timeline-blk">
+           
+        <div class="timeline-item flex-sec ">
+                    <div class="timeline-image flex-xs-100 flex-50 ">
+                        <div class="img-sec">
+                            
+                            <figure class="feature-image">
+                            <?php if ( has_post_thumbnail() ) {
+                                    the_post_thumbnail('full');
+                                } else { ?>
+                                    <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="Placeholder" />
+                            <?php } ?>
+                                
+                            </figure>
+                            <figure class="seconday-image">
+                                <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="<?php the_title(); ?>" />
+                            </figure>
+                        </div>    
+                    </div>
+                    <div class="timeline-content flex-xs-100 flex-50">
+                        <div class="timeline-heading">
+                            <h2 class="timeline-title"><?php echo the_Title(); ?></h2>
+                            
+                        </div>
+                        <div class="timeline-desc">
+                        <?php echo the_Content(); ?>
+                        </div>
+                    </div>
+                </div> 
+            
+                                </div>
+    <?php   } ?>
+    </div></div>
+<?php /* Restore original Post Data */
+wp_reset_postdata();?>
 </div>
+
+
+
+
+
+</section>
+
+
 
     <?php get_footer(); ?>

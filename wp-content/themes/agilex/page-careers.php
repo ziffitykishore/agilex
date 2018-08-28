@@ -119,7 +119,7 @@ endforeach; ?>
 </div>
 
 
-<div class="image-gallery  pad-tb-50">
+<!-- <div class="image-gallery  pad-tb-50">
     <div class="container">
         <div class="gallery-inner flex-sec">
             <?php $tabdetails_carrers = get_post_meta( get_the_ID(), 'img-show', true ); ?>
@@ -131,7 +131,7 @@ endforeach; ?>
 
         </div>
     </div>
-</div>
+</div> -->
 
 <script>
     $(function(){

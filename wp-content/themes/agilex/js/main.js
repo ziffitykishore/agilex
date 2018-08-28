@@ -536,9 +536,9 @@ function myFunction() {
   //update this value if you change this breakpoint in the style.css file (or _layout.scss if you use SASS)
   var MQ = 1170;
 
-  triggerAnimation();
+  //triggerAnimation();
   $(window).on("resize", function() {
-    triggerAnimation();
+    //triggerAnimation();
   });
 
   //bind the scale event to window scroll if window width > $MQ (unbind it otherwise)
@@ -711,14 +711,14 @@ function myFunction() {
 
   /* executive slider */
 
-  $(".slider-for").slick({
+  $(".executive-wrap  .slider-for").slick({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     fade: true,
     asNavFor: ".slider-nav"
   });
-  $(".slider-nav").slick({
+  $(".executive-wrap  .slider-nav").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
     asNavFor: ".slider-for",
@@ -1104,6 +1104,10 @@ function myFunction() {
       }
     });
 
+
+
+
+
     /* $('.form-group input[type="email"]').first().keyup(function () {
     var $email = this.value;
     if(!validateEmail($email)) { 
@@ -1123,5 +1127,51 @@ function myFunction() {
       var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
       return emailReg.test($email);
     }
+
+
+        
+ $('.timeline-section .slider-for').slick({
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  arrows: false,
+  fade: true,
+  asNavFor: '.slider-nav'
+});
+$('.timeline-section .slider-nav').slick({
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  asNavFor: '.slider-for',
+  arrows: true,
+  dots: false,
+  focusOnSelect: true,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4
+      }
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 3
+      }
+    },
+    {
+      breakpoint: 628,
+      settings: {
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 400,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+
+
   });
 })(jQuery);

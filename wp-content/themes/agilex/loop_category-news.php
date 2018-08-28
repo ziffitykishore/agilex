@@ -35,7 +35,7 @@
                                             </a>
                                     </div>
                                     <div class="blog-detail-wrap">
-                                        <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php echo wp_trim_words(get_the_title(),12, '...'); ?></div></a>
+                                        <a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><div class="blog-tile"><?php echo wp_trim_words(get_the_title(),7, '...'); ?></div></a>
                                             <div class="blog-detail text-uppercase">
                                                 <div class="blog-author">By <?php the_author_meta( 'display_name', $postValue[0]->post_author ) ?></div>
                                                 <div class="blog-year"><?php the_time('j M Y') ?></div>
