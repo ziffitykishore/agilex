@@ -1,0 +1,382 @@
+.catalog-product-view {
+    .pdp {
+        display: table;
+        border-collapse: collapse;
+    .product {
+        &.media {
+            display: table-cell;
+            
+            width: 65%;
+            border: 1px solid #d7dded;
+            float: none;
+                    .MagicScroll-vertical {
+                        span {
+                        display: none !important;
+                    }
+            }
+            .mcs-wrapper {
+                top: 24px;
+                bottom: 24px;
+                .mcs-item {
+                        border-bottom: 1px solid #d7dded;
+                        border-right: 1px solid #d7dded;
+                        .mt-thumb-switcher {
+                            &.active-selector {
+                                img {
+                                    filter: none !important;
+                                }
+                            }
+                        }
+                                
+                        .mz-thumb{
+                            padding: 10px 25px ;
+                            &:hover:not(.mz-thumb-selected) img {
+                                filter : none !important;
+                            img:active {
+                                
+                                    filter: none !important;
+                                
+                            }   
+                            }
+
+                            
+                        }
+                    .mz-thumb {
+                        img {
+                        box-shadow: none;
+                        
+                    }
+                    }
+                }
+            }
+            figure {
+                 &.mz-figure {
+                padding: 30px 0;
+            }
+        }
+            .mcs-button-arrow {
+               
+                box-shadow: none;
+                border-radius: 0;
+                display: block;
+                width: 100%;
+                height: 26px;
+                opacity: 1;
+                color: #000;
+                &:before {
+                    border-color: #000;
+                }
+            &.mcs-button-arrow-prev {
+                
+                border-bottom: 1px solid #d7dded;
+                border-right: 1px solid #d7dded;                
+                top: 0;
+              
+            }
+            &.mcs-button-arrow-next {
+                border-top: 1px solid #d7dded;
+                border-right: 1px solid #d7dded;                
+                bottom: 0 !important;   
+                &:before {
+                    border-color: 0;
+                }              
+            }
+        }
+        }
+        
+    }
+    .product-info-main {
+       
+       display: table-cell;
+        background-color: #f2f5f8;
+        border: 1px solid #d7dded;
+        padding: 0;
+        width: auto;
+        float: none;
+        vertical-align: top;
+        .product-info-price {
+            border-bottom: 1px solid #d7dded;
+        }
+        .page-title-wrapper {
+             padding: 0 20px;
+             h1 {
+                font-size: 15px;
+                font-weight: bold;
+             }             
+        }
+        .price-box {
+            padding: 0 20px;
+            color: red;
+            font-weight: bold;
+            .price-container {
+            .price {
+                font-size: 22px;
+            }
+        }
+         }
+         .overview {
+             border-bottom: 1px solid #d7dded;
+             padding: 25px 20px;
+             margin: 0 !important;
+         }
+         .product-info-stock-sku {
+            border-bottom: 1px solid #d7dded;
+             display: table;
+             padding: 25px 20px;
+             text-align: left;
+             border-collapse: separate;
+             width: 100%;
+             .available {
+                 display: table-cell;
+                 float: right;
+                 span {
+                     color: green;
+                 }
+             }
+             .sku {
+                 display: table-cell;
+                 text-align: right;
+                 font-weight: bold;
+                 float: left;
+                
+             }
+
+         }
+         .product-add-form { 
+               padding: 45px 20px;
+             .box-tocart {
+                    
+                   
+                     button {
+                        padding: 0;
+                         float: left;
+                         border: 1px solid #d7dded;
+                         border-radius: 0;
+                         background: #f2f5f8;
+                         width: 45px;
+                         margin: -1px;
+                         height: 40px;
+                         box-shadow: none;
+                         font-size: 20px;
+                         font-weight: bold;
+                                      
+                        }
+                     .qty {
+                         float: left;
+                         font-weight: bold;
+                         height: 40px;                        
+                         background: #f2f5f8;
+                         border: 1px solid #d7dded;
+                         margin: -1px;
+                         label {
+                             display: none;
+                         }
+                         &:focus {
+                             box-shadow: none;
+                         }
+
+                     }
+                 .primary {                   
+                        margin-top: 0;
+                        margin-right: 15px;
+                        margin-left: 15px;
+                        background-color: #040404;
+                        color: #fff;
+                        border: 1px solid #000;
+                        width: 35%;
+                        float: left;
+                        font-size: 15px;
+                        text-transform: uppercase;
+                    
+             }
+         }
+        }
+        .product-social-links {
+            margin: 0;
+            display: none;
+        }
+    
+    }
+}
+    .detailed {
+          text-align: center;
+          ul {
+            margin: 0;
+            padding: 0 15px;
+            li {
+                list-style-type: circle;
+                list-style-position: outside;
+            }
+          }
+        .product{
+            &.data {
+                  &.items {
+                        border: 1px solid #d7dded;
+                        padding: 0;
+                        margin-top: 30px;
+                            >.item {
+                                &.title {
+                                     display: inline-block;
+                                     float: none;
+                                     padding: 0 20px;
+                                     text-transform: uppercase;
+                                     
+                                    &.active {
+                                           
+                                            .switch {
+                                                color: #1c3f93;
+                                                cursor: default;
+                                                background-color: #fff;
+                                                border-bottom: 2px solid #1c3f93;
+                                                    }
+                                                &:hover {
+                                                    color: #1c3f93;
+                                                }
+                                            }
+                                    >.switch {
+                                        border: 0 ;
+                                        color: #000;
+                                        background: #fff;
+                                        height: auto;
+                                        font-weight: bold;
+                                        
+                                        padding: 20px 0;
+                                        &:focus {
+                                            color: #1c3f93 !important;
+                                            outline: none;
+                                            padding: 20px 0;
+                                        }
+                                        &:hover {
+                                            color: #000;
+                                            text-decoration: none;
+                                                 }
+                                             }
+                                        &:visited {
+                                            color: #000;
+                                            background: #fff;
+                                            text-decoration: none;
+                                        }
+                                             }
+                                        &.content {
+                                            border-top: 1px solid #d7dded !important;
+                                            text-align: left;
+                                            margin-top: 80px;
+                                            .sub-content {
+                                                width: 1140px;
+                                                margin: 0 auto;
+
+                                                .form-group {
+                                                    position: relative;
+                                                    .label {
+                                                        position: absolute;
+                                                        z-index: 1;
+                                                        color: #d7dded;
+                                                        left: 10px;
+                                                        font-size: 13px;
+                                                        background: #fff;
+                                                        top: 15px;
+                                                        pointer-events: none;
+                                                        transition: all .5s ease 0s;
+                                                            }
+                                                            &.focused label {
+                                                                top: -7px;
+                                                                color: #d7dded;
+                                                                font-size: 11px;
+                                                            }
+                                                        .form-control-wrap {
+                                                            display: block;
+                                                            position: relative; 
+                                                            .form-control {
+                                                                display: block;
+                                                                width: 100%;
+                                                                padding: 6px 45px 6px 10px;
+                                                                font-size: 14px;
+                                                                line-height: 1.42857143;
+                                                                color: #000;
+                                                                background-color: #fff;
+                                                                background-image: none;
+                                                                border: 1px solid #d7dded;
+                                                                border-radius: 0;
+                                                                box-shadow: none;
+                                                                &:focus {
+                                                                    border-color: #000;
+                                                                    box-shadow: none;
+                                                                }
+                                                                &.input-text {
+                                                                   
+                                                                    height: 50px;
+                                                                   
+                                                                }
+                                                                .secondary a {
+                                                                    color: #000;
+                                                                    text-decoration: none;
+                                                                }
+                                                            }
+                                                            
+                                                        }
+                                                }
+                                                .review-field-ratings {
+                                                    legend {
+                                                        text-align: left;
+                                                        padding: 10px 0;
+                                                       
+                                                    }
+                                                }
+                                                .review-form-actions {
+                                                    .button-full {
+                                                        margin-top: 10px;
+                                                        margin-right: 10px;
+                                                        background-color: #000;
+                                                        color: #fff;
+                                                        border: 1px solid #000;
+                                                        border-radius: 0;
+                                                        
+                                                        width: 100%;
+                                                        height: 50px;
+                                                        font-weight: bold;
+                                                        &:hover {
+                                                            color: #fff;
+                                                        }                    
+                                                    }
+                                                }
+                                                textarea {
+                                                    &.input-text {
+                                                        height: 100px !important;
+                                                    }
+                                                }
+                                            }
+                                            
+                                            
+                                            
+                                            .label {
+                                                color: #000;
+                                            }
+                                        }
+
+    }
+    }
+}
+}
+}
+}
+
+
+
+
+
+@media only screen and (max-width:1200px) {
+    .product-media {
+        max-width: 100%;
+
+    }
+}
+
+@media only screen and (max-width:992px) {
+
+}
+@media only screen and (max-width:768px) {
+    
+}
+@media only screen and (max-width:480px) {
+    
+}
