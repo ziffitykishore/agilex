@@ -129,6 +129,7 @@ define([
             minicart.on('click', '[data-action="close"]', function (event) {
                 event.stopPropagation();
                 minicart.find('[data-role="dropdownDialog"]').dropdownDialog('close');
+                $('body').removeClass('cart-opened');
             });
 
             return true;

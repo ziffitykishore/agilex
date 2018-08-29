@@ -68,15 +68,7 @@ a:hover {
             .disp(block);
         }
     }
-    header .header {
-        &.content {
-            &:extend(.abs-add-clearfix all);
-            max-width: 1960px !important;
-            position: relative;
-            z-index: 15;
-            width: 100%;
-        }
-    }
+
 
     .logo {
         display: block;
@@ -87,20 +79,7 @@ a:hover {
             float: none;
         }
     }
-    .authorization-link {
-        a {
-            color: @color-white;
-            font-size: @f-size-xl;
-            text-decoration: none;
-            padding: 18px 15px;
-            display: block;
-            line-height: normal;
-            &:hover {
-                color: @color-white;
-            }
-            
-        }
-    }
+
     .page-main {
         >.page-title-wrapper {
             .page-title+.action {
@@ -471,28 +450,7 @@ a:hover {
     }
 }
 
-.page-wrapper {
-    .pos(relative);
-    .overlay {
-        content: '';
-        .pos(absolute);
-        left: 0;
-        right: 0;
-        top: 75px;
-        bottom: 0;
-        background: fadeout(@color-black, 50%);
-        .transition(all 0.5s ease 0s);
-        visibility: hidden;
-        opacity: 0;
-        z-index: 10;
-        .nav-open &,
-        .acc-opened &,
-        .cart-opened & {
-            visibility: visible;
-            opacity: 1;
-        }
-    }
-}
+
 
 .slick-slider {
     .slick-slide {

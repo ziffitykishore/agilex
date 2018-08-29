@@ -8,7 +8,6 @@ define([
     'domReady!'
 ], function($, jQuery) {
     'use strict';
-    console.log("I'm Ready!.......");
 
     $('.overlay').on('click', function () {
         $('html').removeClass('nav-open');
@@ -19,16 +18,18 @@ define([
         $('html').removeClass('nav-open');
     });
 
-    $('#btn-close').on('click', function () {
-        $('body').removeClass('cart-opened');
+    $('.customer-welcome').on('click', function(){
+        $('body').addClass('acc-opened');
     });
 
     $(document).on('click', function () {
         $('.nav-sections').on('click', function (e) {
             e.stopPropagation();
         });
+        
         $('.header').on('click', function (e) {
             $('html').removeClass('nav-open');
+            $('body').removeClass('acc-opened cart-opened');
         });
     });
     $(".form-group input.form-control").on("focus blur", function () {
@@ -38,4 +39,24 @@ define([
                 .toggleClass("focused");
         }
     });
+        $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+          $('.header-wrapper').addClass("fix-header");
+        } else {
+         $('.header-wrapper').removeClass("fix-header");
+        }
+     });
 });
+
+
+
+/* require(["jquery"], function($){
+
+	$(window).scroll(function () {
+	   if ($(this).scrollTop() > 50) {
+		 $('.header').addClass("fix-header");
+	   } else {
+		$('.header').removeClass("fix-header");
+	   }
+	});
+}); */

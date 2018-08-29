@@ -71,6 +71,9 @@
         .cat-item {
             .cat-item__inner {
                 position: relative;
+                a {
+                    .pos(relative);
+                }
                 .cat-title {
                     position: absolute;
                     left: 30px;
@@ -190,6 +193,9 @@
                             display: block;
                             content: '';
                         }
+                        &:hover{
+                            .lib-css(color,@color-darkslateblue);
+                        }
                     }
                     .blog-desc {
                         color: @color-black;
@@ -209,8 +215,10 @@
     }
 }
 
-@media screen and (max-width: 1560px) {
-    .cms-index-index {
+@media screen and (max-width: 1561px) {
+
+    .cms-index-index, 
+    .block-products-list{
         .products-grid {
             .product-item {
                 &:nth-child(5) {
@@ -218,6 +226,9 @@
                 }
             }
         }
+    }
+    .cms-index-index {
+        
         .cat-item {
             .cat-item__inner {
                 .cat-title {
