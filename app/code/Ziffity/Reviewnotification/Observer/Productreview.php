@@ -14,17 +14,23 @@ class Productreview implements ObserverInterface
     const REVIEW_TEMPLATE_ID = "review_notification_template";
     
     const REVIEW_URL = "review/product/edit/id/";
+    
     protected $transportBuilder;
-    protected $inlineTranslation;
+    
     protected $scopeConfig;
+    
     protected $storeManager;
+    
     protected $request;
+    
     protected $url;
+    
     protected $productFactory;
+    
     protected $logger;
+    
     public function __construct(
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
-        \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\RequestInterface $request,
@@ -47,14 +53,14 @@ class Productreview implements ObserverInterface
         try {
             $dataObject = $observer->getEvent()->getDataObject();
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
-            $store = $this->_storeManager->getStore()->getId();
+            $store = $this->_storeManager->getStore($dataObject->getStoreId())->getId();
             $postData = $this->_request->getParams();
             $productId = $postData['id'];
             $product = $this->_productFactory->create()->load($productId);
             $url = $this->_url->getUrl(self::REVIEW_URL, ['_current' => true, 'id' => $dataObject->getReviewId()]);
             $templateId = self::REVIEW_TEMPLATE_ID;
             $templateOptions = array('area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                'store' => 1);
+                'store' => $store);
             $toInfo = $this->_scopeConfig->getValue(self::CSN_RECEIVER_EMAIL,
                 $storeScope);
             $sender = [
