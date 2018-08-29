@@ -24,7 +24,8 @@
                 <form class="form form-login wpcf7-form"
                       action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
                       method="post"
-                      id="login-form"
+                      id="login-form" 
+                      autocomplete="off"
                       data-mage-init='{"validation":{}}'>
                     <?= $block->getBlockHtml('formkey') ?>
                     <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
@@ -58,9 +59,10 @@
                             </ul>
 
                          </div>
+                         <div class="g-recaptcha mb-10" data-sitekey="6LdG32wUAAAAAAtB0WR-m6FEH9IPwBcCp6HYECRC"></div>
                         <div class="actions-toolbar">
                             <div class="primary">
-                                <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="send2">
+                                <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
                                     <span><?= $block->escapeHtml(__('Sign In')) ?></span>
                                 </button>
                             </div>
@@ -107,7 +109,7 @@
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __("Let's Get Started!") ?></strong></h3>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
-            <form class="form create account form-create-account" action="<?= $block->getUrl('customer/account/createpost'); ?>" method="post" id="form-validate-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off">
+            <form class="form create account form-create-account" autocomplete="off" action="<?= $block->getUrl('customer/account/createpost'); ?>" method="post" id="form-validate-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off">
             <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
                 <?= $block->getBlockHtml('formkey') ?>
                 <div class="field note mb-20 text-center">Sign Up by entering the information below</div>
@@ -154,8 +156,9 @@
                         <span><?= __('Do you agree to the')?> <a href="javascript:void(0);"><?= __('Terms & Condition.') ?></a></span>
                     </label>
                 </div>
+                <div class="g-recaptcha mb-10" data-sitekey="6LdG32wUAAAAAAtB0WR-m6FEH9IPwBcCp6HYECRC"></div>
                 <div class="actions-toolbar">
-                    <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="send2"><span>Sign Up</span></button></div>                     
+                    <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
                 <div class="already-account text-center">
                     <p><?= __('Already have an account? Click') ?><a href="javascript:void(0);" id="login-popup-form"><?= __(' here') ?></a> <?= __('to Sign In.') ?></p>
@@ -199,7 +202,7 @@
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password ?') ?></strong></h3>
             </div>
             <div class="block-content">
-                <form class="form password forget" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
+                <form class="form password forget" autocomplete="off" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
                     <fieldset class="fieldset" data-hasrequired="* Required Fields">
                         <div class="field note text-center mb-20"><?= __('Sign In by entering the information below') ?></div>
                         <div class="field email required mb-20 form-group">
@@ -222,7 +225,7 @@
 </div>
 
 <script type="text/javascript">
-require(['jquery','Magento_Ui/js/modal/modal'],
+require(['jquery','Magento_Ui/js/modal/modal', 'googlecap'],
 function($, modal) {
     var options = {
         type: 'popup',
