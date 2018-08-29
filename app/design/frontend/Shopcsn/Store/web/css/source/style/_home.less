@@ -209,7 +209,17 @@
     }
 }
 
-@media screen and (max-width: 1560px) {
+@media screen and (max-width: 1561px) {
+    .cms-index-index, 
+    .block-products-list{
+        .products-grid {
+            .product-item {
+                &:nth-child(5) {
+                    .disp(none);
+                }
+            }
+        }
+    }
     .cms-index-index {
         .products-grid {
             .product-item {
