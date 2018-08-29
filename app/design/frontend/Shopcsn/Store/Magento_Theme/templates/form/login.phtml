@@ -142,18 +142,15 @@
                 <div class="field password required mb-20 form-group">
                     <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
                     <div class="control form-control-wrap">
-
                         <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text required-entry form-control valid" autocomplete="off">
                         <div class="text-small"><p>8-20 Characters of 3 types: Upper, Lower, Numeric, Special</p></div>
                     </div>
-
                 </div>
                 <div class="field confirmation required mb-20 form-group">
                     <label for="password-confirmation" class="label"><span><?= $block->escapeHtml(__('Confirm Password')) ?></span></label>
                     <div class="control form-control-wrap">
                         <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text required-entry form-control valid" data-validate="{required:true, equalTo:'#password-signup'}" autocomplete="off">
                     </div>
-                    
                 </div> 
                 <div class="remember">
                     <input id="signup-check" type="checkbox"  />
@@ -202,13 +199,13 @@
         <div><p>America's Trusted Source of Numismatic Treasures</p></div>
     </div>
     <div class="block block-customer-login">
-        <i class="fa fa-long-arrow-left fa-2x" aria-hidden="true" style="padding: 20px;"></i>
-       <div class="common-form forgot-password">
+        <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"><?= __('Login'); ?></a>
+        <div class="common-form forgot-password">
             <div class="block-title main-head text-center mb-20">
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password?') ?></strong></h3>
             </div>
             <div class="block-content">
-                <form class="form password forget" autocomplete="off" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
+                <form class="form password forget" autocomplete="off" method="post" id="forget-password" data-mage-init='{"validation":{}}'>
                     <fieldset class="fieldset" data-hasrequired="* Required Fields">
                         <div class="field note text-center mb-20"><?= __('Sign In by entering the information below') ?></div>
                         <div class="field email required mb-20 form-group">
@@ -220,9 +217,8 @@
                             </fieldset>
                     <div class="actions-toolbar">
                         <div class="primary">
-                            <button type="submit" class="button-full action submit primary text-uppercase"><span>continue</span></button>
+                            <button type="submit" class="button-full action submit primary text-uppercase"><span><?= __('continue') ?></span></button>
                         </div>
-
                     </div>
                 </form>
             </div>
@@ -243,7 +239,9 @@ function($, modal) {
     $('#login-popup, #login-popup-form').on("click", function(){
         var popup = modal(options, $('#popup-modal'));
         //$('#popup-modal-signup').modal('closeModal');
-        $('#popup-modal').modal('openModal');
+        $('#popup-modal').modal('openModal').on('modalclosed', function(){
+            $('.login-notify').hide().html('');
+        });
     });
     var optsignup = {
         type: 'popup',
@@ -256,7 +254,7 @@ function($, modal) {
         $('#popup-modal').modal('closeModal');
         var popup = modal(optsignup, $('#popup-modal-signup'));
         $('#popup-modal-signup').modal('openModal').on('modalclosed', function() { 
-            $('#popup-modal-signup div.mage-error').remove()
+            $('#popup-modal-signup div.mage-error').remove();
         });
     });
     
@@ -271,6 +269,28 @@ function($, modal) {
         $('#popup-modal').modal('closeModal');
         var popup = modal(optforget, $('#forget-popup'));
         $('#forget-popup').modal('openModal');
+    });
+    $('.bk-to-arw').on('click', function(event){
+        $('#forget-popup').modal('closeModal');
+        $('#popup-modal').modal('openModal');
+    });
+    $('#forget-password').on('click', function(event){
+        event.preventDefault();
+        if($('#forget-password').validation('isValid')) {
+            $.ajax({
+                url:'<?= $this->getUrl('ajaxlogin/popup/forgot'); ?>',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('#forget-password').serialize(true),								
+                success:function(response) { 
+                    $('#forget-popup').modal('closeModal');
+                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    var popup = modal(options, $('#popup-modal'));
+                    $('#popup-modal').modal('openModal');
+                }
+            });
+        }
     });
     $('#login-form-popup').on('submit', function (event){
         if($('#login-form-popup').validation('isValid')) {
