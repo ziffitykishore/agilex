@@ -44,6 +44,6 @@
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
         
         <move element="product.info.overview" destination="product.info.main" after="product.info.price" />
-        <move element="product.info.social" destination="product.info.addtocart" after="-" />
+        <move element="product.info.social" destination="product.info.form.content" after="-" />
     </body>
 </page>
