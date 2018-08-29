@@ -274,6 +274,7 @@ class Ajaxregister extends Action implements ActionInterface
      */
     public function execute()
     {
+    
         $custom_message=[];
         $success_result=null;
         /*Coupon Remove
@@ -331,14 +332,9 @@ class Ajaxregister extends Action implements ActionInterface
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
                 $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
                 // @codingStandardsIgnoreStart
-                $this->messageManager->addSuccess(
-                    __(
-                        'You must confirm your account. Please check your email for the confirmation link or <a href="%1">click here</a> for a new link.',
-                        $email
-                    )
-                );
+                
                 $message='You must confirm your account. Please check your email for the confirmation link or <a href="%1">click here</a> for a new link.'.$email;
-                $custom_message=['message'=>$message];
+                $custom_message= $message;
                 $success_result=true;
                 // @codingStandardsIgnoreEnd
                 $url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
@@ -352,7 +348,7 @@ class Ajaxregister extends Action implements ActionInterface
                     $this->accountRedirect->clearRedirectCookie();
                     
                     $success_result=true;
-                    $custom_message=['message'=>$this->getSuccessMessage()];
+                    $custom_message= $this->getSuccessMessage();
                     $response = [
                         'resultRedirect' =>$resultRedirect,
                         'message' => $custom_message,
@@ -371,10 +367,11 @@ class Ajaxregister extends Action implements ActionInterface
                 $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
             }
             $success_result=true;
-            $custom_message=['message'=>'Thank you for registering'];
+            $message    = 'You must confirm your account. Please check your email for the confirmation link or <a href="'.$email.'">click here</a> for a new link.';
+            //$custom_message =   ['message' => $message];
             $response = [
                     'resultRedirect' =>$resultRedirect,
-                    'message' => $custom_message,
+                    'message' => $message,
                     'success' =>$success_result
                     /*'coupon' => $coupon_code*/
                     ];
@@ -390,7 +387,7 @@ class Ajaxregister extends Action implements ActionInterface
                 $url
             );*/
             
-            $custom_message=['message'=>'already'];
+            $custom_message= 'There is already an account with this email address';
             $success_result=false;
             // @codingStandardsIgnoreEnd
             /*$this->messageManager->addError($message);*/
@@ -399,14 +396,14 @@ class Ajaxregister extends Action implements ActionInterface
             foreach ($e->getErrors() as $error) {
                 $this->messageManager->addError($this->escaper->escapeHtml($error->getMessage()));
             }
-            $custom_message=['message'=>$e->getMessage()];
+            $custom_message= $e->getMessage();
             $success_result=false;
         } catch (LocalizedException $e) {
             $this->messageManager->addError($this->escaper->escapeHtml($e->getMessage()));
-            $custom_message=['message'=>$e->getMessage()];
+            $custom_message= $e->getMessage();
             $success_result=false;
         } catch (\Exception $e) {
-            $custom_message=['message'=>'We can\'t save the customer.'];
+            $custom_message= 'We can\'t save the customer.';
             $success_result=false;
             $this->messageManager->addException($e, __('We can\'t save the customer.'));
         }

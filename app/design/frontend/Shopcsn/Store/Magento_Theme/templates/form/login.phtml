@@ -25,10 +25,10 @@
                 <form class="form form-login wpcf7-form"
                       action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
                       method="post"
-                      id="signup-popup" 
+                      id="login-form-popup" 
                       autocomplete="off"
                       data-mage-init='{"validation":{}}'
-                      onsubmit="return validateform()">
+                     >
                     <?= $block->getBlockHtml('formkey') ?>
                     <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
                         <div class="field note mb-20 text-center"><?= $block->escapeHtml(__('Sign In to access your account')) ?></div>
@@ -112,7 +112,7 @@
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __("Let's Get Started!") ?></strong></h3>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
-            <form class="form create account form-create-account" autocomplete="off" action="<?= $block->getUrl('customer/account/createpost'); ?>" method="post" id="form-validate-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off"
+            <form class="form create account form-create-account" autocomplete="off" method="post" id="signup-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off"
                    >
             <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
                 <?= $block->getBlockHtml('formkey') ?>
@@ -208,7 +208,7 @@
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password?') ?></strong></h3>
             </div>
             <div class="block-content">
-                <form class="form password forget" autocomplete="off" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'  onsubmit="return validateform()">
+                <form class="form password forget" autocomplete="off" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
                     <fieldset class="fieldset" data-hasrequired="* Required Fields">
                         <div class="field note text-center mb-20"><?= __('Sign In by entering the information below') ?></div>
                         <div class="field email required mb-20 form-group">
@@ -292,10 +292,10 @@ function($, modal) {
             });
         }
     });
+    //form-validate-popup
     $('#signup-popup').on('submit', function (event){
         event.preventDefault();
-        if($('#signup-popup').validation('isValid')) {
-            			
+        if($('#signup-popup').validation('isValid')) {            			
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
                 type:'POST',
@@ -303,12 +303,16 @@ function($, modal) {
                 dataType:'json',
                 data: $('#signup-popup').serialize(true),								
                 success:function(response) { 
-                    $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
+                    
                     if(response.resultRedirect) {
                         setTimeout(function(){											
                             //window.location = response.resultRedirect;
                         }, 2000);                            
                     } 
+                    $('#popup-modal-signup').modal('closeModal');
+                    var popup = modal(optsignup, $('#popup-modal-signup'));
+                    $('#popup-modal').modal('openModal');
+                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                 }
             });
         }
