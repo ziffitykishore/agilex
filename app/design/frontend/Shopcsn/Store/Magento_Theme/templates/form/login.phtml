@@ -16,7 +16,9 @@
     <div class="block block-customer-login">
         <div class="common-form sign-in">
             <div class="block-title main-head text-center">
-                <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Registered Customers')) ?></strong>
+                <h3>
+                <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
+                </h3>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
                 <form class="form form-login wpcf7-form"
@@ -26,27 +28,30 @@
                       data-mage-init='{"validation":{}}'>
                     <?= $block->getBlockHtml('formkey') ?>
                     <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-                        <div class="field note mb-20 text-center"><?= $block->escapeHtml(__('Sign in to your account')) ?></div>
+                        <div class="field note mb-20 text-center"><?= $block->escapeHtml(__('Sign in to access your account')) ?></div>
                         <div class="field email required mb-20 form-group">
                             <label class="label txt-grey" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
-                            <div class="control wpcf7-form-control-wrap">
+                            <div class="control form-control-wrap">
                                 <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text form-control" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-validate="{required:true, 'validate-email':true}">
                             </div>
                         </div>
                         <div class="field password required mb-20 form-group">
                             <label for="pass" class="label txt-grey"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
-                            <div class="control wpcf7-form-control-wrap">
+                            <div class="control form-control-wrap">
                                 <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text form-control" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
                             </div>
                         </div>
                         <?= $block->getChildHtml('form_additional_info') ?>
                         <div class="remember">
                             <ul class="list-inline">
-                                <li><input type="checkbox" class="txt-grey"><span class="txt-grey"> Remember me</span></li>
+                                <li><input  id="boxc" type="checkbox" class="txt-grey">
+                                    <label class="cbox1" for="boxc">
+                                    <span class="txt-grey"> Remember me</span>
+                            </li>
                                 <li class="pull-right">
                                     <div class="secondary">
                                         <a class="action remind" href="javascript:void(0);" id="forget-pwd">
-                                            <span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span>
+                                            <span><?= $block->escapeHtml(__('Forgot Password?')) ?></span>
                                         </a>
                                     </div>
                                 </li>
@@ -55,7 +60,7 @@
                          </div>
                         <div class="actions-toolbar">
                             <div class="primary">
-                                <button type="submit" class="action login primary" name="send" id="send2">
+                                <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="send2">
                                     <span><?= $block->escapeHtml(__('Sign In')) ?></span>
                                 </button>
                             </div>
@@ -90,6 +95,7 @@
         </div>
     </div>
 </div>
+      <!-- sign-up page -->
 <div class="log-in" id="popup-modal-signup" style="display:none">
     <div class="sign-in-page">
         <div><h1>Welcome to CSN!</h1></div>
@@ -109,7 +115,7 @@
                     <label class="label txt-grey" for="firstname">
                             <span><?= ('First Name') ?></span>
                     </label>    
-                    <div class="control wpcf7-form-control-wrap">
+                    <div class="control form-control-wrap">
                         <input type="text" id="firstname" name="firstname" value="" title="First Name" class="input-text required-entry form-control valid" data-validate="{required:true}" autocomplete="off" aria-required="true">
                     </div>
                 </div>
@@ -117,34 +123,34 @@
                     <label class="label txt-grey" for="lastname">
                             <span><?= ('Last Name') ?></span>
                     </label>    
-                    <div class="control wpcf7-form-control-wrap">
+                    <div class="control form-control-wrap">
                         <input type="text" id="lastname" name="lastname" value="" title="Last Name" class="input-text required-entry form-control valid" data-validate="{required:true}" autocomplete="off" aria-required="true">
                     </div>
                 </div>
                 <div class="field email required mb-20 form-group">
                     <label for="email_address" class="label txt-grey" ><span><?= $block->escapeHtml(__('Email')) ?></span></label>
-                    <div class="control wpcf7-form-control-wrap">
-                        <input type="email" name="email" autocomplete="email" id="email_address" value="" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
+                    <div class="control form-control-wrap">
+                        <input type="email" name="email" autocomplete="email" id="email_address" value="" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text required-entry form-control valid" data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
                 <div class="field password required mb-20 form-group">
                     <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
-                    <div class="control">
+                    <div class="control form-control-wrap">
 
-                        <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text" autocomplete="off">
+                        <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text required-entry form-control valid" autocomplete="off">
 
                     </div>
 
                 </div>
                 <div class="field confirmation required mb-20 form-group">
                     <label for="password-confirmation" class="label"><span><?= $block->escapeHtml(__('Confirm Password')) ?></span></label>
-                    <div class="control">
-                        <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password-signup'}" autocomplete="off">
+                    <div class="control form-control-wrap">
+                        <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text required-entry form-control valid" data-validate="{required:true, equalTo:'#password-signup'}" autocomplete="off">
                     </div>
                 </div> 
                 <div class="remember">
-                    <input id="boxc" type="checkbox" />
-                    <label class="cbox1" for="boxc">
+                    <input id="signup-check" type="checkbox" />
+                    <label class="cbox1" for="signup-check">
                         <span><?= __('Do you agree to the')?> <a href="javascript:void(0);"><?= __('Terms & Condition.') ?></a></span>
                     </label>
                 </div>
@@ -152,7 +158,7 @@
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="send2"><span>Sign Up</span></button></div>                     
                 </div>
                 <div class="already-account text-center">
-                    <p><?= __('Already have an account? Click') ?><a href="javascript:void(0);" id="login-popup-form"><?= __('here') ?></a> <?= __('to Sign In.') ?></p>
+                    <p><?= __('Already have an account? Click') ?><a href="javascript:void(0);" id="login-popup-form"><?= __(' here') ?></a> <?= __('to Sign In.') ?></p>
                 </div>
             </fieldset> 
         </form>
@@ -198,7 +204,7 @@
                         <div class="field note text-center mb-20"><?= __('Sign In by entering the information below') ?></div>
                         <div class="field email required mb-20 form-group">
                             <label for="email_forget" class="label txt-grey"><span><?= __('Email') ?></span></label>
-                            <div class="control wpcf7-form-control-wrap">
+                            <div class="control form-control-wrap">
                                 <input type="email" name="email" alt="email" id="email_forget" class="input-text form-control" value="" data-validate="{required:true, 'validate-email':true}" aria-required="true">
                             </div>
                         </div>
