@@ -25,7 +25,7 @@
                 <form class="form form-login wpcf7-form"
                       action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
                       method="post"
-                      id="login-form-popup" 
+                      id="signup-popup" 
                       autocomplete="off"
                       data-mage-init='{"validation":{}}'
                       onsubmit="return validateform()">
@@ -113,7 +113,7 @@
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
             <form class="form create account form-create-account" autocomplete="off" action="<?= $block->getUrl('customer/account/createpost'); ?>" method="post" id="form-validate-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off"
-                   onsubmit="return validateform()">
+                   >
             <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
                 <?= $block->getBlockHtml('formkey') ?>
                 <div class="field note mb-20 text-center">Sign Up by entering the information below</div>
@@ -144,7 +144,7 @@
                     <div class="control form-control-wrap">
 
                         <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text required-entry form-control valid" autocomplete="off">
-
+                        <div class="text-small"><p>8-20 Characters of 3 types: Upper, Lower, Numeric, Special</p></div>
                     </div>
 
                 </div>
@@ -153,15 +153,15 @@
                     <div class="control form-control-wrap">
                         <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text required-entry form-control valid" data-validate="{required:true, equalTo:'#password-signup'}" autocomplete="off">
                     </div>
+                    
                 </div> 
                 <div class="remember">
-                    <input id="signup-check" type="checkbox" />
+                    <input id="signup-check" type="checkbox"  />
                     <label class="cbox1" for="signup-check">
                         <span><?= __('Do you agree to the')?> <a href="/"><?= __('Terms & Conditions') ?></a></span>
                     </label>
                 </div>
-                <div class="g-recaptcha mb-10" data-sitekey="6LdG32wUAAAAAAtB0WR-m6FEH9IPwBcCp6HYECRC"></div>
-                <div class="google-cap" style="display: none">Please validate the captcha</div>
+                 <div class="google-cap" style="display: none">Please validate the captcha</div>
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -255,8 +255,11 @@ function($, modal) {
     $('#signup-modal').on("click", function(){
         $('#popup-modal').modal('closeModal');
         var popup = modal(optsignup, $('#popup-modal-signup'));
-        $('#popup-modal-signup').modal('openModal');
+        $('#popup-modal-signup').modal('openModal').on('modalclosed', function() { 
+            $('#popup-modal-signup div.mage-error').remove()
+        });
     });
+    
     var optforget = {
         type: 'popup',
         responsive: true,
@@ -283,6 +286,27 @@ function($, modal) {
                     if(response.redirectUrl) {
                         setTimeout(function(){											
                             window.location = response.redirectUrl;
+                        }, 2000);                            
+                    } 
+                }
+            });
+        }
+    });
+    $('#signup-popup').on('submit', function (event){
+        event.preventDefault();
+        if($('#signup-popup').validation('isValid')) {
+            			
+            $.ajax({
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('#signup-popup').serialize(true),								
+                success:function(response) { 
+                    $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
+                    if(response.resultRedirect) {
+                        setTimeout(function(){											
+                            //window.location = response.resultRedirect;
                         }, 2000);                            
                     } 
                 }
