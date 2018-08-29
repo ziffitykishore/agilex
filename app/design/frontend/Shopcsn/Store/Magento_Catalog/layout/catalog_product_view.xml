@@ -21,6 +21,7 @@
                     <argument name="template" xsi:type="string">Magento_Catalog::product/view/attribute.phtml</argument>
                 </action>
             </referenceBlock>
+            <block class="Ziffity\PdpProductsList\Block\CustomProductsList" name="custom_products" template="Ziffity_PdpProductsList::product/items.phtml"/>
         </referenceContainer>
         <referenceBlock name="breadcrumbs" template="Magento_Catalog::product/breadcrumbs.phtml">
             <arguments>
