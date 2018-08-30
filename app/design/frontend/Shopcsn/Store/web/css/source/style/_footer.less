@@ -4,6 +4,7 @@
     top: 50%;
     .transform(translateY(-50%));
     text-align: center;
+    z-index: 99;
     &.active {
         ul {
             .transform(translateX(-100%));
@@ -99,7 +100,20 @@
         .footer-list {
             width: 20%;
             float: left;
+
+
+            
         }
+
+        .footer-list:nth-child(4) {
+            width: 15%;
+        }
+
+        .footer-list:nth-child(5){
+            width: 25%;
+        }
+
+
         ul {
             padding-left: 0;
             list-style: none;
@@ -121,21 +135,20 @@
     }
 }
 
-@media screen and (min-width: 992px) and (max-width: 1200px) {
+
+
+
+@media screen and  (max-width: 1600px) {
     .page-footer {
         .footer-links {
             h3 {
                 font-size: 10px;
             }
-            .footer-list {
-                width: 20%;
-                float: left;
-            }
+
             ul {
                 a {
                     font-size: 10px;
-                    color: #ddd;
-                    text-decoration: none;
+                    
                 }
             }
         }
