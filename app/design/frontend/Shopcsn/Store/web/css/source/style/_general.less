@@ -1,7 +1,6 @@
 /* home page */
 
-
-a:focus{
+a:focus {
     outline: none;
 }
 
@@ -107,6 +106,9 @@ a:focus{
         margin: 0;
         font-size: 20px;
         font-weight: bold;
+        &.heading-text {
+            margin-top: 6px;
+        }
     }
     >a,
     a:hover {
@@ -151,6 +153,18 @@ a:focus{
         bottom: 0;
         opacity: 0;
         .transition(all 900ms ease-in);
+    }
+}
+
+.message {
+    &.info {
+        border: 1px solid #6f4400;
+    }
+    &.error {
+        border: 1px solid #e02b27;
+    }
+    &.success {
+        border: 1px solid #006400;
     }
 }
 
