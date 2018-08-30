@@ -4,6 +4,7 @@
 .confirm-popup {
 &.modal-popup {
        
+
         .modal-inner-wrap {
             width: 100%;
             margin: 0;
@@ -11,30 +12,28 @@
             height: 100%;
             .modal-header {
                 border: none;
-               position: relative;
-               z-index: 999;
+                position: relative;
+                z-index: 999;
             }
-               .modal-content {
-                   padding: 0;
-                   position: absolute;
-                   border: 0;
-                   box-shadow: none;
-               
+            .modal-content {
+                padding: 0;
+                position: absolute;
+                border: 0;
+                box-shadow: none;
             }
-        
         }
     }
 }
 
 .log-in {
-            background: url(../images/login_image.jpg);
-            background-repeat: no-repeat;
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-     .sign-in-page {
+    background: url(../images/login_image.jpg) no-repeat left bottom;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    .sign-in-page {
         position: absolute;
         top: 40%;
         left: 25%;
@@ -48,8 +47,7 @@
             font-size: 18px;
             color: #d7dded;
         }
-
-     }
+    }
     .block-customer-login {
         background-color: #fff;
         position: absolute;
@@ -60,7 +58,6 @@
         overflow: auto;
         z-index: 999;
         animation: fadeIn;
-
         .common-form {
             &.sign-in {
                 padding: 44% 50px;
@@ -69,8 +66,6 @@
             &.sign-up {
                 padding: 5% 50px;
                 background: #fff;
-                
-               
             }
             &.forgot-password {
                 height: 100%;
@@ -81,16 +76,14 @@
             .forget {
                 min-width: auto;
                 width: 100%;
-
             }
-             /****** heading-color*********/
-             .main-head {
+            /****** heading-color*********/
+            .main-head {
                 color: #1c3f93;
             }
             /********** input field********/
             .form-group {
                 position: relative;
-               
                 .label {
                     position: absolute;
                     z-index: 3;
@@ -110,7 +103,7 @@
                 .form-control-wrap {
                     display: block;
                     position: relative;
-                    .valid + .mage-error {
+                    .valid+.mage-error {
                         position: absolute;
                         background: url(../images/tick2.png);
                         background-repeat: no-repeat;
@@ -119,7 +112,7 @@
                         bottom: 0;
                         left: 90%;
                     }
-                    .mage-error + .mage-error {
+                    .mage-error+.mage-error {
                         background: url(../img/tick2.png);
                     }
                     .form-control {
@@ -176,7 +169,7 @@
                 input#boxc,
                 input#signup-check {
                     opacity: 0;
-                    &:checked + label:after {
+                    &:checked+label:after {
                         opacity: 1;
                     }
                 }
@@ -198,7 +191,7 @@
                 color: #000;
                 text-decoration: none;
             }
-             /***** button-color-width********/
+            /***** button-color-width********/
             .button-full {
                 margin-top: 10px;
                 margin-right: 10px;
@@ -216,14 +209,12 @@
             }
         }
         .social {
-            position: absolute;
-            bottom: 0;
             padding: 50px 0;
             background-color: #d7dded;
             width: 100%;
             text-align: center;
             .social-media {
-                .list-inline > li.social-links {
+                .list-inline>li.social-links {
                     padding-left: 0;
                 }
             }
@@ -258,10 +249,9 @@
                 margin-left: 35px;
             }
         }
-
     }
-
 }
+
 a {
     color: #1c3f93;
     &:hover {
@@ -270,12 +260,15 @@ a {
 }
 
 /***************** common classes ****************/
+
 .mb-10 {
     margin-bottom: 10px;
 }
+
 .mb-20 {
     margin-bottom: 20px;
 }
+
 .mb-30 {
     margin-bottom: 30px;
 }
@@ -295,10 +288,12 @@ a {
 .padding-zero {
     padding: 0;
 }
+
 .font-bold {
     font-weight: bold;
     color: #000;
 }
+
 .text-uppercase {
     text-transform: uppercase;
 }
@@ -306,9 +301,11 @@ a {
 .text-capitalize {
     text-transform: capitalize;
 }
+
 .req-col {
     color: red;
 }
+
 .txt-grey {
     color: #c2c2c2;
 }
@@ -320,6 +317,3 @@ a {
 .ptb-10 {
     padding: 10px 0;
 }
-
-
-

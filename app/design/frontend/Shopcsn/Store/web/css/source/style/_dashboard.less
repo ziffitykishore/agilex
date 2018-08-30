@@ -1,6 +1,17 @@
 .customer-account-index {}
 
 .account {
+
+    &.page-layout-2columns-left {
+        .page-main{
+        .column.main {
+            width: 70.7%;
+        }
+        .sidebar.sidebar-main {
+            width: 29.3%;
+        }
+    }
+    }
     .page-title-wrapper {
         padding: 20px 30px;
         border-bottom: 1px solid #d7d7ed;
@@ -13,6 +24,7 @@
 
     .columns {
         margin-top: 30px;
+        .container-md()
     }
     .column {
         
@@ -258,6 +270,12 @@
                         color: @color-black;
                         font-weight: bold;
 
+                    }
+
+                    &:first-child {
+                        > strong {
+                            margin-top: 0;
+                        }
                     }
 
                     &.current {

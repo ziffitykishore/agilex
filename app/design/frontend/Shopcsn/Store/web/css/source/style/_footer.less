@@ -1,11 +1,57 @@
-.sticky-container {
+#sticky-social {
     position: fixed;
     left: 0;
     top: 50%;
     .transform(translateY(-50%));
-    ul li {
-        list-style: none;
-        display: block;
+    text-align: center;
+    &.active {
+        ul {
+            .transform(translateX(-100%));
+        }
+    }
+    .trigger{
+        .lib-css(color, #bbb);
+        font-size: @f-size-xl; 
+    }
+    ul {
+        padding: 0;
+        overflow: hidden;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        .transition(all 0.5s ease-in-out 0s);
+        
+        li {
+            list-style: none;
+            display: block;
+            margin-bottom: 0;
+            a {
+                width: 40px;
+                height: 40px;
+                display: block;
+                text-align: center;
+                line-height: 40px;
+                .lib-css(color, @color-white);
+            }
+
+            &.facebook {
+                a {
+                    .lib-css(background, #3e5894);
+                }
+            }
+            &.twitter {
+                a {
+                    .lib-css(background, #33CCFF);
+                }
+            }
+            &.linkedin {
+                a {
+                    .lib-css(background, #4875B4);
+                }
+            }
+        }
+
+
+
     }
 }
 
@@ -87,7 +133,7 @@
             }
             ul {
                 a {
-                    font-size: 8px;
+                    font-size: 10px;
                     color: #ddd;
                     text-decoration: none;
                 }
