@@ -1,12 +1,16 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright Â© Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 // @codingStandardsIgnoreFile
 
 /** @var \Magento\Customer\Block\Form\Login $block */
+?>
+<?php 
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('mconnect_ajaxlogin/googlecaptcha/sitekey');
 ?>
 <div class="log-in"  id="popup-modal" style="display:none">
     <div class="sign-in-page">
@@ -61,8 +65,8 @@
                             </ul>
 
                          </div>
-                         <div class="g-recaptcha mb-10" data-sitekey="6LdG32wUAAAAAAtB0WR-m6FEH9IPwBcCp6HYECRC"></div>
-                         <div class="google-cap" style="display: none">Please validate the captcha</div>
+                        <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
+                        <div class="google-cap" style="display: none">Please validate the captcha</div>
                         <div class="actions-toolbar">
                             <div class="primary">
                                 <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
@@ -143,26 +147,32 @@
                 <div class="field password required mb-20 form-group">
                     <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
                     <div class="control form-control-wrap">
-
                         <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text required-entry form-control valid" autocomplete="off">
                         <div class="text-small"><p>8-20 Characters of 3 types: Upper, Lower, Numeric, Special</p></div>
                     </div>
-
                 </div>
                 <div class="field confirmation required mb-20 form-group">
                     <label for="password-confirmation" class="label"><span><?= $block->escapeHtml(__('Confirm Password')) ?></span></label>
                     <div class="control form-control-wrap">
                         <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text required-entry form-control valid" data-validate="{required:true, equalTo:'#password-signup'}" autocomplete="off">
                     </div>
-                    
                 </div> 
                 <div class="remember">
-                    <input id="signup-check" type="checkbox"  />
-                    <label class="cbox1" for="signup-check">
+                    <!--
+                    <div class="field choice newsletter">
+        <label for="custom-terms" class="label"><span><?php /* @escapeNotVerified */ echo __('Do you agree ?') ?></span></label>
+        <input type="checkbox" data-validate="{required:true}" name="custom-terms" title="<?php /* @escapeNotVerified */ echo __('Terms and contitions') ?>" id="register-input-custom" class="checkbox">
+    </div>-->
+                    
+                    <label class="label cbox1 signupcheck" for="signup-check">
                         <span><?= __('Do you agree to the')?> <a href="/"><?= __('Terms & Conditions') ?></a></span>
                     </label>
+                    <input type="checkbox" id="signup-check" data-validate="{required:true}" name="custom-terms" title="<?php /* @escapeNotVerified */ echo __('Terms and contitions') ?>" class="checkbox"  />
+    
+                    
                 </div>
-                 <div class="google-cap" style="display: none">Please validate the captcha</div>
+                <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
+                <div class="google-cap" style="display: none">Please validate the captcha</div>
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -203,13 +213,13 @@
         <div><p>America's Trusted Source of Numismatic Treasures</p></div>
     </div>
     <div class="block block-customer-login">
-        <i class="fa fa-long-arrow-left fa-2x" aria-hidden="true" style="padding: 20px;"></i>
-       <div class="common-form forgot-password">
+        <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"><?= __('Login'); ?></a>
+        <div class="common-form forgot-password">
             <div class="block-title main-head text-center mb-20">
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password?') ?></strong></h3>
             </div>
             <div class="block-content">
-                <form class="form password forget" autocomplete="off" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
+                <form class="form password forget" autocomplete="off" method="post" id="forget-password" data-mage-init='{"validation":{}}'>
                     <fieldset class="fieldset" data-hasrequired="* Required Fields">
                         <div class="field note text-center mb-20"><?= __('Sign In by entering the information below') ?></div>
                         <div class="field email required mb-20 form-group">
@@ -221,11 +231,70 @@
                             </fieldset>
                     <div class="actions-toolbar">
                         <div class="primary">
-                            <button type="submit" class="button-full action submit primary text-uppercase"><span>continue</span></button>
+                            <button type="submit" class="button-full action submit primary text-uppercase"><span><?= __('continue') ?></span></button>
                         </div>
-
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Password confirmation -->
+<div class="log-in"  id="confirm-popup" style="display:none">
+    <div class="sign-in-page">
+        <div><h1>Welcome back!</h1></div>
+        <div><p>America's Trusted Source of Numismatic Treasures</p></div>
+    </div>
+    <div class="block block-customer-login">
+        <div class="common-form sign-in">
+            <div class="confirm-notify" style="display: none;"></div>
+            <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"><?= __('Login'); ?></a>
+            <div class="block-title main-head text-center">
+                <h3>
+                <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
+                </h3>
+            </div>
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+               <form action="" method="post" id="confirm-popup-form" class="form form-login wpcf7-form form send confirmation" data-mage-init='{"validation":{}}'>
+                    <fieldset class="fieldset" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                        <p class="field note"><?= $block->escapeHtml(__('Please enter your email below and we will send you the confirmation link.')) ?></p>
+                        <div class="field email required">
+                            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                            <div class="control">
+                                <input type="email" name="email" id="email_address_confirm" class="input-text" value="" data-validate="{required:true, 'validate-email':true}">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action send primary"><span><?= $block->escapeHtml(__('Send confirmation link')) ?></span></button>
+                        </div>
+                        <div class="secondary">
+                            <a href="javascript:void(0);" class="action back"><span><?= $block->escapeHtml(__('Back to Sign In')) ?></span></a>;
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="social">
+            <div class="text-center mb-20">
+                <h4>Or Connect Using</h4>
+            </div>
+            <div class="social-media">
+                <ul class="list-inline">
+                    <li class="social-links media-first">
+                        <a href="#" class="button-social">
+                            <img src="<?php echo $this->getViewFileUrl('images/icon_fb.png'); ?>" alt="fb-icon" class="social-icon" />
+                            <span class="button-social social-text"><?= __('Facebook') ?></span>
+                        </a>
+                    </li>
+                    <li class=" social-links media-second">
+                        <a href="#" class="button-social ">
+                            <img src="<?php echo $this->getViewFileUrl('images/icon_google.png'); ?>" alt="google" class="social-icon" />
+                            <span class="button-social social-text"><?= __('Google') ?></span>
+                        </a>
+                   </li>
+               </ul>
             </div>
         </div>
     </div>
@@ -244,7 +313,9 @@ function($, modal) {
     $('#login-popup, #login-popup-form').on("click", function(){
         var popup = modal(options, $('#popup-modal'));
         //$('#popup-modal-signup').modal('closeModal');
-        $('#popup-modal').modal('openModal');
+        $('#popup-modal').modal('openModal').on('modalclosed', function(){
+            $('.login-notify').hide().html('');
+        });
     });
     var optsignup = {
         type: 'popup',
@@ -257,7 +328,7 @@ function($, modal) {
         $('#popup-modal').modal('closeModal');
         var popup = modal(optsignup, $('#popup-modal-signup'));
         $('#popup-modal-signup').modal('openModal').on('modalclosed', function() { 
-            $('#popup-modal-signup div.mage-error').remove()
+            $('#popup-modal-signup div.mage-error').remove();
         });
     });
     
@@ -272,6 +343,28 @@ function($, modal) {
         $('#popup-modal').modal('closeModal');
         var popup = modal(optforget, $('#forget-popup'));
         $('#forget-popup').modal('openModal');
+    });
+    $('.bk-to-arw').on('click', function(event){
+        $('#forget-popup').modal('closeModal');
+        $('#popup-modal').modal('openModal');
+    });
+    $('#forget-password').on('click', function(event){
+        event.preventDefault();
+        if($('#forget-password').validation('isValid')) {
+            $.ajax({
+                url:'<?= $this->getUrl('ajaxlogin/popup/forgot'); ?>',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('#forget-password').serialize(true),								
+                success:function(response) { 
+                    $('#forget-popup').modal('closeModal');
+                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    var popup = modal(options, $('#popup-modal'));
+                    $('#popup-modal').modal('openModal');
+                }
+            });
+        }
     });
     $('#login-form-popup').on('submit', function (event){
         if($('#login-form-popup').validation('isValid')) {
@@ -295,8 +388,17 @@ function($, modal) {
     });
     //form-validate-popup
     $('#signup-popup').on('submit', function (event){
+        
+        if($('#signup-check:checked').length < 1) {
+            $('.signupcheck').addClass('mage-error').show();
+        } else {
+            $('.signupcheck').removeClass('mage-error').show();
+        }
         event.preventDefault();
-        if($('#signup-popup').validation('isValid')) {            			
+        var captcha_response = grecaptcha.getResponse();
+        
+        captcha_response.length != 0 ? $('#signup-popup .google-cap').show() : $('#signup-popup .google-cap').hide() ;
+        if($('#signup-popup').validation('isValid') && captcha_response.length != 0) {            			
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
                 type:'POST',
@@ -314,10 +416,53 @@ function($, modal) {
                     var popup = modal(optsignup, $('#popup-modal-signup'));
                     $('#popup-modal').modal('openModal');
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    if(response.email) {
+                        $('#confirm_link').on('click', function(event){
+                            event.preventDefault();
+                            var optconf = {
+                                type: 'popup',
+                                responsive: true,
+                                innerScroll: true,
+                                modalClass: 'confirm-popup custom-block-customer-login',
+                                buttons: false,
+                            };
+                            $('#email_address_confirm').val(response.email);
+                            $('#popup-modal').modal('closeModal');
+                            var popup = modal(optconf, $('#confirm-popup'));
+                            $('#confirm-popup').modal('openModal');
+                        });
+                    }
+                    $(':input','#signup-popup')
+                    .not(':button, :submit, :reset, :hidden')
+                    .val('')
+                    .removeAttr('checked')
+                    .removeAttr('selected');
                 }
             });
         }
     });
+    $('#confirm-popup-form').on('submit', function (event){
+        event.preventDefault();
+        if($('#confirm-popup-form').validation('isValid')) {            			
+            $.ajax({
+                url:'<?= $this->getUrl('ajaxlogin/account/confirmation'); ?>',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('#confirm-popup-form').serialize(true),								
+                success:function(response) {
+                    if(response.errors) {
+                        $('.confirm-notify').fadeOut().html(response.message).fadeIn(100);
+                    } else {
+                        $('#confirm-popup').modal('closeModal');
+                        $('#popup-modal').modal('openModal');
+                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    }
+                }
+            });
+        }
+    });
+    
     function validateform() {
         var captcha_response = grecaptcha.getResponse();
         if(captcha_response.length == 0) {        
@@ -326,6 +471,7 @@ function($, modal) {
             return true;
         }
     }
+    
 });
  
 
