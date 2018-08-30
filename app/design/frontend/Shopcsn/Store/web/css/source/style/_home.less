@@ -139,70 +139,10 @@
                 .blog-content-wrap {
                     padding: 70px 35px;
                 }
+                .blog-item();
                 .blog-item {
                     padding-left: 35px;
                     padding-right: 35px;
-                    >a,
-                    a:focus {
-                        text-decoration: none;
-                        outline: none;
-                    }
-                }
-                .blog-image {
-                    position: relative;
-                    img {
-                        width: 100%;
-                    }
-                    .blog-date {
-                        position: absolute;
-                        color: @color-white;
-                        left: 10px;
-                        bottom: 10px;
-                        width: 60px;
-                        height: 60px;
-                        background: fade(@color-darkslateblue, 60%);
-                        font-size: @f-size-xl;
-                        font-weight: bold;
-                        text-align: center;
-                        display: table;
-                        .date-sec {
-                            display: table-cell;
-                            vertical-align: middle;
-                        }
-                        span {
-                            display: block;
-                        }
-                    }
-                }
-                .blog-content {
-                    background: @color-white;
-                    padding: 40px;
-                    .blog-title {
-                        font-size: @f-size-xxl;
-                        font-weight: bold;
-                        color: @color-black;
-                        margin-bottom: 20px;
-                        &:after {
-                            margin-top: 15px;
-                            width: 45px;
-                            height: 1px;
-                            background: #d7dded;
-                            display: block;
-                            content: '';
-                        }
-                    }
-                    .blog-desc {
-                        color: @color-black;
-                        font-size: @f-size;
-                        margin-bottom: 30px;
-                    }
-                    .more-btn {
-                        color: @color-black;
-                        font-size: @f-size-s;
-                        font-weight: 600;
-                        text-align: right;
-                        display: block;
-                    }
                 }
             }
         }
@@ -210,8 +150,8 @@
 }
 
 @media screen and (max-width: 1561px) {
-    .cms-index-index, 
-    .block-products-list{
+    .cms-index-index,
+    .block-products-list {
         .products-grid {
             .product-item {
                 &:nth-child(5) {
