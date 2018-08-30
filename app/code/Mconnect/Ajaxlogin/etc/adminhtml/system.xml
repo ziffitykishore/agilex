@@ -9,7 +9,13 @@
             <label>Ajax Login</label>
             <tab>mconnect</tab>            
             <resource>Mconnect_Ajaxlogin::config_ajaxlogin</resource>
-			
+            <group id="googlecaptcha" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Captcha</label>			
+
+                <field id="sitekey" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">			
+                    <label>Google Sitekey</label>
+                </field>
+            </group>			
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
 			 
                 <label>General Setting (Ajaxlogin)</label>			

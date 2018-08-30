@@ -1,7 +1,8 @@
 var config = {
     paths: {
             'bminjs' : 'js/bootstrap.min',
-            'slick'  : 'js/slick.min'
+            'slick'  : 'js/slick.min',
+            'googlecap' : 'https://www.google.com/recaptcha/api'
     },
     shim: {
         'bminjs': {
