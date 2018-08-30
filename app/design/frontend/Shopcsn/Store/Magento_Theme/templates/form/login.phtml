@@ -114,6 +114,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
     </div>
     <div class="block block-customer-login">
         <div class="common-form sign-up">
+            <div class="signup-notify" style="display: none;"></div>
             <div class="block-title main-head text-center">
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __("Let's Get Started!") ?></strong></h3>
             </div>
@@ -372,6 +373,7 @@ function($, modal) {
                 data: $('#login-form-popup').serialize(true),								
                 success:function(response) { 
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    window.location = "<?= $this->getUrl('customer/account') ?>";
                     if(response.redirectUrl) {
                         setTimeout(function(){											
                             window.location = response.redirectUrl;
@@ -405,10 +407,15 @@ function($, modal) {
                             //window.location = response.resultRedirect;
                         }, 2000);                            
                     } 
-                    $('#popup-modal-signup').modal('closeModal');
-                    var popup = modal(optsignup, $('#popup-modal-signup'));
-                    $('#popup-modal').modal('openModal');
-                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    if(response.success) {
+                        $('#popup-modal-signup').modal('closeModal');
+                        var popup = modal(optsignup, $('#popup-modal-signup'));
+                        $('#popup-modal').modal('openModal');
+                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    } else {
+                        $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
+                    }
+                    
                     if(response.email) {
                         $('#confirm_link').on('click', function(event){
                             event.preventDefault();
