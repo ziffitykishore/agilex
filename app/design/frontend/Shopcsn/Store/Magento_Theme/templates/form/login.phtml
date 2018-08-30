@@ -15,6 +15,7 @@
     </div>
     <div class="block block-customer-login">
         <div class="common-form sign-in">
+            <div class="login-notify" style="display: none;"></div>
             <div class="block-title main-head text-center">
                 <h3>
                 <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
@@ -24,22 +25,23 @@
                 <form class="form form-login wpcf7-form"
                       action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
                       method="post"
-                      id="login-form" 
+                      id="login-form-popup" 
                       autocomplete="off"
-                      data-mage-init='{"validation":{}}'>
+                      data-mage-init='{"validation":{}}'
+                     >
                     <?= $block->getBlockHtml('formkey') ?>
                     <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-                        <div class="field note mb-20 text-center"><?= $block->escapeHtml(__('Sign in to access your account')) ?></div>
+                        <div class="field note mb-20 text-center"><?= $block->escapeHtml(__('Sign In to access your account')) ?></div>
                         <div class="field email required mb-20 form-group">
                             <label class="label txt-grey" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                             <div class="control form-control-wrap">
-                                <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text form-control" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-validate="{required:true, 'validate-email':true}">
+                                <input name="username" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text form-control" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" data-validate="{required:true, 'validate-email':true}">
                             </div>
                         </div>
                         <div class="field password required mb-20 form-group">
                             <label for="pass" class="label txt-grey"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
                             <div class="control form-control-wrap">
-                                <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text form-control" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
+                                <input name="password" type="password" <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?> class="input-text form-control" id="pass" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" data-validate="{required:true}">
                             </div>
                         </div>
                         <?= $block->getChildHtml('form_additional_info') ?>
@@ -47,7 +49,7 @@
                             <ul class="list-inline">
                                 <li><input  id="boxc" type="checkbox" class="txt-grey">
                                     <label class="cbox1" for="boxc">
-                                    <span class="txt-grey"> Remember me</span>
+                                    <span class="txt-grey"> Remember Me</span>
                             </li>
                                 <li class="pull-right">
                                     <div class="secondary">
@@ -59,6 +61,8 @@
                             </ul>
 
                          </div>
+                         <div class="g-recaptcha mb-10" data-sitekey="6LdG32wUAAAAAAtB0WR-m6FEH9IPwBcCp6HYECRC"></div>
+                         <div class="google-cap" style="display: none">Please validate the captcha</div>
                         <div class="actions-toolbar">
                             <div class="primary">
                                 <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
@@ -66,7 +70,7 @@
                                 </button>
                             </div>
                             <div class="new-signup text-center">
-                                <p><?= __('New User ? ') ?><a href="javascript:void(0);" id="signup-modal"><?= __('Sign Up') ?></a></p>
+                                <p><?= __('New User? ') ?><a href="javascript:void(0);" id="signup-modal"><?= __('Sign Up') ?></a></p>
                             </div>
                         </div>
                     </fieldset>
@@ -108,7 +112,9 @@
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __("Let's Get Started!") ?></strong></h3>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
-            <form class="form create account form-create-account" autocomplete="off" action="<?= $block->getUrl('customer/account/createpost'); ?>" method="post" id="form-validate-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off">
+            <form class="form create account form-create-account" autocomplete="off" method="post" id="signup-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off"
+                   >
+
             <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
                 <?= $block->getBlockHtml('formkey') ?>
                 <div class="field note mb-20 text-center">Sign Up by entering the information below</div>
@@ -139,7 +145,7 @@
                     <div class="control form-control-wrap">
 
                         <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text required-entry form-control valid" autocomplete="off">
-
+                        <div class="text-small"><p>8-20 Characters of 3 types: Upper, Lower, Numeric, Special</p></div>
                     </div>
 
                 </div>
@@ -148,13 +154,15 @@
                     <div class="control form-control-wrap">
                         <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Confirm Password')) ?>" id="password-confirmation" class="input-text required-entry form-control valid" data-validate="{required:true, equalTo:'#password-signup'}" autocomplete="off">
                     </div>
+                    
                 </div> 
                 <div class="remember">
-                    <input id="signup-check" type="checkbox" />
+                    <input id="signup-check" type="checkbox"  />
                     <label class="cbox1" for="signup-check">
-                        <span><?= __('Do you agree to the')?> <a href="javascript:void(0);"><?= __('Terms & Condition.') ?></a></span>
+                        <span><?= __('Do you agree to the')?> <a href="/"><?= __('Terms & Conditions') ?></a></span>
                     </label>
                 </div>
+                 <div class="google-cap" style="display: none">Please validate the captcha</div>
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -195,9 +203,10 @@
         <div><p>America's Trusted Source of Numismatic Treasures</p></div>
     </div>
     <div class="block block-customer-login">
+        <i class="fa fa-long-arrow-left fa-2x" aria-hidden="true" style="padding: 20px;"></i>
        <div class="common-form forgot-password">
             <div class="block-title main-head text-center mb-20">
-                <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password ?') ?></strong></h3>
+                <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password?') ?></strong></h3>
             </div>
             <div class="block-content">
                 <form class="form password forget" autocomplete="off" action="<?= $block->getUrl('customer/account/forgotpasswordpost') ?>" method="post" id="forget-popup" data-mage-init='{"validation":{}}'>
@@ -223,7 +232,7 @@
 </div>
 
 <script type="text/javascript">
-require(['jquery','Magento_Ui/js/modal/modal'],
+require(['jquery','Magento_Ui/js/modal/modal', 'googlecap'],
 function($, modal) {
     var options = {
         type: 'popup',
@@ -247,8 +256,11 @@ function($, modal) {
     $('#signup-modal').on("click", function(){
         $('#popup-modal').modal('closeModal');
         var popup = modal(optsignup, $('#popup-modal-signup'));
-        $('#popup-modal-signup').modal('openModal');
+        $('#popup-modal-signup').modal('openModal').on('modalclosed', function() { 
+            $('#popup-modal-signup div.mage-error').remove()
+        });
     });
+    
     var optforget = {
         type: 'popup',
         responsive: true,
@@ -261,6 +273,62 @@ function($, modal) {
         var popup = modal(optforget, $('#forget-popup'));
         $('#forget-popup').modal('openModal');
     });
-    
+    $('#login-form-popup').on('submit', function (event){
+        if($('#login-form-popup').validation('isValid')) {
+            event.preventDefault();			
+            $.ajax({
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxlogin'); ?>',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('#login-form-popup').serialize(true),								
+                success:function(response) { 
+                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    if(response.redirectUrl) {
+                        setTimeout(function(){											
+                            window.location = response.redirectUrl;
+                        }, 2000);                            
+                    } 
+                }
+            });
+        }
+    });
+    //form-validate-popup
+    $('#signup-popup').on('submit', function (event){
+        event.preventDefault();
+        if($('#signup-popup').validation('isValid')) {            			
+            $.ajax({
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
+                type:'POST',
+                showLoader: true,
+                dataType:'json',
+                data: $('#signup-popup').serialize(true),								
+                success:function(response) { 
+                    
+                    if(response.resultRedirect) {
+                        setTimeout(function(){											
+                            //window.location = response.resultRedirect;
+                        }, 2000);                            
+                    } 
+                    $('#popup-modal-signup').modal('closeModal');
+                    var popup = modal(optsignup, $('#popup-modal-signup'));
+                    $('#popup-modal').modal('openModal');
+                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                }
+            });
+        }
+    });
+    function validateform() {
+        var captcha_response = grecaptcha.getResponse();
+        if(captcha_response.length == 0) {        
+            return false;
+        } else {
+            return true;
+        }
+    }
 });
-</script>
+ 
+
+
+    
+ </script>
