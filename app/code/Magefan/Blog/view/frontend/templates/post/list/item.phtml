@@ -1,0 +1,47 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog post list item template
+ *
+ * @var $block \Magefan\Blog\Block\Post\AbstractPost
+ */
+?>
+<?php
+    $_post = $this->getPost();
+    $_postUrl = $_post->getPostUrl();
+    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+?>
+
+<div class="col-sm-4 blog-item <?php echo $_post->getId() ?>">
+    <a class="post-item-link" href="<?php echo $_postUrl ?>">
+        <div class="blog-image">
+            <img src="<?php echo $_post->getFeaturedImage(); ?>" alt="<?php echo $_postName ?>" class="img-responsive full-w" />
+            <div class="blog-date">
+                <div class="date-sec">
+                <?php echo date("d", strtotime($_post->getPublishTime())) ?>
+                    <span><?php echo date("M", strtotime($_post->getPublishTime())) ?></span>
+                </div>
+            </div>
+        </div>
+    </a>
+    <div class="blog-content">
+        <a href="<?php echo $_postUrl ?>">
+            <div class="blog-title">
+                <?php echo $_postName ?>
+            </div>
+        </a>
+        <div class="blog-desc">
+            <?php echo $block->getShorContent() ?>
+        </div>
+        <a href="<?php echo $_postUrl ?>">
+            <span class="more-btn"><?php echo __('Read more') ?></span>
+        </a>
+    </div>
+</div>

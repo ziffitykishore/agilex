@@ -7,8 +7,43 @@
 -->
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceContainer name="content">
+            <container name="pdp-container" htmlClass="pdp" htmlTag="div" before="-">
+                <container name="pdp-info" htmlClass="pdp-info" htmlTag="div"/>
+            </container>
+            <referenceBlock name="product.info.options.default">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_Catalog::product/view/type/default.phtml</argument>
+                </action>
+            </referenceBlock>
+            <referenceBlock name="product.info.sku">
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Magento_Catalog::product/view/attribute.phtml</argument>
+                </action>
+            </referenceBlock>
+            <block class="Ziffity\PdpProductsList\Block\CustomProductsList" name="custom_products" template="Ziffity_PdpProductsList::product/items.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="breadcrumbs" template="Magento_Catalog::product/breadcrumbs.phtml">
+            <arguments>
+                <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Breadcrumbs</argument>
+            </arguments>
+        </referenceBlock>
+        
+        <container name="csn-info" htmlClass="csn-info" htmlTag="div">
+            <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />           
+        </container>  
+           
+        <move element="csn-info" destination="page.top"/>
+        <move element="breadcrumbs" destination="csn-info" before="csn.info" />
+        <move element="product.info.media" destination="pdp-container" after="pdp-info"/>
+        <move element="product.info.main" destination="pdp-container" after="product.info.media" />
+        <referenceBlock name="product.info.review" remove="true"/>
+        <referenceBlock name="product.info.mailto" remove="true"/>
+        <referenceBlock name="view.addto.compare" remove="true" />
         <move element="page.main.title" destination="product.info.main" before="-"/>
-        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
-        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
+        
+        <move element="product.info.overview" destination="product.info.main" after="product.info.price" />
+        <move element="product.info.social" destination="product.info.form.content" after="-" />
     </body>
 </page>
