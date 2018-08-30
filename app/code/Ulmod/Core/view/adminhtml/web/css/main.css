@@ -1,0 +1,40 @@
+/**
+ * Core
+ *
+ * @package     Ulmod_Core
+ * @author      Ulmod <support@ulmod.com>
+ * @copyright   Copyright (c) 2016 Ulmod (http://www.ulmod.com/)
+ * @license     http://www.ulmod.com/license-agreement.html
+ */
+
+
+.config-nav-block.ulmod-tab .admin__page-nav-title {
+    padding: 1.3rem 1.5rem;
+	line-height: 1.9;
+}
+.config-nav-block.ulmod-tab strong:before {
+background: url(../images/logo-config.png) no-repeat;
+width: 18px;
+height: 19px;
+content: '';
+display: inline-block;
+margin-right: 8px;
+vertical-align: bottom;
+margin-bottom: 4px;
+display:none;
+}
+.um-product-info {
+	font-weight: bold;
+}
+.um-product-info .um-prod-name {
+font-weight: bold;
+}
+.um-product-info .um-prod-version {
+background: #d0e5a9 none repeat scroll 0 0;
+border-color: #5b8116;
+color: #185b00;
+font-weight: bold;
+text-align: center;
+padding: 0px 15px;
+}
+
