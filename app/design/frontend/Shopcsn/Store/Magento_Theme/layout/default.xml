@@ -19,16 +19,19 @@
                     </arguments>
                 </block>
             </container>
-            <container name="csn-info">
-                 <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />
-            </container>  
            
         </referenceContainer>
+        <container name="csn-info" htmlClass="csn-info" htmlTag="div">
+            <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />           
+        </container>  
+           
+        <move element="csn-info" destination="page.top"/>
+        <move element="breadcrumbs" destination="csn-info" before="csn.info" />
         
         
         <referenceContainer name="footer" htmlClass="page-footer__content">
             <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
-            <container name="footerlogo" label="Footer Logo" htmlTag="div" after="footer.news-wrapper" htmlClass="footer-logo text-center">
+<!--            <container name="footerlogo" label="Footer Logo" htmlTag="div" after="footer.news-wrapper" htmlClass="footer-logo text-center">
                 <container name="footer.logo-container" htmlClass="container" htmlTag="div">
                     <block class="Magento\Cms\Block\Block" name="footer.logo" >
                         <arguments>
@@ -36,7 +39,7 @@
                         </arguments>
                     </block>
                 </container>
-            </container>
+            </container>-->
 
             <container name="footer.grid-wrapper" htmlClass="footer-links-wrapper" htmlTag="div">
                 <container name="footer.grid-container" htmlClass="container" htmlTag="div">
@@ -53,9 +56,6 @@
             <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">
                 <container name="footer.copy-container" htmlClass="copyright-inner" htmlTag="div"/>
             </container>
-            <referenceContainer name="footer-container">
-                <block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
-            </referenceContainer>
  
         </referenceContainer>
         <!-- Footer blocks END-->

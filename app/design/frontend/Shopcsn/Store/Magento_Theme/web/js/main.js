@@ -9,10 +9,8 @@ define([
 ], function($, jQuery) {
     'use strict';
 
-
-    //     `use strict`;
     console.log("I'm Ready!.......");
-    //require(["jquery" , "jquery/jquery-ui"], function($){ 
+
 
     $('.overlay').on('click', function() {
         $('html').removeClass('nav-open');
@@ -23,10 +21,12 @@ define([
         $('html').removeClass('nav-open');
     });
 
-    $('.nav-toggle').on('click', function() {
-        if ($('.minicart-wrapper').hasClass('active')) {
-            $('.showcart').trigger('click');
-        }
+    $('#btn-close').on('click', function() {
+        $('body').removeClass('cart-opened');
+    });
+
+    $('#btn-close').on('click', function() {
+        $('body').removeClass('cart-opened');
     });
 
     $(document).on('click', function() {
@@ -37,7 +37,6 @@ define([
             $('html').removeClass('nav-open');
         });
     });
-
     $(".form-group input.form-control").on("focus blur", function() {
         if ($(this).val() == "") {
             $(this)
@@ -45,7 +44,4 @@ define([
                 .toggleClass("focused");
         }
     });
-
-
-
 });
