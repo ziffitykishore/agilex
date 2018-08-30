@@ -22,6 +22,8 @@ define([
         $('body').addClass('acc-opened');
     });
 
+
+
     $(document).on('click', function () {
         $('.nav-sections').on('click', function (e) {
             e.stopPropagation();
@@ -46,17 +48,10 @@ define([
          $('.header-wrapper').removeClass("fix-header");
         }
      });
+
+     /* footer starts */
+
+     $('#sticky-social .trigger').on('click', function () {
+        $(this).parent().toggleClass('active');
+    });
 });
-
-
-
-/* require(["jquery"], function($){
-
-	$(window).scroll(function () {
-	   if ($(this).scrollTop() > 50) {
-		 $('.header').addClass("fix-header");
-	   } else {
-		$('.header').removeClass("fix-header");
-	   }
-	});
-}); */
