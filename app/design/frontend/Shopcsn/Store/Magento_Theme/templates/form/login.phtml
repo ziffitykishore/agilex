@@ -157,18 +157,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                     </div>
                 </div> 
                 <div class="remember">
-                    <!--
-                    <div class="field choice newsletter">
-        <label for="custom-terms" class="label"><span><?php /* @escapeNotVerified */ echo __('Do you agree ?') ?></span></label>
-        <input type="checkbox" data-validate="{required:true}" name="custom-terms" title="<?php /* @escapeNotVerified */ echo __('Terms and contitions') ?>" id="register-input-custom" class="checkbox">
-    </div>-->
-                    
+                    <input type="checkbox" id="signup-check" data-validate="{required:true}" name="custom-terms" title="<?php /* @escapeNotVerified */ echo __('Terms and contitions') ?>" class="checkbox"  />                    
                     <label class="label cbox1 signupcheck" for="signup-check">
-                        <span><?= __('Do you agree to the')?> <a href="/"><?= __('Terms & Conditions') ?></a></span>
+                        <span><?= __('Do you agree to the')?> <a target="_blank" href="<?= $this->getUrl('terms-conditions') ?>"><?= __(' Terms & Conditions') ?></a></span>
                     </label>
-                    <input type="checkbox" id="signup-check" data-validate="{required:true}" name="custom-terms" title="<?php /* @escapeNotVerified */ echo __('Terms and contitions') ?>" class="checkbox"  />
-    
-                    
                 </div>
                 <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
                 <div class="google-cap" style="display: none">Please validate the captcha</div>
@@ -212,7 +204,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
         <div><p>America's Trusted Source of Numismatic Treasures</p></div>
     </div>
     <div class="block block-customer-login">
-        <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"><?= __('Login'); ?></a>
+        <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
         <div class="common-form forgot-password">
             <div class="block-title main-head text-center mb-20">
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password?') ?></strong></h3>
@@ -247,7 +239,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
     <div class="block block-customer-login">
         <div class="common-form sign-in">
             <div class="confirm-notify" style="display: none;"></div>
-            <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"><?= __('Login'); ?></a>
+            <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
             <div class="block-title main-head text-center">
                 <h3>
                 <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
