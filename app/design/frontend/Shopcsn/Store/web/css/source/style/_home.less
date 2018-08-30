@@ -7,6 +7,7 @@
             padding-bottom: 20px;
         }
     }
+
     .cms-index-index {
         .homepage-slider-wrapper {
             .pos(relative);
@@ -92,34 +93,32 @@
                         .pos(static);
                     }
                 }
-    
-                    .testi-content {
-                        &:before {
-                            content: '';
-                            background: url(../images/icon_quote.png) no-repeat left top;
-                            background-size: 100%; 
-                            width: 60px;
-                            height: 57px;
-                            display: block;
-                            margin-bottom: 30px;
-                        }
-                        font-size: @f-size-xxl;
-                        font-weight: bold;
-                        font-style: italic;
-                        color: @color-black;
-                        p:before,
-                        p:after {
-                            content: '"';
-                        }
+                .testi-content {
+                    &:before {
+                        content: '';
+                        background: url(../images/icon_quote.png) no-repeat left top;
+                        background-size: 100%;
+                        width: 60px;
+                        height: 57px;
+                        display: block;
+                        margin-bottom: 30px;
                     }
-                    .testi-author {
-                        text-align: right;
-                        font-size: @f-size-xxl;
-                        color: @color-black;
-                        font-weight: bold;
-                        margin: 30px 0;
+                    font-size: @f-size-xxl;
+                    font-weight: bold;
+                    font-style: italic;
+                    color: @color-black;
+                    p:before,
+                    p:after {
+                        content: '"';
                     }
-                
+                }
+                .testi-author {
+                    text-align: right;
+                    font-size: @f-size-xxl;
+                    color: @color-black;
+                    font-weight: bold;
+                    margin: 30px 0;
+                }
             }
             .test-image-sec {
                 position: relative;
@@ -141,82 +140,26 @@
                 .blog-content-wrap {
                     padding: 70px 35px;
                 }
-                .blog-item {
+                .blog-item();
+                .blog-item{
                     padding-left: 35px;
                     padding-right: 35px;
-                    >a,
-                    a:focus {
-                        text-decoration: none;
-                        outline: none;
-                    }
-                }
-                .blog-image {
-                    position: relative;
-                    img {
-                        width: 100%;
-                    }
-                    .blog-date {
-                        position: absolute;
-                        color: @color-white;
-                        left: 10px;
-                        bottom: 10px;
-                        width: 60px;
-                        height: 60px;
-                        background: fade(@color-darkslateblue, 60%);
-                        font-size: @f-size-xl;
-                        font-weight: bold;
-                        text-align: center;
-                        display: table;
-                        .date-sec {
-                            display: table-cell;
-                            vertical-align: middle;
-                        }
-                        span {
-                            display: block;
-                        }
-                    }
-                }
-                .blog-content {
-                    background: @color-white;
-                    padding: 40px;
-                    .blog-title {
-                        font-size: @f-size-xxl;
-                        font-weight: bold;
-                        color: @color-black;
-                        margin-bottom: 20px;
-                        &:after {
-                            margin-top: 15px;
-                            width: 45px;
-                            height: 1px;
-                            background: #d7dded;
-                            display: block;
-                            content: '';
-                        }
-                    }
-                    .blog-desc {
-                        color: @color-black;
-                        font-size: @f-size;
-                        margin-bottom: 30px;
-                    }
-                    .more-btn {
-                        color: @color-black;
-                        font-size: @f-size-s;
-                        font-weight: 600;
-                        text-align: right;
-                        display: block;
-                    }
                 }
             }
         }
     }
 }
 
-@media screen and (max-width: 1560px) {
 
+
+
+@media screen and (max-width: 1560px) {
     .cms-index-index {
         .products-grid {
             .product-item {
-                
+                &:nth-child(5) {
+                    .disp(none);
+                }
             }
         }
         .cat-item {
@@ -228,13 +171,12 @@
                 }
             }
         }
-
         .testi-wrapper {
             .testi-slider__inner {
                 padding: 15px 30px;
-                .testi-content{
-                    &:before{
-                        .hw(47px, 50px);   
+                .testi-content {
+                    &:before {
+                        .hw(47px, 50px);
                     }
                 }
                 .testi-author {
@@ -242,9 +184,8 @@
                 }
             }
         }
-
         .blog-wrapper {
-            .blog-content-wrap{
+            .blog-content-wrap {
                 padding: 30px 15px;
             }
             .blog-outer {
@@ -257,30 +198,25 @@
     }
 }
 
-
-
-
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1300px) {
     .page-wrapper {
         .container {
             padding-left: 30px;
-            padding-right: 30px; 
+            padding-right: 30px;
         }
     }
-
     .cms-index-index {
-
-    .blog-wrapper {
-        .blog-outer {
-            .blog-content-wrap {
-                padding: 30px 15px;
+        .blog-wrapper {
+            .blog-outer {
+                .blog-content-wrap {
+                    padding: 30px 15px;
+                }
             }
         }
     }
-    }
 }
 
-@media screen and (max-width: 1199px ){
+@media screen and (max-width: 1199px) {
     .cms-index-index {
         .products-grid {
             .product-item {
@@ -289,14 +225,11 @@
                 }
             }
         }
-
-        .promo-banner + .promo-banner {
+        .promo-banner+.promo-banner {
             margin-top: 25px;
         }
     }
 }
-
-
 
 @media screen and (max-width: 1024px) {
     .cms-index-index {
@@ -357,6 +290,9 @@
     .product-widget__wrapper {
         >* {
             padding: 0;
+        }
+        .block.widget {
+            padding: 30px;
         }
         .products-grid {
             .product-item {

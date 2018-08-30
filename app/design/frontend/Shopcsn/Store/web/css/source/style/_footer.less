@@ -1,5 +1,81 @@
+.sticky-container {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    .transform(translateY(-50%));
+    ul li {
+        list-style: none;
+        display: block;
+    }
+}
 
-@media screen and (max-width: 992px) and (max-width: 1200px) {
+.page-footer {
+    .footer-logo {
+        padding: 20px 20px;
+        .sponsor ul li {
+            list-style: none;
+            padding: 0 30px;
+        }
+    }
+    .media {
+        .fa {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #fff;
+            padding: 10px 10px;
+            color: #fff;
+            .transition(all 0.5s ease 0s);
+            &-facebook:hover {
+                background-color: #3B5998;
+                border-color: #3B5998;
+            }
+            &-twitter:hover {
+                background-color: #1dcaff;
+                border-color: #1dcaff;
+            }
+            &-linkedin:hover {
+                background-color: #0077B5;
+                border-color: #0077B5;
+            }
+        }
+    }
+    .footer-links-wrapper {
+        padding: 50px 0;
+        background: #232f3e;
+    }
+    .footer-links {
+        h3 {
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .footer-list {
+            width: 20%;
+            float: left;
+        }
+        ul {
+            padding-left: 0;
+            list-style: none;
+            li {
+                text-transform: uppercase;
+                padding-right: 0;
+            }
+            a {
+                font-size: 13px;
+                color: #ddd;
+                text-decoration: none;
+            }
+        }
+        .payment-method {
+            .links {
+                margin-top: 15px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
     .page-footer {
         .footer-links {
             h3 {
@@ -20,7 +96,6 @@
     }
 }
 
-
 @media screen and (min-width: 1301px) {
     .page-footer {
         .container {
@@ -29,25 +104,21 @@
     }
 }
 
-
-@media screen and (max-width: 1300px){
+@media screen and (max-width: 1300px) {
     .page-footer {
         .container {
             padding-left: 30px;
-            padding-right: 30px; 
+            padding-right: 30px;
         }
     }
 }
 
-
-
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
     .page-footer {
         .container {
             padding-left: 30px;
-            padding-right: 30px; 
+            padding-right: 30px;
         }
-
         .pat-img {
             img {
                 width: 45px;
@@ -55,7 +126,6 @@
         }
     }
 }
-
 
 @media screen and (max-width: 768px) {
     .page-footer {
@@ -82,9 +152,7 @@
             }
         }
     }
-
 }
-
 
 @media screen and (max-width: 640px) {
     .page-footer {
