@@ -65,8 +65,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                             </ul>
 
                          </div>
+                        <!--
                         <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
                         <div class="google-cap" style="display: none">Please validate the captcha</div>
+                        -->
                         <div class="actions-toolbar">
                             <div class="primary">
                                 <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
@@ -162,8 +164,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                         <span><?= __('Do you agree to the')?> <a target="_blank" href="<?= $this->getUrl('terms-conditions') ?>"><?= __(' Terms & Conditions') ?></a></span>
                     </label>
                 </div>
+                <!--
                 <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
                 <div class="google-cap" style="display: none">Please validate the captcha</div>
+                -->
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -386,10 +390,8 @@ function($, modal) {
             $('.signupcheck').removeClass('mage-error').show();
         }
         event.preventDefault();
-        var captcha_response = grecaptcha.getResponse();
         
-        captcha_response.length != 0 ? $('#signup-popup .google-cap').show() : $('#signup-popup .google-cap').hide() ;
-        if($('#signup-popup').validation('isValid') && captcha_response.length != 0) {            			
+        if($('#signup-popup').validation('isValid')) {            			
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
                 type:'POST',
