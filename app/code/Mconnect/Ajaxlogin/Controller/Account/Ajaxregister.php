@@ -333,7 +333,7 @@ class Ajaxregister extends Action implements ActionInterface
                 $email = $customer->getEmail();
                 // @codingStandardsIgnoreStart
                 
-                $message='You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link">click here</a> for a new link.'.$email;
+                $message='You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link">click here</a> for a new link.';
                 $custom_message= $message;
                 $success_result=true;
                 // @codingStandardsIgnoreEnd
