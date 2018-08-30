@@ -330,15 +330,23 @@ class Ajaxregister extends Action implements ActionInterface
 
             $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
-                $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
+                $email = $customer->getEmail();
                 // @codingStandardsIgnoreStart
                 
-                $message='You must confirm your account. Please check your email for the confirmation link or <a href="%1">click here</a> for a new link.'.$email;
+                $message='You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link">click here</a> for a new link.'.$email;
                 $custom_message= $message;
                 $success_result=true;
                 // @codingStandardsIgnoreEnd
-                $url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
-                $resultRedirect->setUrl($this->_redirect->success($url));
+                //$url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
+                //$resultRedirect->setUrl($this->_redirect->success($url));
+                $response = [
+                    'message' => $message,
+                    'success' =>$success_result,
+                    'email' => $email
+                    /*'coupon' => $coupon_code*/
+                ];
+                $resultJson = $this->resultJsonFactory->create();
+            return $resultJson->setData($response);
             } else {
                 $this->session->setCustomerDataAsLoggedIn($customer);
                 $this->messageManager->addSuccess($this->getSuccessMessage());
@@ -367,12 +375,13 @@ class Ajaxregister extends Action implements ActionInterface
                 $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
             }
             $success_result=true;
-            $message    = 'You must confirm your account. Please check your email for the confirmation link or <a href="'.$email.'">click here</a> for a new link.';
+            $message    = 'You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link" >click here</a> for a new link.';
             //$custom_message =   ['message' => $message];
             $response = [
                     'resultRedirect' =>$resultRedirect,
                     'message' => $message,
-                    'success' =>$success_result
+                    'success' =>$success_result,
+                    'email' => $email
                     /*'coupon' => $coupon_code*/
                     ];
             $resultJson = $this->resultJsonFactory->create();
