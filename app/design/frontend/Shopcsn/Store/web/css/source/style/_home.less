@@ -7,7 +7,6 @@
             padding-bottom: 20px;
         }
     }
-
     .cms-index-index {
         .homepage-slider-wrapper {
             .pos(relative);
@@ -141,7 +140,7 @@
                     padding: 70px 35px;
                 }
                 .blog-item();
-                .blog-item{
+                .blog-item {
                     padding-left: 35px;
                     padding-right: 35px;
                 }
@@ -150,10 +149,17 @@
     }
 }
 
-
-
-
-@media screen and (max-width: 1560px) {
+@media screen and (max-width: 1561px) {
+    .cms-index-index,
+    .block-products-list {
+        .products-grid {
+            .product-item {
+                &:nth-child(5) {
+                    .disp(none);
+                }
+            }
+        }
+    }
     .cms-index-index {
         .products-grid {
             .product-item {

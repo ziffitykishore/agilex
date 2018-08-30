@@ -30,7 +30,9 @@
         </div>
         <button  type="button"  onclick="incrementValue()"><span>+</span></button>
         <?php endif; ?>
-        <div class="actions">
+        
+    </div>
+    <div class="actions">
             <button type="submit"
                     title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
                     class="action primary tocart"
@@ -39,7 +41,6 @@
             </button>
             <?= $block->getChildHtml('', true) ?>
         </div>
-    </div>
 </div>
 <?php endif; ?>
 <script type="text/x-magento-init">
