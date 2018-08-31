@@ -786,34 +786,20 @@ img,
 
 .hover_ani.js_active img {
     opacity: 1;
-    -webkit-transform: scale(1);
-    -webkit-transition-duration: 500ms;
-    -webkit-transition-timing-function: ease-out;
-    -moz-transform: scale(1);
-    -moz-transition-duration: 500ms;
-    -moz-transition-timing-function: ease-out;
-    -o-transform: scale(1);
-    -o-transition-duration: 500ms;
-    -p-transition-timing-function: ease-out;
-    -ms-transform: scale(1);
-    -ms-transform-duration: 500ms;
-    -ms-transform-timing-function: ease-out
+    -webkit-transform: all 500ms ease-out 0s;
+    -moz-transform: all 500ms ease-out 0s;
+    -o-transform: all 500ms ease-out 0s;
+    -ms-transform: all 500ms ease-out 0s;
+    transform: all 500ms ease-out 0s;
 }
 
 .hover_ani.no_active img {
     opacity: .4;
-    -webkit-transform: scale(0.8);
-    -webkit-transition-duration: 500ms;
-    -webkit-transition-timing-function: ease-out;
-    -moz-transform: scale(0.8);
-    -moz-transition-duration: 500ms;
-    -moz-transition-timing-function: ease-out;
-    -o-transform: scale(0.8);
-    -o-transition-duration: 500ms;
-    -p-transition-timing-function: ease-out;
-    -ms-transform: scale(0.8);
-    -ms-transform-duration: 500ms;
-    -ms-transform-timing-function: ease-out
+    -webkit-transform: all 500ms ease-out 0s;
+    -moz-transform: all 500ms ease-out 0s;
+    -o-transform: all 500ms ease-out 0s;
+    -ms-transform: all 500ms ease-out 0s;
+    transform: all 500ms ease-out 0s;
 }
 
 .diamond-efx {
@@ -1169,8 +1155,6 @@ p {
     clear: both;
 }
 
-.nicescroll-rails {}
-
 .loader {
     position: fixed;
     left: 0;
@@ -1524,10 +1508,6 @@ div.container {
     -o-animation-name: slideUp;
     animation-name: slideUp
 }
-
-.touch .header-sticky {}
-
-.home .header-sticky {}
 
 @keyframes stickHeader {
     0% {
@@ -2146,8 +2126,6 @@ form#searchform {
     background-color: currentColor
 }
 
-.cd-nav .cd-primary-nav {}
-
 .cd-nav .cd-primary-nav a.selected {
     color: #fff
 }
@@ -2274,10 +2252,6 @@ nav.main-navigation {
     position: relative;
     word-break: normal;
     backface-visibility: hidden;
-}
-
-.main-navigation .navbar-nav li a:hover .clip-wrap {
-    /* width: 101%; */
 }
 
 .main-navigation .navbar-nav .sub-menu {
@@ -2889,8 +2863,6 @@ span.line {
     border-radius: 0;
 }
 
-.panel-group .panel-title>a {}
-
 .tab-section .panel-group {
     margin-bottom: 0;
 }
@@ -2972,10 +2944,6 @@ span.line {
     transition: -webkit-transform .2s ease-in;
     transition: transform .2s ease-in;
     transition: transform .2s ease-in, -webkit-transform .2s ease-in;
-}
-
-.project:hover .project__card {
-    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); */
 }
 
 .project:hover .project__image:after {
@@ -3221,8 +3189,6 @@ p+p {
     display: inline-block;
 }
 
-.video-content .btn-fancy {}
-
 .video-content:before {
     background: -moz-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(25, 75, 125, 0.9) 100%);
     background: -webkit-linear-gradient(to bottom, rgba(0, 0, 0, 0) 0, rgba(25, 75, 125, 0.9) 100%);
@@ -3300,8 +3266,6 @@ p+p {
     position: relative;
     z-index: 9;
 }
-
-.video-content .text-content {}
 
 .what-we-do {
     background: url('/wp-content/uploads/2018/05/bg_top_what_we_do.png') center -15px no-repeat, url('/wp-content/uploads/2018/05/bg_bottom_what_we_do.png') center bottom no-repeat;
@@ -4188,6 +4152,7 @@ html {
     -webkit-transition: opacity 0.35s;
     transition: opacity 0.35s;
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .no-touch .related-categories-wrap .category-blk figure:hover .category-title {
@@ -4232,15 +4197,15 @@ html {
 }
 
 .quotes-content-inner:before {
-    left: 0;
+    left: 22px;
     top: -30px;
-    background: url('/wp-content/uploads/2018/05/icon_quote1.png') no-repeat left top;
+    background: url('/wp-content/themes/agilex/images/icon_quote_testimonial.png') no-repeat left top;
 }
 
 .quotes-content-inner:after {
-    right: 0;
+    right: 22px;
     bottom: 0;
-    background: url('/wp-content/uploads/2018/05/icon_quote2.png') no-repeat right bottom;
+    background: url('/wp-content/themes/agilex/images/icon_quote_testimonial.png') no-repeat right bottom;
 }
 
 .quotes-content-inner:before,
@@ -4250,6 +4215,14 @@ html {
     width: 58px;
     height: 54px;
     background-size: 100%;
+}
+
+.quotes-content-inner:after {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
 }
 
 .quotes-sec .quotes-content,
@@ -4409,11 +4382,11 @@ html {
 }
 
 .news-sec .news-content {
-    padding: 40px 50px;
+    padding: 20px 50px;
 }
 
 .news-title {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     border-bottom: 1px solid #e1e1e1;
     color: #174a79;
     font-size: 18px;
@@ -4423,6 +4396,8 @@ html {
 
 .curated-content .news-desc {
     margin: 20px 0;
+    font-weight: bold;
+    line-height: 20px;
 }
 
 .curated-content .news-desc p,
@@ -4433,19 +4408,17 @@ html {
 }
 
 .news-info-details div {
-    font-size: 12px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    font-size: 10px;
     color: #6f6f6f;
     line-height: normal;
 }
 
-.news-info-details span {
-    text-transform: none;
+.news-info-details .news-author {
+    display: none;
 }
 
-.news-content .btn {
-    margin-top: 15px;
+.news-info-details span {
+    text-transform: none;
 }
 
 
@@ -4503,6 +4476,30 @@ html {
     bottom: -10px;
 }
 
+.timeline-inner .list li {
+    cursor: pointer;
+}
+
+.timeline-inner .list li .hist-title {
+    position: absolute;
+    bottom: -45px;
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    -moz-transition: all 0.5s ease-in-out 0s;
+    -ms-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+}
+
+.timeline-inner .list .slick-current li .hist-title {
+    visibility: visible;
+    opacity: 1;
+}
+
 .timeline-inner .list li .timeline-year {
     font-size: 18px;
 }
@@ -4529,6 +4526,7 @@ html {
 
 .timeline-inner .timeline-item {
     justify-content: space-between;
+    padding-top: 30px;
 }
 
 .timeline-heading {
@@ -5410,8 +5408,8 @@ div.wpcf7 .ajax-loader {
 }
 
 .cd-icons-filling .content-detail {
-    padding-top: 68px;
-    padding-bottom: 68px;
+    padding-top: 62px;
+    padding-bottom: 62px;
     background: #fff;
 }
 
@@ -5443,7 +5441,6 @@ div.wpcf7 .ajax-loader {
 
 .cd-icons-filling .content-desc p {
     line-height: normal;
-    text-align: justify;
 }
 
 .cd-icons-filling .before-bg .inner-elment {
@@ -5484,7 +5481,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .cd-icons-filling--new-color-3 .before-bg .top-bg {
-    background: #bcb692 !important;
+    background: #b9ac97 !important;
 }
 
 .cd-icons-filling--new-color-4 .before-bg .top-bg {

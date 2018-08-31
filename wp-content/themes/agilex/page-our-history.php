@@ -108,7 +108,7 @@ get_header(); ?>
                             <?php } else { ?>
                                 <div class="timeline-year">0000</div>
                             <?php } ?>
-                
+                <div class="hist-title"><?php echo the_Title(); ?></div>
             
         </li>
         <?php } ?>
@@ -117,8 +117,9 @@ get_header(); ?>
         <?php  while ($agilex_unique_query->have_posts()) {
                 $agilex_unique_query->the_post();?>
         <div class="timeline-blk">
-           
+        
         <div class="timeline-item flex-sec ">
+        
                     <div class="timeline-image flex-xs-100 flex-50 ">
                         <div class="img-sec">
                             

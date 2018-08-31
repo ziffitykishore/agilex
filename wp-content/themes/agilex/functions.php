@@ -259,6 +259,14 @@ function bootstrapcanvaswp_widgets_init() {
         'before_title' => '<h4>',
         'after_title' => '</h4>',
     ) );
+
+    register_sidebar( array(
+        'name' => __( 'Footer - SEO', 'bootstrapcanvaswp' ),
+        'id' => 'footer-seo',
+        'description' => __( 'Add widgets here to appear in your sidebar.', 'bootstrapcanvaswp' ),
+		'before_widget' => '<div id="%1$s" class="footer-seo-module widget %2$s">',
+		'after_widget'  => '</div>',
+    ) );
 }
 add_action( 'widgets_init', 'bootstrapcanvaswp_widgets_init' );
 

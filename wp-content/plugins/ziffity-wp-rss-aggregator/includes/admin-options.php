@@ -68,6 +68,10 @@
             array(
                 //Quotes
                 'quotes' => array(
+                    'quote-heading' => array(
+                        'label'     =>  __( 'Quote Heading', WPRSS_TEXT_DOMAIN ),
+                        'callback'  =>  'wprss_setting_quote_heading'
+                    ),
                     'quote-content' => array(
                         'label'     =>  __( 'Quote Content', WPRSS_TEXT_DOMAIN ),
                         'callback'  =>  'wprss_setting_quote_content'
@@ -79,6 +83,11 @@
 
                 ),
                 'general'   =>  array(
+                    
+                    'feed-heading' => array(
+                        'label'     =>  __( 'RSS Feed Heading', WPRSS_TEXT_DOMAIN ),
+                        'callback'  =>  'wprss_setting_feed_heading_callback'
+                    ),
                     'limit-feed-items-by-age' => array(
                         'label'     =>  __( 'Limit feed items stored by age', WPRSS_TEXT_DOMAIN ),
                         'callback'  =>  'wprss_setting_limit_feed_items_age_callback'
@@ -595,6 +604,18 @@
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
+
+    /**
+     * Set quote heading
+     * @since 2.0
+     */
+    function wprss_setting_quote_heading( $field ) {
+        $quote_heading = wprss_get_general_setting( 'quote-heading' );
+        ?>
+		<input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[quote-heading]" type="text" value="<?php echo $quote_heading ?>" />
+		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
+    }
+
     /**
      * Set quote author
      * @since 2.0
@@ -802,6 +823,20 @@
 		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
     }
 
+
+
+    /**
+     * Limit number of feed items stored
+     * @since 3.0
+     */
+
+
+    function wprss_setting_feed_heading_callback( $field ) {
+        $feedHeading = wprss_get_general_setting( 'feed-heading' );
+        ?>
+		<input id="<?php echo $field['field_id'] ?>" name="wprss_settings_general[feed-heading]" type="text" value="<?php echo $feedHeading ?>" />
+		<?php echo wprss_settings_inline_help( $field['field_id'], $field['tooltip'] );
+    }
 
 
     /**
