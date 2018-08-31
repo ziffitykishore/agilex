@@ -190,7 +190,7 @@
         echo '</div>';
 
         // FEED ITEM META
-        echo '<div class="news-info-details text-uppercase row">';
+        echo '<div class="news-info-details text-uppercase text-right">';
 
         // SOURCE
        /* if ( wprss_get_general_setting('source_enable') == 1 ) {
@@ -203,9 +203,9 @@
 
         // DATE
         if ( wprss_get_general_setting('date_enable') == 1 ) {
-            echo '<div class="col-sm-6 news-date">';
+            echo '<div class="news-date">';
             $date_text = apply_filters( 'wprss_item_date', $date );
-            $date_text = $text_preceding_date . $date_text;
+            $date_text = $date_text;
             echo $date_text;
             echo '</div>';
         }
@@ -224,9 +224,9 @@
 
          // WEBSITE
         if ( wprss_get_general_setting('source_enable') == 1 ) {
-            echo '<div class="col-sm-12 news-website">';
+            echo '<div class="news-website">';
             //$source_link_text = apply_filters('wprss_item_source_link', wprss_link_display( $source_url, $source_name, $source_link ) );
-            $source_link_text = $text_preceding_website . $source_url;
+            $source_link_text = $source_url;
             echo $source_link_text;
             echo '</div>';
         }
@@ -242,7 +242,7 @@
             echo '</div>';
         }
         //Learn More
-        echo '<a href="'.$permalink.'" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>';
+        echo '<a href="'.$permalink.'" class="btn btn-sm btn-blue btn-door text-uppercase">Read More</a>';
         echo '</div>';
 
         // END TEMPLATE - Retrieve buffered output

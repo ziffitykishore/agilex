@@ -33,7 +33,7 @@ get_header(); ?>
             <div class="margin-top--70 pad-70 white-bg curated-news-inner">
                 <div class="quotes-sec alice-blue-bg  text-center">
                     <div class="heading bor-bot">
-                        <h2 class="heading-title">Quote of the week</h2>
+                        <h2 class="heading-title"><?php echo wprss_get_general_setting( 'quote-heading' ); ?></h2>
                     </div>
                     <div class="quotes-content-inner">
                         <div class="quotes-content">
@@ -44,7 +44,7 @@ get_header(); ?>
                 </div>
                 <div class="news-sec">
                     <div class="heading-strip well-lg text-uppercase text-center">
-                        Things happening this week
+                    <?php echo wprss_get_general_setting( 'feed-heading' ); ?>
                     </div>
 
                     <?php /** Rss Aggregator **/
