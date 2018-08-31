@@ -1,6 +1,16 @@
 .customer-account-index {}
 
 .account {
+    &.page-layout-2columns-left {
+        .page-main {
+            .column.main {
+                width: 70.7%;
+            }
+            .sidebar.sidebar-main {
+                width: 29.3%;
+            }
+        }
+    }
     .page-title-wrapper {
         padding: 20px 30px;
         border-bottom: 1px solid #d7d7ed;
@@ -10,226 +20,194 @@
             font-weight: bold;
         }
     }
-
     .columns {
         margin-top: 30px;
+        .container-md()
     }
     .column {
-        
         &.main {
             background: #f2f5f8;
             border: 1px solid #d7d7ed;
-            
             margin-bottom: 50px;
         }
-    
-    .block {
-        
+        .block {
             padding: 30px;
             padding-bottom: 0;
-        
-        &-dashboard-info {
-            padding-bottom: 0;
-            
-        }
-        .block-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            a {
-                color: @color-darkslateblue;
+            &-dashboard-info {
+                padding-bottom: 0;
             }
-        }
-
- .block-content {
-
-
-            .box-title {
-                font-size: 13px;
+            .block-title {
+                font-size: 16px;
                 font-weight: bold;
-                display: block !important;
-                border-bottom: 1px solid #d7d7ed;
-            }
-            .box {
-                background: @color-white;
-                border: 1px solid #d7d7ed;
-                min-height: 215px;
-                margin-bottom: 0 !important;
-                .box-title,
-                .box-content,
-                .box-actions {
-                    padding: 20px;
+                margin-bottom: 25px;
+                a {
+                    color: @color-darkslateblue;
                 }
-                &-content,
-                &-actions {
-                    padding-bottom: 0;
+            }
+            .block-content {
+                .box-title {
+                    font-size: 13px;
+                    font-weight: bold;
+                    display: block !important;
+                    border-bottom: 1px solid #d7d7ed;
                 }
-                &-content {
-                    color: #606060;
+                .box {
+                    background: @color-white;
+                    border: 1px solid #d7d7ed;
+                    min-height: 215px;
+                    margin-bottom: 0 !important;
+                    .box-title,
+                    .box-content,
+                    .box-actions {
+                        padding: 20px;
+                    }
+                    &-content,
+                    &-actions {
+                        padding-bottom: 0;
+                    }
+                    &-content {
+                        color: #606060;
+                    }
                 }
-
+            }
+            &-addresses-list {
+                .addresses {
+                    >.item {
+                        background: @color-white;
+                        border: 1px solid #d7d7ed;
+                        min-height: 215px;
+                        padding: 20px;
+                    }
+                }
+                margin-bottom: 0;
             }
         }
-
-        &-addresses-list {
-        .addresses {
-            > .item{
-            background: @color-white;
-                border: 1px solid #d7d7ed;
-                min-height: 215px;
-                padding: 20px;
-            }
-        }
-        margin-bottom: 0;
-    }
-    }
-
-
-
-    .fieldset {
-        legend {
-            margin-left: 0;
-        }
-
-        
-    }
-
-    .form-edit-account {
-        padding: 30px;
-    }
-
-
-
-
-
-    form {
-        .actions-toolbar{
-            margin-left: 0 !important;
-            padding-left: 0;
-        }
-    }
-    
-
-
-    .form-address-edit {
-        padding: 30px;
         .fieldset {
             legend {
                 margin-left: 0;
             }
         }
-    }
-
-    .orders-history{
-        padding: 30px;
-    }
-
-    .form-wishlist-items {
-        padding: 30px;
-
-        .products-grid {
-            .product-item-info {
-                .product-item-actions {
-                    .actions-primary{
-                        position: static;
-                    }
-                    .action {
-                        float: none;
-                        width: auto;
+        .form-edit-account {
+            padding: 30px;
+        }
+        form {
+            .actions-toolbar {
+                margin-left: 0 !important;
+                padding-left: 0;
+            }
+        }
+        .form-address-edit {
+            padding: 30px;
+            .fieldset {
+                legend {
+                    margin-left: 0;
+                }
+            }
+        }
+        .orders-history {
+            padding: 30px;
+        }
+        .form-wishlist-items {
+            padding: 30px;
+            .products-grid {
+                .product-item-info {
+                    .product-item-actions {
+                        .actions-primary {
+                            position: static;
+                        }
+                        .action {
+                            float: none;
+                            width: auto;
+                        }
                     }
                 }
             }
         }
-    }
-
-
-    .block, form {
-        a.action {
-        position: relative;
-        color: #c2c2c2;
-        &:hover {
-            color: @color-darkslateblue;
-        }
-    }
-    a+a {
-        margin-left: 20px;
-        &:before {
-            content: '';
-            width: 1px;
-            height: 100%;
-            background: #c2c2c2;
-            position: absolute;
-            left: -10px;
-            top: 0;
-        }
-    }
-}
-
-
-    .actions-toolbar {
-        margin-left: 0;
-        padding: 30px;
-        .primary {
-            .action {
-                .lib-css(background, @color-darkslateblue);
-                .lib-css(color, @color-white);
-                .br-radius(0);
-                border-color: @color-darkslateblue;
-              font-weight: normal;
-              padding: 7px 15px;
-              font-size: @f-size;
-              line-height: 20px;
+        .block,
+        form {
+            a.action {
+                position: relative;
+                color: #c2c2c2;
+                &:hover {
+                    color: @color-darkslateblue;
+                }
+            }
+            a+a {
+                margin-left: 20px;
+                &:before {
+                    content: '';
+                    width: 1px;
+                    height: 100%;
+                    background: #c2c2c2;
+                    position: absolute;
+                    left: -10px;
+                    top: 0;
+                }
             }
         }
-    
-        .secondary{
-            .action.back {
-                
-                .lib-css(background, @color-darkslateblue);
-                .lib-css(color, @color-white);
-                .br-radius(0);
-                border: 1px solid  @color-darkslateblue;
-                margin-top: 0;
-                line-height: 20px;
-                padding: 7px 15px;
-              font-size: @f-size;
-                text-decoration: none;
-            }
-        }
-    }
-
-    .message {
-        margin: 30px;
-
-        > *:first-child:before{
-            width: 40px;
-            height: 40px;
-            border: 1px solid;
-            border-radius: 50%;
-            left: 30px;
-            line-height: 40px;
-        }
-        &.info {
-            border: 1px solid #6f4400;
-            padding: 30px 30px 30px 80px;
-
-            > *:first-child:before{
-                
-                top: 30px;
-            }
-        }
-
-
-    }
-
-
-    .form-newsletter-manage {
-        padding: 30px;
-        legend {
+        .actions-toolbar {
             margin-left: 0;
+            padding: 30px;
+            .primary {
+                .action {
+                    .lib-css(background, @color-darkslateblue);
+                    .lib-css(color, @color-white);
+                    .br-radius(0);
+                    border-color: @color-darkslateblue;
+                    font-weight: normal;
+                    padding: 7px 15px;
+                    font-size: @f-size;
+                    line-height: 20px;
+                }
+            }
+            .secondary {
+                .action.back {
+                    .lib-css(background, @color-darkslateblue);
+                    .lib-css(color, @color-white);
+                    .br-radius(0);
+                    border: 1px solid @color-darkslateblue;
+                    margin-top: 0;
+                    line-height: 20px;
+                    padding: 7px 15px;
+                    font-size: @f-size;
+                    text-decoration: none;
+                }
+            }
+        }
+        .message {
+            margin: 30px;
+            padding: 30px 30px 30px 80px;
+            >*:first-child:before {
+                width: 40px;
+                height: 40px;
+                border: 1px solid;
+                border-radius: 50%;
+                left: 30px;
+                line-height: 40px;
+            }
+            &.info {
+                >*:first-child:before {
+                    top: 30px;
+                }
+            }
+            &.error {
+                >*:first-child:before {
+                    top: 30px;
+                }
+            }
+            &.success {
+                >*:first-child:before {
+                    top: 30px;
+                }
+            }
+        }
+        .form-newsletter-manage {
+            padding: 30px;
+            legend {
+                margin-left: 0;
+            }
         }
     }
-}
     .sidebar-main {
         .block {
             &.account-nav {
@@ -239,13 +217,12 @@
                 background: #f2f5f8;
                 border: 1px solid #d7d7ed;
                 padding: 30px;
-
                 .nav {
                     span {
                         .disp(none);
                     }
-
-                    > a, > strong {
+                    >a,
+                    >strong {
                         padding: 20px;
                         border: 1px solid #d7d7ed;
                         margin-top: 20px;
@@ -254,18 +231,21 @@
                             background: @color-darkslateblue;
                             color: @color-white;
                         }
-
                         color: @color-black;
                         font-weight: bold;
-
                     }
-
+                    &:first-child {
+                        >strong {
+                            margin-top: 0;
+                        }
+                    }
                     &.current {
-                        > strong, > a {
+                        >strong,
+                        >a {
                             background: @color-darkslateblue;
                             color: @color-white;
                             .pos(relative);
-                            &:before{
+                            &:before {
                                 content: '';
                                 position: absolute;
                                 border: 10px solid @color-darkslateblue;
@@ -277,68 +257,52 @@
                 }
             }
         }
-
-   
     }
 }
 
-
-.customer-account-create{
+.customer-account-create {
     .page-main {
         .container-md();
     }
 }
 
-
-
 .columns {
     .column {
-        
-        .form {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-            .actions-toolbar{               
+        .form {
+            .actions-toolbar {
                 margin-left: 0;
-
-                
             }
-
-            .password-strength-meter{
-
-                &:before{
-                .transition(all 0.5s ease 0s);
+            .password-strength-meter {
+                &:before {
+                    .transition(all 0.5s ease 0s);
                 }
             }
-
-            .fieldset {     
-                .legend {     
-                    margin-left: 0;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+            .fieldset {
+                .legend {
+                    margin-left: 0;
                 }
-                &:after{
+                &:after {
                     margin-left: 0;
                 }
             }
-        
-    }
-
-    .actions-toolbar { 
-        .secondary{
-            .action.back {
-                
-                .lib-css(background, @color-darkslateblue);
-                .lib-css(color, @color-white);
-                .br-radius(0);
-                border: 1px solid  @color-darkslateblue;
-                margin-top: 0;
-                line-height: 20px;
-                padding: 7px 15px;
-              font-size: @f-size;
-                text-decoration: none;
+        }
+        .actions-toolbar {
+            .secondary {
+                .action.back {
+                    .lib-css(background, @color-darkslateblue);
+                    .lib-css(color, @color-white);
+                    .br-radius(0);
+                    border: 1px solid @color-darkslateblue;
+                    margin-top: 0;
+                    line-height: 20px;
+                    padding: 7px 15px;
+                    font-size: @f-size;
+                    text-decoration: none;
+                }
             }
         }
     }
 }
-    }
-
-
 
 .media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__m) {
     .account {
@@ -348,7 +312,6 @@
                     .disp(none);
                 }
             }
-            
         }
     }
 }

@@ -65,8 +65,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                             </ul>
 
                          </div>
+                        <!--
                         <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
                         <div class="google-cap" style="display: none">Please validate the captcha</div>
+                        -->
                         <div class="actions-toolbar">
                             <div class="primary">
                                 <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
@@ -112,12 +114,14 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
     </div>
     <div class="block block-customer-login">
         <div class="common-form sign-up">
+            <div class="signup-notify" style="display: none;"></div>
             <div class="block-title main-head text-center">
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __("Let's Get Started!") ?></strong></h3>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
             <form class="form create account form-create-account" autocomplete="off" method="post" id="signup-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off"
                    >
+
             <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
                 <?= $block->getBlockHtml('formkey') ?>
                 <div class="field note mb-20 text-center">Sign Up by entering the information below</div>
@@ -162,8 +166,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                         <span><?= __('Do you agree to the')?> <a target="_blank" href="<?= $this->getUrl('terms-conditions') ?>"><?= __(' Terms & Conditions') ?></a></span>
                     </label>
                 </div>
+                <!--
                 <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
                 <div class="google-cap" style="display: none">Please validate the captcha</div>
+                -->
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -206,6 +212,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
     <div class="block block-customer-login">
         <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
         <div class="common-form forgot-password">
+            <div class="forget-notify" style="display: none;"></div>
             <div class="block-title main-head text-center mb-20">
                 <h3><strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __('Forgot Your Password?') ?></strong></h3>
             </div>
@@ -339,7 +346,7 @@ function($, modal) {
         $('#forget-popup').modal('closeModal');
         $('#popup-modal').modal('openModal');
     });
-    $('#forget-password').on('click', function(event){
+    $('#forget-password').on('submit', function(event){
         event.preventDefault();
         if($('#forget-password').validation('isValid')) {
             $.ajax({
@@ -349,10 +356,14 @@ function($, modal) {
                 dataType:'json',
                 data: $('#forget-password').serialize(true),								
                 success:function(response) { 
-                    $('#forget-popup').modal('closeModal');
-                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                    var popup = modal(options, $('#popup-modal'));
-                    $('#popup-modal').modal('openModal');
+                    if(response.success) {
+                        $('#forget-popup').modal('closeModal');
+                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                        var popup = modal(options, $('#popup-modal'));
+                        $('#popup-modal').modal('openModal');
+                    } else {
+                        $('.forget-notify').fadeOut().html(response.message).fadeIn(100);
+                    }
                 }
             });
         }
@@ -368,6 +379,7 @@ function($, modal) {
                 data: $('#login-form-popup').serialize(true),								
                 success:function(response) { 
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    window.location = "<?= $this->getUrl('customer/account') ?>";
                     if(response.redirectUrl) {
                         setTimeout(function(){											
                             window.location = response.redirectUrl;
@@ -386,10 +398,8 @@ function($, modal) {
             $('.signupcheck').removeClass('mage-error').show();
         }
         event.preventDefault();
-        var captcha_response = grecaptcha.getResponse();
         
-        captcha_response.length != 0 ? $('#signup-popup .google-cap').show() : $('#signup-popup .google-cap').hide() ;
-        if($('#signup-popup').validation('isValid') && captcha_response.length != 0) {            			
+        if($('#signup-popup').validation('isValid')) {            			
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
                 type:'POST',
@@ -403,10 +413,15 @@ function($, modal) {
                             //window.location = response.resultRedirect;
                         }, 2000);                            
                     } 
-                    $('#popup-modal-signup').modal('closeModal');
-                    var popup = modal(optsignup, $('#popup-modal-signup'));
-                    $('#popup-modal').modal('openModal');
-                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    if(response.success) {
+                        $('#popup-modal-signup').modal('closeModal');
+                        var popup = modal(optsignup, $('#popup-modal-signup'));
+                        $('#popup-modal').modal('openModal');
+                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    } else {
+                        $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
+                    }
+                    
                     if(response.email) {
                         $('#confirm_link').on('click', function(event){
                             event.preventDefault();

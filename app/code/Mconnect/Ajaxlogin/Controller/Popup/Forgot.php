@@ -29,6 +29,7 @@ class Forgot extends Action
      */
     protected $session;
     protected $jsonHelper;
+    protected $layoutFactory;
 
     /**
      * @param Context                    $context
@@ -42,12 +43,14 @@ class Forgot extends Action
         Session $customerSession,
         AccountManagementInterface $customerAccountManagement,
         Escaper $escaper,
-        JsonHelper $jsonHelper
+        JsonHelper $jsonHelper,
+        \Magento\Framework\View\LayoutFactory $layoutFactory
     ) {
         $this->session                   = $customerSession;
         $this->customerAccountManagement = $customerAccountManagement;
         $this->escaper                   = $escaper;
         $this->jsonHelper                = $jsonHelper;
+        $this->layoutFactory             = $layoutFactory;
         parent::__construct($context);
     }
 
@@ -58,52 +61,57 @@ class Forgot extends Action
      */
     public function execute()
     {
-        $result        = [
-            'success' => false,
-            'message' => []
-        ];
-        $captchaStatus = $this->session->getResultCaptcha();
-        if ($captchaStatus) {
-            if (isset($captchaStatus['error'])) {
-                $this->session->setResultCaptcha(null);
-                $this->getResponse()->setBody($this->jsonHelper->jsonEncode($captchaStatus));
-                return;
-            }
-            $result['imgSrc'] = $captchaStatus['imgSrc'];
-        }
+        $blockMsg = $this->layoutFactory->create()->getMessagesBlock();
+        
         /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
         $email = (string) $this->getRequest()->getParam('email');
         if ($email) {
             if (!\Zend_Validate::is($email, 'EmailAddress')) {
                 $this->session->setForgottenEmail($email);
-                $result['error']        = true;
-                $result['message']      = __('Please correct the email address.');
+                $error        = true;
+                $success      = false;
+                $message      = __('Please correct the email address.');
+                $this->messageManager->addError($message);
             }
             try {
                 $this->customerAccountManagement->initiatePasswordReset(
                     $email,
                     AccountManagement::EMAIL_RESET
                 );
-                $result['success']      = true;
-                $result['message']      = __(
+                $error        = true;
+                $success      = true;
+                $message      = __(
                     'If there is an account associated with %1 you will receive an email with a link to reset your password.',
                     $this->escaper->escapeHtml($email)
                 );
+                $this->messageManager->addSuccess($message);
             } catch (NoSuchEntityException $e) {
-                $result['success']      = true;
-                $result['message']      = __(
+                $success        = false;
+                $error          = true;
+                $message        = __(
                     'If there is an account associated with %1 you will receive an email with a link to reset your password.',
                     $this->escaper->escapeHtml($email)
                 );
+                $this->messageManager->addSuccess($message);
                 // Do nothing, we don't want anyone to use this action to determine which email accounts are registered.
             } catch (SecurityViolationException $exception) {
-                $result['error']        = true;
-                $result['message']      = __($exception->getMessage());
+                $success        = false;
+                $error          = true;
+                $message        = __($exception->getMessage());
+                $this->messageManager->addError($message);
             } catch (\Exception $exception) {
-                $result['error']        = true;
-                $result['message']      = __('We\'re unable to send the password reset email.');
+                $success        = false;
+                $error          = true;
+                $message        = __('We\'re unable to send the password reset email.');
+                $this->messageManager->addError($message);
             }
         }
+        $blockMsg->setMessages( $this->messageManager->getMessages(true) );
+        $result     =   [
+            'success'   => $success,
+            'error'     => $error,
+            'message'   => $blockMsg->getGroupedHtml(),
+        ];
         $this->getResponse()->setBody($this->jsonHelper->jsonEncode($result));
     }
 }

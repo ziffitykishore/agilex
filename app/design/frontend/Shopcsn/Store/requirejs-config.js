@@ -14,8 +14,8 @@ var config = {
     },
     map: {
         '*': {
-            'Magento_Checkout/js/sidebar': 'js/sidebar',
-            'Magento_Checkout/js/view/minicart': 'js/minicart'
+            'Magento_Checkout/js/sidebar':'js/sidebar',
+            'Magento_Checkout/js/view/minicart':'js/minicart'
         }
     }
 };

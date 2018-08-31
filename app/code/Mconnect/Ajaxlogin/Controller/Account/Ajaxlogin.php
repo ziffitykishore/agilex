@@ -46,6 +46,7 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
      * @var ScopeConfigInterface
      */
     protected $scopeConfig;
+    protected $layoutFactory;
     /**
      * Initialize Login controller
      *
@@ -62,7 +63,8 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Json\Helper\Data $helper,
         AccountManagementInterface $customerAccountManagement,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
-        \Magento\Framework\Controller\Result\RawFactory $resultRawFactory
+        \Magento\Framework\Controller\Result\RawFactory $resultRawFactory,
+        \Magento\Framework\View\LayoutFactory $layoutFactory
     ) {
         parent::__construct($context);
         $this->customerSession = $customerSession;
@@ -70,6 +72,7 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
         $this->customerAccountManagement = $customerAccountManagement;
         $this->resultJsonFactory = $resultJsonFactory;
         $this->resultRawFactory = $resultRawFactory;
+        $this->layoutFactory = $layoutFactory;
     }
     /**
      * Get account redirect.
@@ -126,6 +129,7 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
      */
     public function execute()
     {
+        $blockMsg = $this->layoutFactory->create()->getMessagesBlock();
         $credentials = null;
         $httpBadRequestCode = 400;
         /** @var \Magento\Framework\Controller\Result\Raw $resultRaw */
@@ -138,10 +142,8 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
         if (!$credentials || $this->getRequest()->getMethod() !== 'POST' || !$this->getRequest()->isXmlHttpRequest()) {
             return $resultRaw->setHttpResponseCode($httpBadRequestCode);
         }
-        $response = [
-            'errors' => false,
-            'message' => __('Login successful.')
-        ];
+            $errors = false;
+            $this->messageManager->addSuccessMessage(__('Login successful'));
         try {
             $customer = $this->customerAccountManagement->authenticate(
                 $credentials['username'],
@@ -155,26 +157,23 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
                 $this->getAccountRedirect()->clearRedirectCookie();
             }
         } catch (EmailNotConfirmedException $e) {
-            $response = [
-                'errors' => true,
-                'message' => $e->getMessage()
-            ];
+            $errors = true;
+            $this->messageManager->addWarningMessage($e->getMessage());
         } catch (InvalidEmailOrPasswordException $e) {
-            $response = [
-                'errors' => true,
-                'message' => $e->getMessage()
-            ];
+            $errors = true;
+            $this->messageManager->addErrorMessage($e->getMessage());
         } catch (LocalizedException $e) {
-            $response = [
-                'errors' => true,
-                'message' => $e->getMessage()
-            ];
+            $errors = true;
+            $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
-            $response = [
-                'errors' => true,
-                'message' => __('Invalid login or password.')
-            ];
+            $errors = true;
+            $this->messageManager->addErrorMessage(__('Invalid login or password '). $e->getMessage());
         }
+        $blockMsg->setMessages( $this->messageManager->getMessages(true) );
+        $response   =   [
+            'errors'    => $errors,
+            'message'   => $blockMsg->getGroupedHtml(),
+        ];
         /** @var \Magento\Framework\Controller\Result\Json $resultJson */
         $resultJson = $this->resultJsonFactory->create();
         return $resultJson->setData($response);

@@ -75,7 +75,9 @@ use Magento\Framework\App\Action\Action;
 
                                     <div class="product-item-actions">
                                         <div class="actions-primary">
-
+                                        <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $product_id;?>" href="javascript:void(0);">
+                                            <span><?php echo __('Quickview') ?></span>
+                                        </a>
                                             <?php if ($_product->isSaleable()): ?>
             <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                         <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
@@ -88,9 +90,7 @@ use Magento\Framework\App\Action\Action;
                                                 <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
                                             </button>
                                         </form>
-                                     <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $product_id;?>" href="javascript:void(0);">
-                                            <span><?php echo __('Quickview') ?></span>
-                                        </a>
+                                     
                                             <?php else: ?>
                                                 <?php if ($_product->isAvailable()): ?>
                                                     <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>

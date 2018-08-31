@@ -9,39 +9,49 @@ define([
 ], function($, jQuery) {
     'use strict';
 
-    console.log("I'm Ready!.......");
-
-
-    $('.overlay').on('click', function() {
+    $('.overlay').on('click', function () {
         $('html').removeClass('nav-open');
         $('body').removeClass('acc-opened cart-opened');
     });
 
-    $('.showcart').on('click', function() {
+    $('.showcart').on('click', function () {
         $('html').removeClass('nav-open');
     });
 
-    $('#btn-close').on('click', function() {
-        $('body').removeClass('cart-opened');
+    $('.customer-welcome').on('click', function(){
+        $('body').addClass('acc-opened');
     });
 
-    $('#btn-close').on('click', function() {
-        $('body').removeClass('cart-opened');
-    });
 
-    $(document).on('click', function() {
-        $('.nav-sections').on('click', function(e) {
+
+    $(document).on('click', function () {
+        $('.nav-sections').on('click', function (e) {
             e.stopPropagation();
         });
-        $('.header').on('click', function(e) {
+        
+        $('.header').on('click', function (e) {
             $('html').removeClass('nav-open');
+            $('body').removeClass('acc-opened cart-opened');
         });
     });
-    $(".form-group input.form-control").on("focus blur", function() {
+    $(".form-group input.form-control").on("focus blur", function () {
         if ($(this).val() == "") {
             $(this)
                 .parents(".form-group")
                 .toggleClass("focused");
         }
+    });
+        $(window).scroll(function () {
+        if ($(this).scrollTop() > 50) {
+          $('.header-wrapper').addClass("fix-header");
+        } else {
+         $('.header-wrapper').removeClass("fix-header");
+        }
+     });
+
+     /* footer starts */
+
+     $('#sticky-social .trigger').on('click', function () {
+        $(this).parent().toggleClass('active');
     });
 });

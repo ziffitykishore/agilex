@@ -109,6 +109,7 @@ class Ajaxregister extends Action implements ActionInterface
      * @var \Magento\Framework\Json\Helper\Data $helper
      */
     protected $helper;
+    protected $layoutFactory;
     
     /**
      * @param Context $context
@@ -159,7 +160,8 @@ class Ajaxregister extends Action implements ActionInterface
         AccountRedirect $accountRedirect,
         \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         \Magento\Framework\Json\Helper\Data $helper,
-        \Mconnect\Ajaxlogin\Helper\Data $couponcode
+        \Mconnect\Ajaxlogin\Helper\Data $couponcode,
+        \Magento\Framework\View\LayoutFactory $layoutFactory
     ) {
         $this->session = $customerSession;
         $this->scopeConfig = $scopeConfig;
@@ -181,6 +183,7 @@ class Ajaxregister extends Action implements ActionInterface
         $this->resultJsonFactory = $resultJsonFactory;
         $this->helper = $helper;
         $this->couponcode=$couponcode;
+        $this->layoutFactory = $layoutFactory;
         parent::__construct($context);
     }
     
@@ -274,7 +277,7 @@ class Ajaxregister extends Action implements ActionInterface
      */
     public function execute()
     {
-    
+        $blockMsg = $this->layoutFactory->create()->getMessagesBlock();
         $custom_message=[];
         $success_result=null;
         /*Coupon Remove
@@ -332,31 +335,33 @@ class Ajaxregister extends Action implements ActionInterface
             if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
                 $email = $customer->getEmail();
                 // @codingStandardsIgnoreStart
-                
-                $message='You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link">click here</a> for a new link.'.$email;
+                $this->messageManager->addSuccess('You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link">click here</a> for a new link.');
+                $message='You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link">click here</a> for a new link.';
                 $custom_message= $message;
                 $success_result=true;
                 // @codingStandardsIgnoreEnd
-                //$url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
-                //$resultRedirect->setUrl($this->_redirect->success($url));
+                
+                $blockMsg->setMessages( $this->messageManager->getMessages(true) );
+                
                 $response = [
-                    'message' => $message,
+                    'message' => $blockMsg->getGroupedHtml(),
                     'success' =>$success_result,
                     'email' => $email
                     /*'coupon' => $coupon_code*/
                 ];
                 $resultJson = $this->resultJsonFactory->create();
+                
             return $resultJson->setData($response);
             } else {
                 $this->session->setCustomerDataAsLoggedIn($customer);
-                $this->messageManager->addSuccess($this->getSuccessMessage());
+                $this->messageManager->addSuccessMessage($this->getSuccessMessage());
                 $requestedRedirect = $this->accountRedirect->getRedirectCookie();
                 if (!$this->scopeConfig->getValue('customer/startup/redirect_dashboard') && $requestedRedirect) {
                     $resultRedirect->setUrl($this->_redirect->success($requestedRedirect));
                     $this->accountRedirect->clearRedirectCookie();
-                    
+                    $blockMsg->setMessages( $this->messageManager->getMessages(true) );
                     $success_result=true;
-                    $custom_message= $this->getSuccessMessage();
+                    $custom_message= $blockMsg->getGroupedHtml();
                     $response = [
                         'resultRedirect' =>$resultRedirect,
                         'message' => $custom_message,
@@ -375,11 +380,11 @@ class Ajaxregister extends Action implements ActionInterface
                 $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
             }
             $success_result=true;
-            $message    = 'You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link" >click here</a> for a new link.';
-            //$custom_message =   ['message' => $message];
+            $this->messageManager->addSuccess('You must confirm your account. Please check your email for the confirmation link or <a href="javascript:void(0)" id="confirm_link" >click here</a> for a new link.');
+            $blockMsg->setMessages( $this->messageManager->getMessages(true) );
             $response = [
                     'resultRedirect' =>$resultRedirect,
-                    'message' => $message,
+                    'message' => $blockMsg->getGroupedHtml(),
                     'success' =>$success_result,
                     'email' => $email
                     /*'coupon' => $coupon_code*/
@@ -396,7 +401,7 @@ class Ajaxregister extends Action implements ActionInterface
                 $url
             );*/
             
-            $custom_message= 'There is already an account with this email address';
+            $this->messageManager->addWarningMessage('There is already an account with this email address');
             $success_result=false;
             // @codingStandardsIgnoreEnd
             /*$this->messageManager->addError($message);*/
@@ -414,16 +419,16 @@ class Ajaxregister extends Action implements ActionInterface
         } catch (\Exception $e) {
             $custom_message= 'We can\'t save the customer.';
             $success_result=false;
-            $this->messageManager->addException($e, __('We can\'t save the customer.'));
+            $this->messageManager->addExceptionMessage($e, __('We can\'t save the customer.'));
         }
 
         $this->session->setCustomerFormData($this->getRequest()->getPostValue());
         $defaultUrl = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
         $resultRedirect->setUrl($this->_redirect->error($defaultUrl));
-        
+        $blockMsg->setMessages( $this->messageManager->getMessages(true) );
         $response = [
                     'resultRedirect' =>$resultRedirect,
-                    'message' => $custom_message,
+                    'message' => $blockMsg->getGroupedHtml(),
                     'success' =>$success_result
                     ];
         $resultJson = $this->resultJsonFactory->create();
