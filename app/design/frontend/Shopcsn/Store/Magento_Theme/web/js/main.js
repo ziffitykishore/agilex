@@ -4,54 +4,60 @@
  */
 
 define([
+    'uiComponent',
+    'Magento_Customer/js/customer-data',
     'jquery',
-    'domReady!'
-], function($, jQuery) {
+    'ko',
+    'underscore',
+    'sidebar',
+    'mage/translate',
+    'mage/dropdown'
+], function (Component, ko, _) {
     'use strict';
 
-    $('.overlay').on('click', function () {
-        $('html').removeClass('nav-open');
-        $('body').removeClass('acc-opened cart-opened');
+    jQuery('.overlay').on('click', function () {
+        jQuery('html').removeClass('nav-open');
+        jQuery('body').removeClass('acc-opened cart-opened');
     });
 
-    $('.showcart').on('click', function () {
-        $('html').removeClass('nav-open');
+    jQuery('.showcart').on('click', function () {
+        jQuery('html').removeClass('nav-open');
     });
 
-    $('.customer-welcome').on('click', function(){
-        $('body').addClass('acc-opened');
+    jQuery('.customer-welcome .customer-name').on('click', function(){
+        jQuery('body').addClass('acc-opened');
     });
 
 
 
-    $(document).on('click', function () {
-        $('.nav-sections').on('click', function (e) {
+    jQuery(document).on('click', function () {
+        jQuery('.nav-sections').on('click', function (e) {
             e.stopPropagation();
         });
         
-        $('.header').on('click', function (e) {
-            $('html').removeClass('nav-open');
-            $('body').removeClass('acc-opened cart-opened');
+        jQuery('.header').on('click', function (e) {
+            jQuery('html').removeClass('nav-open');
+            jQuery('body').removeClass('acc-opened cart-opened');
         });
     });
-    $(".form-group input.form-control").on("focus blur", function () {
-        if ($(this).val() == "") {
-            $(this)
+    jQuery(".form-group input.form-control").on("focus blur", function () {
+        if (jQuery(this).val() == "") {
+            jQuery(this)
                 .parents(".form-group")
                 .toggleClass("focused");
         }
     });
-        $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-          $('.header-wrapper').addClass("fix-header");
+        jQuery(window).scroll(function () {
+        if (jQuery(this).scrollTop() > 50) {
+          jQuery('.header-wrapper').addClass("fix-header");
         } else {
-         $('.header-wrapper').removeClass("fix-header");
+         jQuery('.header-wrapper').removeClass("fix-header");
         }
      });
 
      /* footer starts */
 
-     $('#sticky-social .trigger').on('click', function () {
-        $(this).parent().toggleClass('active');
+     jQuery('#sticky-social .trigger').on('click', function () {
+        jQuery(this).parent().toggleClass('active');
     });
 });
