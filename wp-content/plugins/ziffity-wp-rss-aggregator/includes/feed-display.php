@@ -36,16 +36,18 @@
         }
         return $content;
     }
-    function match($needles, $haystack)
+
+    //Blacklist and Whitelist keywords
+    function match($keywords, $content)
     {
-        foreach ($needles as $needle) {
-            if (strpos($haystack,
-                    $needle) !== false) {
+        foreach ($keywords as $keyword) {
+            if (strpos($content, $keyword) !== false) {
                 return true;
             }
         }
         return false;
     }
+    
 
     /**
      * Renders a single feed item.
@@ -77,15 +79,18 @@
 
         // Get the item meta
         $permalink       = get_post_meta( $ID, 'wprss_item_permalink', true );
-        //echo $permalink;
+        
         $filterAuthors = array_map('trim', explode(',', wprss_get_general_setting( 'blacklist-feed-limit' )));
-       // $filterAuthors = array_map('trim_spaces_and_quotes', $filterAuthors);
+     
         $filterAuthors = array_map('strtoupper', $filterAuthors);
-
+        
         if(match($filterAuthors, urlencode(strtoupper($permalink)))){
-            return;
+             return;
         }
-        //echo "Matching pet.";
+        $whitelist_keywords = array_map('trim', explode(',', wprss_get_general_setting( 'whitelist-feed-limit' )));
+        $whitelist_keywords = array_map('strtoupper', $whitelist_keywords);
+        
+        
         $enclosure       = get_post_meta( $ID, 'wprss_item_enclosure', true );
         $feed_source_id  = get_post_meta( $ID, 'wprss_feed_id', true );
         $link_enclosure  = get_post_meta( $feed_source_id, 'wprss_enclosure', true );
@@ -127,9 +132,20 @@
         if(match($filterAuthors, strtoupper($source_name))
             || match($filterAuthors, strtoupper($description))
             || match($filterAuthors, strtoupper($author_text))
-            || match($filterAuthors, strtoupper($itemTitle))){
+            || match($filterAuthors, strtoupper($itemTitle))
+            || match($filterAuthors, urlencode(strtoupper($source_url)))) {
             return;
         }
+
+        if (match($whitelist_keywords, urlencode(strtoupper($permalink)))  == false
+            && match($whitelist_keywords, strtoupper($source_name))  == false
+            && match($whitelist_keywords, strtoupper($description))  == false
+            && match($whitelist_keywords, strtoupper($author_text))  == false
+            && match($whitelist_keywords, strtoupper($itemTitle))  == false
+            && match($whitelist_keywords, urlencode(strtoupper($source_url)))  == false) {
+            return;
+        } 
+
 
         // Prepare the text that precedes the source
         //$text_preceding_source = wprss_get_general_setting('text_preceding_source');
@@ -138,7 +154,7 @@
         $text_preceding_website = ltrim( __( $text_preceding_website, WPRSS_TEXT_DOMAIN ) . ' ' );
         $text_preceding_date = wprss_get_general_setting('text_preceding_date');
         $text_preceding_date = ltrim( __( $text_preceding_date, WPRSS_TEXT_DOMAIN ) . ' ' );
-
+         //echo $text_preceding_website."$$$$$$$$$$$$$$$$$$";
         do_action( 'wprss_get_post_data' );
 
         $meta = $extra_options;
@@ -191,7 +207,7 @@
         echo '</div>';
 
         // FEED ITEM META
-        echo '<div class="news-info-details text-uppercase row">';
+        echo '<div class="news-info-details text-uppercase text-right">';
 
         // SOURCE
        /* if ( wprss_get_general_setting('source_enable') == 1 ) {
@@ -204,9 +220,9 @@
 
         // DATE
         if ( wprss_get_general_setting('date_enable') == 1 ) {
-            echo '<div class="col-sm-6 news-date">';
+            echo '<div class="news-date">';
             $date_text = apply_filters( 'wprss_item_date', $date );
-            $date_text = $text_preceding_date . $date_text;
+            $date_text = $date_text;
             echo $date_text;
             echo '</div>';
         }
@@ -225,9 +241,9 @@
 
          // WEBSITE
         if ( wprss_get_general_setting('source_enable') == 1 ) {
-            echo '<div class="col-sm-12 news-website">';
+            echo '<div class="news-website">';
             //$source_link_text = apply_filters('wprss_item_source_link', wprss_link_display( $source_url, $source_name, $source_link ) );
-            $source_link_text = $text_preceding_website . $source_url;
+            $source_link_text = $source_url;
             echo $source_link_text;
             echo '</div>';
         }
@@ -243,7 +259,7 @@
             echo '</div>';
         }
         //Learn More
-        echo '<a href="'.$permalink.'" class="btn btn-sm btn-blue btn-door text-uppercase">Learn More</a>';
+        echo '<a href="'.$permalink.'" class="btn btn-sm btn-blue btn-door text-uppercase">Read More</a>';
         echo '</div>';
 
         // END TEMPLATE - Retrieve buffered output
@@ -610,3 +626,4 @@
            /* Return the result */
            return rtrim( $words );
     }
+

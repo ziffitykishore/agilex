@@ -77,6 +77,10 @@
           
                     </footer>
 
+                    <?php if (is_active_sidebar('footer-seo')) : ?>
+                                <?php dynamic_sidebar('footer-seo'); ?>
+                            <?php endif; ?>
+
     <?php
 	  /*
 	   * Always have wp_footer() just before the closing </body>

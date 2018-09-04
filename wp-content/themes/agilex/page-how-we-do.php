@@ -41,10 +41,7 @@ get_header(); ?>
   <?php $processes = get_post_meta( get_the_ID(), 'how-we-are', true );
   if($processes) { ?>
     <ul class="cd-icons-filling js-cd-icons-filling pad-70">
-      <div class="before-bg">
-        <div class="inner-elment top-bg"></div>
-        <div class="inner-elment bottom-bg"></div>
-      </div>
+      
       <?php $i = 1;   foreach( $processes as $process){ ?>
         <li class="cd-service cd-service--<?php echo $i; ?> js-cd-service row">
           <div class="img-blk col-sm-3">
@@ -60,7 +57,12 @@ get_header(); ?>
           </div>
         </li>
       <?php  $i++; } ?> 
+      <div class="before-bg">
+        <div class="inner-elment top-bg"></div>
+        <div class="inner-elment bottom-bg"></div>
+      </div>
     </ul>
+
   <?php } ?>
   </div>
 </div>

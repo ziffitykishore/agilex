@@ -159,8 +159,11 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_style( 'style-css', get_stylesheet_uri() );
     wp_enqueue_script( 'jquery-js', get_template_directory_uri() . '/js/jquery.js', array( 'jquery' ), true );
     wp_enqueue_script( 'bootstrap-js', get_template_directory_uri() . '/js/bootstrap.min.js', array( 'jquery' ), '3.3.0', true );
+
     wp_enqueue_script( 'html5shiv-js', get_template_directory_uri() . '/js/html5shiv.js', array( 'jquery' ), '3.7.2' );
     wp_enqueue_script( 'modernizr-js', get_template_directory_uri() . '/js/modernizr.js', array( 'jquery' ), '', true );
+    wp_enqueue_script( 'mobile-custom-js', get_template_directory_uri() . '/js/jquery.mobile.custom.min.js', array( 'jquery' ), '', true );
+wp_enqueue_script( 'timeline-js', get_template_directory_uri() . '/js/timeline.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'masonry-js', get_template_directory_uri() . '/js/masonry.pkgd.min.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'imagesloaded-js', get_template_directory_uri() . '/js/imagesloaded.js', array( 'jquery' ), '', true );
     wp_enqueue_script( 'classie-js', get_template_directory_uri() . '/js/classie.js', array( 'jquery' ), '', true );
@@ -179,8 +182,11 @@ function bootstrapcanvaswp_scripts() {
     wp_enqueue_script( 'mCustomScrollbar-js', get_template_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '', true );
     /* wp_enqueue_script( 'nicescroll-js', get_template_directory_uri() . '/js/jquery.nicescroll.min.js', array( 'jquery' ), '', true ); */
     /* wp_enqueue_script( 'hover3d-js', get_template_directory_uri() . '/js/jquery.hover3d.js', array( 'jquery' ), '', true ); */
-    wp_enqueue_script( 'TweenMax-js', get_template_directory_uri() . '/js/TweenMax.min.js', array( 'jquery' ), '', true );
+    /* wp_enqueue_script( 'TweenMax-js', get_template_directory_uri() . '/js/TweenMax.min.js', array( 'jquery' ), '', true ); */
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
+
+
+
 
     wp_enqueue_script( 'main-js', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), '', true );
     $the_page = sanitize_post( $GLOBALS['wp_the_query']->get_queried_object() );
@@ -252,6 +258,14 @@ function bootstrapcanvaswp_widgets_init() {
 		'after_widget'  => '</div>',
         'before_title' => '<h4>',
         'after_title' => '</h4>',
+    ) );
+
+    register_sidebar( array(
+        'name' => __( 'Footer - SEO', 'bootstrapcanvaswp' ),
+        'id' => 'footer-seo',
+        'description' => __( 'Add widgets here to appear in your sidebar.', 'bootstrapcanvaswp' ),
+		'before_widget' => '<div id="%1$s" class="footer-seo-module widget %2$s">',
+		'after_widget'  => '</div>',
     ) );
 }
 add_action( 'widgets_init', 'bootstrapcanvaswp_widgets_init' );
