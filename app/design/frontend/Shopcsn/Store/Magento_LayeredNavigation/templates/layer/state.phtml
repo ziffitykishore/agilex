@@ -43,7 +43,8 @@
                 <?php else: ?>
                     <a class="action remove" href="<?= /* @escapeNotVerified */ $_filter->getRemoveUrl() ?>"
                        title="<?= /* @escapeNotVerified */ $block->escapeHtml(__('Remove')) . " " . $currentFilterName ?>">
-                        <span><?= /* @escapeNotVerified */ __('Remove This Item') ?></span>
+                        <span class="sr-only"><?= /* @escapeNotVerified */ __('Remove This Item') ?></span>
+                        <span class="fa fa-trash"></span>
                     </a>
                 <?php endif; ?>
             </li>

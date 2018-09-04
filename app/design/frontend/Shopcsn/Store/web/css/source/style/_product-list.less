@@ -2,6 +2,9 @@
     select {
         height: auto;
     }
+    .sorter label, .limiter label{
+        padding: 5px;
+    }
 }
 
 /* Layered Filter */
@@ -31,7 +34,7 @@
         }
 
         &-content {
-            .disp(none);
+            
             .block-subtitle {
                 .disp(none);
             }
@@ -135,14 +138,9 @@
             font-weight: bold;
         }
         .product-item-actions {
-            .actions-primary .action:not(:first-child):before {
-                content: '';
-                position: absolute;
-                left: 0;
-                top: 0;
-                height: 100%;
-                width: 1px;
-                background: #404040;
+            .actions-primary .action.tocart {
+                
+                border-left: 1px solid #404040;
             }
             .tocompare {
                 display: none;
@@ -343,6 +341,10 @@
                     &-title {
                         display: inline-block;
                         border-bottom: 0;
+                    }
+
+                    &-content {
+                        .disp(none);
                     }
 
                     &.active {
