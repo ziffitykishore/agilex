@@ -360,8 +360,9 @@
     .home .heading .sub-heading {
         padding: 0 50px;
     }
+    .contact-form .hbspt-form form>div,
     .contact-form-sec .form-group,
-    .contact-form .hbspt-form .field {
+    .contact-form .hbspt-form form>.field {
         max-width: 100%;
         -webkit-flex: 0 0 100%;
         -ms-flex: 0 0 100%;

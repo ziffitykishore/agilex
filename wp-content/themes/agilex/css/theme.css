@@ -4191,9 +4191,11 @@ html {
     bottom: -20px;
 }
 
-.quotes-content-inner {
+.quotes-sec .quotes-content-inner {
     padding: 0 80px;
     position: relative;
+    max-width: 820px;
+    margin: 0 auto;
 }
 
 .quotes-content-inner:before {
@@ -4928,7 +4930,7 @@ html {
 }
 
 .nice-select li[data-value=''] {
-    display: none;
+    display: block !important;
 }
 
 .nice-select .current {
@@ -5058,12 +5060,26 @@ div.nice-select:after {
     flex-wrap: wrap;
 }
 
+.contact-form .hbspt-form form>div,
 .contact-form-sec .form-group,
-.contact-form .hbspt-form .field {
+.contact-form .hbspt-form form>.field {
     max-width: 48%;
     -webkit-flex: 0 0 48%;
     -ms-flex: 0 0 48%;
     flex: 0 0 48%;
+}
+
+.contact-form .hbspt-form #hsForm_d9bc8fe4-271f-4085-bb25-339c86aa3b8b>div:nth-child(7) {
+    max-width: 100%;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+}
+
+.contact-form .hbspt-form .field.hs-fieldtype-checkbox ul.inputs-list>li {
+    margin: 10px 10px 0 0;
+    display: inline-block;
+    width: 48%;
 }
 
 .contact-form-sec .form-group textarea.form-control {
@@ -5757,6 +5773,14 @@ div.wpcf7 .ajax-loader {
 .sidebar-blog {
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+.sidebar-blog .archieve-wrap .stack-list li+li {
+    padding-top: 8px;
+}
+
+.sidebar-blog .archieve-wrap .stack-list li {
+    padding-bottom: 8px;
 }
 
 .blog-search {
