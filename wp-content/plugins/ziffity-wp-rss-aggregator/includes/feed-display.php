@@ -94,7 +94,8 @@
         $timestamp       = get_the_time( 'U', $ID );
         $FirstDay = strtotime('monday this week');
         $LastDay = strtotime('sunday this week');
-        if($timestamp < $FirstDay || $timestamp > $LastDay) {
+        //if($timestamp < $FirstDay || $timestamp > $LastDay) {
+        if ($timestamp <= strtotime('-7 day')) {
             return;
         }
 
