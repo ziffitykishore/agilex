@@ -1,0 +1,157 @@
+<form class="form" id="catalog_form" method="post" autocomplete="off" action="<?php echo $this->getUrl("comments/index/catalogpost")?>">
+   <fieldset class="fieldset">
+       <legend class="legend"><span>Catalog Form</span></legend><br>
+        <div class="field required">
+            <label for="customer_fn" class="label"><span>First Name</span></label>
+            <div class="control">
+                <input type="text" name="customer_fn" id="customer_fn" value=""  class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+
+        <div class="field required">
+            <label for="customer_ln" class="label"><span>Last Name</span></label>
+            <div class="control">
+                <input type="text" name="customer_ln" id="customer_ln" value=""  class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+
+       
+        <div class="field required">
+            <label for="customer_addr_one" class="label"><span>Address 1</span></label>
+            <div class="control">
+                <input type="text" name="customer_addr_one" id="customer_addr_one" value=""  class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+
+        <div class="field">
+            <label for="customer_addr_two" class="label"><span>Address 2</span></label>
+            <div class="control">
+                <input type="text" name="customer_addr_two" id="customer_addr_two" value=""  class="input-text" style="width:60%;">
+            </div>
+        </div>
+       
+       
+        <div class="field required">
+            <label for="customer_city" class="label"><span>City</span></label>
+            <div class="control">
+                <input type="text" name="customer_city" id="customer_city" value="" class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+       
+        <div class="field required">
+            <label for="customer_state" class="label"><span>State</span></label>
+            <div class="control">
+                <select id="customer_state" name="customer_state" style="width: 60%;"></select>                
+            </div>
+        </div>
+       
+        <div class="field required">
+            <label for="customer_zip" class="label"><span>Zipcode</span></label>
+            <div class="control">
+ 		<textarea name="customer_zip" id="customer_zip" value=""  class="input-text" data-validate="{required:true,'validate-number':true}" style="width:60%"></textarea>
+            </div>
+        </div>
+
+   </fieldset>
+
+   <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Submit Details"><span>Submit</span></button>
+        </div>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "#catalog_form": {
+            "validation": {}
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+
+require(['jquery', 'jquery/ui'], function($){
+
+  $(document).ready( function() {
+    console.log("From Testing Module for Select");
+    
+	//var selectValues={"one":"Alaska"};
+        
+        var states={
+                        "AL": "Alabama",
+                        "AK": "Alaska",
+                        "AS": "American Samoa",
+                        "AZ": "Arizona",
+                        "AR": "Arkansas",
+                        "CA": "California",
+                        "CO": "Colorado",
+                        "CT": "Connecticut",
+                        "DE": "Delaware",
+                        "DC": "District Of Columbia",
+                        "FM": "Federated States Of Micronesia",
+                        "FL": "Florida",
+                        "GA": "Georgia",
+                        "GU": "Guam",
+                        "HI": "Hawaii",
+                        "ID": "Idaho",
+                        "IL": "Illinois",
+                        "IN": "Indiana",
+                        "IA": "Iowa",
+                        "KS": "Kansas",
+                        "KY": "Kentucky",
+                        "LA": "Louisiana",
+                        "ME": "Maine",
+                        "MH": "Marshall Islands",
+                        "MD": "Maryland",
+                        "MA": "Massachusetts",
+                        "MI": "Michigan",
+                        "MN": "Minnesota",
+                        "MS": "Mississippi",
+                        "MO": "Missouri",
+                        "MT": "Montana",
+                        "NE": "Nebraska",
+                        "NV": "Nevada",
+                        "NH": "New Hampshire",
+                        "NJ": "New Jersey",
+                        "NM": "New Mexico",
+                        "NY": "New York",
+                        "NC": "North Carolina",
+                        "ND": "North Dakota",
+                        "MP": "Northern Mariana Islands",
+                        "OH": "Ohio",
+                        "OK": "Oklahoma",
+                        "OR": "Oregon",
+                        "PW": "Palau",
+                        "PA": "Pennsylvania",
+                        "PR": "Puerto Rico",
+                        "RI": "Rhode Island",
+                        "SC": "South Carolina",
+                        "SD": "South Dakota",
+                        "TN": "Tennessee",
+                        "TX": "Texas",
+                        "UT": "Utah",
+                        "VT": "Vermont",
+                        "VI": "Virgin Islands",
+                        "VA": "Virginia",
+                        "WA": "Washington",
+                        "WV": "West Virginia",
+                        "WI": "Wisconsin",
+                        "WY": "Wyoming"
+            }
+
+	$.each(states,function(key,value){
+    
+            $("#customer_state").append($("<option></option>").attr("value",key).text(value));
+            
+        });
+
+    
+    
+  });
+  
+});
+
+</script>
+

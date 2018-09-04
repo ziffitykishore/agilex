@@ -1,0 +1,49 @@
+<form class="form" id="customer-comments-form" method="post" autocomplete="off" action="<?php echo $this->getUrl("comments/index/post")?>">
+   <fieldset class="fieldset">
+       <legend class="legend"><span>CSN CONTACT CUSTOMER SERVICE</span></legend><br>
+        <div class="field required">
+            <label for="customer_name" class="label"><span>Name</span></label>
+            <div class="control">
+                <input type="text" name="customer_name" id="customer_name" value="" title="Your Name" class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+       
+        <div class="field required">
+            <label for="customer_email" class="label"><span>Email</span></label>
+            <div class="control">
+                <input type="email" name="customer_email" id="customer_email" value="" title="Your Email Address" class="input-text" data-validate="{required:true, 'validate-email':true}" style="width:60%;">
+            </div>
+        </div>
+
+        <div class="field required">
+            <label for="customer_phone" class="label"><span>Telephone</span></label>
+            <div class="control">
+                <input type="text" name="customer_phone" id="customer_phone" value="" title="Your Telephone" class="input-text" data-validate="{required:true,'country':true}" style="width:60%;">
+            </div>
+        </div>
+      
+       
+        <div class="field required">
+            <label for="customer_comments" class="label"><span>Comments</span></label>
+            <div class="control">
+ 		<textarea name="customer_comments" id="customer_comments" value="" title="Your Comments" class="input-text" data-validate="{required:true}" style="width:60%"></textarea>
+            </div>
+        </div>
+
+   </fieldset>
+
+   <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Submit Details"><span>Submit</span></button>
+        </div>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "#customer-comments-form": {
+            "validation": {},
+            "customMethod":{}
+        }
+    }
+</script>

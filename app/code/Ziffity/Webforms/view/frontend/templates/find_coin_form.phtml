@@ -1,0 +1,58 @@
+<form class="form" id="find_coin_form" method="post" autocomplete="off" action="<?php echo $this->getUrl("comments/index/coinpost")?>">
+   <fieldset class="fieldset">
+       <legend class="legend"><span>FIND YOUR COIN</span></legend><br>
+        <div class="field required">
+            <label for="customer_fn" class="label"><span>First Name</span></label>
+            <div class="control">
+                <input type="text" name="customer_fn" id="customer_fn" value=""  class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+
+        <div class="field required">
+            <label for="customer_ln" class="label"><span>Last Name</span></label>
+            <div class="control">
+                <input type="text" name="customer_ln" id="customer_ln" value=""  class="input-text" data-validate="{required:true}" style="width:60%;">
+            </div>
+        </div>
+
+       
+        <div class="field required">
+            <label for="customer_email" class="label"><span>Email</span></label>
+            <div class="control">
+                <input type="email" name="customer_email" id="customer_email" value=""  class="input-text" data-validate="{required:true, 'validate-email':true}" style="width:60%;">
+            </div>
+        </div>
+
+        <div class="field required">
+            <label for="customer_phone" class="label"><span>Phone Number</span></label>
+            <div class="control">
+                <input type="text" name="customer_phone" id="customer_phone" value="" class="input-text" data-validate="{required:true,'country':true}" style="width:60%;">
+            </div>
+        </div>
+      
+       
+        <div class="field required">
+            <label for="customer_find" class="label"><span>I am Looking for</span></label>
+            <div class="control">
+ 		<textarea name="customer_find" id="customer_find" value=""  class="input-text" data-validate="{required:true}" style="width:60%"></textarea>
+            </div>
+        </div>
+
+   </fieldset>
+
+   <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Submit Details"><span>Submit</span></button>
+        </div>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "#find_coin_form": {
+            "validation": {},
+            "customMethod":{}
+        }
+    }
+</script>
+
