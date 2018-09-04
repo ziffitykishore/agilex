@@ -629,7 +629,7 @@
            $filterAuthors = array_map('strtoupper', $filterAuthors);
            $author = $item->get_author();
            $desc= $item->get_description();
-            $description = substr($desc, 0, 200);
+            $description = $desc;
             if(in_array(strtoupper($author->get_name()), $filterAuthors)
                 || match($filterAuthors, urlencode(strtoupper($item->get_permalink())))
                 || match($filterAuthors, strtoupper($description))

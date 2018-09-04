@@ -1026,6 +1026,8 @@ function myFunction() {
           $(this)
             .find("option:eq(0)")
             .text(labelText);
+
+            $(this).find('option:eq(0)').removeAttr('disabled');
         }
         $(this).change(function () {
           $(this)
@@ -1042,6 +1044,10 @@ function myFunction() {
     selectBox(".wpcf7-form select", ".select-box");
     selectBox(".hbspt-form select", ".hs-fieldtype-select");
 
+
+
+        
+      
 
 
     $(".hs-submit .hs-button").wrap(
@@ -1115,8 +1121,6 @@ function myFunction() {
       arrows: true,
       dots: false,
       focusOnSelect: true,
-      centerMode: true,
-
       responsive: [
         {
           breakpoint: 1024,
@@ -1145,4 +1149,5 @@ function myFunction() {
       ]
     });
   });
+
 })(jQuery);
