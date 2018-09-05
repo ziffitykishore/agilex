@@ -2,7 +2,7 @@
 namespace Ziffity\Webforms\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Ziffity\Webforms\Api\Data\CoinInterface;
+use Ziffity\Webforms\Api\Coin\CoinInterface;
 
 class Coin extends AbstractModel implements CoinInterface
 {

@@ -100,8 +100,8 @@ class Coinpost extends \Magento\Framework\App\Action\Action
 
                  
                 $this->_inlineTranslation->resume();
-                $this->messageManager->addSuccess('Your Request Under Processing');
-                $this->_redirect('cms/index/index');
+                $this->messageManager->addSuccess('Thank you for your interest. One of our specialist will get in touch with you shortly.');
+                $this->_redirect('comments/index/coin');
                  
         } catch(\Exception $e){
             $this->messageManager->addError($e->getMessage());

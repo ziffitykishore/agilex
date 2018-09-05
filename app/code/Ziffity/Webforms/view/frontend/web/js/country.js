@@ -17,7 +17,7 @@ define([
    
                //return false;
            },
-           $.mage.__("US Phone Number Only")
+           $.mage.__("Please enter a valid phone number. For example (123) 456-7890 or 123-456-7890.")
        );
    }
 });

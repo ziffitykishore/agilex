@@ -67,5 +67,40 @@ class Data extends AbstractModel implements DataInterface
         return $this->setData(DataInterface::CUST_COMMENTS, $comments);
     }
 
+    public function getIsActive()
+    {
+        return $this->getData(DataInterface::IS_ACTIVE);
+    }
+
+    
+    public function setIsActive($isActive)
+    {
+        return $this->setData(DataInterface::IS_ACTIVE, $isActive);
+    }
+
+    
+    public function getCreatedAt()
+    {
+        return $this->getData(DataInterface::CREATED_AT);
+    }
+
+    
+    public function setCreatedAt($createdAt)
+    {
+        return $this->setData(DataInterface::CREATED_AT, $createdAt);
+    }
+
+   
+    public function getUpdatedAt()
+    {
+        return $this->getData(DataInterface::UPDATED_AT);
+    }
+
+    
+    public function setUpdatedAt($updatedAt)
+    {
+        return $this->setData(DataInterface::UPDATED_AT, $updatedAt);
+    }
+    
     
 }

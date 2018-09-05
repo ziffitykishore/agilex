@@ -52,8 +52,8 @@ class CatalogPost extends \Magento\Framework\App\Action\Action
 	$data=array('customer_fn'=>$post['customer_fn'],'customer_ln'=>$post['customer_ln'],'customer_addr_one'=>$post['customer_addr_one'],'customer_addr_two'=>$post['customer_addr_two'],'customer_city'=>$post['customer_city'],'customer_state'=>$post['customer_state'],'customer_zip'=>$post['customer_zip']);
 	$model->setData($data);
 	$model->save();        
-	$this->_redirect('cms/index/index');
-        $this->messageManager->addSuccess(__('Your Catalog Request is Processing'));
+	$this->_redirect('comments/index/catalog');
+        $this->messageManager->addSuccess(__('Thank you for requesting a catalog. You\'ll receive your catalog in 2-3 weeks.'));
          
          
          

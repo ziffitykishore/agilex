@@ -9,6 +9,9 @@ interface DataInterface
     const CUST_EMAIL        = 'customer_email';
     const CUST_PHONE         = 'customer_phone';
     const CUST_COMMENTS        ='customer_comments';
+    const IS_ACTIVE         = 'is_active';
+    const CREATED_AT        = 'created_at';
+    const UPDATED_AT        = 'updated_at';
   
 
     public function getId();
@@ -30,5 +33,18 @@ interface DataInterface
     public function getCustComments();
     
     public function setCustComments($comments);
+    
+    public function getIsActive();
+
+    public function setIsActive($isActive);
+
+    public function getCreatedAt();
+
+    public function setCreatedAt($createdAt);
+
+    public function getUpdatedAt();
+
+    public function setUpdatedAt($updatedAt);    
+    
 
 }

@@ -99,8 +99,8 @@ class Post extends \Magento\Framework\App\Action\Action
 
                  
                 $this->_inlineTranslation->resume();
-                $this->messageManager->addSuccess('Email sent successfully');
-                $this->_redirect('cms/index/index');
+                $this->messageManager->addSuccess('Thank you for contacting us. A customer service representative will respond to you shortly.');
+                $this->_redirect('comments/index/index');
                  
         } catch(\Exception $e){
             $this->messageManager->addError($e->getMessage());

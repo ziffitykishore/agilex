@@ -1,5 +1,5 @@
 <?php
-namespace Ziffity\Webforms\Api\Data;
+namespace Ziffity\Webforms\Api\Catalog;
 
 interface CatalogInterface
 {

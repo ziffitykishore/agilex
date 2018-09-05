@@ -51,6 +51,24 @@ class InstallSchema implements InstallSchemaInterface
             255,
             ['nullable' => false],
             'Customer Comments'
+        )->addColumn(
+            'is_active',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+	    null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+            'Status'
+        )->addColumn(
+            'created_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
+            'Created At'
+        )->addColumn(
+            'updated_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT_UPDATE],
+            'Updated At'
         )->addIndex(
 	    $setup->getIdxName(
 	    $installer->getTable('customer_comments_details'),
@@ -113,6 +131,24 @@ class InstallSchema implements InstallSchemaInterface
             255,
             ['nullable' => false],
             'I am Looking For'
+        )->addColumn(
+            'is_active',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+	    null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+            'Status'
+        )->addColumn(
+            'created_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
+            'Created At'
+        )->addColumn(
+            'updated_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT_UPDATE],
+            'Updated At'
         )->addIndex(
 	    $setup->getIdxName(
 	    $installer->getTable('find_your_coin'),
@@ -188,6 +224,24 @@ class InstallSchema implements InstallSchemaInterface
             255,
             ['nullable' => false],
             'Zipcode'
+        )->addColumn(
+            'is_active',
+            \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+	    null,
+            ['unsigned' => true, 'nullable' => false, 'default' => '0'],
+            'Status'
+        )->addColumn(
+            'created_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT],
+            'Created At'
+        )->addColumn(
+            'updated_at',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
+            null,
+            ['nullable' => false, 'default' => \Magento\Framework\DB\Ddl\Table::TIMESTAMP_INIT_UPDATE],
+            'Updated At'
         )->addIndex(
 	    $setup->getIdxName(
 	    $installer->getTable('catalog_request'),

@@ -2,7 +2,7 @@
 namespace Ziffity\Webforms\Model;
 
 use Magento\Framework\Model\AbstractModel;
-use Ziffity\Webforms\Api\Data\CatalogInterface;
+use Ziffity\Webforms\Api\Catalog\CatalogInterface;
 
 class Catalog extends AbstractModel implements CatalogInterface
 {
