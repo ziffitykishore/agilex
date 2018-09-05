@@ -6,7 +6,7 @@
         .product {
             &.media {
                 display: table-cell;
-                width: 65%;
+                width: 70%;
                 border: 1px solid #d7dded;
                 float: none;
                 .MagicScroll-vertical {
@@ -17,6 +17,7 @@
                 .mcs-wrapper {
                     top: 24px;
                     bottom: 24px;
+                    display: block !important;
                     .mcs-item {
                         border-bottom: 1px solid #d7dded;
                         border-right: 1px solid #d7dded;
@@ -115,11 +116,18 @@
                 text-align: left;
                 border-collapse: separate;
                 width: 100%;
-                .available {
+                .stock {
                     display: table-cell;
                     float: right;
-                    span {
-                        color: green;
+                    &.available {
+                        span {
+                            color: #006400;
+                        }
+                    }
+                    &.unavailable {
+                        span {
+                            color: #e02b27;
+                        }
                     }
                 }
                 .sku {
@@ -132,6 +140,9 @@
             .product-add-form {
                 padding: 45px 20px;
                 .box-tocart {
+                    .fieldset {
+                        margin: 0;
+                    }
                     button {
                         padding: 0;
                         float: left;
@@ -161,12 +172,12 @@
                     }
                     .primary {
                         margin-top: 0;
-                        margin-right: 15px;
-                        margin-left: 25px;
+                        margin-right: 25px;
+                        margin-left: 20px;
                         background-color: #040404;
                         color: #fff;
                         border: 1px solid #000;
-                        width: 35%;
+                        width: 30%;
                         float: left;
                         font-size: 15px;
                         text-transform: uppercase;
@@ -179,17 +190,18 @@
                     display: inline-block;
                     vertical-align: middle;
                 }
-                .um-socialshare {
+                #um-sharing-productpage {
                     padding: 0 !important;
                     margin-left: 20px;
+                    position: static;
                 }
+
                 .towishlist {
                     border: 1px solid #d7dded;
                     color: #d7dded;
                     width: 40px;
                     height: 40px;
                     display: block;
-                    margin-left: 15px;
                     &:before {
                         display: none;
                     }
@@ -200,8 +212,7 @@
                     }
                 }
                 .addthis_toolbox {
-                    a:not(.addthis_button_compact),
-                    .addthis_counter {
+                    a:not(.addthis_button_compact), .addthis_counter {
                         display: none !important;
                     }
                     .addthis_button_compact {
@@ -265,6 +276,7 @@
                                 height: auto;
                                 font-weight: bold;
                                 padding: 20px 0;
+                                position: relative;
                                 &:focus {
                                     color: #1c3f93 !important;
                                     outline: none;
@@ -282,102 +294,101 @@
                             }
                         }
                         &.content {
-                            border-top: 1px solid #d7dded !important;
+                            border-top: 1px solid #d7dded;
                             text-align: left;
                             margin-top: 80px;
                             .sub-content {
-                                width: 1140px;
+                                max-width: 1140px;
                                 margin: 0 auto;
                             }
-                                .form-group {
+                            .form-group {
+                                position: relative;
+                                .label {
+                                    position: absolute;
+                                    z-index: 1;
+                                    color: #d7dded;
+                                    left: 10px;
+                                    font-size: 13px;
+                                    background: #fff;
+                                    top: 15px;
+                                    pointer-events: none;
+                                    transition: all .5s ease 0s;
+                                }
+                                &.focused label {
+                                    top: -7px;
+                                    color: #d7dded;
+                                    font-size: 11px;
+                                }
+                                .form-control-wrap {
+                                    display: block;
                                     position: relative;
-                                    .label {
-                                        position: absolute;
-                                        z-index: 1;
-                                        color: #d7dded;
-                                        left: 10px;
-                                        font-size: 13px;
-                                        background: #fff;
-                                        top: 15px;
-                                        pointer-events: none;
-                                        transition: all .5s ease 0s;
-                                    }
-                                    &.focused label {
-                                        top: -7px;
-                                        color: #d7dded;
-                                        font-size: 11px;
-                                    }
-                                    .form-control-wrap {
+                                    .form-control {
                                         display: block;
-                                        position: relative;
-                                        .form-control {
-                                            display: block;
-                                            width: 100%;
-                                            padding: 6px 45px 6px 10px;
-                                            font-size: 14px;
-                                            line-height: 1.42857143;
-                                            color: #000;
-                                            background-color: #fff;
-                                            background-image: none;
-                                            border: 1px solid #d7dded;
-                                            border-radius: 0;
-                                            box-shadow: none;
-                                            &:focus {
-                                                border-color: #000;
-                                                box-shadow: none;
-                                            }
-                                            &.input-text {
-                                                height: 50px;
-                                            }
-                                            .secondary a {
-                                                color: #000;
-                                                text-decoration: none;
-                                            }
-                                        }
-                                    }
-                                }
-                                .additional-attributes {
-                                    .label {
-                                        font-size: 13px;
-                                    }
-                                }
-                                .review-legend {
-                                    border-bottom: 0;
-                                    margin-bottom: 15px;
-                                }
-                                .review-field-ratings {
-                                    legend {
-                                        text-align: left;
-                                        padding: 10px 0;
-                                        border-bottom: 0;
-                                        font-size: 15px;
-                                    }
-                                    .label {
-                                        font-size: 13px;
-                                    }
-                                }
-                                .review-form-actions {
-                                    .button-full {
-                                        margin-top: 10px;
-                                        margin-right: 10px;
-                                        background-color: #000;
-                                        color: #fff;
-                                        border: 1px solid #000;
-                                        border-radius: 0;
                                         width: 100%;
-                                        height: 50px;
-                                        font-weight: bold;
-                                        &:hover {
-                                            color: #fff;
+                                        padding: 6px 45px 6px 10px;
+                                        font-size: 14px;
+                                        line-height: 1.42857143;
+                                        color: #000;
+                                        background-color: #fff;
+                                        background-image: none;
+                                        border: 1px solid #d7dded;
+                                        border-radius: 0;
+                                        box-shadow: none;
+                                        &:focus {
+                                            border-color: #000;
+                                            box-shadow: none;
+                                        }
+                                        &.input-text {
+                                            height: 50px;
+                                        }
+                                        .secondary a {
+                                            color: #000;
+                                            text-decoration: none;
                                         }
                                     }
                                 }
-                                textarea {
-                                    &.input-text {
-                                        height: 100px !important;
+                            }
+                            .additional-attributes {
+                                .label {
+                                    font-size: 13px;
+                                }
+                            }
+                            .review-legend {
+                                border-bottom: 0;
+                                margin-bottom: 15px;
+                            }
+                            .review-field-ratings {
+                                legend {
+                                    text-align: left;
+                                    padding: 10px 0;
+                                    border-bottom: 0;
+                                    font-size: 15px;
+                                }
+                                .label {
+                                    font-size: 13px;
+                                }
+                            }
+                            .review-form-actions {
+                                .button-full {
+                                    margin-top: 10px;
+                                    margin-right: 10px;
+                                    background-color: #000;
+                                    color: #fff;
+                                    border: 1px solid #000;
+                                    border-radius: 0;
+                                    width: 100%;
+                                    height: 50px;
+                                    font-weight: bold;
+                                    &:hover {
+                                        color: #fff;
                                     }
                                 }
-                            
+                            }
+                            textarea {
+                                &.input-text {
+                                    height: 100px !important;
+                                }
+                            }
                             .label {
                                 color: #000;
                             }
@@ -388,6 +399,7 @@
         }
     }
 }
+
 
 /****************** quick-view **************/
 
@@ -467,6 +479,191 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media only screen and (max-width:1666px) {
+    .catalog-product-view {
+        .pdp {
+            .product.media {
+                width: 60%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:1366px) {}
+
+@media only screen and (max-width:1200px) {
+    .catalog-product-view {
+        .pdp {
+            .product.media {
+                width: 50%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:992px) {
+    .catalog-product-view {
+        .pdp {
+            display: block;
+            .product {
+                &.media {
+                    width: 45%;
+                }
+            }
+            .product-info-main {
+                display: block;
+                width: 100%;
+                .product-add-form {
+                    padding: 30px 20px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:767px) {
+    .catalog-product-view {
+        .page-main {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .pdp {
+            display: block;
+            .product {
+                &.media {
+                    width: 30%;
+                    
+                        .mcs-button {
+                           display: none !important;
+                        }
+                        .mcs-item {
+                            border-top: 1px solid #d7dded;  
+                        }
+                    
+                }
+            }
+            .product-info-main {
+                .product-social-links {
+                    text-align: left;
+                }
+            }
+        }
+        .detailed {
+            .product {
+                &.data {
+                    &.items {
+                        > .item {
+                            &.title {
+                                border-top: 1px solid #d7dded;
+                                &.active {
+                                    .switch {
+                                        padding-bottom: 20px;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                            &.title:first-child {
+                                border-top: 0;
+                            }
+                            &.content {
+                                border-top: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .detailed {
+            .product {
+                &.data {
+                    &.items {
+                        >.title {
+                            padding: 0;
+                            text-align: left;
+                            .switch {
+                                padding: 10px 20px;
+                            }
+                            &.active {
+                                a:after {
+                                    content: '\e621';
+                                }
+                                background: #3e5ca3;
+                                .switch {
+                                    background: #3e5ca3 !important;
+                                    border-bottom: 0 !important;
+                                    color: #fff;
+                                    padding-bottom: 20px;
+                                    &:focus {
+                                        color: #fff !important;
+                                    }
+                                }
+                            }
+                            a:after {
+                                position: absolute;
+                                right: 10px;
+                                top: 20px;
+                                -webkit-font-smoothing: antialiased;
+                                font-size: 14px;
+                                line-height: inherit;
+                                color: inherit;
+                                content: '\e622';
+                                font-family: 'luma-icons';
+                                vertical-align: middle;
+                                display: inline-block;
+                                font-weight: normal;
+                                overflow: hidden;
+                                speak: none;
+                                text-align: center;
+                            }
+                        }
+                        .content {
+                            margin-top: 20px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .catalog-product-view {
+        .pdp {
+            .product {
+                &.media {
+                    #mtImageContainer {
+                        padding: 0 20px
+                    }
+                }
+            }
+
+            .product-info-main {
+                .product-add-form {
+                    .box-tocart {
+                        .primary {
+                            width: 50%;
+                        }
+                    }
+                    .product-social-links {
+                        text-align: left;
+                        .towishlist {
+                            margin-left: 0;
+                        }
+                        .um-socialshare {
+                            
+                            margin-left: 10px;
+                        }
+                    }
+                }
+                .product-addto-links, .um-socialshare {
+                    margin-top: 20px;
+                }
+            }
+
         }
     }
 }
