@@ -2,6 +2,7 @@ var config = {
     paths: {
         'bminjs': 'js/bootstrap.min',
         'slick': 'js/slick.min',
+        'custom': 'js/custom.js',
         'googlecap': 'https://www.google.com/recaptcha/api'
     },
     shim: {
@@ -9,6 +10,9 @@ var config = {
             deps: ['jquery']
         },
         'slick': {
+            deps: ['jquery']
+        },
+        'custom':{
             deps: ['jquery']
         }
     },
