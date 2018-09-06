@@ -20,28 +20,30 @@
 ?>
 
 <div class="col-sm-4 blog-item <?php echo $_post->getId() ?>">
-    <a class="post-item-link" href="<?php echo $_postUrl ?>">
-        <div class="blog-image">
-            <img src="<?php echo $_post->getFeaturedImage(); ?>" alt="<?php echo $_postName ?>" class="img-responsive full-w" />
-            <div class="blog-date">
-                <div class="date-sec">
-                <?php echo date("d", strtotime($_post->getPublishTime())) ?>
-                    <span><?php echo date("M", strtotime($_post->getPublishTime())) ?></span>
+    <div class="blog-item_inner">
+        <a class="post-item-link" href="<?php echo $_postUrl ?>">
+            <div class="blog-image">
+                <img src="<?php echo $_post->getFeaturedImage(); ?>" alt="<?php echo $_postName ?>" class="img-responsive full-w" />
+                <div class="blog-date">
+                    <div class="date-sec">
+                    <?php echo date("d", strtotime($_post->getPublishTime())) ?>
+                        <span><?php echo date("M", strtotime($_post->getPublishTime())) ?></span>
+                    </div>
                 </div>
             </div>
-        </div>
-    </a>
-    <div class="blog-content">
-        <a href="<?php echo $_postUrl ?>">
-            <div class="blog-title">
-                <?php echo $_postName ?>
+        </a>
+        <div class="blog-content">
+            <a href="<?php echo $_postUrl ?>">
+                <div class="blog-title">
+                    <?php echo $_postName ?>
+                </div>
+            </a>
+            <div class="blog-desc">
+                <?php echo $block->wordLimiter($block->getShorContent(), 25).'...'; ?>
             </div>
-        </a>
-        <div class="blog-desc">
-            <?php echo $block->wordLimiter($block->getShorContent(), 25).'...'; ?>
+            <a href="<?php echo $_postUrl ?>">
+                <span class="more-btn"><?php echo __('Read more') ?></span>
+            </a>
         </div>
-        <a href="<?php echo $_postUrl ?>">
-            <span class="more-btn"><?php echo __('Read more') ?></span>
-        </a>
     </div>
 </div>
