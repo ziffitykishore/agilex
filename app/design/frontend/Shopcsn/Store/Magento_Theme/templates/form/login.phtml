@@ -88,20 +88,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                 <h4>Or Connect Using</h4>
             </div>
             <div class="social-media">
-                <ul class="list-inline">
-                    <li class="social-links media-first">
-                        <a href="#" class="button-social">
-                            <img src="<?php echo $this->getViewFileUrl('images/icon_fb.png'); ?>" alt="fb-icon" class="social-icon" />
-                            <span class="button-social social-text"><?= __('Facebook') ?></span>
-                        </a>
-                    </li>
-                    <li class=" social-links media-second">
-                        <a href="#" class="button-social ">
-                            <img src="<?php echo $this->getViewFileUrl('images/icon_google.png'); ?>" alt="google" class="social-icon" />
-                            <span class="button-social social-text"><?= __('Google') ?></span>
-                        </a>
-                   </li>
-               </ul>
+                 <ul class="list-inline">
+                <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml();?>
+                </ul>
+              
             </div>
         </div>
     </div>
@@ -185,20 +175,9 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                 <h4>Or Connect Using</h4>
             </div>
             <div class="social-media">
-                <ul class="list-inline">
-                    <li class="social-links media-first">
-                        <a href="#" class="button-social">
-                            <img src="<?php echo $this->getViewFileUrl('images/icon_fb.png'); ?>" alt="fb-icon" class="social-icon" />
-                            <span class="button-social social-text"><?= __('Facebook') ?></span>
-                        </a>
-                    </li>
-                    <li class=" social-links media-second">
-                        <a href="#" class="button-social ">
-                            <img src="<?php echo $this->getViewFileUrl('images/icon_google.png'); ?>" alt="google" class="social-icon" />
-                            <span class="button-social social-text"><?= __('Google') ?></span>
-                        </a>
-                   </li>
-               </ul>
+               <ul class="list-inline">
+                <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml();?>
+                </ul>
             </div>
         </div>
     </div>
@@ -280,19 +259,8 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
             </div>
             <div class="social-media">
                 <ul class="list-inline">
-                    <li class="social-links media-first">
-                        <a href="#" class="button-social">
-                            <img src="<?php echo $this->getViewFileUrl('images/icon_fb.png'); ?>" alt="fb-icon" class="social-icon" />
-                            <span class="button-social social-text"><?= __('Facebook') ?></span>
-                        </a>
-                    </li>
-                    <li class=" social-links media-second">
-                        <a href="#" class="button-social ">
-                            <img src="<?php echo $this->getViewFileUrl('images/icon_google.png'); ?>" alt="google" class="social-icon" />
-                            <span class="button-social social-text"><?= __('Google') ?></span>
-                        </a>
-                   </li>
-               </ul>
+                <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml();?>
+                </ul>
             </div>
         </div>
     </div>
