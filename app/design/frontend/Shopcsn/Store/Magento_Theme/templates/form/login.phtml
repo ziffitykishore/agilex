@@ -345,14 +345,11 @@ function($, modal) {
                 showLoader: true,
                 dataType:'json',
                 data: $('#login-form-popup').serialize(true),								
-                success:function(response) { 
+                success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                    window.location = "<?= $this->getUrl('customer/account') ?>";
-                    if(response.redirectUrl) {
-                        setTimeout(function(){											
-                            window.location = response.redirectUrl;
-                        }, 2000);                            
-                    } 
+                    if(!response.errors) {
+                        window.location = "<?= $this->getUrl('customer/account') ?>";
+                    }
                 }
             });
         }
