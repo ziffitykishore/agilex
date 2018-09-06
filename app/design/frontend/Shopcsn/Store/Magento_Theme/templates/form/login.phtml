@@ -276,7 +276,7 @@ function($, modal) {
         modalClass: 'custom-block-customer-login',
         buttons: false,
     };
-    $('#login-popup, #login-popup-form', '.signin-popup').on("click", function(){
+    $('#login-popup, #login-popup-form, .signin-popup').on("click", function(){
         var popup = modal(options, $('#popup-modal'));
         //$('#popup-modal-signup').modal('closeModal');
         $('#popup-modal').modal('openModal').on('modalclosed', function(){
