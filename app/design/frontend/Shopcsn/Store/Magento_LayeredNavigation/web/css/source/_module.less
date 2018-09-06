@@ -11,27 +11,11 @@
 
     .block.filter {
         margin-bottom: @indent__xl;
-        background: @color-whitesmoke;
-        padding-bottom: 50px;
+        
          
-        .filter-title {
-            padding: 15px 30px;
-            text-transform: uppercase;
-            color: @color-darkslateblue;
-            border-bottom: 1px dotted @color-darkslateblue;
-            strong {
-                font-size: 18px;
-            }
-        }
+       
 
-        a{
-            font-size: @f-size-xs;
-            color: @color-black;
-        }
-
-        .action{
-            color: @color-darkslateblue;
-        }
+        
     }
 
     .block-subtitle {
@@ -67,9 +51,7 @@
 
         label{
         }
-        .amount{
-            .disp(none);
-        }
+        
     }
 
     .filter-options {
@@ -79,57 +61,8 @@
             padding: 20px;
             border-bottom: 1px dotted @color-darkslateblue;
         }
-        .price{
-            .filter-options-content{
-                label{
-                    display: none;
-                }
+        
 
-                input{
-                    background: transparent;
-                    color: @color-darkslateblue !important;
-                    font-size: @f-size-xs;
-                }
-                #price-slider{
-                    height: 2px;
-                    background: @color-black;
-                .ui-widget-header{
-                    height: 100%;
-                    position: absolute;
-                    z-index: 1;
-                    font-size: .7em;
-                    display: block;
-                    border: 0;
-                    background: @color-darkslateblue;
-                }
-                .ui-slider-handle{
-                    background: @color-darkslateblue;
-                    top: -4px;
-                }
-            }
-
-            }
-        }
-        &-title {
-            .lib-heading(h4);
-            margin: 0 0 @indent__s;
-            word-break: break-all;
-            padding-bottom: 15px;
-            border-bottom: 1px dotted @color-darkslateblue;
-            .pos(relative);
-            .fa {
-                .pos(absolute);
-                right: 0;
-            }
-            &.active{
-                border-bottom: none;
-                margin-bottom: 0;
-                padding-bottom: 0;
-                .fa {
-                    .transform(rotate(180deg));
-                }
-            }
-        }
 
         &-content {
             a{
