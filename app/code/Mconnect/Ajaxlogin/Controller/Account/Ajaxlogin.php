@@ -142,9 +142,9 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
         if (!$credentials || $this->getRequest()->getMethod() !== 'POST' || !$this->getRequest()->isXmlHttpRequest()) {
             return $resultRaw->setHttpResponseCode($httpBadRequestCode);
         }
-            $errors = false;
-            $this->messageManager->addSuccessMessage(__('Login successful'));
+           
         try {
+            
             $customer = $this->customerAccountManagement->authenticate(
                 $credentials['username'],
                 $credentials['password']
@@ -156,6 +156,8 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
                 $response['redirectUrl'] = $this->_redirect->success($redirectRoute);
                 $this->getAccountRedirect()->clearRedirectCookie();
             }
+            $errors = false;
+            $this->messageManager->addSuccessMessage(__('Login successful'));
         } catch (EmailNotConfirmedException $e) {
             $errors = true;
             $this->messageManager->addWarningMessage($e->getMessage());

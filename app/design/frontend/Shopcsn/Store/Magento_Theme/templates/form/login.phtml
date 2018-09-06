@@ -276,7 +276,7 @@ function($, modal) {
         modalClass: 'custom-block-customer-login',
         buttons: false,
     };
-    $('#login-popup, #login-popup-form').on("click", function(){
+    $('#login-popup, #login-popup-form', '.signin-popup').on("click", function(){
         var popup = modal(options, $('#popup-modal'));
         //$('#popup-modal-signup').modal('closeModal');
         $('#popup-modal').modal('openModal').on('modalclosed', function(){
@@ -345,14 +345,11 @@ function($, modal) {
                 showLoader: true,
                 dataType:'json',
                 data: $('#login-form-popup').serialize(true),								
-                success:function(response) { 
+                success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                    window.location = "<?= $this->getUrl('customer/account') ?>";
-                    if(response.redirectUrl) {
-                        setTimeout(function(){											
-                            window.location = response.redirectUrl;
-                        }, 2000);                            
-                    } 
+                    if(!response.errors) {
+                        window.location = "<?= $this->getUrl('customer/account') ?>";
+                    }
                 }
             });
         }
