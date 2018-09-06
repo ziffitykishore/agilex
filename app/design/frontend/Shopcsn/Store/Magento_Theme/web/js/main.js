@@ -107,11 +107,11 @@ function hasScrolled() {
     /* Accordion */
 
     function toggleChevron(e) {
-        $(e.target)
+        jQuery(e.target)
           .prev('.panel-heading')
           .find("i")
           .toggleClass('fa fa-minus fa fa-plus');
       }
-      $('#accordion').on('hidden.bs.collapse', toggleChevron);
-      $('#accordion').on('shown.bs.collapse', toggleChevron);
+      jQuery('#accordion').on('hidden.bs.collapse', toggleChevron);
+      jQuery('#accordion').on('shown.bs.collapse', toggleChevron);
 });
