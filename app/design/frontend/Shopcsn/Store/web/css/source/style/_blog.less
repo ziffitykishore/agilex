@@ -177,6 +177,63 @@
                     color: @color-black;
                 }
             }
+
+            .panel {
+                background: none;
+                border: none;
+                box-shadow: none;
+                border-left: 1px solid #d7d7ed;
+                &-heading {
+                    border: none;
+                    background: none;
+                    padding: 0;
+                    .panel-title {
+                        font-weight: normal;
+                        padding-left: 15px;
+                        line-height: 12px;
+                        position: relative;
+                        
+                    }
+                    a{
+                        font-size: 12px;
+                        text-decoration: none;
+                        margin-bottom: 10px;
+                        display: block;
+                    }
+                    .fa {
+                        border: 1px solid #d7d7ed;
+                        background: @color-white;
+                        color: #d7d7ed;
+                        width: 10px;
+                        height: 10px;
+                        position: absolute;
+                        left: -4px;
+                        top: 1px;
+                        font-size: 7px;
+                        line-height: 10px;
+                        text-align: center
+                    }
+                }
+                &-collapse {
+                    .archive-link{
+                        padding-left:15px;
+                        position: relative;
+                        &:before{
+                            position: absolute;
+                            width: 10px;
+                            height: 1px;
+                            top: 50%;
+                            left: 0;
+                            content: '';
+                            background: #d7d7ed;
+                        }
+                        a {
+                            padding: 5px 0;
+                            display: block;
+                        }
+                    }
+                }
+            }
         }
         #blog_search_mini_form {
             .pos(relative);
@@ -188,6 +245,19 @@
             button {
                 width: 35px;
             }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 1300px) {
+    .blog-index-index  {
+        .blog-item {
+            -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
         }
     }
 }
