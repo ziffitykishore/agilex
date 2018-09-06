@@ -54,4 +54,16 @@ define([
      $('#sticky-social .trigger').on('click', function () {
         $(this).parent().toggleClass('active');
     });
+
+
+    /* Accordion */
+
+    function toggleChevron(e) {
+        $(e.target)
+          .prev('.panel-heading')
+          .find("i")
+          .toggleClass('fa fa-minus fa fa-plus');
+      }
+      $('#accordion').on('hidden.bs.collapse', toggleChevron);
+      $('#accordion').on('shown.bs.collapse', toggleChevron);
 });
