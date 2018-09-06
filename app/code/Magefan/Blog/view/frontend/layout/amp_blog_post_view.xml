@@ -62,5 +62,6 @@
         <referenceBlock name="blog.post.comments" remove="true" />
         <referenceBlock name="blog.post.opengraph" remove="true" />
         <referenceBlock name="blog.post.richsnippets" remove="true" />
+        <referenceContainer name="sidebar.additional" remove="true"/>
     </body>
 </page>

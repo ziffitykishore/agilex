@@ -4,54 +4,114 @@
  */
 
 define([
+    'uiComponent',
+    'Magento_Customer/js/customer-data',
     'jquery',
+    'ko',
+    'underscore',
+    'sidebar',
+    'mage/translate',
+    'mage/dropdown',
     'domReady!'
-], function($, jQuery) {
+], function (Component, ko, _) {
     'use strict';
 
-    $('.overlay').on('click', function () {
-        $('html').removeClass('nav-open');
-        $('body').removeClass('acc-opened cart-opened');
+    jQuery('.overlay').on('click', function () {
+        jQuery('html').removeClass('nav-open');
+        jQuery('body').removeClass('acc-opened cart-opened');
     });
 
-    $('.showcart').on('click', function () {
-        $('html').removeClass('nav-open');
+    jQuery('.showcart').on('click', function () {
+        jQuery('html').removeClass('nav-open');
     });
 
-    $('.customer-welcome').on('click', function(){
-        $('body').addClass('acc-opened');
+    jQuery('.customer-welcome .customer-name').on('click', function(){
+        jQuery('body').addClass('acc-opened');
     });
 
 
 
-    $(document).on('click', function () {
-        $('.nav-sections').on('click', function (e) {
+    jQuery(document).on('click', function () {
+        jQuery('.nav-sections').on('click', function (e) {
             e.stopPropagation();
         });
         
-        $('.header').on('click', function (e) {
-            $('html').removeClass('nav-open');
-            $('body').removeClass('acc-opened cart-opened');
+        jQuery('.header').on('click', function (e) {
+            jQuery('html').removeClass('nav-open');
+            jQuery('body').removeClass('acc-opened cart-opened');
         });
     });
-    $(".form-group input.form-control").on("focus blur", function () {
-        if ($(this).val() == "") {
-            $(this)
+    jQuery(".form-group input.form-control").on("focus blur", function () {
+        if (jQuery(this).val() == "") {
+            jQuery(this)
                 .parents(".form-group")
                 .toggleClass("focused");
         }
     });
-        $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-          $('.header-wrapper').addClass("fix-header");
+        jQuery(window).scroll(function () {
+        if (jQuery(this).scrollTop() > 50) {
+          jQuery('.header-wrapper').addClass("fix-header");
         } else {
-         $('.header-wrapper').removeClass("fix-header");
+         jQuery('.header-wrapper').removeClass("fix-header");
         }
      });
 
+
+         // Hide Header on on scroll down
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var navbarHeight = jQuery('header').outerHeight();
+
+jQuery(window).scroll(function(event){
+    didScroll = true;
+    console.log('asd');
+});
+
+setInterval(function() {
+    if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+    }
+}, 250);
+
+function hasScrolled() {
+    var st = jQuery(window).scrollTop();
+    
+    // Make sure they scroll more than delta
+    if(Math.abs(lastScrollTop - st) <= delta)
+        return;
+    
+    // If they scrolled down and are past the navbar, add class .nav-up.
+    // This is necessary so you never see what is "behind" the navbar.
+    if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        jQuery('header').removeClass('nav-down').addClass('nav-up');
+    } else {
+        // Scroll Up
+        if(st + jQuery(window).height() < jQuery(document).height()) {
+            jQuery('header').removeClass('nav-up').addClass('nav-down');
+        }
+    }
+    
+    lastScrollTop = st;
+}
+
      /* footer starts */
 
-     $('#sticky-social .trigger').on('click', function () {
-        $(this).parent().toggleClass('active');
+     jQuery('#sticky-social .trigger').on('click', function () {
+        jQuery(this).parent().toggleClass('active');
     });
+
+
+    /* Accordion */
+
+    function toggleChevron(e) {
+        $(e.target)
+          .prev('.panel-heading')
+          .find("i")
+          .toggleClass('fa fa-minus fa fa-plus');
+      }
+      $('#accordion').on('hidden.bs.collapse', toggleChevron);
+      $('#accordion').on('shown.bs.collapse', toggleChevron);
 });
