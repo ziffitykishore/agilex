@@ -58,6 +58,24 @@ class Archive extends \Magefan\Blog\Block\Post\PostList\AbstractList
 
         return $this->_months;
     }
+    /**
+     * To get year and month wise html structure with post count
+     * @return array
+     */
+    public function getYearMonthWiseArchive()
+    {
+        $yearMonth = [];
+        foreach ($this->_postCollection as $post) {
+            $time       = strtotime($post->getData('publish_time'));
+            $yearTime   = date('Y', $time);
+            $monthTime  = date('M', $time);  
+            $this->_preparePostCollection();
+            $postCount  = $this->_postCollection->addArchiveFilter($yearTime, date('m', $time));
+            $yearMonth[$yearTime][$monthTime]['count'] = $postCount->getSize();
+            $yearMonth[$yearTime][$monthTime]['url']   = $this->getTimeUrl($time);
+        }
+        return $yearMonth;
+    } 
 
     /**
      * Retrieve year by time

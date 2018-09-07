@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::system">
+                    <resource id="Xtento_XtCore::extensions">
+                        <resource id="Xtento_SavedCc::configuration" title="Saved Credit Cards" sortOrder="30"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Sales::sales">
+                    <resource id="Magento_Sales::sales_operation">
+                        <resource id="Magento_Sales::sales_order">
+                            <resource id="Xtento_SavedCc::actions" title="Saved Credit Cards - Actions" sortOrder="200">
+                                <resource id="Xtento_SavedCc::showCcInfo" title="Show full CC information" sortOrder="10"/>
+                                <resource id="Xtento_SavedCc::wipeCcInfo" title="Wipe CC information" sortOrder="20"/>
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
+<!--
+/**
+ * Product:       Xtento_SavedCc (1.0.6)
+ * ID:            NZWbKguR/Yb8QYk68QaZWfj7V5pl/BlDdubJ/+3MKvg=
+ * Packaged:      2018-08-15T13:47:06+00:00
+ * Last Modified: 2017-08-12T18:53:50+00:00
+ * File:          app/code/Xtento/SavedCc/etc/acl.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

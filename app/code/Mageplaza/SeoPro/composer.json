@@ -1,0 +1,34 @@
+{
+  "name": "mageplaza/module-seo-pro",
+  "description": "Magento 2 SEO Pro extension",
+  "require": {
+    "mageplaza/module-core": "^1.3.11",
+    "mageplaza/magento-2-seo-extension": "^2.1.0",
+    "mageplaza/module-seo-url": "*"
+  },
+  "type": "magento2-module",
+  "version": "2.1.0",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Mageplaza",
+      "email": "support@mageplaza.com",
+      "homepage": "https://www.mageplaza.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "module-seo-pro/registration.php",
+      "module-seo-rule/registration.php",
+      "module-redirect/registration.php",
+      "module-sitemap/registration.php"
+    ],
+    "psr-4": {
+      "Mageplaza\\SeoPro\\": "module-seo-pro/",
+      "Mageplaza\\SeoRule\\": "module-seo-rule/",
+      "Mageplaza\\Redirect\\": "module-redirect/",
+      "Mageplaza\\Sitemap\\": "module-sitemap/"
+    }
+  }
+}
