@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Xtento\SavedCc\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Xtento\SavedCc\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">xtentoLogger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Xtento\SavedCc\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Xtento\SavedCc\Gateway\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">Xtento\SavedCc\Model\Ui\ConfigProvider::CODE</argument>
+        </arguments>
+    </type>
+    <type name="Xtento\SavedCc\Block\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">Xtento\SavedCc\Gateway\Config</argument>
+        </arguments>
+    </type>
+    <!-- Payment method -->
+    <virtualType name="XtSavedCcFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">Xtento\SavedCc\Model\Ui\ConfigProvider::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Xtento\SavedCc\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Xtento\SavedCc\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">XtSavedCcValueHandlerPool</argument>
+            <argument name="validatorPool" xsi:type="object">XtSavedCcValidatorPool</argument>
+            <argument name="commandPool" xsi:type="object">XtSavedCcCommandPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtSavedCcValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">XtSavedCcConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtSavedCcConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">Xtento\SavedCc\Gateway\Config</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtSavedCcValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">XtSavedCcCountryValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtSavedCcCountryValidator" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">Xtento\SavedCc\Gateway\Config</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="XtSavedCcCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
+<!--
+/**
+ * Product:       Xtento_SavedCc (1.0.6)
+ * ID:            NZWbKguR/Yb8QYk68QaZWfj7V5pl/BlDdubJ/+3MKvg=
+ * Packaged:      2018-08-15T13:47:06+00:00
+ * Last Modified: 2017-08-14T10:47:08+00:00
+ * File:          app/code/Xtento/SavedCc/etc/di.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->
