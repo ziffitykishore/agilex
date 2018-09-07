@@ -13,7 +13,7 @@ define([
     'mage/translate',
     'mage/dropdown',
     'domReady!'
-], function (Component, ko, _) {
+], function (Component, ko, _, $) {
     'use strict';
 
     jQuery('.overlay').on('click', function () {
@@ -41,13 +41,29 @@ define([
             jQuery('body').removeClass('acc-opened cart-opened');
         });
     });
-    jQuery(".form-group input.form-control").on("focus blur", function () {
+  /*   jQuery(".form-group input.form-control").on("focus blur", function () {
         if (jQuery(this).val() == "") {
             jQuery(this)
                 .parents(".form-group")
                 .toggleClass("focused");
         }
-    });
+    }); */
+
+
+    jQuery('.form-group input.form-control, textarea.form-control').on("focus blur change", function () {
+          if (jQuery(this).val() == "") {
+            jQuery(this).parents(".form-group").toggleClass("focused");
+          }
+        })/* .blur(function () {
+          if (jQuery(this).val() == "") {
+            jQuery(this).parents(".form-group").removeClass("focused");
+          } else if (jQuery(this).val()) {
+            jQuery(this).parents(".form-group").removeClass("err");
+          }
+        }) */;
+
+        jQuery('select').parents('.field').addClass('select-group');
+
         jQuery(window).scroll(function () {
         if (jQuery(this).scrollTop() > 50) {
           jQuery('.header-wrapper').addClass("fix-header");
