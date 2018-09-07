@@ -1,60 +1,4 @@
-/************archive pages ***********/
- 
-/* .archive  .archive-toggle {
-    height: 20px;
-    width: 20px;
-    background-image: url(../images/addition.png);
-    background-repeat: no-repeat;
 
-
-  }
-  .archive  [aria-expanded="true"] .archive-toggle {
-        background-image:url(../images/minus-button.png);
-
-  }
- 
-
-
-.archive {
-    
-    .panel {
-        border: 0;
-        box-shadow: none;
-    }
-    .panel-heading {
-        background: #fff;
-        
-    }
-      ul{
-          position: relative;
-          &.list-group {
-              border-top: 0 !important;
-          }
-         &:after {
-            position: absolute;
-            content: "";
-            height: 100%;
-            background-color: #d7dded;
-            width: 2px;
-            margin-left: 21px;
-            top: -14px;
-         }
-    li {
-    margin-left: 20px;
-
-    &:before {
-        position: absolute;
-        content: "";
-       height: 2px;
-       background-color: #d7dded;
-       width: 10px;
-       margin-left: -13px;
-       top: 50%;
-    }
-}
-}
-
-} */
 
 /*****************Static-Pages****************/
 
@@ -62,6 +6,28 @@
             padding: 45px 0;
         }
      /********** privacy-policy ************/
+     
+     .cms-shopcsntv-privacy-policy,
+     .cms-shopcsntv-faq,
+     .cms-shopcsntv-guarentee 
+      {
+         .nav-tabs {
+             float: none !important;
+         }
+         .page-main {
+            width: 100%;
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
+         }
+     }
+
+     .cms-shopcsntv-privacy-policy  .page-main{
+        width: 100%;
+        max-width: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
      .privacy {
         a {
             font-size: 13px;
@@ -77,6 +43,11 @@
                     list-style-type: circle;
                     list-style-position: outside;
                 }
+            }
+        }
+        .fq-delivery {
+            td {
+                width: 50%;
             }
         }
         .nav-tabs {
@@ -98,12 +69,11 @@
             }
             &.full-bg {
                 li {
-                    width: 155px;;
-                    
-                    padding: 10px;
+                    width: 155px;              
                     background-color: #fff;
                     color: #000;
                     margin-left: 20px;
+                    padding: 0;
                     &.active {
                         background: #1c3f93; 
                         &:after {
@@ -122,11 +92,16 @@
                             content:"";
                         }                      
                         a {
-                            color: #fff;
-                            
+                           
+                            color: #fff;                            
+                            &:hover {
+                                color: #fff !important;
+                            }
                         }
+
                 }
                     a {
+                        padding: 10px;
                         &:before {
                             display: none;
                         }
@@ -166,6 +141,7 @@
             .detail {
                 display: table;
                 width: 100%;
+                border-collapse: collapse;
                 .book {
                     padding: 50px 70px;
                     border: 1px solid #d7dded;
@@ -199,7 +175,11 @@
 
                     }
                     .block-content {
-                        
+                        .actions-toolbar {
+                            .primary {
+                                width: 100%;
+                            }
+                        }
                     .button-full {
                         margin-top: 10px;
                         margin-right: 10px;
@@ -248,7 +228,7 @@
                                     border-bottom: 1px solid #d7dded;
                                     border-radius: 0;
                                     &:focus {
-                                        border-color: #000;
+                                        border-color: #000 !important;
                                         box-shadow: none;
                                     }
                                     &.input-text {
