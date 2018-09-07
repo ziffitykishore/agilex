@@ -1,0 +1,80 @@
+<div class="page-title-wrapper container-md  text-center">
+<h1 class="page-title "><span class="base text-capitalize" data-ui-id="page-title-wrapper">catalog</span></h1>
+</div>
+<div class="columns">
+<div class="column main">
+<div class="container-md"><img class="mb-40" src="{{media url=wysiwyg/sub_banner_catalog.jpg"}}" alt="sub-banner" />
+<div class="detail clearfix mb-40">
+<div class="book ">
+<a href="http://online.pubhtml5.com/mujn/wcvd/" target="_blank"><div class="card text-center"><img style="width: 100%;" src="{{media url="wysiwyg/catalog_book.jpg"}}" />
+<h4 class="browse-book"><b>Click to browse our Catalog</b></h4>
+</div></a>
+</div>
+<div class="book-detail">
+<div class="fill-issue text-center">
+<h2>Fill in to get our next issue</h2>
+</div>
+<div class="block-content">
+    
+    <form id="catalog-form" class="form  wpcf7-form" method="post" novalidate="novalidate"><input name="form_key" type="hidden" value="TbaGf1953WTheAvu" />
+        <fieldset class="fieldset catalog" data-hasrequired="* Required Fields">
+            <div class="field field-name-fullname required mb-30 form-group">
+                <label class="label txt-grey" for="fullname"> <span>Full Name  <span class="req-col">*</span></span> </label>
+                <div class="control wpcf7-form-control-wrap">
+                    <input id="Full Name" class="input-text required-entry form-control valid" title="Full Name" autocomplete="off" name="fullname" type="text" value="" data-validate="{required:true}" />
+                </div>
+            </div>
+            <div class="field address required mb-30 form-group">
+                <label class="label txt-grey" for="address"><span>Address  <span class="req-col">*</span></span></label>
+                <div class="control wpcf7-form-control-wrap">
+                    <input id="email" class="input-text form-control valid" title="Address" autocomplete="off" name="address" type="text" value="" data-validate="{required:true, 'validate-email':true}" />
+                </div>
+            </div>
+            <div class="field password required mb-30 form-group">
+                <label class="label txt-grey" for="city"><span class="mb-10">City  <span class="req-col">*</span></span></label>
+                <div class="control wpcf7-form-control-wrap">
+                    <input id="city" class="input-text form-control valid" title="City" autocomplete="off" name="city" type="text" data-validate="{required:true}" />
+                </div>
+            </div>
+            <div class="field state required mb-30 form-group">
+                <label class="label txt-grey" for="state"><span>State  <span class="req-col">*</span></span></label>
+                <div class="control wpcf7-form-control-wrap">
+                    <select class="input-text form-control" style="width: 445px; height: 50px; background: #fff; border: 1px solid #d7dded;" title="State">
+                        <option value=""></option>
+                        <option value="">Tamil Nadu</option>
+                        <option value="">Kerala</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field code required mb-30 form-group">
+                <label class="label txt-grey" for="code"><span>Zip Code  <span class="req-col">*</span></span></label>
+                <div class="control wpcf7-form-control-wrap"><input id="code" class="input-text form-control valid" title="zip Code" autocomplete="off" name="zip-code" type="text" data-validate="{required:true, equalTo:'#password'}" />
+                </div>
+            </div>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button id="send2" class="btn button-full action login primary  text-uppercase mb-30" name="send" type="submit"><span>Sign Up</span></button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+
+</div>
+</div>
+</div>
+</div>
+<div class="product-widget__wrapper">
+<div class="container">
+<div class="product-widget__inner br whitesmoke">
+<div class="heading-sec clearfix">
+<h2 class="pull-left text-uppercase">browse through our catalog items</h2>
+</div>
+<div class="block widget block-products-list grid">
+{{block class="Magento\Catalog\Block\Product\ListProduct" category_id="94" page_size="5" template="Ziffity_Filteredproducts::recentlyaired.phtml"}}
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
