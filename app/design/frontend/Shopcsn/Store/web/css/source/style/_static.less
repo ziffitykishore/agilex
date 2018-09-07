@@ -1,11 +1,33 @@
 /*****************Static-Pages****************/
-.cms-page-view  {
+
+.cms-page-view {
     .page-title {
         padding: 45px 0;
     }
 }
 
 /********** privacy-policy ************/
+
+.cms-shopcsntv-privacy-policy,
+.cms-shopcsntv-faq,
+.cms-shopcsntv-guarentee {
+    .nav-tabs {
+        float: none !important;
+    }
+    .page-main {
+        width: 100%;
+        max-width: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.cms-shopcsntv-privacy-policy .page-main {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
 
 .privacy {
     a {
@@ -22,6 +44,11 @@
                 list-style-type: circle;
                 list-style-position: outside;
             }
+        }
+    }
+    .fq-delivery {
+        td {
+            width: 50%;
         }
     }
     .nav-tabs {
@@ -42,10 +69,10 @@
         &.full-bg {
             li {
                 width: 155px;
-                padding: 10px;
                 background-color: #fff;
                 color: #000;
                 margin-left: 20px;
+                padding: 0;
                 &.active {
                     background: #1c3f93;
                     &:after {
@@ -65,9 +92,13 @@
                     }
                     a {
                         color: #fff;
+                        &:hover {
+                            color: #fff !important;
+                        }
                     }
                 }
                 a {
+                    padding: 10px;
                     &:before {
                         display: none;
                     }
@@ -107,6 +138,7 @@ p {
 .detail {
     display: table;
     width: 100%;
+    border-collapse: collapse;
     .book {
         padding: 50px 70px;
         border: 1px solid #d7dded;
@@ -139,6 +171,11 @@ p {
             }
         }
         .block-content {
+            .actions-toolbar {
+                .primary {
+                    width: 100%;
+                }
+            }
             .button-full {
                 margin-top: 10px;
                 margin-right: 10px;
@@ -156,8 +193,22 @@ p {
             }
             .form-group {
                 position: relative;
-                
-                
+                .label {
+                    position: absolute;
+                    z-index: 1;
+                    color: #d7dded;
+                    left: 10px;
+                    font-size: 13px;
+                    background: #fff;
+                    top: 15px;
+                    pointer-events: none;
+                    transition: all .5s ease 0s;
+                }
+                &.focused label {
+                    top: -7px;
+                    color: #d7dded;
+                    font-size: 11px;
+                }
                 .wpcf7-form-control-wrap {
                     display: block;
                     position: relative;
@@ -173,7 +224,7 @@ p {
                         border-bottom: 1px solid #d7dded;
                         border-radius: 0;
                         &:focus {
-                            border-color: #000;
+                            border-color: #000 !important;
                             box-shadow: none;
                         }
                         &.input-text {
