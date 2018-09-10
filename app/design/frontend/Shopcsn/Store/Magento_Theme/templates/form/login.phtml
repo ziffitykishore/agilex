@@ -161,7 +161,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                 <div class="google-cap" style="display: none">Please validate the captcha</div>
                 -->
                 <div class="actions-toolbar">
-                    <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
+                    <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20 mt-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
                 <div class="already-account text-center">
                     <p><?= __('Already have an account? Click') ?><a href="javascript:void(0);" id="login-popup-form"><?= __(' here') ?></a> <?= __('to Sign In.') ?></p>
@@ -223,9 +223,10 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
         <div><p>America's Trusted Source of Numismatic Treasures</p></div>
     </div>
     <div class="block block-customer-login">
+    <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
         <div class="common-form sign-in">
             <div class="confirm-notify" style="display: none;"></div>
-            <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
+           
             <div class="block-title main-head text-center">
                 <h3>
                 <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
@@ -244,7 +245,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                     </fieldset>
                     <div class="actions-toolbar">
                         <div class="primary">
-                            <button type="submit" class="action send primary"><span><?= $block->escapeHtml(__('Send confirmation link')) ?></span></button>
+                            <button type="submit" class="btn button-full action send primary text-uppercase"><span><?= $block->escapeHtml(__('Send confirmation link')) ?></span></button>
                         </div>
                         <div class="secondary">
                             <a href="javascript:void(0);" class="action back"><span><?= $block->escapeHtml(__('Back to Sign In')) ?></span></a>;
