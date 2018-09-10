@@ -66,11 +66,12 @@ class Post extends \Magento\Framework\App\Action\Action
 	$model->setData($data);
 	$model->save();        
          
-                if($post['form_type']=='contact'||$post['form_type']=='coin'){
+                
 
                         try
                         {
-                            // Send Mail
+                            
+                           if($post['form_type']=='contact'||$post['form_type']=='coin'){                            
                             $this->_inlineTranslation->suspend();
                             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
 
@@ -78,7 +79,7 @@ class Post extends \Magento\Framework\App\Action\Action
                                 'name' => $name,
                                 'email' => $email
                             ];
-
+                            
 
                             $transport = $this->_transportBuilder
                             ->setTemplateIdentifier('webforms_thanks_template')
@@ -95,9 +96,9 @@ class Post extends \Magento\Framework\App\Action\Action
                                 ->addTo($post['cust_email'],$post['cust_name'])
                                 //->addBcc($sentToEmail,$sentToName)
                                 ->getTransport();
-
+                                
                                 $transport->sendMessage();
-
+                                
 
 
                                 $this->_inlineTranslation->resume();
@@ -108,11 +109,18 @@ class Post extends \Magento\Framework\App\Action\Action
                                     $this->messageManager->addSuccess('Thank you for your interest. One of our specialist will get in touch with you shortly.');
                                     $this->_redirect('http://local.devshopcsn.com/contact-us-form');                       
                                 }
-
+                           }      
                         } catch(\Exception $e){
-                            $this->messageManager->addError($e->getMessage());
-                            $this->_logLoggerInterface->debug($e->getMessage());
-                            exit;
+
+                                 $this->_inlineTranslation->resume();
+                                if($post['form_type']=='contact'){
+                                    $this->messageManager->addError('Something Went Wrong.');
+                                    $this->_redirect('http://local.devshopcsn.com/shopcsntv-contactus');   
+                                }else if($post['form_type']=='coin'){
+                                    $this->messageManager->addError('Something Went Wrong.');
+                                    $this->_redirect('http://local.devshopcsn.com/contact-us-form');                       
+                                }
+
                         }
 
 
@@ -120,7 +128,7 @@ class Post extends \Magento\Framework\App\Action\Action
 
 
 
-                }   
+                
                 if($post['form_type']=='catalog'){
                     $this->messageManager->addSuccess('Thank you for requesting a catalog. You\'ll receive your catalog in 2-3 weeks.');
                     $this->_redirect('http://local.devshopcsn.com/shopcsntv-catalog');                    
