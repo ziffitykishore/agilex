@@ -1,0 +1,54 @@
+.action.primary.disabled, .action.primary[disabled], fieldset[disabled] .action.primary{
+    opacity: 1;
+}
+
+
+.page-main , .modals-wrapper, .block-minicart .block-content{
+    .heading-sec .btn-view,
+     button.action,
+    .quick-view,
+    .box-gotoproduct .action,
+    a.viewcart, a.checkout {
+        position: relative;
+        display: inline-block;
+        overflow: hidden !important;
+        width: 100%;
+    
+        > span{
+            position: relative;
+            z-index: 2;
+        }
+    
+        &:before, &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: @color-darkslateblue;
+            transition: 0.5s ease-in-out;
+            z-index: 1;
+        }
+    
+        &:before {
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+        }
+    
+        &:after {
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+        }
+    
+        &:hover:before {
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    
+        &:hover:after {
+            -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+        }
+    } 
+    }

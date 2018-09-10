@@ -56,9 +56,14 @@
 
 .logo-wrap {
     text-align: center;
-    padding: 6px 0;
+    padding: 6px;
     max-width: 10%;
     margin: 0 auto;
+    display: table;  
+    > .logo{
+        display: table-cell;
+        vertical-align: middle;
+    }   
 }
 
 .menu-wrap {
@@ -544,14 +549,20 @@
 
 @media screen and (max-width: 1366px) {
     .header {
+        .logo-wrap{
+            max-width: 6%;
+        }
         .menu-wrap {
             max-width: 15%;
         }
         .block-search {
-            max-width: 48%;
+            max-width: 56%;
         }
         .acc-links {
-            max-width: 17%;
+            max-width: 16.5%;
+        }
+        .minicart-wrapper{
+            max-width: 6.5%;
         }
     }
 }
