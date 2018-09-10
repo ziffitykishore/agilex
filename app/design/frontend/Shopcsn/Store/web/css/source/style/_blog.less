@@ -8,6 +8,7 @@
         }
         .blog-image {
             position: relative;
+            .img-hover_efx();
             img {
                 width: 100%;
             }
@@ -247,9 +248,19 @@
             button {
                 height: 50px;
                 border-color: #d7dded;
+                
             }
+
             button {
                 width: 35px;
+                right: 0;
+                text-align: center;
+                &:before, &:after{
+                    .transform(none);
+                    font-size: 20px;
+                    line-height: 50px;
+                    background: none;
+                }
             }
         }
     }
