@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="order.create.billing.method.form">
+            <action method="setMethodFormTemplate">
+                <argument name="method" xsi:type="string">xtsavedcc</argument>
+                <argument name="template" xsi:type="string">Xtento_SavedCc::form/cc.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>
+
+<!--
+/**
+ * Product:       Xtento_SavedCc (1.0.6)
+ * ID:            NZWbKguR/Yb8QYk68QaZWfj7V5pl/BlDdubJ/+3MKvg=
+ * Packaged:      2018-08-15T13:47:06+00:00
+ * Last Modified: 2017-08-10T18:18:33+00:00
+ * File:          app/code/Xtento/SavedCc/view/adminhtml/layout/sales_order_create_load_block_billing_method.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

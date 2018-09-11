@@ -88,23 +88,7 @@
             }
             /********** input field********/
             .form-group {
-                position: relative;
-                .label {
-                    position: absolute;
-                    z-index: 3;
-                    color: #d7dded;
-                    left: 10px;
-                    font-size: 13px;
-                    background: #fff;
-                    top: 15px;
-                    pointer-events: none;
-                    transition: all .5s ease 0s;
-                }
-                &.focused label {
-                    top: -7px;
-                    color: #d7dded;
-                    font-size: 11px;
-                }
+
                 .form-control-wrap {
                     display: block;
                     position: relative;
@@ -120,27 +104,7 @@
                     .mage-error+.mage-error {
                         background: url(../img/tick2.png);
                     }
-                    .form-control {
-                        display: block;
-                        width: 100%;
-                        padding: 6px 45px 6px 10px;
-                        font-size: 14px;
-                        line-height: 1.42857143;
-                        color: #000;
-                        background-color: #fff;
-                        background-image: none;
-                        border-bottom: 1px solid #d3d8e3;
-                        border-radius: 0;
-                        -webkit-box-shadow: none;
-                        box-shadow: none;
-                        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-                        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-                        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-                        &:focus {
-                            border-color: #000;
-                            box-shadow: none;
-                        }
-                    }
+
                 }
             }
             .remember {
@@ -214,7 +178,7 @@
             }
         }
         .social {
-            padding: 50px 0;
+            padding: 50px 20px;
             background-color: #d7dded;
             width: 100%;
             text-align: center;
@@ -222,6 +186,11 @@
                 .list-inline>li.social-links {
                     padding-left: 0;
                 }
+            }
+
+            .account-social-login {
+                margin-bottom: 0;
+                
             }
             .social-links {
                 line-height: 1;

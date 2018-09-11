@@ -1,0 +1,27 @@
+Xtento_SavedCc
+
+-------------
+  CHANGELOG
+-------------
+
+===== 1.0.0 =====
+ * Initial stable M2 release
+
+===== 1.0.1 =====
+ * Updated Xtento_XtCore to version 2.1
+
+===== 1.0.2 =====
+ * Removed CVC storing from module as it's not allowed even in PCI-certified environments
+
+===== 1.0.3 =====
+ * Updated Xtento_XtCore to version 2.2.0
+
+===== 1.0.4 =====
+ * Fixed issue in CC wiping function
+
+===== 1.0.5 =====
+ * Whenever CC wiping cronjob runs, last 5 days are wiped as well so in case cron fails, no orders are missed.
+
+===== 1.0.6 =====
+ * Updated Xtento_XtCore to version 2.3.0
+ * Confirmed compatibility with Magento CE 2.2.5 / EE 2.2.5
