@@ -980,6 +980,7 @@ p {
 .hbspt-form .hs-form-field:not(.hs-fieldtype-checkbox)>label {
     position: absolute;
     top: 18px;
+    pointer-events: none;
 }
 
 .jobpost-form .form-group.focused label,
@@ -1060,6 +1061,11 @@ p {
     height: 50px;
     max-width: none;
     margin: 0;
+}
+
+.contact-form .hbspt-form .hs-form-field.hs-fieldtype-booleancheckbox .hs-input,
+.contact-form .hbspt-form .hs-form-field.hs-fieldtype-checkbox .hs-input {
+    width: auto;
 }
 
 .jobpost-form .form-group textarea.form-control {
@@ -1183,6 +1189,7 @@ p {
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+    display: none;
 }
 
 .loader.scale {
@@ -3259,7 +3266,7 @@ p+p {
 }
 
 .text-content {
-    display: block;
+    display: none;
     margin-top: 20px;
     text-transform: uppercase;
     color: #fff;
@@ -3402,9 +3409,6 @@ p+p {
     justify-content: center;
     align-items: center;
     text-align: justify;
-}
-
-.review-content {
     padding: 30px 55px;
 }
 
@@ -3415,7 +3419,7 @@ p+p {
 .review-content:before,
 .review-content:after {
     content: '';
-    background: url(../images/icon_quote_testimonial.png) no-repeat center center;
+    background: url(/wp-content/themes/agilex/images/icon_quote_testimonial.png) no-repeat center center;
     background-size: 100%;
     width: 55px;
     height: 55px;
@@ -3624,6 +3628,7 @@ p+p {
     font-weight: bold;
     color: #174a79;
     text-transform: uppercase;
+    padding-right: 42px;
 }
 
 .executive-wrap .exe-pos {
@@ -4440,6 +4445,7 @@ html {
     text-align: center;
     position: relative;
     padding-bottom: 30px;
+    cursor: pointer;
 }
 
 .timeline-inner .list li:before {
@@ -4460,7 +4466,6 @@ html {
     -ms-transform: translateX(-50%);
     -o-transform: translateX(-50%);
     transform: translateX(-50%);
-    ;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -ms-transition: all 0.5s ease 0s;
@@ -4497,18 +4502,25 @@ html {
     transition: all 0.5s ease-in-out 0s;
 }
 
-.timeline-inner .list .slick-current li .hist-title {
-    visibility: visible;
-    opacity: 1;
+.timeline-inner .list li .hist-title {
+    color: #174a79;
+    font-size: 13px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease 0s;
 }
 
 .timeline-inner .list li .timeline-year {
     font-size: 18px;
 }
 
-.timeline-inner .list .slick-current .timeline-year {
+.timeline-inner .list .slick-current li .timeline-year {
     color: #174a79;
-    font-weight: bold;
+}
+
+.timeline-inner .list li:hover .hist-title {
+    opacity: 1;
+    visibility: visible;
 }
 
 
@@ -4528,7 +4540,7 @@ html {
 
 .timeline-inner .timeline-item {
     justify-content: space-between;
-    padding-top: 30px;
+    padding: 30px 0;
 }
 
 .timeline-heading {
@@ -4922,6 +4934,7 @@ html {
     margin-top: 0;
     width: 100%;
     box-shadow: 3px 5px 10px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
 }
 
 .nice-select .list li {
@@ -4931,6 +4944,9 @@ html {
 
 .nice-select li[data-value=''] {
     display: block !important;
+    line-height: 20px;
+    margin-top: 10px;
+    min-height: auto;
 }
 
 .nice-select .current {
@@ -5121,10 +5137,10 @@ div.nice-select:after {
 .hs-fieldtype-booleancheckbox [type='checkbox']+span:before,
 .hs-form-checkbox [type='checkbox']+span:before {
     content: '';
-    width: 10px;
-    height: 10px;
-    top: 0px;
-    left: 5px;
+    width: 7px;
+    height: 7px;
+    left: 4px;
+    top: 4px;
     bottom: 0;
     right: 0;
     position: absolute;
@@ -5164,9 +5180,9 @@ div.nice-select:after {
 .hs-fieldtype-booleanradio [type='radio']+span:after {
     border: 1px solid #dfdfdf;
     content: '';
-    width: 20px;
-    height: 20px;
-    top: -5px;
+    width: 15px;
+    height: 15px;
+    top: 0px;
     left: 0;
     bottom: 0;
     right: 0;
@@ -5989,6 +6005,10 @@ div.wpcf7 .ajax-loader {
     margin-bottom: 0;
 }
 
+.single .entry img {
+    margin: 15px auto;
+}
+
 .single-page-wrap .single-content-inner h2,
 .single-page-wrap .single-content-inner h3,
 .single-page-wrap .single-content-inner h4,
@@ -6008,7 +6028,7 @@ div.wpcf7 .ajax-loader {
 }
 
 .single .entry p {
-    text-align: justify;
+    text-align: left;
 }
 
 .single .entry img {
@@ -6325,7 +6345,7 @@ div.wpcf7 .ajax-loader {
     font-size: 14px;
     color: #192a3e;
     line-height: 20px;
-    text-align: justify;
+    text-align: left;
 }
 
 .main-content .legal-inner li p strong {
@@ -6406,4 +6426,40 @@ div.wpcf7 .ajax-loader {
 .sitemap-wrap .sub-menu>li>a:hover {
     background: none;
     color: #192a3e;
+}
+
+
+/* job post */
+
+.sjb-page .sjb-detail .jobpost-form .intl-tel-input {
+    position: relative;
+    pointer-events: auto;
+}
+
+.sjb-page .sjb-detail .jobpost-form .intl-tel-input input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: transparent;
+}
+
+.sjb-page .sjb-detail .jobpost-form .intl-tel-input input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: transparent;
+}
+
+.sjb-page .sjb-detail .jobpost-form .intl-tel-input input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: transparent;
+}
+
+.sjb-page .sjb-detail .jobpost-form .intl-tel-input input:-moz-placeholder {
+    /* Firefox 18- */
+    color: transparent;
+}
+
+.intl-tel-input .flag-container {
+    display: none;
+}
+
+.sjb-page .sjb-detail .jobpost-form .form-control {
+    padding: 0 !important;
 }
