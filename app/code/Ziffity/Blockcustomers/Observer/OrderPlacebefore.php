@@ -19,8 +19,8 @@ class OrderPlacebefore implements ObserverInterface
     public function execute(Observer $observer)
     {
         $order = $observer->getEvent()->getData();
-        echo "<pre>";
-        print_r($order);exit;
+        //echo "<pre>";
+        //print_r($order);exit;
         //exit;
     }
 

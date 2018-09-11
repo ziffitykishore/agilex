@@ -348,6 +348,7 @@ function($, modal) {
                 data: $('#login-form-popup').serialize(true),								
                 success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
+                    $('.field').removeClass('focused');
                     if(!response.errors) {
                         window.location = "<?= $this->getUrl('customer/account') ?>";
                     }
@@ -386,6 +387,7 @@ function($, modal) {
                         $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     } else {
                         $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
+                        $('.field').removeClass('focused');
                     }
                     
                     if(response.email) {
@@ -425,6 +427,7 @@ function($, modal) {
                 success:function(response) {
                     if(response.errors) {
                         $('.confirm-notify').fadeOut().html(response.message).fadeIn(100);
+                        $('.field').removeClass('focused');
                     } else {
                         $('#confirm-popup').modal('closeModal');
                         $('#popup-modal').modal('openModal');

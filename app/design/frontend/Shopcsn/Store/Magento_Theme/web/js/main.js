@@ -27,6 +27,7 @@ define([
 
     jQuery('.customer-welcome .customer-name').on('click', function() {
         jQuery('body').toggleClass('acc-opened');
+        jQuery('html').removeClass('nav-open');
     });
 
 

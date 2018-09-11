@@ -107,7 +107,24 @@
         }
         .orders-history {
             padding: 30px;
+            
+            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+                padding: 15px;
+                background: @color-white;
+            }
         }
+
+        .order-products-toolbar {
+            padding-left: 30px;
+            padding-right: 30px;
+             .pager{
+                 padding: 15px;
+                 .toolbar-amount{
+                     padding-top: 0;
+                 }
+             }
+        }
+
         .form-wishlist-items {
             padding: 30px;
             .products-grid {
