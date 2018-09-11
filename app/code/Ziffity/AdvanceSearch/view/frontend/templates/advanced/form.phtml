@@ -1,0 +1,172 @@
+<?php
+/**
+ * Catalog advanced search form
+ * Ziffity altered the form
+ *
+ * @var $block \Ziffity\AdvanceSearch\Block\Advanced\Form
+ */
+?>
+
+<?php $maxQueryLength = $this->helper('Magento\CatalogSearch\Helper\Data')->getMaxQueryLength();?>
+<form class="form search advanced" action="<?= /* @escapeNotVerified */ $block->getSearchPostUrl() ?>" method="get" id="form-validate">
+<fieldset class="fieldset">
+    <legend class="legend"><span><?= /* @escapeNotVerified */ __('Search Settings') ?></span></legend><br />
+    <div class="field name">
+        <label class="label" for="name">
+            <span><?= /* @escapeNotVerified */ __('Search:') ?></span>
+        </label>
+        <div class="control">
+            <input type="text"
+                name="<?= 'search_value' ?>"
+                id="<?= 'search_value' ?>"
+                placeholder="<?= $block->escapeHtml(__('Search')) ?>"
+                title="<?= $block->escapeHtml(__('Search')) ?>"
+                class="input-text validate-length maximum-length-255"
+                maxlength="<?= $maxQueryLength ?>" />
+        </div>
+    </div>
+    <div class="field category_search_field">
+        <label class="label" for="category_search_field">
+            <span><?= /* @escapeNotVerified */ __('Show Results Within:') ?></span>
+        </label>
+        <div class="control">
+            <select type="text" name="<?= 'search_category' ?>" id="<?= 'category_search_field' ?>">
+                <option value=""> Select option </option>
+                <?php 
+                $price = $priceAttr = false;
+                foreach ($block->getSearchableAttributes() as $_attribute): 
+                        $_code = $_attribute->getAttributeCode();
+                        if($_code=="price"){
+                            $priceAttr = $_attribute;
+                            $price =true;
+                            continue;
+                        }
+			$arribute=$this->getAttributeLabel($_attribute);?>
+			<option value="<?= $_code; ?>"><?= $arribute;?></option>
+		<?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+
+    <!-- store categories -->
+    <div class="field category_search_field">
+        <label class="label" for="category_search_field1">
+            <span><?= __('Refine Results by Category:') ?></span>
+        </label>
+        <div class="control">
+            <select type="text" name="<?= 'category' ?>" id="<?= 'category_search_field1' ?>">
+                <option value=""> Select option </option>
+                <?php
+                // get current store’s categories
+                $categories = $block->getStoreCategories();
+                foreach($categories as $_category) {
+                    if ($_category->hasChildren()) {
+                        if ($_category->getId() != "83") {
+                            ?>
+                            <option class="parent-cat" value="<?php echo $_category->getId(); ?>">
+                            <?php echo $_category->getName(); ?>
+                            </option>
+                            <?php foreach ($_category->getChildrenCategories() as $subcategory) {
+                                if ($subcategory->getIsActive()) {
+                                    ?>
+                                    <option value="<?php echo $subcategory->getId(); ?>"<?php echo ($this->getRequest()->getQuery('category') == $subcategory->getId() ? ' selected="selected"' : "") ?>>
+                                    <?php echo ' -- '.$subcategory->getName(); ?>
+                                    </option>
+                                <?php }
+                            }
+                        } else if ($_category->getIsActive()) {
+                            ?>
+                            <option value="<?php echo $_category->getId(); ?>">
+                            <?php echo $_category->getName(); ?>
+                            </option>
+                <?php
+                }
+            }
+        }
+        ?>
+            </select>
+        </div>
+    </div>
+    <?php ?>
+
+    <?php if($price){
+        $_code = $priceAttr->getAttributeCode();
+        ?>
+        <div class="field price">
+            <label class="label" for="<?= /* @escapeNotVerified */ $_code ?>">
+                <span><?= $block->escapeHtml(__($block->getAttributeLabel($priceAttr))) ?></span>
+            </label>
+            <div class="range price fields group group-2">
+                <div class="field no-label">
+                    <div class="control">
+                        <input name="<?= /* @escapeNotVerified */ $_code ?>[from]"
+                               value="<?= $block->escapeHtml($block->getAttributeValue($priceAttr, 'from')) ?>"
+                               id="<?= /* @escapeNotVerified */ $_code ?>"
+                               title="<?= $block->escapeHtml($block->getAttributeLabel($priceAttr)) ?>"
+                               class="input-text"
+                               type="text"
+                               maxlength="<?= /* @escapeNotVerified */ $maxQueryLength ?>"
+                               data-validate="{number:true, 'less-than-equals-to':'#<?= /* @escapeNotVerified */ $_code ?>_to'}" />
+                    </div>
+                </div>
+                <div class="field with-addon no-label">
+                    <div class="control">
+                        <div class="addon">
+                            <input name="<?= /* @escapeNotVerified */ $_code ?>[to]"
+                                   value="<?= $block->escapeHtml($block->getAttributeValue($priceAttr, 'to')) ?>"
+                                   id="<?= /* @escapeNotVerified */ $_code ?>_to"
+                                   title="<?= $block->escapeHtml($block->getAttributeLabel($priceAttr)) ?>"
+                                   class="input-text"
+                                   type="text"
+                                   maxlength="<?= /* @escapeNotVerified */ $maxQueryLength ?>"
+                                   data-validate="{number:true, 'greater-than-equals-to':'#<?= /* @escapeNotVerified */ $_code ?>'}" />
+                            <label class="addafter"
+                                   for="<?= /* @escapeNotVerified */ $_code ?>_to">
+                                <?= /* @escapeNotVerified */ $block->getCurrency($priceAttr) ?>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</fieldset>
+<div class="actions-toolbar">
+  <div class="primary">
+    <button type="submit"
+            class="action search primary"
+            title="<?= $block->escapeHtml(__('Search')) ?>">
+        <span><?= /* @escapeNotVerified */ __('Search') ?></span>
+    </button>
+  </div>
+</div>
+</form>
+<div class="findcoin">
+    <div class="ortext">
+        <a href="<?= $block->getUrl('find-your-coin'); ?>" class="primiary text-uppercase">
+            <span><?= __('Let us help find your coin'); ?></span>
+        </a>
+    </div>
+</div>
+<script>
+require([
+    "jquery",
+    "mage/mage",
+    "mage/validation"
+], function($){
+    $('#form-validate').mage('validation', {
+            errorPlacement: function (error, element) {
+                var parent = element.parent();
+                if (parent.hasClass('range')) {
+                    parent.find(this.errorElement + '.' + this.errorClass).remove().end().append(error);
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+            messages: {
+                'price[to]': {'greater-than-equals-to': 'Please enter a valid price range.'},
+                'price[from]': {'less-than-equals-to': 'Please enter a valid price range.'}
+            }
+        });
+});
+</script>
