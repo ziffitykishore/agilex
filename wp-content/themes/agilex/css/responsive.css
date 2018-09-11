@@ -645,6 +645,20 @@
     .main-banner-wrap {
         height: 315px;
     }
+    .quotes-sec .quotes-content-inner {
+        padding: 0 30px;
+    }
+    .quotes-content-inner:before {
+        top: 0;
+        left: 0;
+    }
+    .quotes-content-inner:after {
+        right: 0;
+        bottom: 30px;
+    }
+    .review-content {
+        padding: 65px 20px;
+    }
 }
 
 @media screen and (max-width: 767px) {
