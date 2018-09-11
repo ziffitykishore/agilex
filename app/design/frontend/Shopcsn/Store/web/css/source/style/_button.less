@@ -3,6 +3,11 @@
 }
 
 
+.action.primary {
+    font-family: 'Roboto', sans-serif !important;
+
+}
+
 .page-main , .modals-wrapper, .block-minicart .block-content{
     .heading-sec .btn-view,
      button.action,
@@ -14,7 +19,7 @@
         overflow: hidden !important;
         width: 100%;
     
-        > span{
+        > span:not(.sr-only){
             position: relative;
             z-index: 2;
         }
