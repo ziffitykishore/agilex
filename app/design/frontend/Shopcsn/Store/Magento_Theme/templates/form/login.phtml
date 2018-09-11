@@ -88,9 +88,9 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                 <h4>Or Connect Using</h4>
             </div>
             <div class="social-media">
-                 <ul class="list-inline">
+                 
                 <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml();?>
-                </ul>
+                
               
             </div>
         </div>
@@ -153,7 +153,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                 <div class="remember">
                     <input type="checkbox" id="signup-check" data-validate="{required:true}" name="custom-terms" title="<?php /* @escapeNotVerified */ echo __('Terms and contitions') ?>" class="checkbox"  />                    
                     <label class="label cbox1 signupcheck" for="signup-check">
-                        <span><?= __('Do you agree to the')?> <a target="_blank" href="<?= $this->getUrl('terms-conditions') ?>"><?= __(' Terms & Conditions') ?></a></span>
+                        <span><?= __('Do you agree to the')?> <a target="_blank" href="<?= $this->getUrl('shopcsntv-privacy-policy') ?>"><?= __(' Privacy Policy') ?></a></span>
                     </label>
                 </div>
                 <!--
