@@ -1,7 +1,7 @@
 var config = {
    map: {
        "*": {
-           customMethod: "Ziffity_Webforms/js/country"
+           phNoValidation: "Ziffity_Webforms/js/ph_no_validation"
        }
    }
 };
