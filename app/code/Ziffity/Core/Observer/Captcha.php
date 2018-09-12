@@ -97,7 +97,6 @@ class Captcha implements ObserverInterface
         if ($googleSecretKey && isset($params['g-captcha'])) {
             if (isset($params['g-recaptcha-response'])) {
                 $capRes = $this->_helperData->validateGCaptcha($params);
-                $helper->logger('captchaLog', $capRes, true);
                 if ($capRes) {
                     $this->redirectUrlError(__('Missing required parameters recaptcha!'));
                 }
