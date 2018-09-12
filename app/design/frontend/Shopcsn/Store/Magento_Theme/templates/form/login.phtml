@@ -272,8 +272,8 @@ $googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitek
 window.gCaptchaKey = '<?= $googlesitekey ?>';
 </script>
 <script type="text/javascript">
-require(['jquery','Magento_Ui/js/modal/modal', 'googlecap','googlecapjs'],
-function($, modal) {
+require(['jquery', 'Magento_Ui/js/modal/modal', 'googlecapjs'],
+function($, modal, googlecapjs) {
     var options = {
         type: 'popup',
         responsive: true,
@@ -344,26 +344,32 @@ function($, modal) {
     });
     
     /*ajaxlogin*/
-    $('#login-form-popup').on('submit', function (event){
-        if($('#login-form-popup').validation('isValid')) {
+    var loginForm = $('#login-form-popup');
+    loginForm.on('submit', function (event){
+        if(loginForm.validation('isValid')) {
             event.preventDefault();			
             $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/ajaxlogin'); ?>',
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxlogin', ['isAjax' => true]); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#login-form-popup').serialize(true),								
+                data: loginForm.serialize(true),
                 success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     if(!response.errors) {
                         window.location = "<?= $this->getUrl('customer/account') ?>";
                     }
+
+                    /*reset captcha*/
+                    window.resetCaptcha(loginForm);
                 }
             });
         }
     });
+
     //form-validate-popup
-    $('#signup-popup').on('submit', function (event){
+    var regForm = $('#signup-popup');
+    regForm.on('submit', function (event){
         
         if($('#signup-check:checked').length < 1) {
             $('.signupcheck').addClass('mage-error').show();
@@ -372,14 +378,17 @@ function($, modal) {
         }
         event.preventDefault();
         
-        if($('#signup-popup').validation('isValid')) {            			
+        if(regForm.validation('isValid')) {            			
             $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister', ['isAjax' => true]); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#signup-popup').serialize(true),								
-                success:function(response) { 
+                data: regForm.serialize(true),	
+                success:function(response) {
+
+                    /*reset captcha*/
+                    window.resetCaptcha(regForm);
                     
                     if(response.resultRedirect) {
                         setTimeout(function(){											
@@ -421,16 +430,15 @@ function($, modal) {
         }
     });
 
-
     $('#confirm-popup-form').on('submit', function (event){
         event.preventDefault();
-        if($('#confirm-popup-form').validation('isValid')) {            			
+        if($('#confirm-popup-form').validation('isValid')) {
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/confirmation'); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#confirm-popup-form').serialize(true),								
+                data: $('#confirm-popup-form').serialize(true),
                 success:function(response) {
                     if(response.errors) {
                         $('.confirm-notify').fadeOut().html(response.message).fadeIn(100);

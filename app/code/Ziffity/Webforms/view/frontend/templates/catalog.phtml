@@ -34,12 +34,7 @@
             </div>
         </div>
 
-        <div class="field required">
-            <div class="control">
-                <input type="text" name="form_type" id="form_type" value="catalog" class="input-text" data-validate="{required:true}" style="width:60%; display:none; ">
-            </div>
-        </div>
-
+        <input type="text" name="form_type" id="form_type" value="catalog" class="hidden input-text">
         <div class="field required">
             <div class="g-div">
                 <div class="custom-g-recaptcha" id="catalogCaptcha"></div>
@@ -127,7 +122,7 @@ require(['jquery', 'jquery/ui'], function($) {
             "WY": "Wyoming"
         };
         $.each(states, function(key, value) {
-            $("#cust_state").append($("<option></option>").attr("value", key).text(value));
+            $("#cust_state").append($("<option></option>").attr("value", value).text(value));
         });
     });
 });

@@ -2,18 +2,39 @@ define([
     'jquery'
 ], function ($) {
     'use strict';
+    
     $(document).ready(function(){
-        var gCaptchaKey = window.gCaptchaKey || '';
-        if(grecaptcha !== 'undefined' && gCaptchaKey){
-            $('.custom-g-recaptcha').each(function(){
-                var element = $(this);
-                grecaptcha.render(element.attr('id'),{
-                    'sitekey' : gCaptchaKey,
-                    'callback' : function(response){
-                        element.closest('.g-div').find('.custom-g-input').val(response);
-                    }
-                });
-            });
-        }
-    });    
+        window.recaptchaOnload = function(){
+            var gCaptchaKey = window.gCaptchaKey || '';
+            if(typeof grecaptcha !== 'undefined' && gCaptchaKey){
+                setTimeout(function(){
+                    $('.custom-g-recaptcha').each(function(){
+                        var element = $(this),
+                            custInput = element.closest('.g-div').find('.custom-g-input');
+                        grecaptcha.render(element.attr('id'),{
+                            'sitekey' : gCaptchaKey,
+                            'callback' : function(response){
+                                custInput.val(response);
+                            },
+                            'expired-callback': function(){
+                                custInput.val('');
+                            },
+                            'data-error-callback': function(){
+                                custInput.val('');
+                            }
+                        });
+                    });
+                },200);
+            }
+        };
+        require(['googlecap']);
+
+        window.resetCaptcha = function(form){
+            var custInput = form.find('.custom-g-input');
+            custInput.val('');
+            if(typeof grecaptcha !== 'undefined' && window.gCaptchaKey){
+                grecaptcha.reset(custInput.index());
+            }
+        };
+    });
 });
