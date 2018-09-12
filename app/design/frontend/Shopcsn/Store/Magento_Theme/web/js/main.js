@@ -42,28 +42,13 @@ define([
             jQuery('body').removeClass('acc-opened cart-opened');
         });
     });
-    /*   jQuery(".form-group input.form-control").on("focus blur", function () {
-          if (jQuery(this).val() == "") {
-              jQuery(this)
-                  .parents(".form-group")
-                  .toggleClass("focused");
-          }
-      }); */
 
-
-    jQuery('.form-group input.form-control, textarea.form-control').on("focus blur change", function() {
-            if (jQuery(this).val() == "") {
-                jQuery(this).parents(".form-group").toggleClass("focused");
-            }
-        })
-        /* .blur(function () {
-                  if (jQuery(this).val() == "") {
-                    jQuery(this).parents(".form-group").removeClass("focused");
-                  } else if (jQuery(this).val()) {
-                    jQuery(this).parents(".form-group").removeClass("err");
-                  }
-                }) */
-    ;
+    jQuery('.form-group input.form-control, textarea.form-control')
+        .on("focus blur change", function() {
+        if (jQuery(this).val() == "") {
+            jQuery(this).parents(".form-group").toggleClass("focused");
+        }
+    });
 
     jQuery('select').parents('.field').addClass('select-group');
 
@@ -74,7 +59,6 @@ define([
             jQuery('.header-wrapper').removeClass("fix-header");
         }
     });
-
 
     // Hide Header on on scroll down
     var didScroll;

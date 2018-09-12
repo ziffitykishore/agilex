@@ -27,31 +27,15 @@ input[type="radio"] {
     color: #333;
 }
 
-
-
-/* Button styles */
-
-.actions-toolbar {
-    .primary {
-        .action {
-            .lib-css(background, @color-darkslateblue);
-            .lib-css(color, @color-white);
-            .br-radius(0);
-            border-color: @color-darkslateblue;
-            font-weight: normal;
-            &-cancel {
-                padding: 7px 15px;
-                margin-top: 0 !important;
-                border: 1px solid @color-darkslateblue  !important;
-                &:hover {
-                    .lib-css(background, @color-darkslateblue);
-                    .lib-css(color, @color-white);
-                    text-decoration: none;
-                }
-            }
-        }
-    }
+input.custom-g-input{
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+    display: inherit;
 }
+
+
+
 
 ._keyfocus *:focus,
 input:not([disabled]):focus,

@@ -8,9 +8,9 @@
 
 /** @var \Magento\Customer\Block\Form\Login $block */
 ?>
-<?php 
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigInterface')->getValue('mconnect_ajaxlogin/googlecaptcha/sitekey');
+<?php
+$Helper = $this->helper('Ziffity\Core\Helper\Data');
+$googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitekey');
 ?>
 <div class="log-in"  id="popup-modal" style="display:none">
     <div class="sign-in-page">
@@ -63,12 +63,13 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                                     </div>
                                 </li>
                             </ul>
-
                          </div>
-                        <!--
-                        <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
-                        <div class="google-cap" style="display: none">Please validate the captcha</div>
-                        -->
+
+                        <div class="g-div">
+                            <div class="custom-g-recaptcha" id="loginCaptcha"></div>
+                            <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
+                        </div>
+
                         <div class="actions-toolbar">
                             <div class="primary">
                                 <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
@@ -88,10 +89,7 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                 <h4>Or Connect Using</h4>
             </div>
             <div class="social-media">
-                 
                 <?php echo $this->getLayout()->createBlock("Mageplaza\SocialLogin\Block\Popup\Social")->setTemplate("Mageplaza_SocialLogin::form/social.phtml")->toHtml();?>
-                
-              
             </div>
         </div>
     </div>
@@ -156,10 +154,13 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
                         <span><?= __('Do you agree to the')?> <a target="_blank" href="<?= $this->getUrl('shopcsntv-privacy-policy') ?>"><?= __(' Privacy Policy') ?></a></span>
                     </label>
                 </div>
-                <!--
-                <div class="g-recaptcha mb-10" data-sitekey="<?= $googlesitekey ?>"></div>
-                <div class="google-cap" style="display: none">Please validate the captcha</div>
-                -->
+
+                <div class="g-div">
+                    <br>
+                    <div class="custom-g-recaptcha" id="registerCaptcha"></div>
+                    <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
+                </div>
+
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20 mt-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -267,9 +268,13 @@ $googlesitekey = $objectManager->get('Magento\Framework\App\Config\ScopeConfigIn
     </div>
 </div>
 
+<!-- setting gCaptchaKey globally -->
 <script type="text/javascript">
-require(['jquery','Magento_Ui/js/modal/modal', 'googlecap'],
-function($, modal) {
+window.gCaptchaKey = '<?= $googlesitekey ?>';
+</script>
+<script type="text/javascript">
+require(['jquery', 'Magento_Ui/js/modal/modal', 'googlecapjs'],
+function($, modal, googlecapjs) {
     var options = {
         type: 'popup',
         responsive: true,
@@ -315,6 +320,7 @@ function($, modal) {
         $('#forget-popup').modal('closeModal');
         $('#popup-modal').modal('openModal');
     });
+    
     $('#forget-password').on('submit', function(event){
         event.preventDefault();
         if($('#forget-password').validation('isValid')) {
@@ -337,27 +343,35 @@ function($, modal) {
             });
         }
     });
-    $('#login-form-popup').on('submit', function (event){
-        if($('#login-form-popup').validation('isValid')) {
+    
+    /*ajaxlogin*/
+    var loginForm = $('#login-form-popup');
+    loginForm.on('submit', function (event){
+        if(loginForm.validation('isValid')) {
             event.preventDefault();			
             $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/ajaxlogin'); ?>',
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxlogin', ['isAjax' => true]); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#login-form-popup').serialize(true),								
+                data: loginForm.serialize(true),
                 success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     $('.field').removeClass('focused');
                     if(!response.errors) {
                         window.location = "<?= $this->getUrl('customer/account') ?>";
                     }
+
+                    /*reset captcha*/
+                    window.resetCaptcha(loginForm);
                 }
             });
         }
     });
+
     //form-validate-popup
-    $('#signup-popup').on('submit', function (event){
+    var regForm = $('#signup-popup');
+    regForm.on('submit', function (event){
         
         if($('#signup-check:checked').length < 1) {
             $('.signupcheck').addClass('mage-error').show();
@@ -366,14 +380,17 @@ function($, modal) {
         }
         event.preventDefault();
         
-        if($('#signup-popup').validation('isValid')) {            			
+        if(regForm.validation('isValid')) {            			
             $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister'); ?>',
+                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister', ['isAjax' => true]); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#signup-popup').serialize(true),								
-                success:function(response) { 
+                data: regForm.serialize(true),	
+                success:function(response) {
+
+                    /*reset captcha*/
+                    window.resetCaptcha(regForm);
                     
                     if(response.resultRedirect) {
                         setTimeout(function(){											
@@ -415,15 +432,16 @@ function($, modal) {
             });
         }
     });
+
     $('#confirm-popup-form').on('submit', function (event){
         event.preventDefault();
-        if($('#confirm-popup-form').validation('isValid')) {            			
+        if($('#confirm-popup-form').validation('isValid')) {
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/confirmation'); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#confirm-popup-form').serialize(true),								
+                data: $('#confirm-popup-form').serialize(true),
                 success:function(response) {
                     if(response.errors) {
                         $('.confirm-notify').fadeOut().html(response.message).fadeIn(100);
@@ -437,19 +455,5 @@ function($, modal) {
             });
         }
     });
-    
-    function validateform() {
-        var captcha_response = grecaptcha.getResponse();
-        if(captcha_response.length == 0) {        
-            return false;
-        } else {
-            return true;
-        }
-    }
-    
 });
- 
-
-
-    
- </script>
+</script>
