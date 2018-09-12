@@ -134,16 +134,17 @@
 <div class="actions-toolbar">
   <div class="primary">
     <button type="submit"
-            class="action search primary"
+            class="action search primary text-uppercase"
             title="<?= $block->escapeHtml(__('Search')) ?>">
         <span><?= /* @escapeNotVerified */ __('Search') ?></span>
     </button>
+   
   </div>
 </div>
 </form>
-<div class="findcoin">
-    <div class="ortext">
-        <a href="<?= $block->getUrl('find-your-coin'); ?>" class="primiary text-uppercase">
+<div class="findcoin actions-toolbar">
+    <div class="ortext primary">
+        <a href="<?= $block->getUrl('find-your-coin'); ?>" class="primary action text-uppercase">
             <span><?= __('Let us help find your coin'); ?></span>
         </a>
     </div>
