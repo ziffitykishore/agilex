@@ -50,7 +50,7 @@ define([
     }); */
 
 
-    jQuery('.form-group input.form-control, textarea.form-control').on("focus blur change", function () {
+    jQuery('.form-group input.form-control, textarea.form-control').on("focus blur", function () {
           if (jQuery(this).val() == "") {
             jQuery(this).parents(".form-group").toggleClass("focused");
           }
