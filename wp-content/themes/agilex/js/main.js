@@ -1150,4 +1150,6 @@ function myFunction() {
     });
   });
 
+  $('.hbspt-form').appendTo('.contact-form');
+
 })(jQuery);

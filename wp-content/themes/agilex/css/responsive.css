@@ -913,6 +913,10 @@
         float: none;
         padding: 30px;
     }
+    .home .heading .sub-heading {
+        text-align: left;
+        padding: 0 5px;
+    }
 }
 
 @media screen and (max-width: 568px) {

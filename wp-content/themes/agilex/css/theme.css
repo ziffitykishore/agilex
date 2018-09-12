@@ -1170,16 +1170,18 @@ p {
     background: -webkit-radial-gradient(50% 50%, circle cover, #ffffff 0, #dadada 100%);
     background: radial-gradient(50% 50%, circle cover, #ffffff 0, #dadada 100%);
     background: -o-radial-gradient(50% 50%, circle cover, #ffffff 0, #dadada 100%);
-    /* Opera 11.10+ */
+    /*Opera11.10+*/
     background: -ms-radial-gradient(50% 50%, circle cover, #ffffff 0, #dadada 100%);
-    /* IE10+ */
-    /* W3C */
+    /*IE10+*/
+    /*W3C*/
     z-index: 99999;
     -webkit-transition: all 0.5s ease-in-out 0s;
     -moz-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
     opacity: 0;
     visibility: hidden;
+    -ms-transition: all 0.5s ease-in-out 0s;
+    -o-transition: all 0.5s ease-in-out 0s;
 }
 
 .loader-inner {
@@ -3138,6 +3140,9 @@ p+p {
     z-index: 9;
     display: flex;
     flex-direction: column-reverse;
+    padding: 0;
+    height: auto;
+    overflow: visible;
 }
 
 .video-content-inner {
