@@ -48,6 +48,8 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                 </button>
             </div>
         </form>
-        <a href="#" class="advanced-search"><?= /* @escapeNotVerified */ __('Advanced Search') ?></a>
+        <a href="<?= $block->getUrl('catalogsearch/advanced') ?>" class="advanced-search">
+        <?= /* @escapeNotVerified */ __('Advanced Search') ?>
+        </a>
     </div>
 </div>
