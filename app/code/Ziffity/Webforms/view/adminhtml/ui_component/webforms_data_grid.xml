@@ -156,34 +156,6 @@
                 <label translate="true">Comments</label>
             </settings>
         </column>
-        <column name="cust_fn">
-            <settings>
-                <filter>text</filter>
-                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
-                <editor>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">true</rule>
-                        <rule name="validate-xml-identifier" xsi:type="boolean">true</rule>
-                    </validation>
-                    <editorType>text</editorType>
-                </editor>
-                <label translate="true">FirstName</label>
-            </settings>
-        </column>
-        <column name="cust_ln">
-            <settings>
-                <filter>text</filter>
-                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
-                <editor>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">true</rule>
-                        <rule name="validate-xml-identifier" xsi:type="boolean">true</rule>
-                    </validation>
-                    <editorType>text</editorType>
-                </editor>
-                <label translate="true">LastName</label>
-            </settings>
-        </column>
         <column name="cust_find">
             <settings>
                 <filter>text</filter>
@@ -209,21 +181,7 @@
                     </validation>
                     <editorType>text</editorType>
                 </editor>
-                <label translate="true">Address 1</label>
-            </settings>
-        </column>
-        <column name="cust_addr_two">
-            <settings>
-                <filter>text</filter>
-                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
-                <editor>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">true</rule>
-                        <rule name="validate-xml-identifier" xsi:type="boolean">true</rule>
-                    </validation>
-                    <editorType>text</editorType>
-                </editor>
-                <label translate="true">Address 2</label>
+                <label translate="true">Address</label>
             </settings>
         </column>
         <column name="cust_city">

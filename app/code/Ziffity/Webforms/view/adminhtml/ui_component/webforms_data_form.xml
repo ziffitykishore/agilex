@@ -140,38 +140,6 @@
                 <dataScope>cust_comments</dataScope>
             </settings>
         </field>
-
-        <field name="cust_fn" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">data</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">First Name</label>
-                <dataScope>cust_fn</dataScope>
-            </settings>
-        </field>
-
-        <field name="cust_ln" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">data</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">Last Name</label>
-                <dataScope>cust_ln</dataScope>
-            </settings>
-        </field>
         <field name="cust_find" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -187,21 +155,6 @@
                 <dataScope>cust_find</dataScope>
             </settings>
         </field>
-        <field name="cust_fn" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">data</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">First Name</label>
-                <dataScope>cust_fn</dataScope>
-            </settings>
-        </field>
         <field name="cust_addr_one" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -213,23 +166,8 @@
                     <rule name="required-entry" xsi:type="boolean">true</rule>
                 </validation>
                 <dataType>text</dataType>
-                <label translate="true">Address 1</label>
+                <label translate="true">Address</label>
                 <dataScope>cust_addr_one</dataScope>
-            </settings>
-        </field>
-        <field name="cust_addr_two" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">data</item>
-                </item>
-            </argument>
-            <settings>
-                <validation>
-                    <rule name="required-entry" xsi:type="boolean">true</rule>
-                </validation>
-                <dataType>text</dataType>
-                <label translate="true">Address 2</label>
-                <dataScope>cust_addr_two</dataScope>
             </settings>
         </field>
         <field name="cust_city" formElement="input">
