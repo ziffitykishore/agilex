@@ -205,11 +205,10 @@ $unique_arg_query->the_post();  ?>
                 <?php } ?>
                 <a 
                     data-fancybox tabindex="0" 
-                    href="
-                    <?php if (get_field('video_link', get_the_ID())): ?>
+                    href="<?php if (get_field('video_link', get_the_ID())){ ?>
                     <?php the_field('video_link', get_the_ID()); ?>
-                    <?php endif; ?> " 
-                    data-fancybox-type="iframe" 
+                    <?php } else { echo '#myVideo'; } ?> " 
+                   
                     class="video-content" 
                     style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: cover;">
                     <span  class="btn-fancy" > 
@@ -219,15 +218,19 @@ $unique_arg_query->the_post();  ?>
                     </span> 
                     <?php if (get_field('play_video')){ ?>
                       <span class="text-content lined"><?php the_field('play_video'); ?></span>
-                    <?php } else { ?>
-                      <span class="text-content lined">Play Video</span>
-                    <?php } ?> 
+                    <?php }  ?> 
                 </a>
+                <?php if (get_field('html_video', get_the_ID())): ?>
+                <?php the_field('html_video', get_the_ID()); endif; ?>
+                
                 
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 
 <?php 
