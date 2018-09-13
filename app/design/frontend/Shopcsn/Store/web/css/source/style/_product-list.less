@@ -8,6 +8,7 @@
     }
 }
 
+
 /* Layered Filter */
 
 & when (@media-common =true) {
@@ -69,12 +70,17 @@
             .filter-options-content {
                 label {
                     display: none;
+
                 }
+
+
+
                 input {
                     background: transparent;
-                    color: @color-darkslateblue  !important;
+                    color: @color-darkslateblue !important;
                     font-size: @f-size-xs;
                 }
+
                 #price-slider {
                     height: 2px;
                     background: @color-black;
@@ -111,6 +117,15 @@
             position: absolute;
             top: 0;
             left: 0;
+        }
+        .old-price {
+            .price-label {
+                display: none;
+            }
+            .price {
+                text-decoration: line-through;
+                margin-left: 10px;
+            }
         }
         .product-item-photo {
             display: block;
@@ -161,17 +176,23 @@
                 visibility: hidden;
                 opacity: 0;
                 .transition(all 0.5s ease 0s);
+                &.no-stock {
+                    .action {
+                        width: 100%;
+                        float: none;
+                    }
+                }
             }
             .actions-primary .action {
                 background: #020202;
                 border: none;
                 color: @color-white;
-                padding: 15px 20px;
+                padding: 15px 10px;
                 width: 50%;
                 float: left;
                 min-height: 50px;
                 font-weight: bold;
-                font-size: @f-size-xs;
+                font-size: @f-size-xs - 1;
                 text-transform: uppercase;
                 border-radius: 0;
                 position: relative;
@@ -191,8 +212,7 @@
                 background: #404040;
             }
         }
-        &:hover .actions-primary,
-        &:hover .towishlist {
+        &:hover .actions-primary, &:hover .towishlist {
             visibility: visible;
             opacity: 1;
         }
@@ -311,8 +331,7 @@
                     .disp(none);
                 }
             }
-            &-actions>*,
-            .actions-primary>* {
+            &-actions>*, .actions-primary>* {
                 float: left;
             }
         }
@@ -339,6 +358,7 @@
                     .filter-content {
                         .disp(block);
                         background: @color-whitesmoke;
+
                     }
                 }
             }
@@ -354,9 +374,20 @@
                     .action {
                         padding: 15px;
                         font-size: 10px;
+
                     }
                 }
             }
         }
     }
+
+}
+
+@media screen and (min-width:1200px) and (max-width:1336px) {
+    .catalog-category-view {
+        .product-item {
+            width: 33%;
+        }
+    }
+
 }
