@@ -6,20 +6,15 @@
 <form class="form" id="find_coin_form" method="post" autocomplete="off" action="<?php echo $this->getUrl("webforms/index/post")?>">
    <fieldset class="fieldset">
        <legend class="legend hidden"><span><?= $block->escapeHtmlAttr(__('FIND YOUR COIN')) ?></span></legend><br>
-        <div class="field required mb-20 form-group">
-            <label for="cust_fn" class="label txt-grey"><span><?= $block->escapeHtmlAttr(__('First Name')) ?></span></label>
-            <div class="control wpcf7-form-control-wrap">
-                <input type="text" name="cust_fn" id="cust_fn" value="" class="input-text form-control" data-validate="{required:true}">
+
+        <div class="field field-name-fullname required mb-20 form-group">
+            <label class="label txt-grey" for="fullname"> <span>Full Name</span> </label>
+            <div class="control wpcf7-form-control-wrap">                
+                <input id="cust_name" class="input-text required-entry form-control valid" title="Full Name" autocomplete="off" name="cust_name" type="text" value="" data-validate="{required:true}" />                
+                <div class="mage-error"></div>
             </div>
         </div>
-
-        <div class="field required mb-20 form-group">
-            <label for="cust_ln" class="label"><span><?= $block->escapeHtmlAttr(__('Last Name')) ?></span></label>
-            <div class="control wpcf7-form-control-wrap">
-                <input type="text" name="cust_ln" id="cust_ln" value="" class="input-text form-control" data-validate="{required:true}">
-            </div>
-        </div>
-
+       
         <div class="field required mb-20 form-group">
             <label for="cust_email" class="label txt-grey"><span><?= $block->escapeHtmlAttr(__('Email')) ?></span></label>
             <div class="control wpcf7-form-control-wrap">
