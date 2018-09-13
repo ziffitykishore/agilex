@@ -1,5 +1,10 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Ziffity\Webforms\Block\Main $block */
+?>
 <form class="form form-login wpcf7-form" id="customer-comments-form" method="post" autocomplete="off" action="<?php echo $this->getUrl("webforms/index/post")?>">
-   <input name="form_key" type="hidden" value="TbaGf1953WTheAvu" />    
+   <?= $block->getBlockHtml('formkey') ?>   
    <fieldset class="fieldset login" data-hasrequired="* Required Fields">
 
         <div class="field field-name-fullname required mb-20 form-group">
@@ -35,10 +40,7 @@
         <input type="text" name="form_type" id="form_type" value="contact" class="hidden input-text" data-validate="{required:true}">
 
         <div class="field required">
-            <div class="g-div">
-                <div class="custom-g-recaptcha" id="contactCaptcha"></div>
-                <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
-            </div>
+            <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('contactGCaptcha')->toHtml(); ?>
         </div>
 
         <div class="actions-toolbar">

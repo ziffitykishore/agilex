@@ -8,10 +8,6 @@
 
 /** @var \Magento\Customer\Block\Form\Login $block */
 ?>
-<?php
-$Helper = $this->helper('Ziffity\Core\Helper\Data');
-$googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitekey');
-?>
 <div class="log-in"  id="popup-modal" style="display:none">
     <div class="sign-in-page">
         <div><h1>Welcome back!</h1></div>
@@ -29,7 +25,7 @@ $googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitek
                 <form class="form form-login wpcf7-form"
                       action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
                       method="post"
-                      id="login-form-popup" 
+                      id="login-form-popup"
                       autocomplete="off"
                       data-mage-init='{"validation":{}}'
                      >
@@ -65,11 +61,7 @@ $googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitek
                             </ul>
                          </div>
 
-                        <div class="g-div">
-                            <div class="custom-g-recaptcha" id="loginCaptcha"></div>
-                            <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
-                        </div>
-
+                    <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('loginGCaptcha')->toHtml(); ?>
                         <div class="actions-toolbar">
                             <div class="primary">
                                 <button type="submit" class="btn button-full action login primary  text-uppercase mb-20" name="send" id="sign_in">
@@ -155,12 +147,8 @@ $googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitek
                     </label>
                 </div>
 
-                <div class="g-div">
-                    <br>
-                    <div class="custom-g-recaptcha" id="registerCaptcha"></div>
-                    <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
-                </div>
-
+                <br>
+                <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('regGCaptcha')->toHtml(); ?>
                 <div class="actions-toolbar">
                     <div class="primary"><button type="submit" class="btn button-full action login primary  text-uppercase mb-20 mt-20" name="send" id="sign_up"><span>Sign Up</span></button></div>                     
                 </div>
@@ -267,11 +255,6 @@ $googlesitekey = $Helper->getScopeConfig('mconnect_ajaxlogin/googlecaptcha/sitek
         </div>
     </div>
 </div>
-
-<!-- setting gCaptchaKey globally -->
-<script type="text/javascript">
-window.gCaptchaKey = '<?= $googlesitekey ?>';
-</script>
 <script type="text/javascript">
 require(['jquery', 'Magento_Ui/js/modal/modal', 'googlecapjs'],
 function($, modal, googlecapjs) {

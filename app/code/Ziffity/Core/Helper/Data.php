@@ -26,16 +26,23 @@ class Data extends AbstractHelper
     protected $_remoteAddress;
 
     /**
+    * @var \Magento\Framework\Registry
+    */
+    protected $_registry;
+
+    /**
      * Constructor
      * @param Context $context
      * @param RemoteAddress $remoteAddress
      */
     public function __construct(
         Context $context,
-        RemoteAddress $remoteAddress   
+        RemoteAddress $remoteAddress ,
+        \Magento\Framework\Registry $registry
     ) {
         $this->scopeConfig  = $context->getScopeConfig();
         $this->_remoteAddress = $remoteAddress;
+        $this->_registry = $registry;
         parent::__construct($context);
     }
 
@@ -88,4 +95,19 @@ class Data extends AbstractHelper
             $logger->info(print_r($message, true));
         }
     }
+    
+    public function setGCaptcha()
+    {
+        $this->_registry->register('gcaptcha', true);
+    }
+
+    /**
+     * Retrieving captcha registered
+     * @return string
+     */
+    public function getGCaptcha()
+    {
+        return $this->_registry->registry('gcaptcha');
+    }
+
 }

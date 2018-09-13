@@ -1,3 +1,8 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Ziffity\Webforms\Block\Main $block */
+?>
 <form class="form" id="find_coin_form" method="post" autocomplete="off" action="<?php echo $this->getUrl("webforms/index/post")?>">
    <fieldset class="fieldset">
        <legend class="legend hidden"><span><?= $block->escapeHtmlAttr(__('FIND YOUR COIN')) ?></span></legend><br>
@@ -38,10 +43,7 @@
 
         <input type="text" name="form_type" id="form_type" value="coin" class="input-text hidden" data-validate="{required:true}">
         <div class="field required mb-20 form-group">
-            <div class="g-div">
-                <div class="custom-g-recaptcha" id="contactCaptcha"></div>
-                <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
-            </div>
+             <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('findGCaptcha')->toHtml(); ?>
         </div>
    </fieldset>
    <div class="actions-toolbar">

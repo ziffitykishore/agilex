@@ -8,9 +8,10 @@ define([
             var gCaptchaKey = window.gCaptchaKey || '';
             if(typeof grecaptcha !== 'undefined' && gCaptchaKey){
                 setTimeout(function(){
-                    $('.custom-g-recaptcha').each(function(){
+                    $('.custom-g-recaptcha').each(function(index, val){
                         var element = $(this),
                             custInput = element.closest('.g-div').find('.custom-g-input');
+                            custInput.attr('data-index', index);
                         grecaptcha.render(element.attr('id'),{
                             'sitekey' : gCaptchaKey,
                             'callback' : function(response){
@@ -33,7 +34,7 @@ define([
             var custInput = form.find('.custom-g-input');
             custInput.val('');
             if(typeof grecaptcha !== 'undefined' && window.gCaptchaKey){
-                grecaptcha.reset(custInput.index());
+                grecaptcha.reset(custInput.data('index'));
             }
         };
     });
