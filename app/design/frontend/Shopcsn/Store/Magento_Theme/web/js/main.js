@@ -4,15 +4,24 @@
  */
 
 define([
+    'uiComponent',
+    'Magento_Customer/js/customer-data',
     'jquery',
-    'jquery/ui', 
-    'jquery/validate', 
-    'mage/translate' ,
+    'ko',
+    'underscore',
+    'sidebar',
     'slick',
+    'mage/translate',
+    'mage/dropdown',
     'domReady!'
-], function($) {
+], function(Component, ko, _, $) {
     'use strict';
 
+    jQuery('<div class="overlay"></div>').appendTo('.page-wrapper');
+    jQuery('.nav-toggle').on('click', function(e) {
+        jQuery('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');;
+
+    }); 
     jQuery('.overlay').on('click', function() {
         jQuery('html').removeClass('nav-open');
         jQuery('body').removeClass('acc-opened cart-opened');
@@ -103,7 +112,6 @@ define([
         jQuery(this).parent().toggleClass('active');
     });
 
-    $("input").attr("autocomplete", "off");
 
     /* Accordion */
 
@@ -117,10 +125,9 @@ define([
     jQuery('#accordion').on('shown.bs.collapse', toggleChevron);
 
 
+     /* home page slider */
 
-    /* home page slider */
-
-    $('.blog-content-wrap').slick({
+     jQuery('.blog-content-wrap').slick({
         dots: false,
         arrows: false,
         infinite: false,
@@ -154,17 +161,15 @@ define([
 
   var responsiveflag = false;
   function responsiveResize() {
-    if ($(window).width() < 768 && responsiveflag == false) {
+    if (jQuery(window).width() < 768 && responsiveflag == false) {
         jQuery('.block-search').appendTo('.header-wrapper');
       responsiveflag = true;
-    } else if ($(window).width() > 767) {
+    } else if (jQuery(window).width() > 767) {
         jQuery('.block-search').insertAfter('.menu-wrap');
       responsiveflag = false;
     }
   }
 
   responsiveResize();
-  $(window).resize(responsiveResize);
-
-
+  jQuery(window).resize(responsiveResize);
 });
