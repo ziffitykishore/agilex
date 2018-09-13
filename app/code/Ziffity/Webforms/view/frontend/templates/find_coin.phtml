@@ -1,0 +1,63 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Ziffity\Webforms\Block\Main $block */
+?>
+<form class="form" id="find_coin_form" method="post" autocomplete="off" action="<?php echo $this->getUrl("webforms/index/post")?>">
+   <fieldset class="fieldset">
+       <legend class="legend hidden"><span><?= $block->escapeHtmlAttr(__('FIND YOUR COIN')) ?></span></legend><br>
+        <div class="field required mb-20 form-group">
+            <label for="cust_fn" class="label txt-grey"><span><?= $block->escapeHtmlAttr(__('First Name')) ?></span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input type="text" name="cust_fn" id="cust_fn" value="" class="input-text form-control" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <div class="field required mb-20 form-group">
+            <label for="cust_ln" class="label"><span><?= $block->escapeHtmlAttr(__('Last Name')) ?></span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input type="text" name="cust_ln" id="cust_ln" value="" class="input-text form-control" data-validate="{required:true}">
+            </div>
+        </div>
+
+        <div class="field required mb-20 form-group">
+            <label for="cust_email" class="label txt-grey"><span><?= $block->escapeHtmlAttr(__('Email')) ?></span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input type="email" name="cust_email" id="cust_email" value=""  class="input-text form-control" data-validate="{required:true, 'validate-email':true}">
+            </div>
+        </div>
+
+        <div class="field required mb-20 form-group">
+            <label for="cust_phone" class="label txt-grey"><span><?= $block->escapeHtmlAttr(__('Phone Number')) ?></span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input type="text" name="cust_phone" id="cust_phone" value="" class="input-text form-control" data-validate="{required:true,'ph_no_validation':true}">
+            </div>
+        </div>
+
+        <div class="field required mb-20 form-group">
+            <label for="cust_find" class="label txt-grey"><span><?= $block->escapeHtmlAttr(__('I am Looking For')) ?></span></label>
+            <div class="control wpcf7-form-control-wrap">
+ 		<textarea name="cust_find" id="cust_find" value="" class="input-text form-control" data-validate="{required:true}"></textarea>
+            </div>
+        </div>
+
+        <input type="text" name="form_type" id="form_type" value="coin" class="input-text hidden" data-validate="{required:true}">
+        <div class="field required mb-20 form-group">
+             <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('findGCaptcha')->toHtml(); ?>
+        </div>
+   </fieldset>
+   <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit" class="action submit primary" title="Submit Details"><span>Submit</span></button>
+        </div>
+    </div>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "#find_coin_form": {
+            "validation": {},
+            "phNoValidation":{}
+        }
+    }
+</script>

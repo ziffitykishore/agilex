@@ -59,6 +59,10 @@
                 }
             }
         }
+
+        .promo-banner {
+            .banner-box();
+        }
         .promo-banner+.promo-banner {
             margin-top: 38px;
         }
@@ -96,6 +100,7 @@
         .cat-item {
             .cat-item__inner {
                 position: relative;
+                .banner-box();
                 a {
                     .pos(relative);
                 }
@@ -130,10 +135,13 @@
                         display: block;
                         margin-bottom: 30px;
                     }
-                    font-size: @f-size-xxl;
-                    font-weight: bold;
-                    font-style: italic;
-                    color: @color-black;
+                    &, p{
+                        font-size: @f-size-xxl;
+                        font-weight: bold;
+                        font-style: italic;
+                        color: @color-black;
+                        line-height: 22px;
+                    }
                     p:before,
                     p:after {
                         content: '"';

@@ -1,10 +1,5 @@
-.customer-forgetpassword-popup,
-.custom-block-customer-signup,
-.custom-block-customer-login,
-.confirm-popup {
-&.modal-popup {
-       
-
+.customer-forgetpassword-popup, .custom-block-customer-signup, .custom-block-customer-login, .confirm-popup {
+    &.modal-popup {
         .modal-inner-wrap {
             width: 100%;
             margin: 0;
@@ -20,6 +15,14 @@
                 position: absolute;
                 border: 0;
                 box-shadow: none;
+
+                .field {
+                    .text-small p {
+                        line-height: 20px;
+                        font-size: 12px;
+                        padding: 5px 0;
+                    }
+                }
             }
         }
     }
@@ -49,7 +52,7 @@
         }
     }
     .block-customer-login {
-        background-color: #d7dded;
+        background-color: #fff;
         position: absolute;
         height: 100%;
         width: 445px;
@@ -62,8 +65,23 @@
         display: -ms-flex;
         flex-direction: column;
         justify-content: space-between;
-
+        .bk-to-arw {
+            background: #d7dded;
+        }
         .common-form {
+            input.mage-error {
+                border: 1px solid red !important;
+            }
+            a {
+                color: #1c3f93;
+                &:hover {
+                    color: #1c3f93;
+                }
+            }
+            
+            div.mage-error[generated] {
+                display: none !important;
+            }
             &.sign-in {
                 padding: 32% 50px;
                 background: #fff;
@@ -77,8 +95,7 @@
                 padding: 60% 50px;
                 background: #fff;
             }
-            .account,
-            .forget {
+            .account, .forget {
                 min-width: auto;
                 width: 100%;
             }
@@ -87,24 +104,18 @@
                 color: #1c3f93;
             }
             /********** input field********/
+            .form {
+                &.send {
+                    &.confirmation {
+                        width: auto;
+                        min-width: auto;
+                        .secondary {
+                            display: none;
+                        }
+                    }
+                }
+            }
             .form-group {
-                position: relative;
-                .label {
-                    position: absolute;
-                    z-index: 3;
-                    color: #d7dded;
-                    left: 10px;
-                    font-size: 13px;
-                    background: #fff;
-                    top: 15px;
-                    pointer-events: none;
-                    transition: all .5s ease 0s;
-                }
-                &.focused label {
-                    top: -7px;
-                    color: #d7dded;
-                    font-size: 11px;
-                }
                 .form-control-wrap {
                     display: block;
                     position: relative;
@@ -120,27 +131,6 @@
                     .mage-error+.mage-error {
                         background: url(../img/tick2.png);
                     }
-                    .form-control {
-                        display: block;
-                        width: 100%;
-                        padding: 6px 45px 6px 10px;
-                        font-size: 14px;
-                        line-height: 1.42857143;
-                        color: #000;
-                        background-color: #fff;
-                        background-image: none;
-                        border-bottom: 1px solid #d3d8e3;
-                        border-radius: 0;
-                        -webkit-box-shadow: none;
-                        box-shadow: none;
-                        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-                        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-                        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-                        &:focus {
-                            border-color: #000;
-                            box-shadow: none;
-                        }
-                    }
                 }
             }
             .remember {
@@ -152,7 +142,7 @@
                         position: absolute;
                         border: 1px solid #d7dded;
                         left: -10px;
-                        top: 3px;
+                        top: 0;
                         width: 13px;
                         height: 13px;
                     }
@@ -163,7 +153,7 @@
                         position: absolute;
                         opacity: 0;
                         left: -9px;
-                        top: 2px;
+                        top: 0;
                         width: 12px;
                         height: 12px;
                     }
@@ -171,8 +161,7 @@
                         font-weight: normal;
                     }
                 }
-                input#boxc,
-                input#signup-check {
+                input#boxc, input#signup-check {
                     opacity: 0;
                     &:checked+label:after {
                         opacity: 1;
@@ -183,14 +172,18 @@
                 .primary {
                     width: 100%;
                     margin-bottom: 20px;
+                    margin-top: 10px;
                 }
             }
-            .field .input-text {
-                max-width: 345px;
-                height: 50px;
-                border: 1px solid #d7dded;
-                width: 100%;
-                padding: 10px 15px;
+            .field {
+                
+                .input-text {
+                    max-width: 345px;
+                    height: 50px;
+                    border: 1px solid #d7dded;
+                    width: 100%;
+                    padding: 10px 15px;
+                }
             }
             .secondary a {
                 color: #000;
@@ -214,7 +207,7 @@
             }
         }
         .social {
-            padding: 50px 0;
+            padding: 50px 20px;
             background-color: #d7dded;
             width: 100%;
             text-align: center;
@@ -222,6 +215,9 @@
                 .list-inline>li.social-links {
                     padding-left: 0;
                 }
+            }
+            .account-social-login {
+                margin-bottom: 0;
             }
             .social-links {
                 line-height: 1;
@@ -257,12 +253,7 @@
     }
 }
 
-a {
-    color: #1c3f93;
-    &:hover {
-        color: #1c3f93;
-    }
-}
+
 
 /***************** common classes ****************/
 
@@ -299,9 +290,7 @@ a {
     color: #000;
 }
 
-.text-uppercase {
-    text-transform: uppercase;
-}
+
 
 .text-capitalize {
     text-transform: capitalize;

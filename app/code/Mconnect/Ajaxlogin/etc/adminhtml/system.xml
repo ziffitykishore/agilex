@@ -12,20 +12,20 @@
             <group id="googlecaptcha" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Google Captcha</label>			
 
-                <field id="sitekey" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">			
+                <field id="sitekey" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Google Sitekey</label>
                 </field>
-            </group>			
+                <field id="secretkey" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">	
+                    <label>Google Secret Key</label>
+                </field>
+            </group>	
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-			 
-                <label>General Setting (Ajaxlogin)</label>			
-				
+                <label>General Setting (Ajaxlogin)</label>
                 <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">			
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                
                 </field>
-				
-				
+
                 <field id="redirect" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>RedirectSelect</label>
                     <source_model>Mconnect\Ajaxlogin\Model\Source\RedirectSelect</source_model>
@@ -52,9 +52,6 @@
                     <base_url type="media" scope_info="1">mconnect/banner</base_url>
                 </field>
             </group>
-            		
         </section>
-        
-                        		
     </system>
 </config>

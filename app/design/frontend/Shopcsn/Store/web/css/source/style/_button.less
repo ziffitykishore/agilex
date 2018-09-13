@@ -1,0 +1,85 @@
+.action.primary.disabled, .action.primary[disabled], fieldset[disabled] .action.primary{
+    opacity: 1;
+}
+
+.actions-toolbar .action {
+    border-color: transparent;
+}
+
+/* Button styles */
+.actions-toolbar {
+    .primary {
+        .action {
+            .lib-css(background, #000);
+            .lib-css(color, @color-white);
+            .br-radius(0);
+            border-color: #000;
+            font-weight: normal;
+            &-cancel {
+                padding: 7px 15px;
+                margin-top: 0 !important;
+                border: 1px solid @color-darkslateblue  !important;
+                &:hover {
+                    .lib-css(background, @color-darkslateblue);
+                    .lib-css(color, @color-white);
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+.page-main , .modals-wrapper, .block-minicart .block-content{
+    .heading-sec .btn-view,
+     button.action,
+     a.action,
+    .quick-view,
+    .box-gotoproduct .action,
+    a.viewcart, a.checkout {
+        position: relative;
+        display: inline-block;
+        overflow: hidden !important;
+        width: 100%;
+    
+        > span{
+            position: relative;
+            z-index: 2;
+        }
+
+        &:hover{
+            border-color: @color-darkslateblue;
+        }
+    
+        &:before, &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: @color-darkslateblue;
+            transition: 0.5s ease-in-out;
+            z-index: 1;
+        }
+    
+        &:before {
+            -webkit-transform: translateY(-100%);
+            transform: translateY(-100%);
+        }
+    
+        &:after {
+            -webkit-transform: translateY(100%);
+            transform: translateY(100%);
+        }
+    
+        &:hover:before {
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    
+        &:hover:after {
+            -webkit-transform: translateY(50%);
+            transform: translateY(50%);
+        }
+    } 
+    }
