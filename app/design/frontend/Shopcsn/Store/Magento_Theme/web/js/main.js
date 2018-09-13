@@ -10,12 +10,18 @@ define([
     'ko',
     'underscore',
     'sidebar',
+    'slick',
     'mage/translate',
     'mage/dropdown',
     'domReady!'
 ], function(Component, ko, _, $) {
     'use strict';
 
+    jQuery('<div class="overlay"></div>').appendTo('.page-wrapper');
+    jQuery('.nav-toggle').on('click', function(e) {
+        jQuery('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');;
+
+    }); 
     jQuery('.overlay').on('click', function() {
         jQuery('html').removeClass('nav-open');
         jQuery('body').removeClass('acc-opened cart-opened');
@@ -117,4 +123,53 @@ define([
     }
     jQuery('#accordion').on('hidden.bs.collapse', toggleChevron);
     jQuery('#accordion').on('shown.bs.collapse', toggleChevron);
+
+
+     /* home page slider */
+
+     jQuery('.blog-content-wrap').slick({
+        dots: false,
+        arrows: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+          {
+            breakpoint: 1023,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              infinite: true
+              
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+
+        ]
+      });
+
+
+
+      /* responsive View */
+
+  var responsiveflag = false;
+  function responsiveResize() {
+    if (jQuery(window).width() < 768 && responsiveflag == false) {
+        jQuery('.block-search').appendTo('.header-wrapper');
+      responsiveflag = true;
+    } else if (jQuery(window).width() > 767) {
+        jQuery('.block-search').insertAfter('.menu-wrap');
+      responsiveflag = false;
+    }
+  }
+
+  responsiveResize();
+  jQuery(window).resize(responsiveResize);
 });
