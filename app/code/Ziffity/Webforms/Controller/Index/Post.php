@@ -64,8 +64,7 @@ class Post extends \Magento\Framework\App\Action\Action
                         ])
                     ->setTemplateVars(
                         [
-                            'name' => $post['cust_name'],
-                            'fname' => $post['cust_fn']
+                            'name' => $post['cust_name']
                         ])
                     ->setFrom($sender)
                     ->addTo($post['cust_email'],$post['cust_name'])
