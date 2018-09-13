@@ -1,0 +1,130 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Ziffity\Webforms\Block\Main $block */
+?>
+<form id="catalog_form" class="form wpcf7-form" method="post" autocomplete="off" action="<?php echo $this->getUrl("webforms/index/post")?>">
+    <?= $block->getBlockHtml('formkey') ?>
+    <fieldset class="fieldset catalog" data-hasrequired="* Required Fields">
+        <div class="field field-name-fullname required mb-30 form-group">
+            <label class="label txt-grey" for="fullname"><span>Full Name</span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input id="cust_name" class="input-text required-entry form-control valid" title="Full Name" autocomplete="off" name="cust_name" type="text" value="" data-validate="{required:true}" />
+            </div>
+        </div>
+        <div class="field address required mb-30 form-group">
+            <label class="label txt-grey" for="address"><span>Address</span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input id="cust_addr_one" class="input-text form-control valid" title="Address" autocomplete="off" name="cust_addr_one" type="text" value="" data-validate="{required:true}" />
+            </div>
+        </div>
+        <div class="field password required mb-30 form-group">
+            <label class="label txt-grey" for="city"><span class="mb-10">City</span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input id="cust_city" class="input-text form-control valid" title="City" autocomplete="off" name="cust_city" type="text" data-validate="{required:true}" />
+            </div>
+        </div>
+        <div class="field state required mb-30 form-group">
+            <label class="label txt-grey" for="state"><span>State</span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <select class="input-text form-control" style="width: 445px; height: 50px; background: #fff; border: 1px solid #d7dded;" title="State" id="cust_state" name="cust_state">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="field code required mb-30 form-group">
+            <label class="label txt-grey" for="code"><span>Zip Code</span></label>
+            <div class="control wpcf7-form-control-wrap">
+                <input id="cust_zip" class="input-text form-control valid" title="zip Code" autocomplete="off" name="cust_zip" type="text" data-validate="{required:true}" />
+            </div>
+        </div>
+
+        <input type="text" name="form_type" id="form_type" value="catalog" class="hidden input-text">
+        <div class="field required">
+            <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('catalogGCaptcha')->toHtml(); ?>
+        </div>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button id="send2" class="btn button-full action login primary text-uppercase mb-30" name="send" type="submit"><span>Sign Up</span></button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "#catalog_form": {
+            "validation": {}
+        }
+    }
+</script>
+<script type="text/javascript">
+require(['jquery', 'jquery/ui'], function($) {
+    $(document).ready(function() {
+        var states = {
+            "AL": "Alabama",
+            "AK": "Alaska",
+            "AS": "American Samoa",
+            "AZ": "Arizona",
+            "AR": "Arkansas",
+            "CA": "California",
+            "CO": "Colorado",
+            "CT": "Connecticut",
+            "DE": "Delaware",
+            "DC": "District Of Columbia",
+            "FM": "Federated States Of Micronesia",
+            "FL": "Florida",
+            "GA": "Georgia",
+            "GU": "Guam",
+            "HI": "Hawaii",
+            "ID": "Idaho",
+            "IL": "Illinois",
+            "IN": "Indiana",
+            "IA": "Iowa",
+            "KS": "Kansas",
+            "KY": "Kentucky",
+            "LA": "Louisiana",
+            "ME": "Maine",
+            "MH": "Marshall Islands",
+            "MD": "Maryland",
+            "MA": "Massachusetts",
+            "MI": "Michigan",
+            "MN": "Minnesota",
+            "MS": "Mississippi",
+            "MO": "Missouri",
+            "MT": "Montana",
+            "NE": "Nebraska",
+            "NV": "Nevada",
+            "NH": "New Hampshire",
+            "NJ": "New Jersey",
+            "NM": "New Mexico",
+            "NY": "New York",
+            "NC": "North Carolina",
+            "ND": "North Dakota",
+            "MP": "Northern Mariana Islands",
+            "OH": "Ohio",
+            "OK": "Oklahoma",
+            "OR": "Oregon",
+            "PW": "Palau",
+            "PA": "Pennsylvania",
+            "PR": "Puerto Rico",
+            "RI": "Rhode Island",
+            "SC": "South Carolina",
+            "SD": "South Dakota",
+            "TN": "Tennessee",
+            "TX": "Texas",
+            "UT": "Utah",
+            "VT": "Vermont",
+            "VI": "Virgin Islands",
+            "VA": "Virginia",
+            "WA": "Washington",
+            "WV": "West Virginia",
+            "WI": "Wisconsin",
+            "WY": "Wyoming"
+        };
+        $.each(states, function(key, value) {
+            $("#cust_state").append($("<option></option>").attr("value", value).text(value));
+        });
+    });
+});
+</script>

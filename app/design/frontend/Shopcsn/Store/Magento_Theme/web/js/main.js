@@ -4,29 +4,27 @@
  */
 
 define([
-    'uiComponent',
-    'Magento_Customer/js/customer-data',
     'jquery',
-    'ko',
-    'underscore',
-    'sidebar',
+    'jquery/ui',
+    'jquery/validate',
     'mage/translate',
-    'mage/dropdown',
+    'slick',
     'domReady!'
-], function(Component, ko, _, $) {
+], function($) {
     'use strict';
 
     jQuery('.overlay').on('click', function() {
-        jQuery('html').removeClass('nav-open');
-        jQuery('body').removeClass('acc-opened cart-opened');
+
+        jQuery('body').removeClass('acc-opened cart-opened menu-opened');
     });
 
     jQuery('.showcart').on('click', function() {
-        jQuery('html').removeClass('nav-open');
+        jQuery('body').removeClass('menu-opened');
     });
 
     jQuery('.customer-welcome .customer-name').on('click', function() {
-        jQuery('body').addClass('acc-opened');
+        jQuery('body').toggleClass('acc-opened menu-opened cart-opened');
+        jQuery('html').removeClass('nav-open');
     });
 
 
@@ -37,32 +35,17 @@ define([
         });
 
         jQuery('.header').on('click', function(e) {
-            jQuery('html').removeClass('nav-open');
-            jQuery('body').removeClass('acc-opened cart-opened');
+
+            jQuery('body').removeClass('acc-opened cart-opened menu-opened');
         });
     });
-    /*   jQuery(".form-group input.form-control").on("focus blur", function () {
-          if (jQuery(this).val() == "") {
-              jQuery(this)
-                  .parents(".form-group")
-                  .toggleClass("focused");
-          }
-      }); */
 
-
-    jQuery('.form-group input.form-control, textarea.form-control').on("focus blur change", function() {
+    jQuery('.form-group input.form-control, textarea.form-control')
+        .on("focus blur change", function() {
             if (jQuery(this).val() == "") {
                 jQuery(this).parents(".form-group").toggleClass("focused");
             }
-        })
-        /* .blur(function () {
-                  if (jQuery(this).val() == "") {
-                    jQuery(this).parents(".form-group").removeClass("focused");
-                  } else if (jQuery(this).val()) {
-                    jQuery(this).parents(".form-group").removeClass("err");
-                  }
-                }) */
-    ;
+        });
 
     jQuery('select').parents('.field').addClass('select-group');
 
@@ -73,7 +56,6 @@ define([
             jQuery('.header-wrapper').removeClass("fix-header");
         }
     });
-
 
     // Hide Header on on scroll down
     var didScroll;
@@ -121,6 +103,7 @@ define([
         jQuery(this).parent().toggleClass('active');
     });
 
+    $("input").attr("autocomplete", "off");
 
     /* Accordion */
 
@@ -132,4 +115,56 @@ define([
     }
     jQuery('#accordion').on('hidden.bs.collapse', toggleChevron);
     jQuery('#accordion').on('shown.bs.collapse', toggleChevron);
+
+
+
+    /* home page slider */
+
+    $('.blog-content-wrap').slick({
+        dots: false,
+        arrows: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [{
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true
+
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+
+        ]
+    });
+
+
+
+    /* responsive View */
+
+    var responsiveflag = false;
+
+    function responsiveResize() {
+        if ($(window).width() < 768 && responsiveflag == false) {
+            jQuery('.block-search').appendTo('.header-wrapper');
+            responsiveflag = true;
+        } else if ($(window).width() > 767) {
+            jQuery('.block-search').insertAfter('.menu-wrap');
+            responsiveflag = false;
+        }
+    }
+
+    responsiveResize();
+    $(window).resize(responsiveResize);
+
+
 });

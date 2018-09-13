@@ -59,11 +59,11 @@
     padding: 6px;
     max-width: 10%;
     margin: 0 auto;
-    display: table;  
-    > .logo{
+    display: table;
+    >.logo {
         display: table-cell;
         vertical-align: middle;
-    }   
+    }
 }
 
 .menu-wrap {
@@ -250,9 +250,50 @@
     text-align: center;
     max-width: 54%;
     margin: 0 auto;
-    .minisearch {
+    .block-title,
+    label,
+    .nested {
+        .disp(none);
+    }
+    .block-content {
         .pos(relative);
         max-width: 80%;
+        margin: 0 auto;
+    }
+    .advanced-search{
+        text-align: right;
+        color: @color-white;
+        position: absolute;
+        right: 0;
+        bottom: -15px;
+        font-size: 10px;
+    }
+    .minisearch {
+        margin: 0 auto;
+        & *:focus {
+            outline: none;
+        }
+        div.search {
+            display: inline-block;
+            width: 100%;
+            background: @color-white;
+            .pos(relative);
+            .input-text {
+                .hw(40px, 100%);
+                padding: 0 40px 0 20px;
+            }
+        }
+        .actions button,
+        .actions button:hover {
+            background: @color-crimson;
+            border: none;
+            .hw(40px, 40px);
+            font-size: @f-size-xl;
+            top: 0;
+            right: 0;
+            border-radius: 0;
+            color: @color-white;
+        }
     }
 }
 
@@ -455,28 +496,25 @@
         .block-content {
             height: 100%;
         }
-
-        .btn-wrap{
-        .action{
-            background: #020202;
-            padding: 30px 20px;
-            color: #fff;
-            border: none;
-            display: block;
-            width: 100%;
-            text-decoration: none;
-            font-size: 13px;
-            border-radius: 0;
-            font-weight: bold;
-            text-transform: uppercase;
-
-            &.primary{
-                position: relative;
-                border-left: 1px solid #404040;
-                
+        .btn-wrap {
+            .action {
+                background: #020202;
+                padding: 30px 20px;
+                color: #fff;
+                border: none;
+                display: block;
+                width: 100%;
+                text-decoration: none;
+                font-size: 13px;
+                border-radius: 0;
+                font-weight: bold;
+                text-transform: uppercase;
+                &.primary {
+                    position: relative;
+                    border-left: 1px solid #404040;
+                }
             }
         }
-    }
         .minicart-items {
             list-style: none;
             height: ~"-webkit-calc(100vh - 230px)" !important;
@@ -549,7 +587,7 @@
 
 @media screen and (max-width: 1366px) {
     .header {
-        .logo-wrap{
+        .logo-wrap {
             max-width: 6%;
         }
         .menu-wrap {
@@ -561,7 +599,7 @@
         .acc-links {
             max-width: 16.5%;
         }
-        .minicart-wrapper{
+        .minicart-wrapper {
             max-width: 6.5%;
         }
     }
@@ -617,8 +655,9 @@
                 width: 100%;
                 max-width: 460px;
                 position: static;
-                .minisearch {
+                .block-content {
                     max-width: 80%;
+                    margin: auto;
                 }
             }
             .acc-links {
@@ -664,7 +703,7 @@
                 padding: 0;
                 padding-top: 20px;
                 position: static;
-                .minisearch {
+                .block-content {
                     max-width: 50%;
                 }
                 &:before {

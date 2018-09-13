@@ -181,7 +181,7 @@ p {
                 margin-right: 10px;
                 background-color: red;
                 color: #fff;
-                border: 1px solid red;
+                border: 1px solid transparent;
                 border-radius: 0;
                 max-width: 445px;
                 width: 100%;
@@ -189,54 +189,6 @@ p {
                 font-weight: bold;
                 &:hover {
                     color: #fff;
-                }
-            }
-            .form-group {
-                position: relative;
-                .label {
-                    position: absolute;
-                    z-index: 1;
-                    color: #d7dded;
-                    left: 10px;
-                    font-size: 13px;
-                    background: #fff;
-                    top: 15px;
-                    pointer-events: none;
-                    transition: all .5s ease 0s;
-                }
-                &.focused label {
-                    top: -7px;
-                    color: #d7dded;
-                    font-size: 11px;
-                }
-                .wpcf7-form-control-wrap {
-                    display: block;
-                    position: relative;
-                    .form-control {
-                        display: block;
-                        width: 100%;
-                        padding: 6px 0 6px 10px;
-                        font-size: 14px;
-                        line-height: 1.42857143;
-                        color: #000;
-                        background-color: #fff;
-                        background-image: none;
-                        border-bottom: 1px solid #d7dded;
-                        border-radius: 0;
-                        &:focus {
-                            border-color: #000 !important;
-                            box-shadow: none;
-                        }
-                        &.input-text {
-                            max-width: 445px;
-                            height: 50px;
-                            border: 1px solid #d7dded;
-                        }
-                        .secondary a {
-                            color: #000;
-                            text-decoration: none;
-                        }
-                    }
                 }
             }
         }
@@ -258,47 +210,7 @@ p {
     .sub-title {
         margin-bottom: 45px;
     }
-    .form-group {
-        position: relative;
-        .label {
-            position: absolute;
-            z-index: 1;
-            color: #d7dded;
-            left: 10px;
-            font-size: 13px;
-            background: #fff;
-            top: 15px;
-            pointer-events: none;
-            transition: all .5s ease 0s;
-        }
-        &.focused label {
-            top: -7px;
-            color: #d7dded;
-            font-size: 11px;
-        }
-        .wpcf7-form-control-wrap {
-            display: block;
-            position: relative;
-            .form-control {
-                display: block;
-                width: 100%;
-                padding: 6px 0px 6px 10px;
-                font-size: 14px;
-                line-height: 1.42857143;
-                color: #000;
-                background-color: #fff;
-                background-image: none;
-                border-bottom: 1px solid #d3d8e3;
-                border-radius: 0;
-                box-shadow: none;
-                transition: border-color ease-in-out .15s;
-                &:focus {
-                    border-color: #000;
-                    box-shadow: none;
-                }
-            }
-        }
-    }
+  
     .map {
         height: 500px;
         border: 10px solid #d7dded;

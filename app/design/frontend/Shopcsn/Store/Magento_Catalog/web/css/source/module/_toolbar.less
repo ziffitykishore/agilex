@@ -33,14 +33,17 @@
         }
     }
 
-    .toolbar-products {
+    .toolbar-products, 
+    .order-products-toolbar .pager {
         margin-bottom: @indent__xl;
         padding: 8px 30px;
         text-align: center;
         &:extend(.abs-add-clearfix all);
         background: @color-whitesmoke;
         border: 1px solid @color-gainsboro;
-
+        .toolbar-number{
+            font-size: 12px;
+        }
         .pages {
             display: none;
 
@@ -61,11 +64,15 @@
                 text-align: center;
             }
             margin-right: 80px;
+            .limiter-label{
+                font-size: 9px;
+                padding: 5px;
+            }
             .limiter-text{
                 .pos(absolute);
                 font-size: @f-size-xs;
                 display: block;
-                top: 10px;
+                top: 6px;
                 right: -80px;
             }
         }
