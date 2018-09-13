@@ -4,16 +4,13 @@
  */
 
 define([
-    'uiComponent',
-    'Magento_Customer/js/customer-data',
     'jquery',
-    'ko',
-    'underscore',
-    'sidebar',
-    'mage/translate',
-    'mage/dropdown',
+    'jquery/ui', 
+    'jquery/validate', 
+    'mage/translate' ,
+    'slick',
     'domReady!'
-], function(Component, ko, _, $) {
+], function($) {
     'use strict';
 
     jQuery('.overlay').on('click', function() {
@@ -106,6 +103,7 @@ define([
         jQuery(this).parent().toggleClass('active');
     });
 
+    $("input").attr("autocomplete", "off");
 
     /* Accordion */
 
@@ -117,4 +115,56 @@ define([
     }
     jQuery('#accordion').on('hidden.bs.collapse', toggleChevron);
     jQuery('#accordion').on('shown.bs.collapse', toggleChevron);
+
+
+
+    /* home page slider */
+
+    $('.blog-content-wrap').slick({
+        dots: false,
+        arrows: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+          {
+            breakpoint: 1023,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              infinite: true
+              
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+
+        ]
+      });
+
+
+
+      /* responsive View */
+
+  var responsiveflag = false;
+  function responsiveResize() {
+    if ($(window).width() < 768 && responsiveflag == false) {
+        jQuery('.block-search').appendTo('.header-wrapper');
+      responsiveflag = true;
+    } else if ($(window).width() > 767) {
+        jQuery('.block-search').insertAfter('.menu-wrap');
+      responsiveflag = false;
+    }
+  }
+
+  responsiveResize();
+  $(window).resize(responsiveResize);
+
+
 });

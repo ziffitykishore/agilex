@@ -260,7 +260,7 @@
         max-width: 80%;
         margin: 0 auto;
     }
-    .advanced-search{
+    .advanced-search {
         text-align: right;
         color: @color-white;
         position: absolute;
@@ -609,7 +609,7 @@
     .page-header {
         border-bottom: 1px solid #5178bf;
         box-shadow: none;
-        .header {
+        
             .logo-wrap {
                 padding: 2px 0;
             }
@@ -631,6 +631,47 @@
                 padding-top: 18px;
                 padding-bottom: 18px;
             }
+        
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .page-header {
+        .header {
+            text-align: center;
+        }
+        .logo-wrap {
+            max-width: 12%;
+        }
+        .block-search {
+            width: 100%;
+            max-width: 58%;
+            position: static;
+            .block-content {
+                max-width: 80%;
+                margin: auto;
+            }
+        }
+        .acc-links {
+            max-width: 10%;
+            .signin-link {
+                a span {
+                    display: none;
+                }
+                .fa {
+                    margin-right: 0;
+                }
+            }
+        }
+        .menu-wrap {
+            float: left;
+            max-width: 10%;
+            .cat-trigger {
+                display: none;
+            }
+        }
+        .minicart-wrapper {
+            max-width: 10%;
         }
     }
 }
@@ -645,34 +686,20 @@
             display: none;
         }
     }
-    .page-header {
-        .header {
-            text-align: center;
-            .logo-wrap {
-                max-width: 80px;
-            }
-            .block-search {
-                width: 100%;
-                max-width: 460px;
-                position: static;
-                .block-content {
-                    max-width: 80%;
-                    margin: auto;
-                }
-            }
-            .acc-links {
-                display: none;
-            }
-            .menu-wrap {
-                float: left;
-                .cat-trigger {
-                    display: none;
-                }
+    
+    .cms-index-index {
+        .header-promo {
+            margin-top: -1px;
+        }
+        .home-banner {
+            margin-bottom: 0;
+        }
+        .promo-banner-wrap {
+            padding: 0;
+            a+a {
+                margin-top: 0;
             }
         }
-    }
-    .cms-index-index .header-promo {
-        margin-top: -1px;
     }
 }
 
