@@ -21,27 +21,32 @@
 -->
 
 <!-- ko foreach: getRegion('estimation') -->
-<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- ko template: getTemplate() -->
+<!-- /ko -->
 <!--/ko-->
 
 <!-- ko foreach: getRegion('authentication') -->
-<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- ko template: getTemplate() -->
+<!-- /ko -->
 <!--/ko-->
 
 <!-- ko foreach: getRegion('messages') -->
-<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- ko template: getTemplate() -->
+<!-- /ko -->
 <!--/ko-->
 
 <div class="opc-wrapper one-step-checkout-wrapper">
     <div class="opc one-step-checkout-container" id="checkoutSteps">
-        <div class="col-mp mp-4 mp-sm-6 mp-xs-12">
+        <div class="col-mp mp-4 mp-sm-6 mp-xs-12 shipping-addr">
             <div class="row-mp">
                 <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
                 <div class="col-mp mp-12" data-bind="scope: 'checkout.steps.shipping-step.shippingAddress'">
-                    <!-- ko template: getAddressTemplate() --><!-- /ko -->
+                    <!-- ko template: getAddressTemplate() -->
+                    <!-- /ko -->
                 </div>
                 <div class="col-mp mp-12" data-bind="scope: 'checkout.steps.shipping-step.billingAddress'">
-                    <!-- ko template: getAddressTemplate() --><!-- /ko -->
+                    <!-- ko template: getAddressTemplate() -->
+                    <!-- /ko -->
                 </div>
                 <div class="mp-clear"></div>
                 <!--/ko-->
@@ -49,10 +54,12 @@
                 <div class=" col-mp mp-12 hoverable">
                     <div class="row-mp">
                         <div class="col-mp mp-12" data-bind="scope: 'checkout.steps.shipping-step.shippingAddress'">
-                            <!-- ko template: getAddressTemplate() --><!-- /ko -->
+                            <!-- ko template: getAddressTemplate() -->
+                            <!-- /ko -->
                         </div>
                         <div class="col-mp mp-12" data-bind="scope: 'checkout.steps.shipping-step.billingAddress'">
-                            <!-- ko template: getAddressTemplate() --><!-- /ko -->
+                            <!-- ko template: getAddressTemplate() -->
+                            <!-- /ko -->
                         </div>
                         <div class="mp-clear"></div>
                     </div>
@@ -60,20 +67,24 @@
                 <!--/ko-->
             </div>
         </div>
-        <div class="col-mp mp-8 mp-sm-6 mp-xs-12">
+        <div class="col-mp mp-4 mp-sm-6 mp-xs-12 ship-pay">
             <div class="row-mp">
-                <div class="col-mp mp-6 mp-sm-12 mp-xs-12 hoverable" data-bind="scope: 'checkout.steps.shipping-step'">
-                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <div class="col-mp mp-12 mp-sm-12 mp-xs-12 hoverable shipping-met " data-bind="scope: 'checkout.steps.shipping-step'">
+                    <!-- ko template: getTemplate() -->
+                    <!-- /ko -->
                 </div>
-                <div class="col-mp mp-sm-12 mp-xs-12 hoverable only-colspan" data-bind="scope: 'checkout.steps.billing-step', css: {'mp-12': window.checkoutConfig.quoteData.is_virtual, 'mp-6': !window.checkoutConfig.quoteData.is_virtual}">
-                    <!-- ko template: getTemplate() --><!-- /ko -->
-                </div>
-                <div class="col-mp mp-12" data-bind="scope: 'checkout.sidebar'">
-                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <div class="col-mp mp-12 mp-sm-12 mp-xs-12 hoverable only-colspan payment-met" data-bind="scope: 'checkout.steps.billing-step', css: {'mp-12': window.checkoutConfig.quoteData.is_virtual, 'mp-6': !window.checkoutConfig.quoteData.is_virtual}">
+
+                    <!-- ko template: getTemplate() -->
+                    <!-- /ko -->
                 </div>
                 <div class="mp-clear"></div>
             </div>
         </div>
-        <div class="mp-clear"></div>
+        <div class="col-mp mp-4 mp-sm-12 mp-xs-12 order-sum" data-bind="scope: 'checkout.sidebar'">
+            <!-- ko template: getTemplate() -->
+            <!-- /ko -->
+        </div>
+
     </div>
 </div>
