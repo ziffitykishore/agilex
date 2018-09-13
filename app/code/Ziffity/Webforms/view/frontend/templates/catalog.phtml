@@ -1,5 +1,10 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var \Ziffity\Webforms\Block\Main $block */
+?>
 <form id="catalog_form" class="form wpcf7-form" method="post" autocomplete="off" action="<?php echo $this->getUrl("webforms/index/post")?>">
-    <input name="form_key" type="hidden" value="TbaGf1953WTheAvu" />
+    <?= $block->getBlockHtml('formkey') ?>
     <fieldset class="fieldset catalog" data-hasrequired="* Required Fields">
         <div class="field field-name-fullname required mb-30 form-group">
             <label class="label txt-grey" for="fullname"><span>Full Name</span></label>
@@ -36,12 +41,8 @@
 
         <input type="text" name="form_type" id="form_type" value="catalog" class="hidden input-text">
         <div class="field required">
-            <div class="g-div">
-                <div class="custom-g-recaptcha" id="catalogCaptcha"></div>
-                <input type="text" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
-            </div>
+            <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('catalogGCaptcha')->toHtml(); ?>
         </div>
-
         <div class="actions-toolbar">
             <div class="primary">
                 <button id="send2" class="btn button-full action login primary text-uppercase mb-30" name="send" type="submit"><span>Sign Up</span></button>
