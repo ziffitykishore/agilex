@@ -58,6 +58,8 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         echo '</li><li class="item product product-item '. $itemLiClass .'">';
                     } 
                 ?>
+                
+                <div class="product-item-info" data-container="product-grid">
                 <?php
                     /*ziffity special price sale badge*/
                     $specialprice = $_product->getSpecialPrice();
@@ -76,7 +78,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         }
                     }
                 ?>
-                <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);
                     if ($pos != null) {

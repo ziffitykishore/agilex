@@ -1,8 +1,69 @@
 .customer-account-index {}
 
+
+
+.btn-action() {
+.action, .action.back, .action.remind {
+    .lib-css(background, @color-black);
+    .lib-css(color, @color-white);
+    border: 1px solid @color-black;
+    
+    .br-radius(0);
+    .transition(all 0.5s ease-in-out 0s);
+    font-weight: normal;
+    padding: 7px 15px;
+    font-size: @f-size;
+    line-height: 20px;
+    margin-top: 0;
+    text-transform: uppercase;
+    &:hover, &:focus, &:active{
+        .lib-css(background, @color-darkslateblue);
+        .lib-css(border-color, @color-darkslateblue);
+    }
+}
+}
+
+.page-title(){
+    padding: 20px 30px;
+    border-bottom: 1px solid #d7d7ed;
+    .page-title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+
+
+.customer-account-login,
+.customer-account-create,
+.customer-account-forgotpassword {
+    .actions-toolbar {
+        .btn-action();
+    }
+
+    .page-main {
+        .container-md();
+        margin-top: 20px;
+        .page-title-wrapper {
+            .page-title();
+            .bg-smoke();
+            border-bottom: none;
+        }
+
+        .columns {
+            .bg-smoke();
+            padding: 30px;
+            .column{
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
 .account {
     &.page-layout-2columns-left {
         .page-main {
+            .container-md();
             margin-top: 20px;
             .column.main {
                 width: 70.7%;
@@ -13,17 +74,11 @@
         }
     }
     .page-title-wrapper {
-        padding: 20px 30px;
-        border-bottom: 1px solid #d7d7ed;
-        .page-title {
-            margin: 0;
-            font-size: 18px;
-            font-weight: bold;
-        }
+        .page-title();
     }
     .columns {
         margin-top: 30px;
-        .container-md()
+        
     }
     .column {
         &.main {
@@ -43,6 +98,8 @@
                 margin-bottom: 25px;
                 a {
                     color: @color-darkslateblue;
+                    font-weight: normal;
+                    font-size: @f-size;
                 }
             }
             .block-content {
@@ -166,31 +223,10 @@
         .actions-toolbar {
             margin-left: 0;
             padding: 30px;
-            .primary {
-                .action {
-                    .lib-css(background, @color-darkslateblue);
-                    .lib-css(color, @color-white);
-                    .br-radius(0);
-                    border-color: @color-darkslateblue;
-                    font-weight: normal;
-                    padding: 7px 15px;
-                    font-size: @f-size;
-                    line-height: 20px;
-                }
-            }
-            .secondary {
-                .action.back {
-                    .lib-css(background, @color-darkslateblue);
-                    .lib-css(color, @color-white);
-                    .br-radius(0);
-                    border: 1px solid @color-darkslateblue;
-                    margin-top: 0;
-                    line-height: 20px;
-                    padding: 7px 15px;
-                    font-size: @f-size;
-                    text-decoration: none;
-                }
-            }
+            
+            .btn-action();
+            
+            
         }
         .message {
             margin: 30px;
@@ -273,16 +309,12 @@
                         }
                     }
                 }
-            }
+            }                                                                   
         }
     }
 }
 
-.customer-account-create {
-    .page-main {
-        .container-md();
-    }
-}
+
 
 .columns {
     .column {
@@ -304,21 +336,7 @@
                 }
             }
         }
-        .actions-toolbar {
-            .secondary {
-                .action.back {
-                    .lib-css(background, @color-darkslateblue);
-                    .lib-css(color, @color-white);
-                    .br-radius(0);
-                    border: 1px solid @color-darkslateblue;
-                    margin-top: 0;
-                    line-height: 20px;
-                    padding: 7px 15px;
-                    font-size: @f-size;
-                    text-decoration: none;
-                }
-            }
-        }
+
     }
 }
 

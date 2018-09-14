@@ -128,14 +128,14 @@ define([
 
             minicart.on('click', '[data-action="close"]', function (event) {
                 event.stopPropagation();
+               
                 minicart.find('[data-role="dropdownDialog"]').dropdownDialog('close');
                 $('body').removeClass('cart-opened');
-                $('.customer-welcome, .customer-name').removeClass('active');
             });
 
             return true;
         },
-
+                                                                                                                                                                                                                                                                                                                                    
         /**
          * @param {String} productType
          * @return {*|String}
