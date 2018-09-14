@@ -16,7 +16,7 @@ use Magento\Framework\App\Action\Action;
  */
 ?>
 <?php
-//echo "***".$block->getUrl();exit;
+
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 ?>
@@ -50,6 +50,24 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
             <?php foreach ($_productCollection as $_product): ?>
 
                 <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item col-xs-6 col-sm-4 col-md-3 col-lg-20">' : '</li><li class="item product product-item col-xs-6 col-sm-4 col-md-3 col-lg-20">' ?>
+                <?php
+                    /*ziffity special price sale badge*/
+                    $specialprice = $_product->getSpecialPrice();
+                    $specialPriceFromDate = $_product->getSpecialFromDate();
+                    $specialPriceToDate = $_product->getSpecialToDate();
+                    $today =  time();
+                     if ($specialprice){
+                        if($today >= strtotime( $specialPriceFromDate)
+                            && $today <= strtotime($specialPriceToDate)
+                            || $today >= strtotime( $specialPriceFromDate)
+                            && is_null($specialPriceToDate)
+                        ){
+                    ?>
+                    <div class="product-label"><span class="sale-product-icon">Sale</span></div>
+                    <?php
+                        }
+                    }
+                ?>
                 <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);
@@ -60,7 +78,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                     ?>
                     <?php // Product Image ?>
                     <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
-                        <img  src="http://shopcsntv.com/media/catalog/product/cache/1/thumbnail/115x115/c96a280f94e22e3ee3823dd0a1a87606/1/8/1875_type2_gold_liberty_o.jpeg" alt="LifeLong Fitness IV"/>
+                        <?= $productImage->toHtml() ?>
                     </a>
                     <div class="product details product-item-details">
                         <?php

@@ -58,6 +58,24 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         echo '</li><li class="item product product-item '. $itemLiClass .'">';
                     } 
                 ?>
+                <?php
+                    /*ziffity special price sale badge*/
+                    $specialprice = $_product->getSpecialPrice();
+                    $specialPriceFromDate = $_product->getSpecialFromDate();
+                    $specialPriceToDate = $_product->getSpecialToDate();
+                    $today =  time();
+                     if ($specialprice){
+                        if($today >= strtotime( $specialPriceFromDate)
+                            && $today <= strtotime($specialPriceToDate)
+                            || $today >= strtotime( $specialPriceFromDate)
+                            && is_null($specialPriceToDate)
+                        ){
+                    ?>
+                    <div class="product-label"><span class="sale-product-icon">Sale</span></div>
+                    <?php
+                        }
+                    }
+                ?>
                 <div class="product-item-info" data-container="product-grid">
                     <?php
                     $productImage = $block->getImage($_product, $image);

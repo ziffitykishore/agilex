@@ -10,8 +10,8 @@
 <div class="block newsletter container">
     <div class="content col-sm-12 col-md-12 col-lg-9 col-lg-offset-2">
         <div class="col-sm-6 sign-up">
-            <h3>Be the First to know</h3>
-            <p>sign up to get the latest information on sales and offers!</p>
+            <h3><?= /* @escapeNotVerified */ __('Be the First to know') ?></h3>
+            <p><?= /* @escapeNotVerified */ __('Sign up to get the latest information on sales and offers!') ?></p>
         </div>
         <div class="col-sm-6">
             <form class="form subscribe"
@@ -23,8 +23,8 @@
                 <div class="field newsletter">
                     <div class="control">
                         <input name="email" type="email" id="newsletter"
-                                    placeholder="<?php /* @escapeNotVerified */ echo __('Enter your e-mail address') ?>"
-                                    data-validate="{required:true, 'validate-email':true}"/>
+                            placeholder="<?php /* @escapeNotVerified */ echo __('Enter your e-mail address') ?>"
+                            data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                 </div>
                 <div class="actions">
@@ -35,5 +35,5 @@
                 </div>
             </form>
       </div>
-    </div>    
+    </div>
 </div>

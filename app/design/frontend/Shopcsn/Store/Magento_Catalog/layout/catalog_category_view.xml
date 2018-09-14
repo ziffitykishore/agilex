@@ -49,11 +49,5 @@
             </arguments>
             <block class="Magento\Catalog\Block\Category\Rss\Link" name="rss.link" template="Magento_Catalog::category/rss.phtml"/>
         </referenceBlock>
-         <container name="csn-info" htmlClass="csn-info" htmlTag="div">
-            <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />           
-        </container>  
-           
-        <move element="csn-info" destination="page.top"/>
-        <move element="breadcrumbs" destination="csn-info" before="csn.info" />
     </body>
 </page>
