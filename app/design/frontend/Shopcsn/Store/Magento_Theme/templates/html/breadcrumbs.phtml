@@ -5,12 +5,11 @@
  */
 
 // @codingStandardsIgnoreFile
-
 ?>
 <?php if ($crumbs && is_array($crumbs)) : ?>
-<div class="breadcrumbs">
+<div class="breadcrumbs clearfix">
     <div class="container">
-        <ul class="items">
+        <ul class="items pull-left">
             <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
                 <li class="item <?= /* @escapeNotVerified */ $crumbName ?>">
                 <?php if ($crumbInfo['link']) : ?>
@@ -23,6 +22,7 @@
                 </li>
             <?php endforeach; ?>
         </ul>
+        <?= $block->getChildHtml('csn.info'); ?>
     </div>
 </div>
 <?php endif; ?>
