@@ -58,6 +58,7 @@ atlassian*
 /vendor/*
 !/vendor/.htaccess
 !/vendor/magento/module-email/Model/AbstractTemplate.php
+!/vendor/shipperhq/
 /generated/*
 !/generated/.htaccess
 .DS_Store
