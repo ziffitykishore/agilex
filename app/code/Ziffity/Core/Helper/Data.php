@@ -8,6 +8,7 @@ namespace Ziffity\Core\Helper;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
+use Magento\Store\Model\ScopeInterface;
 
 class Data extends AbstractHelper
 {
@@ -51,7 +52,7 @@ class Data extends AbstractHelper
      */
     public function getScopeConfig($path)
     {
-        return $this->scopeConfig->getValue($path);
+        return $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE);
     }
 
     /**
@@ -108,6 +109,10 @@ class Data extends AbstractHelper
     public function getGCaptcha()
     {
         return $this->_registry->registry('gcaptcha');
+    }
+    
+    public function getRegister(){
+        return $this->_registry;
     }
 
 }

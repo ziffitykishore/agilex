@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ampromo" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Promo Items</label>
+            <tab>ziffity</tab>
+            <resource>Ziffity_Promo::ziffity_promo</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>			
+                <field id="message" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Message for the free item in the Cart</label>
+                </field>
+                <field id="prefix" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Prefix for the free item name in the order</label>
+                </field>
+                <field id="allow_delete" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow customers to delete free items</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>                
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
