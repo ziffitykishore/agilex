@@ -394,7 +394,9 @@
         right: 0;
         width: 180px;
         .lib-css(background, @color-white);
-        .disp(none);
+        visibility: hidden;
+        opacity: 0;
+        .transition(all 0.5s ease-in-out 0s);
         &:before {
             border: 10px solid @color-white;
             border-color: transparent transparent @color-white transparent;
@@ -419,6 +421,10 @@
                     border-top: 1px solid #d7d7ed;
                 }
             }
+        }
+        .acc-opened & {
+            visibility: visible;
+            opacity: 1;
         }
     }
 }
@@ -509,9 +515,10 @@
         }
         .btn-wrap {
             .action {
-                background: #020202;
+                .lib-css(background, @color-black);
+                .lib-css(color, @color-white);
                 padding: 30px 20px;
-                color: #fff;
+                .transition(all 0.5s ease-in-out 0s);
                 border: none;
                 display: block;
                 width: 100%;
@@ -523,6 +530,9 @@
                 &.primary {
                     position: relative;
                     border-left: 1px solid #404040;
+                }
+                &:hover {
+                    .lib-css(background, @color-darkslateblue); 
                 }
             }
         }
@@ -633,15 +643,18 @@
             text-align: left;
             padding-bottom: 185px;
             .level0 {
-                &.nav-1 {
+            
                     >.submenu {
                         width: 450px;
-                        
+                        height: 100%;
+                        min-width: auto;
+                        position: absolute !important;
                         >li {
                             width: 50%;
+                            float: left;
                         }
                     }
-                }
+                
             }
             .level0 {
                 position: unset;
@@ -654,7 +667,7 @@
                     color: #5178bf;
                 }
                 &.submenu {
-                    width: 300px;
+                    
                     .parent {
                         >a {
                             font-size: 13px;
@@ -673,10 +686,7 @@
                         bottom: 0;
                         left: 0;
                     }
-                    >li {
-                        width: 100%;
-                        float: left;
-                    }
+                    
                     li {
                         &:hover {
                             background: #fff;
@@ -692,6 +702,11 @@
                         padding: 0;
                         border: 0;
                         box-shadow: none;
+                        min-width: auto;
+
+                        li {
+                            border-left: none;
+                        }
                     }
                 }
             }
@@ -709,13 +724,7 @@
                 position: static;
                 margin-right: 0;
                 margin-bottom: 0;
-                .submenu {
-                    .pos(absolute);
-                    left: 100% !important;
-                    top: 0 !important;
-                    border: none;
-                    box-shadow: none;
-                }
+                
                 &:hover,
                 &.active {
                     background: @color-whitesmoke;
@@ -727,6 +736,26 @@
                 }
                 &:hover>.submenu {
                     .disp(block) !important;
+                }
+
+                .submenu {
+                    .pos(absolute);
+                    left: 100% !important;
+                    top: 0 !important;
+                    border: none;
+                    box-shadow: none;
+
+                    li {
+                        &:hover, &:active, &.active{
+                            background: transparent;
+                            border-left: none;
+                        }
+                        a {
+                            &:hover{
+                                color: @color-darkslateblue;
+                            }
+                        }
+                    }
                 }
             }
             li a {

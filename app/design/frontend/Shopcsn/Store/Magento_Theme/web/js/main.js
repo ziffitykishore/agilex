@@ -13,12 +13,12 @@ define([
     'jquery/validate',
     'mage/translate',
     'domReady!'
-], function($) {
+], function(ko, _ , $) {
     'use strict';
 
     jQuery('<div class="overlay"></div>').appendTo('.page-wrapper');
     jQuery('.nav-toggle').on('click', function(e) {
-        jQuery('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');;
+        jQuery('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');
 
     }); 
     jQuery('.overlay').on('click', function() {
@@ -27,29 +27,39 @@ define([
     });
 
     jQuery('.showcart').on('click', function() {
-        jQuery('body').removeClass('menu-opened');
+        jQuery('body').removeClass('menu-opened acc-opened');
+    });
+    jQuery('#btn-minicart-close').on('click', function() {
+        jQuery('body').removeClass('cart-opened');
     });
 
     jQuery('.customer-welcome .customer-name').on('click', function() {
-        jQuery('body').toggleClass('acc-opened menu-opened cart-opened');
-        jQuery('html').removeClass('nav-open');
+        jQuery('body').toggleClass('acc-opened').removeClass('menu-opened cart-opened');
+        
     });
 
 
 
     jQuery(document).on('click', function() {
-        jQuery('.nav-sections').on('click', function(e) {
+        /* jQuery('.nav-sections').on('click', function(e) {
             e.stopPropagation();
         });
 
         jQuery('.header').on('click', function(e) {
 
             jQuery('body').removeClass('acc-opened cart-opened menu-opened');
-        });
+        }); */
     });
 
+    
+
+    /* autocomplete off */
+
+    jQuery('input').attr('autocomplete', 'off');
+
+
     jQuery('.form-group input.form-control, textarea.form-control')
-        .on("focus blur change", function() {
+        .on("focus blur", function() {
             if (jQuery(this).val() == "") {
                 jQuery(this).parents(".form-group").toggleClass("focused");
             }
@@ -111,7 +121,7 @@ define([
         jQuery(this).parent().toggleClass('active');
     });
 
-    $("input").attr("autocomplete", "off");
+    
 
     /* Accordion */
 
@@ -127,9 +137,11 @@ define([
 
 
 
+
+
     /* home page slider */
 
-    $('.blog-content-wrap').slick({
+    jQuery('.blog-slider').slick({
 
         dots: false,
         arrows: false,
