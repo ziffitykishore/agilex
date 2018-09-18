@@ -123,7 +123,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
                                 <div class="actions-primary <?= $_product->isAvailable() ? '' : 'no-stock' ?> "<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
                                 <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
-                                            <span><?php echo __('Quickview') ?></span>
+                                            <span><?php echo __('Quick View') ?></span>
                                         </a>
                                     <?php if ($_product->isSaleable()): ?>
                                         <?php $postParams = $block->getAddToCartPostParams($_product); ?>
@@ -138,7 +138,13 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                             </button>
                                         </form>
                                         
-                                        
+                                        <?php else: ?>
+                                                <?php if ($_product->isAvailable()): ?>
+                                                    <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                                <?php else: ?>
+                                                    <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                                <?php endif; ?>
+        
                                     <?php endif; ?>
                                 </div>
                                 <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>

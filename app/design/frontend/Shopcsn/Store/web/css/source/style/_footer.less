@@ -97,10 +97,10 @@
             width: 20%;
             float: left;
         }
-        .footer-list:nth-child(4) {
+        .footer-list.social-links {
             width: 15%;
         }
-        .footer-list:nth-child(5) {
+        .footer-list.payment-method {
             width: 25%;
         }
         ul {
@@ -118,6 +118,12 @@
             }
         }
         .payment-method {
+            .pay-img {
+                img{
+                    max-width: 50px;
+                    margin-top: 3px;
+                }
+            }
             .links {
                 margin-top: 15px;
             }
@@ -209,12 +215,24 @@
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
-    .page-footer {.footer-logo{ .sponsor{ ul {li{
-        width: 45%;   
+    .page-footer {
+        .page-footer__content {
+        .container {
+            padding: 0px;
+        }
+        .footer-logo {
+            .sponsor {
+                ul {
+                    li {
+                        width: 45%;
+                    }
+                }
+            }
+        }
     }
 }
-    }
-}
+    #sticky-social{
+        display: none;
     }
 }
 
