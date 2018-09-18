@@ -48,8 +48,22 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
         <ol class="products list items product-items clearfix">
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php foreach ($_productCollection as $_product): ?>
+                <?php
+                /*call for price */
+                $callforprice = false;
+                $callforClass = '';
+                /*to check call for price */
+                $callForAttr = $_product->getResource()->getAttribute('callforquote');
+                if($callForAttr){
+                    $val = $callForAttr->getFrontend()->getValue($_product)->getText();
+                    if($val == 'Yes'){
+                        $callforprice = true;
+                        $callforClass = 'callforprice-product';
+                    }
+                }
+                ?>
 
-                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item col-xs-6 col-sm-4 col-md-3 col-lg-20">' : '</li><li class="item product product-item col-xs-6 col-sm-4 col-md-3 col-lg-20">' ?>
+                <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="item product product-item '.$callforClass.' col-xs-6 col-sm-4 col-md-3 col-lg-20">' : '</li><li class="item product product-item '.$callforClass.' col-xs-6 col-sm-4 col-md-3 col-lg-20">' ?>
                 
                 <div class="product-item-info" data-container="product-grid">
                 <?php
@@ -92,16 +106,24 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             </a>
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                        <?php if(!$callforprice){ ?>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+                        <?php } ?>
                         <?= $block->getProductDetailsHtml($_product) ?>
 
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
                                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
-                                <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
-                                            <span><?php echo __('Quickview') ?></span>
-                                        </a>
-                                    <?php if ($_product->isSaleable()): ?>
+                                    <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_product->getId();?>" href="javascript:void(0);">
+                                        <span><?php echo __('Quickview') ?></span>
+                                    </a>
+                                    <?php  if($callforprice) : ?>
+                                        <div class="btn-callforprice">
+                                            <span><?= /* @escapeNotVerified */ __('Call For Price') ?></span>
+                                        </div>
+                                    <?php
+                                    else:
+                                    if ($_product->isSaleable()): ?>
                                         <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                         <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
                                             <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
@@ -121,6 +143,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                             <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
                                         <?php endif; ?>
                                     <?php endif; ?>
+                                     <?php endif; ?>       
                                 </div>
                                 <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
                                     <?php if ($addToBlock = $block->getChildBlock('addto')): ?>

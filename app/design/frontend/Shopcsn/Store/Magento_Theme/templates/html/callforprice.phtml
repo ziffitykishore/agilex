@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © 2015 ziffitycommerce. All rights reserved.
+ */
+?>
+<?php
+    $storeInfo = $block->getConfigValue();
+    $wHeader = $storeInfo['welcome_header'];
+    $stTiming = $storeInfo['store_timings'];
+    $stPhone = $storeInfo['store_phone'];
+?>
+<div class="clearfix" id="callforquote-popup">
+    <div class="container">
+        <div class="contact-content">
+            <h1 class="contact-title"><?= __('Call For Price') ?></h1>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><i class="icon-phone"></i> <?= $stPhone ?></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><?= __('Business hours:') ?></p>
+                    <p><strong><?= $stTiming ?></strong></p>
+                </div>
+            </div>
+       </div>
+    </div>
+</div>
+<script type="text/javascript">
+require(['jquery', 'jquery/ui', 'Magento_Ui/js/modal/modal'],
+    function($, ui, modal) {
+        var options = {
+            type: 'popup',
+            responsive: true,
+            innerScroll: true,
+            modalClass: '',
+            buttons: false,
+        };
+        var callPopup = modal(options, $('#callforquote-popup'));
+        $('.btn-callforprice').on("click", function(){
+            $('#callforquote-popup').modal('openModal');
+        });
+    }
+);
+</script>
