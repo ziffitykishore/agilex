@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+   <event name="customer_register_success">
+       <observer name="ziffity_customerregip_observer" instance="Ziffity\CustomerRegIp\Observer\CustomerRegisterSuccess" />
+   </event>
+</config>
