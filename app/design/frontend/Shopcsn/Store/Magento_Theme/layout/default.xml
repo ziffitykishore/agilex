@@ -10,6 +10,7 @@
     <body>
         <referenceContainer name="before.body.end">
             <block  class="Magento\Framework\View\Element\Template" template="Magento_Theme::social-block.phtml" name="social.icons" />
+            <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
@@ -54,7 +55,7 @@
  
         </referenceContainer>
         <!-- Footer blocks END-->
-          <move element="header" destination="user.welcome" />
+        <move element="header" destination="user.welcome" />
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
         <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />

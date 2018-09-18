@@ -115,11 +115,14 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
 
 .block.newsletter {
     .sign-up {
         margin-bottom: 30px;
+        p {
+            font-size: 12px;
+        }
     }
 
     .content {
@@ -128,6 +131,14 @@
         }
     }
 
+}
+
+.page-footer {
+    .block.newsletter {
+        .sign-up {
+            margin-bottom: 0;
+        }
+    }
 }
 
 }

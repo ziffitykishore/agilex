@@ -198,6 +198,17 @@ define([
       });
 
 
+      function testimonials() {
+        var reviewWrap = $('.testi-slider-wrap').height();
+        $('.test-image-sec').height(reviewWrap);
+      }
+
+
+
+      /* to find if mobile */
+      var win_w = $(window).width();
+      var is_mobile = (win_w < 769) ? true : false;
+      var is_tab = (win_w < 993) ? true : false;
 
 
       /* responsive View */
@@ -206,16 +217,18 @@ define([
   function responsiveResize() {
     if ($(window).width() < 768 && responsiveflag == false) {
         $('.block-search').appendTo('.header-wrapper');
+        $('.test-image-sec').css('height', 'auto');
       responsiveflag = true;
+
     } else if ($(window).width() > 768) {
         $('.block-search').insertAfter('.menu-wrap');
+        testimonials();
       responsiveflag = false;
     }
   }
 
   responsiveResize();
   $(window).resize(function(){
-    
     responsiveResize();
   });
 

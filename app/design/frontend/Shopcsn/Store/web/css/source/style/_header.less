@@ -52,9 +52,17 @@
         }
     }
     .header-promo {
-        .promotion-text,
-        .ph {
-            font-size: 20px;
+        .promotion-text
+        {
+            font-size: 16px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            .ph{
+                font-size: 20px;
+                font-weight: bold;
+            }
         }
     }
     .header-wrapper {
@@ -312,7 +320,7 @@
                 margin-bottom: 0;
                 a {
                     color: @color-white;
-                    font-size: @f-size-xl;
+                    font-size: 12px;
                     text-decoration: none;
                     padding: 18px 15px;
                     display: block;
@@ -918,7 +926,8 @@
                     float: right;
                     position: absolute;
                     top: 0px;
-                    right: 5px;
+                    right: 25px;
+                    max-width: 65px;
                 }
             }
             .block-search {
@@ -958,6 +967,15 @@
             top: 60px;
         }
     }
+    .nav-sections {
+    .navigation {
+        .parent {
+            .level-top:after{
+                display: none;
+               }
+        }
+    }
+}
 }
 
 @media screen and (max-width: 640px) {

@@ -28,6 +28,12 @@
     }
 }
 
+.customer-forgetpassword-popup {
+    .fieldset {
+        margin-bottom: 0;
+    }
+}
+
 .log-in {
     background: url(../images/login_image.jpg) no-repeat left bottom;
     background-size: cover;
@@ -164,12 +170,25 @@
                     }
                 }
             }
+
+            .new-signup, .already-account {
+                margin-top: 15px;
+                p {
+                    font-size: 12px;
+                    line-height: normal;
+                }
+            }
             .actions-toolbar {
                 .primary {
                     width: 100%;
-                    margin-bottom: 20px;
-                    margin-top: 10px;
+                    float: none;
                 }
+                button {
+                    width: 100%;
+                    margin-top: 0;
+                }
+
+                
             }
             .field {
                 
@@ -248,17 +267,57 @@
 
 
 .modal-popup {
+
+    .modal-header {
+        background: @color-darkslateblue;
+        padding: 12px 20px 12px;
+        .modal-title {
+            color: @color-white;
+            padding: 0;
+            border: none;
+            text-transform: uppercase;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .action-close {
+            padding: 10px;
+            &:before{
+                color: @color-white;
+            }
+        }
+    }
     &.confirm{
         .modal-inner-wrap {
             width: 50%;
         }
+        .modal-content {
+            
+            padding: 20px;
+            
+        }
+    }
     .modal-content {
         box-shadow: none;
         border: none;
-        padding: 40px;
+        
         border-radius: 0;
     }
-}
+
+    &.call-price {
+        .modal-inner-wrap{
+            max-width: 500px;
+            .modal-content {
+                
+                padding: 20px;
+                .contact-title {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    display: none;
+                }
+            }
+        }
+    }
+
 
 .modal-footer {
     button {

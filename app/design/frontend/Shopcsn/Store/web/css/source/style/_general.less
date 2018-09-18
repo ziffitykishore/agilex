@@ -4,12 +4,22 @@ a:focus {
     outline: none;
 }
 
+/* breadcreumbs style */
+
+.breadcrumbs {
+    .lib-css(background, @color-darkslateblue);
+    .lib-css(color, @color-white);
+}
+
 .nav.nav-tabs {
     border-bottom: transparent;
     float: left;
     border-bottom: none;
     li {
         padding: 10px 15px;
+        &:first-child {
+            padding-left: 0;
+        }
         a {
             text-transform: uppercase;
             color: #020202;
@@ -111,43 +121,49 @@ a:focus {
     }
 }
 
-.page-main {
-    .heading-sec {
-        padding: 20px 30px;
-        background: @color-whitesmoke;
-        h2 {
-            margin: 0;
-            font-size: 20px;
-            font-weight: bold;
-            &.heading-text {
-                margin-top: 6px;
+.heading-sec {
+    padding: 20px 30px;
+    background: @color-whitesmoke;
+    .nav.nav-tabs {
+        li {
+            a {
+                font-size: 16px;
             }
         }
-        a.btn-view {
-            border: transparent;
-            background: @color-black;
-            color: @color-white;
-            font-weight: bold;
-            padding: 12px 24px;
-            line-height: normal;
-            font-size: @f-size-xs;
-            text-decoration: none;
-            width: auto;
-            .transition(all 0.5s ease-in-out 0s);
-            &:hover,
-            &:focus,
-            &:active {
-                .lib-css(background, @color-darkslateblue);
-            }
-        }
-        >a,
-        a:hover,
-        a:focus {
-            text-decoration: none;
-            .lib-css(color, @color-white);
-        }
-        border-bottom: 1px solid @color-gainsboro;
     }
+    h2 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        &.heading-text {
+            margin-top: 6px;
+        }
+    }
+    a.btn-view {
+        border: transparent;
+        background: @color-black;
+        color: @color-white;
+        font-weight: bold;
+        padding: 12px 24px;
+        line-height: normal;
+        font-size: @f-size-xs;
+        text-decoration: none;
+        width: auto;
+        .transition(all 0.5s ease-in-out 0s);
+        &:hover,
+        &:focus,
+        &:active {
+            .lib-css(background, @color-darkslateblue);
+        }
+    }
+    >a,
+    a:hover,
+    a:focus {
+        text-decoration: none;
+        .lib-css(color, @color-white);
+    }
+    border-bottom: 1px solid @color-gainsboro;
 }
 
 /* effects */
@@ -288,9 +304,16 @@ a:focus {
     }
 }
 
-/* breadcreumbs style */
-
-.breadcrumbs {
-    .lib-css(background, @color-darkslateblue);
-    .lib-css(color, @color-white);
+@media screen and (max-width: 768px) {
+    .page-main {
+        .heading-sec {
+            h2 {
+                font-size: 12px;
+            }
+            a.btn-view {
+                padding: 12px;
+                font-size: 10px;
+            }
+        }
+    }
 }
