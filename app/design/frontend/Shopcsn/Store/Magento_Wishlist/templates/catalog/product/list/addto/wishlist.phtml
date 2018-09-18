@@ -16,6 +16,7 @@
        data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($block->getProduct()) ?>'
        data-action="add-to-wishlist"
        role="button">
-        <span class="fa fa-heart-o"><?php echo $block->escapeHtml(__('Add to Wish List')) ?></span>
+       <i class="fa fa-heart-o"></i>
+        <span class="sr-only"><?php echo $block->escapeHtml(__('Add to Wish List')) ?></span>
     </a>
 <?php endif; ?>

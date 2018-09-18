@@ -209,12 +209,24 @@
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
-    .page-footer {.footer-logo{ .sponsor{ ul {li{
-        width: 45%;   
+    .page-footer {
+        .page-footer__content {
+        .container {
+            padding: 0px;
+        }
+        .footer-logo {
+            .sponsor {
+                ul {
+                    li {
+                        width: 45%;
+                    }
+                }
+            }
+        }
     }
 }
-    }
-}
+    #sticky-social{
+        display: none;
     }
 }
 
