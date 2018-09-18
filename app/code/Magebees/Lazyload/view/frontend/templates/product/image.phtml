@@ -1,0 +1,17 @@
+<?php /** @var $block \Magento\Catalog\Block\Product\Image */
+$_helper = $this->helper('Magebees\Lazyload\Helper\Data');
+$config=$_helper->getConfig();
+if(isset($config['loadingicon'])) {
+		$image=$config['loadingicon'];
+		$image_url=$_helper->getImageUrl($image);		
+	} else {
+		$image_url=$block->getViewFileUrl('Magebees_Lazyload::images/loader.gif');
+	}
+?>
+<img class="photo image magebees_lazyload"
+    <?= /* @escapeNotVerified */ $block->getCustomAttributes() ?>
+     src="<?= /* @escapeNotVerified */ $image_url ?>"			 
+     data-src="<?= /* @escapeNotVerified */ $block->getImageUrl() ?>"
+     width="<?= /* @escapeNotVerified */ $block->getWidth() ?>"
+     height="<?= /* @escapeNotVerified */ $block->getHeight() ?>"
+     alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>" />
