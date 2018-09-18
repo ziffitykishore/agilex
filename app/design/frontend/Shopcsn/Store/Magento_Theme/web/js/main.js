@@ -41,7 +41,9 @@ define([
 
     $('.menu-wrap li.level0').each(function(){
         if($(this).find('.level2').length){
-        $(this).addClass('mega-menu')
+            $(this).addClass('mega-menu');
+        } else {
+            $(this).addClass('simple-menu');
         }
     });
 

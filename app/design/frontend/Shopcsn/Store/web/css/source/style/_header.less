@@ -18,7 +18,7 @@
         border: none;
         margin-bottom: @indent__base;
         &.fix-header {
-            .header {
+            .header.content {
                 .pos(fixed);
                 width: 100%;
                 z-index: 777;
@@ -194,6 +194,9 @@
                 .menu-opened & {
                     visibility: visible;
                     opacity: 1;
+                }
+                li a {
+                    text-transform: uppercase;
                 }
                 .parent {
                     .ui-menu-icon {
@@ -504,6 +507,9 @@
                     text-align: left;
                     padding: 30px;
                     overflow-y: auto;
+                    .product-item-name{
+                        padding-right: 35px;
+                    }
                 }
                 .product-item-details {
                     .pos(relative);
@@ -533,7 +539,7 @@
                     width: 100%;
                 }
                 .cart-item-qty {
-                    .hw(30px, 40px);
+                    .hw(40px, 40px);
                 }
                 .subtotal {
                     background: @color-gainsboro;
@@ -612,7 +618,7 @@
                     right: 20px;
                     top: 20px;
                     content: '';
-                    display: block;
+                    display: none;
                     border: 1px solid @color-black;
                     width: 8px;
                     height: 8px;
@@ -630,7 +636,13 @@
                         >li {
                             width: 50%;
                             float: left;
+                            border-left: none;
+                            .ui-menu-icon {
+                                display: none;
+                            }
                         }
+
+                    
                     }
                 }
             }
@@ -661,7 +673,7 @@
                     li {
                         &:hover {
                             background: #fff;
-                            border-left: 2px solid #fff;
+                            
                         }
                     }
                     a:hover {
