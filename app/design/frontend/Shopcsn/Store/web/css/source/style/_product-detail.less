@@ -140,6 +140,7 @@
             .product-add-form {
                 padding: 45px 20px;
                 .box-tocart {
+                    position: relative;
                     .fieldset {
                         margin: 0;
                     }
@@ -168,6 +169,13 @@
                         }
                         &:focus {
                             box-shadow: none;
+                        }
+                        div.mage-error[generated]{
+                            position: absolute;
+                            bottom: 0;
+                            left: 0;
+                            font-size: 12px;
+                            font-weight: normal;
                         }
                     }
                     .primary {

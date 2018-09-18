@@ -1,13 +1,28 @@
-.action.primary.disabled, .action.primary[disabled], fieldset[disabled] .action.primary{
+.action.primary.disabled,
+.action.primary[disabled],
+fieldset[disabled] .action.primary {
     opacity: 1;
 }
 
-.actions-toolbar .action {
-    border-color: transparent;
+
+
+.actions-toolbar {
+    .primary {
+        button {
+            .lib-css(background, @color-black);
+            .lib-css(color, @color-white);
+            .transition(all 0.5s ease-in-out 0s);
+            &:hover, &:focus, &:active {
+                .lib-css(background, @color-darkslateblue);
+                .lib-css(border-color, @color-darkslateblue);
+            }
+        }
+    }
 }
 
 /* Button styles */
-.actions-toolbar {
+
+/* .actions-toolbar {
     .primary {
         .action {
             .lib-css(background, #000);
@@ -29,15 +44,12 @@
     }
 }
 
-.action.primary {
-    font-family: 'Roboto', sans-serif !important;
 
-}
 
 .page-main , .modals-wrapper, .block-minicart .block-content{
     .heading-sec .btn-view,
      button.action,
-     a.action,
+     a.btn-action,
     .quick-view,
     .box-gotoproduct .action,
     a.viewcart, a.checkout {
@@ -87,4 +99,4 @@
             transform: translateY(50%);
         }
     } 
-    }
+    } */

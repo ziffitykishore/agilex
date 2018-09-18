@@ -40,7 +40,7 @@ class Topmenu implements ObserverInterface
 
         if ($childLevel == 1) {
 
-            $html .= '<li class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></li>';
+            $html .= '<div class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></div>';
         }
 
         $transport->setHtml($html);

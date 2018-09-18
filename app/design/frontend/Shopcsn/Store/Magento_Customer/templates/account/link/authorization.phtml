@@ -27,7 +27,7 @@ if (!$block->isLoggedIn()) { ?>
     
     <li class="signin-link <?php if ($block->isLoggedIn()) { echo 'logged'; } ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
     <a <?= /* @noEscape */ ($block->isLoggedIn()) ? $block->getLinkAttributes() : 'id="login-popup" href="javascript:void(0)" class="trigger-auth-popup"'; ?><?= /* @noEscape */ $dataPostParam ?>>
-    <i class="fa fa-user"></i><?= $block->escapeHtml($block->getLabel()) ?>
+    <i class="fa fa-user"></i><span><?= $block->escapeHtml($block->getLabel()) ?></span>
     </a>
 </li>
 <?php }?>

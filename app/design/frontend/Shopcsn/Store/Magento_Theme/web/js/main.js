@@ -5,43 +5,61 @@
 
 define([
     'jquery',
+    'ko',
+    'underscore',
+    'sidebar',
+    'slick',
     'jquery/ui',
     'jquery/validate',
     'mage/translate',
-    'slick',
     'domReady!'
-], function($) {
+], function(ko, _ , $) {
     'use strict';
 
+    jQuery('<div class="overlay"></div>').appendTo('.page-wrapper');
+    jQuery('.nav-toggle').on('click', function(e) {
+        jQuery('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');
+
+    }); 
     jQuery('.overlay').on('click', function() {
 
         jQuery('body').removeClass('acc-opened cart-opened menu-opened');
     });
 
     jQuery('.showcart').on('click', function() {
-        jQuery('body').removeClass('menu-opened');
+        jQuery('body').removeClass('menu-opened acc-opened');
+    });
+    jQuery('#btn-minicart-close').on('click', function() {
+        jQuery('body').removeClass('cart-opened');
     });
 
     jQuery('.customer-welcome .customer-name').on('click', function() {
-        jQuery('body').toggleClass('acc-opened menu-opened cart-opened');
-        jQuery('html').removeClass('nav-open');
+        jQuery('body').toggleClass('acc-opened').removeClass('menu-opened cart-opened');
+        
     });
 
 
 
     jQuery(document).on('click', function() {
-        jQuery('.nav-sections').on('click', function(e) {
+        /* jQuery('.nav-sections').on('click', function(e) {
             e.stopPropagation();
         });
 
         jQuery('.header').on('click', function(e) {
 
             jQuery('body').removeClass('acc-opened cart-opened menu-opened');
-        });
+        }); */
     });
 
+    
+
+    /* autocomplete off */
+
+    jQuery('input').attr('autocomplete', 'off');
+
+
     jQuery('.form-group input.form-control, textarea.form-control')
-        .on("focus blur change", function() {
+        .on("focus blur", function() {
             if (jQuery(this).val() == "") {
                 jQuery(this).parents(".form-group").toggleClass("focused");
             }
@@ -103,7 +121,7 @@ define([
         jQuery(this).parent().toggleClass('active');
     });
 
-    $("input").attr("autocomplete", "off");
+    
 
     /* Accordion */
 
@@ -118,53 +136,60 @@ define([
 
 
 
+
+
+
     /* home page slider */
 
-    $('.blog-content-wrap').slick({
+    jQuery('.blog-slider').slick({
+
         dots: false,
         arrows: false,
         infinite: false,
         speed: 300,
         slidesToShow: 3,
         slidesToScroll: 3,
-        responsive: [{
-                breakpoint: 1023,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    infinite: true
 
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
+        responsive: [
+          {
+            breakpoint: 1023,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              infinite: true
+              
             }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
 
         ]
-    });
+      });
 
 
 
-    /* responsive View */
+      /* responsive View */
 
-    var responsiveflag = false;
-
-    function responsiveResize() {
-        if ($(window).width() < 768 && responsiveflag == false) {
-            jQuery('.block-search').appendTo('.header-wrapper');
-            responsiveflag = true;
-        } else if ($(window).width() > 767) {
-            jQuery('.block-search').insertAfter('.menu-wrap');
-            responsiveflag = false;
-        }
+  var responsiveflag = false;
+  function responsiveResize() {
+    if (jQuery(window).width() < 768 && responsiveflag == false) {
+        jQuery('.block-search').appendTo('.header-wrapper');
+      responsiveflag = true;
+    } else if (jQuery(window).width() > 767) {
+        jQuery('.block-search').insertAfter('.menu-wrap');
+      responsiveflag = false;
     }
+  }
 
-    responsiveResize();
-    $(window).resize(responsiveResize);
+  responsiveResize();
+  jQuery(window).resize(responsiveResize);
+
+
 
 
 });

@@ -23,18 +23,7 @@
             </referenceBlock>
             <block class="Ziffity\PdpProductsList\Block\CustomProductsList" name="custom_products" template="Ziffity_PdpProductsList::product/items.phtml"/>
         </referenceContainer>
-        <referenceBlock name="breadcrumbs" template="Magento_Catalog::product/breadcrumbs.phtml">
-            <arguments>
-                <argument name="viewModel" xsi:type="object">Magento\Catalog\ViewModel\Product\Breadcrumbs</argument>
-            </arguments>
-        </referenceBlock>
-        
-        <container name="csn-info" htmlClass="csn-info" htmlTag="div">
-            <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />           
-        </container>  
-           
-        <move element="csn-info" destination="page.top"/>
-        <move element="breadcrumbs" destination="csn-info" before="csn.info" />
+
         <move element="product.info.media" destination="pdp-container" after="pdp-info"/>
         <move element="product.info.main" destination="pdp-container" after="product.info.media" />
         <referenceBlock name="product.info.review" remove="true"/>
@@ -42,8 +31,11 @@
         <referenceBlock name="view.addto.compare" remove="true" />
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
-        
         <move element="product.info.overview" destination="product.info.main" after="product.info.price" />
         <move element="product.info.social" destination="product.info.form.content" after="-" />
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Catalog\Block\Product\View" name="sale_badge" template="Magento_Catalog::product/view/sale.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="breadcrumbs" template="Magento_Theme::html/breadcrumbs.phtml"/>
     </body>
 </page>
