@@ -87,8 +87,8 @@ define([
     var didScroll;
     var lastScrollTop = 0;
     var delta = 5;
-    var navbarHeight = $('header').outerHeight();
-
+    var navbarHeight = $('.header-wrapper').outerHeight();
+    
     $(window).scroll(function(event) {
         didScroll = true;
     });
@@ -111,16 +111,22 @@ define([
         // This is necessary so you never see what is "behind" the navbar.
         if (st > lastScrollTop && st > navbarHeight) {
             // Scroll Down
-            $('header').removeClass('nav-down').addClass('nav-up');
+            $('.header-wrapper').removeClass('nav-down').addClass('nav-up');
+            $('.mob-sticky').removeClass('scroll-down').addClass('scroll-up');
         } else {
             // Scroll Up
             if (st + $(window).height() < $(document).height()) {
-                $('header').removeClass('nav-up').addClass('nav-down');
+                $('.header-wrapper').removeClass('nav-up').addClass('nav-down');
+                $('.mob-sticky').removeClass('scroll-up').addClass('scroll-down');
             }
         }
 
         lastScrollTop = st;
     }
+
+
+
+    
 
     /* footer starts */
 
