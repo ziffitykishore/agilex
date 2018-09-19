@@ -17,6 +17,7 @@
     $_post = $this->getPost();
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+    
 ?>
 <div class="post-view">
     <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
@@ -38,7 +39,8 @@
                 </div>
                 <?php } ?>
                 <div class="post-text-hld">
-                    <?php echo $block->getContent() ?>
+                    <?php $content = preg_replace("/<img[^>]+\>/i", "", $block->getContent(), 1); ?>
+                    <?php echo $content; ?>
                     <div class="clear"></div>
                 </div>
             </div>

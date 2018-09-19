@@ -7,13 +7,15 @@
  * Glory to Ukraine! Glory to the heroes!
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="blog_default"/>
     <update handle="blog_post_opengraph" />
     <update handle="blog_post_richsnippets" />
     <body>
+        <move element="page.main.title" destination="content" before="blog.post"/>
         <referenceContainer name="content">
             <block class="Magefan\Blog\Block\Post\View" name="blog.post" template="post/view.phtml">
+                
                 <block class="Magefan\Blog\Block\Post\Info" name="blog.post.info" template="post/info.phtml" />
                 <action method="setPostInfoBlockName">
                     <argument name="name" xsi:type="string">blog.post.info</argument>
@@ -43,5 +45,6 @@
                 </block>
             </block>
         </referenceContainer>
+        
     </body>
 </page>
