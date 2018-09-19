@@ -203,12 +203,28 @@ define([
         $('.test-image-sec').height(reviewWrap);
       }
 
+/* ticker sticky */
+  /* function call stick  */
+  function stickyBar(elm) {
+    var elment = $(elm);
+    if (elment.length) {
+      var stickyOffset = elment.offset().top;
+      $(window).scroll(function () {
+        var sticky = elment,
+          scroll = $(window).scrollTop();
+        if (scroll >= stickyOffset) sticky.addClass("fixed");
+        else sticky.removeClass("fixed");
+      });
+    }
+  }
+
+  stickyBar(".ticker");
 
 
       /* to find if mobile */
-      var win_w = $(window).width();
+      /* var win_w = $(window).width();
       var is_mobile = (win_w < 769) ? true : false;
-      var is_tab = (win_w < 993) ? true : false;
+      var is_tab = (win_w < 993) ? true : false; */
 
 
       /* responsive View */
