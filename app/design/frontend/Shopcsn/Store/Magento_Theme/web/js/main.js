@@ -10,17 +10,18 @@ define([
     'jquery/ui',
     'jquery/validate',
     'jquery/jquery.mobile.custom',
-    'domReady!'
+    'domReady!',
+    'ko'
 ], function($) {
 
-
+    console.log("welcome");
     /* Header Section */
 
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function(e) {
         $('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');
 
-    }); 
+    });
     $('.overlay').on('click', function() {
 
         $('body').removeClass('acc-opened cart-opened menu-opened');
@@ -35,12 +36,12 @@ define([
 
     $('.customer-welcome .customer-name').on('click', function() {
         $('body').toggleClass('acc-opened').removeClass('menu-opened cart-opened');
-        
+
     });
 
 
-    $('.menu-wrap li.level0').each(function(){
-        if($(this).find('.level2').length){
+    $('.menu-wrap li.level0').each(function() {
+        if ($(this).find('.level2').length) {
             $(this).addClass('mega-menu');
         } else {
             $(this).addClass('simple-menu');
@@ -59,19 +60,20 @@ define([
         }); */
     });
 
-    
+
 
     /* autocomplete off */
 
     $('input').attr('autocomplete', 'off');
 
 
-    $('.form-group input.form-control, textarea.form-control')
-        .on("focus blur", function() {
-            if ($(this).val() == "") {
-                $(this).parents(".form-group").toggleClass("focused");
-            }
-        });
+    $(".form-group input.form-control").on("focus blur", function() {
+        if ($(this).val() == "") {
+            $(this)
+                .parents(".form-group")
+                .toggleClass("focused");
+        }
+    });
 
     $('select').parents('.field').addClass('select-group');
 
@@ -130,24 +132,24 @@ define([
 
 
     function bgSource(imgcontainer) {
-        $(imgcontainer).each(function () {
-          var img = $(this).find("img");
-    
-          var height = img.height();
-          var img_src = img.attr("src");
-    
-          $(this).css({
-            "background-image": "url(" + img_src + ")"
-          });
-    
-          img.hide();
+        $(imgcontainer).each(function() {
+            var img = $(this).find("img");
+
+            var height = img.height();
+            var img_src = img.attr("src");
+
+            $(this).css({
+                "background-image": "url(" + img_src + ")"
+            });
+
+            img.hide();
         });
-      }
+    }
 
 
-      //bgSource('.category_image');
-      
-    
+    //bgSource('.category_image');
+
+
 
     /* Accordion */
 
@@ -176,81 +178,87 @@ define([
         slidesToShow: 3,
         slidesToScroll: 3,
 
-        responsive: [
-          {
-            breakpoint: 1023,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              infinite: true
-              
+        responsive: [{
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true
+
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
             }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
 
         ]
-      });
+    });
 
 
-      function testimonials() {
+    function testimonials() {
         var reviewWrap = $('.testi-slider-wrap').height();
         $('.test-image-sec').height(reviewWrap);
-      }
-
-/* ticker sticky */
-  /* function call stick  */
-  function stickyBar(elm) {
-    var elment = $(elm);
-    if (elment.length) {
-      var stickyOffset = elment.offset().top;
-      $(window).scroll(function () {
-        var sticky = elment,
-          scroll = $(window).scrollTop();
-        if (scroll >= stickyOffset) sticky.addClass("fixed");
-        else sticky.removeClass("fixed");
-      });
     }
-  }
 
-  stickyBar(".ticker");
-
-
-      /* to find if mobile */
-      /* var win_w = $(window).width();
-      var is_mobile = (win_w < 769) ? true : false;
-      var is_tab = (win_w < 993) ? true : false; */
-
-
-      /* responsive View */
-
-  var responsiveflag = false;
-  function responsiveResize() {
-    if ($(window).width() < 768 && responsiveflag == false) {
-        $('.block-search').appendTo('.header-wrapper');
-        $('.test-image-sec').css('height', 'auto');
-      responsiveflag = true;
-
-    } else if ($(window).width() > 768) {
-        $('.block-search').insertAfter('.menu-wrap');
-        testimonials();
-      responsiveflag = false;
+    /* ticker sticky */
+    /* function call stick  */
+    function stickyBar(elm) {
+        var elment = $(elm);
+        if (elment.length) {
+            var stickyOffset = elment.offset().top;
+            $(window).scroll(function() {
+                var sticky = elment,
+                    scroll = $(window).scrollTop();
+                if (scroll >= stickyOffset) sticky.addClass("fixed");
+                else sticky.removeClass("fixed");
+            });
+        }
     }
-  }
 
-  responsiveResize();
-  $(window).resize(function(){
+    stickyBar(".ticker");
+
+
+    /* to find if mobile */
+    /* var win_w = $(window).width();
+    var is_mobile = (win_w < 769) ? true : false;
+    var is_tab = (win_w < 993) ? true : false; */
+
+
+    /* responsive View */
+
+    var responsiveflag = false;
+
+    function responsiveResize() {
+        if ($(window).width() < 768 && responsiveflag == false) {
+            $('.block-search').appendTo('.header-wrapper');
+            $('.test-image-sec').css('height', 'auto');
+            responsiveflag = true;
+
+        } else if ($(window).width() > 768) {
+            $('.block-search').insertAfter('.menu-wrap');
+            testimonials();
+            responsiveflag = false;
+        }
+    }
+
     responsiveResize();
-  });
-
+    $(window).resize(function() {
+        responsiveResize();
+    });
 
 
 
 });
 
-
+const floatField = document.getElementsByClassName('input-text');
+const floatContainer = document.getElementsByClassName('field');
+floatField.addEventListener('focus', () => {
+    floatContainer.classList.add('active');
+});
+floatField.addEventListener('blur', () => {
+    floatContainer.classList.remove('active');
+});
