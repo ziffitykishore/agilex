@@ -10,11 +10,10 @@ define([
     'jquery/ui',
     'jquery/validate',
     'jquery/jquery.mobile.custom',
-    'domReady!',
-    'ko'
+    'domReady!'
 ], function($) {
 
-    console.log("welcome");
+
     /* Header Section */
 
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
@@ -67,13 +66,12 @@ define([
     $('input').attr('autocomplete', 'off');
 
 
-    $(".form-group input.form-control").on("focus blur", function() {
-        if ($(this).val() == "") {
-            $(this)
-                .parents(".form-group")
-                .toggleClass("focused");
-        }
-    });
+    $('.form-group input.form-control, textarea.form-control')
+        .on("focus blur", function() {
+            if ($(this).val() == "") {
+                $(this).parents(".form-group").toggleClass("focused");
+            }
+        });
 
     $('select').parents('.field').addClass('select-group');
 
@@ -252,13 +250,5 @@ define([
 
 
 
-});
 
-const floatField = document.getElementsByClassName('input-text');
-const floatContainer = document.getElementsByClassName('field');
-floatField.addEventListener('focus', () => {
-    floatContainer.classList.add('active');
-});
-floatField.addEventListener('blur', () => {
-    floatContainer.classList.remove('active');
 });
