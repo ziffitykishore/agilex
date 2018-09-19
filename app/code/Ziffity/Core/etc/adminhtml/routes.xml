@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/*
+ * Ziffity_Core
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="admin">
+        <route id="zcore" frontName="zcore">
+            <module name="Ziffity_Core" />
+        </route>
+    </router>
+</config>
