@@ -227,3 +227,17 @@ Xtento_OrderExport
 
 ===== 2.6.2 =====
  * Fixed issue in grids: After filtering/searching, mass actions didn't work anymore
+
+===== 2.6.3 =====
+ * Fixed a bug for "Tools > Settings Import": Importing settings exported from Magento >=2.2 into Magento <=2.1 failed
+
+===== 2.6.4 =====
+ * Fixed sorting/filtering/searching within log/history grids when editing a profile
+
+===== 2.6.5 =====
+ + Added support to export order/invoice/shipment/credit memo PDFs created by XTENTO PDF Customizer
+
+===== 2.6.6 =====
+ * Established compatibility with PHP 7.2
+ + Added new export event that should work better to get all data from database for new orders: A plugin in OrderService::place dispatches xtento_orderexport_sales_order_service_place_after which can be used for event exports
+ + Added ExportService helper: Use this helper to export specified objects (orders, invoices, ...) for a specified profile programmatically

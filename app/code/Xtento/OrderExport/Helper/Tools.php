@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:52+00:00
- * Last Modified: 2018-02-26T14:29:41+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
+ * Last Modified: 2018-08-16T11:07:07+00:00
  * File:          app/code/Xtento/OrderExport/Helper/Tools.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
  */
@@ -90,7 +90,6 @@ class Tools extends \Magento\Framework\App\Helper\AbstractHelper
             $destination = $this->destinationFactory->create()->load($destinationId);
             if ($destination->getId()) {
                 $destination->setData('new_destination_id', substr($randIdPrefix . $destinationId, 0, 8));
-                #$destination->unsetData('destination_id');
                 $destination->unsetData('password');
                 $exportData['destinations'][] = $destination->toArray();
             }
@@ -125,10 +124,6 @@ class Tools extends \Magento\Framework\App\Helper\AbstractHelper
         // Process destinations
         if (isset($settingsArray['destinations'])) {
             foreach ($settingsArray['destinations'] as $destinationData) {
-                if ($serializedToJsonConverter !== false) {
-                    if (isset($destinationData['conditions_serialized']))
-                        $destinationData['conditions_serialized'] = $serializedToJsonConverter->convert($destinationData['conditions_serialized']);
-                }
                 if ($updateByName) {
                     $destinationCollection = $this->destinationFactory->create()->getCollection()
                         ->addFieldToFilter('type', $destinationData['type'])
@@ -171,6 +166,20 @@ class Tools extends \Magento\Framework\App\Helper\AbstractHelper
                     if (isset($profileData['conditions_serialized']))
                         $profileData['conditions_serialized'] = $serializedToJsonConverter->convert($profileData['conditions_serialized']);
                 }
+                // If importing a settings file from Magento >=2.2 into <=2.1, we must make sure that the "_serialized" fields are indeed serialized and not JSON
+                if (version_compare($this->utilsHelper->getMagentoVersion(), '2.2', '<')) {
+                    $fieldsToCheck = ['conditions_serialized'];
+                    foreach ($fieldsToCheck as $fieldToCheck) {
+                        if (isset($profileData[$fieldToCheck])) {
+                            $jsonData = @json_decode($profileData[$fieldToCheck], true);
+                            if (json_last_error() == JSON_ERROR_NONE) {
+                                // It's json, we need to serialize it for M2.0/2.1
+                                $profileData[$fieldToCheck] = serialize($jsonData);
+                            }
+                        }
+                    }
+                }
+                // Begin import
                 if ($updateByName) {
                     $profileCollection = $this->profileFactory->create()->getCollection()
                         ->addFieldToFilter('entity', $profileData['entity'])

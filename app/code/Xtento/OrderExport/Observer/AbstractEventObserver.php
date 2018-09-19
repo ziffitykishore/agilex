@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:52+00:00
- * Last Modified: 2016-04-26T19:04:01+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
+ * Last Modified: 2018-09-17T12:44:44+00:00
  * File:          app/code/Xtento/OrderExport/Observer/AbstractEventObserver.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
  */
@@ -26,6 +26,7 @@ class AbstractEventObserver extends \Xtento\OrderExport\Model\AbstractAutomaticE
     const EVENT_SALES_ORDER_INVOICE_PAY = 5;
     const EVENT_SALES_ORDER_SHIPMENT_SAVE_AFTER = 6;
     const EVENT_SALES_ORDER_CREDITMEMO_SAVE_AFTER = 7;
+    const EVENT_SALES_ORDER_SERVICE_PLACE_AFTER = 8;
     // Customer events
     const EVENT_CUSTOMER_SAVE_AFTER = 20;
     const EVENT_CUSTOMER_AFTER_REGISTRATION = 21;
@@ -45,9 +46,15 @@ class AbstractEventObserver extends \Xtento\OrderExport\Model\AbstractAutomaticE
         $events = [];
         // Events where order information can be exported
         if ($allEvents || $entity == Export::ENTITY_ORDER) {
+            $events[Export::ENTITY_ORDER][self::EVENT_SALES_ORDER_SERVICE_PLACE_AFTER] = [
+                'event' => 'xtento_orderexport_sales_order_service_place_after',
+                'label' => __('After order creation (Event: xtento_orderexport_sales_order_service_place_after)'),
+                'method' => 'getOrder()',
+                'force_collection_item' => true
+            ];
             $events[Export::ENTITY_ORDER][self::EVENT_SALES_ORDER_PLACE_AFTER] = [
                 'event' => 'sales_order_place_after',
-                'label' => __('After order creation (Event: sales_order_place_after)'),
+                'label' => __('Alternative Event: After order creation (Event: sales_order_place_after)'),
                 'method' => 'getOrder()',
                 'force_collection_item' => true
             ];

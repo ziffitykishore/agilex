@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:52+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
  * Last Modified: 2015-09-09T18:29:08+00:00
  * File:          app/code/Xtento/OrderExport/Controller/Adminhtml/Log/Grid.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
