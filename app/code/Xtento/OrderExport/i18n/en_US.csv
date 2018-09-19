@@ -343,7 +343,8 @@ is,is
 "Twice Daily (12am, 12pm)","Twice Daily (12am, 12pm)"
 "No profiles available. Add and enable export profiles for the %1 entity first.","No profiles available. Add and enable export profiles for the %1 entity first."
 Successful,Successful
-"After order creation (Event: sales_order_place_after)","After order creation (Event: sales_order_place_after)"
+"After order creation (Event: xtento_orderexport_sales_order_service_place_after)","After order creation (Event: xtento_orderexport_sales_order_service_place_after)"
+"Alternative Event: After order creation (Event: sales_order_place_after)","Alternative Event: After order creation (Event: sales_order_place_after)"
 "After order modification (Event: sales_order_save_after)","After order modification (Event: sales_order_save_after)"
 "After order placement completed (Event: sales_order_payment_place_end)","After order placement completed (Event: sales_order_payment_place_end)"
 "After invoice creation (Event: sales_order_invoice_register)","After invoice creation (Event: sales_order_invoice_register)"

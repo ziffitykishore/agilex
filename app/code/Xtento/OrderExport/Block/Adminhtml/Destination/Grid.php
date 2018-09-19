@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:53+00:00
- * Last Modified: 2016-02-25T14:50:13+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
+ * Last Modified: 2018-08-22T10:46:08+00:00
  * File:          app/code/Xtento/OrderExport/Block/Adminhtml/Destination/Grid.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
  */
@@ -33,6 +33,21 @@ class Grid extends \Magento\Backend\Block\Widget\Grid
     ) {
         parent::__construct($context, $backendHelper, $data);
         $this->profileFactory = $profileFactory;
+    }
+
+    /**
+     * @return void
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     */
+    protected function _construct()
+    {
+        parent::_construct();
+        if ($this->getRequest()->getParam('ajax_enabled', 0) == 1) {
+            $this->setData('use_ajax', true);
+            $this->setData('grid_url', $this->getUrl('*/destination/grid', ['_current' => 1]));
+        } else {
+            $this->setData('use_ajax', false);
+        }
     }
 
     protected function getProfile()
