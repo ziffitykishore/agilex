@@ -66,10 +66,10 @@ define([
     $('input').attr('autocomplete', 'off');
 
 
-    $('.form-group input.form-control, textarea.form-control')
+    $('.field input.form-control, textarea.form-control')
         .on("focus blur", function() {
             if ($(this).val() == "") {
-                $(this).parents(".form-group").toggleClass("focused");
+                $(this).parents(".field").toggleClass("focused");
             }
         });
 
