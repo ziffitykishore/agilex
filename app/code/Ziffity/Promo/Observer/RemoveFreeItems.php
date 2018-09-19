@@ -33,7 +33,7 @@ class RemoveFreeItems implements \Magento\Framework\Event\ObserverInterface
                 }
             }
         } catch (Exception $ex) {
-
+            $this->coreHelper->logger('promoError', $ex->getMessage(), true);
         }
         return $this;
     }

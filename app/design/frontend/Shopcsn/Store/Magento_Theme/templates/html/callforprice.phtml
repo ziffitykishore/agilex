@@ -9,23 +9,16 @@
     $stTiming = $storeInfo['store_timings'];
     $stPhone = $storeInfo['store_phone'];
 ?>
-<div class="clearfix" id="callforquote-popup">
-    
-        <div class="contact-content">
-            <h1 class="contact-title"><?= __('Call For Price') ?></h1>
-            
-                <div class="ph">
-                    <p><?= __('Phone Number:') ?> <?= $stPhone ?></p>
-                </div>
-            
-            <div class="timing">
-                
-                    
-                    <p><?= __('Business hours:') ?> <strong><?= $stTiming ?></strong></p>
-</div>
-            
-       </div>
-    
+<div class="clearfix modal" id="callforquote-popup">
+    <div class="contact-content">
+        <h1 class="contact-title"><?= __('Call For Price') ?></h1>
+        <div class="ph">
+            <p><?= __('Phone Number:') ?> <?= $stPhone ?></p>
+        </div>
+        <div class="timing">
+            <p><?= __('Business hours:') ?> <strong><?= $stTiming ?></strong></p>
+        </div>
+   </div>
 </div>
 <script type="text/javascript">
 require(['jquery', 'jquery/ui', 'Magento_Ui/js/modal/modal'],
