@@ -7,8 +7,9 @@
             height: 100%;
             .modal-header {
                 border: none;
-                position: relative;
-                z-index: 999;
+                width: 50px;
+                height: 50px;
+                z-index: 9;
                 
             }
             .modal-content {
@@ -28,6 +29,10 @@
         }
     }
 }
+
+
+
+
 
 .customer-forgetpassword-popup {
     .fieldset {
@@ -73,7 +78,11 @@
         flex-direction: column;
         justify-content: space-between;
         .bk-to-arw {
-            background: #d7dded;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            color: @color-black;
+            position: fixed;
         }
         .common-form {
             
@@ -388,4 +397,15 @@
 
 .ptb-10 {
     padding: 10px 0;
+}
+
+
+@media screen and (max-width: 1366px) {
+    .log-in {
+        .block-customer-login {
+            .common-form.sign-in{
+                padding: 15% 50px;
+            }
+        }
+    }
 }

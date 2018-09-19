@@ -171,6 +171,15 @@
         
     }
 
+    .ticker {
+        &.fixed{
+            position: fixed;
+            width: 100%;
+            top: -32px;
+            z-index: 25;
+        }
+    }
+
     .blog-wrapper {
         .ptb(20px);
         .blog-outer {
@@ -329,6 +338,12 @@
         .container {
             padding-left: 30px;
             padding-right: 30px;
+        }
+    }
+
+    .cms-index-index {
+        .promo-banner + .promo-banner {
+            margin-top: 32px;
         }
     }
     
