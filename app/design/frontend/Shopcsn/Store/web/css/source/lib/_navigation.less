@@ -117,7 +117,7 @@
             &.has-active { // ToDo UI: remove "has_active" here, when mobile navigation default open state is implemented
                 > a:not(.ui-state-active) {
                     .lib-css(background, @_nav-level0-item-background-color-active);
-                    .lib-css(border-color, @_nav-level0-item__active__border-color);
+                    .lib-css(border-color, @color-darkslateblue);
                     .lib-css(border-style, @_nav-level0-item__active__border-style);
                     .lib-css(border-width, @_nav-level0-item__active__border-width);
                     .lib-css(color, @_nav-level0-item-color-active);
@@ -182,16 +182,12 @@
                     }
                 }
 
-                &.expanded {
-                    display: block !important;
-                    padding-right: 0;
-                    top: 0 !important;
-                }
+                
 
                 .active {
                     > a {
                         .lib-css(background, @_submenu-item-background-color-active);
-                        .lib-css(border-color, @_submenu-item__active__border-color);
+                        .lib-css(border-color, @color-darkslateblue);
                         .lib-css(border-style, @_submenu-item__active__border-style);
                         .lib-css(border-width, @_submenu-item__active__border-width);
                         .lib-css(color, @_submenu-item-color-active);
@@ -390,10 +386,7 @@
                     .lib-css(text-decoration, @_submenu-item-text-decoration-active);
                 }
 
-                .submenu {
-                    top: 0 !important;
-                    left: 100% !important;
-                }
+               
 
                
             }

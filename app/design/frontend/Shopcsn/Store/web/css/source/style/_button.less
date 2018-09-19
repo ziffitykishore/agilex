@@ -5,18 +5,30 @@ fieldset[disabled] .action.primary {
 }
 
 
+.button() {
+    border-radius: 0;
+    .lib-css(background, @color-black);
+    .lib-css(color, @color-white);
+    .transition(all 0.5s ease-in-out 0s);
+    border: 1px solid @color-black;
+    &:hover, &:focus, &:active {
+        .lib-css(background, @color-darkslateblue);
+        .lib-css(border-color, @color-darkslateblue);
+    }
+}
+
+
+
+
+
 
 .actions-toolbar {
     .primary {
         button {
-            .lib-css(background, @color-black);
-            .lib-css(color, @color-white);
-            .transition(all 0.5s ease-in-out 0s);
-            &:hover, &:focus, &:active {
-                .lib-css(background, @color-darkslateblue);
-                .lib-css(border-color, @color-darkslateblue);
-            }
-        }
+
+     
+        .button();
+    }
     }
 }
 

@@ -52,7 +52,6 @@
 }
 
 .page-footer {
-    margin-top: 50px;
     .footer-logo {
         padding: 20px 20px;
         .sponsor ul li {
@@ -97,10 +96,10 @@
             width: 20%;
             float: left;
         }
-        .footer-list:nth-child(4) {
+        .footer-list.social-links {
             width: 15%;
         }
-        .footer-list:nth-child(5) {
+        .footer-list.payment-method {
             width: 25%;
         }
         ul {
@@ -118,6 +117,12 @@
             }
         }
         .payment-method {
+            .pay-img {
+                img {
+                    max-width: 50px;
+                    margin-top: 3px;
+                }
+            }
             .links {
                 margin-top: 15px;
             }
@@ -171,26 +176,44 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m+1) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
     .page-footer {
-        .footer-links-wrapper {
-            padding: 20px 0;
-            color: red;
-        }
-        .footer-links {
-            .footer-list {
-                width: 50%;
-                padding: 0 15px;
-                &.contact-info {
-                    clear: both;
-                }
-                &:nth-child(4) {
-                    width: 50%;
-                }
-                &:nth-child(5) {
-                    width: 100%;
+        .footer-logo {
+            ul {
+                li {
+                    max-width: 20%;
                 }
             }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m+1) {
+    .sticky-container {
+        display: none;
+    }
+    .page-footer {
+
+        .page-footer__content {
+            .footer-links-wrapper {
+                padding: 20px 0;
+            }
+        }
+        .footer-links-wrapper {
+            
+            
+            .footer-links {
+                .footer-list {
+                    width: percentage(1/3);
+                    padding: 0 15px;
+                    &.social-links,
+                    &.payment-method {
+                        width: percentage(1/2);
+                    }
+                }
+            }
+        }
+        .footer-links {
             .payment-method {
                 width: 100%;
                 .block-content {
@@ -209,12 +232,24 @@
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
-    .page-footer {.footer-logo{ .sponsor{ ul {li{
-        width: 45%;   
+    .page-footer {
+        .page-footer__content {
+            .container {
+                padding: 0px;
+            }
+            .footer-logo {
+                .sponsor {
+                    ul {
+                        li {
+                            width: 45%;
+                        }
+                    }
+                }
+            }
+        }
     }
-}
-    }
-}
+    #sticky-social {
+        display: none;
     }
 }
 
