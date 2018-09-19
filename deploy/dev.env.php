@@ -48,8 +48,7 @@ return [
     ],
     'install' => [
         'date' => 'Fri, 20 Jul 2018 14:44:44 +0000'
-    ]
-],
+    ],
     'cache' => [
         'frontend' => [
             'default' => [
