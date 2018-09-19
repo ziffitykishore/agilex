@@ -6,16 +6,25 @@ class InitFreeItems implements \Magento\Framework\Event\ObserverInterface
 {
 
     protected $coreHelper;
-    
+    protected $request;
+
     public function __construct(
-        \Ziffity\Core\Helper\Data $coreHelper
+        \Ziffity\Core\Helper\Data $coreHelper,
+        \Magento\Framework\App\RequestInterface $request
     ) {
         $this->coreHelper = $coreHelper;
+        $this->request = $request;
     }
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
         try{
+            /**
+             * TODO: workaround fix need to check in future
+             */
+            if($this->request->getFullActionName() == '__'){
+                return $this;
+            }
             $this->_isHandled = array();
             $quote = $observer->getQuote();
             if (!$quote) {
@@ -35,7 +44,7 @@ class InitFreeItems implements \Magento\Framework\Event\ObserverInterface
                 $quote->removeItem($item->getId());
             }
         } catch (Exception $ex) {
-
+            $this->coreHelper->logger('promoError', $ex->getMessage(), true);
         }
         return $this;
     }
