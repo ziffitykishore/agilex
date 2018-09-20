@@ -4600,6 +4600,7 @@ html {
 
 .timeline-desc {
     margin-top: 15px;
+    height: 400px;
 }
 
 .timeline-desc ul {
@@ -4628,6 +4629,7 @@ html {
     transition: 0.5s ease-in-out 0s;
     position: relative;
     display: inline-block;
+    width: 75%;
 }
 
 .timeline-item:hover .timeline-image .img-sec {
@@ -4641,7 +4643,7 @@ html {
     overflow: hidden;
 }
 
-.timeline-image .feature-image img {
+.timeline-image img {
     -webkit-transition: all 0.5s ease-in-out 0s;
     -moz-transition: all 0.5s ease-in-out 0s;
     -ms-transition: all 0.5s ease-in-out 0s;
@@ -4649,7 +4651,7 @@ html {
     transition: all 0.5s ease-in-out 0s;
 }
 
-.timeline-item:hover .timeline-image .feature-image img {
+.timeline-item:hover .timeline-image img {
     -webkit-transform: scale(1.1);
     -moz-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -4657,12 +4659,14 @@ html {
     transform: scale(1.1);
 }
 
-.timeline-image .seconday-image {
-    left: 25px;
-    top: 25px;
+.timeline-image .secondary-image {
+    left: 35%;
+    top: 70%;
     z-index: 1;
     background: #e5e5e5;
     width: 100%;
+    overflow: hidden;
+    position: absolute;
     height: 100%;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
@@ -4671,12 +4675,8 @@ html {
     transition: all 0.5s ease 0s;
 }
 
-.timeline-inner .timeline-item:hover .seconday-image {
+.timeline-inner .timeline-item:hover .secondary-image {
     background: #174a79;
-}
-
-.timeline-image .seconday-image img {
-    display: none;
 }
 
 .timeline-item .timeline-content {
@@ -5981,6 +5981,11 @@ div.wpcf7 .ajax-loader {
 
 .sidebar-blog #sb_instagram #sbi_images {
     margin: -10px 0;
+    justify-content: normal;
+}
+
+#sb_instagram.sbi_col_3 #sbi_images .sbi_item {
+    padding: 2px !important;
 }
 
 .sidebar-blog #sb_instagram .sbi_photo {

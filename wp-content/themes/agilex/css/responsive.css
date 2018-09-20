@@ -659,6 +659,9 @@
     .review-content {
         padding: 65px 20px;
     }
+    .timeline-image .secondary-image {
+        top: 25px;
+    }
 }
 
 @media screen and (max-width: 767px) {
