@@ -135,7 +135,7 @@ function cookielawinfo_enqueue_frontend_scripts() {
 		$version = '1.5.4';
 		
 		wp_register_style( 'cookielawinfo-style', CLI_PLUGIN_URL . 'css/cli-style.css', null, $version );
-		//wp_enqueue_style( 'cookielawinfo-style' );
+		wp_enqueue_style( 'cookielawinfo-style' );
 		
                 $non_necessary_cookie_ids = get_non_necessary_cookie_ids();
                 
