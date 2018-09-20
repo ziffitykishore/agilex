@@ -25,3 +25,6 @@ Xtento_SavedCc
 ===== 1.0.6 =====
  * Updated Xtento_XtCore to version 2.3.0
  * Confirmed compatibility with Magento CE 2.2.5 / EE 2.2.5
+
+===== 1.0.7 =====
+ + Added ability to edit orders in admin that were placed using this payment method

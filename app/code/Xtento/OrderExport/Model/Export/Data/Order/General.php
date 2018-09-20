@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:53+00:00
- * Last Modified: 2017-08-02T13:30:01+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
+ * Last Modified: 2018-08-22T14:46:30+00:00
  * File:          app/code/Xtento/OrderExport/Model/Export/Data/Order/General.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
  */
@@ -104,14 +104,12 @@ class General extends \Xtento\OrderExport\Model\Export\Data\AbstractData
         }
 
         // Sample code to export data from a 3rd party table (M1, must be ported)
-        /*if ($order->getId()) {
-            $resource = Mage::getSingleton('core/resource');
-            $readConnection = $resource->getConnection('core_read');
-            //$tableName = $resource->getTableName('catalog/product');
-            $query = 'SELECT admin_name FROM salesrep WHERE order_id = ' . (int)$order->getId() . ' LIMIT 1';
-            $adminUser = $readConnection->fetchOne($query);
-            $this->writeValue('admin_name', $adminUser);
-        }*/
+        /*$resource = \Magento\Framework\App\ObjectManager::getInstance()->get('Magento\Framework\App\ResourceConnection');
+        $readConnection = $resource->getConnection();
+        //$tableName = $resource->getTableName('my_table');
+        $query = 'SELECT admin_name FROM salesrep WHERE order_id = ' . (int)$order->getId() . ' LIMIT 1';
+        $adminUser = $readConnection->fetchOne($query);
+        $this->writeValue('admin_name', $adminUser);*/
 
         // Last invoice, shipment, credit memo ID
         if ($order->getInvoiceCollection()

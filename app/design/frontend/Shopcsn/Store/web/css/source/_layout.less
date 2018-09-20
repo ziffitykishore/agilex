@@ -20,7 +20,7 @@
             .lib-css(padding-bottom, @indent__xl);
             .lib-vendor-prefix-flex-basis(100%);
             .lib-vendor-prefix-flex-grow(1);
-            .lib-vendor-prefix-order(1);
+            .lib-vendor-prefix-order(2); 
             width: 100%;
         }
 
@@ -35,7 +35,7 @@
             &:extend(.abs-add-box-sizing all);
             .lib-vendor-prefix-flex-grow(1);
             .lib-vendor-prefix-flex-basis(100%);
-            .lib-vendor-prefix-order(2);
+            .lib-vendor-prefix-order(1);
         }
     }
 }
@@ -56,8 +56,8 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .navigation,
-    .breadcrumbs,
+    
+    
     .page-header .header.panel,
     .header.content,
     .footer.content,
@@ -82,8 +82,8 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    .navigation,
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+    
     .page-header .header.panel,
     .header.content,
     .footer.content,
@@ -130,7 +130,10 @@
         #lib-layout-columns > .main();
         &:extend(.abs-add-box-sizing-desktop all);
         min-height: 300px;
+       
     }
+
+    
 
     .sidebar-main {
         #lib-layout-columns > .left();

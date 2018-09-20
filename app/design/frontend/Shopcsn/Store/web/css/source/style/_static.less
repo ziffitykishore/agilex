@@ -4,13 +4,16 @@
     .page-title {
         padding: 45px 0;
     }
+    .breadcrumbs {
+        margin: 0;
+    }
 }
+
 
 /********** privacy-policy ************/
 
-.cms-shopcsntv-privacy-policy,
-.cms-shopcsntv-faq,
-.cms-shopcsntv-guarentee {
+.cms-shopcsntv-privacy-policy, .cms-shopcsntv-faq, .cms-shopcsntv-guarentee {
+    color: @color-black;
     .nav-tabs {
         float: none !important;
     }
@@ -39,7 +42,7 @@
             margin: 0;
             padding: 0 15px;
             li {
-                color: #606060;
+                color: @color-black;
                 font-size: 16px;
                 list-style-type: circle;
                 list-style-position: outside;
@@ -133,7 +136,7 @@ h3 {
 p {
     font-size: 16px;
     line-height: 2;
-    color: #606060;
+    color: @color-black;
 } //************ catalog page  *************/
 .detail {
     display: table;
@@ -171,6 +174,13 @@ p {
             }
         }
         .block-content {
+            select {
+                max-width: 445px;
+                width: 100%;
+                height: 50px;
+                background: #fff;
+                border: 1px solid #d7dded;
+            }
             .actions-toolbar {
                 .primary {
                     width: 100%;
@@ -200,8 +210,20 @@ p {
             font-size: 13px;
         }
         padding: 30px;
-        &:not(.email) {
-            border-right: 1px solid #d7dded;
+        &:after {
+            content: '';
+            width: 1px;
+            height: 165px;
+            background-color: #d7dded;
+            left: 100%;
+            position: absolute;
+            display: block;
+            top: 10px;
+        }
+    }
+    .email {
+        &:after {
+            display: none;
         }
     }
 }
@@ -210,7 +232,6 @@ p {
     .sub-title {
         margin-bottom: 45px;
     }
-  
     .map {
         height: 500px;
         border: 10px solid #d7dded;
@@ -254,7 +275,7 @@ p {
         }
         p {
             font-size: 16px;
-            color: #606060;
+            color: @color-black;
         }
         margin-top: 45px;
         line-height: 2;
@@ -292,14 +313,6 @@ p {
                         left: 40%;
                         color: red;
                     }
-                }
-            }
-        }
-        .certification {
-            ul {
-                li {
-                    margin-left: 20px;
-                    margin-top: 20px;
                 }
             }
         }
@@ -358,13 +371,12 @@ p {
                         }
                     }
                 }
-                .sell-csn,
-                .qualification {
+                .sell-csn, .qualification {
                     ul {
                         margin: 0;
                         padding: 0 15px;
                         li {
-                            color: #606060;
+                            color: #020202;
                             font-size: 13px;
                             list-style-type: circle;
                             list-style-position: outside;
@@ -381,17 +393,6 @@ p {
     }
 }
 
-/*************** responsive static page   ***********/
-
-@media screen and (max-width: 768px) {
-    .container-sm {
-        padding: 0 15px;
-        .gallery {
-            float: none !important;
-            text-align: center;
-        }
-    }
-}
 
 /***************** common classes ****************/
 
@@ -450,4 +451,105 @@ p {
 
 .ptb-10 {
     padding: 10px 0;
+}
+
+
+/*************** responsive static page   ***********/
+@media only screen and (min-width:1200px) {
+    .page-footer {
+        .sponsor {
+            ul {
+                width: 920px;
+                margin: 0 auto;
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .container-sm {
+        padding: 0 15px;
+        .gallery {
+            float: none !important;
+            text-align: center;
+        }
+    }
+    .cms-shopcsntv-about-us {
+        .container-sm {
+            .video-img {
+                .btn-fancy {
+                    top: 28%;
+                    left: 38%;
+                }
+            }
+        }
+    }
+    .cms-shopcsntv-contactus {
+        .device {
+            &:after {
+                display: none;
+            }
+        }
+    }
+    .cms-shopcsntv-catalog {
+        .detail {
+            display: block;
+            .book {
+                display: block;
+                width: 100%;
+            }
+            .book-detail {
+                display: block;
+                width: 100%;
+                border-top: none;
+                select {
+                    max-width: none;
+                }
+                .button-full {
+                    max-width: none;
+                }
+            }
+        }
+    }
+    .cms-shopcsntv-privacy-policy,
+    .cms-shopcsntv-guarentee,
+    .cms-shopcsntv-faq {
+        .privacy {
+            .nav-tabs {
+                &.full-bg {
+                    li {
+                        width: 100%;
+                        margin: 0;
+                        &.active {
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container-sm {
+        .main {
+            .panel-group {
+                .panel-collapse {
+                    .table {
+                        >tbody {
+                            >tr {
+                                >td {
+                                    padding: 8px;
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

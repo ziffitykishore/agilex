@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:52+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
  * Last Modified: 2016-04-17T13:03:38+00:00
  * File:          app/code/Xtento/OrderExport/Observer/SalesOrderCreditmemoSaveAfterObserver.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
