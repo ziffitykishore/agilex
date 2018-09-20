@@ -889,9 +889,11 @@ function myFunction() {
     });
   });
 
-  $(".feature-desc").mCustomScrollbar({
+  $(".feature-desc, .timeline-desc").mCustomScrollbar({
     theme: "minimal-dark"
   });
+
+
 
   function stickyFooter(status) {
     var footer = $(".footer-wrap"),

@@ -131,8 +131,13 @@ get_header(); ?>
                             <?php } ?>
                                 
                             </figure>
-                            <figure class="seconday-image">
-                                <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="<?php the_title(); ?>" />
+                            <figure class="secondary-image">
+                                <?php if (get_field('secondary_image', get_the_ID())){ ?>
+                                    <?php $image = get_field('secondary_image'); ?>
+                                    <img class="secondary_image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                <?php }  else {?>
+                                    <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="<?php the_title(); ?>" />
+                                <?php } ?>
                             </figure>
                         </div>    
                     </div>

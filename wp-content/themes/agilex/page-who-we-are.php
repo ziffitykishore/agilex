@@ -141,7 +141,7 @@ the_post_thumbnail('full');
 <div class="slider-nav"> 
 <?php  while ($agilex_test_query->have_posts()) {
 $agilex_test_query->the_post();
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'thumbnail'); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                              ">
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                              ">
 <div class="exe-thumb-inner">
   <div class="exe-thumb">
     <?php if($featured_img_url) {?>

@@ -176,6 +176,6 @@
     <div class="instagram-wrap box-shadow margin-bottom-30">
     <h2 class="heading-title"><?php echo __("Instagram"); ?></h2>
 <?php /**Instagram Feed */
-echo do_shortcode('[instagram-feed showfollow=false showbio=false showheader=false]'); ?>
+echo do_shortcode('[instagram-feed cols=3 showfollow=false showbio=false showheader=false]'); ?>
 
 </div>
