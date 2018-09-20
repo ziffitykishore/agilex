@@ -47,18 +47,25 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
 <?php if (get_field('video_image', get_the_ID())){ ?>
 <?php $image = get_field('video_image'); ?>
 <?php } ?>
-<a data-fancybox tabindex="0" href="<?php if (get_field('video_link', get_the_ID())): ?><?php the_field('video_link', get_the_ID()); ?><?php endif; ?> " data-fancybox-type="iframe" class="video-content" style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: cover;">
-<span  class="btn-fancy" > 
-<span class="play-icon-block">
-<span class="fa fa-play"></span>
-</span>
-</span>
-<?php if (get_field('play_video')){ ?>
-<span class="text-content lined"><?php the_field('play_video'); ?></span>
-<?php } else { ?>
-<span class="text-content lined">Play Video</span>
-<?php } ?> 
-</a>
+<a 
+                    data-fancybox tabindex="0" 
+                    href="<?php if (get_field('video_link', get_the_ID())){ ?>
+                    <?php the_field('video_link', get_the_ID()); ?>
+                    <?php } else { echo '#myVideo'; } ?> " 
+                   
+                    class="video-content" 
+                    style="background: url('<?php echo $image['url'];?> ') no-repeat center center; background-size: cover;">
+                    <span  class="btn-fancy" > 
+                        <span class="play-icon-block">
+                            <span class="fa fa-play"></span>
+                        </span>
+                    </span> 
+                    <?php if (get_field('play_video')){ ?>
+                      <span class="text-content lined"><?php the_field('play_video'); ?></span>
+                    <?php }  ?> 
+                </a>
+                <?php if (get_field('html_video', get_the_ID())): ?>
+                <?php the_field('html_video', get_the_ID()); endif; ?>
 <div class=" content-desc">
 <?php if (get_field('short_description', get_the_ID())){ 
 the_field('short_description'); }
