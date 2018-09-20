@@ -1,0 +1,95 @@
+<!--@subject {{trans "Take a look at %customer_name's Wish List" customer_name=$customerName}} @-->
+
+
+{{template config_path="design/email/header_template"}}
+
+        <tr>
+            <td>
+                <table class="flexible" width="640" align="center" style="margin:0 auto; background: #fff;" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td style="padding:29px 30px 30px;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <th class="flex" width="113" align="left" style="padding:0;">
+                                        <table class="center" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="line-height:0;">
+                                                    <img src="{{view url='images/email/thanks.jpg'}}" alt="" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                    <th class="flex" align="left" style="padding:0;">
+                                        <table width="100%" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td data-color="text" data-size="size navigation" data-min="10" data-max="22" data-link-style="text-decoration:none; color:#000;" class="nav" align="right" style="font:13px/15px Tahoma, Arial, Helvetica, sans-serif; color:#000;">
+                                                    <div style="font-weight: bold; font-size: 16px;">Wishlist</div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </th>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <!-- module 2 -->
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td data-bgcolor="bg-module">
+                <table class="flexible" width="640" align="center" style="margin:0 auto; background: #24438d; text-align: center;" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="img-flex" style="font-weight: bold; font-size: 20px; color: #fff;" height="180">
+                            <img src="{{view url='images/email/icon_tick.png'}}" alt="" style="display: inline-block; vertical-align: middle;" /> Wishlist Sharing 
+                        </td>
+
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <table class="flexible" width="640" align="center" style="margin:0 auto; background: #fff; padding:30px; line-height: 30px;" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td colspan="3" class="" style="font-size: 14px;">
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>
+					<p>{{trans "%customer_name wants to share this Wish List from %store_name with you:" customer_name=$customerName store_name=$store.getFrontendName()}}</p>
+
+					{{depend message}}
+					<table class="message-info">
+					    <tr>
+						<td>
+						    <h3>{{trans "Message from %customer_name:" customer_name=$customerName}}</h3>
+						    {{var message|raw}}
+						</td>
+					    </tr>
+					</table>
+					<br />
+					{{/depend}}
+
+					{{var items|raw}}
+					<br/>
+
+					<p><a href="{{var viewOnSiteLink}}">{{trans "View all Wish List items"}}</a></p>
+                                                      
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                </table>
+
+            </td>
+        </tr>
+    </table>
+
+{{template config_path="design/email/footer_template"}}
