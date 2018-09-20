@@ -1,4 +1,7 @@
-.customer-forgetpassword-popup, .custom-block-customer-signup, .custom-block-customer-login, .confirm-popup {
+.customer-forgetpassword-popup,
+.custom-block-customer-signup,
+.custom-block-customer-login,
+.confirm-popup {
     &.modal-popup {
         .modal-inner-wrap {
             width: 100%;
@@ -10,14 +13,12 @@
                 width: 50px;
                 height: 50px;
                 z-index: 9;
-                
             }
             .modal-content {
                 padding: 0;
                 position: absolute;
                 border: 0;
                 box-shadow: none;
-
                 .field {
                     .text-small p {
                         line-height: 20px;
@@ -29,10 +30,6 @@
         }
     }
 }
-
-
-
-
 
 .customer-forgetpassword-popup {
     .fieldset {
@@ -67,7 +64,8 @@
         background-color: #fff;
         position: absolute;
         height: 100%;
-        width: 445px;
+        max-width: 445px;
+        width: 100%;
         top: 0;
         right: 0;
         overflow: auto;
@@ -85,15 +83,12 @@
             position: fixed;
         }
         .common-form {
-            
             a {
                 color: #1c3f93;
                 &:hover {
                     color: #1c3f93;
                 }
             }
-            
-
             &.sign-in {
                 padding: 26% 50px;
                 background: #fff;
@@ -107,7 +102,8 @@
                 padding: 60% 50px;
                 background: #fff;
             }
-            .account, .forget {
+            .account,
+            .forget {
                 min-width: auto;
                 width: 100%;
             }
@@ -173,15 +169,16 @@
                         font-weight: normal;
                     }
                 }
-                input#boxc, input#signup-check {
+                input#boxc,
+                input#signup-check {
                     opacity: 0;
                     &:checked+label:after {
                         opacity: 1;
                     }
                 }
             }
-
-            .new-signup, .already-account {
+            .new-signup,
+            .already-account {
                 margin-top: 15px;
                 p {
                     font-size: 12px;
@@ -197,11 +194,8 @@
                     width: 100%;
                     margin-top: 0;
                 }
-
-                
             }
             .field {
-                
                 .input-text {
                     max-width: 345px;
                     height: 50px;
@@ -275,32 +269,24 @@
     }
 }
 
-
 .modal-popup {
-
-
-    &.confirm{
+    &.confirm {
         .modal-inner-wrap {
             width: 50%;
         }
         .modal-content {
-            
             padding: 20px;
-            
         }
     }
     .modal-content {
         box-shadow: none;
         border: none;
-        
         border-radius: 0;
     }
-
     &.call-price {
-        .modal-inner-wrap{
+        .modal-inner-wrap {
             max-width: 500px;
             .modal-content {
-                
                 padding: 20px;
                 .contact-title {
                     font-size: 16px;
@@ -310,37 +296,33 @@
             }
         }
     }
-
-    &.call-price, &.confirm{
-    .modal-header {
-        background: @color-darkslateblue;
-        padding: 12px 20px 12px;
-        .modal-title {
-            color: @color-white;
-            padding: 0;
-            border: none;
-            text-transform: uppercase;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        .action-close {
-            padding: 10px;
-            &:before{
+    &.call-price,
+    &.confirm {
+        .modal-header {
+            background: @color-darkslateblue;
+            padding: 12px 20px 12px;
+            .modal-title {
                 color: @color-white;
+                padding: 0;
+                border: none;
+                text-transform: uppercase;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .action-close {
+                padding: 10px;
+                &:before {
+                    color: @color-white;
+                }
             }
         }
     }
-}
-
-
-.modal-footer {
-    button {
-        .button();
+    .modal-footer {
+        button {
+            .button();
+        }
     }
 }
-}
-
-
 
 /***************** common classes ****************/
 
@@ -377,8 +359,6 @@
     color: #000;
 }
 
-
-
 .text-capitalize {
     text-transform: capitalize;
 }
@@ -399,13 +379,63 @@
     padding: 10px 0;
 }
 
-
 @media screen and (max-width: 1366px) {
     .log-in {
         .block-customer-login {
-            .common-form.sign-in{
+            .common-form.sign-in {
                 padding: 15% 50px;
             }
         }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .customer-forgetpassword-popup,
+    .custom-block-customer-signup,
+    .custom-block-customer-login,
+    .confirm-popup {
+        &.modal-popup {
+            .modal-inner-wrap{
+            header.modal-header {
+                width: 100%;
+                background: @color-white;
+            }
+            .modal-content {
+                .common-form {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+        .social {
+            padding: 20px;
+        }
+    }
+        
+        .account-social-login{
+            .actions-toolbar{
+                &.social-btn {
+                   width: 50%;
+                   float: left;
+                   margin: 0;
+                   padding: 0 10px;
+                }
+               }
+           }
+    }
+
+    
+
+    aside.modal-popup {
+        &.modal-slide {
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            bottom: 10px;
+        }
+    }
+
+    .custom-g-recaptcha{
+        .transform(scale(0.8));
     }
 }

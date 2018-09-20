@@ -1,0 +1,32 @@
+<?php $_helper = $this->helper('Magebees\Lazyload\Helper\Data');
+$config=$_helper->getConfig();
+$loadmode=$config['loadmode'];
+if($config['enable']):?>
+<script>	
+	
+requirejs(['jquery','lazyload'],
+function($) {
+	window.lazySizesConfig = window.lazySizesConfig || {};
+window.lazySizesConfig.lazyClass = 'magebees_lazyload';
+window.lazySizesConfig.loadMode = <?php echo $loadmode;?>;
+window.lazySizesConfig.srcAttr = 'data-src';
+
+	var img=$(".magebees_lazyload");
+ 	$(document).bind('DOMNodeInserted',img,function(e) {
+	$('body').find(".products > .product").each(function () {		
+                 var image_tag = $(this).find(".lazyloaded");
+				if(image_tag.length != 0){					
+					var srcfullPath = $(image_tag).attr('src');
+					var datafullPath = $(image_tag).attr('data-src');
+					 var srcfilename = srcfullPath.replace(/^.*[\\\/]/, '');
+					 var datafilename = datafullPath.replace(/^.*[\\\/]/, '');					
+					if(srcfilename != datafilename){						
+						$(image_tag).switchClass("lazyloaded","magebees_lazyload" );
+						lazySizes.init();
+					}
+				}            
+		});
+	});
+ });	
+</script>
+<?php endif; ?>
