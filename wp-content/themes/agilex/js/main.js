@@ -479,7 +479,13 @@ function myFunction() {
     autoplaySpeed: 8000,
     dots: true,
     fade: true,
-    arrows: false
+    arrows: false,
+    responsive: [{
+        breakpoint: 768,
+        settings: {
+          adaptiveHeight: true
+        }
+      }]
   });
 
   /* blog sidebar */
@@ -1072,15 +1078,21 @@ function myFunction() {
         }
       })
       .blur(function () {
-        if ($(this).val() == "") {
+        if ($(this).attr('required')) {
           jQuery(this)
             .parents(".form-group, .field:not(.hs-fieldtype-booleancheckbox)")
             .toggleClass("err")
             .removeClass("focused");
+        }
+        if ($(this).val() == "") {
+          jQuery(this)
+            .parents(".form-group, .field:not(.hs-fieldtype-booleancheckbox)")
+            
+            .removeClass("focused");
         } else if ($(this).val()) {
           jQuery(this)
             .parents(".form-group, .field:not(.hs-fieldtype-booleancheckbox)")
-            .removeClass("err");
+            .removeClass("err").addClass('focused');
         }
       });
 

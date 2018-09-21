@@ -259,6 +259,8 @@ class WPSEO_Admin {
 		// Add Facebook.
 		$contactmethods['facebook'] = __( 'Facebook profile URL', 'wordpress-seo' );
 
+		$contactmethods['linkedin'] = __( 'LinkedIn profile URL', 'wordpress-seo' );
+
 		return $contactmethods;
 	}
 

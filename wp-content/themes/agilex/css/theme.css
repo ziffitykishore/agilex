@@ -1132,12 +1132,26 @@ p {
 }
 
 .jobpost-form .validity-note,
-.wpcf7-form span.wpcf7-not-valid-tip {
+.wpcf7-form span.wpcf7-not-valid-tip,
+.not-valid {
     color: #d50000;
     font-size: 10px;
     position: absolute;
     bottom: -16px;
     left: 0;
+}
+
+.select-box {
+    position: relative;
+}
+
+.not-valid {
+    top: 0;
+    bottom: auto;
+}
+
+.not-valid+.not-valid {
+    display: none;
 }
 
 .jobpost-form h3 {
@@ -2092,7 +2106,7 @@ form#searchform {
     right: 0;
     z-index: 35;
     top: 0;
-    background: #fff no-repeat bottom center;
+    background: #fff url('../images/menupattern.jpg') no-repeat bottom center;
     background-size: cover;
     -webkit-overflow-scrolling: touch;
     padding: 85px 55px 50px 35px;
@@ -3413,7 +3427,6 @@ p+p {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: justify;
     padding: 30px 55px;
 }
 
@@ -3547,6 +3560,7 @@ p+p {
     border-bottom: 1px solid #192a3e;
     position: relative;
     z-index: 5;
+    height: 100%;
 }
 
 .main-who-we .video-content {
@@ -6088,8 +6102,13 @@ div.wpcf7 .ajax-loader {
     align-items: center;
 }
 
-.user-avatar img {
+.user-avatar a {
+    width: 100%;
+    height: 100%;
     padding: 8px;
+}
+
+.user-avatar img {
     width: 100%;
     border-radius: 50%;
 }
@@ -6472,4 +6491,22 @@ div.wpcf7 .ajax-loader {
 
 .sjb-page .sjb-detail .jobpost-form .form-control {
     padding: 0 !important;
+}
+
+.jobpost-form .form-group .valid-file>div:first-child,
+.jobpost-form .form-group.invalid-file>div:first-child {
+    position: static;
+}
+
+.jobpost-form .form-group.valid-file>div:first-child label,
+.jobpost-form .form-group.invalid-file>div:first-child label {
+    top: 0;
+}
+
+form.jobpost-form .form-group .form-control {
+    width: 100%;
+}
+
+.sjb-page .sjb-detail .jobpost-form .intl-tel-input {
+    z-index: 50;
 }

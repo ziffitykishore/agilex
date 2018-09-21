@@ -74,16 +74,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <?php if (function_exists('the_custom_logo')) :
                     the_custom_logo();
                     endif; ?> 
-            <?php endif; ?>
-                
-
-                <?php if ( get_theme_mod( 'm1_logo' ) ) : ?>
-                    <a  class="white-logo"  href="<?php echo esc_url( home_url( '/' ) ); ?>" id="site-logo" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-                        <img src="<?php echo get_theme_mod( 'm1_logo' ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>">
-                    </a>
-                <?php endif; ?>
-
-               
+            <?php endif; ?>              
             </div>
             <div class="right-block pull-right">
                 <div class="search-wrap ">
@@ -116,7 +107,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div id="cd-nav" class="cd-nav">
             <div class="overlaybgDark"></div>
-        <div class="cd-navigation-wrapper" style="background-image: url('<?php echo get_theme_mod( 'menu_bg' ); ?>')">
+        <div class="cd-navigation-wrapper">
             <div class="hamburger hamburger--spring js-hamburger cd-nav-trigger">
                 <div class="hamburger-box">
                     <div class="hamburger-inner"></div>
