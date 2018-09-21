@@ -9,5 +9,9 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
         <css src="css/style.css"/> 
+        <css src="css/bootstrap.min.css"/>
+        <css src="css/slick.css" />
+        <css src="css/slick-theme.css"/>
+        <css src="css/font-awesome.css" />
     </head>
 </page>
