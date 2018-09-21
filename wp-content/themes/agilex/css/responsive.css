@@ -789,6 +789,32 @@
     .timeline-item .timeline-image {
         margin-bottom: 50px;
     }
+    .home .parallax-move {
+        width: 20px;
+    }
+    div.container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .tab-section .nav-tabs>li>a .tab-title,
+    .tab-section .panel-title>a .tab-title {
+        font-size: 13px;
+    }
+    #cookie-law-info-bar {
+        padding: 12px 110px 12px 15px
+    }
+    .reviews-inner .review-content:before,
+    .reviews-inner .review-content:after {
+        width: 35px;
+        height: 35px;
+        background-size: 100%;
+    }
+    .reviews-inner .review-content {
+        padding: 30px 20px;
+    }
+    .author-details .author-name {
+        font-size: 14px;
+    }
 }
 
 @media screen and (max-width: 627px) {
@@ -927,10 +953,6 @@
         -ms-flex: 0 0 100%;
         flex: 0 0 100%;
         max-width: 100%;
-    }
-    .testimonials .heading,
-    .testimonials .testimonials-outer {
-        padding: 0 30px;
     }
     .quotes-content-inner {
         padding: 0 25px;

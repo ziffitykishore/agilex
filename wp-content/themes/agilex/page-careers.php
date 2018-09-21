@@ -80,7 +80,7 @@ endforeach; ?>
           <div class="opening-inner">
               <div class="heading text-center">
                 <div class="heading-title text-uppercase">Current Openings</div>
-                <div class="sub-heading">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+                
               </div>
           </div>
             <?php
@@ -146,7 +146,8 @@ endforeach; ?>
         $(".jobpost-form .btn").on('click', function () {
         if ($('#job-post-list').val() == '') {
             $('select').niceSelect('update');
-            alert("Please select the job");
+            //alert("Please select the job");
+            $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
         }
     });
 

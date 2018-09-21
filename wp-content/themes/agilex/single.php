@@ -52,25 +52,26 @@
 </div>
 <div class="author-details-wrap">
   <div class="container">
-        <div class="author-details-outer">
-
-          <div class="user-avatar">
-              <?php echo get_avatar(get_the_author_meta('ID'), ''); ?>
-            </div>
-
-          <div class="author-details-inner">
-              <div class="text-uppercase author-text">Author</div>
-              <div class="author-name text-uppercase"><?php  the_author_meta( 'display_name', $postDataValue->post_author ) ?></div>
-              <?php
-		// Author bio.
-		if ( is_single() && get_the_author_meta( 'description' ) ) :
-			get_template_part( 'author-bio' );
-		endif;
-	?>
-          </div>
+    <div class="author-details-outer">
+      <?php $linkedin = get_the_author_meta( 'linkedin', $post->post_author );?> 
+      <div class="user-avatar">
+        <a href="<?php echo $linkedin; ?>"><?php echo get_avatar(get_the_author_meta('ID'), ''); ?></a>
       </div>
-      </div>
-      </div>
+      <div class="author-details-inner">
+        <div class="text-uppercase author-text">Author</div>
+        <div class="author-name text-uppercase">
+          <a href="<?php echo $linkedin; ?>"><?php  the_author_meta( 'display_name', $postDataValue->post_author ) ?></a>
+        </div>
+        <?php
+        // Author bio.
+        if ( is_single() && get_the_author_meta( 'description' ) ) :
+        get_template_part( 'author-bio' );
+        endif;
+        ?>
+        </div>
+    </div>
+  </div>
+</div>
 
 <div class="pagination-wrap">
   <div class="container">
