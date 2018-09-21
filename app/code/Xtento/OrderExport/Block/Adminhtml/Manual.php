@@ -1,10 +1,10 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:53+00:00
- * Last Modified: 2016-03-07T16:49:53+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
+ * Last Modified: 2018-09-17T09:38:05+00:00
  * File:          app/code/Xtento/OrderExport/Block/Adminhtml/Manual.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
  */
@@ -253,53 +253,14 @@ class Manual extends \Magento\Backend\Block\Template
         return $this->allStatuses->toOptionArray($entity);
     }
 
-    public function getSession() {
+    public function getSession()
+    {
         return $this->_session;
     }
 
     protected function arrayToJsHash($name, $array)
     {
-        $html = 'window.' . $name . ' = $H({' . "\n";
-        $loopLength = 0;
-        foreach ($array as $index => $data) {
-            if (!empty($data) && is_array($data)) {
-                $loopLength++;
-            }
-        }
-        $loopCounter = 0;
-        foreach ($array as $index => $data) {
-            $loopCounter++;
-            $loopLength2 = count($array[$index]);
-            $loopCounter2 = 0;
-            if (is_array($data)) {
-                $html .= '\'' . $this->escapeStringJs($index) . '\': {' . "\n";
-                foreach ($data as $code => $label) {
-                    $loopCounter2++;
-                    $html .= '\'' . $this->escapeStringJs($code) . '\': \'' . $this->escapeStringJs($label) . '\'';
-                    if ($loopCounter2 !== $loopLength2) {
-                        $html .= ',';
-                    }
-                    $html .= "\n";
-                }
-                $html .= '}';
-                if ($loopCounter !== $loopLength) {
-                    $html .= ",\n";
-                }
-            } else {
-                $html .= '\'' . $this->escapeStringJs($index) . '\': ';
-                $html .= '\'' . $this->escapeStringJs($data) . '\'';
-                if ($loopCounter !== count($array)) {
-                    $html .= ",\n";
-                }
-            }
-        }
-        $html .= "});\n";
-        return $html;
-    }
-
-    protected function escapeStringJs($string)
-    {
-        return str_replace(["'", "\n", "\r"], ["\\'", " ", " "], $string);
+        return 'window.' . $name . ' = $H(' . json_encode($array) . ");\n";
     }
 
     protected function _toHtml()

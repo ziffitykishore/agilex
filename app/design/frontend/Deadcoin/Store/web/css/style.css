@@ -5,7 +5,8 @@
 }
 
 body {
-    background: #b1b1b0;
+
+    background-image: url('../images/boxed_bg.jpg');
 }
 
 body,
@@ -37,6 +38,11 @@ a {
     content: "";
     display: table;
     clear: both;
+}
+
+.header-section {
+    width: 1200px;
+    margin: 0 auto;
 }
 
 
@@ -448,4 +454,49 @@ a {
     .menu-navigation {
         top: 55px;
     }
+}
+
+
+/********* edit page *********/
+
+body {
+    color: #777;
+}
+
+.cms-page-view .page-main {
+    background: #fff;
+    width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.faq a {
+    color: #811515;
+}
+
+.cms-page-view p {
+    margin: 0 0 15px;
+    line-height: 1.5;
+    font-size: 14px;
+    font-family: 'HelveticaNeueMedium', 'MinionPro-Regular', 'Open Sans', 'sans-serif';
+}
+
+.page-title {
+    padding: 20px 0;
+}
+
+.cms-page-view h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 5px;
+    line-height: 1.35;
+    color: #777;
+}
+
+.page-title h1 {
+    font-size: 24px;
+    font-family: 'HelveticaNeueMedium';
+    margin: 0 0 15px;
+    color: #811515;
+    font-weight: bold;
 }

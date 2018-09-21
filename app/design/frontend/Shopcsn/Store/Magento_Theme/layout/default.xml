@@ -10,6 +10,7 @@
     <body>
         <referenceContainer name="before.body.end">
             <block  class="Magento\Framework\View\Element\Template" template="Magento_Theme::social-block.phtml" name="social.icons" />
+            <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
@@ -50,11 +51,12 @@
             </container>
             <referenceContainer name="footer-container">
                 <block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
+                <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::mob-sticky.phtml" name="mob.icons" />
             </referenceContainer>
- 
+    
         </referenceContainer>
         <!-- Footer blocks END-->
-          <move element="header" destination="user.welcome" />
+        <move element="header" destination="user.welcome" />
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
         <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />
@@ -65,6 +67,7 @@
         <referenceBlock name="header.panel" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
 
         <referenceBlock name="breadcrumbs">
             <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />

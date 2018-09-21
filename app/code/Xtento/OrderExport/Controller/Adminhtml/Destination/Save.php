@@ -1,15 +1,17 @@
 <?php
 
 /**
- * Product:       Xtento_OrderExport (2.6.2)
+ * Product:       Xtento_OrderExport (2.6.6)
  * ID:            lXPdgIcrkYrqAkkYfQmiNUpRqDD5NOHfZ3XuYtzPwbA=
- * Packaged:      2018-08-15T13:45:52+00:00
- * Last Modified: 2016-05-29T13:37:09+00:00
+ * Packaged:      2018-09-18T14:52:22+00:00
+ * Last Modified: 2018-09-16T15:27:45+00:00
  * File:          app/code/Xtento/OrderExport/Controller/Adminhtml/Destination/Save.php
  * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
  */
 
 namespace Xtento\OrderExport\Controller\Adminhtml\Destination;
+
+use Xtento\OrderExport\Model\Destination;
 
 class Save extends \Xtento\OrderExport\Controller\Adminhtml\Destination
 {
@@ -72,7 +74,13 @@ class Save extends \Xtento\OrderExport\Controller\Adminhtml\Destination
 
             // Handle certain fields
             if ($model->getId()) {
-                $model->setPath(trim(rtrim($model->getPath(), '/')) . '/');
+                $path = trim(rtrim($model->getPath(), '/')) . '/';
+                if ($model->getType() == Destination::TYPE_FTP || $model->getType() == Destination::TYPE_SFTP) {
+                    if ($path[0] !== '/' && $path[0] !== '\\' && $path[0] !== '.') {
+                        $path = '/' . $path;
+                    }
+                }
+                $model->setPath($path);
                 if ($model->getNewPassword() !== '' && $model->getNewPassword() !== '******') {
                     $model->setPassword($this->encryptor->encrypt($model->getNewPassword()));
                 }

@@ -1,4 +1,4 @@
-.customer-account-index {}
+
 
 
 
@@ -33,6 +33,12 @@
     }
 }
 
+
+.social-btn{
+     .btn-social{
+         border-radius: 0;
+     }
+}
 
 .customer-account-login,
 .customer-account-create,
@@ -167,8 +173,15 @@
             
             .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
                 padding: 15px;
+                .bg-smoke();
                 background: @color-white;
             }
+        }
+
+
+        .orders-recent {
+            .bg-smoke();
+            background: @color-white;
         }
 
         .order-products-toolbar {
@@ -314,7 +327,14 @@
     }
 }
 
-
+.sidebar-additional {
+    .product-items {
+        .product-item-name {
+            width: 80%;
+            vertical-align: top;
+       }
+    }
+}
 
 .columns {
     .column {

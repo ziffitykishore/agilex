@@ -1,4 +1,7 @@
-.customer-forgetpassword-popup, .custom-block-customer-signup, .custom-block-customer-login, .confirm-popup {
+.customer-forgetpassword-popup,
+.custom-block-customer-signup,
+.custom-block-customer-login,
+.confirm-popup {
     &.modal-popup {
         .modal-inner-wrap {
             width: 100%;
@@ -7,15 +10,15 @@
             height: 100%;
             .modal-header {
                 border: none;
-                position: relative;
-                z-index: 999;
+                width: 50px;
+                height: 50px;
+                z-index: 9;
             }
             .modal-content {
                 padding: 0;
                 position: absolute;
                 border: 0;
                 box-shadow: none;
-
                 .field {
                     .text-small p {
                         line-height: 20px;
@@ -25,6 +28,12 @@
                 }
             }
         }
+    }
+}
+
+.customer-forgetpassword-popup {
+    .fieldset {
+        margin-bottom: 0;
     }
 }
 
@@ -55,7 +64,8 @@
         background-color: #fff;
         position: absolute;
         height: 100%;
-        width: 445px;
+        max-width: 445px;
+        width: 100%;
         top: 0;
         right: 0;
         overflow: auto;
@@ -66,20 +76,21 @@
         flex-direction: column;
         justify-content: space-between;
         .bk-to-arw {
-            background: #d7dded;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            color: @color-black;
+            position: fixed;
         }
         .common-form {
-            
             a {
                 color: #1c3f93;
                 &:hover {
                     color: #1c3f93;
                 }
             }
-            
-
             &.sign-in {
-                padding: 32% 50px;
+                padding: 26% 50px;
                 background: #fff;
             }
             &.sign-up {
@@ -91,7 +102,8 @@
                 padding: 60% 50px;
                 background: #fff;
             }
-            .account, .forget {
+            .account,
+            .forget {
                 min-width: auto;
                 width: 100%;
             }
@@ -157,22 +169,33 @@
                         font-weight: normal;
                     }
                 }
-                input#boxc, input#signup-check {
+                input#boxc,
+                input#signup-check {
                     opacity: 0;
                     &:checked+label:after {
                         opacity: 1;
                     }
                 }
             }
+            .new-signup,
+            .already-account {
+                margin-top: 15px;
+                p {
+                    font-size: 12px;
+                    line-height: normal;
+                }
+            }
             .actions-toolbar {
                 .primary {
                     width: 100%;
-                    margin-bottom: 20px;
-                    margin-top: 10px;
+                    float: none;
+                }
+                button {
+                    width: 100%;
+                    margin-top: 0;
                 }
             }
             .field {
-                
                 .input-text {
                     max-width: 345px;
                     height: 50px;
@@ -246,7 +269,60 @@
     }
 }
 
-
+.modal-popup {
+    &.confirm {
+        .modal-inner-wrap {
+            width: 50%;
+        }
+        .modal-content {
+            padding: 20px;
+        }
+    }
+    .modal-content {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+    }
+    &.call-price {
+        .modal-inner-wrap {
+            max-width: 500px;
+            .modal-content {
+                padding: 20px;
+                .contact-title {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    display: none;
+                }
+            }
+        }
+    }
+    &.call-price,
+    &.confirm {
+        .modal-header {
+            background: @color-darkslateblue;
+            padding: 12px 20px 12px;
+            .modal-title {
+                color: @color-white;
+                padding: 0;
+                border: none;
+                text-transform: uppercase;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .action-close {
+                padding: 10px;
+                &:before {
+                    color: @color-white;
+                }
+            }
+        }
+    }
+    .modal-footer {
+        button {
+            .button();
+        }
+    }
+}
 
 /***************** common classes ****************/
 
@@ -283,8 +359,6 @@
     color: #000;
 }
 
-
-
 .text-capitalize {
     text-transform: capitalize;
 }
@@ -303,4 +377,65 @@
 
 .ptb-10 {
     padding: 10px 0;
+}
+
+@media screen and (max-width: 1366px) {
+    .log-in {
+        .block-customer-login {
+            .common-form.sign-in {
+                padding: 15% 50px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .customer-forgetpassword-popup,
+    .custom-block-customer-signup,
+    .custom-block-customer-login,
+    .confirm-popup {
+        &.modal-popup {
+            .modal-inner-wrap{
+            header.modal-header {
+                width: 100%;
+                background: @color-white;
+            }
+            .modal-content {
+                .common-form {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+        .social {
+            padding: 20px;
+        }
+    }
+        
+        .account-social-login{
+            .actions-toolbar{
+                &.social-btn {
+                   width: 50%;
+                   float: left;
+                   margin: 0;
+                   padding: 0 10px;
+                }
+               }
+           }
+    }
+
+    
+
+    aside.modal-popup {
+        &.modal-slide {
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            bottom: 10px;
+        }
+    }
+
+    .custom-g-recaptcha{
+        .transform(scale(0.8));
+    }
 }

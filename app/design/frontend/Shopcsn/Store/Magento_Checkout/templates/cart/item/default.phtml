@@ -14,6 +14,7 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 /** @var \Magento\Msrp\Helper\Data $helper */
 $helper = $this->helper('Magento\Msrp\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+$freeItem = $_item->getOptionByCode('ampromo_rule');
 ?>
 <tbody class="cart item">
     <tr class="item-info">
@@ -38,8 +39,11 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                         <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"><?= $block->escapeHtml($block->getProductName()) ?></a>
                     <?php else: ?>
                         <?= $block->escapeHtml($block->getProductName()) ?>
-                    <?php endif; ?>
+                    <?php endif;?>
                 </strong>
+                <?php if($freeItem): ?>
+                    <div class="cart-free text-danger text-capitalize"><?= __('FREE!') ?></div>
+                <?php endif; ?>
                 <?php if ($_options = $block->getOptionList()):?>
                     <dl class="item-options">
                         <?php foreach ($_options as $_option) : ?>
@@ -88,8 +92,12 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     <span><?= /* @escapeNotVerified */ __('Qty') ?></span>
                 </label>
                 <div class="control qty">
+<<<<<<< HEAD
 
                     <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+=======
+                    <input <?= ($freeItem) ? 'disabled' : ''?> id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+>>>>>>> b9c47d8d2192670942f206afaa79d0debd57a879
                            name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
                            data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
                            value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
