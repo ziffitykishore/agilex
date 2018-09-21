@@ -1,25 +1,39 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$storeManager = $objectManager->create('Magento\Store\Model\StoreManagerInterface');
+$websiteId = $storeManager->getStore()->getWebsiteId();
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$collection = $productCollection->create()
+            ->addAttributeToSelect('*')
+            ->setPageSize(1);
+$collection->addWebsiteFilter($websiteId);
+$productId = $collection->getFirstItem();
+$url=$objectManager->get('Magento\Checkout\Helper\Cart')->getAddUrl($productId);
+?>
             <div class="content-container">
                 <div class="content-top">
                     <div class="container">
                         <div class="content-inner_blk">
                             <div class="img-blk">
-								<a href="">
+                <a href="">
                                 <img src="<?php echo $block->getViewFileUrl('images/coin.png'); ?>" alt="" class="">
-								</a>
+                </a>
                             </div>
                             <div class="price-blk">
                                 <div class="price">$79<span class="price-sub"><span class="up">95</span><span class="down">+s&h</span></div>
-                                  
-                                <a href="<?php echo $block->getUrl('checkout/cart/') ?>" class="btn-buy btn btn-link" title="" >Buy Now</a>
+                 <form data-role="tocart-form" action="<?php echo $url; ?>" method="post"> 
+                    <?php echo $block->getBlockHtml('formkey')?>
+                     <button type="submit" title="Add to Cart" class="btn-buy btn btn-link">
+                       <span>Buy Now</span>
+                     </button>
+                 </form>
                             </div>
                             <div class="amc-blk">
-
                                 <img src="<?php echo $block->getViewFileUrl('images/amc_tv.png'); ?>" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="content-bottom">
                     <div class="container">
 
@@ -34,21 +48,20 @@
                                     <li>Includes custom box and coin holder</li>
                                 </ul>
                                 <div class="img-blk">
-<a href="">
+                <a href="">
                                     <img src="<?php echo $block->getViewFileUrl('images/coin.png'); ?>" alt="" />
-</a>
+                </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-        
     </body>
 
 
     
+
 
 
