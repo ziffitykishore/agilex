@@ -1,0 +1,73 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Header"}} @-->
+<!--@vars {
+"var logo_height":"Email Logo Image Height",
+"var logo_width":"Email Logo Image Width",
+"var template_styles|raw":"Template CSS"
+} @-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Internal_email-29</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <style type="text/css">
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: none;
+            -webkit-text-resize: 100%;
+            text-resize: 100%;
+        }
+    </style>
+</head>
+
+<body style="margin:0; padding:0;">
+    <table style="min-width:320px; background: #f2f5f8; font-family: Tahoma, Arial, Helvetica, sans-serif;" width="100%" cellspacing="0" cellpadding="0">
+        <!-- fix for gmail -->
+        <tr>
+            <td class="hide">
+                <table width="600" cellpadding="0" cellspacing="0" style="width:600px !important;">
+                    <tr>
+                        <td style="min-width:600px; font-size:0; line-height:0;">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="wrapper" style="padding:0 10px;">
+                <!-- module 1 -->
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            <table class="flexible" width="640" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td style="padding:29px 0 30px;">
+                                        <table width="100%" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <th class="flex" width="113" align="left" style="padding:0;">
+                                                    <table class="center" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td style="line-height:0;">
+                                                                <a target="_blank" style="text-decoration:none;" href="http://shopcsntv.com"><img src="{{view url='images/email/logo.png'}}" border="0" style="font:12px/12px Tahoma, Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" alt="SHOPCSNTV.COM" /></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+						<td data-color="text" data-size="size navigation" align="right" style="font:13px/15px Tahoma, Arial, Helvetica, sans-serif; color:#000;">
+							                                                                                                                {{trans '<a target="_blank" style="text-decoration:none; color:#000;" href="%order_url">Your Orders</a>' order_url=$this.getUrl($store,'sales/order/history/',[_nosid:1]) |raw}} <span style="background:#000; display:inline-block; vertical-align: middle; height: 10px; width: 1px; margin: 0 5px;"></span> {{trans '<a target="_blank" style="text-decoration:none; color:#000;" href="%account_url">Your Account</a>' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}<span style="background:#000; display:inline-block; vertical-align: middle; height: 10px; width: 1px; margin: 0 5px;"></span>                                                                <a target="_blank" style="text-decoration:none; color:#000;" href="http://shopcsntv.com">Shopcsntv.com</a>
+							
+						</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>

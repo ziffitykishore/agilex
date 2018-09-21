@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magebees" translate="label" sortOrder="100">
+            <label>Magebees</label>
+        </tab>
+        <section id="lazyload" translate="label" type="text" sortOrder="40" showInDefault="1" 
+				 showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Lazy Load Images</label>
+            <tab>magebees</tab>
+            <resource>Magebees_Lazyload::lazyload_config</resource>
+            <group id="setting" translate="label" type="text" sortOrder="1" showInDefault="1" 
+				   showInWebsite="1" showInStore="1">
+				<label>Settings</label>
+				<field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Enabled</label> 
+					<comment>Select Yes load image using lazy load.</comment> 
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model> 
+				 </field>
+				<field id="loadingicon" translate="label comment" type="image" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+					<depends>
+						<field id="enable">1</field>
+					</depends>
+                    <label> Loading icon</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+					<upload_dir config="system/filesystem/media" scope_info="1">lazyload</upload_dir>
+                    <base_url type="media" scope_info="1">lazyload</base_url>
+					<comment>Selected image display as loading icon.</comment> 	
+                </field>	
+				<field id="loadmode" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1"> 
+					<label>Load Mode for Images</label> 					
+					<comment>Select Load Mode for Lazy load images</comment> 
+					<source_model>Magebees\Lazyload\Model\Config\LoadMode</source_model> 
+				 </field>				
+			</group>	
+            <group id="support" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+				<label>Info</label>
+					<field id="style" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1"> 
+						<label>Info</label> 
+						<frontend_model>Magebees\Lazyload\Model\Support</frontend_model>
+					</field>
+				</group>
+        </section>
+    </system>
+</config>

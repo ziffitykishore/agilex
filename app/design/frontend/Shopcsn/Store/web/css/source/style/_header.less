@@ -370,6 +370,7 @@
                 top: 75px;
                 right: 0;
                 width: 180px;
+                z-index: 101;
                 .lib-css(background, @color-white);
                 visibility: hidden;
                 opacity: 0;
@@ -478,8 +479,7 @@
                         opacity: 1;
                     }
                 }
-                .items-total,
-                .subtitle {}
+                
                 .options,
                 .product .primary {
                     .disp(none);
@@ -589,13 +589,13 @@
 @media screen and (max-width: 1366px) {
     .header {
         .logo-wrap {
-            max-width: 6%;
+            max-width: 7%;
         }
         .menu-wrap {
             max-width: 15%;
         }
         .block-search {
-            max-width: 56%;
+            max-width: 53%;
         }
         .acc-links {
             max-width: 16.5%;
@@ -832,6 +832,17 @@
     }
 }
 
+
+@media screen and (min-width: 768px) and (max-width: 768px) {
+    .cms-index-index {
+        .ticker, .header-promo {
+            margin-left: -20px;
+            margin-right: -20px; 
+        }
+         
+    }
+}
+
 @media screen and (max-width: 768px) {
     .header-promo {
         margin-bottom: 20px;
@@ -840,6 +851,12 @@
         }
         .contact-info {
             display: none;
+        }
+    }
+
+    .nav-open .page-wrapper {
+        .overlay {
+            top: 0;
         }
     }
     .header-wrapper {
@@ -852,14 +869,33 @@
             margin-top: 0;
         }
         .menu-wrap {
+            .nav-toggle {
+                z-index: 105;
+            }
             .nav-sections {
                 position: fixed;
+                .level0 {
+                    border-top: 1px solid #d1d1d1;
+                }
+                .parent .level-top:after{
+                    display: none;
+                }
                 li {
                     position: relative;
+                    display: block;
+                    margin-right: 0;
                     a {
                         font-weight: normal;
                         font-size: 14px;
+                        line-height: normal;
                         padding: 15px 30px 15px 15px;
+                    }
+
+                    .submenu {
+                        position: relative;
+                        background: transparent;
+                        box-shadow: none;
+                        border: none;
                     }
                 }
                 .category_image {
@@ -962,6 +998,7 @@
         }
         &.fix-header .block-search {
             position: fixed;
+            z-index: 200;
         }
         &.nav-up .block-search {
             top: 0;

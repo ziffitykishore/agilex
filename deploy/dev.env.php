@@ -48,5 +48,26 @@ return [
     ],
     'install' => [
         'date' => 'Fri, 20 Jul 2018 14:44:44 +0000'
+    ],
+    'cache' => [
+        'frontend' => [
+            'default' => [
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => '127.0.0.1',
+                    'database' => '0',
+                    'port' => '6379'
+                ]
+            ],
+            'page_cache' => [
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => '127.0.0.1',
+                    'database' => '1',
+                    'port' => '6379',
+                    'compress_data' => '0'
+                ]
+            ]
+        ]
     ]
 ];

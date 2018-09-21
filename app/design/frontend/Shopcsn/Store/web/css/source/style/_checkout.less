@@ -1,5 +1,8 @@
 /*************checkout page*************/
-
+div.mage-error[generated] {
+    font-size: 12px;
+    position: relative;
+}
 .onestepcheckout-index-index {
     .page-header {
         border-bottom: 0;
@@ -46,6 +49,7 @@
             .action {
                 background-color: @color-black;
                 border: none;
+                text-transform: uppercase;
             }
         }
     }
@@ -91,10 +95,10 @@
                     position: relative;
                     &.focused {
                         label {
-                        top: -7px;
-                        color: #d7dded;
-                        font-size: 11px;
-                    }
+                            top: -7px;
+                            color: #d7dded;
+                            font-size: 11px;
+                        }
                     }
                     .label {
                         position: absolute;
@@ -120,6 +124,12 @@
                         }
                     }
                 }
+                .action-show-popup {
+                    background: #020202;
+                    color: #fff;
+                    border-radius: 0;
+                    text-transform: uppercase;
+                }
                 .field-tooltip {
                     display: none;
                 }
@@ -141,8 +151,7 @@
                 }
                 .payment-met {
                     width: 100%;
-                    .payment-method-title {
-                        border-bottom: 1px solid #d7dded;
+                    .payment-method-title {                       
                         border-top: 0;
                     }
                     .payment-option-title {
@@ -151,6 +160,58 @@
                             color: #000;
                         }
                     }
+                    .payment-method-content {
+                        padding: 0;
+                        .field {
+                            width: 100%;
+                            position: relative;
+                            &.focused {
+                                label {
+                                    top: -7px;
+                                    color: #d7dded;
+                                    font-size: 11px;
+                                }
+                            }
+                            &.date {
+                                .label {
+                                    top: -7px;
+                                    left: 7px;
+                                }
+                            }
+                            .label {
+                                position: absolute;
+                                z-index: 3;
+                                color: #d7dded;
+                                left: 13px;
+                                font-size: 13px;
+                                background: #fff;
+                                top: 15px;
+                                pointer-events: none;
+                                transition: all .5s ease 0s;
+                            }
+                            .control {
+                                &._with-tooltip input {
+                                    width: 100%;
+                                }
+                                .input-text {
+                                    border: 1px solid #d7dded;
+                                    &:focus {
+                                        border-color: #000;
+                                        box-shadow: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                        .field {
+                            &.type {
+                                .control {
+                                    margin-left: 0;
+                                }
+                            }
+                        }
+                    
                     .form-discount {
                         display: table;
                         .control {
@@ -164,6 +225,9 @@
                     .step-content {
                         padding: 0 20px;
                     }
+                   
+                    
+                    
                 }
             }
             .order-sum {
@@ -331,10 +395,53 @@
                         border: none;
                         height: 50px;
                         width: 100%;
+                        text-transform: uppercase;
                     }
                 }
             }
         }
+    }
+    .modal-slide {
+         &._inner-scroll  {
+                  .modal-header {
+                      border-bottom: 1px solid #d7dded;
+                  }
+                  .modal-title {
+                      border-bottom: 0;
+                  } 
+                  .form-shipping-address { 
+                      max-width: none;                     
+                      margin: 0 auto;
+                      margin-top: 20px;
+                      .street {
+                          legend {
+                              text-align: left;
+                              border-bottom: 0;
+                          }
+                      }
+                      ._with-tooltip {
+                          input {
+                              width: 100%;
+                          }
+                      }
+                      .toggle {
+                          display: none;
+                      }
+                     
+                  }
+                  .modal-footer {
+                      border-top: 1px solid #d7dded;
+                    .action-save-address {
+                        text-transform: uppercase;
+                    }
+                    .action-hide-popup {
+                        font-weight: bold;
+                        text-transform: uppercase;
+                    }
+                  }
+
+         }
+
     }
 }
 
@@ -346,14 +453,14 @@
         .action {
             &.primary {
                 padding: 12px;
+                .button();
             }
         }
     }
     #registration {
         .action {
             &.primary {
-                background: #000;
-                border: none;
+                .button();
                 font-weight: 400;
             }
         }
@@ -371,6 +478,7 @@
                     width: 30%;
                     display: table-cell;
                     border-right: 1px solid #d7dded;
+                   
                 }
                 .ship-pay {
                     width: 30%;
@@ -380,6 +488,9 @@
                     width: 40%;
                     display: table-cell;
                     .order-summary {
+                        #checkout-review-table {
+                            border: 0;
+                        }
                         .table-totals {
                             .sub {
                                 border-top: 1px solid #b5c0dd;
@@ -391,7 +502,23 @@
         }
     }
 }
+@media  screen and (min-width:768px) and (max-width: 1200px) {
+    .checkout-cart-index {
+        .block {
+            &.discount {
+                .coupon {
+                    display: block;
+                    .field,
+                    .actions-toolbar {
+                        display:block !important;
+                        width: 100% !important;
+                    }                    
 
+                }
+            }
+        }
+    }
+}
 @media only screen and ( max-width: 768px) {
     .onestepcheckout-index-index {
         .page-main {
