@@ -9,8 +9,8 @@
 /** @var Magento\Wishlist\Block\Catalog\Product\ProductList\Item\AddTo\Wishlist $block */
 ?>
 <?php if ($block->getWishlistHelper()->isAllow()): ?>
-    <a href="#"
-       class="action towishlist"
+    <a href="javascript:void(0);"
+       class="signin-popup actio1n"
        title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>"
        aria-label="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>"
        data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($block->getProduct()) ?>'
