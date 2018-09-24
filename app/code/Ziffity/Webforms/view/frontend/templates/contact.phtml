@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <input type="text" name="form_type" id="form_type" value="contact" class="hidden input-text" data-validate="{required:true}">
+        <input name="form_type" id="form_type" value="contact" class="hidden input-text" data-validate="{required:true}" type="hidden">
 
         <div class="field required">
             <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('contactGCaptcha')->toHtml(); ?>
