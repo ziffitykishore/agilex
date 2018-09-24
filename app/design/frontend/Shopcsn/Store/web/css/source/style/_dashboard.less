@@ -335,37 +335,36 @@
 }
 
 @media screen and (max-width: 1023px) {
-    .account{
-         &.page-layout-2columns-left {
-         .page-main{
-                .column{
-                     &.main{
-                         width: 100%;
-                     }
-                    }
-                    .sidebar {
-                        &.sidebar-main {
-                            width: 100%;
-                        }
+    .account {
+        &.page-layout-2columns-left {
+            .page-main {
+                .column {
+                    &.main {
+                        width: 100%;
                     }
                 }
+                .sidebar {
+                    &.sidebar-main {
+                        width: 100%;
+                    }
                 }
+            }
         }
+    }
     .account {
         .sidebar-main {
-           
             padding-right: 0;
             .block {
                 .block-collapsible-nav-title {
-                    border: 1px solid #d7dded;   
-                    border-collapse: collapse;                 
+                    border: 1px solid #d7dded;
+                    border-collapse: collapse;
                     background: #f2f5f8;
                     position: relative;
                     display: block !important;
                     &.title {
                         margin-bottom: 0;
                         padding: 25px 25px;
-                        strong{
+                        strong {
                             font-size: 18px;
                         }
                     }
@@ -386,27 +385,25 @@
                     &.active {
                         display: block;
                         border-top: none;
-                        
                     }
                 }
             }
         }
-       
     }
 }
+
 @media screen and (max-width: 480px) {
-    .account{
-         .column{ 
+    .account {
+        .column {
             .orders-history {
-                    padding: 20px;
-                            }
-                
-                .order-products-toolbar {
-                    padding-left: 20px;
-                    padding-right: 20px;
-                }
+                padding: 20px;
             }
+            .order-products-toolbar {
+                padding-left: 20px;
+                padding-right: 20px;
             }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum ='min') and (@break =@screen__m) {
@@ -415,6 +412,266 @@
             .block {
                 .title {
                     .disp(none);
+                }
+            }
+        }
+    }
+}
+
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
+    .page-wrapper {
+        background: url(../images/login_image.jpg) no-repeat left bottom;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .page-main {
+        background-color: #fff;
+        position: absolute;
+        height: 100%;
+        max-width: 445px;
+        width: 100%;
+        top: 0;
+        right: 0;
+        overflow: auto;
+        z-index: 999;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 0;
+        padding: 0;
+        .columns {
+            background: #fff;
+            border: 0;
+            padding: 0;
+        }
+        .page-title-wrapper {
+            color: #1c3f93;
+            text-align: center;
+            border: 0;
+            background: none;
+        }
+    }
+    .social-login-authentication-channel {
+        padding: 50px 20px;
+        background-color: #d7dded;
+        width: 100%;
+        text-align: center;
+    }
+    .login-container {
+        padding: 0 50px;
+        a {
+            color: #1c3f93;
+        }
+        .block:nth-child(odd) {
+            float: none;
+            width: 100%;
+        }
+        .block:nth-child(even) {
+            float: none;
+            width: 100%;
+        }
+        .fieldset {
+            >.field {
+                >.control {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
+    header, footer {
+        display: none;
+    }
+    .page-main {
+        form {
+            min-width: auto !important;
+            width: auto !important;
+        }
+    }
+    .actions-toolbar {
+        .action {
+            height: 50px;
+        }
+    }
+    .field {
+        .input-text {
+            &:focus {
+                border-color: #000;
+                box-shadow: none;
+            }
+        }
+        position: relative;
+        .label {
+            position: absolute;
+            z-index: 3;
+            color: #d7dded;
+            left: 10px;
+            font-size: 13px;
+            background: #fff;
+            top: 15px;
+            pointer-events: none;
+            transition: all .5s ease 0s;
+        }
+        &.focused {
+            .label {
+                top: -7px;
+                color: #d7dded;
+                font-size: 11px;
+            }
+        }
+    }
+    .social-login-authentication-channel {
+        display: block;
+        margin-bottom: 0;
+        bottom: 0;
+    }
+}
+
+.customer-account-login {
+    .page-main {
+        padding: 15% 0;
+    }
+    .block-title {
+        display: none;
+    }
+    .fieldset {
+        &:after {
+            display: none;
+        }
+        a {
+            color: #1c3f93;
+        }
+    }
+    .actions-toolbar {
+        .primary {
+            display: block;
+            float: none;
+            height: 50px;
+            button {
+                width: 100%;
+            }
+        }
+        .secondary {
+            display: block;
+            .remind {
+                background: #fff;
+                border: 0;
+                color: #000;
+                text-align: center;
+                text-transform: lowercase;
+                &:hover {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-create {
+    .page-main {
+        padding: 7% 0;
+        form {
+            padding: 0 50px;
+        }
+    }
+    .fieldset {
+        margin: 0;
+        .newsletter {
+            .label {
+                top: 0;
+                left: 15px;
+                color: #000;
+            }
+        }
+        .legend {
+            display: none;
+        }
+    }
+    .actions-toolbar {
+        .primary {
+            display: block;
+            float: none;
+            .action {
+                width: 100%;
+            }
+        }
+    }
+    .secondary {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        a {
+            padding: 15px !important;
+            span {
+                text-indent: -999em;
+                display: block;
+            }
+            &:after {
+                position: absolute;
+                content: "\e613";
+                font-family: "luma-icons";
+                top: 7px;
+                left: 0;
+                transform: rotate(270deg);
+            }
+        }
+        .action {
+            &.back {
+                background: #fff;
+                border: 0;
+                color: #000;
+                &:hover {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-forgotpassword {
+    .page-main {
+        padding: 15% 50px;
+    }
+    .actions-toolbar {
+        .primary {
+            display: block;
+            float: none;
+        }
+        .action {
+            width: 100% !important;
+        }
+    }
+    .secondary {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        a {
+            padding: 15px !important;
+            span {
+                text-indent: -999em;
+                display: block;
+            }
+            &:after {
+                position: absolute;
+                content: "\e613";
+                font-family: "luma-icons";
+                top: 7px;
+                left: 0;
+                transform: rotate(270deg);
+            }
+        }
+        .action {
+            &.back {
+                background: #fff;
+                border: 0;
+                color: #000;
+                &:hover {
+                    background: #fff;
                 }
             }
         }
