@@ -23,7 +23,7 @@
         <strong><?php echo __('Tags') ?></strong>
     </div>
 
-    <div class="tagclaud-hld">
+    <div class="tagclaud-hld block-content">
     <?php foreach ($tags as $tag) { ?>
         <?php $title = $block->escapeHtml($tag->getTitle()) ?>
         <span class="<?php echo $this->getTagClass($tag) ?>">

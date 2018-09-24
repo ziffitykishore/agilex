@@ -154,6 +154,15 @@ define([
     //bgSource('.category_image');
 
 
+function toggleContent(container, trigger, contentSec) {
+    jQuery(trigger).on('click', function (){
+        jQuery(this).closest(container).find(contentSec).toggleClass('active');
+        jQuery(this).closest(container).toggleClass('active');
+    });
+}
+
+
+
 
     /* Accordion */
 
@@ -240,11 +249,13 @@ define([
         if ($(window).width() < 768 && responsiveflag == false) {
             $('.block-search').appendTo('.header-wrapper');
             $('.test-image-sec').css('height', 'auto');
+            toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
             responsiveflag = true;
 
         } else if ($(window).width() > 768) {
             $('.block-search').insertAfter('.menu-wrap');
             testimonials();
+            $('.blog-sidebar .block-content').removeAttr('style');
             responsiveflag = false;
         }
     }
