@@ -21,7 +21,15 @@
                     <argument name="template" xsi:type="string">Magento_Catalog::product/view/attribute.phtml</argument>
                 </action>
             </referenceBlock>
-            <block class="Ziffity\PdpProductsList\Block\CustomProductsList" name="custom_products" template="Ziffity_PdpProductsList::product/items.phtml"/>
+
+            <!-- customer who brought -->
+            <block class="Ziffity\Filteredproducts\Block\CustomerWhoBought" name="custom_products" template="Ziffity_Filteredproducts::pdpList.phtml">
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="category.product.addto.compare" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
         </referenceContainer>
 
         <move element="product.info.media" destination="pdp-container" after="pdp-info"/>
