@@ -1,4 +1,8 @@
 <?php
+/**
+ * Override In stock option builder
+ *
+ */
 declare(strict_types=1);
 
 namespace Ziffity\StockStatus\Plugin\Model\ResourceModel\Attribute;
@@ -8,6 +12,7 @@ use Magento\CatalogInventory\Model\ResourceModel\Stock\Status;
 use Magento\ConfigurableProduct\Model\ResourceModel\Attribute\OptionSelectBuilderInterface;
 use Magento\ConfigurableProduct\Plugin\Model\ResourceModel\Attribute\InStockOptionSelectBuilder as CoreInStockOptionSelectBuilder;
 use Magento\Framework\DB\Select;
+use Ziffity\Core\Helper\Data;
 
 class InStockOptionSelectBuilder extends CoreInStockOptionSelectBuilder
 {
@@ -24,10 +29,12 @@ class InStockOptionSelectBuilder extends CoreInStockOptionSelectBuilder
      */
     public function __construct(
         Status $stockStatusResource,
-        StockConfigurationInterface $stockConfiguration
+        StockConfigurationInterface $stockConfiguration,
+        Data $helper
     ) {
         parent::__construct($stockStatusResource);
         $this->stockConfiguration = $stockConfiguration;
+        $this->helper = $helper;
     }
 
     /**
@@ -41,7 +48,8 @@ class InStockOptionSelectBuilder extends CoreInStockOptionSelectBuilder
         OptionSelectBuilderInterface $subject,
         Select $select
     ) {
-        if (!$this->stockConfiguration->isShowOutOfStock()) {
+        $outofStockStatus = $this->helper->getOutOfStockStatus('configure_detail_page');
+        if (!$this->stockConfiguration->isShowOutOfStock() || $outofStockStatus == 0) {
             return parent::afterGetSelect($subject, $select);
         }
         return $select;

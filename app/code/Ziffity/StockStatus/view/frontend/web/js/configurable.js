@@ -13,10 +13,11 @@ define([
          */
         _configureElement: function (element) {
             this.simpleProduct = this._getSimpleProductId(element)
-
+            $(".productAlert").hide();
             if (element.value) {
                 this.options.state[element.config.id] = element.value;
                 this.elementLabel = element.selectedOptions[0].config.label;
+                //Check for the status of out of stock module
                 if ($(".getOutOfStatus").val() == 1) {
                     this.outOfStock = this.elementLabel.indexOf("Out of Stock");
                     if(this.outOfStock < 0) {
@@ -27,6 +28,7 @@ define([
                        $(".box-tocart").hide();
                        $(".product-info-stock-sku .available").hide();
                        $(".product-info-stock-sku .unavailable").show();
+                       $(".productAlert").show();
                     }
                 }
                 if (element.nextSetting) {

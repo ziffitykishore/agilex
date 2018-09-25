@@ -2,8 +2,6 @@
 /**
  * Catalog super product configurable part block
  *
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
  */
 namespace Ziffity\StockStatus\Block\Product\View\Type;
 
@@ -95,7 +93,7 @@ class Configurable extends BaseConfigurable
      * @param Session|null $customerSession
      * @param \Magento\ConfigurableProduct\Model\Product\Type\Configurable\Variations\Prices|null $variationPrices
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
-     */    
+     */
     public function __construct(\Magento\Catalog\Block\Product\Context $context,
         \Magento\Framework\Stdlib\ArrayUtils $arrayUtils,
         \Magento\Framework\Json\EncoderInterface $jsonEncoder,
@@ -125,7 +123,7 @@ class Configurable extends BaseConfigurable
         $currentProduct = $this->getProduct();
 
         $options = $this->helper->getOptions($currentProduct, $this->getAllowProducts());
-       
+        //Load custom configure attributes with out of stock label
         $attributesData = $this->customConfigureAttributeData->getAttributesData($currentProduct, $options);
 
         $config = [

@@ -9,8 +9,6 @@ use \Magento\Catalog\Api\ProductRepositoryInterface;
 
 /**
  * Class ConfigurableAttributeData
- * @api
- * @since 100.0.2
  */
 class ConfigurableAttributeData extends BaseConfigurableAttributeData
 {
@@ -24,6 +22,7 @@ class ConfigurableAttributeData extends BaseConfigurableAttributeData
     public function __construct(ProductRepositoryInterface $productRepository) {
         $this->productRepository = $productRepository;
     }
+
     /**
      * Get product attributes
      *

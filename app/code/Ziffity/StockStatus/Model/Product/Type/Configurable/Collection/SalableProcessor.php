@@ -1,4 +1,8 @@
 <?php
+/**
+ * Override Product Configure Salable processor
+ *
+ */
 declare(strict_types=1);
 
 namespace Ziffity\StockStatus\Model\Product\Type\Configurable\Collection;

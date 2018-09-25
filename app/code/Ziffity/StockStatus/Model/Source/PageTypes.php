@@ -1,9 +1,17 @@
 <?php
-
+/**
+ * Build option list for Out of Stock module for Configuration
+ * 
+ */
 namespace Ziffity\StockStatus\Model\Source;
 
 class PageTypes implements \Magento\Framework\Option\ArrayInterface
 {
+    /**
+     * List of pages require to configure Out of Stock status
+     * 
+     * @return array
+     */
     public function toOptionArray()
     {
         return [

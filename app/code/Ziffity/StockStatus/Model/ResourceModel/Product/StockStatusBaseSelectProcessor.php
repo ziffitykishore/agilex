@@ -1,8 +1,6 @@
 <?php
 /**
- * @package Interjar_ConfigurableChildVisibility
- * @author Interjar Ltd
- * @author Josh Carter <josh@interjar.com>
+ * Override select processor to process select option
  */
 declare(strict_types=1);
 

@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Override Product Configure option Helper
+ *
+ */
 namespace Ziffity\StockStatus\Helper;
 
 /**

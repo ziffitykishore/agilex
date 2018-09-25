@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="alert.urls">
-            <block class="Magento\ProductAlert\Block\Product\View\Stock" name="productalert.stock" as="productalert_stock" template="Ziffity_StockStatus::product/view.phtml">
+            <block class="Ziffity\StockStatus\Block\Product\View\Stock" name="productalert.stock" as="productalert_stock" template="Ziffity_StockStatus::product/view.phtml">
                 <action method="setHtmlClass">
                     <argument name="value" xsi:type="string">stock</argument>
                 </action>

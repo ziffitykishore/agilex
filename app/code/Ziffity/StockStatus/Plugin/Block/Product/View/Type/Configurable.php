@@ -1,4 +1,8 @@
 <?php
+/**
+ * Override Product Configure Option Builder
+ *
+ */
 declare(strict_types=1);
 
 namespace Ziffity\StockStatus\Plugin\Block\Product\View\Type;
@@ -37,20 +41,20 @@ class Configurable
         Subject $subject
     ) {
         if (!$subject->hasAllowProducts() &&
-            /*$this->stockConfiguration->isShowOutOfStock()) {
-   
+            $this->stockConfiguration->isShowOutOfStock()) {
+            /** @var Product $product */
             $product = $subject->getProduct();
             $allowProducts = [];
             $usedProducts = $product->getTypeInstance(true)
                 ->getUsedProducts($product);
-            
+            /** @var Product $usedProduct */
             foreach ($usedProducts as $usedProduct) {
                 if ($usedProduct->getStatus() == Status::STATUS_ENABLED) {
                     $allowProducts[] = $usedProduct;
                 }
             }
             $subject->setAllowProducts($allowProducts);
-        }*/
+        }
         return $subject->getData('allow_products');
     }
 }
