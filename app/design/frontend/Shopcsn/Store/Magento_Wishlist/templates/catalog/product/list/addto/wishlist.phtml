@@ -10,7 +10,7 @@
 ?>
 <?php if ($block->getWishlistHelper()->isAllow()): ?>
     <a href="javascript:void(0);"
-       class="signin-popup actio1n"
+       class="signin-popup action towishlist"
        title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>"
        aria-label="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>"
        data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($block->getProduct()) ?>'

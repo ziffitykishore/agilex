@@ -155,13 +155,15 @@ define([
 
 
 function toggleContent(container, trigger, contentSec) {
-    jQuery(trigger).on('click', function (){
-        jQuery(this).closest(container).find(contentSec).toggleClass('active');
-        jQuery(this).closest(container).toggleClass('active');
+    $(trigger).on('click', function (){
+        $(this).closest(container).find(contentSec).toggleClass('active');
+        $(this).closest(container).toggleClass('active');
     });
 }
 
-
+$('.btn-comment').on('click', function (){
+    $('#post-comments .c-reply').toggle();
+});
 
 
     /* Accordion */
