@@ -4,16 +4,16 @@ $collection=$block->getOrderCollection();
 $collection->addWebsiteFilter($websiteId);
 $productId = $collection->getFirstItem();
 $url=$block->getProductUrl()->getAddUrl($productId);
+$imageBlock =  $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
+$productImage = $imageBlock->getImage($productId, 'category_page_grid');
 ?>
 <div class="content-container">
 	<div class="content-top">
 	    <div class="container">
 	        <div class="content-inner_blk">
 		        <div class="img-blk">
-					<a href="">
-	                    <img src="<?php echo $block->getViewFileUrl('images/coin.png'); ?>" alt="" class="">
-					</a>
-                </div>
+                            <?php echo $productImage->toHtml()  ?>                
+                        </div>
                 <div class="price-blk">
                     <div class="price">$79<span class="price-sub"><span class="up">95</span><span class="down">+s&h</span></div>
                         <form data-role="tocart-form" action="<?php echo $url; ?>" method="post" data-product-sku="<?= $block->escapeHtml($productId->getSku()) ?>"> 
@@ -42,9 +42,7 @@ $url=$block->getProductUrl()->getAddUrl($productId);
 		                <li>Includes custom box and coin holder</li>
 		            </ul>
                     <div class="img-blk">
-						<a href="">
-                            <img src="<?php echo $block->getViewFileUrl('images/coin.png'); ?>" alt="" />
-						</a>
+                            <?php echo $productImage->toHtml()  ?> 
                     </div>
                 </div>
             </div>
