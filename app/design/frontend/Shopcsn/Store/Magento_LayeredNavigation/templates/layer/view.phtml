@@ -19,7 +19,7 @@
     <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
     <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
         <div class="block-title filter-title" data-count="<?= /* @escapeNotVerified */ $filtered ?>">
-            <strong data-role="title"><?= /* @escapeNotVerified */ __('Filter By') ?></strong>
+            <strong data-role="title"><i class="fa fa-filter visible-xs-inline-block"></i> <?= /* @escapeNotVerified */ __('Filter By') ?></strong>
         </div>
 
         <div class="block-content filter-content">
