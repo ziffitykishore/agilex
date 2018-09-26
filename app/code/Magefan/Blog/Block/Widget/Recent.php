@@ -150,4 +150,17 @@ class Recent extends \Magefan\Blog\Block\Post\PostList\AbstractList implements \
     {
         return $post->getShortFilteredContent();
     }
+    
+    /**
+     * Limit the words by the limit
+     * 
+     * @param string $string
+     * @param int $limit
+     * @return string
+     */
+    function setWordsLimit($string, $limit)
+    {
+        $words = explode(" ", $string);
+        return implode(" ", array_splice($words, 0, $limit));
+    }
 }

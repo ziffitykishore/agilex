@@ -22,6 +22,10 @@
     <div class="c-img">
         <img src="<?php echo $authorImage ?>" alt="<?php echo $block->escapeHtml($comment->getAuthorName()) ?>">
     </div>
+    <?php } else {  ?>
+        <div class="c-img">
+            <span class="fa fa-user"></span>
+        </div>
     <?php } ?>
     <div class="c-post c-post-<?php echo $comment->getId() ?>" id="c-post-<?php echo $comment->getId() ?>">
         <div class="p-name"><?php echo $block->escapeHtml($comment->getAuthor()->getNickname()) ?></div>

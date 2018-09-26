@@ -20,6 +20,13 @@
 
     $canPost = $block->canPost();
 ?>
+
+<h2 class="comments-title">Leave a comment</h2>
+<div class="comment-wrap">
+<span class="label-comments">Comments</span>
+<button class="action btn-comment">Leave a Comment</button>
+
+</div>
 <div id="post-comments">
     <div class="c-count"><?php echo __('%1 Comment(s)', $comments->getSize()) ?></div>
     <!-- reply form -->

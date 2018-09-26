@@ -18,68 +18,52 @@
     $_postCollection = $block->getPostCollection();
 ?>
 <?php if ($_postCollection->count()) { ?>
-<div class="post-list-wrapper blog-widget-recent">
-    <h3 class="title"><?php echo $block->escapeHtml($block->getTitle()) ?></h3>
-    <ul class="post-list clearfix">
-        <?php foreach ($_postCollection as $_post) { ?>
-            <?php
-                $_postUrl = $_post->getPostUrl();
-                $_postName = $block->escapeHtml($_post->getTitle(), null, true);
-            ?>
-            <li class="post-holder post-holder-<?php echo $_post->getId() ?>">
-                <div class="post-header">
+<div class="blog-wrapper">
+    <div class="container">
+        <div class="blog-outer br whitesmoke">
+            <div class="heading-sec clearfix">
+                <h2 class="pull-left"><?php echo __('Blog') ?></h2>
+                <a href="<?php echo $this->getUrl('blog') ?>" class="text-uppercase pull-right btn-view btn-bor">
+                    <span><?php echo __('View More') ?></span>
+                </a>
+            </div>
 
-                    <div class="post-title-holder clearfix">
-                        <div class="post-title">
-                            <a class="post-item-link"
-                               href="<?php echo $_postUrl ?>">
-                                <?php echo $_postName; ?>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="post-info clear">
-                        <div class="item post-posed-date">
-                            <span class="label"><?php echo __('Posted:') ?></span>
-                            <span class="value"><?php echo $_post->getPublishDate('F d, Y') ?></span>
-                        </div>
-                        <?php if ($_categoriesCount = $_post->getCategoriesCount()) { ?>
-                        <div class="dash">|</div>
-                        <div class="item post-categories">
-                            <span class="label"><?php echo __('Categories:') ?></span>
-                            <?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
-                                <a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>"><?php echo $block->escapeHtml($ct->getTitle()) ?></a>
-                                <?php if ($n != $_categoriesCount) { ?>, <?php } ?>
+            <div class="blog-content-wrap clearfix">
+                <?php foreach ($_postCollection as $_post) { ?>
+                <?php
+                    $_postUrl = $_post->getPostUrl();
+                    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+                ?>
+                <div class="col-sm-4 blog-item">
+                    <a href="<?php echo $_postUrl ?>">
+                        <div class="blog-image">
+                            <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
+                                <img src="<?php echo $featuredImage ?>"  alt="<?php echo $_postName; ?>" class="full-w img-responsive" />
                             <?php } ?>
+                            <div class="blog-date"> 
+                                <div class="date-sec">
+                                    <?php echo $_post->getPublishDate('d') ?>
+                                    <span><?php echo $_post->getPublishDate('M') ?></span>
+                                </div>
+                            </div>
                         </div>
-                        <?php } ?>
-                    </div>
-                </div>
-
-                <div class="post-content">
-                    <div class="post-description clearfix">
-                        <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
-                        <div class="post-ftimg-hld">
-                            <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-                                <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+                        <div class="blog-content">
+                            <div class="blog-title">
+                                <?php echo $_postName; ?>
+                            </div>
+                            <div class="blog-desc">
+                                <?php $shortcontent = preg_replace("/<img[^>]+\>/i", "", $block->getShorContent($_post), 1); ?>
+                                <?php echo $block->setWordsLimit($shortcontent, 60). ' ...'; ?> 
+                            </div>
+                            <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                            <span class="more-btn"><?php echo __('Read more') ?></span>
                             </a>
                         </div>
-                        <?php } ?>
-                        <div class="post-text-hld clearfix">
-                            <?php echo $block->getShorContent($_post) ?>
-                        </div>
-                        <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>"
-                           >
-                           <?php echo __('Read more &#187;') ?>
-                        </a>
-                    </div>
+                    </a>
                 </div>
-                <div class="post-footer">
-
-                </div>
-            </li>
-
-        <?php } ?>
-    </ul>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
 </div>
 <?php } ?>

@@ -1,29 +1,24 @@
-
-
-
-
 .btn-action() {
-.action, .action.back, .action.remind {
-    .lib-css(background, @color-black);
-    .lib-css(color, @color-white);
-    border: 1px solid @color-black;
-    
-    .br-radius(0);
-    .transition(all 0.5s ease-in-out 0s);
-    font-weight: normal;
-    padding: 7px 15px;
-    font-size: @f-size;
-    line-height: 20px;
-    margin-top: 0;
-    text-transform: uppercase;
-    &:hover, &:focus, &:active{
-        .lib-css(background, @color-darkslateblue);
-        .lib-css(border-color, @color-darkslateblue);
+    .action, .action.back, .action.remind {
+        .lib-css(background, @color-black);
+        .lib-css(color, @color-white);
+        border: 1px solid @color-black;
+        .br-radius(0);
+        .transition(all 0.5s ease-in-out 0s);
+        font-weight: normal;
+        padding: 7px 15px;
+        font-size: @f-size;
+        line-height: 20px;
+        margin-top: 0;
+        text-transform: uppercase;
+        &:hover, &:focus, &:active {
+            .lib-css(background, @color-darkslateblue);
+            .lib-css(border-color, @color-darkslateblue);
+        }
     }
 }
-}
 
-.page-title(){
+.page-title() {
     padding: 20px 30px;
     border-bottom: 1px solid #d7d7ed;
     .page-title {
@@ -33,20 +28,16 @@
     }
 }
 
-
-.social-btn{
-     .btn-social{
-         border-radius: 0;
-     }
+.social-btn {
+    .btn-social {
+        border-radius: 0;
+    }
 }
 
-.customer-account-login,
-.customer-account-create,
-.customer-account-forgotpassword {
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
     .actions-toolbar {
         .btn-action();
     }
-
     .page-main {
         .container-md();
         margin-top: 20px;
@@ -55,11 +46,10 @@
             .bg-smoke();
             border-bottom: none;
         }
-
         .columns {
             .bg-smoke();
             padding: 30px;
-            .column{
+            .column {
                 padding-bottom: 0;
             }
         }
@@ -84,7 +74,6 @@
     }
     .columns {
         margin-top: 30px;
-        
     }
     .column {
         &.main {
@@ -120,13 +109,10 @@
                     border: 1px solid #d7d7ed;
                     min-height: 215px;
                     margin-bottom: 0 !important;
-                    .box-title,
-                    .box-content,
-                    .box-actions {
+                    .box-title, .box-content, .box-actions {
                         padding: 20px;
                     }
-                    &-content,
-                    &-actions {
+                    &-content, &-actions {
                         padding-bottom: 0;
                     }
                     &-content {
@@ -170,31 +156,26 @@
         }
         .orders-history {
             padding: 30px;
-            
-            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
                 padding: 15px;
                 .bg-smoke();
                 background: @color-white;
             }
         }
-
-
         .orders-recent {
             .bg-smoke();
             background: @color-white;
         }
-
         .order-products-toolbar {
             padding-left: 30px;
             padding-right: 30px;
-             .pager{
-                 padding: 15px;
-                 .toolbar-amount{
-                     padding-top: 0;
-                 }
-             }
+            .pager {
+                padding: 15px;
+                .toolbar-amount {
+                    padding-top: 0;
+                }
+            }
         }
-
         .form-wishlist-items {
             padding: 30px;
             .products-grid {
@@ -211,8 +192,7 @@
                 }
             }
         }
-        .block,
-        form {
+        .block, form {
             a.action {
                 position: relative;
                 color: #c2c2c2;
@@ -236,10 +216,7 @@
         .actions-toolbar {
             margin-left: 0;
             padding: 30px;
-            
             .btn-action();
-            
-            
         }
         .message {
             margin: 30px;
@@ -288,8 +265,7 @@
                     span {
                         .disp(none);
                     }
-                    >a,
-                    >strong {
+                    >a, >strong {
                         padding: 20px;
                         border: 1px solid #d7d7ed;
                         margin-top: 20px;
@@ -307,8 +283,7 @@
                         }
                     }
                     &.current {
-                        >strong,
-                        >a {
+                        >strong, >a {
                             background: @color-darkslateblue;
                             color: @color-white;
                             .pos(relative);
@@ -322,7 +297,7 @@
                         }
                     }
                 }
-            }                                                                   
+            }
         }
     }
 }
@@ -332,7 +307,7 @@
         .product-item-name {
             width: 80%;
             vertical-align: top;
-       }
+        }
     }
 }
 
@@ -356,7 +331,78 @@
                 }
             }
         }
+    }
+}
 
+@media screen and (max-width: 1023px) {
+    .account {
+        &.page-layout-2columns-left {
+            .page-main {
+                .column {
+                    &.main {
+                        width: 100%;
+                    }
+                }
+                .sidebar {
+                    &.sidebar-main {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    .account {
+        .sidebar-main {
+            padding-right: 0;
+            .block {
+                .block-collapsible-nav-title {
+                    border: 1px solid #d7dded;
+                    border-collapse: collapse;
+                    background: #f2f5f8;
+                    position: relative;
+                    display: block !important;
+                    &.title {
+                        margin-bottom: 0;
+                        padding: 25px 25px;
+                        strong {
+                            font-size: 18px;
+                        }
+                    }
+                    &:after {
+                        content: '\e622';
+                        position: absolute;
+                        right: 30px;
+                        font-family: 'luma-icons';
+                    }
+                    &.active {
+                        &:after {
+                            content: '\e621';
+                        }
+                    }
+                }
+                .content {
+                    display: none;
+                    &.active {
+                        display: block;
+                        border-top: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .account {
+        .column {
+            .orders-history {
+                padding: 20px;
+            }
+            .order-products-toolbar {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
     }
 }
 
@@ -366,6 +412,266 @@
             .block {
                 .title {
                     .disp(none);
+                }
+            }
+        }
+    }
+}
+
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
+    .page-wrapper {
+        background: url(../images/login_image.jpg) no-repeat left bottom;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .page-main {
+        background-color: #fff;
+        position: absolute;
+        height: 100%;
+        max-width: 445px;
+        width: 100%;
+        top: 0;
+        right: 0;
+        overflow: auto;
+        z-index: 999;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-top: 0;
+        padding: 0;
+        .columns {
+            background: #fff;
+            border: 0;
+            padding: 0;
+        }
+        .page-title-wrapper {
+            color: #1c3f93;
+            text-align: center;
+            border: 0;
+            background: none;
+        }
+    }
+    .social-login-authentication-channel {
+        padding: 50px 20px;
+        background-color: #d7dded;
+        width: 100%;
+        text-align: center;
+    }
+    .login-container {
+        padding: 0 50px;
+        a {
+            color: #1c3f93;
+        }
+        .block:nth-child(odd) {
+            float: none;
+            width: 100%;
+        }
+        .block:nth-child(even) {
+            float: none;
+            width: 100%;
+        }
+        .fieldset {
+            >.field {
+                >.control {
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
+    header, footer {
+        display: none;
+    }
+    .page-main {
+        form {
+            min-width: auto !important;
+            width: auto !important;
+        }
+    }
+    .actions-toolbar {
+        .action {
+            height: 50px;
+        }
+    }
+    .field {
+        .input-text {
+            &:focus {
+                border-color: #000;
+                box-shadow: none;
+            }
+        }
+        position: relative;
+        .label {
+            position: absolute;
+            z-index: 3;
+            color: #d7dded;
+            left: 10px;
+            font-size: 13px;
+            background: #fff;
+            top: 15px;
+            pointer-events: none;
+            transition: all .5s ease 0s;
+        }
+        &.focused {
+            .label {
+                top: -7px;
+                color: #d7dded;
+                font-size: 11px;
+            }
+        }
+    }
+    .social-login-authentication-channel {
+        display: block;
+        margin-bottom: 0;
+        bottom: 0;
+    }
+}
+
+.customer-account-login {
+    .page-main {
+        padding: 15% 0;
+    }
+    .block-title {
+        display: none;
+    }
+    .fieldset {
+        &:after {
+            display: none;
+        }
+        a {
+            color: #1c3f93;
+        }
+    }
+    .actions-toolbar {
+        .primary {
+            display: block;
+            float: none;
+            height: 50px;
+            button {
+                width: 100%;
+            }
+        }
+        .secondary {
+            display: block;
+            .remind {
+                background: #fff;
+                border: 0;
+                color: #000;
+                text-align: center;
+                text-transform: lowercase;
+                &:hover {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-create {
+    .page-main {
+        padding: 7% 0;
+        form {
+            padding: 0 50px;
+        }
+    }
+    .fieldset {
+        margin: 0;
+        .newsletter {
+            .label {
+                top: 0;
+                left: 15px;
+                color: #000;
+            }
+        }
+        .legend {
+            display: none;
+        }
+    }
+    .actions-toolbar {
+        .primary {
+            display: block;
+            float: none;
+            .action {
+                width: 100%;
+            }
+        }
+    }
+    .secondary {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        a {
+            padding: 15px !important;
+            span {
+                text-indent: -999em;
+                display: block;
+            }
+            &:after {
+                position: absolute;
+                content: "\e613";
+                font-family: "luma-icons";
+                top: 7px;
+                left: 0;
+                transform: rotate(270deg);
+            }
+        }
+        .action {
+            &.back {
+                background: #fff;
+                border: 0;
+                color: #000;
+                &:hover {
+                    background: #fff;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-forgotpassword {
+    .page-main {
+        padding: 15% 50px;
+    }
+    .actions-toolbar {
+        .primary {
+            display: block;
+            float: none;
+        }
+        .action {
+            width: 100% !important;
+        }
+    }
+    .secondary {
+        position: absolute;
+        top: 10px;
+        left: 50px;
+        a {
+            padding: 15px !important;
+            span {
+                text-indent: -999em;
+                display: block;
+            }
+            &:after {
+                position: absolute;
+                content: "\e613";
+                font-family: "luma-icons";
+                top: 7px;
+                left: 0;
+                transform: rotate(270deg);
+            }
+        }
+        .action {
+            &.back {
+                background: #fff;
+                border: 0;
+                color: #000;
+                &:hover {
+                    background: #fff;
                 }
             }
         }
