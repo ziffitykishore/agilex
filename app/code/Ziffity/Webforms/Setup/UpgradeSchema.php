@@ -38,10 +38,8 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'comment' => 'Customer Id'
                 ],
                 'customer_ip' => [
-                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-                    'length' => 45,
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
                     'nullable' => false,
-                    'default' => 0,
                     'after' => 'customer_id',
                     'comment' => 'Customer Ip'
                 ],
