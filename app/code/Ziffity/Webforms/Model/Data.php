@@ -213,4 +213,34 @@ class Data extends AbstractModel implements DataInterface
     {
         return $this->setData(DataInterface::UPDATED_AT, $updatedAt);
     }
+
+    public function setStoreId($storeId)
+    {
+        return $this->setData(DataInterface::STORE_ID, $storeId);
+    }
+
+    public function getStoreId()
+    {
+        return $this->getData(DataInterface::STORE_ID);
+    }
+
+    public function setCustomerId($customerId)
+    {
+        return $this->setData(DataInterface::CUSTOMER_ID, $customerId);
+    }
+
+    public function getCustomerId()
+    {
+        return $this->getData(DataInterface::CUSTOMER_ID);
+    }
+
+    public function setCustomerIp($customerIp)
+    {
+        return $this->setData(DataInterface::CUSTOMER_IP, $customerIp);
+    }
+
+    public function getCustomerIp()
+    {
+        return $this->getData(DataInterface::UPDATED_AT);
+    }
 }

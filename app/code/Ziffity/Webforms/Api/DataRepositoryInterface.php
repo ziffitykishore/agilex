@@ -8,7 +8,7 @@ use Ziffity\Webforms\Api\Data\DataInterface;
 interface DataRepositoryInterface
 {
 
-    public function save(DataInterface $data);
+    public function save(DataInterface $data);   
 
 
     public function getById($dataId);
