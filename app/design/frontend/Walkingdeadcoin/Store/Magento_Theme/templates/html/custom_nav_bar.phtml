@@ -1,3 +1,7 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+?>
 <div class="menu-wrap h-blk">
     <span class="menu-icon hidden-ms">
     	<span class="icon-bar icon-1"></span>
@@ -9,7 +13,9 @@
         <li><a href="/walking-deadcoin-aboutus">About Us</a></li>
         <li><a href="/walking-deadcoin-contactus">Contact Us</a></li>
         <li><a href="/walking-deadcoin-faq">FAQ</a></li>
-	<li><a href="<?php echo $block->getUrl('customer/account/login') ?>">Login</a></li>
+	<li><a href="<?php echo $block->getUrl('customer/account/login') ?>">Login</a></li> 
     </ul>
 </div>
+
+
 

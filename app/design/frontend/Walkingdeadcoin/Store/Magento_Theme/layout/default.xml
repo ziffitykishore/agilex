@@ -8,7 +8,7 @@
             <block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
         </referenceContainer>
 
-        <move element="minicart" destination="header-wrapper" before="-" />
+        <move element="minicart" destination="header-wrapper" after="-" />
 		<move element="custom.nav.bar" destination="header-wrapper" after="logo" /> 		
 
         <referenceBlock name="top.links" remove="true"/>
