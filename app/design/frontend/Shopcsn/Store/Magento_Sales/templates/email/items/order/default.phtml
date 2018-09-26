@@ -21,7 +21,7 @@ $_baseImageUrl = $_store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_M
 	<?php //Product Image ?>
         <table width="100%" cellpadding="15" cellspacing="0">
             <tr>
-                <td style="border: 1px solid #d7d7ed;"><img src="<?= $_imageHelper->init($_item->getProduct(), 'small_image', ['type'=>'small_image'])->keepAspectRatio(true)->resize('65','65')->getUrl();?>" alt="<?= __('Product Image');?>"></td>
+                <td style="border: 1px solid #d7d7ed;"><img width="80" height="80" src="<?= $_imageHelper->init($_item->getProduct(), 'small_image', ['type'=>'small_image'])->keepAspectRatio(true)->resize('65','65')->getUrl();?>" alt="<?= __('Product Image');?>"></td>
             </tr>
             <tr>
                 <td style="font-weight: bold; padding-left: 0; padding-bottom: 0;">
