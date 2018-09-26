@@ -1,0 +1,102 @@
+<!--@subject {{trans "Update to your %store_name shipment" store_name=$store.getFrontendName()}} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<tr>
+    <td>
+        <table class="flexible" width="640" align="center" style="margin:0 auto; background: #fff;" cellpadding="0" cellspacing="0">
+            <tr>
+                <td style="padding:29px 30px 30px;">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <th class="flex" width="113" align="left" style="padding:0;">
+                                <table class="center" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td style="line-height:0;">
+                                            <img src="{{view url='images/email/thanks.jpg'}}" alt="" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </th>
+                            <th class="flex" align="left" style="padding:0;">
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td data-color="text" data-size="size navigation" data-min="10" data-max="22" data-link-style="text-decoration:none; color:#000;" class="nav" align="right" style="font:13px/15px Tahoma, Arial, Helvetica, sans-serif; color:#000;">
+                                            <div style="font-weight: bold; font-size: 16px;">Shipment confirmation</div>
+                                            <div style="font-weight: bold; font-size: 16px; margin: 5px 0 15px;">Order {{trans ' <span class="no-link">#%increment_id</span>' increment_id=$order.increment_id |raw}}</div>
+                                            <div style="font-size: 14px;">{{trans 'Placed on <span class="no-link">%created_at</span>' created_at=$order.getCreatedAtFormatted(2) |raw}}</div>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </th>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+</table>
+<!-- module 2 -->
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td data-bgcolor="bg-module">
+            <table class="flexible" width="640" align="center" style="margin:0 auto; background: #24438d; text-align: center;" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="img-flex" style="font-weight: bold; font-size: 20px; color: #fff;" height="180">
+                        <img src="{{view url='images/email/icon_tick.png'}}" alt="" style="display: inline-block; vertical-align: middle;" /> Your Shipment Update
+                    </td>
+
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td>
+            <table class="flexible" width="640" align="center" style="margin:0 auto; background: #fff; line-height: 30px;" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td height="30"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="flexible" width="580" align="center" style="margin:0 auto; background: #fff; line-height: 30px;" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td colspan="3" class="" style="font-size: 14px;">
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td>Hello <span>{{trans "%name," name=$order.getCustomerName()}}</span></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>
+                                                {{trans "Your order #%increment_id has been updated with a status of <strong>%order_status</strong>." increment_id=$order.increment_id order_status=$order.getStatusLabel() |raw}}
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    {{depend comment}}
+                                    <table class="message-info">
+                                        <tr>
+                                            <td>
+                                                {{var comment|escape|nl2br}}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    {{/depend}}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}
