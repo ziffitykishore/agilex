@@ -9,7 +9,7 @@
     
     <body>
         <referenceContainer name="before.body.end">
-            <block  class="Magento\Framework\View\Element\Template" template="Magento_Theme::social-block.phtml" name="social.icons" />
+            
             <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
@@ -52,6 +52,7 @@
             <referenceContainer name="footer-container">
                 <block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
                 <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::mob-sticky.phtml" name="mob.icons" />
+                <block  class="Magento\Framework\View\Element\Template" template="Magento_Theme::social-block.phtml" name="social.icons" />
             </referenceContainer>
     
         </referenceContainer>
