@@ -43,7 +43,6 @@ class Save extends Data
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             $id = $this->getRequest()->getParam('cust_id');
@@ -53,7 +52,6 @@ class Save extends Data
                 unset($data['cust_id']);
                 $model = $this->dataFactory->create();
             }
-
             try {
                 $this->dataObjectHelper->populateWithArray($model, $data, DataInterface::class);
                 $this->dataRepository->save($model);
@@ -70,7 +68,6 @@ class Save extends Data
             } catch (\Exception $e) {
                 $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
             }
-
             $this->_getSession()->setFormData($data);
             return $resultRedirect->setPath('*/*/edit', ['cust_id' => $this->getRequest()->getParam('cust_id')]);
         }

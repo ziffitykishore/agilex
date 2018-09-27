@@ -5,7 +5,6 @@ namespace Ziffity\Webforms\Setup;
 use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
-
 /**
  * Upgrade the Ziffity_Webforms module DB scheme
  */
@@ -20,7 +19,6 @@ class UpgradeSchema implements UpgradeSchemaInterface
             $this->addColumnsInTable($setup);
         }
     }
-
     protected function addColumnsInTable(SchemaSetupInterface $setup)
     {
         $setup->startSetup();
@@ -52,13 +50,11 @@ class UpgradeSchema implements UpgradeSchemaInterface
                     'comment' => 'Store Id'
                 ]
             ];
-
             $connection = $setup->getConnection();
             foreach ($columns as $name => $definition) {
                 $connection->addColumn($tableName, $name, $definition);
             }
         }
-
         $setup->endSetup();
     }
 }

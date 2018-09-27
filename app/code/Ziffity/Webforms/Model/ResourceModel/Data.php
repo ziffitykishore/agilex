@@ -18,16 +18,12 @@ class Data extends AbstractDb
         $this->date = $date;
         parent::__construct($context);
     }
-
     protected function _construct()
-    {
-        
+    {        
         $this->_init('webforms_customer_data', 'cust_id');
     }
-
     protected function _beforeSave(AbstractModel $object)
     {
-
         $object->setUpdatedAt($this->date->gmtDate());
         if ($object->isObjectNew()) {
             $object->setCreatedAt($this->date->gmtDate());

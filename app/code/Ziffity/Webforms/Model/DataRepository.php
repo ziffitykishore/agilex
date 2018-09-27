@@ -43,7 +43,6 @@ class DataRepository implements DataRepositoryInterface
         $this->dataInterfaceFactory = $dataInterfaceFactory;
         $this->dataObjectHelper = $dataObjectHelper;
     }
-
     public function save(DataInterface $data)
     {
         try {
@@ -57,7 +56,6 @@ class DataRepository implements DataRepositoryInterface
         }
         return $data;
     }
-
     public function getById($dataId)
     {
         if (!isset($this->instances[$dataId])) {
@@ -71,7 +69,6 @@ class DataRepository implements DataRepositoryInterface
         }
         return $this->instances[$dataId];
     }
-
     public function getList(SearchCriteriaInterface $searchCriteria)
     {
 
@@ -110,7 +107,6 @@ class DataRepository implements DataRepositoryInterface
         $searchResults->setTotalCount($collection->getSize());
         return $searchResults->setItems($data);
     }
-
     public function delete(DataInterface $data)
     {
 
@@ -128,7 +124,6 @@ class DataRepository implements DataRepositoryInterface
         unset($this->instances[$id]);
         return true;
     }
-
     public function deleteById($dataId)
     {
         $data = $this->getById($dataId);

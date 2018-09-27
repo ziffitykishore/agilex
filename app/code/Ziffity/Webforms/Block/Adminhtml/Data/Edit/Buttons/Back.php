@@ -15,7 +15,6 @@ class Back extends Generic implements ButtonProviderInterface
             'sort_order' => 10
         ];
     }
-
     public function getBackUrl()
     {
         return $this->getUrl('*/*/');

@@ -52,6 +52,17 @@
                     </filters>
                 </templates>
             </settings>
+            <filterSelect name="store_id" provider="${ $.parentName }">
+                <settings>
+                    <captionValue>0</captionValue>
+                    <options class="Ziffity\Webforms\Ui\Component\Listing\Column\Webforms\Options"/>
+                    <label translate="true">Store View</label>
+                    <dataScope>store_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>            
         </filters>
         <massaction name="listing_massaction">
             <action name="delete">
@@ -113,6 +124,11 @@
                 </editor>
                 <label translate="true">Name</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
         </column>
         <column name="cust_email">
             <settings>
@@ -127,6 +143,11 @@
                 </editor>
                 <label translate="true">Email</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">20</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_phone">
             <settings>
@@ -141,6 +162,11 @@
                 </editor>
                 <label translate="true">Phone</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">30</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_comments">
             <settings>
@@ -155,6 +181,11 @@
                 </editor>
                 <label translate="true">Comments</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_find">
             <settings>
@@ -169,6 +200,11 @@
                 </editor>
                 <label translate="true">Find Your Coin</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">50</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_addr_one">
             <settings>
@@ -183,6 +219,11 @@
                 </editor>
                 <label translate="true">Address</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_city">
             <settings>
@@ -197,6 +238,11 @@
                 </editor>
                 <label translate="true">City</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_state">
             <settings>
@@ -211,6 +257,11 @@
                 </editor>
                 <label translate="true">State</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">80</item>
+                </item>
+            </argument>            
         </column>
         <column name="cust_zip">
             <settings>
@@ -225,6 +276,11 @@
                 </editor>
                 <label translate="true">Zipcode</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">90</item>
+                </item>
+            </argument>            
         </column>
         <column name="form_type" component="Magento_Ui/js/grid/columns/select">
             <settings>
@@ -236,7 +292,57 @@
                 <dataType>select</dataType>
                 <label translate="true">Form Type</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">120</item>
+                </item>
+            </argument>            
         </column>
+        <column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+            <settings>
+                <label translate="true">Store View</label>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <sortable>false</sortable>
+            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">100</item>
+                </item>
+            </argument>            
+        </column>        
+        <column name="customer_ip">
+            <settings>
+                <filter>text</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                        <rule name="validate-xml-identifier" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
+                <label translate="true">IP Address</label>
+            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">110</item>
+                </item>
+            </argument>
+        </column>
+        <column name="customer_id" class="Ziffity\Webforms\Ui\Component\Listing\Column\Customer">
+            <argument name="data" xsi:type="array">                                               
+                <item name="config" xsi:type="array">                                             
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
+                    <item name="filter" xsi:type="string">text</item>                                             
+                    <item name="label" xsi:type="string" translate="true">Customer</item>
+                </item>                
+            </argument> 
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">115</item>
+                </item>
+            </argument>                                                                                      
+        </column>          
         <column name="is_active" component="Magento_Ui/js/grid/columns/select">
             <settings>
                 <options class="Ziffity\Webforms\Model\Data\Source\Trigger"/>
@@ -247,6 +353,11 @@
                 <dataType>select</dataType>
                 <label translate="true">Status</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">140</item>
+                </item>
+            </argument>            
         </column>
         <column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
             <settings>
@@ -254,11 +365,21 @@
                 <dataType>date</dataType>
                 <label translate="true">Created</label>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">160</item>
+                </item>
+            </argument>            
         </column>        
         <actionsColumn name="actions" class="Ziffity\Webforms\Ui\Component\Listing\Column\DataActions">
             <settings>
                 <indexField>cust_id</indexField>
             </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">135</item>
+                </item>
+            </argument>            
         </actionsColumn>
     </columns>
 </listing>

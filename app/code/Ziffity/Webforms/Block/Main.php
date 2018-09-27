@@ -7,7 +7,7 @@ class Main extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context
     )
     {
-        parent::__construct($context);
+        parent::__construct($context);    
     }
 }
 

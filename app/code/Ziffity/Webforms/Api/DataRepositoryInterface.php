@@ -10,7 +10,6 @@ interface DataRepositoryInterface
 
     public function save(DataInterface $data);   
 
-
     public function getById($dataId);
 
     public function getList(SearchCriteriaInterface $searchCriteria);

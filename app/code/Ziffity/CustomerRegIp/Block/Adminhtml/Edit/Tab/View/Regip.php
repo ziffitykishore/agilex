@@ -101,10 +101,15 @@ class Regip extends \Magento\Backend\Block\Template
 
     public function getCustomerRegIp()
     {
-        $remoteAddr = $this->getCustomer()->getCustomAttribute('registration_remote_ip')->getValue();
+        $value = null;
+        $remoteAddr = $this->getCustomer()->getCustomAttribute('registration_remote_ip');
+        if($remoteAddr){
+           $value = $remoteAddr->getValue();
+        }
         /*DEBUG*/
-//      $remoteAddr = dns_get_record('google.com', DNS_A); $remoteAddr = $remoteAddr[0]['ip'];
-        return $remoteAddr;
+//      $remoteAddr = dns_get_record('google.com', DNS_A);
+//      $value = $remoteAddr[0]['ip'];
+        return $value;
     }
 
     /**
