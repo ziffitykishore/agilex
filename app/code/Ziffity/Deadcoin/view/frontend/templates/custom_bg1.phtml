@@ -1,0 +1,39 @@
+<?php
+$websiteId = $block->getWebsiteId();
+$collection=$block->getOrderCollection();
+$collection->addWebsiteFilter($websiteId);
+$productId = $collection->getFirstItem();
+$url=$block->getProductUrl()->getAddUrl($productId);
+$imageBlock =  $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
+$productImage = $imageBlock->getImage($productId, 'category_page_grid');
+?>
+
+
+	    
+	        <div class="content-inner_blk">
+		        <div class="img-blk">
+                            <?php echo $productImage->toHtml()  ?>                
+                        </div>
+                <div class="price-blk">
+                    <div class="price">$79<span class="price-sub"><span class="up">95</span><span class="down">+s&h</span></div>
+                        <form data-role="tocart-form" action="<?php echo $url; ?>" method="post" data-product-sku="<?= $block->escapeHtml($productId->getSku()) ?>"> 
+                                <input type="hidden" name="product" value="<?php echo $productId->getEntityId(); ?>" />
+                            <?php echo $block->getBlockHtml('formkey')?>
+                        <button type="submit" title="Add to Cart" class="btn-buy btn btn-link">
+                        <span>Buy Now</span>
+                        </button>
+                        </form>
+                </div>
+                <div class="amc-blk">
+                	<img src="<?php echo $block->getViewFileUrl('images/amc_tv.png'); ?>" alt="">
+                </div>
+            </div>
+        
+    
+	
+		    
+
+
+
+
+
