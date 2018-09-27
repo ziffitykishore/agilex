@@ -28,12 +28,10 @@ class DataProvider extends AbstractDataProvider
         $this->meta           = $this->prepareMeta($this->meta);
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
-
     public function prepareMeta(array $meta)
     {
         return $meta;
     }
-
     public function getData()
     {
         if (isset($this->loadedData)) {

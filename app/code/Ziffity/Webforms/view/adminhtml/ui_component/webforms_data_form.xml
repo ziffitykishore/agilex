@@ -92,7 +92,6 @@
                 <dataScope>cust_name</dataScope>
             </settings>
         </field>
-
         <field name="cust_email" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -108,7 +107,6 @@
                 <dataScope>cust_email</dataScope>
             </settings>
         </field>
-                
         <field name="cust_phone" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -124,7 +122,6 @@
                 <dataScope>cust_phone</dataScope>
             </settings>
         </field>
-        
         <field name="cust_comments" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -214,8 +211,6 @@
                 <label translate="true">ZipCode</label>
                 <dataScope>cust_zip</dataScope>
             </settings>
-        </field>
-                                        
+        </field>                         
     </fieldset>
-    
 </form>
