@@ -1,12 +1,8 @@
 <?php
 /**
  * Read and process CSV file data
- * 
  */
-
 namespace Ziffity\CustomFilters\Controller\Index;
-
-set_time_limit(0);
 
 class Index extends \Magento\Framework\App\Action\Action
 {
@@ -226,7 +222,7 @@ class Index extends \Magento\Framework\App\Action\Action
             );
         }
 
-        // Does it already exist?
+        // Get existing option id
         $optionId = $this->getOptionId($attributeCode, $label);
 
         if (!$optionId) { // If no, add it.            
@@ -302,9 +298,10 @@ class Index extends \Magento\Framework\App\Action\Action
     }
     
     /**
+     * Get grade string from product name
      * 
-     * @param type $needles
-     * @param type $haystack
+     * @param type $gradeList
+     * @param type $name
      * @return boolean
      */
     private function matchGradeString($gradeList, $name) {
@@ -316,24 +313,22 @@ class Index extends \Magento\Framework\App\Action\Action
         foreach($gradeList as $grade) {
             $position = strpos($name, " ".$grade);
             if ($position > -1) {
-                //echo "<br />".$name." ==== ".$position;
                 $string = substr($name, $position, 4);
                 $existNumber = $this->extractNumberFromString($string);
                 $result[] = ($existNumber) ? $string : '';
             }
         }
-        echo "<pre."; print_r($result);
         return $result;
     }
     
     /**
+     * Extract number data from product name
      * 
      * @param String $string
      * @return int
      */
     private function extractNumberFromString($string) {
         preg_match_all('!\d+!', $string, $matches);
-//        /print_r($matches);
         $matches = array_filter($matches);
         return count($matches);
     }
