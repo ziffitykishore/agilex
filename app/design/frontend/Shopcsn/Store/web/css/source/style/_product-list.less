@@ -219,10 +219,6 @@ input[type="radio"]:checked + label:after{
     }
 }
 
-.stock.unavailable {
-    color: #e32229;
-}
-
 .products-grid {
     .sku-avali {
         .disp(none);
@@ -553,7 +549,7 @@ input[type="radio"]:checked + label:after{
 @media screen and (max-width:1666px) {
     .products-grid {
         .product-item-info {
-            padding: 30px;
+            padding: 25px 30px;
         }
     }
 }
@@ -843,21 +839,19 @@ input[type="radio"]:checked + label:after{
             .toolbar-products {
                 margin-top: 15px;
                 background: transparent;
-                
                 div.sorter {
                     position: relative;
                     width: 100%;
-                    label , select {
+                    label,
+                    select {
                         float: left;
                         width: 50%;
                     }
                 }
             }
-
             .products {
-                & ~ .toolbar-products {
+                &~.toolbar-products {
                     .bg-smoke();
-
                     .sorter {
                         display: none;
                     }
