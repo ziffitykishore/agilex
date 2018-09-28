@@ -17,7 +17,6 @@
     $_post = $this->getPost();
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
-    
 ?>
 <div class="post-view">
     <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
@@ -38,25 +37,61 @@
                     <?php echo $content; ?>
                     <div class="clear"></div>
                 </div>
+
+                <?php 
+                /*category*/
+                $catHtml = $tagHtml = '';
+                if ($ctCount = $_post->getCategoriesCount()) {
+                    $n = 0;
+                    $catHtml .= 'in ';
+                    foreach ($_post->getParentCategories() as  $ct) {
+                        $n++;
+                        $catHtml .= '<a class="text-capitalize text-danger" title="'.$block->escapeHtml($ct->getTitle()).'" href="'.$ct->getCategoryUrl().'">'.$block->escapeHtml($ct->getTitle()).'</a>';
+                        if ($n != $ctCount) {
+                            $catHtml .= ', ';
+                        }
+                    }
+                }
+
+                /*tags*/
+                if ($_tagsCount = $_post->getTagsCount()) {
+                    $n = 0;
+                    $tagHtml .= 'and tagged ';
+                    foreach ($_post->getRelatedTags() as $tag) {
+                        $n++;
+                        $tagHtml .= '<a class="text-capitalize text-danger" title="'.$block->escapeHtml($tag->getTitle()).'" href="'.$tag->getTagUrl().'">'.$block->escapeHtml($tag->getTitle()).'</a>';
+                        if ($n != $_tagsCount) {
+                            $tagHtml .= ', ';
+                        }
+                    }
+                }
+                $date = $_post->getPublishDate('F d, Y');
+                $author = $_post->getAuthor() ? $block->escapeHtml($_post->getAuthor()->getTitle()) : 'Admin';
+                ?>                
+                <div class="post-text-hld bd-foot mt-20">
+                    <div class="bg-dark ">
+                        <p><em><?= sprintf(__('This entry was posted %s %s on %s by %s'), $catHtml, $tagHtml, $date, $author) ?></em></p>
+                    </div>
+                </div>
             </div>
         </div>
-
-      
     </div>
 
 </div>
 <?php echo $this->getChildHtml('blog.post.categories.custom') ?>
 <?php echo $this->getChildHtml('blog.post.comments') ?>
 <div class="post-bottom">
- <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_compact"></a>
-            </div>
-            
-            <?php echo $this->getChildHtml('blog.post.bottom') ?>
-<div class="subscribe-sec">
-            <button id="blog-subscribe" data-url="http://shopcsntv.com/blogsubscribe" class="action btn-subscribe" title="Subscribe to our Blog"><span><span>Subscribe to our Blog</span></span></button>
-                </div>
-        </div>
+    <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
+        <a class="addthis_button_facebook"></a>
+        <a class="addthis_button_twitter"></a>
+        <a class="addthis_button_email"></a>
+        <a class="addthis_button_compact"></a>
+    </div>
+
+    <?php echo $this->getChildHtml('blog.post.bottom') ?>
+    <div class="subscribe-sec">
+        <button id="blog-subscribe" data-url="<?= $this->getUrl('blogsubscribe')?>" class="action btn-subscribe" title="Subscribe to our Blog">
+            <span><span><?= $this->getUrl('Subscribe to our Blog') ?></span></span>
+        </button>
+    </div>
+</div>
