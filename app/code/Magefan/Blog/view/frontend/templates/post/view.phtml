@@ -21,20 +21,25 @@
 <div class="post-view">
     <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
         <div class="post-header clearfix">
-           
+           <div class="post-info clear">
+                <div class="item post-posed-date">
+                    <span class="label"><?php echo __('Posted:') ?></span>
+                    <span class="value"><?php echo $_post->getPublishDate('F d, Y') ?></span>
+                </div>
+           </div>
             <?php echo $this->getInfoHtml() ?>
         </div>
 
         <div class="post-content">
             <div class="post-description clearfix">
-                <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
+                <?php /* if ($featuredImage = $_post->getFeaturedImage()) { ?>
                 <div class="post-ftimg-hld">
                     <img class="img-responsive" src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
                 </div>
-                <?php } ?>
+                <?php } */?>
                 <div class="post-text-hld">
-                    <?php $content = preg_replace("/<img[^>]+\>/i", "", $block->getContent(), 1); ?>
-                    <?php echo $content; ?>
+                    <?php //$content = preg_replace("/<img[^>]+\>/i", "", $block->getContent(), 1); ?>
+                    <?php echo $block->getContent(); ?>
                     <div class="clear"></div>
                 </div>
 

@@ -322,8 +322,10 @@ function($, modal, googlecapjs) {
         modalClass: 'customer-forgetpassword-popup',
         buttons: false,
     };
-    $('#forget-pwd').on("click", function(){
-        $('#popup-modal').modal('closeModal');
+    $('#forget-pwd, .forget-pwd').on("click", function(){
+        if($('#popup-modal').closest('.modal-inner-wrap').length){
+           $('#popup-modal').modal('closeModal'); 
+        }
         var ppModal = $('#forget-popup');
         var popup = modal(optforget, ppModal);
         ppModal.modal('openModal');
