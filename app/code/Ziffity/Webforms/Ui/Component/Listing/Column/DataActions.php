@@ -11,7 +11,6 @@ class DataActions extends Column
 {
     const URL_PATH_EDIT = 'webforms/data/edit';
     const URL_PATH_DELETE = 'webforms/data/delete';
-
     protected $urlBuilder;
 
     public function __construct(
@@ -24,7 +23,6 @@ class DataActions extends Column
         $this->urlBuilder = $urlBuilder;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
-
     public function prepareDataSource(array $dataSource)
     {
         if (isset($dataSource['data']['items'])) {

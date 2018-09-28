@@ -108,7 +108,7 @@ class CustomerWhoBought extends \Magento\Catalog\Block\Product\ListProduct
         $filterCollection = $this->_getProductCollection();
         $filterCollection->addAttributeToSelect('*');
         $filterCollection->getSelect()->where('e.entity_id IN(?)',$productId);
-        $filterCollection->setPageSize(4);
+        $filterCollection->setPageSize(5);
         return $filterCollection;
     }
 }

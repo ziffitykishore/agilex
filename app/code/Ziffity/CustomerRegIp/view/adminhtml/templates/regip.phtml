@@ -16,12 +16,12 @@
         <tr>
             <?php if ($this->isValidIp()): ?>
                 <td>
-                    <button onclick="window.open('http://www.ip2location.com/<?php echo $this->getCustomerRegIp() ?>', 'lookup', ''); return false;" title="<?php echo __('Check the location of %s in a popup', $this->getCustomerRegIp()) ?>"><span><?php echo __('ip2location.com Lookup') ?></span></button>
+                    <button onclick="window.open('http://www.ip2location.com/<?php echo $this->getCustomerRegIp() ?>', 'lookup', ''); return false;"><span><?php echo __('ip2location.com Lookup') ?></span></button>
                 </td>
             <?php endif; ?>
         </tr>
     </table>
 </div>
-<?php else: 
+<?php else:
     echo 'We are not showing the ip address while creating new customer';
 endif;

@@ -38,7 +38,6 @@
                 <input id="cust_zip" class="input-text form-control valid" title="zip Code" autocomplete="off" name="cust_zip" type="text" data-validate="{required:true}" />
             </div>
         </div>
-
         <input type="text" name="form_type" id="form_type" value="catalog" class="hidden input-text">
         <div class="field required">
             <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('catalogGCaptcha')->toHtml(); ?>
@@ -58,6 +57,7 @@
         }
     }
 </script>
+
 <script type="text/javascript">
 require(['jquery', 'jquery/ui'], function($) {
     $(document).ready(function() {
