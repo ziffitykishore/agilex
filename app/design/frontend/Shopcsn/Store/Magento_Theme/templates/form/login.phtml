@@ -265,7 +265,11 @@ function($, modal, googlecapjs) {
         modalClass: 'custom-block-customer-login',
         buttons: false,
     };
-    $('#login-popup, #login-popup-form, .signin-popup').on("click", function(){
+    $('#login-popup, #login-popup-form, .signin-popup').on("click", function(e){
+        if(window.isCustomerLoggedIn != 'undefined' && parseInt(window.isCustomerLoggedIn)){
+            return;
+        }
+        e.preventDefault();
         var popup = modal(options, $('#popup-modal'));
         //$('#popup-modal-signup').modal('closeModal');
         $('#popup-modal').modal('openModal').on('modalclosed', function(){

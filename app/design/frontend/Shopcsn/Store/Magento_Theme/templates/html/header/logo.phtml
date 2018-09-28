@@ -22,6 +22,7 @@
         </a>
     </strong>
 </div>
-
-    
-
+<?php $isLoggedin = $this->helper('Ziffity\Core\Helper\Data')->getIsCustomerLoggedIn(); ?>
+<script>
+    window.isCustomerLoggedIn = '<?= $isLoggedin; ?>';
+</script>
