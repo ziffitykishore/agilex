@@ -14,7 +14,7 @@ define([
     'mage/collapsible',
     'mage/cookies'
 ], function ($, authenticationPopup, customerData, alert, confirm) {
-     
+    'use strict';
 
     $.widget('mage.sidebar', {
         options: {
@@ -47,7 +47,8 @@ define([
          */
         _initContent: function () {
             var self = this,
-                events = {}; 
+                events = {};
+
             this.element.decorate('list', this.options.isRecursive);
 
             /**
@@ -103,18 +104,7 @@ define([
             events['keyup ' + this.options.item.qty] = function (event) {
                 self._showItemButton($(event.target));
             };
-            /**
-             * @param {jQuery.Event} event
-             */
-            events['click ' + this.options.item.qtyinc] = function (event) {
-                self._updateQtyInc($(event.currentTarget));
-            };
-            /**
-             * @param {jQuery.Event} event
-             */
-            events['click ' + this.options.item.qtydec] = function (event) {
-                self._updateQtydec($(event.currentTarget));
-            };
+
             /**
              * @param {jQuery.Event} event
              */
@@ -122,7 +112,24 @@ define([
                 event.stopPropagation();
                 self._updateItemQty($(event.currentTarget));
             };
-            
+
+            /**
+             * Event Listener for Increment Button
+             */
+
+            events['click' + this.options.item.buttonInc] = function (event) {
+                    event.stopPropagation();
+                    self._incrementItemQty($(event.currentTarget));
+            };
+
+            /**
+             * Event Listener for Decrement Button
+             */
+
+            events['click' + this.options.item.buttonDec] = function (event) {
+                    event.stopPropagation();
+                    self._decrementItemQty($(event.currentTarget));
+            };
             /**
              * @param {jQuery.Event} event
              */
@@ -133,30 +140,6 @@ define([
             this._on(this.element, events);
             this._calcHeight();
             this._isOverflowed();
-        },
-         _updateItemQty: function (elem) {
-            var itemId = elem.data('cart-item');
-
-            this._ajax(this.options.url.update, {
-                'item_id': itemId,
-                'item_qty': $('#cart-item-' + itemId + '-qty').val()
-            }, elem, this._updateItemQtyAfter);
-        },
-        _updateQtyInc: function(elem) { 
-            var itemId      = elem.data('cart-item'); 
-            var currentQty  = $('#cart-item-' + itemId + '-qty').val();
-            $('#cart-item-' + itemId + '-qty').val(+currentQty + +1);
-            this._showItemButton($(elem)); 
-        },
-        _updateQtydec: function(elem) { 
-            var itemId      = elem.data('cart-item'); 
-            var currentQty  = $('#cart-item-' + itemId + '-qty').val();
-            var finalQty    = +currentQty - +1;
-            if( finalQty < 1 ) {
-                finalQty = 1;
-            }
-            $('#cart-item-' + itemId + '-qty').val(finalQty);
-            this._showItemButton($(elem)); 
         },
 
         /**
@@ -238,6 +221,32 @@ define([
                 'item_id': itemId,
                 'item_qty': $('#cart-item-' + itemId + '-qty').val()
             }, elem, this._updateItemQtyAfter);
+        },
+
+		//Function to increment Qty and show Update Button 
+        _incrementItemQty: function (elem) {
+            var itemId = elem.data('cart-item');
+            var obj = $('#cart-item-' + itemId + '-qty');
+            var currentQty = obj.val();
+            var newAdd = parseInt(currentQty) + parseInt(1);
+            obj.val(newAdd);
+            obj.attr('data-item-qty', newAdd);
+            $('#update-cart-item-' + itemId).show('fade', 300);
+        },
+
+		//Function to decrement Qty and show Update Button 
+        _decrementItemQty: function (elem) {
+            var itemId = elem.data('cart-item');
+            var obj = $('#cart-item-' + itemId + '-qty');
+            var currentQty = obj.val();
+            var newAdd = parseInt(currentQty) - parseInt(1);
+            if(currentQty<=1){
+                obj.val(1);
+            }else{
+                obj.val(newAdd);                
+            }
+            obj.attr('data-item-qty', newAdd);
+            $('#update-cart-item-' + itemId).show('fade', 300);
         },
 
         /**
