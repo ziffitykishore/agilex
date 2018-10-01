@@ -469,8 +469,16 @@ body .label {
     color: #777;
 }
 
-.cms-page-view .page-header {
+body .page-header {
     padding-bottom: 0;
+    margin: 0;
+}
+
+.cms-page-view .page-wrapper,
+.page-layout-2columns-left .page-wrapper,
+.page-layout-1column .page-wrapper {
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 body.cms-home-page-walking-deadcoin {
@@ -717,9 +725,9 @@ button.button span {
     min-height: 275px;
 }
 
-.actions-toolbar .action.primary {
+.action.primary {
     display: block;
-    border: 0;
+    border: 1px solid #811515;
     background: #811515;
     padding: 0 15px;
     font-weight: normal;
@@ -729,6 +737,11 @@ button.button span {
     color: #fff;
     line-height: 38px;
     border-radius: 5px;
+}
+
+.action.primary:hover {
+    background: #811515;
+    border: 1px solid #811515;
 }
 
 .actions-toolbar .secondary a {
@@ -990,7 +1003,7 @@ body .minicart-wrapper .block-minicart {
     background-color: #fff;
     border-width: 6px 0 0 0;
     border-style: solid;
-    z-index: 1;
+    z-index: 999;
     border-radius: 8px 8px 5px 5px;
     color: #777;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
@@ -1020,6 +1033,10 @@ body .minicart-wrapper .block-minicart {
 
 .minicart-items .product-item-details .details-qty {
     margin-right: 25px;
+}
+
+.minicart-items .product-item-details .product-item-name {
+    text-align: left;
 }
 
 .minicart-wrapper .product-image-photo {
@@ -1204,7 +1221,7 @@ button.button span,
 
 .action.continue {
     font-weight: normal !important;
-    color: #777;
+    color: #fff;
 }
 
 .action.continue:hover {
@@ -1287,6 +1304,10 @@ button.button span,
 
 
 /*********** checkout *************/
+
+.onestepcheckout-index-index .fieldset>.field:not(.choice)>.label {
+    text-align: left;
+}
 
 .onestepcheckout-index-index .page-title {
     padding: 0;
@@ -1387,6 +1408,14 @@ button.button span,
     /******* shipping and payment ************/
 }
 
+select:not([disabled]):focus {
+    box-shadow: none !important;
+}
+
+.checkout-index-index .logo {
+    margin: 0px auto 15px 25px;
+}
+
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .one-step-checkout-container {
     display: table;
     width: 100%;
@@ -1411,7 +1440,7 @@ button.button span,
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .shipping-addr .field .label {
     z-index: 3;
-    color: #d7dded;
+    color: #777;
     left: 13px;
     font-size: 13px;
     background: #fff;
@@ -1425,11 +1454,11 @@ button.button span,
 }
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .shipping-addr .field .control .input-text {
-    border: 1px solid #d7dded;
+    border: 1px solid #c2c2c2;
+    box-shadow: none;
 }
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .shipping-addr .field .control .input-text:focus {
-    border-color: #000;
     box-shadow: none;
 }
 
@@ -1491,7 +1520,7 @@ button.button span,
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .ship-pay .payment-met .payment-method-content .field.focused label {
     top: -7px;
-    color: #d7dded;
+    color: #777;
     font-size: 11px;
 }
 
@@ -1502,7 +1531,7 @@ button.button span,
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .ship-pay .payment-met .payment-method-content .field .label {
     z-index: 3;
-    color: #d7dded;
+    color: #777;
     left: 13px;
     font-size: 13px;
     background: #fff;
@@ -1516,11 +1545,11 @@ button.button span,
 }
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .ship-pay .payment-met .payment-method-content .field .control .input-text {
-    border: 1px solid #d7dded;
+    border: 1px solid #c2c2c2;
+    box-shadow: none;
 }
 
 .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .ship-pay .payment-met .payment-method-content .field .control .input-text:focus {
-    border-color: #000;
     box-shadow: none;
 }
 
@@ -1790,11 +1819,62 @@ button.button span,
 }
 
 
+/*********** order placed *************/
+
+.table:not(.cart):not(.totals) tfoot>tr:first-child td {
+    border-top: 0;
+}
+
+.sales-order-view .mark {
+    background-color: #fff;
+}
+
+.sales-order-view .amount {
+    padding-right: 0;
+}
+
+.order-items.table-wrapper .col.subtotal {
+    text-align: left;
+}
+
+
+/******** shipping new address ******/
+
+.modal-inner-wrap #opc-new-shipping-address .label {
+    margin-bottom: 10px;
+}
+
+#opc-new-shipping-address .field.choice:before {
+    padding: 0;
+    width: auto;
+}
+
+.modal-inner-wrap .modal-content {
+    box-shadow: none;
+}
+
+.modal-inner-wrap .modal-footer .action.primary:hover {
+    background: #811515;
+    border: 1px solid #811515;
+}
+
+.modal-inner-wrap .action.primary {
+    display: inline-block;
+    line-height: 33px;
+    margin-right: 40px;
+}
+
+
 /*******footer-content*******/
 
 .page-footer .footer.content {
     max-width: 1400px;
     margin: 0 auto;
+}
+
+.page-footer .footer.content .copyright {
+    font-size: 14px;
+    text-align: center;
 }
 
 @media screen and ( max-width: 992px) {
@@ -1870,6 +1950,21 @@ button.button span,
     }
 }
 
+@media screen and ( max-width: 640px) {
+    .sales-order-view .col.subtotal {
+        text-align: left;
+    }
+    .sales-order-view .table-wrapper .table:not(.totals):not(.table-comparison) tfoot td {
+        width: 100%;
+    }
+    .table:not(.cart):not(.totals) tfoot .mark {
+        text-align: left !important;
+    }
+    .sales-order-view .amount {
+        text-align: left !important;
+    }
+}
+
 @media screen and ( max-width: 480px) {
     .logo img {
         width: 150px;
@@ -1893,6 +1988,14 @@ button.button span,
     }
     .page-title {
         margin-top: 0;
+    }
+    .modal-inner-wrap .action.primary {
+        display: block;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    .modal-inner-wrap .action.secondary {
+        width: 100%;
     }
 }
 
