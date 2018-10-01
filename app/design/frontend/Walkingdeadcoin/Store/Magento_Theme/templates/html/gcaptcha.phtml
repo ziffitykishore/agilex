@@ -1,0 +1,21 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php
+$Helper = $this->helper('Ziffity\Core\Helper\Data');
+$googlesitekey = $Helper->getScopeConfig($Helper::C_SITEKEY);
+$captchaKeyLoaded = $Helper->getGCaptcha();
+?>
+<?php if(!$captchaKeyLoaded){ ?>
+    <!-- setting gCaptchaKey globally -->
+    <script type="text/javascript">
+        window.gCaptchaKey = '<?= $googlesitekey ?>';
+    </script>
+<?php $Helper->setGCaptcha(); } ?>
+
+<?php if ($googlesitekey) : ?>
+<div class="g-div">
+    <div class="custom-g-recaptcha" id="<?= $this->getGId(); ?>"></div>
+    <input type="hidden" class="custom-g-input" value="" name="g-captcha" data-validate="{required:true}" data-msg-required="<?= $block->escapeHtml(__('Please validate the captcha')) ?>">
+</div>
+<?php endif; ?>

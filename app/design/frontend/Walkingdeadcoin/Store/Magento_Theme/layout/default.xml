@@ -5,6 +5,7 @@
             <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer content">
                 <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
             </container>
+            <block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
         </referenceContainer>
 
         <move element="minicart" destination="header-wrapper" after="-" />
@@ -16,6 +17,9 @@
 	    <referenceBlock name="top.search" remove="true" />  	
 		<referenceBlock name="advanced-search-link" remove="true"/>
        <referenceContainer name="page.top" remove="false"/>
+        <referenceBlock name="navigation.sections" remove="true" />
+
+        <referenceContainer name="page.top" remove="false"/>
         <referenceBlock name="navigation.sections" remove="true" />
 
         <referenceContainer name="header.container">
@@ -34,7 +38,8 @@
 		    </block>
         </referenceContainer>
         <referenceContainer name="page.top">
-            <container name="top.container" as="topContainer" label="After Page Header Top" htmlTag="div" htmlClass="top-container"/>
+             <container name="top.container" as="topContainer" label="After Page Header Top" htmlTag="div" htmlClass="top-container"/> 
             <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
-        </referenceContainer>    </body>
+        </referenceContainer>    
+    </body>
 </page>
