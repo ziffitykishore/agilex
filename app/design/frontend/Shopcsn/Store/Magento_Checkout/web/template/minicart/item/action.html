@@ -74,31 +74,33 @@
                     <!--<span translate="'Qty'"/>-->
                     <!--                    <label class="label" data-bind="i18n: 'Qty', attr: {
                                                for: 'cart-item-'+item_id+'-qty'}"></label>-->
+            <!-- Button for Decrement -->
                     <button data-bind="attr: {
-                           id: 'cart-item-'+item_id+'-qtydec',
-                           'qty-inc-item': item_id,
-                           'data-cart-item': item_id,
-                           'data-item-qtydec': item_id+'-decc',
-                           title: $t('Qty Dec')
-                    }, value: qty" class="item-qty cart-item-qtydec add-sub">
-                            <span>-</span>
-                    </button>
+                                    id:'decrement-cart-item-'+item_id,
+                                    'data-cart-item' : item_id,
+                                    title: $t('Decrement')
+                                    }"
+                                            class="decrement-cart-item">
+                            <span>-</span>						
+                    </button>					
+            <!-- Button for Decrement -->
                     <input data-bind="attr: {
                            id: 'cart-item-'+item_id+'-qty',
                            'data-cart-item': item_id,
                            'data-item-qty': qty,
                            'data-cart-item-id': product_sku,
                            title: $t('Qty')
-                           }, value: qty" type="number" size="4" class="item-qty cart-item-qty">
+                           }, value: qty" type="number" size="4" class="item-qty cart-item-qty"/>
+            <!--Button For Increment -->
                     <button data-bind="attr: {
-                           id: 'cart-item-'+item_id+'-qtyinc',
-                           'qty-inc-item': item_id,
-                           'data-cart-item': item_id,
-                           'data-item-qtyinc': item_id+'-inc',
-                           title: $t('Qty Inc')
-                           }, value: qty" class="item-qty cart-item-qtyinc add-sub">
-                               <span>+</span>
+                                    id:'increment-cart-item-'+item_id,
+                                    'data-cart-item' : item_id,
+                                    title: $t('Increment')
+                                    }"
+                                            class="increment-cart-item">
+                            <span>+</span>						
                     </button>
+            <!--Button For Increment -->                    
                     <button data-bind="attr: {
                             id: 'update-cart-item-'+item_id,
                             class:'update-cart-item data-prod-id-'+item.product_id,

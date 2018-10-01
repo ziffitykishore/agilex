@@ -51,7 +51,7 @@ define([
                 'checkout': '#top-cart-btn-checkout',
                 'remove': '#mini-cart a.action.delete',
                 'close': '#btn-minicart-close',
-                'qtyinc': ':button.update-qty-inc',
+                'qtyinc': ':button.update-qty-inc'
             },
             'showcart': {
                 'parent': 'span.counter',
@@ -68,8 +68,8 @@ define([
             'item': {
                 'qty': ':input.cart-item-qty',
                 'button': ':button.update-cart-item',
-                'qtyinc': ':button.cart-item-qtyinc',
-                'qtydec': ':button.cart-item-qtydec'
+		'buttonInc': ':button.increment-cart-item', //adding new button to js file
+		'buttonDec': ':button.decrement-cart-item' //adding new button to js file                
             },
             'confirmMessage': $.mage.__('Are you sure you would like to remove this item from the shopping cart?')
         });
