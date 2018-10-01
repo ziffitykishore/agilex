@@ -100,6 +100,9 @@
             .cat-item__inner {
                 position: relative;
                 .banner-box();
+                img {
+                    width: 100%;
+                }
                 a {
                     .pos(relative);
                 }
@@ -497,6 +500,10 @@
 }
 
 @media screen and (max-width: 767px) {
+    .ticker {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
     .heading-sec {
         ul.nav.nav-tabs {
             li {
@@ -570,6 +577,9 @@
                 width: 100%;
                 padding: 0 15px;
                 float: left;
+                img {
+                    width: 100%;
+                }
             }
             .promo-banner+.promo-banner {
                 margin-top: 15px;

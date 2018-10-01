@@ -26,7 +26,8 @@
 /* Layered Filter */
 
 & when (@media-common =true) {
-    .filter {
+    #layered-filter-block {
+    &.filter {
         background: @color-whitesmoke;
         padding-bottom: 50px;
         &-title {
@@ -52,31 +53,96 @@
                 .disp(none);
             }
         }
+
+        
+
+        
         .filter-options {
+            
             &-title {
                 .lib-heading(h4);
-                margin: 0 0 @indent__s;
+                margin: 0 0 0;
                 word-break: break-all;
                 .pos(relative);
                 .fa {
                     .pos(absolute);
                     right: 0;
                 }
+                &:after {
+                    content: '\e622';
+                    font-family: 'luma-icons';
+                    float: right;
+                }
             }
             &-item {
                 padding: 20px;
                 border-bottom: 1px dotted @color-darkslateblue;
+                
                 &.active {
                     .fa {
                         .transform(rotate(180deg));
+                    }
+                    .filter-options-title {
+                        &:after {
+                            .transform(rotate(180deg));
+                        }
                     }
                 }
             }
             &-content {
                 padding-top: 15px;
                 border-top: 1px dotted @color-darkslateblue;
+                margin-top: 20px;
                 .amount {
                     .disp(none);
+                }
+                .items {
+                    max-height: 300px;
+                    overflow-y: auto;
+                   .item {
+                       margin-bottom: 6px;
+                   }
+                    
+                    a{
+                        font-size: 12px;
+                        position: relative;
+                        display: block;
+                        padding-left: 20px;
+                        font-style: normal;
+                        color: @color-black;
+
+                        &:before, &:after {
+                            content: '';
+                            position: absolute;
+                        }
+                        &:before {
+                            width: 15px;
+                            height: 15px;
+                            border: 1px solid #d7dded;
+                            background: #fff;
+                            left: 0;
+                        }
+                        &:after {
+                            width: 8px;
+                            height: 8px;
+                            background: transparent;
+                            left: 4px;
+                            top: 4px;
+                        }
+                    }
+
+                    .wp-ln-selected{
+                        a {
+                            border-left: none;
+
+                            &:after {
+                                
+                                background: @color-darkslateblue;
+                                
+                            }
+                            
+                        }
+                    }
                 }
             }
         }
@@ -110,6 +176,7 @@
             }
         }
     }
+}
 }
 
 .radio-col {
@@ -631,6 +698,19 @@ input[type="radio"]:checked + label:after{
             }
         }
     }
+
+    #layered-filter-block {
+        .filter-title {
+            padding: 20px;
+            text-transform: uppercase;
+            border-bottom: 1px dotted @color-darkslateblue;
+        }
+    .block-subtitle{
+        display: none;
+    }
+}
+
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -697,6 +777,7 @@ input[type="radio"]:checked + label:after{
     .page-with-filter {
         .sidebar-main {
             .filter {
+                
                 padding-bottom: 0;
                 background: none;
                 margin-bottom: 0;
@@ -737,8 +818,31 @@ input[type="radio"]:checked + label:after{
                     font-size: 14px;
                     font-weight: 600;
                     padding: 10px 10px 10px;
+                    display: none;
+                }
+
+                &.active {
+                    .filter-title{
+                        z-index: 889;
+                        }
+                    .block-subtitle {
+                        display: block;
+                        z-index: 888;
+                    }
+
+                    .filter-options {
+                        z-index: 888;
+                    }
                 }
             }
+
+            #layered-filter-block{
+                &.filter {
+                    background: transparent;
+                    padding-bottom: 0;
+                }
+            }
+            
         }
         &.filter-active {
             overflow: hidden;

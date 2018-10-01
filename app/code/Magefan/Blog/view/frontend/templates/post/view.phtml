@@ -74,8 +74,8 @@
                 $author = $_post->getAuthor() ? $block->escapeHtml($_post->getAuthor()->getTitle()) : 'Admin';
                 ?>                
                 <div class="post-text-hld bd-foot mt-20">
-                    <div class="bg-dark ">
-                        <p><em><?= sprintf(__('This entry was posted %s %s on %s by %s'), $catHtml, $tagHtml, $date, $author) ?></em></p>
+                    <div class="bg-dark category-bottom">
+                        <p><?= sprintf(__('This entry was posted %s %s on %s by %s'), $catHtml, $tagHtml, $date, $author) ?></p>
                     </div>
                 </div>
             </div>
@@ -83,7 +83,7 @@
     </div>
 
 </div>
-<?php echo $this->getChildHtml('blog.post.categories.custom') ?>
+
 <?php echo $this->getChildHtml('blog.post.comments') ?>
 <div class="post-bottom">
     <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
@@ -96,7 +96,7 @@
     <?php echo $this->getChildHtml('blog.post.bottom') ?>
     <div class="subscribe-sec">
         <button id="blog-subscribe" data-url="<?= $this->getUrl('blogsubscribe')?>" class="action btn-subscribe" title="Subscribe to our Blog">
-            <span><span><?= $this->getUrl('Subscribe to our Blog') ?></span></span>
+            <span><?= __('Subscribe to our Blog') ?></span>
         </button>
     </div>
 </div>
