@@ -474,6 +474,11 @@ body .page-header {
     margin: 0;
 }
 
+body.cms-home-page-walking-deadcoin .page-wrapper {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .cms-page-view .page-wrapper,
 .page-layout-2columns-left .page-wrapper,
 .page-layout-1column .page-wrapper {
