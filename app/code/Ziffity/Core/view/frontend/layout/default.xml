@@ -9,5 +9,6 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <referenceBlock name="social-login-popup" remove="true"/>
     </body>
 </page>

@@ -37,23 +37,15 @@
 .customer-account-login, .customer-account-create, .customer-account-forgotpassword {
     .actions-toolbar {
         .btn-action();
+        text-transform: uppercase;
     }
-    .page-main {
-        .container-md();
-        margin-top: 20px;
-        .page-title-wrapper {
-            .page-title();
-            .bg-smoke();
-            border-bottom: none;
-        }
-        .columns {
-            .bg-smoke();
-            padding: 30px;
-            .column {
-                padding-bottom: 0;
-            }
+
+    .page-footer {
+        .sticky-container {
+            display: none;
         }
     }
+
 }
 
 .account {
@@ -419,33 +411,28 @@
 }
 
 .customer-account-login, .customer-account-create, .customer-account-forgotpassword {
-    .page-wrapper {
-        background: url(../images/login_image.jpg) no-repeat left bottom;
-        background-size: cover;
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
+
     .page-main {
-        background-color: #fff;
-        position: absolute;
-        height: 100%;
+        background: url(../images/login_image.jpg) no-repeat left bottom;
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        
+        .column {
+            background: #fff;
+            border: 0;
+            padding: 50px 0;
+            height: 100%;
         max-width: 445px;
         width: 100%;
         top: 0;
         right: 0;
         overflow: auto;
         z-index: 999;
-        flex-direction: column;
-        justify-content: space-between;
+  
         margin-top: 0;
-        padding: 0;
-        .columns {
-            background: #fff;
-            border: 0;
-            padding: 0;
+        
         }
         .page-title-wrapper {
             color: #1c3f93;
@@ -484,20 +471,20 @@
 }
 
 .customer-account-login, .customer-account-create, .customer-account-forgotpassword {
-    header, footer {
-        display: none;
-    }
+
     .page-main {
         form {
             min-width: auto !important;
             width: auto !important;
         }
     }
+
     .actions-toolbar {
         .action {
-            height: 50px;
+            padding: 14px 15px;
         }
     }
+
     .field {
         .input-text {
             &:focus {
@@ -533,9 +520,7 @@
 }
 
 .customer-account-login {
-    .page-main {
-        padding: 15% 0;
-    }
+
     .block-title {
         display: none;
     }
@@ -551,9 +536,13 @@
         .primary {
             display: block;
             float: none;
-            height: 50px;
+            
             button {
                 width: 100%;
+            }
+            .action {
+                display: block;
+
             }
         }
         .secondary {
