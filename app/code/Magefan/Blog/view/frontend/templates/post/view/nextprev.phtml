@@ -24,13 +24,14 @@
             <?php if ($prevPost) { ?>
                 <?php $title = $block->escapeHtml($prevPost->getTitle()) ?>
                 <a class="nextprev-link prev-link" href="<?php echo $prevPost->getPostUrl() ?>" title="<?php echo __('Read %1',$title) ?>">
-                    <?php echo __('&larr; Previous') ?>
+                    <?php echo __('&larr;') ?><span class="sr-only">Previous</span>
                 </a>
             <?php } ?>
+            <a href="/blog" class="blog-grid"><i class="fa fa-th"></i></a>
             <?php if ($nextPost) { ?>
                 <?php $title = $block->escapeHtml($nextPost->getTitle()) ?>
                 <a class="nextprev-link next-link" href="<?php echo $nextPost->getPostUrl() ?>" title="<?php echo __('Read %1',$title) ?>">
-                    <?php echo __('Next &rarr;') ?>
+                <span class="sr-only">Next</span> <?php echo __('&rarr;') ?>
                 </a>
             <?php } ?>
         </div>

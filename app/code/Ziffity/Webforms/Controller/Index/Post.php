@@ -4,6 +4,8 @@ namespace Ziffity\Webforms\Controller\Index;
 use \Ziffity\Webforms\Model\DataFactory;
 use Magento\Store\Model\ScopeInterface;
 use \Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Post extends \Magento\Framework\App\Action\Action
 {
@@ -16,6 +18,9 @@ class Post extends \Magento\Framework\App\Action\Action
     protected $scopeConfig;
     protected $_logLoggerInterface;
     protected $request;
+    protected $_remoteAddress;
+    protected $_customerSession;
+    protected $_storeManager;
 
     public function __construct(
         DataFactory $feedback,
@@ -24,7 +29,11 @@ class Post extends \Magento\Framework\App\Action\Action
         \Magento\Framework\Translate\Inline\StateInterface $inlineTranslation,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Psr\Log\LoggerInterface $loggerInterface
+        \Psr\Log\LoggerInterface $loggerInterface,
+        RemoteAddress $remoteAddress,
+	StoreManagerInterface $storeManager,            
+       \Magento\Customer\Model\Session $customerSession
+
     )
     {
         $this->feed = $feedback;
@@ -33,7 +42,10 @@ class Post extends \Magento\Framework\App\Action\Action
         $this->_transportBuilder = $transportBuilder;
         $this->scopeConfig = $scopeConfig;
         $this->_logLoggerInterface = $loggerInterface;
-        $this->messageManager = $context->getMessageManager();    
+        $this->messageManager = $context->getMessageManager();
+        $this->_remoteAddress = $remoteAddress;
+        $this->_customerSession = $customerSession;
+	$this->_storeManager = $storeManager;        
         parent::__construct($context);
     }
 
@@ -45,6 +57,11 @@ class Post extends \Magento\Framework\App\Action\Action
         $post = $this->getRequest()->getPostValue();
 	$model = $this->feed->create();
         try {
+
+            /*customer_ip*/
+            $post['customer_ip'] = $this->_remoteAddress->getRemoteAddress();          
+            $post['customer_id'] = $this->_customerSession->getCustomer()->getId();
+            $post['store_id'] = $this->_storeManager->getStore()->getStoreId();
 
             $model->setData($post);
             $model->save();
@@ -89,4 +106,5 @@ class Post extends \Magento\Framework\App\Action\Action
             return $resultRedirect;
         }
     }
+    
 }

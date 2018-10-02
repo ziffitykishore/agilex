@@ -10,13 +10,11 @@ use Magento\Framework\DB\Ddl\Table;
 
 class InstallSchema implements InstallSchemaInterface
 {
-
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $installer = $setup;
         $installer->startSetup();
         $tableName = $installer->getTable('webforms_customer_data');
-
         if (!$installer->tableExists('webforms_customer_data')) {
             $table = $installer->getConnection()
                 ->newTable($tableName)

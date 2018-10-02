@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="cataloginventory">
+            <group id="stock_status_label" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Out of Stock Status</label>
+                <field id="enable_out_of_stock_status_label" translate="label" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Out of Stock status label</label>
+                    <source_model>Ziffity\StockStatus\Model\Source\PageTypes</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

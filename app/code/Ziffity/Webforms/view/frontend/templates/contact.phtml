@@ -14,7 +14,6 @@
                 <div class="mage-error"></div>
             </div>
         </div>
-
         <div class="field email required mb-20 form-group">
             <label class="label txt-grey" for="email"><span>E-mail</span></label>
             <div class="control wpcf7-form-control-wrap">
@@ -22,14 +21,12 @@
                 <div class="mage-error"></div>
             </div>
         </div>
-
         <div class="field phone required mb-20 form-group">
             <label class="label txt-grey" for="pass"><span class="mb-10">Phone</span></label>
             <div class="control wpcf7-form-control-wrap">
                 <input id="cust_phone" class="input-text form-control valid" title="Phone" autocomplete="off" name="cust_phone" type="text" data-validate="{required:true,'ph_no_validation':true}" />
             </div>
         </div>      
-
         <div class="field message required mb-20 form-group">
             <label class="label txt-grey" for="message"><span>Message</span></label>
             <div class="control wpcf7-form-control-wrap">
@@ -42,7 +39,6 @@
         <div class="field required">
             <?= $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/gcaptcha.phtml')->setGId('contactGCaptcha')->toHtml(); ?>
         </div>
-
         <div class="actions-toolbar">
             <div class="primary">
                 <button id="send2" class="btn button-full action login primary text-uppercase mb-30" name="send" type="submit"><span>send message</span></button>

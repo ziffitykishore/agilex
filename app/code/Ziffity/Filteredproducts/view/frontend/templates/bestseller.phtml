@@ -1,18 +1,12 @@
 <?php
-
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
 use Magento\Framework\App\Action\Action;
-
 // @codingStandardsIgnoreFile
 ?>
 <?php
 /**
  * Product list template
  *
- * @var $block \Magento\Catalog\Block\Product\ListProduct
+ * @var $block \Ziffity\Filteredproducts\Block\Bestseller
  */
 ?>
 <?php
@@ -23,7 +17,6 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
 <?php else: ?>
-    <?= $block->getToolbarHtml() ?>
     <?= $block->getAdditionalHtml() ?>
     <?php
     if ($block->getMode() == 'grid') {
@@ -105,7 +98,9 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                    <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                             </a>
                         </strong>
+                        <?php /* ?>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                         <?php */ ?>
                         <?php if(!$callforprice){ ?>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
                         <?php } ?>
@@ -140,7 +135,11 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                         <?php if ($_product->isAvailable()): ?>
                                             <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
                                         <?php else: ?>
-                                            <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                            <?php $outofStockStatus = $this->helper('Ziffity\Core\Helper\Data')->getOutOfStockStatus('home_page');
+                                                if($outofStockStatus):
+                                            ?>
+                                                <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                            <?php endif; ?>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                     <?php endif; ?>
@@ -165,22 +164,15 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
             <?php endforeach; ?>
         </ol>
     </div>
-    <?= $block->getToolbarHtml() ?>
     <?php if (!$block->isRedirectToCartEnabled()) : ?>
         <script type="text/x-magento-init">
             {
-            "[data-role=tocart-form], .form.map.checkout": {
-            "catalogAddToCart": {
-            "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
-            }
-            }
+                "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
+                    }
+                }
             }
         </script>
     <?php endif; ?>
 <?php endif; ?>
-
-
-
-
-
-

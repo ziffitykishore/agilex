@@ -14,6 +14,7 @@ class Data extends AbstractHelper
 {
     const C_SITEKEY = 'mconnect_ajaxlogin/googlecaptcha/sitekey';
     const C_SECRETKEY = 'mconnect_ajaxlogin/googlecaptcha/secretkey';
+    const OUT_OF_STOCK_MODULE_KEY = 'cataloginventory/stock_status_label/enable_out_of_stock_status_label';
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
@@ -39,11 +40,13 @@ class Data extends AbstractHelper
     public function __construct(
         Context $context,
         RemoteAddress $remoteAddress ,
-        \Magento\Framework\Registry $registry
+        \Magento\Framework\Registry $registry,
+        \Magento\Framework\Module\Manager $moduleManager
     ) {
         $this->scopeConfig  = $context->getScopeConfig();
         $this->_remoteAddress = $remoteAddress;
         $this->_registry = $registry;
+        $this->_moduleManager = $moduleManager;
         parent::__construct($context);
     }
 
@@ -113,6 +116,25 @@ class Data extends AbstractHelper
     
     public function getRegister(){
         return $this->_registry;
+    }
+    
+    /**
+     * Check for the status of Out of Stock and show the label to the user if it listing page
+     * 
+     * @return int
+     */
+    public function getOutOfStockStatus($page = '') {
+
+       $showOutOfStockStatus = 0;
+       if($page) {
+            $outOfStockModuleStatus = $this->_moduleManager->isEnabled('Ziffity_StockStatus');
+            if ($outOfStockModuleStatus) {
+                $outOfStockStatus = $this->getScopeConfig(self::OUT_OF_STOCK_MODULE_KEY);
+                $statusArray = explode(",", $outOfStockStatus);
+                $showOutOfStockStatus = in_array($page, $statusArray) ? 1: 0;                    
+            }
+       }
+       return $showOutOfStockStatus;
     }
 
 }

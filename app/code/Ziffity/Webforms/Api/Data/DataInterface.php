@@ -21,7 +21,9 @@ interface DataInterface
     const IS_ACTIVE        = 'is_active';
     const CREATED_AT       = 'created_at';
     const UPDATED_AT       = 'updated_at';
-
+    const STORE_ID         = 'store_id';
+    const CUSTOMER_ID      = 'customer_id';
+    const CUSTOMER_IP      = 'customer_ip';
 
     public function getId();
 
@@ -90,4 +92,16 @@ interface DataInterface
     public function getUpdatedAt();
 
     public function setUpdatedAt($updatedAt);
+
+    public function getStoreId();
+
+    public function setStoreId($storeId);
+
+    public function getCustomerId();
+
+    public function setCustomerId($customerId);
+
+    public function getCustomerIp();
+
+    public function setCustomerIp($customerIp);
 }
