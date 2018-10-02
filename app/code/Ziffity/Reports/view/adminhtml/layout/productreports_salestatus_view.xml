@@ -3,7 +3,7 @@
 
     <body>
         <referenceContainer name="content">
-            <block class="Ziffity\Reports\Block\Adminhtml\Salestatus\Edit" name="salestatus_edit" template="Edit/view.phtml"/>
+             <block class="Ziffity\Reports\Block\Adminhtml\Salestatus\Edit" name="salestatus_view" />
         </referenceContainer>
     </body>
 </page>
