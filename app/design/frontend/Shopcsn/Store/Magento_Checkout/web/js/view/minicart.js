@@ -50,8 +50,7 @@ define([
             'button': {
                 'checkout': '#top-cart-btn-checkout',
                 'remove': '#mini-cart a.action.delete',
-                'close': '#btn-minicart-close',
-                'qtyinc': ':button.update-qty-inc'
+                'close': '#btn-minicart-close'
             },
             'showcart': {
                 'parent': 'span.counter',
@@ -68,8 +67,8 @@ define([
             'item': {
                 'qty': ':input.cart-item-qty',
                 'button': ':button.update-cart-item',
-		'buttonInc': ':button.increment-cart-item', //adding new button to js file
-		'buttonDec': ':button.decrement-cart-item' //adding new button to js file                
+                'buttonInc': ':button.increment-cart-item', //adding new button to js file
+                'buttonDec': ':button.decrement-cart-item' //adding new button to js file
             },
             'confirmMessage': $.mage.__('Are you sure you would like to remove this item from the shopping cart?')
         });
@@ -128,14 +127,12 @@ define([
 
             minicart.on('click', '[data-action="close"]', function (event) {
                 event.stopPropagation();
-               
                 minicart.find('[data-role="dropdownDialog"]').dropdownDialog('close');
-                $('body').removeClass('cart-opened');
             });
 
             return true;
         },
-                                                                                                                                                                                                                                                                                                                                    
+
         /**
          * @param {String} productType
          * @return {*|String}

@@ -17,8 +17,12 @@
             <block class="Magefan\Blog\Block\Post\View" name="blog.post" template="post/view.phtml">
                 
                 <block class="Magefan\Blog\Block\Post\Info" name="blog.post.info" template="post/info.phtml" />
+                <block class="Magefan\Blog\Block\Post\Info" name="blog.post.categories.custom" template="post/categories.phtml" />
                 <action method="setPostInfoBlockName">
                     <argument name="name" xsi:type="string">blog.post.info</argument>
+                </action>
+                <action method="setPostInfoBlockName">
+                    <argument name="name" xsi:type="string">blog.post.categories.custom</argument>
                 </action>
                 <block class="Magento\Framework\View\Element\Text\ListText" name="blog.post.bottom">
                     <block class="Magefan\Blog\Block\Post\View\Gallery" name="blog.post.gallery" as="gallery"  template="Magefan_Blog::post/view/gallery.phtml" />
@@ -28,6 +32,9 @@
                     
                     <block class="Magefan\Blog\Block\Social\AddThis" name="addthis.js.init" as="addthisJs" template="Magefan_Blog::addthis-js.phtml"/>
                 </block>
+                
+                    
+                
                 <container name="blog.post.comments" label="Comments Container" htmlTag="div" htmlClass="block comments" >
                     <block class="Magefan\Blog\Block\Post\View\Comments\Magefan" name="blog.post.comments.magefan" template="post/view/comments/magefan.phtml">
                         <arguments>
