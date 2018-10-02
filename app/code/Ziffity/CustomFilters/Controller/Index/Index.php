@@ -131,12 +131,15 @@ class Index extends \Magento\Framework\App\Action\Action
      */
     private function processName($data = null, $sku = null) {
         $result = '';
-        if($data && $sku) {            
-            $this->processYearData($data, $sku);
-            $this->processGradeData($data, $sku);
+        
+        if($data && $sku) {
+            $yearOption = $this->processYearData($data);
+            $gradeOption = $this->processGradeData($data);
+            $this->processProductAttribute($sku, $yearOption, $gradeOption);
         }
         return $result;
     }
+    
     
     /**
      * Process name to segregate the year
@@ -144,8 +147,8 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param String $data
      * @return String
      */
-    private function processYearData($data = null, $sku = null) {
-        $result = '';
+    private function processYearData($data = null) {
+        $result = $resultId = '';
         if($data) {
             $years = [];
             preg_match_all('/(\d{4,})/',$data, $years);
@@ -164,9 +167,9 @@ class Index extends \Magento\Framework\App\Action\Action
                     $result = implode("-", $years[0]);
             }
             // save the option data to  the corresponding attribute
-            ($result) ? $this->processOptionData('coin_year', $result, $sku) : '';
+            $resultId = ($result) ? $this->processOptionData('coin_year', $result) : '';
         }
-        return $result;
+        return $resultId;
     }
     
     /**
@@ -175,27 +178,36 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param String $data
      * @return String
      */
-    private function processGradeData($data = null, $sku = null) {       
+    private function processGradeData($data = null) {       
         $result = '';
         $definedGrade = ['FR', 'AG', 'G', 'VG', 'F', 'VF', 'EF', 'AU', 'UNC', 'MS', 'PF', 'PR', 'EU', 'RP', 'SP'];
         $gradeData = $this->matchGradeString($definedGrade, $data);
         if(count($gradeData)>0){
-            $this->processOptionData('coin_grade', $gradeData, $sku);
+            $result = $this->processOptionData('coin_grade', $gradeData);
         }
         return $result;
     }
 
     /**
-     * Link year attribute value with Product
+     * Link year/grade attribute value with Product
      * 
      * @param String $sku
      * @param int $optionId
      */
-    private function processProductAttribute($sku, $optionId) {
+    private function processProductAttribute($sku, $yearData = null, $gradeData = null) {
         $productFactory = $this->productFactory->create();
         $product = $productFactory->load($productFactory->getIdBySku($sku));
-        $product->setCoinYear($optionId);
-        $product->save();
+        if ($yearData) {
+            $product->setCoinYear($yearData);
+        }
+        if ($gradeData) {
+           $product->setCoinGrade($gradeData); 
+        }
+        try {
+            $product->save();
+        } catch (\Exception $e) {
+            $this->logger->critical($e->getMessage());
+        }
     }
     
     /**
@@ -214,10 +226,11 @@ class Index extends \Magento\Framework\App\Action\Action
      *
      * @param string $attributeCode Attribute the option should exist in
      * @param string $label Label to find or add
-     * @return int
+     * 
+     * @return int|String
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function processOptionData($attributeCode, $label, $sku)
+    public function processOptionData($attributeCode, $label)
     {
         $option = [];
         
@@ -231,7 +244,7 @@ class Index extends \Magento\Framework\App\Action\Action
             $option[] = $this->getOptionData($attributeCode, $label);
         }       
         $optionId = implode(",", $option);
-        $this->processProductAttribute($sku, $optionId);
+
         return $optionId;
     }
     

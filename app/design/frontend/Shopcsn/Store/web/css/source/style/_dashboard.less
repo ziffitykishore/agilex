@@ -48,6 +48,8 @@
 
 }
 
+
+
 .account {
     &.page-layout-2columns-left {
         .page-main {
@@ -76,6 +78,7 @@
         .block {
             padding: 30px;
             padding-bottom: 0;
+            margin-bottom: 0;
             &-dashboard-info {
                 padding-bottom: 0;
             }
@@ -99,8 +102,9 @@
                 .box {
                     background: @color-white;
                     border: 1px solid #d7d7ed;
-                    min-height: 215px;
-                    margin-bottom: 0 !important;
+                    min-height: 250px;
+
+                    
                     .box-title, .box-content, .box-actions {
                         padding: 20px;
                     }
@@ -172,19 +176,32 @@
             padding: 30px;
             .products-grid {
                 .product-item-info {
+                    .comment-box{
+                        margin-top: 0;
+                    }
                     .product-item-actions {
                         .actions-primary {
                             position: static;
+                            opacity: 1;
+                            visibility: visible;
+                            transform: none;
+                            .action {
+                               
+                                padding: 15px;
+                            }
                         }
                         .action {
                             float: none;
                             width: auto;
+                            &.edit {
+                                margin-right: 7px;
+                            }
                         }
                     }
                 }
             }
         }
-        .block, form {
+        .block, form, .orders-history {
             a.action {
                 position: relative;
                 color: #c2c2c2;
@@ -209,6 +226,10 @@
             margin-left: 0;
             padding: 30px;
             .btn-action();
+
+            a {
+                text-decoration: none;
+            }
         }
         .message {
             margin: 30px;
@@ -236,6 +257,8 @@
                     top: 30px;
                 }
             }
+
+            
         }
         .form-newsletter-manage {
             padding: 30px;
@@ -244,6 +267,57 @@
             }
         }
     }
+
+    /* My Account Wishlist section */
+
+    &.wishlist-index-index {
+        .product-item-inner {
+            box-shadow: none;
+            position: static;
+            border: none;
+        }
+    }
+
+    /* Sales order view */
+
+    &.sales-order-view {
+        .order-date {
+            .label {
+                padding-left: 0;
+            }
+        }
+        .order-actions-toolbar {
+            padding: 0;
+            .action {
+                &.print {
+                    float: none;
+                    display: initial;
+                }
+            }
+        }
+        .order-links {
+            display: none;
+        }
+        .order-details-items {
+            padding: 30px;
+            .order-title {
+                strong {
+                    margin-top: 0;
+                }
+
+                
+            }
+
+            .table {
+                background: @color-white;
+            }
+
+            .actions-toolbar {
+                padding: 0;
+            }
+        }
+    }
+
     .sidebar-main {
         .block {
             &.account-nav {
