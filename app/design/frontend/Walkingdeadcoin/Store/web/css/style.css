@@ -17,13 +17,19 @@ li {
     padding: 0;
     margin: 0;
 }
-
+.breadcrumbs{
+    position: relative;
+}
+.breadcrumbs .cms_page {
+    position: absolute;
+    top:12px;
+}
 ul li {
     list-style: none;
 }
 
 .wrapper {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -47,7 +53,13 @@ a {
     margin: 0 auto;
 }
 
-
+.cms-home-page-walking-deadcoin .header.content,
+.cms-home-page-walking-deadcoin .page-wrapper .breadcrumbs,
+.cms-home-page-walking-deadcoin .page-main,
+.cms-home-page-walking-deadcoin .page-footer .footer.content{
+    max-width: 1400px !important;
+    margin: 0 auto;
+}
 /* header */
 
 .logo-wrap a,
@@ -152,8 +164,9 @@ a {
 
 .content-top .content-inner_blk {
     position: relative;
-    top: 82px;
+    top: 94px;    
     margin: 0 auto;
+    
 }
 
 .content-top .content-inner_blk>div {
@@ -291,7 +304,9 @@ button.btn-buy {
     display: block;
     margin: 0 auto;
 }
-
+.content-blk {
+    padding: 0 50px;
+}
 .content-blk ul,
 .content-blk>div {
     width: 49%;
@@ -496,7 +511,7 @@ body.cms-home-page-walking-deadcoin .page-header {
 }
 
 body .header.content {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -533,7 +548,7 @@ body .logo {
 
 .page-main {
     background: #fff;
-    max-width: 1400px !important;
+    max-width: 1200px !important;
     margin: 0 auto;
     padding: 0 20px;
     color: #777;
@@ -824,7 +839,7 @@ button.button span {
 /*********** breadcrumb **********/
 
 .page-wrapper .breadcrumbs {
-    max-width: 1400px;
+    max-width: 1200px;
     padding: 10px 30px;
     font-size: 13px;
     line-height: 1;
@@ -1873,7 +1888,7 @@ select:not([disabled]):focus {
 /*******footer-content*******/
 
 .page-footer .footer.content {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 

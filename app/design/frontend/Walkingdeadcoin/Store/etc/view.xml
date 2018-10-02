@@ -25,8 +25,8 @@
                 <height>300</height>
             </image>
             <image id="category_page_list" type="small_image">
-                <width>240</width>
-                <height>300</height>
+                <width>400</width>
+                <height>368</height>
             </image>
             <image id="customer_account_my_tags_tag_view" type="small_image">
                 <width>100</width>

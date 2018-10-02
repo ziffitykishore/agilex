@@ -5,7 +5,7 @@ $collection->addWebsiteFilter($websiteId);
 $productId = $collection->getFirstItem();
 $url=$block->getProductUrl()->getAddUrl($productId);
 $imageBlock =  $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
-$productImage = $imageBlock->getImage($productId, 'category_page_grid');
+$productImage = $imageBlock->getImage($productId, 'category_page_list');
 ?>    
 	
 
