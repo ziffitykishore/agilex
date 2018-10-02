@@ -126,7 +126,7 @@
                         background: @color-white;
                         border: 0;
                         padding: 0;
-                        margin-right: 25px;
+                        margin-right: 20px;
                         width: auto;
                         &:hover {
                             background: @color-white;
@@ -384,12 +384,112 @@
     }
 }
 
+@media screen and ( max-width: 1092px) {
+    .checkout-cart-index {
+        .form-cart {
+            .col  {
+                &.qty {
+                    width: 25%;
+                   
+                }
+            }
+            .table-wrapper {
+                .item-info {
+                    td {
+                        padding: 25px 13px;
+                    }
+
+                }
+            }
+        }
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .cart{
+        &.table-wrapper  {
+               .col{
+                  &.subtotal, &.price{
+                      width: 30% !important;
+                  }
+           }
+        }
+   }
+}
+
+@media only screen and (max-width: 480px) {
+         .checkout-cart-index {
+             .form-cart {
+                 .table-wrapper {
+                     .item-info {
+                          [colspan="item-actions"] {
+                            padding-left: 0;
+                            padding-right: 0;
+                            width: 100%;
+                            /* position: absolute; */
+                            /* top: 0; */
+                            clear: both;
+                            /* right: 0; */
+                            text-align: center;
+                            display: block;
+
+                         }
+                     }
+                 }
+             }
+         }
+         body .cart.table-wrapper .col.qty, 
+         body .cart.table-wrapper .col.price,
+         body .cart.table-wrapper .col.subtotal,
+         body .cart.table-wrapper .col.msrp {
+            box-sizing: border-box;
+            display: block;
+            float: left;
+            text-align: center;
+            padding: 5px;
+            white-space: nowrap;
+            width: 40%;
+        }
+        .checkout-cart-index {
+            .form-cart { 
+                 padding:30px 10px;               
+                .table-wrapper {
+                    .item-info {
+                        td {
+                            padding: 25px 0px;
+                        }
+    
+                    }
+                }
+                .control{
+                    &.qty {
+                        right: -15px;
+                    }
+                } 
+            }
+        }
+        
+        
+}
+
+
+
+
+
+
+
+
+
+
+
 @media only screen and (min-width: 768px) {
     .cart-summary {
         width: 25%;
         .bg-smoke();
         padding: 30px;
     }
+    
     .checkout-cart-index {
         .page-main {
             .page-title-wrapper {
@@ -404,6 +504,8 @@
                     }
                 }
             }
+          
+         
         }
         .cart {
             &.table-wrapper {
