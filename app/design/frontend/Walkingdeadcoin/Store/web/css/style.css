@@ -860,7 +860,24 @@ button.button span {
 .cms-walking-deadcoin-contactus .breadcrumbs {
     display: none;
 }
+.cms-walking-deadcoin-contactus .contact {
+    margin-top: 20px;
+}
 
+.cms-walking-deadcoin-contactus .fieldset > .field:not(.choice) > .label {
+    padding: 6px 15px 0 0;
+    text-align: left;    
+    box-sizing: border-box;
+    float: left;
+    margin-bottom: 10px;
+}
+.cms-walking-deadcoin-contactus .fieldset > .field:not(.choice) > .control {
+    width: 100%;    
+}
+.cms-walking-deadcoin-contactus .column:not(.sidebar-additional) form .actions-toolbar  {
+    margin-left: 0;
+    margin-bottom: 20px;
+}
 .page-title-wrapper h1 {
     font-size: 24px;
     color: #811515;
@@ -887,7 +904,20 @@ button.button span {
     border-left-color: transparent !important;
 }
 
-
+/******** cart page pop up *****/
+ .model-popup .modal-inner-wrap {
+    width: 40% !important;
+}
+.checkout-cart-index .modal-popup .modal-title,
+.checkout-cart-index  .modal-header{
+    border-bottom: 0;
+}
+.checkout-cart-index .modal-content {
+    border: 0;
+}
+.checkout-cart-index .modal-footer {
+    border-top: 0;
+}
 /******** Account page*********/
 
 .customer-account-index .box-newsletter {
