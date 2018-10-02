@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog post info template
+ *
+ * @var $block \Magefan\Blog\Block\Post\Info
+ */
+?>
+
+<?php $_post = $block->getPost() ?> 
+
+<?php if ($_categoriesCount = $_post->getCategoriesCount()) { ?>
+    <div class="item post-categories"> 
+        <span>
+            <?php echo __('This entry was posted in '); ?>
+        </span>
+        <?php $n = 0; foreach($_post->getParentCategories() as $ct) { $n++; ?>
+            <a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>">
+                <?php echo $block->escapeHtml($ct->getTitle()) ?>
+            </a>
+            <?php if ($n != $_categoriesCount) { ?>, <?php } ?>
+        <?php } ?>
+    </div>
+<?php } ?> 
+<?php if ($_tagsCount = $_post->getTagsCount()) { ?>
+    <div class="item post-categories">
+        <span>
+            <?php echo __('and tagged ') ; ?>
+        </span>
+       <?php $n = 0; foreach($_post->getRelatedTags() as $tag) { $n++; ?>
+            <a title="<?php echo $block->escapeHtml($tag->getTitle()) ?>" href="<?php echo $tag->getTagUrl() ?>">
+                <?php echo $block->escapeHtml($tag->getTitle()) ?>
+            </a>
+            <?php if ($n != $_tagsCount) { ?>, <?php } ?>
+        <?php } ?>
+            <span>
+                <?php echo __(' on ').  $_post->getPublishDate('F d, Y'); ?>
+                    <?php if ($block->authorEnabled()) { ?>
+        <?php if ($_author = $_post->getAuthor()) { ?>
+            <?php echo 'by '. $block->escapeHtml($_author->getTitle()); ?>
+        <?php } ?>
+    <?php } ?>
+            </span>
+    </div>
+<?php } ?>

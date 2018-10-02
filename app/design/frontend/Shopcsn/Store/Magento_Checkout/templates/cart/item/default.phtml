@@ -93,9 +93,13 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
                 </label>
                 <div class="control qty">
 <<<<<<< HEAD
+<<<<<<< HEAD
 
                     <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
 =======
+=======
+                    <button type="button"   id="<?=  $_item->getId() ?>-dec"  class="decreaseQty"><span>-</span></button>                                
+>>>>>>> 362221519c04b11dd68c586497f1c7cea8270e68
                     <input <?= ($freeItem) ? 'disabled' : ''?> id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
 >>>>>>> b9c47d8d2192670942f206afaa79d0debd57a879
                            name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
@@ -107,6 +111,7 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
                            class="input-text qty qty-input"
                            data-validate="{required:true,'validate-greater-than-zero':true}"
                            data-role="cart-item-qty"/>
+                    <button type="button"  id="<?= /* @escapeNotVerified */ $_item->getId() ?>-inc" class="increaseQty"><span>+</span></button>                    
                 </div>
             </div>
         </td>
@@ -128,4 +133,25 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
     </tr>
 </tbody>
 
+<<<<<<< HEAD
 
+=======
+<script type="text/javascript">
+require(["jquery"],function($){
+    $('#<?php echo $_item->getId();?>-inc, #<?php echo $_item->getId();?>-dec').on("click",function(){
+        var $this = $(this);
+        var ctrl = ($(this).attr('id').replace('-inc','')).replace('-dec','');          
+        var currentQty = $("#cart-"+ctrl+"-qty").val();
+        if($this.hasClass('increaseQty')){
+            var newAdd = parseInt(currentQty)+parseInt(1);
+             $("#cart-"+ctrl+"-qty").val(newAdd);
+        }else{
+             if(currentQty>1){
+                var newAdd = parseInt(currentQty)-parseInt(1);
+                $("#cart-"+ctrl+"-qty").val(newAdd); 
+             }
+        }
+    });
+});
+</script>
+>>>>>>> 362221519c04b11dd68c586497f1c7cea8270e68

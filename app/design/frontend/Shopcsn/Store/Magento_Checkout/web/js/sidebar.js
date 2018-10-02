@@ -14,7 +14,7 @@ define([
     'mage/collapsible',
     'mage/cookies'
 ], function ($, authenticationPopup, customerData, alert, confirm) {
-     
+    'use strict';
 
     $.widget('mage.sidebar', {
         options: {
@@ -47,7 +47,8 @@ define([
          */
         _initContent: function () {
             var self = this,
-                events = {}; 
+                events = {};
+
             this.element.decorate('list', this.options.isRecursive);
 
             /**
@@ -103,6 +104,7 @@ define([
             events['keyup ' + this.options.item.qty] = function (event) {
                 self._showItemButton($(event.target));
             };
+
             /**
              * @param {jQuery.Event} event
              */
@@ -110,7 +112,7 @@ define([
                 event.stopPropagation();
                 self._updateItemQty($(event.currentTarget));
             };
-            
+
             /**
              * Event Listener for Increment Button
              */
@@ -128,7 +130,6 @@ define([
                     event.stopPropagation();
                     self._decrementItemQty($(event.currentTarget));
             };
-            
             /**
              * @param {jQuery.Event} event
              */
@@ -139,14 +140,6 @@ define([
             this._on(this.element, events);
             this._calcHeight();
             this._isOverflowed();
-        },
-         _updateItemQty: function (elem) {
-            var itemId = elem.data('cart-item');
-
-            this._ajax(this.options.url.update, {
-                'item_id': itemId,
-                'item_qty': $('#cart-item-' + itemId + '-qty').val()
-            }, elem, this._updateItemQtyAfter);
         },
 
         /**
@@ -230,7 +223,7 @@ define([
             }, elem, this._updateItemQtyAfter);
         },
 
-        //Function to increment Qty and show Update Button 
+		//Function to increment Qty and show Update Button 
         _incrementItemQty: function (elem) {
             var itemId = elem.data('cart-item');
             var obj = $('#cart-item-' + itemId + '-qty');

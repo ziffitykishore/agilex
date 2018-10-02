@@ -9,6 +9,8 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Customer\Model\Context as CustomerContext;
+use Magento\Framework\App\Http\Context as HttpContext;
 
 class Data extends AbstractHelper
 {
@@ -33,6 +35,11 @@ class Data extends AbstractHelper
     protected $_registry;
 
     /**
+    * @var HttpContext
+    */
+    protected $httpContext;
+
+    /**
      * Constructor
      * @param Context $context
      * @param RemoteAddress $remoteAddress
@@ -41,12 +48,14 @@ class Data extends AbstractHelper
         Context $context,
         RemoteAddress $remoteAddress ,
         \Magento\Framework\Registry $registry,
-        \Magento\Framework\Module\Manager $moduleManager
+        \Magento\Framework\Module\Manager $moduleManager,
+        HttpContext $httpContext
     ) {
         $this->scopeConfig  = $context->getScopeConfig();
         $this->_remoteAddress = $remoteAddress;
         $this->_registry = $registry;
         $this->_moduleManager = $moduleManager;
+        $this->httpContext = $httpContext;
         parent::__construct($context);
     }
 
@@ -136,5 +145,14 @@ class Data extends AbstractHelper
        }
        return $showOutOfStockStatus;
     }
-
+    
+    /**
+     * To check customer logged in
+     * 
+     * @return boolean
+     */
+    public function getIsCustomerLoggedIn()
+    {
+        return $this->httpContext->getValue(customerContext::CONTEXT_AUTH);
+    }
 }

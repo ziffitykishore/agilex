@@ -18,7 +18,9 @@
             <div class="login-notify" style="display: none;"></div>
             <div class="block-title main-head text-center">
                 <h3>
-                <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
+                <strong id="block-customer-login-heading" role="heading" aria-level="2">
+                    <?= $block->escapeHtml(__('Welcome Back!')) ?>
+                </strong>
                 </h3>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
@@ -258,6 +260,19 @@
 <script type="text/javascript">
 require(['jquery', 'Magento_Ui/js/modal/modal', 'googlecapjs'],
 function($, modal, googlecapjs) {
+
+    var isCheckoutPage = false;
+    if (window.location.pathname == "/onestepcheckout/") {
+        isCheckoutPage = true;
+    }
+
+    function pageReload(){
+        if(isCheckoutPage){
+            window.location.reload();
+            return;
+        }
+    }
+
     var options = {
         type: 'popup',
         responsive: true,
@@ -265,12 +280,21 @@ function($, modal, googlecapjs) {
         modalClass: 'custom-block-customer-login',
         buttons: false,
     };
-    $('#login-popup, #login-popup-form, .signin-popup').on("click", function(){
-        var popup = modal(options, $('#popup-modal'));
+
+    $(document).on("click", '#login-popup, #login-popup-form, .signin-popup', function(e){
+        if(window.isCustomerLoggedIn != 'undefined' && parseInt(window.isCustomerLoggedIn)){
+            return;
+        }
+        e.preventDefault();
+        var ppModal = $('#popup-modal');
+        var popup = modal(options, ppModal);
         //$('#popup-modal-signup').modal('closeModal');
-        $('#popup-modal').modal('openModal').on('modalclosed', function(){
+        ppModal.modal('openModal').on('modalclosed', function(){
             $('.login-notify').hide().html('');
         });
+        if(isCheckoutPage){
+            ppModal.closest('.modal-inner-wrap').addClass('fullwidth-popup');
+        }
     });
     var optsignup = {
         type: 'popup',
@@ -281,12 +305,16 @@ function($, modal, googlecapjs) {
     };
     $('#signup-modal').on("click", function(){
         $('#popup-modal').modal('closeModal');
-        var popup = modal(optsignup, $('#popup-modal-signup'));
-        $('#popup-modal-signup').modal('openModal').on('modalclosed', function() { 
+        var ppModal = $('#popup-modal-signup');
+        var popup = modal(optsignup, ppModal);
+        ppModal.modal('openModal').on('modalclosed', function() { 
             $('#popup-modal-signup div.mage-error').remove();
         });
+        if(isCheckoutPage){
+            ppModal.closest('.modal-inner-wrap').addClass('fullwidth-popup');
+        }
     });
-    
+
     var optforget = {
         type: 'popup',
         responsive: true,
@@ -294,10 +322,16 @@ function($, modal, googlecapjs) {
         modalClass: 'customer-forgetpassword-popup',
         buttons: false,
     };
-    $('#forget-pwd').on("click", function(){
-        $('#popup-modal').modal('closeModal');
-        var popup = modal(optforget, $('#forget-popup'));
-        $('#forget-popup').modal('openModal');
+    $('#forget-pwd, .forget-pwd').on("click", function(){
+        if($('#popup-modal').closest('.modal-inner-wrap').length){
+           $('#popup-modal').modal('closeModal'); 
+        }
+        var ppModal = $('#forget-popup');
+        var popup = modal(optforget, ppModal);
+        ppModal.modal('openModal');
+        if(isCheckoutPage){
+            ppModal.closest('.modal-inner-wrap').addClass('fullwidth-popup');
+        }
     });
     $('.bk-to-arw').on('click', function(event){
         $('#forget-popup').modal('closeModal');
@@ -341,10 +375,10 @@ function($, modal, googlecapjs) {
                 success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     $('.field').removeClass('focused');
-                    if(!response.errors) {
+                    pageReload();
+                    if(!response.errors && !isCheckoutPage) {
                         window.location = "<?= $this->getUrl('customer/account') ?>";
                     }
-
                     /*reset captcha*/
                     window.resetCaptcha(loginForm);
                 }
@@ -354,8 +388,7 @@ function($, modal, googlecapjs) {
 
     //form-validate-popup
     var regForm = $('#signup-popup');
-    regForm.on('submit', function (event){
-        
+    regForm.on('submit', function (event){      
         if($('#signup-check:checked').length < 1) {
             $('.signupcheck').addClass('mage-error').show();
         } else {

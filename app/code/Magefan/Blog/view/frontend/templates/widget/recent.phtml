@@ -22,13 +22,16 @@
     <div class="container">
         <div class="blog-outer br whitesmoke">
             <div class="heading-sec clearfix">
-                <h2 class="pull-left"><?php echo __('Blog') ?></h2>
+                <h2 class="title-heading"><?php echo __('Blog') ?>
                 <a href="<?php echo $this->getUrl('blog') ?>" class="text-uppercase pull-right btn-view btn-bor">
                     <span><?php echo __('View More') ?></span>
                 </a>
+            </h2>
+                
             </div>
 
             <div class="blog-content-wrap clearfix">
+                <div class="blog-slider">
                 <?php foreach ($_postCollection as $_post) { ?>
                 <?php
                     $_postUrl = $_post->getPostUrl();
@@ -53,15 +56,16 @@
                             </div>
                             <div class="blog-desc">
                                 <?php $shortcontent = preg_replace("/<img[^>]+\>/i", "", $block->getShorContent($_post), 1); ?>
-                                <?php echo $block->setWordsLimit($shortcontent, 60). ' ...'; ?> 
+                                <?php echo $block->setWordsLimit($shortcontent, 25). ' ...'; ?> 
                             </div>
-                            <a class="post-read-more" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-                            <span class="more-btn"><?php echo __('Read more') ?></span>
+                            <a class="more-btn" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                                <span><?php echo __('Read more') ?></span>
                             </a>
                         </div>
                     </a>
                 </div>
                 <?php } ?>
+                            </div>
             </div>
         </div>
     </div>

@@ -29,27 +29,21 @@ class View
      * @var Collection
      */
     protected $collection;
-    /**
-     * @var PageFactory
-     */
-    private $resultPage;
+
     /**
      * View constructor.
      * @param StoreManager $storeManager
      * @param Registry $registry
      * @param Collection $collection
-     * @param PageFactory $resultPage
      */
     public function __construct(
         StoreManager $storeManager,
         Registry $registry,
-        Collection $collection,
-        PageFactory $resultPage)
+        Collection $collection)
     {
         $this->storeManager = $storeManager;
         $this->registry = $registry;
         $this->collection = $collection;
-        $this->resultPage = $resultPage;
     }
 
     public function afterExecute(MagentoView $subject, $result)
@@ -57,8 +51,7 @@ class View
         if(!$result instanceof Page){
             return $result;
         }
-        $resultPage = $this->resultPage->create();
-        $breadcrumbsBlock = $resultPage->getLayout()->getBlock('breadcrumbs');
+        $breadcrumbsBlock = $result->getLayout()->getBlock('breadcrumbs');
         if(!$breadcrumbsBlock || !isset($breadcrumbsBlock)){
             return $result;
         }
@@ -75,7 +68,7 @@ class View
         } catch (LocalizedException $e) {
             return $result;
         }
-        $resultPage->getConfig()->getTitle()->set($product->getName());
+        $result->getConfig()->getTitle()->set($product->getName());
         if(null == $product->getCategory() || null == $product->getCategory()->getPath()){
             $breadcrumbsBlock->addCrumb(
                 'cms_page',
