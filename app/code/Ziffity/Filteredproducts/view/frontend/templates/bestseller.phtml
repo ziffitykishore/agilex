@@ -144,11 +144,23 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                     <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
-                                <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
-                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-                                        <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
-                                    <?php endif; ?>
-                                </div>
+                                    <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
+                                        <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                            <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                        <?php endif; ?>
+                                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                            <a href="#"
+                                               data-post='<?= /* @escapeNotVerified */ $block->getAddToWishlistParams($_product) ?>'
+                                               class="signin-popup action towishlist" data-action="add-to-wishlist"
+                                               title="<?= /* @escapeNotVerified */ __('Add to Wish List') ?>"
+                                               data-action="add-to-wishlist"
+                                               role="button"
+                                               aria-label="Add to Wish List">  
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span class="sr-only"><?= /* @escapeNotVerified */ __('Add to Wish List') ?></span>
+                                            </a>
+                                        <?php endif; ?>
+                                    </div>
                             </div>
                             <?php if ($showDescription): ?>
                                 <div class="product description product-item-description">

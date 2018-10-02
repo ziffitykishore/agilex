@@ -78,11 +78,10 @@
                 [colspan="item-actions"] {
                     padding-left: 0;
                     padding-right: 0;
-                    width: 100px;
-
-
+                    width: 75px;
                 }
                 .qty {
+                    
                     .input-text {
                         height: 30px;
                         width: 30px;
@@ -333,6 +332,44 @@
         }
     }
 }
+.checkout-cart-index {
+    .form-cart {
+        .col  {
+            &.qty {
+                width: 20%;
+                .control {
+                    &.qty {
+                        position: relative;
+                         height: 27px;
+                        margin-top: 0 !important;
+                        button {
+                            width: 30px;
+                            height: 30px;
+                            font-size: 14px;
+                            padding: 0;
+                            background: #ffffff;
+                            border-radius: 0;
+                            font-weight: bold;
+                            float: left;
+                            margin-right: 0;
+                            &:active {
+                                box-shadow: none;
+                            }
+                        }
+                        .input-text {
+                            float: left;
+                            padding: 0;
+                            margin-right: -1px;
+                            margin-top: 0;
+                            margin-left: -1px;
+                        }
+                    }
+            }
+            }
+        }
+    }
+}
+
 
 @media only screen and (max-width: 1200px) {
     .column {

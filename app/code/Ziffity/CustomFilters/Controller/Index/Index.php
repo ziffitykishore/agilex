@@ -44,6 +44,11 @@ class Index extends \Magento\Framework\App\Action\Action
     protected $productFactory;
     
     /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
+    
+    /**
      * Data Constructor
      * 
      * @param \Magento\Framework\App\Action\Context $context
@@ -54,7 +59,7 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param \Magento\Eav\Api\AttributeOptionManagementInterface $attributeOptionManagement
      * @param \Magento\Eav\Api\Data\AttributeOptionLabelInterfaceFactory $optionLabelFactory
      * @param \Magento\Eav\Api\Data\AttributeOptionInterfaceFactory $optionFactory
-     * @param \Magento\Catalog\Model\ProductFactory $productModelFactory
+     * @param \Magento\Catalog\Model\ProductFactory $productFactory
      * @return type
      */
     public function __construct(
@@ -66,7 +71,9 @@ class Index extends \Magento\Framework\App\Action\Action
         \Magento\Eav\Api\AttributeOptionManagementInterface $attributeOptionManagement,
         \Magento\Eav\Api\Data\AttributeOptionLabelInterfaceFactory $optionLabelFactory,
         \Magento\Eav\Api\Data\AttributeOptionInterfaceFactory $optionFactory,
-        \Magento\Catalog\Model\ProductFactory $productFactory
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Store\Model\StoreRepository $storeRepository,
+        \Psr\Log\LoggerInterface $logger
     ) {
         $this->csv = $csv;
         $this->_dir = $dir;
@@ -78,6 +85,9 @@ class Index extends \Magento\Framework\App\Action\Action
         $this->optionLabelFactory = $optionLabelFactory;
         $this->optionFactory = $optionFactory;
         $this->productFactory = $productFactory;
+        $this->storeRepository = $storeRepository;
+        $this->logger = $logger;
+        
         return parent::__construct($context);
     }
         
@@ -94,16 +104,20 @@ class Index extends \Magento\Framework\App\Action\Action
         if (!isset($newest_file))  {
             throw new \Magento\Framework\Exception\LocalizedException(__('Invalid file to process.'));
         }
-        
         $csvData = $this->csv->getData($newest_file);
         if ($csvData) {
             $getNameKey = array_search('name', $csvData[0]);
             $getSkuKey = array_search('sku', $csvData[0]);
             foreach ($csvData as $row => $data) {
-                if ($row > 0){
+                if ($row > 0) {
                     $nameData = isset($data[$getNameKey]) ? $data[$getNameKey] : '';
                     $skuData = isset($data[$getNameKey]) ? $data[$getSkuKey] : '';
-                    $this->processName($nameData, $skuData);
+                    try {
+                        $this->processName($nameData, $skuData);
+                        echo "<br />Line number ".($row+1)." has been processed with the SKU ".$skuData;
+                    } catch (\Exception $e) {
+                        $this->logger->critical($e->getMessage());
+                    }
                 }
             }
         }
@@ -117,12 +131,15 @@ class Index extends \Magento\Framework\App\Action\Action
      */
     private function processName($data = null, $sku = null) {
         $result = '';
-        if($data && $sku) {            
-            $this->processYearData($data, $sku);
-            //$this->processGradeData($data, $sku);
+        
+        if($data && $sku) {
+            $yearOption = $this->processYearData($data);
+            $gradeOption = $this->processGradeData($data);
+            $this->processProductAttribute($sku, $yearOption, $gradeOption);
         }
         return $result;
     }
+    
     
     /**
      * Process name to segregate the year
@@ -130,8 +147,8 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param String $data
      * @return String
      */
-    private function processYearData($data = null, $sku = null) {
-        $result = '';
+    private function processYearData($data = null) {
+        $result = $resultId = '';
         if($data) {
             $years = [];
             preg_match_all('/(\d{4,})/',$data, $years);
@@ -149,9 +166,10 @@ class Index extends \Magento\Framework\App\Action\Action
                     array_pop($years[0]);
                     $result = implode("-", $years[0]);
             }
-            ($result) ? $this->storeData('coin_year', $result, $sku) : '';
+            // save the option data to  the corresponding attribute
+            $resultId = ($result) ? $this->processOptionData('coin_year', $result) : '';
         }
-        return $result;
+        return $resultId;
     }
     
     /**
@@ -160,39 +178,36 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param String $data
      * @return String
      */
-    private function processGradeData($data = null, $sku = null) {       
+    private function processGradeData($data = null) {       
         $result = '';
         $definedGrade = ['FR', 'AG', 'G', 'VG', 'F', 'VF', 'EF', 'AU', 'UNC', 'MS', 'PF', 'PR', 'EU', 'RP', 'SP'];
         $gradeData = $this->matchGradeString($definedGrade, $data);
-        if($gradeData){      
-            $this->storeData('coin_grade', $gradeData, $sku);
+        if(count($gradeData)>0){
+            $result = $this->processOptionData('coin_grade', $gradeData);
         }
         return $result;
     }
 
     /**
-     * Store data to attribute option and map it to the product
-     * 
-     * @param String $attributeCode
-     * @param String $label
-     * @param String $sku
-     */
-    private function storeData($attributeCode, $label, $sku) {
-        // save the option data to  the corresponding attribute
-        $this->processOptionData($attributeCode, $label, $sku);
-    }
-    
-    /**
-     * Link year attribute value with Product
+     * Link year/grade attribute value with Product
      * 
      * @param String $sku
      * @param int $optionId
      */
-    private function processProductAttribute($sku, $optionId) {
+    private function processProductAttribute($sku, $yearData = null, $gradeData = null) {
         $productFactory = $this->productFactory->create();
         $product = $productFactory->load($productFactory->getIdBySku($sku));
-        $product->setCoinYear($optionId);
-        $product->save();
+        if ($yearData) {
+            $product->setCoinYear($yearData);
+        }
+        if ($gradeData) {
+           $product->setCoinGrade($gradeData); 
+        }
+        try {
+            $product->save();
+        } catch (\Exception $e) {
+            $this->logger->critical($e->getMessage());
+        }
     }
     
     /**
@@ -211,51 +226,50 @@ class Index extends \Magento\Framework\App\Action\Action
      *
      * @param string $attributeCode Attribute the option should exist in
      * @param string $label Label to find or add
-     * @return int
+     * 
+     * @return int|String
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function processOptionData($attributeCode, $label, $sku)
+    public function processOptionData($attributeCode, $label)
     {
-        if (strlen($label) < 1) {
+        $option = [];
+        
+        if (is_array($label)) {
+            foreach ($label as $item) {
+                if($item) {
+                    $option[] = $this->getOptionData($attributeCode, $item);
+                }
+            }
+        } else {
+            $option[] = $this->getOptionData($attributeCode, $label);
+        }       
+        $optionId = implode(",", $option);
+
+        return $optionId;
+    }
+    
+    /**
+     * Get Option details
+     * 
+     * @param String $attributeCode
+     * @param String $label
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getOptionData($attributeCode, $label) {
+
+        $labelData = trim($label);
+        if (strlen($labelData) < 1) {
             throw new \Magento\Framework\Exception\LocalizedException(
                 __('Label for %1 must not be empty.', $attributeCode)
             );
         }
 
         // Get existing option id
-        $optionId = $this->getOptionId($attributeCode, $label);
+        $optionId = $this->getOptionId($attributeCode, $labelData);
 
-        if (!$optionId) { // If no, add it.            
-
-            /** @var \Magento\Eav\Model\Entity\Attribute\OptionLabel $optionLabel */
-            $optionLabel = $this->optionLabelFactory->create();
-            
-            // Create option label for Default config
-            $optionLabel->setStoreId(0);
-            $optionLabel->setLabel($label);
-            
-            // Create option label for CSN Store
-            $optionLabel1 = $this->optionLabelFactory->create();
-            $optionLabel1->setStoreId(1);
-            $optionLabel1->setLabel($label);
-            
-            // Store data to attribute options
-            $option = $this->optionFactory->create();
-            $option->setLabel($optionLabel);
-            $option->setStoreLabels([$optionLabel, $optionLabel1]);
-            $option->setSortOrder(0);
-            $option->setIsDefault(false);
-
-            $this->attributeOptionManagement->add(
-                \Magento\Catalog\Model\Product::ENTITY,
-                $this->getAttribute($attributeCode)->getAttributeId(),
-                $option
-            );
-
-            // Get the inserted ID. Should be returned from the installer, but it isn't.
-            $optionId = $this->getOptionId($attributeCode, $label, true);
+        if (!$optionId) { // Create option if mot exists  
+            $optionId = $this->createOption($attributeCode, $labelData);
         }
-        $this->processProductAttribute($sku, $optionId);
         return $optionId;
     }
 
@@ -298,6 +312,51 @@ class Index extends \Magento\Framework\App\Action\Action
     }
     
     /**
+     * Create new Option
+     * 
+     * @param String $attributeCode
+     * @param String $label
+     * @return int
+     */
+    private function createOption($attributeCode, $label) {
+
+        /** @var \Magento\Eav\Model\Entity\Attribute\OptionLabel $optionLabel */
+        $optionLabel = $this->optionLabelFactory->create();
+        $optionLabel1 = $this->optionLabelFactory->create();
+        
+        $storeManagerDataList = $this->storeRepository->getList();
+        foreach ($storeManagerDataList as $value) {
+            $storeId = $value->getStoreId();
+            switch ($storeId) {
+                case 0:
+                     // Create option label for Default Config
+                    $optionLabel->setStoreId($storeId);
+                    $optionLabel->setLabel($label);
+                case 1:
+                     // Create option label for CSN store
+                    $optionLabel1->setStoreId(1);
+                    $optionLabel1->setLabel($label);
+            }
+        }
+
+        // Store data to attribute options
+        $option = $this->optionFactory->create();
+        $option->setLabel($optionLabel);
+        $option->setStoreLabels([$optionLabel, $optionLabel1]);
+        $option->setSortOrder(0);
+        $option->setIsDefault(false);
+
+        $this->attributeOptionManagement->add(
+            \Magento\Catalog\Model\Product::ENTITY,
+            $this->getAttribute($attributeCode)->getAttributeId(),
+            $option
+        );
+
+        // Get the inserted ID. Should be returned from the installer, but it isn't.
+        return $this->getOptionId($attributeCode, $label, true);
+    }
+    
+    /**
      * Get grade string from product name
      * 
      * @param type $gradeList
@@ -313,21 +372,22 @@ class Index extends \Magento\Framework\App\Action\Action
         foreach($gradeList as $grade) {
             $position = strpos($name, " ".$grade);
             if ($position > -1) {
-                $string = substr($name, $position, 4);
+                $string = substr($name, $position, 5);
                 $existNumber = $this->extractNumberFromString($string);
-                $result[] = ($existNumber) ? $string : '';
+                $result[] = ($existNumber) ? trim($string) : '';
             }
         }
-        return $result;
+        return array_filter($result);
     }
     
     /**
      * Extract number data from product name
      * 
-     * @param String $string
+     * @param type $string
      * @return int
      */
     private function extractNumberFromString($string) {
+        $matches = [];
         preg_match_all('!\d+!', $string, $matches);
         $matches = array_filter($matches);
         return count($matches);

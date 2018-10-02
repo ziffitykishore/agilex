@@ -14,12 +14,6 @@
                     <argument name="sortOrder" xsi:type="number">10</argument>
                 </arguments>
             </block>
-            <!-- <block class="Magento\Framework\View\Element\Html\Link\Current" name="my-orders" after="wish-list-link" >
-                    <arguments>
-                        <argument name="path" xsi:type="string">sales/order/history</argument>
-                        <argument name="label" xsi:type="string" translate="true">My Orders</argument>
-                    </arguments>
-                </block> -->
         </referenceBlock>
         <block class="Magento\Theme\Block\Html\Header" name="header" as="header">
             <arguments>
@@ -27,12 +21,11 @@
             </arguments>
         </block>
 <!--        <move element="header" destination="header.links" before="-"/>-->
-<referenceBlock name="header" remove="true"/>
-  <move element="minicart" destination="header-wrapper" after="user.actionlist" />
+        <referenceBlock name="header" remove="true"/>
+        <move element="minicart" destination="header-wrapper" after="user.actionlist" />
 <!--        <move element="minicart" destination="header-wrapper" after="top.search" />-->
 <!--        <move element="register-link" destination="header.links"/>-->
         <move element="top.links" destination="customer"/>
-        <move element="my-orders" destination="header.links" before="authorization-link"/>
         <move element="authorization-link" destination="top.links" after="-"/>
     </body>
 </page>
