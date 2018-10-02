@@ -1,0 +1,46 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+?>
+
+<div class="menu-wrap h-blk">
+    <span class="menu-icon hidden-ms">
+    	<span class="icon-bar icon-1"></span>
+    	<span class="icon-bar icon-2"></span>
+    	<span class="icon-bar icon-3"></span>
+    </span>
+    <ul class="menu-navigation">
+        <li><a target="_blank" href="http://shopcsntv.com/"><?= __('Main Page')?></a></li>
+        <li><a href="/walking-deadcoin-aboutus"><?= __('About Us')?></a></li>
+        <li><a href="/walking-deadcoin-contactus"><?= __('Contact Us')?></a></li>
+        <li><a href="/walking-deadcoin-faq"><?= __('FAQ')?></a></li>
+    </ul>
+</div>
+
+<?php if($customerSession->isLoggedIn()){ ?>
+<div class="account-links">
+    <div class="user-logout">
+        <div class="acc-menu"> 
+            <a class="user-account" href="<?= $this->getUrl('customer/account/') ?>"><?= __('My Account')?></a>
+            <a class="usr-logout" href="<?= $this->getUrl('customer/account/logout') ?>"><?=__('Log Out')?></a>
+        </div>
+    </div>
+ </div>
+ <?php }else{ ?>
+    <div class="account-links">
+        <ul>
+            <li><a href="<?php echo $block->getUrl('customer/account/login') ?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+        </ul>
+    </div>
+<?php } ?>
+
+
+
+
+
+
+
+
+
+
+

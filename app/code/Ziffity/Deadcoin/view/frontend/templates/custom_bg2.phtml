@@ -1,0 +1,32 @@
+<?php
+$websiteId = $block->getWebsiteId();
+$collection=$block->getOrderCollection();
+$collection->addWebsiteFilter($websiteId);
+$productId = $collection->getFirstItem();
+$url=$block->getProductUrl()->getAddUrl($productId);
+$imageBlock =  $block->getLayout()->createBlock('Magento\Catalog\Block\Product\ListProduct');
+$productImage = $imageBlock->getImage($productId, 'category_page_list');
+?>    
+	
+
+<div class="content-inner_blk">
+<div class="content-blk">
+    <h2>2018 The Walking Dead “All Out War” Silver Coin</h2>
+    <ul class="desc">
+        <li>Commemorating Season 8 of AMC’s <br/> The Walking Dead - “All Out War”</li>
+        <li>One troy ounce of .999 Fine Silver</li>
+        <li>Cook Island two dollar legal tender</li>
+        <li>Includes custom box and coin holder</li>
+    </ul>
+<div class="img-blk">
+    <?php echo $productImage->toHtml()  ?> 
+</div>
+</div>
+</div>
+
+    
+
+
+
+
+

@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var $block \Magento\Sales\Block\Order\Totals
+ * @see \Magento\Sales\Block\Order\Totals
+ */
+?>
+
+<tr>
+    <td colspan="4" style="border-top: 1px solid #d7d7ed; border-bottom: 1px solid #d7d7ed;">
+        <table width="100%" cellspadding="0" cellspacing="0" style="font-size: 12px; font-weight: bold;">
+        <?php foreach ($block->getTotals() as $_code => $_total): ?>
+            <?php if ($_total->getBlockName()): ?>
+                <?= $block->getChildHtml($_total->getBlockName(), false) ?>
+            <?php else:?>            
+            <tr>
+                <td width="25%"></td>
+                <td width="25%"></td>
+                <td width="25%" style="text-align: right" <?= /* @escapeNotVerified */ $block->getLabelProperties() ?>>
+                    <?php if ($_total->getStrong()):?>
+
+                    <?php else:?>
+                    <?= $block->escapeHtml($_total->getLabel()) ?>
+                    <?php endif?>                
+                </td>
+                <td width="25%" style="text-align: right" <?= /* @escapeNotVerified */ $block->getValueProperties() ?> data-th="<?= $block->escapeHtml($_total->getLabel()) ?>">
+                    <?php if ($_total->getStrong()):?>
+
+                    <?php else:?>
+                    <?= /* @escapeNotVerified */ $block->formatValue($_total) ?>
+                    <?php endif?>                
+                </td>
+            </tr>
+            <?php endif?>
+        <?php endforeach?>            
+        </table>
+    </td>
+</tr>
+    
+<tr>
+    <td colspan="4" style=" border-bottom: 1px solid #d7d7ed;">
+        <table width="100%" cellspadding="0" cellspacing="0" style="font-size: 12px; font-weight: bold;">
+            <tr>
+                <td width="25%"></td>
+                <td width="25%"></td>
+                <td width="25%" style="text-align: right" <?= /* @escapeNotVerified */ $block->getLabelProperties() ?>>
+                    <?php if ($_total->getStrong()):?>
+                    <strong><?= $block->escapeHtml($_total->getLabel()) ?></strong>
+                    <?php else:?>
+
+                    <?php endif?>                
+                </td>
+                <td width="25%" style="text-align: right" <?= /* @escapeNotVerified */ $block->getValueProperties() ?> data-th="<?= $block->escapeHtml($_total->getLabel()) ?>">
+                    <?php if ($_total->getStrong()):?>
+                    <strong><?= /* @escapeNotVerified */ $block->formatValue($_total) ?></strong>
+                    <?php else:?>
+
+                    <?php endif?>                
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+
+    
