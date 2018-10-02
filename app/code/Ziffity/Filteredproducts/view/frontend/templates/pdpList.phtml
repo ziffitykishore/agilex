@@ -14,6 +14,12 @@ $pos = $block->getPositioned();
 $i = 1;
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+/*load best seller if no combination*/
+if(!$_productCollection->count()){
+  $_productCollection = $this->getLayout()->createBlock('Ziffity\Filteredproducts\Block\Bestseller')->getProducts();
+}
+
 if ($_productCollection->count()): ?>
 <div class="product-widget__inner br whitesmoke" style="margin-top:30px;">
     <div class="heading-sec clearfix">

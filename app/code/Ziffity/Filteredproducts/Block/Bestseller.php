@@ -104,7 +104,7 @@ class Bestseller extends \Magento\Catalog\Block\Product\ListProduct
     /**
      * Get product collection
      */
-    protected function getProducts()
+    public function getProducts()
     {
         $limit = $this->getProductSize();
         $sortby = 'rand()';
