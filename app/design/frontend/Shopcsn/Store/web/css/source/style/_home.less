@@ -181,15 +181,10 @@
     }
     .blog-wrapper {
         .ptb(20px);
+        padding-bottom: 0;
         .heading-sec {
-            padding: 25px 30px;
             .title-heading {
                 position: relative;
-            }
-            .btn-view {
-                position: absolute;
-                right: 0;
-                top: -10px;
             }
         }
         .blog-outer {
@@ -470,6 +465,20 @@
             }
         }
     }
+
+    .catalog-product-view  {
+    .block {
+
+        &.block-products-list {
+            padding: 15px;
+        .product-items {
+            margin: 0;
+            }
+        }
+    }
+    }
+
+
     .testi-wrapper {
         .testi-slider__inner {
             padding: 30px;
@@ -501,8 +510,7 @@
 
 @media screen and (max-width: 767px) {
     .ticker {
-        margin-left: -10px;
-        margin-right: -10px;
+        margin: -25px -10px 0;
     }
     .heading-sec {
         ul.nav.nav-tabs {
@@ -519,10 +527,16 @@
         }
     }
     .cms-index-index {
+        .columns {
+            .column {
+                padding-bottom: 0;
+            }
+        }
         .header-promo {
             padding: 10px 0;
             .promotion-text {
                 font-size: 12px;
+                padding: 0;
             }
         }
         .page-main {
@@ -534,20 +548,39 @@
                 margin: 0;
             }
         }
+        .slider-item {
+            .home-banner {
+                margin-bottom: 15px;
+            }
+        }
+
+        .testi-wrapper {
+            padding-top: 0;
+        }
+
+        .blog-wrapper {
+            padding-top: 0;
+        }
     }
+
+
     .blog-wrapper {
         .blog-outer {
             .blog-content-wrap {
                 padding: 15px 0;
+                .blog-content {
+                    padding: 20px;
+                    min-height: auto;
+                }
             }
         }
     }
     .page-wrapper {
         .page-main {
             .heading-sec {
-                padding: 10px 15px;
+                padding: 15px 15px;
                 h2 {
-                    font-size: 14px;
+                    font-size: 12px;
                 }
             }
         }
