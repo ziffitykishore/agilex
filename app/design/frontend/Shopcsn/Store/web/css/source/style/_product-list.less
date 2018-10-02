@@ -776,6 +776,9 @@ input[type="radio"]:checked + label:after{
     }
     .page-with-filter {
         .sidebar-main {
+            .wp-filters {
+                .disp(none);
+            }
             .filter {
                 
                 padding-bottom: 0;
@@ -789,6 +792,7 @@ input[type="radio"]:checked + label:after{
                         display: inline-block !important;
                     }
                     strong {
+                        
                         .bg-smoke();
                         border-radius: 3px;
                         font-weight: 400;
@@ -796,7 +800,7 @@ input[type="radio"]:checked + label:after{
                         line-height: normal;
                         font-size: 12px;
                         padding: 7px 10px;
-                        position: absolute;
+                        position: static;
                         text-align: center;
                         top: 0;
                         z-index: 126;
@@ -861,7 +865,8 @@ input[type="radio"]:checked + label:after{
                     left: auto;
                     right: 3px;
                     top: 10px;
-                    display: inline-block;
+                    display: block;
+                    text-align: right;
                     text-decoration: none;
                     &:after {
                         -webkit-font-smoothing: antialiased;
@@ -936,7 +941,7 @@ input[type="radio"]:checked + label:after{
                 .filter-title {
                     width: 100%;
                     strong {
-                        position: relative;
+                        
                     }
                 }
             }

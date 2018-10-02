@@ -142,6 +142,19 @@ div.mage-error[generated] {
                     display: none;
                 }
             }
+            .one-step-checkout-container {
+                .field{
+                 &.required {
+                     label {
+                         &:after {
+                             top: 0;
+                             margin-left: 0;
+                         }
+                     }
+                 }
+                }
+
+            }
             /******* shipping and payment ************/
             .ship-pay {
                 display: block;
@@ -536,3 +549,19 @@ div.mage-error[generated] {
         }
     }
 }
+ @media screen and (max-width: 480px) {
+    .onestepcheckout-index-index  {
+        .logo {
+         img {        
+        display: inline;
+        margin-top: 15px;
+    }
+
+}
+.page-main {
+.page-title-wrapper {
+    margin-top: 15px;
+}
+}
+}
+ }

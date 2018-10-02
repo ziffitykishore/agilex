@@ -963,6 +963,7 @@
                         font-size: 14px;
                         line-height: normal;
                         padding: 15px 30px 15px 15px;
+                        display: block !important;
                     }
                     .submenu {
                         position: relative;
@@ -1031,19 +1032,27 @@
                     .cat-trigger {
                         display: none;
                     }
+
+                    .level0.active {
+                        .all-category {
+                            .ui-state-focus {
+                                border-left: none;
+                            }
+                        }
+                    }
                 }
                 .minicart-wrapper {
                     float: right;
                     position: absolute;
                     top: 0px;
-                    right: 25px;
+                    right: 0px;
                     max-width: 65px;
                 }
             }
             .block-search {
                 max-width: 100%;
                 padding: 0;
-                padding: 10px 15px 18px;
+                padding: 10px 15px 10px;
                 .transition(all 0.8s ease-in-out 0s);
                 background: @color-darkslateblue;
                 .block-content {
