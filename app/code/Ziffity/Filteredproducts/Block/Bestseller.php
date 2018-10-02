@@ -115,7 +115,7 @@ class Bestseller extends \Magento\Catalog\Block\Product\ListProduct
         }
         $this->_collection->clear()->getSelect()->reset('where');
         $collection = $this->_collection
-            ->addAttributeToSelect(['name', 'price'])
+            ->addAttributeToSelect('*')
             ->addAttributeToFilter('is_saleable', 1, 'left')
 //            ->addAttributeToFilter('status', 1);
             ->addAttributeToFilter('visibility', 4);
