@@ -44,7 +44,7 @@ define([
 
     /* autocomplete off */
     $('input').attr('autocomplete', 'off');
-    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.form-control, textarea.form-control', function() {            
+    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function() {            
         var clstField = $(this).closest('.field');
         if($(this).attr('name') == 'street[0]'){
             $(this).closest('fieldset').find('legend').remove();
@@ -55,7 +55,7 @@ define([
     $(document).on('focus', '.onestepcheckout-index-index select', function(){
         $(this).closest('.field').addClass('focused select-group');
     });
-    $(document).on("blur", '.onestepcheckout-index-index .input-text, .field input.form-control, textarea.form-control', function() {
+    $(document).on("blur", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function() {
         var clstField = $(this).closest('.field');
         if($(this).val() == ''){
             clstField.removeClass('focused');

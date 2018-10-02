@@ -1,5 +1,7 @@
 .btn-action() {
-    .action, .action.back, .action.remind {
+    .action,
+    .action.back,
+    .action.remind {
         .lib-css(background, @color-black);
         .lib-css(color, @color-white);
         border: 1px solid @color-black;
@@ -11,7 +13,9 @@
         line-height: 20px;
         margin-top: 0;
         text-transform: uppercase;
-        &:hover, &:focus, &:active {
+        &:hover,
+        &:focus,
+        &:active {
             .lib-css(background, @color-darkslateblue);
             .lib-css(border-color, @color-darkslateblue);
         }
@@ -34,21 +38,19 @@
     }
 }
 
-.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
+.customer-account-login,
+.customer-account-create,
+.customer-account-forgotpassword {
     .actions-toolbar {
         .btn-action();
         text-transform: uppercase;
     }
-
     .page-footer {
         .sticky-container {
             display: none;
         }
     }
-
 }
-
-
 
 .account {
     &.page-layout-2columns-left {
@@ -103,12 +105,13 @@
                     background: @color-white;
                     border: 1px solid #d7d7ed;
                     min-height: 250px;
-
-                    
-                    .box-title, .box-content, .box-actions {
+                    .box-title,
+                    .box-content,
+                    .box-actions {
                         padding: 20px;
                     }
-                    &-content, &-actions {
+                    &-content,
+                    &-actions {
                         padding-bottom: 0;
                     }
                     &-content {
@@ -152,7 +155,12 @@
         }
         .orders-history {
             padding: 30px;
-            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+            .table>tbody>tr>td,
+            .table>tbody>tr>th,
+            .table>tfoot>tr>td,
+            .table>tfoot>tr>th,
+            .table>thead>tr>td,
+            .table>thead>tr>th {
                 padding: 15px;
                 .bg-smoke();
                 background: @color-white;
@@ -176,7 +184,7 @@
             padding: 30px;
             .products-grid {
                 .product-item-info {
-                    .comment-box{
+                    .comment-box {
                         margin-top: 0;
                     }
                     .product-item-actions {
@@ -186,7 +194,6 @@
                             visibility: visible;
                             transform: none;
                             .action {
-                               
                                 padding: 15px;
                             }
                         }
@@ -201,7 +208,9 @@
                 }
             }
         }
-        .block, form, .orders-history {
+        .block,
+        form,
+        .orders-history {
             a.action {
                 position: relative;
                 color: #c2c2c2;
@@ -226,7 +235,6 @@
             margin-left: 0;
             padding: 30px;
             .btn-action();
-
             a {
                 text-decoration: none;
             }
@@ -257,8 +265,6 @@
                     top: 30px;
                 }
             }
-
-            
         }
         .form-newsletter-manage {
             padding: 30px;
@@ -267,9 +273,7 @@
             }
         }
     }
-
     /* My Account Wishlist section */
-
     &.wishlist-index-index {
         .product-item-inner {
             box-shadow: none;
@@ -277,9 +281,7 @@
             border: none;
         }
     }
-
     /* Sales order view */
-
     &.sales-order-view {
         .order-date {
             .label {
@@ -304,20 +306,15 @@
                 strong {
                     margin-top: 0;
                 }
-
-                
             }
-
             .table {
                 background: @color-white;
             }
-
             .actions-toolbar {
                 padding: 0;
             }
         }
     }
-
     .sidebar-main {
         .block {
             &.account-nav {
@@ -331,7 +328,8 @@
                     span {
                         .disp(none);
                     }
-                    >a, >strong {
+                    >a,
+                    >strong {
                         padding: 20px;
                         border: 1px solid #d7d7ed;
                         margin-top: 20px;
@@ -349,7 +347,8 @@
                         }
                     }
                     &.current {
-                        >strong, >a {
+                        >strong,
+                        >a {
                             background: @color-darkslateblue;
                             color: @color-white;
                             .pos(relative);
@@ -484,29 +483,30 @@
     }
 }
 
-.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
-
+.customer-account-login,
+.customer-account-create,
+.customer-account-forgotpassword,
+.customer-account-confirmation {
     .page-main {
         background: url(../images/login_image.jpg) no-repeat left bottom;
         max-width: 100%;
         width: 100%;
         padding: 0;
         margin: 0;
-        
+        background-size: cover;
         .column {
             background: #fff;
             border: 0;
-            padding: 50px 0;
+            padding: 50px 0 0;
             height: 100%;
-        max-width: 445px;
-        width: 100%;
-        top: 0;
-        right: 0;
-        overflow: auto;
-        z-index: 999;
-  
-        margin-top: 0;
-        
+            max-width: 445px;
+            width: 100%;
+            top: 0;
+            right: 0;
+            overflow: auto;
+            z-index: 999;
+            float: right;
+            margin-top: 0;
         }
         .page-title-wrapper {
             color: #1c3f93;
@@ -514,12 +514,6 @@
             border: 0;
             background: none;
         }
-    }
-    .social-login-authentication-channel {
-        padding: 50px 20px;
-        background-color: #d7dded;
-        width: 100%;
-        text-align: center;
     }
     .login-container {
         padding: 0 50px;
@@ -544,21 +538,28 @@
     }
 }
 
-.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
-
+.customer-account-login,
+.customer-account-create,
+.customer-account-forgotpassword,
+.customer-account-confirmation {
+    .page-title-wrapper .page-title {
+        font-size: 25px;
+    }
     .page-main {
         form {
             min-width: auto !important;
             width: auto !important;
         }
     }
-
     .actions-toolbar {
         .action {
             padding: 14px 15px;
         }
-    }
 
+        button{
+            text-transform: uppercase;
+        }
+    }
     .field {
         .input-text {
             &:focus {
@@ -587,14 +588,17 @@
         }
     }
     .social-login-authentication-channel {
-        display: block;
         margin-bottom: 0;
+        margin-top: 50px;
         bottom: 0;
+        padding: 50px 20px;
+        background-color: #d7dded;
+        width: 100%;
+        text-align: center;
     }
 }
 
 .customer-account-login {
-
     .block-title {
         display: none;
     }
@@ -610,25 +614,25 @@
         .primary {
             display: block;
             float: none;
-            
             button {
                 width: 100%;
             }
             .action {
                 display: block;
-
             }
         }
         .secondary {
             display: block;
             .remind {
-                background: #fff;
+                background: transparent;
                 border: 0;
                 color: #000;
                 text-align: center;
-                text-transform: lowercase;
-                &:hover {
-                    background: #fff;
+                text-transform: capitalize;
+                &:hover,
+                &:active,
+                &:focus {
+                    background: transparent;
                 }
             }
         }
@@ -637,7 +641,6 @@
 
 .customer-account-create {
     .page-main {
-        padding: 7% 0;
         form {
             padding: 0 50px;
         }
@@ -698,7 +701,15 @@
 
 .customer-account-forgotpassword {
     .page-main {
-        padding: 15% 50px;
+        .column {
+            height: ~"calc(100vh - 441px)";
+        }
+    }
+    .forget {
+        padding: 0 50px 50px;
+    }
+    .fieldset {
+        margin-bottom: 0;
     }
     .actions-toolbar {
         .primary {
@@ -735,6 +746,30 @@
                 color: #000;
                 &:hover {
                     background: #fff;
+                }
+            }
+        }
+    }
+}
+
+.customer-account-confirmation {
+    .page-main {
+        .column {
+            height: ~"calc(100vh - 441px)";
+            form {
+                padding: 0 50px;
+            }
+            .fieldset {
+                margin-bottom: 0;
+            }
+
+            .actions-toolbar {
+                .primary, .secondary {
+                    display: block;
+                    float: none;
+                }
+                .action {
+                    width: 100% !important;
                 }
             }
         }
