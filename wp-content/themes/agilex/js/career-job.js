@@ -82,9 +82,9 @@
 
                         /* Translation Ready String Through Script Locaization */
                         jobpost_form_status.html( response['error'] + ' ' + application_form.jquery_alerts['application_not_submitted'] + '</div>' );
-                        jobpost_submit_button.removeAttr( 'disabled' );
                     }
-
+                    jobpost_submit_button.removeAttr( 'disabled' );
+                    $('.form-group').removeClass('focused');
                 }
             });
             
