@@ -42,26 +42,26 @@ define(
         'rjsResolver',
         'mage/translate'
     ],
-    function ($,
-              _,
-              Component,
-              quote,
-              customer,
-              setShippingInformationAction,
-              getPaymentTotalInformation,
-              stepNavigator,
-              additionalValidators,
-              checkoutData,
-              selectBillingAddress,
-              selectShippingAddress,
-              addressConverter,
-              shippingRateService,
-              shippingService,
-              oscDataResolver,
-              addressAutoComplete,
-              amazonPay,
-              addressList,
-              resolver) {
+    function($,
+        _,
+        Component,
+        quote,
+        customer,
+        setShippingInformationAction,
+        getPaymentTotalInformation,
+        stepNavigator,
+        additionalValidators,
+        checkoutData,
+        selectBillingAddress,
+        selectShippingAddress,
+        addressConverter,
+        shippingRateService,
+        shippingService,
+        oscDataResolver,
+        addressAutoComplete,
+        amazonPay,
+        addressList,
+        resolver) {
         'use strict';
 
         oscDataResolver.resolveDefaultShippingMethod();
@@ -75,12 +75,12 @@ define(
             },
             currentMethod: null,
             isAmazonAccountLoggedIn: amazonPay.isAmazonAccountLoggedIn,
-            initialize: function () {
+            initialize: function() {
                 this._super();
 
                 if (window.checkoutConfig.hasOwnProperty('amazonLogin')) {
                     this.isNewAddressAdded(this.isAmazonAccountLoggedIn());
-                    this.isAmazonAccountLoggedIn.subscribe(function (value) {
+                    this.isAmazonAccountLoggedIn.subscribe(function(value) {
                         this.isNewAddressAdded(value);
                     }, this);
                 }
@@ -104,14 +104,14 @@ define(
                 return this;
             },
 
-            initObservable: function () {
+            initObservable: function() {
                 this._super();
 
-                quote.shippingMethod.subscribe(function (oldValue) {
+                quote.shippingMethod.subscribe(function(oldValue) {
                     this.currentMethod = oldValue;
                 }, this, 'beforeChange');
 
-                quote.shippingMethod.subscribe(function (newValue) {
+                quote.shippingMethod.subscribe(function(newValue) {
                     var isMethodChange = ($.type(this.currentMethod) !== 'object') ? true : this.currentMethod.method_code;
                     if ($.type(newValue) === 'object' && (isMethodChange !== newValue.method_code)) {
                         setShippingInformationAction();
@@ -120,15 +120,23 @@ define(
                         getPaymentTotalInformation();
                     }
                 }, this);
+                $('input').attr('autocomplete', 'off');
 
+
+                $('.field input.form-control, textarea.form-control')
+                    .on("focus blur", function() {
+                        if ($(this).val() == "") {
+                            $(this).parents(".field").toggleClass("focused");
+                        }
+                    });
                 return this;
             },
 
-            afterResolveDocument: function () {
+            afterResolveDocument: function() {
                 addressAutoComplete.register('shipping');
             },
 
-            validate: function () {
+            validate: function() {
                 if (this.isAmazonAccountLoggedIn()) {
                     return true;
                 }
@@ -170,7 +178,7 @@ define(
 
                 return shippingMethodValidationResult && shippingAddressValidationResult && emailValidationResult;
             },
-            saveShippingAddress: function () {
+            saveShippingAddress: function() {
                 var shippingAddress = quote.shippingAddress(),
                     addressData = addressConverter.formAddressDataToQuoteAddress(
                         this.source.get('shippingAddress')
@@ -196,7 +204,7 @@ define(
                 selectShippingAddress(shippingAddress);
             },
 
-            saveNewAddress: function () {
+            saveNewAddress: function() {
                 this.source.set('params.invalid', false);
                 if (this.source.get('shippingAddress.custom_attributes')) {
                     this.source.trigger('shippingAddress.custom_attributes.data.validate');
@@ -212,7 +220,7 @@ define(
                 }
             },
 
-            getAddressTemplate: function () {
+            getAddressTemplate: function() {
                 return 'Mageplaza_Osc/container/address/shipping-address';
             }
         });

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="footer-container">
+            <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="footer content">
+                <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="Magento_Theme::html/copyright.phtml"/>
+            </container>
+            <block class="Magento\Customer\Block\Form\Login" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
+        </referenceContainer>
+
+        <move element="minicart" destination="header-wrapper" after="-" />
+		<move element="custom.nav.bar" destination="header-wrapper" after="logo" /> 		
+
+        <referenceBlock name="top.links" remove="true"/>
+	    <referenceBlock name="register-link" remove="true" />          
+    	<referenceBlock name="authorization-link" remove="true" />     	
+	    <referenceBlock name="top.search" remove="true" />  	
+		<referenceBlock name="advanced-search-link" remove="true"/>
+       <referenceContainer name="page.top" remove="false"/>
+        <referenceBlock name="navigation.sections" remove="true" />
+
+        <referenceContainer name="page.top" remove="false"/>
+        <referenceBlock name="navigation.sections" remove="true" />
+
+        <referenceContainer name="header.container">
+            <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::html/custom_nav_bar.phtml" name="custom.nav.bar" />			
+		    <block class="Magento\Framework\View\Element\Template" name="skip_to_content" template="Magento_Theme::html/skip.phtml">
+		        <arguments>
+		            <argument name="target" xsi:type="string">contentarea</argument>
+		            <argument name="label" translate="true" xsi:type="string">Skip to Content</argument>
+		        </arguments>
+		    </block>
+		    <block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="Magento_Store::switch/languages.phtml"/>
+		    <block class="Magento\Customer\Block\Account\Navigation" name="top.links">
+		        <arguments>
+		            <argument name="css_class" xsi:type="string">header links</argument>
+		        </arguments>
+		    </block>
+        </referenceContainer>
+        <referenceContainer name="page.top">
+             <container name="top.container" as="topContainer" label="After Page Header Top" htmlTag="div" htmlClass="top-container"/> 
+            <block class="Magento\Theme\Block\Html\Breadcrumbs" name="breadcrumbs" as="breadcrumbs"/>
+        </referenceContainer>    
+    </body>
+</page>

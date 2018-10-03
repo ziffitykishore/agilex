@@ -183,6 +183,19 @@ define([
         ]
     });
 
+
+    if($('.testi-slider').length){
+        $('.testi-slider').slick({
+            dots: true,
+            autoplay: true,
+            arrows: false,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            cssEase: 'linear'
+        });
+    }
+
     function testimonials() {
         var reviewWrap = $('.testi-slider-wrap').height();
         $('.test-image-sec').height(reviewWrap);
