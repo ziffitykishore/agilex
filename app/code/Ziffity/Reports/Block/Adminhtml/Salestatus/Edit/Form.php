@@ -82,23 +82,23 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
  
             $fieldset->addField(
                 'name',
-                'label',
-                ['value' => $name, 'label' => __('Product Name')]
+                'text',
+                ['value' => $name, 'label' => __('Product Name'), 'readonly' => 'true']
             );
              $fieldset->addField(
                 'sku',
-                'label',
-                ['value' => $sku, 'label' => __('SKU')]
+                'text',
+                ['value' => $sku, 'label' => __('SKU') , 'readonly' => 'true']
             );
               $fieldset->addField(
                 'stock_status',
-                'label',
-                ['value' => $stockStatus > 0 ? "In Stock" :" Out Of Stock", 'label' => __('Stock Status')]
+                'text',
+                ['value' => $stockStatus > 0 ? "In Stock" :" Out Of Stock", 'label' => __('Stock Status'), 'readonly' => 'true']
             );
                $fieldset->addField(
                 'qty',
-                'label',
-                ['value' => $qty, 'label' => __('Quantity Left')]
+                'text',
+                ['value' => $qty, 'label' => __('Quantity Left'), 'readonly' => 'true']
             );
              
             $form->setUseContainer(true);

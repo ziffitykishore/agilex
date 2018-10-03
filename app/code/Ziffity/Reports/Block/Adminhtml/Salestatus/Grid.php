@@ -1,8 +1,7 @@
 <?php
 namespace Ziffity\Reports\Block\Adminhtml\Salestatus;
-use Magento\CatalogInventory\Model\Stock;
 use Magento\CatalogInventory\Api\Data\StockStatusInterface;
-class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
+class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
 {
    /**
      * @var \Magento\Reports\Model\ResourceModel\Quote\CollectionFactory
@@ -40,17 +39,20 @@ class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
         $this->moduleManager = $moduleManager;
         parent::__construct($context, $backendHelper, $data);
     }
+    
+    
 
     /**
      * @return void
      */
     protected function _construct()
     {
-        parent::_construct();
-       // $this->setCountTotals(true);
-        $this->setId('sku');
+         parent::_construct();		
+         $this->setId('sku');
          $this->setDefaultSort('sku');
-      //  $this->setUseAjax(true);
+         $this->setDefaultDir('asc');
+         $this->setSaveParametersInSession(true);
+         $this->setUseAjax(false);
     }
 
     /**
@@ -60,20 +62,15 @@ class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
     {
         $model = $this->productFactory->create();
         $collection = $model->getCollection();
-        $collection->addFieldToSelect(['sku']);
+      //  $collection->addFieldToSelect(['sku']);
         $collection->getSelect()
               ->joinLeft(['prod'=>'catalog_product_entity_varchar'],
              'e.entity_id = prod.entity_id',
               array('name'=>'value')
               )->joinLeft(['inventory'=>'cataloginventory_stock_item'],
-             'e.entity_id = inventory.product_id',
+             'prod.entity_id = inventory.product_id',
               array('quantity'=>'qty','stock_status'=>'is_in_stock')
               )->where('prod.attribute_id = ?',65);
-        $collection->getSelect()->joinLeft(['eav'=>'catalog_product_entity_int'],
-              'e.entity_id = eav.entity_id',
-              array('eavAttribute'=>'attribute_id','isActive'=>'value')
-              )->where('eav.attribute_id = ?',89);
-       // $collection->getSelect()->where('eav.value = ?',1);   
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -109,7 +106,7 @@ class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
        // $currencyCode = $this->getCurrentCurrencyCode();
     //     if ($this->moduleManager->isEnabled('Magento_CatalogInventory')) {
         $this->addColumn(
-            'quantity',
+            'qty',
             [
                 'header' => __('QUANTITY'),
                 'index' => 'quantity',
@@ -124,24 +121,19 @@ class Grid extends \Magento\Reports\Block\Adminhtml\Grid\Shopcart
             'stock_status',
             [
                 'header' => __('STOCK STATUS'),
-                'align' => 'right',
                 'index' => 'stock_status',
                 'type' => 'options',
                 'options' => [ 
                     StockStatusInterface::STATUS_OUT_OF_STOCK => 'Out Of Stock',
                     StockStatusInterface::STATUS_IN_STOCK => 'In Stock'
                     ],
-              //  'sortable' => false,
-//                'header_css_class' => 'col-stockstatus',
-//                'column_css_class' => 'col-stockstatus'
+                'sortable' => false,
             ]
         );
 
 
-        $this->setFilterVisibility(true);
-        
-        //$this->addExportType('*/*/exportProductCsv', __('CSV'));
-       // $this->addExportType('*/*/exportProductExcel', __('Excel XML'));
+       // $this->setFilterVisibility(true);
+
 
         return parent::_prepareColumns();
     }
