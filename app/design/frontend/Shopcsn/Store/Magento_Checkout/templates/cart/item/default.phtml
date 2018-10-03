@@ -92,16 +92,8 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
                     <span><?= /* @escapeNotVerified */ __('Qty') ?></span>
                 </label>
                 <div class="control qty">
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-                    <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
-=======
-=======
-                    <button type="button"   id="<?=  $_item->getId() ?>-dec"  class="decreaseQty"><span>-</span></button>                                
->>>>>>> 362221519c04b11dd68c586497f1c7cea8270e68
+                    <button type="button"   id="<?=  $_item->getId() ?>-dec"  class="decreaseQty"><span>-</span></button>
                     <input <?= ($freeItem) ? 'disabled' : ''?> id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
->>>>>>> b9c47d8d2192670942f206afaa79d0debd57a879
                            name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
                            data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
                            value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
@@ -123,9 +115,7 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
                 <?= $block->getRowTotalHtml($_item) ?>
             <?php endif; ?>
         </td>
-    </tr>
-    <tr class="item-actions">
-        <td colspan="100">
+        <td colspan="item-actions">
             <div class="actions-toolbar">
                 <?= /* @escapeNotVerified */ $block->getActions($_item) ?>
             </div>
@@ -133,9 +123,6 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
     </tr>
 </tbody>
 
-<<<<<<< HEAD
-
-=======
 <script type="text/javascript">
 require(["jquery"],function($){
     $('#<?php echo $_item->getId();?>-inc, #<?php echo $_item->getId();?>-dec').on("click",function(){
@@ -154,4 +141,3 @@ require(["jquery"],function($){
     });
 });
 </script>
->>>>>>> 362221519c04b11dd68c586497f1c7cea8270e68

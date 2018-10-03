@@ -17,6 +17,7 @@
     $_post = $this->getPost();
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+    $author = $_post->getAuthor() ? $block->escapeHtml($_post->getAuthor()->getTitle()) : 'Admin';
 ?>
 <div class="post-view">
     <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
@@ -24,7 +25,7 @@
            <div class="post-info clear">
                 <div class="item post-posed-date">
                     <span class="label"><?php echo __('Posted:') ?></span>
-                    <span class="value"><?php echo $_post->getPublishDate('F d, Y') ?></span>
+                    <span class="value"><?php echo $_post->getPublishDate('F d, Y').__(' by ').$author ?></span>
                 </div>
            </div>
             <?php echo $this->getInfoHtml() ?>
@@ -37,9 +38,17 @@
                     <img class="img-responsive" src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
                 </div>
                 <?php } */?>
-                <div class="post-text-hld">
-                    <?php //$content = preg_replace("/<img[^>]+\>/i", "", $block->getContent(), 1); ?>
-                    <?php echo $block->getContent(); ?>
+                <?php
+                    $content = $block->getContent();
+                    preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $content, $image);
+                ?>
+                <?php if(isset($image['src'])){ ?>
+                <div class="post-image">
+                    <img src="<?= $image['src'] ?>" title="<?= $_postName ?>" width="400" height="50" class="col-md-12"><br>
+                </div>
+                <?php } ?>
+                <div class="post-text-hld mt-20">
+                    <?php echo preg_replace("/<img[^>]+\>/i", "", $content, 1); ?>
                     <div class="clear"></div>
                 </div>
 
@@ -71,7 +80,6 @@
                     }
                 }
                 $date = $_post->getPublishDate('F d, Y');
-                $author = $_post->getAuthor() ? $block->escapeHtml($_post->getAuthor()->getTitle()) : 'Admin';
                 ?>                
                 <div class="post-text-hld bd-foot mt-20">
                     <div class="bg-dark category-bottom">
