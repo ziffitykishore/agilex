@@ -57,7 +57,7 @@ class Simple_Job_Board_Notifications {
 
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
         $message = self::job_notification_templates($post_id, 'Admin');
-        $attachment = apply_filters('sjb_admin_notification_attachment', '', $post_id);
+        $attachment = get_post_meta($post_id, 'resume_path', true);
         wp_mail($to, $subject, $message, $headers, $attachment);
     }
 
@@ -95,7 +95,7 @@ class Simple_Job_Board_Notifications {
         }
 
         $headers[] = 'Content-Type: text/html; charset=UTF-8';
-        $attachment = apply_filters('sjb_hr_notification_attachment', '', $post_id);
+        $attachment = get_post_meta($post_id, 'resume_path', true);
         if ('' != $to)
             wp_mail($to, $subject, $message, $headers, $attachment);
     }
