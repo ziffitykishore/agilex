@@ -64,6 +64,7 @@
                 margin: 0 0 0;
                 word-break: break-all;
                 .pos(relative);
+                cursor: pointer;
                 .fa {
                     .pos(absolute);
                     right: 0;
@@ -238,15 +239,7 @@ input[type="radio"]:checked + label:after{
 .product-item {
     .actions-primary {
         .action {
-            .lib-css(background, @color-black);
-            .lib-css(color, @color-white);
-            .transition(all 0.5s ease-in-out 0s);
-            &:hover,
-            &:focus,
-            &:active {
-                .lib-css(background, @color-darkslateblue);
-                .lib-css(border-color, @color-darkslateblue);
-            }
+            .button();
             cursor: pointer;
         }
     }
@@ -298,6 +291,7 @@ input[type="radio"]:checked + label:after{
         position: relative;
         transition: all 0.5s ease 0s;
         overflow: hidden;
+        border: 1px solid #d6dcec;
         .sale-promo {
             position: absolute;
             top: 0;
@@ -476,7 +470,7 @@ input[type="radio"]:checked + label:after{
             display: table;
             width: 100%;
             background: @color-white;
-            border: 1px solid #d6dcec;
+            border: 1px solid #d7dded;
             &-info {
                 display: table-row;
             }
@@ -493,7 +487,7 @@ input[type="radio"]:checked + label:after{
                 vertical-align: top;
                 padding: 30px;
                 float: none;
-                border-left: 1px solid #d6dcec;
+                border-left: 1px solid #d7dded;
             }
             &-name {
                 font-size: @f-size-xxl;
@@ -603,7 +597,7 @@ input[type="radio"]:checked + label:after{
     }
 }
 
-@media screen and (min-width:1200px) and (max-width:1336px) {
+@media screen and (min-width:1200px) and (max-width:1366px) {
     .catalog-category-view {
         .products-grid {
             .product-item {
@@ -765,15 +759,11 @@ input[type="radio"]:checked + label:after{
             }
             .products~.toolbar-products {
                 padding: 8px 25px;
-                border: 1px solid #d6dcec;
+                border: 1px solid #d7dded;
             }
         }
     }
-    .products-grid {
-        div.product-item-info {
-            min-height: 280px;
-        }
-    }
+    
     .page-with-filter {
         .sidebar-main {
             .wp-filters {
@@ -930,19 +920,37 @@ input[type="radio"]:checked + label:after{
                     font-size: 12px;
                 }
             }
+
+            .product-item-actions {
+                .disp(block);
+                .actions-primary{
+                    visibility: visible;
+                    opacity: 1;
+                    .transform(translateY(0));
+                     .action, .unavailable{
+                        padding: 10px;
+                        min-height: 36px;
+                        span {
+                            font-size: 8px;
+                        }   
+                     }
+
+                    }   
+                }
         }
+
+        
     }
 }
 
 @media screen and (max-width: 480px) {
+    
     .page-with-filter.page-products {
         .page-main {
             .sidebar-main {
                 .filter-title {
                     width: 100%;
-                    strong {
-                        
-                    }
+                    
                 }
             }
             .toolbar-products {
