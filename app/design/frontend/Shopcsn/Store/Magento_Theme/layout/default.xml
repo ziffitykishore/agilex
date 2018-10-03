@@ -24,6 +24,7 @@
 
         <referenceContainer name="footer" htmlClass="page-footer__content">
             <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
+            <!--
             <container name="footerlogo" label="Footer Logo" htmlTag="div" after="footer.news-wrapper" htmlClass="footer-logo text-center">
                 <container name="footer.logo-container" htmlClass="container" htmlTag="div">
                     <block class="Magento\Cms\Block\Block" name="footer.logo" >
@@ -32,8 +33,7 @@
                         </arguments>
                     </block>
                 </container>
-            </container>
-
+            </container> -->
             <container name="footer.grid-wrapper" htmlClass="footer-links-wrapper" htmlTag="div">
                 <container name="footer.grid-container" htmlClass="container" htmlTag="div">
                     <container name="footerlinks" as="footer" label="Footer Links" htmlTag="div"  htmlClass="footer-links">

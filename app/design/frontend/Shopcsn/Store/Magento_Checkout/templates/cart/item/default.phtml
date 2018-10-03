@@ -92,7 +92,11 @@ $freeItem = $_item->getOptionByCode('ampromo_rule');
                     <span><?= /* @escapeNotVerified */ __('Qty') ?></span>
                 </label>
                 <div class="control qty">
+<<<<<<< HEAD
                     <button type="button"   id="<?=  $_item->getId() ?>-dec"  class="decreaseQty"><span>-</span></button>                                
+=======
+                    <button type="button"   id="<?=  $_item->getId() ?>-dec"  class="decreaseQty"><span>-</span></button>
+>>>>>>> 06308892bdecb133acb77fe477aa7200ef27e56e
                     <input <?= ($freeItem) ? 'disabled' : ''?> id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
                            name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
                            data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
@@ -143,4 +147,8 @@ require(["jquery"],function($){
         }
     });
 });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> 06308892bdecb133acb77fe477aa7200ef27e56e
