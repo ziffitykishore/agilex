@@ -11,6 +11,7 @@
     <preference for="Magefan\Blog\Api\PostManagementInterface" type="Magefan\Blog\Model\PostManagement" />
     <preference for="Magefan\Blog\Api\CategoryManagementInterface" type="Magefan\Blog\Model\CategoryManagement" />
     <!-- deprecated <preference for="Magento\Sitemap\Model\Sitemap" type="Magefan\Blog\Model\Sitemap" /> -->
+    <preference for="Magefan\Blog\Controller\Adminhtml\Post\Save" type="Ziffity\Core\Controller\Adminhtml\Post\Save" />
     <virtualType name="Magefan\Blog\ImageUpload" type="Magento\Catalog\Model\ImageUploader">
         <arguments>
             <argument name="baseTmpPath" xsi:type="string">magefan_blog/tmp</argument>
