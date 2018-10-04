@@ -56,6 +56,12 @@ div.mage-error[generated] {
             margin-top: 0;
         }
     }
+    .opc-wrapper {
+        .form-login, .form-shipping-address {
+              max-width: 100%;
+        }
+        
+    }      
     .actions-toolbar {
         .primary {
             .action {
@@ -99,9 +105,17 @@ div.mage-error[generated] {
             margin: 0;
             display: table;
             .shipping-addr {
+                width: 100%;
                 display: block;
                 border-right: 0;
                 color: #020202;
+                [name="shippingAddress.country_id"],
+                [name="shippingAddress.region_id"] {
+                    label {
+                        top: -7px !important;
+                        left: 15px !important;
+                    }       
+                }
                 .field {
                     width: 100%;
                     position: relative;
@@ -145,18 +159,19 @@ div.mage-error[generated] {
             }
             .one-step-checkout-container {
                 .field {
-                    &.required {
+                    
                         label {
                             &:after {
                                 top: 0;
-                                margin-left: 0;
+                                margin-left: 5;
                             }
                         }
-                    }
+                    
                 }
             }
             /******* shipping and payment ************/
             .ship-pay {
+                width: 100%;
                 display: block;
                 .shipping-met {
                     border-bottom: 1px solid #d7dded;
@@ -247,6 +262,7 @@ div.mage-error[generated] {
                 }
             }
             .order-sum {
+                width: 100%;
                 color: #020202;
                 display: block;
                 padding: 0;
@@ -512,6 +528,7 @@ div.mage-error[generated] {
                 }
             }
         }
+       
     }
 }
 
