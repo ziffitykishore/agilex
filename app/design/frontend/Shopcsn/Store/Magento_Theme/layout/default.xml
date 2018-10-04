@@ -9,8 +9,8 @@
     
     <body>
         <referenceContainer name="before.body.end">
-            
             <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
+            <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/loader.phtml" name="page.loader"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
