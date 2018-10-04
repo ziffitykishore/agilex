@@ -90,7 +90,7 @@ do_action('sjb_job_application_before');
                             case 'phone':
                                 echo '<div class="form-group">'
                                 . '<label for="' . $key . '">' . $label . $required_field_asterisk . '</label>'
-                                . '<input type="tel" name="' . $name . '" class="form-control sjb-phone-number sjb-numbers-only ' . $required_class . '" id="' . $id . '" ' . $is_required . '><span class="sjb-invalid-phone validity-note" id="' . $id . '-invalid-phone">' . esc_html__('A valid phone number is required.', 'simple-job-board') . ' </span>'
+                                . '<input type="tel" name="' . $name . '" class="form-control  ' . $required_class . '" id="' . $id . '" ' . $is_required . '><span class="sjb-invalid-phone validity-note" id="' . $id . '-invalid-phone">' . esc_html__('A valid phone number is required.', 'simple-job-board') . ' </span>'
                                 . '</div>';
                                 break;
                             case 'date':
