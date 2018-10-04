@@ -612,7 +612,8 @@
 @media screen and(min-width: 769px) {
     .header-wrapper {
         .transition(all 0.5s ease-in-out 0s);
-        position: relative;
+        position: fixed;
+        width: 100%;
         z-index: 120;
         &.fix-header {
             .pos(fixed);
@@ -624,6 +625,11 @@
         }
         &.nav-down {
             top: 0;
+        }
+
+
+        & + .page-main{
+            padding-top: 75px;
         }
     }
     .nav-sections {

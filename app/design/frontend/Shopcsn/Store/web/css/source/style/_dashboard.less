@@ -43,7 +43,7 @@
 .customer-account-forgotpassword {
     .actions-toolbar {
         .btn-action();
-        text-transform: uppercase;
+        
     }
     .page-footer {
         .sticky-container {
@@ -504,7 +504,7 @@
             top: 0;
             right: 0;
             overflow: auto;
-            z-index: 999;
+            z-index: 99;
             float: right;
             margin-top: 0;
         }
@@ -599,8 +599,10 @@
 }
 
 .customer-account-login {
-    .block-title {
-        display: none;
+    .login-container {
+        .block-title {
+            display: none;
+        }
     }
     .fieldset {
         &:after {
@@ -643,6 +645,14 @@
     .page-main {
         form {
             padding: 0 50px;
+        }
+        .column {
+            &.main {
+                position: relative;
+                .page-title {
+                    margin-top: 30px;
+                }
+            }
         }
     }
     .fieldset {
@@ -703,8 +713,12 @@
     .page-main {
         .column {
             height: ~"calc(100vh - 441px)";
+            &.main {
+                position: relative;
+            }
         }
     }
+    
     .forget {
         padding: 0 50px 50px;
     }
