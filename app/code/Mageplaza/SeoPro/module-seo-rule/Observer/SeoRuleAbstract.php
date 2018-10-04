@@ -120,6 +120,8 @@ abstract class SeoRuleAbstract
      */
     public function setMetaData($object, $id, $type)
     {
+        /*work around for multislect*/
+        return;
         $currentStore = $this->storeManager->getStore()->getId();
         if ($type == Type::LAYERED_NAVIGATION) {
             $metaModel      = false;
