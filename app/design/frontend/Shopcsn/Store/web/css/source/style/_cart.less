@@ -22,7 +22,8 @@
             margin-top: 20px;
         }
     }
-    .form-cart, .cart-summary {
+    .form-cart,
+    .cart-summary {
         .bg-smoke();
         padding: 30px;
         .control {
@@ -46,7 +47,7 @@
         .table-wrapper {
             .lib-css(background, @color-white);
             border: 1px solid @color-lightgray;
-            .items thead + .item {
+            .items thead+.item {
                 border-top: 1px solid @color-lightgray;
             }
             .product-item-photo {
@@ -62,10 +63,11 @@
                     text-align: left;
                 }
             }
-            th, td {
+            th,
+            td {
                 padding: 20px;
             }
-            .items > .item {
+            .items>.item {
                 border-bottom: 0;
             }
             .table>tbody>tr>td {
@@ -131,7 +133,8 @@
                             background: @color-white;
                             border: 0;
                         }
-                        &:before, &:after {
+                        &:before,
+                        &:after {
                             display: none;
                         }
                     }
@@ -235,7 +238,8 @@
                         }
                     }
                     .sub {
-                        .mark, .amount {
+                        .mark,
+                        .amount {
                             padding-top: 30px;
                         }
                     }
@@ -375,8 +379,13 @@
         &.main {
             .action {
                 font-size: 12px;
-                span {
-                    font-size: 12px;
+            }
+            .prducts-grid {
+                .actions-primary {
+                    .unavailable,
+                    .action {
+                        font-size: 10px;
+                    }
                 }
             }
         }
@@ -407,50 +416,55 @@
         .page-main {
             .page-title-wrapper {
                 .page-title {
-                     padding: 15px;
+                    padding: 15px;
                 }
             }
         }
-        .form-cart, .cart-summary {
+        .form-cart,
+        .cart-summary {
             padding: 15px;
         }
         .column {
             &.main {
                 .cart-summary {
-                    >.title, .shipping, .discount {
+                    >.title,
+                    .shipping,
+                    .discount {
                         padding: 15px;
                     }
-                  .totals {
-                      .mark {
-                        padding-left: 15px;
-                        strong {
-                            font-size: 13px;
+                    .totals {
+                        .mark {
+                            padding-left: 15px;
+                            strong {
+                                font-size: 13px;
+                            }
                         }
-                      }
-                      .amount {
-                          padding-right: 15px;
-                          padding-left: 15px;
-                          strong {
-                              font-size: 13px;
-                          }
-                      }
-                      .grand {
-                          .amount, .mark {
-                            padding: 9px;
-                          }
-                          
-                      }
-                  }  
-                  .checkout-methods-items {
-                      padding: 15px;
-                  }
+                        .amount {
+                            padding-right: 15px;
+                            padding-left: 15px;
+                            strong {
+                                font-size: 13px;
+                            }
+                        }
+                        .grand {
+                            .amount,
+                            .mark {
+                                padding: 9px;
+                            }
+                        }
+                    }
+                    .checkout-methods-items {
+                        padding: 15px;
+                    }
                 }
             }
         }
-        .cart{
+        .cart {
             &.table-wrapper {
                 .col {
-                    &.price, &.qty, &.subtotal {
+                    &.price,
+                    &.qty,
+                    &.subtotal {
                         text-align: left;
                     }
                     &.qty {
@@ -472,7 +486,6 @@
                 }
             }
         }
-        
     }
 }
 
@@ -480,7 +493,8 @@
     .cart {
         &.table-wrapper {
             .col {
-                &.subtotal, &.price {
+                &.subtotal,
+                &.price {
                     width: 30% !important;
                 }
             }
@@ -512,7 +526,10 @@
         .cart {
             &.table-wrapper {
                 .col {
-                    &.qty, &.price, &.subtotal, &.msrp {
+                    &.qty,
+                    &.price,
+                    &.subtotal,
+                    &.msrp {
                         box-sizing: border-box;
                         display: block;
                         float: left;

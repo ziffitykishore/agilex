@@ -7,8 +7,6 @@ define([
     'jquery',
     'slick',
     'jquery/ui',
-    'jquery/validate',
-    'jquery/jquery.mobile.custom',
     'domReady!'
 ], function($) {   
     /* Header Section */
