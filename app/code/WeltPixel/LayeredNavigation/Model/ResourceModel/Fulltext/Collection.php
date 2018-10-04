@@ -481,6 +481,6 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
             return true;
         }
 
-        return false;
+        return true;
     }
 }
