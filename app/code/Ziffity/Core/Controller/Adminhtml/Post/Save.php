@@ -49,8 +49,8 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Post
         if(!$data['post_id']){
             
             $subscriberCollection = $this->getSubscriberCollection();
+            $subscriberCollection->setOrder('subscriber_id','DESC');
             $subscriberCollection->setPageSize(3)->load();
-
             $email = $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE); 
             $name = $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE); 
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT); 
