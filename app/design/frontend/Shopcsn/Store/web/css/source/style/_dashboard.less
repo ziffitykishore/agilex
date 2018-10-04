@@ -644,6 +644,14 @@
         form {
             padding: 0 50px;
         }
+        .column {
+            &.main {
+                position: relative;
+                .page-title {
+                    margin-top: 30px;
+                }
+            }
+        }
     }
     .fieldset {
         margin: 0;
@@ -703,8 +711,12 @@
     .page-main {
         .column {
             height: ~"calc(100vh - 441px)";
+            &.main {
+                position: relative;
+            }
         }
     }
+    
     .forget {
         padding: 0 50px 50px;
     }
