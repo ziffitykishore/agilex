@@ -65,7 +65,7 @@ div.mage-error[generated] {
     .actions-toolbar {
         .primary {
             .action {
-                background-color: @color-black;
+                .button();
                 border: none;
                 text-transform: uppercase;
             }
@@ -119,6 +119,9 @@ div.mage-error[generated] {
                 .field {
                     width: 100%;
                     position: relative;
+                    &.confirmation {
+                        margin-top: 20px;
+                    }
                     &.focused {
                         label {
                             top: -7px;
@@ -428,6 +431,10 @@ div.mage-error[generated] {
                         height: 50px;
                         width: 100%;
                         text-transform: uppercase;
+                        transition: all 0.5s ease 0s;
+                        &:hover {
+                            background: @color-black !important;
+                        }
                     }
                 }
             }

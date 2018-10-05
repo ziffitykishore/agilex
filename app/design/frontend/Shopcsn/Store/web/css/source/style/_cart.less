@@ -99,7 +99,14 @@
                     padding: 25px;
                 }
                 .product-item-name {
-                    text-transform: lowercase;
+                    text-transform: capitalize;
+                    >a {
+                        color: #000;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                    
                 }
                 .product-image-container {
                     display: inline-block;
@@ -143,17 +150,13 @@
                 .action {
                     margin-top: 10px;
                     margin-right: 0;
-                    background-color: @color-black;
-                    color: @color-white;
-                    border: 1px solid @color-black;
+                    .button();
                     border-radius: 0;
                     font-weight: bold;
                     text-transform: uppercase;
                     padding: 13px 30px;
                     width: 100%;
-                    &:hover {
-                        color: @color-white;
-                    }
+                    
                     &:before {
                         display: none;
                     }
@@ -287,20 +290,19 @@
                     .actions-toolbar {
                         display: table-cell;
                         margin-top: 0;
-                        .apply {
+                        vertical-align: middle;
+                        .apply, .cancel {
                             margin-right: 10px;
-                            background-color: @color-black;
-                            color: @color-white;
-                            border: 1px solid @color-black;
-                            border-radius: 0;
+                            
+                            
+                            
+                            .button();
                             width: 100%;
                             padding: 2px 16px;
                             text-transform: uppercase;
                             font-weight: bold;
                             height: 30px;
-                            &:hover {
-                                color: @color-white;
-                            }
+                            
                         }
                     }
                 }
@@ -314,14 +316,17 @@
                     margin-right: 10px;
                     .lib-css(background, #f26322);
                     color: @color-white;
-                    border: 1px solid #f26322;
+                    border: none;
                     border-radius: 0;
                     width: 100%;
                     text-transform: uppercase;
                     font-weight: bold;
                     font-size: 14px;
+                    transition: all 0.5s ease 0s;
                     &:hover {
                         color: @color-white;
+                        background: @color-black;
+                        border: none;
                     }
                 }
                 .multicheckout {
@@ -402,7 +407,7 @@
             .table-wrapper {
                 .item-info {
                     td {
-                        padding: 25px 6px;
+                        padding: 25px 3px;
                     }
                 }
             }
@@ -518,15 +523,21 @@
             }
         }
     }
-    body {
+    .checkout-cart-index{
+        .form-cart {
         .cart {
             &.table-wrapper {
+                thead {
+                    th:not(.item) {
+                        display: none !important;
+                    }
+                }
                 .col {
                     &.qty, &.price, &.subtotal, &.msrp {
                         box-sizing: border-box;
                         display: block;
                         float: left;
-                        text-align: center;
+                        text-align: center !important;
                         padding: 5px;
                         white-space: nowrap;
                         width: 40%;
@@ -535,6 +546,8 @@
             }
         }
     }
+    }
+
     .checkout-cart-index {
         .form-cart {
             padding: 30px 10px;
@@ -552,11 +565,24 @@
             }
         }
     }
+    .checkout-cart-index {
+        .form-cart {
+            .col {
+                &.qty {
+                    width: 20%;
+                    div.mage-error[generated] {
+                     left: -75px;
+            
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media only screen and (min-width: 768px) {
     .cart-summary {
-        width: 25%;
+        width: 25% !important;
         .bg-smoke();
         padding: 30px;
     }

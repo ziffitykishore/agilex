@@ -22,9 +22,9 @@
             <div class="fieldset coupon<?= strlen($block->getCouponCode()) ? ' applied' : '' ?>">
                 <input type="hidden" name="remove" id="remove-coupon" value="0" />
                 <div class="field">
-                    <label for="coupon_code" class="label"><span><?= /* @escapeNotVerified */ __('Enter discount code') ?></span></label>
+                    <label for="coupon_code" class="label"><span><?= /* @escapeNotVerified */ __('') ?></span></label>
                     <div class="control">
-                        <input type="text" class="input-text" id="coupon_code" name="coupon_code" value="<?= $block->escapeHtml($block->getCouponCode()) ?>" placeholder="<?= $block->escapeHtml(__('Enter discount code')) ?>" <?php if (strlen($block->getCouponCode())): ?> disabled="disabled" <?php endif; ?> />
+                        <input type="text" class="input-text" id="coupon_code" name="coupon_code" value="<?= $block->escapeHtml($block->getCouponCode()) ?>" placeholder="" <?php if (strlen($block->getCouponCode())): ?> disabled="disabled" <?php endif; ?> />
                     </div>
                 </div>
                 <div class="actions-toolbar">
@@ -36,7 +36,7 @@
                     </div>
                     <?php else: ?>
                         <div class="primary">
-                            <button  type="button" class="action cancel primary" value="<?= /* @escapeNotVerified */ __('Cancel Coupon') ?>"><span><?= /* @escapeNotVerified */ __('Cancel Coupon') ?></span></button>
+                            <button  type="button" class="action cancel primary" value="<?= /* @escapeNotVerified */ __('Cancel Coupon') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
                         </div>
                     <?php endif; ?>
                 </div>
