@@ -43,7 +43,6 @@
 .customer-account-forgotpassword {
     .actions-toolbar {
         .btn-action();
-        
     }
     .page-footer {
         .sticky-container {
@@ -491,7 +490,8 @@
         background: url(../images/login_image.jpg) no-repeat left bottom;
         max-width: 100%;
         width: 100%;
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
         margin: 0;
         background-size: cover;
         .column {
@@ -555,8 +555,7 @@
         .action {
             padding: 14px 15px;
         }
-
-        button{
+        button {
             text-transform: uppercase;
         }
     }
@@ -718,7 +717,6 @@
             }
         }
     }
-    
     .forget {
         padding: 0 50px 50px;
     }
@@ -776,14 +774,32 @@
             .fieldset {
                 margin-bottom: 0;
             }
-
             .actions-toolbar {
-                .primary, .secondary {
+                .primary,
+                .secondary {
                     display: block;
                     float: none;
                 }
                 .action {
                     width: 100% !important;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .customer-account-login,
+    .customer-account-create,
+    .customer-account-forgotpassword,
+    .customer-account-confirmation {
+        .columns {
+            display: block;
+            .login-container {
+                padding-left: 20px;
+                padding-right: 20px;
+                .fieldset:after {
+                    display: none;
                 }
             }
         }
