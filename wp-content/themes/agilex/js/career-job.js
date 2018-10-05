@@ -38,7 +38,7 @@
         });
         var jobpost_submit_button = $('.app-submit');
         
-        $(".jobpost-form").on("submit", function (event) {
+        $("#sjb-application-form").on("submit", function (event) {
             event.preventDefault();
             var jobpost_form_status = $('#jobpost_form_status');
             var datastring = new FormData(document.getElementById("sjb-application-form"));
@@ -71,8 +71,9 @@
                 },
                 success: function ( response ) {
                     if ( response['success'] == true ) {
-                        $('#sjb-application-form').reset();
-
+                        $('#sjb-application-form')[0].reset();
+                        $('#applicant-resume').val('');
+                        $(".file span").empty();
                         /* Translation Ready String Through Script Locaization */
                         jobpost_form_status.html(response['success_alert']);
                     }
@@ -81,9 +82,9 @@
 
                         /* Translation Ready String Through Script Locaization */
                         jobpost_form_status.html( response['error'] + ' ' + application_form.jquery_alerts['application_not_submitted'] + '</div>' );
-                        jobpost_submit_button.removeAttr( 'disabled' );
                     }
-
+                    jobpost_submit_button.removeAttr( 'disabled' );
+                    $('.form-group').removeClass('focused');
                 }
             });
             
@@ -96,6 +97,7 @@
          * @since   2.2.0          
          */
         $('.sjb-email-address').on('input', function () {
+            console.log(input);
             var input = $(this);
             var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             var is_email = re.test(input.val());
