@@ -30,7 +30,9 @@
     <virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\CollectionFactory"
                  type="Magento\Catalog\Model\ResourceModel\Product\CollectionFactory">
         <arguments>
-            <argument name="instanceName" xsi:type="string">WeltPixel\LayeredNavigation\Model\ResourceModel\Fulltext\Collection</argument>
+            <argument name="instanceName" xsi:type="string">
+                WeltPixel\LayeredNavigation\Model\ResourceModel\Fulltext\Collection
+            </argument>
         </arguments>
     </virtualType>
     <virtualType name="Magento\CatalogSearch\Model\ResourceModel\Fulltext\SearchCollection"

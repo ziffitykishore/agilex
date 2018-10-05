@@ -234,12 +234,6 @@ define([
                         return nexturl;
                     };
 
-                    /** adds extra functionality to Infinite AJAX Scroll */
-                    ias.extension(new IASPagingExtension());
-                    ias.on('pageChange', function(pageNum, scrollOffset, url) {
-                        window.page = pageNum;
-                    });
-
                     /** added to prevent jquery to add extra "_" parameter to link */
                     ias.on('load', function(event) {
                         var url = event.url;
@@ -262,11 +256,6 @@ define([
                         if (window.showCanonical == 1) {
                             window.ajaxInfiniteScroll.reloadCanonicalPrevNext();
                         }
-                        $('.product-item-info a').each(function() {
-                            if( typeof $(this).attr('data-item-page') === 'undefined') {
-                                $(this).attr('data-item-page', window.page);
-                            }
-                        })
                     });
 
 
@@ -301,6 +290,8 @@ define([
                             offset: 1000
                         }));
                     }
+                    /** adds extra functionality to Infinite AJAX Scroll */
+                    ias.extension(new IASPagingExtension());
                     /** adds history support */
                     ias.extension(new IASHistoryExtension({prev: '.previous'}));
 
@@ -310,8 +301,6 @@ define([
         updateContent: function (content) {
             this._updateContent(content)
         },
-
-
         changeUrl: function (paramName, paramValue, defaultValue) {
             if(paramName == 'p') {
                 return;
@@ -336,9 +325,6 @@ define([
                 showLoader: true,
                 beforeSend: function (xhr){
                     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                    if(typeof window.page === 'undefined') {
-                        window.page = $('.product-item-info a').last().attr('data-item-page');
-                    }
                 }
             }).done(function (response) {
                 if (response.success) {
@@ -367,30 +353,8 @@ define([
 
             jqxhr.always(function() {
                 self.reinitializeIas();
-                $('.product.photo.product-item-photo').on('click', function(e) {
-                    e.preventDefault();
-                    var page = $(this).attr('data-item-page');
-                    var url = window.location.href;
-                    self.resetIasPagination(page, url);
-                    var href = $(this).attr('href');
-                    window.location.href = href;
-                });
-                $('.product-item-info a').each(function() {
-                    if( typeof $(this).attr('data-item-page') === 'undefined') {
-                        $(this).attr('data-item-page', window.page);
-                    }
-                })
                 self.resetPage();
             });
-        },
-        resetIasPagination: function(page, url) {
-            if(require.defined('ias') && window.ajaxCatalog == 'infiniteScroll') {
-                jQuery.ias().destroy();
-                var newUrl = url.replace(/(p=).*?(&|$)/, '$1' + page + '$2');
-                window.history.replaceState("", "", newUrl);
-
-
-            }
         },
         setMessage: function (obj) {
             var messages = ko.observableArray([obj]);
@@ -413,7 +377,7 @@ define([
             $('div.page-header').css({'z-index': '10'});
             $('nav.navigation').css({'z-index': '3'});
             $('.block-search, a.logo').css({'z-index': '5'});
-            $('.page-wrapper .nav-sections:not(.sticky-header-nav)').removeAttr('style');
+//            $('.page-wrapper .nav-sections').css({'position': 'relative'});
             //});
         },
         markSelected: function () {
@@ -441,7 +405,6 @@ define([
 
             return url;
         }
-
     });
 
     return $.mage.productListToolbarForm;
