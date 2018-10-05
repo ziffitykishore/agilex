@@ -150,20 +150,14 @@ body {
     }
     a.btn-view {
         border: transparent;
-        background: @color-black;
-        color: @color-white;
+        
         font-weight: bold;
         padding: 12px 24px;
         line-height: normal;
         font-size: @f-size-xs;
         text-decoration: none;
         width: auto;
-        .transition(all 0.5s ease-in-out 0s);
-        &:hover,
-        &:focus,
-        &:active {
-            .lib-css(background, @color-darkslateblue);
-        }
+        .button();
     }
     >a,
     a:hover,

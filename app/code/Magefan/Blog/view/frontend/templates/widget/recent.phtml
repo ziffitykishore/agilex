@@ -40,8 +40,8 @@
                     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
                 ?>
                 <div class="col-sm-4 blog-item">
-                    <a href="<?php echo $_postUrl ?>">
-                        <div class="blog-image">
+                    <div class="blog-item_inner">
+                        <a href="<?php echo $_postUrl ?>" class="blog-image" title="<?php echo $_postName; ?>">
                             <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
                                 <img src="<?php echo $featuredImage ?>"  alt="<?php echo $_postName; ?>" class="full-w img-responsive" />
                             <?php } ?>
@@ -51,10 +51,11 @@
                                     <span><?php echo $_post->getPublishDate('M') ?></span>
                                 </div>
                             </div>
-                        </div>
+                        
+                        </a>
                         <div class="blog-content">
                             <div class="blog-title">
-                                <?php echo $_postName; ?>
+                                <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName; ?>"><?php echo $block->setWordsLimit($_postName, 4). '...'; ?></a>
                             </div>
                             <div class="blog-desc">
                                 <?php $shortcontent = preg_replace("/<img[^>]+\>/i", "", $block->getShorContent($_post), 1); ?>
@@ -64,7 +65,7 @@
                                 <span><?php echo __('Read more') ?></span>
                             </a>
                         </div>
-                    </a>
+                            </div>
                 </div>
                 <?php } ?>
                             </div>

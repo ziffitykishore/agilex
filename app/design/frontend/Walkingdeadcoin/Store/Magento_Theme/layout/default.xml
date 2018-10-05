@@ -21,7 +21,12 @@
 
         <referenceContainer name="page.top" remove="false"/>
         <referenceBlock name="navigation.sections" remove="true" />
-
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_img_width" xsi:type="number">329</argument>
+                <argument name="logo_img_height" xsi:type="number">53</argument>
+            </arguments>
+        </referenceBlock>
         <referenceContainer name="header.container">
             <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::html/custom_nav_bar.phtml" name="custom.nav.bar" />			
 		    <block class="Magento\Framework\View\Element\Template" name="skip_to_content" template="Magento_Theme::html/skip.phtml">

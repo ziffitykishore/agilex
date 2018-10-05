@@ -1,20 +1,21 @@
 /*************checkout page*************/
+
 div.mage-error[generated] {
     font-size: 12px;
     position: relative;
 }
+
 .onestepcheckout-index-index {
-    .modal-popup{
-        div.modal-inner-wrap.fullwidth-popup{
+    .modal-popup {
+        div.modal-inner-wrap.fullwidth-popup {
             margin-left: 0;
             width: 100%;
             left: 0;
-            .modal-header{
+            .modal-header {
                 border: none;
             }
         }
     }
-
     .page-header {
         border-bottom: 0;
         margin: 0;
@@ -55,6 +56,12 @@ div.mage-error[generated] {
             margin-top: 0;
         }
     }
+    .opc-wrapper {
+        .form-login, .form-shipping-address {
+              max-width: 100%;
+        }
+        
+    }      
     .actions-toolbar {
         .primary {
             .action {
@@ -98,9 +105,17 @@ div.mage-error[generated] {
             margin: 0;
             display: table;
             .shipping-addr {
+                width: 100%;
                 display: block;
                 border-right: 0;
                 color: #020202;
+                [name="shippingAddress.country_id"],
+                [name="shippingAddress.region_id"] {
+                    label {
+                        top: -7px !important;
+                        left: 15px !important;
+                    }       
+                }
                 .field {
                     width: 100%;
                     position: relative;
@@ -135,7 +150,7 @@ div.mage-error[generated] {
                     }
                 }
                 .action-show-popup {
-                   .button();
+                    .button();
                     text-transform: uppercase;
                 }
                 .field-tooltip {
@@ -143,20 +158,20 @@ div.mage-error[generated] {
                 }
             }
             .one-step-checkout-container {
-                .field{
-                 &.required {
-                     label {
-                         &:after {
-                             top: 0;
-                             margin-left: 0;
-                         }
-                     }
-                 }
+                .field {
+                    
+                        label {
+                            &:after {
+                                top: 0;
+                                margin-left: 5;
+                            }
+                        }
+                    
                 }
-
             }
             /******* shipping and payment ************/
             .ship-pay {
+                width: 100%;
                 display: block;
                 .shipping-met {
                     border-bottom: 1px solid #d7dded;
@@ -172,7 +187,7 @@ div.mage-error[generated] {
                 }
                 .payment-met {
                     width: 100%;
-                    .payment-method-title {                       
+                    .payment-method-title {
                         border-top: 0;
                     }
                     .payment-option-title {
@@ -224,15 +239,13 @@ div.mage-error[generated] {
                             }
                         }
                     }
-                    
-                        .field {
-                            &.type {
-                                .control {
-                                    margin-left: 0;
-                                }
+                    .field {
+                        &.type {
+                            .control {
+                                margin-left: 0;
                             }
                         }
-                    
+                    }
                     .form-discount {
                         display: table;
                         .control {
@@ -246,12 +259,10 @@ div.mage-error[generated] {
                     .step-content {
                         padding: 0 20px;
                     }
-                   
-                    
-                    
                 }
             }
             .order-sum {
+                width: 100%;
                 color: #020202;
                 display: block;
                 padding: 0;
@@ -423,46 +434,43 @@ div.mage-error[generated] {
         }
     }
     .modal-slide {
-         &._inner-scroll  {
-                  .modal-header {
-                      border-bottom: 1px solid #d7dded;
-                  }
-                  .modal-title {
-                      border-bottom: 0;
-                  } 
-                  .form-shipping-address { 
-                      max-width: none;                     
-                      margin: 0 auto;
-                      margin-top: 20px;
-                      .street {
-                          legend {
-                              text-align: left;
-                              border-bottom: 0;
-                          }
-                      }
-                      ._with-tooltip {
-                          input {
-                              width: 100%;
-                          }
-                      }
-                      .toggle {
-                          display: none;
-                      }
-                     
-                  }
-                  .modal-footer {
-                      border-top: 1px solid #d7dded;
-                    .action-save-address {
-                        text-transform: uppercase;
+        &._inner-scroll {
+            .modal-header {
+                border-bottom: 1px solid #d7dded;
+            }
+            .modal-title {
+                border-bottom: 0;
+            }
+            .form-shipping-address {
+                max-width: none;
+                margin: 0 auto;
+                margin-top: 20px;
+                .street {
+                    legend {
+                        text-align: left;
+                        border-bottom: 0;
                     }
-                    .action-hide-popup {
-                        font-weight: bold;
-                        text-transform: uppercase;
+                }
+                ._with-tooltip {
+                    input {
+                        width: 100%;
                     }
-                  }
-
-         }
-
+                }
+                .toggle {
+                    display: none;
+                }
+            }
+            .modal-footer {
+                border-top: 1px solid #d7dded;
+                .action-save-address {
+                    text-transform: uppercase;
+                }
+                .action-hide-popup {
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
 }
 
@@ -488,7 +496,7 @@ div.mage-error[generated] {
     }
 }
 
-@media only screen and ( min-width: 768px) {
+@media only screen and ( min-width: 800px) {
     .onestepcheckout-index-index {
         .checkout-container {
             .one-step-checkout-wrapper {
@@ -499,7 +507,6 @@ div.mage-error[generated] {
                     width: 30%;
                     display: table-cell;
                     border-right: 1px solid #d7dded;
-                   
                 }
                 .ship-pay {
                     width: 30%;
@@ -521,25 +528,26 @@ div.mage-error[generated] {
                 }
             }
         }
+       
     }
 }
-@media  screen and (min-width:768px) and (max-width: 1200px) {
+
+@media screen and (min-width:768px) and (max-width: 1200px) {
     .checkout-cart-index {
         .block {
             &.discount {
                 .coupon {
                     display: block;
-                    .field,
-                    .actions-toolbar {
-                        display:block !important;
+                    .field, .actions-toolbar {
+                        display: block !important;
                         width: 100% !important;
-                    }                    
-
+                    }
                 }
             }
         }
     }
 }
+
 @media only screen and ( max-width: 768px) {
     .onestepcheckout-index-index {
         .page-main {
@@ -549,19 +557,19 @@ div.mage-error[generated] {
         }
     }
 }
- @media screen and (max-width: 480px) {
-    .onestepcheckout-index-index  {
-        .logo {
-         img {        
-        display: inline;
-        margin-top: 15px;
-    }
 
+@media screen and (max-width: 480px) {
+    .onestepcheckout-index-index {
+        .logo {
+            img {
+                display: inline;
+                margin-top: 15px;
+            }
+        }
+        .page-main {
+            .page-title-wrapper {
+                margin-top: 15px;
+            }
+        }
+    }
 }
-.page-main {
-.page-title-wrapper {
-    margin-top: 15px;
-}
-}
-}
- }
