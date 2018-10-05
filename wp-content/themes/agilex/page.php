@@ -19,7 +19,7 @@
     <?php if ($featured_img_url){ ?>
       <img src="<?php echo $featured_img_url; ?>" class="" alt=""/>
       <?php } else  { ?>
-      <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt=""/>
+      <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
       <?php }?>
     </div>
     <div class="page-header-content">
@@ -32,8 +32,9 @@
 
         <div class="main-content-wrapper"> 
           <div class="container">
-          <?php get_template_part( 'loop', 'page' ); ?>
-      </div>
+          <div class="page-desc margin-top--70 wow fadeIn legal-inner">
+          <?php get_template_part( 'loop', 'static' ); ?>
+      </div></div>
         
 
       </div><!-- /.row -->
