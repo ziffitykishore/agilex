@@ -102,9 +102,9 @@ if ($_productCollection->count()): ?>
                                                 <span><?php echo __('Quick View') ?></span>
                                             </a>
                                             <?php  if($callforprice) : ?>
-                                            <div class="btn-callforprice action">
+                                            <button class="btn-callforprice action">
                                                 <span><?= /* @escapeNotVerified */ __('Call For Price') ?></span>
-                                            </div>
+                                            </button>
                                         <?php
                                         else: 
                                         if ($_product->isSaleable()): ?>

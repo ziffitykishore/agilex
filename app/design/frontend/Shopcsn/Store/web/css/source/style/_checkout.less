@@ -85,6 +85,13 @@ div.mage-error[generated] {
     .osc-authentication-wrapper {
         padding: 0;
         margin-bottom: 20px;
+        a {
+            cursor: pointer;
+            color: @color-black;
+            &:hover {
+                color: @color-darkslateblue;
+            }
+        }
     }
     .osc-payment-after-methods {
         .action {
@@ -133,10 +140,14 @@ div.mage-error[generated] {
                         left: 15px !important;
                     }       
                 }
-
-                .street {
-                    .additional {
-                        display: none;
+                [name="shippingAddress.postcode"] {
+                    .field-error {
+                        margin-top: 0;
+                    }
+                }
+                [name="shippingAddress.street.0"] {
+                    .field-error {
+                        margin-top: 60px;
                     }
                 }
                 .field {
@@ -257,9 +268,11 @@ div.mage-error[generated] {
                                 z-index: 3;
                                 color: #666;
                                 left: 13px;
+                                padding-left: 0;
                                 font-size: 13px;
                                 background: #fff;
                                 top: 15px;
+                                
                                 pointer-events: none;
                                 transition: all .5s ease 0s;
                             }
@@ -378,6 +391,7 @@ div.mage-error[generated] {
                     .minicart-items {
                         .product-item-name {
                             font-size: 13px !important;
+                            text-transform: capitalize;
                         }
                     }
                     .data-table {
@@ -418,14 +432,15 @@ div.mage-error[generated] {
                     width: 100%;
                     .mark {
                         background: #d7dded;
-                        font-size: 13px;
+                        font-size: 16px;
                         font-weight: bold;
                         text-align: left;
                         padding: 25px 0;
                         .label {
                             color: #000;
-                            font-size: 13px;
+                            font-size: 16px;
                             padding-left: 0;
+                            font-weight: bold;
                         }
                         .value {
                             display: none;
@@ -451,6 +466,7 @@ div.mage-error[generated] {
                         border-top: 1px solid #b5c0dd;
                         strong {
                             font-weight: bold;
+                            font-size: 20px;
                         }
                     }
                     .grand {
@@ -549,6 +565,17 @@ div.mage-error[generated] {
     }
 }
 
+.street {
+    .field {
+        label {
+            padding-left: 0;
+        }
+        &.additional {
+            display: none;
+        }
+    }
+}
+
 
 #xtsavedcc-form {
     .ccard > .field.cvv > .control{
@@ -557,8 +584,16 @@ div.mage-error[generated] {
     .fields {
         .field {
             width: 50% !important;
+            label {
+                padding-left: 0;
+            }
+            & + .field {
+                padding-left: 10px;
+            }
             select {
                 width: 100%;
+                padding-left: 15px;
+                padding-right: 15px; 
             }
 
             
@@ -624,6 +659,15 @@ div.mage-error[generated] {
     }
 }
 
+
+
+.checkout-index-index  {.opc-wrapper .fieldset > .field.required > label:after, .opc-wrapper .fieldset > .field._required > label:after{
+    position: static;
+    margin-left: 0;
+}
+}
+
+
 @media only screen and ( max-width: 768px) {
     .onestepcheckout-index-index {
         .page-main {
@@ -643,8 +687,24 @@ div.mage-error[generated] {
             }
         }
         .page-main {
+            padding: 0 15px !important;
             .page-title-wrapper {
                 margin-top: 15px;
+            }
+        }
+        .checkout-container {
+            .step-title {
+                padding: 10px;
+            }
+            .step-content {
+                padding: 0;
+            }
+            .one-step-checkout-wrapper {
+                .order-sum {
+                    .step-content {
+                        padding: 0 15px;
+                    }
+                }
             }
         }
     }
