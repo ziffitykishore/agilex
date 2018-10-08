@@ -116,6 +116,16 @@ div.mage-error[generated] {
                         left: 15px !important;
                     }       
                 }
+                [name="shippingAddress.postcode"] {
+                    .field-error {
+                        margin-top: 0;
+                    }
+                }
+                [name="shippingAddress.street.0"] {
+                    .field-error {
+                        margin-top: 60px;
+                    }
+                }
                 .field {
                     width: 100%;
                     position: relative;
@@ -413,6 +423,7 @@ div.mage-error[generated] {
                         border-top: 1px solid #b5c0dd;
                         strong {
                             font-weight: bold;
+                            font-size: 16px;
                         }
                     }
                     .grand {
@@ -574,8 +585,24 @@ div.mage-error[generated] {
             }
         }
         .page-main {
+            padding: 0 15px !important;
             .page-title-wrapper {
                 margin-top: 15px;
+            }
+        }
+        .checkout-container {
+            .step-title {
+                padding: 10px;
+            }
+            .step-content {
+                padding: 0;
+            }
+            .one-step-checkout-wrapper {
+                .order-sum {
+                    .step-content {
+                        padding: 0 15px;
+                    }
+                }
             }
         }
     }

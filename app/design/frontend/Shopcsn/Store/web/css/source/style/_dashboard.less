@@ -805,3 +805,39 @@
         }
     }
 }
+
+@media screen and (max-width: 767px) {
+    .customer-account-forgotpassword {
+        .page-main {
+            .column {
+                height: auto;
+            }
+        }
+    }
+}
+@media screen and (max-width: 480px) {
+    .customer-account-create {
+        .page-main  {
+            form {
+                padding: 0 20px;
+            }
+        }
+        .social-login-authentication-channel {
+            padding: 50px 5px;
+        }
+    }
+    .customer-account-forgotpassword {
+        .secondary {
+            .action {
+                &.back {
+                     span {
+                         display: none;
+                     }
+                }
+            }
+        }
+        .forget {
+            padding: 0 20px 50px;
+        }
+    }
+}
