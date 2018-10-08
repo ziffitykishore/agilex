@@ -1,7 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-   <event name="sales_order_place_before">
-      <observer name="blockcustomers_event"  
-           instance="Ziffity\Blockcustomers\Observer\OrderPlacebefore"/>
-   </event>
+    <event name="sales_order_place_before">
+        <observer name="customer_sales_order_before_observer" instance="Ziffity\Blockcustomers\Observer\CustomerLogin" />
+    </event>
 </config>
