@@ -1,7 +1,6 @@
 .checkout-cart-index {
     .page-main {
-        margin-top: 20px;
-        border-collapse: collapse;
+        
         .container-md();
         >.page-title-wrapper {
             display: none;
@@ -18,14 +17,20 @@
         }
     }
     .column {
-        &.main {
-            margin-top: 20px;
-        }
+       margin-top: 25px;
     }
     .form-cart,
     .cart-summary {
         .bg-smoke();
         padding: 30px;
+        .block {
+
+        .fieldset {
+            .field:last-of-type {
+                margin-bottom: 0;
+            }
+        }
+    }
         .control {
             .select {
                 height: 30px;
@@ -99,11 +104,13 @@
                 }
                 td {
                     padding: 25px;
+                    text-align: left;
                 }
                 .product-item-name {
                     text-transform: capitalize;
                     >a {
                         color: #000;
+                        font-size: 13px;
                         &:hover {
                             text-decoration: none;
                         }
@@ -113,7 +120,7 @@
                 .product-image-container {
                     display: inline-block;
                     max-width: 100%;
-                    width: auto !important;
+                    width: 100px !important;
                     padding: 10%;
                 }
                 .action-delete {
@@ -176,6 +183,7 @@
     &.main {
         .cart-summary {
             padding: 0;
+            position: static;
             >.title {
                 font-size: 18px;
                 font-weight: bold;
@@ -243,7 +251,7 @@
                     .sub {
                         .mark,
                         .amount {
-                            padding-top: 30px;
+                            padding-top: 25px;
                         }
                     }
                     margin-bottom: 0;
@@ -287,9 +295,15 @@
                 }
                 .coupon {
                     display: table;
+                    margin-bottom: 0;
+                    margin-left: 0;
+                    label {
+                     padding-top: 0;       
+                    }
                     .field {
                         display: table-cell;
                         width: 50%;
+                        
                     }
                     .actions-toolbar {
                         display: table-cell;
@@ -316,7 +330,7 @@
                 padding: 30px;
                 background: @color-lightgray;
                 .action {
-                    margin-top: 10px;
+                    margin-top: 0px;
                     margin-right: 10px;
                     .lib-css(background, #f26322);
                     color: @color-white;
@@ -325,7 +339,7 @@
                     width: 100%;
                     text-transform: uppercase;
                     font-weight: bold;
-                    font-size: 14px;
+                    font-size: 13px;
                     transition: all 0.5s ease 0s;
                     &:hover {
                         color: @color-white;
@@ -624,7 +638,7 @@
                 .item {
                     .col {
                         &.item {
-                            padding: 27px 25px 10px;
+                            padding: 27px 20px 10px;
                         }
                     }
                 }

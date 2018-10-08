@@ -18,10 +18,13 @@ div.mage-error[generated] {
     }
     .page-header {
         border-bottom: 0;
+        padding: 10px 0;
         margin: 0;
+        
         background: #3e5ca3;
         .logo-wrap {
             max-width: none;
+            min-height: auto;
         }
     }
     .page-main {
@@ -37,7 +40,7 @@ div.mage-error[generated] {
         border-top: 1px solid #d7dded;
         width: 100%;
         margin: -1px;
-        padding: 30px 0;
+        padding: 30px 0 5px;
         .checkout-description {
             margin: 0;
             font-size: 13px;
@@ -57,6 +60,12 @@ div.mage-error[generated] {
         }
     }
     .opc-wrapper {
+        .form-login{
+            margin-bottom: 0;
+        }
+        .form-shipping-address  {
+            margin-top: 0;  
+        }
         .form-login, .form-shipping-address {
               max-width: 100%;
         }
@@ -71,6 +80,12 @@ div.mage-error[generated] {
             }
         }
     }
+
+
+    .osc-authentication-wrapper {
+        padding: 0;
+        margin-bottom: 20px;
+    }
     .osc-payment-after-methods {
         .action {
             font-size: 1.8rem;
@@ -78,8 +93,7 @@ div.mage-error[generated] {
         }
     }
     .checkout-container {
-        border: 1px solid #d7dded;
-        background: #fff;
+        
         .opc-estimated-wrapper {
             border-bottom: 1px solid #d7dded;
             color: #020202;
@@ -90,14 +104,17 @@ div.mage-error[generated] {
         .step-title {
             background: #fff;
             color: #000 !important;
-            padding: 25px;
+            padding: 20px 25px;
             border-bottom: 0;
+            margin-top: 1px;
         }
         .step-content {
             background: #fff;
             padding: 0 15px;
         }
         .one-step-checkout-wrapper {
+            border: 1px solid #d7dded;
+        background: #fff;
             .one-step-checkout-container {
                 display: table;
                 width: 100%;
@@ -116,11 +133,25 @@ div.mage-error[generated] {
                         left: 15px !important;
                     }       
                 }
+
+                .street {
+                    .additional {
+                        display: none;
+                    }
+                }
                 .field {
                     width: 100%;
                     position: relative;
+                    margin-bottom: 20px !important;
+                    &#customer-email-fieldset{
+                        margin-bottom: 20px !important;
+                    }
                     &.confirmation {
                         margin-top: 20px;
+                    }
+                    .field-error, div.mage-error[generated]{
+                        margin: 5px 0 10px;
+                        
                     }
                     &.focused {
                         label {
@@ -163,12 +194,7 @@ div.mage-error[generated] {
             .one-step-checkout-container {
                 .field {
                     
-                        label {
-                            &:after {
-                                top: 0;
-                                margin-left: 5;
-                            }
-                        }
+                        
                     
                 }
             }
@@ -187,6 +213,10 @@ div.mage-error[generated] {
                     .step-content {
                         padding: 0 20px;
                     }
+
+                    #checkout-step-shipping_method {
+                        padding-top: 0 !important;
+                    }
                 }
                 .payment-met {
                     width: 100%;
@@ -195,9 +225,14 @@ div.mage-error[generated] {
                     }
                     .payment-option-title {
                         border-top: 0;
+                        padding-left: 0;
                         .action-toggle {
                             color: #000;
                         }
+                    }
+
+                    .payment-option-content{
+                        padding-left: 0;
                     }
                     .payment-method-content {
                         padding: 0;
@@ -213,8 +248,8 @@ div.mage-error[generated] {
                             }
                             &.date {
                                 .label {
-                                    top: -7px;
-                                    left: 7px;
+                                    position: static;
+                                    padding-left: 0;
                                 }
                             }
                             .label {
@@ -251,12 +286,17 @@ div.mage-error[generated] {
                     }
                     .form-discount {
                         display: table;
+                        width: 100%;
+                        max-width: none;
                         .control {
                             display: table-cell;
                         }
                         .actions-toolbar {
                             display: table-cell;
                             vertical-align: top;
+                            .action-apply{
+                                margin-right: 0;
+                            }
                         }
                     }
                     .step-content {
@@ -296,9 +336,7 @@ div.mage-error[generated] {
                 }
             }
         }
-        .osc-authentication-toggle {
-            display: none;
-        }
+        
         .checkout-shipping-address, .hoverable {
             border-collapse: collapse;
         }
@@ -499,6 +537,37 @@ div.mage-error[generated] {
                 .button();
                 font-weight: 400;
             }
+        }
+    }
+}
+
+
+
+.payment-method  {
+    .payment-method-title {
+        padding-top: 0;
+    }
+}
+
+
+#xtsavedcc-form {
+    .ccard > .field.cvv > .control{
+        padding-right: 25px;
+    }
+    .fields {
+        .field {
+            width: 50% !important;
+            select {
+                width: 100%;
+            }
+
+            
+        }
+    }
+
+    .number {
+        .input-text {
+            width: 100%;
         }
     }
 }
