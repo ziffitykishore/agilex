@@ -7,7 +7,7 @@
 
 #post-comments * {
     box-sizing: border-box;
-    font-family: Helvetica, Arial, sans-serif;
+    
 }
 
 /*styles for all blocks*/
@@ -54,18 +54,22 @@
     background: #fff!important;
     display: block;
 }
+
+.c-replyform .field {
+    margin-bottom: 20px;
+}
+
 .c-replyform textarea {
     padding: 8px;
     height: 70px;
-    border-bottom: 0px;
+
 }
 .c-replyform textarea:focus,
 .c-replyform input:focus {
     box-shadow:none;
 }
 
-.c-replyform div.mage-error[generated] {display: none!important}
-.c-replyform .mage-error{background-color: #fff3f3!important;border-color:#d5d6da}
+
 
 .c-replyform button {
     display: inline-block;
@@ -95,17 +99,13 @@
 
 .c-replyform button.cancel:hover {background-color: #e9ebee;}
 
-.c-replyform .c-btn-hld {
-    background: #f6f7f9;
-    border:1px solid #d5d6da;
-    padding: 8px;
-    text-align: right;
-}
+
 
 .c-replyform.no-active .c-btn-hld {display: none}
 .c-replyform.no-active textarea {
     border-bottom: 1px solid #c2c2c2;
     height: 45px;
+    
 }
 
 /*comment*/
