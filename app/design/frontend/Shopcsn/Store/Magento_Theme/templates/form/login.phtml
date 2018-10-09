@@ -304,7 +304,9 @@ function($, modal, googlecapjs) {
         buttons: false,
     };
     $('#signup-modal').on("click", function(){
-        $('#popup-modal').modal('closeModal');
+        if($('#popup-modal').closest('.modal-inner-wrap').length){
+            $('#popup-modal').modal('closeModal');
+        }
         var ppModal = $('#popup-modal-signup');
         var popup = modal(optsignup, ppModal);
         ppModal.modal('openModal').on('modalclosed', function() { 

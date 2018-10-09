@@ -136,7 +136,7 @@ if ($_productCollection->count()): ?>
                                         <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
                                             <a href="#"
                                                data-post='<?= /* @escapeNotVerified */ $block->getAddToWishlistParams($_product) ?>'
-                                               class="signin-popup action towishlist" data-action="add-to-wishlist"
+                                               class="action towishlist" data-action="add-to-wishlist"
                                                title="<?= /* @escapeNotVerified */ __('Add to Wish List') ?>"
                                                data-action="add-to-wishlist"
                                                role="button"
