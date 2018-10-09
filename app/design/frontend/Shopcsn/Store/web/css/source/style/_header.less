@@ -687,6 +687,9 @@
                                 display: none;
                             }
                         }
+                        .submenu {
+                            background: transparent;
+                        }
                     }
                 }
             }
@@ -714,15 +717,22 @@
                         position: absolute;
                         bottom: 0;
                         left: 0;
+                        z-index: -1;
                     }
-                    li {
+                    .simple-menu {
                         &:hover {
                             background: #fff;
                         }
+
+                        a:hover {
+                            background: #fff;
+                        }
                     }
-                    a:hover {
-                        background: #fff;
+
+                    a:hover{
+                        background: transparent;
                     }
+                    
                     .submenu {
                         position: static !important;
                         display: block !important;
