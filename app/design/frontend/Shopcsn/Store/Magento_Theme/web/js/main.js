@@ -6,6 +6,7 @@
 define([
     'jquery',
     'slick',
+    'left-sticky',
     'jquery/ui',
     'domReady!'
 ], function($) {   
@@ -247,4 +248,6 @@ define([
         $('#newsletter').focus();
         $('#newsletter').closest('form').submit();
     });
+
+    $(".page-with-filter .sidebar").stick_in_parent();
 });

@@ -1,4 +1,7 @@
 .catalog-product-view {
+    .product-widget__inner{
+        margin-left: 1px;
+    }
     .pdp {
         .product-label {
             display: none;
@@ -134,16 +137,7 @@
                 .stock {
                     display: table-cell;
                     float: right;
-                    &.available {
-                        span {
-                            color: rgb(4, 48, 4);
-                        }
-                    }
-                    &.unavailable {
-                        span {
-                            color: #e02b27;
-                        }
-                    }
+                    
                 }
                 .sku {
                     display: table-cell;
@@ -180,17 +174,18 @@
                         border: 1px solid #d7dded;
                         border-radius: 0;
                         background: #f2f5f8;
-                        width: 45px;
+                        width: 30px;
                         margin: -1px;
                         height: 40px;
                         box-shadow: none;
-                        font-size: 20px;
+                        font-size: 12px;
                         font-weight: bold;
                     }
                     .qty {
                         float: left;
                         font-weight: bold;
                         height: 40px;
+                        width: 40px;
                         background: #f2f5f8;
                         border: 1px solid #d7dded;
                         margin: -1px;
@@ -210,14 +205,17 @@
                     }
                     .primary {
                         margin-top: 0;
-                        margin-right: 25px;
-                        margin-left: 20px;
+                        margin-right: 15px;
+                        margin-left: 15px;
                         .button();
                         color: #fff;
                         width: 30%;
                         float: left;
-                        font-size: 15px;
+                        font-size: 12px;
                         text-transform: uppercase;
+                    }
+                    .btn-callforprice {
+                        width: auto;
                     }
                 }
             }
@@ -289,6 +287,7 @@
                     border: 1px solid #d7dded;
                     padding: 0;
                     margin-top: 30px;
+                    margin-left: 1px;
                     >.item {
                         &.title {
                             display: inline-block;
@@ -314,6 +313,8 @@
                                 font-weight: bold;
                                 padding: 20px 0;
                                 position: relative;
+                                margin-top: 2px;
+                                line-height: 38px;
                                 &:focus {
                                     color: #1c3f93 !important;
                                     outline: none;
@@ -322,6 +323,7 @@
                                 &:hover {
                                     color: #000;
                                     text-decoration: none;
+                                    padding-bottom: 20px;
                                 }
                             }
                             &:visited {
@@ -343,7 +345,7 @@
                                 .label {
                                     position: absolute;
                                     z-index: 1;
-                                    color: #d7dded;
+                                    color: #ccc;
                                     left: 10px;
                                     font-size: 13px;
                                     background: #fff;
@@ -353,7 +355,7 @@
                                 }
                                 &.focused label {
                                     top: -7px;
-                                    color: #d7dded;
+                                    
                                     font-size: 11px;
                                 }
                                 .form-control-wrap {
@@ -388,6 +390,7 @@
                             .additional-attributes {
                                 .label {
                                     font-size: 13px;
+                                    text-transform: capitalize;
                                 }
                             }
                             .review-legend {
@@ -409,10 +412,10 @@
                                 .button-full {
                                     margin-top: 10px;
                                     margin-right: 10px;
-                                    background-color: #000;
-                                    color: #fff;
-                                    border: 1px solid #000;
-                                    border-radius: 0;
+                                    
+                                    
+                                    text-transform: uppercase;
+                                    .button();
                                     width: 100%;
                                     height: 50px;
                                     font-weight: bold;
@@ -436,6 +439,8 @@
         }
     }
 }
+
+
 
 @media only screen and (max-width:1666px) {
     .catalog-product-view {

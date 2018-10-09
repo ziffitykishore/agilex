@@ -165,6 +165,9 @@ class Index extends \Magento\Framework\App\Action\Action
                     sort($years[0]);
                     array_pop($years[0]);
                     $result = implode("-", $years[0]);
+                    break;
+                default:
+                    $result = 'Others';
             }
             // save the option data to  the corresponding attribute
             $resultId = ($result) ? $this->processOptionData('coin_year', $result) : '';
@@ -183,8 +186,11 @@ class Index extends \Magento\Framework\App\Action\Action
         $definedGrade = ['FR', 'AG', 'G', 'VG', 'F', 'VF', 'EF', 'AU', 'UNC', 'MS', 'PF', 'PR', 'EU', 'RP', 'SP'];
         $gradeData = $this->matchGradeString($definedGrade, $data);
         if(count($gradeData)>0){
-            $result = $this->processOptionData('coin_grade', $gradeData);
+//            $result = $this->processOptionData('coin_grade', $gradeData);
+        }else{
+            $gradeData = 'Others';
         }
+        $result = $this->processOptionData('coin_grade', $gradeData);
         return $result;
     }
 

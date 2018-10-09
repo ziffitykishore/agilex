@@ -1,7 +1,5 @@
 .btn-action() {
-    .action,
-    .action.back,
-    .action.remind {
+    .action, .action.back, .action.remind {
         .lib-css(background, @color-black);
         .lib-css(color, @color-white);
         border: 1px solid @color-black;
@@ -13,9 +11,7 @@
         line-height: 20px;
         margin-top: 0;
         text-transform: uppercase;
-        &:hover,
-        &:focus,
-        &:active {
+        &:hover, &:focus, &:active {
             .lib-css(background, @color-darkslateblue);
             .lib-css(border-color, @color-darkslateblue);
         }
@@ -38,12 +34,9 @@
     }
 }
 
-.customer-account-login,
-.customer-account-create,
-.customer-account-forgotpassword {
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword {
     .actions-toolbar {
         .btn-action();
-        
     }
     .page-footer {
         .sticky-container {
@@ -53,6 +46,11 @@
 }
 
 .account {
+   
+        legend {
+            border-bottom: 1px solid #d7dded;
+   
+    }
     &.page-layout-2columns-left {
         .page-main {
             .container-md();
@@ -62,6 +60,35 @@
             }
             .sidebar.sidebar-main {
                 width: 29.3%;
+            }
+        }
+        .mark {
+            background: #fff;
+            padding: 11px 10px;
+        }
+        .amount {
+            font-weight: normal;
+        }
+        .cart-price {
+            font-size: 14px;
+            .price {
+                font-weight: normal;
+            }
+        }
+        .table:not(.cart):not(.totals) {
+            > thead {
+                > tr {
+                    > th {
+                        border-bottom: 1px solid #d7dded;
+                    }
+                }
+            }
+        }
+        .table:not(.cart):not(.totals) tfoot {
+            > tr:first-child {
+                td {
+                    border-top: 0;
+                }
             }
         }
     }
@@ -105,13 +132,10 @@
                     background: @color-white;
                     border: 1px solid #d7d7ed;
                     min-height: 250px;
-                    .box-title,
-                    .box-content,
-                    .box-actions {
+                    .box-title, .box-content, .box-actions {
                         padding: 20px;
                     }
-                    &-content,
-                    &-actions {
+                    &-content, &-actions {
                         padding-bottom: 0;
                     }
                     &-content {
@@ -155,12 +179,7 @@
         }
         .orders-history {
             padding: 30px;
-            .table>tbody>tr>td,
-            .table>tbody>tr>th,
-            .table>tfoot>tr>td,
-            .table>tfoot>tr>th,
-            .table>thead>tr>td,
-            .table>thead>tr>th {
+            .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
                 padding: 15px;
                 .bg-smoke();
                 background: @color-white;
@@ -208,9 +227,7 @@
                 }
             }
         }
-        .block,
-        form,
-        .orders-history {
+        .block, form, .orders-history {
             a.action {
                 position: relative;
                 color: #c2c2c2;
@@ -328,8 +345,7 @@
                     span {
                         .disp(none);
                     }
-                    >a,
-                    >strong {
+                    >a, >strong {
                         padding: 20px;
                         border: 1px solid #d7d7ed;
                         margin-top: 20px;
@@ -347,8 +363,7 @@
                         }
                     }
                     &.current {
-                        >strong,
-                        >a {
+                        >strong, >a {
                             background: @color-darkslateblue;
                             color: @color-white;
                             .pos(relative);
@@ -483,15 +498,13 @@
     }
 }
 
-.customer-account-login,
-.customer-account-create,
-.customer-account-forgotpassword,
-.customer-account-confirmation {
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword, .customer-account-confirmation {
     .page-main {
         background: url(../images/login_image.jpg) no-repeat left bottom;
         max-width: 100%;
         width: 100%;
-        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
         margin: 0;
         background-size: cover;
         .column {
@@ -538,10 +551,7 @@
     }
 }
 
-.customer-account-login,
-.customer-account-create,
-.customer-account-forgotpassword,
-.customer-account-confirmation {
+.customer-account-login, .customer-account-create, .customer-account-forgotpassword, .customer-account-confirmation {
     .page-title-wrapper .page-title {
         font-size: 25px;
     }
@@ -555,8 +565,7 @@
         .action {
             padding: 14px 15px;
         }
-
-        button{
+        button {
             text-transform: uppercase;
         }
     }
@@ -631,9 +640,7 @@
                 color: #000;
                 text-align: center;
                 text-transform: capitalize;
-                &:hover,
-                &:active,
-                &:focus {
+                &:hover, &:active, &:focus {
                     background: transparent;
                 }
             }
@@ -718,7 +725,6 @@
             }
         }
     }
-    
     .forget {
         padding: 0 50px 50px;
     }
@@ -776,7 +782,6 @@
             .fieldset {
                 margin-bottom: 0;
             }
-
             .actions-toolbar {
                 .primary, .secondary {
                     display: block;
@@ -786,6 +791,58 @@
                     width: 100% !important;
                 }
             }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .customer-account-login, .customer-account-create, .customer-account-forgotpassword, .customer-account-confirmation {
+        .columns {
+            display: block;
+            .login-container {
+                padding-left: 20px;
+                padding-right: 20px;
+                .fieldset:after {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .customer-account-forgotpassword {
+        .page-main {
+            .column {
+                height: auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .customer-account-create {
+        .page-main {
+            form {
+                padding: 0 20px;
+            }
+        }
+        .social-login-authentication-channel {
+            padding: 50px 5px;
+        }
+    }
+    .customer-account-forgotpassword {
+        .secondary {
+            .action {
+                &.back {
+                    span {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .forget {
+            padding: 0 20px 50px;
         }
     }
 }
