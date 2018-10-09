@@ -36,6 +36,11 @@ select {
         color: #666;
     }
     
+    
+}
+
+select::-ms-expand{
+    display: none;
 }
 
 
@@ -62,6 +67,7 @@ input[type="checkbox"]  {
         display: inline-block;
         position: absolute;
         left: 0;
+        top: 0;
     }
 
     & + label:after {
