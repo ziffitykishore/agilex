@@ -30,6 +30,16 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     protected $_storeManager;
 
     /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $_scopeConfig;
+
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */
+    protected $_frontUrlModel;
+
+    /**
      * @var int
      */
     protected $_storeId;
@@ -44,14 +54,20 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * Data constructor.
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Framework\UrlInterface $frontUrlModel
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Framework\UrlInterface $frontUrlModel,
         \Magento\Framework\View\Page\Config $pageConfig
     )
     {
         $this->_storeManager = $storeManager;
+        $this->_scopeConfig = $scopeConfig;
+        $this->_frontUrlModel = $frontUrlModel;
         $this->pageConfig = $pageConfig;
         parent::__construct($context);
 

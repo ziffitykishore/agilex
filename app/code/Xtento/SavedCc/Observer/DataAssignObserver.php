@@ -68,7 +68,7 @@ class DataAssignObserver extends AbstractDataAssignObserver
         }
         if (isset($ccData['cc_cid'])) {
             // Removed for security reasons
-            //$ccData['cc_cid_enc'] = $this->encryptor->encrypt($ccData['cc_cid']);
+            $ccData['cc_cid_enc'] = $this->encryptor->encrypt($ccData['cc_cid']);
         }
 
         //$paymentModel = $this->readPaymentModelArgument($observer);

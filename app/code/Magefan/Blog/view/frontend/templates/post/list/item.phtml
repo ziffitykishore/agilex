@@ -21,7 +21,7 @@
 
 <div class="col-sm-4 blog-item <?php echo $_post->getId() ?>">
     <div class="blog-item_inner">
-        <a class="post-item-link" href="<?php echo $_postUrl ?>">
+        <a class="post-item-link" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
             <div class="blog-image">
                 <img src="<?php echo $_post->getFeaturedImage(); ?>" alt="<?php echo $_postName ?>" class="img-responsive full-w" />
                 <div class="blog-date">
@@ -33,9 +33,9 @@
             </div>
         </a>
         <div class="blog-content">
-            <a href="<?php echo $_postUrl ?>">
+            <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
                 <div class="blog-title">
-                    <?php echo $_postName ?>
+                    <?php echo $block->wordLimiter($_postName, 4).'...' ?>
                 </div>
             </a>
             <div class="blog-desc">

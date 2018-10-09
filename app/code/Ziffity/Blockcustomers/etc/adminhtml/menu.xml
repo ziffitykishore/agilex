@@ -1,7 +1,11 @@
-<?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-    <add id="Ziffity_Blockcustomers::ziffity_blockcustomers" title="Block Customers" module="Ziffity_Blockcustomers" sortOrder="1" parent="Magento_Customer::customer" action="blockcustomers/order/index" resource="Magento_Customer::ziffity_blockcustomers"/>
-     <add id="Ziffity_Blockcustomers::ziffity_blockedcustomers" title="Blocked Customers" module="Ziffity_Blockcustomers" sortOrder="2" parent="Magento_Customer::customer" action="blockcustomers/order/blocklist" resource="Magento_Customer::ziffity_blockedcustomers"/>
+        <add id="Ziffity_Blockcustomers::data" 
+             title="Blocked Customers" 
+             module="Ziffity_Blockcustomers" 
+             sortOrder="75" 
+             resource="Ziffity_Blockcustomers::data"
+             parent="Magento_Customer::customer"
+             action="blockcustomers/data/index"/>
     </menu>
 </config>

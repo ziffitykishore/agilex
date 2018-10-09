@@ -5,14 +5,11 @@
 
 define([
     'jquery',
-    'sidebar',
     'slick',
+    'left-sticky',
     'jquery/ui',
-    'jquery/validate',
-    'jquery/jquery.mobile.custom',
     'domReady!'
-], function($) {
-
+], function($) {   
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function(e) {
@@ -24,9 +21,10 @@ define([
     });
 
     $('.showcart').on('click', function() {
-        $('body').removeClass('menu-opened acc-opened');
+        $('body').removeClass('menu-opened acc-opened').addClass('cart-opened');
     });
-    $('#btn-minicart-close').on('click', function() {
+
+    $(document).on('click', '#btn-minicart-close', function (){
         $('body').removeClass('cart-opened');
     });
 
@@ -250,4 +248,6 @@ define([
         $('#newsletter').focus();
         $('#newsletter').closest('form').submit();
     });
+
+    $(".page-with-filter .sidebar").stick_in_parent();
 });

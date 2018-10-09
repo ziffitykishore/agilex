@@ -7,7 +7,7 @@
     requirejs(['jquery', 'weltpixel_quickview' ],
         function   ($, quickview) {
             $(document).ready(function() {
-                $('.weltpixel-quickview').bind('click', function() {
+                $(document).on('click', '.weltpixel-quickview', function() {
                     var prodUrl = $(this).attr('data-quickview-url');
                     if (prodUrl.length) {
                         quickview.displayContent(prodUrl);

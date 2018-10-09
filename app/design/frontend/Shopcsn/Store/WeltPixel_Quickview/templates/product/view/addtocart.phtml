@@ -5,6 +5,29 @@
 ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
+<?php
+    /*call for price */
+    $callforprice = false;
+    /*to check call for price */
+    $callForAttr = $_product->getResource()->getAttribute('callforquote');
+    if($callForAttr){
+        $val = $callForAttr->getFrontend()->getValue($_product)->getText();
+        if($val == 'Yes'){
+            $callforprice = true;
+        }
+    }
+?>
+<?php if($callforprice): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <div class="actions">
+            <div class="btn-callforprice action primary">
+                <span><?= /* @escapeNotVerified */ __('Call For Price') ?></span>
+            </div>
+        </div>
+    </div>
+</div>
+<?php else: ?>
 <?php if ($_product->isSaleable()): ?>
     <div class="box-tocart">
         <div class="fieldset">
@@ -34,6 +57,7 @@
             </div>
         </div>
     </div>
+<?php endif; ?>
 <?php endif; ?>
 <?php if ($block->isRedirectToCartEnabled()) : ?>
     <script type="text/x-magento-init">

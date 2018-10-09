@@ -44,6 +44,7 @@
 @color-lightblue: #d7dded;
 @color-darkslategray: #2b2b2b;
 @color-darkslateblue: #3e5ca3;
+@color-btn: #1c3f93;
 @color-black: #020202;
 @color-crimson: #e32129;
 @color-lightgray: #d7dded;
@@ -300,11 +301,18 @@
     margin-left: -15px;
 }
 
+.flex-width(@width) {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 @width;
+        flex: 0 0 @width;
+        max-width: @width;
+}
+
 .container-md() {
 	max-width: 1260px;
 	margin-left: auto;
     margin-right: auto;
-    
+
 }
 
 .container-sm() {

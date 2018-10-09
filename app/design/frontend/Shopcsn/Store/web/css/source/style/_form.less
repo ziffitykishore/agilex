@@ -23,8 +23,76 @@ input[type="radio"] {
     display: initial;
 }
 
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+    background: url('../images/caret-down.png') no-repeat 96% center;
+    background-size: 7px;
+
+
+    option[value=""]{
+        color: #666;
+    }
+    
+}
+
+
+
+.field {
+    
+    .field-tooltip {
+        margin-left: 5px;
+    }
+input[type="checkbox"]  {
+    opacity: 0;
+    position: absolute;
+
+    & + label{
+        position: relative;
+        padding-left: 20px;
+    }
+
+    & + label:before {
+        content: '';
+        width: 15px;
+        height: 15px;
+        border: 1px solid #d7d7ed;
+        display: inline-block;
+        position: absolute;
+        left: 0;
+    }
+
+    & + label:after {
+        content: '';
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: @color-darkslateblue;
+        .transition(all 0.5s ease 0s);
+        opacity: 0;
+        visibility: hidden;
+        left: 2px;
+        top: 2px;
+    }
+
+    &:checked + label:after{
+        opacity: 1;
+        visibility: visible;
+    }
+
+
+}
+
+
+
+
+}
+
 .label {
     color: #333;
+    font-weight: normal;
 }
 
 input.custom-g-input{
@@ -58,6 +126,7 @@ textarea {
 }
 }
 
+
 .choice {
     label {
         padding-top: 0;
@@ -65,12 +134,13 @@ textarea {
     }
 }
 
+
 .form-group {
     position: relative;
     .label {
         position: absolute;
         z-index: 3;
-        color: #d7dded;
+        color: #ccc;
         left: 10px;
         font-size: 13px;
         background: #fff;
@@ -80,7 +150,7 @@ textarea {
     }
     &.focused label {
         top: -7px;
-        color: #d7dded;
+        
         font-size: 11px;
     }
     &.select-group label {
@@ -98,13 +168,11 @@ textarea {
             color: #000;
             background-color: #fff;
             background-image: none;
-            border-bottom: 1px solid #d3d8e3;
+            border-bottom: 1px solid #d7dded;
             border-radius: 0;
             -webkit-box-shadow: none;
             box-shadow: none;
-            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            .transition(all 0.5s ease 0s);
             
         }
         select {
@@ -116,20 +184,28 @@ textarea {
     .form-control{
         border-radius: 0;
         box-shadow: none;
+        .transition(all 0.5s ease 0s);
         &:focus {
-            border-color: #000;
+            border-color: @color-black;
             box-shadow: none;
         }
     }
 }
 
 .account-social-login {
-    
+    .block-content {
+        display: inline-block;
+        width: 100%;
     .actions-toolbar.social-btn {
-        width: 150px;
-        margin: 0 10px;
+        
+        padding: 0 15px;
+        width: 50%;
+            float: left;
         .btn-social {
             text-align: center;
+            border-radius: 0;
+            
         }
     }
+}
 }

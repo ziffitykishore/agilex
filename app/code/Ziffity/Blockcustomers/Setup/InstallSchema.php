@@ -21,47 +21,33 @@ class InstallSchema implements InstallSchemaInterface
     {
 	
         $installer = $setup;
-
         $installer->startSetup();
-
-		/**
-         * Create table 'callforprice_callforprice'
-         */
-        $table = $installer->getConnection()->newTable(
-            $installer->getTable('blocked_customers')
+        $table = $installer->getConnection()->newTable($installer->getTable('blocked_customers'))
+        ->addColumn(
+        'id',
+        \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+        null,
+        ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
+        'ID'
         )
-		->addColumn(
-            'id',
-            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
-            null,
-            ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
-            'blocked_customers'
+        ->addColumn(
+        'name',
+        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+        '64k',
+        [],
+        'Name'
         )
-		->addColumn(
-            'name',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            '64k',
-            [],
-            'Name'
+        ->addColumn(
+        'email',
+        \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+        '64k',
+        [],
+        'Email'
         )
-		->addColumn(
-            'email',
-            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            '64k',
-            [],
-            'Email'
-        )
-		/*{{CedAddTableColumn}}}*/
-		
-		
         ->setComment(
             'Ziffity Blockcustomers blocked_customers'
         );
-		
-		$installer->getConnection()->createTable($table);
-		/*{{CedAddTable}}*/
-
+        $installer->getConnection()->createTable($table);
         $installer->endSetup();
-
     }
 }

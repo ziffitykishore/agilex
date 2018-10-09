@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             box-shadow: 2px 0 25px 0px #3e5ca4;
-            min-height: 75px;
+            min-height: 77px;
             background: @color-darkslateblue
         }
         border: none;
@@ -182,7 +182,6 @@
                 opacity: 0;
                 z-index: 102;
                 position: absolute;
-                
                 .transition(all 0.5s ease 0s);
                 .menu-opened & {
                     visibility: visible;
@@ -385,7 +384,6 @@
                         i {
                             .disp(none);
                         }
-
                         &:hover {
                             background: @color-whitesmoke;
                         }
@@ -443,9 +441,7 @@
                     .pos(absolute);
                     top: -5px;
                     right: -5px;
-                    
                     .counter-number {
-                        
                         color: @color-black;
                         font-size: 12px;
                     }
@@ -502,10 +498,7 @@
                 }
                 .btn-wrap {
                     .action {
-                        .lib-css(background, @color-black);
-                        .lib-css(color, @color-white);
                         padding: 30px 20px;
-                        .transition(all 0.5s ease-in-out 0s);
                         border: none;
                         display: block;
                         width: 100%;
@@ -518,9 +511,7 @@
                             position: relative;
                             border-left: 1px solid #404040;
                         }
-                        &:hover {
-                            .lib-css(background, @color-darkslateblue);
-                        }
+                        .button();
                     }
                 }
                 .minicart-items {
@@ -621,7 +612,9 @@
 @media screen and(min-width: 769px) {
     .header-wrapper {
         .transition(all 0.5s ease-in-out 0s);
-        position: relative;
+        position: fixed;
+        left: 0;
+        right: 0;
         z-index: 120;
         &.fix-header {
             .pos(fixed);
@@ -634,8 +627,21 @@
         &.nav-down {
             top: 0;
         }
-    }
 
+        & + .breadcrumbs,
+        & + .page-main{
+            padding-top: 77px;
+            position: relative;
+            &:before{
+                content: '';
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 77px;
+                background: @color-darkslateblue;
+            }
+        }
+    }
     .nav-sections {
         .pos(absolute);
         left: 0;
@@ -690,6 +696,7 @@
                     color: #5178bf;
                 }
                 &.submenu {
+                    border-left: 1px solid #d7dded;
                     .parent {
                         >a {
                             font-size: 13px;
@@ -786,7 +793,6 @@
 }
 
 @media screen and (max-width: 1024px) {
-
     .page-header {
         border-bottom: 1px solid #5178bf;
         box-shadow: none;
@@ -801,9 +807,6 @@
             .cat-trigger {
                 display: none;
             }
-
-           
-            
         }
         .block-search {
             padding: 15px;
@@ -903,19 +906,15 @@
                 top: 0;
             }
             .block-search {
-                .transform(translateY(60px));
+                .transform(translateY(0px));
             }
         }
-        
         &.no-sticky {
             .block-search {
                 .transform(translateY(0));
             }
         }
     }
-
-
-
     .header-promo {
         margin-bottom: 20px;
         .promotion-text {
@@ -1032,7 +1031,6 @@
                     .cat-trigger {
                         display: none;
                     }
-
                     .level0.active {
                         .all-category {
                             .ui-state-focus {
@@ -1052,7 +1050,7 @@
             .block-search {
                 max-width: 100%;
                 padding: 0;
-                padding: 10px 15px 10px;
+                padding: 10px 15px 22px;
                 .transition(all 0.8s ease-in-out 0s);
                 background: @color-darkslateblue;
                 .block-content {
