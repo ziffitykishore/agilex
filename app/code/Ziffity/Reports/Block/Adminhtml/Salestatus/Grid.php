@@ -67,10 +67,12 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
               ->joinLeft(['prod'=>'catalog_product_entity_varchar'],
              'e.entity_id = prod.entity_id',
               array('name'=>'value')
-              )->joinLeft(['inventory'=>'cataloginventory_stock_item'],
+              )->join(['inventory'=>'cataloginventory_stock_item'],
              'prod.entity_id = inventory.product_id',
               array('quantity'=>'qty','stock_status'=>'is_in_stock')
               )->where('prod.attribute_id = ?',65);
+        
+        
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -106,28 +108,32 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
        // $currencyCode = $this->getCurrentCurrencyCode();
     //     if ($this->moduleManager->isEnabled('Magento_CatalogInventory')) {
         $this->addColumn(
-            'qty',
+            'quantity',
             [
                 'header' => __('QUANTITY'),
                 'index' => 'quantity',
                 'type' => 'number',
+                'filter_index' => 'qty',
                 'sortable' => false,
+                'filter_condition_callback' => array($this, '_qtyFilter'),
                
             ]
         );
-     //    }
+         
 
         $this->addColumn(
             'stock_status',
             [
                 'header' => __('STOCK STATUS'),
                 'index' => 'stock_status',
+                'filter_index' => 'stock_status',
                 'type' => 'options',
                 'options' => [ 
                     StockStatusInterface::STATUS_OUT_OF_STOCK => 'Out Of Stock',
                     StockStatusInterface::STATUS_IN_STOCK => 'In Stock'
                     ],
                 'sortable' => false,
+                'filter_condition_callback' => array($this, '_stockFilter'),                
             ]
         );
 
@@ -147,4 +153,43 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     {
         return $this->getUrl('productreports/salestatus/view',  ['id' => $row->getData('entity_id'), 'sku' => $row->getData('sku'), 'qty' => $row->getData('quantity'), 'stock_status' =>$row->getData('stock_status'),  'name' =>$row->getData('name')]);
     }
+    
+    protected function _qtyFilter($collection, $column) {
+        
+        $filterroleid = $column->getFilter()->getValue();
+        if (!$value = $column->getFilter()->getValue()) {
+            return $this;
+        }
+        
+        if(isset($filterroleid['from'])){
+            $collection->getSelect()->where('qty >= ?',(int)$filterroleid['from']);
+        }
+        
+        if (isset($filterroleid['to'])) { 
+            $collection->getSelect()->where('qty <= ?',(int)$filterroleid['to']);
+        }
+        
+        return  $this->setCollection($collection);
+        
+    }
+
+    protected function _stockFilter($collection, $column) {
+        
+        $filterroleid = $column->getFilter()->getValue();
+        
+        
+        if($filterroleid){
+            $collection->getSelect()->where('is_in_stock = ?',(int)$filterroleid);
+        } else {
+                $collection->getSelect()->where('is_in_stock = ?',(int)$filterroleid);
+                
+        }
+        
+        
+        return  $this->setCollection($collection);
+        
+    }
+
+
+    
 }
