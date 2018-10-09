@@ -1,8 +1,12 @@
 .catalog-product-view {
+    a[href*="http://www.magictoolbox.com/magicscroll"] {
+        display: none !important;
+    }
     .product-widget__inner{
         margin-left: 1px;
     }
     .pdp {
+         margin-top: 20px;
         .product-label {
             display: none;
         }
@@ -126,6 +130,8 @@
                 border-bottom: 1px solid #d7dded;
                 padding: 25px 20px;
                 margin: 0 !important;
+                max-height: 250px;
+                overflow-y: auto;
             }
             .product-info-stock-sku {
                 border-bottom: 1px solid #d7dded;
@@ -165,6 +171,7 @@
                 padding: 45px 20px;
                 .box-tocart {
                     position: relative;
+                    .clearfix();
                     .fieldset {
                         margin: 0;
                     }
@@ -216,6 +223,7 @@
                     }
                     .btn-callforprice {
                         width: auto;
+                        margin-left: 0;
                     }
                 }
             }
@@ -227,7 +235,7 @@
                 }
                 #um-sharing-productpage {
                     padding: 0 !important;
-                    margin-left: 20px;
+                    margin-left: 10px;
                     position: static;
                 }
                 .towishlist {
@@ -720,6 +728,7 @@ body.weltpixel-quickview-catalog-product-view {
                     #product-gotoproduct-button {
                         width: 90%;
                         padding: 9px 17px;
+                        font-size: 13px;
                     }
                     .primary {
                         margin-top: 0;
@@ -729,7 +738,7 @@ body.weltpixel-quickview-catalog-product-view {
                         .button();
                         width: 35%;
                         float: left;
-                        font-size: 15px !important;
+                        font-size: 13px;
                         font-weight: bold;
                         text-transform: uppercase;
                         border-radius: 0 !important;

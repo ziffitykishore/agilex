@@ -24,7 +24,9 @@ define([
         $('body').removeClass('menu-opened acc-opened').addClass('cart-opened');
     });
 
-    $(document).on('click', '#btn-minicart-close', function (){
+
+
+    $(document).on('click', '#btn-minicart-close, .modal-footer button', function (){
         $('body').removeClass('cart-opened');
     });
 
@@ -249,5 +251,10 @@ define([
         $('#newsletter').closest('form').submit();
     });
 
-    $(".page-with-filter .sidebar").stick_in_parent();
+    $(".page-products .sidebar-main").stick_in_parent({
+        offset_top: '0px'
+    });
+
+
+    $('.product-info-main .product-social-links').appendTo('.box-tocart');
 });
