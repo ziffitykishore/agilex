@@ -59,26 +59,43 @@ class MassStatus extends \Magento\Sales\Controller\Adminhtml\Order\AbstractMassA
      */
     protected function massAction(AbstractCollection $collection)
     {
-        $param      = $this->getRequest()->getParams();
-        $statusCode = $param['status_code'];
-        $stateCode  = $this->getStateByStatus($statusCode);
-        $selected   = $param['selected'];
-        $orderCount = 0;
-        foreach($selected as $select) {
-            $this->statusChanger($select, $stateCode, $statusCode);
-            $orderCount++;
+        try{
+            $param      = $this->getRequest()->getParams();
+            $statusCode = $param['status_code'];
+            $stateCode  = $this->getStateByStatus($statusCode);
+            $selected   = @$param['selected'];
+            $orderCount = 0;
+            if(isset($param['selected'])){
+                foreach($selected as $select) {
+                    $this->statusChanger($select, $stateCode, $statusCode);
+                    $orderCount++;
+                }
+            }else{
+                foreach ($collection->getItems() as $order) {
+                    if ($order->getState() == $stateCode) {
+                        continue;
+                    }
+                    $this->statusChanger($order->getEntityId(), $stateCode, $statusCode);
+                    $orderCount++;
+                }
+            }
+            $this->messageManager->addSuccess(__('Total of %1 order(s) have been successfully updated.', $orderCount));
+        } catch (Exception $ex) {
+            $this->messageManager->addError($ex->getMessage());
         }
-        $this->messageManager->addSuccess(__('Total of %1 order(s) have been successfully updated.', $orderCount));
         $resultRedirect = $this->resultRedirectFactory->create();
         $resultRedirect->setPath($this->getComponentRefererUrl());
         return $resultRedirect;
     }
-    public function statusChanger($id, $state, $status) {
+
+    public function statusChanger($id, $state, $status)
+    {
         $this->order->load($id)
             ->setState($state)
             ->setStatus($status)
             ->save();
     }
+
     /**
      * Get order state by it's status
      * 
