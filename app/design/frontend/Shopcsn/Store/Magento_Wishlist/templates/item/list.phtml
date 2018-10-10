@@ -17,7 +17,7 @@ $columns = $block->getColumns();
     <?php if (count($block->getItems())): ?>
     <ol class="product-items row">
         <?php foreach ($block->getItems() as $item): ?>
-        <?= /* @noEscape */ ($iterator++ == 1) ? '<li data-row="product-item" class="product-item col-xxs-12 col-xs-6 col-sm-6" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' : '</li><li class="product-item" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' ?>
+        <?= /* @noEscape */ ($iterator++ == 1) ? '<li data-row="product-item" class="product-item col-xs-12 col-xs-6 col-sm-6" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' : '</li><li class="product-item col-xs-12 col-xs-6 col-sm-6" id="item_' . $block->escapeHtmlAttr($item->getId()) . '">' ?>
             <div class="product-item-info" data-container="product-grid">
                 <?php foreach ($columns as $column): ?>
                     <?php $column->setItem($item); echo $column->toHtml($item);?>
