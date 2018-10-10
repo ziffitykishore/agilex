@@ -260,26 +260,26 @@ define([
     var is_mobile = (win_w < 769) ? true : false;
     function filter_stiky(){
         if(!is_mobile){
-            jQuery(window).scroll(function(){
-                var media=jQuery('.filter');
-                product_w=jQuery('.sidebar-main').width();
+            $(window).scroll(function(){
+                var media=$('.filter');
+                product_w=$('.sidebar-main').width();
                 media.width(product_w);
-                var fixSidebar=jQuery('.page-header').innerHeight();
-                var contentHeight=jQuery('.columns').innerHeight();
-                var sidebarHeight=jQuery('.filter').height();
-                sidebar=jQuery('.sidebar-main').height(sidebarHeight+30);
+                var fixSidebar=$('.page-header').innerHeight();
+                var contentHeight=$('.columns').innerHeight();
+                var sidebarHeight=$('.filter').height();
+                sidebar=$('.sidebar-main').height(sidebarHeight+30);
                 var sidebarBottomPos=contentHeight-sidebarHeight;
-                var trigger=jQuery(window).scrollTop()-fixSidebar;
-                if(jQuery(window).scrollTop()>=fixSidebar){
-                    jQuery('.filter').addClass('fixed');
-                    jQuery('.sidebar-main').addClass('sidebar-scrolled');
+                var trigger=$(window).scrollTop()-fixSidebar;
+                if($(window).scrollTop()>=fixSidebar){
+                    $('.filter').addClass('fixed');
+                    $('.sidebar-main').addClass('sidebar-scrolled');
                 }else{
-                    jQuery('.filter').removeClass('fixed');
-                    jQuery('.sidebar-main').removeClass('sidebar-scrolled');
+                    $('.filter').removeClass('fixed');
+                    $('.sidebar-main').removeClass('sidebar-scrolled');
                 }if(trigger>=sidebarBottomPos){
-                    jQuery('.filter').addClass('bottom');
+                    $('.filter').addClass('bottom');
                 }else{
-                    jQuery('.filter').removeClass('bottom');
+                    $('.filter').removeClass('bottom');
                 }
             });
         }
