@@ -152,23 +152,33 @@
                     float: left;
                 }
             }
+            .price-tier_price,
             .maindiv-social,
             .maindiv-social>ul {
-                height: auto;
+                display: none;
             }
             .product-alert {
+                border-bottom: 1px solid #d7dded;
                 .product {}
+                .product {
+                    margin: 0;
+                    padding: 25px 20px;
+                }
                 .btn-alert {
                     .button();
                     text-transform: uppercase;
                     margin-bottom: 0;
                 }
             }
-            .product-alert+.product-add-form {
-                border-top: 1px solid #d7d7ed;
+
+            .product-options-wrapper{
+                .fieldset > .field{
+                    margin-bottom: 0;
+                }
             }
+            
             .product-add-form {
-                padding: 45px 20px;
+                padding: 25px 20px;
                 .box-tocart {
                     position: relative;
                     .clearfix();
