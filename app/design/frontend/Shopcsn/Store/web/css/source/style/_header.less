@@ -260,6 +260,7 @@
                     .hw(40px, 40px);
                     font-size: @f-size-xl;
                     top: 0;
+                    text-align: center;
                     right: 0;
                     border-radius: 0;
                     color: @color-white;
@@ -897,6 +898,9 @@
 
 @media screen and (max-width: 768px) {
     .header-wrapper {
+        .header.content{
+            min-height: 70px;
+        }
         &.fix-header {
             .header.content {
                 .pos(fixed);
@@ -958,7 +962,7 @@
         }
         .menu-wrap {
             .nav-toggle {
-                z-index: 105;
+                
             }
             .nav-sections {
                 position: fixed;
@@ -1009,6 +1013,23 @@
 }
 
 @media screen and (max-width: 768px) {
+    .menu-opened {
+        
+        .page-wrapper {
+            
+            .overlay {
+                display: none;
+             }
+        }
+    
+    }
+
+   html.nav-open{
+        .page-wrapper {
+            left: 0;
+        }
+    }
+    
     .header-promo {
         margin-bottom: 20px;
         .promotion-text {
@@ -1083,13 +1104,7 @@
     .breadcrumbs-promo {
         display: none;
     }
-    .page-header.header-wrapper {
-        .block-search {
-            .advanced-search {
-                display: none;
-            }
-        }
-    }
+    
     .nav-sections {
         .navigation {
             .parent {

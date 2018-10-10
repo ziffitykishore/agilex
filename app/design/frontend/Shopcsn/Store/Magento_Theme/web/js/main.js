@@ -283,7 +283,7 @@ define([
                 }
             });
         } else {
-            sidebar.removeAttr('style');
+            $('.sidebar-main').removeAttr('style');
         }
     }
     
