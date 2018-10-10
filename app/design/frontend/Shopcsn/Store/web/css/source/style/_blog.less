@@ -24,7 +24,7 @@
             position: absolute;
             color: @color-white;
             left: 10px;
-            bottom: 10px; 
+            bottom: 10px;
             width: 60px;
             height: 60px;
             background: fade(@color-darkslateblue, 60%);
@@ -42,7 +42,7 @@
         }
     }
     &:hover {
-        .blog-item_inner{
+        .blog-item_inner {
             box-shadow: 0 0 28px 2px rgba(0, 0, 0, 0.1), 0 8px 28px 2px rgba(0, 0, 0, 0.1);
         }
         .blog-image {
@@ -56,7 +56,6 @@
     .blog-content {
         background: @color-white;
         padding: 35px;
-        
         .blog-title {
             font-size: @f-size-xxl;
             font-weight: bold;
@@ -70,7 +69,6 @@
                     color: @color-darkslateblue;
                 }
             }
-            
             &:after {
                 margin-top: 15px;
                 width: 45px;
@@ -174,8 +172,7 @@
             .transition(all 0.5s ease-in-out 0s);
             height: 100%;
         }
-
-        .blog-desc{
+        .blog-desc {
             min-height: 120px;
         }
         &:hover {
@@ -364,11 +361,10 @@
         }
         .post-view {
             .container-md();
-            p{
+            p {
                 color: #606060;
             }
         }
-
         .post-image {
             text-align: center;
             img {
@@ -388,7 +384,8 @@
                 text-align: center;
                 font-size: 16px;
                 font-weight: bold;
-                .item, .dash {
+                .item,
+                .dash {
                     display: none;
                 }
                 .post-posed-date {
@@ -421,7 +418,6 @@
                 }
             }
         }
-
         .category-bottom {
             background: #f2f5f8;
             border-left: 6px solid #d7dded;
@@ -429,8 +425,6 @@
             margin: 20px 0;
             p {
                 color: @color-black;
-                
-                
             }
             a {
                 color: @color-crimson;
@@ -470,7 +464,6 @@
             .c-count {
                 display: none;
             }
-
             .c-reply {
                 display: none;
             }
@@ -516,12 +509,20 @@
                 }
                 .c-btn-hld {
                     border-color: #d7d7ed;
+                    .input-text {
+                        height: 40px;
+                    }
                     button {
                         .button();
                         border-radius: 0 !important;
                         padding: 10px 20px;
                         min-width: 100px;
+                        margin-top: 0;
+                        height: 40px;
                         text-transform: uppercase;
+                        &+button {
+                            margin-left: 10px;
+                        }
                     }
                 }
             }
@@ -548,7 +549,6 @@
                 .at-icon {
                     line-height: 32px !important;
                 }
-                
             }
             .post-nextprev-hld {
                 width: percentage((1.2/2));
@@ -585,19 +585,18 @@
     }
 }
 
-
 @media screen and (max-width: 1366px) {
-.blog-index-index,
-.blog-archive-view,
-.blog-category-view,
-.blog-tag-view,
-.blog-search-index {
-    .blog-item {
-        .blog-content {
-            padding: 20px;
+    .blog-index-index,
+    .blog-archive-view,
+    .blog-category-view,
+    .blog-tag-view,
+    .blog-search-index {
+        .blog-item {
+            .blog-content {
+                padding: 20px;
+            }
         }
     }
-}
 }
 
 @media screen and (max-width: 1300px) {
@@ -615,12 +614,12 @@
     }
 }
 
-
 @media screen and (min-width: 768px) and (max-width: 992px) {
     .blog-post-view {
         .column {
             div.post-bottom {
-                .addthis_toolbox, .subscribe-sec {
+                .addthis_toolbox,
+                .subscribe-sec {
                     width: 30%;
                 }
                 .post-nextprev-hld {
@@ -700,6 +699,21 @@
                     text-align: left;
                 }
             }
+
+            
+                .comments {
+                    .c-replyform {
+                        .field {
+                            width: 100%;
+                            padding-right: 0;
+                        }
+                    }
+                }
+            
         }
     }
+}
+
+@media screen and (max-width: 480px) {
+    
 }
