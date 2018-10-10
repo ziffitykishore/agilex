@@ -18,7 +18,7 @@
             }
             .modal-content {
                 padding: 0;
-                position: absolute;
+                
                 border: 0;
                 box-shadow: none;
                 .field {
@@ -54,6 +54,7 @@
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 1;
     .sign-in-page {
         position: absolute;
         top: 40%;
@@ -159,7 +160,7 @@
                         position: absolute;
                         border: 1px solid #d7dded;
                         left: -10px;
-                        top: 0;
+                        top: 5px;
                         width: 13px;
                         height: 13px;
                     }
@@ -408,6 +409,18 @@
     }
 }
 
+
+@media screen and (max-width: 1300px) {
+    .customer-forgetpassword-popup, 
+    .custom-block-customer-signup, 
+    .custom-block-customer-login, 
+    .confirm-popup.modal-popup{
+        .sign-in-page{
+            display: none;
+        }
+    }
+
+}
 @media screen and (max-width: 767px) {
     .customer-forgetpassword-popup,
     .custom-block-customer-signup,

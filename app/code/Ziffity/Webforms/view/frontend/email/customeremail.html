@@ -1,4 +1,6 @@
-<!--@subject {{trans "SHOPCSN"}} @-->
+<!--@subject {{trans "SHOPCSN CONTACT US"}} @-->
+
+
 {{template config_path="design/email/header_template"}}
 
         <tr>
@@ -21,7 +23,7 @@
                                         <table width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
                                                 <td data-color="text" data-size="size navigation" data-min="10" data-max="22" data-link-style="text-decoration:none; color:#000;" class="nav" align="right" style="font:13px/15px Tahoma, Arial, Helvetica, sans-serif; color:#000;">
-                                                    <div style="font-weight: bold; font-size: 16px;">SHOPCSN</div>
+                                                    <div style="font-weight: bold; font-size: 16px;">Contact Us</div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -41,7 +43,7 @@
                 <table class="flexible" width="640" align="center" style="margin:0 auto; background: #24438d; text-align: center;" cellpadding="0" cellspacing="0">
                     <tr>
                         <td class="img-flex" style="font-weight: bold; font-size: 20px; color: #fff;" height="180">
-                            <img src="{{view url='images/email/icon_tick.png'}}" alt="" style="display: inline-block; vertical-align: middle;" /> Contact Us 
+                            <img src="{{view url='images/email/icon_tick.png'}}" alt="" style="display: inline-block; vertical-align: middle;" /> Thank You 
                         </td>
 
                     </tr>
@@ -57,20 +59,24 @@
                     <tr>
                         <td colspan="3" class="" style="font-size: 14px;">
                             <table width="100%" cellpadding="0" cellspacing="0">
-		                                <tr>
-                                            <td>Dear <span>{{var name }},</span></td>
-                                        </tr>
-                                        <tr>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Thank you for contacting us.</td>
-                                        </tr>
+                                <tr>
+                                    <td>Dear <span class="greeting">{{var name}}</span> </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        
+                                        <p>{{trans "Thank you for Contacting us." }}</p>
+
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                     </tr>
                 </table>
+
             </td>
         </tr>
     </table>
+
 {{template config_path="design/email/footer_template"}}
