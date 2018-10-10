@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ziff" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>PGP Settings</label>
+            <tab>ziffity</tab>
+            <resource>Ziffity_Dataencryption::index</resource>
+            <group id="ziffity_dataencryption" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                
+                <label>Custom Cron Settings to encrypt and remove the exported order text/csv files</label>		
+                <field id="status" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                  <field id="folder_name" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Folder Name</label>
+                     <comment>Enter folder name of the exported text files</comment>
+                </field>
+                <field id="scheduler_cron_expr" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Expression</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Ziffity\Dataencryption\Model\Config\Backend\Dataencryption\Cron</backend_model>
+                </field>
+                  <field id="days_duration" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Duration(In Days)</label>
+                </field>
+            </group>
+            <group id="pgp_configuration" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                
+                <label>PGP Dataencryption Configuration</label>		
+               
+                <field id="upload_public_key" translate="label" type="file" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upload PGP Generated Public Key</label>
+                   <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                   <upload_dir>var</upload_dir>
+                </field>
+               <field id="pgp_recipient" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter the PGP Generated UserId</label>
+                </field>
+                  <field id="encrypt_folder" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the Folder Name to save the Encrypted Files</label>
+                    <comment>Enter folder name to save the encrypted files</comment>
+                </field>
+                <field id="mail_receiver_name" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Receiver Name</label>
+                </field>
+                <field id="mail_receiver_email" translate="label" type="textarea" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the Receiver Email(s)</label>
+                      <comment>Allowed emails((comma separated)</comment>
+                </field>
+                 <field id="mail_sender_name" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the Sender Name</label>
+                </field>
+                 <field id="mail_sender_email" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the Sender Email</label>
+                </field>
+                 <field id="mail_cc" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the CC Receiver Email</label>
+                </field>
+                  <field id="mail_bcc" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the BCC Receiver Email</label>
+                </field>
+                 <field id="mail_body" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                   <label>Enter the Mail Body Content</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

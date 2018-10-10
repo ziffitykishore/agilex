@@ -39,13 +39,11 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             \Magento\Backend\Block\Template\Context $context,
             \Magento\Framework\Registry $registry,
             \Magento\Framework\Data\FormFactory $formFactory,
-                \Magento\Catalog\Model\ProductFactory $productFactory,
             \Magento\Store\Model\System\Store $systemStore,
             array $data = []
         ) {
             $this->_systemStore = $systemStore;
             $this->_coreRegistry = $registry;
-            $this->_productFactory = $productFactory;
             parent::__construct($context, $registry, $formFactory, $data);
         }
  
@@ -57,8 +55,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
         protected function _construct()
         {
             parent::_construct();
-            $this->setId('demo_form');
-            $this->setTitle(__('Demo Information'));
         }
  
         /**
@@ -68,42 +64,41 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
          */
         protected function _prepareForm()
         {
-            $model = $this->_productFactory->create();
-        $collection = $model->getCollection();
-        $data = $collection->getData();
-        foreach($data as $product){
-            
-        }
-           //Preparing the form here.
+            $productId = $this->getRequest()->getParam('id');
+            $sku = $this->getRequest()->getParam('sku');
+            $name = $this->getRequest()->getParam('name');
+            $qty = floor($this->getRequest()->getParam('qty'));
+            $stockStatus = $this->getRequest()->getParam('stock_status');
+       
+           //Preparing the form
             $form = $this->_formFactory->create(
-                ['data' => ['id' => 'edit_form', 'enctype' => 'multipart/form-data', 'method' => 'post']]
+                ['id' => 'id', 'enctype' => 'multipart/form-data', 'method' => 'post']
             );
-            $form->setHtmlIdPrefix('demo_');
- 
+            
             $fieldset = $form->addFieldset(
                 'base_fieldset',
-                ['legend' => __('Product Information'), 'class' => 'fieldset-wide']
+                ['legend' => __($name), 'class' => 'fieldset-wide']
             );
  
             $fieldset->addField(
                 'name',
                 'text',
-                ['name' => 'name', 'label' => __('Product Name'), 'title' => __('Product Name')]
+                ['value' => $name, 'label' => __('Product Name'), 'readonly' => 'true']
             );
              $fieldset->addField(
                 'sku',
                 'text',
-                ['name' => 'sku', 'label' => __('SKU'), 'title' => __('SKU')]
+                ['value' => $sku, 'label' => __('SKU') , 'readonly' => 'true']
             );
               $fieldset->addField(
                 'stock_status',
                 'text',
-                ['name' => 'stock_status', 'label' => __('Stock Status'), 'title' => __('Stock Status')]
+                ['value' => $stockStatus > 0 ? "In Stock" :" Out Of Stock", 'label' => __('Stock Status'), 'readonly' => 'true']
             );
                $fieldset->addField(
                 'qty',
                 'text',
-                ['name' => 'qty', 'label' => __('Quantity Left'), 'title' => __('Quantity Left')]
+                ['value' => $qty, 'label' => __('Quantity Left'), 'readonly' => 'true']
             );
              
             $form->setUseContainer(true);

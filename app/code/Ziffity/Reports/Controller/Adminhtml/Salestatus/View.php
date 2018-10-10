@@ -26,7 +26,7 @@ class View extends \Magento\Backend\App\Action
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->getConfig()->getTitle()->prepend(__('View'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Product Details'));
         return $resultPage;
         
     }

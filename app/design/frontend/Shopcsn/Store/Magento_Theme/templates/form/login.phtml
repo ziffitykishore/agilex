@@ -418,7 +418,9 @@ function($, modal, googlecapjs) {
                     if(response.success) {
                         $('#popup-modal-signup').modal('closeModal');
                         var popup = modal(optsignup, $('#popup-modal-signup'));
-                        $('#popup-modal').modal('openModal');
+                        if($('#popup-modal').closest('.modal-inner-wrap').length){
+                            $('#popup-modal').modal('openModal');
+                        }
                         $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     } else {
                         $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
