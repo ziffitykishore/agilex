@@ -8,21 +8,21 @@ use Magento\Framework\Event\Observer;
 
 class Dataencryption implements ObserverInterface {
 
-    CONST CR_STATUS = 'ziff/ziffity_dataencryption/status';
-    CONST CR_PATH = 'ziff/ziffity_dataencryption/folder_name';
+    CONST CR_STATUS = 'ziffity/ziffity_dataencryption/status';
+    CONST CR_PATH = 'ziffity/ziffity_dataencryption/folder_name';
     CONST XML_PATH_REGISTER_EMAIL_IDENTITY = 'customer/create_account/email_identity';
-    CONST DAYS_DURATION = 'ziff/ziffity_dataencryption/days_duration';
-    CONST PGP_PUBLIC_KEY = 'ziff/pgp_configuration/upload_public_key';
-    CONST PGP_RECIPIENT = 'ziff/pgp_configuration/pgp_recipient';
-    CONST ENCRYPT_FOLDER = 'ziff/pgp_configuration/encrypt_folder';
+    CONST DAYS_DURATION = 'ziffity/ziffity_dataencryption/days_duration';
+    CONST PGP_PUBLIC_KEY = 'ziffity/pgp_configuration/upload_public_key';
+    CONST PGP_RECIPIENT = 'ziffity/pgp_configuration/pgp_recipient';
+    CONST ENCRYPT_FOLDER = 'ziffity/pgp_configuration/encrypt_folder';
     CONST DS = DIRECTORY_SEPARATOR;
-    CONST MAIL_RECEIVER = 'ziff/pgp_configuration/mail_receiver_email';
-    CONST MAIL_RECEIVER_NAME = 'ziff/pgp_configuration/mail_receiver_name';
-    CONST MAIL_SENDER = 'ziff/pgp_configuration/mail_sender_email';
-    CONST MAIL_SENDER_NAME = 'ziff/pgp_configuration/mail_sender_name';
-    CONST MAIL_CC = 'ziff/pgp_configuration/mail_cc';
-    CONST MAIL_BCC = 'ziff/pgp_configuration/mail_bcc';
-    CONST MAIL_BODY = 'ziff/pgp_configuration/mail_body';
+    CONST MAIL_RECEIVER = 'ziffity/pgp_configuration/mail_receiver_email';
+    CONST MAIL_RECEIVER_NAME = 'ziffity/pgp_configuration/mail_receiver_name';
+    CONST MAIL_SENDER = 'ziffity/pgp_configuration/mail_sender_email';
+    CONST MAIL_SENDER_NAME = 'ziffity/pgp_configuration/mail_sender_name';
+    CONST MAIL_CC = 'ziffity/pgp_configuration/mail_cc';
+    CONST MAIL_BCC = 'ziffity/pgp_configuration/mail_bcc';
+    CONST MAIL_BODY = 'ziffity/pgp_configuration/mail_body';
 
     protected $date;
 
