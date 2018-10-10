@@ -34,7 +34,7 @@ require(['jquery', 'jquery/ui', 'Magento_Ui/js/modal/modal'],
             title: $('.contact-title').text()
         };
         var callPopup = modal(options, $('#callforquote-popup'));
-        $('.btn-callforprice').on("click", function(e){
+        $(document).on("click", '.btn-callforprice', function(e){
             $('#callforquote-popup').modal('openModal');
             e.preventDefault();
         });

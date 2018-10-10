@@ -55,14 +55,15 @@
                                                     <table class="center" cellpadding="0" cellspacing="0">
                                                         <tr>
                                                             <td style="line-height:0;">
-                                                                <a target="_blank" style="text-decoration:none;" href='{{store url=""}}'><img src="{{view url='images/email/logo.png'}}" border="0" style="font:12px/12px Tahoma, Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" alt="SHOPCSNTV.COM" /></a>
+                                                                <a target="_blank" style="text-decoration:none;" href='{{store url=""}}'><img src="{{view url='images/email/logo.png'}}" border="0" style="font:12px/12px Tahoma, Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" alt='{{config path="general/store_information/name"}}' /></a>
                                                             </td>
                                                         </tr>
                                                     </table>
                                                 </th>
 						<td data-color="text" data-size="size navigation" align="right" style="font:13px/15px Tahoma, Arial, Helvetica, sans-serif; color:#000;">
-							                                                                                                                {{trans '<a target="_blank" style="text-decoration:none; color:#000;" href="%order_url">Your Orders</a>' order_url=$this.getUrl($store,'sales/order/history/',[_nosid:1]) |raw}} <span style="background:#000; display:inline-block; vertical-align: middle; height: 10px; width: 1px; margin: 0 5px;"></span> {{trans '<a target="_blank" style="text-decoration:none; color:#000;" href="%account_url">Your Account</a>' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}<span style="background:#000; display:inline-block; vertical-align: middle; height: 10px; width: 1px; margin: 0 5px;"></span>                                                                <a target="_blank" style="text-decoration:none; color:#000;" href='{{store url=""}}'>Shopcsntv.com</a>
-							
+                                                       {{trans '<a target="_blank" style="text-decoration:none; color:#000;" href="%order_url">Your Orders</a>' order_url=$this.getUrl($store,'sales/order/history/',[_nosid:1]) |raw}} <span style="background:#000; display:inline-block; vertical-align: middle; height: 10px; width: 1px; margin: 0 5px;"></span> 
+                                                       {{trans '<a target="_blank" style="text-decoration:none; color:#000;" href="%account_url">Your Account</a>' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}<span style="background:#000; display:inline-block; vertical-align: middle; height: 10px; width: 1px; margin: 0 5px;"></span>
+                                                       <a target="_blank" style="text-decoration:none; color:#000;" href='{{store url=""}}'>{{config path="general/store_information/name"}}</a>
 						</td>
                                             </tr>
                                         </table>
