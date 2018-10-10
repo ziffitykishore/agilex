@@ -32,7 +32,7 @@
                 <field id="upload_public_key" translate="label" type="file" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Upload PGP Generated Public Key</label>
                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
-                   <upload_dir>var</upload_dir>
+                   <upload_dir>media/key</upload_dir>
                 </field>
                <field id="pgp_recipient" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Enter the PGP Generated UserId</label>
