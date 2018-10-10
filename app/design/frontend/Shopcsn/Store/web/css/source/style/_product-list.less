@@ -769,6 +769,18 @@ input[type="radio"]:checked + label:after{
     .sticky-wrapper {
         float: none !important;
     }
+
+    .filter{
+        &.fixed{
+            position: fixed;
+            top: 0;
+        }
+        &.bottom{
+            position: absolute;
+            top: auto;
+            bottom: 0;
+        }
+    }
     #layered-filter-block {
         .filter-title {
             padding: 20px;
