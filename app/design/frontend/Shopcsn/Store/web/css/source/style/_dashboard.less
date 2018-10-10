@@ -365,6 +365,24 @@
             position: static;
             border: none;
         }
+        .products-grid {
+            .product-item-info {
+                .product-item-name{
+                    min-height: 60px;
+                }
+
+                .stock {
+                    display: table-cell;
+                    vertical-align: bottom
+                }
+            }
+         &.wishlist{ 
+             margin: 0;
+             .product-item{
+            padding: 20px;
+         }
+        }
+        }
     }
 
     /******** share wishlist*********/
@@ -900,6 +918,30 @@
             }
         }
     }
+
+    .wishlist-index-index{
+        .form-wishlist-items{
+            padding: 20px;
+        }
+        .column {
+            .actions-toolbar {
+                .action.back{
+                    display: block;
+                }
+            }
+        }
+    .products-grid.wishlist {
+        margin-right: 0;
+        .product-item {
+            .product-item-info{
+                min-height: auto;
+            }
+            .box-tocart {
+                float: none;
+            }
+        }
+    }
+ }
 }
 
 @media screen and (max-width: 480px) {

@@ -8,12 +8,13 @@ fieldset[disabled] .action.primary {
 .button() {
     border-radius: 0;
     .lib-css(background, @color-black);
+    border: 1px solid @color-black;
     font-size: 13px;
     .lib-css(color, @color-white);
     .transition(all 0.5s ease-in-out 0s);
-    border: 1px solid @color-black;
+    
     text-transform: uppercase;
-    &:hover {
+    &:hover,&:focus, &:active {
         .lib-css(background, @color-btn);
         .lib-css(border-color, @color-btn);
     }

@@ -329,6 +329,14 @@
     .modal-footer {
         button {
             .button();
+            &:focus, &:active {
+            .lib-css(background, @color-black);
+            border: 1px solid @color-black;
+            }
+            &:hover{
+                .lib-css(background, @color-btn);
+                .lib-css(border-color, @color-btn);
+            }
         }
     }
 }
