@@ -20,9 +20,10 @@
         }
     }
     a.action,
-    a.page, a.page:visited {
+    a.page,
+    a.page:visited {
         color: @color-black;
-        &:hover{
+        &:hover {
             color: @color-white;
             background: @color-black;
             border-color: @color-black;
@@ -293,7 +294,8 @@ input[type="radio"]:checked + label:after{
 
 .product-name,
 .product-item-name {
-    a, a:visited{
+    a,
+    a:visited {
         color: @color-black;
         &:hover {
             color: @color-darkslateblue;
@@ -301,8 +303,42 @@ input[type="radio"]:checked + label:after{
     }
 }
 
+.action.towishlist {
+    position: relative;
+    &:before {
+        display: none;
+    }
+    &:after {
+        background: url('../images/wishlist.png') no-repeat center center;
+        content: '';
+        width: 15px;
+        height: 15px;
+        background-size: 100%;
+        display: block;
+    }
+    span {
+        border: 0;
+        clip: rect(0, 0, 0, 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+    .catalog-product-view & {
+        &:after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            .transform(translate(-50%,
+            -50%));
+        }
+    }
+}
+
 .products-grid {
-    &.wishlist{
+    &.wishlist {
         .product-item {
             .price-box {
                 position: static;
@@ -349,7 +385,6 @@ input[type="radio"]:checked + label:after{
             min-height: 50px;
             padding-bottom: 20px;
             a {
-                
                 font-size: inherit;
                 text-decoration: none;
             }
@@ -368,7 +403,8 @@ input[type="radio"]:checked + label:after{
         }
         .product-item-actions {
             position: static;
-            .actions-primary .action.tocart, .stock.unavailable {
+            .actions-primary .action.tocart,
+            .stock.unavailable {
                 border-left: 1px solid #404040;
             }
             .tocompare {
@@ -399,7 +435,6 @@ input[type="radio"]:checked + label:after{
             }
             .actions-primary .action,
             .unavailable {
-                
                 padding: 15px 10px;
                 width: 50%;
                 float: left;
@@ -427,7 +462,6 @@ input[type="radio"]:checked + label:after{
                 background: #404040;
             }
             .stock.unavailable {
-                
                 .button();
             }
         }
@@ -444,19 +478,19 @@ input[type="radio"]:checked + label:after{
 }
 
 .page-main {
-.stock{
-    color: @color-black;
-    &.available{
-        span {
-            color: #2fab4c;
+    .stock {
+        color: @color-black;
+        &.available {
+            span {
+                color: #2fab4c;
+            }
+        }
+        &.unavailable {
+            span {
+                color: @color-crimson;
+            }
         }
     }
-    &.unavailable {
-        span {
-            color: @color-crimson;
-        }
-    }
-}
 }
 
 .products-list .product-item+.product-item {
@@ -466,18 +500,14 @@ input[type="radio"]:checked + label:after{
 .products-list {
     .actions {
         .action:not(.towishlist) {
-            
             padding: 16px 25px;
             height: 40px;
             line-height: normal;
             font-size: @f-size-xs;
             font-weight: bold;
             text-transform: uppercase;
-            
-            
             display: block;
             .button();
-           
         }
     }
     .product {
@@ -625,14 +655,13 @@ input[type="radio"]:checked + label:after{
                     }
                 }
             }
-
-            
         }
     }
 }
 
 @media screen and (min-width:1200px) {
-    .page-with-filter, .page-products {
+    .page-with-filter,
+    .page-products {
         .products-grid {
             .product-item {
                 width: percentage(1/3);
@@ -642,7 +671,8 @@ input[type="radio"]:checked + label:after{
 }
 
 @media screen and (min-width:1500px) {
-    .page-with-filter, .page-products {
+    .page-with-filter,
+    .page-products {
         .products-grid {
             .product-item {
                 width: percentage(1/4);
@@ -650,8 +680,6 @@ input[type="radio"]:checked + label:after{
         }
     }
 }
-
-
 
 @media screen and (max-width:1400px) {
     .products-grid {
@@ -738,8 +766,7 @@ input[type="radio"]:checked + label:after{
             }
         }
     }
-
-    .sticky-wrapper{
+    .sticky-wrapper {
         float: none !important;
     }
     #layered-filter-block {
@@ -781,7 +808,7 @@ input[type="radio"]:checked + label:after{
 //  _____________________________________________
 .media-width(@extremum,
 @break) when (@extremum ='max') and (@break =@screen__m+1) {
-    .page-with-filter.page-products {
+    .page-products {
         .columns {
             z-index: auto;
         }
@@ -810,7 +837,7 @@ input[type="radio"]:checked + label:after{
             }
         }
     }
-    .page-with-filter {
+    .page-products {
         .sidebar-main {
             .wp-filters {
                 .disp(none);
@@ -961,7 +988,7 @@ input[type="radio"]:checked + label:after{
                 }
             }
             .product-item-actions {
-                
+                display: none;
                 .actions-primary {
                     visibility: visible;
                     opacity: 1;
@@ -981,7 +1008,7 @@ input[type="radio"]:checked + label:after{
 }
 
 @media screen and (max-width: 480px) {
-    .page-with-filter.page-products {
+    .page-products {
         .page-main {
             .sidebar-main {
                 .filter-title {
