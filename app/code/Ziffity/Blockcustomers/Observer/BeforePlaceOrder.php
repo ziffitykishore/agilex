@@ -53,7 +53,8 @@ class BeforePlaceOrder implements ObserverInterface
 
         $order = $observer->getEvent()->getOrder();
         $orderData = $order->getData();
-        
+        $shipDesc = explode('-', $orderData['shipping_description'])[0];
+        $order->setShippingDescription($shipDesc);
         $supportEmail = $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE);
         $existCollection = $this->blockedCollection->create()->addFieldToFilter('email',$orderData['customer_email'])->addFieldToFilter('is_active',['eq'=>1]);        
         if($existCollection->getSize()){
