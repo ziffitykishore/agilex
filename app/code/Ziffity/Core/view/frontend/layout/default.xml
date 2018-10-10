@@ -10,5 +10,6 @@
             </block>
         </referenceBlock>
         <referenceBlock name="social-login-popup" remove="true"/>
+        <referenceBlock name="osc.additional.content" remove="true"/>
     </body>
 </page>

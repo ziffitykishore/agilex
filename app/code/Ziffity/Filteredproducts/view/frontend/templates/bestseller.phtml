@@ -117,20 +117,27 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                             <span><?= /* @escapeNotVerified */ __('Call For Price') ?></span>
                         </button>
                                     <?php
-                                    else: 
-                                    if ($_product->isSaleable()): ?>
-                                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                                        <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
-                                            <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
-                                            <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
-                                            <?= $block->getBlockHtml('formkey') ?>
-                                            <button type="submit"
-                                                    title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
-                                                    class="action tocart primary">
-                                                <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
-                                            </button>
-                                        </form>
-                                        
+                                    else: ?>
+                                    <?php if ($_product->isSaleable()): ?>
+                                            <?php if($_product->getTypeId() == 'configurable'): ?>
+                                                    <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>"
+                                                            title="<?= $block->escapeHtml(__('View Details')) ?>"
+                                                            class="action tocart primary">
+                                                        <span><?= /* @escapeNotVerified */ __('View Details') ?></span>
+                                                    </a>
+                                            <?php else: ?>
+                                                <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                                <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
+                                                    <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
+                                                    <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                                    <?= $block->getBlockHtml('formkey') ?>
+                                                    <button type="submit"
+                                                            title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                                            class="action tocart primary">
+                                                        <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                                    </button>
+                                                </form>
+                                            <?php endif; ?>
                                     <?php else: ?>
                                         <?php if ($_product->isAvailable()): ?>
                                             <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>

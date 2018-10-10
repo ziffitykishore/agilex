@@ -8,9 +8,10 @@ use Magento\Framework\Message\ManagerInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\UrlInterface;
+use Magento\Framework\Exception\CouldNotSaveException;
 
 
-class CustomerLogin implements ObserverInterface
+class BeforePlaceOrder implements ObserverInterface
 {
 
     protected $blockedCollection;
@@ -60,7 +61,7 @@ class CustomerLogin implements ObserverInterface
           
              $CustomRedirectionUrl = $this->_urlInterface->getUrl('onestepcheckout/index/index');
              $this->_responseFactory->create()->setRedirect($CustomRedirectionUrl)->sendResponse();
-             exit;            
+              throw new CouldNotSaveException(__('You are not authorized to place an order, please contact us at '.$supportEmail));
             
         }
     }
