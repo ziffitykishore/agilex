@@ -8,6 +8,7 @@
         <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Registered Customers')) ?></strong>
     </div>
     <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <div class="login-notify" style="display: none;"></div>
         <form class="form form-login"
               action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>"
               method="post"
