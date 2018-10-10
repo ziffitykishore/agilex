@@ -6,6 +6,7 @@
 define([
     'jquery',
     'slick',
+    'left-sticky',
     'jquery/ui',
     'domReady!'
 ], function($) {   
@@ -23,7 +24,9 @@ define([
         $('body').removeClass('menu-opened acc-opened').addClass('cart-opened');
     });
 
-    $(document).on('click', '#btn-minicart-close', function (){
+
+
+    $(document).on('click', '#btn-minicart-close, .modal-footer button', function (){
         $('body').removeClass('cart-opened');
     });
 
@@ -247,4 +250,11 @@ define([
         $('#newsletter').focus();
         $('#newsletter').closest('form').submit();
     });
+
+    $(".page-products .sidebar-main").stick_in_parent({
+        offset_top: '0px'
+    });
+
+
+    $('.product-info-main .product-social-links').appendTo('.box-tocart');
 });

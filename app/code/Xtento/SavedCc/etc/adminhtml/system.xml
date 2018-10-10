@@ -134,11 +134,11 @@
                     <label>Credit Card Types</label>
                     <source_model>Xtento\SavedCc\Model\System\Config\Source\Cctype</source_model>
                 </field>
-                <!--<field id="useccv" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
+                 <field id="useccv" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Show Credit Card Verification Field</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment>Show field for CVV2 (3/4 digit) field</comment>
-                </field>-->
+                </field>
                 <field id="allowspecific" translate="label" type="allowspecific" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Payment from Applicable Countries</label>
                     <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>

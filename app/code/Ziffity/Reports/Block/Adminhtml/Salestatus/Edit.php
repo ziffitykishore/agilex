@@ -23,7 +23,8 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     protected $_coreRegistry = null;
  
     protected $_optionType;
- 
+  
+    protected $productCollection;
     /**
      * @param \Magento\Backend\Block\Widget\Context $context
      * @param \Magento\Framework\Registry $registry
@@ -32,9 +33,11 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     public function __construct(
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry,
+        \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection,
         array $data = []
     ) {
         $this->_coreRegistry = $registry;
+        $this->_productCollection = $productCollection;
         parent::__construct($context, $data);
     }
  
@@ -45,11 +48,16 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      */
     protected function _construct()
     {
+        
         $this->_objectId = 'id';
-        $this->_blockGroup = 'Ziffity_Reports';
+       $this->_blockGroup = 'Ziffity_Reports';
+        $this->_headerText = __('Salestatus');
         $this->_controller = 'adminhtml_salestatus';
          parent::_construct();
-    }
+        $this->buttonList->remove('delete');
+         $this->buttonList->remove('save');
+        $this->buttonList->remove('reset');
+    } 
     public function getHeaderText()
     {
         
@@ -65,40 +73,6 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     {
         return $this->_authorization->isAllowed($resourceId);
     }
- 
-    /**
-     * Prepare form Html. call the phtm file with form.
-     *
-     * @return string
-     */
-    public function getFormHtml()
-    {
-       // get the current form as html content.
-        $html = parent::getFormHtml();
-        //Append the phtml file after the form content.
-       // $html .= $this->setTemplate('Ziffity_Reports::Edit/view.phtml')->toHtml(); 
-        return $html;
-    }
- 
-    /**
-     * Prepare layout
-     *
-     * @return \Magento\Framework\View\Element\AbstractBlock
-     */
-    protected function _prepareLayout()
-    {
- 
-        $this->_formScripts[] = "
-            require([
-                'jquery',
-                'mage/mage',
-                'knockout'
-            ], function ($){
-                 
-            });
-                
-        ";
-        return parent::_prepareLayout();
-    }
+
  
 }

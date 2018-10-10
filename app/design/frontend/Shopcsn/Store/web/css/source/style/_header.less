@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             box-shadow: 2px 0 25px 0px #3e5ca4;
-            min-height: 75px;
+            min-height: 77px;
             background: @color-darkslateblue
         }
         border: none;
@@ -613,7 +613,8 @@
     .header-wrapper {
         .transition(all 0.5s ease-in-out 0s);
         position: fixed;
-        width: 100%;
+        left: 0;
+        right: 0;
         z-index: 120;
         &.fix-header {
             .pos(fixed);
@@ -627,9 +628,18 @@
             top: 0;
         }
 
-
+        & + .breadcrumbs,
         & + .page-main{
-            padding-top: 75px;
+            padding-top: 77px;
+            position: relative;
+            &:before{
+                content: '';
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 77px;
+                background: @color-darkslateblue;
+            }
         }
     }
     .nav-sections {
@@ -677,6 +687,9 @@
                                 display: none;
                             }
                         }
+                        .submenu {
+                            background: transparent;
+                        }
                     }
                 }
             }
@@ -686,6 +699,7 @@
                     color: #5178bf;
                 }
                 &.submenu {
+                    border-left: 1px solid #d7dded;
                     .parent {
                         >a {
                             font-size: 13px;
@@ -703,15 +717,22 @@
                         position: absolute;
                         bottom: 0;
                         left: 0;
+                        z-index: -1;
                     }
-                    li {
+                    .simple-menu {
                         &:hover {
                             background: #fff;
                         }
+
+                        a:hover {
+                            background: #fff;
+                        }
                     }
-                    a:hover {
-                        background: #fff;
+
+                    a:hover{
+                        background: transparent;
                     }
+                    
                     .submenu {
                         position: static !important;
                         display: block !important;

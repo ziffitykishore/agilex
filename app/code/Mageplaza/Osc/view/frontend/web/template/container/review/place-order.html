@@ -23,21 +23,20 @@
 <div class="checkout-agreements-block mp-12">
     <form id="co-place-order-agreement" class="form" novalidate="novalidate">
         <!-- ko foreach: getRegion('checkout-agreements') -->
-        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- ko template: getTemplate() -->
+        <!-- /ko -->
         <!--/ko-->
     </form>
 </div>
 <!-- ko ifnot: visibleBraintreeButton() -->
 <div class="actions-toolbar">
     <div class="place-order-primary">
-        <button class="action primary checkout"
-                type="button"
-                data-bind="
+        <button class="action primary checkout" type="button" data-bind="
                 click: placeOrder,
-                attr: {'title': $t('Place Order')},
+                attr: {'title': $t('Place Your Order')},
                 css: {disabled: !isPlaceOrderActionAllowed()}
                 ">
-            <span data-bind="i18n: 'Place Order'"></span>
+            <span data-bind="i18n: 'Place Your Order'"></span>
         </button>
     </div>
 </div>
@@ -50,19 +49,15 @@
         <span class="payment-method-description" data-bind="text: braintreePaypalModel.customerEmail()"></span>
     </div>
     <div class="place-order-primary">
-        <button class="action primary checkout"
-                type="button"
-                data-bind="
+        <button class="action primary checkout" type="button" data-bind="
                 visible: braintreePaypalModel.isReviewRequired(),
                 click: brainTreePaypalPlaceOrder,
-                attr: {'title': $t('Place Order')},
+                attr: {'title': $t('Place Your Order')},
                 enable: (getBraintreePaypalComponent().isActive())
                 ">
-            <span data-bind="i18n: 'Place Order'"></span>
+            <span data-bind="i18n: 'Place Your Order'"></span>
         </button>
-        <button class="action primary checkout"
-                type="button"
-                data-bind="
+        <button class="action primary checkout" type="button" data-bind="
                 visible: !braintreePaypalModel.isReviewRequired(),
                 click: brainTreePayWithPayPal,
                 attr: {'title': $t(getBraintreePaypalComponent().getButtonTitle())},
@@ -74,12 +69,8 @@
     <!-- /ko -->
     <!-- ko ifnot: isBraintreeNewVersion() -->
     <div class="place-order-primary">
-        <button data-button="place" data-role="review-save"
-                type="submit"
-                data-bind="attr: {title: $t('Place Order')}, enable: (getBraintreePaypalComponent().isActive()), click: brainTreePayWithPayPal"
-                class="action primary checkout"
-                disabled>
-            <span data-bind="i18n: 'Place Order'"></span>
+        <button data-button="place" data-role="review-save" type="submit" data-bind="attr: {title: $t('Place Order')}, enable: (getBraintreePaypalComponent().isActive()), click: brainTreePayWithPayPal" class="action primary checkout" disabled>
+            <span data-bind="i18n: 'Place Your Order'"></span>
         </button>
     </div>
     <!-- /ko -->

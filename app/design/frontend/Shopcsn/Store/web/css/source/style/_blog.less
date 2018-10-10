@@ -83,6 +83,7 @@
         .blog-desc {
             color: @color-black;
             margin-bottom: 30px;
+            min-height: 55px;
             p {
                 line-height: 18px;
                 font-size: @f-size;
@@ -370,6 +371,10 @@
 
         .post-image {
             text-align: center;
+            img {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
         .post-holder {
             background: #fff;
@@ -513,9 +518,11 @@
                     border-color: #d7d7ed;
                     button {
                         .button();
+                        height: 50px;
                         border-radius: 0 !important;
                         padding: 10px 20px;
                         min-width: 100px;
+                        margin-top: 0;
                         text-transform: uppercase;
                     }
                 }

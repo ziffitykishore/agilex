@@ -10,6 +10,15 @@
 }
 
 
+/*********** About us *************/
+
+.cms-shopcsntv-about-us {
+    .gallery:last-child {
+        float: right;
+    }
+}
+
+
 /********** privacy-policy ************/
 
 .cms-shopcsntv-privacy-policy, .cms-shopcsntv-faq, .cms-shopcsntv-guarentee {
@@ -111,12 +120,7 @@
     }
 }
 
-.container-md {
-    max-width: 1170px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 0 15px;
-}
+
 
 h1 {
     font-size: 40px;
@@ -455,6 +459,7 @@ p {
 
 
 /*************** responsive static page   ***********/
+
 @media only screen and (min-width:1200px) {
     .page-footer {
         .sponsor {
@@ -464,7 +469,6 @@ p {
             }
         }
     }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -483,6 +487,9 @@ p {
                     left: 38%;
                 }
             }
+        }
+        .gallery:last-child {
+            float: none;
         }
     }
     .cms-shopcsntv-contactus {
@@ -505,6 +512,7 @@ p {
                 border-top: none;
                 select {
                     max-width: none;
+                    width: 100% !important;
                 }
                 .button-full {
                     max-width: none;
@@ -512,9 +520,7 @@ p {
             }
         }
     }
-    .cms-shopcsntv-privacy-policy,
-    .cms-shopcsntv-guarentee,
-    .cms-shopcsntv-faq {
+    .cms-shopcsntv-privacy-policy, .cms-shopcsntv-guarentee, .cms-shopcsntv-faq {
         .privacy {
             .nav-tabs {
                 &.full-bg {
@@ -550,6 +556,12 @@ p {
                     }
                 }
             }
+        }
+    }
+    .detail {
+
+        .book-detail, .book {
+            padding: 30px 20px;
         }
     }
 }

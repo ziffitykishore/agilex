@@ -1,9 +1,13 @@
 <div class="pre-loader" style="background-image: url('<?php echo $block->getViewFileUrl('images/loader-3.gif') ?>')"></div>
 <script>
     require(['jquery'], function($){
+        var preLoader = $(".pre-loader");
         $(window).load(function() {
-            $(".pre-loader").fadeOut("slow");
+            preLoader.fadeOut("slow");
 	});
+        setInterval(function(){
+            preLoader.fadeOut("slow");
+        }, 3000);
     });
 </script>
 <style>
