@@ -95,6 +95,10 @@ class Captcha implements ObserverInterface
         $googleSecretKey = $helper->getScopeConfig($helper::C_SECRETKEY);
         $params = $this->_request->getParams();
         if ($googleSecretKey && isset($params['g-captcha'])) {
+            $fullActionName =  $this->_request->getFullActionName();
+            if($this->allowActions($fullActionName)){
+                return;
+            }
             if (isset($params['g-recaptcha-response'])) {
                 $capRes = $this->_helperData->validateGCaptcha($params);
                 if ($capRes) {
@@ -126,5 +130,11 @@ class Captcha implements ObserverInterface
         $this->messageManager->addErrorMessage($message);
         $this->_actionFlag->set('', Action::FLAG_NO_DISPATCH, true);
         $this->_responseInterface->setRedirect($this->redirect->getRefererUrl());
+    }
+
+    public function allowActions($action)
+    {
+        $fullActionsArray = ['wishlist_index_add'];
+        return in_array($action, $fullActionsArray);
     }
 }
