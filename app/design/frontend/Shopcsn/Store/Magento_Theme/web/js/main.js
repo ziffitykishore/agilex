@@ -282,6 +282,8 @@ define([
                     $('.filter').removeClass('bottom');
                 }
             });
+        } else {
+            sidebar.removeAttr('style');
         }
     }
     
