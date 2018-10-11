@@ -12,25 +12,15 @@ define([
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function(e) {
-        $('body').toggleClass('menu-opened').removeClass('acc-opened cart-opened');
+        $('body').toggleClass('menu-opened').removeClass('acc-opened');
 
     });
     $('.overlay').on('click', function() {
-        $('body').removeClass('acc-opened cart-opened menu-opened');
-    });
-
-    $('.showcart').on('click', function() {
-        $('body').removeClass('menu-opened acc-opened').addClass('cart-opened');
-    });
-
-
-
-    $(document).on('click', '#btn-minicart-close, .modal-footer button', function (){
-        $('body').removeClass('cart-opened');
+        $('body').removeClass('acc-opened menu-opened');
     });
 
     $('.customer-welcome .customer-name').on('click', function() {
-        $('body').toggleClass('acc-opened').removeClass('menu-opened cart-opened');
+        $('body').toggleClass('acc-opened').removeClass('menu-opened');
     });
 
     $('.menu-wrap li.level0').each(function() {
@@ -262,20 +252,20 @@ define([
         if(!is_mobile){
             $(window).scroll(function(){
                 var media=$('.filter');
-                product_w=$('.sidebar-main').width();
+                product_w=$('.page-products .sidebar-main').width();
                 media.width(product_w);
                 var fixSidebar=$('.page-header').innerHeight();
                 var contentHeight=$('.columns').innerHeight();
                 var sidebarHeight=$('.filter').height();
-                sidebar=$('.sidebar-main').height(sidebarHeight+30);
+                sidebar=$('.page-products .sidebar-main').height(sidebarHeight+30);
                 var sidebarBottomPos=contentHeight-sidebarHeight;
                 var trigger=$(window).scrollTop()-fixSidebar;
                 if($(window).scrollTop()>=fixSidebar){
                     $('.filter').addClass('fixed');
-                    $('.sidebar-main').addClass('sidebar-scrolled');
+                    $('.page-products .sidebar-main').addClass('sidebar-scrolled');
                 }else{
                     $('.filter').removeClass('fixed');
-                    $('.sidebar-main').removeClass('sidebar-scrolled');
+                    $('.page-products .sidebar-main').removeClass('sidebar-scrolled');
                 }if(trigger>=sidebarBottomPos){
                     $('.filter').addClass('bottom');
                 }else{
@@ -283,7 +273,7 @@ define([
                 }
             });
         } else {
-            sidebar.removeAttr('style');
+            $('.page-products .sidebar-main').removeAttr('style');
         }
     }
     

@@ -326,7 +326,7 @@ input[type="radio"]:checked + label:after{
         position: absolute;
         width: 1px;
     }
-    .catalog-product-view & {
+    .page-with-filter &, .catalog-product-view & {
         &:after {
             position: absolute;
             top: 50%;
@@ -987,21 +987,24 @@ input[type="radio"]:checked + label:after{
     .products-grid {
         div.product-item-info {
             padding: 10px;
-            min-height: 270px;
+            min-height: 260px;
             .product-item-name {
+                min-height: 50px;
                 a {
                     font-size: 10px;
                     line-height: normal;
                 }
             }
             .price-box {
+                position: relative;
                 .price {
                     font-size: 12px;
                 }
             }
             .product-item-actions {
-                display: none;
+                display: block;
                 .actions-primary {
+                    display: none;
                     visibility: visible;
                     opacity: 1;
                     .transform(translateY(0));
