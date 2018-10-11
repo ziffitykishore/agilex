@@ -835,8 +835,18 @@ input[type="radio"]:checked + label:after{
                 .sorter {
                     display: inline-block;
                     position: absolute;
-                    top: 0;
+                    top: -3px;
                     right: 0;
+                    width: 70%;
+
+                    label {
+                        min-width: auto;
+                        
+                    }
+
+                    select {
+                        width: 60%;
+                    }
                 }
                 .toolbar-amount,
                 .modes {
@@ -1037,15 +1047,7 @@ input[type="radio"]:checked + label:after{
             .toolbar-products {
                 margin-top: 15px;
                 background: transparent;
-                div.sorter {
-                    position: relative;
-                    width: 100%;
-                    label,
-                    select {
-                        float: left;
-                        width: 50%;
-                    }
-                }
+                
             }
             .products {
                 &~.toolbar-products {
