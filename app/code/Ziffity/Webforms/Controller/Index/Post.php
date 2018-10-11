@@ -73,7 +73,10 @@ class Post extends \Magento\Framework\App\Action\Action
                     'email' => $email
                 ];
                 $transport = $this->_transportBuilder
-                    ->setTemplateIdentifier('webforms_thanks_template')
+                    ->setTemplateIdentifier($this->scopeConfig->getValue(
+            'contact/email/email_template',
+            ScopeInterface::SCOPE_STORE
+             ))
                     ->setTemplateOptions(
                         [
                             'area' => 'frontend',

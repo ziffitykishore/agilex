@@ -482,9 +482,29 @@
             top: 10px;
             bottom: 10px;
         }
+
+        &.call-price {
+            bottom: auto;
+        }
     }
+
+    
 
     .custom-g-recaptcha{
         .transform(scale(0.8));
     }
+}
+
+
+@media screen and (max-width: 767px){
+
+.modal-popup {
+    
+    &.confirm {
+        .modal-inner-wrap {
+            width: 90%;
+        }
+        
+    }
+}
 }
