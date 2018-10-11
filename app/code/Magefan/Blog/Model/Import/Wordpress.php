@@ -215,7 +215,9 @@ class Wordpress extends AbstractImport
 
             /* Prepare post data */
             foreach (['post_title', 'post_name', 'post_content'] as $key) {
-                $data[$key] = mb_convert_encoding($data[$key], 'HTML-ENTITIES', 'UTF-8');
+                $encoding   = mb_detect_encoding($data[$key]);
+                $text = iconv($encoding, 'UTF-8//IGNORE', $data[$key]);
+                $data[$key] = mb_convert_encoding($text, 'HTML-ENTITIES', 'UTF-8');
             }
 
             $creationTime = strtotime($data['post_date_gmt']);

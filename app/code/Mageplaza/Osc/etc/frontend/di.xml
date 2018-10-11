@@ -59,7 +59,7 @@
     <type name="Magento\Eav\Model\Validator\Attribute\Data">
         <plugin name="mz_osc_validator" type="Mageplaza\Osc\Model\Plugin\Eav\Model\Validator\Attribute\Data"/>
     </type>
-    <type name="Magento\Quote\Model\Quote\Item\Processor">
+<!--    <type name="Magento\Quote\Model\Quote\Item\Processor">
         <plugin name="oscCheckProductQty" type="Mageplaza\Osc\Model\Plugin\Quote\Processor"/>
-    </type>
+    </type>-->
 </config>
