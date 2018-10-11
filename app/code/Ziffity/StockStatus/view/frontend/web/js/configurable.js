@@ -16,7 +16,11 @@ define([
             $(".productAlert").hide();
             if (element.value) {
                 this.options.state[element.config.id] = element.value;
-                this.elementLabel = element.selectedOptions[0].config.label;
+
+                /*fix for ie issue*/
+//              this.elementLabel = element.selectedOptions[0].config.label;
+                this.elementLabel = $(element).find('option:selected').text();
+
                 //Check for the status of out of stock module
                 if ($(".getOutOfStatus").val() == 1) {
                     this.outOfStock = this.elementLabel.indexOf("Out of Stock");
