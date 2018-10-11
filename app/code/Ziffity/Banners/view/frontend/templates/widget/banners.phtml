@@ -15,7 +15,14 @@ requirejs(['jquery','slick'], function($){
         speed: 500,
         fade: true,
         arrows: false,
-        cssEase: 'linear'
+        cssEase: 'linear',
+        responsive: [{
+                breakpoint: 767,
+                settings: {
+                    dots: false,
+                }
+            }
+        ]
     });
 })
 </script>
