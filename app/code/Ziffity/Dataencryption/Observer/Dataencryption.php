@@ -166,7 +166,8 @@ class Dataencryption implements ObserverInterface {
         $gpg = '/usr/bin/gpg';
         $recipient = $this->getConfigValue(self::PGP_RECIPIENT);
         $pubkey = $this->getConfigValue(self::PGP_PUBLIC_KEY);
-        $pubkeyDir = $varDir . self::DS . $pubkey;
+        $pubDir = $this->_directoryList->getPath('pub');
+        $pubkeyDir = $pubDir . self::DS . "media/key". self::DS. $pubkey;
         $files1 = glob($varDir . self::DS . $folderName . self::DS . '*');
         echo shell_exec("$gpg --import $pubkeyDir");
         foreach ($files1 as $ccfile) {
