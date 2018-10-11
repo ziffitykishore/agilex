@@ -80,7 +80,7 @@ class Post extends \Magento\Framework\App\Action\Action
                     ->setTemplateOptions(
                         [
                             'area' => 'frontend',
-                            'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                            'store' => $this->_storeManager->getStore()->getStoreId(),
                         ])
                     ->setTemplateVars(
                         [

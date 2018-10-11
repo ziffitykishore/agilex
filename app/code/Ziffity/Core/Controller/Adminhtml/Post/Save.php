@@ -4,6 +4,7 @@ namespace Ziffity\Core\Controller\Adminhtml\Post;
   
 use Magento\Store\Model\ScopeInterface; 
 use \Magento\Framework\Controller\ResultFactory;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Save extends \Magefan\Blog\Controller\Adminhtml\Post\Save
 { 
@@ -16,7 +17,8 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Post\Save
     protected $_logLoggerInterface; 
     protected $request; 
     protected $subscriber;
-
+    protected $_storeManager;
+    
     public function __construct( 
         \Magento\Framework\App\Request\Http $request, 
         \Magento\Backend\App\Action\Context $context, 
@@ -25,7 +27,8 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Post\Save
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig, 
         \Psr\Log\LoggerInterface $loggerInterface,
         \Magento\Newsletter\Model\ResourceModel\Subscriber\CollectionFactory $subscriberFactory,
-        \Magento\Framework\App\Request\DataPersistorInterface $data 
+        \Magento\Framework\App\Request\DataPersistorInterface $data,
+            StoreManagerInterface $storeManager
     ) { 
 
         $this->request = $request;
@@ -35,6 +38,7 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Post\Save
         $this->_logLoggerInterface = $loggerInterface; 
         $this->messageManager = $context->getMessageManager(); 
         $this->subscriber =$subscriberFactory;
+        $this->_storeManager = $storeManager;
         parent::__construct($context,$data); 
     } 
     
@@ -62,7 +66,9 @@ class Save extends \Magefan\Blog\Controller\Adminhtml\Post\Save
                     $this->_inlineTranslation->suspend();
                     $sender = [ 'name' => $name, 'email' => $email ];
                     $transport = $this->_transportBuilder ->setTemplateIdentifier('blog_status_template')
-                    ->setTemplateOptions( [ 'area' => 'frontend', 'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID, ])
+                    ->setTemplateOptions( [ 'area' => 'frontend', 
+                        'store' => $this->_storeManager->getStore()->getStoreId(), 
+                        ])
                     ->setTemplateVars([
                         'title' => $data['title'],
                         'content' => $data['content'], 
