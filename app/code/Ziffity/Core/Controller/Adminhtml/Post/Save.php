@@ -5,7 +5,7 @@ namespace Ziffity\Core\Controller\Adminhtml\Post;
 use Magento\Store\Model\ScopeInterface; 
 use \Magento\Framework\Controller\ResultFactory;
 
-class Save extends \Magefan\Blog\Controller\Adminhtml\Post 
+class Save extends \Magefan\Blog\Controller\Adminhtml\Post\Save
 { 
 
     const XML_PATH_EMAIL_RECIPIENT_NAME = 'trans_email/ident_support/name'; 
