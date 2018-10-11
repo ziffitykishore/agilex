@@ -847,7 +847,9 @@
         .block-search {
             width: 100%;
             max-width: 58%;
-            position: static;
+            position: relative;
+            z-index: 150;
+            
             .block-content {
                 max-width: 80%;
                 margin: auto;
@@ -1081,6 +1083,12 @@
                     top: 0px;
                     right: 0px;
                     max-width: 65px;
+
+                    .block-minicart {
+                        .minicart-items{
+                            padding: 20px;
+                        }
+                    }
                 }
             }
             .block-search {
@@ -1091,6 +1099,10 @@
                 background: @color-darkslateblue;
                 .block-content {
                     max-width: 100%;
+                }
+
+                .search-autocomplete{
+                    margin-top: 0;
                 }
             }
         }
