@@ -49,5 +49,9 @@
             </arguments>
             <block class="Magento\Catalog\Block\Category\Rss\Link" name="rss.link" template="Magento_Catalog::category/rss.phtml"/>
         </referenceBlock>
+
+
+        <move element="category.description" destination="content" after="page.main.title"/>
+        <move element="page.main.title" destination="content" before="-"/>
     </body>
 </page>
