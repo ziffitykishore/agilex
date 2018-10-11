@@ -67,6 +67,11 @@ body {
     overflow-y: hidden;
 }
 
+
+body {
+    overflow-x: hidden;
+}
+
 .page-wrapper {
     .pos(relative);
     .overlay {
@@ -81,7 +86,7 @@ body {
         visibility: hidden;
         opacity: 0;
         z-index: 100;
-        .menu-opened &,
+        .nav-open &,
         .acc-opened &,
         .cart-opened & {
             visibility: visible;
