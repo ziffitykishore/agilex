@@ -1,0 +1,96 @@
+version: "2.3"
+
+services:
+
+  app:
+    image: "acc:latest"
+    cap_add:
+      - SYS_PTRACE
+    ports:
+      - "80"
+      - "443"
+    links:
+      - database
+      - elasticsearch
+      - rabbitmq
+      - redis
+      - smtp
+    volumes_from:
+      - database
+      - elasticsearch
+      - rabbitmq
+      - redis
+      - smtp
+    labels:
+      - "traefik.frontend.rule=Host:magento.test"
+
+  database:
+    image: "percona:5.6"
+    expose:
+      - "3306"
+    volumes:
+      - target: /var/lib/mysql
+        source: database-vol
+        type: volume
+      - target: /docker-entrypoint-initdb.d/
+        source: ./files/db
+        type: bind
+    environment:
+      MYSQL_ROOT_PASSWORD: "root_password"
+      MYSQL_DATABASE: "magento_database"
+      MYSQL_USER: "magento_user"
+      MYSQL_PASSWORD: "magento_password"
+
+  elasticsearch:
+    image: "elasticsearch:2"
+    expose:
+      - "9200"
+      - "9300"
+    volumes:
+      - target: /usr/share/elasticsearch/data
+        source: elasticsearch-vol
+        type: volume
+    environment:
+      - "discovery.type=single-node"
+
+  rabbitmq:
+    image: "rabbitmq"
+    expose:
+      - "5672"
+    volumes:
+      - target: /var/lib/rabbitmq
+        source: rabbitmq-vol
+        type: volume
+    environment:
+      RABBITMQ_DEFAULT_USER: "user"
+      RABBITMQ_DEFAULT_PASS: "password"
+      RABBITMQ_DEFAULT_VHOST: "magento"
+
+  redis:
+    image: "redis"
+    expose:
+      - "6379"
+    volumes:
+      - target: /var/lib/redis
+        source: redis-vol
+        type: volume
+
+  smtp:
+    image: "mailhog/mailhog"
+    ports:
+      - "8025"
+    expose:
+      - "1025"
+    environment:
+      - SMARTHOST_ADDRESS=mail.mysmtp.com
+      - SMARTHOST_PORT=587
+      - SMARTHOST_USER=myuser
+      - SMARTHOST_PASSWORD=secret
+      - SMARTHOST_ALIASES=*.mysmtp.com
+
+volumes:
+  database-vol:
+  elasticsearch-vol:
+  rabbitmq-vol:
+  redis-vol:
+
