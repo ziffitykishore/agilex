@@ -12,15 +12,24 @@ define([
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function(e) {
-        $('body').toggleClass('menu-opened').removeClass('acc-opened');
+        $('body').removeClass('acc-opened');
 
     });
     $('.overlay').on('click', function() {
         $('body').removeClass('acc-opened menu-opened');
+        $('html').removeClass('nav-open nav-before-open');
     });
 
     $('.customer-welcome .customer-name').on('click', function() {
         $('body').toggleClass('acc-opened').removeClass('menu-opened');
+    });
+
+    $('#login-popup, .menu-heading .close').on('click', function() {
+        $('html').removeClass('nav-open nav-before-open');
+    });
+
+    $('.showcart').on('click', function() {
+        $('html').removeClass('nav-open nav-before-open');
     });
 
     $('.menu-wrap li.level0').each(function() {
