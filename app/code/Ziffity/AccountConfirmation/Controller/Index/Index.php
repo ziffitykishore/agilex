@@ -11,7 +11,6 @@ class Index extends \Magento\Framework\App\Action\Action {
          parent::__construct($context);
     }
     public function execute() {
-        $this->_eventManager->dispatch('ziffity_accountconfirmation_reminder');
         return $this->pageFactory->create();
     }
 
