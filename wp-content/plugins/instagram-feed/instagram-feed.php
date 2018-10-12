@@ -612,7 +612,9 @@ function sbi_get_parts( $whole ) {
 }
 
 //Enqueue stylesheet
-add_action( 'wp_enqueue_scripts', 'sb_instagram_styles_enqueue' );
+if(is_page('blog')) {
+    add_action( 'wp_enqueue_scripts', 'sb_instagram_styles_enqueue' );
+}
 function sb_instagram_styles_enqueue() {
     wp_register_style( 'sb_instagram_styles', plugins_url('css/sb-instagram.min.css', __FILE__), array(), SBIVER );
     wp_enqueue_style( 'sb_instagram_styles' );
@@ -625,7 +627,9 @@ function sb_instagram_styles_enqueue() {
 }
 
 //Enqueue scripts
-add_action( 'wp_enqueue_scripts', 'sb_instagram_scripts_enqueue' );
+if(is_page('blog')) {
+    add_action( 'wp_enqueue_scripts', 'sb_instagram_scripts_enqueue' );
+}
 function sb_instagram_scripts_enqueue() {
     //Register the script to make it available
     wp_register_script( 'sb_instagram_scripts', plugins_url( '/js/sb-instagram.min.js' , __FILE__ ), array('jquery'), SBIVER, true ); //http://www.minifier.org/
@@ -658,7 +662,9 @@ function sb_instagram_scripts_enqueue() {
 }
 
 //Custom CSS
-add_action( 'wp_head', 'sb_instagram_custom_css' );
+if(is_page('blog')) {
+    add_action( 'wp_head', 'sb_instagram_custom_css' );
+}
 function sb_instagram_custom_css() {
     $options = get_option('sb_instagram_settings');
     
@@ -688,7 +694,9 @@ function sb_instagram_custom_css() {
 
 
 //Custom JS
-add_action( 'wp_footer', 'sb_instagram_custom_js' );
+if(is_page('blog')) {
+    add_action( 'wp_footer', 'sb_instagram_custom_js' );
+}
 function sb_instagram_custom_js() {
 	$options = get_option('sb_instagram_settings');
 	isset($options[ 'sb_instagram_custom_js' ]) ? $sb_instagram_custom_js = trim($options['sb_instagram_custom_js']) : $sb_instagram_custom_js = '';
@@ -731,7 +739,9 @@ if ( ! function_exists( 'sb_remove_style_version' ) ) {
 }
 
 // Load plugin textdomain
-add_action( 'init', 'sb_instagram_load_textdomain' );
+if(is_page('blog')) {
+    add_action( 'init', 'sb_instagram_load_textdomain' );
+}
 function sb_instagram_load_textdomain() {
 	load_plugin_textdomain('instagram-feed', false, basename( dirname(__FILE__) ) . '/languages');
 }
