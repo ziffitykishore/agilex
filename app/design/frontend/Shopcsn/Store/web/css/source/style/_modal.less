@@ -18,7 +18,6 @@
             }
             .modal-content {
                 padding: 0;
-                
                 border: 0;
                 box-shadow: none;
                 .field {
@@ -28,14 +27,12 @@
                         padding: 5px 0;
                     }
                 }
-
-                div.mage-error[generated]{
+                div.mage-error[generated] {
                     position: relative;
                 }
             }
         }
-
-        &.modal-slide{
+        &.modal-slide {
             left: 0;
             right: 0;
             top: 0;
@@ -143,15 +140,11 @@
                     position: relative;
                     .valid+.mage-error {
                         position: absolute;
-                        background: url(../images/tick2.png);
                         background-repeat: no-repeat;
                         top: 35%;
                         right: 0;
                         bottom: 0;
                         left: 90%;
-                    }
-                    .mage-error+.mage-error {
-                        background: url(../img/tick2.png);
                     }
                 }
             }
@@ -211,9 +204,7 @@
             }
             .field {
                 .input-text {
-                    
                     height: 50px;
-                    border: 1px solid #d7dded;
                     width: 100%;
                     padding: 10px 15px;
                 }
@@ -227,7 +218,6 @@
                 margin-top: 10px;
                 margin-right: 10px;
                 border-radius: 0;
-                
                 width: 100%;
                 height: 50px;
                 font-weight: bold;
@@ -284,7 +274,7 @@
 }
 
 .modal-popup {
-    .action-close{
+    .action-close {
         z-index: 1;
     }
     &.confirm {
@@ -313,7 +303,7 @@
             }
         }
     }
-    &.call-price{
+    &.call-price {
         .modal-header {
             background: @color-darkslateblue;
             padding: 12px 20px 12px;
@@ -336,11 +326,12 @@
     .modal-footer {
         button {
             .button();
-            &:focus, &:active {
-            .lib-css(background, @color-black);
-            border: 1px solid @color-black;
+            &:focus,
+            &:active {
+                .lib-css(background, @color-black);
+                border: 1px solid @color-black;
             }
-            &:hover{
+            &:hover {
                 .lib-css(background, @color-btn);
                 .lib-css(border-color, @color-btn);
             }
@@ -413,68 +404,60 @@
     }
 }
 
-
 @media screen and (max-width: 1300px) {
-    .customer-forgetpassword-popup, 
-    .custom-block-customer-signup, 
-    .custom-block-customer-login, 
-    .confirm-popup.modal-popup{
-        .sign-in-page{
+    .customer-forgetpassword-popup,
+    .custom-block-customer-signup,
+    .custom-block-customer-login,
+    .confirm-popup.modal-popup {
+        .sign-in-page {
             display: none;
         }
     }
-
 }
+
 @media screen and (max-width: 767px) {
     .customer-forgetpassword-popup,
     .custom-block-customer-signup,
     .custom-block-customer-login,
     .confirm-popup {
         &.modal-popup {
-            .modal-inner-wrap{
-            header.modal-header {
-                width: 100%;
-                background:transparent;
-            }
-            .modal-content {
-                .common-form {
-                    padding-left: 20px;
-                    padding-right: 20px;
+            .modal-inner-wrap {
+                header.modal-header {
+                    background: transparent;
                 }
-
-                .log-in {
-                    position: relative;
-                }
-
-                .block-customer-login{
-                    position: static;
-                    max-width: none;
-                    height: auto;
-                    overflow: visible;
-                    display: block;
-                    margin-bottom: 0;
+                .modal-content {
+                    .common-form {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                    .log-in {
+                        position: relative;
+                    }
+                    .block-customer-login {
+                        position: static;
+                        max-width: none;
+                        height: auto;
+                        overflow: visible;
+                        display: block;
+                        margin-bottom: 0;
+                    }
                 }
             }
+            .social {
+                padding: 20px;
+            }
         }
-        .social {
-            padding: 20px;
-        }
-    }
-        
-        .account-social-login{
-            .actions-toolbar{
+        .account-social-login {
+            .actions-toolbar {
                 &.social-btn {
-                   width: 50%;
-                   float: left;
-                   margin: 0;
-                   padding: 0 10px;
+                    width: 50%;
+                    float: left;
+                    margin: 0;
+                    padding: 0 10px;
                 }
-               }
-           }
+            }
+        }
     }
-
-    
-
     aside.modal-popup {
         &.modal-slide {
             left: 10px;
@@ -482,29 +465,21 @@
             top: 10px;
             bottom: 10px;
         }
-
         &.call-price {
             bottom: auto;
         }
     }
-
-    
-
-    .custom-g-recaptcha{
+    .custom-g-recaptcha {
         .transform(scale(0.8));
     }
 }
 
-
-@media screen and (max-width: 767px){
-
-.modal-popup {
-    
-    &.confirm {
-        .modal-inner-wrap {
-            width: 90%;
+@media screen and (max-width: 767px) {
+    .modal-popup {
+        &.confirm {
+            .modal-inner-wrap {
+                width: 90%;
+            }
         }
-        
     }
-}
 }

@@ -835,8 +835,18 @@ input[type="radio"]:checked + label:after{
                 .sorter {
                     display: inline-block;
                     position: absolute;
-                    top: 0;
+                    top: -3px;
                     right: 0;
+                    width: 70%;
+
+                    label {
+                        min-width: auto;
+                        
+                    }
+
+                    select {
+                        width: 60%;
+                    }
                 }
                 .toolbar-amount,
                 .modes {
@@ -987,11 +997,16 @@ input[type="radio"]:checked + label:after{
     .products-grid {
         div.product-item-info {
             padding: 10px;
-            min-height: 260px;
+            min-height: 265px;
+            .product-item-photo{
+                max-width: 100px;
+                margin-bottom: 15px;
+            }
             .product-item-name {
                 min-height: 50px;
+                padding-bottom: 10px;
                 a {
-                    font-size: 10px;
+                    font-size: 9px;
                     line-height: normal;
                 }
             }
@@ -1004,7 +1019,7 @@ input[type="radio"]:checked + label:after{
             .product-item-actions {
                 display: block;
                 .actions-primary {
-                    display: none;
+                    
                     visibility: visible;
                     opacity: 1;
                     .transform(translateY(0));
@@ -1012,9 +1027,8 @@ input[type="radio"]:checked + label:after{
                     .unavailable {
                         padding: 10px;
                         min-height: 36px;
-                        span {
-                            font-size: 8px;
-                        }
+                        font-size: 8px;
+                        padding: 7px;
                     }
                 }
             }
@@ -1033,15 +1047,7 @@ input[type="radio"]:checked + label:after{
             .toolbar-products {
                 margin-top: 15px;
                 background: transparent;
-                div.sorter {
-                    position: relative;
-                    width: 100%;
-                    label,
-                    select {
-                        float: left;
-                        width: 50%;
-                    }
-                }
+                
             }
             .products {
                 &~.toolbar-products {
