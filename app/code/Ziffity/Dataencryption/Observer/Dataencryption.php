@@ -86,7 +86,7 @@ class Dataencryption implements ObserverInterface {
      * @return mixed
      */
     public function getConfigValue($path) {
-        $storeId = \Magento\Store\Model\Store::DEFAULT_STORE_ID;
+        $storeId = $this->storeManager->getStore()->getStoreId();
         return $this->scopeConfig->getValue(
                         $path, ScopeInterface::SCOPE_STORE, $storeId
         );
@@ -140,12 +140,12 @@ class Dataencryption implements ObserverInterface {
                     ->setTemplateOptions(
                             [
                                 'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                                'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                                'store' => $this->storeManager->getStore()->getStoreId(),
                             ]
                     )
                     ->setTemplateVars(['data' => $postObject])
                     ->setFrom($sender)
-                    ->addTo($receiver_mails, \Magento\Store\Model\Store::DEFAULT_STORE_ID)
+                    ->addTo($receiver_mails, $this->storeManager->getStore()->getStoreId())
                     ->addCc($this->getConfigValue(self::MAIL_CC))
                     ->addBcc($this->getConfigValue(self::MAIL_BCC))
                     ->addAttachment(file_get_contents($file), 'text/csv', \Zend_Mime::DISPOSITION_ATTACHMENT, \Zend_Mime::ENCODING_BASE64, $file)
