@@ -1,7 +1,7 @@
 <?php
 return [
     'backend' => [
-        'frontName' => 'mtwoshop_admin'
+        'frontName' => 'admin_dev'
     ],
     'crypt' => [
         'key' => '4d010540f36ab90ede0d79980bb892d1'
@@ -10,10 +10,10 @@ return [
         'table_prefix' => '',
         'connection' => [
             'default' => [
-                'host' => '127.0.0.1',
-                'dbname' => 'mtwoshop_mage2',
-                'username' => 'mtwoshop_mage2',
-                'password' => 'B0HNNf79bSe0f0x27G',
+                'host' => 'localhost',
+                'dbname' => 'mtwoshop_shopcsnm2_uat',
+                'username' => 'mtwoshop_shopcsn',
+                'password' => 'PurrsAtriaAutosPlume22',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
