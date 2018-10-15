@@ -17,13 +17,20 @@ li {
     padding: 0;
     margin: 0;
 }
-.breadcrumbs{
+
+.breadcrumbs {
     position: relative;
 }
+
+.product-image-photo {
+    position: relative;
+}
+
 .breadcrumbs .cms_page {
     position: absolute;
-    top:12px;
+    top: 12px;
 }
+
 ul li {
     list-style: none;
 }
@@ -56,10 +63,12 @@ a {
 .cms-home-page-walking-deadcoin .header.content,
 .cms-home-page-walking-deadcoin .page-wrapper .breadcrumbs,
 .cms-home-page-walking-deadcoin .page-main,
-.cms-home-page-walking-deadcoin .page-footer .footer.content{
+.cms-home-page-walking-deadcoin .page-footer .footer.content {
     max-width: 1400px !important;
     margin: 0 auto;
 }
+
+
 /* header */
 
 .logo-wrap a,
@@ -119,7 +128,7 @@ a {
 
 .menu-wrap ul li a:hover,
 .account-links ul li a:hover {
-    color: #811515;
+    color: #ff3333;
 }
 
 .cart-wrap {
@@ -164,9 +173,8 @@ a {
 
 .content-top .content-inner_blk {
     position: relative;
-    top: 94px;    
+    top: 94px;
     margin: 0 auto;
-    
 }
 
 .content-top .content-inner_blk>div {
@@ -230,7 +238,7 @@ a {
 }
 
 button.btn-buy {
-    padding: 5px 12px;
+    padding: 2px 12px;
     background: #000000;
     border: 3px solid #811515;
     display: block;
@@ -304,9 +312,11 @@ button.btn-buy {
     display: block;
     margin: 0 auto;
 }
+
 .content-blk {
     padding: 0 50px;
 }
+
 .content-blk ul,
 .content-blk>div {
     width: 49%;
@@ -462,6 +472,13 @@ button.btn-buy {
         display: block;
         width: 100%;
     }
+    .checkout-cart-index .cart-container .form-cart .action.clear,
+    .checkout-cart-index .cart-container .form-cart .action.update {
+        margin-left: 0;
+    }
+    .cart-container .form-cart .action.continue {
+        margin-bottom: 10px;
+    }
 }
 
 @media screen and (max-width: 514px) {
@@ -527,7 +544,8 @@ body .logo {
 }
 
 .page-layout-1column,
-.page-layout-2columns-left {
+.page-layout-2columns-left,
+.checkout-index-index {
     background: url('../images/boxed_bg.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
@@ -786,6 +804,10 @@ button.button span {
 
 /******** account create *********/
 
+.customer-account-create .g-div {
+    clear: left;
+}
+
 .customer-account-login .fieldset>.field:not(.choice)>.label {
     padding: 6px 15px 0 0;
     width: 9.8%;
@@ -836,6 +858,17 @@ button.button span {
 }
 
 
+/**** modal-popup**********/
+
+.modal-popup .modal-inner-wrap {
+    width: 35%;
+}
+
+aside.modal-popup.confirm._show {
+    z-index: 999 !important;
+}
+
+
 /*********** breadcrumb **********/
 
 .page-wrapper .breadcrumbs {
@@ -860,24 +893,28 @@ button.button span {
 .cms-walking-deadcoin-contactus .breadcrumbs {
     display: none;
 }
+
 .cms-walking-deadcoin-contactus .contact {
     margin-top: 20px;
 }
 
-.cms-walking-deadcoin-contactus .fieldset > .field:not(.choice) > .label {
+.cms-walking-deadcoin-contactus .fieldset>.field:not(.choice)>.label {
     padding: 6px 15px 0 0;
-    text-align: left;    
+    text-align: left;
     box-sizing: border-box;
     float: left;
     margin-bottom: 10px;
 }
-.cms-walking-deadcoin-contactus .fieldset > .field:not(.choice) > .control {
-    width: 100%;    
+
+.cms-walking-deadcoin-contactus .fieldset>.field:not(.choice)>.control {
+    width: 100%;
 }
-.cms-walking-deadcoin-contactus .column:not(.sidebar-additional) form .actions-toolbar  {
+
+.cms-walking-deadcoin-contactus .column:not(.sidebar-additional) form .actions-toolbar {
     margin-left: 0;
     margin-bottom: 20px;
 }
+
 .page-title-wrapper h1 {
     font-size: 24px;
     color: #811515;
@@ -904,20 +941,27 @@ button.button span {
     border-left-color: transparent !important;
 }
 
+
 /******** cart page pop up *****/
- .model-popup .modal-inner-wrap {
+
+.model-popup .modal-inner-wrap {
     width: 40% !important;
 }
+
 .checkout-cart-index .modal-popup .modal-title,
-.checkout-cart-index  .modal-header{
+.checkout-cart-index .modal-header {
     border-bottom: 0;
 }
+
 .checkout-cart-index .modal-content {
     border: 0;
 }
+
 .checkout-cart-index .modal-footer {
     border-top: 0;
 }
+
+
 /******** Account page*********/
 
 .customer-account-index .box-newsletter {
@@ -1247,6 +1291,10 @@ body .btn-buy:focus {
     display: none;
 }
 
+.checkout-cart-index .cart-container .form-cart .actions {
+    text-align: center;
+}
+
 button.button span,
 .action.primary.checkout {
     display: block;
@@ -1349,7 +1397,7 @@ button.button span,
 }
 
 .cart-container .form-cart .action.continue {
-    padding: 7px 15px 7px 13px;
+    padding: 7px 15px 10px 13px;
 }
 
 
@@ -1925,6 +1973,7 @@ select:not([disabled]):focus {
 .page-footer .footer.content .copyright {
     font-size: 14px;
     text-align: center;
+    color: #777;
 }
 
 @media screen and ( max-width: 992px) {
@@ -1945,6 +1994,9 @@ select:not([disabled]):focus {
 
 @media screen and ( max-width: 768px) {
     /******* walking dead coin page*****/
+    .modal-popup .modal-inner-wrap {
+        width: 50%;
+    }
     .customer-account-create .fieldset>.field {
         width: 100%;
     }
@@ -1967,7 +2019,7 @@ select:not([disabled]):focus {
     .account-links {
         position: absolute;
         top: 40px;
-        right: 60px;
+        right: 75px;
     }
     .logo {
         float: none;
@@ -2016,6 +2068,9 @@ select:not([disabled]):focus {
 }
 
 @media screen and ( max-width: 480px) {
+    .cms-home-page-walking-deadcoin .product-image-container {
+        width: 220px !important;
+    }
     .logo img {
         width: 150px;
     }
@@ -2047,9 +2102,15 @@ select:not([disabled]):focus {
     .modal-inner-wrap .action.secondary {
         width: 100%;
     }
+    .modal-popup .modal-inner-wrap {
+        width: 90%;
+    }
 }
 
 @media screen and ( min-width: 768px) {
+    .customer-account-forgotpassword form input.input-text {
+        width: 50%;
+    }
     .onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .col-mp {
         float: none;
     }
