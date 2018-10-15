@@ -5,7 +5,7 @@ ARG NODEJS_VERSION=v9.2.1
 ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
 ARG REVISION=v2.10.0
 
-ENV "MAGENTO_ROOT" /var/www/vhosts/magento/current
+ENV "MAGENTO_ROOT" /var/www/vhosts/magento.test/current
 
 # copy private key
 COPY --chown=magento:magento files/id_rsa /home/magento/.ssh/id_rsa
