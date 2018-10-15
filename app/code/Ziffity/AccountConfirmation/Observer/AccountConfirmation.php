@@ -2,10 +2,8 @@
 
 namespace Ziffity\AccountConfirmation\Observer;
 use  Magento\Store\Model\ScopeInterface;
-use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\Event\Observer;
 
-class AccountConfirmation implements ObserverInterface { 
+class AccountConfirmation { 
     const XML_PATH_REGISTER_EMAIL_IDENTITY = 'customer/create_account/email_identity';
     const XML_PATH_EMAIL_TEMPLATE= 'ziff/ziffity_accountconfirmation/resend_confirmation_mail';
     const DAYS_DURATION = 'ziff/ziffity_accountconfirmation/days_duration';
@@ -94,7 +92,7 @@ class AccountConfirmation implements ObserverInterface {
         return $collection;
     }    
 
-    public function execute(Observer $observer) {
+    public function execute() {
         $sender = $this->getConfigValue(self::XML_PATH_REGISTER_EMAIL_IDENTITY);
         $templateId = $this->getConfigValue(self::XML_PATH_EMAIL_TEMPLATE);
         $collection = $this->getCollection();

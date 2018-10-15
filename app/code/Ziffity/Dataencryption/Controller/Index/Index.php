@@ -16,7 +16,6 @@ class Index extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {     
-        $this->_eventManager->dispatch('ziffity_dataencryption');
         return $this->resultPageFactory->create();
     }
 

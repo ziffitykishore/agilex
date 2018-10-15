@@ -32,6 +32,14 @@
             </block>
         </referenceContainer>
 
+       <referenceBlock name="product.info.details">
+          <block class="Magento\Catalog\Block\Product\View" name="product.shopcsn.guarantee" template="Magento_Catalog::product/view/guarantee_tab.phtml" group="detailed_info">
+             <arguments>
+                <argument translate="true" name="title" xsi:type="string">ShopCSNTV - 100% Guarantee</argument>
+             </arguments>
+          </block>
+        </referenceBlock>        
+
         <move element="product.info.media" destination="pdp-container" after="pdp-info"/>
         <move element="product.info.main" destination="pdp-container" after="product.info.media" />
         <referenceBlock name="product.info.review" remove="true"/>

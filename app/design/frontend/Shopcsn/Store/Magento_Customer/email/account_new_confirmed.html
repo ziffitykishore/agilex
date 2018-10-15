@@ -60,12 +60,12 @@
                         <td colspan="3" class="" style="font-size: 14px;">
                             <table width="100%" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td>Hello, <span>{{trans "%customer_name," customer_name=$order.getCustomerName()}}</span></td>
+                                    <td>Hello <p class="greeting">{{trans "%name," name=$customer.name}}</p>,</td>
                                 </tr>
 
                                 <tr>
                                     <td>
-                                        <p class="greeting">{{trans "%name," name=$customer.name}}</p>
+                                        
                                         <p>{{trans "Thank you for confirming your %store_name account." store_name=$store.getFrontendName()}}</p>
                                         <p>
                                             {{trans
