@@ -64,8 +64,6 @@
                 line-height: 40px;
                 .lib-css(color, @color-white);
                 .transition(all 0.5s ease-in-out 0s);
-
-
                 &:hover {
                     width: 45px;
                 }
@@ -102,10 +100,9 @@
             padding: 0 30px;
         }
     }
-
     .list-inline {
         margin-left: 0;
-        > li {
+        >li {
             padding-left: 3px;
         }
     }
@@ -131,11 +128,8 @@
             }
         }
     }
-
     .footer-news-wrapper {
         margin-top: 30px;
-
-        
     }
     .footer-links-wrapper {
         padding: 50px 0;
@@ -180,7 +174,6 @@
             font-size: 12px;
             text-transform: uppercase;
         }
-
         a:hover {
             color: #fff;
         }
@@ -212,7 +205,6 @@
     }
 }
 
-
 @media screen and (min-width: 1301px) {
     .page-footer {
         .container {
@@ -228,8 +220,6 @@
         }
     }
 }
-
-
 
 @media screen and (max-width: 1300px) {
     .page-footer {
@@ -263,15 +253,12 @@
                 }
             }
         }
-
         .footer-links {
             .footer-list {
                 width: 25%;
-
                 &.social-links {
                     width: 25%;
                 }
-
                 &.payment-method {
                     width: percentage(1);
                     margin-top: 20px;
@@ -282,7 +269,6 @@
                         float: left;
                         width: 50%;
                     }
-
                     .footer-copy-wrapper {
                         float: left;
                         width: 50%;
@@ -290,8 +276,8 @@
                     }
                 }
             }
+        }
     }
-}
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m+2) {
@@ -300,14 +286,11 @@
     }
 }
 
-
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m+1) {
     .sticky-container {
         display: none;
     }
-   
     .page-footer {
-
         .footer-logo {
             ul {
                 li {
@@ -315,7 +298,6 @@
                 }
             }
         }
-        
         .page-footer__content {
             .footer-links-wrapper {
                 padding: 20px 0 50px;
@@ -375,12 +357,10 @@
         }
     }
     .page-footer {
-        
         .page-footer__content {
             .container {
                 padding: 0px;
             }
-            
             .footer-links-wrapper {
                 .footer-links {
                     .footer-list,
@@ -415,19 +395,17 @@
                     .footer-list,
                     div.social-links,
                     div.payment-method .block-content,
-                    div.payment-method  div.footer-copy-wrapper {
+                    div.payment-method div.footer-copy-wrapper {
                         width: 100%;
                         float: none;
                         text-align: left;
                     }
-                    div.payment-method  div.footer-copy-wrapper {
-                        
+                    div.payment-method div.footer-copy-wrapper {
                         margin-top: 20px;
                     }
                     .payment-method {
                         padding-top: 30px;
                     }
-                    
                 }
             }
         }
