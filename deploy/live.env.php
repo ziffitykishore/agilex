@@ -11,9 +11,9 @@ return [
         'connection' => [
             'default' => [
                 'host' => 'localhost',
-                'dbname' => '',
-                'username' => '',
-                'password' => '',
+                'dbname' => 'mtwoshop_shopcsntv',
+                'username' => 'mtwoshop_shoptv',
+                'password' => '3SxInxaqRTd53S1pan',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',
