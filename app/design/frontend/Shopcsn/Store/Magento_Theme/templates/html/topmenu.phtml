@@ -24,24 +24,20 @@
         </div>  
         <div class="text-uppercase cat-trigger"><span>Shop By</span>Category</div>
     </div>
-    <!--<nav class="navigation" data-action="navigation">
-        <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
-<?= /* @escapeNotVerified */ $_menu ?>
-    <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
-        </ul>
-    </nav>-->
-
     <div class="sectiosns nav-sections">
         <div class="section-items nav-sections-items" role="tablist">
-            <div class="section-item-title nav-sections-item-title active" data-role="collapsible" role="tab" data-collapsible="true" aria-controls="store.menu" aria-selected="false" aria-expanded="true" tabindex="0">
-                <a class="nav-sections-item-switch" data-toggle="switch" href="#store.menu">Menu</a>
+            <div class="section-item-title" data-role="collapsible" role="tab" data-collapsible="true" aria-controls="store.menu" aria-selected="false" aria-expanded="true" tabindex="0">
+                <a class="nav-sections-item-switch menu-heading" data-toggle="switch" href="javascript:void(0);">Menu <span class="action close"></span></a>
             </div>
             <div class="section-item-content nav-sections-item-content" id="store.menu" data-role="content" role="tabpanel" aria-hidden="false">
                 <nav class="navigation" data-action="navigation">
                     <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
-<?= /* @escapeNotVerified */ $_menu ?>
+                        <?= /* @escapeNotVerified */ $_menu ?>
                         <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
                     </ul>
+                
                 </nav>
-            </div></div></div>
+            </div>
+        </div>
+    </div>
 </div>

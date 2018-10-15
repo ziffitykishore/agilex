@@ -14,6 +14,7 @@ use Magento\Framework\App\Action\Action;
 
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
+$size = $this->getData('page_size');
 ?>
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
@@ -173,7 +174,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         </div>
                     </div>
                 </div>
-                <?php if ($i++ == 5) break; ?>
+                <?php if ($i++ == ($size ? $size : 5)) break; ?>
             <?php endforeach; ?>
         </ol>
     </div>

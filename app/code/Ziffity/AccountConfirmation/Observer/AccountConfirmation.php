@@ -75,7 +75,7 @@ class AccountConfirmation implements ObserverInterface {
      */
     public function getConfigValue($path)
     {
-        $storeId = \Magento\Store\Model\Store::DEFAULT_STORE_ID;
+        $storeId = $this->storeManager->getStore()->getStoreId();
         return $this->scopeConfig->getValue(
             $path,
             ScopeInterface::SCOPE_STORE,
@@ -112,7 +112,7 @@ class AccountConfirmation implements ObserverInterface {
                  ->setTemplateOptions(
                  [
                     'area' => \Magento\Framework\App\Area::AREA_FRONTEND, 
-                    'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                    'store' => $this->storeManager->getStore()->getStoreId(),
                  ]
               )
             ->setTemplateVars(['customer' => $customerModel])
