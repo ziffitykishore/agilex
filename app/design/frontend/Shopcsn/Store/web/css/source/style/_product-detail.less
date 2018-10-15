@@ -759,18 +759,13 @@ body.weltpixel-quickview-catalog-product-view {
                     #product-gotoproduct-button {
                         width: 90%;
                         padding: 9px 17px;
-                    }
-                    .primary {
+                        .button();
+                        height: 40px;
                         margin-top: 0;
                         margin-right: 15px;
                         margin-left: 15px;
-                        color: #fff;
-                        .button();
-                        width: 35%;
                         float: left;
                         font-weight: bold;
-                        text-transform: uppercase;
-                        border-radius: 0 !important;
                     }
                 }
             }
@@ -778,13 +773,34 @@ body.weltpixel-quickview-catalog-product-view {
     }
 }
 
-@media screen and (max-width:767px) {
+.media-width(@extremum,
+@break) when (@extremum ='max') and (@break=@screen__m) {
+
+    .mfp-wrap {
+        .mfp-container {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+    }
+
     body.weltpixel-quickview-catalog-product-view {
         .pdp {
             .product.media,
             .product-info-main {
                 width: 100%;
                 display: block;
+                .product-add-form {
+                    .box-gotoproduct #product-gotoproduct-button,
+                    .box-tocart .primary{
+                        font-size: 10px;
+                        
+                    }
+                    .box-gotoproduct #product-gotoproduct-button{
+                        padding: 12px 2px;
+                    }
+                    
+                }
+                
             }
         }
     }
@@ -799,9 +815,8 @@ body.weltpixel-quickview-catalog-product-view {
             }
         }
     }
-}
 
-@media screen and (max-width: 768px) {
+
     .catalog-product-view {
         .pdp {
             .product.media {
@@ -827,6 +842,8 @@ body.weltpixel-quickview-catalog-product-view {
         }
     }
 }
+
+
 
 @media screen and (max-width: 639px) {
     .catalog-product-view {

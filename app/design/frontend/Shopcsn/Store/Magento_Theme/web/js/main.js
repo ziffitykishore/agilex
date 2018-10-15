@@ -5,10 +5,12 @@
 
 define([
     'jquery',
-    'slick',
     'jquery/ui',
+    'slick',
+    'fancybox',
+    'bminjs',
     'domReady!'
-], function($) {   
+], function($, jQuery) {   
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function(e) {
@@ -19,6 +21,8 @@ define([
         $('body').removeClass('acc-opened menu-opened');
         $('html').removeClass('nav-open nav-before-open');
     });
+
+    $('.block-minicart').removeAttr('style');
 
     $('.customer-welcome .customer-name').on('click', function() {
         $('body').toggleClass('acc-opened').removeClass('menu-opened');
@@ -114,7 +118,17 @@ define([
 
         lastScrollTop = st;
     }
+
+
+    /* Fancy box */
    
+    $("a[data-fancybox]").fancybox({
+        padding: 0,
+        aspectRatio: true,
+        allowfullscreen: "true"
+      });
+    
+    
     /* footer starts */
     $('#sticky-social .trigger').on('click', function() {
         $(this).parent().toggleClass('active');
@@ -226,16 +240,21 @@ define([
     var responsiveflag = false;
 
     function responsiveResize() {
-        if ($(window).width() < 768 && responsiveflag == false) {
-            $('.block-search').appendTo('.header-wrapper');
+        var header = $('.header-wrapper'),
+            headerHeight = header.innerHeight();
+
+        header.next('.page-main').css('padding-top', headerHeight);
+        header.next('.breadcrumbs').css('padding-top', headerHeight);
+        if ($(window).width() < 769 && responsiveflag == false) {
+            //$('.block-search').appendTo('.header-wrapper');
             $('.test-image-sec').css('height', 'auto');
-            toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
+            
             responsiveflag = true;
 
         } else if ($(window).width() > 768) {
-            $('.block-search').insertAfter('.menu-wrap');
+            //$('.block-search').insertAfter('.menu-wrap');
             testimonials();
-            $('.blog-sidebar .block-content').removeAttr('style');
+            
             responsiveflag = false;
         }
     }
@@ -291,4 +310,7 @@ define([
 
 
     $('.product-info-main .product-social-links').appendTo('.box-tocart');
+
+
+    toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
 });

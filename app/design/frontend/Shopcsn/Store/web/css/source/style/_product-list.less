@@ -84,6 +84,7 @@
                     margin: 0 0 0;
                     word-break: break-all;
                     .pos(relative);
+                    text-transform: capitalize;
                     cursor: pointer;
                     .fa {
                         .pos(absolute);
@@ -370,7 +371,7 @@ input[type="radio"]:checked + label:after{
         .product-item-photo {
             display: block;
             margin-bottom: 30px;
-            max-width: 130px;
+            max-width: 165px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -646,7 +647,7 @@ input[type="radio"]:checked + label:after{
 @media screen and (max-width: 1200px) {
     .products-grid {
         .product-item-info {
-            min-height: 300px;
+            min-height: 350px;
             .product-item-actions {
                 .actions-primary {
                     .action {
@@ -693,9 +694,7 @@ input[type="radio"]:checked + label:after{
     .products-grid {
         .product-item-info {
             padding: 15px;
-            .product-item-photo {
-                max-width: 145px;
-            }
+            
         }
     }
 }
@@ -739,6 +738,14 @@ input[type="radio"]:checked + label:after{
                 .quick-view {
                     margin-left: 15px;
                 }
+            }
+        }
+    }
+
+    .products-grid {
+        .product-item-info {
+            .product-item-name{
+                font-size: 12px;
             }
         }
     }
@@ -801,14 +808,10 @@ input[type="radio"]:checked + label:after{
         }
     }
     .products {
-        .product-item-info {
-            .product-image-photo {
-                max-width: 75%;
-            }
-        }
+       
         .products-grid {
             .product-item-info {
-                padding: 290px;
+                padding:320px;
                 min-height: 240px;
             }
         }
@@ -997,7 +1000,7 @@ input[type="radio"]:checked + label:after{
     .products-grid {
         div.product-item-info {
             padding: 10px;
-            min-height: 265px;
+            min-height: 295px;
             .product-item-photo{
                 max-width: 100px;
                 margin-bottom: 15px;
@@ -1027,8 +1030,8 @@ input[type="radio"]:checked + label:after{
                     .unavailable {
                         padding: 10px;
                         min-height: 36px;
-                        font-size: 8px;
-                        padding: 7px;
+                        font-size: 7px;
+                        padding: 6px;
                     }
                 }
             }
