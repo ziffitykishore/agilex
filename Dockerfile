@@ -16,8 +16,10 @@ RUN chmod 0700  /home/magento/.ssh -R \
   && chmod 0600 /home/magento/.ssh/id_rsa
 
 # clone repository
-COPY --chown=magento:magento ./ ${MAGENTO_ROOT}
+COPY --chown=magento:nginx ./ ${MAGENTO_ROOT}
 RUN rm "${MAGENTO_ROOT}/files" -rf
+
+RUN cp ${MAGENTO_ROOT}/app/etc/env.php.sample ${MAGENTO_ROOT}/app/etc/env.php
 
 WORKDIR ${MAGENTO_ROOT}
 # add auth.json
