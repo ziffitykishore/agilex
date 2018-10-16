@@ -14,11 +14,14 @@
             padding: 0;
             box-shadow: 2px 0 25px 0px #3e5ca4;
             min-height: 77px;
+            position: fixed;
+            width: 100%;
+            z-index: 125;
             background: @color-darkslateblue
         }
         border: none;
         margin-bottom: @indent__base;
-        .header {
+        >.header {
             &.content {
                 &:extend(.abs-add-clearfix all);
                 max-width: 1960px !important;
@@ -446,6 +449,7 @@
                 max-width: 445px;
                 width: 100%;
                 margin: 0;
+                height: 100vh;
                 z-index: 126;
                 background: @color-white;
                 border: none;
@@ -597,6 +601,38 @@
 }
 
 @media screen and(min-width: 769px) {
+    .hamburger {
+        .nav-open & {
+            span:nth-child(1) {
+                .transform(rotate(45deg));
+                top: -3px;
+                left: 8px;
+            }
+            span:nth-child(2) {
+                width: 0%;
+                opacity: 0;
+            }
+            span:nth-child(3) {
+                .transform(rotate(-45deg));
+                top: 18px;
+                left: 8px;
+            }
+        }
+    }
+    .cart-opened {
+        .header-wrapper {
+            &.nav-up {
+                .header.content {
+                    .transform(none);
+                }
+            }
+            &.nav-down {
+                .header.content {
+                    .transform(none);
+                }
+            }
+        }
+    }
     .header-wrapper {
         .transition(all 0.5s ease-in-out 0s);
         position: fixed;
@@ -635,6 +671,9 @@
         top: 75px;
         .nav-open & {
             .disp(block);
+        }
+        .menu-heading {
+            display: none;
         }
         .navigation ul {
             min-width: 300px;
@@ -874,27 +913,6 @@
     }
 }
 
-@media screen and (min-width: 769px) {
-    .hamburger {
-        .nav-open & {
-            span:nth-child(1) {
-                .transform(rotate(45deg));
-                top: -3px;
-                left: 8px;
-            }
-            span:nth-child(2) {
-                width: 0%;
-                opacity: 0;
-            }
-            span:nth-child(3) {
-                .transform(rotate(-45deg));
-                top: 18px;
-                left: 8px;
-            }
-        }
-    }
-}
-
 @media screen and (min-width: 768px) and (max-width: 768px) {
     .cms-index-index {
         .ticker,
@@ -923,7 +941,7 @@
         }
         &.nav-up {
             .header.content {
-                .transform(translateY(-100%));
+                .transform(translateY(-58px));
             }
             .block-search {
                 .transform(translateY(0));
@@ -931,7 +949,7 @@
         }
         &.nav-down {
             .header.content {
-                top: 0;
+                .transform(translateY(0px));
             }
             .block-search {
                 .transform(translateY(0px));
@@ -940,6 +958,20 @@
         &.no-sticky {
             .block-search {
                 .transform(translateY(0));
+            }
+        }
+    }
+    .cart-opened {
+        .header-wrapper {
+            &.nav-up {
+                .header.content {
+                    .transform(none);
+                }
+            }
+            &.nav-down {
+                .header.content {
+                    .transform(none);
+                }
             }
         }
     }
@@ -975,11 +1007,12 @@
             .nav-toggle {}
             .nav-sections {
                 position: fixed;
+                height: 100vh;
                 background: @color-white;
-                .section-item-title{
+                .section-item-title {
                     padding: 20px;
                     text-align: left;
-                    .menu-heading{
+                    .menu-heading {
                         font-weight: bold;
                         color: @color-black;
                         text-decoration: none;
@@ -1000,7 +1033,6 @@
                 }
                 .level0 {
                     border-top: 1px solid #d1d1d1;
-                    
                 }
                 .parent {
                     .level-top:after {
@@ -1075,7 +1107,7 @@
     .page-header {
         &.header-wrapper {
             border-bottom: none;
-            .header {
+            >.header {
                 .logo-wrap {
                     float: none;
                     max-width: 55px;
@@ -1145,6 +1177,9 @@
                     top: 0px;
                     right: 0px;
                     max-width: 65px;
+                    >div {
+                        height: 100vh;
+                    }
                     .block-minicart {
                         .minicart-items {
                             padding: 20px;
