@@ -1,16 +1,16 @@
 <?php
 return [
     'backend' => [
-        'frontName' => 'admin_live'
+        'frontName' => 'shopcsnt_admin'
     ],
     'crypt' => [
-        'key' => '4d010540f36ab90ede0d79980bb892d1'
+        'key' => 'cb65000ad96da2098ab4fb68aa2efc12'
     ],
     'db' => [
         'table_prefix' => '',
         'connection' => [
             'default' => [
-                'host' => 'localhost',
+                'host' => '127.0.0.1',
                 'dbname' => 'mtwoshop_shopcsntv',
                 'username' => 'mtwoshop_shoptv',
                 'password' => '3SxInxaqRTd53S1pan',
