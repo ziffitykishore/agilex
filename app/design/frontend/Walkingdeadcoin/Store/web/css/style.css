@@ -2003,6 +2003,48 @@ select:not([disabled]):focus {
 }
 
 
+/******** admin*********/
+
+.cms-home-page-walking-deadcoin .column.main {
+    margin-bottom: 0;
+}
+
+.modal-popup .modal-footer button:focus,
+.modal-popup .modal-footer button:active {
+    background: #f2f2f2;
+    border: 1px solid #cdcdcd;
+    color: #777;
+}
+
+.modal-popup .modal-footer button:hover {
+    background: #e2e2e2;
+    border: 1px solid #cdcdcd;
+}
+
+.onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .order-sum .product-item-name {
+    text-transform: capitalize;
+}
+
+body .modal-header {
+    border-bottom: 0;
+}
+
+body .modal-content {
+    border: 0;
+}
+
+body .modal-footer {
+    border-top: 0;
+}
+
+.action.primary:active,
+.action.primary:focus {
+    background: #811515;
+    border: 1px solid #811515;
+    color: #fff;
+}
+
+
 /*******footer-content*******/
 
 .page-footer .footer.content {
