@@ -13,5 +13,6 @@
         <css src="css/slick.css" />
         <css src="css/slick-theme.css"/>
         <css src="css/font-awesome.css" />
+        <css src="css/fancybox.css" />
     </head>
 </page>

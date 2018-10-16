@@ -16,4 +16,27 @@
             margin-bottom: 0;
         }
     }
-}                                                                   
+}                
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .cms-index-index {
+        
+            .message {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+        
+    } 
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cms-index-index {
+        .messages {
+            .message {
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+        }
+    } 
+}

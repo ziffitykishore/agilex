@@ -84,6 +84,7 @@
                     margin: 0 0 0;
                     word-break: break-all;
                     .pos(relative);
+                    text-transform: capitalize;
                     cursor: pointer;
                     .fa {
                         .pos(absolute);
@@ -326,7 +327,8 @@ input[type="radio"]:checked + label:after{
         position: absolute;
         width: 1px;
     }
-    .page-with-filter &, .catalog-product-view & {
+    .page-with-filter &,
+    .catalog-product-view & {
         &:after {
             position: absolute;
             top: 50%;
@@ -370,7 +372,7 @@ input[type="radio"]:checked + label:after{
         .product-item-photo {
             display: block;
             margin-bottom: 30px;
-            max-width: 130px;
+            max-width: 165px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -646,7 +648,7 @@ input[type="radio"]:checked + label:after{
 @media screen and (max-width: 1200px) {
     .products-grid {
         .product-item-info {
-            min-height: 300px;
+            min-height: 350px;
             .product-item-actions {
                 .actions-primary {
                     .action {
@@ -693,9 +695,6 @@ input[type="radio"]:checked + label:after{
     .products-grid {
         .product-item-info {
             padding: 15px;
-            .product-item-photo {
-                max-width: 145px;
-            }
         }
     }
 }
@@ -742,6 +741,13 @@ input[type="radio"]:checked + label:after{
             }
         }
     }
+    .products-grid {
+        .product-item-info {
+            .product-item-name {
+                font-size: 12px;
+            }
+        }
+    }
 }
 
 @media screen and (min-width: 769px) and (max-width: 1024px) {
@@ -769,13 +775,12 @@ input[type="radio"]:checked + label:after{
     .sticky-wrapper {
         float: none !important;
     }
-
-    .filter{
-        &.fixed{
+    .filter {
+        &.fixed {
             position: fixed;
             top: 0;
         }
-        &.bottom{
+        &.bottom {
             position: absolute;
             top: auto;
             bottom: 0;
@@ -801,14 +806,9 @@ input[type="radio"]:checked + label:after{
         }
     }
     .products {
-        .product-item-info {
-            .product-image-photo {
-                max-width: 75%;
-            }
-        }
         .products-grid {
             .product-item-info {
-                padding: 290px;
+                padding: 320px;
                 min-height: 240px;
             }
         }
@@ -838,12 +838,9 @@ input[type="radio"]:checked + label:after{
                     top: -3px;
                     right: 0;
                     width: auto;
-
                     label {
                         min-width: auto;
-                        
                     }
-
                     select {
                         width: 60%;
                     }
@@ -997,8 +994,8 @@ input[type="radio"]:checked + label:after{
     .products-grid {
         div.product-item-info {
             padding: 10px;
-            min-height: 265px;
-            .product-item-photo{
+            min-height: 295px;
+            .product-item-photo {
                 max-width: 100px;
                 margin-bottom: 15px;
             }
@@ -1019,7 +1016,6 @@ input[type="radio"]:checked + label:after{
             .product-item-actions {
                 display: block;
                 .actions-primary {
-                    
                     visibility: visible;
                     opacity: 1;
                     .transform(translateY(0));
@@ -1027,8 +1023,8 @@ input[type="radio"]:checked + label:after{
                     .unavailable {
                         padding: 10px;
                         min-height: 36px;
-                        font-size: 8px;
-                        padding: 7px;
+                        font-size: 7px;
+                        padding: 6px;
                     }
                 }
             }
@@ -1047,7 +1043,6 @@ input[type="radio"]:checked + label:after{
             .toolbar-products {
                 margin-top: 15px;
                 background: transparent;
-                
             }
             .products {
                 &~.toolbar-products {

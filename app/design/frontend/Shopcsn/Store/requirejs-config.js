@@ -3,6 +3,7 @@ var config = {
         'bminjs': 'js/bootstrap.min',
         'slick': 'js/slick.min',
         'left-sticky': 'js/sticky',
+        'fancybox': 'js/fancybox',
         'googlecap': '//www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit'
     },
     shim: {
@@ -13,6 +14,9 @@ var config = {
             deps: ['jquery']
         },
         'left-sticky': {
+            deps: ['jquery']
+        },
+        'fancybox': {
             deps: ['jquery']
         }
     },
