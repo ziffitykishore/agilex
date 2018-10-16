@@ -842,7 +842,7 @@ button.button span {
 }
 
 form input.input-text {
-    padding: 0;
+    padding: 0 5px;
 }
 
 .customer-account-create .g-div {
