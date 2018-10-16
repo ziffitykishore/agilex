@@ -95,7 +95,7 @@
     .footer-logo {
         padding: 20px 20px;
         background: #fff;
-        .sponsor ul li {
+       ul li {
             list-style: none;
             padding: 0 30px;
         }
@@ -280,11 +280,7 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m+2) {
-    .mob-sticky {
-        display: none;
-    }
-}
+
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m+1) {
     .sticky-container {
@@ -294,7 +290,7 @@
         .footer-logo {
             ul {
                 li {
-                    max-width: 20%;
+                    max-width: 25%;
                 }
             }
         }
@@ -347,16 +343,18 @@
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
-    .sponsor {
-        ul {
-            li {
-                max-width: 50%;
-                float: left;
-                padding: 10px;
-            }
-        }
-    }
+    
     .page-footer {
+        .footer-logo {
+            ul {
+                li {
+                    max-width: 50%;
+                    float: left;
+                    padding: 10px;
+                    width: 100%;
+                }
+            }
+        } 
         .page-footer__content {
             .container {
                 padding: 0px;
