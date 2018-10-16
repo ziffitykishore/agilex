@@ -1,7 +1,7 @@
 <?php
 return [
     'backend' => [
-        'frontName' => 'admin_dev'
+        'frontName' => 'admin_live'
     ],
     'crypt' => [
         'key' => '4d010540f36ab90ede0d79980bb892d1'
@@ -11,9 +11,9 @@ return [
         'connection' => [
             'default' => [
                 'host' => 'localhost',
-                'dbname' => 'mtwoshop_shopcsnm2_uat',
-                'username' => 'mtwoshop_shopcsn',
-                'password' => 'PurrsAtriaAutosPlume22',
+                'dbname' => 'mtwoshop_shopcsntv',
+                'username' => 'mtwoshop_shoptv',
+                'password' => '3SxInxaqRTd53S1pan',
                 'model' => 'mysql4',
                 'engine' => 'innodb',
                 'initStatements' => 'SET NAMES utf8;',

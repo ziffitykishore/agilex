@@ -3,10 +3,8 @@
 namespace Ziffity\Dataencryption\Observer;
 
 use Magento\Store\Model\ScopeInterface;
-use Magento\Framework\Event\ObserverInterface;
-use Magento\Framework\Event\Observer;
 
-class Dataencryption implements ObserverInterface {
+class Dataencryption {
 
     CONST CR_STATUS = 'ziffity/ziffity_dataencryption/status';
     CONST CR_PATH = 'ziffity/ziffity_dataencryption/folder_name';
@@ -92,7 +90,7 @@ class Dataencryption implements ObserverInterface {
         );
     }
 
-    public function execute(Observer $observer) {
+    public function execute() {
         if ($this->getConfigValue(self::CR_STATUS)) {
             $folderName = $this->getConfigValue(self::CR_PATH);
             $encFolderName = $this->getConfigValue(self::ENCRYPT_FOLDER);

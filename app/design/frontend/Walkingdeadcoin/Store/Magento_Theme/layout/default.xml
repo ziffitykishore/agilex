@@ -28,7 +28,7 @@
             </arguments>
         </referenceBlock>
         <referenceContainer name="header.container">
-            <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::html/custom_nav_bar.phtml" name="custom.nav.bar" />			
+            <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::html/custom_nav_bar.phtml" name="custom.nav.bar" cacheable="false" />
 		    <block class="Magento\Framework\View\Element\Template" name="skip_to_content" template="Magento_Theme::html/skip.phtml">
 		        <arguments>
 		            <argument name="target" xsi:type="string">contentarea</argument>

@@ -495,7 +495,16 @@
     }
 }
 
-@media only screen and (max-width:767px) {
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m + 1) {
+    .catalog-product-view {
+        .product-widget__inner {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
     .catalog-product-view {
         .page-main {
             padding-left: 15px;
@@ -531,7 +540,7 @@
                             margin: 0;
                             float: none;
                         }
-                        .btn-callforprice  {
+                        .btn-callforprice {
                             margin-top: 0;
                         }
                     }
@@ -750,20 +759,13 @@ body.weltpixel-quickview-catalog-product-view {
                     #product-gotoproduct-button {
                         width: 90%;
                         padding: 9px 17px;
-                        font-size: 13px;
-                    }
-                    .primary {
+                        .button();
+                        height: 40px;
                         margin-top: 0;
                         margin-right: 15px;
                         margin-left: 15px;
-                        color: #fff;
-                        .button();
-                        width: 35%;
                         float: left;
-                        font-size: 13px;
                         font-weight: bold;
-                        text-transform: uppercase;
-                        border-radius: 0 !important;
                     }
                 }
             }
@@ -771,13 +773,28 @@ body.weltpixel-quickview-catalog-product-view {
     }
 }
 
-@media screen and (max-width:767px) {
+.media-width(@extremum, @break) when (@extremum ='max') and (@break=@screen__m) {
+    .mfp-wrap {
+        .mfp-container {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+    }
     body.weltpixel-quickview-catalog-product-view {
         .pdp {
             .product.media,
             .product-info-main {
                 width: 100%;
                 display: block;
+                .product-add-form {
+                    .box-gotoproduct #product-gotoproduct-button,
+                    .box-tocart .primary {
+                        font-size: 10px;
+                    }
+                    .box-gotoproduct #product-gotoproduct-button {
+                        padding: 12px 2px;
+                    }
+                }
             }
         }
     }
@@ -792,12 +809,6 @@ body.weltpixel-quickview-catalog-product-view {
             }
         }
     }
-}
-
-
-
-
-@media screen and (max-width: 768px) {
     .catalog-product-view {
         .pdp {
             .product.media {
@@ -824,11 +835,10 @@ body.weltpixel-quickview-catalog-product-view {
     }
 }
 
-
 @media screen and (max-width: 639px) {
     .catalog-product-view {
-.product-info-price{
-    margin: 0;
-}
+        .product-info-price {
+            margin: 0;
+        }
     }
 }
