@@ -8,53 +8,36 @@ ARG REVISION=v2.10.0
 ENV "MAGENTO_ROOT" /var/www/vhosts/magento.test/current
 
 # copy private key
-COPY --chown=magento:magento files/id_rsa /home/magento/.ssh/id_rsa
+COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
 
-# set chomod key
-RUN chmod 0700  /home/magento/.ssh -R \
-  && chown magento:magento /home/magento/.ssh  -R \
-  && chmod 0600 /home/magento/.ssh/id_rsa
+# give sudo privilege to magento user
+RUN echo "magento      ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/magento
 
 # clone repository
 COPY --chown=magento:nginx ./ ${MAGENTO_ROOT}
-RUN rm "${MAGENTO_ROOT}/files" -rf
-
-RUN cp ${MAGENTO_ROOT}/app/etc/env.php.sample ${MAGENTO_ROOT}/app/etc/env.php
-
-WORKDIR ${MAGENTO_ROOT}
-# add auth.json
 
 # switch to user magento with nginx as group
 USER magento:nginx
 
-# update
-COPY --chown=magento:magento ./files/auth.json /home/magento/.composer/auth.json
+WORKDIR ${MAGENTO_ROOT}
 
-# switch node version
-#RUN nvm use "${NODEJS_VERSION}"
+# run prebuild play
+COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
+RUN ansible-playbook provision.yml \
+    --vault-id /home/magento/.vault_pass \
+    -t prebuild
+RUN rm "${MAGENTO_ROOT}/files" -rf
 
 # First, let's grab all the latest code, including submodules.
 RUN git fetch --recurse-submodules --tags origin \
     && git checkout -f "${REVISION}" \
     && git submodule update --init --recursive
 
-# Remove vendor directory. Without this any removed patches are never reverted.
-RUN rm -rf vendor/
-
-# get composer
-RUN composer install
-
-# Build bundle
-USER root
-RUN bash -lc 'bundle install' \
-    && chown magento:nginx ${MAGENTO_ROOT} -R \
-    && chmod u=rwX,g=rwX,o=rX ${MAGENTO_ROOT} -R
-USER magento:nginx
-
-# build yarn
-RUN yarn \
-    && pushd vendor/somethingdigital/magento2-theme-bryantpark && yarn && popd \
-    && pushd vendor/snowdog/frontools && yarn && popd
+# run build play
+COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
+RUN ansible-playbook provision.yml \
+    --vault-id /home/magento/.vault_pass \
+    -t build
 
 # set volume
 VOLUME ${MAGENTO_ROOT}
@@ -65,6 +48,10 @@ EXPOSE 443
 
 # switch to root:nginx user:group
 USER root:nginx
+
+# make sure path are own correctly
+RUN chown magento:nginx ${MAGENTO_ROOT} -R \
+    && chmod u=rwX,g=rwX,o=rX ${MAGENTO_ROOT} -R
 
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 
