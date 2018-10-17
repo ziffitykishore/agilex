@@ -121,6 +121,8 @@ class Data extends AbstractHelper
 	    return false;
 	}
 
+        /* wrok around for temporary issues*/
+        /*
         $hasQty  = $this->stockStateInterface->checkQty($product->getId(), $qty);
         $inStock = $this->stockItemRepInterface->get($product->getId())->getIsInStock();
 
@@ -129,7 +131,7 @@ class Data extends AbstractHelper
                 'We apologise, but there are no %d item(s) with the SKU `%s` in the stock', $qty, $sku
             ));
             return false;
-        }
+        }*/
         return $product;        
     }
 

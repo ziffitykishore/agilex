@@ -39,7 +39,12 @@ if ($_attributeType && $_attributeType == 'text') {
 ?>
 <?php if ($_attributeValue): ?>
 <div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">
-    <?php if ($renderLabel): ?><strong><?= /* @escapeNotVerified */ $_attributeLabel ?>: </strong><?php endif; ?>
+    <?php
+    if($_attributeAddAttribute == 'itemprop="description"'){
+        $_attributeValue = str_replace('
+- ', '<br>- ', $_attributeValue);
+    }
+    if ($renderLabel): ?><strong><?= /* @escapeNotVerified */ $_attributeLabel ?>: </strong><?php endif; ?>
     <div class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $_attributeValue ?></div>
 </div>
 <?php endif; ?>
