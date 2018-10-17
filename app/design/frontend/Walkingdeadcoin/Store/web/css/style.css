@@ -416,10 +416,13 @@ button.btn-buy {
     .menu-wrap {
         margin: 0;
     }
+    .cms-home-page-walking-deadcoin .menu-navigation {
+        top: 85px;
+    }
     .menu-navigation {
         position: fixed;
         left: 0;
-        top: 82px;
+        top: 120px;
         background: #000;
         width: 250px;
         z-index: 99;
@@ -485,8 +488,34 @@ button.btn-buy {
     .header .logo-wrap {
         width: 50%;
     }
+    .cms-home-page-walking-deadcoin .menu-navigation {
+        top: 65px;
+    }
     .menu-navigation {
-        top: 55px;
+        top: 90px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    body .account-links {
+        right: 55px;
+    }
+    body .account-links .user-logout:before {
+        width: 20px;
+        height: 20px;
+    }
+    body .minicart-wrapper {
+        right: 10px;
+    }
+    body .minicart-wrapper .action.showcart:before {
+        font-size: 25px;
+    }
+    .password-strength-meter {
+        padding: 0 3px;
+    }
+    .custom-g-recaptcha {
+        transform: scale(0.7);
+        margin-left: -40px;
     }
 }
 
@@ -803,6 +832,18 @@ button.button span {
 
 
 /******** account create *********/
+
+.column.main {
+    margin-bottom: 30px;
+}
+
+.customer-account-create div.mage-error[generated] {
+    position: relative;
+}
+
+form input.input-text {
+    padding: 0 5px;
+}
 
 .customer-account-create .g-div {
     clear: left;
@@ -1221,7 +1262,6 @@ body .minicart-wrapper .block-minicart {
     display: inline-block;
     text-decoration: none;
     cursor: pointer;
-    display: block;
     font-size: 0;
     left: 15px;
     position: absolute;
@@ -1963,6 +2003,48 @@ select:not([disabled]):focus {
 }
 
 
+/******** admin*********/
+
+.cms-home-page-walking-deadcoin .column.main {
+    margin-bottom: 0;
+}
+
+.modal-popup .modal-footer button:focus,
+.modal-popup .modal-footer button:active {
+    background: #f2f2f2;
+    border: 1px solid #cdcdcd;
+    color: #777;
+}
+
+.modal-popup .modal-footer button:hover {
+    background: #e2e2e2;
+    border: 1px solid #cdcdcd;
+}
+
+.onestepcheckout-index-index .checkout-container .one-step-checkout-wrapper .order-sum .product-item-name {
+    text-transform: capitalize;
+}
+
+body .modal-header {
+    border-bottom: 0;
+}
+
+body .modal-content {
+    border: 0;
+}
+
+body .modal-footer {
+    border-top: 0;
+}
+
+.action.primary:active,
+.action.primary:focus {
+    background: #811515;
+    border: 1px solid #811515;
+    color: #fff;
+}
+
+
 /*******footer-content*******/
 
 .page-footer .footer.content {
@@ -1994,6 +2076,13 @@ select:not([disabled]):focus {
 
 @media screen and ( max-width: 768px) {
     /******* walking dead coin page*****/
+    .nav-toggle {
+        display: block !important;
+    }
+    .content-top .content-inner_blk>div {
+        display: block;
+        vertical-align: middle;
+    }
     .modal-popup .modal-inner-wrap {
         width: 50%;
     }
