@@ -28,16 +28,8 @@ RUN ansible-playbook provision.yml \
     -t prebuild
 RUN rm "${MAGENTO_ROOT}/files" -rf
 
-# First, let's grab all the latest code, including submodules.
-RUN git fetch --recurse-submodules --tags origin \
-    && git checkout -f "${REVISION}" \
-    && git submodule update --init --recursive
-
 # run build play
-COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
-RUN ansible-playbook provision.yml \
-    --vault-id /home/magento/.vault_pass \
-    -t build
+RUN ansible-playbook provision.yml -t build
 
 # set volume
 VOLUME ${MAGENTO_ROOT}
@@ -47,12 +39,8 @@ EXPOSE 80
 EXPOSE 443
 
 # switch to root:nginx user:group
-USER root:nginx
+USER root
 
-# make sure path are own correctly
-RUN chown magento:nginx ${MAGENTO_ROOT} -R \
-    && chmod u=rwX,g=rwX,o=rX ${MAGENTO_ROOT} -R
-
-ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh", "gosu", "magento:nginx"]
 
 CMD ["tail", "-f", "/etc/machine-id"]

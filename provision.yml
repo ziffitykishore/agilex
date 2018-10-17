@@ -15,6 +15,13 @@
       loop:
         - /home/magento/.ssh
         - /home/magento/.composer
+    - name: set /usr/local/rvm to magento user
+      file:
+        state: directory
+        path: /usr/local/rvm
+        recurse: yes
+        owner: magento
+      become: yes
     - name: copy private key
       copy:
         remote_src: yes
@@ -59,6 +66,11 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: get submodules
+      shell: "git {{ item }}"
+      loop:
+        - "fetch --recurse-submodules --tags origin"
+        - "submodule update --init --recursive"
     - name: make sure vendor doesn't exist
       file:
         path: "{{ playbook_dir }}/vendor"
@@ -66,9 +78,7 @@
     - name: run composer
       shell: composer install
     - name: run bundle
-      shell: bundle install
-      args:
-        executable: /bin/bash
+      shell: bash -lc "bundle install"
     - name: run yarn
       shell: yarn
       args:
@@ -80,6 +90,14 @@
         - "{{ playbook_dir }}/vendor/snowdog/frontools"
     - name: remove vault_pass
       file: path=/home/magento/.vault_pass state=absent
+    - name: make sure paths have correct user:group
+      file:
+        state: directory
+        recurse: yes
+        owner: magento
+        group: nginx
+        mode: u=rwX,g=rwX,o=rX
+        path: "{{ playbook_dir }}"
   tags:
     - build
 
