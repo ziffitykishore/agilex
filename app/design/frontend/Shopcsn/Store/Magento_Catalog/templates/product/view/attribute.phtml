@@ -43,6 +43,8 @@ if ($_attributeType && $_attributeType == 'text') {
     if($_attributeAddAttribute == 'itemprop="description"'){
         $_attributeValue = str_replace('
 - ', '<br>- ', $_attributeValue);
+        $_attributeValue = str_replace('
+-', '<br>- ', $_attributeValue);
     }
     if ($renderLabel): ?><strong><?= /* @escapeNotVerified */ $_attributeLabel ?>: </strong><?php endif; ?>
     <div class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $_attributeValue ?></div>
