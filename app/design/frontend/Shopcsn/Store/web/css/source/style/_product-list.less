@@ -114,6 +114,9 @@
                     padding-top: 15px;
                     border-top: 1px dotted @color-darkslateblue;
                     margin-top: 20px;
+                    .wp-ln-actions{
+                        .disp(none);
+                    }
                     .amount {
                         .disp(none);
                     }
@@ -350,11 +353,15 @@ input[type="radio"]:checked + label:after{
     .sku-avali {
         .disp(none);
     }
+    .product-items  {
+        .flex();
+    }
     .product-item-info {
         background: @color-white;
         text-align: center;
         padding: 30px 30px 20px;
         min-height: 360px;
+        height: 100%;
         position: relative;
         transition: all 0.5s ease 0s;
         overflow: hidden;
@@ -371,8 +378,6 @@ input[type="radio"]:checked + label:after{
         }
         .product-item-photo {
             display: block;
-            margin-bottom: 30px;
-            max-width: 165px;
             margin-left: auto;
             margin-right: auto;
         }
@@ -384,7 +389,7 @@ input[type="radio"]:checked + label:after{
             margin-top: 0;
             margin-bottom: 0px;
             display: block;
-            min-height: 50px;
+            min-height: 68px;
             padding-bottom: 20px;
             a {
                 font-size: inherit;
@@ -392,11 +397,8 @@ input[type="radio"]:checked + label:after{
             }
         }
         .price-box {
-            margin-bottom: 18px;
-            .pos(absolute);
-            left: 0;
-            right: 0;
-            bottom: 0px;
+            margin: 0;
+            
         }
         .price {
             font-size: @f-size;
@@ -672,7 +674,7 @@ input[type="radio"]:checked + label:after{
     }
 }
 
-@media screen and (min-width:1500px) {
+@media screen and (min-width:1400px) {
     .page-with-filter,
     .page-products {
         .products-grid {
@@ -996,11 +998,11 @@ input[type="radio"]:checked + label:after{
             padding: 10px;
             min-height: 295px;
             .product-item-photo {
-                max-width: 100px;
+                max-width: 115px;
                 margin-bottom: 15px;
             }
             .product-item-name {
-                min-height: 50px;
+                min-height: 40px;
                 padding-bottom: 10px;
                 a {
                     font-size: 10px;
