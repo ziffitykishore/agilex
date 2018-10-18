@@ -3,7 +3,7 @@ version: "2.3"
 services:
 
   app:
-    image: "acc:latest"
+    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0"
     cap_add:
       - SYS_PTRACE
     ports:

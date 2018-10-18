@@ -143,3 +143,34 @@
   tags:
     - sync
 
+- name: install provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: run magento install
+      shell: |
+        {{ playbook_dir }}/bin/magento setup:install \
+          --db-host=database \
+          --db-name=magento_database \
+          --db-user=magento_user \
+          --db-password=magento_password \
+          --base-url=http://magento.test/ \
+          --admin-firstname=Admin \
+          --admin-lastname=User \
+          --admin-email=admin@user.com \
+          --admin-user=magento2 \
+          --admin-password=magento2 \
+          --backend-frontname=admin \
+          --key={{ magento_crypt_key }}
+    - name: apply template
+      template:
+        src: "{{ item.src }}.j2"
+        dest: "{{ item.dest }}"
+      loop:
+        - src: app/etc/env.php
+          dest: "{{ playbook_dir }}/app/etc/env.php"
+  vars:
+    magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+  tags:
+    - install
+
