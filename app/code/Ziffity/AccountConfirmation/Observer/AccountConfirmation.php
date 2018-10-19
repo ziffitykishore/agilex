@@ -111,7 +111,7 @@ class AccountConfirmation {
                  ->setTemplateOptions(
                  [
                     'area' => \Magento\Framework\App\Area::AREA_FRONTEND, 
-                    'store' => $this->storeManager->getStore()->getStoreId(),
+                    'store' => $storeId,
                  ]
               )
             ->setTemplateVars(['customer' => $customerModel])
