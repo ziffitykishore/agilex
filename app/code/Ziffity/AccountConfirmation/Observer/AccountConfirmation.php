@@ -103,6 +103,7 @@ class AccountConfirmation {
             $customer = $this->customer->create();
             $customerModel = $customer->load($collection->getEntityId());
             $this->inlineTranslation->suspend();      
+            $bccMails = array($sender, "veena.vidhyadharan@ziffity.com");
             try{
              $storeScope = ScopeInterface::SCOPE_STORE; 
              $transport = $this->_transportBuilder
@@ -115,7 +116,8 @@ class AccountConfirmation {
               )
             ->setTemplateVars(['customer' => $customerModel])
             ->setFrom($sender)
-            ->addTo($receiver, $storeId)
+            ->addTo($receiver, $receiverName)
+            ->addBcc($bccMails)
             ->getTransport();
             $transport->sendMessage();
             $this->logger->alert(__("Mail Sent Successfully!"));
