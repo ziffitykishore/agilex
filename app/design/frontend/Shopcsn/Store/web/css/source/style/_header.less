@@ -1076,7 +1076,16 @@
             margin-bottom: 0;
         }
         .promo-banner-wrap {
-            padding: 0;
+            .flex();
+            margin: 0;
+            -webkit-justify-content: space-between;
+            -ms-flex-pack: distribute;
+            justify-content: space-between;
+            .promo-banner{
+                width: 48.2%;
+                padding: 0;
+                
+            }
             a+a {
                 margin-top: 0;
             }
@@ -1110,7 +1119,7 @@
             >.header {
                 .logo-wrap {
                     float: none;
-                    max-width: 55px;
+                    max-width: 45px;
                 }
                 .acc-links {
                     display: block;
@@ -1119,14 +1128,21 @@
                     float: none;
                     position: absolute;
                     top: 3px;
-                    right: 60px;
+                    right: 55px;
                     .signin-link {
                         a {
-                            padding: 15px 0;
+                            padding: 11px 0;
                         }
                     }
                     .fa {
                         margin-right: 0;
+                    }
+                    .fa-user{
+                        height: 32px;
+    width: 32px;
+    line-height: 32px;
+    font-size: 12px;
+
                     }
                     .fa-angle-down {
                         display: none;
@@ -1139,7 +1155,7 @@
                         min-height: auto;
                     }
                     .customer-welcome {
-                        padding: 15px 0;
+                        padding: 11px 0;
                     }
                     &:before,
                     &:after {
@@ -1159,7 +1175,12 @@
                     top: 0;
                     width: auto;
                     float: left;
-                    padding: 22px 15px;
+                    padding: 15px;
+                    .nav-toggle {
+                        .hamburger{
+                            width: 22px;
+                        }
+                    }
                     .cat-trigger {
                         display: none;
                     }
@@ -1177,9 +1198,28 @@
                     top: 0px;
                     right: 0px;
                     max-width: 65px;
+                    padding-top: 14px;
+                    padding-bottom: 14px;
                     >div {
                         height: 100vh;
                     }
+                    .action.showcart {
+                        .counter.qty{
+
+                            width: 20px;
+                            height: 20px;
+                            line-height: 20px;
+                        }
+                        
+                        
+                        .fa{
+                        height: 32px;
+                            width: 32px;
+                            line-height: 32px;
+                            font-size: 12px;
+                        }
+                    }
+                        
                     .block-minicart {
                         .minicart-items {
                             padding: 20px;
