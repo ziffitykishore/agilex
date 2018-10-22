@@ -143,7 +143,7 @@ class Dataencryption {
                     )
                     ->setTemplateVars(['data' => $postObject])
                     ->setFrom($sender)
-                    ->addTo($receiver_mails, $this->storeManager->getStore()->getStoreId())
+                    ->addTo($receiver_mails)
                     ->addCc($this->getConfigValue(self::MAIL_CC))
                     ->addBcc($this->getConfigValue(self::MAIL_BCC))
                     ->addAttachment(file_get_contents($file), 'text/csv', \Zend_Mime::DISPOSITION_ATTACHMENT, \Zend_Mime::ENCODING_BASE64, $file)
