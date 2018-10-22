@@ -472,14 +472,30 @@
     .custom-g-recaptcha {
         .transform(scale(0.8));
     }
+
+    .customer-forgetpassword-popup {
+        .block-customer-login {
+            .common-form.forgot-password{
+                padding: 52% 50%;
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 767px) {
-    .modal-popup {
+    aside.modal-popup {
         &.confirm {
             .modal-inner-wrap {
                 width: 90%;
             }
         }
+
+        &.modal-slide._inner-scroll {
+            .modal-inner-wrap{
+                background: @color-white;
+            }
+        }
     }
+
+    
 }

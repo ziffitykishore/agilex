@@ -11,6 +11,16 @@ define([
     'bminjs',
     'domReady!'
 ], function ($, jQuery) {
+
+    /* Preloader */
+    var preLoader = $(".pre-loader");
+    $(window).load(function () {
+        preLoader.fadeOut("slow");
+    });
+    setInterval(function () {
+        preLoader.fadeOut("slow");
+    }, 3000);
+
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function (e) {
@@ -62,7 +72,7 @@ define([
         }
     });
 
-    $('select').parents('.field').addClass('select-group');
+    $('select').closest('.field').addClass('select-group');
 
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
@@ -187,12 +197,12 @@ define([
             breakpoint: 480,
             settings: {
                 slidesToShow: 1,
-                slidesToScroll: 1
+                slidesToScroll: 1,
+                dots: true
             }
         }
         ]
     });
-
 
     if ($('.testi-slider').length) {
         $('.testi-slider').slick({
@@ -211,6 +221,38 @@ define([
         var reviewWrap = $('.testi-slider-wrap').height();
         $('.test-image-sec').height(reviewWrap);
     }
+
+    function slickInit() {
+        $('.product-widget__inner .product-items').slick({
+            infinite: true,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            dots: false,
+            prevArrow: '<button type="button" class="slick-prev fa fa-angle-left">Previous</button>',
+            nextArrow: '<button type="button" class="slick-next fa fa-angle-right">Next</button>',
+            responsive: [{
+                breakpoint: 1366,
+                settings: {
+                    slidesToShow: 4
+                }
+            }, {
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 3
+                }
+            }, {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2
+                }
+            }]
+        });
+    }
+    slickInit();
+    $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
+        $(".product-widget__inner .product-items").slick("unslick");
+        slickInit();
+    });
 
     /* ticker sticky */
     /* function call stick  */
@@ -263,4 +305,12 @@ define([
 
     $('.product-info-main .product-social-links').appendTo('.box-tocart');
     toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
+
+    /* My Live Chat */
+    $(window).bind("load", function () {
+        var script = document.createElement('script');
+        script.setAttribute("type", "text/javascript");
+        script.setAttribute("src", "https://mylivechat.com/chatinline.aspx?hccid=85652036")
+        document.getElementsByTagName("head")[0].appendChild(script);
+    });
 });
