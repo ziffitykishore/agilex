@@ -9,7 +9,8 @@
 //  Typography
 //  ---------------------------------------------
 //  Fonts
-@font-family-name__base: 'Roboto', sans-serif;
+@font-family-name__base: 'Roboto',
+sans-serif;
 @font-family__base: @font-family-name__base,
 @font-family__sans-serif;
 //  Colors nesting
@@ -48,7 +49,7 @@
 @color-black: #020202;
 @color-crimson: #e32129;
 @color-lightgray: #d7dded;
-@color-orange:  #f26322;
+@color-orange: #f26322;
 @color-sky: #b5c0dd;
 // Font Sizes
 @f-size-xxxl: 28px;
@@ -136,10 +137,9 @@
     -webkit-border-radius: @radius;
     -moz-border-radius: @radius;
     border-radius: @radius;
-
 }
 
-.bg-clip(@bg-clip){
+.bg-clip(@bg-clip) {
     -moz-background-clip: @bg-clip;
     -webkit-background-clip: @bg-clip;
     background-clip: @bg-clip;
@@ -293,7 +293,9 @@
 
 .flex() {
     display: -webkit-box;
+    display: -moz-box;
     display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -302,65 +304,50 @@
 }
 
 .flex-width(@width) {
-        -webkit-box-flex: 0;
-        -ms-flex: 0 0 @width;
-        flex: 0 0 @width;
-        max-width: @width;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 @width;
+    flex: 0 0 @width;
+    max-width: @width;
 }
 
 .container-md() {
-	max-width: 1200px;
-	margin-left: auto;
+    max-width: 1200px;
+    margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
 }
 
 .container-sm() {
-	max-width: 1000px;
-	margin-left: auto;
+    max-width: 1000px;
+    margin-left: auto;
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-
-
 // Mixin itself
 .clearfix() {
     &::after {
-      display: block;
-      content: "";
-      clear: both;
+        display: block;
+        content: "";
+        clear: both;
     }
-  }
+}
 
-
-.lib-link(
-    @_link-color: @color-darkslateblue,
-    @_link-text-decoration: @link__text-decoration,
-    @_link-color-visited: @link__visited__color,
-    @_link-text-decoration-visited: @link__visited__text-decoration,
-    @_link-color-hover: @link__hover__color,
-    @_link-text-decoration-hover: @link__hover__text-decoration,
-    @_link-color-active: @link__active__color,
-    @_link-text-decoration-active: none
-) {
+.lib-link( @_link-color: @color-darkslateblue, @_link-text-decoration: @link__text-decoration, @_link-color-visited: @link__visited__color, @_link-text-decoration-visited: @link__visited__text-decoration, @_link-color-hover: @link__hover__color, @_link-text-decoration-hover: @link__hover__text-decoration, @_link-color-active: @link__active__color, @_link-text-decoration-active: none) {
     .lib-css(color, @color-darkslateblue);
     .lib-css(text-decoration, @_link-text-decoration);
-
     &:visited {
         .lib-css(color, @color-darkslateblue);
         .lib-css(text-decoration, @_link-text-decoration-visited);
     }
-
     &:hover {
         .lib-css(color, @color-darkslateblue);
         .lib-css(text-decoration, @_link-text-decoration-hover);
     }
-
     &:active {
-        .lib-css(color,@_link-color-active);
+        .lib-css(color, @_link-color-active);
         .lib-css(text-decoration, @_link-text-decoration-active);
     }
 }
