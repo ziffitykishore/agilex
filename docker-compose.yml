@@ -2,11 +2,26 @@ version: "2.3"
 
 services:
 
+  varnish:
+    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:latest"
+    entrypoint: ["/usr/bin/tini", "--"]
+    command: ["/usr/sbin/varnishd", "-f", "/etc/varnish/default.vcl", "-F"]
+    links:
+      - app
+    volumes_from:
+      - app
+    ports:
+      - "80"
+      - "443"
+    labels:
+      - "traefik.frontend.rule=Host:magento.test"
+      - "traefik.domain=magento.test"
+
   app:
     image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0"
     cap_add:
       - SYS_PTRACE
-    ports:
+    expose:
       - "80"
       - "443"
     links:
@@ -23,6 +38,8 @@ services:
       - smtp
     labels:
       - "traefik.frontend.rule=Host:magento.test"
+      - "traefik.domain=magento.test"
+#      - "traefik.backend=magento.test"
 
   database:
     image: "percona:5.6"
@@ -40,6 +57,8 @@ services:
       MYSQL_DATABASE: "magento_database"
       MYSQL_USER: "magento_user"
       MYSQL_PASSWORD: "magento_password"
+    labels:
+      - "traefik.backend=magento.test"
 
   elasticsearch:
     image: "elasticsearch:2"
@@ -52,6 +71,8 @@ services:
         type: volume
     environment:
       - "discovery.type=single-node"
+    labels:
+      - "traefik.backend=magento.test"
 
   rabbitmq:
     image: "rabbitmq"
@@ -65,6 +86,8 @@ services:
       RABBITMQ_DEFAULT_USER: "user"
       RABBITMQ_DEFAULT_PASS: "password"
       RABBITMQ_DEFAULT_VHOST: "/magento"
+    labels:
+      - "traefik.backend=magento.test"
 
   redis:
     image: "redis"
@@ -74,6 +97,8 @@ services:
       - target: /var/lib/redis
         source: redis-vol
         type: volume
+    labels:
+      - "traefik.backend=magento.test"
 
   smtp:
     image: "mailhog/mailhog"
@@ -87,6 +112,8 @@ services:
       - SMARTHOST_USER=myuser
       - SMARTHOST_PASSWORD=secret
       - SMARTHOST_ALIASES=*.mysmtp.com
+    labels:
+      - "traefik.backend=magento.test"
 
 volumes:
   database-vol:
