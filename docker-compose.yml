@@ -37,9 +37,9 @@ services:
       - redis
       - smtp
     labels:
-      - "traefik.frontend.rule=Host:magento.test"
-      - "traefik.domain=magento.test"
-#      - "traefik.backend=magento.test"
+#      - "traefik.frontend.rule=Host:magento.test"
+#      - "traefik.domain=magento.test"
+      - "traefik.backend=magento.test"
 
   database:
     image: "percona:5.6"

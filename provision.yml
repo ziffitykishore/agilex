@@ -171,6 +171,13 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} /var/www/vhosts/magento.test"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
     - name: run magento install
       shell: |
         {{ playbook_dir }}/bin/magento setup:install \
