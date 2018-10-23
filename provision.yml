@@ -4,6 +4,11 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: install ioncube
+      yum:
+        name: php71u-ioncube-loader
+        state: present
+      become: yes
     - name: set chmod key
       file:
         state: directory
@@ -15,12 +20,25 @@
       loop:
         - /home/magento/.ssh
         - /home/magento/.composer
-    - name: set /usr/local/rvm to magento user
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} /var/www/vhosts/magento.test"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
+    - name: change to  magento:nginx permissions
       file:
         state: directory
-        path: /usr/local/rvm
+        path: "{{ item }}"
+        mode: u=rwX,g=rwX,o=rX
         recurse: yes
         owner: magento
+        group: nginx
+      loop:
+        - /usr/local/rvm/
+        - /var/lib/php/session/
+        - /var/www/vhosts/magento.test/
       become: yes
     - name: copy private key
       copy:
@@ -113,6 +131,13 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} /var/www/vhosts/magento.test"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
     - name: make sure local cache clean
       file:
         state: absent
@@ -137,15 +162,6 @@
         - "sd:dev:static --requirejs-only --area adminhtml Magento/backend"
     - name: run yarn build production
       shell: "yarn build:production"
-    - name: make sure owner:group are correct
-      file:
-        state: directory
-        recurse: yes
-        owner: magento
-        group: nginx
-        mode: u=rwX,g=rwX,o=rX
-        path: "{{ playbook_dir }}"
-      become: yes
   vars:
     magento_theme: "Magento/backend SomethingDigital/bryantpark"
   tags:
@@ -167,7 +183,7 @@
           --admin-lastname=User \
           --admin-email=admin@user.com \
           --admin-user=magento2 \
-          --admin-password=magento2 \
+          --admin-password=magento2_password \
           --backend-frontname=admin \
           --key={{ magento_crypt_key }}
     - name: apply template
