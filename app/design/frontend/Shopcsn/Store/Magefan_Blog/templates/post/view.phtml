@@ -1,0 +1,102 @@
+<?php
+/**
+ * Blog post view template
+ *
+ * @var $block \Magefan\Blog\Block\Post\View
+ */
+?>
+<?php
+    $_post = $this->getPost();
+    $_postUrl = $_post->getPostUrl();
+    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+    $author = $_post->getAuthor() ? $block->escapeHtml($_post->getAuthor()->getTitle()) : 'Admin';
+?>
+<div class="post-view">
+    <div class="post-holder post-holder-<?php echo $_post->getId() ?>">
+        <div class="post-header clearfix">
+           <div class="post-info clear">
+                <div class="item post-posed-date">
+                    <span class="label"><?php echo __('Posted:') ?></span>
+                    <span class="value"><?php echo $_post->getPublishDate('F d, Y') ?></span>
+                </div>
+           </div>
+            <?php echo $this->getInfoHtml() ?>
+        </div>
+
+        <div class="post-content">
+            <div class="post-description clearfix">
+                <?php /* if ($featuredImage = $_post->getFeaturedImage()) { ?>
+                <div class="post-ftimg-hld">
+                    <img class="img-responsive" src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+                </div>
+                <?php } */?>
+                <?php
+                    $content = $block->getContent();
+                    preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $content, $image);
+                ?>
+                <?php if(isset($image['src'])){ ?>
+                <div class="post-image">
+                    <img src="<?= $image['src'] ?>" title="<?= $_postName ?>" class="">
+                </div>
+                <?php } ?>
+                <div class="post-text-hld mt-20">
+                    <?php echo preg_replace("/<img[^>]+\>/i", "", $content, 1); ?>
+                    <div class="clear"></div>
+                </div>
+
+                <?php 
+                /*category*/
+                $catHtml = $tagHtml = '';
+                if ($ctCount = $_post->getCategoriesCount()) {
+                    $n = 0;
+                    $catHtml .= 'in ';
+                    foreach ($_post->getParentCategories() as  $ct) {
+                        $n++;
+                        $catHtml .= '<a class="text-capitalize text-danger" title="'.$block->escapeHtml($ct->getTitle()).'" href="'.$ct->getCategoryUrl().'">'.$block->escapeHtml($ct->getTitle()).'</a>';
+                        if ($n != $ctCount) {
+                            $catHtml .= ', ';
+                        }
+                    }
+                }
+
+                /*tags*/
+                if ($_tagsCount = $_post->getTagsCount()) {
+                    $n = 0;
+                    $tagHtml .= 'and tagged ';
+                    foreach ($_post->getRelatedTags() as $tag) {
+                        $n++;
+                        $tagHtml .= '<a class="text-capitalize text-danger" title="'.$block->escapeHtml($tag->getTitle()).'" href="'.$tag->getTagUrl().'">'.$block->escapeHtml($tag->getTitle()).'</a>';
+                        if ($n != $_tagsCount) {
+                            $tagHtml .= ', ';
+                        }
+                    }
+                }
+                $date = $_post->getPublishDate('F d, Y');
+                ?>                
+                <div class="post-text-hld bd-foot mt-20">
+                    <div class="bg-dark category-bottom">
+                        <p><?= sprintf(__('This entry was posted %s %s on %s by %s'), $catHtml, $tagHtml, $date, $author) ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<?php echo $this->getChildHtml('blog.post.comments') ?>
+<div class="post-bottom">
+    <div class="addthis_toolbox addthis_default_style" addthis:url="<?php echo $_postUrl ?>">
+        <a class="addthis_button_facebook"></a>
+        <a class="addthis_button_twitter"></a>
+        <a class="addthis_button_email"></a>
+        <a class="addthis_button_compact"></a>
+    </div>
+
+    <?php echo $this->getChildHtml('blog.post.bottom') ?>
+    <div class="subscribe-sec">
+        <button id="blog-subscribe" data-url="<?= $this->getUrl('blogsubscribe')?>" class="action btn-subscribe" title="Subscribe to our Blog">
+            <span><?= __('Subscribe to our Blog') ?></span>
+        </button>
+    </div>
+</div>
