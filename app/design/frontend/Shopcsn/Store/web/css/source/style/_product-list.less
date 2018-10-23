@@ -432,7 +432,8 @@ input[type="radio"]:checked + label:after{
                 bottom: 0;
                 visibility: hidden;
                 opacity: 0;
-                position: absolute;
+                display: block;
+                
                 text-align: center;
                 .transition(all 0.3s ease 0s);
                 .transform(translateY(100%));
@@ -993,9 +994,30 @@ input[type="radio"]:checked + label:after{
 
 .media-width(@extremum,
 @break) when (@extremum ='max') and (@break=@screen__m) {
+
+    .cms-index-index .product-widget__wrapper .product-items
+    {
+        padding: 0px 10px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .cms-index-index .product-widget__wrapper .product-items,
+    .page-products .product-items{
+        margin: 0;
+    }
+
+    .page-products .products-grid .product-item,
+    .product-widget__wrapper .products-grid .product-item,
+    .block-products-list .products-grid .product-item {
+        padding: 5px;
+       
+    }
+
+
     .products-grid {
         div.product-item-info {
-            padding: 10px;
+            padding: 10px 6px;
             min-height: 295px;
             .product-item-photo {
                 
@@ -1011,6 +1033,7 @@ input[type="radio"]:checked + label:after{
             }
             .price-box {
                 position: relative;
+                margin-bottom: 15px;
                 .price {
                     font-size: 12px;
                 }
@@ -1029,7 +1052,10 @@ input[type="radio"]:checked + label:after{
                         padding: 6px;
                         width: 100%;
                     }
-
+                    
+                    .unavailable{
+                        line-height: 28px;
+                    }
 
                     .quick-view {
                         display: none;
@@ -1041,6 +1067,10 @@ input[type="radio"]:checked + label:after{
 }
 
 @media screen and (max-width: 480px) {
+
+    .products-grid div.product-item-info .product-item-photo{
+        max-width: 120px;
+    }
     .page-products {
         .page-main {
             .sidebar-main {
