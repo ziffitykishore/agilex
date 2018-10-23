@@ -4,6 +4,8 @@ ARG MAGE_MODE=development
 ARG NODEJS_VERSION=v9.2.1
 ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
 ARG REVISION=v2.10.0
+ARG SITE_DOMAIN="magento.test"
+ARG COPY_TLS_CERTS='false'
 
 ENV "MAGENTO_ROOT" /var/www/vhosts/magento.test/current
 
@@ -25,6 +27,8 @@ WORKDIR ${MAGENTO_ROOT}
 COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
 RUN ansible-playbook provision.yml \
     --vault-id /home/magento/.vault_pass \
+    -e site_domain=${SITE_DOMAIN} \
+    -e copy_tls_certs=${COPY_TLS_CERTS} \
     -t prebuild
 RUN rm "${MAGENTO_ROOT}/files" -rf
 
