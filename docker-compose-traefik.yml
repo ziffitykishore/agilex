@@ -1,0 +1,18 @@
+version: "2.3"
+
+services:
+
+  traefik:
+    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/traefik"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    network_mode: "bridge"
+    cap_add:
+      - NET_ADMIN
+    #labels:
+    #  - traefik.docker.network="web"
+
