@@ -34,11 +34,17 @@
       template:
         src: "{{ item.src }}.j2"
         dest: "{{ item.dest }}"
+      become: "{{ item.become }}"
       loop:
         - src: app/etc/env.php
           dest: "{{ playbook_dir }}/app/etc/env.php"
+          become: no
         - src: auth.json
           dest: "/home/magento/.composer/auth.json"
+          become: no
+        - src: default.conf
+          dest: "/etc/nginx/sites-available/magento.test.conf"
+          become: yes
     - name: remove vault_pass
       file: path=/home/magento/.vault_pass state=absent
   vars:
@@ -59,6 +65,8 @@
       65356334643565666439333834343836666631333437643564363939363835636231303263366464
       6131626466366165343661616134643465626564313539326637
     magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+    magento_root: "/var/www/vhosts/magento.test/current"
+    copy_nginx_certs: false
   tags:
     - prebuild
 
