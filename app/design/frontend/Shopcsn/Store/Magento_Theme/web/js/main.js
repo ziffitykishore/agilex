@@ -10,7 +10,7 @@ define([
     'fancybox',
     'bminjs',
     'domReady!'
-], function ($, jQuery) {
+], function ($) {
 
     /* Preloader */
     var preLoader = $(".pre-loader");
@@ -222,7 +222,7 @@ define([
         $('.test-image-sec').height(reviewWrap);
     }
 
-    function slickInit() {
+    /* function slickInit() {
         $('.product-widget__inner .product-items').slick({
             infinite: true,
             slidesToShow: 5,
@@ -252,7 +252,7 @@ define([
     $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
         $(".product-widget__inner .product-items").slick("unslick");
         slickInit();
-    });
+    }); */
 
     /* ticker sticky */
     /* function call stick  */
