@@ -10,7 +10,6 @@
     <body>
         <referenceContainer name="before.body.end">
             <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
-            <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/loader.phtml" name="page.loader"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
@@ -24,16 +23,6 @@
 
         <referenceContainer name="footer" htmlClass="page-footer__content">
             <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
-            <!--
-            <container name="footerlogo" label="Footer Logo" htmlTag="div" after="footer.news-wrapper" htmlClass="footer-logo text-center">
-                <container name="footer.logo-container" htmlClass="container" htmlTag="div">
-                    <block class="Magento\Cms\Block\Block" name="footer.logo" >
-                        <arguments>
-                            <argument name="block_id" xsi:type="string">footer_logo</argument>
-                        </arguments>
-                    </block>
-                </container>
-            </container> -->
             <container name="footer.grid-wrapper" htmlClass="footer-links-wrapper" htmlTag="div">
                 <container name="footer.grid-container" htmlClass="container" htmlTag="div">
                     <container name="footerlinks" as="footer" label="Footer Links" htmlTag="div"  htmlClass="footer-links">
@@ -42,8 +31,7 @@
                                 <argument name="block_id" xsi:type="string">footer_links</argument>
                             </arguments>
                         </block>
-                    </container> 
-                  
+                    </container>
                 </container>
             </container>
             <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">

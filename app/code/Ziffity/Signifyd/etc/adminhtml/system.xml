@@ -3,7 +3,7 @@
     <system>
         <section id="signifyd" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Signifyd</label>
-            <tab>ziffity</tab>
+            <tab>service</tab>
             <resource>Ziffity_Signifyd::index</resource>
             <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>

@@ -22,28 +22,7 @@
        </div>
     </div>
 </div>
-<script type="text/javascript">
-require(['jquery', 'jquery/ui', 'Magento_Ui/js/modal/modal'],
-    function($, ui, modal) {
-        var options = {
-            type: 'popup',
-            responsive: true,
-            innerScroll: true,
-            modalClass: 'call-price',
-            buttons: false,
-            title: $('.contact-title').text()
-        };
-        var callPopup = modal(options, $('#callforquote-popup'));
-        $(document).on("click", '.btn-callforprice', function(e){
-            $('#callforquote-popup').modal('openModal');
-            e.preventDefault();
-        });
-    }
-);
-</script>
-
 <?php
-
 /*google analaystics for shopcsntv.com*/
 $allowedDomain = [
     'www.shopcsntv.com',
