@@ -24,7 +24,7 @@ define([
             responsive: [{
                     breakpoint: 767,
                     settings: {
-                        dots: false,
+                        dots: false
                     }
                 }
             ]
@@ -207,7 +207,7 @@ define([
         ]
     });
 
-    if ($('.testi-slider').length) {
+    if ($('.testi-slider').length > 0) {
         $('.testi-slider').slick({
             dots: true,
             autoplay: true,
