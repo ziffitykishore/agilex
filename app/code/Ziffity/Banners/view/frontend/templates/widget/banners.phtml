@@ -1,28 +1,7 @@
 <?php if ($block->getBanners()) : ?>
-    <div class="home-banner">
-        <?php foreach ($block->getBanners() as $banner) { ?>
-        <div><a href="<?php echo $banner->getLink(); ?>"><img src="<?php echo $banner->getImageUrl(); ?>" alt="" /></a></div>
-        <?php } ?>
-    </div>
+<div class="home-banner">
+    <?php foreach ($block->getBanners() as $banner) { ?>
+    <div><a href="<?php echo $banner->getLink(); ?>"><img width="1120" height="320" class="magebees_lazyload" data-src="<?php echo $banner->getImageUrl(); ?>" alt="shopcsntv banners"/></a></div>
+    <?php } ?>
+</div>
 <?php endif; ?>
-<script>
-requirejs(['jquery','slick'], function($){
-        $('.home-banner').slick({
-        autoplay:true,
-        autoplaySpeed:3000,
-        dots: true,
-        infinite: true,
-        speed: 500,
-        fade: true,
-        arrows: false,
-        cssEase: 'linear',
-        responsive: [{
-                breakpoint: 767,
-                settings: {
-                    dots: false,
-                }
-            }
-        ]
-    });
-})
-</script>
