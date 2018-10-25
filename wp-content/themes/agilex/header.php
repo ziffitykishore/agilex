@@ -50,14 +50,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-<div class="loader scale">
-    <div class="circular circular-animate"></div>
-    <div class="loader-inner">
-        <?php if (function_exists('the_custom_logo')) :
-            the_custom_logo();
-        endif; ?>
+<div id="loading" class="loader scale">
+    <div id="loading-center">
+        <div id="loading-center-absolute">
+            <div class="object" id="object_one"></div>
+            <div class="object" id="object_two"></div>
+            <div class="object" id="object_three"></div>
+            <div class="object" id="object_four"></div>
+            <div class="object" id="object_five"></div>
+            <div class="object" id="object_six"></div>
+            <div class="object" id="object_seven"></div>
+            <div class="object" id="object_eight"></div>
+            <div class="object" id="object_nine"></div>
+        </div>
     </div>
 </div>
+
 
 <div class="temp-wrapper">
     <header class="main-header">
