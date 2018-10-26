@@ -58,6 +58,9 @@
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <referenceBlock name="sale.reorder.sidebar" remove="true"/>
         <referenceBlock name="authentication-popup" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="category.product.addto.compare" remove="true"/>
 
         <referenceBlock name="breadcrumbs">
             <block class="Ziffity\Header\Block\Header" name="csn.info" template="Ziffity_Header::header.phtml" />
