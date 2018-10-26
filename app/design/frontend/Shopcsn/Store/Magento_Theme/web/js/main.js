@@ -1,47 +1,53 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 define([
     'jquery',
+    'Magento_Ui/js/modal/modal',
     'jquery/ui',
     'slick',
     'fancybox',
     'bminjs',
     'domReady!'
-], function ($) {
+], function ($, modal) {
+    var _body = $('body'),
+        _html = $('html');
 
-    /* Preloader */
-    var preLoader = $(".pre-loader");
-    $(window).load(function () {
-        preLoader.fadeOut("slow");
-    });
-    setInterval(function () {
-        preLoader.fadeOut("slow");
-    }, 3000);
+    /*home page banner*/
+    if($('.home-banner').length > 0){
+        $('.home-banner').slick({
+            autoplay:true,
+            autoplaySpeed:3000,
+            dots: true,
+            infinite: true,
+            speed: 500,
+            fade: true,
+            arrows: false,
+            cssEase: 'linear',
+            responsive: [{
+                    breakpoint: 767,
+                    settings: {
+                        dots: false
+                    }
+                }
+            ]
+        });
+    }
 
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function (e) {
-        $('body').removeClass('acc-opened');
+        _body.removeClass('acc-opened');
 
     });
     $('.overlay').on('click', function () {
-        $('body').removeClass('acc-opened menu-opened');
-        $('html').removeClass('nav-open nav-before-open');
+        _body.removeClass('acc-opened menu-opened');
+        _html.removeClass('nav-open nav-before-open');
     });
 
     $('.customer-welcome .customer-name').on('click', function () {
-        $('body').toggleClass('acc-opened').removeClass('menu-opened');
+        _body.toggleClass('acc-opened').removeClass('menu-opened');
     });
 
-    $('#login-popup, .menu-heading .close').on('click', function () {
-        $('html').removeClass('nav-open nav-before-open');
-    });
-
-    $('.showcart').on('click', function () {
-        $('html').removeClass('nav-open nav-before-open');
+    $('#login-popup, .menu-heading .close, .showcart').on('click', function () {
+        _html.removeClass('nav-open nav-before-open');
     });
 
     $('.menu-wrap li.level0').each(function () {
@@ -127,15 +133,12 @@ define([
         lastScrollTop = st;
     }
 
-
     /* Fancy box */
-
     $("a[data-fancybox]").fancybox({
         padding: 0,
         aspectRatio: true,
         allowfullscreen: "true"
     });
-
 
     /* footer starts */
     $('#sticky-social .trigger').on('click', function () {
@@ -204,7 +207,7 @@ define([
         ]
     });
 
-    if ($('.testi-slider').length) {
+    if ($('.testi-slider').length > 0) {
         $('.testi-slider').slick({
             dots: true,
             autoplay: true,
@@ -222,39 +225,6 @@ define([
         $('.test-image-sec').height(reviewWrap);
     }
 
-    /* function slickInit() {
-        $('.product-widget__inner .product-items').slick({
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            dots: false,
-            prevArrow: '<button type="button" class="slick-prev fa fa-angle-left">Previous</button>',
-            nextArrow: '<button type="button" class="slick-next fa fa-angle-right">Next</button>',
-            responsive: [{
-                breakpoint: 1366,
-                settings: {
-                    slidesToShow: 4
-                }
-            }, {
-                breakpoint: 1023,
-                settings: {
-                    slidesToShow: 3
-                }
-            }, {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            }]
-        });
-    }
-    slickInit();
-    $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
-        $(".product-widget__inner .product-items").slick("unslick");
-        slickInit();
-    }); */
-
-    /* ticker sticky */
     /* function call stick  */
     function stickyBar(elm) {
         var elment = $(elm);
@@ -299,18 +269,46 @@ define([
     });
 
     $('#blog-subscribe').on('click', function () {
-        $('#newsletter').focus();
-        $('#newsletter').closest('form').submit();
+        $('#newsletter').focus().closest('form').submit();
     });
 
     $('.product-info-main .product-social-links').appendTo('.box-tocart');
     toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
 
-    /* My Live Chat */
-    $(window).bind("load", function () {
-        var script = document.createElement('script');
-        script.setAttribute("type", "text/javascript");
-        script.setAttribute("src", "https://mylivechat.com/chatinline.aspx?hccid=85652036")
-        document.getElementsByTagName("head")[0].appendChild(script);
+    /*after load*/
+    if(window.location.href.search( 'weltpixel_quickview' ) == '-1'){
+        $(window).bind("load",function(){
+            /*iframe*/
+            var _iFrame = '<iframe style="width:100%;border:0;overflow:hidden;background-color:transparent;height:104px" scrolling="no" src="https://fortrader.org/en/informers/getInformer?st=19&cat=10&title=&texts=%7B%22toolTitle%22%3A%22Symbol%22%2C%22bid%22%3A%22Bid%22%7D&mult=1&showGetBtn=0&w=0&hideDiff=1&colors=titleTextColor%3Dffffff%2CtitleBackgroundColor%3Dffffff%2CsymbolTextColor%3D3e5ca3%2CtableTextColor%3D444%2CborderTdColor%3Dffffff%2CtableBorderColor%3Dffffff%2CtrBackgroundColor%3Df1f1f1%2CitemImgBg%3D545454%2CprofitTextColor%3D89bb50%2CprofitBackgroundColor%3Deaf7e1%2ClossTextColor%3Dff1616%2ClossBackgroundColor%3Df6e1e1%2CinformerLinkTextColor%3D454242%2CinformerLinkBackgroundColor%3Df2f5f8&items=48%2C49%2C25459%2C25466%2C25458&columns="></iframe>';
+            $('.ticker.jFrame .container').html(_iFrame);
+
+            /* My Live Chat */
+            var script = document.createElement('script');
+            script.setAttribute("aysnc", true);
+            script.setAttribute("type", "text/javascript");
+            script.setAttribute("src", "https://mylivechat.com/chatinline.aspx?hccid=85652036");
+            document.getElementsByTagName("head")[0].appendChild(script);
+        });
+    }
+
+    /* Preloader */
+    var preLoader = $(".pre-loader");
+    preLoader.fadeOut("slow");
+    setInterval(function () {
+        preLoader.fadeOut("slow");
+    }, 3000);
+
+    var options = {
+        type: 'popup',
+        responsive: true,
+        innerScroll: true,
+        modalClass: 'call-price',
+        buttons: false,
+        title: $('.contact-title').text()
+    };
+    var callPopup = modal(options, $('#callforquote-popup'));
+    $(document).on("click", '.btn-callforprice', function(e){
+        $('#callforquote-popup').modal('openModal');
+        e.preventDefault();
     });
 });

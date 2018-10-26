@@ -22,22 +22,77 @@
        </div>
     </div>
 </div>
-<script type="text/javascript">
-require(['jquery', 'jquery/ui', 'Magento_Ui/js/modal/modal'],
-    function($, ui, modal) {
-        var options = {
-            type: 'popup',
-            responsive: true,
-            innerScroll: true,
-            modalClass: 'call-price',
-            buttons: false,
-            title: $('.contact-title').text()
-        };
-        var callPopup = modal(options, $('#callforquote-popup'));
-        $(document).on("click", '.btn-callforprice', function(e){
-            $('#callforquote-popup').modal('openModal');
-            e.preventDefault();
-        });
+<?php
+/*google analaystics for shopcsntv.com*/
+$allowedDomain = [
+    'www.shopcsntv.com',
+    'shopcsntv.com',
+    'thewalkingdeadcoin.com',
+    'www.thewalkingdeadcoin.com'
+];
+if(isset($_SERVER['HTTP_HOST']) && in_array($_SERVER['HTTP_HOST'], $allowedDomain))
+{
+    $Helper = $this->helper('Ziffity\Core\Helper\Data');
+    $storeName = $Helper->getScopeConfig('general/store_information/name');
+    $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+
+    $pathInfo = $this->getRequest()->getPathInfo();
+    $checkoutPath= '/onestepcheckout';
+    $success = '/checkout/onepage/success';
+
+    $isChekout = $isSuccess = false;
+    if(strpos($this->getRequest()->getPathInfo(), $checkoutPath) !== false){
+        $isChekout = true;
     }
-);
+    if(strpos($this->getRequest()->getPathInfo(), $success) !== false){
+        $isSuccess = true;
+    }
+?>
+<!-- Google Analytics snippet -->
+<script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-61912671-1', '<?php echo $this->getRequest()->getHttpHost() ?>');
+    ga('set', 'anonymizeIp', false);
+    ga('send', 'pageview');
+
+    var activeStep = window.isCustomerLoggedIn ? 'billing' : 'login';
+    <?php if($isChekout ){?>
+    Event.observe(window, 'load', function() {
+        try{ga('send', 'pageview', {'page': '<?= $checkoutPath; ?>/'+activeStep,'title': activeStep});}
+        catch(e){console.log(e);}
+    });
+    <?php }
+
+    if($isSuccess):
+        $checkoutSession = $objectManager->get('\Magento\Checkout\Model\Session');
+        $orderFactory = $objectManager->get('\Magento\Sales\Model\OrderFactory');
+        $_order = $orderFactory->create()->load($checkoutSession->getLastOrderId());
+    ?>
+    ga('require', 'ecommerce', 'ecommerce.js');
+    ga('ecommerce:addTransaction', {
+            'id': '<?php echo $_order->getData('entity_id')?>',
+            'affiliation': '<?= $storeName ?>',
+            'revenue': '<?php echo $_order->getGrandTotal()?>',
+            'shipping': '<?php echo $_order->getShippingInclTax()?>',
+            'tax': '<?php echo  $_order->getTaxAmount()?>',
+            'currency': '<?php echo $_order->getOrderCurrencyCode();?>'
+        }
+    );
+    <?php foreach($_order->getAllVisibleItems() as $_item): ?>
+    <?php if($_item->getParentItem()) continue; ?>
+    ga('ecommerce:addItem', {
+        'id': '<?php echo $_order->getData('entity_id') ?>',
+        'name': '<?php echo str_replace('\'','', $_item->getName()) ?>',
+        'sku': '<?php echo $_item->getSku() ?>',
+        'price': '<?php echo $_item->getPrice() ?>',
+        'quantity': '<?php echo (int) $_item->getQtyOrdered() ?>'
+    });
+    <?php endforeach;?>
+    ga('ecommerce:send');
+    <?php endif; ?>
 </script>
+<?php } ?>
+

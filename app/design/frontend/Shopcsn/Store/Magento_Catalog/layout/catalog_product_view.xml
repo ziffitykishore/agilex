@@ -48,7 +48,7 @@
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
         <move element="product.info.overview" destination="product.info.main" after="product.info.price" />
-        <move element="product.info.social" destination="product.info.form.content" after="-" />
+<!--        <move element="product.info.social" destination="product.info.form.content" after="-" />-->
         <referenceContainer name="product.info.media">
             <block class="Magento\Catalog\Block\Product\View" name="sale_badge" template="Magento_Catalog::product/view/sale.phtml"/>
         </referenceContainer>

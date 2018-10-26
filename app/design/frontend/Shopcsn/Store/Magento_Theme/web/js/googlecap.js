@@ -28,7 +28,7 @@ define([
                 },200);
             }
         };
-        require(['googlecap']);
+        require(['//www.google.com/recaptcha/api.js?onload=recaptchaOnload&render=explicit']);
 
         window.resetCaptcha = function(form){
             var custInput = form.find('.custom-g-input');

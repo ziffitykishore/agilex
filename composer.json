@@ -10,7 +10,8 @@
     "require": {
         "magento/product-community-edition": "2.2.5",
         "composer/composer": "@alpha",
-        "magento/data-migration-tool": "2.2.5"
+        "magento/data-migration-tool": "2.2.5",
+        "signifyd/module-connect": "3.0.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
@@ -59,6 +60,10 @@
         "magento": {
             "type": "composer",
             "url": "https://repo.magento.com"
+        },
+        "signifydmage2": {
+            "type": "git",
+            "url": "https://github.com/Signifyd/magento2.git"
         }
     },
     "extra": {
