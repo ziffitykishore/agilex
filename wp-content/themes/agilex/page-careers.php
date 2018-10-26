@@ -148,7 +148,16 @@ endforeach; ?>
             $('select').niceSelect('update');
             //alert("Please select the job");
             $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
-        }
+        } 
+
+        $('#job-post-list').on('change', function(){
+            if ($('#job-post-list').val()){
+                $('select').niceSelect('update');
+                $('.not-valid').hide();
+            }
+        })
+            
+        
     });
 
         $(window).on('load', function(){
