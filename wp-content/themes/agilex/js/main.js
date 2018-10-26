@@ -611,7 +611,7 @@ function myFunction() {
   }
 
   //reset the scroll to 0 (top of page)
-  $(window).on("beforeunload", function () {
+/*   $(window).on("beforeunload", function () {
     setInterval(function () {
       $(this).scrollTop(0);
       $("body").fadeOut("slow");
@@ -620,7 +620,7 @@ function myFunction() {
     if ($(this).scrollTop() === 0) {
       $(".header-container").removeClass("slideUp slideDown");
     }
-  });
+  }); */
 
   headerStick();
   $(window).on("resize", headerStick);

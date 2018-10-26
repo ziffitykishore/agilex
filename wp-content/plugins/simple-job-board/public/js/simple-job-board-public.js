@@ -56,6 +56,7 @@
 
                         /* Translation Ready String Through Script Locaization */
                         jobpost_form_status.html(response['success_alert']);
+                        $('.not-valid').hide();
                     }
 
                     if ( response['success'] == false ) {
