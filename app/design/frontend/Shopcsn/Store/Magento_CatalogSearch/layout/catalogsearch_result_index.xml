@@ -42,7 +42,6 @@
                 </arguments>
             </block>
         </referenceContainer>
-
-        <move element="page.main.title" destination="content" before="-"/>
+        <!--<move element="page.main.title" destination="content" before="-"/>-->
     </body>
 </page>

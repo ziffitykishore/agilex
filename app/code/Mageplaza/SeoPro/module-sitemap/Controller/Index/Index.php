@@ -68,7 +68,7 @@ class Index extends Action
         }
 
         $page = $this->pageFactory->create();
-        $page->getConfig()->getTitle()->set(__('HTML Sitemap'));
+        $page->getConfig()->getTitle()->set(__('Sitemap'));
 
         return $page;
     }
