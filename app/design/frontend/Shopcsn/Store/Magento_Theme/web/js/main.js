@@ -222,37 +222,7 @@ define([
         $('.test-image-sec').height(reviewWrap);
     }
 
-    /* function slickInit() {
-        $('.product-widget__inner .product-items').slick({
-            infinite: true,
-            slidesToShow: 5,
-            slidesToScroll: 1,
-            dots: false,
-            prevArrow: '<button type="button" class="slick-prev fa fa-angle-left">Previous</button>',
-            nextArrow: '<button type="button" class="slick-next fa fa-angle-right">Next</button>',
-            responsive: [{
-                breakpoint: 1366,
-                settings: {
-                    slidesToShow: 4
-                }
-            }, {
-                breakpoint: 1023,
-                settings: {
-                    slidesToShow: 3
-                }
-            }, {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2
-                }
-            }]
-        });
-    }
-    slickInit();
-    $('a[data-toggle="tab"]').on("shown.bs.tab", function (e) {
-        $(".product-widget__inner .product-items").slick("unslick");
-        slickInit();
-    }); */
+    
 
     /* ticker sticky */
     /* function call stick  */
