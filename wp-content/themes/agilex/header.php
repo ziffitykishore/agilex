@@ -53,15 +53,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div id="loading" class="loader scale">
     <div id="loading-center">
         <div id="loading-center-absolute">
-            <div class="object" id="object_one"></div>
-            <div class="object" id="object_two"></div>
-            <div class="object" id="object_three"></div>
-            <div class="object" id="object_four"></div>
-            <div class="object" id="object_five"></div>
-            <div class="object" id="object_six"></div>
-            <div class="object" id="object_seven"></div>
-            <div class="object" id="object_eight"></div>
-            <div class="object" id="object_nine"></div>
+        <div class="object" id="object_one"></div>
+<div class="object" id="object_two"></div>
+<div class="object" id="object_three"></div>
+
         </div>
     </div>
 </div>
