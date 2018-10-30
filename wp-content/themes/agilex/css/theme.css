@@ -1178,7 +1178,7 @@ p {
 /* preloader */
 
 .loader{
-    background-color: rgba(135, 135, 135, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
     height: 100%;
     width: 100%;
     position: fixed;
@@ -1201,114 +1201,113 @@ p {
     
 }
 
+
+
+
 #loading-center{
 	width: 100%;
 	height: 100%;
 	position: relative;
 	}
-#loading-center-absolute {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	height: 85px;
-	width: 85px;
-	margin-top: -59px;
-	margin-left: -59px;
-
-}
+    #loading-center-absolute {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        height: 150px;
+        width: 150px;
+        margin-top: -75px;
+        margin-left: -75px;
+    }
+    
 
 #loading .object{
-	width: 12px;
-	height: 12px;
+	width: 20px;
+	height: 20px;
 	background-color: #174a79;
-	margin-right: 20px;
 	float: left;
-	margin-bottom: 20px;
+	margin-right: 20px;
+	margin-top: 65px;
 	-moz-border-radius: 50% 50% 50% 50%;
 	-webkit-border-radius: 50% 50% 50% 50%;
 	border-radius: 50% 50% 50% 50%;
-	-ms-border-radius: 50% 50% 50% 50%;
-	-o-border-radius: 50% 50% 50% 50%;
-}
-    
-#loading   .object:nth-child(even) {
-        background-color: #fff;
-    }
-
-
-    #loading .object:nth-child(3n+0) {
-	margin-right: 0px;
 }
 
-
-#object_one {
-	-webkit-animation: animate 1s -0.9s ease-in-out infinite ;
-	animation: animate 1s -0.9s ease-in-out infinite ;
+#object_one {	
+	-webkit-animation: object_one 1.5s infinite;
+	animation: object_one 1.5s infinite;
 	}
 #object_two {
-    -webkit-animation: animate 1s -0.8s ease-in-out infinite ;
-	animation: animate 1s -0.8s ease-in-out infinite ;
+	-webkit-animation: object_two 1.5s infinite;
+	animation: object_two 1.5s infinite;
+	-webkit-animation-delay: 0.25s; 
+    animation-delay: 0.25s;
 	}
 #object_three {
-    -webkit-animation: animate 1s -0.7s ease-in-out infinite ;
-	animation: animate 1s -0.7s ease-in-out infinite ;
-	}
-#object_four {
-    -webkit-animation: animate 1s -0.6s ease-in-out infinite ;
-	animation: animate 1s -0.6s ease-in-out infinite ;
-	}
-#object_five {
-    -webkit-animation: animate 1s -0.5s ease-in-out infinite ;
-	animation: animate 1s -0.5s ease-in-out infinite ;
-	}
-#object_six {
-    -webkit-animation: animate 1s -0.4s ease-in-out infinite ;
-	animation: animate 1s -0.4s ease-in-out infinite ;
-	}
-#object_seven {
-    -webkit-animation: animate 1s -0.3s ease-in-out infinite ;
-	animation: animate 1s -0.3s ease-in-out infinite ;
-	}
-#object_eight {
-    -webkit-animation: animate 1s -0.2s ease-in-out infinite ;
-	animation: animate 1s -0.2s ease-in-out infinite ;
-	}
-#object_nine {
-    -webkit-animation: animate 1s -0.1s ease-in-out infinite ;
-	animation: animate 1s -0.1s ease-in-out infinite ;
+    -webkit-animation: object_three 1.5s infinite;
+	animation: object_three 1.5s infinite;
+	-webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+	
 	}
 
-@-webkit-keyframes animate {
- 
+	
 
-  50% {
-	-ms-transform: scale(1.5,1.5); 
-   	-webkit-transform: scale(1.5,1.5); 
-    transform: scale(1.5,1.5); 
-	  }
- 
-  100% {
-	-ms-transform: scale(1,1); 
-   	-webkit-transform: scale(1,1); 
-    transform: scale(1,1); 
-	  }
+
+
+
+
+
+@-webkit-keyframes object_one {
+75% { -webkit-transform: scale(0); }
+}
+
+@keyframes object_one {
+
+  75% { 
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
 
 }
 
-@keyframes animate {
-  50% {
-	-ms-transform: scale(1.5,1.5); 
-   	-webkit-transform: scale(1.5,1.5); 
-    transform: scale(1.5,1.5); 
-	  }
+
+
+
+
+@-webkit-keyframes object_two {
  
-  100% {
-	-ms-transform: scale(1,1); 
-   	-webkit-transform: scale(1,1); 
-    transform: scale(1,1); 
-	  }
+
+  75% { -webkit-transform: scale(0); }
+
+
+}
+
+@keyframes object_two {
+  75% { 
+    transform: scale(0);
+    -webkit-transform:  scale(0);
+  }
+
+}
+
+@-webkit-keyframes object_three {
+
+  75% { -webkit-transform: scale(0); }
+
+}
+
+@keyframes object_three {
+
+  75% { 
+    transform: scale(0);
+    -webkit-transform: scale(0);
+  }
   
 }
+
+
+
+
 
 
 div.container {
