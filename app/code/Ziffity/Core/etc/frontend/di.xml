@@ -2,4 +2,7 @@
     <type name="Magento\Catalog\Controller\Product\View">
         <plugin name="custom_product_breadcrumbs" type="Ziffity\Core\Plugin\Product\View" sortOrder="1"/>
     </type>
+    <type name="Magento\Framework\View\Page\Config\Renderer">
+        <plugin name="SeoProRender" type="Ziffity\Core\Plugin\SeoProRender" sortOrder="10"/>
+    </type>
 </config>
