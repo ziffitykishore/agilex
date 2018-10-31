@@ -138,7 +138,6 @@
         }
 
         if (match($whitelist_keywords, urlencode(strtoupper($permalink)))  == false
-            && match($whitelist_keywords, strtoupper($source_name))  == false
             && match($whitelist_keywords, strtoupper($description))  == false
             && match($whitelist_keywords, strtoupper($author_text))  == false
             && match($whitelist_keywords, strtoupper($itemTitle))  == false
@@ -626,4 +625,3 @@
            /* Return the result */
            return rtrim( $words );
     }
-
