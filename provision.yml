@@ -124,6 +124,7 @@
         group: nginx
         mode: u=rwX,g=rwX,o=rX
         path: "{{ playbook_dir }}"
+      become: yes
   tags:
     - build
 
