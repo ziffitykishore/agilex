@@ -139,6 +139,11 @@
     RewriteEngine on
 
 ############################################
+## Custom Redirection for wp, quickview (SEO Purpose Shopcsntv)
+    RewriteRule ^wp/(.*) https://%{HTTP_HOST}/blog/$1 [R=301,NC,L]
+    RewriteRule ^quickview/index/(.*) https://%{HTTP_HOST}/catalog/product/$1 [R=301,NC,L]
+
+############################################
 ## Redirect http to https before magento init (shopcsntv)
     RewriteCond %{HTTPS} off
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
@@ -167,11 +172,6 @@
     #RewriteCond %{REQUEST_URI} !^/mobiledirectoryhere/.*$
     #RewriteCond %{HTTP_USER_AGENT} "android|blackberry|ipad|iphone|ipod|iemobile|opera mobile|palmos|webos|googlebot-mobile" [NC]
     #RewriteRule ^(.*)$ /mobiledirectoryhere/ [L,R=302]
-
-############################################
-## Custom Redirection for wp, quickview (SEO Purpose Shopcsntv)
-    RewriteRule ^wp/(.*) /blog/$1 [R=301,NC,L]
-    RewriteRule ^quickview/index/(.*) /catalog/product/$1 [R=301,NC,L]
 
 ############################################
 ## never rewrite for existing files, directories and links
