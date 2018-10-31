@@ -1,0 +1,6 @@
+version: "2"
+options:
+  verbose: true
+syncs:
+  app-sync:
+    src: "./"

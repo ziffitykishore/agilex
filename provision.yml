@@ -1,0 +1,243 @@
+---
+
+- name: prebuild provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: install ioncube
+      yum:
+        name: php71u-ioncube-loader
+        state: present
+      become: yes
+    - name: set chmod key
+      file:
+        state: directory
+        path: "{{ item }}"
+        owner: magento
+        group: magento
+        mode: 0700
+      become: yes
+      loop:
+        - /home/magento/.ssh
+        - /home/magento/.composer
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} /var/www/vhosts/magento.test"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
+    - name: change to  magento:nginx permissions
+      file:
+        state: directory
+        path: "{{ item }}"
+        mode: u=rwX,g=rwX,o=rX
+        recurse: yes
+        owner: magento
+        group: nginx
+      loop:
+        - /usr/local/rvm/
+        - /var/lib/php/session/
+        - /var/www/vhosts/magento.test/
+      become: yes
+    - name: copy private key
+      copy:
+        remote_src: yes
+        src: files/id_rsa
+        dest: "/home/magento/.ssh/id_rsa"
+        owner: magento
+        group: nginx
+        mode: 0600
+    - name: apply templates
+      template:
+        src: "{{ item.src }}.j2"
+        dest: "{{ item.dest }}"
+      become: "{{ item.become }}"
+      loop:
+        - src: app/etc/env.php
+          dest: "{{ playbook_dir }}/app/etc/env.php"
+          become: no
+        - src: auth.json
+          dest: "/home/magento/.composer/auth.json"
+          become: no
+        - src: default.conf
+          dest: "/etc/nginx/sites-available/magento.test.conf"
+          become: yes
+    - name: remove vault_pass
+      file: path=/home/magento/.vault_pass state=absent
+  vars:
+    magento_repo_username: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      62306432363434363539623734396131613833333266366238636135636231346539656464336564
+      3035663632616435383364393435613833323332313262640a623664316331376236616534323833
+      30643162373538646333303734346265666234363535656363663337366663336362396462616164
+      6464383037616238340a326263656232613164653830656337653535333363646436623034383835
+      66356632303439653933326132356361666137356463323566336433376634336438616430386132
+      6432353232316638353834356530663532383861306133633733
+    magento_repo_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      31376461393764333834313036663335356661643865616166306162313839343664633662373332
+      3964643436333738363965316464666165343132666231620a336131613266623031306362323737
+      34393763643134653664393234333862333862336462353738376162633261323631656661396361
+      6166663462383438650a303966346538313138336233363439383435333333613138306162396532
+      65356334643565666439333834343836666631333437643564363939363835636231303263366464
+      6131626466366165343661616134643465626564313539326637
+    magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+    magento_root: "/var/www/vhosts/magento.test/current"
+    copy_nginx_certs: false
+  tags:
+    - prebuild
+
+- name: run auth.json
+  hosts: localhost
+  tasks:
+    - name: apply templates
+      template:
+        src: "{{ item.src }}.j2"
+        dest: "{{ item.dest }}"
+      become: "{{ item.become }}"
+      loop:
+        - src: app/etc/env.php
+          dest: "{{ playbook_dir }}/app/etc/env.php"
+          become: no
+        - src: auth.json
+          dest: "/home/magento/.composer/auth.json"
+          become: no
+    - name: remove vault_pass
+      file: path=/home/magento/.vault_pass state=absent
+  vars:
+    magento_repo_username: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      62306432363434363539623734396131613833333266366238636135636231346539656464336564
+      3035663632616435383364393435613833323332313262640a623664316331376236616534323833
+      30643162373538646333303734346265666234363535656363663337366663336362396462616164
+      6464383037616238340a326263656232613164653830656337653535333363646436623034383835
+      66356632303439653933326132356361666137356463323566336433376634336438616430386132
+      6432353232316638353834356530663532383861306133633733
+    magento_repo_password: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      31376461393764333834313036663335356661643865616166306162313839343664633662373332
+      3964643436333738363965316464666165343132666231620a336131613266623031306362323737
+      34393763643134653664393234333862333862336462353738376162633261323631656661396361
+      6166663462383438650a303966346538313138336233363439383435333333613138306162396532
+      65356334643565666439333834343836666631333437643564363939363835636231303263366464
+      6131626466366165343661616134643465626564313539326637
+    magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+    magento_root: "/var/www/vhosts/magento.test/current"
+    copy_nginx_certs: false
+  tags:
+    - template
+
+- name: build provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: make sure vendor doesn't exist
+      file:
+        path: "{{ playbook_dir }}/vendor"
+        state: absent
+    - name: run composer
+      shell: composer install
+    - name: run bundle
+      shell: bash -lc "bundle install"
+    - name: run yarn
+      shell: yarn
+      args:
+        executable: /bin/bash
+        chdir: "{{ item }}"
+      loop:
+        - "{{ playbook_dir }}"
+        - "{{ playbook_dir }}/vendor/somethingdigital/magento2-theme-bryantpark"
+        - "{{ playbook_dir }}/vendor/snowdog/frontools"
+    - name: remove vault_pass
+      file: path=/home/magento/.vault_pass state=absent
+    - name: make sure paths have correct user:group
+      file:
+        state: directory
+        recurse: yes
+        owner: magento
+        group: nginx
+        mode: u=rwX,g=rwX,o=rX
+        path: "{{ playbook_dir }}"
+      become: yes
+  tags:
+    - build
+
+- name: sync provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} /var/www/vhosts/magento.test"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
+    - name: make sure local cache clean
+      file:
+        state: absent
+        path: "{{ playbook_dir }}/{{ item }}"
+      loop:
+        - var/cache
+        - generated/code
+        - generated/metadata
+    - name: run magento upgrade
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "app:config:import"
+        - "cache:clean"
+        - "setup:upgrade"
+        - "deploy:mode:set --skip-compilation developer"
+        - "setup:di:compile"
+    - name: setup static content of theme
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "setup:static-content:deploy '{{ magento_theme }}'"
+        - "sd:dev:static --requirejs-only"
+        - "sd:dev:static --requirejs-only --area adminhtml Magento/backend"
+    - name: run yarn build production
+      shell: "yarn build:production"
+  vars:
+    magento_theme: "Magento/backend SomethingDigital/bryantpark"
+  tags:
+    - sync
+
+- name: install provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} /var/www/vhosts/magento.test"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
+    - name: run magento install
+      shell: |
+        {{ playbook_dir }}/bin/magento setup:install \
+          --db-host=database \
+          --db-name=magento_database \
+          --db-user=magento_user \
+          --db-password=magento_password \
+          --base-url=http://travers.test/ \
+          --admin-firstname=Admin \
+          --admin-lastname=User \
+          --admin-email=admin@user.com \
+          --admin-user=magento2 \
+          --admin-password=magento2_password \
+          --backend-frontname=admin \
+          --key={{ magento_crypt_key }}
+    - name: apply template
+      template:
+        src: "{{ item.src }}.j2"
+        dest: "{{ item.dest }}"
+      loop:
+        - src: app/etc/env.php
+          dest: "{{ playbook_dir }}/app/etc/env.php"
+  vars:
+    magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+  tags:
+    - install
+
