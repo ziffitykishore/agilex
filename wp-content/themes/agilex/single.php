@@ -73,11 +73,13 @@
   </div>
 </div>
 
+<!--
 <div class="pagination-wrap">
   <div class="container">
     <?php //previous_post_link(); ?>    <?php //next_post_link(); ?>
     <div class="pagination-inner">
     <?php
+    
 $post_id = $post->ID; // Get current post ID
 $cat = get_the_category();
 $current_cat_id = $cat[0]->cat_ID; // Get current Category ID 
@@ -85,9 +87,11 @@ $args = array('category'=>$current_cat_id,'orderby'=>'post_date','order'=> 'DESC
 $posts = get_posts($args);
 // Get IDs of posts retrieved by get_posts function
 $ids = array();
+/**
 foreach ($posts as $page) {
 $posts[] += $page->ID;
 }
+ */
 
 $current = array_search(get_the_ID(), $posts);
 $prevID = $posts[$current-1];
@@ -101,7 +105,7 @@ $nextID = $posts[$current+1];
 
   </div>
 </div>
-
+-->
 <?php //get_sidebar(); ?>
 
 
