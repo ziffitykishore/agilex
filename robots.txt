@@ -29,6 +29,7 @@ Disallow: /review/
 Disallow: /sendfriend/
 Disallow: /wishlist/
 Disallow: /onepagecheckout/
+Disallow: /weltpixel_quickview/
 
 # Files
 Disallow: /composer.json
