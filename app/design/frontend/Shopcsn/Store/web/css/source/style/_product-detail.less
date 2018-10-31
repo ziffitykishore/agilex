@@ -1,3 +1,26 @@
+
+.review-control-vote {
+    label{
+        &:before{
+            color: @color-btn;
+        }
+    }
+}
+
+.review-product-list {
+    .pdp {
+        .product-info-main{
+            .product-info-price{
+                .price-box{
+                    padding-top: 10px;
+                }
+            }
+        }
+    }
+   
+}
+
+.review-product-list,
 .catalog-product-view {
     a[href*="http://www.magictoolbox.com/magicscroll"] {
         display: none !important;
@@ -288,6 +311,11 @@
                     }
                 }
             }
+
+            > .actions{
+                margin: 20px;
+                
+            }
         }
     }
     .detailed {
@@ -299,6 +327,49 @@
                 list-style-type: circle;
                 list-style-position: outside;
             }
+        }
+
+        > .review-add{
+            margin-top: 50px;
+            padding: 35px 35px 35px 35px;
+            border: 1px solid #d7dded;
+            text-align: left;
+        }
+
+
+        .review-add {
+            .review-legend {
+                border-bottom: 0;
+                margin-bottom: 15px;
+            }
+            .review-field-ratings {
+                legend {
+                    text-align: left;
+                    padding: 10px 0;
+                    border-bottom: 0;
+                    font-size: 15px;
+                }
+                .label {
+                    font-size: 13px;
+                }
+            }
+        }
+
+        .review-form-actions {
+            .action.button-full {
+                margin-top: 10px;
+                margin-right: 10px;
+                text-transform: uppercase;
+                .button();
+                width: 100%;
+                height: 50px;
+                font-weight: bold;
+                &:hover {
+                    color: #fff;
+                }
+            }
+
+           
         }
         .product {
             &.data {
@@ -411,35 +482,8 @@
                                     text-transform: capitalize;
                                 }
                             }
-                            .review-legend {
-                                border-bottom: 0;
-                                margin-bottom: 15px;
-                            }
-                            .review-field-ratings {
-                                legend {
-                                    text-align: left;
-                                    padding: 10px 0;
-                                    border-bottom: 0;
-                                    font-size: 15px;
-                                }
-                                .label {
-                                    font-size: 13px;
-                                }
-                            }
-                            .review-form-actions {
-                                .button-full {
-                                    margin-top: 10px;
-                                    margin-right: 10px;
-                                    text-transform: uppercase;
-                                    .button();
-                                    width: 100%;
-                                    height: 50px;
-                                    font-weight: bold;
-                                    &:hover {
-                                        color: #fff;
-                                    }
-                                }
-                            }
+                           
+                            
                             textarea {
                                 &.input-text {
                                     height: 100px !important;
@@ -457,6 +501,7 @@
 }
 
 @media only screen and (max-width:1666px) {
+    .review-product-list,
     .catalog-product-view {
         .pdp {
             .product.media {
@@ -467,6 +512,7 @@
 }
 
 @media only screen and (max-width:1200px) {
+    .review-product-list,
     .catalog-product-view {
         .pdp {
             .product.media {
@@ -477,6 +523,7 @@
 }
 
 @media only screen and (max-width:992px) {
+    body.review-product-list,
     body.catalog-product-view {
         .pdp {
             display: block;
@@ -500,6 +547,7 @@
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m + 1) {
+    .review-product-list,
     .catalog-product-view {
         .product-widget__inner {
             margin-left: -15px;
@@ -509,6 +557,7 @@
 }
 
 .media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+    .review-product-list,
     .catalog-product-view {
         .page-main {
             padding-left: 15px;
@@ -545,6 +594,7 @@
                 .product-options-wrapper {
                     margin-bottom: 20px;
                 }
+               
                 .product-add-form {
                     .box-tocart {
                         margin: 0;
@@ -571,6 +621,9 @@
             }
         }
         .detailed {
+            > .review-add {
+                padding: 30px 15px 30px;
+            }
             .product {
                 &.data {
                     &.items {
@@ -648,6 +701,7 @@
 }
 
 @media only screen and (max-width:480px) {
+    .review-product-list,
     .catalog-product-view {
         .pdp {
             .product {
@@ -842,6 +896,7 @@ body.weltpixel-quickview-catalog-product-view {
         }
     }
     
+    .review-product-list, 
     .catalog-product-view {
         .pdp {
             .product.media {
@@ -869,6 +924,7 @@ body.weltpixel-quickview-catalog-product-view {
 }
 
 @media screen and (max-width: 639px) {
+    .review-product-list,
     .catalog-product-view {
         .product-info-price {
             margin: 0;
