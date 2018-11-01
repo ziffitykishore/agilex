@@ -24,11 +24,11 @@ git merge {version tag} --no-ff
   - The generated commit message will be something like "Merge tag 'v1.2.1' into develop". Append "from accelerator" to it so that's it's clear.
   - If you run into a 500 Internal Server Error, please run `sudo a2enmod version` in your VM. Then restart apache. For existing boxes, this is caused by new versions of Magento using IfVersion in .htaccess. 
 
-### Vagrant
+### Docker
 
-Instructions on getting the Something Digital Magento 2 Vagrant box up and running can be found in the [Operations-Development](https://github.com/sdinteractive/Operations-Development/tree/master/boxes/Magento-BaseBuild2) repo.
+run `docker-sync start`
 
-Vagrant is Something Digital's preferred environment in which to develop Magento 2. If an alternative is needed, one can use the official [Magento 2 Docker DevBox](http://devdocs.magento.com/guides/v2.1/install-gde/docker/docker-over.html).
+run `docker-compose -f docker-compose-traefik.yml -f docker-compose-dev.yml -f docker-compose.yml up`
 
 ## Development
 
