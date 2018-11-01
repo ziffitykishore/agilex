@@ -1,5 +1,5 @@
 // Theme Gulpfile Path
-var PATH = process.cwd() + '/vendor/somethingdigital/magento2-theme-bryantpark';
+var PATH = process.cwd() + '/app/design/frontend/Travers/default';
 
 process.chdir(PATH);
 

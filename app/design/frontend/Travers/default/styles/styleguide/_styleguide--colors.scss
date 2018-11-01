@@ -1,0 +1,182 @@
+$c-theme--blank: (
+    'scorpion': $c-scorpion,
+    'dusty-grey': $c-dusty-grey,
+    'silver': $c-silver,
+    'christine': $c-christine,
+    'green': $c-green,
+    'alizarian': $c-alizarian,
+    'yellow': $c-yellow,
+    'brown': $c-brown
+);
+
+$c-theme--blank-helper: (
+    'primary__color': $primary__color,
+    'secondary__color': $secondary__color,
+    'active': $primary__color,
+    'border': $c-border,
+    'page__background-color': $page__background-color,
+    'panel__background-color': $panel__background-color
+);
+
+$c-theme--alerts: (
+    'success': $success__color,
+    'success__background-color': $success__background-color,
+    'error': $error__color,
+    'error__background-color': $error__background-color,
+    'warning': $warning__color,
+    'warning__background-color': $warning__background-color
+);
+
+$c-theme--base--greys: (
+    'c-light-grey': $c-light-grey,
+    'c-medium-grey': $c-medium-grey,
+    'c-dark-grey': $c-dark-grey
+);
+
+$c-theme--base-colors: (
+    'color-black': $color-black,
+    'color-white': $color-white,
+    'c-red': $c-red,
+    'c-orange': $c-orange,
+    'c-blue': $c-blue
+);
+
+/*doc
+---
+title: Primary Colors
+name: colors
+category: Style-Guide -- Colors
+---
+
+Use <http://chir.ag/projects/name-that-color/> to name color hex values into variables. Map these variables to these theme variable as no site styling should directly utilize hex or name-that-color values. This will allow site colors to be easily chnaged in the future, if needed such as on a multi-store instance.
+
+<h1>Bryant Park Theme Color</h1>
+<ul class="colors--bg">
+  <li class="bg bg--scorpion"></li>
+  <li class="bg bg--dusty-grey"></li>
+  <li class="bg bg--silver"></li>
+  <li class="bg bg--christine"></li>
+  <li class="bg bg--alizarian"></li>
+  <li class="bg bg--green"></li>
+  <li class="bg bg--yellow"></li>
+  <li class="bg bg--brown"></li>
+</ul>
+
+<h1> Bryant Park Theme Helper Colors--Alerts</h1>
+<ul class="colors--bg">
+    <li class="bg bg--success"></li>
+    <li class="bg bg--success__background-color"></li>
+    <li class="bg bg--warning"></li>
+    <li class="bg bg--warning__background-color"></li>
+    <li class="bg bg--error"></li>
+    <li class="bg bg--error__background-color"></li>
+</ul>
+
+<h1> Bryant Park Theme Helper Colors</h1>
+<ul class="colors--bg">
+  <li class="bg bg--primary__color"></li>
+  <li class="bg bg--secondary__color"></li>
+  <li class="bg bg--active"></li>
+  <li class="bg bg--border"></li>
+  <li class="bg bg--page__background-color"></li>
+  <li class="bg bg--panel__background-color"></li>
+</ul>
+
+<h1>Base Greys</h1>
+<ul class="colors--bg">
+    <li class="bg bg--c-light-grey"></li>
+    <li class="bg bg--c-medium-grey"></li>
+    <li class="bg bg--c-dark-grey"></li>
+</ul>
+
+<h1>Base Colors</h1>
+<ul class="colors--bg">
+    <li class="bg bg--color-white"></li>
+    <li class="bg bg--color-black"></li>
+    <li class="bg bg--c-red"></li>
+    <li class="bg bg--c-orange"></li>
+    <li class="bg bg--c-blue"></li>
+</ul> 
+*/
+
+
+.colors--bg {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  list-style: none;
+}
+
+.bg {
+  position: relative;
+  width: calc(25% - .75px);
+  height: 150px;
+  color: white;
+  font-size: 12px;
+  letter-spacing: .5px;
+
+  &:not(:nth-child(4n)) {
+    margin-right: 1px;
+  }
+
+  &:after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5px;
+    background: black;
+    border-bottom: 0;
+    border-left: 0;
+  }
+}
+
+@each $theme-color, $color in $c-theme--blank {
+  .bg--#{$theme-color} {
+    background-color: $color;
+
+    &:after {
+      content: '#{$theme-color} - #{$color}';
+    }
+  }
+}
+
+@each $theme-color, $color in $c-theme--blank-helper {
+  .bg--#{$theme-color} {
+    background-color: $color;
+
+    &:after {
+      content: '#{$theme-color} - #{$color}';
+    }
+  }
+}
+
+@each $theme-color, $color in $c-theme--alerts {
+  .bg--#{$theme-color} {
+    background-color: $color;
+
+    &:after {
+      content: '#{$theme-color} - #{$color}';
+    }
+  }
+}
+
+@each $theme-color, $color in $c-theme--base--greys {
+  .bg--#{$theme-color} {
+    background-color: $color;
+
+    &:after {
+      content: '#{$theme-color} - #{$color}';
+    }
+  }
+}
+
+@each $theme-color, $color in $c-theme--base-colors {
+  .bg--#{$theme-color} {
+    background-color: $color;
+
+    &:after {
+      content: '#{$theme-color} - #{$color}';
+    }
+  }
+}

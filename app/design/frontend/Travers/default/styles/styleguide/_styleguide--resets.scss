@@ -1,0 +1,21 @@
+/*doc
+---
+title: Reset
+name: reset
+category: DOCS_MagentoUI - Reset
+---
+
+CSS reset is a technique that makes selected elements display in the same way in different browsers by default.
+
+In Magento UI library there is a pre-defined reset that can be called by appropriate mixin..
+
+## Magento reset
+Magento UI library has a set of variables that configure UI elements. Magento reset uses this list to define the default state of html elements. It sets up the basic typography, forms style, buttons style, tables style using variables which are specified in your theme. Mageno reset is made to avoid re-defining same elements by using some reset techniques and then set up different styles to these elements.
+
+To get Magento UI library reset in your theme, use mixin:
+
+ ```CSS
+ @include lib-magento-reset();
+ ```
+
+*/

@@ -1,0 +1,431 @@
+/*doc
+---
+title: Layout
+name: layout
+category: DOCS_MagentoUI - Layout
+---
+
+Magento UI library provides mixins for flexible page layout customization. For simple quick layout customization global layout variables are used.
+
+*/
+
+/*doc
+---
+title: Layout global variables
+name: layout_var
+category: DOCS_MagentoUI - Layout
+---
+
+Magento UI library provides mixins for flexible page layout customization. For simple quick layout customization global layout variables are used.
+
+<table>
+       <tr>
+           <th class="vars_head">Variables list names</th>
+           <th class="vars_head">Default value</th>
+           <th class="vars_head">Allowable values</th>
+           <th class="vars_head">Comment</th>
+       </tr>
+       <tr>
+           <th>$layout__width</th>
+           <td class="vars_value">''</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Page minimum width</td>
+       </tr>
+       <tr>
+           <th>$layout__max-width</th>
+           <td class="vars_value">1280px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Page maximum width</td>
+       </tr>
+       <tr>
+           <th>$layout-indent__width</th>
+           <td class="vars_value">20px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Page indents on the left and right</td>
+       </tr>
+       <tr>
+           <th colspan="4" class="vars_section">Class names defining different layouts</th>
+       </tr>
+       <tr>
+           <th>$layout-class-1column</th>
+           <td class="vars_value">page-layout-1column</td>
+           <td class="vars_value">'' | false | <nobr>page-layout-1column</nobr> | <nobr>page-layout-2columns-left</nobr> | <nobr>page-layout-2columns-right</nobr> | <nobr>page-layout-3columns</nobr></td>
+           <td>Class name for one column layout</td>
+       </tr>
+       <tr>
+           <th>$layout-class-2columns__left</th>
+           <td class="vars_value">page-layout-2columns-left</td>
+           <td class="vars_value">'' | false | <nobr>page-layout-1column</nobr> | <nobr>page-layout-2columns-left</nobr> | <nobr>page-layout-2columns-right</nobr> | <nobr>page-layout-3columns</nobr></td>
+           <td>Class name for two columns layout with left sidebar</td>
+       </tr>
+       <tr>
+           <th nowrap="nowrap">$layout-class-2columns__right</th>
+           <td class="vars_value">page-layout-2columns-right</td>
+           <td class="vars_value">'' | false | <nobr>page-layout-1column</nobr> | <nobr>page-layout-2columns-left</nobr> | <nobr>page-layout-2columns-right</nobr> | <nobr>page-layout-3columns</nobr></td>
+           <td>Class name for two columns layout with right sidebar</td>
+       </tr>
+       <tr>
+           <th>$layout-class-3columns</th>
+           <td class="vars_value">page-layout-3columns</td>
+           <td class="vars_value">'' | false | <nobr>page-layout-1column</nobr> | <nobr>page-layout-2columns-left</nobr> | <nobr>page-layout-2columns-right</nobr> | <nobr>page-layout-3columns</nobr></td>
+           <td>Class name for three columns layout with left sidebar</td>
+       </tr>
+       <tr>
+           <th colspan="4" class="vars_section">Variables used for layout grid</th>
+       </tr>
+       <tr>
+           <th>$total-columns</th>
+           <td class="vars_value">12</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Number of total columns in layout (i.e. <em>1, 2, 3</em>)</td>
+       </tr>
+       <tr>
+           <th>$gutter-width</th>
+           <td class="vars_value">0</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Distanse between columns</td>
+       </tr>
+       <tr>
+           <th colspan="4" class="vars_section">Variables for layout columns</th>
+       </tr>
+       <tr>
+           <th>$layout-column__width</th>
+           <td class="vars_value">$total-columns</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets base columns number</td>
+       </tr>
+       <tr>
+           <th>$layout-column__sidebar-width</th>
+           <td class="vars_value">2</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets sidebar width</td>
+       </tr>
+       <tr>
+           <th>$layout-column__left-width</th>
+           <td class="vars_value">$layout-column__sidebar-width</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets left column width</td>
+       </tr>
+       <tr>
+           <th>$layout-column__right-width</th>
+           <td class="vars_value">$layout-column__sidebar-width</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets right column width</td>
+       </tr>
+       <tr>
+           <th colspan="4" class="vars_section">Variables for layout columns depending on layout used</th>
+       </tr>
+       <tr>
+           <th>$layout-column-main__width-1</th>
+           <td class="vars_value">100%</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets one column width</td>
+       </tr>
+       <tr>
+           <th>$layout-column-main__width-2-left</th>
+           <td class="vars_value">$layout-column__width - $layout-column__left-width</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets left column width</td>
+       </tr>
+       <tr>
+           <th nowrap="nowrap">$layout-column-main__width-2-right</th>
+           <td class="vars_value">$layout-column__width - $layout-column__right-width</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets right column width</td>
+       </tr>
+       <tr>
+           <th>$layout-column-main__width-3</th>
+           <td class="vars_value">$layout-column__width - $layout-column__left-width - $layout-column__right-width</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Sets three columns layout main column width</td>
+       </tr>
+       <tr>
+           <th colspan="4" class="vars_section">Settings variables</th>
+       </tr>
+       <tr>
+           <th>$use-flex</th>
+           <td class="vars_value">true</td>
+           <td class="vars_value">'' | true | false</td>
+           <td>Sets compatibility for browsers not supporting flex</td>
+       </tr>
+       <tr>
+           <th>$responsive</th>
+           <td class="vars_value">true</td>
+           <td class="vars_value">'' | true | false</td>
+           <td>Is set to true if theme has responsive layout</td>
+       </tr>
+</table>
+*/
+
+/*doc
+---
+title: Page layouts
+name: layout_page
+category: DOCS_MagentoUI - Layout
+---
+
+Default properties for page columns are generated using alias mixins:
+
+<code>@include lib-layout-columns</code> - sets columns container
+
+<code>@include lib-layout-columns__main()</code> - alias for main column
+
+<code>@include lib-layout-columns__left()</code> - alias for left column
+
+<code>@include lib-layout-columns__right()</code> - alias for right column
+
+<code>@include lib-layout-columns > .reset()</code> - column width and order reset may be used in RWD
+
+These aliases use default class names for layouts predefined in vars (i.e. <code>$layout-class-3columns: layout-3</code>) and general column mixin *[<code>@include lib-layout-column()</code>](#layout-column)*
+
+## Three columns page layout
+
+```html
+<div class="page-wrapper layout-3 page-layout-3columns">
+   <header class="header">Header</header>
+   <section class="page main">
+       <div class="columns">
+           <div class="column main">Main column</div><!--
+        --><div class="column left sidebar">Left column</div><!--
+        --><div class="column right sidebar">Right column</div>
+       </div>
+   </section>
+   <footer class="footer">Footer</footer>
+</div>
+```
+
+## Two columns page layout with sidebar on the left
+
+```html_example
+ <div class="page-wrapper layout-2-left page-layout-2columns-left">
+   <header class="header">Header</header>
+   <section class="page main">
+       <div class="columns">
+           <div class="column main">Main column</div><!--
+        --><div class="column left sidebar">Left column</div>
+       </div>
+   </section>
+   <footer class="footer">Footer</footer>
+ </div>
+```
+
+## Two columns page layout with sidebar on the right
+
+```html_example
+ <div class="page-wrapper layout-2-right page-layout-2columns-right">
+   <header class="header">Header</header>
+   <section class="page main">
+       <div class="columns">
+           <div class="column main">Main column</div><!--
+        --><div class="column right sidebar">Right column</div>
+       </div>
+   </section>
+   <footer class="footer">Footer</footer>
+ </div>
+```
+
+## One column page layout
+
+```html_example
+ <div class="page-wrapper layout-1 page-layout-1column">
+   <header class="header">Header</header>
+   <section class="page main">
+       <div class="columns">
+           <div class="column main">Main column</div>
+       </div>
+   </section>
+   <footer class="footer">Footer</footer>
+ </div>
+```
+*/
+
+.cortana-container {
+  header.header {
+    background-color: rgba(255, 0, 0, .2);
+  }
+
+  .column.main {
+    background-color: rgba(255, 255, 0, .2);
+  }
+
+  .column.left {
+    background-color: rgba(0, 255, 255, .2);
+  }
+
+  .column.right {
+    background-color: rgba(0, 0, 255, .2);
+  }
+
+  footer.footer {
+    background-color: rgba(0, 0, 0, .2);
+  }
+  // 
+  // .columns {
+  //   @include lib-layout-columns();
+  //
+  //   > .column {
+  //     // &:extend(.add-box-sizing all);
+  //     //@include lib-css(padding-bottom, $indent__xl);
+  //   }
+  // }
+  //
+  // @media (min-width: 600px) {
+  //   .column.main {
+  //     @include lib-layout-columns__main();
+  //   }
+  //
+  //   .column.left {
+  //     @include lib-layout-columns__left();
+  //   }
+  //
+  //   .column.right {
+  //     @include lib-layout-columns__right();
+  //   }
+  // }
+}
+
+/*doc
+---
+title: Layout column
+name: layout_col
+category: DOCS_MagentoUI - Layout
+---
+
+The <code>@include layout-column()</code> mixin is used to setup page columns. It configures number, position and width of columns
+
+### 3 columns layout example:
+
+```html_example
+ <div class="layout-example-3">
+     <header class="header">Header</header>
+     <section class="page main">
+         <div class="columns">
+             <div class="column main">Main column</div><!--
+          --><div class="column left sidebar">Left column</div><!--
+          --><div class="column right sidebar">Right column</div>
+         </div>
+     </section>
+     <footer class="footer">Footer</footer>
+ </div>
+```
+
+To move main column to the left, change 2nd argument <code>$_order</code> for main and left columns:
+
+```sass
+ @include lib-column.main {
+     @include lib-layout-column(3, 1, 60%);
+ }
+ @include lib-column.left {
+     @include lib-layout-column(3, 2, 20%);
+ }
+```
+
+```html_example
+ <div class="layout-example-3-1">
+     <header class="header">Header</header>
+     <section class="page main">
+         <div class="columns">
+             <div class="column main">Main column</div><!--
+          --><div class="column left sidebar">Left column</div><!--
+          --><div class="column right sidebar">Right column</div>
+         </div>
+     </section>
+     <footer class="footer">Footer</footer>
+ </div>
+```
+*/
+
+
+.layout-example-3 {
+  .column.main {
+    @include lib-layout-column(3, 2, 60%);
+  }
+  .column.left {
+    @include lib-layout-column(3, 1, 20%);
+  }
+  .column.right {
+    @include lib-layout-column(3, 3, 20%);
+  }
+}
+
+.layout-example-3-1 {
+  .column.main {
+    @include lib-layout-column(3, 1, 60%);
+  }
+  .column.left {
+    @include lib-layout-column(3, 2, 20%);
+  }
+  .column.right {
+    @include lib-layout-column(3, 3, 20%);
+  }
+}
+
+/*doc
+---
+title: Layout column variables
+name: layout_colvar
+category: DOCS_MagentoUI - Layout
+---
+<table>
+       <tr>
+           <th class="vars_head">Mixin variable</th>
+           <th class="vars_head">Allowed values</th>
+           <th class="vars_head">Comment</th>
+       </tr>
+       <tr>
+           <th>$_layout__min-width </th>
+           <td class="vars_value">number</td>
+           <td>Number of total columns in layout (i.e. <em>1, 2, 3</em>)</td>
+       </tr>
+       <tr>
+           <th>$_order</th>
+           <td class="vars_value">number</td>
+           <td>Order of current column</td>
+       </tr>
+       <tr>
+           <th>$_width</th>
+           <td class="vars_value">number</td>
+           <td>Width set in css units (<em>20%, 300px, etc.</em>) or in <em>grid columns</em> if unit is not specified. (<em>4</em>)</td>
+       </tr>
+</table>
+*/
+
+
+/*doc
+---
+title: Layout width
+name: layout_width
+category: DOCS_MagentoUI - Layout
+---
+
+The <code>@include lib-layout-width()</code> mixin is used to set default page width of the element the mixin is applyed to. It can be used to set width for the whole page wrapper or for the page elements individualy like header, footer, and so on.
+
+#### Layout width variables
+
+<table>
+       <tr>
+           <th class="vars_head">Mixin variable</th>
+           <th class="vars_head">Default value</th>
+           <th class="vars_head">Allowed values</th>
+           <th class="vars_head">Comment</th>
+       </tr>
+       <tr>
+           <th>$_layout__min-width</th>
+           <td class="vars_value">''</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Page minimum width</td>
+       </tr>
+       <tr>
+           <th>$_layout__max-width</th>
+           <td class="vars_value">1280px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Page maximum width</td>
+       </tr>
+       <tr>
+           <th>$_layout__indent</th>
+           <td class="vars_value">20px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Page indents on the left and right</td>
+       </tr>
+</table>
+*/

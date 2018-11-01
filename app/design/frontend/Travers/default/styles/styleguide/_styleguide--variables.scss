@@ -1,0 +1,65 @@
+// font sizes
+
+/*doc
+---
+title: Breakpoint Variables
+name: variables_1
+category: Style-Guide -- Variables
+---
+
+Magento UI library provides a strong approach for working with media queries. It`s based on media query mixins found on the [media query mixin styleguide page](/styleguide/mixins_-_mediaqueries.html). The resulting <code>styles.css</code> will have only one media query statement per size constraint with all the rules there, not a multiple calls for the same query.
+
+To see the media queries work resize window to understand which breakpoint is applied.
+
+<div class="example-responsive-block">are applied.</div>
+
+Breakpoint Variable | Value
+:------------------ |:-------
+`$screen__xxs`      | 320px
+`$screen__xs`       | 480px
+`$screen__s`        | 640px
+`$screen__m`        | 768px
+`$screen__l`        | 1024px
+`$screen__xl`       | 1440px
+`$use-flex`         | true **[true or false]**
+`$responsive`       | true **[true or false]**
+*/
+
+.example-responsive-block {
+  padding: 10px;
+}
+
+@include max-screen($screen__m) {
+  .example-responsive-block {
+    background: #ffc;
+  }
+
+  .example-responsive-block:before {
+    content: 'Mobile styles ';
+    font-weight: bold;
+  }
+}
+
+@include min-screen($screen__m) {
+  .example-responsive-block {
+    background: #ccf;
+  }
+
+  .example-responsive-block:before {
+    content: 'Desktop styles ';
+    font-weight: bold;
+  }
+}
+
+
+// colors -- link back to color page__background-color
+
+@each $brand, $color in $c-brands {
+  .bg--brand--#{$brand} {
+    background-color: $color;
+
+    &:after {
+      content: '#{$brand} - #{$color}';
+    }
+  }
+}

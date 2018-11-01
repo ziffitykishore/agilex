@@ -1,10 +1,35 @@
 {
   "sd": {
-    "src"             : "vendor/somethingdigital/magento2-theme-bryantpark",
-    "dest"            : "pub/static/frontend/SomethingDigital/bryantpark",
-    "locale"          : ["en_US"],
-    "lang"            : "scss",
-    "postcss"         : ["plugins.autoprefixer()", "plugins.postcssInlineSvg()", "plugins.postcssObjectFitImages()"],
-    "ignore"          : ["node_modules/**"]
+    "src": "vendor/somethingdigital/magento2-theme-bryantpark",
+    "dest": "pub/static/frontend/SomethingDigital/bryantpark",
+    "locale": [
+      "en_US"
+    ],
+    "lang": "scss",
+    "postcss": [
+      "plugins.autoprefixer()",
+      "plugins.postcssInlineSvg()",
+      "plugins.postcssObjectFitImages()"
+    ],
+    "ignore": [
+      "node_modules/**"
+    ]
+  },
+  "default": {
+    "src": "app/design/frontend/Travers/default",
+    "dest": "pub/static/frontend/Travers/default",
+    "parent": "sd",
+    "locale": [
+      "en_US"
+    ],
+    "lang": "scss",
+    "postcss": [
+      "plugins.autoprefixer()",
+      "plugins.postcssInlineSvg()",
+      "plugins.postcssObjectFitImages()"
+    ],
+    "ignore": [
+      "node_modules/**"
+    ]
   }
 }
