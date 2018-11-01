@@ -87,3 +87,6 @@ atlassian*
 /generated/*
 !/generated/.htaccess
 .DS_Store
+
+provision.retry
+/.docker-sync
