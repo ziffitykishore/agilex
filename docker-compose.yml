@@ -49,6 +49,10 @@ services:
       - target: /var/lib/mysql
         source: database-vol
         type: volume
+      # Used if a database already exists
+      # - target: /docker-entrypoint-initdb.d/
+      #   source: ./files/db
+      #   type: bind
     environment:
       MYSQL_ROOT_PASSWORD: "root_password"
       MYSQL_DATABASE: "magento_database"

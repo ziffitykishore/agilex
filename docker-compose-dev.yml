@@ -4,7 +4,6 @@ services:
   app:
     volumes:
       - app-sync:/var/www/vhosts/magento.test/current:nocopy
-
 volumes:
   app-sync:
     external: true

@@ -51,5 +51,14 @@
                 </field>
             </group>
         </section>
+        <section id="google">
+            <group id="verification" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Verification Meta Tag</label>
+                <field id="verification_tag" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Verification Tag</label>
+                    <comment>Example: GR0007litdSK5Pu0zIERH4vRYJkcnStTp6SsA6FNkvU. The verification tag will be added to the site's HEAD element.</comment>
+                </field>
+            </group>
+        </section>
     </system>
 </config>
