@@ -270,5 +270,133 @@ return [
     'Unirgy_SimpleUp' => 1,
     'Unirgy_SimpleLicense' => 1,
     'Vertex_Tax' => 1
-  ]
+  ],
+  'system' => [
+    'default' => [
+       'catalog' => [
+         'search' => [
+           'engine' => 'elasticsearch',
+           'elasticsearch_server_hostname' => 'elasticsearch',
+           'elasticsearch_server_port' => '9200',
+           'elasticsearch_index_prefix' => 'magento'
+         ]
+       ],
+       'general' => [
+         'locale' => [
+           'code' => 'en_US'
+         ]
+       ],
+       'dev' => [
+         'static' => [
+           'sign' => '1'
+         ],
+         'front_end_development_workflow' => [
+           'type' => 'server_side_compilation'
+         ],
+         'template' => [
+           'minify_html' => '0'
+         ],
+         'js' => [
+           'merge_files' => '0',
+           'enable_js_bundling' => '1',
+           'minify_files' => '1',
+           'minify_exclude' => '
+               /tiny_mce/
+           ',
+           'session_storage_logging' => '0',
+           'translate_strategy' => 'dictionary'
+         ],
+          'css' => [
+             'minify_files' => '1',
+             'minify_exclude' => '
+                 /tiny_mce/
+             '
+          ]
+       ]
+    ],
+   'stores' => [
+     'admin' => [
+         'design' => [
+             'package' => [
+                 'name' => 'default'
+             ],
+             'theme' => [
+                 'default' => 'default'
+             ]
+         ]
+      ]
+    ],
+    'websites' => [
+      'admin' => [
+        'web' => [
+          'routers' => [
+            'frontend' => [
+              'disabled' => 'true'
+            ]
+          ],
+          'default' => [
+            'no_route' => 'admin/noroute/index'
+          ]
+        ]
+      ]
+    ]
+  ],
+  'scopes' => [
+    'websites' => [
+      'admin' => [
+        'website_id' => '0',
+        'code' => 'admin',
+        'name' => 'Admin',
+        'sort_order' => '0',
+        'default_group_id' => '0',
+        'is_default' => '0'
+      ],
+      'base' => [
+        'website_id' => '1',
+        'code' => 'base',
+        'name' => 'Main Website',
+        'sort_order' => '0',
+        'default_group_id' => '1',
+        'is_default' => '1'
+      ]
+    ],
+    'groups' => [
+      [
+        'group_id' => '0',
+        'website_id' => '0',
+        'code' => 'default',
+        'name' => 'Default',
+        'root_category_id' => '0',
+        'default_store_id' => '0'
+      ],
+      [
+        'group_id' => '1',
+        'website_id' => '1',
+        'code' => 'main_website_store',
+        'name' => 'Main Website Store',
+        'root_category_id' => '2',
+        'default_store_id' => '1'
+      ]
+    ],
+    'stores' => [
+      'admin' => [
+         'store_id' => '0',
+         'code' => 'admin',
+         'website_id' => '0',
+         'group_id' => '0',
+         'name' => 'Admin',
+         'sort_order' => '0',
+         'is_active' => '1'
+      ],
+      'default' => [
+        'store_id' => '1',
+        'code' => 'default',
+        'website_id' => '1',
+        'group_id' => '1',
+        'name' => 'Default Store View',
+        'sort_order' => '0',
+        'is_active' => '1'
+      ]
+    ]
+  ],
 ];
