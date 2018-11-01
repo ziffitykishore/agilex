@@ -10,6 +10,11 @@ div.mage-error[generated],
 }
 
 
+.checkout-shipping-method .no-quotes-block {
+    color: #e02b27;
+    }
+
+
 .ie11 .checkout-cart-index .column.main .cart-summary .discount .coupon .actions-toolbar {
     position: relative;
 }
@@ -689,9 +694,30 @@ div.mage-error[generated],
 
 @media only screen and ( max-width: 768px) {
     .onestepcheckout-index-index {
+        .logo img{
+            margin: 0 auto;
+        }
+        
+        .page-header+.page-main {
+            padding-top: 15px !important;
+        }
         .page-main {
             .page-title-wrapper {
                 border: 0;
+            }
+        } 
+
+        .checkout-container .one-step-checkout-wrapper{
+                display: block;
+             .one-step-checkout-container{
+                display: inline-block;
+            }
+        }
+
+
+        .osc-place-order-wrapper {
+            button.action.primary.checkout{
+                font-size: 16px;
             }
         }
     }
@@ -702,7 +728,7 @@ div.mage-error[generated],
         .logo {
             img {
                 display: inline;
-                margin-top: 15px;
+                
             }
         }
         .page-main {
