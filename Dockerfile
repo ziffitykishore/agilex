@@ -43,8 +43,8 @@ EXPOSE 80
 EXPOSE 443
 
 # switch to root:nginx user:group
-USER root
+USER magento:nginx
 
-ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh", "gosu", "magento:nginx"]
+ENTRYPOINT ["/usr/bin/tini", "--", "sudo", "/docker-entrypoint.sh"]
 
 CMD ["tail", "-f", "/etc/machine-id"]

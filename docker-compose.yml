@@ -3,9 +3,7 @@ version: "2.3"
 services:
 
   varnish:
-    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:latest"
-    entrypoint: ["/usr/bin/tini", "--"]
-    command: ["/usr/sbin/varnishd", "-f", "/etc/varnish/default.vcl", "-F"]
+    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0"
     links:
       - app
     volumes_from:

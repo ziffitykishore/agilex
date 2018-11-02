@@ -144,6 +144,16 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: set correct url
+      lineinfile:
+        path: /etc/nginx/sites-enabled/magento.test.conf
+        line: "  server {{ site_domain | default('magento.test') }};"
+        regexp: "  server magento.test;"
+      become: yes
+    - name: apply template
+      template:
+        src: "app/etc/env.php.j2"
+        dest: "{{ playbook_dir }}/app/etc/env.php"
     - name: set default owner:group to magento:nginx
       command: "{{ item }} /var/www/vhosts/magento.test"
       become: yes
@@ -198,7 +208,7 @@
           --db-name=magento_database \
           --db-user=magento_user \
           --db-password=magento_password \
-          --base-url=http://travers.test/ \
+          --base-url=http://{{ site_domain | default('magento.test') }}/ \
           --admin-firstname=Admin \
           --admin-lastname=User \
           --admin-email=admin@user.com \
