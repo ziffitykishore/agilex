@@ -28,7 +28,7 @@ git merge {version tag} --no-ff
 
 run `docker-sync-stack start`
 
-run `docker-compose -f docker-compose-traefik.yml -f`
+run `docker-compose -f docker-compose-traefik.yml up`
 
 ## Development
 
