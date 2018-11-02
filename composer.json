@@ -41,7 +41,7 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.2.4",
+        "magento/magento-cloud-metapackage": ">=2.2.6 <2.2.7",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "1.100.4",
