@@ -16,7 +16,7 @@ services:
       - "traefik.domain=travers.test"
 
   app:
-    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0"
+    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/travers-magento2:v0.0.1"
     cap_add:
       - SYS_PTRACE
     expose:
