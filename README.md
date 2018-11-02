@@ -30,6 +30,12 @@ run `docker-sync-stack start`
 
 run `docker-compose -f docker-compose-traefik.yml up`
 
+run `docker-compose exec app bash`
+
+At this point you'll be within the docker container
+
+run `ansible-playbook provision.yml -t build`
+
 ## Development
 
 Magento 2 OOB themes are built with LESS. Due to various reasons we have decided to go with a Sass port of the Magento blank theme called [Magento2-Theme-BryantPark](https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark). It can be found in `vendor/somethingdigital/magento2-theme-bryantpark` and is a fork of the [Snowdog theme blank sass](https://github.com/SnowdogApps/magento2-theme-blank-sass).
