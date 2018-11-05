@@ -2,9 +2,9 @@ FROM 754729414608.dkr.ecr.us-east-2.amazonaws.com/magento2:php7.1-nginx
 
 ARG MAGE_MODE=development
 ARG NODEJS_VERSION=v9.2.1
-ARG MAGE_FRONTEND_THEMES="Magento/backend SomethingDigital/bryantpark"
+ARG MAGE_FRONTEND_THEMES="Magento/backend Travers/default"
 ARG REVISION=v2.10.0
-ARG SITE_DOMAIN="magento.test"
+ARG SITE_DOMAIN="travers.test"
 ARG COPY_TLS_CERTS='false'
 
 ENV "MAGENTO_ROOT" /var/www/vhosts/magento.test/current

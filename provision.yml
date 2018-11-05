@@ -186,7 +186,7 @@
     - name: run yarn build production
       shell: "yarn build:production"
   vars:
-    magento_theme: "Magento/backend SomethingDigital/bryantpark"
+    magento_theme: "Magento/backend Travers/default"
   tags:
     - sync
 
