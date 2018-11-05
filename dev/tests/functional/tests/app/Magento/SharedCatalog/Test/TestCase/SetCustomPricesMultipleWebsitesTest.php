@@ -140,12 +140,6 @@ class SetCustomPricesMultipleWebsitesTest extends AbstractSharedCatalogConfigura
             \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $this->configData]
         )->run();
-        $this->objectManager->getInstance()
-            ->create(\Magento\Mtf\Util\Command\Cli\Queue::class)
-            ->run('sharedCatalogUpdatePrice');
-        $this->objectManager->getInstance()
-            ->create(\Magento\Mtf\Util\Command\Cli\Queue::class)
-            ->run('sharedCatalogUpdateCategoryPermissions');
         $sharedCatalog->persist();
         $customer->persist();
         $company = $this->fixtureFactory->createByCode(
@@ -186,6 +180,12 @@ class SetCustomPricesMultipleWebsitesTest extends AbstractSharedCatalogConfigura
 
         $this->sharedCatalogConfigure->getNavigation()->nextStep();
         $this->sharedCatalogConfigure->getPageActionBlock()->save();
+        $this->objectManager->getInstance()
+            ->create(\Magento\Mtf\Util\Command\Cli\Queue::class)
+            ->run('sharedCatalogUpdatePrice');
+        $this->objectManager->getInstance()
+            ->create(\Magento\Mtf\Util\Command\Cli\Queue::class)
+            ->run('sharedCatalogUpdateCategoryPermissions');
         $this->cache->flush();
         $this->indexer->reindex();
 

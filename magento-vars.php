@@ -39,4 +39,3 @@ if (checkHost('travers') !== false) {
     $_SERVER['MAGE_RUN_CODE'] = 'default';
     $_SERVER['MAGE_RUN_TYPE'] = 'store';
 }
-
