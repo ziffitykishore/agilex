@@ -80,6 +80,8 @@ atlassian*
 /pub/static/*
 !/pub/static/.htaccess
 
+/dev/tests/
+
 /var/*
 !/var/.htaccess
 /vendor/*
