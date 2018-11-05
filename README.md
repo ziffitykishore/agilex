@@ -30,6 +30,18 @@ run `docker-sync-stack start`
 
 run `docker-compose -f docker-compose-traefik.yml up`
 
+Now we need to connect dockers network to traefik:
+
+1) use `docker network ls` to get the travers network gateway id (it's the left most column)
+
+2) use `docker ps` to get the traefik container id (again, left most column)
+
+3) run `docker network connect [travers net] [traefik container id]`
+
+    Example:
+
+    > `docker network connect ffb637ba7de7 7ee3843067e7`
+
 run `docker-compose exec app bash`
 
 At this point you'll be within the docker container
