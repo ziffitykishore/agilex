@@ -1,8 +1,10 @@
 ---
 
-elasticsearch_name: "elasticsearch5"
+site_domain: "{{ ansible_env.SITE_DOMAIN }}"
 
-magento_root: "/var/www/vhosts/magento.test/current"
+site_root: "/var/www/vhosts/{{ site_domain }}"
+
+elasticsearch_name: "elasticsearch5"
 
 magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
 

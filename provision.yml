@@ -20,13 +20,6 @@
       loop:
         - /home/magento/.ssh
         - /home/magento/.composer
-    - name: set default owner:group to magento:nginx
-      command: "{{ item }} /var/www/vhosts/magento.test"
-      become: yes
-      loop:
-        - "setfacl -R -m d:g:nginx:rwX"
-        - "setfacl -R -m d:u:magento:rwX"
-        - "umask 002 -R"
     - name: change to  magento:nginx permissions
       file:
         state: directory
@@ -38,7 +31,7 @@
       loop:
         - /usr/local/rvm/
         - /var/lib/php/session/
-        - /var/www/vhosts/magento.test/
+        - "{{ site_root }}/"
       become: yes
     - name: copy private key
       copy:
@@ -61,12 +54,30 @@
           dest: "/home/magento/.composer/auth.json"
           become: no
         - src: default.conf
-          dest: "/etc/nginx/sites-available/magento.test.conf"
+          dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
           become: yes
     - name: remove vault_pass
-      file: path=/home/magento/.vault_pass state=absent
+      file: path="{{ item }}" state=absent
+      become: yes
+      loop:
+        - "/home/magento/.vault_pass"
+        - "/docker-entrypoint.d/mysql.sh"
   tags:
     - prebuild
+
+- name: install provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} {{ site_root }}"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
+  tags:
+    - owner
 
 - name: build provision
   hosts: localhost
@@ -112,18 +123,12 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: set correct url
-      lineinfile:
-        path: /etc/nginx/sites-enabled/magento.test.conf
-        line: "  server {{ site_domain | default('magento.test') }};"
-        regexp: "  server magento.test;"
-      become: yes
     - name: apply template
       template:
         src: "app/etc/env.php.j2"
         dest: "{{ playbook_dir }}/app/etc/env.php"
     - name: set default owner:group to magento:nginx
-      command: "{{ item }} /var/www/vhosts/magento.test"
+      command: "{{ item }} {{ site_root }}"
       become: yes
       loop:
         - "setfacl -R -m d:g:nginx:rwX"
@@ -161,7 +166,7 @@
   connection: local
   tasks:
     - name: set default owner:group to magento:nginx
-      command: "{{ item }} /var/www/vhosts/magento.test"
+      command: "{{ item }} {{ site_root }}"
       become: yes
       loop:
         - "setfacl -R -m d:g:nginx:rwX"
@@ -174,7 +179,7 @@
           --db-name=magento_database \
           --db-user=magento_user \
           --db-password=magento_password \
-          --base-url=http://{{ site_domain | default('magento.test') }}/ \
+          --base-url=http://{{ site_domain  }}/ \
           --admin-firstname=Admin \
           --admin-lastname=User \
           --admin-email=admin@user.com \
@@ -184,11 +189,8 @@
           --key={{ magento_crypt_key }}
     - name: apply template
       template:
-        src: "{{ item.src }}.j2"
-        dest: "{{ item.dest }}"
-      loop:
-        - src: app/etc/env.php
-          dest: "{{ playbook_dir }}/app/etc/env.php"
+        src: "app/etc/env.php.j2"
+        dest: "{{ playbook_dir }}/app/etc/env.php"
   tags:
     - install
 
