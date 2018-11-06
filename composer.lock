@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "e18a5cf9af55454d29c8ad504a3fddcc",
@@ -2226,12 +2226,6 @@
         {
             "name": "magento/extension-b2b",
             "version": "1.0.6",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/extension-b2b/magento-extension-b2b-1.0.6.0.zip",
-                "reference": null,
-                "shasum": "dae38eb00fe7bee36184cb01e85607c5a81b44be"
-            },
             "require": {
                 "magento/magento2-b2b-base": "1.0.6",
                 "magento/module-b2b": "100.0.3",
@@ -2603,12 +2597,6 @@
         {
             "name": "magento/magento-cloud-metapackage",
             "version": "2.2.6",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.2.6.0.zip",
-                "reference": null,
-                "shasum": "32d9f853d14906bf673b654c67e69418abc56b35"
-            },
             "require": {
                 "fastly/magento2": "^1.2.34",
                 "magento/ece-tools": "~2002.0.11",
@@ -11176,12 +11164,6 @@
         {
             "name": "magento/product-community-edition",
             "version": "2.2.6",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.2.6.0.zip",
-                "reference": null,
-                "shasum": "2aacefd94b6be05d85e58a1269347b71bc4b2a71"
-            },
             "require": {
                 "amzn/amazon-pay-and-login-with-amazon-core-module": "2.1.0",
                 "amzn/amazon-pay-module": "2.1.0",
@@ -11394,12 +11376,6 @@
         {
             "name": "magento/product-enterprise-edition",
             "version": "2.2.6",
-            "dist": {
-                "type": "zip",
-                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.2.6.0.zip",
-                "reference": null,
-                "shasum": "daf4546754fde35eb26a38e87776402178a9d4ab"
-            },
             "require": {
                 "amzn/amazon-pay-and-login-with-amazon-core-module": "2.1.0",
                 "amzn/amazon-pay-module": "2.1.0",
@@ -18251,17 +18227,6 @@
         {
             "name": "symfony/polyfill-xml",
             "version": "v1.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-xml.git",
-                "reference": "a2ef9388bbcef094e06d8447145b2782861c87ef"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-xml/zipball/a2ef9388bbcef094e06d8447145b2782861c87ef",
-                "reference": "a2ef9388bbcef094e06d8447145b2782861c87ef",
-                "shasum": ""
-            },
             "require": {
                 "php": ">=5.3.3",
                 "symfony/polyfill-php72": "~1.4"
