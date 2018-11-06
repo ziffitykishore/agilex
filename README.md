@@ -7,7 +7,7 @@ Something Digital's standard Magento 2 setup. Makes use of Gulp, [Hologram](http
 ### New Build
 
 See [CHECKLIST.md](CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
-
+  
 ### How to Update to Latest Accelerator
 
 If you need to update the Magento 2 build to latest version of accelerator, run the following commands:
