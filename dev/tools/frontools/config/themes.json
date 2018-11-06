@@ -13,7 +13,9 @@
     ],
     "ignore": [
       "node_modules/**"
-    ]
+    ],
+    "skipBuild": true
+
   },
   "default": {
     "src": "app/design/frontend/Travers/default",

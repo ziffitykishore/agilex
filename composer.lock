@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e18a5cf9af55454d29c8ad504a3fddcc",
+    "content-hash": "c23cb1a4efb6df9c2945b65d1d4141ed",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -1160,16 +1160,16 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.73",
+            "version": "1.2.74",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "3063e3763faac3f62fd73f4f2c58b5e45465ebd7"
+                "reference": "01906d95b38677a7d689fa7be352af87accc4e19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/3063e3763faac3f62fd73f4f2c58b5e45465ebd7",
-                "reference": "3063e3763faac3f62fd73f4f2c58b5e45465ebd7",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/01906d95b38677a7d689fa7be352af87accc4e19",
+                "reference": "01906d95b38677a7d689fa7be352af87accc4e19",
                 "shasum": ""
             },
             "require": {
@@ -1194,7 +1194,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Fastly CDN Module for Magento 2.x",
-            "time": "2018-10-23T15:56:56+00:00"
+            "time": "2018-10-26T14:52:48+00:00"
         },
         {
             "name": "gene/bluefoot",
@@ -12840,14 +12840,14 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/magento2-frontools.git",
-                "reference": "a88aa6"
+                "reference": "0a5a378"
             },
             "type": "magento2-component",
             "license": [
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2017-07-05T19:43:44+00:00"
+            "time": "2018-05-09T16:49:43+00:00"
         },
         {
             "name": "snowdog/theme-blank-sass",
