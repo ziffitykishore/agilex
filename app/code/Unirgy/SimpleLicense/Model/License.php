@@ -38,6 +38,11 @@ class License extends AbstractModel
         return $this->getData('server_restriction2');
     }
 
+    public function getModules()
+    {
+        return explode("\n", $this->getData('products'));
+    }
+
     public function __get($name)
     {
         return $this->_getData($name);

@@ -217,11 +217,11 @@ class Product
         }
 
         if ($skipOutOfStock) {
-            $select->where("{$entId} IN (SELECT product_id FROM {$this->_t('cataloginventory_stock_item')} WHERE (qty>0 && is_in_stock=1) OR NOT IF(use_config_manage_stock,{$manageStock},manage_stock))");
+            $select->where("entity_id IN (SELECT product_id FROM {$this->_t('cataloginventory_stock_item')} WHERE (qty>0 && is_in_stock=1) OR NOT IF(use_config_manage_stock,{$manageStock},manage_stock))");
         }
         $condProdIds = $profile->getConditionsProductIds();
         if (is_array($condProdIds)) {
-            $select->where("{$entId} in (?)", $condProdIds);
+            $select->where("entity_id in (?)", $condProdIds);
         }
 
         if ($this->currentVersion && $this->currentVersion->getId()) {
@@ -229,6 +229,8 @@ class Product
             $select->where('e.created_in <= ?', $this->currentVersion->getId());
             $select->where('e.updated_in > ?', $this->currentVersion->getId());
         }
+
+        $select->order('e.'.$entId);
 
         $countSelect = clone $select;
         $countSelect->reset(Select::FROM)->reset(Select::COLUMNS)->from(array('e' => $table), ['count(*)']);
@@ -928,7 +930,8 @@ class Product
 
             $error = false;
             foreach ($row as $col => $v) {
-                if (!isset($this->_fieldsIdx[$col]) && $v !== '') {
+                if (!isset($this->_fieldsIdx[$col])) {
+                //if (!isset($this->_fieldsIdx[$col]) && $v !== '') {
                     $profile->addValue('num_warnings');
                     $logger->setColumn($col + 1)
                         ->warning(__('Column is out of boundaries, ignored'));
@@ -1362,6 +1365,7 @@ class Product
                 }
                 // walk the attributes
                 foreach ($p as $k => $newValue) {
+                    $__isUpdated = false;
                     $logger->setColumn(isset($this->_fieldsCodes[$k]) ? $this->_fieldsCodes[$k] + 1 : 0);
 
                     $oldValue = !$pId ? null : (
@@ -1529,10 +1533,10 @@ class Product
                                 $this->_websiteScopeProducts[$pId] = 1;
                             }
                         }
-                        $isUpdated = true;
+                        $__isUpdated = $isUpdated = true;
                     }
 
-                    if ($isUpdated && $k === 'url_key') {
+                    if ($__isUpdated && $k === 'url_key') {
                         $this->addProductForUrlUpdate($sku);
                     }
                 } // foreach ($p as $k=>$newValue)

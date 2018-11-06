@@ -26,7 +26,7 @@ use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 use Magento\Rule\Model\AbstractModel;
 use Unirgy\RapidFlow\Model\ResourceModel\Catalog\Product as RfProduct;
 use Unirgy\RapidFlow\Helper\Data as RfData;
-use Unirgy\RapidFlow\Model\ResourceModel\Catalog\Product\Collection;
+use Unirgy\RapidFlow\Model\ResourceModel\Catalog\Product\CollectionFactory;
 use Unirgy\RapidFlow\Model\Rule\Condition\Combine;
 
 /**
@@ -43,9 +43,9 @@ class Rule extends AbstractModel
     protected $_product;
 
     /**
-     * @var Collection
+     * @var CollectionFactory
      */
-    protected $_productCollection;
+    protected $_productCollectionFactory;
 
     /**
      * @var Combine
@@ -63,7 +63,7 @@ class Rule extends AbstractModel
         FormFactory $formFactory,
         TimezoneInterface $localeDate,
         Product $product,
-        Collection $productCollection,
+        CollectionFactory $productCollectionFactory,
         Combine $condition,
         RfData $dataHelper,
         AbstractResource $resource = null,
@@ -71,7 +71,7 @@ class Rule extends AbstractModel
         array $data = []
     ) {
         $this->_product = $product;
-        $this->_productCollection = $productCollection;
+        $this->_productCollectionFactory = $productCollectionFactory;
         $this->_condition = $condition;
         parent::__construct($context, $registry, $formFactory, $localeDate, $resource, $resourceCollection, $data);
         $this->rfHelper = $dataHelper;
@@ -104,7 +104,7 @@ class Rule extends AbstractModel
      */
     public function getProductIds($profile)
     {
-        $collection = $this->_productCollection
+        $collection = $this->_productCollectionFactory->create()
             ->setStore($profile->getStoreId());
 
         // collect conditions and join validated attributes
@@ -112,9 +112,11 @@ class Rule extends AbstractModel
         $_wf = $profile->getData('options/export/websites_filter');
         $_scs = $profile->getData('options/export/skip_configurable_simples');
         $entityId = 'entity_id';
+        /*
         if ($this->rfHelper->hasMageFeature(RfProduct::ROW_ID)) {
             $entityId = RfProduct::ROW_ID;
         }
+        */
         if (!$where && !$_wf && !$_scs) {
             return true;
         }

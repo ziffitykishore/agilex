@@ -36,8 +36,8 @@ class Index extends AbstractModule
     {
         $page = $this->resultPageFactory->create();
 
-        if ($this->_config->getValue('usimpleup/general/check_ioncube') && !extension_loaded('ionCube Loader')) {
-            $this->messageManager->addNotice(__('ionCube Loader is not installed, commercial extensions might not work.'));
+        if ($this->_config->getValue('usimpleup/general/check_ioncube') && !extension_loaded('ionCube Loader') && !function_exists('sg_get_const')) {
+            $this->messageManager->addNotice(__('ionCube or SourceGuardian loader is not installed, commercial extensions might not work.'));
         }
         if (!extension_loaded('zip')) {
             $this->messageManager->addError(__('Zip PHP extension is not installed, will not be able to unpack downloaded extensions'));

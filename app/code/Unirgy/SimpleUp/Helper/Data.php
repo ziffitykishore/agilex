@@ -11,11 +11,12 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Encryption\Encryptor;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Filesystem;
-use Magento\Framework\Filesystem\Directory\Write;
 use Magento\Framework\Filesystem\Directory\WriteFactory;
 use Magento\Framework\Simplexml\Config;
 use Unirgy\SimpleUp\Model\Module;
 use Zend\Json\Json;
+use Magento\Framework\Exception\FileSystemException;
+use Magento\Framework\Filesystem\Directory\WriteInterface;
 
 class Data extends AbstractHelper
 {
@@ -30,7 +31,7 @@ class Data extends AbstractHelper
     protected $_directoryList;
 
     /**
-     * @var Write
+     * @var WriteInterface
      */
     protected $_directoryWrite;
 
@@ -92,9 +93,14 @@ class Data extends AbstractHelper
         if (empty($parsed['host']) || !preg_match('#(^|\.)unirgy\.com$#', $parsed['host'])) {
             throw new Exception(__('Invalid download URL: %1', $uri));
         }
+        /** @var $dlDir WriteInterface $dlDir */
         $dlDir = $this->_directoryWrite->create($this->_directoryList->getPath('var') . '/usimpleup/download');
-        if (!$dlDir) {
-            throw new Exception(__('Error creating folder: %1', $dlDir));
+        if (!$dlDir->isExist()) {
+            try {
+                $dlDir->create();
+            } catch (Exception $exception) {
+                throw new FileSystemException(__('Error creating folder: %1', $dlDir));
+            }
         }
 
         $filePath = $dlDir->getAbsolutePath('/' . basename($parsed['path']));
@@ -103,6 +109,8 @@ class Data extends AbstractHelper
         $uri .= (strpos($uri, '?') === false ? '?' : '&') . 'php=' . PHP_VERSION;
         if (function_exists('ioncube_loader_version')) {
             $uri .= '&ioncube=' . ioncube_loader_version();
+        } elseif (function_exists('sg_load')) {
+            $uri .= '&sg=1';
         }
 
         $ch = curl_init();
@@ -110,16 +118,24 @@ class Data extends AbstractHelper
             CURLOPT_URL => $uri,
             CURLOPT_BINARYTRANSFER => true,
             CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => 1,
             CURLOPT_FILE => $fd,
         ]);
+        if ((bool)$this->scopeConfig->isSetFlag('usimpleup/general/verify_ssl')) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+            #curl_setopt($curl, CURLOPT_CAINFO, dirname( __DIR__ ) . '/etc/gd_bundle-g2-g1.crt');
+            curl_setopt($ch, CURLOPT_CAINFO, dirname( __DIR__ ) . '/ssl/cacert.pem');
+        } else {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        }
         if (curl_exec($ch) === false) {
-            $error = __('Error while downloading file: %s', curl_error($ch));
+            $error = __('Error while downloading file: %1', curl_error($ch));
             curl_close($ch);
             fclose($fd);
             throw new Exception($error);
         }
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) != 200) {
-            $error = __('File not found or error while downloading: %s', $uri);
+            $error = __('File not found or error while downloading: %1', $uri);
             curl_close($ch);
             fclose($fd);
             throw new Exception($error);
@@ -151,7 +167,7 @@ class Data extends AbstractHelper
                 }
                 fclose($fd);
                 throw new Exception(__('Errors during FTP upload, see this log file: %s',
-                                       'usimpleup/log/' . basename($filePath) . '/errors.log'));
+                    'usimpleup/log/' . basename($filePath) . '/errors.log'));
             }
         } else {
             $this->unarchive($filePath, $this->_directoryList->getRoot());
@@ -183,7 +199,7 @@ class Data extends AbstractHelper
         if (!$zip->extractTo($target)) {
             $zip->close();
             throw new Exception(__('Errors during unpacking zip file. Please check destination write permissions: %s',
-                                   $target));
+                $target));
         }
         $zip->close();
     }
@@ -326,7 +342,15 @@ EOT
                 CURLOPT_URL => $uri,
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_HEADER => false,
+                CURLOPT_FOLLOWLOCATION => 1,
             ]);
+            if ((bool)$this->scopeConfig->isSetFlag('usimpleup/general/verify_ssl')) {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+                #curl_setopt($curl, CURLOPT_CAINFO, dirname( __DIR__ ) . '/etc/gd_bundle-g2-g1.crt');
+                curl_setopt($ch, CURLOPT_CAINFO, dirname( __DIR__ ) . '/ssl/cacert.pem');
+            } else {
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            }
             $response = curl_exec($ch);
             curl_close($ch);
             if ($response === false) {

@@ -3,6 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
     <event name="urapidflow_profile_reindex_after">
         <observer name="urapidflow" instance="Unirgy\RapidFlow\Observer\ProductUrlUpdateObserver"/>
+        <observer name="urfCategoryUrlUpdate" instance="\Unirgy\RapidFlow\Observer\CategoryUrlUpdateObserver"/>
         <observer name="urfProductImageCacheFlush" instance="Unirgy\RapidFlow\Observer\ProductImageCacheFlushObserver"/>
     </event>
 </config>
