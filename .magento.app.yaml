@@ -80,6 +80,8 @@ hooks:
         set -e
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
+        export HTTPS=on; /bin/bash ./.sd-build.sh
+
     # We run deploy hook after your application has been deployed and started.
     deploy: |
         php ./vendor/bin/ece-tools deploy
