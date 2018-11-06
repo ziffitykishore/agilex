@@ -3,8 +3,8 @@ version: "2.3"
 services:
   app:
     volumes:
-      - app-sync:/var/www/vhosts/magento.test/current:nocopy
+      - accelerator-magento2-sync:/var/www/vhosts/magento.test/current:nocopy
 
 volumes:
-  app-sync:
+  accelerator-magento2-sync:
     external: true

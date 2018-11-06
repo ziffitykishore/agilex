@@ -4,6 +4,6 @@ options:
   verbose: true
 
 syncs:
-  app-sync:
+ accelerator-magento2-sync:
     src: "./"
 
