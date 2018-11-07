@@ -145,8 +145,8 @@
 
 ############################################
 ## Redirect http to https before magento init (shopcsntv)
- #   RewriteCond %{HTTPS} off
-  #  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 ############################################
 ## you can put here your magento root folder
