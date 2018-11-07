@@ -11,5 +11,8 @@
         </referenceBlock>
         <referenceBlock name="social-login-popup" remove="true"/>
         <referenceBlock name="osc.additional.content" remove="true"/>
+        <referenceContainer name="after.body.start">
+            <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_iframe" as="magepal_gtm_iframe" template="MagePal_GoogleTagManager::iframe.phtml" before='-'/>
+        </referenceContainer>
     </body>
 </page>
