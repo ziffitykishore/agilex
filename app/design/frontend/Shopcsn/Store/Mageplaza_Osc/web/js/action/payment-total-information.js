@@ -49,8 +49,8 @@ define(
 
         return function () {
             oscLoader.startLoader();
-            cartCache.set('totals',null);
-            defaultTotal.estimateTotals();
+         /* cartCache.set('totals',null);
+            defaultTotal.estimateTotals();*/
             return storage.post(
                 resourceUrlManager.getUrlForUpdatePaymentTotalInformation(quote)
             ).done(
@@ -60,7 +60,7 @@ define(
                         return;
                     }
                     /*work around to fix load issue*/
-//                  quote.setTotals(response.totals);
+                    quote.setTotals(response.totals);
                     paymentService.setPaymentMethods(methodConverter(response.payment_methods));
                 }
             ).fail(

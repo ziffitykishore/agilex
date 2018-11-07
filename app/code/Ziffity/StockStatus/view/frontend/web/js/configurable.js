@@ -1,10 +1,10 @@
 define([
     'jquery',
     'jquery/ui',
-    'Magento_ConfigurableProduct/js/configurable'
+    'MagicToolbox_MagicZoomPlus/js/configurable'
 ], function($){
 
-    $.widget('silvan.configurable', $.mage.configurable, {
+    $.widget('silvan.configurable', $.magictoolbox.configurable, {
         /**
          * Configure an option, initializing it's state and enabling related options, which
          * populates the related option's selection and resets child option selections.

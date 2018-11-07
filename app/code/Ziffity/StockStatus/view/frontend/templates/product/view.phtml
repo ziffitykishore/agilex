@@ -7,3 +7,13 @@
         </a>
     </div>
 </div>
+<script>
+    require(['jquery'], function($){
+        var _cnfPrd = $('.page-product-configurable');
+        var _notifPrd = $('.productAlert.product-alert');
+        if(!_cnfPrd.length && _notifPrd.length){
+           _notifPrd.show();
+           $('.product-social-links').hide();
+        }
+    });
+</script>
