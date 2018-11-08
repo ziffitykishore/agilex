@@ -47,26 +47,6 @@
         dest: "{{ item.dest }}"
       become: "{{ item.become }}"
       loop:
-        - src: default.conf
-          dest: "/etc/nginx/sites-available/magento.test.conf"
-          become: yes
-    - name: remove vault_pass
-      file: path=/home/magento/.vault_pass state=absent
-  vars:
-    magento_root: "/var/www/vhosts/magento.test/current"
-    copy_nginx_certs: false
-  tags:
-    - prebuild
-
-- name: run auth.json
-  hosts: localhost
-  tasks:
-    - name: apply templates
-      template:
-        src: "{{ item.src }}.j2"
-        dest: "{{ item.dest }}"
-      become: "{{ item.become }}"
-      loop:
         - src: app/etc/env.php
           dest: "{{ playbook_dir }}/app/etc/env.php"
           become: no
@@ -83,7 +63,7 @@
         - "/home/magento/.vault_pass"
         - "/docker-entrypoint.d/mysql.sh"
   tags:
-    - template
+    - prebuild
 
 - name: install provision
   hosts: localhost
@@ -103,6 +83,11 @@
   hosts: localhost
   connection: local
   tasks:
+    - name: get submodules
+      shell: "git {{ item }}"
+      loop:
+        - "fetch --recurse-submodules --tags origin"
+        - "submodule update --init --recursive"
     - name: make sure vendor doesn't exist
       file:
         path: "{{ playbook_dir }}/vendor"
