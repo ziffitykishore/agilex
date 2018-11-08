@@ -39,9 +39,10 @@ return [
         'Magento_ScalableOms' => 1,
         'Magento_RequisitionList' => 1,
         'Magento_CatalogSearch' => 1,
+        'Magento_Checkout' => 1,
         'Magento_CatalogUrlRewrite' => 1,
         'Magento_PageCache' => 1,
-        'Magento_Checkout' => 1,
+        'Magento_Captcha' => 1,
         'Amazon_Core' => 1,
         'Magento_Security' => 1,
         'Magento_MediaStorage' => 1,
@@ -49,11 +50,13 @@ return [
         'Magento_CatalogImportExportStaging' => 1,
         'Amazon_Login' => 1,
         'Magento_Ui' => 1,
-        'Magento_WebsiteRestriction' => 1,
+        'Magento_AdvancedCheckout' => 1,
         'Magento_Email' => 1,
         'Magento_Msrp' => 1,
+        'Magento_UrlRewrite' => 1,
         'Magento_VersionsCms' => 1,
-        'Magento_AdvancedCheckout' => 1,
+        'Magento_Tax' => 1,
+        'Magento_ConfigurableProduct' => 1,
         'Magento_Downloadable' => 1,
         'Magento_GiftCard' => 1,
         'Magento_Staging' => 1,
@@ -62,6 +65,7 @@ return [
         'Magento_CheckoutAgreements' => 1,
         'Magento_CheckoutStaging' => 1,
         'Magento_Paypal' => 1,
+        'Magento_SampleData' => 1,
         'Magento_CmsStaging' => 1,
         'Magento_CmsUrlRewrite' => 1,
         'Magento_Company' => 1,
@@ -69,12 +73,13 @@ return [
         'Magento_CompanyPayment' => 1,
         'Magento_Analytics' => 1,
         'Magento_ConfigurableImportExport' => 1,
-        'Magento_ConfigurableProduct' => 1,
-        'Magento_CatalogRuleConfigurable' => 1,
+        'Magento_NegotiableQuote' => 1,
+        'Magento_Weee' => 1,
         'Magento_ConfigurableProductSales' => 1,
         'Magento_Wishlist' => 1,
         'Magento_ConfigurableRequisitionList' => 1,
-        'Magento_Tax' => 1,
+        'Magento_ThemeSampleData' => 1,
+        'Magento_WebsiteRestriction' => 1,
         'Magento_Contact' => 1,
         'Magento_Cookie' => 1,
         'EthanYehuda_CronjobManager' => 1,
@@ -83,9 +88,11 @@ return [
         'Gene_BlueFoot' => 1,
         'Magento_CustomerAnalytics' => 1,
         'Magento_CustomerBalance' => 1,
+        'Magento_CustomerBalanceSampleData' => 1,
         'Magento_CustomerSegment' => 1,
         'Magento_CustomerFinance' => 1,
         'Magento_CustomerImportExport' => 1,
+        'Magento_CustomerSampleData' => 1,
         'Magento_Banner' => 1,
         'Magento_Cybersource' => 1,
         'Magento_Deploy' => 1,
@@ -94,6 +101,7 @@ return [
         'Klarna_Core' => 1,
         'Magento_ProductAlert' => 1,
         'Magento_ImportExport' => 1,
+        'Magento_CatalogRuleConfigurable' => 1,
         'Magento_Reports' => 1,
         'Amazon_Payment' => 1,
         'Magento_AdvancedSearch' => 1,
@@ -105,13 +113,15 @@ return [
         'Magento_TargetRule' => 1,
         'Magento_GiftCardAccount' => 1,
         'Magento_GiftCardImportExport' => 1,
-        'Magento_NegotiableQuote' => 1,
+        'Magento_GiftCardNegotiableQuote' => 1,
         'Magento_GiftCardRequisitionList' => 1,
+        'Magento_CatalogSampleData' => 1,
         'Magento_CatalogPermissions' => 1,
-        'Magento_Weee' => 1,
+        'Magento_GiftRegistry' => 1,
         'Magento_GiftMessage' => 1,
         'Magento_GiftMessageStaging' => 1,
-        'Magento_GiftRegistry' => 1,
+        'Magento_CatalogStaging' => 1,
+        'Magento_BundleSampleData' => 1,
         'Magento_GiftWrapping' => 1,
         'Magento_GiftWrappingStaging' => 1,
         'Magento_GoogleAdwords' => 1,
@@ -121,6 +131,7 @@ return [
         'Magento_GoogleTagManager' => 1,
         'Magento_GroupedImportExport' => 1,
         'Magento_GroupedProduct' => 1,
+        'Magento_GroupedProductSampleData' => 1,
         'Magento_GroupedProductStaging' => 1,
         'Magento_GroupedRequisitionList' => 1,
         'Magento_SharedCatalog' => 1,
@@ -135,9 +146,11 @@ return [
         'Magento_Marketplace' => 1,
         'Magento_CatalogEvent' => 1,
         'Magento_MessageQueue' => 1,
-        'Magento_ConfigurableNegotiableQuote' => 1,
+        'Magento_DownloadableSampleData' => 1,
+        'Magento_MsrpSampleData' => 1,
         'Magento_MsrpStaging' => 1,
         'Magento_MultipleWishlist' => 1,
+        'Magento_GiftCardSampleData' => 1,
         'Magento_Multishipping' => 1,
         'Magento_MysqlMq' => 1,
         'Magento_BundleNegotiableQuote' => 1,
@@ -146,6 +159,7 @@ return [
         'Magento_Review' => 1,
         'Magento_OfflinePayments' => 1,
         'Magento_OfflineShipping' => 1,
+        'Magento_OfflineShippingSampleData' => 1,
         'Fastly_Cdn' => 1,
         'Magento_BundleSharedCatalog' => 1,
         'Magento_PaymentStaging' => 1,
@@ -154,7 +168,8 @@ return [
         'Magento_Persistent' => 1,
         'Magento_PersistentHistory' => 1,
         'Magento_PricePermissions' => 1,
-        'Magento_CatalogStaging' => 1,
+        'Magento_DownloadableStaging' => 1,
+        'Magento_ConfigurableSampleData' => 1,
         'Magento_ProductVideo' => 1,
         'Magento_ProductVideoStaging' => 1,
         'Magento_PromotionPermissions' => 1,
@@ -169,6 +184,7 @@ return [
         'Magento_ResourceConnections' => 1,
         'Magento_SendFriend' => 1,
         'Magento_ReviewAnalytics' => 1,
+        'Magento_ReviewSampleData' => 1,
         'Magento_ReviewStaging' => 1,
         'Magento_Reward' => 1,
         'Magento_RewardStaging' => 1,
@@ -182,12 +198,14 @@ return [
         'Magento_Signifyd' => 1,
         'Magento_SalesInventory' => 1,
         'Magento_CatalogRuleStaging' => 1,
+        'Magento_CatalogRuleSampleData' => 1,
         'Magento_SalesRuleStaging' => 1,
+        'Magento_SalesSampleData' => 1,
         'Klarna_Ordermanagement' => 1,
-        'Magento_UrlRewrite' => 1,
+        'Magento_CmsSampleData' => 1,
         'Magento_ScalableCheckout' => 1,
         'Magento_ScalableInventory' => 1,
-        'Magento_GiftCardNegotiableQuote' => 1,
+        'Magento_ConfigurableNegotiableQuote' => 1,
         'Magento_ScheduledImportExport' => 1,
         'Magento_Elasticsearch' => 1,
         'Magento_SearchStaging' => 1,
@@ -199,20 +217,24 @@ return [
         'Magento_Sitemap' => 1,
         'Magento_Solr' => 1,
         'Magento_CatalogInventoryStaging' => 1,
-        'Magento_Captcha' => 1,
+        'Magento_GiftCardSharedCatalog' => 1,
         'Magento_Support' => 1,
         'Magento_Webapi' => 1,
         'Magento_SwaggerWebapi' => 1,
         'Magento_Swatches' => 1,
         'Magento_SwatchesLayeredNavigation' => 1,
+        'Magento_SwatchesSampleData' => 1,
         'Magento_GiftCardStaging' => 1,
-        'Magento_GiftCardSharedCatalog' => 1,
+        'Magento_TargetRuleSampleData' => 1,
+        'Magento_GiftRegistrySampleData' => 1,
         'Magento_TaxImportExport' => 1,
+        'Magento_TaxSampleData' => 1,
+        'Magento_WishlistSampleData' => 1,
         'MSP_TwoFactorAuth' => 1,
         'Magento_Translation' => 1,
         'Magento_CatalogUrlRewriteStaging' => 1,
         'Magento_Ups' => 1,
-        'Magento_SampleData' => 1,
+        'Magento_SalesRuleSampleData' => 1,
         'Magento_AsynchronousOperations' => 1,
         'Magento_Usps' => 1,
         'Magento_Variable' => 1,
@@ -223,11 +245,13 @@ return [
         'Magento_Swagger' => 1,
         'Magento_WebapiSecurity' => 1,
         'Magento_GroupedSharedCatalog' => 1,
-        'Magento_BundleStaging' => 1,
+        'Magento_ProductLinksSampleData' => 1,
         'Magento_WeeeStaging' => 1,
         'Magento_B2b' => 1,
-        'Magento_DownloadableStaging' => 1,
+        'Magento_WidgetSampleData' => 1,
+        'Magento_BundleStaging' => 1,
         'Magento_WishlistAnalytics' => 1,
+        'Magento_MultipleWishlistSampleData' => 1,
         'Magento_Worldpay' => 1,
         'SomethingDigital_AdminNotify' => 1,
         'SomethingDigital_AssetOptimizer' => 1,
@@ -244,68 +268,6 @@ return [
         'SomethingDigital_VirtualThemes' => 1,
         'Temando_Shipping' => 1,
         'Vertex_Tax' => 1
-    ],
-    'system' => [
-        'default' => [
-            'general' => [
-                'locale' => [
-                    'code' => 'en_US'
-                ]
-            ],
-            'dev' => [
-                'static' => [
-                    'sign' => '1'
-                ],
-                'front_end_development_workflow' => [
-                    'type' => 'server_side_compilation'
-                ],
-                'template' => [
-                    'minify_html' => '0'
-                ],
-                'js' => [
-                    'merge_files' => '0',
-                    'enable_js_bundling' => '1',
-                    'minify_files' => '1',
-                    'minify_exclude' => '
-               /tiny_mce/
-           ',
-                    'session_storage_logging' => '0',
-                    'translate_strategy' => 'dictionary'
-                ],
-                'css' => [
-                    'minify_files' => '1',
-                    'minify_exclude' => '
-                 /tiny_mce/
-             '
-                ]
-            ]
-        ],
-        'stores' => [
-            'admin' => [
-                'design' => [
-                    'package' => [
-                        'name' => 'default'
-                    ],
-                    'theme' => [
-                        'default' => 'default'
-                    ]
-                ]
-            ]
-        ],
-        'websites' => [
-            'admin' => [
-                'web' => [
-                    'routers' => [
-                        'frontend' => [
-                            'disabled' => 'true'
-                        ]
-                    ],
-                    'default' => [
-                        'no_route' => 'admin/noroute/index'
-                    ]
-                ]
-            ]
-        ]
     ],
     'scopes' => [
         'websites' => [
@@ -327,7 +289,7 @@ return [
             ]
         ],
         'groups' => [
-            [
+            0 => [
                 'group_id' => '0',
                 'website_id' => '0',
                 'code' => 'default',
@@ -335,13 +297,21 @@ return [
                 'root_category_id' => '0',
                 'default_store_id' => '0'
             ],
-            [
+            1 => [
                 'group_id' => '1',
                 'website_id' => '1',
                 'code' => 'main_website_store',
                 'name' => 'Main Website Store',
                 'root_category_id' => '2',
                 'default_store_id' => '1'
+            ],
+            7 => [
+                'group_id' => '7',
+                'website_id' => '1',
+                'code' => 'canada',
+                'name' => 'Canada',
+                'root_category_id' => '2',
+                'default_store_id' => '7'
             ]
         ],
         'stores' => [
@@ -362,6 +332,72 @@ return [
                 'name' => 'Default Store View',
                 'sort_order' => '0',
                 'is_active' => '1'
+            ],
+            'en_ca' => [
+                'store_id' => '7',
+                'code' => 'en_ca',
+                'website_id' => '1',
+                'group_id' => '7',
+                'name' => 'Canada Store View',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ]
+        ]
+    ],
+    'system' => [
+        'default' => [
+            'general' => [
+                'locale' => [
+                    'code' => 'en_US'
+                ]
+            ],
+            'dev' => [
+                'front_end_development_workflow' => [
+                    'type' => 'server_side_compilation'
+                ],
+                'template' => [
+                    'minify_html' => '0'
+                ],
+                'js' => [
+                    'merge_files' => '0',
+                    'minify_files' => '1',
+                    'minify_exclude' => '
+               /tiny_mce/
+           ',
+                    'session_storage_logging' => '0',
+                    'translate_strategy' => 'dictionary',
+                    'enable_js_bundling' => '1'
+                ],
+                'css' => [
+                    'minify_files' => '1',
+                    'minify_exclude' => '
+                 /tiny_mce/
+             '
+                ]
+            ]
+        ],
+        'stores' => [
+
+        ],
+        'websites' => [
+            'admin' => [
+                'web' => [
+                    'routers' => [
+                        'frontend' => [
+                            'disabled' => 'true'
+                        ]
+                    ],
+                    'default' => [
+                        'no_route' => 'admin/noroute/index'
+                    ]
+                ]
+            ]
+        ]
+    ],
+    'admin_user' => [
+        'locale' => [
+            'code' => [
+                'en_US'
             ]
         ]
     ]
