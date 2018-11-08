@@ -20,13 +20,6 @@
       loop:
         - /home/magento/.ssh
         - /home/magento/.composer
-    - name: set default owner:group to magento:nginx
-      command: "{{ item }} /var/www/vhosts/magento.test"
-      become: yes
-      loop:
-        - "setfacl -R -m d:g:nginx:rwX"
-        - "setfacl -R -m d:u:magento:rwX"
-        - "umask 002 -R"
     - name: change to  magento:nginx permissions
       file:
         state: directory
@@ -38,7 +31,7 @@
       loop:
         - /usr/local/rvm/
         - /var/lib/php/session/
-        - /var/www/vhosts/magento.test/
+        - "{{ site_root }}/"
       become: yes
     - name: copy private key
       copy:
@@ -80,30 +73,31 @@
         - src: auth.json
           dest: "/home/magento/.composer/auth.json"
           become: no
+        - src: default.conf
+          dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
+          become: yes
     - name: remove vault_pass
-      file: path=/home/magento/.vault_pass state=absent
-  vars:
-    magento_repo_username: !vault |
-      $ANSIBLE_VAULT;1.1;AES256
-      33616665323761343839653364373033383339303462663930613835376163613764333962616462
-      3362333630356664383736333164306361343266643565360a636463633966656632363836396465
-      36306631616333333033326538366638383233383436666334663133633061373066336533386235
-      3233343731633939300a366262323138653831383538373336393465376264313239376466373833
-      63353234346563373737653734326564356462633837623038363831333366323566323465303665
-      3637633365633764353964353565376166666235333362663965
-    magento_repo_password: !vault |
-      $ANSIBLE_VAULT;1.1;AES256
-      36316563303664616264646161386364396232353165323261386661326230383761303835326139
-      3865343665393137333434643033363963613261656161360a386163313263386235353766393763
-      64613337313230633332396664386431333035333765646332346139653762643031396539343663
-      6635643237363561630a343239656538386466666334386464366362633165613336623466303835
-      39363962363365313737646238373236373239366636636638316163323130613064323030323763
-      6462313461373132303835663330383636653230336462383537
-    magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
-    magento_root: "/var/www/vhosts/magento.test/current"
-    copy_nginx_certs: false
+      file: path="{{ item }}" state=absent
+      become: yes
+      loop:
+        - "/home/magento/.vault_pass"
+        - "/docker-entrypoint.d/mysql.sh"
   tags:
     - template
+
+- name: install provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} {{ site_root }}"
+      become: yes
+      loop:
+        - "setfacl -R -m d:g:nginx:rwX"
+        - "setfacl -R -m d:u:magento:rwX"
+        - "umask 002 -R"
+  tags:
+    - owner
 
 - name: build provision
   hosts: localhost
@@ -144,18 +138,12 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: set correct url
-      lineinfile:
-        path: /etc/nginx/sites-enabled/magento.test.conf
-        line: "  server {{ site_domain | default('magento.test') }};"
-        regexp: "  server magento.test;"
-      become: yes
     - name: apply template
       template:
         src: "app/etc/env.php.j2"
         dest: "{{ playbook_dir }}/app/etc/env.php"
     - name: set default owner:group to magento:nginx
-      command: "{{ item }} /var/www/vhosts/magento.test"
+      command: "{{ item }} {{ site_root }}"
       become: yes
       loop:
         - "setfacl -R -m d:g:nginx:rwX"
@@ -185,8 +173,6 @@
         - "sd:dev:static --requirejs-only --area adminhtml Magento/backend"
     - name: run yarn build production
       shell: "yarn build:production"
-  vars:
-    magento_theme: "Magento/backend Travers/default"
   tags:
     - sync
 
@@ -195,7 +181,7 @@
   connection: local
   tasks:
     - name: set default owner:group to magento:nginx
-      command: "{{ item }} /var/www/vhosts/magento.test"
+      command: "{{ item }} {{ site_root }}"
       become: yes
       loop:
         - "setfacl -R -m d:g:nginx:rwX"
@@ -208,7 +194,7 @@
           --db-name=magento_database \
           --db-user=magento_user \
           --db-password=magento_password \
-          --base-url=http://{{ site_domain | default('magento.test') }}/ \
+          --base-url=http://{{ site_domain  }}/ \
           --admin-firstname=Admin \
           --admin-lastname=User \
           --admin-email=admin@user.com \
@@ -218,13 +204,8 @@
           --key={{ magento_crypt_key }}
     - name: apply template
       template:
-        src: "{{ item.src }}.j2"
-        dest: "{{ item.dest }}"
-      loop:
-        - src: app/etc/env.php
-          dest: "{{ playbook_dir }}/app/etc/env.php"
-  vars:
-    magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+        src: "app/etc/env.php.j2"
+        dest: "{{ playbook_dir }}/app/etc/env.php"
   tags:
     - install
 
