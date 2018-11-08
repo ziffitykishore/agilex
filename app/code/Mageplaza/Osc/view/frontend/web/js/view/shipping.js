@@ -120,15 +120,6 @@ define(
                         getPaymentTotalInformation();
                     }
                 }, this);
-                $('input').attr('autocomplete', 'off');
-
-
-                $('.field input.form-control, textarea.form-control')
-                    .on("focus blur", function() {
-                        if ($(this).val() == "") {
-                            $(this).parents(".field").toggleClass("focused");
-                        }
-                    });
                 return this;
             },
 

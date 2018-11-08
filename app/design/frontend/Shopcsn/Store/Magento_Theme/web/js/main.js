@@ -33,23 +33,19 @@ define([
 
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
-    $('.nav-toggle').on('click', function (e) {
+    $('.nav-toggle').on('click', function () {
         _body.removeClass('acc-opened');
-
     });
     $('.overlay').on('click', function () {
         _body.removeClass('acc-opened menu-opened');
         _html.removeClass('nav-open nav-before-open');
     });
-
     $('.customer-welcome .customer-name').on('click', function () {
         _body.toggleClass('acc-opened').removeClass('menu-opened');
     });
-
     $('#login-popup, .menu-heading .close, .showcart').on('click', function () {
         _html.removeClass('nav-open nav-before-open');
     });
-
     $('.menu-wrap li.level0').each(function () {
         if ($(this).find('.level2').length) {
             $(this).addClass('mega-menu');
@@ -60,7 +56,8 @@ define([
 
     /* autocomplete off */
     $('input').attr('autocomplete', 'off');
-    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function () {
+    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function (e) {
+        e.stopPropagation();
         var clstField = $(this).closest('.field');
         if ($(this).attr('name') == 'street[0]') {
             $(this).closest('fieldset').find('legend').remove();
@@ -71,7 +68,8 @@ define([
     $(document).on('focus', '.onestepcheckout-index-index select', function () {
         $(this).closest('.field').addClass('focused select-group');
     });
-    $(document).on("blur", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function () {
+    $(document).on("blur", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function (e) {
+        e.stopPropagation();
         var clstField = $(this).closest('.field');
         if ($(this).val() == '') {
             clstField.removeClass('focused');
@@ -86,6 +84,7 @@ define([
         } else {
             $('.header-wrapper').removeClass("fix-header nav-down").addClass('no-sticky');
         }
+        didScroll = true;
     });
 
     // Hide Header on on scroll down
@@ -93,10 +92,6 @@ define([
     var lastScrollTop = 0;
     var delta = 5;
     var navbarHeight = $('.header-wrapper').outerHeight();
-
-    $(window).scroll(function (event) {
-        didScroll = true;
-    });
 
     setInterval(function () {
         if (didScroll) {
