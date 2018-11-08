@@ -29,9 +29,7 @@ define(
         'Magento_Checkout/js/model/payment/method-converter',
         'Magento_Checkout/js/model/payment-service',
         'Magento_Checkout/js/model/shipping-service',
-        'Mageplaza_Osc/js/model/osc-loader',
-        'Magento_Checkout/js/model/cart/totals-processor/default',
-        'Magento_Checkout/js/model/cart/cache'
+        'Mageplaza_Osc/js/model/osc-loader'
     ],
     function ($,
               quote,
@@ -42,15 +40,11 @@ define(
               methodConverter,
               paymentService,
               shippingService,
-              oscLoader,
-              defaultTotal,
-              cartCache) {
+              oscLoader) {
         'use strict';
 
         return function () {
             oscLoader.startLoader();
-         /* cartCache.set('totals',null);
-            defaultTotal.estimateTotals();*/
             return storage.post(
                 resourceUrlManager.getUrlForUpdatePaymentTotalInformation(quote)
             ).done(
@@ -59,7 +53,6 @@ define(
                         window.location.href = response.redirect_url;
                         return;
                     }
-                    /*work around to fix load issue*/
                     quote.setTotals(response.totals);
                     paymentService.setPaymentMethods(methodConverter(response.payment_methods));
                 }
