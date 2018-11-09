@@ -14,8 +14,19 @@ input[type="number"],
 input[type="datetime"],
 input[type="email"],
 select {
-    border-color: #d7d7ed;
     height: 50px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+input[type="datetime"],
+input[type="email"],
+.control textarea {
+    border-color: #d7d7ed;
 }
 
 input,
@@ -24,7 +35,8 @@ textarea {
     &.mage-error {
         border-color: #ed8380;
     }
-    &:focus, &.form-control:focus {
+    &:focus,
+    &.form-control:focus {
         border-color: @color-black;
         box-shadow: none;
     }

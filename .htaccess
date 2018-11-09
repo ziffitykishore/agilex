@@ -139,6 +139,16 @@
     RewriteEngine on
 
 ############################################
+## Custom Redirection for wp, quickview (SEO Purpose Shopcsntv)
+    RewriteRule ^wp/(.*) https://%{HTTP_HOST}/blog/$1 [R=301,NC,L]
+    RewriteRule ^quickview/index/(.*) https://%{HTTP_HOST}/catalog/product/$1 [R=301,NC,L]
+
+############################################
+## Redirect http to https before magento init (shopcsntv)
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+############################################
 ## you can put here your magento root folder
 ## path relative to web root
 
