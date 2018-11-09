@@ -278,6 +278,12 @@ function($, modal, googlecapjs) {
         $('._show[data-role="modal"]').find('.action-close').trigger( "click" );
     }
 
+    function clearForm(form){
+        form.find(':input')
+        .not(':button, :submit, :reset, :hidden')
+        .val('').closest('.field').removeClass('focused');
+    }
+
     var options = {
         type: 'popup',
         responsive: true,
@@ -293,6 +299,7 @@ function($, modal, googlecapjs) {
         e.preventDefault();
         var ppModal = $('#popup-modal');
         var popup = modal(options, ppModal);
+        clearForm(ppModal);
         ppModal.modal('openModal').on('modalclosed', function(){
             $('.login-notify').hide().html('');
         });
@@ -312,6 +319,7 @@ function($, modal, googlecapjs) {
         closeModal();
         var ppModal = $('#popup-modal-signup');
         var popup = modal(optsignup, ppModal);
+        clearForm(ppModal);
         ppModal.modal('openModal').on('modalclosed', function() { 
             $('#popup-modal-signup div.mage-error').remove();
         });
@@ -398,8 +406,8 @@ function($, modal, googlecapjs) {
             $('.signupcheck').removeClass('mage-error').show();
         }
         event.preventDefault();
-        
-        if(regForm.validation('isValid')) {            			
+
+        if(regForm.validation('isValid')) {
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister', ['isAjax' => true]); ?>',
                 type:'POST',
@@ -410,7 +418,7 @@ function($, modal, googlecapjs) {
 
                     /*reset captcha*/
                     window.resetCaptcha(regForm);
-                    
+
                     if(response.resultRedirect) {
                         setTimeout(function(){											
                             //window.location = response.resultRedirect;
