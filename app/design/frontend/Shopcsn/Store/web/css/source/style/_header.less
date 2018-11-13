@@ -1,4 +1,28 @@
 & when (@media-common =true) {
+    .promo-images1 {
+        img {
+            display: inline-block;
+    text-align: center;
+    max-width: 50px;
+    margin: 0 10px;
+    vertical-align: middle;
+    width: 17%;
+        }
+    }
+    .promo-images2 {
+        img {
+            display: inline-block;
+    text-align: center;
+    max-width: 50px;
+    margin: 0 10px;
+    vertical-align: middle;
+    width: 15%;
+            &:last-of-type {
+                max-width: 120px;
+                width: 38%;
+            }
+        }
+    }
     .header-promo {
         .lib-css(background-color, @color-darkslateblue);
         padding: @layout-indent__width 0;
