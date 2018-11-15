@@ -34,26 +34,41 @@
 // Theme-specific colors
 $c-scorpion: #5d5d5d;
 $c-dusty-grey: #999;
-$c-silver: #ccc;
+$c-silver: #C2C2C2;
 $c-christine: #f06212;
 $c-green: #006400;
 $c-alizarian: #e02b27;
 $c-yellow: #fdf0d5;
 $c-brown: #6f4400;
 
+$c-royal: #00377B;
+$c-midnight: #00184D;
+$c-cobalt: #0361C1;
+$c-sapphire: #0A264A;
+$c-waterfall: #A9B9CA;
+$c-steel: #333333;
+$c-smoke: #F2F2F2;
+$c-nickel: #636363;
+$c-drill: #363636;
+$c-aluminum: #464646;
+$c-grey: #DCDCDC;
+
 // Standard colors
 $c-pink: #fae5e5;
 $c-light-green: #e5efe5;
 $c-red: $c-alizarian;
 $c-orange: $c-christine;
-$c-blue: #1979c3;
-$c-light-grey: $c-silver;
-$c-medium-grey: $c-dusty-grey;
-$c-dark-grey: $c-scorpion;
+$c-blue: $c-cobalt;
+$c-light-blue: $c-cobalt;
+$c-medium-blue: $c-royal;
+$c-dark-blue: $c-midnight;
+$c-light-grey: $c-smoke;
+$c-medium-grey: $c-nickel;
+$c-dark-grey: $c-drill;
 
 // Main site colors
-$primary__color: $c-christine;
-$secondary__color: $c-scorpion;
+$primary__color: $c-royal;
+$secondary__color: $c-nickel;
 
 $active__color: $primary__color; // standard color for designating an element as being "active"
 
