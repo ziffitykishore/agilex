@@ -2,14 +2,17 @@ version: "2"
 
 options:
   verbose: true
+  compose-file-path: "pod.yml"
+  compose-dev-file-path: "pod-dev.yml"
 
 syncs:
- accelerator-magento2-sync:
+  accelerator-magento2-sync:
     src: "./"
-    sync_args:
-      - "-ignore='Path .idea'"          # no need to send PHPStorm config to container
-      - "-ignore='Path .git'"           # ignore the main .git repo
-      - "-ignore='BelowPath .git'"      # also ignore .git repos in subfolders such as in composer vendor dirs
-      - "-ignore='Path var/cache/*'"    # don't share the cache
-      - "-ignore='Path var/sessions/*'" # we don't need the sessions locally
-      - "-ignore='Path dev/tests/*'"
+    sync_strategy: "default" # (native|native_osx|unison|rsync)
+    host_disk_mount_mode: "cached"
+    sync_excludes:
+      - ".idea"          # no need to send PHPStorm config to container
+      - ".git"           # ignore the main .git repo
+      - "var/cache/*"    # don't share the cache
+      - "var/sessions/*" # we don't need the sessions locally
+      - "dev/tests/*"
