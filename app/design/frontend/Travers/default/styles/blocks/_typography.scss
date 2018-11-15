@@ -52,14 +52,32 @@ category: Style-Guide - Typography
 
 @include bryant-park-typography-all();
 
+body {
+    font-size: $font-size__base;
+
+    @include min-screen($screen__m) {
+        font-size: $font-size__base--desktop;
+    }
+}
+
 h1,
 .h1 {
     @include bryant-park-headings-h1();
+    letter-spacing: .7px;
+
+    @include min-screen($screen__m) {
+        letter-spacing: .9px;
+    }
 }
 
 h2,
 .h2 {
     @include bryant-park-headings-h2();
+    letter-spacing: .8px;
+
+    @include min-screen($screen__m) {
+        letter-spacing: .7px;
+    }
 }
 
 h3,
