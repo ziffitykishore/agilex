@@ -2,6 +2,8 @@ version: "2"
 
 options:
   verbose: true
+  compose-file-path: "pod.yml"
+  compose-dev-file-path: "pod-dev.yml"
 
 syncs:
   accelerator-magento2-sync:
