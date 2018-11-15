@@ -1,0 +1,632 @@
+//
+//  Bryant Park settings
+//  ---------------------------------------------
+//
+//  Table of Contents:
+//
+//      Colors
+//      Layout grid
+//      Typography
+//      Buttons
+//      Navigation
+//      Icons
+//      Messages
+//      Loaders
+//      Popups
+//      Variables
+//      Forms
+//      Accordion and Tabs
+//      Pager
+//      Modals
+//      Popups
+//      Progress Bar
+//      Pages
+//      Sidebar
+//      Cart
+//      Variables missing in extend.scss
+//      Magento CMS Widgets
+//      Account pages
+
+//
+// Colors
+// ---------------------------------------------
+
+// Theme-specific colors
+$c-scorpion: #5d5d5d;
+$c-dusty-grey: #999;
+$c-silver: #C2C2C2;
+$c-christine: #f06212;
+$c-green: #006400;
+$c-alizarian: #e02b27;
+$c-yellow: #fdf0d5;
+$c-brown: #6f4400;
+
+$c-royal: #00377B;
+$c-midnight: #00184D;
+$c-cobalt: #0361C1;
+$c-sapphire: #0A264A;
+$c-waterfall: #A9B9CA;
+$c-steel: #333333;
+$c-smoke: #F2F2F2;
+$c-nickel: #636363;
+$c-drill: #363636;
+$c-aluminum: #464646;
+$c-grey: #DCDCDC;
+
+// Standard colors
+$c-pink: #fae5e5;
+$c-light-green: #e5efe5;
+$c-red: $c-alizarian;
+$c-orange: $c-christine;
+$c-blue: $c-cobalt;
+$c-light-blue: $c-cobalt;
+$c-medium-blue: $c-royal;
+$c-dark-blue: $c-midnight;
+$c-light-grey: $c-smoke;
+$c-medium-grey: $c-nickel;
+$c-dark-grey: $c-drill;
+
+// Main site colors
+$primary__color: $c-royal;
+$secondary__color: $c-nickel;
+
+$active__color: $primary__color; // standard color for designating an element as being "active"
+
+$c-border: $c-silver; // most borders used throughout site
+
+$page__background-color: $color-white;
+
+//
+//  Layout grid
+//  ---------------------------------------------
+
+$total-columns: 12;
+$grid-width: ($column-width * $total-columns) + ($gutter-width * ($total-columns - 1));
+
+// Be sure to update js/utils/breakpoints.js as well
+$screen__xxs: 320px;
+$screen__xs: 480px;
+$screen__s: 640px;
+$screen__m: 768px;
+$screen__l: 1024px;
+$screen__xl: 1440px;
+$mobile-nav__breakpoint: 880px; // Update mediaCheck variable in js/menu.js too
+
+// Variables for layout columns
+$layout-column__sidebar-width: 5;
+
+// Checkout columns width
+$layout-column-checkout__width-left: 3;
+
+//
+//  Typography
+//  ---------------------------------------------
+
+// Font families
+$font-family__sans-serif: Verdana, Arial, sans-serif;
+$font-family__base: 'Roboto', $font-family__sans-serif;
+$font-weight__regular: 500;
+$font-weight__semibold: $font-weight__bold; // no 600 font-weight site-wide.
+$font-weight__light: $font-weight__regular;
+
+$font-size__base: 14px;
+$font-size__base--desktop: $font-size__base;
+
+$line-height__base: 1.43;
+
+$text__color: $c-steel;
+$text__color-alt: $c-cobalt;
+
+$focus__box-shadow: none;
+
+// Link styles
+$link__color: $secondary__color;
+$link__hover__color: $primary__color;
+$link__visited__color: $secondary__color;
+$link__active__color: $secondary__color;
+$link__text-decoration: underline;
+$link__visited__text-decoration: $link__text-decoration;
+$link__active__text-decoration: $link__visited__text-decoration;
+$paragraph-link__text-decoration: $link__text-decoration;
+
+$product-name-link__color: $link__color;
+$product-name-link__color__active: $link__active__color;
+$product-name-link__color__hover: $link__hover__color;
+$product-name-link__color__visited: $link__visited__color;
+$product-name-link__font-size: 16px;
+$product-name-link__font-size-mobile: 14px;
+
+// Headings
+$heading__font-family__base: 'Oswald', $font-family__sans-serif;
+$heading__font-family__secondary: $font-family__base;
+$heading__font-weight__base: $font-weight__regular;
+$heading__text-transform: uppercase;
+
+$heading-h1: (
+  font-family: $heading__font-family__base,
+  font-size: 26px,
+  font-size-desktop: 40px,
+  line-height: 1.15,
+  line-height-desktop: 1.1,
+  font-weight: $heading__font-weight__base,
+  text-transform: $heading__text-transform
+);
+
+$heading-h2: (
+  font-family: $heading__font-family__base,
+  font-size: 22px,
+  font-size-desktop: 26px,
+  line-height: 1.18,
+  line-height-desktop: 1.15,
+  font-weight: $heading__font-weight__base,
+  text-transform: $heading__text-transform
+);
+
+$heading-h3: (
+  font-family: $heading__font-family__secondary,
+  font-size: 20px,
+  font-size-desktop: 22px,
+  line-height: 1.2,
+  line-height-desktop: 1.18,
+  font-weight: $heading__font-weight__base,
+  text-transform: capitalize,
+  letter-spacing: 1.5
+);
+
+$heading-h4: (
+  font-family: $heading__font-family__secondary,
+  font-size: 18px,
+  font-size-desktop: 18px,
+  line-height: 1.22,
+  line-height-desktop: 1.22,
+  font-weight: $heading__font-weight__base,
+  text-transform: capitalize
+);
+
+$heading-h5: (
+  font-family: $heading__font-family__secondary,
+  font-size: 16px,
+  font-size-desktop: 16px,
+  line-height: 1.25,
+  line-height-desktop: 1.25,
+  font-weight: $heading__font-weight__base,
+  text-transform: capitalize
+);
+
+$heading-h6: (
+  font-family: $heading__font-family__secondary,
+  font-size: 14px,
+  font-size-desktop: 14px,
+  line-height: 1.25,
+  line-height-desktop: 1.25,
+  font-weight: $heading__font-weight__base,
+  text-transform: capitalize
+);
+
+
+//
+//  Buttons
+//  ---------------------------------------------
+
+// Default (Secondary Button)
+$button__font-family: $heading__font-family__base;
+$button__padding: 15px 20px; // vertical padding 2px less than $button-primary__padding from lack of border
+$button__color: $color-white;
+$button__background: $secondary__color;
+$button__hover__background: $color-white;
+$button__hover__color: $secondary__color;
+$button__active__color: $secondary__color;
+$button__border: 2px solid $secondary__color;
+$button__hover__border: $button__border;
+$button__active__color: inherit;
+$button__active__border: $button__border;
+$button__border-radius: 0;
+$button__line-height: $font-size__base + 2;
+
+// Primary Button
+$button-primary__padding: 17px 20px; // vertical padding 2px more than $button__padding from lack of border
+$button-primary__border: 0;
+$button-primary__hover__border: 0;
+$button-primary__active__border: 0;
+$button-primary__color: $color-white;
+$button-primary__background: $primary__color;
+$button-primary__hover__color: $color-white;
+$button-primary__hover__background: $secondary__color;
+$button-primary__active__background: $secondary__color;
+
+// Small button
+$button__font-size__s: $font-size__base; // Small Buttons (PDP Add to Wishlist / PDP Compare)
+$button__padding__s: $button__padding; // use same as normal button
+
+// Large button
+$button__font-size__l: $button__font-size__s;
+$button__padding__l: $button-primary__padding;
+$button__line-height__l: $button__font-size__l + 2;
+
+// Tertiary Button
+$button-tertiary__padding: 0;
+$button-tertiary__border: 0;
+$button-tertiary__hover__border: 0;
+$button-tertiary__active__border: 0;
+$button-tertiary__color: $primary__color;
+$button-tertiary__hover__color: $secondary__color;
+$button-tertiary__background: $primary__color;
+$button-tertiary__hover__background: $secondary__color;
+$button-tertiary__active__background: $secondary__color;
+$button-tertiary__font-family: $button__font-family;
+$button-tertiary__letter-spacing: .5px;
+$button-tertiary__text-transform: uppercase;
+$button-tertiary__text-decoration: none;
+
+//
+//  Navigation
+//  ---------------------------------------------
+
+$navigation__background: transparent;
+
+$navigation-level0-item__color: $secondary__color;
+$navigation-level0-item__text-decoration: none;
+
+//  Desktop navigation
+$navigation-desktop-level0-item__line-height: 47px;
+
+$submenu-desktop__font-weight: $font-weight__regular;
+$submenu-desktop-item__active__color: $primary__color;
+
+$header__icon-height: 67px;
+$header-icons-color: $c-dark-grey;
+$header-icons-color-hover: $primary__color;
+
+$active-nav-indent: 54px;
+
+// Mobile navigation flyout
+$flyout-active-color: $color-white;
+$flyout-background-color: $c-border;
+$flyout-box-shadow: 0 0 12px 2px rgba(#000, 0.35);
+
+//
+//  Icons
+//  ---------------------------------------------
+
+// Fonts
+$icons__font-path: '../fonts/Blank-Theme-Icons/Blank-Theme-Icons';
+$icons__font-name: 'icons-blank-theme';
+
+$icon-success: '\e60e';
+$icon-error: '\e61f';
+$icon-edit: '\e606';
+$icon-print: '\e624';
+$icon-star-empty: '\e625';
+$icon-download: '\e626';
+$icon-private: '\e629';
+$icon-present: '\e62a';
+$icon-gift-registry: '\e62b';
+
+$icon-calendar__font-size: 45px;
+$icon-wishlist-empty: inherit;
+$icon-comment-reflected: inherit;
+$icon-compare-empty: '\e61f';
+$icon-arrow-up-thin: inherit;
+$icon-arrow-right-thin: inherit;
+$icon-arrow-left-thin: inherit;
+$icon-arrow-down-thin: inherit;
+$icon-wishlist-empty: '\e601';
+
+$icon-facebook: '\e903';
+$icon-googleplus: '\e900';
+$icon-instagram: '\e904';
+$icon-pinterest: '\e902';
+$icon-twitter: '\e901';
+$icon-collapse: '\e60f';
+$icon-arrow-down: '\e614';
+$icon-expand: '\e60f';
+$icon-collapse: '\e61c';
+
+$toggling-icon-width: 14px;
+$toggling-icon-color: $text__color;
+//
+//  Messages
+//  ---------------------------------------------
+$success__color: $c-green;
+$success__background-color: $c-light-green;
+$warning__color: $c-brown;
+$warning__background-color: $c-yellow;
+$error__color: $c-red;
+$error__background-color: $c-pink;
+
+$message__padding: 12px $indent__base 12px $indent__m;
+$message__line-height: inherit;
+$message-icon__font-size: 24px;
+$message-icon__inner-padding-left: 45px;
+$message-icon__top: 22px;
+$message-error-icon: $icon-error;
+$message-success-icon: $icon-success;
+$message-link__color-hover: $color-black;
+
+//
+//  Loaders
+//  ---------------------------------------------
+
+$loader-overlay__background-color: rgba(#fff, 0.7);
+$loader-overlay__z-index: 9999;
+
+//
+//  Popups
+//  _____________________________________________
+
+$popup-icon-font__size: 30px;
+$popup-icon-font__line-height: 1;
+$popup-icon-font__color: $link__color;
+$popup-icon-font__color-hover: $link__hover__color;
+$popup-icon-font__color-active: $link__active__color;
+
+//
+//  Forms
+//  ---------------------------------------------
+
+// Input text must be (at least) 16px to avoid the dreaded iOS zoom bug/feature
+$form-element-input__font-size--mobile: 16px;
+$form-element-input__border-color: $c-border;
+$form-element-input__border: 1px solid $form-element-input__border-color;
+$form-element-input__height: 50px; // usually equivalent to button height
+$form-element-input-placeholder__color: $c-medium-grey;
+$form-element-input__font-family: $font-family__base;
+$form-element-input__color: $text__color;
+$form-element-input__font-weight: $font-weight__regular;
+$select__height: $form-element-input__height;
+
+// Form fieldset
+$form-fieldset__margin: 0;
+$form-fieldset-legend__font-size: 18px;
+$form-fieldset-legend__font-weight: $font-weight__light;
+$form-fieldset-legend__margin: 0 0 $indent__base;
+$form-fieldset-legend__padding: 0 0 $indent__s;
+$form-fieldset-legend__width: 100%;
+
+// Form field
+$form-field-type-revert: inherit;
+$form-field__additional-vertical-indent: $indent__s;
+$form-field__width__desktop: 460px;
+$form-field--vertical-indent: $indent__base;
+$form-field__vertical-indent__desktop: $form-field--vertical-indent;
+
+// Form field label
+$form-field-label__font-weight: $font-weight__regular;
+$form-field-type-label-block__margin: 0 0 5px;
+$form-field-type-label-inline__margin: $form-field-type-label-block__margin;
+$form-field-type-label-inline__width: 1%;
+
+// Select
+$select__background: $color-white;
+$select__background: $form-element-input__background;
+$select__border: $form-element-input__border;
+$select__border-radius: $form-element-input__border-radius;
+$select__height: $form-element-input__height;
+$select__width: $form-element-input__width;
+$select__margin: $form-element-input__margin;
+$select__padding: $indent__xs $indent__s 4px;
+$select__font-size: $form-element-input__font-size;
+$select__color: $form-element-input__color;
+$select__font-family: $form-element-input__font-family;
+$select__font-weight: $form-element-input__font-weight;
+$select__font-style: $form-element-input__font-style;
+$select__line-height: $form-element-input__line-height;
+
+// Form field note icon
+$form-field-note-icon-font__content: inherit;
+$form-field-note__color: inherit;
+$form-calendar-icon__color: $primary__color;
+
+// Select
+$select__background: $color-white;
+
+//
+// Accordion and Tabs
+// ------------------------------
+
+$tab-content__padding-top: 0;
+$tab-content__padding-right: 10px;
+$tab-content__padding-bottom: 10px;
+$tab-content__padding-left: 10px;
+
+$tab-control__padding-top: 0;
+$tab-control__padding-left: 10px;
+$tab-control__padding-bottom: 0;
+
+$tab-control__color: $text__color;
+$tab-control__height: 40px;
+$tab-control__font-size: 16px;
+
+//
+//  Tables
+//  ---------------------------------------------
+
+$panel__background-color: $c-light-grey;
+
+//
+//  Pager
+//  ---------------------------------------------
+
+$pager-reset-spaces: true;  // Reset spaces between inline-block elements
+$pager-item__display: inline-block;
+
+//  Rating
+//  ---------------------------------------------
+
+$rating-icon__font-size: 28px;
+$rating-icon__letter-spacing: -9px;
+$rating-icon__active__color: $active__color;
+
+// Split dropdown
+$dropdown-list__z-index: 100;
+
+$_dropdown-toggle-icon-content: $icon-collapse;
+$_dropdown-toggle-active-icon-content: $icon-expand;
+$_dropdown-split-toggle-icon-content: $icon-collapse;
+$_dropdown-split-toggle-active-icon-content: $icon-expand;
+
+$_dropdown-split-list-item-hover-background: transparent;
+
+// Actions-toolbar
+$actions-toolbar__margin: 0;
+$actions-toolbar__padding: 0;
+$actions-toolbar-actions__position: left;
+$actions-toolbar-actions__reverse: false;
+$actions-toolbar-actions-primary__margin: 0 15px 0 0;
+
+//
+//  Modals
+//  ---------------------------------------------
+
+$modal-slide__first__indent-left: 44px;
+$modal-slide-mobile__background-color: $flyout-active-color; // mobile nav flyout and modal are similar enough to warrant the same background
+$modal-overlay__background-color: rgba($color-black, .7);
+$modal-title__border: $c-border;
+
+$modal__box-shadow: $flyout-box-shadow;
+
+//
+//  Popups
+//  ---------------------------------------------
+$modal-popup__padding: 0;
+
+// Catalog
+$tocart-min-width: 200px;
+
+$width__product-related: 200px;
+$width__product-info: 375px;
+
+$checkout-summary-items__max-height: 100%;
+
+// Checkout tooltip
+$checkout-tooltip-icon-arrow__font-size: 10px;
+$checkout-tooltip-icon__font-size: 21px;
+
+$checkout-tooltip-content-mobile__right: -($indent__s);
+$checkout-tooltip-content-mobile__top: 30px + $checkout-tooltip-icon-arrow__font-size;
+$checkout-tooltip-icon__color: $c-light-grey;
+$checkout-tooltip-content__background-color: $c-light-grey;
+$checkout-tooltip-content__padding: 12px;
+$checkout-tooltip-content__border-width: 1px;
+
+$checkout-tooltip-content__border-color: $c-medium-grey;
+$checkout-tooltip-content__font-size: $font-size__base;
+$checkout-tooltip-content__width: 270px;
+$checkout-tooltip-content__active__border-color: $c-dark-grey;
+$checkout-tooltip-icon-arrow__left: -( $checkout-tooltip-content__padding + $checkout-tooltip-icon-arrow__font-size - $checkout-tooltip-content__border-width);
+$checkout-billing-address-details__line-height: 27px;
+
+// Checkout Sidebar Shipping Information
+$checkout-sidebar-shipping-information-edit-icon__content: $icon-edit;
+$checkout-sidebar-shipping-information-edit-icon__font-size: 18px;
+$checkout-sidebar-shipping-information-edit-icon__line-height: 20px;
+$checkout-sidebar-shipping-information-edit-icon__top: $indent__s;
+
+// Checkout
+$checkout-step-title__padding: $indent__s;
+$checkout-step-title__border: $border-width__base solid $c-border;
+$checkout-step-title__font-size: 26px;
+$checkout-step-title__font-weight: $font-weight__light;
+$checkout-sidebar__columns: 8;
+$checkout-shipping-address__max-width: 500px;
+
+// Swatch
+$swatch__selected-border-color: $color-black;
+$swatch-color: $c-light-grey;
+
+//
+//  Progress Bar
+//  _____________________________________________
+
+$checkout-progress-bar__font-size: 14px;
+$checkout-progress-bar__font-weight: $font-weight__light;
+$checkout-progress-bar__margin: $indent__base;
+
+$checkout-progress-bar-item__background-color: $c-light-grey;
+$checkout-progress-bar-item__border-radius: 6px;
+$checkout-progress-bar-item__color: $primary__color;
+$checkout-progress-bar-item__margin: $indent__s;
+$checkout-progress-bar-item__width: 185px;
+$checkout-progress-bar-item__active__background-color: $primary__color;
+$checkout-progress-bar-item__complete__color: $link__color;
+
+$checkout-progress-bar-item-element__width: 38px;
+$checkout-progress-bar-item-element__height: $checkout-progress-bar-item-element__width;
+
+$checkout-progress-bar-item-element-outer-radius__width: 6px;
+$checkout-progress-bar-item-element-inner__background-color: $page__background-color;
+$checkout-progress-bar-item-element-inner__color: $checkout-progress-bar-item__color;
+$checkout-progress-bar-item-element-inner__width: $checkout-progress-bar-item-element__width - ($checkout-progress-bar-item-element-outer-radius__width * 2);
+$checkout-progress-bar-item-element-inner__height: $checkout-progress-bar-item-element-inner__width;
+$checkout-progress-bar-item-element-inner__active__content: $icon-checkmark;
+$checkout-progress-bar-item-element-inner__active__font-size: 28px;
+$checkout-progress-bar-item-element-inner__active__line-height: 1;
+
+//
+// Pages
+//  ---------------------------------------------
+
+$pages__color: $c-scorpion;
+$pages__arrow__color: $color-white;
+$pages__active__color: $color-black;
+$pages__pagination__fontsize: 16px;
+
+//
+//  Sidebar
+//  ---------------------------------------------
+
+// Used in cart sidebar, Checkout sidebar, Tier Prices, My account navigation, Rating block background
+$sidebar__background-color: $color-white;
+
+//
+//  Cart
+//  --------------------------------------------
+
+$mobile-cart-padding: 15px;
+$cart-item-cell-padding-top: 20px;
+
+$gift-wrapping__border-color: $c-border;
+$gift-item-block__border-color: $c-border;
+
+//
+//  Variables missing in extend.scss
+//  ---------------------------------------------
+
+$addto-color: $primary__color;
+$addto-hover-color: $link__hover__color;
+
+//
+// Magento CMS Widgets
+// ---------------------------------------------
+
+$widgets-indent__bottom: 0; // overwrite !default in Magento_Cms/styles/_widgets.scss
+
+//
+//  Account pages
+//  _____________________________________________
+
+$account-nav-background: $sidebar__background-color;
+$account-nav-color: false;
+
+$account-nav-current-border: 3px solid transparent;
+$account-nav-current-border-color: $primary__color;
+$account-nav-current-color: false;
+$account-nav-current-font-weight: $font-weight__semibold;
+
+$account-nav-item-hover: $c-light-grey;
+
+$account-title-border-color: $c-border;
+$account-table-border-bottom-color: $c-border;
+
+//
+// Company Pages
+// ______________________________________________
+
+$company-button__color: $primary__color;
+$company-button__color: $primary__color;
+$company-button__hover__color: $primary__color__dark;
+$tree-leaf-clicked__background-color: $primary__color;
+
+$quote-button__color: $primary__color;
+$quote-button__active__color: $link__hover__color;
+$quote-title__border-color: $c-medium-grey;
