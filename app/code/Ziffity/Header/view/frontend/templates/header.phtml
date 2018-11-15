@@ -12,17 +12,15 @@
 <?php if($block->isHomePage()): ?>
 <div class="header-promo clearfix">
     <div class="container">    
-        <div class="col-sm-9 promotion-text text-center">
-        <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-9 promotion-text text-center hidden-xs">
+        <div class="col-sm-4">
         <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('image-section1')->toHtml();?>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4 has-promo-text">
         <?= $wHeader ?>
         </div>
         <div class="col-sm-4">
         <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('image-section2')->toHtml();?>
-        </div>
         </div>
         </div>
         <div class="col-sm-3 contact-info text-center">
