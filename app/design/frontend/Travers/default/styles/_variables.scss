@@ -249,14 +249,14 @@ $button-tertiary__padding: 0;
 $button-tertiary__border: 0;
 $button-tertiary__hover__border: 0;
 $button-tertiary__active__border: 0;
-$button-tertiary__color: $primary__color;
-$button-tertiary__hover__color: $secondary__color;
+$button-tertiary__color: $c-cobalt;
+$button-tertiary__hover__color: $c-steel;
 $button-tertiary__background: $primary__color;
 $button-tertiary__hover__background: $secondary__color;
 $button-tertiary__active__background: $secondary__color;
 $button-tertiary__font-family: $button__font-family;
-$button-tertiary__letter-spacing: .5px;
-$button-tertiary__text-transform: uppercase;
+$button-tertiary__letter-spacing: .8px;
+$button-tertiary__text-transform: capitalize;
 $button-tertiary__text-decoration: none;
 
 //
