@@ -88,16 +88,17 @@ $layout-column-checkout__width-left: 3;
 //  ---------------------------------------------
 
 // Font families
-$font-family__sans-serif: Verdana, Arial, sans-serif;
-$font-family__base: 'Roboto', $font-family__sans-serif;
-$font-weight__regular: 500;
-$font-weight__semibold: $font-weight__bold; // no 600 font-weight site-wide.
-$font-weight__light: $font-weight__regular;
+$font-family__sans-serif: 'Oswald', 'Impact', Arial, sans-serif;
+$font-family__base: 'Roboto', Helvetica, Arial, sans-serif;
+$font-weight__regular: 400;
+$font-weight__semibold: 500;
+$font-weight__bold: 600;
 
-$font-size__base: 14px;
-$font-size__base--desktop: $font-size__base;
+$font-size__base: 12px;
+$font-size__base--desktop: 14px;
 
-$line-height__base: 1.43;
+$line-height__base: 1.5;
+$line-height__base--desktop: 1.4;
 
 $text__color: $c-scorpion;
 $text__color-alt: $c-dusty-grey;
