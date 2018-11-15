@@ -1,0 +1,62 @@
+/*doc
+---
+title: Buttons
+name: Buttons
+category: Style-Guide - Buttons-Links
+---
+
+```html_example
+  <button type="submit">Buy Me</button>
+  <p> AKA secondary button </p>
+```
+
+```html_example
+  <button class="action primary" type="submit">Buy Me</button>
+```
+
+```html_example
+  <a  href="#"">Buy Me</a>
+```
+
+```html_example
+  <a class="abs-action-link-button" href="#">Buy Me</a>
+```
+*/
+
+ // Secondary Button (main button styling)
+button,
+.file-upload {
+    @include lib-button();
+    @include headingFont;
+    appearance: none;
+}
+
+// Primary Button (mostly CTA)
+.action.primary {
+    @include lib-button-primary();
+}
+
+// Treat these anchor links as buttons
+a.action.primary {
+    @include lib-link-as-button();
+    @include headingFont;
+}
+
+button,
+.action.primary,
+a.action.primary {
+    width: 100%;
+    transition: background-color .15s ease, color .15s ease;
+
+    @include min-screen($screen__xs) {
+        width: auto;
+    }
+}
+
+.button--transparent {
+    @include button--transparent;
+}
+
+.button--inline-link {
+    @include button--inline-link;
+}
