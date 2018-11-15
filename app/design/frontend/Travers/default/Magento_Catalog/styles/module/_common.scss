@@ -152,6 +152,18 @@
     }
 }
 
+.catalog-category-view .page-title-wrapper .page-title {
+    margin-bottom: $indent__s;
+    line-height: 1.1;
+    font-size: 26px;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+
+    @include min-screen($screen__m) {
+        font-size: 30px;
+    }
+}
+
 .product-info-main {
     .page-title-wrapper {
         .page-title {
