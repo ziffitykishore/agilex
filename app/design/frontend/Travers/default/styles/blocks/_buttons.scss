@@ -36,22 +36,6 @@ button,
     @include lib-button-primary();
 }
 
-.action.primary,
-.action.primary:hover,
-.action.primary:focus {
-    border: 2px solid transparent;
-    border-image: linear-gradient(to top, #{$c-sapphire} 0%, #{$c-waterfall} 60%);
-    border-image-slice: 1;
-}
-
-button,
-button:hover,
-button:focus {
-    border: 2px solid transparent;
-    border-image: linear-gradient(to top, #{$c-aluminum} 0%, #{$c-grey} 60%);
-    border-image-slice: 1;
-}
-
 // Treat these anchor links as buttons
 a.action.primary {
     @include lib-link-as-button();
@@ -70,41 +54,7 @@ a.action.primary {
 
 .action.primary,
 a.action.primary {
-    min-height: 50px;
-    position: relative;
-    width: 100%;
-    font-size: $font-size__base--desktop !important; // All primary and secondary buttons have this font-size on mobile and desktop
-    letter-spacing: 1px;
-    font-weight: $font-weight__bold;
-
-    &:hover,
-    &:focus {
-        color: $color-white;
-        background-color: $c-sapphire;
-        transition: all 0.2s ease-out;
-
-        &:before {
-            animation: buttonShine 0.8s 0s linear;
-        }
-    }
-
-    &:before {
-        content: '';
-        display: block;
-        width: 0px;
-        height: 100%;
-        position: absolute;
-        top: 0%;
-        left: 0%;
-        opacity: 0;
-        background: $color-white;
-        box-shadow: 0 0 15px 8px $color-white;
-        transform: skewX(-20deg);
-    }
-
-    @include min-screen($screen__xs) {
-        width: auto;
-    }
+    @include button--secondary--primary(primary);
 }
 
 .button--transparent {
