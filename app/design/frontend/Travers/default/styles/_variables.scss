@@ -210,19 +210,18 @@ $heading-h6: (
 //  ---------------------------------------------
 
 // Default (Secondary Button)
-$button__font-family: $heading__font-family__base;
+$button__font-family: $font-family__sans-serif;
 $button__padding: 15px 20px; // vertical padding 2px less than $button-primary__padding from lack of border
 $button__color: $color-white;
 $button__background: $secondary__color;
-$button__hover__background: $color-white;
-$button__hover__color: $secondary__color;
-$button__active__color: $secondary__color;
+$button__hover__background: $c-drill;
+$button__hover__color: $color-white;
+$button__active__color: $color-white;
 $button__border: 2px solid $secondary__color;
 $button__hover__border: $button__border;
-$button__active__color: inherit;
 $button__active__border: $button__border;
-$button__border-radius: 0;
-$button__line-height: $font-size__base + 2;
+$button__border-radius: 2px;
+$button__line-height: 1.1;
 
 // Primary Button
 $button-primary__padding: 17px 20px; // vertical padding 2px more than $button__padding from lack of border
@@ -249,14 +248,14 @@ $button-tertiary__padding: 0;
 $button-tertiary__border: 0;
 $button-tertiary__hover__border: 0;
 $button-tertiary__active__border: 0;
-$button-tertiary__color: $primary__color;
-$button-tertiary__hover__color: $secondary__color;
+$button-tertiary__color: $c-cobalt;
+$button-tertiary__hover__color: $c-steel;
 $button-tertiary__background: $primary__color;
 $button-tertiary__hover__background: $secondary__color;
 $button-tertiary__active__background: $secondary__color;
 $button-tertiary__font-family: $button__font-family;
-$button-tertiary__letter-spacing: .5px;
-$button-tertiary__text-transform: uppercase;
+$button-tertiary__letter-spacing: .8px;
+$button-tertiary__text-transform: capitalize;
 $button-tertiary__text-decoration: none;
 
 //
