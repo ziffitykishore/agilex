@@ -48,6 +48,9 @@ a.action.primary {
     min-height: 50px;
     position: relative;
     width: 100%;
+    font-size: $font-size__base--desktop;
+    letter-spacing: 1px;
+    font-weight: $font-weight__semibold;
 
     &:hover,
     &:focus {

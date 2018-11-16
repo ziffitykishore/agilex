@@ -221,7 +221,7 @@ $button__border: 2px solid $secondary__color;
 $button__hover__border: $button__border;
 $button__active__border: $button__border;
 $button__border-radius: 2px;
-$button__line-height: $font-size__base + 2;
+$button__line-height: 1.1;
 
 // Primary Button
 $button-primary__padding: 17px 20px; // vertical padding 2px more than $button__padding from lack of border
