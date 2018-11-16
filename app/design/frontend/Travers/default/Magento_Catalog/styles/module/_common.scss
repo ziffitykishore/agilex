@@ -158,6 +158,7 @@
     font-size: 26px;
     letter-spacing: .8px;
     text-transform: uppercase;
+    font-weight: $font-weight__semibold;
 
     @include min-screen($screen__m) {
         font-size: 30px;

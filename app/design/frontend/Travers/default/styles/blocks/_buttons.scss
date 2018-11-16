@@ -56,6 +56,7 @@ button:focus {
 a.action.primary {
     @include lib-link-as-button();
     @include headingFont;
+    font-weight: $font-weight__bold;
 }
 
 button,
