@@ -1,0 +1,36 @@
+/*doc
+---
+title: Breadcrumbs
+name: block_breadcrumbs
+category: Blocks - Breadcrumbs
+---
+
+
+```html_example
+<div class="breadcrumbs">
+    <ul class="items">
+        <li class="item home"><a href="#" title="Go to Home Page">Home</a></li>
+        <li class="item product"><strong>Desiree Fitness Tee</strong></li>
+    </ul>
+</div>
+```
+*/
+$font-size__base--desktop: $font-size__base !default;
+
+.breadcrumbs {
+    @include layout-container;
+    @include lib-breadcrumbs(
+        $_breadcrumbs-link-color: $link__color,
+        $_breadcrumbs-link-text-decoration: underline,
+        $_breadcrumbs-current-color: $color-black,
+        $_breadcrumbs-link-color-visited: $link__color,
+        $_breadcrumbs-font-size: $font-size__base,
+        $_icon-font-line-height: 1
+    );
+
+    .items {
+        @include min-screen($screen__m) {
+            font-size: $font-size__base--desktop;
+        }
+    }
+}
