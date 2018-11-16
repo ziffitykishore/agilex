@@ -1,0 +1,323 @@
+/*doc
+---
+title: Form
+name: form
+category: Style-Guide -- Form
+---
+
+```html_example
+  <form>
+    <fieldset class="fieldset">
+      <legend class="legend">
+      <span>Example Fieldset</span>
+      </legend>
+      <br>
+      <div class="field">
+        <label class="label" for="name">Name:</label>
+        <input id="name" type="text"><br>
+      </div>
+      <div class="field">
+        <label class="label" for="email">Email:</label>
+        <input id="email" type="email"><br>
+      </div>
+    </fieldset>
+    <br>
+    <select>
+      <option value="" disabled selected hidden>Choose your option</option>
+      <option>Dos</option>
+      <option>Tres</option>
+      <option>Cuatro</option>
+      <option>Cinco - A very long option name to test wrapping</option>
+    </select>
+    <br>
+    <br>
+    <label class="label" for="datepicker">Date:</label>
+    <input id="datepicker" class="_has-datepicker" type="text"><br>
+  </form>
+```
+*/
+
+//
+//  Common
+//  _____________________________________________
+
+label,
+.label {
+    font-weight: $font-weight__regular;
+}
+
+/**
+ * We're targeting only labels inside of form controls, as
+ * Magento uses labels outside forms for certain components,
+ * e.g "Sort By" dropdowns on category pages.
+ *
+ * Additional levels of specificity on the latter selectors
+ * needed due to Magento UI defaults
+ */
+form label,
+form .label,
+:root .fieldset > .field > .label,
+:root .fieldset > .fields > .field > .label {
+    display: block;
+    margin: $form-field-type-label-block__margin;
+}
+
+.fieldset {
+    @include lib-form-fieldset();
+    @include lib-form-hasrequired(top);
+
+    margin-bottom: 20px;
+
+    &:before {
+        text-align: right;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    & > .field,
+    & > .fields > .field {
+        @include lib-form-field();
+        margin-bottom: 15px;
+
+        &.no-label {
+            > .label {
+                @include lib-visually-hidden();
+            }
+        }
+
+        &.choice {
+            position: relative; // for input absolute
+            margin-top: 20px;
+
+            .label {
+                display: inline;
+                font-weight: normal;
+            }
+        }
+
+        .label {
+            margin-bottom: 5px;
+
+            .column:not(.main) & {
+                font-weight: normal;
+            }
+        }
+
+        .field.choice {
+            margin-bottom: $indent__s;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        input[type=file] {
+            margin: $indent__xs 0;
+        }
+    }
+}
+
+form[data-hasrequired] {
+    @include lib-form-hasrequired(top);
+
+    &:before {
+        text-align: right;
+
+        @include min-screen($screen__s) {
+            max-width: $form-field__width__desktop;
+        }
+    }
+}
+
+.field.choice {
+    input[type="checkbox"],
+    input[type="radio"] {
+        position: absolute;
+    }
+}
+
+.legend + .fieldset,
+.legend + div {
+    clear: both;
+}
+
+.fieldset {
+    > .field {
+        margin: 0 0 $form-field__vertical-indent;
+    }
+}
+
+.legend {
+    strong {
+        margin-left: $indent__xs;
+    }
+}
+
+fieldset.field {
+    border: 0;
+    padding: 0;
+}
+
+.field {
+    &.date {
+        .control {
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        input {
+            @extend .abs-field-date-input;
+        }
+
+        .time-picker {
+            display: inline-block;
+            margin-top: $indent__s;
+            white-space: nowrap;
+        }
+    }
+
+    .message {
+        &.warning {
+            margin-top: $indent__s;
+        }
+    }
+}
+
+div.mage-error[generated] {
+    margin-top: 7px;
+}
+
+.field .tooltip {
+    @include lib-tooltip(right);
+    .tooltip-content {
+        min-width: 200px;
+        white-space: normal;
+    }
+}
+
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+select {
+    height: $form-field__height;
+}
+
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+select,
+textarea {
+    max-width: 100%;
+    color: $text__color;
+
+    @include min-screen($screen__s) {
+        max-width: $form-field__width__desktop;
+    }
+
+    @include max-screen($screen__m) {
+        font-size: $form-element-input__font-size--mobile;
+
+        .form & {
+            font-size: $form-element-input__font-size--mobile;
+        }
+    }
+
+    &:focus ~ .tooltip .tooltip-content {
+        display: block;
+    }
+}
+
+textarea {
+    font-weight: $form-element-input__font-weight;
+    font-family: $form-element-input__font-family;
+}
+
+select {
+    padding-right: 10px; // firefox fix
+    background-color: transparent;
+    appearance: menulist;
+
+    .ie11 & {
+        padding-right: 0;
+    }
+}
+
+@include min-screen($screen__s) {
+    .control {
+        max-width: $form-field__width__desktop; // should match control fields
+    }
+}
+
+._has-datepicker {
+    ~ .ui-datepicker-trigger {
+        @include lib-button-reset();
+        @include lib-icon-font(
+            $_icon-font-content    : $icon-calendar,
+            $_icon-font-color      : $primary__color__lighter,
+            $_icon-font-size       : $icon-calendar__font-size,
+            $_icon-font-line-height: $icon-calendar__font-size,
+            $_icon-font-display    : inline-block,
+            $_icon-font-text-hide  : true
+        );
+        width: auto;
+        vertical-align: middle;
+
+        &:focus {
+            box-shadow: none;
+            outline: 0;
+        }
+    }
+}
+
+//
+//  Sidebar forms
+//  -----------------------------------------
+
+.sidebar {
+    .fieldset {
+        margin: 0;
+
+        & > .field:not(.choice),
+        .fields > .field {
+            &:not(:last-child) {
+                margin: 0 0 $form-field__vertical-indent;
+            }
+
+            .label {
+                margin: 0 0 4px;
+                padding: 0 0 $indent__xs;
+                text-align: left;
+                width: 100%;
+            }
+
+            .control {
+                width: 100%;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .fieldset {
+        > .field {
+            @include lib-form-field-type-revert($_type: block);
+            margin: 0 0 $form-field__vertical-indent__desktop;
+        }
+    }
+}
