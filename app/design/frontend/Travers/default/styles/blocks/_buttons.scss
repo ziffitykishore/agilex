@@ -45,8 +45,33 @@ a.action.primary {
 button,
 .action.primary,
 a.action.primary {
+    position: relative;
     width: 100%;
-    transition: background-color .15s ease, color .15s ease;
+
+    &:hover,
+    &:focus {
+        color: $color-white;
+        background-color: $c-sapphire;
+        transition: all 0.2s ease-out;
+
+        &:before {
+            animation: buttonShine 0.8s 0s linear;
+        }
+    }
+
+    &:before {
+        content: '';
+        display: block;
+        width: 0px;
+        height: 100%;
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        opacity: 0;
+        background: $color-white;
+        box-shadow: 0 0 15px 8px $color-white;
+        transform: skewX(-20deg);
+    }
 
     @include min-screen($screen__xs) {
         width: auto;
@@ -60,3 +85,19 @@ a.action.primary {
 .button--inline-link {
     @include button--inline-link;
 }
+
+@keyframes buttonShine {
+    from {
+        opacity: 0;
+        left: 0%;
+    }
+
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        left: 100%;
+    }
+}
+
