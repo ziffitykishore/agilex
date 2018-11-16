@@ -3,8 +3,8 @@ version: "2.3"
 services:
   app:
     volumes:
-      - accelerator-magento2-sync:/var/www/vhosts/magento.test/current:nocopy
+      - travers-magento2-sync:/var/www/vhosts/travers.test/current:nocopy
 
 volumes:
-  accelerator-magento2-sync:
+  travers-magento2-sync:
     external: true

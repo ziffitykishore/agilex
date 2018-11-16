@@ -17,7 +17,7 @@ services:
     volumes: []
 
   app:
-    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/travers-magento2:v0.0.1"
+    image: "754729414608.dkr.ecr.us-east-2.amazonaws.com/travers-magento2:v0.0.2"
     cap_add:
       - SYS_PTRACE
     expose:
@@ -57,7 +57,7 @@ services:
       - traefik.backend=travers.test
 
   elasticsearch:
-    image: 'elasticsearch:2'
+    image: 'elasticsearch:5.2'
     expose:
       - '9200'
       - '9300'

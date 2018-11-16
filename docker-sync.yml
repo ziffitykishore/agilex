@@ -6,9 +6,8 @@ options:
   compose-dev-file-path: "pod-dev.yml"
 
 syncs:
-  accelerator-magento2-sync:
+  travers-magento2-sync:
     src: "./"
-    sync_strategy: "default" # (native|native_osx|unison|rsync)
     host_disk_mount_mode: "cached"
     sync_excludes:
       - ".idea"          # no need to send PHPStorm config to container
