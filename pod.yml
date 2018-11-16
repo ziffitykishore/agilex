@@ -56,7 +56,7 @@ services:
       - traefik.backend=magento.test
 
   elasticsearch:
-    image: 'elasticsearch:2'
+    image: 'elasticsearch:5.2'
     expose:
       - '9200'
       - '9300'
