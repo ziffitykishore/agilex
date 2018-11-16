@@ -59,7 +59,7 @@ form .label,
 :root .fieldset > .field > .label,
 :root .fieldset > .fields > .field > .label {
     display: block;
-    margin: $form-field-type-label-block__margin;
+    margin-bottom: 0;
     font-size: $font-size__base--desktop;
     line-height: $line-height__base;
     letter-spacing: .4px;
@@ -190,6 +190,7 @@ fieldset.field {
 
 div.mage-error[generated] {
     margin-top: 7px;
+    font-size: $font-size__base--desktop;
 }
 
 .field .tooltip {
@@ -252,6 +253,7 @@ select {
     padding-right: 10px; // firefox fix
     background-color: transparent;
     appearance: menulist;
+    border-color: $c-border;
 
     .ie11 & {
         padding-right: 0;
