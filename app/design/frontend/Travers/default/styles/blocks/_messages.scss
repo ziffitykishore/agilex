@@ -28,10 +28,10 @@ $message__color: inherit !default;
     animation: fadein $transition-speed $transition-func;
 
     a {
-        color: $message__color;
+        color: inherit !important; // prevent typography link overrides
 
         @include hover {
-            color: $message-link__color-hover;
+            color: $c-steel !important; // prevent typography link overrides
         }
     }
 }
