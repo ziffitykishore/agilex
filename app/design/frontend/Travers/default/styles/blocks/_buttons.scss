@@ -74,6 +74,10 @@ a.action.primary {
     @include button--type(primary);
 }
 
+.action.secondary {
+    @include button--type(secondary);
+}
+
 .button--transparent {
     @include button--transparent;
 }
