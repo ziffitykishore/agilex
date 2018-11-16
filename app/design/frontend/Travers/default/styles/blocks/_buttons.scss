@@ -45,6 +45,15 @@ a.action.primary {
 button,
 .action.primary,
 a.action.primary {
+    width: 100%;
+
+    @include min-screen($screen__xs) {
+        width: auto;
+    }
+}
+
+.action.primary,
+a.action.primary {
     min-height: 50px;
     position: relative;
     width: 100%;
