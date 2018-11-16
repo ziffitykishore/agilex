@@ -12,14 +12,14 @@
 <?php if($block->isHomePage()): ?>
 <div class="header-promo clearfix">
     <div class="container">    
-        <div class="col-sm-9 promotion-text text-center hidden-xs">
-        <div class="col-sm-4">
+        <div class="col-sm-9 promotion-text text-center">
+        <div class="col-sm-4 hidden-xs">
         <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('image-section1')->toHtml();?>
         </div>
-        <div class="col-sm-4 has-promo-text">
+        <div class="col-sm-4 has-promo-text col-xs-12">
         <?= $wHeader ?>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 col-xs-12 promo-next">
         <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('image-section2')->toHtml();?>
         </div>
         </div>

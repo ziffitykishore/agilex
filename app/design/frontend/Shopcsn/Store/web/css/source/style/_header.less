@@ -16,6 +16,11 @@
             font-size: 14px;
             font-weight: 600;
         }
+        .promo-next {
+            img:first-of-type {
+                display: none;
+            }              
+        }
     }
     .page-header {
         &.header-wrapper {
@@ -25,7 +30,7 @@
             min-height: 77px;
             position: fixed;
             width: 100%;
-            z-index: 125;
+            z-index: 9999;
             background: @color-darkslateblue
         }
         border: none;
@@ -1013,6 +1018,7 @@
                 position: fixed;
                 height: 100vh;
                 background: @color-white;
+                padding-top: 30px;
                 .section-item-title {
                     padding: 20px;
                     text-align: left;
@@ -1258,6 +1264,64 @@
                     display: none;
                 }
             }
+        }
+    }
+    .cms-index-index {
+        .page-header.header-wrapper {
+            top: 30px;
+        }
+        .columns .column {
+            margin-top: 30px;
+        }
+    }
+    .header-promo .promotion-text {
+        position: fixed;
+        width: 100%;
+        display: block;
+        top: 0;
+        left: 0;
+        background: #fff;
+        z-index: 9999;
+        .has-promo-text {
+            color: #fff;
+            padding: 5px 0;
+            cursor: pointer;
+            position: relative;
+            background: #3e5ca3;
+            box-shadow: 0 0 0 0.5px #fff;
+            padding-right: 35px;
+            &.active {
+                &:after {
+                    top: 12px;
+                    transform: rotate(135deg);
+                    -webkit-transform: rotate(135deg);
+                }
+            }
+            &:after {
+                content: '';
+                width: 10px;
+                height: 10px;
+                border: solid #fff;
+                border-width: 0 0 2px 2px;
+                position: absolute;
+                right: 10px;
+                top: 7px;
+                transition-duration: 0.5s;
+                transform: rotate(-45deg);
+                -webkit-transform: rotate(-45deg);
+            }
+            &.active {
+                &+.promo-next {
+                    display: block;                
+                }
+            }
+        }
+        .promo-next {
+            display: none; 
+            padding: 15px 10px;
+            img:first-of-type {
+                display: inline;
+            }              
         }
     }
 }
