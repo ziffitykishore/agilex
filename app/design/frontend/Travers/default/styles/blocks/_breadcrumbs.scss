@@ -20,17 +20,26 @@ $font-size__base--desktop: $font-size__base !default;
 .breadcrumbs {
     @include layout-container;
     @include lib-breadcrumbs(
-        $_breadcrumbs-link-color: $link__color,
-        $_breadcrumbs-link-text-decoration: underline,
-        $_breadcrumbs-current-color: $color-black,
-        $_breadcrumbs-link-color-visited: $link__color,
+        $_breadcrumbs-link-color: $text__color-alt,
+        $_breadcrumbs-link-text-decoration: none,
+        $_breadcrumbs-link-text-decoration-hover: none,
+        $_breadcrumbs-current-color: $text__color,
+        $_breadcrumbs-link-color-visited: $text__color-alt,
         $_breadcrumbs-font-size: $font-size__base,
-        $_icon-font-line-height: 1
+        $_icon-font-line-height: 1,
+        $_breadcrumbs-icon-use: false,
+        $_breadcrumbs-separator-symbol: '/',
+        $_breadcrumbs-current-font-weight: $font-weight__extra-bold
     );
 
     .items {
-        @include min-screen($screen__m) {
-            font-size: $font-size__base--desktop;
+        line-height: 1.8;
+
+        .item {
+            strong,
+            a {
+                font-weight: $font-weight__extra-bold;
+            }
         }
     }
 }
