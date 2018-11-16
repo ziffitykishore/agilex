@@ -60,6 +60,9 @@ form .label,
 :root .fieldset > .fields > .field > .label {
     display: block;
     margin: $form-field-type-label-block__margin;
+    font-size: $font-size__base--desktop;
+    line-height: $line-height__base;
+    letter-spacing: .4px;
 }
 
 .fieldset {
