@@ -119,7 +119,7 @@ category: Blocks - Links
     }
 }
 
-@mixin button--secondary--primary($button-type) {
+@mixin button--type($button-type) {
     border: 2px solid transparent;
     border-image-slice: 1 !important; // Without this, the border does not show
     min-height: 50px;

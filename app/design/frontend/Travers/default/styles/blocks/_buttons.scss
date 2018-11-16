@@ -54,7 +54,7 @@ a.action.primary {
 
 .action.primary,
 a.action.primary {
-    @include button--secondary--primary(primary);
+    @include button--type(primary);
 }
 
 .button--transparent {
