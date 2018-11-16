@@ -210,6 +210,7 @@ input[type="text"],
 input[type="url"],
 select {
     height: $form-field__height;
+    font-size: $form-element-input__font-size--mobile;
 }
 
 input[type="datetime"],
