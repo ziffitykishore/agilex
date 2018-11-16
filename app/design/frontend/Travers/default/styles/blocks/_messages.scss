@@ -1,0 +1,92 @@
+$message__color: inherit !default;
+
+.messages {
+    clear: both;
+}
+
+.message.info {
+    @include lib-message-icon-inner(info);
+}
+
+.message.error {
+    @include lib-message-icon-inner(error);
+}
+
+.message.warning {
+    @include lib-message-icon-inner(warning);
+}
+
+.message.notice {
+    @include lib-message-icon-inner(notice);
+}
+
+.message.success {
+    @include lib-message-icon-inner(success);
+}
+
+.message {
+    animation: fadein $transition-speed $transition-func;
+
+    a {
+        color: $message__color;
+
+        @include hover {
+            color: $message-link__color-hover;
+        }
+    }
+}
+
+.message.info,
+.message.error,
+.message.warning,
+.message.notice,
+.message.success {
+    font-size: $message__font-size;
+}
+
+//
+//  Global notice
+//  ---------------------------------------------
+
+.message.global {
+    p {
+        margin: 0;
+    }
+
+    &.noscript,
+    &.cookie {
+        @include lib-message($_message-type: global-note);
+        margin: 0;
+    }
+
+    &.cookie {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        right: 0;
+        z-index: 3;
+
+        .actions {
+            margin-top: $indent__s;
+        }
+    }
+
+    &.demo {
+        @include lib-message($_message-type: global-caution);
+        margin-bottom: 0;
+        text-align: center;
+    }
+}
+
+//
+// Cookie Notice, omnomnomnomnom
+//  ---------------------------------------------
+
+.message.cookie {
+    padding-left: 0;
+    padding-right: 0;
+
+    .content {
+        @include layout-container;
+    }
+}
