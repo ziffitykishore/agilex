@@ -68,9 +68,9 @@
         @include _lib-message-style(
             $_message-color            : messages($map-type, color),
             $_message-background       : messages($map-type, background),
-            $_message-link-color       : messages($map-type, link-color),
-            $_message-link-color-hover : messages($map-type, link-color-hover),
-            $_message-link-color-active: messages($map-type, link-color-active),
+            $_message-link-color       : inherit,
+            $_message-link-color-hover : $text__color,
+            $_message-link-color-active: $text__color,
             $_message-border-color     : $message__border-color
         );
     }
