@@ -87,6 +87,7 @@ class M20181116204054BaseConfigs implements MigrationInterface
             'magento_reward/general/is_enabled' => '0',
             'magento_reward/general/is_enabled_on_front' => '0',
             'magento_giftregistry/general/enabled' => '0',
+            'magento_giftregistry/general/enabled' => '0',
             'magento_reward/general/is_enabled' => '0',
             'magento_invitation/general/enabled' => '0',
 
