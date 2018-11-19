@@ -1,6 +1,9 @@
 ---
 
-site_domain: "{{ ansible_env.SITE_DOMAIN }}"
+site_domains:
+  - "{{ ansible_env.SITE_DOMAIN }}"
+
+site_domain: "{{ site_domains[0] }}"
 
 site_root: "/var/www/vhosts/{{ site_domain }}"
 

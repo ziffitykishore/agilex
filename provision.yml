@@ -4,12 +4,7 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: install ioncube
-      yum:
-        name: php71u-ioncube-loader
-        state: present
-      become: yes
-    - name: set chmod key
+    - name: set chmod key for private key
       file:
         state: directory
         path: "{{ item }}"
@@ -17,30 +12,35 @@
         group: magento
         mode: 0700
       become: yes
-      loop:
-        - /home/magento/.ssh
-        - /home/magento/.composer
-    - name: change to  magento:nginx permissions
-      file:
-        state: directory
-        path: "{{ item }}"
-        mode: u=rwX,g=rwX,o=rX
-        recurse: yes
-        owner: magento
-        group: nginx
-      loop:
-        - /usr/local/rvm/
-        - /var/lib/php/session/
-        - "{{ site_root }}/"
-      become: yes
     - name: copy private key
       copy:
         remote_src: yes
         src: files/id_rsa
         dest: "/home/magento/.ssh/id_rsa"
         owner: magento
-        group: nginx
+        group: magento
         mode: 0600
+      loop:
+        - /home/magento/.ssh
+        - /home/magento/.composer
+    - name: install ioncube
+      yum:
+        name: php71u-ioncube-loader
+        state: present
+      become: yes
+    - name: change magento user:group permissions
+      file:
+        state: directory
+        path: "{{ item }}"
+        mode: u=rwX,g=rwX,o=rX
+        recurse: yes
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+      loop:
+        - /usr/local/rvm/
+        - /var/lib/php/session/
+        - "{{ site_root }}/"
+      become: yes
     - name: apply templates
       template:
         src: "{{ item.src }}.j2"
@@ -56,7 +56,13 @@
         - src: default.conf
           dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
           become: yes
-    - name: remove vault_pass
+    - name: make sure umask is set properly
+      replace:
+        path: /etc/profile
+        regexp: "umask 0.2"
+        replace: "umask 002"
+      become: yes
+    - name: remove any remaining build scripts
       file: path="{{ item }}" state=absent
       become: yes
       loop:
@@ -65,7 +71,7 @@
   tags:
     - prebuild
 
-- name: install provision
+- name: owner play
   hosts: localhost
   connection: local
   tasks:
@@ -73,11 +79,38 @@
       command: "{{ item }} {{ site_root }}"
       become: yes
       loop:
-        - "setfacl -R -m d:g:nginx:rwX"
-        - "setfacl -R -m d:u:magento:rwX"
-        - "umask 002 -R"
+        - "setfacl -R -m d:u:{{ magento_user}}:rwX"
+        - "setfacl -R -m d:g:{{ magento_group }}:rwX"
+    - name: make sure paths have correct user:group
+      file:
+        state: directory
+        recurse: yes
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+        mode: u=rwX,g=rwX,o=rX
+        path: "{{ playbook_dir }}"
+      become: yes
   tags:
     - owner
+    - build
+    - sync
+    - install
+
+- name: template play
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: check for env.php file
+      stat: path="{{ playbook_dir }}/app/etc/env.php"
+      register: envphp
+    - name: generate env.php when doesn't exist
+      template:
+        src: "app/etc/env.php.j2"
+        dest: "{{ playbook_dir }}/app/etc/env.php"
+      when: envphp.stat.exists
+  tags:
+    - build
+    - sync
 
 - name: build provision
   hosts: localhost
@@ -107,15 +140,6 @@
         - "{{ playbook_dir }}/vendor/snowdog/frontools"
     - name: remove vault_pass
       file: path=/home/magento/.vault_pass state=absent
-    - name: make sure paths have correct user:group
-      file:
-        state: directory
-        recurse: yes
-        owner: magento
-        group: nginx
-        mode: u=rwX,g=rwX,o=rX
-        path: "{{ playbook_dir }}"
-      become: yes
   tags:
     - build
 
@@ -123,17 +147,6 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: apply template
-      template:
-        src: "app/etc/env.php.j2"
-        dest: "{{ playbook_dir }}/app/etc/env.php"
-    - name: set default owner:group to magento:nginx
-      command: "{{ item }} {{ site_root }}"
-      become: yes
-      loop:
-        - "setfacl -R -m d:g:nginx:rwX"
-        - "setfacl -R -m d:u:magento:rwX"
-        - "umask 002 -R"
     - name: make sure local cache clean
       file:
         state: absent
@@ -165,13 +178,6 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: set default owner:group to magento:nginx
-      command: "{{ item }} {{ site_root }}"
-      become: yes
-      loop:
-        - "setfacl -R -m d:g:nginx:rwX"
-        - "setfacl -R -m d:u:magento:rwX"
-        - "umask 002 -R"
     - name: run magento install
       shell: |
         {{ playbook_dir }}/bin/magento setup:install \
@@ -193,4 +199,3 @@
         dest: "{{ playbook_dir }}/app/etc/env.php"
   tags:
     - install
-
