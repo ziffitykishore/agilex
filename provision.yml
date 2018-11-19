@@ -3,6 +3,7 @@
 - name: prebuild provision
   hosts: localhost
   connection: local
+  become: yes
   tasks:
     - name: set chmod key for private key
       file:
@@ -11,7 +12,9 @@
         owner: magento
         group: magento
         mode: 0700
-      become: yes
+      loop:
+        - /home/magento/.ssh
+        - /home/magento/.composer
     - name: copy private key
       copy:
         remote_src: yes
@@ -20,14 +23,10 @@
         owner: magento
         group: magento
         mode: 0600
-      loop:
-        - /home/magento/.ssh
-        - /home/magento/.composer
     - name: install ioncube
       yum:
         name: php71u-ioncube-loader
         state: present
-      become: yes
     - name: change magento user:group permissions
       file:
         state: directory
@@ -40,31 +39,26 @@
         - /usr/local/rvm/
         - /var/lib/php/session/
         - "{{ site_root }}/"
-      become: yes
     - name: apply templates
       template:
         src: "{{ item.src }}.j2"
         dest: "{{ item.dest }}"
-      become: "{{ item.become }}"
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
       loop:
         - src: app/etc/env.php
           dest: "{{ playbook_dir }}/app/etc/env.php"
-          become: no
         - src: auth.json
           dest: "/home/magento/.composer/auth.json"
-          become: no
         - src: default.conf
           dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
-          become: yes
     - name: make sure umask is set properly
       replace:
         path: /etc/profile
         regexp: "umask 0.2"
         replace: "umask 002"
-      become: yes
     - name: remove any remaining build scripts
       file: path="{{ item }}" state=absent
-      become: yes
       loop:
         - "/home/magento/.vault_pass"
         - "/docker-entrypoint.d/mysql.sh"
