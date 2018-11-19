@@ -68,8 +68,10 @@ class Router extends \Magefan\Blog\Controller\Router
             $controllerName = null;
             /*seo purpose updated the urlpath*/
             if (Url::PERMALINK_TYPE_DEFAULT == $this->_url->getPermalinkType()) {
-//                $controllerName = $this->_url->getControllerName($pathInfo[1]);
-//                unset($pathInfo[1]);
+                if(isset($pathInfo[1]) && $pathInfo[1] == 'archive'){
+                    $controllerName = $this->_url->getControllerName($pathInfo[1]);
+                    unset($pathInfo[1]);
+                }
             }
 
             if(isset($pathInfo[1]) && $pathInfo[1] == 'category'){
