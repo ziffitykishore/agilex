@@ -52,6 +52,11 @@
           dest: "/home/magento/.composer/auth.json"
         - src: default.conf
           dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
+    - name: set symlink for site
+      file:
+        src: "/etc/nginx/sites-available/{{ site_domain }}.conf"
+        path: "/etc/nginx/sites-enabled/{{ site_domain }}.conf"
+        state: link
     - name: make sure umask is set properly
       replace:
         path: /etc/profile

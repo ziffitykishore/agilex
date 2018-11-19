@@ -15,6 +15,10 @@ copy_nginx_certs: false
 
 magento_theme: "Magento/backend SomethingDigital/bryantpark"
 
+magento_user: magento
+
+magento_group: nginx
+
 magento_repo_username: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   62306432363434363539623734396131613833333266366238636135636231346539656464336564
