@@ -62,7 +62,7 @@ form .label,
     display: block;
     margin-bottom: 0;
     font-size: $font-size__base--desktop;
-    line-height: $line-height__base;
+    line-height: 1.7;
     letter-spacing: .4px;
 }
 
@@ -190,8 +190,10 @@ fieldset.field {
 }
 
 div.mage-error[generated] {
-    margin-top: 7px;
+    margin-top: $indent__xs;
     font-size: $font-size__base--desktop;
+    line-height: 1.7;
+    letter-spacing: .4px;
 }
 
 .field .tooltip {
