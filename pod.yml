@@ -65,7 +65,7 @@ services:
         source: elasticsearch-vol
         type: volume
     environment:
-      - discovery.type=single-node
+      discovery.type: single-node
     labels:
       - traefik.backend=magento.test
 
