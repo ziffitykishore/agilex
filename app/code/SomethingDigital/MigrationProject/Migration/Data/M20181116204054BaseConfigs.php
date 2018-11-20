@@ -27,20 +27,20 @@ class M20181116204054BaseConfigs implements MigrationInterface
     public function execute(SetupInterface $setup)
     {
         $this->setConfigs([
-            'general/store_information/name' => 'TraversTool',
-            'general/store_information/phone' => '',
+            'general/store_information/name' => 'Travers Tool Co.',
+            'general/store_information/phone' => '800-221-0270',
             'general/store_information/country_id' => 'US',
-            'general/store_information/region_id' => '',
-            'general/store_information/postcode' => '',
-            'general/store_information/city' => '',
-            'general/store_information/street_line1' => '',
+            'general/store_information/region_id' => '43',
+            'general/store_information/postcode' => '11354',
+            'general/store_information/city' => 'New York',
+            'general/store_information/street_line1' => '128-15 26th Avenue',
             'general/store_information/street_line2' => '',
             'design/socialprofiles/social_facebook' => 'https://www.facebook.com/traverstool/',
             'design/socialprofiles/social_instagram' => 'https://www.instagram.com/traverstool/',
             'design/pagination/pagination_frame' => '12',
             'design/socialprofiles/social_twitter' => 'https://twitter.com/traverstool',
-            'design/socialprofiles/social_pinterest' => 'https://www.pinterest.com/traverstool/',
-            'design/footer/copyright' => 'Copyright © {{ YEAR }} TraversTool. All rights reserved.',
+            'design/socialprofiles/social_pinterest' => 'https://www.pinterest.com/traverstoolco/',
+            'design/footer/copyright' => 'Copyright © {{ YEAR }} Travers Tool Co. All rights reserved.',
 
             'currency/options/allow' => 'USD',
             'currency/import/error_email' => 'project-traverstool@somethingdigital.onmicrosoft.com',
