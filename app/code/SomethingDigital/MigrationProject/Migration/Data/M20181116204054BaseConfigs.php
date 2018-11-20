@@ -61,8 +61,8 @@ class M20181116204054BaseConfigs implements MigrationInterface
             'trans_email/ident_custom2/email' => 'sales@travers.com',
 
             'catalog/seo/search_terms' => '0',
-            'catalog/seo/product_url_suffix' => '0',
-            'catalog/seo/category_url_suffix' => '0',
+            'catalog/seo/product_url_suffix' => '',
+            'catalog/seo/category_url_suffix' => '',
             'catalog/seo/category_canonical_tag' => '1',
             'catalog/seo/product_canonical_tag' => '1',
             'catalog/magento_targetrule/related_position_limit' => '12',
