@@ -121,11 +121,12 @@ $text__color-alt: $c-cobalt;
 $focus__box-shadow: none;
 
 // Link styles
-$link__color: $secondary__color;
-$link__hover__color: $primary__color;
-$link__visited__color: $secondary__color;
-$link__active__color: $secondary__color;
-$link__text-decoration: underline;
+$link__color: $text__color-alt;
+$link__hover__color: $text__color-alt;
+$link__hover__text-decoration: underline;
+$link__visited__color: $text__color-alt;
+$link__active__color: $text__color-alt;
+$link__text-decoration: none;
 $link__visited__text-decoration: $link__text-decoration;
 $link__active__text-decoration: $link__visited__text-decoration;
 $paragraph-link__text-decoration: $link__text-decoration;
