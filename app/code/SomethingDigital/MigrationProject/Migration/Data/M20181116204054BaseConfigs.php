@@ -69,7 +69,6 @@ class M20181116204054BaseConfigs implements MigrationInterface
             'catalog/magento_targetrule/crosssell_position_limit' => '6',
             'catalog/magento_targetrule/upsell_position_limit' => '12',
             'catalog/productalert_cron/error_email' => 'project-traverstool@somethingdigital.onmicrosoft.com',
-            'cataloginventory/item_options/max_sale_qty' => '750',
             'catalog/review/allow_guest' => '0',
             'catalog/downloadable/disable_guest_checkout' => '1',
 
