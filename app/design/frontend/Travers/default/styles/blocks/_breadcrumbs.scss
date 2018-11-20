@@ -29,7 +29,7 @@ $font-size__base--desktop: $font-size__base !default;
         $_icon-font-line-height: 1,
         $_breadcrumbs-icon-use: false,
         $_breadcrumbs-separator-symbol: '/',
-        $_breadcrumbs-current-font-weight: $font-weight__extra-bold
+        $_breadcrumbs-current-font-weight: $font-weight__bold
     );
 
     .items {
@@ -38,7 +38,7 @@ $font-size__base--desktop: $font-size__base !default;
         .item {
             strong,
             a {
-                font-weight: $font-weight__extra-bold;
+                font-weight: $font-weight__bold;
             }
         }
     }
