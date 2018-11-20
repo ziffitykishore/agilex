@@ -210,7 +210,7 @@ $heading-h6: (
 
 // Default (Secondary Button)
 $button__font-family: $font-family__sans-serif;
-$button__padding: 15px 20px; // vertical padding 2px less than $button-primary__padding from lack of border
+$button__padding: 17px 20px;
 $button__color: $color-white;
 $button__background: $secondary__color;
 $button__hover__background: $c-drill;
@@ -223,7 +223,7 @@ $button__border-radius: 2px;
 $button__line-height: 1.1;
 
 // Primary Button
-$button-primary__padding: 17px 20px; // vertical padding 2px more than $button__padding from lack of border
+$button-primary__padding: 17px 20px;
 $button-primary__border: 0;
 $button-primary__hover__border: 0;
 $button-primary__active__border: 0;
