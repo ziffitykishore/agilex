@@ -8,6 +8,10 @@
     .breadcrumbs {
         margin: 0;
     }
+
+    .certification{
+        margin-bottom: 0;
+    }
 }
 
 .gallery img {
@@ -15,20 +19,28 @@
 }
 
 .cms-bca {
-    .banner{
-        margin: 20px 0; 
+    .banner {
+        margin: 20px 0;
     }
-
-
-    .block-products-list{
+    .block-products-list {
         padding: 0;
     }
 }
 
 
+.cms-shopcsntv-about-us {
+    .page-main{
+    .main{
+        padding-bottom: 0;
+    }
+}
+}
+
 /********** privacy-policy ************/
 
-.cms-shopcsntv-privacy-policy, .cms-shopcsntv-faq, .cms-shopcsntv-guarentee {
+.cms-shopcsntv-privacy-policy,
+.cms-shopcsntv-faq,
+.cms-shopcsntv-guarentee {
     color: @color-black;
     .nav-tabs {
         float: none !important;
@@ -126,8 +138,6 @@
         }
     }
 }
-
-
 
 h1 {
     font-size: 40px;
@@ -382,7 +392,8 @@ p {
                         }
                     }
                 }
-                .sell-csn, .qualification {
+                .sell-csn,
+                .qualification {
                     ul {
                         margin: 0;
                         padding: 0 15px;
@@ -404,14 +415,13 @@ p {
     }
 }
 
-
 /***************** common classes ****************/
 
-.container-sm{
+.container-sm {
     .container-sm();
 }
 
-.container-md{
+.container-md {
     .container-md();
 }
 
@@ -472,7 +482,6 @@ p {
     padding: 10px 0;
 }
 
-
 /*************** responsive static page   ***********/
 
 @media only screen and (min-width:1200px) {
@@ -487,8 +496,19 @@ p {
 }
 
 @media screen and (max-width: 768px) {
+    .cms-page-view {
+        .columns {
+            .columns {
+                .main {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        
+    }
     .cms-bca {
-     .block-products-list{
+        .block-products-list {
             padding: 0;
         }
     }
@@ -500,6 +520,9 @@ p {
         }
     }
     .cms-shopcsntv-about-us {
+        .main{
+            padding-bottom: 0;
+        }
         .container-sm {
             .video-img {
                 .btn-fancy {
@@ -540,7 +563,9 @@ p {
             }
         }
     }
-    .cms-shopcsntv-privacy-policy, .cms-shopcsntv-guarentee, .cms-shopcsntv-faq {
+    .cms-shopcsntv-privacy-policy,
+    .cms-shopcsntv-guarentee,
+    .cms-shopcsntv-faq {
         .privacy {
             .nav-tabs {
                 &.full-bg {
@@ -580,8 +605,8 @@ p {
         }
     }
     .detail {
-
-        .book-detail, .book {
+        .book-detail,
+        .book {
             padding: 30px 20px;
         }
     }
