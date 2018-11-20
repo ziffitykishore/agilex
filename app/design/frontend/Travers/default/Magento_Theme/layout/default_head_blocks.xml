@@ -2,6 +2,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
          <!-- Google Fonts -->
-         <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Oswald:300,400,500" src_type="url" />
+         <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Oswald:400,500,600" src_type="url" />
     </head>
 </page>
