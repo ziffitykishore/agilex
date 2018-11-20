@@ -23,7 +23,7 @@ $custom-input__checkbox-icon              : "%3Csvg xmlns='http://www.w3.org/200
   + label {
     position: relative;
     display: inline-block !important;
-    padding-left: ($custom-input__width + 10px) !important; // prevent override
+    padding-left: ($custom-input__width + 18px) !important; // prevent override
     min-height: ($custom-input__height + ($custom-input__border-width * 2)); // +2px for border. if there's no label text for some reason, let's make sure it's properly spaced
     cursor: pointer;
     vertical-align: middle;
