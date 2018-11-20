@@ -90,6 +90,10 @@ form .label,
             }
         }
 
+        &.required > .label::after {
+            margin-left: 3px;
+        }
+
         &.choice {
             position: relative; // for input absolute
             margin-top: 20px;
