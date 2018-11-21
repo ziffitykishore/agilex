@@ -91,7 +91,7 @@ category: Blocks - Links
     text-transform: $button-tertiary__text-transform;
     text-decoration: $button-tertiary__text-decoration;
     color: $button-tertiary__color;
-    font-weight: $font-weight__semibold;
+    font-weight: $font-weight__bold;
     font-size: $font-size__base--desktop;
     line-height: $line-height__base--desktop;
 
@@ -127,7 +127,7 @@ category: Blocks - Links
     width: 100%;
     font-size: $font-size__base--desktop !important; // All primary and secondary buttons have this font-size on mobile and desktop
     letter-spacing: 1px;
-    font-weight: $font-weight__bold;
+    font-weight: $font-weight__semibold;
 
     @include hover {
         border-image-slice: 1 !important; // Without this, the border disappears on hover

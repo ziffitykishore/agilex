@@ -36,10 +36,27 @@ button,
     @include lib-button-primary();
 }
 
+.action.primary,
+.action.primary:hover,
+.action.primary:focus {
+    border: 2px solid transparent;
+    border-image: linear-gradient(to top, #{$c-sapphire} 0%, #{$c-waterfall} 60%);
+    border-image-slice: 1;
+}
+
+button,
+button:hover,
+button:focus {
+    border: 2px solid transparent;
+    border-image: linear-gradient(to top, #{$c-aluminum} 0%, #{$c-grey} 60%);
+    border-image-slice: 1;
+}
+
 // Treat these anchor links as buttons
 a.action.primary {
     @include lib-link-as-button();
     @include headingFont;
+    font-weight: $font-weight__semibold;
 }
 
 button,
@@ -55,6 +72,10 @@ a.action.primary {
 .action.primary,
 a.action.primary {
     @include button--type(primary);
+}
+
+.action.secondary {
+    @include button--type(secondary);
 }
 
 .button--transparent {
