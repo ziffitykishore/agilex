@@ -12,10 +12,10 @@ services:
     labels:
       - traefik.frontend.rule=Host:magento.test
       - traefik.domain=magento.test
-      - traefik.port=80
+      - traefik.enable=true
+#      - traefik.port=80
     networks:
-      - internal
-      - sites
+      - lol
 
   app:
     image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0'
@@ -27,17 +27,18 @@ services:
       - rabbitmq
       - redis
       - smtp
-    volumes_from:
-      - database
-      - elasticsearch
-      - rabbitmq
-      - redis
-      - smtp
     expose:
       - '80'
       - '443'
+    ports:
+      - '3000'
+    labels:
+      - traefik.frontend.rule=Host:magento.live
+      - traefik.domain=magento.live
+      - traefik.port=3000
+      - traefik.enable=true
     networks:
-      - internal
+      - lol
 
   database:
     image: 'percona:5.6'
@@ -59,8 +60,7 @@ services:
       - traefik.frontend.rule=Host:db.magento.test
       - traefik.port=3306
     networks:
-      - internal
-      - sites
+      - lol
 
   elasticsearch:
     image: 'elasticsearch:5.2'
@@ -73,8 +73,6 @@ services:
         type: volume
     environment:
       discovery.type: single-node
-    networks:
-      - internal
 
   rabbitmq:
     image: rabbitmq
@@ -88,8 +86,6 @@ services:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
       RABBITMQ_DEFAULT_VHOST: /magento
-    networks:
-      - internal
 
   redis:
     image: redis
@@ -99,8 +95,6 @@ services:
       - target: /var/lib/redis
         source: redis-vol
         type: volume
-    networks:
-      - internal
 
   smtp:
     image: mailhog/mailhog
@@ -116,10 +110,12 @@ services:
       - SMARTHOST_ALIASES=*.mysmtp.com
     labels:
       - traefik.frontend.rule=Host:smtp.magento.test
+      - traefik.domain=smtp.magento.test
+      - traefik.backend=smtp
       - traefik.port=8025
+      - traefik.enable=true
     networks:
-      - sites
-      - internal
+      - lol
 
 volumes:
   database-vol: null
@@ -128,7 +124,5 @@ volumes:
   redis-vol: null
 
 networks:
-  sites:
+  lol:
     external: true
-  internal:
-    external: false
