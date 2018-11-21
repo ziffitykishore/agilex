@@ -6,23 +6,21 @@ services:
     image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0'
     links:
       - app
-    volumes_from:
-      - app
     ports:
       - '80'
       - '443'
     labels:
-      - 'traefik.frontend.rule=Host:magento.test'
+      - traefik.frontend.rule=Host:magento.test
       - traefik.domain=magento.test
-    volumes: []
+      - traefik.port=80
+    networks:
+      - internal
+      - sites
 
   app:
     image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0'
     cap_add:
       - SYS_PTRACE
-    expose:
-      - '80'
-      - '443'
     links:
       - database
       - elasticsearch
@@ -35,6 +33,11 @@ services:
       - rabbitmq
       - redis
       - smtp
+    expose:
+      - '80'
+      - '443'
+    networks:
+      - internal
 
   database:
     image: 'percona:5.6'
@@ -53,7 +56,11 @@ services:
       MYSQL_USER: magento_user
       MYSQL_PASSWORD: magento_password
     labels:
-      - traefik.backend=magento.test
+      - traefik.frontend.rule=Host:db.magento.test
+      - traefik.port=3306
+    networks:
+      - internal
+      - sites
 
   elasticsearch:
     image: 'elasticsearch:5.2'
@@ -66,8 +73,8 @@ services:
         type: volume
     environment:
       discovery.type: single-node
-    labels:
-      - traefik.backend=magento.test
+    networks:
+      - internal
 
   rabbitmq:
     image: rabbitmq
@@ -81,8 +88,8 @@ services:
       RABBITMQ_DEFAULT_USER: user
       RABBITMQ_DEFAULT_PASS: password
       RABBITMQ_DEFAULT_VHOST: /magento
-    labels:
-      - traefik.backend=magento.test
+    networks:
+      - internal
 
   redis:
     image: redis
@@ -92,8 +99,8 @@ services:
       - target: /var/lib/redis
         source: redis-vol
         type: volume
-    labels:
-      - traefik.backend=magento.test
+    networks:
+      - internal
 
   smtp:
     image: mailhog/mailhog
@@ -108,10 +115,20 @@ services:
       - SMARTHOST_PASSWORD=secret
       - SMARTHOST_ALIASES=*.mysmtp.com
     labels:
-      - traefik.backend=magento.test
+      - traefik.frontend.rule=Host:smtp.magento.test
+      - traefik.port=8025
+    networks:
+      - sites
+      - internal
 
 volumes:
   database-vol: null
   elasticsearch-vol: null
   rabbitmq-vol: null
   redis-vol: null
+
+networks:
+  sites:
+    external: true
+  internal:
+    external: false

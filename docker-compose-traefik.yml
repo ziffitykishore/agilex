@@ -13,6 +13,6 @@ services:
     network_mode: "bridge"
     cap_add:
       - NET_ADMIN
-    #labels:
-    #  - traefik.docker.network="web"
+    labels:
+      - traefik.docker.network="sites"
 
