@@ -112,7 +112,6 @@ services:
     labels:
       - traefik.frontend.rule=Host:smtp.magento.test
       - traefik.domain=smtp.magento.test
-      - traefik.backend=smtp
       - traefik.port=8025
       - traefik.enable=true
     networks:
