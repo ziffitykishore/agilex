@@ -40,7 +40,7 @@ button,
 .action.primary:hover,
 .action.primary:focus {
     border: 2px solid transparent;
-    border-image: linear-gradient(to top, #{$c-sapphire} 0%, #{$c-waterfall} 60%);
+    border-image: linear-gradient(to top, #{$c-sapphire} 0%, #{$c-waterfall} 60%) !important; // Prevents border from disappearing in Chrome;
     border-image-slice: 1;
 }
 
@@ -48,7 +48,7 @@ button,
 button:hover,
 button:focus {
     border: 2px solid transparent;
-    border-image: linear-gradient(to top, #{$c-aluminum} 0%, #{$c-grey} 60%);
+    border-image: linear-gradient(to top, #{$c-aluminum} 0%, #{$c-grey} 60%) !important; // Prevents border from disappearing in Chrome
     border-image-slice: 1;
 }
 
