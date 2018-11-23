@@ -138,6 +138,16 @@
                     "title": "Fixes issue with product list in Bluefoot",
                     "url": "composer-patches/MDVA_8762_EE_2.2.1_COMPOSER_v1.patch",
                     "type": "patch"
+                },
+                "MDVA-13733_EE_2.2.4_COMPOSER_v1.patch": {
+                    "title": "Fixes error: A joint field with this alias (0) is already declared",
+                    "url": "composer-patches/MDVA-13733_EE_2.2.4_COMPOSER_v1.patch",
+                    "type": "patch"
+                },
+                "composer-MAGETWO-62197.patch": {
+                    "title": "composer-MAGETWO-62197.patch",
+                    "url": "composer-patches/composer-MAGETWO-62197.patch",
+                    "type": "patch"
                 }
             }
         }
