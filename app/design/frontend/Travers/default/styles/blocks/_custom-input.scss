@@ -1,0 +1,213 @@
+$custom-input__width                      : 20px !default;
+$custom-input__height                     : 20px !default;
+$custom-input__background-color           : $form-element-input__background !default;
+$custom-input__background-color--hover    : $active__color !default;
+$custom-input__background-color--disabled : $secondary__color !default;
+$custom-input__border                     : $form-element-input__border !default;
+$custom-input__border-width               : 1px !default;
+$custom-input__background-color--checked  : $active__color !default;
+$custom-input__icon-color                 : $color-white !default;
+$custom-input__disabled-opacity           : .6 !default;
+$custom-input__checkbox-icon              : "%3Csvg xmlns='http://www.w3.org/2000/svg' class='nc-icon outline' preserveAspectRatio='xMidYMid' viewBox='0 0 48 48'%3E%3Cpolyline points='12 24 20 32 36 16 ' style='fill:none;stroke-width:4;stroke:#{ encodecolor($custom-input__icon-color) }'/%3E%3C/svg%3E";
+
+[type="checkbox"]:not(.custom-input--disabled),
+[type="radio"]:not(.custom-input--disabled) {
+  width: 1px !important;
+  height: 1px !important;
+  margin-bottom: 15px;
+  margin-right: 0 !important;
+  opacity: 0.01 !important; // override any potential styling (form.scss)
+  animation-name: customInputAdded;
+  animation-duration: 0.01s;
+
+  + label {
+    position: relative;
+    display: inline-block !important;
+    padding-left: ($custom-input__width + 18px) !important; // prevent override
+    min-height: ($custom-input__height + ($custom-input__border-width * 2)); // +2px for border. if there's no label text for some reason, let's make sure it's properly spaced
+    cursor: pointer;
+    vertical-align: middle;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $custom-input__width;
+      height: $custom-input__width;
+      background-color: $custom-input__icon-color;
+      border: $custom-input__border;
+      content: '';
+      transition: background-color .15s ease;
+    }
+
+    @include hover {
+      &::after {
+        @include min-screen($screen__xs){
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: ($custom-input__width - 2); // 18
+            height: ($custom-input__width - 2); // 18
+            border: $custom-input__border;
+            border-width: ($custom-input__border-width * 2);
+            content: '';
+        }
+      }
+    }
+  }
+
+  &:checked + label {
+    &:before {
+      background-color: $custom-input__background-color--checked;
+      border-color: $custom-input__background-color--checked;
+    }
+
+    &:after {
+      width: $custom-input__width;
+      height: $custom-input__width;
+    }
+  }
+
+  &:focus + label:before {
+    border-color: $primary__color;
+  }
+
+  &:disabled + label {
+    cursor: default;
+    pointer-events: none;
+
+    &:before,
+    &:after {
+      opacity: $custom-input__disabled-opacity;
+      cursor: default;
+    }
+  }
+
+  // If the preceding input is removed from view, we want to hide our custom input as well
+  &[style*="display: none"] + label,
+  &[style*="display:none"] + label {
+    cursor: default;
+    padding-left: 0 !important;
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}
+
+[type="checkbox"]:not(.custom-input--disabled) {
+  &:checked + label {
+    @include hover {
+      &::after {
+        border: 0;
+      }
+    }
+
+    &:after {
+      position: absolute;
+      top: $custom-input__border-width;
+      left: $custom-input__border-width;
+      content: url("data:image/svg+xml,#{ $custom-input__checkbox-icon }");
+    }
+  }
+}
+
+[type="radio"]:not(.custom-input--disabled) {
+  + label {
+    &:before,
+    &:hover:after {
+      border-radius: 50%;
+    }
+  }
+
+  &:checked + label {
+    @include hover {
+      &::after {
+        border: 0;
+      }
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: ($custom-input__height / 2 + $custom-input__border-width);
+      left: ($custom-input__width / 2 + $custom-input__border-width);
+      height: 5px;
+      width: 5px;
+      border-radius: 50%;
+      background-color: $custom-input__icon-color;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+@keyframes customInputAdded {
+  from {
+    outline-color: #fff;
+  }
+  to {
+    outline-color: #000;
+  }
+}
+
+
+/*doc
+---
+title: Custom Checkbox
+name: customcheckbox
+category: Style-Guide -- Custom-Inputs
+---
+
+```html_example
+<div>
+    <input id="check1" type="checkbox" checked="checked" />
+    <label for="check1">Checked Checkbox</label>
+</div>
+
+<div>
+    <input id="check2" type="checkbox" />
+    <label for="check2">Unchecked Checkbox</label>
+</div>
+
+<div>
+    <input id="check3" type="checkbox" disabled="disabled" />
+    <label for="check3">Disabled Unchecked Checkbox</label>
+</div>
+
+<div>
+    <input id="check4" type="checkbox" disabled="disabled" checked="checked" />
+    <label for="check4">Disabled Checked Checkbox</label>
+</div>
+```
+*/
+
+/*doc
+---
+title: Custom Radio
+name: customradio
+category: Style-Guide -- Custom-Inputs
+---
+
+```html_example
+<div>
+    <input id="radio1" type="radio" checked="checked" />
+    <label for="radio1">Checked Radio</label>
+</div>
+
+<div>
+    <input id="radio2" type="radio" />
+    <label for="radio2">Unchecked Radio</label>
+</div>
+
+<div>
+    <input id="radio3" type="radio" disabled="disabled" />
+    <label for="radio3">Disabled Unchecked Radio</label>
+</div>
+
+<div>
+    <input id="radio4" type="radio" disabled="disabled" checked="checked" />
+    <label for="radio4">Disabled Checked Radio</label>
+</div>
+```
+*/
