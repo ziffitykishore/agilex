@@ -12,7 +12,6 @@ syncs:
     host_disk_mount_mode: "cached"
     sync_excludes:
       - ".idea"          # no need to send PHPStorm config to container
-      - ".git"           # ignore the main .git repo
       - "var/cache/*"    # don't share the cache
       - "var/sessions/*" # we don't need the sessions locally
       - "dev/tests/*"
