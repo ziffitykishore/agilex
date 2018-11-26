@@ -4,7 +4,7 @@
 # The directory containing the source files to parse recursively
 # The project theme must be loaded BEFORE bryant park.
 source:
-  #- ../app/design/frontend/Travers/default/styles
+  - ../app/design/frontend/Travers/default/styles
   - ../vendor/somethingdigital/magento2-theme-bryantpark/styles
 
 
@@ -33,8 +33,8 @@ css_include:
 - /static/frontend/Travers/default/en_US/css/styles.css
 - /static/frontend/Travers/default/en_US/css/styles.min.css
 # Commenting out styleguide.css as it tends to overwrite styles.css typography styles
-#- /static/frontend/Travers/default/en_US/css/styleguide.css
-#- /static/frontend/Travers/default/en_US/css/styleguide.min.css
+- /static/frontend/Travers/default/en_US/css/styleguide.css
+- /static/frontend/Travers/default/en_US/css/styleguide.min.css
 
 js_include:
 - https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js
