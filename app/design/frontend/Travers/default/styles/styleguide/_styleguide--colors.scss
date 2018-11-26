@@ -1,12 +1,21 @@
-$c-theme--blank: (
-    'scorpion': $c-scorpion,
-    'dusty-grey': $c-dusty-grey,
+$c-theme--travers: (
     'silver': $c-silver,
-    'christine': $c-christine,
     'green': $c-green,
     'alizarian': $c-alizarian,
     'yellow': $c-yellow,
     'brown': $c-brown
+
+    'royal': $c-royal,
+    'midnight': $c-midnight,
+    'cobalt': $c-cobalt,
+    'sapphire': $c-sapphire,
+    'waterfall': $c-waterfall,
+    'steel': $c-steel,
+    'smoke': $c-smoke,
+    'nickel': $c-nickel,
+    'drill': $c-drill,
+    'aluminum': $c-aluminum,
+    'grey': $c-grey
 );
 
 $c-theme--blank-helper: (
@@ -50,19 +59,22 @@ category: Style-Guide -- Colors
 
 Use <http://chir.ag/projects/name-that-color/> to name color hex values into variables. Map these variables to these theme variable as no site styling should directly utilize hex or name-that-color values. This will allow site colors to be easily chnaged in the future, if needed such as on a multi-store instance.
 
-<h1>Bryant Park Theme Color</h1>
+<h1>Travers Theme Color</h1>
 <ul class="colors--bg">
-  <li class="bg bg--scorpion"></li>
-  <li class="bg bg--dusty-grey"></li>
-  <li class="bg bg--silver"></li>
-  <li class="bg bg--christine"></li>
-  <li class="bg bg--alizarian"></li>
-  <li class="bg bg--green"></li>
-  <li class="bg bg--yellow"></li>
-  <li class="bg bg--brown"></li>
+  <li class="bg bg--royal">Primary button, promo banner, +/- icons</li>
+  <li class="bg bg--midnight">Homepage blocks</li>
+  <li class="bg bg--cobalt">Tertiary buttons, links</li>
+  <li class="bg bg--sapphire">Primary button border, Primary button hover</li>
+  <li class="bg bg--waterfall">Primary button border</li>
+  <li class="bg bg--steel">Text</li>
+  <li class="bg bg--smoke">Header utility nav, Homepage left nav container</li>
+  <li class="bg bg--nickel">Secondary Button</li>
+  <li class="bg bg--drill">Secondary Button hover</li>
+  <li class="bg bg--aluminum">Secondary border</li>
+  <li class="bg bg--grey">Secondary border</li>
 </ul>
 
-<h1> Bryant Park Theme Helper Colors--Alerts</h1>
+<h1> Travers Theme Helper Colors--Alerts</h1>
 <ul class="colors--bg">
     <li class="bg bg--success"></li>
     <li class="bg bg--success__background-color"></li>
@@ -72,7 +84,7 @@ Use <http://chir.ag/projects/name-that-color/> to name color hex values into var
     <li class="bg bg--error__background-color"></li>
 </ul>
 
-<h1> Bryant Park Theme Helper Colors</h1>
+<h1> Travers Helper Colors</h1>
 <ul class="colors--bg">
   <li class="bg bg--primary__color"></li>
   <li class="bg bg--secondary__color"></li>
@@ -131,7 +143,7 @@ Use <http://chir.ag/projects/name-that-color/> to name color hex values into var
   }
 }
 
-@each $theme-color, $color in $c-theme--blank {
+@each $theme-color, $color in $c-theme--travers {
   .bg--#{$theme-color} {
     background-color: $color;
 
