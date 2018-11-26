@@ -89,11 +89,7 @@ else
 fi
 
 # Also setup the styleguide.
-if [ -e init/pub/styleguide ]; then
-    rsync -a pub/styleguide/ init/pub/styleguide/
-else
-    mv pub/styleguide init/pub/styleguide
-fi
+rsync -a pub/styleguide/ init/pub/styleguide/
 
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
