@@ -164,7 +164,7 @@ category: Blocks - Links
         transition: all 0.2s ease-out;
 
         &:before {
-            animation: buttonShine 0.8s 0s linear;
+            animation: buttonShine 0.3s 0s linear;
         }
     }
 
@@ -178,7 +178,7 @@ category: Blocks - Links
         left: 0%;
         opacity: 0;
         background: $color-white;
-        box-shadow: 0 0 15px 8px $color-white;
+        box-shadow: 0 0 35px 15px rgba($color-white, .3);
         transform: skewX(-20deg);
     }
 }
