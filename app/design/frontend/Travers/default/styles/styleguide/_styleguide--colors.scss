@@ -58,19 +58,19 @@ category: Style-Guide -- Colors
 
 Use <http://chir.ag/projects/name-that-color/> to name color hex values into variables. Map these variables to these theme variable as no site styling should directly utilize hex or name-that-color values. This will allow site colors to be easily chnaged in the future, if needed such as on a multi-store instance.
 
-<h1>Travers Theme Color</h1>
+<h1>Travers Theme Colors</h1>
 <ul class="colors--bg">
-  <li class="bg bg--royal"><span>Primary button, promo banner, +/- icons</span></li>
-  <li class="bg bg--midnight"><span>Homepage blocks</span></li>
-  <li class="bg bg--cobalt"><span>Tertiary buttons, links</span></li>
-  <li class="bg bg--sapphire"><span>Primary button border, Primary button hover</span></li>
-  <li class="bg bg--waterfall"><span>Primary button border</span></li>
-  <li class="bg bg--steel"><span>Text</span></li>
-  <li class="bg bg--smoke"><span>Header utility nav, Homepage left nav container</span></li>
-  <li class="bg bg--nickel"><span>Secondary Button</span></li>
-  <li class="bg bg--drill"><span>Secondary Button hover</span></li>
-  <li class="bg bg--aluminum"><span>Secondary border</span></li>
-  <li class="bg bg--grey"><span>Secondary border</span></li>
+  <li class="bg bg--royal"><span class="color-property">Primary button, promo banner, +/- icons</span></li>
+  <li class="bg bg--midnight"><span class="color-property">Homepage blocks</span></li>
+  <li class="bg bg--cobalt"><span class="color-property">Tertiary buttons, links</span></li>
+  <li class="bg bg--sapphire"><span class="color-property">Primary button border, Primary button hover</span></li>
+  <li class="bg bg--waterfall"><span class="color-property" style="color: black">Primary button border</span></li>
+  <li class="bg bg--steel"><span class="color-property">Text</span></li>
+  <li class="bg bg--smoke"><span class="color-property" style="color: black">Header utility nav, Homepage left nav container</span></li>
+  <li class="bg bg--nickel"><span class="color-property">Secondary Button</span></li>
+  <li class="bg bg--drill"><span class="color-property">Secondary Button hover</span></li>
+  <li class="bg bg--aluminum"><span class="color-property">Secondary border</span></li>
+  <li class="bg bg--grey"><span class="color-property" style="color: black">Secondary border</span></li>
 </ul>
 
 <h1> Travers Theme Helper Colors--Alerts</h1>
@@ -110,10 +110,9 @@ Use <http://chir.ag/projects/name-that-color/> to name color hex values into var
 </ul> 
 */
 
-span {
+.color-property {
     display: block;
     padding: 20px 10px;
-    text-shadow: 0 1px 1px rgba($color-black, .2);
     font-size: 14px;
 }
 
