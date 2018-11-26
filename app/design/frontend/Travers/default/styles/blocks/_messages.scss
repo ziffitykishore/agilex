@@ -29,6 +29,7 @@ $message__color: inherit !default;
 
     a {
         color: $message__color;
+        text-decoration: underline;
 
         @include hover {
             color: $message-link__color-hover;
