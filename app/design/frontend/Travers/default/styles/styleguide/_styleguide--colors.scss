@@ -3,8 +3,7 @@ $c-theme--travers: (
     'green': $c-green,
     'alizarian': $c-alizarian,
     'yellow': $c-yellow,
-    'brown': $c-brown
-
+    'brown': $c-brown,
     'royal': $c-royal,
     'midnight': $c-midnight,
     'cobalt': $c-cobalt,
@@ -61,17 +60,17 @@ Use <http://chir.ag/projects/name-that-color/> to name color hex values into var
 
 <h1>Travers Theme Color</h1>
 <ul class="colors--bg">
-  <li class="bg bg--royal">Primary button, promo banner, +/- icons</li>
-  <li class="bg bg--midnight">Homepage blocks</li>
-  <li class="bg bg--cobalt">Tertiary buttons, links</li>
-  <li class="bg bg--sapphire">Primary button border, Primary button hover</li>
-  <li class="bg bg--waterfall">Primary button border</li>
-  <li class="bg bg--steel">Text</li>
-  <li class="bg bg--smoke">Header utility nav, Homepage left nav container</li>
-  <li class="bg bg--nickel">Secondary Button</li>
-  <li class="bg bg--drill">Secondary Button hover</li>
-  <li class="bg bg--aluminum">Secondary border</li>
-  <li class="bg bg--grey">Secondary border</li>
+  <li class="bg bg--royal"><span>Primary button, promo banner, +/- icons</span></li>
+  <li class="bg bg--midnight"><span>Homepage blocks</span></li>
+  <li class="bg bg--cobalt"><span>Tertiary buttons, links</span></li>
+  <li class="bg bg--sapphire"><span>Primary button border, Primary button hover</span></li>
+  <li class="bg bg--waterfall"><span>Primary button border</span></li>
+  <li class="bg bg--steel"><span>Text</span></li>
+  <li class="bg bg--smoke"><span>Header utility nav, Homepage left nav container</span></li>
+  <li class="bg bg--nickel"><span>Secondary Button</span></li>
+  <li class="bg bg--drill"><span>Secondary Button hover</span></li>
+  <li class="bg bg--aluminum"><span>Secondary border</span></li>
+  <li class="bg bg--grey"><span>Secondary border</span></li>
 </ul>
 
 <h1> Travers Theme Helper Colors--Alerts</h1>
@@ -111,6 +110,12 @@ Use <http://chir.ag/projects/name-that-color/> to name color hex values into var
 </ul> 
 */
 
+span {
+    display: block;
+    padding: 20px 10px;
+    text-shadow: 0 1px 1px rgba($color-black, .2);
+    font-size: 14px;
+}
 
 .colors--bg {
   display: flex;
