@@ -121,24 +121,13 @@ category: Blocks - Links
 
 @mixin button--type($button-type) {
     border: 0;
-    min-height: 46px; // 50px height minus the 2px top and bottom borders from the ::after pseudoelement
+    min-height: 50px;
     position: relative;
     border-radius: 6px;
-    width: calc(100% - 4px); // 100% minus the 2px left and right borders from the ::after pseudoelement
+    width: 100%;
     font-size: $font-size__base--desktop !important; // All primary and secondary buttons have this font-size on mobile and desktop
     letter-spacing: 1px;
     font-weight: $font-weight__semibold;
-
-    &::after {
-        position: absolute;
-        top: -2px;
-        bottom: -2px;
-        left: -2px;
-        right: -2px;
-        content: '';
-        z-index: -1;
-        border-radius: 6px;
-    }
 
     @include min-screen($screen__xs) {
         width: auto;
@@ -146,10 +135,7 @@ category: Blocks - Links
 
     @if $button-type == "primary" {
         background-color: $c-royal;
-
-        &::after {
-            background: linear-gradient(to top, #{$c-sapphire} 0%, #{$c-waterfall} 60%)
-        }
+        box-shadow: inset 0 -2px $c-sapphire, inset 0px 0px 0px 2px $c-waterfall;
 
         @include hover {
             background-color: $c-sapphire;
@@ -158,10 +144,7 @@ category: Blocks - Links
 
     @if $button-type == "secondary" {
         background-color: $c-nickel;
-
-        &::after {
-            background: linear-gradient(to top, #{$c-aluminum} 0%, #{$c-grey} 60%);
-        }
+        box-shadow: inset 0 -2px $c-aluminum, inset 0px 0px 0px 2px $c-grey;
 
         @include hover {
             background-color: $c-drill;
