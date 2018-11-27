@@ -39,6 +39,7 @@ $font-size__base--desktop: $font-size__base !default;
             strong,
             a {
                 font-weight: $font-weight__semibold;
+                margin: 0 $indent__xs;
             }
         }
     }
