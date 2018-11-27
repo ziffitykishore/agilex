@@ -6,7 +6,7 @@ category: Style-Guide - Buttons-Links
 ---
 
 ```html_example
-  <button type="submit">Buy Me</button>
+  <button class="action secondary" type="submit">Buy Me</button>
   <p> AKA secondary button </p>
 ```
 
