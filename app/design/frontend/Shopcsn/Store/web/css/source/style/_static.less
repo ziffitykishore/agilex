@@ -178,6 +178,7 @@ p {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             transition: 0.3s;
             cursor: pointer;
+            margin: 0;
         }
     }
     .book-detail {
@@ -240,6 +241,12 @@ p {
             position: absolute;
             display: block;
             top: 10px;
+        }
+
+        .heading {
+            font-weight: 500;
+            margin: 10px 0;
+            font-size: 18px;
         }
     }
     .email {
@@ -519,8 +526,12 @@ p {
             text-align: center;
         }
     }
-    .cms-shopcsntv-about-us {
+    .cms-shopcsntv-about-us, .cms-about-us {
         .main{
+            padding-bottom: 0;
+        }
+
+        .columns .column.main{
             padding-bottom: 0;
         }
         .container-sm {

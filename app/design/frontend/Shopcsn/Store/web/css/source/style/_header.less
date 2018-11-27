@@ -11,11 +11,15 @@
             display: flex;
             align-items: center;
         }
-        .has-promo-text {
+        .has-promo-text, .has-promo-text h1 {
             padding: 0;
             font-size: 14px;
             font-weight: 600;
+        h1{
+            margin: 0;
+        }    
         }
+        
         .promo-next {
             img:first-of-type {
                 display: none;
@@ -1099,6 +1103,26 @@
                 margin-top: 0;
             }
         }
+    }
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 768px){
+    
+    .header-promo {
+        padding-top: 10px;
+        .promotion-text{
+            display: block;
+            > div {
+                width: 50%;
+            }
+
+            .has-promo-text{
+                margin-top: 20px;
+                width: 100%;
+            }
+        }
+        
     }
 }
 
