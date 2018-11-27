@@ -77,13 +77,13 @@
   tasks:
     - name: run magento install
       shell: |
-        OLDDOMAIN='https://{{ item | replace("test", "com") }}/'
+        OLDDOMAIN='{{ item | replace("test", "com") }}'
         mysql \
               -u root \
               -proot_password \
               -h database \
               {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = 'http://{{ item }}/' where value = '${OLDDOMAIN}';"
+              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item }}');"
       loop: "{{ site_domains }}"
   tags:
     - database
