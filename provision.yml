@@ -70,6 +70,25 @@
   tags:
     - prebuild
 
+
+- name: database provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: run magento install
+      shell: |
+        OLDDOMAIN='{{ item | replace("test", "com") }}'
+        mysql \
+              -u root \
+              -proot_password \
+              -h database \
+              {{ mysql_database | default("magento_database") }} \
+              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item }}');"
+      loop: "{{ site_domains }}"
+  tags:
+    - database
+    - sync
+
 - name: owner play
   hosts: localhost
   connection: local
@@ -106,10 +125,20 @@
       template:
         src: "app/etc/env.php.j2"
         dest: "{{ playbook_dir }}/app/etc/env.php"
-      when: envphp.stat.exists
+      when: not envphp.stat.exists
+    - name: check for config.php file
+      stat: path="{{ playbook_dir }}/app/etc/config.php"
+      register: configphp
+    - name: use config.php.sample when config.php doesn't exist
+      copy:
+        src: "app/etc/config.php.sample"
+        dest: "{{ playbook_dir }}/app/etc/config.php"
+      when: not configphp.stat.exists
   tags:
     - build
     - sync
+    - template
+
 
 - name: build provision
   hosts: localhost

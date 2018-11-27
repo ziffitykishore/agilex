@@ -30,13 +30,6 @@ services:
     expose:
       - '80'
       - '443'
-    ports:
-      - '3000'
-    labels:
-      - traefik.frontend.rule=Host:magento.live
-      - traefik.domain=magento.live
-      - traefik.port=3000
-      - traefik.enable=true
     networks:
       - internal
       - lol
