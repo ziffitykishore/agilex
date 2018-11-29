@@ -17,7 +17,7 @@ if($_product->getTypeId() == 'configurable') {
 <?php if ($block->displayProductStockStatus()): ?>
     <?php if ($_product->isAvailable()): ?>
         <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
-            <strong>Status: <span><?= /* @escapeNotVerified */ __('In stock') ?></span></strong>
+            <strong>Status: <span><?= /* @escapeNotVerified */ __('Available') ?></span></strong>
         </div>
         <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>" style="display:none;">
             <strong>Status: <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></strong>
