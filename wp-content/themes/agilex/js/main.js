@@ -481,11 +481,11 @@ function myFunction() {
     fade: true,
     arrows: false,
     responsive: [{
-        breakpoint: 768,
-        settings: {
-          adaptiveHeight: true
-        }
-      }]
+      breakpoint: 768,
+      settings: {
+        adaptiveHeight: true
+      }
+    }]
   });
 
   /* blog sidebar */
@@ -611,16 +611,16 @@ function myFunction() {
   }
 
   //reset the scroll to 0 (top of page)
-/*   $(window).on("beforeunload", function () {
-    setInterval(function () {
-      $(this).scrollTop(0);
-      $("body").fadeOut("slow");
-    }, 500);
-    $("body").addClass("loader");
-    if ($(this).scrollTop() === 0) {
-      $(".header-container").removeClass("slideUp slideDown");
-    }
-  }); */
+  /*   $(window).on("beforeunload", function () {
+      setInterval(function () {
+        $(this).scrollTop(0);
+        $("body").fadeOut("slow");
+      }, 500);
+      $("body").addClass("loader");
+      if ($(this).scrollTop() === 0) {
+        $(".header-container").removeClass("slideUp slideDown");
+      }
+    }); */
 
   headerStick();
   $(window).on("resize", headerStick);
@@ -1035,7 +1035,7 @@ function myFunction() {
             .find("option:eq(0)")
             .text(labelText);
 
-            $(this).find('option:eq(0)').removeAttr('disabled');
+          $(this).find('option:eq(0)').removeAttr('disabled');
         }
         $(this).change(function () {
           $(this)
@@ -1054,8 +1054,8 @@ function myFunction() {
 
 
 
-        
-      
+
+
 
 
     $(".hs-submit .hs-button").wrap(
@@ -1087,7 +1087,7 @@ function myFunction() {
         if ($(this).val() == "") {
           jQuery(this)
             .parents(".form-group, .field:not(.hs-fieldtype-booleancheckbox)")
-            
+
             .removeClass("focused");
         } else if ($(this).val()) {
           jQuery(this)
@@ -1165,5 +1165,117 @@ function myFunction() {
   });
 
   $('.hbspt-form').appendTo('.contact-form');
+  if ($('.hbspt-form .submitted-message').length) {
+    $('.select-form-wrap').hide();
+  }
+
+  body_sizer();
+  $(window).resize(body_sizer);
+
+  function body_sizer() {
+    var bodyheight = $(window).height();
+    $(".slider-blk").height(bodyheight);
+  }
+
+  function iconFilling() {
+    if ($('.cd-service').length) {
+      var offset = $(".cd-service .img-blk img").offset().left + 1;
+      var width = $(".cd-service .img-blk img").width() - 2;
+      $('.before-bg').css('left', offset);
+      console.log(offset);
+      $('.before-bg').css('width', width);
+    }
+  }
+  iconFilling();
+  $(window).load(function () {
+    /* setTimeout(() => { */
+    iconFilling();
+    /* }, 200); */
+
+  });
+  $(window).resize(iconFilling);
+
+
+
+
+
+  jQuery.fn.aPosition = function () {
+    thisLeft = this.offset().left;
+    thisTop = this.offset().top;
+    thisParent = this.parent();
+
+    parentLeft = thisParent.offset().left;
+    parentTop = thisParent.offset().top;
+
+    return {
+      left: thisLeft - parentLeft,
+      top: thisTop - parentTop
+    };
+  };
+
+
+
+  /* icon filling effects */
+
+  function IconsFilling(element) {
+    this.element = element;
+    this.blocks = this.element.getElementsByClassName("js-cd-service");
+    this.update();
+  }
+
+  IconsFilling.prototype.update = function () {
+    if (!"classList" in document.documentElement) {
+      return;
+    }
+    this.selectBlock();
+    this.changeBg();
+  };
+
+  IconsFilling.prototype.selectBlock = function () {
+    for (var i = 0; i < this.blocks.length; i++) {
+      (this.blocks[i].getBoundingClientRect().top < window.innerHeight / 2) ? this.blocks[i].classList.add("cd-service--focus") : this.blocks[i].classList.remove("cd-service--focus");
+      (this.blocks[i].getBoundingClientRect().bottom < window.innerHeight / 2) ? this.blocks[i].classList.add("cd-service--focused") : this.blocks[i].classList.remove("cd-service--focused");
+    }
+  };
+
+  IconsFilling.prototype.changeBg = function () {
+    removeClassPrefix(this.element, 'cd-icons-filling--new-color-');
+    this.element.classList.add('cd-icons-filling--new-color-' + (Number(this.element.getElementsByClassName("cd-service--focus").length) - 1));
+  };
+
+  var iconsFillingContainer = document.getElementsByClassName("js-cd-icons-filling"),
+    iconsFillingArray = [],
+    scrolling = false;
+  if (iconsFillingContainer.length > 0) {
+    for (var i = 0; i < iconsFillingContainer.length; i++) {
+      (function (i) {
+        iconsFillingArray.push(new IconsFilling(iconsFillingContainer[i]));
+      })(i);
+    }
+
+    /* update active block on scrolling */
+    window.addEventListener("scroll", function (event) {
+      if (!scrolling) {
+        scrolling = true;
+        (!window.requestAnimationFrame) ? setTimeout(checkIconsFilling, 250) : window.requestAnimationFrame(checkIconsFilling);
+      }
+    });
+  }
+
+  function checkIconsFilling() {
+    iconsFillingArray.forEach(function (iconsFilling) {
+      iconsFilling.update();
+    });
+    scrolling = false;
+  }
+
+  function removeClassPrefix(el, prefix) {
+    /* remove all classes starting with 'prefix' */
+    var classes = el.className.split(" ").filter(function (c) {
+      return c.indexOf(prefix) < 0;
+    });
+    el.className = classes.join(" ");
+  }
+
 
 })(jQuery);
