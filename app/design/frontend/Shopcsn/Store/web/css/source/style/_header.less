@@ -1323,7 +1323,7 @@
         z-index: 9999;
         .has-promo-text {
             color: #fff;
-            padding: 5px 0;
+            padding: 7px 0;
             cursor: pointer;
             position: relative;
             background: #3e5ca3;
@@ -1349,11 +1349,6 @@
                 transform: rotate(-45deg);
                 -webkit-transform: rotate(-45deg);
             }
-            &.active {
-                &+.promo-next {
-                    display: block;                
-                }
-            }
         }
         .promo-next {
             display: none; 
@@ -1361,6 +1356,12 @@
             img:first-of-type {
                 display: inline;
             }              
+        }
+
+        &.active {
+            .promo-next {
+                display: block;                
+            }
         }
     }
 }

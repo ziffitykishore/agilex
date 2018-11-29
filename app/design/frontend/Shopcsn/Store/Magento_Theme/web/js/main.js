@@ -140,6 +140,7 @@ define([
     });
     $('.has-promo-text').on('click', function() {
         $(this).toggleClass('active');
+        $('.promotion-text').toggleClass('active');
     });
 
     function bgSource(imgcontainer) {
