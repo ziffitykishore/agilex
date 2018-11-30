@@ -4517,6 +4517,7 @@ html {
 .timeline-desc {
     margin-top: 15px;
     height: 400px;
+    padding-right: 20px;
 }
 
 .timeline-desc ul {

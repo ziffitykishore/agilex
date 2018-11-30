@@ -62,49 +62,40 @@
                 <?php wp_reset_postdata(); ?>
                 </div>
                 <div class="tab-pane fade in active" id="popular">
-                <?php /* * Popular Posts* */
-                     $args =  array(
-                        'meta_key' => '_li_love_count',
-                        'orderby' => 'meta_value',
-                        'order' => 'DESC',
-                         'posts_per_page' => 3);
-                    $posts = get_posts($args);
-                    foreach ($posts as $post) {
-                        $event[$post->ID] = get_post_meta($post->ID, '_li_love_count', true);
-                        $whilistPosts[] = $post;
-                    }
-                    arsort($event, SORT_NUMERIC);
-                    $events = array_keys($event);
-                    usort($whilistPosts, function ($a, $b) use ($events) {
-                        $pos_a = array_search($a->ID, $events);
-                        $pos_b = array_search($b->ID, $events);
-                        return $pos_a - $pos_b;
-                    }); ?>
+                    <?php /* * Popular Posts* */
+
+                    $popularpost = new WP_Query( array( 'posts_per_page' => 3,
+                        'meta_key' => 'wpb_post_views_count',
+                        'orderby' => 'meta_value_num',
+                        'order' => 'DESC'
+                    ) );
+
+                    ?>
 
                     <ul class="sidebar-post">
-                    <?php if($whilistPosts){ ?>
-                    <?php foreach ($whilistPosts as $whilistPost) { ?>
-                    <li class="">
-                        <div class="media">
-                            <a class="media-left post-thumb" href="<?php echo get_permalink( $whilistPost->ID ); ?>" rel="<?php echo $whilistPost->post_title ?>">
-                            <?php  $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $whilistPost->ID ), "thumbnail" ); ?>
-                                    <?php if($thumbnail) {?>
-                                    <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php echo $whilistPost->post_title ?>"/>
-                                    <?php } else {?>
-                                        
-                                        <img src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" alt="<?php echo $whilistPost->post_title ?>"/>                    
-                                    <?php } ?>
-                            </a>
+                        <?php if($popularpost->have_posts()){ ?>
+                            <?php while ( $popularpost->have_posts() ) : $popularpost->the_post(); ?>
+                                <li class="">
+                                    <div class="media">
+                                        <a class="media-left post-thumb" href="<?php echo get_permalink( $popularpost->ID ); ?>" rel="<?php the_title() ?>">
+                                            <?php  $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $popularpost->ID ), "thumbnail" ); ?>
+                                            <?php if($thumbnail) {?>
+                                                <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php the_title() ?>"/>
+                                            <?php } else {?>
 
-                            <div class="media-body">
-                                <a href="<?php echo get_permalink( $whilistPost->ID ); ?>" rel="<?php echo $whilistPost->post_title ?>"><span class="media-heading"><?php echo wp_trim_words($whilistPost->post_title, 8, '...') ?></span></a>
-                                <span class="post-date">Date: <?php echo get_the_date('d M, Y', $whilistPost->ID); ?></span>
-                            </div>
-                        </div>
-                    </li>
-                   <?php } }else { ?>
-                        <li>No Popular post here</li>
-                   <?php } ?>
+                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" alt="<?php the_title() ?>"/>
+                                            <?php } ?>
+                                        </a>
+
+                                        <div class="media-body">
+                                            <a href="<?php echo get_permalink( $popularpost->ID ); ?>" rel="<?php the_title() ?>"><span class="media-heading"><?php echo wp_trim_words(the_title(), 8, '...') ?></span></a>
+                                            <span class="post-date">Date: <?php echo get_the_date('d M, Y', $popularpost->ID); ?></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endwhile; }else { ?>
+                            <li>No Popular post here</li>
+                        <?php } ?>
                     </ul>
                     <?php wp_reset_postdata(); ?>
                 </div>

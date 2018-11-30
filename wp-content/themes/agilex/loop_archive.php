@@ -42,7 +42,7 @@
                                             <div class="blog-year"><?php the_time('j F Y') ?></div>
                                         </div>
                                         <div class="blog-extras">
-                                            <?php echo do_shortcode('[wishlist-feed]'); ?>
+                                            <?php //echo do_shortcode('[wishlist-feed]'); ?>
                                             <span class="comment-sec extras-link"><i class="fa fa-comment-o"></i> <span class="comments-count"> <?php
                                             echo get_comments_number();
                                             ?></span></span>
