@@ -75,8 +75,16 @@
             td {
                 padding: 20px;
             }
+
+            .items{
+                margin-bottom: 0;
+            }
             .items>.item {
                 border-bottom: 0;
+
+                & ~ item {
+                    border-top: 1px solid #d7dded;
+                }
             }
             .table>tbody>tr>td {
                 border-top: 0 !important;
@@ -145,6 +153,9 @@
                         padding: 0;
                         margin-right: 20px;
                         width: auto;
+                        + .action {
+                            margin-right: 0;
+                        }
                         &:hover {
                             background: @color-white;
                             border: 0;
@@ -214,8 +225,8 @@
                     border-top: 0;
                     padding-left: 0;
                     strong {
-                        font-size: 13px;
-                        font-weight: 700;
+                        font-size: 13px !important;
+                        font-weight: 700 !important;
                     }
                     &:after {
                         font-size: 13px;
@@ -291,8 +302,8 @@
                     border-top: 0;
                     padding-left: 0;
                     strong {
-                        font-size: 13px;
-                        font-weight: bold;
+                        font-size: 13px !important;
+                        font-weight: bold !important;
                     }
                     &:after {
                         .disp(none);
@@ -540,16 +551,24 @@
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
     .checkout-cart-index {       
-        .table-wrapper {
+        .form-cart .cart.table-wrapper {
             .item-info {
                 td {
-                    padding: 25px 20px !important;
+                    padding: 25px 10px !important;
                 }
+            }
+
+            .product-item-photo{
+                max-width: 45px;
+                margin-left: 10px;
             }
         }
     }
+
+    
+
     .cart {
         &.table-wrapper {
             .col {
@@ -623,6 +642,11 @@
                             padding: 5px;
                             white-space: nowrap;
                             width: 40%;
+                            padding-bottom: 0 !important;
+                        }
+
+                        &.price {
+                            width: 50% !important;
                         }
                     }
                 }

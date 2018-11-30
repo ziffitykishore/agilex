@@ -1,3 +1,11 @@
+.modal-popup{
+    z-index: 99999 !important;
+}
+
+.modals-overlay{
+    z-index: 99998 !important;
+}
+
 .customer-forgetpassword-popup,
 .custom-block-customer-signup,
 .custom-block-customer-login,
@@ -74,10 +82,11 @@
         position: absolute;
         top: 40%;
         left: 25%;
-        h1 {
+        .heading {
             font-size: 60px;
             color: #fff;
             font-weight: bold;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
         p {
@@ -135,6 +144,9 @@
             /****** heading-color*********/
             .main-head {
                 color: #1c3f93;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 10px;
             }
             /********** input field********/
             .form {
@@ -245,6 +257,12 @@
             background-color: #d7dded;
             width: 100%;
             text-align: center;
+
+            .heading{
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 1.1;
+            }
             .social-media {
                 .list-inline>li.social-links {
                     padding-left: 0;

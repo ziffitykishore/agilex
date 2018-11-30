@@ -681,6 +681,18 @@ input[type="radio"]:checked + label:after{
     }
 }
 
+@media screen and (max-width:1600px) {
+    .products-grid {
+        .product-item-info {
+            .product-item-actions {
+                .stock.unavailable{
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}
+
 @media screen and (max-width:1400px) {
     .products-grid {
         .product-item-info {
@@ -917,14 +929,14 @@ input[type="radio"]:checked + label:after{
                 }
                 &.active {
                     .filter-title {
-                        z-index: 889;
+                        z-index: 99999;
                     }
                     .block-subtitle {
                         display: block;
-                        z-index: 888;
+                        z-index: 99998;
                     }
                     .filter-options {
-                        z-index: 888;
+                        z-index: 99998;
                     }
                 }
             }

@@ -38,12 +38,16 @@
         ul {
             .transform(translateX(-100%));
         }
+        .trigger{
+            .transform(rotate(180deg));
+        }
     }
     .trigger {
         .lib-css(color, #bbb);
         font-size: @f-size-xl;
         position: absolute;
         left: 10px;
+        .transition(all 0.5s ease 0s);
     }
     ul {
         padding: 0;
@@ -142,11 +146,13 @@
     .footer-links {
         display: inline-block;
         width: 100%;
-        h3 {
+        .heading, h3 {
             color: #fff;
             text-transform: uppercase;
             font-size: 12px;
             font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
         .footer-list {
             width: 18%;

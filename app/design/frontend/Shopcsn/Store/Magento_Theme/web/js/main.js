@@ -6,15 +6,15 @@ define([
     'fancybox',
     'bminjs',
     'domReady!'
-], function ($, modal) {
+], function($, modal) {
     var _body = $('body'),
         _html = $('html');
 
     /*home page banner*/
-    if($('.home-banner').length > 0){
+    if ($('.home-banner').length > 0) {
         $('.home-banner').slick({
-            autoplay:true,
-            autoplaySpeed:3000,
+            autoplay: true,
+            autoplaySpeed: 3000,
             dots: true,
             infinite: true,
             speed: 500,
@@ -22,31 +22,30 @@ define([
             arrows: false,
             cssEase: 'linear',
             responsive: [{
-                    breakpoint: 767,
-                    settings: {
-                        dots: false
-                    }
+                breakpoint: 767,
+                settings: {
+                    dots: false
                 }
-            ]
+            }]
         });
     }
 
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
-    $('.nav-toggle').on('click', function () {
+    $('.nav-toggle').on('click', function() {
         _body.removeClass('acc-opened');
     });
-    $('.overlay').on('click', function () {
+    $('.overlay').on('click', function() {
         _body.removeClass('acc-opened menu-opened');
         _html.removeClass('nav-open nav-before-open');
     });
-    $('.customer-welcome .customer-name').on('click', function () {
+    $('.customer-welcome .customer-name').on('click', function() {
         _body.toggleClass('acc-opened').removeClass('menu-opened');
     });
-    $('#login-popup, .menu-heading .close, .showcart').on('click', function () {
+    $('#login-popup, .menu-heading .close, .showcart').on('click', function() {
         _html.removeClass('nav-open nav-before-open');
     });
-    $('.menu-wrap li.level0').each(function () {
+    $('.menu-wrap li.level0').each(function() {
         if ($(this).find('.level2').length) {
             $(this).addClass('mega-menu');
         } else {
@@ -56,7 +55,7 @@ define([
 
     /* autocomplete off */
     $('input').attr('autocomplete', 'off');
-    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function (e) {
+    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function(e) {
         e.stopPropagation();
         var clstField = $(this).closest('.field');
         if ($(this).attr('name') == 'street[0]') {
@@ -65,10 +64,10 @@ define([
         }
         clstField.addClass('focused');
     });
-    $(document).on('focus', '.onestepcheckout-index-index select', function () {
+    $(document).on('focus', '.onestepcheckout-index-index select', function() {
         $(this).closest('.field').addClass('focused select-group');
     });
-    $(document).on("blur", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function (e) {
+    $(document).on("blur", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function(e) {
         e.stopPropagation();
         var clstField = $(this).closest('.field');
         if ($(this).val() == '') {
@@ -78,7 +77,7 @@ define([
 
     $('select').closest('.field').addClass('select-group');
 
-    $(window).scroll(function () {
+    $(window).scroll(function() {
         if ($(this).scrollTop() > 50) {
             $('.header-wrapper').addClass("fix-header").removeClass('no-sticky');
         } else {
@@ -93,7 +92,7 @@ define([
     var delta = 5;
     var navbarHeight = $('.header-wrapper').outerHeight();
 
-    setInterval(function () {
+    setInterval(function() {
         if (didScroll) {
             hasScrolled();
             didScroll = false;
@@ -136,12 +135,16 @@ define([
     });
 
     /* footer starts */
-    $('#sticky-social .trigger').on('click', function () {
+    $('#sticky-social .trigger').on('click', function() {
         $(this).parent().toggleClass('active');
+    });
+    $('.has-promo-text').on('click', function() {
+        $(this).toggleClass('active');
+        $('.promotion-text').toggleClass('active');
     });
 
     function bgSource(imgcontainer) {
-        $(imgcontainer).each(function () {
+        $(imgcontainer).each(function() {
             var img = $(this).find("img");
             var height = img.height();
             var img_src = img.attr("src");
@@ -155,13 +158,13 @@ define([
     //bgSource('.category_image');
 
     function toggleContent(container, trigger, contentSec) {
-        $(trigger).on('click', function () {
+        $(trigger).on('click', function() {
             $(this).closest(container).find(contentSec).toggleClass('active');
             $(this).closest(container).toggleClass('active');
         });
     }
 
-    $('.btn-comment').on('click', function () {
+    $('.btn-comment').on('click', function() {
         $('#post-comments .c-reply').toggle();
     });
 
@@ -184,21 +187,21 @@ define([
         slidesToShow: 3,
         slidesToScroll: 3,
         responsive: [{
-            breakpoint: 1023,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2,
-                infinite: true
+                breakpoint: 1023,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: true
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    dots: true
+                }
             }
-        },
-        {
-            breakpoint: 480,
-            settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                dots: true
-            }
-        }
         ]
     });
 
@@ -225,7 +228,7 @@ define([
         var elment = $(elm);
         if (elment.length) {
             var stickyOffset = elment.offset().top;
-            $(window).scroll(function () {
+            $(window).scroll(function() {
                 var sticky = elment,
                     scroll = $(window).scrollTop();
                 if (scroll >= stickyOffset) sticky.addClass("fixed");
@@ -259,11 +262,11 @@ define([
     }
 
     responsiveResize();
-    $(window).resize(function () {
+    $(window).resize(function() {
         responsiveResize();
     });
 
-    $('#blog-subscribe').on('click', function () {
+    $('#blog-subscribe').on('click', function() {
         $('#newsletter').focus().closest('form').submit();
     });
 
@@ -271,8 +274,8 @@ define([
     toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
 
     /*after load*/
-    if(window.location.href.search( 'weltpixel_quickview' ) == '-1'){
-        $(window).bind("load",function(){
+    if (window.location.href.search('weltpixel_quickview') == '-1') {
+        $(window).bind("load", function() {
             /*iframe*/
             var _iFrame = '<iframe style="width:100%;border:0;overflow:hidden;background-color:transparent;height:104px" scrolling="no" src="https://fortrader.org/en/informers/getInformer?st=19&cat=10&title=&texts=%7B%22toolTitle%22%3A%22Symbol%22%2C%22bid%22%3A%22Bid%22%7D&mult=1&showGetBtn=0&w=0&hideDiff=1&colors=titleTextColor%3Dffffff%2CtitleBackgroundColor%3Dffffff%2CsymbolTextColor%3D3e5ca3%2CtableTextColor%3D444%2CborderTdColor%3Dffffff%2CtableBorderColor%3Dffffff%2CtrBackgroundColor%3Df1f1f1%2CitemImgBg%3D545454%2CprofitTextColor%3D89bb50%2CprofitBackgroundColor%3Deaf7e1%2ClossTextColor%3Dff1616%2ClossBackgroundColor%3Df6e1e1%2CinformerLinkTextColor%3D454242%2CinformerLinkBackgroundColor%3Df2f5f8&items=48%2C49%2C25459%2C25466%2C25458&columns="></iframe>';
             $('.ticker.jFrame .container').html(_iFrame);
@@ -289,7 +292,7 @@ define([
     /* Preloader */
     var preLoader = $(".pre-loader");
     preLoader.fadeOut("slow");
-    setInterval(function () {
+    setInterval(function() {
         preLoader.fadeOut("slow");
     }, 3000);
 
@@ -302,7 +305,7 @@ define([
         title: $('.contact-title').text()
     };
     var callPopup = modal(options, $('#callforquote-popup'));
-    $(document).on("click", '.btn-callforprice', function(e){
+    $(document).on("click", '.btn-callforprice', function(e) {
         $('#callforquote-popup').modal('openModal');
         e.preventDefault();
     });
