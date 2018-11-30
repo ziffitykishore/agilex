@@ -41,14 +41,15 @@ class Simple_Job_Board_Meta_Box_Job_Application {
                 
                 // Form Field Types
                 $field_types = array(
-                    'text'      => esc_html__('Text Field', 'simple-job-board'),
-                    'text_area' => esc_html__('Text Area', 'simple-job-board'),
-                    'email'     => esc_html__('Email', 'simple-job-board'),
-                    'phone'     => esc_html__('Phone', 'simple-job-board'),
-                    'date'      => esc_html__('Date', 'simple-job-board'),
-                    'checkbox'  => esc_html__('Check Box', 'simple-job-board'),
-                    'dropdown'  => esc_html__('Drop Down', 'simple-job-board'),
-                    'radio'     => esc_html__('Radio', 'simple-job-board'),
+                    'section_heading' => esc_html__('Section Heading', 'simple-job-board'),
+                    'text'            => esc_html__('Text Field', 'simple-job-board'),
+                    'text_area'       => esc_html__('Text Area', 'simple-job-board'),
+                    'email'           => esc_html__('Email', 'simple-job-board'),
+                    'phone'           => esc_html__('Phone', 'simple-job-board'),
+                    'date'            => esc_html__('Date', 'simple-job-board'),
+                    'checkbox'        => esc_html__('Check Box', 'simple-job-board'),
+                    'dropdown'        => esc_html__('Drop Down', 'simple-job-board'),
+                    'radio'           => esc_html__('Radio', 'simple-job-board'),
                 );
                
                 /**

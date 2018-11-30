@@ -5,6 +5,7 @@
  * @link        https://wordpress.org/plugins/simple-job-board
  * 
  * @since       2.6.0
+ * @since       2.7.0   Hook added to 
  * 
  * @package     Simple_Job_Board
  * @subpackage  Simple_Job_Board/includes
@@ -105,11 +106,19 @@ class Simple_Job_Board_Privacy_Eraser {
                 }
             }
             
-            // Delete resume & its data from DB
-            if ( '' != get_post_meta($applicant_id, 'resume_path', TRUE))
+            // Delete resume & update data in DB
+            if ( '' != get_post_meta($applicant_id, 'resume_path', TRUE)) {
                 unlink(get_post_meta($applicant_id, 'resume_path', TRUE));
-                delete_post_meta($applicant_id, 'resume');
+                update_post_meta($applicant_id, 'resume', 'Resume[deleted]');
+            }
         endif;
+        
+        /**
+         * Action Hook -> Do eraser action after SJB data eraser completion
+         * 
+         * @since   2.7.0
+         */
+        do_action( 'sjb_personal_data_erasers', $applicant_id );
     }
 
 }

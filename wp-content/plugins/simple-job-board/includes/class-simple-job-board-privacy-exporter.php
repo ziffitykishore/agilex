@@ -138,7 +138,12 @@ class Simple_Job_Board_Privacy_Exporter {
             endforeach;
         endif;
         
-        return $data_to_export;
+        /**
+         * Filter -> Modify export array data
+         * 
+         * @since   2.6.1
+         */
+        return apply_filters( 'sjb_personal_data_exporter', $data_to_export, $applicant_id );
     }
 
     /**

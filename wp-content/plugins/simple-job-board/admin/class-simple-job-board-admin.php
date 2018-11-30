@@ -138,7 +138,9 @@ class Simple_Job_Board_Admin {
                         'field_name' => esc_html__('Field Name', 'simple-job-board'),
                         'empty_feature_name' => esc_html__('Please fill out job feature.', 'simple-job-board'),
                         'empty_field_name' => esc_html__('Please fill out application form field name.', 'simple-job-board'),
+                        'empty_field_options' => esc_html__('Please add options for this field.', 'simple-job-board'),
                         'applicant_listing_col' => esc_html__('Expose in Applicant Listing', 'simple-job-board'),
+                        'invalid_extension' => esc_html__( 'This is not an allowed file extension.', 'simple-job-board' ),
                     ),
                 )
             );

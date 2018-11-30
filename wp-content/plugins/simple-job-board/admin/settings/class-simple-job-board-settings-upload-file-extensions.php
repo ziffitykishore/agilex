@@ -132,7 +132,7 @@ class Simple_Job_Board_Settings_Upload_File_Extensions {
                             <input type='hidden' name="empty_file_extensions" value="empty_file_extensions" />
                         </div>
                         <div class="sjb-form-group">                            
-                            <i class="fa fa-info-circle" aria-hidden="true"></i> <label><?php echo esc_html__( 'Secruity rules have been updated since SJB version 2.4.3.', 'simple-job-board' ); ?></label>
+                            <i class="fa fa-info-circle" aria-hidden="true"></i> <label><?php echo esc_html__( 'Security rules have been updated since SJB version 2.4.3.', 'simple-job-board' ); ?></label>
                         </div>
                         
                         <?php

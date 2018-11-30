@@ -83,7 +83,6 @@
             } else {
                 $(this).parent('li').remove();     // remove HTML
             }
-
         });
 
 
@@ -115,6 +114,12 @@
                 if (!('checkbox' === app_field_type || 'dropdown' === app_field_type || 'radio' === app_field_type)) {
                     application_field_option = '<input type="text" name="jobapp_' + app_field_name + '[option]" value="' + fieldOptions + '" placeholder="Option1, option2, option3" style="display:none;">';
                 } else {
+                    if( '' === fieldOptions){
+                        alert( application_form.settings_jquery_alerts['empty_field_options'] );
+                        field_options.focus();
+                        return false;
+                    }
+                    
                     application_field_option = '<input type="text" name="jobapp_' + app_field_name + '[option]" value="' + fieldOptions + '" placeholder="Option1, option2, option3">';
                 }
 
@@ -143,7 +148,7 @@
                 $('#setting_jobapp_name').val('');
                 field_options.hide();
                 field_options.val('');
-                $('#settings-jobapp-field-types').val('text');
+                $('#settings-jobapp-field-types').val('section_heading');
                 $('#settings_jobapp_required_field').prop('checked', true);
             } else {
 
@@ -241,10 +246,15 @@
                         </li>');
                     $('.' + fieldName + ' .' + fieldType).attr('selected', 'selected');
                     $('#jobapp_name').val('');
-                    $('#jobapp_field_type').val('text');
+                    $('#jobapp_field_type').val('section_heading');
                     $('#jobapp_required_field').prop("checked", true);
                     $('#jobapp-applicant-columns').prop("checked", false);
                 } else {
+                    if( '' === fieldOptions){
+                        alert( application_form.settings_jquery_alerts['empty_field_options']);
+                        $('#jobapp_field_options').focus();
+                        return false;
+                    }
                     $('#app_form_fields').append('<li class="' + fieldName + '"><label>' + fieldNameRaw + '</label>\n\
                         <input type="hidden"  name="jobapp_' + fieldName + '[label]" value="' + fieldNameRaw + '">\n\
                         <select class="jobapp_field_type" name="jobapp_' + fieldName + '[type]">' + fieldTypeHtml + '</select>\n\
@@ -332,7 +342,7 @@
         if ($('.simple-job-board-upload-button').length) {
             window.simple_job_board_uploadfield = '';
 
-            // On upload button click -> Show media upload ifram.
+            // On upload button click -> Show media upload iframe.
             $('.simple-job-board-upload-button').live('click', function () {
                 window.simple_job_board_uploadfield = $('.upload_field', $(this).parents('.file_url'));
                 tb_show('Upload', 'media-upload.php?type=image&TB_iframe=true', false);
@@ -348,16 +358,76 @@
                         var image_url = $('img', html).attr('src');
                     } else {
                         var image_url = $($(html)[0]).attr('src');
-                    }
+                    }                   
                     $(window.simple_job_board_uploadfield).val(image_url);
                     window.simple_job_board_uploadfield = '';
 
-                    tb_remove();
+                    tb_remove();                    
                 } else {
                     window.simple_job_board_send_to_editor_backup(html);
                 }
             }
         }
+
+        /**
+         *  Upload Loader Image in Settings
+         *  
+         *  @since 2.7.0
+         */
+        if ($('.sjb-loader-image').length) {          
+           
+            window.simple_job_board_uploadfield = '';
+            window.simple_job_board_uploadfield_text = '';
+            window.error_element = '';
+
+            // On upload button click -> Show media upload iframe.
+            $('.sjb-loader-image').on('click', function () {
+                window.simple_job_board_uploadfield = $('.upload_field', $(this).parents('.sjb-loader-sec'));
+                window.simple_job_board_uploadfield_text = $('.image_upload_field', $(this).parents('.sjb-loader-sec'));
+                window.error_element = $('.invalid-loader-image', $(this).parents('.sjb-loader-sec'));
+                window.error_element.text('');
+                tb_show('Upload', 'media-upload.php?type=image&TB_iframe=true', false);                
+                return false;
+            });
+            window.simple_job_board_send_to_editor_backup = window.send_to_editor;
+            
+            window.send_to_editor = function ( html ) {
+                if (window.simple_job_board_uploadfield) {
+                    
+                    if ($('img', html).length >= 1) {
+                        var image_url = $('img', html).attr('src');
+                    } else {
+                        var image_url = $($(html)[0]).attr('src');
+                    }                   
+                   
+                    var image_extension = image_url.split('.').pop().toLowerCase();
+
+                    // File Extension Validation
+                    if ( 'gif' === image_extension ) { 
+                        window.error_element.hide();
+                        window.error_element.removeClass("invalid").addClass("valid");
+                        $(window.simple_job_board_uploadfield).attr('src',image_url);
+                        $(window.simple_job_board_uploadfield_text).val(image_url);
+                    } else {                            
+                        window.error_element.show();
+                        window.error_element.text(application_form.settings_jquery_alerts['invalid_extension']);
+                        window.error_element.removeClass("valid").addClass("invalid");
+                    }
+                    
+                    window.simple_job_board_uploadfield = '';
+                    tb_remove();                    
+                } else {
+                    window.simple_job_board_send_to_editor_backup( html );
+                }
+            }
+        }
+        
+       // On remove button click -> Remove Image
+        $('.remove-loader-image').on('click', function () {
+            $('.upload_field').removeAttr('src');
+            $('.upload_field').css('border', 'none');
+            $('.image_upload_field').val('');
+        });
 
         // Edit Form Builder Labels with class 'sjb-editable-label'
         $(".sjb-editable-label").each(function () {           
@@ -385,7 +455,7 @@
             });
 
             // When focus is lost from TextBox, hide TextBox and show Label.
-            textbox.focusout(function () {
+            textbox.focusout( function () {
 
                 // Get current & parent elements of label
                 var label = $(this);
@@ -430,8 +500,6 @@
 
                 label.prev().show();
             });
-
         });
     });
-
 })(jQuery);

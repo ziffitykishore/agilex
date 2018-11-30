@@ -308,7 +308,7 @@ body.jobpost_page_sjb-add-ons {
 }
 .sjb-form-group {
     padding: 10px 0;
-    height: 28px;
+    min-height: 28px;
 }
 @media (min-width: 320px) and (max-width: 768px) {
     .sjb-form-group {
@@ -1434,4 +1434,24 @@ html {
 
 .font-bold {
     font-weight: bold;
+}
+.sjb-form-group .file_url {
+    display: block;
+    margin-bottom: 7px;
+}
+.sjb-form-group .file_url img {
+    /*border: 1px solid #eee;*/
+    display: block;
+}
+
+.sjb-form-group .add-remove-btns {
+    display: block;
+    margin: 17px 0px 12px 0;
+}
+.sjb-form-group  .invalid-loader-image {
+    display: none;
+    color: red;
+}
+.sjb-form-group .sjb-loader-image {
+    margin-right: 10px;
 }
