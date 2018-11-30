@@ -1980,4 +1980,18 @@ function my_custom_post_types_permalink( $post_link, $post ){
 
 /* Shortlink Removal */
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-
+/**
+ * Retrieve the popular posts on blog page
+ * @param $postID
+ * @return bool
+ */
+function get_popular_posts( $postID){
+    $types = apply_filters( 'wpb_post_views_count_on', array( 'blog', 'news-release' ) );
+    if( in_category( $types ) || is_singular($types)) {
+        $count_key = 'wpb_post_views_count';
+        $count = get_post_meta($postID, $count_key, true);
+        $count = ($count) ?  $count + 1 : 1;
+        update_post_meta($postID, $count_key, $count);
+    }
+    return true;
+}
