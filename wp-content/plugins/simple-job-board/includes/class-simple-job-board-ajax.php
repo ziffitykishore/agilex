@@ -42,7 +42,7 @@ class Simple_Job_Board_Ajax {
      *
      * @since    2.2.3
      * @access   private
-     * @var      Simple_Job_Board_Ajax    $upload_file_error    Store error indicator during file upload.
+     * @var      Simple_Job_Board_Ajax     $upload_file_error_indicator    Store error indicator during file upload.
      */
     private $upload_file_error_indicator;
     
@@ -117,6 +117,7 @@ class Simple_Job_Board_Ajax {
         do_action( 'sjb_applicants_insert_post_before' );
         
         $parent_id = filter_input( INPUT_POST, 'job_id' );
+        
         $args = apply_filters('sjb_applicant_insert_post_args', array(
             'post_type'    => 'jobpost_applicants',
             'post_content' => '',
@@ -162,6 +163,7 @@ class Simple_Job_Board_Ajax {
                 
                 // Get Resume Attachment
                 $resume_name = array_pop( $upload_files_name );
+                
                 if( $resume_name ) {
                     $resume_url = $this->upload_baseurl . '/' . $resume_name;
                     $resume_path = $this->upload_basedir . '/' . $resume_name;

@@ -64,18 +64,19 @@ class Simple_Job_Board_Applicants {
                 ?>
 
                 <!-- Applicant's Name & Resume in Admin Area -->
-                <h3>
+                 <h3>
                     <?php
                     echo isset($applicant_name) ? $applicant_name : '';
-
+                    
                     // Applicant Resume
-                    if (in_array('resume', $keys) && '/' != get_post_meta($post->ID, 'resume', TRUE)):
-                        $resume = '&nbsp; &nbsp; <small><a href="' . esc_url(get_admin_url() . 'post.php?post=' . intval($post->ID) . '&action=edit&resume_id=' . intval($post->ID)) . '" rel="nofollow">' . esc_html__('Resume', 'simple-job-board') . '</a></small>';
-                        
-                    else:
-                       $resume = '&nbsp; &nbsp; <small>Resume[deleted]</small>';
-                       
-                    endif;
+                    if ( in_array('resume', $keys) && 'Resume[deleted]' == get_post_meta( $post->ID, 'resume', TRUE ) )  {
+                        $resume = '&nbsp; &nbsp; <small>Resume[deleted]</small>';
+                    } elseif ( in_array('resume', $keys) && '/' != get_post_meta( $post->ID, 'resume', TRUE )) {
+                        $resume = '&nbsp; &nbsp; <small><a href="' . esc_url( get_admin_url() . 'post.php?post=' . intval($post->ID) . '&action=edit&resume_id=' . intval($post->ID)) . '" rel="nofollow">' . esc_html__('Resume', 'simple-job-board') . '</a></small>';
+                    } else {
+                        $resume = '';
+                    }
+                    
                     echo apply_filters('sjb_applicant_resume', $resume, $post->ID);
                     ?>                    
                 </h3>

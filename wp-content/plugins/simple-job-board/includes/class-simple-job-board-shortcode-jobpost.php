@@ -26,18 +26,6 @@ class Simple_Job_Board_Shortcode_Jobpost {
         
         // Hook -> Add Job Listing ShortCode
         add_shortcode('jobpost', array($this, 'jobpost_shortcode'));
-
-//        add_action('init', array($this, 'gggb_init'));
-    }
-
-    public function gggb_init() {
-        
-        // Hook -> Add Job Listing ShortCode
-//        add_shortcode('jobpost', array($this, 'jobpost_shortcode'));
-        
-//        register_block_type( 'simple-job-board/gutenberg-blocks', array(
-//                'render_callback' => 'jobpost_shortcode',
-//        ) );
     }
 
     /**

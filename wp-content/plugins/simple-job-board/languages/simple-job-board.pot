@@ -686,6 +686,18 @@ msgstr ""
 msgid "Simple Job Board"
 msgstr ""
 
+#: admin/settings/class-simple-job-board-settings-appearance.php:403
+msgid "Loader Image"
+msgstr ""
+
+#: admin/settings/class-simple-job-board-settings-appearance.php:429
+msgid "Remove"
+msgstr ""
+
+#: admin/settings/class-simple-job-board-settings-appearance.php:434
+msgid "Only supported formate is .gif"
+msgstr ""
+
 #. Plugin URI of the plugin/theme
 msgid "https://wordpress.org/plugins/simple-job-board/simple-job-board-uri"
 msgstr ""

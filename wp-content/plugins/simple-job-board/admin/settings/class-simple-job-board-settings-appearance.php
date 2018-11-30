@@ -62,6 +62,10 @@ class Simple_Job_Board_Settings_Appearance {
 
         // Enqueue Alpha Color Picker Script
         wp_enqueue_script('wp-color-picker-alpha');
+
+        wp_enqueue_script('media-upload');
+        wp_enqueue_script('thickbox');
+        wp_enqueue_style('thickbox');
         ?>
 
         <!-- Appearance -->
@@ -69,10 +73,14 @@ class Simple_Job_Board_Settings_Appearance {
             <form method="post" id="appearance_options_form">
                 <?php
                 // Get Appearance Options
-                $container_class = get_option('job_board_container_class') ? get_option('job_board_container_class') : 'container sjb-container';
+                if (FALSE !== get_option('job_board_container_class')) {
+                    $container_class = get_option('job_board_container_class');
+                } else {
+                    $container_class = 'container sjb-container';
+                }
 
                 // Get Container Id
-                if (get_option('job_board_container_id')) {
+                if (FALSE !== get_option('job_board_container_id')) {
                     $container_ids = explode(" ", get_option('job_board_container_id'));
                     $container_id = $container_ids[0];
                 } else {
@@ -82,19 +90,24 @@ class Simple_Job_Board_Settings_Appearance {
                 // Select Job Listing View                   
                 $logo_detail = $without_logo_detail = $without_logo = $without_detail = $sjbpage_layout = $list_view = $grid_view = $jobpost_logo = $jobpost_without_logo = $sjb_layout = $theme_layout = '';
 
-                if ($list_view = get_option('job_board_listing_view')) {
+                if (FALSE !== get_option('job_board_listing_view')) {
+                    $list_view = get_option('job_board_listing_view');
+
                     if ('list-view' === $list_view)
                         $list_view = 'checked';
 
                     if ('grid-view' === $list_view)
                         $grid_view = 'checked';
                 } else {
+
                     // Default List View
                     $list_view = 'checked';
                 }
 
                 // Select job pages layout
-                if ( $sjb_layout = get_option('job_board_pages_layout')) {
+                if (FALSE !== get_option('job_board_pages_layout')) {
+                    $sjb_layout = get_option('job_board_pages_layout');
+
                     if ('sjb-layout' === $sjb_layout)
                         $sjbpage_layout = 'checked';
 
@@ -103,9 +116,10 @@ class Simple_Job_Board_Settings_Appearance {
                 } else {
                     $sjbpage_layout = 'checked';
                 }
-                
+
                 // Select job post content with or without company logo & job detail
-                if ($jobpost_content = get_option('job_board_jobpost_content')) {
+                if (FALSE !== get_option('job_board_jobpost_content')) {
+                    $jobpost_content = get_option('job_board_jobpost_content');
                     if ('with-logo' === $jobpost_content)
                         $jobpost_logo = 'checked';
 
@@ -116,7 +130,9 @@ class Simple_Job_Board_Settings_Appearance {
                 }
 
                 // Select job listing with or without company logo & job detail
-                if ($list_contents = get_option('job_board_listing')) {
+                if (FALSE !== get_option('job_board_listing')) {
+                    $list_contents = get_option('job_board_listing');
+
                     if ('logo-detail' === $list_contents)
                         $logo_detail = 'checked';
 
@@ -133,17 +149,23 @@ class Simple_Job_Board_Settings_Appearance {
                 }
 
                 // Get Settings Job Board Typography
-                if (get_option('job_board_typography')) {
+                if (FALSE !== get_option('job_board_typography')) {
                     $job_board_typography = get_option('job_board_typography');
                 }
-                
+
                 // Get Settings Job Board Typography
-                if (get_option('sjb_fonts')) {
+                if (FALSE !== get_option('sjb_fonts')) {
                     $sjb_fonts = get_option('sjb_fonts');
                 } else {
                     $sjb_fonts = 'enable-fonts';
                 }
 
+                // Get Settings Loader Image
+                if (FALSE !== get_option('sjb_loader_image')) {
+                    $image_url = get_option('sjb_loader_image');
+                } else {
+                    $image_url = plugin_dir_url(dirname(dirname(__FILE__))) . 'public/images/loader.gif';
+                }
 
                 /**
                  * Action -> Add new section before job pages layout.  
@@ -166,11 +188,11 @@ class Simple_Job_Board_Settings_Appearance {
                         do_action('sjb_content_wrapper_styling_start');
                         ?> 
                         <div class="sjb-form-group">
-                            <input type="radio" name="job_pages_layout" value="sjb-layout" id="sjb-layout" <?php echo esc_attr( $sjbpage_layout ); ?> />
+                            <input type="radio" name="job_pages_layout" value="sjb-layout" id="sjb-layout" <?php echo esc_attr($sjbpage_layout); ?> />
                             <label><?php esc_html_e('SJB Layout', 'simple-job-board'); ?></label>
                         </div>						
                         <div class="sjb-form-group">
-                            <input type="radio" name="job_pages_layout" value="theme-layout" id="theme-layout" <?php echo esc_attr( $theme_layout ); ?> />
+                            <input type="radio" name="job_pages_layout" value="theme-layout" id="theme-layout" <?php echo esc_attr($theme_layout); ?> />
                             <label><?php esc_html_e('Theme Layout', 'simple-job-board'); ?></label>
                         </div>
                         <?php
@@ -375,7 +397,62 @@ class Simple_Job_Board_Settings_Appearance {
                  * 
                  * @since   2.3.2 
                  */
-                do_action('sjb_appearance_listing_content_after');
+                do_action('sjb_appearance_jobpost_content_after');
+                ?>
+
+                <h4><?php echo apply_filters('sjb_loader_image_sec_title', esc_html__('Loader Image', 'simple-job-board')); ?></h4>
+                <div class="sjb-section">
+                    <div class="sjb-content">
+
+                        <?php
+                        /**
+                         * Action -> Add new fields at start of job content.  
+                         * 
+                         * @since   2.3.2 
+                         */
+                        do_action('sjb_loader_image_sec_start');
+                        ?>   
+                        <div class="sjb-form-group">
+                            <div class="sjb-loader-sec">
+                                <div class="file_url">  
+                                    <?php
+                                    if ($image_url) {
+                                        echo '<img src="' . esc_url($image_url) . ' " class="upload_field"/>';
+                                    } else {
+                                        echo '<img src="" class="upload_field"/>';
+                                    }
+                                    ?>
+                                    <input type="hidden" name="image_url" value="<?php echo esc_url($image_url); ?>" class="image_upload_field" />                                
+                                </div>
+                                <div class="add-remove-btns">
+                                    <button type="button" class="sjb-loader-image"><?php esc_html_e('Upload', 'simple-job-board'); ?></button>                                
+                                    <button type="button" class="remove-loader-image"><?php esc_html_e('Remove', 'simple-job-board'); ?></button>
+                                </div>
+                                <span class="invalid-loader-image"></span>
+                                <div class="loader-img-info">                                    
+                                    <label class="image-extensions"><?php esc_html_e('Only supported formate is .gif', 'simple-job-board'); ?></label>
+                                </div>
+                            </div>  
+                        </div>  
+
+                        <?php
+                        /**
+                         * Action -> Add new fields at the end of job content.  
+                         * 
+                         * @since   2.3.2
+                         */
+                        do_action('sjb_loader_image_sec_end');
+                        ?>
+                    </div>
+                </div>
+
+                <?php
+                /**
+                 * Action -> Add new section after appearance listing content.  
+                 * 
+                 * @since   2.3.2 
+                 */
+                do_action('sjb_loader_image_sec_after');
                 ?>
 
                 <h4><?php echo apply_filters('sjb_job_color_options_title', esc_html__('Color Options', 'simple-job-board')); ?></h4>
@@ -501,33 +578,33 @@ class Simple_Job_Board_Settings_Appearance {
     public function sjb_save_settings_section() {
 
         // Apearance Settings Paramerters
-//        $job_listing_views_settings = filter_input(INPUT_POST, 'job_listing_views_settings');
-//        $job_listing_content_settings = filter_input(INPUT_POST, 'job_listing_content_settings');
-//        $job_post_content_settings = filter_input(INPUT_POST, 'job_post_content_settings');
-//        $container_class = filter_input(INPUT_POST, 'container_class');
-//        $container_id = filter_input(INPUT_POST, 'container_id');
-//        $job_board_typography = filter_input(INPUT_POST, 'job_board_typography', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY);
-//        $sjb_fonts = filter_input(INPUT_POST, 'sjb_fonts');
-//        $no_fonts = filter_input(INPUT_POST, 'no_fonts');
+        $job_layout_settings = isset($_POST['job_pages_layout']) ? sanitize_text_field($_POST['job_pages_layout']) : '';
+        $job_listing_views_settings = isset($_POST['job_listing_views_settings']) ? sanitize_text_field($_POST['job_listing_views_settings']) : '';
+        $job_listing_content_settings = isset($_POST['job_listing_content_settings']) ? sanitize_text_field($_POST['job_listing_content_settings']) : '';
+        $job_post_content_settings = isset($_POST['job_post_content_settings']) ? sanitize_text_field($_POST['job_post_content_settings']) : '';
+        $container_class = isset($_POST['container_class']) ? sanitize_text_field($_POST['container_class']) : '';
+        $container_id = isset($_POST['container_id']) ? sanitize_text_field($_POST['container_id']) : '';
+        $job_board_typography = isset($_POST['job_board_typography']) ? array_map('sanitize_text_field', $_POST['job_board_typography']) : '';
+        $sjb_fonts = isset($_POST['sjb_fonts']) ? sanitize_text_field($_POST['sjb_fonts']) : '';
+        $no_fonts = isset($_POST['no_fonts']) ? sanitize_text_field($_POST['no_fonts']) : '';
         
-        // nnnnnnnnnnnnnnnnnnn
-        $job_layout_settings = isset($_POST['job_pages_layout'] ) ? sanitize_text_field( $_POST['job_pages_layout'] ) : '';
-        $job_listing_views_settings = isset($_POST['job_listing_views_settings'] ) ? sanitize_text_field( $_POST['job_listing_views_settings'] ) : '';
-        $job_listing_content_settings = isset($_POST['job_listing_content_settings'] ) ? sanitize_text_field( $_POST['job_listing_content_settings'] ) : '';
-        $job_post_content_settings = isset($_POST['job_post_content_settings'] ) ? sanitize_text_field($_POST['job_post_content_settings'] ) : '';
-        $container_class = isset($_POST['container_class'] ) ? sanitize_text_field( $_POST['container_class'] ) : '';
-        $container_id = isset($_POST['container_id'] ) ? sanitize_text_field( $_POST['container_id'] ) : '';
-        $job_board_typography =isset($_POST['job_board_typography'] ) ? array_map('sanitize_text_field',$_POST['job_board_typography'] ) :'';
-        $sjb_fonts = isset( $_POST['sjb_fonts'] ) ? sanitize_text_field( $_POST['sjb_fonts'] ) : '';
-        $no_fonts = isset( $_POST['no_fonts'] ) ? sanitize_text_field( $_POST['no_fonts'] ) : '';
-        $fonts = 0;
+        // Admin Email
+        $image_url = filter_input(INPUT_POST, 'image_url');
+        
+        if ( !empty( $image_url ) ) {
+            //$image_url = sanitize_text_field($_POST['image_url']);
+            update_option('sjb_loader_image', $image_url);
+        } elseif ( isset($image_url) && '' === $image_url ) {
+            update_option( 'sjb_loader_image', '' );
+        }
 
+        $fonts = 0;
 
         // Save Job Pages Layout
         if (!empty($job_layout_settings)) {
             update_option('job_board_pages_layout', $job_layout_settings);
         }
-        
+
         // Save Job Listing View        
         if (!empty($job_listing_views_settings)) {
             update_option('job_board_listing_view', $job_listing_views_settings);
@@ -570,4 +647,5 @@ class Simple_Job_Board_Settings_Appearance {
             }
         }
     }
+
 }

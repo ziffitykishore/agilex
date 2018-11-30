@@ -3,8 +3,8 @@ Contributors: PressTigers
 Donate link: http://www.presstigers.com
 Tags: job board, career, job listing, job manager, job portal
 Requires at least: 4.4
-Tested up to: 4.9.4
-Stable tag: 2.6.0
+Tested up to: 4.9.8
+Stable tag: 2.7.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -34,6 +34,7 @@ Please click here for [Simple Job Board Demo](http://jobboardextensions.demo.pre
 * [Content Replacement](https://market.presstigers.com/product/extended-support)
 * [Job Expirator Add-on](https://market.presstigers.com/product/job-expirator-add-on)
 * [Location Base Hiring](https://market.presstigers.com/product/location-base-hiring)
+* [Category Base Hiring](https://market.presstigers.com/product/category-base-hiring)
 * Not in the list, for custom add-on please [contact us](https://market.presstigers.com/contact-us)
 
 = Plugin Features =
@@ -189,6 +190,18 @@ You can visit <a href="http://www.presstigers.com">PressTigers Website</a> or <a
 
 == Changelog ==
 
+= 2.7.0 =
+* Feature - Added heading sections on job application form fields.
+* Feature - Revamped the job application HTML design.
+* Feature - Added HTML support to Privacy and Term & Condition content section.
+* Feature - Added loader image and settings for it.
+* Tweak - Removed the submitting text and added loader image there.
+* Dev Note - Added hooks to job exported and erased data.
+* Dev Note - Added hook to applicant email.
+* Fix - Display [deleted] resume error message in case of deletion.
+* Fix - Resolved applicant email issue.
+* Fix - Updated resume post meta in case of data eraser.
+
 = 2.6.0 =
 * Feature - Compliance job board plugin according to GDPR rules & regulation.
 * Feature - Integrated application data export with WP core export tool.
@@ -326,5 +339,5 @@ Tweak - Introduced new filters in email notification templates.
 
 == Upgrade Notice ==
 
-= 2.6.0 =
-2.6.0 is a major release with compliance of GDPR rules and integration application data eraser/exporter with WP core user eraser/exporter.
+= 2.7.0 =
+2.7.0 is a major release with new job application HTML and loader features.

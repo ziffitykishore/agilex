@@ -72,7 +72,6 @@ class Simple_Job_Board_Privacy {
             <form method="post" id="privacy-settings-form">
                 <div class="sjb-section">
                     <div class="sjb-content">
-
                         <?php
                         /**
                          * Action -> Add new fields at the start of GDPR settings section.  
@@ -108,7 +107,7 @@ class Simple_Job_Board_Privacy {
                             <label class="font-bold"><?php echo esc_html__('Privacy Policy Content', 'simple-job-board'); ?></label>
                         </div>
                         <div>
-                            <textarea rows="4" cols="40" name="privacy_policy_content" id="setting_privacy_policy_content" class="form-control full-width"><?php echo esc_attr($job_board_privacy_policy_content); ?></textarea>
+                            <textarea rows="4" cols="40" name="privacy_policy_content" id="setting_privacy_policy_content" class="form-control full-width"><?php echo stripslashes_deep(trim(implode("", explode("\\", $job_board_privacy_policy_content)) ) ); ?></textarea>
                         </div>
                         <div class="sjb-form-group">
                             <label class="font-bold"><?php echo esc_html__('Terms & Conditions Label (Opt.)', 'simple-job-board'); ?></label>
@@ -120,7 +119,7 @@ class Simple_Job_Board_Privacy {
                             <label class="font-bold"><?php echo esc_html__('Terms & Conditions Content', 'simple-job-board'); ?></label>
                         </div>
                         <div>
-                            <textarea rows="4" cols="50" name="term_conditions_content" id="setting_term_conditions_content" class="form-control full-width"><?php echo esc_attr($job_board_term_conditions_content); ?></textarea>
+                            <textarea rows="4" cols="50" name="term_conditions_content" id="setting_term_conditions_content" class="form-control full-width"><?php echo stripslashes_deep(trim(implode("", explode("\\", $job_board_term_conditions_content)) ) ); ?></textarea>
                         </div>
                         <?php
                         /**
@@ -180,10 +179,10 @@ class Simple_Job_Board_Privacy {
     public function sjb_save_settings_section() {
 
         $privacy_policy_label = isset($_POST['privacy_policy_label']) ? sanitize_text_field($_POST['privacy_policy_label']) : '';
-        $privacy_policy_content = isset($_POST['privacy_policy_content']) ? sanitize_text_field($_POST['privacy_policy_content']) : '';
+        $privacy_policy_content = isset($_POST['privacy_policy_content']) ? ($_POST['privacy_policy_content']) : '';
 
         $term_conditions_label = isset($_POST['term_conditions_label']) ? sanitize_text_field($_POST['term_conditions_label']) : '';
-        $term_conditions_content = isset($_POST['term_conditions_content']) ? sanitize_text_field($_POST['term_conditions_content']) : '';
+        $term_conditions_content = isset($_POST['term_conditions_content']) ? ($_POST['term_conditions_content']) : '';
 
         $sjb_privacy_settings = isset($_POST['job_privacy_settings']) ? sanitize_text_field($_POST['job_privacy_settings']) : '';
         $empty_privacy_settings = isset($_POST['empty_privacy_settings']) ? sanitize_text_field($_POST['empty_privacy_settings']) : '';

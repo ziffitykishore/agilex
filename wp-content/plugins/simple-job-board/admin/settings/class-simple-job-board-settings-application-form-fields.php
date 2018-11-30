@@ -58,6 +58,7 @@ class Simple_Job_Board_Settings_Application_Form_Fields {
         <div id="settings-application_form_fields" class="sjb-admin-settings" style="display: none;">
             <?php
             $field_types = array(
+                'section_heading' => esc_html__('Section Heading', 'simple-job-board'),
                 'text' => esc_html__('Text Field', 'simple-job-board'),
                 'text_area' => esc_html__('Text Area', 'simple-job-board'),
                 'email' => esc_html__('Email', 'simple-job-board'),
