@@ -1,23 +1,24 @@
 version: '3.7'
-
 services:
-
-  varnish:
-    image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0'
-    depends_on:
-      - app
-    ports:
-      - '80'
-      - '443'
+  # varnish:
+  #   image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0'
+  #   depends_on:
+  #     - app
+  #   ports:
+  #     - '80'
+  #     - '443'
+  #   labels:
+  #     - traefik.frontend.rule=Host:magento.test
+  #     - traefik.domain=magento.test
+  #     - traefik.enable=true
+  #   networks:
+  #     - internal
+  #     - lol
+  app:
     labels:
       - traefik.frontend.rule=Host:magento.test
       - traefik.domain=magento.test
       - traefik.enable=true
-    networks:
-      - internal
-      - lol
-
-  app:
     image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0'
     cap_add:
       - SYS_PTRACE
@@ -27,17 +28,16 @@ services:
       - rabbitmq
       - redis
       - smtp
-    expose:
+    ports:
       - '80'
       - '443'
     networks:
       - internal
       - lol
-
   database:
     image: 'percona:5.6'
-    expose:
-      - '3306'
+    ports:
+      - '3306:3306'
     volumes:
       - target: /var/lib/mysql
         source: database-vol
@@ -57,7 +57,6 @@ services:
     networks:
       - internal
       - lol
-
   elasticsearch:
     image: 'elasticsearch:5.2'
     expose:
@@ -71,7 +70,6 @@ services:
       discovery.type: single-node
     networks:
       - internal
-
   rabbitmq:
     image: rabbitmq
     expose:
@@ -86,7 +84,6 @@ services:
       RABBITMQ_DEFAULT_VHOST: /magento
     networks:
       - internal
-
   redis:
     image: redis
     expose:
@@ -97,7 +94,6 @@ services:
         type: volume
     networks:
       - internal
-
   smtp:
     image: mailhog/mailhog
     ports:
@@ -118,13 +114,11 @@ services:
     networks:
       - internal
       - lol
-
 volumes:
   database-vol: null
   elasticsearch-vol: null
   rabbitmq-vol: null
   redis-vol: null
-
 networks:
   lol:
     external: true
