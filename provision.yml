@@ -194,9 +194,8 @@
     - name: setup static content of theme
       shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
       loop:
-        - "setup:static-content:deploy '{{ magento_theme }}'"
-        - "sd:dev:static --requirejs-only"
-        - "sd:dev:static --requirejs-only --area adminhtml Magento/backend"
+        - "sd:dev:static '{{ client_theme }}'"
+        - "sd:dev:static '{{ magento_theme }}'"
     - name: run yarn build production
       shell: "yarn build:production"
   tags:
