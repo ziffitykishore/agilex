@@ -196,8 +196,8 @@
       loop:
         - "sd:dev:static '{{ client_theme }}'"
         - "sd:dev:static '{{ magento_theme }}'"
-    - name: run yarn build production
-      shell: "yarn build:production"
+    - name: run yarn build (for develop)
+      shell: "yarn build"
   tags:
     - sync
 
