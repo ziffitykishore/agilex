@@ -1,19 +1,19 @@
 version: '3.7'
 services:
-  # varnish:
-  #   image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0'
-  #   depends_on:
-  #     - app
-  #   ports:
-  #     - '80'
-  #     - '443'
-  #   labels:
-  #     - traefik.frontend.rule=Host:magento.test
-  #     - traefik.domain=magento.test
-  #     - traefik.enable=true
-  #   networks:
-  #     - internal
-  #     - lol
+  varnish:
+    image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0'
+    depends_on:
+      - app
+    ports:
+      - '80'
+      - '443'
+    labels:
+      - traefik.frontend.rule=Host:magento.test
+      - traefik.domain=magento.test
+      - traefik.enable=true
+    networks:
+      - internal
+      - lol
   app:
     labels:
       - traefik.frontend.rule=Host:magento.test
