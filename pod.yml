@@ -37,7 +37,7 @@ services:
   database:
     image: 'percona:5.6'
     ports:
-      - '3306:3306'
+      - '3306'
     volumes:
       - target: /var/lib/mysql
         source: database-vol
