@@ -195,7 +195,7 @@
       shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
       loop:
         - "sd:dev:static '{{ client_theme }}'"
-        - "sd:dev:static '{{ magento_theme }}'"
+        - "sd:dev:static  --area=adminhtm '{{ magento_theme }}'"
     - name: run yarn build (for develop)
       shell: "yarn build"
   tags:
