@@ -27,7 +27,7 @@ class InstallData implements InstallDataInterface
             $data = [
                 [
                     "module_name"           => 'Unirgy_SimpleUp',
-                    "download_uri"         => 'http://download.unirgy.com/Unirgy_SimpleUp-latest.zip?m=2',
+                    "download_uri"         => 'https://download.unirgy.com/Unirgy_SimpleUp-latest.zip?m=2',
                 ],
             ];
 

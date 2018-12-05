@@ -128,6 +128,8 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
 
     const ROW_ID = 'row_id';
     const BUNDLE_SEQ = 'bundle_seq';
+    const SUPER_ATTR_ROW_ID = 'super_attr_row_id';
+    const BUNDLE_PARENT = 'bundle_parent';
 
     /**
      * @var
@@ -1174,7 +1176,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                 $handles[] = $ch;
                 curl_multi_add_handle($mh, $ch);
             } catch (\Exception $e) {
-                $this->getLogger()->warning($e->getMessage());
+                $this->_profile->getLogger()->warning($e->getMessage());
             }
         }
 
@@ -1253,7 +1255,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             return $result;
         }
 
-        $warning = __('Related file image does not exist');
+        $warning = __('Related file image is not in destination media folder');
         if ($this->_missingImageAction === 'error') {
             throw new Row($warning);
         }
@@ -1428,23 +1430,25 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             $ancestorIds = explode('/', str_replace($rootPath, '', $row['path']));
             $eId = array_pop($ancestorIds); // remove current cat id
             $urlKeys = [];
-            foreach ($ancestorIds as $aid) {
-                if (!isset($entities[$aid])) {
-                    // maybe it is EE
-                    if($this->_categoriesBySeqId && isset($this->_categoriesBySeqId[$aid])) {
-                        $aid = $this->_categoriesBySeqId[$aid][$this->_entityIdField];
-                    }
+            if ($row['path'].'/'!=$rootPath) {
+                foreach ($ancestorIds as $aid) {
+                    if (!isset($entities[$aid])) {
+                        // maybe it is EE
+                        if ($this->_categoriesBySeqId && isset($this->_categoriesBySeqId[$aid])) {
+                            $aid = $this->_categoriesBySeqId[$aid][$this->_entityIdField];
+                        }
 
-                    if(!isset($entities[$aid])) {
-                        $this->_profile->getLogger()
-                            ->warning(sprintf('Parent category with id: %s not found. Category id: %s', $aid,
-                                $eId));
+                        if (!isset($entities[$aid])) {
+                            $this->_profile->getLogger()
+                                ->warning(sprintf('Parent category with id: %s not found. Category id: %s', $aid,
+                                    $eId));
 
-                        return $path;
+                            return $path;
+                        }
                     }
+                    $ancestor = $entities[$aid];
+                    $urlKeys[] = isset($ancestor[$parentKey]) ? $ancestor[$parentKey] : @$ancestor[0][$parentKey];
                 }
-                $ancestor = $entities[$aid];
-                $urlKeys[] = isset($ancestor[$parentKey]) ? $ancestor[$parentKey] : @$ancestor[0][$parentKey];
             }
             $urlKeys[] = $row[$dataKey];
             if (!empty($urlKeys)) {

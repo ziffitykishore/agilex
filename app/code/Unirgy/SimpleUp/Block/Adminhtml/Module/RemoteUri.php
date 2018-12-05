@@ -15,6 +15,9 @@ class RemoteUri extends AbstractRenderer
         if (function_exists('ioncube_loader_version')) {
             $uri .= '&ioncube=' . ioncube_loader_version();
         }
+        if (function_exists('sg_get_const')) {
+            $uri .= '&sg=1';
+        }
         return $uri ? '<a href="'.$uri.'" title="'.$uri.'">Hover/Click</a>' : '';
     }
 }

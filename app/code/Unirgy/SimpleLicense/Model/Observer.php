@@ -25,9 +25,9 @@ class Observer implements ObserverInterface
     {
 
         $ioncube = extension_loaded('ionCube Loader');
-        $bcompiler = extension_loaded('bcompiler');
-        if (!$ioncube && !$bcompiler) {
-            $this->messageManager->addError('ionCube Loader nor bcompiler are installed, uSimpleLicense is not activated.');
+        $sg = function_exists('sg_get_const');
+        if (!$ioncube && !$sg) {
+            $this->messageManager->addError('ionCube or SourceGuardian Loader is not installed, uSimpleLicense is not activated.');
             return;
         }
         /** @var Tabs $container */

@@ -47,7 +47,7 @@ class InstallSchema implements InstallSchemaInterface
                 ->addColumn('remote_version', Table::TYPE_TEXT, 30, ['nullable' => true, 'default' => null])
                 ->addColumn('license_key', Table::TYPE_TEXT, 255, ['nullable' => true, 'default' => null])
                 ->setComment('Unirgy Modules Table')
-                ->setOption('type', 'MYISAM')
+                ->setOption('type', 'InnoDB')
                 ->setOption('charset', 'utf8');
             $connection->createTable($table);
         }

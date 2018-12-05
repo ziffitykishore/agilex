@@ -202,6 +202,35 @@
   tags:
     - sync
 
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: make sure local cache clean
+      file:
+        state: absent
+        path: "{{ playbook_dir }}/{{ item }}"
+      loop:
+        - var/cache
+        - generated/code
+        - generated/metadata
+    - name: run magento upgrade
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "app:config:import"
+        - "cache:clean"
+        - "setup:upgrade"
+        - "deploy:mode:set --skip-compilation developer"
+        - "setup:di:compile"
+    - name: setup static content of theme
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "sd:dev:static '{{ client_theme }}'"
+        - "sd:dev:static  --area=adminhtml '{{ magento_theme }}'"
+    - name: run yarn build production
+      shell: "yarn build:production"
+  tags:
+    - sync
+
 - name: install provision
   hosts: localhost
   connection: local
@@ -227,3 +256,25 @@
         dest: "{{ playbook_dir }}/app/etc/env.php"
   tags:
     - install
+
+##
+# Below installs Unirgy Package,
+# but will throw errors if the following vars don't exist in group_vars/all:
+# urapidflow_license_key, urapidflow_pkg_version, ioncube_version, tmp_download_path
+# ** Leave commented out if you don't have variables added.
+##
+
+
+#   - name: get urapidflow
+#   unarchive:
+#     src: "https://download.unirgy.com/simple/download/{{ urapidflow_license_key }}/Unirgy_RapidFlow.zip?php={{ urapidflow_pkg_version }}&ioncube={{ ioncube_version }}"
+#     dest: "{{ tmp_download_path }}"
+# - name: make sure urapidflow does not exist
+#   file:
+#     path: "{{ magento_root }}/app/code/Unirgy"
+#     state: absent
+# - name: copy new urapidflow install
+#   copy:
+#     src: "{{ tmp_download_path }}/app/code/Unirgy"
+#     dest: "{{ magento_root }}/app/code/Unirgy"
+#     remote_src: yes

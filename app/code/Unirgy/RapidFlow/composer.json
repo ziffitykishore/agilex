@@ -2,10 +2,14 @@
     "name": "unirgy/m2-rapidflow",
     "description": "",
     "require": {
-        "php": "~5.6.0|7.0.2|~7.0.6"
+        "unirgy/m2-simple-license": "2.0.*"
     },
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/unirgy/"},
+        {"packagist.org": false}
+    ],
     "type": "magento2-module",
-    "version": "3.0.36",
+    "version": "3.0.60",
     "license": [
         "proprietary"
     ],

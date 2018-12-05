@@ -18,9 +18,10 @@ class InstallSchema implements InstallSchemaInterface
     /**
      * Installs DB schema for a module
      *
-     * @param SchemaSetupInterface $setup
+     * @param SchemaSetupInterface   $setup
      * @param ModuleContextInterface $context
      * @return void
+     * @throws \Zend_Db_Exception
      */
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
@@ -48,8 +49,8 @@ class InstallSchema implements InstallSchemaInterface
                 ->addColumn('server_info', Table::TYPE_TEXT, null)
                 ->addColumn('aux_checksum', Table::TYPE_INTEGER, null, ['unsigned' => true])
                 ->setComment('Unirgy License Table')
-                ->setOption('type', 'MYISAM')
                 ->setOption('AUTO_INCREMENT', '8')
+                ->setOption('type', 'InnoDB')
                 ->setOption('charset', 'utf8');
             $connection->createTable($table);
         }
