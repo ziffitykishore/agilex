@@ -157,8 +157,7 @@ class Data extends AbstractHelper
         $data['city'] = isset($data['cust_city']) ? $data['cust_city'] : false;
         $data['state'] = isset($data['cust_state']) ? $data['cust_state'] : false;
         $data['postal_code'] = isset($data['cust_zip']) ? $data['cust_zip'] : false;
-        
-        clog('wf', $data, true);
+
         $this->mailTo($sender, $to, $template, $options, $data);
     }
 
