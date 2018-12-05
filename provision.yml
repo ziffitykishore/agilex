@@ -228,23 +228,26 @@
     - install
 
 ##
-# Below installs Unirgy Package,
-# but will throw errors if the following vars don't exist in group_vars/all:
+# Below installs Unirgy Package
+# But the following variables must exist with values in group_vars/all:
 # urapidflow_license_key, urapidflow_pkg_version, ioncube_version, tmp_download_path
-# ** Leave commented out if you don't have variables added.
 ##
-
-
-#   - name: get urapidflow
-#   unarchive:
-#     src: "https://download.unirgy.com/simple/download/{{ urapidflow_license_key }}/Unirgy_RapidFlow.zip?php={{ urapidflow_pkg_version }}&ioncube={{ ioncube_version }}"
-#     dest: "{{ tmp_download_path }}"
-# - name: make sure urapidflow does not exist
-#   file:
-#     path: "{{ magento_root }}/app/code/Unirgy"
-#     state: absent
-# - name: copy new urapidflow install
-#   copy:
-#     src: "{{ tmp_download_path }}/app/code/Unirgy"
-#     dest: "{{ magento_root }}/app/code/Unirgy"
-#     remote_src: yes
+- name: install urapidflow
+  hosts: localhost
+  connection: local
+  tags:
+    - urapidflow
+  tasks:
+    - name: get urapidflow
+      unarchive:
+        src: "https://download.unirgy.com/simple/download/{{ urapidflow_license_key }}/Unirgy_RapidFlow.zip?php={{ urapidflow_pkg_version }}&ioncube={{ ioncube_version }}"
+        dest: "{{ tmp_download_path }}"
+    - name: make sure urapidflow does not exist
+      file:
+        path: "{{ magento_root }}/app/code/Unirgy"
+        state: absent
+    - name: copy new urapidflow install
+      copy:
+        src: "{{ tmp_download_path }}/app/code/Unirgy"
+        dest: "{{ magento_root }}/app/code/Unirgy"
+        remote_src: yes
