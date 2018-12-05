@@ -35,7 +35,7 @@ services:
       - rabbitmq
       - redis
       - smtp
-    expose:
+    ports:
       - '80'
       - '443'
     networks:
