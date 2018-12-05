@@ -77,13 +77,13 @@
   tasks:
     - name: run magento install
       shell: |
-        OLDDOMAIN='https://{{ item | replace("test", "com") }}/'
+        OLDDOMAIN='{{ item | replace("test", "com") }}'
         mysql \
               -u root \
               -proot_password \
               -h database \
               {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = 'http://{{ item }}/' where value = '${OLDDOMAIN}';"
+              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item }}');"
       loop: "{{ site_domains }}"
   tags:
     - database
@@ -196,8 +196,8 @@
       loop:
         - "sd:dev:static '{{ client_theme }}'"
         - "sd:dev:static  --area=adminhtml '{{ magento_theme }}'"
-    - name: run yarn build production
-      shell: "yarn build:production"
+    - name: run yarn build (for develop)
+      shell: "yarn build"
   tags:
     - sync
 
