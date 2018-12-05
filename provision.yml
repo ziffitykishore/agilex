@@ -144,11 +144,11 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: get submodules
-      shell: "git {{ item }}"
-      loop:
-        - "fetch --recurse-submodules --tags origin"
-        - "submodule update --init --recursive"
+    # - name: get submodules
+    #   shell: "git {{ item }}"
+    #   loop:
+    #     - "fetch --recurse-submodules --tags origin"
+    #     - "submodule update --init --recursive"
     - name: make sure vendor doesn't exist
       file:
         path: "{{ playbook_dir }}/vendor"
