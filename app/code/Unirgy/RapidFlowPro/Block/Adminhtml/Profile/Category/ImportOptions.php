@@ -64,6 +64,13 @@ class ImportOptions
             'comment' => __('Affects only updated values'),
         ]);
 
+        $fieldset->addField('import_force_urlrewrite_refresh', 'select', [
+            'label' => __('Force URL Rewrites Refresh'),
+            'name' => 'options[import][force_urlrewrite_refresh]',
+            'values' => $source->setPath('yesno')->toOptionArray(),
+            'value' => $profile->getData('options/import/force_urlrewrite_refresh'),
+        ]);
+
         $fieldset->addField('import_reindex_type', 'select', [
             'label' => __('Reindex type'),
             'name' => 'options[import][reindex_type]',

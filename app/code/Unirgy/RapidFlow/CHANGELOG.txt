@@ -1,4 +1,78 @@
-===== 2017-01-02 3.0.36 =====
+===== 2018-09-04 3.0.60 =====
+  * Added safeguard to not save url rewrite with empty request path
+
+===== 2018-08-28 3.0.59 =====
+  * Added extra constants
+
+===== 2018-08-16 3.0.58 =====
+  * Fixed unhandled exceptions in generate category url rewrite functionality which didn't restore url path in case of exception
+
+===== 2018-08-15 3.0.57 =====
+  * Fixed category url rewrites not refreshed when using db table prefix
+
+===== 2018-07-23 3.0.56 =====
+  * Added extra vars for fixed rows import events
+
+===== 2018-07-13 3.0.55 =====
+  * Fixed mixed usage of numeric and non-numeric skus degrade perfromance
+
+===== 2018-06-25 3.0.54 =====
+  * Added logging of url rewrite errors
+  * Fixed A non-numeric value encountered in Model/Profile.php on line 1259
+
+===== 2018-06-25 3.0.53 =====
+  * Fixed ResourceModel\AbstractResource::getConnection()  must be public (as in class Magento\Framework\Model\ResourceModel\AbstractResource) in  ResourceModel/AbstractResource21.php on line 5 on magento cloud
+
+===== 2018-06-20 3.0.52 =====
+  * Fixed url rewrites not created for new products on some import files
+
+===== 2018-06-11 3.0.51 =====
+  * Fixed usage of only "category.ids" in import file on EE lead to wrong assignment
+
+===== 2018-06-05 3.0.50 =====
+  * Fixed A non-numeric value in Model/Profile.php on line 1259
+
+===== 2018-05-30 3.0.49 =====
+  * Fixed usage of "category.name" in import file create duplicate categories
+
+===== 2018-04-20 3.0.48 =====
+  * Fixed delete from url_rewrite use subselect (changed to multiple-table delete for better performance)
+
+===== 2018-04-06 3.0.47 =====
+  * Fixed auto-create categories save url_path with suffix
+
+===== 2018-04-06 3.0.46 =====
+  * Fixed inconsistency between stock fetch and stock update
+
+===== 2018-03-29 3.0.45 =====
+  * Fixed multiple profiles run from script have issues due to data caching in data type models
+
+===== 2018-03-21 3.0.44 =====
+  * Fixed EE category url rewrites not generated for auto-created categories
+
+===== 2018-03-07 3.0.43 =====
+  * Fixed missing skipcheck for root category in ResourceModel\AbstractResourceBase::catBuildPath method
+
+===== 2018-02-26 3.0.42 =====
+  * Fixed export filter "Skip out of stock products"=Yes doesn't work in EE
+
+===== 2018-02-23 3.0.41 =====
+  * Fixed export filter by website join by row_id instead of entity_id
+  * Fixed export don't use order by entity_id which lead to some data duplication and/or absence
+
+===== 2018-02-14 3.0.40 =====
+  * Fixed call \Magento\Framework\App\Cache\Manager::clean only when types not empty. To eliminate possible issues with third-party modules
+
+===== 2018-02-06 3.0.39 =====
+  * Fixed Can only flip STRING and INTEGER values! in ResourceModel/Catalog/Product/AbstractProduct.php
+
+===== 2018-01-30 3.0.38 =====
+  * Fixed export in php 7.1 issue warning "A non-numeric value encountered"
+
+===== 2018-01-04 3.0.37 =====
+  * Fixed compatibility with 2.2 bundle option/selection sequence new parent_product_id column
+
+===== 2018-01-02 3.0.36 =====
   * Added compatibility with EE 2.2 bundle option/selection sequence
 
 ===== 2017-12-21 3.0.35 =====

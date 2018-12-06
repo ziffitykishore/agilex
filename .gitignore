@@ -13,6 +13,7 @@
 /pub/styleguide
 # Docker's files/ directory
 /files
+/.docker-sync
 
 
 ### Magento OOB .gitignore

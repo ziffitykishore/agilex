@@ -31,7 +31,7 @@ use Unirgy\RapidFlow\Model\Source\AbstractSource;
 /**
  * Class Source
  *
- * @method Source setPath(string $path)
+ * @method Source setPath(\string $path)
  * @package Unirgy\RapidFlow\Model
  */
 class Source extends AbstractSource

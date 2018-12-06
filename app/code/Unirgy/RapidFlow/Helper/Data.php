@@ -104,6 +104,7 @@ class Data extends AbstractHelper
      * @var array
      */
     protected $_categoryIdsToUpdate = [];
+    protected $_categorySeqIdsToUpdate = [];
 
     public function __construct(
         Context $context,
@@ -333,6 +334,12 @@ class Data extends AbstractHelper
                 case RfProduct::BUNDLE_SEQ:
                     $flag = $this->isEnterpriseEdition() && $this->compareMageVer('2.2.0');
                     break;
+                case RfProduct::SUPER_ATTR_ROW_ID:
+                    $flag = $this->isEnterpriseEdition() && $this->compareMageVer('2.2.5');
+                    break;
+                case RfProduct::BUNDLE_PARENT:
+                    $flag = $this->compareMageVer('2.2.0');
+                    break;
             }
             $this->_hasMageFeature[$feature] = $flag;
         }
@@ -447,11 +454,20 @@ class Data extends AbstractHelper
         return self::$_customLog;
     }
 
-    public function addCategoryIdForRewriteUpdate($categoryId)
+    public function addCategoryIdForRewriteUpdate($categoryId, $seqId=null)
     {
+        $_seqId = $categoryId;
+        if ($seqId!==null) {
+            $_seqId = $seqId;
+        }
         $this->_categoryIdsToUpdate[] = $categoryId;
+        $this->_categorySeqIdsToUpdate[] = $_seqId;
     }
 
+    /**
+     * @var \Unirgy\RapidFlow\Model\Profile
+     */
+    public $currentProfile;
     /**
      * @param int|null $store_id
      * @throws \Magento\Framework\Exception\AlreadyExistsException
@@ -459,8 +475,12 @@ class Data extends AbstractHelper
     public function updateCategoriesUrlRewrites($store_id = null)
     {
         $this->clearUrlPaths($this->_categoryIdsToUpdate);
-        foreach (array_unique(array_filter($this->_categoryIdsToUpdate)) as $cId) {
-            $this->updateCategoryUrlRewritesById($cId, $store_id);
+        foreach (array_unique(array_filter($this->_categorySeqIdsToUpdate)) as $cId) {
+            try {
+                $this->updateCategoryUrlRewritesById($cId, $store_id);
+            } catch (\Exception $e) {
+                if ($__cp = $this->currentProfile) $__cp->getLogger()->error($e->getMessage());
+            }
         }
         $this->restoreUrlPath($this->_categoryIdsToUpdate);
     }
@@ -494,7 +514,7 @@ class Data extends AbstractHelper
      */
     protected function urlPersist()
     {
-        return $this->om()->get('Magento\UrlRewrite\Model\UrlPersistInterface');
+        return $this->om()->get('Unirgy\RapidFlow\Model\UrlRewriteDbStorage');
     }
 
     /**
@@ -533,11 +553,13 @@ class Data extends AbstractHelper
 
         $res = $this->categoryFactory->create()->getResource();
         $table = AbstractResource::TABLE_CATALOG_CATEGORY_ENTITY . '_varchar';
+        $table = $res->getTable($table);
+        $eavAttrTable = $res->getTable(AbstractResource::TABLE_EAV_ATTRIBUTE);
         $con = $res->getConnection();
         $select = $con->select()
             ->from($table)
             ->where('attribute_id=?',
-                new \Zend_Db_Expr('(SELECT attribute_id FROM ' . AbstractResource::TABLE_EAV_ATTRIBUTE . ' WHERE attribute_code=\'url_path\' AND entity_type_id=3)'))
+                new \Zend_Db_Expr('(SELECT attribute_id FROM ' . $eavAttrTable . ' WHERE attribute_code=\'url_path\' AND entity_type_id=3)'))
             ->where($idField . ' IN (?)', $categoryIds);
 
         $con->createTemporaryTableLike($this->_urlPathTmpTable, $table, true);
@@ -546,7 +568,11 @@ class Data extends AbstractHelper
 
         $con->query($tmpQ);
 
-        $query = $con->deleteFromSelect($select, $table);
+        //$query = $con->deleteFromSelect($select, $table);
+
+        $query = sprintf("DELETE ccv FROM %s as ccv INNER JOIN %s ea ON ccv.attribute_id=ea.attribute_id and ea.attribute_code='url_path' and ea.entity_type_id=3 WHERE ccv.$idField in (%s)",
+            $table, $eavAttrTable, $con->quote($categoryIds)
+        );
 
         return $con->query($query);
     }
@@ -561,6 +587,7 @@ class Data extends AbstractHelper
         }
         $res = $this->categoryFactory->create()->getResource();
         $table = AbstractResource::TABLE_CATALOG_CATEGORY_ENTITY . '_varchar';
+        $table = $res->getTable($table);
         $con = $res->getConnection();
         $select = $con->select()
             ->from($this->_urlPathTmpTable)

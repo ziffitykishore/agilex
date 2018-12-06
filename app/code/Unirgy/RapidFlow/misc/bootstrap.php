@@ -1,4 +1,7 @@
 <?php
+// REMOVE THIS LINE BEFORE ACTUAL USAGE (added for additional security)
+exit(1);
+
 // initialize Magento environment
 
 try {

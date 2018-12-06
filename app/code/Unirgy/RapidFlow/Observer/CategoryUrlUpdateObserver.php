@@ -18,12 +18,21 @@ class CategoryUrlUpdateObserver implements ObserverInterface
     protected $helper;
 
     /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $_storeManager;
+
+    /**
      * CategoryUrlUpdateObserver constructor.
      * @param \Unirgy\RapidFlow\Helper\Data $helper
      */
-    public function __construct(\Unirgy\RapidFlow\Helper\Data $helper)
+    public function __construct(
+        \Unirgy\RapidFlow\Helper\Data $helper,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
+    )
     {
         $this->helper = $helper;
+        $this->_storeManager = $storeManager;
     }
 
     /**
@@ -36,10 +45,15 @@ class CategoryUrlUpdateObserver implements ObserverInterface
         /** @var \Unirgy\RapidFlow\Model\Profile $profile */
         $profile = $observer->getData('profile');
         $storeId = $profile->getStoreId();
+        $this->helper->currentProfile = $profile;
         $this->helper->updateCategoriesUrlRewrites($storeId);
         if ($storeId !== 0) {
             // update category url rewrites for default store too
             $this->helper->updateCategoriesUrlRewrites(0);
+        } else {
+            $store = $this->_storeManager->getDefaultStoreView();
+            if ($store) $this->helper->updateCategoriesUrlRewrites($store->getId());
         }
+        $this->helper->currentProfile = null;
     }
 }

@@ -14,7 +14,9 @@ magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
 
 copy_nginx_certs: false
 
-magento_theme: "Magento/backend SomethingDigital/bryantpark"
+magento_theme: "Magento/backend"
+
+client_theme: "SomethingDigital/bryantpark"
 
 magento_user: magento
 
