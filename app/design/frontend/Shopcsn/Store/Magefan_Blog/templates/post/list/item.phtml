@@ -34,9 +34,9 @@
         </a>
         <div class="blog-content">
             <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-                <div class="blog-title">
+                <h2 class="blog-title">
                     <?php echo $block->wordLimiter($_postName, 4).'...' ?>
-                </div>
+                </h2>
             </a>
             <div class="blog-desc">
                 <?php echo $block->wordLimiter($block->getShorContent(), 25).'...'; ?>
