@@ -58,6 +58,9 @@
             .items thead+.item {
                 border-top: 1px solid @color-lightgray;
             }
+            .item ~ .item {
+                border-top: 1px solid @color-lightgray;
+            }
             .product-item-photo {
                 width: 28%;
                 margin-left: 25px;
@@ -606,16 +609,23 @@
         .form-cart {
             .table-wrapper {
                 .item-info {
+                    position: relative;
+                    display: block;
                     [colspan="item-actions"] {
                         padding-left: 0;
                         padding-right: 0;
-                        width: 100%;
-                        /* position: absolute; */
-                        /* top: 0; */
+                        position: absolute;
+                        padding:  0 !important;
+                        top: 50px;
                         clear: both;
-                        /* right: 0; */
+                        left: 0;
+                        width: 70px;
                         text-align: center;
                         display: block;
+
+                        .action {
+                            margin-right: 10px;
+                        }
                     }
                 }
             }
@@ -638,17 +648,18 @@
                             box-sizing: border-box;
                             display: block;
                             float: left;
-                            text-align: center !important;
+                            text-align: left;
                             padding: 5px;
                             white-space: nowrap;
-                            width: 40%;
-                            padding-bottom: 0 !important;
+                            width: 50%;
                         }
 
                         &.price {
                             width: 50% !important;
                         }
                     }
+
+                   
                 }
             }
             .main {
@@ -668,11 +679,6 @@
                     td {
                         padding: 25px 0px;
                     }
-                }
-            }
-            .control {
-                &.qty {
-                    right: -15px;
                 }
             }
         }
