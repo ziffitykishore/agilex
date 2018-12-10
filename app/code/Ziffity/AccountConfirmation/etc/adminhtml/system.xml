@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ziff" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Customer</label>
+            <tab>ziffity</tab>
+            <resource>Ziffity_Accountconfirmartion::index</resource>
+            <group id="ziffity_accountconfirmation" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Resend Account Confirmation Mail Configuration</label>		
+                <field id="resend_confirmation_mail" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Resend Confirmation Link Email</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+               
+                <field id="days_duration" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Duration(In Days)</label>
+                </field>
+                <field id="scheduler_cron_expr" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cron Expression</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Ziffity\AccountConfirmation\Model\Config\Backend\AccountConfirmation\Cron</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

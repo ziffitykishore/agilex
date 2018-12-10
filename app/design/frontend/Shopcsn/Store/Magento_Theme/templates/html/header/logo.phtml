@@ -1,0 +1,20 @@
+<?php
+// @codingStandardsIgnoreFile
+/**
+ * @var \Magento\Theme\Block\Html\Header\Logo $block
+ */
+?>
+<?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
+<div class="logo-wrap">
+    <strong class="logo">
+        <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
+            <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+             alt="<?= /* @escapeNotVerified */ $block->getLogoAlt() ?>"
+            />
+        </a>
+    </strong>
+</div>
+<?php $isLoggedin = $this->helper('Ziffity\Core\Helper\Data')->getIsCustomerLoggedIn(); ?>
+<script>
+    window.isCustomerLoggedIn = '<?= $isLoggedin; ?>';
+</script>

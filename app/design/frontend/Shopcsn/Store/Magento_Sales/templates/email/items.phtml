@@ -1,0 +1,50 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_order = $block->getOrder() ?>
+<?php if ($_order): ?>
+    <?php $_items = $_order->getAllItems(); ?>
+    <table width="100%" cellpadding="25" cellspacing="0" style="line-height: 25px; ">
+        <thead>
+            <tr>
+                <td width="25%" style="padding-right: 15px; padding-bottom: 0; vertical-align: top;"></td>
+                <td style="padding: 25px 15px 0; vertical-align: top; font-weight: bold; font-size: 14px; "><?= /* @escapeNotVerified */  __('Product Name') ?></td>
+                <td style="padding: 25px 15px 0; vertical-align: top;font-weight: bold; font-size: 14px;">    <?= /* @escapeNotVerified */  __('Quantity') ?></td>
+                <td style="padding: 25px 15px 0 15px; vertical-align: top;font-weight: bold; font-size: 14px;text-align:center; width: 95px;"><?= /* @escapeNotVerified */  __('Sub-Total') ?></td>
+            </tr>
+        </thead>
+        <?php foreach ($_items as $_item): ?>
+            <?php if (!$_item->getParentItem()) : ?>
+                <tbody>
+                    <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <tfoot>
+            <?= $block->getChildHtml('order_totals') ?>
+        </tfoot>
+    </table>
+    <?php if ($this->helper('Magento\GiftMessage\Helper\Message')->isMessagesAllowed('order', $_order, $_order->getStore()) && $_order->getGiftMessageId()): ?>
+        <?php $_giftMessage = $this->helper('Magento\GiftMessage\Helper\Message')->getGiftMessage($_order->getGiftMessageId()); ?>
+        <?php if ($_giftMessage): ?>
+            <br />
+            <table class="message-gift">
+                <tr>
+                    <td>
+                        <h3><?= /* @escapeNotVerified */  __('Gift Message for this Order') ?></h3>
+                        <strong><?= /* @escapeNotVerified */  __('From:') ?></strong> <?= $block->escapeHtml($_giftMessage->getSender()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('To:') ?></strong> <?= $block->escapeHtml($_giftMessage->getRecipient()) ?>
+                        <br /><strong><?= /* @escapeNotVerified */  __('Message:') ?></strong>
+                        <br /><?= $block->escapeHtml($_giftMessage->getMessage()) ?>
+                    </td>
+                </tr>
+            </table>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

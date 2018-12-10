@@ -1,0 +1,18 @@
+<?php /* @var $block \Magento\ProductAlert\Block\Product\View */?>
+<div class="actions productAlert product-alert" style="display: none">
+    <div class="primary product alert <?= $block->getHtmlClass() ?>" >
+        <a href="#" data-post='<?= /* @noEscape */ $block->getPostAction() ?>'
+           title="<?= $block->escapeHtml(__($block->getSignupLabel())) ?>" class="action alert primary btn-alert">
+            <span><?= $block->escapeHtml(__($block->getSignupLabel())) ?></span>
+        </a>
+    </div>
+</div>
+<script>
+    require(['jquery'], function($){
+        var _cnfPrd = $('.page-product-configurable');
+        var _notifPrd = $('.productAlert.product-alert');
+        if(!_cnfPrd.length && _notifPrd.length){
+           _notifPrd.addClass('notify-me').show();
+        }
+    });
+</script>

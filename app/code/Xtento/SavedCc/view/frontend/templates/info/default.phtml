@@ -1,0 +1,29 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Payment\Block\Info $block
+ * @see \Magento\Payment\Block\Info
+ */
+$specificInfo = $block->getSpecificInformation();
+$title = $block->escapeHtml($block->getMethod()->getTitle());
+?>
+
+
+<?php if ($specificInfo):?>
+
+        <table class="data table">
+            <caption class="table-caption" style="text-align: left;"><?= /* @noEscape */ $title ?></caption>
+            <?php foreach ($specificInfo as $label => $value):?>
+                <tr>
+                    <th scope="row" style="text-align: left;"><?= $block->escapeHtml($label) ?></th>
+                    <td>
+                        <?= /* @noEscape */ nl2br($block->escapeHtml(implode("\n", $block->getValueAsArray($value, true)))) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+
+<?php endif;?>
+
+<?= $block->getChildHtml() ?>

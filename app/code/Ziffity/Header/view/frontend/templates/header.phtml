@@ -1,0 +1,42 @@
+<?php
+/**
+ * Copyright © 2015 ziffitycommerce. All rights reserved.
+ */
+?>
+<?php
+    $storeInfo = $block->getConfigValue();
+    $wHeader = $storeInfo['welcome_header'];
+    $stTiming = $storeInfo['store_timings'];
+    $stPhone = $storeInfo['store_phone'];
+?>
+<?php if($block->isHomePage()): ?>
+<div class="header-promo clearfix">
+    <div class="container">    
+        <div class="col-sm-9 promotion-text text-center">
+        <div class="col-sm-4 hidden-xs icon-1">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('image-section1')->toHtml();?>
+        </div>
+        
+        <div class="col-sm-4 col-xs-12 promo-next icon-2">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('image-section2')->toHtml();?>
+        </div>
+        <div class="col-sm-4 has-promo-text col-xs-12">
+        <h1><?= $wHeader ?></h1>
+        </div>
+        </div>
+        <div class="col-sm-3 contact-info text-center">
+        <?= $stTiming ?>
+            <div class="ph">
+                <a href="tel:<?= $stPhone ?>"><strong><?= $stPhone ?></strong></a>
+            </div>
+        </div>
+    </div>
+</div>
+<?php else: ?>
+<div class="breadcrumbs-promo pull-right text-center mt-10 text-white">
+    <?= $stTiming ?>
+    <div class="ph">
+    <a href="tel:<?= $stPhone ?>"><strong><?= $stPhone ?></strong></a>
+    </div>
+</div>
+<?php endif; ?>

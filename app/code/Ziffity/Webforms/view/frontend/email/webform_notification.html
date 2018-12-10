@@ -1,0 +1,40 @@
+<!--@subject Web-form '{{var sub}}' submitted @-->
+<div style="background:#F6F6F6; font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; margin:0; padding:0;">
+    <table cellspacing="0" cellpadding="0" border="0" height="100%" width="100%">
+        <tbody>
+            <tr>
+                <td align="center" valign="top" style="padding:20px 0 20px 0">
+                    <table bgcolor="FFFFFF" cellspacing="0" cellpadding="10" border="0" width="650" style="border:1px solid #E0E0E0;">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Web-form "{{var sub}}"</h1>
+
+                                    <p style="font-size:12px; line-height:16px; margin:0 0 8px 0;">
+                                        <!-- Store group: {{var store_group}}<br> -->
+                                        Store name: {{var store_name}}<br>
+                                        Customer: {{var type}}<br>
+                                        IP: {{var ip}}<br>
+                                        Date: {{var date}}<br><br>
+
+                                        <b>Name:</b><br>{{var name}}<br><br>
+                                        {{depend email}}<b>Email:</b><br>{{var email}}<br><br>{{/depend}}
+                                        {{depend phone}}<b>Phone:</b><br>{{var phone}}<br><br>{{/depend}}
+                                        {{depend message}}<b>Message:</b><br>{{var message}}<br><br>{{/depend}}
+                                        {{depend looking_for}}<b>I am looking for:</b><br>{{var looking_for}}<br><br>{{/depend}}
+                                        {{depend address}}<b>Address:</b><br>{{var address}}<br><br>{{/depend}}
+                                        {{depend city}}<b>City:</b><br>{{var city}}<br><br>{{/depend}}
+                                        {{depend state}}<b>State:</b><br>{{var state}}<br><br>{{/depend}}
+                                        {{depend postal_code}}<b>Zip Code:</b><br>{{var postal_code}}<br><br>{{/depend}}
+                                    </p>
+
+                                    <p style="font-size:12px;">Please, don`t reply to this e-mail!</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>            
+    </table>
+</div>

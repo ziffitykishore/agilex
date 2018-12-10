@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="salesrule_validator_process">
+       <observer name="ziffity_promo_observer_handlevalidation" instance="Ziffity\Promo\Observer\HandleValidation" />
+    </event>
+    <event name="sales_quote_collect_totals_before">
+        <observer name="ziffity_promo_observer_initfreeitems" instance="Ziffity\Promo\Observer\InitFreeItems" />
+    </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="ziffity_promo_observer_updatefreeitems" instance="Ziffity\Promo\Observer\UpdateFreeItems" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="ziffity_promo_observer_removefreeitems" instance="Ziffity\Promo\Observer\RemoveFreeItems" />
+    </event>
+</config>

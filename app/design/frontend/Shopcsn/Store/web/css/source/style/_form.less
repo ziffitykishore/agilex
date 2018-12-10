@@ -1,0 +1,222 @@
+.fieldset,
+fieldset {
+    .label {
+        color: @color-black;
+    }
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+input[type="datetime"],
+input[type="email"],
+select {
+    height: 50px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+input[type="search"],
+input[type="number"],
+input[type="datetime"],
+input[type="email"],
+.control textarea {
+    border-color: #d7d7ed;
+}
+
+input,
+select,
+textarea {
+    &.mage-error {
+        border-color: #ed8380;
+    }
+    &:focus,
+    &.form-control:focus {
+        border-color: @color-black;
+        box-shadow: none;
+    }
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    display: initial;
+}
+
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+    background: url('../images/caret-down.png') no-repeat 96% center !important;
+    background-size: 7px !important;
+    option[value=""] {
+        color: #666;
+    }
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.field {
+    .field-tooltip {
+        margin-left: 5px;
+    }
+    input[type="checkbox"] {
+        opacity: 0;
+        position: absolute;
+        &+label {
+            position: relative;
+            padding-left: 20px;
+        }
+        &+label:before {
+            content: '';
+            width: 15px;
+            height: 15px;
+            border: 1px solid #d7d7ed;
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        &+label:after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: @color-darkslateblue;
+            .transition(all 0.5s ease 0s);
+            opacity: 0;
+            visibility: hidden;
+            left: 2px;
+            top: 3px;
+        }
+        &:checked+label:after {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.label {
+    color: #333;
+    font-weight: normal;
+    font-size: 12px;
+}
+
+.fieldset .label {
+    color: #333;
+    font-weight: normal;
+    font-size: 12px;
+    white-space: normal;
+    text-align: left;
+}
+
+input.custom-g-input {
+    visibility: hidden;
+    height: 0px;
+    width: 0px;
+    display: inherit;
+}
+
+._keyfocus *:focus,
+input:not([disabled]):focus,
+textarea:not([disabled]):focus,
+select:not([disabled]):focus {
+    box-shadow: none;
+}
+
+textarea {
+    resize: none;
+}
+
+.fieldset>.field>.label,
+.fieldset>.fields>.field>.label {
+    font-weight: normal;
+}
+
+.form {
+    .fieldset>.field {
+        margin-bottom: 20px;
+    }
+}
+
+.choice {
+    label {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.form-group {
+    position: relative;
+    .label {
+        position: absolute;
+        z-index: 3;
+        color: #ccc;
+        left: 10px;
+        font-size: 13px;
+        background: #fff;
+        top: 15px;
+        pointer-events: none;
+        transition: all .5s ease 0s;
+    }
+    &.focused label {
+        top: -7px;
+        font-size: 11px;
+    }
+    &.select-group label {
+        top: -7px;
+    }
+    .form-control-wrap {
+        display: block;
+        position: relative;
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 6px 6px 6px 10px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #000;
+            background-color: #fff;
+            background-image: none;
+            .br-radius(0);
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            .transition(all 0.5s ease 0s);
+        }
+        select {
+            padding-right: 45px;
+        }
+    }
+    .form-control {
+        border-radius: 0;
+        box-shadow: none;
+        .transition(all 0.5s ease 0s);
+    }
+}
+
+.account-social-login {
+    .block-content {
+        display: inline-block;
+        width: 100%;
+        .actions-toolbar.social-btn {
+            padding: 0 15px;
+            width: 50%;
+            float: left;
+            .btn-social {
+                text-align: center;
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+.fieldset>.field .addon input {
+    width: 100%;
+}

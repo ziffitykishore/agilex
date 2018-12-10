@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Core
+ *
+ * @package    Ulmod_Core
+ * @author     Ulmod <support@ulmod.com>
+ * @copyright  Copyright (c) 2016 Ulmod (http://www.ulmod.com/)
+ * @license    http://www.ulmod.com/license-agreement.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+    <tab id="um_extensions" translate="label" sortOrder="888777"  class="ulmod-tab">
+       <label>Ulmod Extensions</label>
+    </tab> 
+    </system>
+</config>
+

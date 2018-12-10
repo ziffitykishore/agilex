@@ -17,14 +17,6 @@ atlassian*
 /app/config_sandbox
 /app/etc/config.php
 /app/code/Magento/TestModule*
-/lib/internal/flex/uploader/.actionScriptProperties
-/lib/internal/flex/uploader/.flexProperties
-/lib/internal/flex/uploader/.project
-/lib/internal/flex/uploader/.settings
-/lib/internal/flex/varien/.actionScriptProperties
-/lib/internal/flex/varien/.flexLibProperties
-/lib/internal/flex/varien/.project
-/lib/internal/flex/varien/.settings
 /node_modules
 /.grunt
 /Gruntfile.js
@@ -64,6 +56,8 @@ atlassian*
 !/var/.htaccess
 /vendor/*
 !/vendor/.htaccess
+!/vendor/magento/module-email/Model/AbstractTemplate.php
+!/vendor/shipperhq/
 /generated/*
 !/generated/.htaccess
 .DS_Store

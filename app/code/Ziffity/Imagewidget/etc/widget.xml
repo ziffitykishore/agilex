@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Ziffity\Imagewidget\Block\Widget\Customwidget" id="image">
+        <label>Image Chooser Widget</label>
+        <description></description>
+        <parameters>
+            <parameter name="customimage" xsi:type="block" visible="true" sort_order="10">
+                <label translate="true">Choose Image</label>
+                <description translate="true">Please select the  image</description>
+
+                <block class="Ziffity\Imagewidget\Block\Adminhtml\Widget\Type\Image">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string">Choose Image...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+
+        </parameters>
+		
+    </widget>
+</widgets>

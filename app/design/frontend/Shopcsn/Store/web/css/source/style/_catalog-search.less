@@ -1,0 +1,63 @@
+.catalogsearch-advanced-index {
+    .page-main {
+        .container-md();
+        .page-title-wrapper {
+            padding: 30px;
+            .bg-smoke();
+            .page-title {
+                font-size: 18px;
+                margin: 0;
+            }
+        }
+        form.search {
+            &.advanced {
+                padding: 30px;
+                margin-top: -1px;
+                .bg-smoke();
+            }
+        }
+        .findcoin {
+            padding: 30px;
+            margin-top: -1px;
+            .bg-smoke();
+        }
+        .fieldset>.field .addon input {
+            width: 100%;
+        }
+    }
+}
+
+.catalogsearch-result-index {
+    .search__result-tabs {
+        display: none;
+    }
+}
+
+.cms-find-your-coin {
+    .page-main>.page-title-wrapper {
+        .page-title {
+            padding: 20px 0;
+        }
+    }
+    #find_coin_form {
+        .fieldset {
+            margin-bottom: 0;
+            .legend {
+                display: none !important;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .catalogsearch-advanced-result {
+        &.page-products {
+            .page-main .toolbar-products {
+                text-align: right;
+                .sorter {
+                    position: relative;
+                }
+            }
+        }
+    }
+}

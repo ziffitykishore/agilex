@@ -1,0 +1,4 @@
+#For Dev Environment
+User-agent: *
+Disallow: /
+Disallow: /*

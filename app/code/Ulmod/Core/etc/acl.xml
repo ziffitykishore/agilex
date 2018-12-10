@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Core
+ *
+ * @package    Ulmod_Core
+ * @author     Ulmod <support@ulmod.com>
+ * @copyright  Copyright (c) 2016 Ulmod (http://www.ulmod.com/)
+ * @license    http://www.ulmod.com/license-agreement.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Ulmod_Core::um_all" title="Ulmod Core Section" sortOrder="888888"/>
+            </resource>
+        </resources>
+    </acl>
+</config>

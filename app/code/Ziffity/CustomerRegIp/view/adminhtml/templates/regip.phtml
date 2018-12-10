@@ -1,0 +1,27 @@
+<?php if($this->getCustomerId()): ?>
+<div class="entry-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-customer-view-remoteip">
+            <?php if ($this->isCustomerCreatedInAdmin()): ?>
+                <?php echo __('Admin IP during creation') ?>
+            <?php else: ?>
+                <?php echo __('Remote IP during registration') ?>
+            <?php endif; ?>
+        </h4>
+    </div>
+    <table cellspacing="2" class="box-left data-grid table">
+        <tr>
+            <td><strong><?php echo __('Remote Address:') ?></strong> <?php echo $this->getCustomerRegIpHtml(); ?></td>
+        </tr>
+        <tr>
+            <?php if ($this->isValidIp()): ?>
+                <td>
+                    <button onclick="window.open('http://www.ip2location.com/<?php echo $this->getCustomerRegIp() ?>', 'lookup', ''); return false;"><span><?php echo __('ip2location.com Lookup') ?></span></button>
+                </td>
+            <?php endif; ?>
+        </tr>
+    </table>
+</div>
+<?php else:
+    echo 'We are not showing the ip address while creating new customer';
+endif;

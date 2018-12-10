@@ -1,0 +1,533 @@
+.modal-popup{
+    z-index: 99999 !important;
+}
+
+.modals-overlay{
+    z-index: 99998 !important;
+}
+
+.customer-forgetpassword-popup,
+.custom-block-customer-signup,
+.custom-block-customer-login,
+.confirm-popup {
+    &.modal-popup {
+        .modal-inner-wrap {
+            width: 100%;
+            margin: 0;
+            max-height: 100%;
+            height: 100%;
+            .modal-header {
+                border: none;
+                width: 50px;
+                height: 50px;
+                position: absolute;
+                right: 0;
+                z-index: 9;
+            }
+            .modal-content {
+                padding: 0;
+                border: 0;
+                box-shadow: none;
+                .field {
+                    .text-small p {
+                        line-height: 20px;
+                        font-size: 12px;
+                        padding: 5px 0;
+                    }
+                }
+                div.mage-error[generated] {
+                    position: relative;
+                }
+            }
+        }
+        &.modal-slide {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    }
+
+ 
+}
+
+
+.customer-account-confirmation, 
+.customer-account-forgotpassword, 
+.customer-account-create,
+.customer-account-login {
+    .page-footer {
+        .footer-news-wrapper{
+            margin-top: 0;
+        }
+    }
+}
+
+.customer-forgetpassword-popup {
+    .fieldset {
+        margin-bottom: 0;
+    }
+}
+
+.log-in {
+    background: url(../images/login_image.jpg) no-repeat left bottom;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    .sign-in-page {
+        position: absolute;
+        top: 40%;
+        left: 25%;
+        .heading {
+            font-size: 60px;
+            color: #fff;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+            color: #d7dded;
+        }
+    }
+    .block-customer-login {
+        background-color: #fff;
+        position: absolute;
+        height: 100%;
+        max-width: 445px;
+        width: 100%;
+        top: 0;
+        right: 0;
+        overflow: auto;
+        z-index: 999;
+        display: flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .bk-to-arw {
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            color: @color-black;
+            position: fixed;
+        }
+        .common-form {
+            a {
+                color: #1c3f93;
+                &:hover {
+                    color: #1c3f93;
+                }
+            }
+            &.sign-in {
+                padding: 26% 50px;
+                background: #fff;
+            }
+            &.sign-up {
+                padding: 12% 50px;
+                background: #fff;
+            }
+            &.forgot-password {
+                height: 100%;
+                padding: 60% 50px;
+                background: #fff;
+            }
+            .account,
+            .forget {
+                min-width: auto;
+                width: 100%;
+            }
+            /****** heading-color*********/
+            .main-head {
+                color: #1c3f93;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+            /********** input field********/
+            .form {
+                &.send {
+                    &.confirmation {
+                        width: auto;
+                        min-width: auto;
+                        .secondary {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .form-group {
+                .form-control-wrap {
+                    display: block;
+                    position: relative;
+                    .valid+.mage-error {
+                        position: absolute;
+                        background-repeat: no-repeat;
+                        top: 35%;
+                        right: 0;
+                        bottom: 0;
+                        left: 90%;
+                    }
+                }
+            }
+            .remember {
+                label.cbox1 {
+                    position: relative;
+                    padding-left: 10px;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        border: 1px solid #d7dded;
+                        left: -10px;
+                        top: 2px;
+                        width: 13px;
+                        height: 13px;
+                    }
+                    &:after {
+                        content: '';
+                        background-image: url(../images/checked.png);
+                        background-size: cover;
+                        position: absolute;
+                        opacity: 0;
+                        left: -9px;
+                        top: 2px;
+                        width: 12px;
+                        height: 12px;
+                    }
+                    & span {
+                        font-weight: normal;
+                    }
+                }
+                input#boxc,
+                input#signup-check {
+                    opacity: 0;
+                    &:checked+label:after {
+                        opacity: 1;
+                    }
+                }
+            }
+            .new-signup,
+            .already-account {
+                margin-top: 15px;
+                p {
+                    font-size: 12px;
+                    line-height: normal;
+                }
+            }
+            .actions-toolbar {
+                .primary {
+                    width: 100%;
+                    float: none;
+                }
+                button {
+                    width: 100%;
+                    margin-top: 0;
+                }
+            }
+            .field {
+                .input-text {
+                    height: 50px;
+                    width: 100%;
+                    padding: 10px 15px;
+                }
+            }
+            .secondary a {
+                color: #000;
+                text-decoration: none;
+            }
+            /***** button-color-width********/
+            .button-full {
+                margin-top: 10px;
+                margin-right: 10px;
+                border-radius: 0;
+                width: 100%;
+                height: 50px;
+                font-weight: bold;
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+        .social {
+            padding: 50px 20px;
+            background-color: #d7dded;
+            width: 100%;
+            text-align: center;
+
+            .heading{
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 1.1;
+            }
+            .social-media {
+                .list-inline>li.social-links {
+                    padding-left: 0;
+                }
+            }
+            .account-social-login {
+                margin-bottom: 0;
+            }
+            .social-links {
+                line-height: 1;
+                background-color: #fff;
+                border-radius: 0;
+                border: 1px solid #d7dded;
+                width: 155px;
+                &:a {
+                    text-decoration: none;
+                }
+                .social-icon {
+                    float: left;
+                    border-right: 1px solid #d7dded;
+                    padding: 12px;
+                }
+                .button-social {
+                    background-color: #fff;
+                    color: #000;
+                    border-radius: 0;
+                    display: block;
+                }
+                .social-text {
+                    width: calc(100% - 80px);
+                    margin-left: 15px;
+                    float: left;
+                    padding: 17px 0;
+                }
+            }
+            .social-media .media-second {
+                margin-left: 35px;
+            }
+        }
+    }
+}
+
+.modal-popup {
+    .action-close {
+        z-index: 1;
+    }
+    &.confirm {
+        .modal-inner-wrap {
+            width: 50%;
+        }
+        .modal-content {
+            padding: 20px;
+        }
+    }
+    .modal-content {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+    }
+    &.call-price {
+        .modal-inner-wrap {
+            max-width: 500px;
+            .modal-content {
+                padding: 20px;
+                .contact-title {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    display: none;
+                }
+            }
+        }
+    }
+    &.call-price {
+        .modal-header {
+            background: @color-darkslateblue;
+            padding: 12px 20px 12px;
+            .modal-title {
+                color: @color-white;
+                padding: 0;
+                border: none;
+                text-transform: uppercase;
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .action-close {
+                padding: 10px;
+                &:before {
+                    color: @color-white;
+                }
+            }
+        }
+    }
+    .modal-footer {
+        button {
+            .button();
+            &:focus,
+            &:active {
+                .lib-css(background, @color-black);
+                border: 1px solid @color-black;
+            }
+            &:hover {
+                .lib-css(background, @color-btn);
+                .lib-css(border-color, @color-btn);
+            }
+        }
+    }
+}
+
+/***************** common classes ****************/
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.padding-zero {
+    padding: 0;
+}
+
+.font-bold {
+    font-weight: bold;
+    color: #000;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.req-col {
+    color: red;
+}
+
+.txt-grey {
+    color: #c2c2c2;
+}
+
+.ptb-20 {
+    padding: 20px 0;
+}
+
+.ptb-10 {
+    padding: 10px 0;
+}
+
+@media screen and (max-width: 1366px) {
+    .log-in {
+        .block-customer-login {
+            .common-form.sign-in {
+                padding: 15% 50px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .customer-forgetpassword-popup,
+    .custom-block-customer-signup,
+    .custom-block-customer-login,
+    .confirm-popup.modal-popup {
+        .sign-in-page {
+            display: none;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .customer-forgetpassword-popup,
+    .custom-block-customer-signup,
+    .custom-block-customer-login,
+    .confirm-popup {
+        &.modal-popup {
+            .modal-inner-wrap {
+                header.modal-header {
+                    background: transparent;
+                }
+                .modal-content {
+                    .common-form {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+                    .log-in {
+                        position: relative;
+                    }
+                    .block-customer-login {
+                        position: static;
+                        max-width: none;
+                        height: auto;
+                        overflow: visible;
+                        display: block;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            .social {
+                padding: 20px;
+            }
+        }
+        .account-social-login {
+            .actions-toolbar {
+                &.social-btn {
+                    width: 50%;
+                    float: left;
+                    margin: 0;
+                    padding: 0 10px;
+                }
+            }
+        }
+    }
+    aside.modal-popup {
+        &.modal-slide {
+            left: 10px;
+            right: 10px;
+            top: 10px;
+            bottom: 10px;
+        }
+        &.call-price {
+            bottom: auto;
+        }
+    }
+    .custom-g-recaptcha {
+        .transform(scale(0.8));
+    }
+
+    .customer-forgetpassword-popup {
+        .block-customer-login {
+            .common-form.forgot-password{
+                padding: 52% 50%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 767px) {
+    aside.modal-popup {
+        &.confirm {
+            .modal-inner-wrap {
+                width: 90%;
+            }
+        }
+
+        &.modal-slide._inner-scroll {
+            .modal-inner-wrap{
+                background: @color-white;
+            }
+        }
+    }
+
+    
+}

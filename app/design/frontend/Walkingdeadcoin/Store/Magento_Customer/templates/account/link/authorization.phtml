@@ -1,0 +1,33 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Account\AuthorizationLink $block */
+
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+
+<?php 
+if ($block->isLoggedIn()) {?>
+<li class="authorization-link <?php if ($block->isLoggedIn()) { echo 'logged'; } ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+    <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+    <i class="fa fa-user"></i><?= $block->escapeHtml($block->getLabel()) ?>
+    </a>
+</li>
+<?php  }?>
+<?php 
+if (!$block->isLoggedIn()) { ?>
+    
+    <li class="signin-link <?php if ($block->isLoggedIn()) { echo 'logged'; } ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+    <a <?= /* @noEscape */ ($block->isLoggedIn()) ? $block->getLinkAttributes() : 'id="login-popup" href="javascript:void(0)" class="trigger-auth-popup"'; ?><?= /* @noEscape */ $dataPostParam ?>>
+    <i class="fa fa-user"></i><span><?= $block->escapeHtml($block->getLabel()) ?></span>
+    </a>
+</li>
+<?php }?>

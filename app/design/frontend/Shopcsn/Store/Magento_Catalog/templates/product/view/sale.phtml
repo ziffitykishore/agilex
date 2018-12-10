@@ -1,0 +1,18 @@
+<?php
+$_product = $block->getProduct();
+/*ziffity special price sale badge*/
+$specialprice = $_product->getSpecialPrice();
+$specialPriceFromDate = $_product->getSpecialFromDate();
+$specialPriceToDate = $_product->getSpecialToDate();
+$today =  time();
+ if ($specialprice){
+    if($today >= strtotime( $specialPriceFromDate)
+        && $today <= strtotime($specialPriceToDate)
+        || $today >= strtotime( $specialPriceFromDate)
+        && is_null($specialPriceToDate)
+    ){
+?>
+<div class="product-label"><span class="sale-product-icon">Sale</span></div>
+<?php
+    }
+}

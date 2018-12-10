@@ -1,0 +1,42 @@
+.message {
+    &.info {
+        border: 1px solid #6f4400;
+    }
+    &.error {
+        border: 1px solid #e02b27;
+    }
+    &.success {
+        border: 1px solid #006400;
+    }
+}
+
+.cms-index-index {
+    .messages {
+        .message {
+            margin-bottom: 0;
+        }
+    }
+}                
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .cms-index-index {
+        
+            .message {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+        
+    } 
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cms-index-index {
+        .messages {
+            .message {
+                margin-left: 0px;
+                margin-right: 0px;
+            }
+        }
+    } 
+}

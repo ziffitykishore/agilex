@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Xtento_SavedCc::configuration" title="Saved Credit Cards" module="Xtento_SavedCc" sortOrder="153" parent="Xtento_XtCore::extensions" action="adminhtml/system_config/edit/section/xtsavedcc" resource="Xtento_SavedCc::configuration"/>
+    </menu>
+</config>
+<!--
+/**
+ * Product:       Xtento_SavedCc (1.0.7)
+ * ID:            NZWbKguR/Yb8QYk68QaZWfj7V5pl/BlDdubJ/+3MKvg=
+ * Packaged:      2018-09-18T14:51:41+00:00
+ * Last Modified: 2017-08-16T14:07:08+00:00
+ * File:          app/code/Xtento/SavedCc/etc/adminhtml/menu.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

@@ -1,0 +1,148 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .footer-news-wrapper{
+        background: #32529e;
+        padding: 30px 0;
+        
+        .cms-index-index &{
+            margin-top: 50px;
+        }
+    }
+
+    //  Newsletter subscription
+    .block.newsletter {
+        margin-bottom: 0;
+        div.mage-error{
+            .pos(absolute);
+        }
+        .sign-up {
+            color: #fff;
+            .heading {
+                margin: 0;
+                line-height: normal;
+                font-size: 18px;
+                font-weight: bold;
+            }
+            p {
+                font-size: 14px;
+                color: @color-white;
+            }
+        }
+         .action.subscribe{
+            background-color: #e42129;
+            border:1px solid #e42129;
+        }
+        .fa-chevron-right {
+            color:#fff;
+        }
+        .form.subscribe {
+            
+            width: 100%;
+            position: relative;
+            background: @color-white;
+        }
+        
+        .field {
+            margin: 0;
+
+            .control {
+                
+                display: block;
+
+                &:before {
+                    position: absolute;
+                }
+            }
+        }
+
+        input {
+            padding-left: 20px;
+            padding-right: 50px;
+            background: transparent;
+            border: none;
+            height: 44px;
+            color: #606060;
+            font-size: 13px;
+            font-weight: normal;
+
+        }
+
+
+        input, button{
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .title {
+            display: none;
+        }
+
+        .label {
+            &:extend(.abs-visually-hidden all);
+        }
+
+        .actions {
+            position: absolute;
+            top: 0;
+            right: 0;
+            
+        }
+
+        .action.subscribe {
+            margin-left: -1px;
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 0;
+
+        }
+
+        
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+
+.block.newsletter {
+    .sign-up {
+        margin-bottom: 30px;
+        p {
+            font-size: 11px;
+        }
+    }
+
+    .content {
+        & > *{
+            padding: 0;
+        }
+    }
+
+}
+
+.page-footer {
+    .block.newsletter {
+        .sign-up {
+            margin-bottom: 0;
+        }
+    }
+}
+
+}
+
+
+
+

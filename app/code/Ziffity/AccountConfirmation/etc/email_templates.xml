@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Email/etc/email_templates.xsd">
+    <template id="ziff_ziffity_accountconfirmation_resend_confirmation_mail" label="Account Confirmation Resend Email Template" file="ziffity_template_email.html" type="html" module="Ziffity_AccountConfirmation" area="frontend"/>
+</config>

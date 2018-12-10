@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">        
+    <referenceBlock name="content">
+        <block 
+            template="contact.phtml" 
+            class="Ziffity\Webforms\Block\Main" 
+            name="ziffity_webforms_table"/>
+    </referenceBlock>
+    <referenceBlock name="content">
+        <block 
+            template="find_coin.phtml" 
+            class="Ziffity\Webforms\Block\Main" 
+            name="ziffity_webforms_coin_table"/>
+    </referenceBlock>
+</page>    

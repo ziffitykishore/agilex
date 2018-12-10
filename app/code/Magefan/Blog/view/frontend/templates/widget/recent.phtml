@@ -1,0 +1,75 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog recent posts widget
+ *
+ * @var $block \Magefan\Blog\Block\Widget\Recent
+ */
+?>
+
+<?php
+    $_postCollection = $block->getPostCollection();
+?>
+<?php if ($_postCollection->count()) { ?>
+<div class="blog-wrapper">
+    <div class="container">
+        <div class="blog-outer br whitesmoke">
+            <div class="heading-sec clearfix">
+                <h2 class="title-heading pull-left"><?php echo __('Blogs') ?></h2>
+                <a href="<?php echo $this->getUrl('blog') ?>" class="text-uppercase pull-right btn-view btn-bor">
+                    <span><?php echo __('View More') ?></span>
+                </a>
+                
+           
+                
+            </div>
+
+            <div class="blog-content-wrap clearfix">
+                <div class="blog-slider">
+                <?php foreach ($_postCollection as $_post) { ?>
+                <?php
+                    $_postUrl = $_post->getPostUrl();
+                    $_postName = $block->escapeHtml($_post->getTitle(), null, true);
+                ?>
+                <div class="col-sm-4 blog-item">
+                    <div class="blog-item_inner">
+                        <a href="<?php echo $_postUrl ?>" class="blog-image" title="<?php echo $_postName; ?>">
+                            <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
+                                <img src="<?php echo $featuredImage ?>"  alt="<?php echo $_postName; ?>" class="full-w img-responsive" />
+                            <?php } ?>
+                            <div class="blog-date"> 
+                                <div class="date-sec">
+                                    <?php echo $_post->getPublishDate('d') ?>
+                                    <span><?php echo $_post->getPublishDate('M') ?></span>
+                                </div>
+                            </div>
+                        
+                        </a>
+                        <div class="blog-content">
+                            <div class="blog-title">
+                                <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName; ?>"><?php echo $block->setWordsLimit($_postName, 4). '...'; ?></a>
+                            </div>
+                            <div class="blog-desc">
+                                <?php $shortcontent = preg_replace("/<img[^>]+\>/i", "", $block->getShorContent($_post), 1); ?>
+                                <?php echo $block->setWordsLimit($shortcontent, 25). ' ...'; ?> 
+                            </div>
+                            <a class="more-btn" href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                                <span><?php echo __('Read more') ?></span>
+                            </a>
+                        </div>
+                            </div>
+                </div>
+                <?php } ?>
+                            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php } ?>

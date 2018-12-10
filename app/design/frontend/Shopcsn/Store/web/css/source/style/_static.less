@@ -1,0 +1,624 @@
+/*****************Static-Pages****************/
+
+.cms-page-view {
+    .page-title {
+        padding: 20px 0;
+        margin-bottom: 20px;
+    }
+    .breadcrumbs {
+        margin: 0;
+    }
+
+    .certification{
+        margin-bottom: 0;
+    }
+}
+
+.gallery img {
+    width: 100%;
+}
+
+.cms-bca {
+    .banner {
+        margin: 20px 0;
+    }
+    .block-products-list {
+        padding: 0;
+    }
+}
+
+
+.cms-shopcsntv-about-us {
+    .page-main{
+    .main{
+        padding-bottom: 0;
+    }
+}
+}
+
+/********** privacy-policy ************/
+
+.cms-shopcsntv-privacy-policy,
+.cms-shopcsntv-faq,
+.cms-shopcsntv-guarentee {
+    color: @color-black;
+    .nav-tabs {
+        float: none !important;
+    }
+    .page-main {
+        width: 100%;
+        max-width: none;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.cms-shopcsntv-privacy-policy .page-main {
+    width: 100%;
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.privacy {
+    a {
+        font-size: 13px;
+        font-weight: bold;
+    }
+    .fq-privacy {
+        ul {
+            margin: 0;
+            padding: 0 15px;
+            li {
+                color: @color-black;
+                font-size: 16px;
+                list-style-type: circle;
+                list-style-position: outside;
+            }
+        }
+    }
+    .fq-delivery {
+        td {
+            width: 50%;
+        }
+    }
+    .nav-tabs {
+        text-align: center;
+        background-color: #f2f5f8;
+        border: 1px solid #d7dded;
+        float: none;
+        padding-top: 10px;
+        li {
+            float: none;
+            display: inline-block;
+            a {
+                &:hover {
+                    color: #000;
+                }
+            }
+        }
+        &.full-bg {
+            li {
+                width: 155px;
+                background-color: #fff;
+                color: #000;
+                margin-left: 20px;
+                padding: 0;
+                &.active {
+                    background: #1c3f93;
+                    &:after {
+                        border: 10px solid;
+                        border-left-color: transparent !important;
+                        border-right-color: transparent !important;
+                        border-bottom-color: transparent !important;
+                        position: absolute;
+                        bottom: -20px;
+                        width: 20px;
+                        margin: 0 auto;
+                        text-align: center;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        border-color: #1c3f93;
+                        content: "";
+                    }
+                    a {
+                        color: #fff;
+                        &:hover {
+                            color: #fff !important;
+                        }
+                    }
+                }
+                a {
+                    padding: 10px;
+                    &:before {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+h1 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 16px;
+    line-height: 2;
+    color: @color-black;
+} //************ catalog page  *************/
+.detail {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    .book {
+        padding: 50px 70px;
+        border: 1px solid #d7dded;
+        display: table-cell;
+        vertical-align: top;
+        width: 50%;
+        .item {
+            width: 100%;
+            box-shadow: 0 0px 8px 4px rgba(0, 0, 0, 0.2);
+        }
+        .browse-book {
+            padding: 50px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            cursor: pointer;
+            margin: 0;
+        }
+    }
+    .book-detail {
+        padding: 50px 70px;
+        border: 1px solid #d7dded;
+        display: table-cell;
+        margin-left: -1px;
+        vertical-align: top;
+        width: 50%;
+        .fill-issue {
+            h2 {
+                margin-top: 0;
+                margin-bottom: 55px;
+                font-size: 20px;
+            }
+        }
+        .block-content {
+            select {
+                max-width: 445px;
+                width: 100%;
+                height: 50px;
+                background: #fff;
+                border: 1px solid #d7dded;
+            }
+            .actions-toolbar {
+                .primary {
+                    width: 100%;
+                }
+            }
+            .button-full {
+                margin-top: 10px;
+                margin-right: 10px;
+                background-color: red;
+                color: #fff;
+                border: 1px solid transparent;
+                border-radius: 0;
+                max-width: 445px;
+                width: 100%;
+                height: 50px;
+                font-weight: bold;
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+} //contact-us page style //
+.contact {
+    .device {
+        p {
+            font-size: 13px;
+        }
+        padding: 30px;
+        &:after {
+            content: '';
+            width: 1px;
+            height: 165px;
+            background-color: #d7dded;
+            left: 100%;
+            position: absolute;
+            display: block;
+            top: 10px;
+        }
+
+        .heading {
+            font-weight: 500;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+    }
+    .email {
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.message {
+    .sub-title {
+        margin-bottom: 45px;
+    }
+    .map {
+        height: 500px;
+        border: 10px solid #d7dded;
+    }
+    .field .input-text {
+        max-width: 100%;
+        height: 50px;
+        border: 1px solid #d7dded;
+        width: 100%;
+        padding: 10px 15px;
+    }
+    .secondary a {
+        color: #000;
+        text-decoration: none;
+    }
+    /***** button-color-width********/
+    .button-full {
+        margin-top: 10px;
+        margin-right: 10px;
+        background-color: #040404;
+        color: #fff;
+        border: 1px solid #000;
+        border-radius: 0;
+        height: 50px;
+        font-weight: bold;
+        padding: 0 20px;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.container-sm {
+    max-width: 770px;
+    width: 100%;
+    margin: 0 auto;
+    .main {
+        h2 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        p {
+            font-size: 16px;
+            color: @color-black;
+        }
+        margin-top: 45px;
+        line-height: 2;
+        .video-img {
+            position: relative;
+            .btn-fancy {
+                position: absolute;
+                top: 40%;
+                left: 45%;
+                width: 80px;
+                height: 80px;
+                border: 1px solid #d7dded;
+                background: #d7dded;
+                border-radius: 50%;
+                &:hover {
+                    background: #717379;
+                    border: 1px solid #717379;
+                }
+                .play-icon {
+                    width: 60px;
+                    height: 60px;
+                    line-height: 60px;
+                    background: #fff;
+                    position: relative;
+                    display: block;
+                    margin: 0 auto;
+                    text-align: center;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    z-index: 1;
+                    top: 8px;
+                    .fa-play {
+                        position: absolute;
+                        top: 40%;
+                        left: 40%;
+                        color: red;
+                    }
+                }
+            }
+        }
+        /*********** careers page *************/
+        .panel-group {
+            h2 {
+                font-size: 18px;
+            }
+            h3 {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            p {
+                font-size: 13px;
+            }
+            border: 1px solid #d7dded;
+            .panel {
+                border-radius: 0;
+                &.panel-default {
+                    border-color: #fff;
+                }
+                .panel-heading {
+                    background-color: #fff;
+                    a {
+                        text-decoration: none;
+                    }
+                    [aria-expanded="false"] .menu__icon--open {
+                        display: block;
+                    }
+                    [aria-expanded="false"] .menu__icon--close {
+                        display: none;
+                    }
+                    [aria-expanded="true"] .menu__icon--open {
+                        display: none;
+                    }
+                    [aria-expanded="true"] .menu__icon--close {
+                        display: block;
+                    }
+                }
+            }
+            .panel-collapse {
+                padding: 30px;
+                border-top: 1px solid #d7dded;
+                .table {
+                    border: 1px solid #d7dded;
+                    background: #f2f5f8;
+                    >tbody {
+                        >tr {
+                            border: 1px solid #d7dded;
+                            >td {
+                                padding: 10px 20px;
+                                border-right: 1px solid #d7dded;
+                                width: 50%;
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+                .sell-csn,
+                .qualification {
+                    ul {
+                        margin: 0;
+                        padding: 0 15px;
+                        li {
+                            color: #020202;
+                            font-size: 13px;
+                            list-style-type: circle;
+                            list-style-position: outside;
+                        }
+                    }
+                }
+                .apply {
+                    a {
+                        color: red;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/***************** common classes ****************/
+
+.container-sm {
+    .container-sm();
+}
+
+.container-md {
+    .container-md();
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.mb-30 {
+    margin-bottom: 30px;
+}
+
+.mb-40 {
+    margin-bottom: 40px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.padding-zero {
+    padding: 0;
+}
+
+.font-bold {
+    font-weight: bold;
+    color: #000;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.req-col {
+    color: red;
+}
+
+.txt-grey {
+    color: #c2c2c2;
+}
+
+.ptb-20 {
+    padding: 20px 0;
+}
+
+.ptb-10 {
+    padding: 10px 0;
+}
+
+/*************** responsive static page   ***********/
+
+@media only screen and (min-width:1200px) {
+    .page-footer {
+        .sponsor {
+            ul {
+                width: 920px;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .cms-page-view {
+        .columns {
+            .columns {
+                .main {
+                    padding-bottom: 0;
+                }
+            }
+        }
+
+        
+    }
+    .cms-bca {
+        .block-products-list {
+            padding: 0;
+        }
+    }
+    .container-sm {
+        padding: 0 15px;
+        .gallery {
+            float: none !important;
+            text-align: center;
+        }
+    }
+    .cms-shopcsntv-about-us, .cms-about-us {
+        .main{
+            padding-bottom: 0;
+        }
+
+        .columns .column.main{
+            padding-bottom: 0;
+        }
+        .container-sm {
+            .video-img {
+                .btn-fancy {
+                    top: 28%;
+                    left: 38%;
+                }
+            }
+        }
+        .gallery :last-child {
+            float: none;
+        }
+    }
+    .cms-shopcsntv-contactus {
+        .device {
+            &:after {
+                display: none;
+            }
+        }
+    }
+    .cms-shopcsntv-catalog {
+        .detail {
+            display: block;
+            .book {
+                display: block;
+                width: 100%;
+            }
+            .book-detail {
+                display: block;
+                width: 100%;
+                border-top: none;
+                select {
+                    max-width: none;
+                    width: 100% !important;
+                }
+                .button-full {
+                    max-width: none;
+                }
+            }
+        }
+    }
+    .cms-shopcsntv-privacy-policy,
+    .cms-shopcsntv-guarentee,
+    .cms-shopcsntv-faq {
+        .privacy {
+            .nav-tabs {
+                &.full-bg {
+                    li {
+                        width: 100%;
+                        margin: 0;
+                        &.active {
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container-sm {
+        .main {
+            .panel-group {
+                .panel-collapse {
+                    padding: 20px;
+                    .table {
+                        >tbody {
+                            >tr {
+                                >td {
+                                    padding: 8px;
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .detail {
+        .book-detail,
+        .book {
+            padding: 30px 20px;
+        }
+    }
+}

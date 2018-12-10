@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <xtsavedcc>
+            <general>
+                <enabled>0</enabled>
+                <show_cc_info_backend>1</show_cc_info_backend>
+                <show_wipe_button_backend>1</show_wipe_button_backend>
+                <show_cc_info_masked>1</show_cc_info_masked>
+            </general>
+        </xtsavedcc>
+        <payment>
+            <xtsavedcc>
+                <model>XtSavedCcFacade</model>
+                <title>Credit Card</title>
+                <order_status>processing</order_status>
+                <active>1</active>
+                <is_offline>1</is_offline>
+                <can_edit>1</can_edit>
+                <can_use_checkout>1</can_use_checkout>
+                <can_use_internal>1</can_use_internal>
+                <useccv>0</useccv>
+                <allowspecific>0</allowspecific>
+                <min_order_total>0</min_order_total>
+                <cctypes>AE,VI,MC,DI,JCB</cctypes>
+                <paymentInfoKeys>cc_last_4,cc_type,cc_exp_month,cc_exp_year,cc_number_enc,cc_cid_enc</paymentInfoKeys>
+                <privateInfoKeys>cc_number_enc,cc_cid_enc</privateInfoKeys>
+            </xtsavedcc>
+        </payment>
+    </default>
+</config>
+<!--
+/**
+ * Product:       Xtento_SavedCc (1.0.7)
+ * ID:            NZWbKguR/Yb8QYk68QaZWfj7V5pl/BlDdubJ/+3MKvg=
+ * Packaged:      2018-09-18T14:51:41+00:00
+ * Last Modified: 2018-09-04T08:52:42+00:00
+ * File:          app/code/Xtento/SavedCc/etc/config.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

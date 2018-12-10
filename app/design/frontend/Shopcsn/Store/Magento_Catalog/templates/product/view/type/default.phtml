@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */ ?>
+<?php $_product = $block->getProduct() ?>
+<?php 
+$outofStockStatus = '';
+if($_product->getTypeId() == 'configurable') {
+    $outofStockStatus = $this->helper('Ziffity\Core\Helper\Data')->getOutOfStockStatus('configure_detail_page');
+}
+?>
+<input type="hidden" class="getOutOfStatus" value="<?php echo $outofStockStatus; ?>" />
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+        <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+            <strong>Status: <span><?= /* @escapeNotVerified */ __('Available') ?></span></strong>
+        </div>
+        <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>" style="display:none;">
+            <strong>Status: <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></strong>
+        </div>
+    <?php else: ?>
+        <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+            <strong>Status: <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></strong>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

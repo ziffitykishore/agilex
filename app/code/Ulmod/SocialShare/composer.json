@@ -1,0 +1,15 @@
+{
+    "name": "ulmod/module-socialshare",
+    "description": "Social Share for Magento 2 by Ulmod",
+    "require": {
+        "ulmod/module-core": "*"		
+    },
+    "type": "magento2-module",
+    "version": "2.1.1",
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Ulmod\\SocialShare\\": ""
+        }
+    }
+}

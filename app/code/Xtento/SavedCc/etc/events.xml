@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="payment_method_assign_data_xtsavedcc">
+        <observer name="xtento_savedcc_data_assign" instance="Xtento\SavedCc\Observer\DataAssignObserver" />
+    </event>
+    <event name="payment_method_is_active">
+        <observer name="xtento_savedcc_is_method_active" instance="Xtento\SavedCc\Observer\IsMethodActiveObserver" />
+    </event>
+</config>
+<!--
+/**
+ * Product:       Xtento_SavedCc (1.0.7)
+ * ID:            NZWbKguR/Yb8QYk68QaZWfj7V5pl/BlDdubJ/+3MKvg=
+ * Packaged:      2018-09-18T14:51:41+00:00
+ * Last Modified: 2017-08-12T16:30:37+00:00
+ * File:          app/code/Xtento/SavedCc/etc/events.xml
+ * Copyright:     Copyright (c) 2018 XTENTO GmbH & Co. KG <info@xtento.com> / All rights reserved.
+ */
+-->

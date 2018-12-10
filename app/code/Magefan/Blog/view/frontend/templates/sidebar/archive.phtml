@@ -1,0 +1,62 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog sidebar archive template
+ *
+ * @var $block \Magefan\Blog\Block\Sidebar\Archive
+ */
+?>
+
+<?php
+$_months = $block->getMonths();
+$years = $block->getYearMonthWiseArchive();
+//echo '<pre>';var_dump($years);exit;
+// echo '<pre>';var_dump($block->postCount());exit;
+
+?>
+<?php if (count($_months)) { ?>
+    <div class="widget block block-archive" data-bind="scope: 'blog-archive'">
+        <h2 class="block-title">
+            <strong><?php echo __('Archive') ?></strong>
+        </h2>
+        <div class="block-content archive panel-group mb-20" id="accordion" role="tablist" aria-multiselectable="true">
+            
+                <?php $i = 1; ?>
+                <?php foreach ($years as $key => $year) { ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <a data-toggle="collapse" href="#" onclick="return false;" data-parent="#accordion" class="collapsed" data-target="#yrfilter-<?= $i ?>" aria-expanded="false">
+                            <i class="fa fa-plus"></i> <?= $key; ?>
+                            </a>
+                        </div>
+                    </div>
+                    <div id="yrfilter-<?= $i ?>" class="filter-options-content  panel-collapse collapse" aria-expanded="false" >
+                        
+                            <?php foreach($year as $monthkey => $post) { ?>
+                                <div class="archive-link"><a href="<?= $post['url'] ?>"><?= $monthkey ?>  (<?= $post['count'] ?>)</a></div>   
+                            <?php } ?>
+                        
+                    </div>
+                <!--
+                <div class="item">
+                <a title="<?php //echo __('Archive %s', $title) ?>" class="archive-item-link" href="<?php //echo $block->getTimeUrl($time) ?>">
+                <?php //echo $title; ?>
+                </a>
+                </div>
+                -->
+                </div>
+                <?php $i++; ?>
+                <?php } ?>
+            
+        </div>
+    </div>
+<?php } ?>
+

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- added different for future purpose -->
+    <type name="Magento\SalesRule\Model\Rule\Action\Discount\CalculatorFactory">
+        <arguments>
+            <argument name="discountRules" xsi:type="array">
+                <item name="ampromo_items" xsi:type="string">Ziffity\Promo\SalesRule\Action\AmPromoItems</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\SalesRule\Model\Rule\Action\Discount\CalculatorFactory">
+        <arguments>
+            <argument name="discountRules" xsi:type="array">
+                <item name="ampromo_cart" xsi:type="string">Ziffity\Promo\SalesRule\Action\AmPromoCart</item>
+            </argument>
+        </arguments>
+    </type>
+<!--     Ziffity rewrite to show not visible product in minicart -->
+    <preference for="Magento\Checkout\CustomerData\Cart" type="Ziffity\Promo\CustomerData\Cart" />
+</config>
