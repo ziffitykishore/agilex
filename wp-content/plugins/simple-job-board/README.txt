@@ -4,7 +4,7 @@ Donate link: http://www.presstigers.com
 Tags: job board, career, job listing, job manager, job portal
 Requires at least: 4.4
 Tested up to: 4.9.8
-Stable tag: 2.7.0
+Stable tag: 2.7.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -190,6 +190,9 @@ You can visit <a href="http://www.presstigers.com">PressTigers Website</a> or <a
 
 == Changelog ==
 
+= 2.7.1 =
+* Fix - Fixed the job application HTML issue.
+
 = 2.7.0 =
 * Feature - Added heading sections on job application form fields.
 * Feature - Revamped the job application HTML design.
@@ -339,5 +342,5 @@ Tweak - Introduced new filters in email notification templates.
 
 == Upgrade Notice ==
 
-= 2.7.0 =
-2.7.0 is a major release with new job application HTML and loader features.
+= 2.7.1 =
+2.7.1 is a minor release with the fix of job application HTML.
