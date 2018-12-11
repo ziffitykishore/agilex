@@ -104,7 +104,8 @@ do_action('sjb_job_application_before');
                             . '<div class="form-group">'
                             . '<input type="text" name="' . $name . '" class="form-control ' . $required_class . '" id="' . $id . '" ' . $is_required . '>'
                             . '</div>'
-                            . '</div>';
+                            . '</div>'
+                            . '<div class="clearfix"></div>';
                             break;
                         case 'text_area':
                             echo '<div class="col-md-3">'
@@ -114,7 +115,8 @@ do_action('sjb_job_application_before');
                             . '<div class="form-group">'
                             . '<textarea name="' . $name . '" class="form-control ' . $required_class . '" id="' . $id . '" ' . $is_required . '  cols="30" rows="5"></textarea>'
                             . '</div>'
-                            . '</div>';
+                            . '</div>'
+                            . '<div class="clearfix"></div>';
                             break;
                         case 'email':
                             echo '<div class="col-md-3">'
@@ -124,7 +126,8 @@ do_action('sjb_job_application_before');
                             . '<div class="form-group">'
                             . '<input type="email" name="' . $name . '" class="form-control sjb-email-address ' . $required_class . '" id="' . $id . '" ' . $is_required . '><span class="sjb-invalid-email validity-note">' . esc_html__('A valid email address is required.', 'simple-job-board') . '</span>'
                             . '</div>'
-                            . '</div>';
+                            . '</div>'
+                            . '<div class="clearfix"></div>';
                             break;
                         case 'phone':
                             echo '<div class="col-md-3">'
@@ -134,7 +137,8 @@ do_action('sjb_job_application_before');
                             . '<div class="form-group">'
                             . '<input type="tel" name="' . $name . '" class="form-control sjb-phone-number sjb-numbers-only ' . $required_class . '" id="' . $id . '" ' . $is_required . '><span class="sjb-invalid-phone validity-note" id="' . $id . '-invalid-phone">' . esc_html__('A valid phone number is required.', 'simple-job-board') . ' </span>'
                             . '</div>'
-                            . '</div>';
+                            . '</div>'
+                            . '<div class="clearfix"></div>';
                             break;
                         case 'date':
                             echo '<div class="col-md-3">'
@@ -144,7 +148,8 @@ do_action('sjb_job_application_before');
                             . '<div class="form-group">'
                             . '<input type="text" name="' . $name . '" class="form-control sjb-datepicker ' . $required_class . '" id="' . $id . '" ' . $is_required . ' maxlength="10">'
                             . '</div>'
-                            . '</div>';
+                            . '</div>'
+                            . '<div class="clearfix"></div>';
                             break;
                         case 'radio':
                             if ($val['options'] != '') {
@@ -159,7 +164,8 @@ do_action('sjb_job_application_before');
                                     echo '<label class="small"><input type="radio" name="' . $name . '" class=" ' . $required_class . '" id="' . $id . '" value="' . $option . '"  ' . sjb_is_checked($i) . ' ' . $is_required . '>' . $option . ' </label> ';
                                     $i++;
                                 }
-                                echo '</div></div>';
+                                echo '</div></div>'
+                                . '<div class="clearfix"></div>';
                             }
                             break;
                         case 'dropdown':
@@ -176,7 +182,8 @@ do_action('sjb_job_application_before');
                                 }
                                 echo '</select>'
                                 . '</div>'
-                                . '</div>';
+                                . '</div>'
+                                . '<div class="clearfix"></div>';
                             }
                             break;
                         case 'checkbox' :
@@ -193,7 +200,8 @@ do_action('sjb_job_application_before');
                                     echo '<label class="small"><input type="checkbox" name="' . $name . '[]" class="' . $required_class . '" id="' . $id . '" value="' . $option . '"  ' . $i . ' ' . $is_required . '>' . $option . ' </label>';
                                     $i++;
                                 }
-                                echo '</div></div>';
+                                echo '</div></div>'
+                                . '<div class="clearfix"></div>';
                             }
                             break;
                     }
@@ -224,7 +232,8 @@ do_action('sjb_job_application_before');
                 . '<input type="file" name="applicant_resume" id="applicant-resume" class="sjb-attachment form-control "' . apply_filters('sjb_resume_required', 'required="required"') . '>'
                 . '<span class="sjb-invalid-attachment validity-note" id="file-error-message"></span>'
                 . '</div>'
-                . '</div>';
+                . '</div>'
+                . '<div class="clearfix"></div>';
         echo apply_filters('sjb_attach_resume', $sjb_attach_resume);
 
         if (0 < $total_sections) {
