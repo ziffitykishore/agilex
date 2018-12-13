@@ -10,8 +10,10 @@
 ?>
 <?php if ($block->getRegistration()->isAllowed()): ?>
 <div class="block block-new-customer">
-<div class="new-signup text-center">
-                                <p>New User? <a href="javascript:void(0);" id="signup-modal">Sign Up</a></p>
-                            </div>
+    <div class="new-signup text-center">
+        <p>
+    <?= __('Don\'t have an account?')?> <a href="<?= $block->escapeUrl($block->getCreateAccountUrl()) ?>"><?= __('Sign Up') ?></a>
+        </p>
+    </div>
 </div>
 <?php endif; ?>
