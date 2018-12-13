@@ -9,17 +9,19 @@
  *
  * @category  Mirasvit
  * @package   mirasvit/module-fraud-check
- * @version   1.0.33
+ * @version   1.0.34
  * @copyright Copyright (C) 2018 Mirasvit (https://mirasvit.com/)
  */
 
 
+
 namespace Mirasvit\FraudCheck\Service;
 
-use Mirasvit\FraudCheck\Api\Service\MatchServiceInterface;
 use GeoIp2\Database\Reader as GeoIp2Reader;
-use Magento\Framework\DataObject;
 use Magento\Framework\App\CacheInterface;
+use Magento\Framework\DataObject;
+use Mirasvit\FraudCheck\Api\Service\MatchServiceInterface;
+use Mirasvit\FraudCheck\Model\Config;
 
 class MatchService implements MatchServiceInterface
 {
@@ -28,10 +30,14 @@ class MatchService implements MatchServiceInterface
      */
     private $cache;
 
+    private $config;
+
     public function __construct(
-        CacheInterface $cache
+        CacheInterface $cache,
+        Config $config
     ) {
-        $this->cache = $cache;
+        $this->cache  = $cache;
+        $this->config = $config;
     }
 
     /**
@@ -63,9 +69,12 @@ class MatchService implements MatchServiceInterface
      */
     public function getCoordinates($country, $city, $street, $province)
     {
-        $address = urlencode($country . ',' . $city . ',' . $street . ',' . $province);
-        $url = "http://maps.google.com/maps/api/geocode/json?address=$address&sensor=false";
+        if (!$country && !$city && !$street && !$province) {
+            return false;
+        }
 
+        $address  = urlencode($country . ',' . $city . ',' . $street . ',' . $province);
+        $url      = "https://maps.google.com/maps/api/geocode/json?address=$address&sensor=false&key=" . $this->config->getGoogleApiKey();
         $response = $this->requestUrl($url);
 
         if ($response->getData('status') == 'ZERO_RESULTS') {
@@ -96,7 +105,7 @@ class MatchService implements MatchServiceInterface
         foreach ($combinations as $nick) {
             $nick = strtolower($nick);
             if ($nick) {
-                $url = 'https://www.facebook.com/' . $nick;
+                $url     = 'https://www.facebook.com/' . $nick;
                 $headers = $this->requestHeaders($url);
 
                 if (strpos($headers, '404') === false) {
@@ -126,7 +135,7 @@ class MatchService implements MatchServiceInterface
         foreach ($combinations as $nick) {
             $nick = strtolower($nick);
             if ($nick) {
-                $url = 'https://www.twitter.com/' . $nick;
+                $url     = 'https://www.twitter.com/' . $nick;
                 $headers = $this->requestHeaders($url);
 
                 if (strpos($headers, '404') === false) {
@@ -156,7 +165,7 @@ class MatchService implements MatchServiceInterface
         foreach ($combinations as $nick) {
             $nick = strtolower($nick);
             if ($nick) {
-                $url = 'https://www.linkedin.com/in/' . $nick;
+                $url     = 'https://www.linkedin.com/in/' . $nick;
                 $headers = $this->requestHeaders($url);
 
                 if (strpos($headers, '404') === false) {
