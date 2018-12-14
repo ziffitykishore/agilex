@@ -138,7 +138,7 @@
                                data-password-min-length="8"
                                data-password-min-character-sets="3"
                                data-validate="{required:true,'maxlength':20,'validate-customer-password':true}">
-                        <div class="strength-meter" data-role="password-strength-meter" aria-live="polite">
+                        <div class="strength-meter" id="strength-meter" data-role="password-strength-meter" aria-live="polite">
                             <div  class="password-strength-meter">
                                 <?= $block->escapeHtml(__('Password Strength')) ?>:
                                 <span data-role="password-strength-meter-label">
@@ -278,8 +278,8 @@ function($, modal, googlecapjs) {
         isCheckoutPage = true;
     }
 
-    function pageReload(){
-        if(isCheckoutPage){
+    function pageReload(response){
+        if(isCheckoutPage && !response.errors){
             window.location.reload();
             return;
         }
@@ -340,7 +340,10 @@ function($, modal, googlecapjs) {
         closeModal();
         var ppModal = $('#popup-modal-signup');
         var popup = modal(optsignup, ppModal);
+        var meter = ppModal.find('#strength-meter');
         clearForm(ppModal);
+        meter.attr('class', '');
+        meter.find('[data-role="password-strength-meter-label"]').text('No Password');
         ppModal.modal('openModal').on('modalclosed', function() { 
             $('#popup-modal-signup div.mage-error').remove();
         });
@@ -379,8 +382,8 @@ function($, modal, googlecapjs) {
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#forget-password').serialize(true),								
-                success:function(response) { 
+                data: forgetPasswordForm.serialize(true),
+                success:function(response) {
                     if(response.success) {
                         $('#forget-popup').modal('closeModal');
                         $('.login-notify').fadeOut().html(response.message).fadeIn(100);
@@ -389,9 +392,9 @@ function($, modal, googlecapjs) {
                     } else {
                         $('.forget-notify').fadeOut().html(response.message).fadeIn(100);
                     }
+                    clearForm(forgetPasswordForm);
                 }
             });
-            clearForm(forgetPasswordForm);
         }
     });
     
@@ -409,7 +412,7 @@ function($, modal, googlecapjs) {
                 success:function(response) {
                     $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     $('.field').removeClass('focused');
-                    pageReload();
+                    pageReload(response);
                     if(!response.errors && !isCheckoutPage) {
                         window.location = "<?= $this->getUrl('customer/account') ?>";
                     }
@@ -482,15 +485,17 @@ function($, modal, googlecapjs) {
         }
     });
 
-    $('#confirm-popup-form').on('submit', function (event){
+    /*email reconfirmation form*/
+    var reCForm = $('#confirm-popup-form');
+    reCForm.on('submit', function (event){
         event.preventDefault();
-        if($('#confirm-popup-form').validation('isValid')) {
+        if(reCForm.validation('isValid')) {
             $.ajax({
                 url:'<?= $this->getUrl('ajaxlogin/account/confirmation'); ?>',
                 type:'POST',
                 showLoader: true,
                 dataType:'json',
-                data: $('#confirm-popup-form').serialize(true),
+                data: reCForm.serialize(true),
                 success:function(response) {
                     if(response.errors) {
                         $('.confirm-notify').fadeOut().html(response.message).fadeIn(100);
@@ -500,6 +505,7 @@ function($, modal, googlecapjs) {
                         $('#popup-modal').modal('openModal');
                         $('.login-notify').fadeOut().html(response.message).fadeIn(100);
                     }
+                    clearForm(reCForm);
                 }
             });
         }
