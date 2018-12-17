@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="header.links">
+        <block class="Magento\Framework\View\Element\Html\Link" name="sd_contact_us_header_link" after="-">
+            <arguments>
+                <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                <argument name="path" xsi:type="string">contact</argument>
+                <argument name="sortOrder" xsi:type="number">90</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+</page>
+
