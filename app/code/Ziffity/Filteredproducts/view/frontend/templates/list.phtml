@@ -154,7 +154,7 @@ $size = $this->getData('page_size');
                                         <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
                                             <a href="#"
                                                data-post='<?= /* @escapeNotVerified */ $block->getAddToWishlistParams($_product) ?>'
-                                               class="action towishlist" data-action="add-to-wishlist"
+                                               class="action towishlist"
                                                title="<?= /* @escapeNotVerified */ __('Add to Wish List') ?>"
                                                data-action="add-to-wishlist"
                                                role="button"
@@ -179,17 +179,17 @@ $size = $this->getData('page_size');
         </ol>
     </div>
     <?= $block->getToolbarHtml() ?>
-    <?php //if (!$block->isRedirectToCartEnabled()) : ?>
-        <script type="text/x-magento-init">
-            {
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+        {
             "[data-role=tocart-form], .form.map.checkout": {
-            "catalogAddToCart": {
-            "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
+                "catalogAddToCart": {
+                    "product_sku": "<?= /* @NoEscape */ $_product->getSku() ?>"
+                }
             }
-            }
-            }
-        </script>
-    <?php //endif; ?>
+        }
+    </script>
+<?php endif; ?>
 <?php endif; ?>
 
 

@@ -47,10 +47,12 @@
                         <?= $block->getChildHtml('form_additional_info') ?>
                         <div class="remember">
                             <ul class="list-inline">
-                                <li><input  id="boxc" type="checkbox" class="txt-grey">
+                                <li>
+                                    <input  id="boxc" type="checkbox" class="txt-grey">
                                     <label class="cbox1" for="boxc">
-                                    <span class="txt-grey"> Remember Me</span>
-                            </li>
+                                        <span class="txt-grey"> <?= $block->escapeHtml(__('Remember Me')) ?></span>
+                                    </label>
+                                </li>
                                 <li class="pull-right">
                                     <div class="secondary">
                                         <a class="action remind" href="javascript:void(0);" id="forget-pwd">
