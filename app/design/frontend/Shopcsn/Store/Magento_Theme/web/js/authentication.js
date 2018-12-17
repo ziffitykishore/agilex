@@ -13,7 +13,7 @@ define([
 ], function ($, modal, googlecapjs, $t) {
     'use strict';
 
-    return function(options){
+    return function(config){
         var authOptions = {
             isCheckoutPage: (window.location.pathname == "/onestepcheckout/"),
             popupModalId: $('#popup-modal'),
@@ -27,7 +27,7 @@ define([
             closeModal: function(){
                 /*to close previous open modals && error messages*/
                 $('._show[data-role="modal"]').find('.action-close').trigger( "click" );
-                $('input.mage-error').removeClass('mage-error');
+                $('input.mage-error, label.mage-error').removeClass('mage-error');
                 $('.signup-notify, .login-notify, .forget-notify, .mage-error').hide();
             },
             clearForm: function(form){
@@ -115,7 +115,7 @@ define([
             event.preventDefault();
             if(forgetPasswordForm.validation('isValid')) {
                 $.ajax({
-                    url: options.ajaxForgetPasswordUrl,
+                    url: config.ajaxForgetPasswordUrl,
                     type:'POST',
                     showLoader: true,
                     dataType:'json',
@@ -141,7 +141,7 @@ define([
             if(loginForm.validation('isValid')) {
                 event.preventDefault();			
                 $.ajax({
-                    url: options.ajaxLoginUrl,
+                    url: config.ajaxLoginUrl,
                     type: 'POST',
                     showLoader: true,
                     dataType: 'json',
@@ -151,7 +151,7 @@ define([
                         $('.field').removeClass('focused');
                         authOptions.pageReload(response);
                         if(!response.errors && !authOptions.isCheckoutPage) {
-                            window.location = options.accountUrl;
+                            window.location = config.accountUrl;
                         }
                         /*reset captcha*/
                         window.resetCaptcha(loginForm);
@@ -173,7 +173,7 @@ define([
 
             if(regForm.validation('isValid')) {
                 $.ajax({
-                    url: options.ajaxRegisterUrl,
+                    url: config.ajaxRegisterUrl,
                     type: 'POST',
                     showLoader: true,
                     dataType: 'json',
@@ -223,7 +223,7 @@ define([
             event.preventDefault();
             if(reCForm.validation('isValid')) {
                 $.ajax({
-                    url: options.ajaxReconfirmUrl,
+                    url: config.ajaxReconfirmUrl,
                     type: 'POST',
                     showLoader: true,
                     dataType:'json',
