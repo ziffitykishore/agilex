@@ -169,7 +169,7 @@ class Ajaxlogin extends \Magento\Framework\App\Action\Action
             $this->messageManager->addErrorMessage($e->getMessage());
         } catch (\Exception $e) {
             $errors = true;
-            $this->messageManager->addErrorMessage(__('Invalid login or password '). $e->getMessage());
+            $this->messageManager->addErrorMessage(__('Invalid email or password '). $e->getMessage());
         }
         $blockMsg->setMessages( $this->messageManager->getMessages(true) );
         $response   =   [

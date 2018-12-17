@@ -6,6 +6,7 @@
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
+<div class="field note mb-20 mt--20 text-center"><?= $block->escapeHtml(__('Sign Up by entering the information below')) ?></div>
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
     <fieldset class="fieldset create info">
@@ -163,8 +164,8 @@
         <div class="primary">
             <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
         </div>
-        <div class="secondary">
-            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Back')) ?></span></a>
+        <div class="already-account text-center mt-20 mb-20">
+            <p class="font13"><?= __('Already have an account? Click') ?><a href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><?= __(' here') ?></a> <?= __('to Sign In.') ?></p>
         </div>
     </div>
 </form>
