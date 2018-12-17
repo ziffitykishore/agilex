@@ -106,7 +106,7 @@ define([
             }
         });
         $('.bk-to-arw').on('click', function(){
-            $('#forget-popup').modal('closeModal');
+            authOptions.closeModal();
             authOptions.popupModalId.modal('openModal');
         });
 
@@ -209,6 +209,7 @@ define([
                                 authOptions.popupModalId.modal('closeModal');
                                 var popup = modal(optconf, $('#confirm-popup'));
                                 $('#confirm-popup').modal('openModal');
+                                $('#confirm-popup').closest('.modal-inner-wrap').addClass('fullwidth-popup');
                             });
                         }
                         authOptions.resetForm(regForm);
