@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Page What We Do
+ * Template Name: Page Curated News
  *
  * @package Agilex
  * @since Agilex 1.0
@@ -70,6 +70,7 @@ get_header(); ?>
         var postPage = jQuery("#post_per_page").val();
         var publishedPost = jQuery("#published_posts").val();
         var pageUrl = <?php echo $_SERVER['REQUEST_URI']; ?>;
+        jQuery(window).load(function() {
         jQuery('.curated-container').infiniteScroll({
             // options
             path: function() {
@@ -87,6 +88,7 @@ get_header(); ?>
             status: '.page-load-status',
             append: '.curated-content',
             history: false,
+        });
         });
 
 
