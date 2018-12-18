@@ -35,7 +35,7 @@
         <variation name="AddProductsToCartBySkuFromBackendTestVariation5" summary="Add one simple offline product to order by sku on backend">
             <data name="products/0" xsi:type="string">catalogProductSimple::offline</data>
             <data name="orderOptions/qty" xsi:type="string">1</data>
-            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendIsDisabledFailMessage" />
+            <constraint name="Magento\AdvancedCheckout\Test\Constraint\AssertProductsAddBySkuOnBackendIsOutOfStockFailMessage" />
         </variation>
         <variation name="AddProductsToCartBySkuFromBackendTestVariation6" summary="Add one simple not visible product to order by sku on backend">
             <data name="products/0" xsi:type="string">catalogProductSimple::not_visible_individually</data>

@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.2.4",
+    "version": "2.2.7",
     "license": [
         "proprietary"
     ],
@@ -41,7 +41,7 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.2.4",
+        "magento/product-enterprise-edition": "2.2.7",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "1.100.4",

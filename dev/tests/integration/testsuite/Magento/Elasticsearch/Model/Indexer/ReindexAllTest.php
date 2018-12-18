@@ -105,7 +105,11 @@ class ReindexAllTest extends \PHPUnit\Framework\TestCase
      */
     public function testSearchGroupedProduct()
     {
-        $expectedProductName = 'Grouped Product Simple 11 Simple 22';
+        $expectedProductName = [
+            'Grouped Product',
+            'Simple 11',
+            'Simple 22',
+        ];
         $this->reindexAll();
         $result = $this->searchByName('Grouped Product');
         self::assertCount(1, $result);

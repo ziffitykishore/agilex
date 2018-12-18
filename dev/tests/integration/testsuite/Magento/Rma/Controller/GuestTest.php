@@ -5,6 +5,8 @@
  */
 namespace Magento\Rma\Controller;
 
+use Magento\Framework\Data\Form\FormKey;
+
 class GuestTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     /**
@@ -29,6 +31,8 @@ class GuestTest extends \Magento\TestFramework\TestCase\AbstractController
             $this->getRequest()->setPostValue('oar_email', $billingAddress->getEmail());
         }
         $this->getRequest()->setPostValue('oar_zip', '');
+        $this->getRequest()->setParam('form_key', $this->_objectManager->get(FormKey::class)->getFormKey());
+        $this->getRequest()->setMethod('POST');
 
         $this->dispatch($uri);
         $this->assertContains($content, $this->getResponse()->getBody());
