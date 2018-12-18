@@ -305,7 +305,7 @@ return [
                 'group_id' => '1',
                 'website_id' => '1',
                 'code' => 'main_website_store',
-                'name' => 'Main Website Store',
+                'name' => 'USA',
                 'root_category_id' => '2',
                 'default_store_id' => '1'
             ],
@@ -350,6 +350,11 @@ return [
     ],
     'system' => [
         'default' => [
+            'web' => [
+                'seo' => [
+                    'use_rewrites' => '1'
+                ]
+            ],
             'general' => [
                 'locale' => [
                     'code' => 'en_US'
@@ -379,9 +384,6 @@ return [
              '
                 ]
             ]
-        ],
-        'stores' => [
-
         ],
         'websites' => [
             'admin' => [
