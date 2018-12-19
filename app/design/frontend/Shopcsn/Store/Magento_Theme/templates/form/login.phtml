@@ -10,18 +10,16 @@
 ?>
 <div class="log-in"  id="popup-modal" style="display:none">
     <div class="sign-in-page">
-        <div class="heading">Welcome back!</div>
-        <div><p>America's Trusted Source of Numismatic Treasures</p></div>
+        <div class="heading"><?= $block->escapeHtml(__('Welcome Back!')) ?></div>
+        <div><p><?= $block->escapeHtml(__('America\'s Trusted Source of Numismatic Treasures')) ?></p></div>
     </div>
     <div class="block block-customer-login">
         <div class="common-form sign-in">
             <div class="login-notify" style="display: none;"></div>
             <div class="block-title main-head text-center">
-                
                 <strong id="block-customer-login-heading" role="heading" aria-level="2">
                     <?= $block->escapeHtml(__('Welcome Back!')) ?>
                 </strong>
-                
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
                 <form class="form form-login wpcf7-form"
@@ -49,10 +47,12 @@
                         <?= $block->getChildHtml('form_additional_info') ?>
                         <div class="remember">
                             <ul class="list-inline">
-                                <li><input  id="boxc" type="checkbox" class="txt-grey">
+                                <li>
+                                    <input  id="boxc" type="checkbox" class="txt-grey">
                                     <label class="cbox1" for="boxc">
-                                    <span class="txt-grey"> Remember Me</span>
-                            </li>
+                                        <span class="txt-grey"> <?= $block->escapeHtml(__('Remember Me')) ?></span>
+                                    </label>
+                                </li>
                                 <li class="pull-right">
                                     <div class="secondary">
                                         <a class="action remind" href="javascript:void(0);" id="forget-pwd">
@@ -88,11 +88,12 @@
         </div>
     </div>
 </div>
-      <!-- sign-up page -->
+
+<!-- sign-up page -->
 <div class="log-in" id="popup-modal-signup" style="display:none">
     <div class="sign-in-page">
-        <div class="heading">Welcome back!</div>
-        <div><p>America's Trusted Source of Numismatic Treasures</p></div>
+        <div class="heading"><?= __("Welcome back!") ?></div>
+        <div><p><?= __("America's Trusted Source of Numismatic Treasures") ?></p></div>
     </div>
     <div class="block block-customer-login">
         <div class="common-form sign-up">
@@ -101,15 +102,13 @@
                 <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= __("Let's Get Started!") ?></strong>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
-            <form class="form create account form-create-account" autocomplete="off" method="post" id="signup-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off"
-                   >
-
+            <form class="form create account form-create-account" autocomplete="off" method="post" id="signup-popup" data-mage-init='{"validation":{}}' enctype="multipart/form-data" autocomplete="off">
             <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
                 <?= $block->getBlockHtml('formkey') ?>
-                <div class="field note mb-20 text-center">Sign Up by entering the information below</div>
+                <div class="field note mb-20 text-center"><?= __('Sign Up by entering the information below') ?></div>
                 <div class="field field-name-fullname required mb-20 form-group">
                     <label class="label txt-grey" for="firstname">
-                            <span><?= ('First Name') ?></span>
+                            <span><?= __('First Name') ?></span>
                     </label>    
                     <div class="control form-control-wrap">
                         <input type="text" id="firstname" name="firstname" value="" title="First Name" class="input-text required-entry form-control valid" data-validate="{required:true}" autocomplete="off" aria-required="true">
@@ -117,7 +116,7 @@
                 </div>
                 <div class="field field-name-fullname required mb-20 form-group">
                     <label class="label txt-grey" for="lastname">
-                            <span><?= ('Last Name') ?></span>
+                            <span><?= __('Last Name') ?></span>
                     </label>    
                     <div class="control form-control-wrap">
                         <input type="text" id="lastname" name="lastname" value="" title="Last Name" class="input-text required-entry form-control valid" data-validate="{required:true}" autocomplete="off" aria-required="true">
@@ -132,8 +131,21 @@
                 <div class="field password required mb-20 form-group">
                     <label for="password" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
                     <div class="control form-control-wrap">
-                        <input type="password" name="password" id="password-signup" title="<?= $block->escapeHtmlAttr(__('Password')) ?>" class="input-text required-entry form-control valid" autocomplete="off">
-                        <div class="text-small"><p>8-20 Characters of 3 types: Upper, Lower, Numeric, Special</p></div>
+                        <input type="password" name="password" id="password-signup"
+                               title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                               class="input-text required-entry form-control valid"
+                               autocomplete="off"
+                               data-password-min-length="8"
+                               data-password-min-character-sets="3"
+                               data-validate="{required:true,'maxlength':20,'validate-customer-password':true}">
+                        <div class="strength-meter" id="strength-meter" data-role="password-strength-meter" aria-live="polite">
+                            <div  class="password-strength-meter">
+                                <?= $block->escapeHtml(__('Password Strength')) ?>:
+                                <span data-role="password-strength-meter-label">
+                                    <?= $block->escapeHtml(__('No Password')) ?>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="field confirmation required mb-20 form-group">
@@ -163,7 +175,7 @@
         </div>
         <div class="social">
             <div class="text-center heading mb-20">
-                Or Connect Using
+                <?= __('Or Connect Using') ?>
             </div>
             <div class="social-media">
                <ul class="list-inline">
@@ -176,8 +188,8 @@
 <!-- Forget Password -->
 <div class="log-in" id="forget-popup" style="display: none;" >
     <div class="sign-in-page">
-        <div class="heading">We are here to help you!</div>
-        <div><p>America's Trusted Source of Numismatic Treasures</p></div>
+        <div class="heading"><?= __('We are here to help you!') ?></div>
+        <div><p><?= __('America\'s Trusted Source of Numismatic Treasures') ?></p></div>
     </div>
     <div class="block block-customer-login">
         <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
@@ -196,7 +208,7 @@
                                 <input type="email" name="email" alt="email" id="email_forget" class="input-text form-control" value="" data-validate="{required:true, 'validate-email':true}" aria-required="true">
                             </div>
                         </div>
-                            </fieldset>
+                    </fieldset>
                     <div class="actions-toolbar">
                         <div class="primary">
                             <button type="submit" class="button-full action submit primary text-uppercase"><span><?= __('continue') ?></span></button>
@@ -210,8 +222,8 @@
 <!-- Password confirmation -->
 <div class="log-in"  id="confirm-popup" style="display:none">
     <div class="sign-in-page">
-        <div class="heading">Welcome back!</div>
-        <div><p>America's Trusted Source of Numismatic Treasures</p></div>
+        <div class="heading"><?= $block->escapeHtmlAttr(__('Welcome back!')) ?></div>
+        <div><p><?= $block->escapeHtmlAttr(__('America\'s Trusted Source of Numismatic Treasures')) ?></p></div>
     </div>
     <div class="block block-customer-login">
     <a href="javascript:void(0);" class="fa fa-long-arrow-left fa-2x bk-to-arw" aria-hidden="true" style="padding: 20px;"></a>
@@ -219,9 +231,7 @@
             <div class="confirm-notify" style="display: none;"></div>
            
             <div class="block-title main-head text-center">
-                
                 <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Welcome Back!')) ?></strong>
-                
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
                <form action="" method="post" id="confirm-popup-form" class="form form-login wpcf7-form form send confirmation" data-mage-init='{"validation":{}}'>
@@ -247,7 +257,7 @@
         </div>
         <div class="social">
             <div class="text-center heading mb-20">
-                Or Connect Using
+                <?= $block->escapeHtml(__('Or Connect Using')) ?>
             </div>
             <div class="social-media">
                 <ul class="list-inline">
@@ -257,232 +267,25 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-require(['jquery', 'Magento_Ui/js/modal/modal', 'googlecapjs'],
-function($, modal, googlecapjs) {
-
-    var isCheckoutPage = false;
-    if (window.location.pathname == "/onestepcheckout/") {
-        isCheckoutPage = true;
-    }
-
-    function pageReload(){
-        if(isCheckoutPage){
-            window.location.reload();
-            return;
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Theme/js/authentication": {
+                "ajaxLoginUrl": "<?= $this->getUrl('ajaxlogin/account/ajaxlogin', ['isAjax' => true]) ?>",
+                "ajaxRegisterUrl": "<?= $this->getUrl('ajaxlogin/account/ajaxregister', ['isAjax' => true]) ?>",
+                "ajaxForgetPasswordUrl": "<?= $this->getUrl('ajaxlogin/popup/forgot') ?>",
+                "ajaxReconfirmUrl": "<?= $this->getUrl('ajaxlogin/account/confirmation') ?>",
+                "accountUrl": "<?= $this->getUrl('customer/account') ?>"
+            }
         }
     }
-
-    /*to close previous open modals*/
-    function closeModal(){
-        $('._show[data-role="modal"]').find('.action-close').trigger( "click" );
+</script>
+<script type="text/x-magento-init">
+    {
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-create-account"
+            }
+        }
     }
-
-    function clearForm(form){
-        form.find(':input')
-        .not(':button, :submit, :reset, :hidden')
-        .val('').closest('.field').removeClass('focused');
-    }
-
-    var options = {
-        type: 'popup',
-        responsive: true,
-        innerScroll: true,
-        modalClass: 'custom-block-customer-login',
-        buttons: false
-    };
-    $(document).on("click", '#login-popup, #login-popup-form, .signin-popup', function(e){
-        closeModal();
-        if(window.isCustomerLoggedIn != 'undefined' && parseInt(window.isCustomerLoggedIn)){
-            return;
-        }
-        e.preventDefault();
-        var ppModal = $('#popup-modal');
-        var popup = modal(options, ppModal);
-        clearForm(ppModal);
-        ppModal.modal('openModal').on('modalclosed', function(){
-            $('.login-notify').hide().html('');
-        });
-        if(isCheckoutPage){
-            ppModal.closest('.modal-inner-wrap').addClass('fullwidth-popup');
-        }
-    });
-
-    var optsignup = {
-        type: 'popup',
-        responsive: true,
-        innerScroll: true,
-        modalClass: 'custom-block-customer-signup',
-        buttons: false,
-    };
-    $('#signup-modal').on("click", function(){
-        closeModal();
-        var ppModal = $('#popup-modal-signup');
-        var popup = modal(optsignup, ppModal);
-        clearForm(ppModal);
-        ppModal.modal('openModal').on('modalclosed', function() { 
-            $('#popup-modal-signup div.mage-error').remove();
-        });
-        if(isCheckoutPage){
-            ppModal.closest('.modal-inner-wrap').addClass('fullwidth-popup');
-        }
-    });
-
-    var optforget = {
-        type: 'popup',
-        responsive: true,
-        innerScroll: true,
-        modalClass: 'customer-forgetpassword-popup',
-        buttons: false
-    };
-    $('#forget-pwd, .forget-pwd').on("click", function(){
-        closeModal();
-        var ppModal = $('#forget-popup');
-        var popup = modal(optforget, ppModal);
-        ppModal.modal('openModal');
-        if(isCheckoutPage){
-            ppModal.closest('.modal-inner-wrap').addClass('fullwidth-popup');
-        }
-    });
-    $('.bk-to-arw').on('click', function(){
-        $('#forget-popup').modal('closeModal');
-        $('#popup-modal').modal('openModal');
-    });
-
-    $('#forget-password').on('submit', function(event){
-        event.preventDefault();
-        if($('#forget-password').validation('isValid')) {
-            $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/popup/forgot'); ?>',
-                type:'POST',
-                showLoader: true,
-                dataType:'json',
-                data: $('#forget-password').serialize(true),								
-                success:function(response) { 
-                    if(response.success) {
-                        $('#forget-popup').modal('closeModal');
-                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                        var popup = modal(options, $('#popup-modal'));
-                        $('#popup-modal').modal('openModal');
-                    } else {
-                        $('.forget-notify').fadeOut().html(response.message).fadeIn(100);
-                    }
-                }
-            });
-        }
-    });
-    
-    /*ajaxlogin*/
-    var loginForm = $('#login-form-popup');
-    loginForm.on('submit', function (event){
-        if(loginForm.validation('isValid')) {
-            event.preventDefault();			
-            $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/ajaxlogin', ['isAjax' => true]); ?>',
-                type:'POST',
-                showLoader: true,
-                dataType:'json',
-                data: loginForm.serialize(true),
-                success:function(response) {
-                    $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                    $('.field').removeClass('focused');
-                    pageReload();
-                    if(!response.errors && !isCheckoutPage) {
-                        window.location = "<?= $this->getUrl('customer/account') ?>";
-                    }
-                    /*reset captcha*/
-                    window.resetCaptcha(loginForm);
-                }
-            });
-        }
-    });
-
-    //form-validate-popup
-    var regForm = $('#signup-popup');
-    regForm.on('submit', function (event){      
-        if($('#signup-check:checked').length < 1) {
-            $('.signupcheck').addClass('mage-error').show();
-        } else {
-            $('.signupcheck').removeClass('mage-error').show();
-        }
-        event.preventDefault();
-
-        if(regForm.validation('isValid')) {
-            $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/ajaxregister', ['isAjax' => true]); ?>',
-                type:'POST',
-                showLoader: true,
-                dataType:'json',
-                data: regForm.serialize(true),	
-                success:function(response) {
-
-                    /*reset captcha*/
-                    window.resetCaptcha(regForm);
-
-                    if(response.resultRedirect) {
-                        setTimeout(function(){											
-                            //window.location = response.resultRedirect;
-                        }, 2000);                            
-                    } 
-                    if(response.success) {
-                        $('#popup-modal-signup').modal('closeModal');
-                        var popup = modal(optsignup, $('#popup-modal-signup'));
-                        if($('#popup-modal').closest('.modal-inner-wrap').length){
-                            $('#popup-modal').modal('openModal');
-                        }
-                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                    } else {
-                        $('.signup-notify').fadeOut().html(response.message).fadeIn(100);
-                        $('.field').removeClass('focused');
-                    }
-                    
-                    if(response.email) {
-                        $('#confirm_link').on('click', function(event){
-                            event.preventDefault();
-                            var optconf = {
-                                type: 'popup',
-                                responsive: true,
-                                innerScroll: true,
-                                modalClass: 'confirm-popup custom-block-customer-login',
-                                buttons: false,
-                            };
-                            $('#email_address_confirm').val(response.email);
-                            $('#popup-modal').modal('closeModal');
-                            var popup = modal(optconf, $('#confirm-popup'));
-                            $('#confirm-popup').modal('openModal');
-                        });
-                    }
-                    $(':input','#signup-popup')
-                    .not(':button, :submit, :reset, :hidden')
-//                    .val('')
-                    .removeAttr('checked')
-                    .removeAttr('selected');
-                }
-            });
-        }
-    });
-
-    $('#confirm-popup-form').on('submit', function (event){
-        event.preventDefault();
-        if($('#confirm-popup-form').validation('isValid')) {
-            $.ajax({
-                url:'<?= $this->getUrl('ajaxlogin/account/confirmation'); ?>',
-                type:'POST',
-                showLoader: true,
-                dataType:'json',
-                data: $('#confirm-popup-form').serialize(true),
-                success:function(response) {
-                    if(response.errors) {
-                        $('.confirm-notify').fadeOut().html(response.message).fadeIn(100);
-                        $('.field').removeClass('focused');
-                    } else {
-                        $('#confirm-popup').modal('closeModal');
-                        $('#popup-modal').modal('openModal');
-                        $('.login-notify').fadeOut().html(response.message).fadeIn(100);
-                    }
-                }
-            });
-        }
-    });
-});
 </script>

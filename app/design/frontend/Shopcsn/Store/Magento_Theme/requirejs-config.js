@@ -6,7 +6,7 @@
 var config = {
     map: {
         '*': {
-            googlecapjs: 'Magento_Theme/js/googlecap',
+            googlecapjs: 'Magento_Theme/js/googlecap'
         }
     },
     deps: [

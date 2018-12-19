@@ -55,7 +55,7 @@ define([
 
     /* autocomplete off */
     $('input').attr('autocomplete', 'off');
-    $(document).on("focus autocomplete", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function(e) {
+    $(document).on("focus autocomplete change", '.onestepcheckout-index-index .input-text, .field input.input-text, textarea.form-control', function(e) {
         e.stopPropagation();
         var clstField = $(this).closest('.field');
         if ($(this).attr('name') == 'street[0]') {
