@@ -1,0 +1,253 @@
+---
+
+- name: prebuild provision
+  hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: set chmod key for private key
+      file:
+        state: directory
+        path: "{{ item }}"
+        owner: magento
+        group: magento
+        mode: 0700
+      loop:
+        - /home/magento/.ssh
+        - /home/magento/.composer
+    - name: copy private key
+      copy:
+        remote_src: yes
+        src: files/id_rsa
+        dest: "/home/magento/.ssh/id_rsa"
+        owner: magento
+        group: magento
+        mode: 0600
+    - name: install ioncube
+      yum:
+        name: php71u-ioncube-loader
+        state: present
+    - name: change magento user:group permissions
+      file:
+        state: directory
+        path: "{{ item }}"
+        mode: u=rwX,g=rwX,o=rX
+        recurse: yes
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+      loop:
+        - /usr/local/rvm/
+        - /var/lib/php/session/
+        - "{{ site_root }}/"
+    - name: apply templates
+      template:
+        src: "{{ item.src }}.j2"
+        dest: "{{ item.dest }}"
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+      loop:
+        - src: app/etc/env.php
+          dest: "{{ playbook_dir }}/app/etc/env.php"
+        - src: auth.json
+          dest: "/home/magento/.composer/auth.json"
+        - src: default.conf
+          dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
+    - name: set symlink for site
+      file:
+        src: "/etc/nginx/sites-available/{{ site_domain }}.conf"
+        path: "/etc/nginx/sites-enabled/{{ site_domain }}.conf"
+        state: link
+    - name: make sure umask is set properly
+      replace:
+        path: /etc/profile
+        regexp: "umask 0.2"
+        replace: "umask 002"
+    - name: remove any remaining build scripts
+      file: path="{{ item }}" state=absent
+      loop:
+        - "/home/magento/.vault_pass"
+        - "/docker-entrypoint.d/mysql.sh"
+  tags:
+    - prebuild
+
+
+- name: database provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: run magento install
+      shell: |
+        OLDDOMAIN='{{ item | replace("test", "com") }}'
+        mysql \
+              -u root \
+              -proot_password \
+              -h database \
+              {{ mysql_database | default("magento_database") }} \
+              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item }}');"
+      loop: "{{ site_domains }}"
+  tags:
+    - database
+    - sync
+
+- name: owner play
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: set default owner:group to magento:nginx
+      command: "{{ item }} {{ site_root }}"
+      become: yes
+      loop:
+        - "setfacl -R -m d:u:{{ magento_user}}:rwX"
+        - "setfacl -R -m d:g:{{ magento_group }}:rwX"
+    - name: make sure paths have correct user:group
+      file:
+        state: directory
+        recurse: yes
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+        mode: u=rwX,g=rwX,o=rX
+        path: "{{ playbook_dir }}"
+      become: yes
+  tags:
+    - owner
+    - build
+    - sync
+    - install
+
+- name: template play
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: check for env.php file
+      stat: path="{{ playbook_dir }}/app/etc/env.php"
+      register: envphp
+    - name: generate env.php when doesn't exist
+      template:
+        src: "app/etc/env.php.j2"
+        dest: "{{ playbook_dir }}/app/etc/env.php"
+      when: not envphp.stat.exists
+    - name: check for config.php file
+      stat: path="{{ playbook_dir }}/app/etc/config.php"
+      register: configphp
+    - name: use config.php.sample when config.php doesn't exist
+      copy:
+        src: "app/etc/config.php.sample"
+        dest: "{{ playbook_dir }}/app/etc/config.php"
+      when: not configphp.stat.exists
+  tags:
+    - build
+    - sync
+    - template
+
+
+- name: build provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: get submodules
+      shell: "git {{ item }}"
+      loop:
+        - "fetch --recurse-submodules --tags origin"
+        - "submodule update --init --recursive"
+    - name: make sure vendor doesn't exist
+      file:
+        path: "{{ playbook_dir }}/vendor"
+        state: absent
+    - name: run composer
+      shell: composer install
+    - name: run bundle
+      shell: bash -lc "bundle install"
+    - name: run yarn
+      shell: yarn
+      args:
+        executable: /bin/bash
+        chdir: "{{ item }}"
+      loop:
+        - "{{ playbook_dir }}"
+        - "{{ playbook_dir }}/vendor/somethingdigital/magento2-theme-bryantpark"
+        - "{{ playbook_dir }}/vendor/snowdog/frontools"
+    - name: remove vault_pass
+      file: path=/home/magento/.vault_pass state=absent
+  tags:
+    - build
+
+- name: sync provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: make sure local cache clean
+      file:
+        state: absent
+        path: "{{ playbook_dir }}/{{ item }}"
+      loop:
+        - var/cache
+        - generated/code
+        - generated/metadata
+    - name: run magento upgrade
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "app:config:import"
+        - "cache:clean"
+        - "setup:upgrade"
+        - "deploy:mode:set --skip-compilation developer"
+        - "setup:di:compile"
+    - name: setup static content of theme
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "sd:dev:static '{{ client_theme }}'"
+        - "sd:dev:static  --area=adminhtml '{{ magento_theme }}'"
+    - name: run yarn build (for develop)
+      shell: "yarn build"
+  tags:
+    - sync
+
+- name: install provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: run magento install
+      shell: |
+        {{ playbook_dir }}/bin/magento setup:install \
+          --db-host=database \
+          --db-name=magento_database \
+          --db-user=magento_user \
+          --db-password=magento_password \
+          --base-url=http://{{ site_domain  }}/ \
+          --admin-firstname=Admin \
+          --admin-lastname=User \
+          --admin-email=admin@user.com \
+          --admin-user=magento2 \
+          --admin-password=magento2_password \
+          --backend-frontname=admin \
+          --key={{ magento_crypt_key }}
+    - name: apply template
+      template:
+        src: "app/etc/env.php.j2"
+        dest: "{{ playbook_dir }}/app/etc/env.php"
+  tags:
+    - install
+
+##
+# Below installs Unirgy Package
+# But the following variables must exist with values in group_vars/all:
+# urapidflow_license_key, urapidflow_pkg_version, ioncube_version, tmp_download_path
+##
+- name: install urapidflow
+  hosts: localhost
+  connection: local
+  tags:
+    - urapidflow
+  tasks:
+    - name: get urapidflow
+      unarchive:
+        src: "https://download.unirgy.com/simple/download/{{ urapidflow_license_key }}/Unirgy_RapidFlow.zip?php={{ urapidflow_pkg_version }}&ioncube={{ ioncube_version }}"
+        dest: "{{ tmp_download_path }}"
+    - name: make sure urapidflow does not exist
+      file:
+        path: "{{ magento_root }}/app/code/Unirgy"
+        state: absent
+    - name: copy new urapidflow install
+      copy:
+        src: "{{ tmp_download_path }}/app/code/Unirgy"
+        dest: "{{ magento_root }}/app/code/Unirgy"
+        remote_src: yes

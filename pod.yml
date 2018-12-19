@@ -1,0 +1,140 @@
+version: '3.7'
+
+services:
+
+  varnish:
+    image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/varnish:v2.0'
+    depends_on:
+      - app
+    ports:
+      - '80'
+      - '443'
+    labels:
+      - traefik.frontend.rule=Host:magento.test
+      - traefik.domain=magento.test
+      - traefik.enable=true
+    networks:
+      - internal
+      - lol
+  app:
+    labels:
+      - traefik.frontend.rule=Host:magento.test
+      - traefik.domain=magento.test
+      - traefik.enable=true
+    networks:
+      - internal
+      - lol
+
+  app:
+    image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0'
+    cap_add:
+      - SYS_PTRACE
+    depends_on:
+      - database
+      - elasticsearch
+      - rabbitmq
+      - redis
+      - smtp
+    ports:
+      - '80'
+      - '443'
+    networks:
+      - internal
+      - lol
+
+  database:
+    image: 'percona:5.6'
+    expose:
+      - '3306'
+    volumes:
+      - target: /var/lib/mysql
+        source: database-vol
+        type: volume
+      - target: /docker-entrypoint-initdb.d/
+        source: ./files/db
+        type: bind
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: magento_database
+      MYSQL_USER: magento_user
+      MYSQL_PASSWORD: magento_password
+    labels:
+      - traefik.frontend.rule=Host:db.magento.test
+      - traefik.port=3306
+      - traefik.enable=true
+    networks:
+      - internal
+      - lol
+
+  elasticsearch:
+    image: 'elasticsearch:5.2'
+    expose:
+      - '9200'
+      - '9300'
+    volumes:
+      - target: /usr/share/elasticsearch/data
+        source: elasticsearch-vol
+        type: volume
+    environment:
+      discovery.type: single-node
+    networks:
+      - internal
+
+  rabbitmq:
+    image: rabbitmq
+    expose:
+      - '5672'
+    volumes:
+      - target: /var/lib/rabbitmq
+        source: rabbitmq-vol
+        type: volume
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_DEFAULT_VHOST: /magento
+    networks:
+      - internal
+
+  redis:
+    image: redis
+    expose:
+      - '6379'
+    volumes:
+      - target: /var/lib/redis
+        source: redis-vol
+        type: volume
+    networks:
+      - internal
+
+  smtp:
+    image: mailhog/mailhog
+    ports:
+      - '8025'
+    expose:
+      - '1025'
+    environment:
+      - SMARTHOST_ADDRESS=mail.mysmtp.com
+      - SMARTHOST_PORT=587
+      - SMARTHOST_USER=myuser
+      - SMARTHOST_PASSWORD=secret
+      - SMARTHOST_ALIASES=*.mysmtp.com
+    labels:
+      - traefik.frontend.rule=Host:smtp.magento.test
+      - traefik.domain=smtp.magento.test
+      - traefik.port=8025
+      - traefik.enable=true
+    networks:
+      - internal
+      - lol
+
+volumes:
+  database-vol: null
+  elasticsearch-vol: null
+  rabbitmq-vol: null
+  redis-vol: null
+
+networks:
+  lol:
+    external: true
+  internal:
+    external: false

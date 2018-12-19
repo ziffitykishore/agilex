@@ -360,7 +360,7 @@ class Profile extends AbstractModel
         if (!isset($root->$dataType) || !isset($root->$dataType->model)) {
             throw new LocalizedException(__('Invalid data type model'));
         }
-        return $this->getObjectManager()->get((string)$root->$dataType->model);
+        return $this->getObjectManager()->create((string)$root->$dataType->model);
     }
 
     public function getLogTail($length = 1000)
@@ -430,7 +430,14 @@ class Profile extends AbstractModel
         if ($this->getRunStatus() === 'running') {
             $this->finish()->save();
 
-            $this->doReindexActions();
+            try {
+                $this->doReindexActions();
+            } catch (\Exception $e) {
+                $this->_logger->critical($e);
+                if ($e instanceof \Magento\UrlRewrite\Model\Exception\UrlAlreadyExistsException) {
+                    $this->_logger->critical(__('Conflicted URL rewrites: %1', var_export($e->getUrls(), 1)));
+                }
+            }
 
             $this->activity(__('Done'));
         }
@@ -897,11 +904,13 @@ class Profile extends AbstractModel
                     $cachesToClear[] = $code; // collect caches to clear
             }
         }
-        $this->_eventManager->dispatch('adminhtml_cache_flush_system');
-        $this->_cacheManager->clean($cachesToClear);
-        if (function_exists('apc_clear_cache')) { // clear apc cache
-            apc_clear_cache();
-            apc_clear_cache('user');
+        if (!empty($cachesToClear)) {
+            $this->_eventManager->dispatch('adminhtml_cache_flush_system');
+            $this->_cacheManager->clean($cachesToClear);
+            if (function_exists('apc_clear_cache')) { // clear apc cache
+                apc_clear_cache();
+                apc_clear_cache('user');
+            }
         }
 //        $this->_eventManager->dispatch('adminhtml_cache_flush_system');
     }
@@ -1252,6 +1261,9 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
                         break;
                     }
                     if (sizeof($l) != 4) {
+                        continue;
+                    }
+                    if (!(int)$l[1] || !(int)$l[2]) {
                         continue;
                     }
                     $logRows[$l[1]][$l[2] - 1][0] = $l[0];

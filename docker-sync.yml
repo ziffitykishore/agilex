@@ -1,0 +1,17 @@
+version: "2"
+
+options:
+  verbose: true
+  compose-file-path: "pod.yml"
+  compose-dev-file-path: "pod-dev.yml"
+
+syncs:
+  accelerator-magento2-sync:
+    src: "./"
+    #sync_strategy: "native_osx" # (native|native_osx|unison|rsync)
+    host_disk_mount_mode: "cached"
+    sync_excludes:
+      - ".idea"          # no need to send PHPStorm config to container
+      - "var/cache/*"    # don't share the cache
+      - "var/sessions/*" # we don't need the sessions locally
+      - "dev/tests/*"

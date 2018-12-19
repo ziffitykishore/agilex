@@ -11,6 +11,9 @@
 !/pub/media/gene-cms/.htaccess
 # Hologram
 /pub/styleguide
+# Docker's files/ directory
+/files
+/.docker-sync
 
 
 ### Magento OOB .gitignore

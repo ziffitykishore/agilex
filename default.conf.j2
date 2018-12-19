@@ -1,0 +1,29 @@
+{{ ansible_managed | comment }}
+
+server {
+  set $MAGE_ROOT {{ site_root }}/current;
+
+  listen 80;
+  {% if copy_tls_certs | bool %}
+  listen 443 ssl;
+  {% endif %}
+
+  server_name {{ site_domains | join(" ") }};
+
+  access_log /var/log/access.log main;
+  error_log /var/log/nginx/error.log warn;
+
+  index index.php index.html;
+
+  {% if copy_tls_certs | bool %}
+
+  #
+  # SSL
+  #
+  ssl_certificate /etc/pki/tls/certs/{{ site_domain }}.crt;
+  ssl_certificate_key /etc/pki/tls/private/{{ site_domain }}.key;
+  {% endif %}
+
+  include /etc/nginx/conf/server/magento2.conf;
+}
+

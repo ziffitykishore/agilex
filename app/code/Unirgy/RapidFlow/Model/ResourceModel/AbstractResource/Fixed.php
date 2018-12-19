@@ -74,6 +74,11 @@ class Fixed
         $this->_rapidFlowConfig = $this->_context->rapidFlowConfig;
     }
 
+    protected function _initImportEventVars(&$eventVars)
+    {
+
+    }
+
     public function import()
     {
         $benchmark = false;
@@ -126,7 +131,12 @@ class Fixed
         $eventVars = [
             'profile' => &$this->_profile,
             'skus' => &$this->_skus,
+            'new_rows' => &$this->_newRows,
+            'new_row_types' => &$this->_newRowTypes,
+            'new_row_actions' => &$this->_newRowActions,
+            'new_row_methods' => &$this->_newRowMethods,
         ];
+        $this->_initImportEventVars($eventVars);
 
         $this->_profile->activity('Importing');
 #memory_get_usage(true);
@@ -451,6 +461,8 @@ class Fixed
         return $count;
     }
 
+    protected $_csvRows = [];
+
     protected function _exportRowType($rowType)
     {
         $profile = $this->_profile;
@@ -476,6 +488,7 @@ class Fixed
             $profile->addValue('rows_processed')->addValue('rows_success');
         }
         $count = 0;
+        $this->_csvRows = [];
         while ($row) {
             $logger->setLine(++$this->_rowNum);
             $count++;
@@ -505,8 +518,9 @@ class Fixed
             }
 
             $r = $this->_convertEncoding($r);
-            $profile->ioWrite($r);
-            $profile->addValue('rows_processed')->addValue('rows_success');
+            //$profile->ioWrite($r);
+            $this->_csvRows[] = $r;
+            $profile->addValue('rows_processed');
 
             if ($count == $this->_pageRowCount) {
                 $profile->setMemoryUsage(memory_get_usage(true))->setMemoryPeakUsage(memory_get_peak_usage(true))
@@ -521,6 +535,19 @@ class Fixed
             }
 
             $row = $result->fetch();
+        }
+        $this->_eventManager->dispatch('urapidflow_fixed_export_before_output', [
+            'vars' => [
+                'profile' => $this->_profile,
+                'row_type' => $rowType,
+                'columns' => $columns,
+                'rows' => &$this->_csvRows,
+            ]
+        ]);
+
+        foreach ($this->_csvRows as $row) {
+            $profile->ioWrite($row);
+            $profile->addValue('rows_success');
         }
 
         $profile->setMemoryUsage(memory_get_usage(true))->setMemoryPeakUsage(memory_get_peak_usage(true))

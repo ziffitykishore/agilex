@@ -17,4 +17,9 @@
             <argument name="instanceName" xsi:type="string">Unirgy\RapidFlow\Model\Product\Image</argument>
         </arguments>
     </type>
+    <type name="Unirgy\RapidFlow\Helper\Url">
+        <arguments>
+            <argument name="urlPersist" xsi:type="object">Unirgy\RapidFlow\Model\UrlRewriteDbStorage</argument>
+        </arguments>
+    </type>
 </config>

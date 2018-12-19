@@ -5,6 +5,8 @@
  */
 namespace Magento\Rma\Controller;
 
+use Magento\Framework\Data\Form\FormKey;
+
 /**
  * @magentoDbIsolation enabled
  */
@@ -51,8 +53,9 @@ class ReturnsTest extends \Magento\TestFramework\TestCase\AbstractController
         $rma->load(1, 'increment_id');
         $rma->setCustomerId($this->_customerSession->getCustomerId());
         $rma->save();
-
+        $this->getRequest()->setMethod('POST');
         $this->getRequest()->setParam('entity_id', $rma->getEntityId());
+        $this->getRequest()->setParam('form_key', $this->_objectManager->get(FormKey::class)->getFormKey());
 
         $this->dispatch($uri);
         $this->assertContains($content, $this->getResponse()->getBody());

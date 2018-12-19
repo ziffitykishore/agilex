@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  app:
+    volumes:
+      - accelerator-magento2-sync:/var/www/vhosts/magento.test/current:nocopy
+
+volumes:
+  accelerator-magento2-sync:
+    external: true
