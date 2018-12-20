@@ -26,7 +26,8 @@ define([
                 settings: {
                     dots: false
                 }
-            }]
+            }],
+            lazyLoad: 'ondemand'
         });
     }
 

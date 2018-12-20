@@ -1,7 +1,6 @@
 var config = {
     paths: {
         'bminjs': 'js/bootstrap.min',
-        'slick': 'js/slick.min',
         'left-sticky': 'js/sticky',
         'fancybox': 'js/fancybox'
     },
