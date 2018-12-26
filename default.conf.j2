@@ -19,7 +19,7 @@ server {
   server_name {{ site.domain | default(site) }};
 
   env $MAGE_MODE={{ site.mage_mode | default('developer') }};
-  env $MAGE_RUN_TYPE={{ site.mage_run_type | default('website') }};
+  env $MAGE_RUN_TYPE={{ site.mage_run_type | default('store') }};
   env $MAGE_RUN_CODE={{ site.mage_run_code | default('') }};
 
   access_log /var/log/access.log main;
