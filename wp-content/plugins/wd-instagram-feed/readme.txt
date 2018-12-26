@@ -3,8 +3,8 @@ Contributors: webdorado,10web,progmastery
 Tags: custom instagram feed, feed, instagram, hashtag, Instagram feed, instagram gallery, instagram posts, Instagram images, Instagram photos, lightbox, photos,instagram account
 Requires at least: 3.9
 Requires PHP: 5.2
-Tested up to: 4.9
-Stable tag: 1.3.9
+Tested up to: 5.0
+Stable tag: 1.3.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 https://www.youtube.com/watch?v=CgZNya0HZCQ
 
 = Useful Links: =
-[Special Offer for all Premium Plugins](https://10web.io/pricing/)
+[Special Offer for all Premium Plugins](https://10web.io/plugins-bundle-pricing/)
 [WordPress 10Web Instagram Feed ](https://10web.io/plugins/wordpress-instagram-feed/)
 [Demo](https://demo.10web.io/instagram-feed/)
 [User Guide](https://docs.10web.io/docs/wd-instagram-feed/)
@@ -501,6 +501,10 @@ Please make sure you don't have any important information before you proceed.
 10Web Instagram Feed plugin uses Instagram API on website front end. You have to authorize the plugin via sign in to get data from Instagram on your behalf. The plugin does not send any user’s data to Instagram. All the data received from Instagram via API is cached in WordPress database for some short customizable period to provide front end optimization. You can delete or update cached data. Instagram saves some cookies in browsers of website visitors via API data. These cookies are mostly used for security purposes. They are regulated under terms of Instagram’s privacy policy https://instagram.com/legal/privacy. The plugin asks for your consent to collect site administrator’s email address and site URL to offer customer support, deals and discounts on premium products and more.
 
 == Changelog ==
+
+= 1.3.10 =
+Fixed: Gutenberg compatibility    
+Fixed: Duplicate media when several filters are applied (Premium)   
 
 = 1.3.9 =
 Fixed: Lib conflict with photo-gallery   

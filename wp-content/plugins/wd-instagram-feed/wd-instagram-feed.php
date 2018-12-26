@@ -3,7 +3,7 @@
 Plugin Name: Instagram Feed by 10Web
 Plugin URI: https://10web.io/plugins/wordpress-instagram-feed/
 Description: Instagram Feed by 10Web is a user-friendly tool for displaying user or hashtag-based feeds on your website. You can create feeds with one of the available layouts. It allows displaying image metadata, open up images in lightbox, download them and even share in social networking websites.
-Version: 1.3.9
+Version: 1.3.10
 Author: 10Web
 Author URI: https://10Web.io
 License: GPLv2 or later
@@ -20,7 +20,7 @@ define("WDI_META", "_".WDI_VAR."_meta");
 //define("wdi",'wdi');
 define('WDI_FEED_TABLE','wdi_feeds');
 define('WDI_THEME_TABLE','wdi_themes');
-define('WDI_VERSION','1.3.9');
+define('WDI_VERSION','1.3.10');
 define('WDI_IS_PRO','false');
 $wdi_minify = ((isset($_GET['wdi_no_minify']) && $_GET['wdi_no_minify'] == "true") ? false : true);
 define('WDI_MINIFY', $wdi_minify);
@@ -574,12 +574,13 @@ function wdi_load_styles() {
 
 }
 
-//add_action( 'enqueue_block_editor_assets', 'enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'enqueue_block_editor_assets' );
 
 function enqueue_block_editor_assets() {
   $wd_bp_plugin_url = WDI_URL;
   $key = 'tw/wdi';
   $plugin_name = "Instagram WD";
+  require_once(WDI_DIR . '/framework/WDILibrary.php');
   $data = WDILibrary::get_shortcode_data();
   $icon_url = $wd_bp_plugin_url . '/images/insta_2.svg';
   $icon_svg = $wd_bp_plugin_url . '/images/insta.svg';
@@ -602,8 +603,8 @@ function enqueue_block_editor_assets() {
     }
   </script>
   <?php
-  //wp_enqueue_style('wditw-gb-wdi_block', $wd_bp_plugin_url . '/css/wdi_block.css', array( 'wp-edit-blocks' ), WDI_VERSION );
-  //wp_enqueue_script( 'wditw-gb-wdi_block', $wd_bp_plugin_url . '/js/wdi_block.js', array( 'wp-blocks', 'wp-element' ), WDI_VERSION );
+  wp_enqueue_style('wditw-gb-wdi_block', $wd_bp_plugin_url . '/css/wdi_block.css', array( 'wp-edit-blocks' ), WDI_VERSION );
+  wp_enqueue_script( 'wditw-gb-wdi_block', $wd_bp_plugin_url . '/js/wdi_block.js', array( 'wp-blocks', 'wp-element' ), WDI_VERSION );
 }
 
 // Instagram WDI Widget.

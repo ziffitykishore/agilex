@@ -405,11 +405,11 @@ function wck_set_to_widest( element, parent ){
 				if (widest == null)
 					widest = jQuery(this);
 				else
-				if ( jQuery(this).width() > widest.width() )
+				if ( jQuery(this).text().length > widest.text().length )
 					widest = jQuery(this);
 			});
 
-			jQuery( "#" + parent ).append("<style type='text/css'>#"+ parent +" .field-label, #container_"+ parent +" .field-label{display:inline-block;padding-right:5px;width:"+ ( parseInt( widest.width() ) + parseInt( 2 ) ) +"px;}</style>");
+			jQuery( "#" + parent ).append("<style type='text/css'>#"+ parent +" .field-label, #container_"+ parent +" .field-label{display:inline-block;padding-right:5px;width:"+ ( parseInt( widest.text().length*6 ) + parseInt( 2 ) ) +"px;}</style>");
 		}
 	}
 	else if( element == 'strong' ){
@@ -419,11 +419,11 @@ function wck_set_to_widest( element, parent ){
 				if (widest == null)
 					widest = jQuery(this);
 				else
-				if ( jQuery(this).width() > widest.width() )
+				if ( jQuery(this).text().length > widest.text().length )
 					widest = jQuery(this);
 			});
 
-			jQuery( "#container_" + parent ).append("<style type='text/css'>#container_"+ parent +" strong{display:inline-block;padding-right:5px;width:"+ ( parseInt( widest.width() ) + parseInt( 2 ) ) +"px;}</style>");
+			jQuery( "#container_" + parent ).append("<style type='text/css'>#container_"+ parent +" strong{display:inline-block;padding-right:5px;width:"+ ( parseInt( widest.text().length*6 ) + parseInt( 2 ) ) +"px;}</style>");
 		}
 	}
 }

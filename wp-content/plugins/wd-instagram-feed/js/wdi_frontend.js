@@ -2791,7 +2791,7 @@ wdi_front.filterData = function (currentFeed)
   currentFeed.customFilteredData = [];
   for (var i = 0; i < currentFeed.dataStorageList.length; i++) {
     for (var j = 0; j < users.length; j++) {
-      if ((currentFeed.dataStorageList[i]['user']['id'] == users[j]['id'] || currentFeed.dataStorageList[i]['wdi_hashtag'] == users[j]['name']) && users[j]['flag'] == true) {
+      if (((typeof currentFeed.dataStorageList[i]['user']['id'] != "undefined" && currentFeed.dataStorageList[i]['user']['id'] == users[j]['id']) || currentFeed.dataStorageList[i]['wdi_hashtag'] == users[j]['name']) && users[j]['flag'] == true) {
         currentFeed.customFilteredData.push(currentFeed.dataStorageList[i]);
       }
 
