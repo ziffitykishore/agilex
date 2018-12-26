@@ -1,27 +1,45 @@
 ---
 
+# Required for correct site domain settings. DO NOT EDIT!
 site_domain: "{{ lookup('env', 'SITE_DOMAIN') }}"
 
+# The site_domains variable data structure is an Enum:
+# type alias Domain = {
+#   domain: String,
+#   mage_mode: String,
+#   mage_run_type: String,
+#   mage_run_code: String,
+# }
+# type site_domains = List (String|Domain)
 site_domains:
   - "{{ site_domain }}"
 
-
+# Sets the default site_root for the project
 site_root: "/var/www/vhosts/{{ site_domain }}"
 
+# Used for stating what major version available.
+# Options are: elastisearch5|elasticsearch
 elasticsearch_name: "elasticsearch5"
 
-magento_crypt_key: 4ac4e9840846688730baaf4157d50ee8
+# Set the magento crypt key. Default is to generate one from {{ site_domain }}
+#magento_crypt_key:
 
+# Set nginx certs. NOTE: completely not needed due to traefik TLS generation.
 copy_nginx_certs: false
 
+# The name of the magento theme to use
 magento_theme: "Magento/backend"
 
+# The name of the client theme to use
 client_theme: "SomethingDigital/bryantpark"
 
+# The user to use for ownership. DO NOT EDIT!
 magento_user: magento
 
+# The group to use for web server. DO NOT EDIT!
 magento_group: nginx
 
+# Use for $(git root)/auth.json.j2
 magento_repo_username: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   62306432363434363539623734396131613833333266366238636135636231346539656464336564
@@ -31,6 +49,7 @@ magento_repo_username: !vault |
   66356632303439653933326132356361666137356463323566336433376634336438616430386132
   6432353232316638353834356530663532383861306133633733
 
+# Use for $(git root)/auth.json.j2
 magento_repo_password: !vault |
   $ANSIBLE_VAULT;1.1;AES256
   31376461393764333834313036663335356661643865616166306162313839343664633662373332
