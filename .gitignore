@@ -14,6 +14,7 @@
 # Docker's files/ directory
 /files
 /.docker-sync
+/provision.retry
 
 
 ### Magento OOB .gitignore
