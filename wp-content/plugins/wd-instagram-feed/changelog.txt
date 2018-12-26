@@ -1,5 +1,9 @@
+= 1.3.10 =
+Fixed: Gutenberg compatibility
+Fixed: Duplicate media when several filters are applied (Premium)
+
 = 1.3.9 =
-Fixed: Lib conflict with photo-gallery
+Fixed: Free user lib conflict with photo-gallery
 
 = 1.3.8 =
 Changed: Links to docs
