@@ -273,22 +273,6 @@ define([
     $('.product-info-main .product-social-links').appendTo('.box-tocart');
     toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
 
-    /*after load*/
-    if (window.location.href.search('weltpixel_quickview') == '-1') {
-        $(window).bind("load", function() {
-            /*iframe*/
-            var _iFrame = '<iframe style="width:100%;border:0;overflow:hidden;background-color:transparent;height:104px" scrolling="no" src="https://fortrader.org/en/informers/getInformer?st=19&cat=10&title=&texts=%7B%22toolTitle%22%3A%22Symbol%22%2C%22bid%22%3A%22Bid%22%7D&mult=1&showGetBtn=0&w=0&hideDiff=1&colors=titleTextColor%3Dffffff%2CtitleBackgroundColor%3Dffffff%2CsymbolTextColor%3D3e5ca3%2CtableTextColor%3D444%2CborderTdColor%3Dffffff%2CtableBorderColor%3Dffffff%2CtrBackgroundColor%3Df1f1f1%2CitemImgBg%3D545454%2CprofitTextColor%3D89bb50%2CprofitBackgroundColor%3Deaf7e1%2ClossTextColor%3Dff1616%2ClossBackgroundColor%3Df6e1e1%2CinformerLinkTextColor%3D454242%2CinformerLinkBackgroundColor%3Df2f5f8&items=48%2C49%2C25459%2C25466%2C25458&columns="></iframe>';
-            $('.ticker.jFrame .container').html(_iFrame);
-
-            /* My Live Chat */
-            var script = document.createElement('script');
-            script.setAttribute("aysnc", true);
-            script.setAttribute("type", "text/javascript");
-            script.setAttribute("src", "https://mylivechat.com/chatinline.aspx?hccid=85652036");
-            document.getElementsByTagName("head")[0].appendChild(script);
-        });
-    }
-
     /* Preloader */
     var preLoader = $(".pre-loader");
     preLoader.fadeOut("slow");
