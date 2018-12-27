@@ -20,22 +20,10 @@ function checkHost($domain)
     return strpos($_SERVER['HTTP_HOST'], $domain) !== false;
 }
 
-if (checkHost('travers') !== false) {
-    $_SERVER['MAGE_RUN_CODE'] = 'default';
+if (checkHost('traverscanada')) {
+    $_SERVER['MAGE_RUN_CODE'] = 'canada';
     $_SERVER['MAGE_RUN_TYPE'] = 'store';
-} else {
-    // Since we don't have the subdomain names configured
-    // let's just make sure we're loading the default store
-    // 
-    // Travers currently has two domain names:
-    // 
-    // - www.traverscanada.com
-    // - www.travers.com
-    //
-    // How we structure the subdomains is TBD
-    //
-    // @TODO We should remove this and rely on the subdomains 
-
+} else if (checkHost('travers')) {
     $_SERVER['MAGE_RUN_CODE'] = 'default';
     $_SERVER['MAGE_RUN_TYPE'] = 'store';
 }
