@@ -6,6 +6,12 @@ map $http_host $MAGE_RUN_CODE {
 {% endfor %}
 }
 
+map $http_host $MAGE_RUN_TYPE {
+{% for site in site_domains %}
+  {{ site.domain | default(site) }} {{ site.mage_run_type | default("store") }};
+{% endfor %}
+}
+
 {% for site in site_domains %}
 server {
   set $MAGE_ROOT {{ site_root }}/current;
@@ -17,9 +23,8 @@ server {
 
   server_name {{ site.domain | default(site) }};
 
-  env $MAGE_MODE={{ site.mage_mode | default('developer') }};
-  env $MAGE_RUN_TYPE={{ site.mage_run_type | default('store') }};
-  env $MAGE_RUN_CODE={{ site.mage_run_code | default('') }};
+  set $MAGE_RUN_CODE {{ site.mage_run_code | default('') }};
+  set $MAGE_RUN_TYPE {{ site.mage_run_type | default('store') }};
 
   access_log /var/log/access.log main;
   error_log /var/log/nginx/error.log warn;
@@ -37,5 +42,6 @@ server {
 
   include /etc/nginx/conf/server/magento2.conf;
 }
+
 {% endfor %}
 
