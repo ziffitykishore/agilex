@@ -1,6 +1,6 @@
 ---
 
-- name: prebuild provision
+- name: image provision
   hosts: localhost
   connection: local
   become: yes
@@ -68,7 +68,7 @@
         - "/home/magento/.vault_pass"
         - "/docker-entrypoint.d/mysql.sh"
   tags:
-    - prebuild
+    - image
 
 
 - name: database provision
@@ -252,3 +252,4 @@
         src: "{{ tmp_download_path }}/app/code/Unirgy"
         dest: "{{ magento_root }}/app/code/Unirgy"
         remote_src: yes
+
