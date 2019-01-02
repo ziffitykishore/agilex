@@ -83,7 +83,7 @@
               -proot_password \
               -h database \
               {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item.domain | item }}');"
+              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item.domain | default(item) }}');"
       loop: "{{ site_domains }}"
   tags:
     - database
