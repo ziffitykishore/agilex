@@ -1,0 +1,10 @@
+<?php
+/** @var SomethingDigital\CustomPdp\ViewModel\CustomProductDetails $viewModel */
+$viewModel = $block->getViewModel();
+?>
+
+<?php if ($viewModel->getCustomMsrpPrice()): ?>
+<div class="manufacturer_price">
+    <span>MSRP: <?= $viewModel->getCustomMsrpPrice(); ?></span>
+</div>
+<?php endif; ?>
