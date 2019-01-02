@@ -41,7 +41,7 @@ copy_nginx_certs: false
 magento_theme: "Magento/backend"
 
 # The name of the client theme to use
-client_theme: "SomethingDigital/bryantpark"
+client_theme: "Travers/default"
 
 # The user to use for ownership. DO NOT EDIT!
 magento_user: magento
