@@ -34,8 +34,44 @@ define([
         } else if (type == 'grouped') {
             var $priceBoxes = $('.grouped .price-box');
             for (var priceBox of $priceBoxes) {
-                // call a function to calculate $(priceBox)
+                // jQuery wrapper around dom element
+                var $priceBox = $(priceBox);
+                var prices = getPricesFromPriceBox($priceBox);
+                if (!prices) {
+                    continue;
+                }
+                var percentSaved = Math.round(((prices.oldPrice - prices.finalPrice) / prices.oldPrice) * 100);
+                if (percentSaved < 1) {
+                    continue;
+                }
+                var $span = $('<span>', { "class": "percent-saved" });
+                $span.text($.mage.__("You save") + " " + percentSaved + "%");
+                $priceBox.after($span);
             }
+        }
+
+        /**
+         * Returns an object containing the base and
+         * discounted price
+         *
+         * If the price doesn't have an "old price" or
+         * a "special price" then it will return null
+         *
+         * @param {jQuery} price box
+         * @return {Object|null} 
+         */
+        function getPricesFromPriceBox($priceBox) {
+            $finalPrice = $priceBox.find('.special-price .price');
+            $oldPrice = $priceBox.find('.old-price .price');
+
+            if ($finalPrice.length < 1 || $oldPrice.length < 1) {
+                return null;
+            }
+
+            return {
+                finalPrice: $finalPrice.text().replace(/\$/g, ''),
+                oldPrice: $oldPrice.text().replace(/\$/g, ''),
+            };
         }
     }
 });
