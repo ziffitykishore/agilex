@@ -17,8 +17,7 @@ $total = count($tierPrices);
 ?>
 <?php if (count($tierPrices)) : ?>
     <?php
-        $lastElement = array_slice($tierPrices, -1);
-        $cheapestPrice = array_pop($lastElement)['price'];
+        $cheapestPrice = end($tierPrices)['price'];
         foreach ($tierPrices as $index => $price) {
             if ($price['price'] < $cheapestPrice) {
                 $cheapestPrice = $price['price'];
