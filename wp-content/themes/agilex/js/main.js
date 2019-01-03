@@ -586,7 +586,7 @@ function myFunction() {
   //HEADER SHADOW ---------------------------------------------------------------------/
   function headerSticky() {
     var header = $(".header-container"),
-      headerOffset = header.offset().top;
+/*      headerOffset = header.offset().top; */
     headerHeight = header.outerHeight();
 
     if ($("body").hasClass("home") != 1) {
@@ -820,7 +820,7 @@ function myFunction() {
   $(".no-touch .uniques .img-sec").each(function () {
     $(this).mousemove(function (e) {
       // $( '.feature-image' ).parallax( -30, e );
-      $(".seconday-image").parallax(10, e);
+      /*$(".seconday-image").parallax(10, e);*/
     });
   });
 
