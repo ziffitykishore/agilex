@@ -189,7 +189,7 @@
         - "app:config:import"
         - "cache:clean"
         - "setup:upgrade -n"
-        - "deploy:mode:set {{ magento_mode }} --skip-compilation developer"
+        - "deploy:mode:set {{ magento_mode }} --skip-compilation"
         - "setup:di:compile"
     - name: setup static content of theme
       shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
