@@ -85,13 +85,9 @@ class CustomProductDetails implements ArgumentInterface
      */
     public function getJsConfig()
     {
-		/** @var \Magento\Catalog\Api\Data\ProductInterface $product */
+        /** @var \Magento\Catalog\Api\Data\ProductInterface $product */
         $product = $this->getProduct();
         /** @var string[] $config */
-        $attribute = $product->getCustomAttribute('manufacturer_price');
-        if (!$attribute) {
-            return null;
-        }
         $config = [
             'type' => $product->getTypeId(),
             'basePrice' => $this->getBasePrice($product),
