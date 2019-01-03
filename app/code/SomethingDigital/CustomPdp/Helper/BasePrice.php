@@ -89,7 +89,7 @@ class BasePrice
             return null;
         }
         /** @var int $cheapestPrice */
-        $cheapestPrice = $childProducts[0]->getPrice();
+        $cheapestPrice = array_pop($childProducts)->getPrice();
         /** @var ProductInterface $child */
         foreach ($childProducts as $child) {
             $currentPrice = $child->getPrice();
@@ -112,7 +112,7 @@ class BasePrice
             return null;
         }
         /** @var int $cheapestPrice */
-        $cheapestPrice = $childProducts[0]->getPrice();
+        $cheapestPrice = array_pop($childProducts)->getPrice();
         /** @var ProductInterface $child */
         foreach ($childProducts as $child) {
             $currentPrice = $child->getPrice();
