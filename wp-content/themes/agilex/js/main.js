@@ -2,7 +2,10 @@
  * Functionality specific to Bootstrap Canvas WP.
  *
  * Provides helper functions to enhance the theme experience.
+
  */
+
+
 
 function myFunction() {
   var x = document.getElementById("primary-menu");
@@ -14,6 +17,7 @@ function myFunction() {
 }
 (function ($) {
   $(document).ready(function () {
+    $("img.lazy").lazyload();
     /* browser detection */
 
     if (
