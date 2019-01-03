@@ -6,6 +6,8 @@ use Magento\Framework\View\Element\Block\ArgumentInterface;
 use Magento\Framework\Registry;
 use Magento\Framework\Pricing\Helper\Data as PricingHelper;
 use Magento\Store\Model\StoreManagerInterface; 
+use Magento\Framework\Serialize\Serializer\Json as JsonEncoder;
+use SomethingDigital\CustomPdp\Helper\BasePrice;
 
 class CustomProductDetails implements ArgumentInterface
 {
@@ -24,14 +26,28 @@ class CustomProductDetails implements ArgumentInterface
      */
     private $storeManager;
 
+   /**
+    * @var JsonEncoder
+    */
+    private $jsonEncoder;
+
+   /**
+    * @var BasePrice
+    */
+    private $basePrice;
+
     public function __construct(
         Registry $registry,
         PricingHelper $pricingHelper,
-       StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        JsonEncoder $jsonEncoder,
+        BasePrice $basePrice
     ) {
         $this->coreRegistry = $registry;
         $this->pricingHelper = $pricingHelper;
         $this->storeManager = $storeManager;
+        $this->jsonEncoder = $jsonEncoder;
+        $this->basePrice = $basePrice;
     }
 
     /**
@@ -60,5 +76,32 @@ class CustomProductDetails implements ArgumentInterface
             $attribute->getValue(),
             $this->storeManager->getStore()
         );
+    }
+
+    /**
+     * Returns a JSON object with price data
+     * 
+     * @return string JSON
+     */
+    public function getJsConfig()
+    {
+		/** @var \Magento\Catalog\Api\Data\ProductInterface $product */
+        $product = $this->getProduct();
+        /** @var string[] $config */
+        $attribute = $product->getCustomAttribute('manufacturer_price');
+        if (!$attribute) {
+            return null;
+        }
+        $config = [
+            'type' => $product->getTypeId(),
+            'basePrice' => $this->getBasePrice($product),
+            'finalPrice' => $product->getSpecialPrice(),
+        ];
+        return $this->jsonEncoder->serialize($config);
+    }
+
+    private function getBasePrice($typeId)
+    {
+        return $this->basePrice->getPrice($typeId);
     }
 }
