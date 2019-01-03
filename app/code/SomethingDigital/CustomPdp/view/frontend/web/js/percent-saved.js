@@ -11,7 +11,7 @@ define([
             finalPrice = config.finalPrice;
             if (finalPrice == basePrice || finalPrice === 0) {
                 $('.percent-saved').hide();
-                $('.percent-saved').text("0%");
+                $('.percent-saved').text("");
             } else {
                 var percentSaved = Math.round(((basePrice - finalPrice) / basePrice) * 100) + "%";
                 $('.percent-saved').text($.mage.__("You save") + " " + percentSaved);
@@ -19,6 +19,8 @@ define([
             }
         } else if (type == 'configurable') {
             $('.price-final_price').on('updatePrice', function(e, p) {
+                // Note that the "finalPrice.amount" is the number "offset" from the basePrice
+                // e.x. if special price = 45 and base price = 100, finalPrice.amount = -55
                 finalPrice = p.prices.finalPrice.amount;
                 if (finalPrice == 0) {
                     $('.percent-saved').hide();
@@ -30,7 +32,10 @@ define([
                 $('.percent-saved').show();
             });
         } else if (type == 'grouped') {
-            // @TODO Not sure if this is needed
+            var $priceBoxes = $('.grouped .price-box');
+            for (var priceBox of $priceBoxes) {
+                // call a function to calculate $(priceBox)
+            }
         }
     }
 });
