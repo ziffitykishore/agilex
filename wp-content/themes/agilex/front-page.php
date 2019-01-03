@@ -70,10 +70,10 @@ $unique_arg_query->the_post();  ?>
  ?>
 
   <?php if($parallax_image_1) {?>
-<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+<img data-src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
   <?php } ?>
   <?php if($parallax_image_2) {?>
-<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<img data-src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
 <?php } ?>
         <div class="container">
 
@@ -91,12 +91,14 @@ $unique_arg_query->the_post();  ?>
                 'order_by' => 'date',
                 'order' => 'ASC'
             );
+            $slug = basename( get_permalink() );
+
             $agilex_unique_query = new WP_Query($args); $i = 1; ?>
             <ul class="nav nav-tabs responsive" id="myTabs" role="tablist">
                 <?php while ($agilex_unique_query->have_posts()) {
                 $agilex_unique_query->the_post(); ?>
                 <li role="presentation" class="<?php if($i == 1) { echo "active"; } ?> ">
-                    <a href="#tab-<?php echo $i; ?>" class="text-uppercase btn-ripple" id="tab-link_<?php echo $i; ?>" role="tab" rel="<?php echo the_field('tab_color'); ?>" data-toggle="tab" aria-controls="<?php echo strtolower(str_replace('', '-', get_the_title())); ?>" aria-expanded="true">
+                    <a href="#tab-<?php echo $i; ?>" class="text-uppercase btn-ripple" id="tab-link_<?php echo $i; ?>" role="tab" rel="<?php echo the_field('tab_color'); ?>" data-toggle="tab" aria-controls="<?php echo $slug; ?>" aria-expanded="true">
                     <h3 class="tab-title"><?php echo the_Title(); $i++; ?></h3>
                     </a>
                 
@@ -106,7 +108,7 @@ $unique_arg_query->the_post();  ?>
             <div class="tab-content" id="myTabContent">
                 <?php $i = 1; while ($agilex_unique_query->have_posts()) {
                         $agilex_unique_query->the_post(); ?>
-                <div class="tab-pane fade <?php if($i == 1) { echo "active in"; } ?> tab-pane_<?php echo $i; ?>" role="tabpanel" id="tab-<?php echo $i; ?>" aria-labelledby="<?php echo strtolower(str_replace('', '-', get_the_title())); ?>-tab">
+                <div class="tab-pane fade <?php if($i == 1) { echo "active in"; } ?> tab-pane_<?php echo $i; ?>" role="tabpanel" id="tab-<?php echo $i; ?>" aria-labelledby="<?php echo $slug; ?>">
                     <div class="row">
                         <div class="col-sm-6 wow slideInLeft">
                             <div class="project">
@@ -115,7 +117,7 @@ $unique_arg_query->the_post();  ?>
                                 <figure class="feature-image">
                                 <?php if (get_field('primary_image', get_the_ID())){ ?>
                                     <?php $image = get_field('primary_image'); ?>
-                                    <img class="primary-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                    <img class="primary-image lazy" data-src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                 <?php }  ?>
                                 </figure>
                                 
@@ -172,10 +174,10 @@ $unique_arg_query->the_post();  ?>
  ?>
 
   <?php if($parallax_image_1) {?>
-<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+<img data-src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
   <?php } ?>
   <?php if($parallax_image_2) {?>
-<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<img data-src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
 <?php } ?>
 
 
@@ -241,16 +243,16 @@ $unique_arg_query->the_post();  ?>
  ?>
 
   <?php if($top_left_image) {?>
-<img src="<?php echo $top_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="360" data-ps-horizontal-position="0"/>
+<img data-src="<?php echo $top_left_image['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="360" data-ps-horizontal-position="0"/>
   <?php } ?>
   <?php if($bottom_left_image) {?>
-<img src="<?php echo $bottom_left_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
+<img data-src="<?php echo $bottom_left_image['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="0" data-ps-horizontal-position="0"/>
 <?php } ?>
 <?php if($top_right_image) {?>
-<img src="<?php echo $bottom_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="50" data-ps-horizontal-position="75%"/>
+<img data-src="<?php echo $bottom_right_image['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="50" data-ps-horizontal-position="75%"/>
 <?php } ?>
 <?php if($bottom_right_image) {?>
-<img src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
+<img data-src="<?php echo $top_right_image['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="380" data-ps-horizontal-position="85%"/>
 <?php } ?>
     
     </section>
@@ -278,10 +280,10 @@ $unique_arg_query->the_post();  ?>
  ?>
 
   <?php if($parallax_image_1) {?>
-<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+<img data-src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
   <?php } ?>
   <?php if($parallax_image_2) {?>
-<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<img data-src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
 <?php } ?>
 
         <div class="container">
@@ -313,9 +315,9 @@ $unique_arg_query->the_post();  ?>
                                 <div class="img-sec">
                                     <?php if (get_field('thumb_image', get_the_ID())){ ?>
                                         <?php $image = get_field('thumb_image'); ?>
-                                        <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                                        <img class="thumb-image lazy" data-src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                                     <?php } else { ?>
-                                        <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X250.png" alt="<?php the_title(); ?>" />
+                                        <img  class="thumb-image lazy" data-src="<?php bloginfo('template_directory'); ?>/images/placeholder_370X250.png" alt="<?php the_title(); ?>" />
                                         <?php } ?>
                                 </div>
                                 <div class="caption">
@@ -370,10 +372,10 @@ $unique_arg_query->the_post();  ?>
  ?>
 
   <?php if($parallax_image_1) {?>
-<img src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
+<img data-src="<?php echo $parallax_image_1['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_1_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_1_x; ?>"/>
   <?php } ?>
   <?php if($parallax_image_2) {?>
-<img src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
+<img data-src="<?php echo $parallax_image_2['url']; ?>" alt="" class="parallax-move lazy" data-ps-z-index="200" data-ps-vertical-position="<?php echo $parallax_image_2_y; ?>" data-ps-horizontal-position="<?php echo $parallax_image_2_x; ?>"/>
 <?php } ?>
 
 
