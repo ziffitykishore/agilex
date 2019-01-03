@@ -13,7 +13,7 @@ define([
                 $('.percent-saved').hide();
                 $('.percent-saved').text("");
             } else {
-                var percentSaved = Math.round(((basePrice - finalPrice) / basePrice) * 100) + "%";
+                var percentSaved = Math.floor(((basePrice - finalPrice) / basePrice) * 100) + "%";
                 $('.percent-saved').text($.mage.__("You save") + " " + percentSaved);
                 $('.percent-saved').show();
             }
@@ -27,7 +27,7 @@ define([
                     $('.percent-saved').text("");
                    return; 
                 }
-                var percentSaved = Math.round(((Math.abs(finalPrice)) / basePrice) * 100) + "%";
+                var percentSaved = Math.floor(((Math.abs(finalPrice)) / basePrice) * 100) + "%";
                 $('.percent-saved').text($.mage.__("You save") + " " + percentSaved);
                 $('.percent-saved').show();
             });
@@ -40,7 +40,7 @@ define([
                 if (!prices) {
                     continue;
                 }
-                var percentSaved = Math.round(((prices.oldPrice - prices.finalPrice) / prices.oldPrice) * 100);
+                var percentSaved = Math.floor(((prices.oldPrice - prices.finalPrice) / prices.oldPrice) * 100);
                 if (percentSaved < 1) {
                     continue;
                 }
