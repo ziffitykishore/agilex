@@ -1,4 +1,4 @@
-version: "2.3"
+version: "3.7"
 
 services:
 
@@ -10,9 +10,14 @@ services:
       - 80:80
       - 443:443
       - 8080:8080
-    network_mode: "bridge"
     cap_add:
       - NET_ADMIN
-    #labels:
-    #  - traefik.docker.network="web"
+    labels:
+      - traefik.docker.network="lol"
+    networks:
+      - lol
+
+networks:
+  lol:
+    external: true
 

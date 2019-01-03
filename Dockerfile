@@ -27,13 +27,13 @@ WORKDIR ${MAGENTO_ROOT}
 COPY --chown=magento:magento files/vault_pass /home/magento/.vault_pass
 RUN ansible-playbook provision.yml \
     --vault-id /home/magento/.vault_pass \
-    -e site_domain=${SITE_DOMAIN} \
     -e copy_tls_certs=${COPY_TLS_CERTS} \
-    -t prebuild,owner
+    -t image,owner
 RUN rm "${MAGENTO_ROOT}/files" -rf
 
 # run build play
-RUN ansible-playbook provision.yml -t build
+RUN ansible-playbook provision.yml \
+    -t build
 
 # set volume
 VOLUME ${MAGENTO_ROOT}
