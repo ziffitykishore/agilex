@@ -2,7 +2,7 @@
 
 map $http_host $MAGE_RUN_CODE {
 {% for site in site_domains %}
-  {{ site.domain | default(site) }} {{ site.mage_run_code | default("") }};
+  {{ site.domain | default(site) }} {{ site.mage_run_code | default("default") }};
 {% endfor %}
 }
 
@@ -23,7 +23,7 @@ server {
 
   server_name {{ site.domain | default(site) }};
 
-  set $MAGE_RUN_CODE {{ site.mage_run_code | default('') }};
+  set $MAGE_RUN_CODE {{ site.mage_run_code | default('default') }};
   set $MAGE_RUN_TYPE {{ site.mage_run_type | default('store') }};
 
   access_log /var/log/access.log main;
