@@ -51,6 +51,8 @@ class Cart
             }
             $item['savings'] = $this->getSavings($cartItem, $product);
             $item['base_price'] = $product->getPrice();
+            $item['special_price'] = $product->getSpecialPrice();
+            $item['manufacturer_price'] = $product->getManufacturerPrice();
         }
         $result['items'] = $items;
         return $result;
