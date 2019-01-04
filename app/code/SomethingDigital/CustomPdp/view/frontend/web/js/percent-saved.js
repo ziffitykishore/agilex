@@ -33,7 +33,8 @@ define([
             });
         } else if (type == 'grouped') {
             var $priceBoxes = $('.grouped .price-box');
-            for (var priceBox of $priceBoxes) {
+            for (var i = 0; i < $priceBoxes.length; i++) {
+                var priceBox = $priceBoxes[i];
                 // jQuery wrapper around dom element
                 var $priceBox = $(priceBox);
                 var prices = getPricesFromPriceBox($priceBox);
