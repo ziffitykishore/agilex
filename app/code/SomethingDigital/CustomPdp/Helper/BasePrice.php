@@ -2,53 +2,23 @@
 
 namespace SomethingDigital\CustomPdp\Helper;
 
-use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\Api\FilterBuilder;
-use Magento\Framework\Api\Search\FilterGroupBuilder;
-use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\ConfigurableProduct\Api\LinkManagementInterface;
 
+/**
+ * Calculates base price of a product type
+ */
 class BasePrice
 {
-   /**
-    * @var SearchCriteriaBuilder
-    */
-    private $searchCriteriaBuilder;
-
-   /**
-    * @var ProductRepositoryInterface
-    */
-    private $productRepository;
-
-    /**
-     * @var FilterBuilder
-     */
-    private $filterBuilder;
-
-    /**
-     * @var FilterGroupBuilder
-     */
-    private $groupBuilder;
-
     /**
      * @var LinkManagementInterface
      */
     private $linkManagement;
 
     public function __construct(
-        SearchCriteriaBuilder $searchCriteriaBuilder,
-        ProductRepositoryInterface $productRepository,
-        FilterBuilder $filterBuilder,
-        FilterGroupBuilder $groupBuilder,
         LinkManagementInterface $linkManagement
     ) {
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->productRepository = $productRepository;
-        $this->filterBuilder = $filterBuilder;
-        $this->groupBuilder = $groupBuilder;
         $this->linkManagement = $linkManagement;
     }
 
@@ -63,9 +33,7 @@ class BasePrice
             return $this->getSimplePrice($product);
         } else if ($productType == Configurable::TYPE_CODE) {
             return $this->getConfigurablePrice($product);
-        } else if ($productType == Grouped::TYPE_CODE) {
-            return $this->getGroupedPrice($product);
-        }
+        } 
     }
 
     /**
@@ -89,38 +57,27 @@ class BasePrice
             return null;
         }
         /** @var int $cheapestPrice */
-        $cheapestPrice = array_pop($childProducts)->getPrice();
-        /** @var ProductInterface $child */
-        foreach ($childProducts as $child) {
-            $currentPrice = $child->getPrice();
-            if ($currentPrice < $cheapestPrice) {
-                $cheapestPrice = $currentPrice;
-            }
-        }
+        $cheapestPrice = $this->getCheapestPrice($childProducts);
         return $cheapestPrice;
     }
 
     /**
-     * @param ProductInterface $product
-     * @return int|null
+     * Calculates cheapest price in an array of products
+     *
+     * @param ProductInterface[] $products
+     * @return int cheapest price
      */
-    private function getGroupedPrice(ProductInterface $product)
+    private function getCheapestPrice(array $products)
     {
-        /** @var \Magento\Catalog\Api\Data\ProductInterface[] $children */
-        $childProducts = $this->productHelper->getGroupedAssociatedProducts($product);
-        if (count($childProducts) < 1) {
-            return null;
-        }
-        /** @var int $cheapestPrice */
-        $cheapestPrice = array_pop($childProducts)->getPrice();
-        /** @var ProductInterface $child */
-        foreach ($childProducts as $child) {
-            $currentPrice = $child->getPrice();
-            if ($currentPrice !== null && $currentPrice < $cheapestPrice) {
-                $cheapestPrice = $currentPrice;
+        return array_reduce(
+            $products,
+            function ($cheapest, $product) {
+                if ($cheapest === null) {
+                    return $product->getPrice();
+                }
+                return min($cheapest, $product->getPrice());
             }
-        }
-        return $cheapestPrice;
+        );
     }
 }
 
