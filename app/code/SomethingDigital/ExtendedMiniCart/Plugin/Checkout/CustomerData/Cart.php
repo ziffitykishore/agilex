@@ -29,18 +29,30 @@ class Cart
         /** @var string[][] $items */
         $items = $result['items'];
         foreach ($items as &$item) {
-            $item['savings'] = $this->getSavings($item);
-            $item['base_price'] = $this->getBasePrice($item);
+            /** @var \Magento\Quote\Api\Data\CartItemInterface */
+            $cartItem = $this->loadCartItem($item['item_id'])
+            $item['savings'] = $this->getSavings($cartItem);
+            $item['base_price'] = $this->getBasePrice($cartItem);
         }
         $result['items'] = $items;
         return $result;
     }
 
-    private function getSavings($item)
+    private function getSavings(\Magento\Quote\Api\Data\CartItemInterface $item)
     {
+
     }
 
-    private function getBasePrice($item)
+    private function getBasePrice(\Magento\Quote\Api\Data\CartItemInterface $item)
     {
+
+    }
+
+    private function loadCartItem($itemId)
+    {
+        /** @var \Magento\Quote\Api\Data\CartItemInterface */
+        $quoteItem = $this->quoteItemFactory->create();
+        $this->itemResourceModel->load($quoteItem, $itemId);
+        return $quoteItem;
     }
 }
