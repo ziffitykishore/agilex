@@ -5,6 +5,6 @@ $viewModel = $block->getViewModel();
 
 <?php if ($viewModel->getCustomMsrpPrice()): ?>
 <div class="manufacturer_price">
-    <span>MSRP: <?= $viewModel->getCustomMsrpPrice(); ?></span>
+    <span><?= __('MSRP') ?>: <?= $viewModel->getCustomMsrpPrice(); ?></span>
 </div>
 <?php endif; ?>
