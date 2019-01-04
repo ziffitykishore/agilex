@@ -43,13 +43,13 @@
     <tr>
         <td data-bgcolor="bg-module">
             <table class="flexible" width="640" align="center" style="margin:0 auto; background: #24438d; text-align: center;" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td class="img-flex" style="font-weight: bold; font-size: 20px; color: #fff;" height="180">
-                        <img src="{{view url='images/email/icon_tick.png'}}" alt="" style="display: inline-block; vertical-align: middle;" /> Your Order is Confirmed
+                <tr valign="middle">
+                    <td valign="middle" align="right" class="img-flex" width="240" height="180">
+                        <img src="{{view url='images/email/icon_tick.png'}}" alt="" style="display: inline-block; vertical-align: middle;" />
                     </td>
-
+                    <td valign="middle" align="left" class="img-flex" style="font-weight: bold; font-size: 20px; color: #fff;" height="180">&nbsp;{{trans 'Your Order is Confirmed' |raw}}
+                    </td>
                 </tr>
-
             </table>
         </td>
     </tr>
@@ -173,9 +173,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td height="30">
-
-                                </td>
+                                <td height="30"></td>
                             </tr>
                             <tr>
                                 <td colspan="3" style="vertical-align: top;">
@@ -183,9 +181,11 @@
                                         <thead style="background: #d7d7ed; font-size: 14px; font-weight: bold; text-align: left; line-height: normal;">
                                             <th style="padding: 22px 30px">Order Summary</th>
                                         </thead>
-
-                                        {{layout handle="sales_email_order_items" order=$order area="frontend"}}
-
+                                        <tbody>
+                                            <tr>
+                                                <td>{{layout handle="sales_email_order_items" order=$order area="frontend"}}</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </td>
                             </tr>
@@ -193,8 +193,6 @@
                     </td>
                 </tr>
             </table>
-
-
         </td>
     </tr>
 </table>
