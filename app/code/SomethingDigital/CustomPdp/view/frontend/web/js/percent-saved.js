@@ -70,8 +70,8 @@ define([
             }
 
             return {
-                finalPrice: $finalPrice.text().replace(/\$/g, ''),
-                oldPrice: $oldPrice.text().replace(/\$/g, ''),
+                finalPrice: $finalPrice.text().replace(/[^0-9\.]+/g, ''),
+                oldPrice: $oldPrice.text().replace(/[^0-9\.]+/g, ''),
             };
         }
     }
