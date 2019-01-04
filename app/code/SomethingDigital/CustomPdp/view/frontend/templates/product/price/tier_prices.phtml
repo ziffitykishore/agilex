@@ -1,0 +1,80 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/** @var \Magento\Catalog\Pricing\Render\PriceBox $block */
+
+/** @var \Magento\Catalog\Pricing\Price\TierPrice $tierPriceModel */
+$tierPriceModel = $block->getPrice();
+$tierPrices = $tierPriceModel->getTierPriceList();
+$total = count($tierPrices);
+?>
+<?php if (count($tierPrices)) : ?>
+    <?php
+        $cheapestPrice = array_reduce(
+            $tierPrices,
+            function ($cheapest, $price) {
+                if ($cheapest === null) {
+                    return $price['price'];
+                }
+                return min($cheapest, $price['price']);
+            }
+        );
+        $asLowAsPrice = $block->renderAmount(
+            $cheapestPrice,
+            [
+                'include_container' => false,
+                'zone' => \Magento\Framework\Pricing\Render::ZONE_ITEM_OPTION
+            ]
+        );
+    ?>
+    <div class="as-low-as">
+        <span><?= __('as low as'); ?>:</span>
+        <?= $asLowAsPrice; ?>
+    </div>
+    <table class="<?= /* @escapeNotVerified */ ($block->hasListClass() ? $block->getListClass() : 'prices-tier items') ?>">
+        <tr>
+            <th><?= __('Quantity'); ?></th>
+            <?php foreach ($tierPrices as $index => $price) : ?>
+                <?php if ($index == $total - 1): ?>
+                    <?= "<th>" . $price['price_qty'] . "+" . "</th>"; ?>
+                    <?php break; ?>
+                <?php endif; ?>
+                <?= "<th>" . $price['price_qty'] . "</th>"; ?>
+            <?php endforeach; ?>
+        </tr>
+        <tr> 
+            <td class="item row-index"><?= __('Price (ea.)'); ?>:</td>
+            <?php foreach ($tierPrices as $index => $price) : ?>
+                <td class="item">
+                        <?php 
+                            $priceAmountBlock = $block->renderAmount(
+                                $price['price'],
+                                [
+                                    'price_id'          => $index,
+                                    'id_suffix'         => '-' . $index,
+                                    'include_container' => true,
+                                    'zone' => \Magento\Framework\Pricing\Render::ZONE_ITEM_OPTION
+                                ]
+                            );
+                        ?>
+                    <?= $priceAmountBlock; ?>
+                </td>
+            <?php endforeach; ?>
+        </tr>
+        <tr>
+            <td class="item row-index"><?= __('You Save'); ?>:</td>
+            <?php foreach ($tierPrices as $index => $price) : ?>
+                <td class="item">
+                    <?= $tierPriceModel->getSavePercent($price['price']) . "%"; ?>
+                </td>
+            <?php endforeach; ?>
+        </tr>
+    </table>
+<?php endif; ?>
