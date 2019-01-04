@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.price">
+            <block name="somethingdigital_custompdp_msrp_price"
+                before="product.price.final"
+                template="SomethingDigital_CustomPdp::product/view/manufacturer_price.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">SomethingDigital\CustomPdp\ViewModel\CustomProductDetails</argument>
+                </arguments>
+            </block>
+            <block name="somethingdigital_custompdp_percent_saved"
+                after="product.price.final"
+                template="SomethingDigital_CustomPdp::product/view/percent_saved.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">SomethingDigital\CustomPdp\ViewModel\CustomProductDetails</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

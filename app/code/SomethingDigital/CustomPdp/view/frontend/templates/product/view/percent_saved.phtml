@@ -1,0 +1,12 @@
+<?php
+/** @var SomethingDigital\CustomPdp\ViewModel\CustomProductDetails $viewModel */
+$viewModel = $block->getViewModel();
+?>
+<span class="percent-saved"></span>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "percentSaved": <?= $viewModel->getJsConfig(); ?>
+    }
+}
+</script>
