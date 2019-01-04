@@ -17,17 +17,18 @@ $total = count($tierPrices);
 ?>
 <?php if (count($tierPrices)) : ?>
     <?php
-        $cheapestPrice = end($tierPrices)['price'];
-        foreach ($tierPrices as $index => $price) {
-            if ($price['price'] < $cheapestPrice) {
-                $cheapestPrice = $price['price'];
+        $cheapestPrice = array_reduce(
+            $tierPrices,
+            function ($cheapest, $price) {
+                if ($cheapest === null) {
+                    return $price['price'];
+                }
+                return min($cheapest, $price['price']);
             }
-        }
+        );
         $asLowAsPrice = $block->renderAmount(
-            $price['price'],
+            $cheapestPrice,
             [
-                'price_id'          => $index,
-                'id_suffix'         => '-' . $index,
                 'include_container' => false,
                 'zone' => \Magento\Framework\Pricing\Render::ZONE_ITEM_OPTION
             ]
