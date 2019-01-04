@@ -65,7 +65,7 @@ class CustomProductDetails implements ArgumentInterface
      */
     public function getCustomMsrpPrice()
     {
-		/** @var \Magento\Catalog\Api\Data\ProductInterface $product */
+        /** @var \Magento\Catalog\Api\Data\ProductInterface $product */
         $product = $this->getProduct();
         /** @var \Magento\Framework\Api\AttributeInterface|null $attribute */
         $attribute = $product->getCustomAttribute('manufacturer_price');
