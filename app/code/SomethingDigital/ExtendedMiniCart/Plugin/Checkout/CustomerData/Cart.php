@@ -4,6 +4,10 @@ namespace SomethingDigital\ExtendedMiniCart\Plugin\Checkout\CustomerData;
 
 use Magento\Quote\Model\Quote\ItemFactory;
 use Magento\Quote\Model\ResourceModel\Quote\Item;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Quote\Api\Data\CartItemInterface;
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
  
 class Cart 
 {
@@ -17,35 +21,49 @@ class Cart
      */
     private $itemResourceModel;
 
+    /**
+     * @var ProductRepositoryInterface
+     */
+    private $productRepo;
+
     public function __construct( 
-        ItemFactory $quoteItemFactory
-        Item $itemResourceModel
+        ItemFactory $quoteItemFactory,
+        Item $itemResourceModel,
+        ProductRepositoryInterface $productRepo
     ) {
         $this->quoteItemFactory = $quoteItemFactory;
         $this->itemResourceModel = $itemResourceModel;
+        $this->productRepo = $productRepo;
     }
+
     public function afterGetSectionData(\Magento\Checkout\CustomerData\Cart $subject, array $result)
     {
         /** @var string[][] $items */
         $items = $result['items'];
         foreach ($items as &$item) {
-            /** @var \Magento\Quote\Api\Data\CartItemInterface */
-            $cartItem = $this->loadCartItem($item['item_id'])
-            $item['savings'] = $this->getSavings($cartItem);
-            $item['base_price'] = $this->getBasePrice($cartItem);
+            try {
+                /** @var CartItemInterface */
+                $cartItem = $this->loadCartItem($item['item_id']);
+                /** @var ProductInterface */
+                $product = $this->productRepo->get($cartItem->getSku());
+            } catch (NoSuchEntityException $e) {
+                // @TODO
+            }
+            $item['savings'] = $this->getSavings($cartItem, $product);
+            $item['base_price'] = $product->getPrice();
         }
         $result['items'] = $items;
         return $result;
     }
 
-    private function getSavings(\Magento\Quote\Api\Data\CartItemInterface $item)
+    private function getSavings(CartItemInterface $item, ProductInterface $product)
     {
+        /** @var float $basePrice */
+        $basePrice = $product->getPrice();
+        /** @var float $finalPrice */
+        $finalPrice = $item->getPrice(); 
 
-    }
-
-    private function getBasePrice(\Magento\Quote\Api\Data\CartItemInterface $item)
-    {
-
+        return floor((($basePrice - $finalPrice) / $basePrice) * 100);
     }
 
     private function loadCartItem($itemId)
