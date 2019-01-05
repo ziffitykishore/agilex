@@ -47,12 +47,15 @@ class Cart
                 /** @var ProductInterface */
                 $product = $this->productRepo->get($cartItem->getSku());
             } catch (NoSuchEntityException $e) {
+                continue;
                 // @TODO
             }
-            $item['savings'] = $this->getSavings($cartItem, $product);
-            $item['base_price'] = $product->getPrice();
-            $item['special_price'] = $product->getSpecialPrice();
-            $item['manufacturer_price'] = $product->getManufacturerPrice();
+            if ($cartItem->getPrice() !== $product->getPrice()) {
+                $item['savings'] = $this->getSavings($cartItem, $product);
+                $item['base_price'] = $product->getPrice();
+                $item['special_price'] = $product->getSpecialPrice() ?? false;
+                $item['manufacturer_price'] = $product->getManufacturerPrice() ?? false;
+            }
         }
         $result['items'] = $items;
         return $result;
@@ -62,9 +65,12 @@ class Cart
     {
         /** @var float $basePrice */
         $basePrice = $product->getPrice();
+        $msrpPrice = $product->getManufacturerPrice();
+        if ($basePrice > $msrpPrice) {
+            $basePrice = $msrpPrice;
+        }
         /** @var float $finalPrice */
         $finalPrice = $item->getPrice(); 
-
         return floor((($basePrice - $finalPrice) / $basePrice) * 100);
     }
 
