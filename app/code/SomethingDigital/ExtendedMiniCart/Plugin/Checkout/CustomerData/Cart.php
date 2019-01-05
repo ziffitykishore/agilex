@@ -67,9 +67,9 @@ class Cart
             }
             if ($cartItem->getPrice() !== $product->getPrice()) {
                 $item['savings'] = $this->getSavings($cartItem, $product);
-                $item['base_price'] = $product->getPrice();
+                $item['base_price'] = $product->getManufacturerPrice() ?? $product->getPrice();
                 $item['base_price_fmt'] = $this->pricingHelper->currencyByStore(
-                    $product->getPrice(),
+                    $item['base_price'],
                     $this->storeManager->getStore(),
                     true,
                     false
