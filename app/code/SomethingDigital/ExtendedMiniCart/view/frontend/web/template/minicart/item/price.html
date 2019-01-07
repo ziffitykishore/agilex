@@ -1,0 +1,15 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="price-container">
+    <if args="item.special_price || item.manufacturer_price"> 
+        <span class="strike-out" data-bind="text: item.base_price_fmt"></span>
+    </if>
+    <span class="price-wrapper" data-bind="html: price"></span>
+    <if args="item.savings != null || item.savings > 0"> 
+        <translate args="'Savings'">:&nbsp;<span data-bind="text: item.savings"></span>%
+    </if>
+</div>
