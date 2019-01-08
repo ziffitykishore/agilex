@@ -2009,3 +2009,14 @@ if (!(is_admin() )) {
     }
     add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 }
+
+/*to remove preconnect when using autoptimize*/
+/**
+ * Removes the preconnect to fonts.gstatic.com
+ */
+add_filter('autoptimize_html_after_minify', function($content) {
+    $html1 = str_replace("<link href='https://fonts.gstatic.com' crossorigin='anonymous' rel='preconnect' />", ' ', $content);
+    $html2 = str_replace("<link href='https://ajax.googleapis.com' rel='preconnect' />", ' ', $html1);
+    $finalHtml = str_replace("<link href='https://fonts.googleapis.com' rel='preconnect' />", ' ', $html2);
+    return $finalHtml;
+}, 10, 1);
