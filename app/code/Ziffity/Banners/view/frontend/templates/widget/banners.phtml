@@ -1,7 +1,7 @@
 <?php if ($block->getBanners()) : ?>
 <div class="home-banner">
     <?php foreach ($block->getBanners() as $banner) { ?>
-    <div><a href="<?php echo $banner->getLink(); ?>"><img width="1120" height="320" src="<?php echo $banner->getImageUrl(); ?>" alt="shopcsntv banners"/></a></div>
+    <div><a href="<?php echo $banner->getLink(); ?>"><img width="1120" height="320" data-src="<?php echo $banner->getImageUrl(); ?>" alt="shopcsntv banners" class="magebees_lazyload"/></a></div>
     <?php } ?>
 </div>
 <?php endif; ?>
