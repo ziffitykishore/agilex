@@ -274,13 +274,6 @@ define([
     $('.product-info-main .product-social-links').appendTo('.box-tocart');
     toggleContent('.blog-sidebar .block', '.block-title', '.block-content');
 
-    /* Preloader */
-    var preLoader = $(".pre-loader");
-    preLoader.fadeOut("slow");
-    setInterval(function() {
-        preLoader.fadeOut("slow");
-    }, 3000);
-
     var options = {
         type: 'popup',
         responsive: true,
@@ -294,4 +287,20 @@ define([
         $('#callforquote-popup').modal('openModal');
         e.preventDefault();
     });
+    /*to add ifram content from ajax*/
+    $(window).bind("load", function() {
+        $.ajax({
+            async: true,
+            type: "GET",
+            url: BASE_URL+"zcore/index/iframe",
+            crossDomain: false,
+            success: function (res) {
+                $('.ticker.jFrame .container').html(res.html);
+            },
+            error: function (){
+                console.log('Iframe content not loading');
+            }
+        });
+    });
+
 });
