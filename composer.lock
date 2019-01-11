@@ -1,11 +1,106 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4bccc854a2d2c5b7c64988929cbee3b9",
+    "content-hash": "392d5676f6c5188a13e19d2bcd1216bc",
     "packages": [
+        {
+            "name": "algolia/algoliasearch-client-php",
+            "version": "1.28.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-client-php.git",
+                "reference": "c167ba3247b38b028fc05b1c58e8b5fb5e08d114"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-client-php/zipball/c167ba3247b38b028fc05b1c58e8b5fb5e08d114",
+                "reference": "c167ba3247b38b028fc05b1c58e8b5fb5e08d114",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-mbstring": "*",
+                "php": "^5.3 || ^7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.4 || ^7.0",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.0": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "AlgoliaSearch": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Algolia Team",
+                    "email": "contact@algolia.com"
+                },
+                {
+                    "name": "Ryan T. Catlin",
+                    "email": "ryan.catlin@gmail.com"
+                },
+                {
+                    "name": "Jonathan H. Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Algolia Search API Client for PHP",
+            "homepage": "https://github.com/algolia/algoliasearch-client-php",
+            "time": "2018-11-06T10:48:00+00:00"
+        },
+        {
+            "name": "algolia/algoliasearch-magento-2",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/algolia/algoliasearch-magento-2.git",
+                "reference": "09182bf9dd17bad689ed443bc0e59f3504327322"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/09182bf9dd17bad689ed443bc0e59f3504327322",
+                "reference": "09182bf9dd17bad689ed443bc0e59f3504327322",
+                "shasum": ""
+            },
+            "require": {
+                "algolia/algoliasearch-client-php": ">=1.10.2 <2.0",
+                "ext-dom": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-pdo": "*",
+                "magento/framework": "~100.1|~101.0|~102.0",
+                "php": "~5.6.5|~7.0|~7.1|~7.2"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Algolia\\AlgoliaSearch\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Algolia Search integration for Magento 2",
+            "time": "2018-12-18T13:20:17+00:00"
+        },
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
             "version": "2.1.0",
@@ -13585,7 +13680,7 @@
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2018-05-09 16:49:43"
+            "time": "2018-05-09T16:49:43+00:00"
         },
         {
             "name": "snowdog/theme-blank-sass",
