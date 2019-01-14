@@ -258,6 +258,10 @@ $loading-background-color: $secondary__color;
     background-color: transparent;
     color: $c-royal;
 
+    @include max-screen($screen__m) {
+      display: none !important; // override slick
+    }
+
     span {
       font-size: 60px;
       font-weight: $font-weight__light;
