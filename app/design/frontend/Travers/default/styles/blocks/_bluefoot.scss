@@ -309,7 +309,12 @@ $loading-background-color: $secondary__color;
         }
 
         &-item {
-            margin-bottom: $indent__l;
+            margin-bottom: $indent__xl;
+            width: 50%;
+
+            @include min-screen($screen__m) {
+                width: 25%;
+            }
 
             .bluefoot-driver {
                 img {
@@ -318,6 +323,7 @@ $loading-background-color: $secondary__color;
 
                 &-text {
                     bottom: -35px;
+                    font-family: $font-family__sans-serif;
                     font-weight: $font-weight__bold;
                     text-transform: capitalize;
                     color: $c-cobalt;
