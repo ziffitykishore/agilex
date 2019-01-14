@@ -293,4 +293,19 @@ $loading-background-color: $secondary__color;
             }
         }
     }
+
+    .product-category {
+        .section-heading {
+            text-align: center;
+
+            &::after {
+                content: "";
+                display: block;
+                margin: 0 auto;
+                width: 50px;
+                padding-top: 15px;
+                border-bottom: 3px solid $c-royal;
+            }
+        }
+    }
 }
