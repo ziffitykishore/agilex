@@ -307,5 +307,11 @@ $loading-background-color: $secondary__color;
                 border-bottom: 3px solid $c-royal;
             }
         }
+
+        &-item {
+            .bluefoot-driver img {
+                width: 100%;
+            }
+        }
     }
 }
