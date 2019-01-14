@@ -223,6 +223,33 @@ $loading-background-color: $secondary__color;
 
 // Homepage carousel, which is controlled by slick
 .cms-index-index .carousel {
+  @include min-screen($screen__m) {
+    .slick-dots {
+      position: absolute;
+      bottom: 0;
+    }
+
+    .bluefoot-advanced-slide-content {
+      text-align: left;
+
+      .bluefoot-advanced-slide-text {
+        margin: 15px 0;
+      }
+    }
+  }
+
+  .bluefoot-advanced-slide-content {
+    h3 {
+      @include bryant-park-headings-h1();
+      margin-bottom: 0;
+    }
+
+    button {
+      @include button--type(primary);
+      min-width: 150px;
+    }
+  }
+
   .slick-arrow {
     background-color: transparent;
     color: $c-royal;
