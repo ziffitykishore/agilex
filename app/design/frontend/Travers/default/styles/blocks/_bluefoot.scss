@@ -309,8 +309,20 @@ $loading-background-color: $secondary__color;
         }
 
         &-item {
-            .bluefoot-driver img {
-                width: 100%;
+            margin-bottom: $indent__l;
+
+            .bluefoot-driver {
+                img {
+                    width: 100%;
+                }
+
+                &-text {
+                    bottom: -35px;
+                    font-weight: $font-weight__bold;
+                    text-transform: capitalize;
+                    color: $c-cobalt;
+                    background-color: transparent !important; //override Bluefoot driver
+                }
             }
         }
     }
