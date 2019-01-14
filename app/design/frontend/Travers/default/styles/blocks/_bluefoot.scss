@@ -295,8 +295,14 @@ $loading-background-color: $secondary__color;
     }
 
     .product-category {
+        @include min-screen($screen__m) {
+            width: 90%;
+            margin: 0 auto;
+        }
+
         .section-heading {
             text-align: center;
+            margin-bottom: $indent__m;
 
             &::after {
                 content: "";
