@@ -346,12 +346,12 @@ $loading-background-color: $secondary__color;
     }
 
     .overlapping-touts {
+        position: relative;
+
         .text-tout {
             background-color: $c-midnight;
             color: $color-white;
-            padding: $indent__xl;
             float: left;
-            max-width: 550px;
             width: 100%;
 
             .tout-header {
@@ -378,8 +378,41 @@ $loading-background-color: $secondary__color;
             }
         }
 
-        button {
-            @include button--transparent;
+        .text-tout,
+        .video-tout {
+            position: relative;
+        }
+
+        .text-tout {
+            padding: $indent__xl $indent__m;
+        }
+
+        .video-tout {
+            padding: 0;
+            width: 100%;
+        }
+
+        @include min-screen($screen__l) {
+            .text-tout,
+            .video-tout {
+                position: absolute;
+            }
+
+            .text-tout {
+                max-width: 550px;
+                left: 5%;
+                padding: $indent__xl;
+
+                .bluefoot-textarea {
+                    max-width: 80%;
+                }
+            }
+
+            .video-tout {
+                right: 5%;
+                top: 100px;
+                max-width: 50%;
+            }
         }
     }
 }
