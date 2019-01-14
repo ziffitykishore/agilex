@@ -277,6 +277,12 @@ $loading-background-color: $secondary__color;
       background: $c-royal;
     }
 
+    li button {
+        width: 10px !important; //override slick's !important
+        height: 10px;
+        line-height: 10px;
+    }
+
     li:not(.slick-active) button {
       background: $c-nickel;
 
