@@ -316,6 +316,12 @@ $loading-background-color: $secondary__color;
                 width: 25%;
             }
 
+            @include hover {
+                .bluefoot-driver-text {
+                    color: $c-royal;
+                }
+            }
+
             .bluefoot-driver {
                 img {
                     width: 100%;
