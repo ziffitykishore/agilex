@@ -1,0 +1,221 @@
+$bp-medium: $screen__m; // pre-set _catland breakpoint
+$bp-large: $screen__l; // pre-set _catland breakpoint
+$max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
+$loading-background-color: $secondary__color;
+
+:root .bluefoot-driver a {
+    width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
+}
+
+/*
+ *
+ *  BLUEFOOT :: Bluefoot Styling Overrides.
+ *  Bluefoot.css gets included after our CSS so we use :root to override
+ *
+ */
+:root {
+    .bluefoot-row {
+        &--reverse {
+            // let's reverse the columns
+            > *:first-child {
+                @include max-screen($screen__m) {
+                    order: 2;
+                }
+            }
+        }
+
+        @include max-screen($screen__m) {
+            // match bluefoot-wrapper mobile styling if no bluefoot-wrapper
+            > .bluefoot-column {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
+        &.catland__section {
+            margin-bottom: 0; // reset catland styling given bluefoot scope
+        }
+    }
+
+    .bluefoot-driver-text {
+        text-transform: uppercase;
+        color: $color-black;
+        background-color: rgba($color-white, .75);
+    }
+
+    .bluefoot-driver {
+        @include hover {
+            .bluefoot-driver-text {
+                background-color: rgba($color-white, .9);
+            }
+        }
+    }
+}
+
+/*
+ *
+ *  BLUEFOOT :: Product List Styling
+ *
+ */
+.bluefoot-product-list .products {
+    margin-top: 0;
+}
+
+/*
+ *
+ *  BLUEFOOT :: Category Banner Styling
+ *
+ */
+.bluefoot__banner {
+    @include max-screen($screen__m) {
+        // match the bluefoot-row padding on mobile
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/*
+ *
+ *  BLUEFOOT :: Category Banner Fullbleed Styling
+ *
+ */
+:root .catland__fullbleed {
+    margin-left: (-($layout__width-xs-indent) + 7.5px); // offset bluefoot margin on bluefoot-row
+    margin-right: (-($layout__width-xs-indent) + 7.5px); // offset bluefoot margin on bluefoot-row
+
+    @include min-screen($screen__m) {
+        margin-left: (-($layout-indent__width) + 7.5px); // offset bluefoot margin on bluefoot-row
+        margin-right: (-($layout-indent__width) + 7.5px); // offset bluefoot margin on bluefoot-row
+    }
+
+    @include min-screen($layout__max-width + 20px) {
+        margin-right: calc(-50vw + ((#{$max-content-width} - 4.25px) / 2)); // offset bluefoot margin on bluefoot-row
+        margin-left: calc(-50vw + ((#{$max-content-width} - 4.25px) / 2)); // offset bluefoot margin on bluefoot-row
+    }
+
+    .bluefoot__banner {
+        padding-left: 0;
+        padding-right: 0;
+
+        @include max-screen($screen__m) {
+            max-height: none !important; // override potential inline max-height from bluefoot block
+        }
+
+        @include min-screen($screen__m) {
+            max-height: 650px; // can be overriden with inline styles via bluefoot attribute
+
+            img {
+                max-height: 650px; // can be overriden with inline styles via bluefoot attribute
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.fullbleed__wrapper {
+    position: relative;
+    max-width: $max-content-width;
+    margin: 0 auto;
+
+    @include min-screen($layout__max-width + 20px) {
+        .fullbleed__caption.left-top,
+        .fullbleed__caption.left-center,
+        .fullbleed__caption.left-bottom {
+            left: 0; // push to left
+        }
+    }
+}
+
+/*
+ *
+ *  BLUEFOOT :: Helper class to vertically center bluefoot content
+ *
+ */
+.bluefoot--vertical-center {
+    display: flex;
+    flex-direction: column;
+
+    @include min-screen($screen__m) {
+        align-items: center; // align contents vertically centered
+        flex-direction: row;
+    }
+
+    > .bluefoot-wrapper {
+        @include min-screen($screen__m) {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+/*
+ *
+ *  BLUEFOOT :: Helper class to remove max-width on bluefoot-wrapper container
+ *
+ */
+:root .bluefoot--full-width {
+    margin-left: 0;
+    margin-right: 0;
+
+    .bluefoot-wrapper {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+:root .bluefoot-video {
+    @include responsive-video();
+}
+
+/*
+ *
+ *  BLUEFOOT :: Improve perceived performance when loading images 
+ *  by setting a background color that matches the size of the image
+ *
+ */
+%intrinsic-background {
+    position: relative;
+    height: 0;
+    background-color: $loading-background-color;
+
+    img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: opacity .2s ease-in;
+
+        &.lazyload {
+            opacity: 0;
+        }
+
+        &.lazyloaded {
+            opacity: 1;
+        }
+    }
+}
+
+:root {
+    .bluefoot-image,
+    .bluefoot-driver a {
+        @extend %intrinsic-background;
+    }
+
+    // In some cases (e.g., circular images) we don't want the background color.
+    .bluefoot-image.no-background,
+    .bluefoot-driver.no-background a {
+        background-color: transparent;
+    }
+}
+
+// In some cases we may not want the instrinsic background & padding at all.
+// Apply to `.bluefoot-image` or `.bluefoot-driver a` as needed.
+@mixin reset-intrinsic {
+    height: auto !important;
+    padding-top: 0 !important;
+    background-color: transparent !important;
+
+    img {
+        position: static !important;
+    }
+}
