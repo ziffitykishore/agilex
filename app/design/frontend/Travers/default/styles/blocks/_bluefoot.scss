@@ -236,4 +236,18 @@ $loading-background-color: $secondary__color;
       right: 15px;
     }
   }
+
+  .slick-dots {
+    .slick-active button {
+      background: $c-royal;
+    }
+
+    li:not(.slick-active) button {
+      background: $c-nickel;
+
+      @include hover {
+        background: $c-royal;
+      }
+    }
+  }
 }
