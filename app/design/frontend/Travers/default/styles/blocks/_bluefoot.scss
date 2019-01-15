@@ -221,8 +221,7 @@ $loading-background-color: $secondary__color;
 }
 
 
-// Homepage carousel, which is controlled by slick
-.cms-index-index .carousel {
+.carousel {
     @include min-screen($screen__m) {
         .slick-dots {
             position: absolute;
