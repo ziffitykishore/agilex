@@ -221,26 +221,11 @@ $loading-background-color: $secondary__color;
 }
 
 
-// Homepage carousel, which is controlled by slick
-.cms-index-index {
-    .carousel {
-        @include min-screen($screen__m) {
-            .slick-dots {
-                position: absolute;
-                bottom: 0;
-            }
-
-            .slick-track {
-                height: 350px;
-            }
-
-            .bluefoot-advanced-slide-content {
-                text-align: left;
-
-                .bluefoot-advanced-slide-text {
-                    margin: 15px 0;
-                }
-            }
+.carousel {
+    @include min-screen($screen__m) {
+        .slick-dots {
+            position: absolute;
+            bottom: 0;
         }
 
         .bluefoot-advanced-slide-content {
