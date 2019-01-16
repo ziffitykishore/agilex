@@ -339,12 +339,14 @@ $loading-background-color: $secondary__color;
     background: linear-gradient(to bottom, $c-grey 0%, $c-smoke 6%, $color-white 100%);
 
     @include min-screen($screen__l) {
-        padding: 150px 0 450px 0;
+        display: flex;
+        padding-top: 80px;
+        margin-bottom: 150px;
+    }
 
-        .text-tout,
-        .video-tout.bluefoot-column {
-            position: absolute;
-        }
+    .text-tout,
+    .video-tout.bluefoot-column {
+        flex: 1;
     }
 
     .text-tout {
@@ -357,11 +359,11 @@ $loading-background-color: $secondary__color;
 
         @include min-screen($screen__l) {
             max-width: 600px;
-            left: 5%;
+            transform: translateX(5%);
             padding: $indent__xl;
 
             .bluefoot-textarea {
-                max-width: 70%;
+                max-width: 90%;
             }
         }
 
@@ -405,9 +407,7 @@ $loading-background-color: $secondary__color;
         width: 100%;
 
         @include min-screen($screen__l) {
-            position: absolute;
-            right: 5%;
-            top: 275px;
+            transform: translateY(125px) translateX(-5%);
             max-width: 50%;
         }
     }
