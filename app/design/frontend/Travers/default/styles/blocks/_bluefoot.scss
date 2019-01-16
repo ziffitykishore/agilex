@@ -356,17 +356,17 @@ $loading-background-color: $secondary__color;
         width: 100%;
 
         @include min-screen($screen__l) {
-            max-width: 550px;
+            max-width: 600px;
             left: 5%;
             padding: $indent__xl;
 
             .bluefoot-textarea {
-                max-width: 80%;
+                max-width: 70%;
             }
         }
 
         .tout-header {
-            @include bryant-park-headings-h2;
+            @include lib-heading(h2);
             margin: 0;
         }
     }
@@ -375,6 +375,7 @@ $loading-background-color: $secondary__color;
         float: left;
         width: 33%;
         text-align: center;
+        padding: 0 $indent__xs;
 
         &:not(:nth-of-type(3)) {
             border-right: 1px solid $color-white;
@@ -383,6 +384,15 @@ $loading-background-color: $secondary__color;
 
     .bluefoot-textarea {
         max-width: 90%;
+    }
+
+    .bluefoot-textarea,
+    .bluefoot-buttons {
+        margin-left: $indent__m;
+
+        @include min-screen($screen__l) {
+            margin-left: 0;
+        }
     }
 
     button {
