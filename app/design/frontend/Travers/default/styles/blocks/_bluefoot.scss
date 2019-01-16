@@ -339,6 +339,8 @@ $loading-background-color: $secondary__color;
     background: linear-gradient(to bottom, $c-grey 0%, $c-smoke 6%, $color-white 100%);
 
     .text-tout {
+        position: relative;
+        padding: $indent__xl $indent__m;
         background-color: $c-midnight;
         color: $color-white;
         float: left;
@@ -348,36 +350,28 @@ $loading-background-color: $secondary__color;
             @include bryant-park-headings-h2;
             margin: 0;
         }
+    }
 
-        .bluefoot-html {
-            float: left;
-            width: 33%;
-            text-align: center;
+    .bluefoot-html {
+        float: left;
+        width: 33%;
+        text-align: center;
 
-            &:not(:nth-of-type(3)) {
-                border-right: 1px solid $color-white;
-            }
-        }
-
-        .bluefoot-textarea {
-            max-width: 90%;
-        }
-
-        button {
-            @include button--transparent;
+        &:not(:nth-of-type(3)) {
+            border-right: 1px solid $color-white;
         }
     }
 
-    .text-tout,
-    .video-tout {
-        position: relative;
+    .bluefoot-textarea {
+        max-width: 90%;
     }
 
-    .text-tout {
-        padding: $indent__xl $indent__m;
+    button {
+        @include button--transparent;
     }
 
     .video-tout.bluefoot-column {
+        position: relative;
         padding: 0;
         width: 100%;
     }
@@ -386,7 +380,7 @@ $loading-background-color: $secondary__color;
         padding: 150px 0 450px 0;
 
         .text-tout,
-        .video-tout {
+        .video-tout.bluefoot-column {
             position: absolute;
         }
 
@@ -400,7 +394,7 @@ $loading-background-color: $secondary__color;
             }
         }
 
-        .video-tout {
+        .video-tout.bluefoot-column {
             right: 5%;
             top: 275px;
             max-width: 50%;
