@@ -35,6 +35,20 @@ $nav-section-title__height: 60px;
 
 .navigation {
     @include layout-container;
+
+    .level-top {
+        font-weight: $font-weight__bold;
+    }
+
+    .submenu {
+        li {
+            margin: 0;
+        }
+
+        a {
+            font-weight: $font-weight__regular;
+        }
+    }
 }
 
 .nav-sections-item-switch {
@@ -303,6 +317,8 @@ $nav-section-title__height: 60px;
 
 @include min-screen($mobile-nav__breakpoint) {
     .navigation .level-top {
+        font-size: 16px;
+
         &.category-item .submenu {
             width: 100vw;
             left: 0 !important; // overrides the nav JS
@@ -359,14 +375,14 @@ $nav-section-title__height: 60px;
         $_nav-level0-item-margin: 0 40px 0 0,
         $_nav-level0-item-padding: 0,
         $_nav-level0-item-line-height: 45px,
-        $_nav-level0-item-color: inherit,
-        $_nav-level0-item-color-hover: $link__hover__color,
-        $_nav-level0-item-color-active: inherit,
+        $_nav-level0-item-color: $c-nickel,
+        $_nav-level0-item-color-hover: $c-cobalt,
+        $_nav-level0-item-color-active: $c-cobalt,
         $_nav-level0-item__active__border-color: $link__hover__color,
 
         $_submenu-background-color: $page__background-color,
         $_submenu-box-shadow: none,
-        $_submenu-item-color: $link__color,
+        $_submenu-item-color: $c-nickel,
         $_submenu-item__hover__background-color: transparent,
         $_submenu-font-size: $font-size__base
     );
