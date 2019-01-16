@@ -19,5 +19,6 @@
             </block>
         </container>
     </referenceContainer>
+    <move element="copyright" destination="before.body.end" after="-"/>
 </page>
 
