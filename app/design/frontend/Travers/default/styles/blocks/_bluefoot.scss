@@ -557,28 +557,26 @@ $loading-background-color: $secondary__color;
     color: $c-nickel;
 }
 
-.triple-tout-row {
-    .homepage-tout {
-        button {
-            @include button--type(primary);
-            @include min-screen($screen__m) {
-                max-width: 160px;
-                width: 100%;
-            }
+.triple-tout-row .homepage-tout {
+    button {
+        @include button--type(primary);
+        @include min-screen($screen__m) {
+            max-width: 160px;
+            width: 100%;
         }
+    }
 
-        .tout-header {
-            font-weight: $font-weight__bold;
-            margin-bottom: $indent__s;
-        }
+    .tout-header {
+        font-weight: $font-weight__bold;
+        margin-bottom: $indent__s;
+    }
 
-        .tout-description {
-            color: $c-nickel;
+    .tout-description {
+        color: $c-nickel;
 
-            p {
-                margin: 0;
-                margin-bottom: $indent__xs;
-            }
+        p {
+            margin: 0;
+            margin-bottom: $indent__xs;
         }
     }
 }
