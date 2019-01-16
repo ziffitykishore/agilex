@@ -9,5 +9,16 @@
             </arguments>
         </block>
     </referenceBlock>
+
+    <referenceContainer name="footer">
+        <container name="footer-links" htmlTag="div" htmlClass="footer-links">
+            <block class="Magento\Cms\Block\Block" name="footer_links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_links</argument>
+                </arguments>
+            </block>
+        </container>
+    </referenceContainer>
+    <move element="copyright" destination="before.body.end" after="-"/>
 </page>
 

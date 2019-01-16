@@ -412,3 +412,135 @@ $loading-background-color: $secondary__color;
         }
     }
 }
+
+.footer-promo-banner {
+    padding: $indent__m $indent__s;
+    background-color: $c-smoke;
+
+    @include min-screen($screen__m) {
+        display: flex;
+        align-items: center;
+        padding-left: 80px;
+        padding: $indent__s;
+
+        .footer-promo-text {
+            width: 100%;
+            max-width: 450px;
+            margin-right: $indent__m;
+        }
+
+        .footer-promo-header {
+            margin-top: 15px;
+        }
+    }
+
+    .catalog-image {
+        max-width: 100px;
+        width: 100%;
+
+        figure { // The image's container
+            margin: 0;
+        }
+    }
+
+    .footer-promo-header,
+    .bluefoot-buttons,
+    button {
+        margin-bottom: 0;
+    }
+
+    .footer-promo-header {
+        font-weight: $font-weight__bold;
+        margin-top: 0;
+    }
+
+    .footer-promo-text {
+        width: 60%;
+    }
+
+    button {
+        @include button--type(secondary);
+    }
+}
+
+.page-footer {
+    .footer {
+        &.phone,
+        &.links {
+            display: none;
+        }
+
+        &.content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+
+            .footer-links {
+                width: 70%;
+
+                &-heading {
+                    margin-top: $indent__m;
+                    font-weight: $font-weight__bold;
+                }
+
+                ul {
+                    padding-left: 0;
+                    list-style-type: none;
+
+                    li {
+                        margin-bottom: $indent__s;
+                    }
+
+                    a {
+                        @include hover {
+                            color: $c-nickel;
+                        }
+                    }
+                }
+            }
+
+            .switcher-store {
+                margin-top: $indent__s;
+                margin-bottom: 0;
+                width: 100%;
+                max-width: 50px;
+                padding-left: $indent__s;
+            }
+
+             @include min-screen($screen__m) {
+                flex-direction: row;
+
+                 .footer-links {
+                    width: 100%;
+
+                     &-heading {
+                        margin-top: 0;
+                    }
+                }
+
+                 .switcher-store {
+                    margin-top: 0;
+                    padding-left: 0;
+                }
+            }
+        }
+
+        &__connect {
+            width: 100%;
+        }
+    }
+}
+
+.page-footer {
+    .footer.phone,
+    .footer.links {
+        display: none;
+    }
+}
+
+.copyright {
+    padding-left: 20px;
+    font-weight: $font-weight__semibold;
+    font-size: $font-size__base;
+    color: $c-nickel;
+}

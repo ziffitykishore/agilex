@@ -1,0 +1,33 @@
+.block.newsletter {
+    margin-bottom: $indent__xs;
+
+    h3 {
+        margin-top: 0;
+    }
+
+    .form.subscribe {
+        display: table;
+        width: 100%;
+        max-width: $form-field__width__desktop; // newsletter will be all on its lonesome for mobile-tablet resolutions, and needs a capped width as a result
+    }
+
+    .fieldset {
+        display: table-cell;
+        padding: 0;
+        vertical-align: top;
+    }
+
+    .field {
+        margin: 0;
+    }
+
+    .label {
+        display: table-row;
+    }
+
+    .actions {
+        display: table-cell;
+        vertical-align: top;
+        width: 1%;
+    }
+}
