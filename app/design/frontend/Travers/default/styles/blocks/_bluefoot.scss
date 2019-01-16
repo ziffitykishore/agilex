@@ -341,7 +341,13 @@ $loading-background-color: $secondary__color;
             .product-items {
                 display: flex;
                 justify-content: center;
+                flex-wrap: wrap;
             }
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: center;
         }
     }
 }
