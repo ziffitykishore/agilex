@@ -333,6 +333,17 @@ $loading-background-color: $secondary__color;
             }
         }
     }
+
+    &.product-grid {
+        width: 100%;
+
+            @include min-screen($screen__m) {
+            .product-items {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
 }
 
 .overlapping-touts {
