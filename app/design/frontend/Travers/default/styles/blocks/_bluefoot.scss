@@ -353,6 +353,28 @@ $loading-background-color: $secondary__color;
             .product-item-inner {
                 display: none;
             }
+
+            .product-reviews-summary {
+                margin-top: 0;
+                margin-bottom: $indent__xs;
+            }
+
+            &-name a,
+            .price-box span {
+                color: $c-nickel;
+                font-size: $font-size__base--desktop;
+            }
+
+            &-name  {
+                margin-top: 15px;
+
+                a {
+                    @include hover {
+                        color: $text__color-alt;
+                        text-decoration: none;
+                    }
+                }
+            }
         }
     }
 }
