@@ -331,78 +331,78 @@ $loading-background-color: $secondary__color;
             }
         }
     }
+}
 
-    .overlapping-touts {
-        position: relative;
-        padding: 150px 0 450px 0;
-        margin: 75px 0;
-        background: linear-gradient(to bottom, #{$c-grey} 0%, #{$c-smoke} 6%, #{$color-white} 100%);
+.overlapping-touts {
+    position: relative;
+    padding: 150px 0 450px 0;
+    margin: 75px 0;
+    background: linear-gradient(to bottom, #{$c-grey} 0%, #{$c-smoke} 6%, #{$color-white} 100%);
 
-        .text-tout {
-            background-color: $c-midnight;
-            color: $color-white;
+    .text-tout {
+        background-color: $c-midnight;
+        color: $color-white;
+        float: left;
+        width: 100%;
+
+        .tout-header {
+            @include bryant-park-headings-h2;
+            margin: 0;
+        }
+
+        .bluefoot-html {
             float: left;
-            width: 100%;
+            width: 33%;
+            text-align: center;
 
-            .tout-header {
-                @include bryant-park-headings-h2;
-                margin: 0;
-            }
-
-            .bluefoot-html {
-                float: left;
-                width: 33%;
-                text-align: center;
-
-                &:not(:nth-of-type(3)) {
-                    border-right: 1px solid $color-white;
-                }
-            }
-
-            .bluefoot-textarea {
-                max-width: 90%;
-            }
-
-            button {
-                @include button--transparent;
+            &:not(:nth-of-type(3)) {
+                border-right: 1px solid $color-white;
             }
         }
 
+        .bluefoot-textarea {
+            max-width: 90%;
+        }
+
+        button {
+            @include button--transparent;
+        }
+    }
+
+    .text-tout,
+    .video-tout {
+        position: relative;
+    }
+
+    .text-tout {
+        padding: $indent__xl $indent__m;
+    }
+
+    .video-tout {
+        padding: 0;
+        width: 100%;
+    }
+
+    @include min-screen($screen__l) {
         .text-tout,
         .video-tout {
-            position: relative;
+            position: absolute;
         }
 
         .text-tout {
-            padding: $indent__xl $indent__m;
+            max-width: 550px;
+            left: 5%;
+            padding: $indent__xl;
+
+            .bluefoot-textarea {
+                max-width: 80%;
+            }
         }
 
         .video-tout {
-            padding: 0;
-            width: 100%;
-        }
-
-        @include min-screen($screen__l) {
-            .text-tout,
-            .video-tout {
-                position: absolute;
-            }
-
-            .text-tout {
-                max-width: 550px;
-                left: 5%;
-                padding: $indent__xl;
-
-                .bluefoot-textarea {
-                    max-width: 80%;
-                }
-            }
-
-            .video-tout {
-                right: 5%;
-                top: 275px;
-                max-width: 50%;
-            }
+            right: 5%;
+            top: 275px;
+            max-width: 50%;
         }
     }
 }
