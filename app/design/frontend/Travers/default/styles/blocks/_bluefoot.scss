@@ -556,3 +556,29 @@ $loading-background-color: $secondary__color;
     font-size: $font-size__base;
     color: $c-nickel;
 }
+
+.triple-tout-row {
+    .homepage-tout {
+        button {
+            @include button--type(primary);
+            @include min-screen($screen__m) {
+                max-width: 160px;
+                width: 100%;
+            }
+        }
+
+        .tout-header {
+            font-weight: $font-weight__bold;
+            margin-bottom: $indent__s;
+        }
+
+        .tout-description {
+            color: $c-nickel;
+
+            p {
+                margin: 0;
+                margin-bottom: $indent__xs;
+            }
+        }
+    }
+}
