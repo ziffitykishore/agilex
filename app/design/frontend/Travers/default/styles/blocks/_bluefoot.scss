@@ -412,3 +412,40 @@ $loading-background-color: $secondary__color;
         }
     }
 }
+
+.footer-promo-banner {
+    display: flex;
+    align-items: center;
+    padding: $indent__s;
+    padding-left: 80px;
+    background-color: $c-smoke;
+
+    .catalog-image {
+        max-width: 100px;
+        width: 100%;
+
+        figure { // The image's container
+            margin: 0;
+        }
+    }
+
+    .footer-promo-header,
+    .bluefoot-buttons,
+    button {
+        margin-bottom: 0;
+    }
+
+    .footer-promo-header {
+        font-weight: $font-weight__bold;
+    }
+
+    .footer-promo-text {
+        width: 100%;
+        max-width: 450px;
+        margin-right: $indent__m;
+    }
+
+    button {
+        @include button--type(secondary);
+    }
+}
