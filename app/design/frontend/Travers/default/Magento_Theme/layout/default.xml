@@ -9,5 +9,15 @@
             </arguments>
         </block>
     </referenceBlock>
+
+    <referenceContainer name="footer">
+        <container name="footer-content" htmlTag="div" htmlClass="footer-content">
+            <block class="Magento\Cms\Block\Block" name="footer_links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_links</argument>
+                </arguments>
+            </block>
+        </container>
+    </referenceContainer>
 </page>
 
