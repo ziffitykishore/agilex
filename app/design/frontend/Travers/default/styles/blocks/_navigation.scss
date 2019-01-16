@@ -302,13 +302,14 @@ $nav-section-title__height: 60px;
 //  _____________________________________________
 
 @include min-screen($mobile-nav__breakpoint) {
-    .navigation {
-        .submenu.level0 {
+    .navigation .level-top {
+        &.category-item .submenu {
             width: 100vw;
             left: 0 !important; // overrides the nav JS
+            box-shadow: 0 12px 25px -2px $c-dusty-grey;
         }
 
-        .level-top.parent {
+        &.parent {
             position: static;
         }
     }
