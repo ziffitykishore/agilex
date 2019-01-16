@@ -11,7 +11,7 @@
     </referenceBlock>
 
     <referenceContainer name="footer">
-        <container name="footer-content" htmlTag="div" htmlClass="footer-content">
+        <container name="footer-links" htmlTag="div" htmlClass="footer-links">
             <block class="Magento\Cms\Block\Block" name="footer_links">
                 <arguments>
                     <argument name="block_id" xsi:type="string">footer_links</argument>

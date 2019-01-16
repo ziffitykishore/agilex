@@ -462,3 +462,10 @@ $loading-background-color: $secondary__color;
         @include button--type(secondary);
     }
 }
+
+.page-footer {
+    .footer.phone,
+    .footer.links {
+        display: none;
+    }
+}
