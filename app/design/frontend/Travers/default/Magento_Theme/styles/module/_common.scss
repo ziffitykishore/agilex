@@ -1,0 +1,419 @@
+//
+//  Common
+//  _____________________________________________
+
+html,
+body {
+    @include min-screen($mobile-nav__breakpoint) {
+        height: 100%;
+    }
+}
+
+body {
+    background-color: $page__background-color;
+}
+
+//
+//  Header
+//  ---------------------------------------------
+
+.page-header {
+    background-color: $header__background-color;
+    margin-bottom: $indent__base;
+    border-bottom: 1px solid $border-color__base;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        border: 0;
+        margin-bottom: 0;
+    }
+
+    .cms-index-index & {
+        margin-bottom: 0;
+    }
+}
+
+//
+//  Account Navigation & Currency Switcher
+//  ---------------------------------------------
+.panel.header {
+    @include layout-container;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        @include lib-clearfix();
+        padding-bottom: $indent__s;
+        padding-top: $indent__s;
+    }
+
+    @include min-screen($screen__m) {
+        padding: 10px 20px;
+    }
+}
+
+.panel.header > .links,
+.panel.header .switcher {
+    display: none;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        display: inline-block;
+    }
+}
+
+.header.panel > .links {
+    @include lib-list-inline();
+    float: right;
+    font-size: 0;
+    margin-left: auto;
+
+    .greet {
+        color: $color-black;
+    }
+
+    .counter {
+        &::before {
+            content: '(';
+        }
+
+        &::after {
+            content: ')';
+        }
+    }
+
+    > li {
+        font-size: $font-size__base;
+        margin: 0 0 0 15px;
+
+        &.welcome,
+        a {
+            line-height: 1.4;
+        }
+
+        &.welcome a {
+            padding-left: $indent__xs;
+        }
+    }
+
+    > .authorization-link::after {
+        content: attr(data-label);
+        display: inline-block;
+        margin: 0 -6px 0 6px;
+    }
+
+    > .customer-welcome + .authorization-link {
+        display: none;
+    }
+}
+
+.header.panel .switcher {
+    float: right;
+    margin-left: 15px;
+    margin-right: -6px;
+}
+
+.customer-name,
+.customer-welcome + .authorization-link {
+    @include max-screen($mobile-nav__breakpoint) {
+        display: none;
+    }
+}
+
+.customer-welcome {
+    @include min-screen($mobile-nav__breakpoint) {
+        @include lib-dropdown(
+          $_toggle-selector: '.action.switch',
+          $_options-selector: 'ul.header.links',
+
+          $_dropdown-actions-padding: 10px 0,
+          $_dropdown-list-item-padding: 0 $indent__base,
+          $_dropdown-list-shadow: none,
+          $_dropdown-list-pointer: false,
+          $_dropdown-list-position-right: 0,
+          $_dropdown-list-item-hover: transparent,
+          $_dropdown-list-border: 1px solid $c-border,
+
+          $_dropdown-toggle-icon-content: '\e622',
+          $_dropdown-toggle-active-icon-content: '\e621',
+
+          $_icon-font-text-hide: true,
+          $_icon-font-size: 22px,
+          $_icon-font-line-height: 22px,
+          $_icon-font-color: $text__color
+        );
+
+        &.active .action.switch:before {
+            content: '\e621';
+        }
+
+        .customer-name {
+            cursor: pointer;
+        }
+
+        .customer-menu {
+            display: none;
+        }
+
+        .action.switch {
+            @include lib-button-reset();
+        }
+
+        ul.header.links {
+            min-width: 210px;
+            right: 0;
+            padding: 10px 0;
+
+            a {
+                text-decoration: none;
+                padding: 10px 0;
+
+                &:not(.no-display) {
+                    display: block;
+                }
+            }
+        }
+
+        .link.wishlist .counter {
+            &::before {
+                content: '('
+            }
+
+            &::after {
+                content: ')'
+            }
+        }
+
+        &.active .customer-menu {
+            display: block;
+        }
+
+        .greet {
+            display: none;
+        }
+    }
+}
+
+//
+//  Main Header Area
+//  ---------------------------------------------
+
+.header.content {
+    @include layout-container();
+    @include lib-clearfix();
+    padding-top: $indent__s;
+    position: relative;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        padding: $layout__width-xs-indent $layout__width-xs-indent 0;
+    }
+}
+
+.logo {
+    float: left;
+    margin: 0 0 $indent__s ($indent__s * 1.5);
+    max-width: 50%;
+    position: relative;
+    z-index: 5;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        margin: 0 auto 20px 0;
+
+        // If the account nav is present, collapse the margin
+        .panel + .header & {
+            margin-top: -20px;
+        }
+    }
+
+    .page-print & {
+        float: none;
+    }
+
+    img {
+        display: block;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            max-height: inherit;
+        }
+    }
+}
+
+.page-main > .page-title-wrapper .page-title {
+    @include min-screen($mobile-nav__breakpoint) {
+        display: inline-block;
+    }
+
+    + .action {
+        margin-top: $indent__l;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            float: right;
+            margin-top: $indent__base;
+        }
+    }
+}
+
+.action.skip {
+    &:not(:focus) {
+        @include lib-visually-hidden();
+    }
+
+    &:focus {
+        background: $color-gray94;
+        padding: $indent__s;
+        box-sizing: border-box;
+        left: 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        z-index: 15;
+    }
+}
+
+//
+//  Footer
+//  ---------------------------------------------
+
+.page-footer {
+    @include layout-container;
+    margin-top: 25px;
+    padding-top: 25px;
+    padding-bottom: 75px;
+    background-color: $footer__background-color;
+    border-top: 1px solid $border-color__base;
+    width: 100%;
+
+    @include min-screen($screen__m) {
+       display: flex;
+       justify-content: space-between;
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.footer {
+    &__connect {
+        display: flex;
+        flex-direction: column;
+
+        @include min-screen($screen__m) {
+            max-width: 405px;
+            order: 2;
+        }
+    }
+
+    .block {
+        float: right;
+    }
+
+    .switcher-store,
+    .links {
+        @include min-screen($mobile-nav__breakpoint) {
+            display: inline-block;
+            vertical-align: top;
+            padding-right: 50px;
+        }
+    }
+
+    .links {
+        @include lib-list-reset-styles();
+
+        @include min-screen($mobile-nav__breakpoint) {
+            padding: 0 50px 0 0;
+        }
+
+        > li {
+            margin-bottom: 25px;
+        }
+    }
+
+    .switcher-store {
+        margin: 0 0 30px;
+    }
+
+    .copyright,
+    .bugs {
+        color: $text__color-alt;
+        display: block;
+        margin: 20px 0 0;
+    }
+
+    .copyright {
+        @include min-screen($mobile-nav__breakpoint) {
+            @include lib-clearfix();
+        }
+    }
+}
+
+.page-header .switcher,
+.page-footer .switcher {
+    margin-right: 10px;
+
+    .options {
+        @include lib-dropdown(
+          $_dropdown-actions-padding           : 0,
+          $_dropdown-list-item-padding         : 0,
+          $_dropdown-toggle-icon-content       : $icon-down,
+          $_dropdown-toggle-active-icon-content: $icon-up,
+          $_icon-font-text-hide                : true,
+          $_icon-font-size                     : 22px,
+          $_icon-font-line-height              : 22px,
+          $_dropdown-list-min-width            : 160px
+          );
+
+        ul.dropdown a {
+            display: block;
+            padding: 8px;
+
+            @include hover {
+                text-decoration: none;
+            }
+        }
+
+        .action.toggle::before {
+            float: right;
+        }
+    }
+
+    li {
+        font-size: $font-size__s;
+        margin: 0;
+    }
+
+    .label {
+        @include lib-visually-hidden();
+    }
+
+    strong {
+        font-weight: $font-weight__regular;
+    }
+}
+
+//
+//  Widgets
+//  ---------------------------------------------
+
+.sidebar .widget.block:not(:last-child),
+.sidebar .widget:not(:last-child) {
+    @extend .abs-margin-for-blocks-and-widgets;
+}
+
+.widget {
+    clear: both;
+
+    .block-title {
+        @extend .abs-block-title;
+    }
+}
+
+.page-header .widget.block,
+.page-footer .widget.block {
+    margin: $indent__base 0;
+}
+
+//
+//  Calendar
+//  ---------------------------------------------
+
+.ui-datepicker td {
+    padding: 0;
+}
