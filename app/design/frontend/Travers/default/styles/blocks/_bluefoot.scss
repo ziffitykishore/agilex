@@ -335,7 +335,6 @@ $loading-background-color: $secondary__color;
 
 .overlapping-touts {
     position: relative;
-    padding: 150px 0 450px 0;
     margin: 75px 0;
     background: linear-gradient(to bottom, #{$c-grey} 0%, #{$c-smoke} 6%, #{$color-white} 100%);
 
@@ -378,12 +377,14 @@ $loading-background-color: $secondary__color;
         padding: $indent__xl $indent__m;
     }
 
-    .video-tout {
+    .video-tout.bluefoot-column {
         padding: 0;
         width: 100%;
     }
 
     @include min-screen($screen__l) {
+        padding: 150px 0 450px 0;
+
         .text-tout,
         .video-tout {
             position: absolute;
