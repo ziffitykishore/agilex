@@ -531,3 +531,10 @@ $loading-background-color: $secondary__color;
         display: none;
     }
 }
+
+.copyright {
+    padding-left: 20px;
+    font-weight: $font-weight__semibold;
+    font-size: $font-size__base;
+    color: $c-nickel;
+}
