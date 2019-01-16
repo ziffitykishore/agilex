@@ -302,6 +302,17 @@ $nav-section-title__height: 60px;
 //  _____________________________________________
 
 @include min-screen($mobile-nav__breakpoint) {
+    .navigation {
+        .submenu.level0 {
+            width: 100vw;
+            left: 0 !important; // overrides the nav JS
+        }
+
+        .level-top.parent {
+            position: static;
+        }
+    }
+
     .nav-toggle {
         display: none;
     }
