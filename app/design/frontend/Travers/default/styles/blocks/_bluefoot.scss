@@ -472,13 +472,14 @@ $loading-background-color: $secondary__color;
 
         &.content {
             display: flex;
+            flex-direction: column;
             width: 100%;
 
             .footer-links {
                 width: 70%;
 
                 &-heading {
-                    margin-top: 0;
+                    margin-top: $indent__m;
                     font-weight: $font-weight__bold;
                 }
 
@@ -489,6 +490,31 @@ $loading-background-color: $secondary__color;
                     li {
                         margin-bottom: $indent__s;
                     }
+                }
+            }
+
+            .switcher-store {
+                margin-top: $indent__s;
+                margin-bottom: 0;
+                width: 100%;
+                max-width: 50px;
+                padding-left: $indent__s;
+            }
+
+             @include min-screen($screen__m) {
+                flex-direction: row;
+
+                 .footer-links {
+                    width: 100%;
+
+                     &-heading {
+                        margin-top: 0;
+                    }
+                }
+
+                 .switcher-store {
+                    margin-top: 0;
+                    padding-left: 0;
                 }
             }
         }
