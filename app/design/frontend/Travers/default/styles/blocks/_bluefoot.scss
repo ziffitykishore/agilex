@@ -221,61 +221,63 @@ $loading-background-color: $secondary__color;
 }
 
 
-.carousel {
-    @include min-screen($screen__m) {
-        .slick-dots {
+.carousel .slick-slider {
+    .slick-dots {
+        .slick-active button {
+            background: $c-royal;
+        }
+
+        li button {
+            width: 10px !important; //override slick's !important
+            height: 10px;
+            line-height: 10px;
+        }
+
+        li:not(.slick-active) button {
+            background: $c-nickel;
+
+            @include hover {
+                background: $c-royal;
+            }
+        }
+
+        @include min-screen($screen__m) {
             position: absolute;
             bottom: 0;
         }
+    }
 
-        .bluefoot-advanced-slide-content {
-            h3 {
-                @include bryant-park-headings-h1();
-                margin-bottom: 0;
-            }
-
-            button {
-                @include button--type(primary);
-                min-width: 150px;
-            }
+    .bluefoot-advanced-slide-content {
+        h3 {
+            @include bryant-park-headings-h1();
+            margin-bottom: 0;
         }
 
-        .slick-arrow {
-            background-color: transparent;
-            color: $c-royal;
-
-            @include max-screen($screen__m) {
-                display: none !important; // override slick
-            }
-
-            span {
-                font-size: 60px;
-                font-weight: $font-weight__light;
-            }
-
-            &.slick-next {
-                right: 15px;
-            }
+        button {
+            @include button--type(primary);
+            min-width: 150px;
         }
 
-        .slick-dots {
-            .slick-active button {
-                background: $c-royal;
-            }
+        @include min-screen($screen__m) {
+            text-align: left;
+        }
+    }
 
-            li button {
-                width: 10px !important; //override slick's !important
-                height: 10px;
-                line-height: 10px;
-            }
+    .slick-arrow {
+        background-color: transparent;
+        color: $c-royal;
 
-            li:not(.slick-active) button {
-                background: $c-nickel;
+        @include max-screen($screen__m) {
+            display: none !important; // override slick
+        }
 
-                @include hover {
-                    background: $c-royal;
-                }
-            }
+        span {
+            font-size: 45px;
+            font-weight: $font-weight__light;
+        }
+
+        &.slick-next {
+            right: $indent__xs;
         }
     }
 }
