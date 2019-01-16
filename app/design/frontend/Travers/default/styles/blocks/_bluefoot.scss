@@ -464,6 +464,42 @@ $loading-background-color: $secondary__color;
 }
 
 .page-footer {
+    .footer {
+        &.phone,
+        &.links {
+            display: none;
+        }
+
+        &.content {
+            display: flex;
+            width: 100%;
+
+            .footer-links {
+                width: 70%;
+
+                &-heading {
+                    margin-top: 0;
+                    font-weight: $font-weight__bold;
+                }
+
+                ul {
+                    padding-left: 0;
+                    list-style-type: none;
+
+                    li {
+                        margin-bottom: $indent__s;
+                    }
+                }
+            }
+        }
+
+        &__connect {
+            width: 100%;
+        }
+    }
+}
+
+.page-footer {
     .footer.phone,
     .footer.links {
         display: none;
