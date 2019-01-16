@@ -373,8 +373,9 @@ $loading-background-color: $secondary__color;
             transform: translateX(5%);
             padding: $indent__xl;
 
-            .bluefoot-textarea {
-                max-width: 90%;
+            .bluefoot-textarea,
+            .bluefoot-buttons {
+                padding-left: $indent__s;
             }
         }
 
