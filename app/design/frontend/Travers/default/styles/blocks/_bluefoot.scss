@@ -348,6 +348,11 @@ $loading-background-color: $secondary__color;
         .product-item {
             display: flex;
             justify-content: center;
+
+            .reviews-actions,
+            .product-item-inner {
+                display: none;
+            }
         }
     }
 }
