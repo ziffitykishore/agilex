@@ -490,6 +490,12 @@ $loading-background-color: $secondary__color;
                     li {
                         margin-bottom: $indent__s;
                     }
+
+                    a {
+                        @include hover {
+                            color: $c-nickel;
+                        }
+                    }
                 }
             }
 
