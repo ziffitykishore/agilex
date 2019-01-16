@@ -220,7 +220,6 @@ $loading-background-color: $secondary__color;
     }
 }
 
-
 .carousel .slick-slider {
     .slick-dots {
         .slick-active button {
@@ -337,12 +336,22 @@ $loading-background-color: $secondary__color;
     &.product-grid {
         width: 100%;
 
-            @include min-screen($screen__m) {
+        @include max-screen($screen__m) {
+            margin: 0;
+
             .product-items {
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
+                margin-left: 0;
             }
+
+            .product-item {
+                padding: 0;
+            }
+        }
+
+        .product-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
         .product-item {
