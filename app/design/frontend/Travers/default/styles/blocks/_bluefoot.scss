@@ -414,11 +414,25 @@ $loading-background-color: $secondary__color;
 }
 
 .footer-promo-banner {
-    display: flex;
-    align-items: center;
-    padding: $indent__s;
-    padding-left: 80px;
+    padding: $indent__m $indent__s;
     background-color: $c-smoke;
+
+    @include min-screen($screen__m) {
+        display: flex;
+        align-items: center;
+        padding-left: 80px;
+        padding: $indent__s;
+
+        .footer-promo-text {
+            width: 100%;
+            max-width: 450px;
+            margin-right: $indent__m;
+        }
+
+        .footer-promo-header {
+            margin-top: 15px;
+        }
+    }
 
     .catalog-image {
         max-width: 100px;
@@ -437,12 +451,11 @@ $loading-background-color: $secondary__color;
 
     .footer-promo-header {
         font-weight: $font-weight__bold;
+        margin-top: 0;
     }
 
     .footer-promo-text {
-        width: 100%;
-        max-width: 450px;
-        margin-right: $indent__m;
+        width: 60%;
     }
 
     button {
