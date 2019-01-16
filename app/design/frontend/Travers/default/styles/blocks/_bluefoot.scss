@@ -336,7 +336,7 @@ $loading-background-color: $secondary__color;
 .overlapping-touts {
     position: relative;
     margin: 75px 0;
-    background: linear-gradient(to bottom, #{$c-grey} 0%, #{$c-smoke} 6%, #{$color-white} 100%);
+    background: linear-gradient(to bottom, $c-grey 0%, $c-smoke 6%, $color-white 100%);
 
     .text-tout {
         background-color: $c-midnight;
