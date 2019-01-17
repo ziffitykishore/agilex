@@ -220,8 +220,9 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.carousel .slick-slider {
-    .slick-dots {
+.carousel,
+.testimonials {
+    .slick-slider .slick-dots {
         .slick-active button {
             background: $c-royal;
         }
@@ -245,7 +246,9 @@ $loading-background-color: $secondary__color;
             bottom: 0;
         }
     }
+}
 
+.carousel .slick-slider {
     .bluefoot-advanced-slide-content {
         h3 {
             @include bryant-park-headings-h1();
@@ -635,6 +638,15 @@ $loading-background-color: $secondary__color;
 }
 
 .testimonials {
+    margin-bottom: $indent__xl;
+
+    @include max-screen($screen__m) {
+        &-carousel,
+        .bluefoot-advanced-slide-content {
+            margin-bottom: 0 !important; // override Slick
+        }
+    }
+
     .review-stars {
         font-size: 50px;
         margin-bottom: 0;
@@ -652,7 +664,7 @@ $loading-background-color: $secondary__color;
         }
 
         &-details {
-            padding-bottom: 0;
+            padding-bottom: 0 !important; // override Slick
         }
 
         &-giver {
@@ -665,6 +677,10 @@ $loading-background-color: $secondary__color;
         text-align: left !important; //override Slick
         border: 2px solid $c-grey;
 
+        .slick-dots {
+            margin-top: 0;
+        }
+
         @include min-screen($screen__m) {
             border: 0;
             width: 100% !important; //override Slick
@@ -674,8 +690,14 @@ $loading-background-color: $secondary__color;
                 padding-bottom: 0;
             }
 
-            .testimonial-title {
-                font-size: 15px;
+            .testimonial {
+                &-title {
+                    font-size: 15px;
+                }
+            }
+
+            .slick-dots {
+                display: none;
             }
         }
 
