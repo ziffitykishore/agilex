@@ -39,7 +39,7 @@ endif;
                     infinite: <?php echo ($_entity->getIsInfinite()) ? 'true' : 'false' ; ?>,
                     lazyLoad: 'ondemand',
                     dots: <?php echo ($_entity->getShowDots()) ? 'true' : 'false' ; ?>,
-                    slidesToShow: <?php echo ($_entity->getSlidesToShow()) ? $_entity->getSlidesToShow() : 1 ; ?>,
+                    slidesToShow: <?php echo ($_entity->getSlidesToShowOnMaxScreen()) ? $_entity->getSlidesToShowOnMaxScreen() : 1 ; ?>,
                     slidesToScroll: <?php echo ($_entity->getSlidesToScroll()) ? $_entity->getSlidesToScroll() : 1 ; ?>,
                     arrows: <?php echo ($_entity->getShowArrows()) ? 'true' : 'false' ; ?>,
                     autoplay: <?php echo ($_entity->getAutoplay()) ? 'true' : 'false' ; ?>,
@@ -48,12 +48,26 @@ endif;
                     prevArrow: '<button type="button" class="slick-prev button"><span><span>&lt;</span></span></button>',
                     nextArrow: '<button type="button" class="slick-next button"><span><span>&gt;</span></span></button>',
                     adaptiveHeight: <?php echo ($_entity->getAdaptiveHeight()) ? 'true' : 'false' ; ?>,
-                    responsive: [{
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1
-                        }
-                    }],
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: <?php echo ($_entity->getNumSlidesToShowOnDesktop()) ? $_entity->getNumSlidesToShowOnDesktop() : 1 ; ?>,
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: <?php echo ($_entity->getNumSlidesToShowOnTablet()) ? $_entity->getNumSlidesToShowOnTablet() : 1 ; ?>,
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: <?php echo ($_entity->getNumSlidesToShowOnMobile()) ? $_entity->getNumSlidesToShowOnMobile() : 1 ; ?>,
+                            }
+                        },
+                    ],
                     <?php echo ($_entity->getSliderAdditionalSettings()) ? ',' . $_entity->getSliderAdditionalSettings()  : '' ; ?>
                 });
             });
