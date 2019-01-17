@@ -324,7 +324,7 @@ $nav-section-title__height: 60px;
             padding-top: $indent__s;
             width: 100%;
             left: 0 !important; // overrides the nav JS
-            box-shadow: 0 12px 25px -2px $c-dusty-grey;
+            box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
 
             a {
                 padding: 0;
