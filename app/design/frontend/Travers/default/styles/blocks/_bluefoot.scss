@@ -633,3 +633,17 @@ $loading-background-color: $secondary__color;
         }
     }
 }
+
+.testimonials {
+    .review-stars {
+        font-size: 50px;
+        margin-bottom: 0;
+        color: $c-royal;
+    }
+
+    .testimonial {
+        &-title {
+            margin: 0;
+        }
+    }
+}
