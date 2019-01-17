@@ -320,9 +320,16 @@ $nav-section-title__height: 60px;
         font-size: 16px;
 
         &.category-item .submenu {
+            padding: $indent__xl;
+            padding-top: $indent__s;
             width: 100%;
             left: 0 !important; // overrides the nav JS
             box-shadow: 0 12px 25px -2px $c-dusty-grey;
+
+            a {
+                padding: 0;
+                padding-bottom: 8px;
+            }
         }
 
         &.parent {
