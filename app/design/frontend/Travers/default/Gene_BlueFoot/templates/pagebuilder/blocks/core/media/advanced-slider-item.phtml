@@ -36,6 +36,9 @@ $this->setCssClasses($_classes);
     <div class="bluefoot-wrapper">
         <div class="bluefoot-advanced-slide-content<?php echo ($_entity->getHasOverlay()) ? ' bluefoot-with-overlay' : '' ; ?>">
             <div class="bluefoot-full-width">
+                <?php if ($_entity->getStarCount()): ?>
+                    <span class="review-stars"><?php echo str_repeat('&#8902;', $_entity->getStarCount()); ?></span>
+                <?php endif; ?>
                 <?php if ($_entity->getTitle()): ?>
                     <h3<?php echo ($_color) ? ' style="color:#' . $_color . ';"' : '' ; ?> class="testimonial-title"><?php echo $_entity->getTitle(); ?></h3>
                 <?php endif; ?>
