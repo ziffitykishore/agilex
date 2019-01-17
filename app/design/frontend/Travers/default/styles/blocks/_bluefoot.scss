@@ -220,7 +220,6 @@ $loading-background-color: $secondary__color;
     }
 }
 
-
 .carousel .slick-slider {
     .slick-dots {
         .slick-active button {
@@ -329,6 +328,60 @@ $loading-background-color: $secondary__color;
                     text-transform: capitalize;
                     color: $c-cobalt;
                     background-color: transparent !important; //override Bluefoot driver
+                }
+            }
+        }
+    }
+
+    &.product-grid {
+        width: 100%;
+
+        @include max-screen($screen__m) {
+            margin: 0;
+
+            .product-items {
+                margin-left: 0;
+            }
+
+            .product-item {
+                padding: 0;
+            }
+        }
+
+        .product-items {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .product-item {
+            display: flex;
+            justify-content: center;
+
+            .reviews-actions,
+            .product-item-inner {
+                display: none;
+            }
+
+            .product-reviews-summary {
+                margin-top: 0;
+                margin-bottom: $indent__xs;
+            }
+
+            &-name a,
+            .price-box span {
+                color: $c-nickel;
+                font-size: $font-size__base--desktop;
+            }
+
+            &-name  {
+                margin-top: 15px;
+
+                a {
+                    @include hover {
+                        color: $text__color-alt;
+                        text-decoration: none;
+                    }
                 }
             }
         }
