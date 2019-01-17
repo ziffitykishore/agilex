@@ -638,12 +638,32 @@ $loading-background-color: $secondary__color;
     .review-stars {
         font-size: 50px;
         margin-bottom: 0;
+        margin-top: 0;
         color: $c-royal;
     }
 
     .testimonial {
         &-title {
             margin: 0;
+        }
+    }
+
+    .bluefoot-advanced-slide-content {
+        text-align: left !important; //override Slick
+        border: 2px solid $c-grey;
+
+        @include min-screen($screen__m) {
+            border: 0;
+            width: 100% !important; //override Slick
+            padding: 0 !important; //override Slick
+
+            .bluefoot-full-width {
+                padding-bottom: 0;
+            }
+        }
+
+        .bluefoot-full-width {
+            padding-bottom: 15px;
         }
     }
 }
