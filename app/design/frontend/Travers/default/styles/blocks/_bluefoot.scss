@@ -500,12 +500,15 @@ $loading-background-color: $secondary__color;
                     list-style-type: none;
 
                     li {
-                        margin-bottom: $indent__s;
+                        margin-bottom: 7px;
                     }
 
                     a {
+                        color: $c-nickel;
+                        font-weight: $font-weight__semibold;
+
                         @include hover {
-                            color: $c-nickel;
+                            color: $c-royal;
                         }
                     }
                 }
@@ -540,13 +543,6 @@ $loading-background-color: $secondary__color;
         &__connect {
             width: 100%;
         }
-    }
-}
-
-.page-footer {
-    .footer.phone,
-    .footer.links {
-        display: none;
     }
 }
 
