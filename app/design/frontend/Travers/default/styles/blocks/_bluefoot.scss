@@ -338,7 +338,7 @@ $loading-background-color: $secondary__color;
 .overlapping-touts {
     position: relative;
     margin: 75px 0;
-    background: linear-gradient(to bottom, $c-grey 0%, $c-smoke 6%, $color-white 100%);
+    background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
 
     @include min-screen($screen__l) {
         display: flex;
