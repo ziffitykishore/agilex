@@ -374,13 +374,16 @@ $loading-background-color: $secondary__color;
                 font-size: $font-size__base--desktop;
             }
 
+            a {
+                text-decoration: none !important;
+            }
+
             &-name  {
                 margin-top: 15px;
 
                 a {
                     @include hover {
                         color: $text__color-alt;
-                        text-decoration: none;
                     }
                 }
             }
