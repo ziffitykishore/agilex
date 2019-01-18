@@ -653,6 +653,12 @@ $loading-background-color: $secondary__color;
 .testimonials {
     margin-bottom: $indent__xl;
 
+    @include min-screen($screen__m) {
+        .slick-slide {
+            max-width: 290px;
+        }
+    }
+
     @include max-screen($screen__m) {
         &-carousel,
         .bluefoot-advanced-slide-content {
@@ -667,6 +673,7 @@ $loading-background-color: $secondary__color;
         color: $c-royal;
         line-height: 1;
         transform: translateX(-$indent__xs);
+        letter-spacing: 0;
     }
 
     .testimonial {
@@ -674,6 +681,7 @@ $loading-background-color: $secondary__color;
             @include bryant-park-headings-h5;
             font-size: 15px;
             margin: 0;
+            letter-spacing: 0;
         }
 
         &-details {
@@ -682,7 +690,7 @@ $loading-background-color: $secondary__color;
 
         &-giver {
             color: $secondary__color;
-            font-size: $font-size__base;
+            font-size: 13px;
         }
     }
 
