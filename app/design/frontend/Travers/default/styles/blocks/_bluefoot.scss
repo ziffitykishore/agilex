@@ -249,6 +249,8 @@ $loading-background-color: $secondary__color;
 }
 
 .carousel .slick-slider {
+    margin-bottom: $indent__m !important; //override slick
+
     .bluefoot-advanced-slide-content {
         h3 {
             @include bryant-park-headings-h1();
@@ -305,6 +307,7 @@ $loading-background-color: $secondary__color;
         @include min-screen($screen__m) {
             width: 90%;
             margin: 0 auto;
+            margin-bottom: $indent__xl;
         }
 
         .product-category-item {
@@ -398,7 +401,8 @@ $loading-background-color: $secondary__color;
 
 .overlapping-touts {
     position: relative;
-    margin: 75px 0;
+    margin: 0;
+    margin-bottom: 75px;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
 
     @include min-screen($screen__l) {
