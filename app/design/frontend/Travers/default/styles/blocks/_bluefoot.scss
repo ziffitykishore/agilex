@@ -357,7 +357,7 @@ $loading-background-color: $secondary__color;
 
     .text-tout,
     .video-tout.bluefoot-column {
-        flex: 1;
+        flex: .5;
     }
 
     .text-tout {
@@ -369,18 +369,19 @@ $loading-background-color: $secondary__color;
         width: 100%;
 
         @include min-screen($screen__l) {
-            max-width: 600px;
+            max-width: 550px;
             transform: translateX(5%);
             padding: $indent__xl;
 
             .bluefoot-textarea,
             .bluefoot-buttons {
-                padding-left: $indent__s;
+                padding-left: 20px;
             }
         }
 
         .tout-header {
             @include lib-heading(h2);
+            font-weight: $font-weight__regular;
             margin: 0;
         }
     }
@@ -398,6 +399,8 @@ $loading-background-color: $secondary__color;
 
     .bluefoot-textarea {
         max-width: 90%;
+        line-height: 1.8;
+        margin: $indent__m 0;
     }
 
     .bluefoot-textarea,
@@ -411,6 +414,11 @@ $loading-background-color: $secondary__color;
 
     button {
         @include button--transparent;
+        font-size: $font-size__base--desktop;
+
+        @include hover {
+            color: $c-dusty-grey;
+        }
     }
 
     .video-tout.bluefoot-column {
