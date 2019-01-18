@@ -320,19 +320,14 @@ $nav-section-title__height: 60px;
         font-size: 16px;
 
         &.category-item .submenu {
-            padding: $indent__xl;
+            padding: $indent__xl 100px;
             padding-top: $indent__s;
             width: 100%;
             left: 0 !important; // overrides the nav JS
             box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
             box-sizing: border-box;
-
-            a {
-                padding: 0;
-                padding-bottom: 8px;
-                width: 25%;
-                float: left;
-            }
+            column-count: 3;
+            column-gap: $indent__xl;
         }
 
         &.parent {
