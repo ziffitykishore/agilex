@@ -375,13 +375,16 @@ $loading-background-color: $secondary__color;
                 font-size: $font-size__base--desktop;
             }
 
+            a {
+                text-decoration: none !important;
+            }
+
             &-name  {
                 margin-top: 15px;
 
                 a {
                     @include hover {
                         color: $text__color-alt;
-                        text-decoration: none;
                     }
                 }
             }
@@ -392,7 +395,7 @@ $loading-background-color: $secondary__color;
 .overlapping-touts {
     position: relative;
     margin: 75px 0;
-    background: linear-gradient(to bottom, $c-grey 0%, $c-smoke 6%, $color-white 100%);
+    background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
 
     @include min-screen($screen__l) {
         display: flex;
@@ -411,7 +414,7 @@ $loading-background-color: $secondary__color;
 
     .text-tout,
     .video-tout.bluefoot-column {
-        flex: 1;
+        flex: .5;
     }
 
     .text-tout {
@@ -423,18 +426,19 @@ $loading-background-color: $secondary__color;
         width: 100%;
 
         @include min-screen($screen__l) {
-            max-width: 600px;
+            max-width: 550px;
             transform: translateX(5%);
             padding: $indent__xl;
 
             .bluefoot-textarea,
             .bluefoot-buttons {
-                padding-left: $indent__s;
+                padding-left: 20px;
             }
         }
 
         .tout-header {
             @include lib-heading(h2);
+            font-weight: $font-weight__regular;
             margin: 0;
         }
     }
@@ -452,6 +456,8 @@ $loading-background-color: $secondary__color;
 
     .bluefoot-textarea {
         max-width: 90%;
+        line-height: 1.8;
+        margin: $indent__m 0;
     }
 
     .bluefoot-textarea,
@@ -465,6 +471,11 @@ $loading-background-color: $secondary__color;
 
     button {
         @include button--transparent;
+        font-size: $font-size__base--desktop;
+
+        @include hover {
+            color: $c-dusty-grey;
+        }
     }
 
     .video-tout.bluefoot-column {
@@ -554,12 +565,15 @@ $loading-background-color: $secondary__color;
                     list-style-type: none;
 
                     li {
-                        margin-bottom: $indent__s;
+                        margin-bottom: 7px;
                     }
 
                     a {
+                        color: $c-nickel;
+                        font-weight: $font-weight__semibold;
+
                         @include hover {
-                            color: $c-nickel;
+                            color: $c-cobalt;
                         }
                     }
                 }
@@ -594,13 +608,6 @@ $loading-background-color: $secondary__color;
         &__connect {
             width: 100%;
         }
-    }
-}
-
-.page-footer {
-    .footer.phone,
-    .footer.links {
-        display: none;
     }
 }
 
