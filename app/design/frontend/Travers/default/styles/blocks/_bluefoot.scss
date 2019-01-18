@@ -372,8 +372,7 @@ $loading-background-color: $secondary__color;
             }
 
             .product-reviews-summary {
-                margin-top: 0;
-                margin-bottom: $indent__xs;
+                margin-bottom: 3px;
             }
 
             &-name a,
@@ -387,7 +386,8 @@ $loading-background-color: $secondary__color;
             }
 
             &-name  {
-                margin-top: 15px;
+                margin-top: 20px;
+                margin-bottom: 0;
 
                 a {
                     @include hover {
