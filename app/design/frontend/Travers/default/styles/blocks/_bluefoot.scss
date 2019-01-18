@@ -265,6 +265,7 @@ $loading-background-color: $secondary__color;
     .slick-arrow {
         background-color: transparent;
         color: $c-royal;
+        z-index: 1;
 
         @include max-screen($screen__m) {
             display: none !important; // override slick
