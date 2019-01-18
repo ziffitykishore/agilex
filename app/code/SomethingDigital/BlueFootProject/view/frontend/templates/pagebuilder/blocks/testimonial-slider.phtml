@@ -25,7 +25,7 @@ endif;
 <?php if ($this->hasChildEntities('testimonial_slider_items')): ?>
 
     <?php $_collection = $this->getChildEntities('testimonial_slider_items'); ?>
-    <div id="testimonial-slider" class="bluefoot-advanced-slider bluefoot-slider <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>>
+    <div id="testimonial-slider-<?php echo $this->getEntity()->getId(); ?>" class="bluefoot-advanced-slider testimonial-slider bluefoot-slider <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>>
         <?php $_i = 0; foreach ($_collection as $_block): $_i++; ?>
             <?php echo $_block->setCount($_i)->toHtml(); ?>
         <?php endforeach; ?>
@@ -35,7 +35,7 @@ endif;
         require(['jquery','slick'], function($) {
             $(function () {
                 /* [Slick JS] */
-                $('#testimonial-slider').slick({
+                $('#testimonial-slider-<?php echo $this->getEntity()->getId(); ?>').slick({
                     infinite: <?php echo ($_entity->getIsInfinite()) ? 'true' : 'false' ; ?>,
                     lazyLoad: 'ondemand',
                     dots: <?php echo ($_entity->getShowDots()) ? 'true' : 'false' ; ?>,
@@ -72,12 +72,12 @@ endif;
                 });
             });
 
-            $('#testimonial-slider').on('init', function(event, slick){
+            $('#testimonial-slider-<?php echo $this->getEntity()->getId(); ?>').on('init', function(event, slick){
                 slick.$slider.addClass('slick-visible');
             });
             // Fallback if init function fails
             $(window).load(function(){
-                $('#testimonial-slider').addClass('slick-visible');
+                $('#testimonial-slider-<?php echo $this->getEntity()->getId(); ?>').addClass('slick-visible');
             });
         });
     </script>
