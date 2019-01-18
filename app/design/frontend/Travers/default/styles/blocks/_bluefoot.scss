@@ -220,8 +220,9 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.carousel .slick-slider {
-    .slick-dots {
+.carousel,
+.testimonials {
+    .slick-slider .slick-dots {
         .slick-active button {
             background: $c-royal;
         }
@@ -245,7 +246,9 @@ $loading-background-color: $secondary__color;
             bottom: 0;
         }
     }
+}
 
+.carousel .slick-slider {
     .bluefoot-advanced-slide-content {
         h3 {
             @include bryant-park-headings-h1();
@@ -282,20 +285,21 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.product-category {
-    .section-heading {
-        text-align: center;
-        margin-bottom: $indent__m;
+.section-heading {
+    text-align: center;
+    margin-bottom: $indent__m;
 
-        &::after {
-            content: "";
-            display: block;
-            margin: 0 auto;
-            width: 50px;
-            padding-top: 15px;
-            border-bottom: 3px solid $c-royal;
-        }
+    &::after {
+        content: "";
+        display: block;
+        margin: 0 auto;
+        width: 50px;
+        padding-top: 15px;
+        border-bottom: 3px solid $c-royal;
     }
+}
+
+.product-category {
 
     &.category-grid {
         @include min-screen($screen__m) {
@@ -638,6 +642,76 @@ $loading-background-color: $secondary__color;
         p {
             margin: 0;
             margin-bottom: $indent__xs;
+        }
+    }
+}
+
+.testimonials {
+    margin-bottom: $indent__xl;
+
+    @include max-screen($screen__m) {
+        &-carousel,
+        .bluefoot-advanced-slide-content {
+            margin-bottom: 0 !important; // override Slick
+        }
+    }
+
+    .review-stars {
+        font-size: 50px;
+        margin-bottom: 0;
+        margin-top: 0;
+        color: $c-royal;
+        line-height: 1;
+        transform: translateX(-$indent__xs);
+    }
+
+    .testimonial {
+        &-title {
+            @include bryant-park-headings-h5;
+            font-size: 15px;
+            margin: 0;
+        }
+
+        &-details {
+            padding-bottom: 0 !important; // override Slick
+        }
+
+        &-giver {
+            color: $secondary__color;
+            font-size: $font-size__base;
+        }
+    }
+
+    .bluefoot-advanced-slide-content {
+        text-align: left !important; //override Slick
+        border: 2px solid $c-grey;
+
+        .slick-dots {
+            margin-top: 0;
+        }
+
+        @include min-screen($screen__m) {
+            border: 0;
+            width: 100% !important; //override Slick
+            padding: 0 !important; //override Slick
+
+            .bluefoot-full-width {
+                padding-bottom: 0;
+            }
+
+            .testimonial {
+                &-title {
+                    font-size: 15px;
+                }
+            }
+
+            .slick-dots {
+                display: none;
+            }
+        }
+
+        .bluefoot-full-width {
+            padding-bottom: 15px;
         }
     }
 }

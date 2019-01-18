@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="pagebuilder.xsd">
+    <content_blocks>
+        <templates>
+          <template name="testimonial_slider" file="SomethingDigital_BlueFootProject::pagebuilder/blocks/testimonial-slider.phtml" />
+          <template name="testimonial_slider_item" file="SomethingDigital_BlueFootProject::pagebuilder/blocks/testimonial-slider-item.phtml" />
+        </templates>
+    </content_blocks>
+</config> 

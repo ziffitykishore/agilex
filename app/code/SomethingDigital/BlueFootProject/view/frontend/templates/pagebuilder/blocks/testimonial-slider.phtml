@@ -1,0 +1,85 @@
+
+<?php 
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+
+/**
+ * BlueFoot
+ *
+ * Version 1.0
+ * @author Conor Farrell <conor@gene.co.uk>
+ *
+ * Carousel Template - this carousel uses the jQuery plugin Slick <http://kenwheeler.github.io/slick/>
+ * Thanks to Ken Wheeler for allowing us to distribute his plugin with the Gene CMS
+ *
+ * @var $this \Gene\BlueFoot\Block\Entity\PageBuilder\Block\AbstractBlock
+ */
+$_entity = $this->getEntity();
+
+if ($_entity->getShowDots()):
+    $this->setCssClasses('bluefoot-slider-with-dots');
+endif;
+?>
+<?php if ($this->hasChildEntities('testimonial_slider_items')): ?>
+
+    <?php $_collection = $this->getChildEntities('testimonial_slider_items'); ?>
+    <div id="testimonial-slider-<?php echo $this->getEntity()->getId(); ?>" class="bluefoot-advanced-slider testimonial-slider bluefoot-slider <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>>
+        <?php $_i = 0; foreach ($_collection as $_block): $_i++; ?>
+            <?php echo $_block->setCount($_i)->toHtml(); ?>
+        <?php endforeach; ?>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery','slick'], function($) {
+            $(function () {
+                /* [Slick JS] */
+                $('#testimonial-slider-<?php echo $this->getEntity()->getId(); ?>').slick({
+                    infinite: <?php echo ($_entity->getIsInfinite()) ? 'true' : 'false' ; ?>,
+                    lazyLoad: 'ondemand',
+                    dots: <?php echo ($_entity->getShowDots()) ? 'true' : 'false' ; ?>,
+                    adaptiveHeight: <?php echo ($_entity->getAdaptiveHeight()) ? 'true' : 'false' ; ?>,
+                    slidesToShow: <?php echo ($_entity->getSlidesToShowOnMaxScreen()) ? $_entity->getSlidesToShowOnMaxScreen() : 1 ; ?>,
+                    slidesToScroll: <?php echo ($_entity->getSlidesToScroll()) ? $_entity->getSlidesToScroll() : 1 ; ?>,
+                    arrows: <?php echo ($_entity->getShowArrows()) ? 'true' : 'false' ; ?>,
+                    autoplay: <?php echo ($_entity->getAutoplay()) ? 'true' : 'false' ; ?>,
+                    autoplaySpeed: <?php echo ($_entity->getAutoplayPlaySpeed()) ? $_entity->getAutoplayPlaySpeed() : '5000' ; ?>,
+                    fade: <?php echo ($_entity->getFade()) ? 'true' : 'false' ; ?>,
+                    prevArrow: '<button type="button" class="slick-prev button"><span><span>&lt;</span></span></button>',
+                    nextArrow: '<button type="button" class="slick-next button"><span><span>&gt;</span></span></button>',
+                    responsive: [
+                        {
+                            breakpoint: 1024,
+                            settings: {
+                                slidesToShow: <?php echo ($_entity->getNumSlidesToShowOnDesktop()) ? $_entity->getNumSlidesToShowOnDesktop() : 1 ; ?>,
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: <?php echo ($_entity->getNumSlidesToShowOnTablet()) ? $_entity->getNumSlidesToShowOnTablet() : 1 ; ?>,
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: <?php echo ($_entity->getNumSlidesToShowOnMobile()) ? $_entity->getNumSlidesToShowOnMobile() : 1 ; ?>,
+                            }
+                        },
+                    ],
+                    <?php echo ($_entity->getSliderAdditionalSettings()) ? ',' . $_entity->getSliderAdditionalSettings()  : '' ; ?>
+                });
+            });
+
+            $('#testimonial-slider-<?php echo $this->getEntity()->getId(); ?>').on('init', function(event, slick){
+                slick.$slider.addClass('slick-visible');
+            });
+            // Fallback if init function fails
+            $(window).load(function(){
+                $('#testimonial-slider-<?php echo $this->getEntity()->getId(); ?>').addClass('slick-visible');
+            });
+        });
+    </script>
+
+<?php endif; ?>
