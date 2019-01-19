@@ -347,7 +347,7 @@ $loading-background-color: $secondary__color;
         @include max-screen($screen__m) {
             margin: 0;
 
-            .product-items {
+            .product-items.products.list {
                 margin-left: 0;
             }
 
