@@ -403,6 +403,7 @@ $loading-background-color: $secondary__color;
     position: relative;
     margin: 0;
     margin-bottom: 75px;
+    padding-top: $indent__m;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
 
     @include min-screen($screen__l) {
@@ -418,6 +419,12 @@ $loading-background-color: $secondary__color;
         text-align: center;
         margin-bottom: $indent__xl;
         font-size: 35px;
+    }
+
+    @include min-screen($screen__m) {
+        &-header:after {
+            display: none;
+        }
     }
 
     .text-tout,
