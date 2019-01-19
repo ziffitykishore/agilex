@@ -689,6 +689,8 @@ footer.page-footer {
     margin-bottom: $indent__xl;
 
     @include min-screen($screen__m) {
+        margin-top: $indent__m;
+
         .slick-slide {
             max-width: 290px;
         }
