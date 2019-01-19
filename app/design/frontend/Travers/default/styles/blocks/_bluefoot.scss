@@ -576,7 +576,11 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.page-footer {
+footer.page-footer {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+
     .footer {
         &.phone,
         &.links {
