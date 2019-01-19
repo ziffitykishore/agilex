@@ -302,7 +302,6 @@ $loading-background-color: $secondary__color;
 }
 
 .product-category {
-
     &.category-grid {
         @include min-screen($screen__m) {
             width: 90%;
@@ -461,12 +460,36 @@ $loading-background-color: $secondary__color;
         &:not(:nth-of-type(3)) {
             border-right: 1px solid $color-white;
         }
+
+        &.overlapping-touts-text {
+            @include max-screen($screen__m) {
+                &:not(:nth-of-type(3)) {
+                    width: 50%;
+                }
+
+                &:nth-of-type(2) {
+                    border-right: 0;
+                }
+
+                &:nth-of-type(3) {
+                    margin-top: $indent__m;
+                    float: right;
+                    width: 100%;
+                }
+            }
+        }
     }
 
     .bluefoot-textarea {
         max-width: 90%;
         line-height: 1.8;
         margin: $indent__m 0;
+
+        @include max-screen($screen__m) {
+            span {
+                float: right;
+            }
+        }
     }
 
     .bluefoot-textarea,
@@ -484,6 +507,10 @@ $loading-background-color: $secondary__color;
 
         @include hover {
             color: $c-dusty-grey;
+        }
+
+        @include max-screen($screen__m) {
+            margin-top: $indent__m;
         }
     }
 
