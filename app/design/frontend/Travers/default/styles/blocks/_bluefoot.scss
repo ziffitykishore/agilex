@@ -657,7 +657,10 @@ $loading-background-color: $secondary__color;
 .triple-tout-row .homepage-tout {
     button {
         @include button--type(primary);
+        margin-bottom: $indent__l;
+
         @include min-screen($screen__m) {
+            margin-bottom: 0;
             max-width: 160px;
             width: 100%;
         }
