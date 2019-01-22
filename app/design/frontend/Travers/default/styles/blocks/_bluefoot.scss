@@ -249,6 +249,8 @@ $loading-background-color: $secondary__color;
 }
 
 .carousel .slick-slider {
+    margin-bottom: $indent__m !important; //override slick
+
     .bluefoot-advanced-slide-content {
         h3 {
             @include bryant-park-headings-h1();
@@ -287,7 +289,7 @@ $loading-background-color: $secondary__color;
 
 .section-heading {
     text-align: center;
-    margin-bottom: $indent__m;
+    margin-bottom: 30px;
 
     &::after {
         content: "";
@@ -300,14 +302,15 @@ $loading-background-color: $secondary__color;
 }
 
 .product-category {
-
     &.category-grid {
         @include min-screen($screen__m) {
             width: 90%;
             margin: 0 auto;
+            margin-bottom: $indent__xl;
         }
 
         .product-category-item {
+            margin-top: $indent__m;
             margin-bottom: $indent__xl;
             width: 50%;
 
@@ -344,7 +347,7 @@ $loading-background-color: $secondary__color;
         @include max-screen($screen__m) {
             margin: 0;
 
-            .product-items {
+            .product-items.products.list {
                 margin-left: 0;
             }
 
@@ -363,14 +366,19 @@ $loading-background-color: $secondary__color;
             display: flex;
             justify-content: center;
 
+            @include min-screen($screen__m) {
+                &.item.product {
+                    width: 18%;
+                }
+            }
+
             .reviews-actions,
             .product-item-inner {
                 display: none;
             }
 
             .product-reviews-summary {
-                margin-top: 0;
-                margin-bottom: $indent__xs;
+                margin-bottom: 3px;
             }
 
             &-name a,
@@ -384,7 +392,8 @@ $loading-background-color: $secondary__color;
             }
 
             &-name  {
-                margin-top: 15px;
+                margin-top: 20px;
+                margin-bottom: 0;
 
                 a {
                     @include hover {
@@ -398,7 +407,9 @@ $loading-background-color: $secondary__color;
 
 .overlapping-touts {
     position: relative;
-    margin: 75px 0;
+    margin: 0;
+    margin-bottom: 75px;
+    padding-top: $indent__m;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
 
     @include min-screen($screen__l) {
@@ -414,6 +425,12 @@ $loading-background-color: $secondary__color;
         text-align: center;
         margin-bottom: $indent__xl;
         font-size: 35px;
+    }
+
+    @include min-screen($screen__m) {
+        &-header:after {
+            display: none;
+        }
     }
 
     .text-tout,
@@ -456,12 +473,36 @@ $loading-background-color: $secondary__color;
         &:not(:nth-of-type(3)) {
             border-right: 1px solid $color-white;
         }
+
+        &.overlapping-touts-text {
+            @include max-screen($screen__m) {
+                &:not(:nth-of-type(3)) {
+                    width: 50%;
+                }
+
+                &:nth-of-type(2) {
+                    border-right: 0;
+                }
+
+                &:nth-of-type(3) {
+                    margin-top: $indent__m;
+                    float: right;
+                    width: 100%;
+                }
+            }
+        }
     }
 
     .bluefoot-textarea {
         max-width: 90%;
         line-height: 1.8;
         margin: $indent__m 0;
+
+        @include max-screen($screen__m) {
+            span {
+                float: right;
+            }
+        }
     }
 
     .bluefoot-textarea,
@@ -479,6 +520,10 @@ $loading-background-color: $secondary__color;
 
         @include hover {
             color: $c-dusty-grey;
+        }
+
+        @include max-screen($screen__m) {
+            margin-top: $indent__m;
         }
     }
 
@@ -544,7 +589,11 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.page-footer {
+footer.page-footer {
+    border-top: 0;
+    margin-top: 0;
+    padding-top: 0;
+
     .footer {
         &.phone,
         &.links {
@@ -625,7 +674,10 @@ $loading-background-color: $secondary__color;
 .triple-tout-row .homepage-tout {
     button {
         @include button--type(primary);
+        margin-bottom: $indent__l;
+
         @include min-screen($screen__m) {
+            margin-bottom: 0;
             max-width: 160px;
             width: 100%;
         }
@@ -649,6 +701,14 @@ $loading-background-color: $secondary__color;
 .testimonials {
     margin-bottom: $indent__xl;
 
+    @include min-screen($screen__m) {
+        margin-top: $indent__m;
+
+        .slick-slide {
+            max-width: 290px;
+        }
+    }
+
     @include max-screen($screen__m) {
         &-carousel,
         .bluefoot-advanced-slide-content {
@@ -663,6 +723,7 @@ $loading-background-color: $secondary__color;
         color: $c-royal;
         line-height: 1;
         transform: translateX(-$indent__xs);
+        letter-spacing: 0;
     }
 
     .testimonial {
@@ -670,6 +731,7 @@ $loading-background-color: $secondary__color;
             @include bryant-park-headings-h5;
             font-size: 15px;
             margin: 0;
+            letter-spacing: 0;
         }
 
         &-details {
@@ -678,7 +740,7 @@ $loading-background-color: $secondary__color;
 
         &-giver {
             color: $secondary__color;
-            font-size: $font-size__base;
+            font-size: 13px;
         }
     }
 

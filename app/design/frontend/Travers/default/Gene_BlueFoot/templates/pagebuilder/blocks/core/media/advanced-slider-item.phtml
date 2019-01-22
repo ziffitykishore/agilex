@@ -36,19 +36,18 @@ $this->setCssClasses($_classes);
     <div class="bluefoot-wrapper">
         <div class="bluefoot-advanced-slide-content<?php echo ($_entity->getHasOverlay()) ? ' bluefoot-with-overlay' : '' ; ?>">
             <div class="bluefoot-full-width">
-                <?php if ($_entity->getStarCount()): ?>
-                    <h2 class="review-stars"><?php echo str_repeat('&#8902;', $_entity->getStarCount()); ?></h2>
-                <?php endif; ?>
                 <?php if ($_entity->getTitle()): ?>
-                    <h3<?php echo ($_color) ? ' style="color:#' . $_color . ';"' : '' ; ?> class="testimonial-title"><?php echo $_entity->getTitle(); ?></h3>
+                    <h3<?php echo ($_color) ? ' style="color:#' . $_color . ';"' : '' ; ?>><?php echo $_entity->getTitle(); ?></h3>
                 <?php endif; ?>
                 <?php if ($_entity->getTextarea()): ?>
-                    <div class="bluefoot-advanced-slide-text bluefoot-full-width testimonial-details">
+                    <div class="bluefoot-advanced-slide-text bluefoot-full-width">
                         <?php echo $_entity->getTextarea(); ?>
                     </div>
                 <?php endif; ?>
-                <?php if ($_entity->getTestimonialGiver()): ?>
-                    <span class="testimonial-giver"><?php echo $_entity->getTestimonialGiver(); ?></span>
+                <?php if ($_entity->getLinkText() && $_entity->getLinkUrl()): ?>
+                    <button type="button" onclick="location.href='<?php echo $_entity->getLinkUrl(); ?>'" class="button">
+                        <span><span><?php echo $_entity->getLinkText(); ?></span></span>
+                    </button>
                 <?php endif; ?>
             </div>
         </div>
