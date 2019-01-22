@@ -366,6 +366,12 @@ $loading-background-color: $secondary__color;
             display: flex;
             justify-content: center;
 
+            @include min-screen($screen__m) {
+                &.item.product {
+                    width: 18%;
+                }
+            }
+
             .reviews-actions,
             .product-item-inner {
                 display: none;
