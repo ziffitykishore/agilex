@@ -72,6 +72,178 @@
         }
     }
     .header-wrapper {
+        .block-search {
+            position: relative;
+            .advance_from_mini {
+            label {
+                display: block;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 25px;
+                position: relative;
+                height: auto;
+                width: auto;
+                clip: unset;
+                &:before {
+                    display: none;
+                }
+                span {
+                    position: relative;
+                    height: auto;
+                    width: auto;
+                    clip: unset;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+        }
+        div#search_autocomplete {
+            position: relative !important;
+        }
+        }
+        .advance_from_mini {
+            display: none;
+            background: #f2f5f8;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            max-width: ~"calc(80% - 24px)";
+            margin: auto;
+            padding: 40px 25px 50px 50px;
+            box-shadow: 0px 5px 20px 0px rgba(51, 51, 51, 0.29);
+            z-index: 99;
+            @media screen and (max-width: 768px){
+                max-width: ~"calc(100% - 30px)";
+                top: 10px;
+            }
+            .field.name label.label {
+                display: none;
+            }
+            .fieldset {
+                margin-bottom: 0;
+            }
+            .form.search.advanced {
+                .fields.range div.field.with-addon div.control {
+                    padding-right: 25px;
+                }
+                .group.price .addon .addafter {
+                    right: -20px;
+                    top: 10px;
+                    font-weight: normal;
+                    @media screen and (max-width: 480px){
+                        right: 15px;
+                        top: -30px;
+                    }   
+                }
+            }
+            .actions-toolbar {
+                text-align: center;
+                margin-bottom: 20px;
+                .primary {
+                    float: none;
+                }
+                &.findcoin {
+                    margin-bottom: 0;
+                }
+                .ortext {
+                    a {
+                        margin-left: -25px;
+                        span {
+                            text-transform: none;
+                            color: #000;
+                            text-decoration: underline;
+                            font-weight: normal;
+                            font-size: 15px;
+                        }
+                    }
+                    .btn-action {
+                        background: transparent;
+                        border: 0;
+                    }
+                }
+            }
+            input {
+                background: #f2f5f8;
+                border: 1px solid #c2c2c2;
+            }
+            input#search_value {
+                position: absolute;
+                left: 0;
+                min-width: 100%;
+                top: 0;
+                padding: 0 20px;
+                background: #fff;
+                border-width: 0;
+                height: 40px;
+            }
+            .control {
+                text-align: left;
+                padding-right: 25px;
+            }
+            .legend {
+                display: none;
+            }            
+            &.open {
+                display: block;
+            }
+            .action.search {
+                position: unset;
+                border: 0;
+                width: auto;
+                display: inline-block;
+                &:before {
+                    display: none;
+                }
+                span {
+                    position: relative;
+                    height: auto;
+                    width: auto;
+                    clip: unset;
+                    font-size: 15px;
+                }
+            }
+            .category_search_field {
+                width: 50%;
+                display: inline-block; 
+                @media screen and (max-width: 480px){
+                    min-width: 100%;
+                }               
+            }
+            button.action {
+                padding: 10px 30px;
+                background: #e32129;
+                font-size: 12px;
+                color: #fff;
+                font-weight: 600;
+                margin-left: -25px;
+                &:hover,
+                &:focus,
+                &:active {
+                    background: #e32129;
+                }
+            }
+        }
+        .wrapper_suggest {
+            position: absolute;
+            width: 100%;            
+        }
+        form.minisearch.active {
+            ._adv_trig {
+                display: block;
+            }
+        }
+        ._adv_trig {
+            width: 100%;
+            background: #f2f5f8;
+            padding: 10px;
+            text-transform: uppercase;
+            text-decoration: underline;
+            cursor: pointer;
+            display: none;
+        }
         .logo-wrap {
             text-align: center;
             padding: 6px;

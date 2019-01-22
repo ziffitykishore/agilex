@@ -10,7 +10,7 @@
 <?php $maxQueryLength = $this->helper('Magento\CatalogSearch\Helper\Data')->getMaxQueryLength();?>
 <form class="form search advanced" action="<?= /* @escapeNotVerified */ $block->getSearchPostUrl() ?>" method="get" id="form-validate">
 <fieldset class="fieldset">
-    <legend class="legend"><span><?= /* @escapeNotVerified */ __('Search Settings') ?></span></legend><br />
+    <legend class="legend"><span><?= /* @escapeNotVerified */ __('Search Settings') ?></span></legend>
     <div class="field name">
         <label class="label" for="name">
             <span><?= /* @escapeNotVerified */ __('Search:') ?></span>
@@ -169,5 +169,27 @@ require([
                 'price[from]': {'less-than-equals-to': 'Please enter a valid price range.'}
             }
         });
+        $('._adv_trig').on('click', function(event) {
+            event.stopPropagation();
+            $('.advance_from_mini').addClass('open');
+            var search1 = $('#search').val();
+            $('#search_value').val(search1);
+        });
+        $(document).click(function(e){
+        if( $(e.target).closest(".advance_from_mini").length > 0 ) {
+            return false;
+        }
+        $('.advance_from_mini').removeClass('open');
+            // var search2 = $('#search_value').val();
+            // $('#search').val(search2);
+        });
+        $(document).keyup(function(e) {
+            if (e.key === "Escape") { 
+                $('.advance_from_mini').removeClass('open');
+                // var search2 = $('#search_value').val();
+                // $('#search').val(search2);
+            }
+        });
 });
+
 </script>
