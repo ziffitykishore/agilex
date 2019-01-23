@@ -3,11 +3,14 @@
  *     Checks if username and access_token exist, if not redirects to settings page
  */
 
-function wdi_check_necessary_params()
-{
+function wdi_check_necessary_params(){
+
   global $wdi_options;
-  if (!isset($wdi_options['wdi_access_token']) || !isset($wdi_options['wdi_user_name']) || $wdi_options['wdi_access_token'] == '' || $wdi_options['wdi_user_name'] == '') {
-    ?>
+  $instagram = (!isset($wdi_options['wdi_access_token']) || !isset($wdi_options['wdi_user_name']) || $wdi_options['wdi_access_token']=='' || $wdi_options['wdi_user_name'] =='');
+  $fb = (empty($wdi_options['fb_token']) && empty($wdi_options['business_account_id']));
+
+  if($instagram && $fb){
+      ?>
     <script>
       window.location = "<?php echo admin_url('admin.php?page=wdi_settings');?>";
     </script>
@@ -22,16 +25,14 @@ function wdi_check_necessary_params()
  * else it displays error message already uninstalled
  */
 
-function wdi_uninstall_notice($arg)
-{
+function wdi_uninstall_notice($arg){
   if ($arg == 1) {
     ?>
     <div class="updated">
       <p><?php _e('Succesfully Uninstalled!', "wd-instagram-feed"); ?></p>
     </div>
     <?php
-  }
-  else {
+  } else {
     ?>
     <div class="error">
       <p><?php _e('Already Unistalled', "wd-instagram-feed"); ?></p>
@@ -43,8 +44,7 @@ function wdi_uninstall_notice($arg)
 /**
  * checks if plugin is uninstalled it displays to all users uninstalled screen
  */
-function wdi_check_uninstalled()
-{
+function wdi_check_uninstalled(){
   global $wdi_options;
   if (isset($wdi_options['wdi_plugin_uninstalled']) && $wdi_options['wdi_plugin_uninstalled'] == 'true') {
     require_once(WDI_DIR . '/templates/plugin-uninstalled.php');
@@ -60,8 +60,7 @@ function wdi_check_uninstalled()
  * after adding this basic options,creates tables for plugin in wordpress database
  */
 
-function wdi_install()
-{
+function wdi_install(){
 
 
   wdi_get_options();
@@ -81,8 +80,8 @@ function wdi_install()
 
     $old_version = substr($saved_version, 2);
     $new_version = substr(WDI_VERSION, 2);
-    $newer = version_compare($new_version, $old_version, '>');
 
+    $newer = version_compare($new_version, $old_version, '>');
     if ($newer) {
       require_once WDI_DIR . '/update/wdi_update.php';
       /*adds new params for new versions*/
@@ -91,6 +90,7 @@ function wdi_install()
       if (!update_option('wdi_version', WDI_VERSION)) {
         add_option('wdi_version', WDI_VERSION);
       }
+
     }
     wdi_set_options_defaults();
     return;
@@ -520,7 +520,7 @@ function wdi_configure_section_callback(){
     <?php
 
     if (!isset($options['wdi_access_token']) || $options['wdi_access_token'] == '' || !isset($options['wdi_user_name']) || $options['wdi_user_name'] == '')
-      _e('You need Access Token for using Instagram API. Click sign in with Instagram button above to get yours. This will not show your Instagram media. After that you may create feed with desired user or hashtag media.', "wd-instagram-feed");
+      _e('You need Access Token for using Instagram API. Click sign in with Instagram button above to get yours. This will not show your Instagram media. After that you may create your feed.', "wd-instagram-feed");
     ?>
   </div>
   <?php
@@ -657,29 +657,36 @@ function wdi_sanitize_options($input)
   }
   return apply_filters('wdi_sanitize_options', $output, $input);
 }
-
 //Sets all settings for admin pages and returns associative array of settings
-function wdi_get_settings()
-{
+function wdi_get_settings(){
+  $opt = wdi_get_options();
+
+  if(empty($opt['fb_token']) || empty($opt['business_account_id'])) {
+    $fb_button_text = "Log In with Facebook";
+  } else {
+    $fb_button_text = "Reconnect";
+  }
+
   $settings = array(
-    'wdi_access_token' => array('name' => 'wdi_access_token', 'sanitize_type' => 'text', 'input_size' => '53', 'type' => 'input', 'default' => '', 'field_or_not' => 'field', 'section' => 'wdi_configure_section', 'title' => __('Access Token', "wd-instagram-feed")),
-    'wdi_user_name' => array('name' => 'wdi_user_name', 'sanitize_type' => 'text', 'type' => 'input', 'input_size' => '53', 'section' => 'wdi_configure_section', 'field_or_not' => 'field', 'default' => '', 'title' => __('Username', "wd-instagram-feed")),
+    'wdi_access_token' => array('name' => 'wdi_access_token', 'sanitize_type' => 'text', 'input_size' => '53', 'type' => 'input', 'default' => '', 'field_or_not' => 'field', 'section' => 'wdi_configure_section', 'title' => __('Primary Access Token', "wd-instagram-feed")),
+    'wdi_user_name' => array('name' => 'wdi_user_name', 'sanitize_type' => 'text', 'type' => 'input', 'input_size' => '53', 'section' => 'wdi_configure_section', 'field_or_not' => 'field', 'default' => '', 'title' => __('Primary Username', "wd-instagram-feed")),
     'wdi_user_id' => array('name' => 'wdi_user_id', 'sanitize_type' => 'text', 'type' => 'input', 'section' => 'wdi_configure_section', 'readonly' => 'readonly', 'default' => '', 'field_or_not' => 'no_field'),
+    'wdi_fb_auth' => array('name'=>'wdi_fb_auth','sanitize_type'=>'','field_or_not'=>'','type'=>'link_button', 'section'=>'wdi_configure_section', 'href'=>wdi_get_graph_auth_url(), 'title'=>__('Log in for hashtag feed',"wd-instagram-feed"),'default'=>'', 'value'=>$fb_button_text, 'description' => 'Connect to Facebook Graph API to get hashtag feeds. See more in <a href="https://help.10web.io/hc/en-us/articles/360021344111" target="_blank">documentation</a>.'),
+
+    'wdi_transient_time' => array('name'=>'wdi_transient_time','sanitize_type'=>'number','field_or_not'=>'','type'=>'input', 'input_type'=>'number', 'section'=>'wdi_customize_section', 'title'=>__('Check for new posts every (min)',"wd-instagram-feed"),'default'=>'' ,'value'=>60),
+    'wdi_reset_cache' => array('name'=>'wdi_reset_cache','sanitize_type'=>'','field_or_not'=>'','type'=>'link_button', 'section'=>'wdi_customize_section', 'href'=>admin_url( 'admin.php?page=wdi_settings' ), 'title'=>__('Reset cache with Instagram data',"wd-instagram-feed"),'default'=>'', 'value'=>'Reset cache'),
+    'wdi_authenticated_users_list' => array('name' => 'wdi_authenticated_users_list','sanitize_type'=>'users_list','input_size'=>'53','type'=>'users_list','default'=>'[]','field_or_not'=>'field','section'=>'wdi_customize_section','title'=>__('Multiple Instagram accounts ?',"wd-instagram-feed")),
     'wdi_feeds_min_capability' => array('name' => 'wdi_feeds_min_capability', "sanitize_type" => "text", 'title' => __('Minimal role to add and manage Feeds or Themes', "wd-instagram-feed"), 'type' => 'select', 'field_or_not' => 'field', "default" => "manage_options", 'section' => 'wdi_customize_section', 'valid_options' => array('manage_options' => __('Administrator', 'wd-instagram-feed'), 'publish_posts' => __('Author', 'wd-instagram-feed'))),
-
-    'wdi_transient_time' => array('name'=>'wdi_transient_time','sanitize_type'=>'number','field_or_not'=>'','type'=>'input', 'input_type'=>'number', 'section'=>'wdi_configure_section', 'title'=>__('Check for new posts every (min)',"wd-instagram-feed"),'default'=>'' ,'value'=>60),
-    'wdi_reset_cache' => array('name'=>'wdi_reset_cache','sanitize_type'=>'','field_or_not'=>'','type'=>'link_button', 'section'=>'wdi_configure_section', 'href'=>admin_url( 'admin.php?page=wdi_settings' ), 'title'=>__('Reset cache with Instagram data',"wd-instagram-feed"),'default'=>'', 'value'=>'Reset cache'),
-    'wdi_authenticated_users_list' => array('name' => 'wdi_authenticated_users_list','sanitize_type'=>'users_list','input_size'=>'53','type'=>'users_list','default'=>'[]','field_or_not'=>'field','section'=>'wdi_multiple_accounts_section','title'=>__('Multiple Instagram accounts ?',"wd-instagram-feed")),
-
     'wdi_custom_css' => array('name' => 'wdi_custom_css', 'sanitize_type' => 'css', 'type' => 'textarea', 'section' => 'wdi_customize_section', 'field_or_not' => 'field', 'default' => '', 'title' => __('Custom CSS', "wd-instagram-feed")),
     'wdi_custom_js' => array('name' => 'wdi_custom_js', 'sanitize_type' => 'css', 'type' => 'textarea', 'section' => 'wdi_customize_section', 'field_or_not' => 'field', 'default' => '', 'title' => __('Custom JavaScript', "wd-instagram-feed")),
     //'wdi_preserve_settings_when_remove'=>array('name'=>'wdi_preserve_settings_when_remove','field_or_not'=>'field','type'=>'checkbox','default'=>'1', 'section'=>'wdi_configure_section','title'=>__('Preserve Settings When Remove',"wd-instagram-feed")),
     'wdi_disable_fa' => array('name' => 'wdi_disable_fa', 'title' => __('Disable loading of font awesome', "wd-instagram-feed"), 'type' => 'checkbox', 'tooltip' => __('Disable loading of font awesome', "wd-instagram-feed"), 'sanitize_type' => 'number', 'field_or_not' => '', 'section' => 'wdi_customize_section'),
     'wdi_plugin_uninstalled' => array('name' => 'wdi_plugin_uninstalled', 'sanitize_type' => 'bool', 'field_or_not' => 'field', 'type' => 'input', 'input_type' => 'hidden', 'section' => 'wdi_customize_section', 'title' => '', 'default' => 'false', 'value' => 'false'),
+    'fb_token' => array('name'=>'fb_token','sanitize_type'=>'','field_or_not'=>'field','type'=>'input','input_type'=>'hidden','section'=>'wdi_customize_section','title'=>'','default'=>''),
+    'business_account_id' => array('name'=>'business_account_id','sanitize_type'=>'','field_or_not'=>'field','type'=>'input','input_type'=>'hidden','section'=>'wdi_customize_section','title'=>'','default'=>''),
     'wdi_uninstall' => array('name'=>'wdi_uninstall','sanitize_type'=>'','field_or_not'=>'','type'=>'link_button', 'section'=>'wdi_customize_section', 'href'=>admin_url( 'admin.php?page=wdi_uninstall' ), 'title'=>__('Uninstall',"wd-instagram-feed"),'default'=>''),
     //'wdi_version' => array('name'=>'wdi_version','field_or_not'=>'no_field','default'=>WDI_VERSION),
     //'wdi_first_time'=>array('name'=>'wdi_first_time','field_or_not'=>'no_field','default'=>'1')
-
   );
   return $settings;
 }
@@ -751,4 +758,24 @@ function wdi_get_create_feeds_cap()
   $min_feeds_capability = $min_feeds_capability == 'publish_posts' ? 'publish_posts' : "manage_options";
 
   return $min_feeds_capability;
+}
+
+function wdi_get_graph_auth_url(){
+  $app_id = '356432828483035';
+  $redirect_uri = 'https://api.web-dorado.com/wdi/';
+
+  $admin_url = admin_url('admin.php?page=wdi_settings');
+
+  $state = array(
+    'wp_site_url' => $admin_url
+  );
+
+  $fb_url = add_query_arg(array(
+    'client_id' => $app_id,
+    'redirect_uri' => $redirect_uri,
+    'scope' => 'manage_pages,instagram_basic',
+  ), "https://www.facebook.com/dialog/oauth");
+
+  $fb_url .= '&state=' . base64_encode(json_encode($state));
+  return $fb_url;
 }

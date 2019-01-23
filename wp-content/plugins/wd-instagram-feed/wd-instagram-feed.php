@@ -3,7 +3,7 @@
 Plugin Name: Instagram Feed by 10Web
 Plugin URI: https://10web.io/plugins/wordpress-instagram-feed/
 Description: Instagram Feed by 10Web is a user-friendly tool for displaying user or hashtag-based feeds on your website. You can create feeds with one of the available layouts. It allows displaying image metadata, open up images in lightbox, download them and even share in social networking websites.
-Version: 1.3.10
+Version: 1.3.11
 Author: 10Web
 Author URI: https://10Web.io
 License: GPLv2 or later
@@ -20,7 +20,7 @@ define("WDI_META", "_".WDI_VAR."_meta");
 //define("wdi",'wdi');
 define('WDI_FEED_TABLE','wdi_feeds');
 define('WDI_THEME_TABLE','wdi_themes');
-define('WDI_VERSION','1.3.10');
+define('WDI_VERSION','1.3.11');
 define('WDI_IS_PRO','false');
 $wdi_minify = ((isset($_GET['wdi_no_minify']) && $_GET['wdi_no_minify'] == "true") ? false : true);
 define('WDI_MINIFY', $wdi_minify);
@@ -49,6 +49,49 @@ else {
 }
 //////////////////////////////////////////////////////////////////
 
+if(!empty($_GET['wdi_code'])) {
+  add_action('plugins_loaded', 'wdi_save_user_access_token');
+}
+
+function wdi_save_user_access_token(){
+  $options = wdi_get_options();
+
+  $token = $_GET['wdi_code'];
+
+
+  $url = "https://graph.facebook.com/me/accounts?fields=instagram_business_account&limit=500&access_token=" . $token;
+  $accounts = @file_get_contents($url);
+  $accounts = json_decode($accounts, true);
+
+  if(!is_array($accounts)) {
+    //invalid access token
+    return;
+  }
+
+  $business_accounts = [];
+
+  foreach($accounts['data'] as $accounts_data) {
+
+    foreach($accounts_data as $key => $data) {
+      if($key === "instagram_business_account") {
+        $business_accounts[] = $data['id'];
+      }
+    }
+
+  }
+
+  if(empty($business_accounts)) {
+    //no business accounts
+    return;
+  }
+
+  $key = array_rand($business_accounts, 1);
+
+  $options['fb_token'] = $token;
+  $options['business_account_id'] = $business_accounts[$key];
+  update_option(WDI_OPT, $options);
+  echo "<script>window.location.href='admin.php?page=wdi_settings';</script>";
+}
 
 add_action('wp_ajax_wdi_get_cache_data', 'wdi_get_cache_data');
 add_action('wp_ajax_nopriv_wdi_get_cache_data', 'wdi_get_cache_data');
@@ -384,7 +427,9 @@ function WDI_instagram_menu() {
   if(isset($wdi_uninstall_success["wdi_plugin_uninstalled"]) && $wdi_uninstall_success["wdi_plugin_uninstalled"]==="true"){
     $wdi_uninstall = false;
   }
-  if((!isset($wdi_options['wdi_access_token']) || empty($wdi_options['wdi_access_token'])) && $wdi_uninstall) {
+
+  $has_token = (!isset($wdi_options['wdi_access_token']) || empty($wdi_options['wdi_access_token'])) && empty($wdi_options['fb_token']);
+  if($has_token && $wdi_uninstall) {
     if( get_option( "wdi_subscribe_done" ) == 1 ) {
       $parent_slug = "wdi_feeds";
       $settings_page = add_menu_page(__('Instagram Feed', "wd-instagram-feed"), 'Instagram Feed', $min_feeds_capability, 'wdi_settings', 'WDI_instagram_settings_page', $menu_icon);

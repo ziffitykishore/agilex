@@ -311,6 +311,7 @@ border: 1px solid rgb(185, 185, 185);
 	padding-bottom: 5px;
 }
 
+/*
 .wdi_multiple_accounts_section tr:not(:first-child) th{
 	font-style: italic;
 }
@@ -344,7 +345,28 @@ border: 1px solid rgb(185, 185, 185);
 	font-size: 14px;
 	margin-right: 3px;
 }
+*/
 
+.wdi_advanced_option_open tr:nth-child(9),
+.wdi_advanced_option_open tr:nth-child(10),
+.wdi_advanced_option_open tr:nth-child(11){
+	display: none;
+}
+
+.instagram-feed_page_wdi_settings table #wdwt_wrap_wdi_fb_auth{
+	margin-left: 115px;
+}
+
+#wdwt_wrap_wdi_fb_auth .block a{
+	background-color: #4267b2;
+	color: #FFFFff;
+}
+
+.wdi_advanced_option .optioninput,
+#wdwt_wrap_wdi_reset_cache .block,
+#wdwt_wrap_wdi_authenticated_users_list .block{
+	display: inline-block;
+}
 #wdi_options_page_buttons_wrapper .submit {
 	display: inline;
 	margin-left: 15px;
@@ -1761,7 +1783,7 @@ border: 1px solid rgb(185, 185, 185);
 }
 
 
-body.toplevel_page_wdi_settings table:nth-of-type(1) tr:nth-of-type(3),
+/*body.toplevel_page_wdi_settings table:nth-of-type(1) tr:nth-of-type(3),*/
 body.toplevel_page_wdi_settings table:nth-of-type(1) tr:nth-of-type(4),
 body.toplevel_page_wdi_settings table:nth-of-type(1) tr:nth-of-type(5){
 	display: none;
