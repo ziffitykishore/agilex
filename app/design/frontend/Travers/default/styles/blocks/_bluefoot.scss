@@ -328,6 +328,10 @@ $homepage-sidebar__width: 300px;
 .product-category {
     .section-heading {
         margin-top: $indent__l;
+
+        &-container {
+            width: 100% !important; // override BlueFoot
+        }
     }
 
     &.category-grid {
@@ -888,25 +892,27 @@ footer.page-footer {
     }
 }
 
-.sidebar-menu {
-    display: none;
+.home-top-section {
+    display: flex;
 
-    @include min-screen($screen__l) {
-        display: block;
-        position: absolute;
-        left: 0;
-        display: flex;
-        flex-direction: column;
-        width: $homepage-sidebar__width;
-        height: 2000px;
-        background-color: $c-smoke;
-        z-index: 2;
+    @include max-screen($screen__l) {
+        .carousel,
+        .category-grid.product-category {
+            width: 100% !important; // override BF desktop layout
+            padding-left: 0;
+        }
     }
-}
 
-@include min-screen($screen__l) {
-    .carousel,
-    .product-category.category-grid {
-        margin-left: calc(#{$homepage-sidebar__width} - #{$indent__s}) !important; // override BF margins
+    .sidebar-menu {
+        display: none;
+
+        @include min-screen($screen__l) {
+            display: block;
+            display: flex;
+            flex-direction: column;
+            width: $homepage-sidebar__width;
+            background-color: $c-smoke;
+            z-index: 2;
+        }
     }
 }
