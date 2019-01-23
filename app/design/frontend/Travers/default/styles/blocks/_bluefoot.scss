@@ -297,6 +297,10 @@ $homepage-sidebar__width: 300px;
         &.slick-next {
             right: $indent__xs;
         }
+
+        &.slick-prev {
+            left: $indent__xs;
+        }
     }
 }
 
@@ -866,7 +870,7 @@ footer.page-footer {
         width: $homepage-sidebar__width;
         height: 2000px;
         background-color: $c-smoke;
-        z-index: 11; // covers driver product names
+        z-index: 2;
     }
 
     @include min-screen($screen__xl) {
