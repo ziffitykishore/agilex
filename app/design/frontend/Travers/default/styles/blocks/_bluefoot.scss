@@ -361,6 +361,15 @@ $homepage-sidebar__width: 300px;
     &.product-grid {
         width: 100%;
 
+        @include min-screen($screen__m) {
+            &.bluefoot-row {
+                margin-top: $indent__m;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 90%;
+            }
+        }
+
         @include max-screen($screen__m) {
             margin: 0;
 
@@ -689,29 +698,40 @@ footer.page-footer {
     color: $c-nickel;
 }
 
-.triple-tout-row .homepage-tout {
-    button {
-        @include button--type(primary);
-        margin-bottom: $indent__l;
 
-        @include min-screen($screen__m) {
-            margin-bottom: 0;
-            max-width: 160px;
-            width: 100%;
+.bluefoot-row.triple-tout-row {
+    @include min-screen($screen__m) {
+        padding-left: $indent__s;
+        padding-right: $indent__s;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%;
+    }
+
+    .homepage-tout {
+        button {
+            @include button--type(primary);
+            margin-bottom: $indent__l;
+
+            @include min-screen($screen__m) {
+                margin-bottom: 0;
+                max-width: 160px;
+                width: 100%;
+            }
         }
-    }
 
-    .tout-header {
-        font-weight: $font-weight__bold;
-        margin-bottom: $indent__s;
-    }
+        .tout-header {
+            font-weight: $font-weight__bold;
+            margin-bottom: $indent__s;
+        }
 
-    .tout-description {
-        color: $c-nickel;
+        .tout-description {
+            color: $c-nickel;
 
-        p {
-            margin: 0;
-            margin-bottom: $indent__xs;
+            p {
+                margin: 0;
+                margin-bottom: $indent__xs;
+            }
         }
     }
 }
@@ -720,10 +740,11 @@ footer.page-footer {
     margin-bottom: $indent__xl;
 
     @include min-screen($screen__m) {
-        margin-top: $indent__m;
-
-        .slick-slide {
-            max-width: 290px;
+        &.bluefoot-row {
+            margin-top: $indent__m;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
         }
     }
 
