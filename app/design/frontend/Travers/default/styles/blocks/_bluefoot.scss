@@ -679,7 +679,7 @@ footer.page-footer {
                 width: 70%;
 
                 &-heading {
-                    margin-top: $indent__m;
+                    margin-top: 15px;
                     font-weight: $font-weight__bold;
                 }
 
@@ -738,10 +738,11 @@ footer.page-footer {
                 .newsletter .actions {
                     display: block;
                     width: 100%;
+                    margin-top: $indent__s;
                 }
 
                 .social-links {
-                    margin: $indent__s auto $indent__l auto;
+                    margin: $indent__s auto $indent__m auto;
                 }
             }
 
@@ -754,6 +755,10 @@ footer.page-footer {
     font-weight: $font-weight__semibold;
     font-size: $font-size__base;
     color: $c-nickel;
+
+    @include max-screen($screen__m) {
+        margin-top: $indent__m;
+    }
 }
 
 
