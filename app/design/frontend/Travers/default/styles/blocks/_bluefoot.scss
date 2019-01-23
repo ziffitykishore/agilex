@@ -2,6 +2,7 @@ $bp-medium: $screen__m; // pre-set _catland breakpoint
 $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
+$homepage-sidebar__width: 300px;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -319,6 +320,10 @@ $loading-background-color: $secondary__color;
             margin-bottom: $indent__xl;
         }
 
+        @include min-screen($screen__l) {
+            width: auto;
+        }
+
         .product-category-item {
             margin-top: $indent__m;
             margin-bottom: $indent__xl;
@@ -421,6 +426,7 @@ $loading-background-color: $secondary__color;
     margin-bottom: 75px;
     padding-top: $indent__m;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
+    z-index: 12; // cover sidebar
 
     @include min-screen($screen__l) {
         display: flex;
@@ -785,5 +791,32 @@ footer.page-footer {
         .bluefoot-full-width {
             padding-bottom: 15px;
         }
+    }
+}
+
+.sidebar-menu {
+    display: none;
+
+    @include min-screen($screen__l) {
+        display: block;
+        position: absolute;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        width: $homepage-sidebar__width;
+        height: 2000px;
+        background-color: $c-smoke;
+        z-index: 11; // covers driver product names
+    }
+
+    @include min-screen($screen__xl) {
+        height: 2300px;
+    }
+}
+
+@include min-screen($screen__l) {
+    .carousel,
+    .product-category.category-grid {
+        margin-left: calc(#{$homepage-sidebar__width} - #{$indent__s}) !important; // override BF margins
     }
 }
