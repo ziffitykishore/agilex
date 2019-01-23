@@ -902,10 +902,6 @@ footer.page-footer {
         background-color: $c-smoke;
         z-index: 2;
     }
-
-    @include min-screen($screen__xl) {
-        height: 2300px;
-    }
 }
 
 @include min-screen($screen__l) {
