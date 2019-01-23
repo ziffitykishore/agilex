@@ -220,6 +220,16 @@ $loading-background-color: $secondary__color;
     }
 }
 
+.cms-index-index {
+    .page-main {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: none;
+    }
+}
+
 .carousel,
 .testimonials {
     .slick-slider .slick-dots {
