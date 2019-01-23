@@ -652,6 +652,7 @@ footer.page-footer {
             padding-right: 20px;
             max-width: 1280px;
             margin: 0 auto;
+            box-sizing: border-box;
 
             .footer-links {
                 width: 70%;
@@ -708,6 +709,21 @@ footer.page-footer {
 
         &__connect {
             width: 100%;
+
+            @include max-screen($screen__m) {
+                order: -1;
+                margin-top: $indent__m;
+
+                .newsletter .actions {
+                    display: block;
+                    width: 100%;
+                }
+
+                .social-links {
+                    margin: $indent__s auto $indent__l auto;
+                }
+            }
+
         }
     }
 }
