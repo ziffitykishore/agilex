@@ -324,6 +324,8 @@ $homepage-sidebar__width: 300px;
 
         @include min-screen($screen__l) {
             width: auto;
+            padding-left: $indent__xl;
+            padding-right: $indent__xl;
         }
 
         .product-category-item {
@@ -569,13 +571,15 @@ $homepage-sidebar__width: 300px;
 .footer-promo-banner {
     padding: $indent__m $indent__s;
     background-color: $c-smoke;
+    flex-basis: 100%;
 
     @include min-screen($screen__m) {
         display: flex;
         align-items: center;
         padding-left: 80px;
-        padding: $indent__s;
+        padding: 0;
         padding-left: $indent__xl;
+        margin-bottom: $indent__xl;
 
         .footer-promo-text {
             width: 100%;
@@ -624,7 +628,9 @@ $homepage-sidebar__width: 300px;
 footer.page-footer {
     border-top: 0;
     margin-top: 0;
-    padding-top: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    max-width: 100%;
 
     .footer {
         &.phone,
@@ -632,10 +638,17 @@ footer.page-footer {
             display: none;
         }
 
+        &-main-content {
+            width: 100%;
+            max-width: 1280px;
+        }
+
         &.content {
             display: flex;
             flex-direction: column;
             width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
 
             .footer-links {
                 width: 70%;

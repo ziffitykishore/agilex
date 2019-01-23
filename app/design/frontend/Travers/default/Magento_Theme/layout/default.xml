@@ -11,14 +11,32 @@
     </referenceBlock>
 
     <referenceContainer name="footer">
-        <container name="footer-links" htmlTag="div" htmlClass="footer-links">
-            <block class="Magento\Cms\Block\Block" name="footer_links">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">footer_links</argument>
-                </arguments>
-            </block>
+        <block class="Magento\Cms\Block\Block" name="footer_promo_banner">
+            <arguments>
+                <argument name="block_id" xsi:type="string">footer_promo_banner</argument>
+            </arguments>
+        </block>
+        <container name="footer-with-banner" htmlTag="div" htmlClass="footer-main-content">
+            <container name="footer-links" htmlTag="div" htmlClass="footer-links">
+                <block class="Magento\Cms\Block\Block" name="footer_links">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links</argument>
+                    </arguments>
+                </block>
+            </container>
         </container>
     </referenceContainer>
+
+    <referenceContainer name="footer-container">
+        <block class="Magento\Cms\Block\Block" name="footer_promo_banner" before="-">
+            <arguments>
+                <argument name="block_id" xsi:type="string">footer_promo_banner</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+
+    <move element="footer.connect" destination="footer" after="-" />
     <move element="copyright" destination="before.body.end" after="-"/>
+
 </page>
 
