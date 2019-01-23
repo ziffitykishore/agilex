@@ -295,6 +295,21 @@ function myFunction() {
 
   bgSource(".main-banner");
 
+  function bgImage() {
+    $('.bg-image').each(function () {
+      var img = $(this).attr("data-src");
+      console.log(img);
+      $(this).css({
+        "background-image": "url(" + img + ")",
+        "background-size": "cover",
+        "background-repeat": "no-repeat",
+        "background-position": "center"
+      });
+    });
+  }
+
+  bgImage();
+
   $(".btn-ripple").click(function (e) {
     /* Remove any old one */
     $(".ripple").remove();
@@ -732,6 +747,7 @@ function myFunction() {
   $(".executive-wrap  .slider-nav").slick({
     slidesToShow: 4,
     slidesToScroll: 1,
+    lazyLoad: 'ondemand',
     asNavFor: ".slider-for",
     arrows: true,
     prevArrow:
@@ -1281,5 +1297,13 @@ function myFunction() {
     el.className = classes.join(" ");
   }
 
+  function memberImage(){
+    var memImg = $('.member-img').find('img'),
+        memimgHeight = memImg.height();
+        $('.member-img .user-icon-wrap').css('height', memimgHeight);
+
+  }
+  memberImage();
+  $(window).on('resize', memberImage);
 
 })(jQuery);

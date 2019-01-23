@@ -52,16 +52,20 @@ get_header(); ?>
         $agilex_test_query = new WP_Query($testi_args);        
         while ($agilex_test_query->have_posts()) {
         $agilex_test_query->the_post();
-        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+        $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+        $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+        $image_alt = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>
     
-          <div class="categories-blk clearfix wow fadeIn border-efx ">
+          <div class="categories-blk clearfix wow fadeIn border-efx bg-image" 
+               data-src="<?php if (get_field('full_image', get_the_ID())){ 
+                                   $image = get_field('full_image');  echo $image['url']; } else { ?> <?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png <?php }?>">
             <div class="border-ani"></div>
-              <?php if (get_field('full_image', get_the_ID())){ ?>
+              <?php /* if (get_field('full_image', get_the_ID())){ ?>
                     <?php $image = get_field('full_image'); ?>
                       <img class="full-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                   <?php } else { ?>
                       <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
-            <?php } ?>
+            <?php } */ ?>
             <div class="categories-content  wow fadeIn">
             <a href="<?php echo get_permalink() ?>"><h2><?php echo the_Title(); ?></h2></a>
             <?php if (get_field('short_description')){ ?>
