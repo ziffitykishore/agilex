@@ -575,6 +575,7 @@ $homepage-sidebar__width: 300px;
         align-items: center;
         padding-left: 80px;
         padding: $indent__s;
+        padding-left: $indent__xl;
 
         .footer-promo-text {
             width: 100%;
@@ -584,6 +585,10 @@ $homepage-sidebar__width: 300px;
 
         .footer-promo-header {
             margin-top: 15px;
+        }
+
+        .catalog-image {
+            transform: translateY($indent__s);
         }
     }
 
