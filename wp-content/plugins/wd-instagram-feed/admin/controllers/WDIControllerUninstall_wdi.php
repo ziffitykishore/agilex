@@ -7,17 +7,17 @@ class WDIControllerUninstall_wdi{
 	function __construct(){
 
     global  $wdi_wd_plugin_options;
-    if(!class_exists("TenWebConfig")){
+    if(!class_exists("TenWebLibConfig")){
       include_once (WDI_DIR . "/wd/config.php");
     }
 
     if(!class_exists("TenWebDeactivate")) {
       include_once(WDI_DIR . "/wd/includes/deactivate.php");
     }
-    $config = new TenWebConfig();
+    $config = new TenWebLibConfig();
 
     $config->set_options( $wdi_wd_plugin_options );
-    $deactivate_reasons = new TenWebDeactivate($config);
+    $deactivate_reasons = new TenWebLibDeactivate($config);
     //$deactivate_reasons->add_deactivation_feedback_dialog_box();
     $deactivate_reasons->submit_and_deactivate();
 

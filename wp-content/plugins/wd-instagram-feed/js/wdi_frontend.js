@@ -306,6 +306,18 @@ wdi_front.init = function (currentFeed)
 
   //wdi_front.loadInstagramMedia( currentFeed, currentFeed.feed_row.number_of_photos);
 
+    var all_tags = [];
+    if (typeof window["wdi_all_tags"] !== "undefined") {
+        all_tags = window["wdi_all_tags"];
+    }
+
+    for (var k in currentFeed.feed_users) {
+        if (currentFeed.feed_users[k].username[0] === "#" && typeof currentFeed.feed_users[k].tag_id !== "undefined") {
+            all_tags[currentFeed.feed_users[k].tag_id] = currentFeed.feed_users[k];
+        }
+    }
+    window["wdi_all_tags"] = all_tags;
+
   currentFeed.dataCount = currentFeed.feed_users.length;  //1 in case of self feed
   var feedResolution = wdi_front.getFeedItemResolution(currentFeed);
   currentFeed.feedImageResolution = feedResolution.image;
@@ -857,7 +869,7 @@ wdi_front.masonryDisplayFeedItems = function (data, currentFeed)
     /*carousel feature*/
     if (data[i]['type'] == 'image') {
       var photoTemplate = wdi_front.getPhotoTemplate(currentFeed);
-    } else if(data[i].hasOwnProperty('videos')) {
+    } else if(data[i].hasOwnProperty('videos') || data[i]['type'] == 'video') {
       var photoTemplate = wdi_front.getVideoTemplate(currentFeed);
     }
     else{
@@ -1435,7 +1447,11 @@ wdi_front.createObject = function (obj, currentFeed)
       videoUrl = obj.hasOwnProperty('videos') ? obj['videos'][currentFeed.feedVideoResolution]['url'] : '';
   }
 
-  var image_url = obj.images[currentFeed.feedImageResolution].url;
+  if(typeof obj.images[currentFeed.feedImageResolution] == "undefined"){
+      var image_url = wdi_url.plugin_url + "images/missing.png";
+  }else {
+      var image_url = obj.images[currentFeed.feedImageResolution].url;
+  }
 
   var imageIndex = currentFeed.imageIndex;
 
@@ -2165,9 +2181,8 @@ wdi_front.loadMoreRequest = function (user, next_url, currentFeed, button)
   /**/
   ///jQuery('#wdi_feed_' + currentFeed.feed_row.wdi_feed_counter + " .wdi_feed_wrapper").remove(".wdi_nomedia");
 
-  currentFeed.instagram.requestByUrl(next_url, {
-    success: function (response)
-    {
+
+    var success_function = function (response) {
 
       if(typeof response.meta!= "undefined" && typeof response.meta.error_type != "undefined"){
         wdi_front.show_alert(false, response, currentFeed);
@@ -2213,9 +2228,16 @@ wdi_front.loadMoreRequest = function (user, next_url, currentFeed, button)
 
       //checks if load more done then displays feed
       wdi_front.checkForLoadMoreDone(currentFeed, button);
-    }
-  });
+    };
 
+    if(user.username[0] !== "#") {
+        currentFeed.instagram.requestByUrl(next_url, {
+            success: success_function
+        });
+    }else{
+      currentFeed.instagram.getTagRecentMedia(user.username, {success
+          :success_function}, next_url)
+    }
 
 
 }
@@ -2502,7 +2524,7 @@ wdi_front.show = function (name, currentFeed)
         });
       }
       else
-        if (_this.getInputType(_user.username) == 'hashtag') {
+        if (false && _this.getInputType(_user.username) == 'hashtag') {
           currentFeed.instagram.searchForTagsByName(_this.stripHashtag(_user.username), {
             /*currentFeed.instagram.getTagRecentMedia(_this.stripHashtag(_user.username), {*/
             success: function (response)
@@ -3624,7 +3646,9 @@ WDIFeed.prototype.storeRawData = function (objects, variable)
 
       var hash_id = "";
       if (wdi_front.isHashtag(objects[i].user_id)) {
-        hash_id = objects[i].pagination.next_max_tag_id;
+          if(typeof objects[i].pagination.cursors !== "undefined") {
+              hash_id = objects[i].pagination.cursors.after;
+          }
       }
       else
         if (_this.feed_row.liked_feed == 'liked') {

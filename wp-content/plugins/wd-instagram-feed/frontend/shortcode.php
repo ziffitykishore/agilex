@@ -82,7 +82,7 @@ function wdi_feed($atts, $widget_params = '')
 
   //checking if access token is not set or removed display proper error message
   global $wdi_options;
-  if (!isset($wdi_options['wdi_access_token']) || $wdi_options['wdi_access_token'] == '') {
+  if ((!isset($wdi_options['wdi_access_token']) || $wdi_options['wdi_access_token'] == '') && empty($wdi_options['fb_token'])) {
     ob_get_clean();
     return __('Access Token is invalid, please get it again ', "wd-instagram-feed");
   }
@@ -202,11 +202,21 @@ function wdi_register_frontend_scripts(){
   ));
 
   $wdi_token_error_flag = get_option("wdi_token_error_flag");
+
+  $options = wdi_get_options();
+
+  $business_account_id = (!empty($options['business_account_id'])) ? $options['business_account_id'] : "";
+  $fb_token = (!empty($options['fb_token'])) ? $options['fb_token'] : "";
+
+
   wp_localize_script("wdi_frontend", 'wdi_ajax', array(
     'ajax_url' => admin_url('admin-ajax.php'),
     'wdi_nonce' => wp_create_nonce("wdi_cache"),
     'WDI_MINIFY' => (WDI_MINIFY) ? 'true' : 'false',
+    'business_account_id' => $business_account_id,
+    'fb_token' => $fb_token,
   ));
+
   wp_localize_script("wdi_frontend", 'wdi_url', array('plugin_url' => WDI_URL . '/',
     'ajax_url' => admin_url('admin-ajax.php')));
 

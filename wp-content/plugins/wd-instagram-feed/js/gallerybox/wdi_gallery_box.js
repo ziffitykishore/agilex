@@ -158,7 +158,7 @@ var wdi_construct_popup = function (popup, currentFeed, image_rows, current_imag
                 'height:'+image_thumb_height+'px;' +
                 'margin-left:'+thumb_left+'px;' +
                 'margin-top:'+thumb_top+'px;';
-            var src = (typeof image_row.images[currentFeed.feedImageResolution]['url'] !== 'undefined') ? image_row.images[currentFeed.feedImageResolution]['url'] :  image_row.thumb_url;
+            var src = (typeof image_row.images[currentFeed.feedImageResolution] !== 'undefined' && typeof image_row.images[currentFeed.feedImageResolution]['url'] !== "undefined") ? image_row.images[currentFeed.feedImageResolution]['url'] :  image_row.thumb_url;
             var onclick = 'wdi_change_image(parseInt(jQuery(\'#wdi_current_image_key\').val()), \'' + i + '\', wdi_data)';
             var ontouchend = 'wdi_change_image(parseInt(jQuery(\'#wdi_current_image_key\').val()), \'' + i + '\', wdi_data)';
 
