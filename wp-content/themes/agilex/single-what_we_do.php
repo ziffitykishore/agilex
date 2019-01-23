@@ -60,9 +60,9 @@ if($tabdetails) { ?>
             <div class="border-ani"></div>
               <div class="image-sec">
               <?php if($tabdetail["tab-image"]) { ?>
-              <img src="<?php echo wp_get_attachment_url($tabdetail["tab-image"]); ?>" alt="<?php echo $tabdetail["tab-title"]; ?>"/>
+              <img data-src="<?php echo wp_get_attachment_url($tabdetail["tab-image"]); ?>" class="lazy" alt="<?php echo $tabdetail["tab-title"]; ?>"/>
               <?php } else {?>
-                <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" alt="Agilex Fragrances" />
+                <img data-src="<?php bloginfo('template_directory'); ?>/images/placeholder_585X500.png" class="lazy" alt="Agilex Fragrances" />
               <?php }?>
               </div>
             </div>
@@ -98,9 +98,9 @@ while ( $query->have_posts() ) { $query->the_post(); ?>
 
   <?php if (get_field('thumb_image', get_the_ID())){ ?>
       <?php $image = get_field('thumb_image'); ?>
-      <img class="thumb-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+      <img class="thumb-image lazy" data-src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
   <?php } else { ?>
-      <img  class="thumb-image" src="<?php bloginfo('template_directory'); ?>/images/placeholder_218X180.png" alt="<?php the_title(); ?>" />
+      <img  class="thumb-image lazy" data-src="<?php bloginfo('template_directory'); ?>/images/placeholder_218X180.png" alt="<?php the_title(); ?>" />
       <?php } ?>
       <figcaption><div class="category-title"><?php echo  get_the_title(); ?></div></figcaption>
   </figure>

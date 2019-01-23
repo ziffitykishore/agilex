@@ -46,7 +46,7 @@ get_header(); ?>
         <li class="cd-service cd-service--<?php echo $i; ?> js-cd-service row">
           <div class="img-blk col-sm-3">
           <?php if($process["process-icon"]) { ?>
-          <img src="<?php echo wp_get_attachment_url($process["process-icon"]); ?>" alt="<?php echo $process["process-title"]; ?>"/>
+          <img data-src="<?php echo wp_get_attachment_url($process["process-icon"]); ?>" class="lazy" alt="<?php echo $process["process-title"]; ?>"/>
           <?php }?>
           </div>
           <div class="content-detail col-sm-9">

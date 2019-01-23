@@ -3204,7 +3204,7 @@ p+p {
 }
 
 .what-we-do {
-    background: url('/wp-content/uploads/2018/05/bg_top_what_we_do.png') center -15px no-repeat, url('/wp-content/uploads/2018/05/bg_bottom_what_we_do.png') center bottom no-repeat;
+    background: url('../images/bg_top_what_we_do.png') center -15px no-repeat, url('../images/bg_bottom_what_we_do.png') center bottom no-repeat;
     background-color: #f6f5f1;
     padding: 70px 0;
     margin-top: 50px;
@@ -3866,6 +3866,8 @@ p+p {
 .sub-service-wrap .page-desc {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-size: 14px;
+    line-height: 20px;
 }
 
 .sub-service-wrap .categories-blk {
@@ -4288,6 +4290,10 @@ html {
     -webkit-flex: 0 0 100%;
     -ms-flex: 0 0 100%;
     flex: 0 0 100%;
+}
+
+.w-100{
+    width: 100%;
 }
 
 .news-sec-blk {
@@ -5180,7 +5186,10 @@ div.wpcf7 .ajax-loader {
     border-radius: 0;
 }
 
-.contact-form .hbspt-form .hs_submit .actions {}
+.contact-form-sec .contact-form .hbspt-form form>.hs-fieldtype-booleancheckbox{
+    flex: 100%;
+    max-width: 100%;
+}
 
 /* hubspot form */
 

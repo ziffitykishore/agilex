@@ -91,16 +91,18 @@ echo '<p>Lorem Ipsum is simply dummy text of the printing and typesetting indust
 $exe_arg_query = new WP_Query($query_args);
 while ($exe_arg_query->have_posts()) {
 $exe_arg_query->the_post();  ?>
-<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
+$thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+$alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>
 <div class="container">
 <div class="heading text-center" >
 <h2 class="heading-title"><?php echo the_Title(); ?></h2>
 <div class="sub-heading"><?php echo get_the_excerpt();?></div>
 </div>
 <div class="executive-inner">
-<?php if ( has_post_thumbnail() ) {
-the_post_thumbnail('full');
-} else { ?>
+<?php if ( has_post_thumbnail() ) { ?>
+<img data-src="<?php echo $featured_img_url;?>" alt="<?php echo $image_alt;?>" class="lazy w-100"/>
+<?php } else { ?>
 <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X550.png" alt="<?php the_title(); ?>" />
 <?php } ?> 
 <div class="executive-carousel slider-for">
@@ -115,13 +117,15 @@ $agilex_test_query = new WP_Query($testi_args); ?>
 <?php 
 while ($agilex_test_query->have_posts()) {
 $agilex_test_query->the_post();
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+$thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+$alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>
 <div class="slider-sec">
 <div class="exe-slider-inner flex-sec">
 <div class="col-sm-4 col-xs-12 member-img">
-<?php if ( has_post_thumbnail() ) {
-the_post_thumbnail('full');
-} else { ?>
+<?php if ( has_post_thumbnail() ) { ?>
+<img data-src="<?php echo $featured_img_url;?>" alt="<?php echo $image_alt;?>" class="lazy w-100"/>
+<?php }  else { ?>
 <div class="user-icon-wrap"><div class="user-icon"><i class="fa fa-user fa-4x"></i></div></div>
 <?php } ?>
 </div>
@@ -148,11 +152,13 @@ the_post_thumbnail('full');
 <div class="slider-nav"> 
 <?php  while ($agilex_test_query->have_posts()) {
 $agilex_test_query->the_post();
-$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                              ">
+$featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+$thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+$alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>                                                                                                                                                                                                                                                                                                                                                                                                                                                              ">
 <div class="exe-thumb-inner">
   <div class="exe-thumb">
     <?php if($featured_img_url) {?>
-    <img src="<?php echo $featured_img_url ?>" alt="<?php echo the_Title(); ?>"/>
+    <img data-lazy="<?php echo $featured_img_url ?>" class="" alt="<?php echo the_Title(); ?>"/>
     <?php } else { ?>
       <div class="user-icon-wrap"><div class="user-icon"><i class="fa fa-user fa-4x"></i></div></div>
     <?php }?>
@@ -183,7 +189,6 @@ $history_arg_query->the_post();
 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>    
 <div class="our-history pos-rel text-center margin-30 wow fadeIn" style="background-image: url('<?php echo $featured_img_url; ?>'); padding: 50px 0;">
 <div class="our-history-outer">
-<img src="/wp-content/uploads/2018/05/our_history_parallex.jpg" style="display: none;"/> 
 <div class="container">
 <div class="heading heading-white" >
 <h2 class="heading-title"><?php echo the_Title(); ?></h2>
@@ -236,11 +241,13 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     <?php 
     while ($agilex_test_query->have_posts()) {
       $agilex_test_query->the_post();
-      $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
+      $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+      $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+      $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>
         <div class="affiliate-thumb hover_ani">
-          <?php if ( has_post_thumbnail() ) {
-            the_post_thumbnail('full');
-          } else { ?>
+          <?php if ( has_post_thumbnail() ) {?>
+            <img data-src="<?php echo $featured_img_url ?>" class="lazy" alt="<?php echo the_Title(); ?>"/>
+          <?php } else { ?>
             <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php the_title(); ?>" />
           <?php } ?>
         </div>
@@ -248,18 +255,4 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
     </div>
   </div>
 </div>
-
-
-<script>
-  $(function(){
-      function memberImage(){
-        var memImg = $('.member-img').find('img'),
-            memimgHeight = memImg.height();
-            $('.member-img .user-icon-wrap').css('height', memimgHeight);
-
-      }
-      memberImage();
-      $(window).on('resize', memberImage);
-  });
-</script>
 <?php get_footer(); ?>                                                                        
