@@ -222,12 +222,14 @@ $homepage-sidebar__width: 300px;
 }
 
 .cms-index-index {
-    .page-main {
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 0;
-        margin-right: 0;
-        max-width: none;
+    @include min-screen($screen__m) {
+        .page-main {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            max-width: none;
+        }
     }
 }
 
