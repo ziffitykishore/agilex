@@ -359,13 +359,12 @@ $homepage-sidebar__width: 300px;
             }
 
             .bluefoot-driver {
+                max-width: 170px;
+                margin: 0 auto !important; // override drivers
+
                 a {
                     padding-bottom: 35px;
                     background-color: transparent;
-
-                    @include min-screen($screen__m) {
-                        padding-bottom: 20px;
-                    }
                 }
 
                 img {
