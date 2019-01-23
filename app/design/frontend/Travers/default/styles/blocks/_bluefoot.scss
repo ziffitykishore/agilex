@@ -343,7 +343,7 @@ $homepage-sidebar__width: 300px;
             padding-right: $indent__xl;
         }
 
-        .product-category-item {
+        .bluefoot-column.bluefoot-structural {
             margin-top: $indent__m;
             margin-bottom: $indent__xl;
             width: 50%;
@@ -359,6 +359,15 @@ $homepage-sidebar__width: 300px;
             }
 
             .bluefoot-driver {
+                a {
+                    padding-bottom: 35px;
+                    background-color: transparent;
+
+                    @include min-screen($screen__m) {
+                        padding-bottom: 20px;
+                    }
+                }
+
                 img {
                     width: 100%;
                 }
