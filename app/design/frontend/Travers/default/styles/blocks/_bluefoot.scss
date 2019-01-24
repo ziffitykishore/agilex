@@ -926,6 +926,8 @@ footer.page-footer {
 
 .home-top-section {
     display: flex;
+    margin-left: 0 !important; // override BF
+    margin-right: 0 !important; // override BF
 
     @include max-screen($screen__m) {
         width: 100vw;
