@@ -335,6 +335,8 @@ $loading-background-color: $secondary__color;
 
         &-container {
             width: 100% !important; // override BlueFoot
+            margin-top: 0 !important; // override BlueFoot;
+            margin-bottom: $indent__s !important; // override BlueFoot;
         }
     }
 
