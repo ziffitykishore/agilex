@@ -60,6 +60,37 @@ $nav-section-title__height: 60px;
     }
 }
 
+.secondary-nav-links {
+    text-align: center;
+    background-color: $c-smoke;
+    padding: $indent__s 0 8px 0;
+    margin-bottom: $indent__s;
+
+    &-link {
+        width: 50% !important; // override BF
+
+        a {
+            color: $c-cobalt;
+            text-decoration: none;
+            font-weight: $font-weight__bold;
+            font-size: $font-size__base--desktop;
+
+            @include hover {
+                text-decoration: none;
+                color: $c-royal;
+            }
+        }
+
+        div {
+            margin-bottom: $indent__xs;
+        }
+    }
+
+    @include min-screen($screen__m) {
+        display: none;
+    }
+}
+
 .nav-sections-item-switch {
     text-decoration: none;
 }
