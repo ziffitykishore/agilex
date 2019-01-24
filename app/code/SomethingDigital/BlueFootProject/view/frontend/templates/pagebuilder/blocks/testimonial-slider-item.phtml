@@ -38,8 +38,14 @@ $this->setCssClasses($_classes);
             <div class="bluefoot-full-width">
                 <?php if ($_entity->getStarCount()): ?>
                     <div class="rating-summary">
-                        <div class="rating-result" title="<?=  ($_entity->getStarCount() * 20) ?>%">
-                            <span class="review-stars" style="width:<?= ($_entity->getStarCount() * 20) ?>%;"></span>
+                        <?php
+                            /*
+                            We are multiplying the result by 20 because the stars are only 1-5, so to get it to become a
+                            percentage, we need to multiply by 20 and then add '%'
+                            */
+                        ?>
+                        <div class="rating-result" title="<?php echo ($_entity->getStarCount() * 20) ?>%">
+                            <span class="review-stars" style="width:<?php echo ($_entity->getStarCount() * 20) ?>%;"></span>
                         </div>
                     </div>
                 <?php endif; ?>
