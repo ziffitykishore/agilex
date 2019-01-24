@@ -613,6 +613,10 @@ $loading-background-color: $secondary__color;
             transform: translateY(125px) translateX(-5%);
             max-width: 50%;
         }
+
+        @include min-screen($screen__xl) {
+            max-width: 45%;
+        }
     }
 }
 
