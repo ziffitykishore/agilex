@@ -927,11 +927,7 @@ footer.page-footer {
     .category-grid.product-category {
         @include max-screen($screen__l) {
             width: 100% !important; // override BF desktop layout
-            padding-left: 0;
-        }
-
-        @include min-screen($screen__l) {
-            padding: 0;
+            padding: 0 !important; // override BF
         }
     }
 
