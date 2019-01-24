@@ -288,6 +288,7 @@ $home-sidebar-width: 20.5%;
             p {
                 font-size: $font-size__base--desktop;
                 line-height: 1.4;
+                margin-bottom: 20px;
 
                 @include min-screen($screen__m) {
                     font-size: 19px;
