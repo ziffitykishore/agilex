@@ -274,6 +274,20 @@ $home-sidebar-width: 20.5%;
     .slick-slider {
         margin-bottom: $indent__m !important; //override slick
 
+        @include max-screen($screen__s) {
+            margin-bottom: 50px !important; //override slick
+
+            .slick-slide.slick-current {
+                max-height: 134px;
+            }
+
+            .bluefoot-advanced-slide-content {
+                width: 90%;
+                margin: 120px auto 0 auto;
+                padding-bottom: 0;
+            }
+        }
+
         .bluefoot-advanced-slide-content {
             h3 {
                 @include bryant-park-headings-h1();
