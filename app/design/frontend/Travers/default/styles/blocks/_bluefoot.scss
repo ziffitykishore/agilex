@@ -289,6 +289,10 @@ $loading-background-color: $secondary__color;
             }
         }
 
+        .slick-slide {
+            width: 100% !important; // override Slick
+        }
+
         .slick-arrow {
             background-color: transparent;
             color: $c-royal;
@@ -922,6 +926,11 @@ footer.page-footer {
 
 .home-top-section {
     display: flex;
+
+    @include max-screen($screen__m) {
+        width: 100vw;
+        margin-left: -20px !important; // body padding is 20px and this is full-width. Overrides BF
+    }
 
     .carousel,
     .category-grid.product-category {
