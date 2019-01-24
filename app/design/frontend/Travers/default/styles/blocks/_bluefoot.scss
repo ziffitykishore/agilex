@@ -359,7 +359,7 @@ $loading-background-color: $secondary__color;
 
         .bluefoot-column.bluefoot-structural {
             margin-top: $indent__m;
-            margin-bottom: $indent__xl;
+            margin-bottom: 50px;
             width: 50%;
 
             @include min-screen($screen__m) {
@@ -377,7 +377,6 @@ $loading-background-color: $secondary__color;
     .bluefoot-driver {
         max-width: 140px;
         margin: 0 auto !important; // override drivers
-
 
         @include min-screen($screen__l) {
             max-width: none;
@@ -400,7 +399,7 @@ $loading-background-color: $secondary__color;
         }
 
         &-text {
-            bottom: -35px;
+            bottom: -45px;
             font-family: $font-family__sans-serif;
             font-weight: $font-weight__bold;
             text-transform: capitalize;
