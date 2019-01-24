@@ -836,6 +836,11 @@ footer.page-footer {
         }
     }
 
+    .section-heading {
+        margin-top: $indent__xl;
+        margin-bottom: 0;
+    }
+
     .review-stars {
         font-size: 55px;
         margin-bottom: -$indent__xs;
