@@ -11,6 +11,11 @@
             <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
+            <container name="form.mini.adv"  htmlTag="div" htmlClass="block block-search" before="csn-links">
+                <container name="mini.adv.form" htmlTag="div" htmlClass="advance_from_mini">
+                    <block class="Ziffity\AdvanceSearch\Block\Advanced\Form" name="catalogsearch_advanced_form_header" template="Ziffity_AdvanceSearch::advanced/headerform.phtml" />
+                </container>
+            </container>
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
                 <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
                     <arguments>
@@ -18,6 +23,7 @@
                     </arguments>
                 </block>
             </container>
+           
         </referenceContainer>
         <referenceContainer name="footer" htmlClass="page-footer__content">
             <container name="footer.news-wrapper" htmlClass="footer-news-wrapper" htmlTag="div"/>
@@ -43,6 +49,7 @@
         </referenceContainer>
         <!-- Footer blocks END-->
         <move element="header" destination="user.welcome" />
+        <move element="top.search" destination="form.mini.adv" before="-"/>
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
         <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />
