@@ -125,6 +125,26 @@ function WDIInstagram(args)
     return access_tokens[index];
   }
 
+  function getGraphAcessToken() {
+      if (typeof wdi_options !== "undefined") {
+          return wdi_options.fb_token;
+      } else if (typeof wdi_ajax !== "undefined") {
+          return wdi_ajax.fb_token;
+      } else {
+          return "";
+      }
+  }
+
+  function getBusinessAccountId() {
+      if (typeof wdi_options !== "undefined") {
+          return wdi_options.business_account_id;
+      } else if (typeof wdi_ajax !== "undefined") {
+          return wdi_ajax.business_account_id;
+      } else {
+          return "";
+      }
+  }
+
   /**
    * Adds access token to this.access_tokens array
    * non string values are not allowed
@@ -171,8 +191,15 @@ function WDIInstagram(args)
    *
    * @return object of founded media
    */
-  this.getTagRecentMedia = function (tagname, args)
+  this.getTagRecentMedia = function (tagname, args, next_url)
   {
+
+      var hastag_data_url = 'https://graph.facebook.com/ig_hashtag_search/';
+      hastag_data_url += '?user_id=' + getBusinessAccountId();
+      hastag_data_url += '&q=' + tagname;
+      hastag_data_url += '&access_token=' + getGraphAcessToken();
+
+
     var instagram = this,
       noArgument = false,
       successFlag = false,
@@ -181,7 +208,7 @@ function WDIInstagram(args)
       argFlag = false,
       filter = this.getFilter('getTagRecentMedia'),
 
-      baseUrl = 'https://api.instagram.com/v1/tags/' + tagname + '/media/recent?access_token=' + getAccessToken();
+      baseUrl = 'https://graph.facebook.com/{tagid}/recent_media/?fields=media_url,caption,id,media_type,comments_count,like_count,permalink,children{media_url,id,media_type,permalink}';
 
 
     if (typeof args == 'undefined' || args.length === 0) {
@@ -213,7 +240,7 @@ function WDIInstagram(args)
         args.count = 33;
       }
 
-      baseUrl += '&count=' + args.count;
+      baseUrl += '&limit=' + args.count;
 
       if ('min_tag_id' in args) {
         baseUrl += '&min_tag_id=' + args.min_tag_id;
@@ -222,14 +249,24 @@ function WDIInstagram(args)
       if ('max_tag_id' in args) {
         baseUrl += '&max_tag_id=' + args.max_tag_id;
       }
+
+        baseUrl += "&access_token=" + getGraphAcessToken();
+        baseUrl += "&user_id=" + getBusinessAccountId();
     }
+
+    var wdiTagId = this.getTagId(tagname);
+
     var wdi_callback = function (cache_data) {
       if(cache_data === false) {
+
         jQuery.ajax({
           type: 'POST',
           url: baseUrl,
           dataType: 'jsonp',
           success: function (response) {
+            response = _this.convertHashtagData(response);
+            response.meta = {"code": 200};
+            response.tag_id = wdiTagId;
             _this.setDataToCache(baseUrl,response);
             success(response)
           },
@@ -250,6 +287,8 @@ function WDIInstagram(args)
           },
           statusCode: statusCode
         });
+
+
       }
       else{
         success(cache_data)
@@ -283,13 +322,273 @@ function WDIInstagram(args)
           }
         }
       }
+      };
+
+      if (wdiTagId === false) {
+          jQuery.ajax({
+              type: 'GET',
+              url: hastag_data_url,
+              dataType: 'jsonp',
+          }).done(function (response) {
+
+
+              if (typeof response.error === 'undefined') {
+                  wdiTagId = response.data[0].id;
+              } else {
+                  alert(response.error.message);
+                  return;
     }
+
+              if (typeof next_url === "undefined") {
+                  baseUrl = baseUrl.replace('{tagid}', wdiTagId);
+              } else {
+                  baseUrl = next_url;
+              }
+
+              var all_tags = [];
+              if(typeof window['wdi_all_tags'] !== "undefined"){
+                  all_tags = window['wdi_all_tags'];
+              }
+
+              all_tags[wdiTagId] = {
+                  id: "#" + tagname,
+                  username: "#" + tagname,
+                  tag_id: wdiTagId
+              };
+
+              window['wdi_all_tags'] = all_tags;
+
+              _this.getDataFromCache(wdi_callback, baseUrl);
+
+          });
+      } else {
+
+          if (typeof next_url === "undefined") {
+              baseUrl = baseUrl.replace('{tagid}', wdiTagId);
+          } else {
+              baseUrl = next_url;
+          }
+
     _this.getDataFromCache(wdi_callback, baseUrl);
+
+      }
+
+
+
 
 
 
   }
 
+  this.getTagId = function (tagname) {
+      var feed_users = [];
+
+      if (typeof wdi_controller !== "undefined") {
+          feed_users = wdi_controller.feed_users;
+          if (feed_users.length === 0) {
+              var json = jQuery('#WDI_feed_users').val();
+              feed_users = JSON.parse(json);
+          }
+      }else if(typeof window['wdi_all_tags'] !== "undefined"){
+          feed_users = window['wdi_all_tags'];
+      }
+
+
+      for (var i in feed_users) {
+
+          if (tagname === feed_users[i].username || "#" + tagname === feed_users[i].username) {
+
+              if (typeof feed_users[i].tag_id !== "undefined") {
+                  return feed_users[i].tag_id;
+              }
+              return false;
+
+          }
+
+      }
+
+      return false;
+  };
+
+  this.convertHashtagData = function (data) {
+      var converted_data = {
+          data: [],
+          pagination: {}
+      };
+      if (typeof data.paging !== "undefined") {
+          converted_data.pagination = {
+              cursors: {after: data.paging.cursors.after},
+              next_url: data.paging.next
+          }
+      }
+
+          for (var i in data.data) {
+          var media = data.data[i];
+
+          var media_type;
+          if (media.media_type === "IMAGE") {
+              media_type = "image";
+          } else if (media.media_type === "VIDEO") {
+              media_type = "video";
+          } else {
+              media_type = "carousel";
+          }
+
+          var converted = {
+              "id": media.id,
+              "user": {
+                  "id": "",
+                  "full_name": "",
+                  "profile_picture": "",
+                  "username": ""
+              },
+              "images": {
+                  "thumbnail": {
+                      "width": 150,
+                      "height": 150,
+                      "url": media.permalink + "media?size=t"
+                  },
+                  "low_resolution": {
+                      "width": 320,
+                      "height": 320,
+                      "url": media.permalink + "media?size=m"
+                  },
+                  "standard_resolution": {
+                      "width": 640,
+                      "height": 640,
+                      "url": media.permalink + "media?size=m"
+                  }
+              },
+              "created_time": "1543398649",
+              "caption": {
+                  "id": "",
+                  "text": media.caption,
+                  "created_time": "",
+                  "from": {
+                      "id": "",
+                      "full_name": "",
+                      "profile_picture": "",
+                      "username": ""
+                  }
+              },
+              "user_has_liked": (media.like_count > 0),
+              "likes": {
+                  "count": media.like_count
+              },
+              "tags": [],
+              "filter": "Normal",
+              "comments": {
+                  "count": media.comments_count
+              },
+              "type": media_type,
+              "link": media.permalink,
+              "location": null,
+              "attribution": null,
+              "users_in_photo": []
+          };
+
+          if (media.media_type === "IMAGE" || media.media_type === "CAROUSEL_ALBUM") {
+              converted.images = {
+                  "thumbnail": {
+                      "width": 150,
+                      "height": 150,
+                      "url": media.permalink + "media?size=t"
+                  },
+                  "low_resolution": {
+                      "width": 320,
+                      "height": 320,
+                      "url": media.permalink + "media?size=m"
+                  },
+                  "standard_resolution": {
+                      "width": 640,
+                      "height": 640,
+                      "url": media.permalink + "media?size=m"
+                  }
+              };
+          } else if (media.media_type === "VIDEO") {
+              converted.videos = {
+                  "standard_resolution": {
+                      "width": 640,
+                      "height": 800,
+                      "url": media.media_url,
+                  },
+                  "low_bandwidth": {
+                      "width": 480,
+                      "height": 600,
+                      "url": media.media_url,
+                  },
+                  "low_resolution": {
+                      "width": 480,
+                      "height": 600,
+                      "url": media.media_url,
+                  }
+              };
+          }
+
+          if (media.media_type === "CAROUSEL_ALBUM") {
+              converted.carousel_media = [];
+
+              for (var j in media.children.data) {
+                  if (media.children.data[j].media_type === "IMAGE") {
+                      var child = {
+                          "images": {
+                              "thumbnail": {
+                                  "width": 150,
+                                  "height": 150,
+                                  "url": media.children.data[j].media_url + "media?size=t"
+                              },
+                              "low_resolution": {
+                                  "width": 320,
+                                  "height": 320,
+                                  "url": media.children.data[j].permalink + "media?size=m"
+                              },
+                              "standard_resolution": {
+                                  "width": 640,
+                                  "height": 640,
+                                  "url": media.children.data[j].media_url
+                              }
+                          },
+                          "users_in_photo": [],
+                          "type": "image"
+                      };
+                  } else {
+                      var child = {
+                          "videos": {
+                              "standard_resolution": {
+                                  "width": 640,
+                                  "height": 800,
+                                  "url": media.children.data[j].media_url,
+                                  "id": media.children.data[j].id
+                              },
+                              "low_bandwidth": {
+                                  "width": 480,
+                                  "height": 600,
+                                  "url": media.children.data[j].media_url,
+                                  "id": media.children.data[j].id
+                              },
+                              "low_resolution": {
+                                  "width": 480,
+                                  "height": 600,
+                                  "url": media.children.data[j].media_url,
+                                  "id": media.children.data[j].id
+                              }
+                          },
+                          "users_in_photo": [],
+                          "type": "video"
+                      };
+                  }
+
+                  converted.carousel_media.push(child);
+
+              }
+
+          }
+
+          converted_data.data.push(converted);
+      }
+
+      return converted_data;
+  };
 
   /**
    * Search for tags by name.
@@ -1560,10 +1859,15 @@ function WDIInstagram(args)
 
 
 
-  this.getDataFromCache = function (callback, cache_name) {
+  this.getDataFromCache = function (callback, cache_name, async) {
+
+    if(typeof async === "undefined"){
+      async = true;
+    }
+
     jQuery.ajax({
       type: "POST",
-      async: true,
+      async: async,
       url: wdi_ajax.ajax_url,
       dataType:"json",
       data: {

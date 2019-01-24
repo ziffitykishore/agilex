@@ -31,6 +31,9 @@ class WDI_admin_view{
       <div class="block margin">
           <a href="<?php echo $element['href']; ?>" id="<?php echo $element['name']; ?>"  class="button" style="text-decoration:none;"><?php echo (isset($element['value']))?esc_html($element['value']):esc_html($element['title']); ?></a>
       </div>
+      <?php if(isset($element['description'])){ ?>
+          <p style="font-style: italic;"><?php echo $element['description']; ?></p>
+      <?php } ?>
     </div>
     <?php   
   }
@@ -228,7 +231,7 @@ class WDI_admin_view{
               </div>
           </div>
       </div>
-      <div style="text-align: right;font-style: italic;">
+      <div style="margin-left: 15px;font-style: italic;">
           <p>Log out from the previous account before signing up.</p>
       </div>
     <?php

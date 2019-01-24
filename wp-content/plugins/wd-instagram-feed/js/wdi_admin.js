@@ -164,9 +164,9 @@ function wdi_multiple_accounts_option_controller(){
 
 function wdi_advanced_option_controller() {
 
-	var $table = jQuery(jQuery('#wdi_user_id').closest('form').find('.form-table').get(2));
+	var $table = jQuery(jQuery('#wdi_user_id').closest('form').find('.form-table').get(1));
 	$table.addClass('wdi_advanced_option wdi_advanced_option_close');
-	var tr = "<tr class='wdi_advanced_option_head'><th>ADVANCED OPTIONS</th><td><div class='wdi_advanced_option_icon'></div></td></tr>";
+	var tr = "<tr class='wdi_advanced_option_head'><th style='width: 100%;'>ADVANCED OPTIONS AND MULTIPLE INSTAGRAM ACCOUNTS</th><td><div class='wdi_advanced_option_icon'></div></td></tr>";
 	$tr = jQuery(tr);
 	$table.prepend($tr);
 
@@ -546,24 +546,40 @@ wdi_controller.makeInstagramUserRequest = function(user_input, ignoreConfirm) {
 	if (wdi_version.is_pro == 'false') {
 		if (jQuery('.wdi_user').length == 1) {
 			alert(wdi_messages.only_one_user_or_hashtag);
-			return;
+			return false;
 		}
 	}
 
+    var hashtag_feed = input_type === "hashtag";
+    var user_feed = input_type === "user";
 
+    for(var i in _this.feed_users){
+
+        if(_this.feed_users[i].username.charAt(0) === "#"){
+            hashtag_feed = true;
+        }else{
+            user_feed = true;
+        }
+
+        if(user_feed && hashtag_feed){
+            alert("You can add only username or hashtags.");//todo
+            return false;
+        }
+
+    }
 
 	switch (input_type) {
 		case 'user':
 			{
+                if(typeof wdi_options.wdi_access_token === "undefined" || wdi_options.wdi_access_token === ""){
+                    alert("To display your feed media , get Instagram API token from settings page.");
+                    return false;
+                }
 
-                if(_this.feed_users.length > 0){
-                	for(var i in _this.feed_users){
-                		if(_this.feed_users[i].username[0] !== '#'){
-                            alert("You can add only one username");
-                            return false;
-						}
-					}
-				}
+                if (_this.feed_users.length > 0) {
+                    alert("You can add only one username");
+                    return false;
+                }
 
 				var token = '';
                 if(user_input === wdi_options.wdi_user_name){
@@ -572,7 +588,7 @@ wdi_controller.makeInstagramUserRequest = function(user_input, ignoreConfirm) {
                     token = _this.users_list[user_input].access_token;
 				}else{
                     alert("You can add only your usernames ( " + _this.usersnames.join(', ') + " )");
-                    return;
+                    return false;
                 }
 
 				this.instagram.resetTokens();
@@ -580,6 +596,8 @@ wdi_controller.makeInstagramUserRequest = function(user_input, ignoreConfirm) {
 
                 this.instagram.getSelfInfo({
                     success: function(response) {
+
+                        jQuery('#wdi_add_user_ajax').removeAttr('disabled');
 
                         //contains information about response such as error messages and if
                         //response is valid or not
@@ -638,10 +656,17 @@ wdi_controller.makeInstagramUserRequest = function(user_input, ignoreConfirm) {
 		case 'hashtag':
 			{
 
+                if(typeof wdi_options.fb_token === "undefined" || wdi_options.fb_token === ""){
+                    alert("To display hashtag media , get Facebook API token from settings page.");
+                    return false;
+                }
+
 				var tagname = user_input.substr(1, user_input.length);
 				tagname = tagname.replace(" ",'');
 				this.instagram.getTagRecentMedia(tagname, {
 					success: function(response) {
+                        jQuery('#wdi_add_user_ajax').removeAttr('disabled');
+
 						//contain information about response such as error messages and if
 						//response is valid or not
 						var vObj = _this.isValidResponse(response);
@@ -745,7 +770,8 @@ wdi_controller.stringifyUserData = function(feed_users) {
 	for (var i = 0; i < feed_users.length; i++) {
 		users.push({
 			username: feed_users[i]['username'],
-			id: feed_users[i]['id']
+			id: feed_users[i]['id'],
+            tag_id: (typeof feed_users[i]['tag_id'] !== "undefined") ? feed_users[i]['tag_id'] : ""
 		})
 	}
 	return JSON.stringify(users);
@@ -759,13 +785,31 @@ wdi_controller.stringifyUserData = function(feed_users) {
  */
 wdi_controller.bindAddNewUserOrHashtagEvent = function() {
 	jQuery('#wdi_add_user_ajax').on('click', function() {
+        if(typeof jQuery(this).attr('disabled') !== "undefined"){
+			return;
+		}else{
+            jQuery(this).attr('disabled', 'disabled');
+		}
+
 		var user_input = jQuery('#wdi_add_user_ajax_input').val().trim().toLowerCase();
-		wdi_controller.makeInstagramUserRequest(user_input);
+		if(wdi_controller.makeInstagramUserRequest(user_input) === false){
+            jQuery(this).removeAttr('disabled', 'disabled');
+		}
 	});
 	jQuery('#wdi_add_user_ajax_input').on("keypress", function(e) {
 		if (e.keyCode == 13) {
 			var user_input = jQuery('#wdi_add_user_ajax_input').val().trim().toLowerCase();
-			wdi_controller.makeInstagramUserRequest(user_input);
+
+            if(typeof jQuery("#wdi_add_user_ajax").attr('disabled') !== "undefined"){
+                return;
+            }else{
+                jQuery("#wdi_add_user_ajax").attr('disabled', 'disabled');
+            }
+
+			if(wdi_controller.makeInstagramUserRequest(user_input) === false){
+                jQuery("#wdi_add_user_ajax").removeAttr('disabled', 'disabled');
+            }
+
 			return false; // prevent the button click from happening
 		}
 	});
@@ -1035,7 +1079,7 @@ wdi_controller.addHashtag = function(tagname, response) {
 			jQuery('#wdi_add_user_ajax_input').attr('value', '');
 			var profile_picture;
 			if (typeof response != 'undefined') {
-				profile_picture = (response['data'].length != 0) ? response['data'][0]['images']['thumbnail']['url'] : '';
+				profile_picture = (response['data'].length != 0 && typeof response['data'][0]['images']['thumbnail'] !== "undefined") ? response['data'][0]['images']['thumbnail']['url'] : '';
 			} else {
 				profile_picture = '';
 			}
@@ -1043,7 +1087,8 @@ wdi_controller.addHashtag = function(tagname, response) {
 			this.feed_users.push({
 				username: '#' + tagname,
 				id: '#' + tagname,
-				profile_picture: profile_picture
+				profile_picture: profile_picture,
+				tag_id: response.tag_id
 			});
 
 			var user_input = '#' + tagname;

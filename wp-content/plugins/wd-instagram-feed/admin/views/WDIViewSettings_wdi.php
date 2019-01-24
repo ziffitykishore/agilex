@@ -74,7 +74,7 @@ private $model;
 							</div>
 		</form>
         <style>
-            <?php if(!isset($wdi_options['wdi_access_token']) || empty($wdi_options['wdi_access_token'])){ ?>
+            <?php if((!isset($wdi_options['wdi_access_token']) || empty($wdi_options['wdi_access_token'])) && empty($wdi_options['fb_token'])){ ?>
             body.instagram-feed_page_wdi_settings table:nth-of-type(2) {
                 display: none;
             }
@@ -129,7 +129,9 @@ private $model;
 
 		 	                    jQuery('#wdi_access_token').attr('value','');
 		 	                    jQuery('#wdi_user_name').attr('value','');
-		 	                    document.cookie = "wdi_autofill=false";
+                                jQuery('#business_account_id').attr('value', '');
+                                jQuery('#fb_token').attr('value', '');
+                                document.cookie = "wdi_autofill=false";
                           <?php if(get_option("wdi_token_error_flag") === "1"):?>
                           jQuery.ajax({
                             type: "POST",
