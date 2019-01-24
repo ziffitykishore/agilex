@@ -4,5 +4,17 @@
         <tab id="ziffity" translate="label" sortOrder="10">
             <label>CSN Settings</label>
         </tab>
+        <section id="settings" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Settings</label>
+            <tab>ziffity</tab>
+            <resource>Ziffity_Core::index</resource>
+            <group id="general" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="ticker_iframe" translate="label" type="textarea" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enter Ticker Iframe</label>
+                    <comment><![CDATA[Enter ticker iframe]]></comment>
+                </field>
+            </group>
+        </section>
     </system>
 </config>

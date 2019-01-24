@@ -40,13 +40,17 @@ class Topmenu implements ObserverInterface
 
         if ($childLevel == 1) {
 
-            $html .= '<div class="category_image" style=""><img src="' . $this->getCategoryImage($menuId) . '"/></div>';
+            $html .= '<div class="category_image"><img class="magebees_lazyload" alt="" data-src="' . $this->getCategoryImage($menuId) . '"/></div>';
         }
 
         $transport->setHtml($html);
     }
 
-    //Retrieve category images
+    /**
+     * to get category image URL
+     * @param int $categoryId
+     * @return string
+     */
     protected function getCategoryImage($categoryId)
     {
         $categoryIdElements = explode('-', $categoryId);

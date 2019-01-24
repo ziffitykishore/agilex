@@ -10,9 +10,6 @@
         <referenceContainer name="before.body.end">
             <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
         </referenceContainer>
-        <referenceContainer name="after.body.start">
-            <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/loader.phtml" name="preloader"/>
-        </referenceContainer>
         <referenceContainer name="header-wrapper" >
          <container name="form.mini.adv"  htmlTag="div" htmlClass="block block-search" before="csn-links">
     <container name="mini.adv.form" htmlTag="div" htmlClass="advance_from_mini">
