@@ -187,7 +187,7 @@ $history_arg_query = new WP_Query($history_args);
 while ($history_arg_query->have_posts()) {
 $history_arg_query->the_post(); 
 $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>    
-<div class="our-history pos-rel text-center margin-30 wow fadeIn" style="background-image: url('<?php echo $featured_img_url; ?>'); padding: 50px 0;">
+<div class="our-history pos-rel text-center margin-30 wow fadeIn bg-image" data-src="<?php echo $featured_img_url; ?>" style="padding: 50px 0;">
 <div class="our-history-outer">
 <div class="container">
 <div class="heading heading-white" >
