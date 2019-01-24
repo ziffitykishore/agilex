@@ -365,29 +365,41 @@ $loading-background-color: $secondary__color;
                     color: $c-royal;
                 }
             }
+        }
+    }
 
-            .bluefoot-driver {
-                max-width: 170px;
-                margin: 0 auto !important; // override drivers
+    .bluefoot-driver {
+        max-width: 140px;
+        margin: 0 auto !important; // override drivers
 
-                a {
-                    padding-bottom: 35px;
-                    background-color: transparent;
-                }
 
-                img {
-                    width: 100%;
-                }
+        @include min-screen($screen__l) {
+            max-width: none;
+            padding-left: 15% !important; // override drivers
+            padding-right: 15% !important; // override drivers
+        }
 
-                &-text {
-                    bottom: -35px;
-                    font-family: $font-family__sans-serif;
-                    font-weight: $font-weight__bold;
-                    text-transform: capitalize;
-                    color: $c-cobalt;
-                    background-color: transparent !important; //override Bluefoot driver
-                }
-            }
+        @include min-screen($screen__xl) {
+            padding-left: 25% !important; // override drivers
+            padding-right: 25% !important; // override drivers
+        }
+
+        a {
+            padding-bottom: 35px;
+            background-color: transparent;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        &-text {
+            bottom: -35px;
+            font-family: $font-family__sans-serif;
+            font-weight: $font-weight__bold;
+            text-transform: capitalize;
+            color: $c-cobalt;
+            background-color: transparent !important; //override Bluefoot driver
         }
     }
 
