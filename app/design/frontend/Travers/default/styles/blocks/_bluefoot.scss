@@ -505,7 +505,7 @@ $loading-background-color: $secondary__color;
         width: 100%;
 
         @include min-screen($screen__l) {
-            max-width: 550px;
+            max-width: 650px;
             transform: translateX(5%);
             padding: $indent__xl;
 
@@ -685,6 +685,7 @@ footer.page-footer {
             max-width: 1280px;
             margin: 0 auto;
             box-sizing: border-box;
+            margin-bottom: $indent__l;
 
             .footer-links {
                 width: 70%;
@@ -703,7 +704,7 @@ footer.page-footer {
                     }
 
                     a {
-                        color: $c-nickel;
+                        color: $c-steel;
                         font-weight: $font-weight__semibold;
 
                         @include hover {
