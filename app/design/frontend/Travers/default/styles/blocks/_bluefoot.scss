@@ -230,6 +230,10 @@ $loading-background-color: $secondary__color;
             max-width: none;
         }
     }
+
+    .column.main {
+        padding-bottom: 0;
+    }
 }
 
 .carousel,
@@ -812,14 +816,16 @@ footer.page-footer {
 }
 
 .testimonials {
-    margin-bottom: $indent__xl;
+    margin-bottom: 80px;
 
-    @include min-screen($screen__m) {
-        &.bluefoot-row {
-            margin-top: $indent__m;
-            margin-left: auto;
-            margin-right: auto;
+    &.bluefoot-row {
+        @include min-screen($screen__m) {
+            margin: $indent__m auto $indent__s auto;
             max-width: 90%;
+        }
+
+        @include min-screen($screen__l) {
+            margin-bottom: 0;
         }
     }
 
@@ -855,6 +861,10 @@ footer.page-footer {
         &-giver {
             color: $secondary__color;
             font-size: 13px;
+        }
+
+        &-slider {
+            margin-bottom: 0 !important; // override Slick
         }
     }
 
