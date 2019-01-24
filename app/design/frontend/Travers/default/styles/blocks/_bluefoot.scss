@@ -2,6 +2,7 @@ $bp-medium: $screen__m; // pre-set _catland breakpoint
 $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
+$home-sidebar-width: 20.5%;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -939,10 +940,17 @@ footer.page-footer {
         }
     }
 
+    .carousel {
+        @include min-screen($screen__l) {
+            width: calc(100% - #{$home-sidebar-width})
+        }
+    }
+
     .sidebar-menu {
         display: none;
 
         @include min-screen($screen__l) {
+            width: $home-sidebar-width;
             display: block;
             display: flex;
             flex-direction: column;
