@@ -315,9 +315,10 @@ $home-sidebar-width: 20.5%;
                 display: none !important; // override slick
             }
 
-            span {
-                font-size: 45px;
-                font-weight: $font-weight__light;
+            svg {
+                height: 20px;
+                width: 20px;
+                fill: $c-royal;
             }
 
             &.slick-next {
@@ -326,6 +327,7 @@ $home-sidebar-width: 20.5%;
 
             &.slick-prev {
                 left: $indent__xs;
+                transform: rotate(180deg);
             }
         }
     }
