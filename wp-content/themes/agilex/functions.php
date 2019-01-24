@@ -2010,6 +2010,33 @@ if (!(is_admin() )) {
     add_filter( 'clean_url', 'defer_parsing_of_js', 11, 1 );
 }
 
+
+function add_defer_attribute($tag, $handle) {
+    // add script handles to the array below
+    $scripts_to_defer = array('my-js-handle', 'another-handle');
+    
+    foreach($scripts_to_defer as $defer_script) {
+       if ($defer_script === $handle) {
+          return str_replace(' src', ' defer="defer" src', $tag);
+       }
+    }
+    return $tag;
+ }
+ add_filter('script_loader_tag', 'add_defer_attribute', 10, 2);
+
+ function add_async_attribute($tag, $handle) {
+    // add script handles to the array below
+    $scripts_to_async = array('my-js-handle', 'another-handle');
+    
+    foreach($scripts_to_async as $async_script) {
+       if ($async_script === $handle) {
+          return str_replace(' src', ' async="async" src', $tag);
+       }
+    }
+    return $tag;
+ }
+ add_filter('script_loader_tag', 'add_async_attribute', 10, 2);
+
 /*to remove preconnect when using autoptimize*/
 /**
  * Removes the preconnect to fonts.gstatic.com
