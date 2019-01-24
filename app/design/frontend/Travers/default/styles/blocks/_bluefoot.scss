@@ -505,7 +505,7 @@ $loading-background-color: $secondary__color;
         width: 100%;
 
         @include min-screen($screen__l) {
-            max-width: 550px;
+            max-width: 650px;
             transform: translateX(5%);
             padding: $indent__xl;
 
