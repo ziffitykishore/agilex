@@ -220,6 +220,18 @@ $loading-background-color: $secondary__color;
     }
 }
 
+.cms-index-index {
+    @include min-screen($screen__m) {
+        .page-main {
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            max-width: none;
+        }
+    }
+}
+
 .carousel,
 .testimonials {
     .slick-slider .slick-dots {
@@ -248,41 +260,52 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.carousel .slick-slider {
-    margin-bottom: $indent__m !important; //override slick
-
-    .bluefoot-advanced-slide-content {
-        h3 {
-            @include bryant-park-headings-h1();
-            margin-bottom: 0;
-        }
-
-        button {
-            @include button--type(primary);
-            min-width: 150px;
-        }
-
-        @include min-screen($screen__m) {
-            text-align: left;
-        }
+.carousel {
+    &.bluefoot-row {
+        margin-left: 0;
+        margin-right: 0;
     }
 
-    .slick-arrow {
-        background-color: transparent;
-        color: $c-royal;
-        z-index: 1;
+    .slick-slider {
+        margin-bottom: $indent__m !important; //override slick
 
-        @include max-screen($screen__m) {
-            display: none !important; // override slick
+        .bluefoot-advanced-slide-content {
+            h3 {
+                @include bryant-park-headings-h1();
+                margin-bottom: 0;
+            }
+
+            button {
+                @include button--type(primary);
+                min-width: 150px;
+            }
+
+            @include min-screen($screen__m) {
+                text-align: left;
+            }
         }
 
-        span {
-            font-size: 45px;
-            font-weight: $font-weight__light;
-        }
+        .slick-arrow {
+            background-color: transparent;
+            color: $c-royal;
+            z-index: 1;
 
-        &.slick-next {
-            right: $indent__xs;
+            @include max-screen($screen__m) {
+                display: none !important; // override slick
+            }
+
+            span {
+                font-size: 45px;
+                font-weight: $font-weight__light;
+            }
+
+            &.slick-next {
+                right: $indent__xs;
+            }
+
+            &.slick-prev {
+                left: $indent__xs;
+            }
         }
     }
 }
@@ -302,6 +325,14 @@ $loading-background-color: $secondary__color;
 }
 
 .product-category {
+    .section-heading {
+        margin-top: $indent__l;
+
+        &-container {
+            width: 100% !important; // override BlueFoot
+        }
+    }
+
     &.category-grid {
         @include min-screen($screen__m) {
             width: 90%;
@@ -309,7 +340,13 @@ $loading-background-color: $secondary__color;
             margin-bottom: $indent__xl;
         }
 
-        .product-category-item {
+        @include min-screen($screen__l) {
+            width: auto;
+            padding-left: $indent__xl;
+            padding-right: $indent__xl;
+        }
+
+        .bluefoot-column.bluefoot-structural {
             margin-top: $indent__m;
             margin-bottom: $indent__xl;
             width: 50%;
@@ -325,6 +362,14 @@ $loading-background-color: $secondary__color;
             }
 
             .bluefoot-driver {
+                max-width: 170px;
+                margin: 0 auto !important; // override drivers
+
+                a {
+                    padding-bottom: 35px;
+                    background-color: transparent;
+                }
+
                 img {
                     width: 100%;
                 }
@@ -343,6 +388,15 @@ $loading-background-color: $secondary__color;
 
     &.product-grid {
         width: 100%;
+
+        @include min-screen($screen__m) {
+            &.bluefoot-row {
+                margin-top: $indent__m;
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 90%;
+            }
+        }
 
         @include max-screen($screen__m) {
             margin: 0;
@@ -411,13 +465,17 @@ $loading-background-color: $secondary__color;
     margin-bottom: 75px;
     padding-top: $indent__m;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
+    z-index: 12; // cover sidebar
 
     @include min-screen($screen__l) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding-top: $indent__s;
-        margin-bottom: 180px;
+        &.bluefoot-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding-top: $indent__s;
+            margin: 0;
+            margin-bottom: 180px;
+        }
     }
 
     &-header.bluefoot-entity {
@@ -539,15 +597,20 @@ $loading-background-color: $secondary__color;
     }
 }
 
-.footer-promo-banner {
+.bluefoot-row.footer-promo-banner {
     padding: $indent__m $indent__s;
     background-color: $c-smoke;
+    flex-basis: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    max-width: none;
 
     @include min-screen($screen__m) {
         display: flex;
         align-items: center;
-        padding-left: 80px;
         padding: $indent__s;
+        padding-left: 70px;
+        margin-bottom: $indent__xl;
 
         .footer-promo-text {
             width: 100%;
@@ -557,6 +620,10 @@ $loading-background-color: $secondary__color;
 
         .footer-promo-header {
             margin-top: 15px;
+        }
+
+        .catalog-image {
+            transform: translateY($indent__s);
         }
     }
 
@@ -586,13 +653,18 @@ $loading-background-color: $secondary__color;
 
     button {
         @include button--type(secondary);
+        @include max-screen($screen__m) {
+            margin-top: $indent__s;
+        }
     }
 }
 
 footer.page-footer {
     border-top: 0;
     margin-top: 0;
-    padding-top: 0;
+    padding: 0;
+    flex-wrap: wrap;
+    max-width: 100%;
 
     .footer {
         &.phone,
@@ -600,16 +672,25 @@ footer.page-footer {
             display: none;
         }
 
+        &-main-content {
+            width: 100%;
+        }
+
         &.content {
             display: flex;
             flex-direction: column;
             width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+            max-width: 1280px;
+            margin: 0 auto;
+            box-sizing: border-box;
 
             .footer-links {
                 width: 70%;
 
                 &-heading {
-                    margin-top: $indent__m;
+                    margin-top: 15px;
                     font-weight: $font-weight__bold;
                 }
 
@@ -660,6 +741,22 @@ footer.page-footer {
 
         &__connect {
             width: 100%;
+
+            @include max-screen($screen__m) {
+                order: -1;
+                margin-top: $indent__m;
+
+                .newsletter .actions {
+                    display: block;
+                    width: 100%;
+                    margin-top: $indent__s;
+                }
+
+                .social-links {
+                    margin: $indent__s auto $indent__m auto;
+                }
+            }
+
         }
     }
 }
@@ -669,31 +766,46 @@ footer.page-footer {
     font-weight: $font-weight__semibold;
     font-size: $font-size__base;
     color: $c-nickel;
+
+    @include max-screen($screen__m) {
+        margin-top: $indent__m;
+    }
 }
 
-.triple-tout-row .homepage-tout {
-    button {
-        @include button--type(primary);
-        margin-bottom: $indent__l;
 
-        @include min-screen($screen__m) {
-            margin-bottom: 0;
-            max-width: 160px;
-            width: 100%;
+.bluefoot-row.triple-tout-row {
+    @include min-screen($screen__m) {
+        padding-left: $indent__s;
+        padding-right: $indent__s;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 90%;
+    }
+
+    .homepage-tout {
+        button {
+            @include button--type(primary);
+            margin-bottom: $indent__l;
+
+            @include min-screen($screen__m) {
+                margin-bottom: 0;
+                max-width: 160px;
+                width: 100%;
+            }
         }
-    }
 
-    .tout-header {
-        font-weight: $font-weight__bold;
-        margin-bottom: $indent__s;
-    }
+        .tout-header {
+            font-weight: $font-weight__bold;
+            margin-bottom: $indent__s;
+        }
 
-    .tout-description {
-        color: $c-nickel;
+        .tout-description {
+            color: $c-nickel;
 
-        p {
-            margin: 0;
-            margin-bottom: $indent__xs;
+            p {
+                margin: 0;
+                margin-bottom: $indent__xs;
+            }
         }
     }
 }
@@ -702,10 +814,11 @@ footer.page-footer {
     margin-bottom: $indent__xl;
 
     @include min-screen($screen__m) {
-        margin-top: $indent__m;
-
-        .slick-slide {
-            max-width: 290px;
+        &.bluefoot-row {
+            margin-top: $indent__m;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 90%;
         }
     }
 
@@ -774,6 +887,34 @@ footer.page-footer {
 
         .bluefoot-full-width {
             padding-bottom: 15px;
+        }
+    }
+}
+
+.home-top-section {
+    display: flex;
+
+    .carousel,
+    .category-grid.product-category {
+        @include max-screen($screen__l) {
+            width: 100% !important; // override BF desktop layout
+            padding-left: 0;
+        }
+
+        @include min-screen($screen__l) {
+            padding: 0;
+        }
+    }
+
+    .sidebar-menu {
+        display: none;
+
+        @include min-screen($screen__l) {
+            display: block;
+            display: flex;
+            flex-direction: column;
+            background-color: $c-smoke;
+            z-index: 2;
         }
     }
 }
