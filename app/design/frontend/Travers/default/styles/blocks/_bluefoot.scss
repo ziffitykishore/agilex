@@ -331,6 +331,7 @@ $loading-background-color: $secondary__color;
 .product-category {
     .section-heading {
         margin-top: $indent__l;
+        margin-bottom: 0;
 
         &-container {
             width: 100% !important; // override BlueFoot
