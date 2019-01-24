@@ -784,8 +784,7 @@ footer.page-footer {
     @include min-screen($screen__m) {
         padding-left: $indent__s;
         padding-right: $indent__s;
-        margin-left: auto;
-        margin-right: auto;
+        margin: $indent__xl auto;
         max-width: 90%;
     }
 
