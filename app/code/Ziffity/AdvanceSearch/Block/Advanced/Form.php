@@ -50,25 +50,26 @@ class Form extends \Magento\CatalogSearch\Block\Advanced\Form
     }
 
     /**
-     * @return AbstractBlock
+     * @return AbstractBlock | void
      */
-    public function _prepareLayout()
-    {
-        $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
-        if ($breadcrumbs) {
-            $breadcrumbs->addCrumb(
-                'home',
-                [
-                    'label' => __('Home'),
-                    'title' => __('Go to Home Page'),
-                    'link' => $this->_storeManager->getStore()->getBaseUrl()
-                ]
-            )->addCrumb(
-                'search',
-                ['label' => __('Catalog Advanced Search')]
-            );
+    public function _prepareLayout() {
+        if ($this->getRequest()->getFullActionName() == 'catalogsearch_advanced_index') {
+            $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+            if ($breadcrumbs) {
+                $breadcrumbs->addCrumb(
+                    'home', [
+                        'label' => __('Home'),
+                        'title' => __('Go to Home Page'),
+                        'link' => $this->_storeManager->getStore()->getBaseUrl()
+                    ]
+                )->addCrumb(
+                    'search', [
+                        'label' => __('Catalog Advanced Search')
+                    ]
+                );
+            }
+            return parent::_prepareLayout();
         }
-        return parent::_prepareLayout();
     }
 
     /**

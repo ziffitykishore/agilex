@@ -11,11 +11,11 @@
             <block class="Ziffity\Header\Block\Header" template="Magento_Theme::html/callforprice.phtml" name="call.for.quote"/>
         </referenceContainer>
         <referenceContainer name="header-wrapper" >
-         <container name="form.mini.adv"  htmlTag="div" htmlClass="block block-search" before="csn-links">
-    <container name="mini.adv.form" htmlTag="div" htmlClass="advance_from_mini">
-    <block class="Ziffity\AdvanceSearch\Block\Advanced\Form" name="catalogsearch_advanced_form" template="Ziffity_AdvanceSearch::advanced/form.phtml" />  
-    </container>  
-    </container>
+            <container name="form.mini.adv"  htmlTag="div" htmlClass="block block-search" before="csn-links">
+                <container name="mini.adv.form" htmlTag="div" htmlClass="advance_from_mini">
+                    <block class="Ziffity\AdvanceSearch\Block\Advanced\Form" name="catalogsearch_advanced_form_header" template="Ziffity_AdvanceSearch::advanced/headerform.phtml" />
+                </container>
+            </container>
             <container name="csn-links"  htmlTag="div" htmlClass="user-actionlist acc-links" after="top.search">
                 <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
                     <arguments>
