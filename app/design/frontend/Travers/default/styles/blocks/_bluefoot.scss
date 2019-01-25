@@ -1062,6 +1062,7 @@ footer.page-footer {
         @include max-screen($screen__l) {
             width: 100% !important; // override BF desktop layout
             padding: 0 !important; // override BF
+            margin: 0 !important; // override BF
         }
     }
 
