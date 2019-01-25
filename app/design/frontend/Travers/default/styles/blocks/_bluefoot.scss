@@ -382,9 +382,11 @@ $home-sidebar-width: 20.5%;
 
     .grid-heading {
         margin-top: $indent__xs;
+        font-size: 26px;
 
         @include min-screen($screen__m) {
             margin-top: 0;
+            font-size: 34px;
         }
 
         @include min-screen($screen__l) {
@@ -955,6 +957,11 @@ footer.page-footer {
     .section-heading {
         margin-top: $indent__xl;
         margin-bottom: $indent__s;
+        font-size: 26px;
+
+        @include min-screen($screen__m) {
+            font-size: 34px;
+        }
     }
 
     .rating-summary {
