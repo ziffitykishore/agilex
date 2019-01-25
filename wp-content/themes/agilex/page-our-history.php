@@ -238,7 +238,7 @@ content: '';
     background-repeat: no-repeat;
 }
 .scrtabs-tabs-fixed-container {
-    min-height: 150px;
+    min-height: 125px;
 }
 .tab-content {
 margin-top: 100px;
@@ -264,8 +264,11 @@ width: 100%;
 .timeline-section .scrtabs-tabs-fixed-container{
     margin: 0 auto;
     float: none;
-    overflow-x: auto;
     
+}
+
+.touch .timeline-section .scrtabs-tabs-fixed-container{
+    overflow-x:scroll;
 }
 
 .scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right,
@@ -307,6 +310,12 @@ width: 100%;
 }
 .scrtabs-tab-scroll-arrow .glyphicon {
     display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .hist-title{
+        font-size: 12px;
+    }
 }
 
 
