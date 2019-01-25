@@ -763,6 +763,11 @@
     }
     .timeline-item .timeline-content {
         padding: 0;
+        right: 0
+    }
+    .timeline-item .timeline-content .timeline-desc{
+        padding-right: 0;
+        height: auto;
     }
     .timeline-inner .timeline-item>div {
         -ms-flex: 0 0 100%;

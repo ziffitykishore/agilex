@@ -8,5 +8,6 @@
          url('../fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype');
     font-weight: normal;
     font-style: normal;
+    font-display: fallback;
   }
   
