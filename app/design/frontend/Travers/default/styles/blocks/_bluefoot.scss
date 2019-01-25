@@ -380,21 +380,25 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    .grid-heading {
-        margin-top: $indent__xs;
+    .grid-heading.section-heading {
+        margin-top: $indent__m;
         font-size: 26px;
 
         @include min-screen($screen__m) {
-            margin-top: 0;
             font-size: 34px;
+            margin-top: $indent__m;
         }
 
         @include min-screen($screen__l) {
-            margin-top: 120px;
+            margin-top: 80px;
+        }
+
+        @include min-screen(1150px) { // this section shifts a lot, so we need a new breakpoint
+            margin-top: 140px;
         }
 
         @include min-screen($screen__xl) {
-            margin-top: 140px;
+            margin-top: 180px;
         }
     }
 
@@ -504,10 +508,6 @@ $home-sidebar-width: 20.5%;
             .product-item {
                 padding: 0;
                 margin-top: $indent__m;
-            }
-
-            .section-heading {
-                margin-top: 0;
             }
         }
 
