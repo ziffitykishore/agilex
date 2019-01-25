@@ -230,6 +230,10 @@ $loading-background-color: $secondary__color;
             max-width: none;
         }
     }
+
+    .column.main {
+        padding-bottom: 0;
+    }
 }
 
 .carousel,
@@ -327,9 +331,12 @@ $loading-background-color: $secondary__color;
 .product-category {
     .section-heading {
         margin-top: $indent__l;
+        margin-bottom: 0;
 
         &-container {
             width: 100% !important; // override BlueFoot
+            margin-top: 0 !important; // override BlueFoot;
+            margin-bottom: $indent__s !important; // override BlueFoot;
         }
     }
 
@@ -360,29 +367,41 @@ $loading-background-color: $secondary__color;
                     color: $c-royal;
                 }
             }
+        }
+    }
 
-            .bluefoot-driver {
-                max-width: 170px;
-                margin: 0 auto !important; // override drivers
+    .bluefoot-driver {
+        max-width: 140px;
+        margin: 0 auto !important; // override drivers
 
-                a {
-                    padding-bottom: 35px;
-                    background-color: transparent;
-                }
 
-                img {
-                    width: 100%;
-                }
+        @include min-screen($screen__l) {
+            max-width: none;
+            padding-left: 15% !important; // override drivers
+            padding-right: 15% !important; // override drivers
+        }
 
-                &-text {
-                    bottom: -35px;
-                    font-family: $font-family__sans-serif;
-                    font-weight: $font-weight__bold;
-                    text-transform: capitalize;
-                    color: $c-cobalt;
-                    background-color: transparent !important; //override Bluefoot driver
-                }
-            }
+        @include min-screen($screen__xl) {
+            padding-left: 25% !important; // override drivers
+            padding-right: 25% !important; // override drivers
+        }
+
+        a {
+            padding-bottom: 35px;
+            background-color: transparent;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        &-text {
+            bottom: -35px;
+            font-family: $font-family__sans-serif;
+            font-weight: $font-weight__bold;
+            text-transform: capitalize;
+            color: $c-cobalt;
+            background-color: transparent !important; //override Bluefoot driver
         }
     }
 
@@ -594,6 +613,10 @@ $loading-background-color: $secondary__color;
             transform: translateY(125px) translateX(-5%);
             max-width: 50%;
         }
+
+        @include min-screen($screen__xl) {
+            max-width: 45%;
+        }
     }
 }
 
@@ -692,6 +715,7 @@ footer.page-footer {
 
                 &-heading {
                     margin-top: 15px;
+                    margin-bottom: $indent__s;
                     font-weight: $font-weight__bold;
                 }
 
@@ -778,8 +802,7 @@ footer.page-footer {
     @include min-screen($screen__m) {
         padding-left: $indent__s;
         padding-right: $indent__s;
-        margin-left: auto;
-        margin-right: auto;
+        margin: $indent__xl auto;
         max-width: 90%;
     }
 
@@ -812,14 +835,16 @@ footer.page-footer {
 }
 
 .testimonials {
-    margin-bottom: $indent__xl;
+    margin-bottom: 80px;
 
-    @include min-screen($screen__m) {
-        &.bluefoot-row {
-            margin-top: $indent__m;
-            margin-left: auto;
-            margin-right: auto;
+    &.bluefoot-row {
+        @include min-screen($screen__m) {
+            margin: $indent__m auto $indent__s auto;
             max-width: 90%;
+        }
+
+        @include min-screen($screen__l) {
+            margin-bottom: 0;
         }
     }
 
@@ -830,14 +855,13 @@ footer.page-footer {
         }
     }
 
-    .review-stars {
-        font-size: 50px;
+    .section-heading {
+        margin-top: $indent__xl;
         margin-bottom: 0;
-        margin-top: 0;
-        color: $c-royal;
-        line-height: 1;
-        transform: translateX(-$indent__xs);
-        letter-spacing: 0;
+    }
+
+    .rating-summary {
+        margin-left: -7px;
     }
 
     .testimonial {
@@ -855,6 +879,10 @@ footer.page-footer {
         &-giver {
             color: $secondary__color;
             font-size: 13px;
+        }
+
+        &-slider {
+            margin-bottom: 0 !important; // override Slick
         }
     }
 
@@ -899,11 +927,7 @@ footer.page-footer {
     .category-grid.product-category {
         @include max-screen($screen__l) {
             width: 100% !important; // override BF desktop layout
-            padding-left: 0;
-        }
-
-        @include min-screen($screen__l) {
-            padding: 0;
+            padding: 0 !important; // override BF
         }
     }
 
