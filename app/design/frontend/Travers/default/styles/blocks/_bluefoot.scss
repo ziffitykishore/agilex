@@ -289,6 +289,20 @@ $home-sidebar-width: 20.5%;
         }
 
         .bluefoot-advanced-slide-content {
+            @include min-screen($screen__s) {
+                text-align: left;
+                width: 60%;
+                margin-left: -60px; // brings it outside of the slick container
+            }
+
+            @include min-screen($screen__m) {
+                margin-left: -5%; // brings it outside of the slick container
+            }
+
+            @include min-screen($screen__l) {
+                margin-left: 80px;
+            }
+
             h3 {
                 @include bryant-park-headings-h1();
                 font-size: 25px;
@@ -313,10 +327,6 @@ $home-sidebar-width: 20.5%;
             button {
                 @include button--type(primary);
                 min-width: 150px;
-            }
-
-            @include min-screen($screen__m) {
-                text-align: left;
             }
         }
 
