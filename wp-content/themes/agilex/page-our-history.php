@@ -217,7 +217,7 @@ overflow: visible;
 }
 .nav-tabs li a:before {
 content: '';
-    background: url(https://i.imgur.com/hhAATUf.jpg);
+    background: url(/wp-content/themes/agilex/images/scale.jpg);
     width: 170px;
     height: 28px;
     position: absolute;
@@ -228,7 +228,7 @@ content: '';
 }
 #magic-line2:before {
     content: '';
-    background: url(https://i.imgur.com/Nns2jdt.jpg);
+    background: url(/wp-content/themes/agilex/images/scale-ho.jpg);
     width: 180px;
     height: 28px;
     position: absolute;
