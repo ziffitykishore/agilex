@@ -730,6 +730,7 @@ $home-sidebar-width: 20.5%;
 
         @include max-screen($screen__m) {
             margin-top: 15px;
+            margin-bottom: $indent__xs;
         }
     }
 
@@ -928,10 +929,12 @@ footer.page-footer {
 
 
 .bluefoot-row.triple-tout-row {
+    margin-top: 30px;
+
     @include min-screen($screen__m) {
+        margin: 40px auto 0 auto;
         padding-left: $indent__s;
         padding-right: $indent__s;
-        margin: $indent__xl auto;
         max-width: 90%;
     }
 
