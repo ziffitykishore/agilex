@@ -457,10 +457,16 @@ $home-sidebar-width: 20.5%;
         &-text {
             bottom: -45px;
             font-family: $font-family__sans-serif;
-            font-weight: $font-weight__bold;
+            font-weight: $font-weight__semibold;
             text-transform: capitalize;
             color: $c-cobalt;
             background-color: transparent !important; //override Bluefoot driver
+
+            @include max-screen($screen__m) {
+                bottom: -15px;
+                font-size: $font-size__base--desktop;
+                line-height: 1.14;
+            }
         }
     }
 
