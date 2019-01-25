@@ -1054,7 +1054,7 @@ footer.page-footer {
 
     @include max-screen($screen__m) {
         width: 100vw;
-        margin-left: -20px !important; // body padding is 20px and this is full-width. Overrides BF
+        margin-left: -15px !important; // body padding was 15px and this is full-width. Overrides BF
     }
 
     .carousel,
