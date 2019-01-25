@@ -595,12 +595,15 @@ $home-sidebar-width: 20.5%;
     &-header.bluefoot-entity {
         flex-basis: 100%;
         text-align: center;
-        margin-bottom: $indent__xl;
+        margin-top: 0;
+        margin-bottom: 30px;
         font-size: 26px;
     }
 
     @include min-screen($screen__m) {
         &-header.bluefoot-entity {
+            margin-top: $indent__m;
+            margin-bottom: $indent__l;
             font-size: 34px;
         }
 
