@@ -521,6 +521,11 @@ $home-sidebar-width: 20.5%;
             display: flex;
             justify-content: center;
 
+            .price-box .price {
+                font-weight: $font-weight__semibold;
+                font-size: 16px;
+            }
+
             @include min-screen($screen__m) {
                 &.item.product {
                     width: 18%;
@@ -549,6 +554,11 @@ $home-sidebar-width: 20.5%;
             &-name  {
                 margin-top: 20px;
                 margin-bottom: 0;
+                font-weight: $font-weight__semibold;
+
+                @include max-screen($screen__m) {
+                    font-size: $font-size__base--desktop;
+                }
 
                 a {
                     @include hover {
