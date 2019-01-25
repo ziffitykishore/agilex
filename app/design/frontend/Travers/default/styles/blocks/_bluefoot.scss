@@ -363,25 +363,26 @@ $home-sidebar-width: 20.5%;
 
 .product-category {
     .section-heading {
-        margin-top: $indent__xl;
-        margin-bottom: 0;
-
-        &:first-of-type {
-            margin-top: 70px;
-        }
-
-        @include min-screen($screen__m) {
-            margin-top: 30px;
-
-            &:first-of-type {
-                margin-top: 0;
-            }
-        }
-
         &-container {
             width: 100% !important; // override BlueFoot
             margin-top: 0 !important; // override BlueFoot;
             margin-bottom: $indent__s !important; // override BlueFoot;
+        }
+    }
+
+    .grid-heading {
+        margin-top: $indent__xs;
+
+        @include min-screen($screen__m) {
+            margin-top: 0;
+        }
+
+        @include min-screen($screen__l) {
+            margin-top: 120px;
+        }
+
+        @include min-screen($screen__xl) {
+            margin-top: 140px;
         }
     }
 
@@ -396,6 +397,19 @@ $home-sidebar-width: 20.5%;
             width: auto;
             padding-left: $indent__xl;
             padding-right: $indent__xl;
+        }
+
+        .section-heading:not(.grid-heading) {
+            margin-top: $indent__xl;
+            margin-bottom: 0;
+
+            @include min-screen($screen__m) {
+                margin-top: 30px;
+
+                &:first-of-type {
+                    margin-top: 0;
+                }
+            }
         }
 
         .bluefoot-column.bluefoot-structural {
@@ -452,10 +466,10 @@ $home-sidebar-width: 20.5%;
 
     &.product-grid {
         width: 100%;
+        margin-top: $indent__xs;
 
         @include min-screen($screen__m) {
             &.bluefoot-row {
-                margin-top: $indent__m;
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 90%;
@@ -471,6 +485,10 @@ $home-sidebar-width: 20.5%;
 
             .product-item {
                 padding: 0;
+            }
+
+            .section-heading {
+                margin-top: 0;
             }
         }
 
@@ -526,19 +544,17 @@ $home-sidebar-width: 20.5%;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    margin-bottom: 75px;
     padding-top: $indent__m;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
 
-    @include min-screen($screen__l) {
-        &.bluefoot-row {
+    &.bluefoot-row {
+        @include min-screen($screen__l) {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
             margin: 0;
-            margin-bottom: 180px;
         }
     }
 
