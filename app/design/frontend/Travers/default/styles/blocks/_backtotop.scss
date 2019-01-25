@@ -1,0 +1,29 @@
+$back-to-top__z-index: 13; // covers sidebar
+
+.back-to-top {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: $primary__color;
+    z-index: $back-to-top__z-index;
+
+    @include hover {
+        background-color: $secondary__color;
+    }
+
+    svg {
+        display: block;
+        width: 35px;
+        height: 35px;
+        fill: $color-white;
+    }
+}
+
+@media print {
+    .back-to-top {
+        display: none !important;
+    }
+}

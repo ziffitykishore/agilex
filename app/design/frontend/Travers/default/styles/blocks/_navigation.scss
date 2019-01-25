@@ -36,6 +36,15 @@ $nav-section-title__height: 60px;
 .navigation {
     @include layout-container;
 
+    @include min-screen($screen__l) {
+        margin-left: 0;
+        margin-right: 0;
+
+        ul:first-of-type {
+            padding-left: 170px;
+        }
+    }
+
     .level-top {
         font-weight: $font-weight__bold;
     }
@@ -48,6 +57,37 @@ $nav-section-title__height: 60px;
         a {
             font-weight: $font-weight__regular;
         }
+    }
+}
+
+.secondary-nav-links {
+    text-align: center;
+    background-color: $c-smoke;
+    padding: $indent__s 0 8px 0;
+    margin-bottom: $indent__s;
+
+    &-link {
+        width: 50% !important; // override BF
+
+        a {
+            color: $c-cobalt;
+            text-decoration: none;
+            font-weight: $font-weight__bold;
+            font-size: $font-size__base--desktop;
+
+            @include hover {
+                text-decoration: none;
+                color: $c-royal;
+            }
+        }
+
+        div {
+            margin-bottom: $indent__xs;
+        }
+    }
+
+    @include min-screen($screen__m) {
+        display: none;
     }
 }
 
@@ -322,7 +362,7 @@ $nav-section-title__height: 60px;
         &.category-item .submenu {
             padding: $indent__xl;
             padding-top: $indent__s;
-            width: 100%;
+            width: 100vw;
             left: 0 !important; // overrides the nav JS
             box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
             box-sizing: border-box;

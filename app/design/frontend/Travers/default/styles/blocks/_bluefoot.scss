@@ -2,6 +2,7 @@ $bp-medium: $screen__m; // pre-set _catland breakpoint
 $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
+$home-sidebar-width: 20.5%;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -273,19 +274,59 @@ $loading-background-color: $secondary__color;
     .slick-slider {
         margin-bottom: $indent__m !important; //override slick
 
+        @include max-screen($screen__s) {
+            margin-bottom: 0 !important; //override slick
+
+            .slick-slide.slick-current {
+                max-height: 134px;
+            }
+
+            .bluefoot-advanced-slide-content {
+                width: 90%;
+                margin: 120px auto 0 auto;
+                padding-bottom: 0;
+            }
+        }
+
         .bluefoot-advanced-slide-content {
+            @include min-screen($screen__s) {
+                text-align: left;
+                width: 60%;
+                margin-left: -60px; // brings it outside of the slick container
+            }
+
+            @include min-screen($screen__m) {
+                margin-left: -5%; // brings it outside of the slick container
+            }
+
+            @include min-screen($screen__l) {
+                margin-left: 80px;
+            }
+
             h3 {
                 @include bryant-park-headings-h1();
+                font-size: 25px;
                 margin-bottom: 0;
+
+                @include min-screen($screen__m) {
+                    font-size: 46px;
+                }
+            }
+
+            p {
+                font-size: $font-size__base--desktop;
+                line-height: 1.4;
+                margin-bottom: 20px;
+
+                @include min-screen($screen__m) {
+                    font-size: 19px;
+                    line-height: 1.3;
+                }
             }
 
             button {
                 @include button--type(primary);
                 min-width: 150px;
-            }
-
-            @include min-screen($screen__m) {
-                text-align: left;
             }
         }
 
@@ -298,9 +339,10 @@ $loading-background-color: $secondary__color;
                 display: none !important; // override slick
             }
 
-            span {
-                font-size: 45px;
-                font-weight: $font-weight__light;
+            svg {
+                height: 20px;
+                width: 20px;
+                fill: $c-royal;
             }
 
             &.slick-next {
@@ -309,6 +351,7 @@ $loading-background-color: $secondary__color;
 
             &.slick-prev {
                 left: $indent__xs;
+                transform: rotate(180deg);
             }
         }
     }
@@ -330,13 +373,26 @@ $loading-background-color: $secondary__color;
 
 .product-category {
     .section-heading {
-        margin-top: $indent__l;
-        margin-bottom: 0;
-
         &-container {
             width: 100% !important; // override BlueFoot
             margin-top: 0 !important; // override BlueFoot;
             margin-bottom: $indent__s !important; // override BlueFoot;
+        }
+    }
+
+    .grid-heading {
+        margin-top: $indent__xs;
+
+        @include min-screen($screen__m) {
+            margin-top: 0;
+        }
+
+        @include min-screen($screen__l) {
+            margin-top: 120px;
+        }
+
+        @include min-screen($screen__xl) {
+            margin-top: 140px;
         }
     }
 
@@ -353,13 +409,27 @@ $loading-background-color: $secondary__color;
             padding-right: $indent__xl;
         }
 
+        .section-heading:not(.grid-heading) {
+            margin-top: $indent__xl;
+            margin-bottom: 0;
+
+            @include min-screen($screen__m) {
+                margin-top: 30px;
+
+                &:first-of-type {
+                    margin-top: 0;
+                }
+            }
+        }
+
         .bluefoot-column.bluefoot-structural {
-            margin-top: $indent__m;
-            margin-bottom: $indent__xl;
+            margin-top: $indent__xs;
+            margin-bottom: 50px;
             width: 50%;
 
             @include min-screen($screen__m) {
                 width: 25%;
+                margin-top: 15px;
             }
 
             @include hover {
@@ -371,46 +441,51 @@ $loading-background-color: $secondary__color;
     }
 
     .bluefoot-driver {
-        max-width: 140px;
         margin: 0 auto !important; // override drivers
-
 
         @include min-screen($screen__l) {
             max-width: none;
-            padding-left: 15% !important; // override drivers
-            padding-right: 15% !important; // override drivers
-        }
-
-        @include min-screen($screen__xl) {
-            padding-left: 25% !important; // override drivers
-            padding-right: 25% !important; // override drivers
         }
 
         a {
+            padding-top: 120px !important; //override driver
             padding-bottom: 35px;
             background-color: transparent;
         }
 
         img {
             width: 100%;
+            max-width: 100px;
+            left: 50% !important; //override driver
+            transform: translateX(-50%);
+
+            @include min-screen($screen__s) {
+                max-width: 125px;
+            }
         }
 
         &-text {
-            bottom: -35px;
+            bottom: -45px;
             font-family: $font-family__sans-serif;
-            font-weight: $font-weight__bold;
+            font-weight: $font-weight__semibold;
             text-transform: capitalize;
             color: $c-cobalt;
             background-color: transparent !important; //override Bluefoot driver
+
+            @include max-screen($screen__m) {
+                bottom: 0;
+                font-size: $font-size__base--desktop;
+                line-height: 1.14;
+            }
         }
     }
 
     &.product-grid {
         width: 100%;
+        margin-top: $indent__xs;
 
         @include min-screen($screen__m) {
             &.bluefoot-row {
-                margin-top: $indent__m;
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 90%;
@@ -426,6 +501,10 @@ $loading-background-color: $secondary__color;
 
             .product-item {
                 padding: 0;
+            }
+
+            .section-heading {
+                margin-top: 0;
             }
         }
 
@@ -481,19 +560,17 @@ $loading-background-color: $secondary__color;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    margin-bottom: 75px;
     padding-top: $indent__m;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
 
-    @include min-screen($screen__l) {
-        &.bluefoot-row {
+    &.bluefoot-row {
+        @include min-screen($screen__l) {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
             margin: 0;
-            margin-bottom: 180px;
         }
     }
 
@@ -501,10 +578,14 @@ $loading-background-color: $secondary__color;
         flex-basis: 100%;
         text-align: center;
         margin-bottom: $indent__xl;
-        font-size: 35px;
+        font-size: 26px;
     }
 
     @include min-screen($screen__m) {
+        &-header.bluefoot-entity {
+            font-size: 34px;
+        }
+
         &-header:after {
             display: none;
         }
@@ -523,6 +604,27 @@ $loading-background-color: $secondary__color;
         float: left;
         width: 100%;
 
+        .tout-header {
+            @include lib-heading(h2);
+            font-weight: $font-weight__regular;
+            margin: 0;
+        }
+
+        span,
+        .tout-subheader {
+            font-size: $font-size__base--desktop;
+            line-height: 1.3;
+        }
+
+        @include min-screen($screen__m) {
+            span,
+            button,
+            .tout-subheader {
+                font-size: 16px;
+                line-height: 1.6
+            }
+        }
+
         @include min-screen($screen__l) {
             max-width: 650px;
             transform: translateX(5%);
@@ -532,12 +634,6 @@ $loading-background-color: $secondary__color;
             .bluefoot-buttons {
                 padding-left: 20px;
             }
-        }
-
-        .tout-header {
-            @include lib-heading(h2);
-            font-weight: $font-weight__regular;
-            margin: 0;
         }
     }
 
@@ -857,7 +953,7 @@ footer.page-footer {
 
     .section-heading {
         margin-top: $indent__xl;
-        margin-bottom: 0;
+        margin-bottom: $indent__s;
     }
 
     .rating-summary {
@@ -922,6 +1018,13 @@ footer.page-footer {
 
 .home-top-section {
     display: flex;
+    margin-left: 0 !important; // override BF
+    margin-right: 0 !important; // override BF
+
+    @include max-screen($screen__m) {
+        width: 100vw;
+        margin-left: -20px !important; // body padding is 20px and this is full-width. Overrides BF
+    }
 
     .carousel,
     .category-grid.product-category {
@@ -931,10 +1034,17 @@ footer.page-footer {
         }
     }
 
+    .carousel {
+        @include min-screen($screen__l) {
+            width: calc(100% - #{$home-sidebar-width})
+        }
+    }
+
     .sidebar-menu {
         display: none;
 
         @include min-screen($screen__l) {
+            width: $home-sidebar-width;
             display: block;
             display: flex;
             flex-direction: column;
