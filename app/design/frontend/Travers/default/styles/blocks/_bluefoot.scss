@@ -275,7 +275,7 @@ $home-sidebar-width: 20.5%;
         margin-bottom: $indent__m !important; //override slick
 
         @include max-screen($screen__s) {
-            margin-bottom: 50px !important; //override slick
+            margin-bottom: 0 !important; //override slick
 
             .slick-slide.slick-current {
                 max-height: 134px;
@@ -363,8 +363,20 @@ $home-sidebar-width: 20.5%;
 
 .product-category {
     .section-heading {
-        margin-top: $indent__l;
+        margin-top: $indent__xl;
         margin-bottom: 0;
+
+        &:first-of-type {
+            margin-top: 70px;
+        }
+
+        @include min-screen($screen__m) {
+            margin-top: 30px;
+
+            &:first-of-type {
+                margin-top: 0;
+            }
+        }
 
         &-container {
             width: 100% !important; // override BlueFoot
