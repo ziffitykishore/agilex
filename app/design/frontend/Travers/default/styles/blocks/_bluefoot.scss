@@ -573,9 +573,14 @@ $home-sidebar-width: 20.5%;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    padding-top: $indent__m;
+    padding: $indent__m $indent__s 0 $indent__s;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
+
+    @include min-screen($screen__m) {
+        padding: $indent__m;
+        padding-bottom: 0;
+    }
 
     &.bluefoot-row {
         @include min-screen($screen__l) {
