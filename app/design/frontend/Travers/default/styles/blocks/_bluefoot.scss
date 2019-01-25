@@ -625,6 +625,11 @@ $home-sidebar-width: 20.5%;
         float: left;
         width: 100%;
 
+        @include max-screen($screen__m) {
+            padding: 0 !important; // override BF columns
+            padding-top: $indent__l !important; // override BF columns
+        }
+
         .tout-header {
             @include lib-heading(h2);
             font-weight: $font-weight__regular;
@@ -679,7 +684,7 @@ $home-sidebar-width: 20.5%;
                 }
 
                 &:nth-of-type(3) {
-                    margin-top: $indent__m;
+                    margin-top: $indent__s;
                     float: right;
                     width: 100%;
                 }
@@ -717,7 +722,7 @@ $home-sidebar-width: 20.5%;
         }
 
         @include max-screen($screen__m) {
-            margin-top: $indent__m;
+            margin-top: 15px;
         }
     }
 
