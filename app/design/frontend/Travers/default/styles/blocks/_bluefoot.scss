@@ -272,11 +272,13 @@ $home-sidebar-width: 20.5%;
     }
 
     .slick-slider {
-        margin-bottom: $indent__m !important; //override slick
+        margin-bottom: 30px !important; //override slick
+
+        @include min-screen($screen__m) {
+            margin-bottom: 0 !important; //override slick
+        }
 
         @include max-screen($screen__s) {
-            margin-bottom: 0 !important; //override slick
-
             .slick-slide.slick-current {
                 max-height: 134px;
             }
@@ -284,7 +286,8 @@ $home-sidebar-width: 20.5%;
             .bluefoot-advanced-slide-content {
                 width: 90%;
                 margin: 120px auto 0 auto;
-                padding-bottom: 0;
+                padding: 0;
+                padding-top: 15px;
             }
         }
 
@@ -316,7 +319,7 @@ $home-sidebar-width: 20.5%;
             p {
                 font-size: $font-size__base--desktop;
                 line-height: 1.4;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
 
                 @include min-screen($screen__m) {
                     font-size: 19px;
@@ -365,7 +368,7 @@ $home-sidebar-width: 20.5%;
         content: "";
         display: block;
         margin: 0 auto;
-        width: 50px;
+        width: 62px;
         padding-top: 15px;
         border-bottom: 3px solid $c-royal;
     }
@@ -375,24 +378,34 @@ $home-sidebar-width: 20.5%;
     .section-heading {
         &-container {
             width: 100% !important; // override BlueFoot
-            margin-top: 0 !important; // override BlueFoot;
-            margin-bottom: $indent__s !important; // override BlueFoot;
+            margin-top: 0 !important; // override BlueFoot
+            margin-bottom: $indent__s !important; // override BlueFoot
+
+            @include min-screen($screen__m) {
+                margin-top: $indent__l !important; // override BlueFoot
+            }
         }
     }
 
-    .grid-heading {
-        margin-top: $indent__xs;
+    .grid-heading.section-heading {
+        margin-top: $indent__m;
+        font-size: 26px;
 
         @include min-screen($screen__m) {
-            margin-top: 0;
+            font-size: 34px;
+            margin-top: $indent__m;
         }
 
         @include min-screen($screen__l) {
-            margin-top: 120px;
+            margin-top: 80px;
+        }
+
+        @include min-screen(1150px) { // this section shifts a lot, so we need a new breakpoint
+            margin-top: 140px;
         }
 
         @include min-screen($screen__xl) {
-            margin-top: 140px;
+            margin-top: 180px;
         }
     }
 
@@ -501,10 +514,7 @@ $home-sidebar-width: 20.5%;
 
             .product-item {
                 padding: 0;
-            }
-
-            .section-heading {
-                margin-top: 0;
+                margin-top: $indent__m;
             }
         }
 
@@ -517,6 +527,11 @@ $home-sidebar-width: 20.5%;
         .product-item {
             display: flex;
             justify-content: center;
+
+            .price-box .price {
+                font-weight: $font-weight__semibold;
+                font-size: 16px;
+            }
 
             @include min-screen($screen__m) {
                 &.item.product {
@@ -546,6 +561,11 @@ $home-sidebar-width: 20.5%;
             &-name  {
                 margin-top: 20px;
                 margin-bottom: 0;
+                font-weight: $font-weight__semibold;
+
+                @include max-screen($screen__m) {
+                    font-size: $font-size__base--desktop;
+                }
 
                 a {
                     @include hover {
@@ -560,9 +580,14 @@ $home-sidebar-width: 20.5%;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    padding-top: $indent__m;
+    padding: $indent__m $indent__s 0 $indent__s;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
+
+    @include min-screen($screen__m) {
+        padding: $indent__m;
+        padding-bottom: 0;
+    }
 
     &.bluefoot-row {
         @include min-screen($screen__l) {
@@ -577,12 +602,15 @@ $home-sidebar-width: 20.5%;
     &-header.bluefoot-entity {
         flex-basis: 100%;
         text-align: center;
-        margin-bottom: $indent__xl;
+        margin-top: 0;
+        margin-bottom: 30px;
         font-size: 26px;
     }
 
     @include min-screen($screen__m) {
         &-header.bluefoot-entity {
+            margin-top: $indent__m;
+            margin-bottom: $indent__l;
             font-size: 34px;
         }
 
@@ -603,6 +631,11 @@ $home-sidebar-width: 20.5%;
         color: $color-white;
         float: left;
         width: 100%;
+
+        @include max-screen($screen__m) {
+            padding: 0 !important; // override BF columns
+            padding-top: $indent__l !important; // override BF columns
+        }
 
         .tout-header {
             @include lib-heading(h2);
@@ -658,7 +691,7 @@ $home-sidebar-width: 20.5%;
                 }
 
                 &:nth-of-type(3) {
-                    margin-top: $indent__m;
+                    margin-top: $indent__s;
                     float: right;
                     width: 100%;
                 }
@@ -696,7 +729,8 @@ $home-sidebar-width: 20.5%;
         }
 
         @include max-screen($screen__m) {
-            margin-top: $indent__m;
+            margin-top: 15px;
+            margin-bottom: $indent__xs;
         }
     }
 
@@ -895,10 +929,12 @@ footer.page-footer {
 
 
 .bluefoot-row.triple-tout-row {
+    margin-top: 30px;
+
     @include min-screen($screen__m) {
+        margin: 40px auto 0 auto;
         padding-left: $indent__s;
         padding-right: $indent__s;
-        margin: $indent__xl auto;
         max-width: 90%;
     }
 
@@ -954,6 +990,11 @@ footer.page-footer {
     .section-heading {
         margin-top: $indent__xl;
         margin-bottom: $indent__s;
+        font-size: 26px;
+
+        @include min-screen($screen__m) {
+            font-size: 34px;
+        }
     }
 
     .rating-summary {
@@ -1022,8 +1063,7 @@ footer.page-footer {
     margin-right: 0 !important; // override BF
 
     @include max-screen($screen__m) {
-        width: 100vw;
-        margin-left: -20px !important; // body padding is 20px and this is full-width. Overrides BF
+        width: 100%;
     }
 
     .carousel,
@@ -1031,6 +1071,7 @@ footer.page-footer {
         @include max-screen($screen__l) {
             width: 100% !important; // override BF desktop layout
             padding: 0 !important; // override BF
+            margin: 0 !important; // override BF
         }
     }
 
