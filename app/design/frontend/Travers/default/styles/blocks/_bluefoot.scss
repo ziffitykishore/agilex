@@ -272,11 +272,13 @@ $home-sidebar-width: 20.5%;
     }
 
     .slick-slider {
-        margin-bottom: $indent__m !important; //override slick
+        margin-bottom: 30px !important; //override slick
+
+        @include min-screen($screen__m) {
+            margin-bottom: 0 !important; //override slick
+        }
 
         @include max-screen($screen__s) {
-            margin-bottom: 0 !important; //override slick
-
             .slick-slide.slick-current {
                 max-height: 134px;
             }
@@ -375,8 +377,12 @@ $home-sidebar-width: 20.5%;
     .section-heading {
         &-container {
             width: 100% !important; // override BlueFoot
-            margin-top: 0 !important; // override BlueFoot;
-            margin-bottom: $indent__s !important; // override BlueFoot;
+            margin-top: 0 !important; // override BlueFoot
+            margin-bottom: $indent__s !important; // override BlueFoot
+
+            @include min-screen($screen__m) {
+                margin-top: $indent__l !important; // override BlueFoot
+            }
         }
     }
 
@@ -1053,8 +1059,7 @@ footer.page-footer {
     margin-right: 0 !important; // override BF
 
     @include max-screen($screen__m) {
-        width: 100vw;
-        margin-left: -15px !important; // body padding was 15px and this is full-width. Overrides BF
+        width: 100%;
     }
 
     .carousel,
