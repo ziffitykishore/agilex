@@ -225,9 +225,13 @@ body {
     }
 
     svg {
-        max-width: 500px;
+        max-width: 300px;
         width: 100%;
-        margin-bottom: $indent__m;
+
+        @include min-screen($screen__m) {
+            max-width: 400px;
+            margin-bottom: $indent__m;
+        }
     }
 
     img {
