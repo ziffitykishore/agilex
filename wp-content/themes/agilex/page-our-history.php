@@ -89,7 +89,7 @@ get_header(); ?>
 
 
 
-    <div class="timeline-inner margin-top--70 white-bg pad-tb-50 pad-30">
+    <div class="timeline_inner margin-top--70 white-bg pad-tb-50 pad-30">
     <?php $args = array(
                 'post_type' => 'our_history',
                 'posts_per_page' => -1,
@@ -98,25 +98,45 @@ get_header(); ?>
                 'order' => 'ASC'
                 );
     $agilex_unique_query = new WP_Query($args); ?>
-    <ul class="nav ord-tab list slider-nav" role="tablist">
-        <?php while ($agilex_unique_query->have_posts()) {
+    <ul class="nav nav-tabs" role="tablist">
+        <?php 
+        $firstLoop = true;
+        $counter = 1;
+        while ($agilex_unique_query->have_posts()) {
         $agilex_unique_query->the_post(); ?>
-        <li role="presentation">
+        <li role="presentation" 
+        <?php 
+        
+        if($firstLoop == true){
+            echo 'class="current_page_item active"';
+        }
+        ?>
+        >
             
         <?php if (get_field('year', get_the_ID())){ ?>
-                                <div class="timeline-year <?php if (get_field('from_year', get_the_ID())) { echo 'timeline-year-from'; } if (get_field('beyond', get_the_ID())) { echo 'timeline-year-beyond'; } ?> "><span class="current-year"><?php echo get_field('year'); ?></span> <?php if (get_field('from_year', get_the_ID())){ ?> - <span class="additional"><?php echo get_field('from_year');?></span>  <?php }?> <?php if (get_field('beyond', get_the_ID())){?> & <span class="additional"><?php echo get_field('beyond');?></span> <?php }?></div>
+                                <a href="#history<?php echo $counter; ?>" role="tab" data-toggle="tab" class="timeline-year <?php if (get_field('from_year', get_the_ID())) { echo 'timeline-year-from'; } if (get_field('beyond', get_the_ID())) { echo 'timeline-year-beyond'; } ?> "><span class="current-year"><?php echo get_field('year'); ?></span> <?php if (get_field('from_year', get_the_ID())){ ?> - <span class="additional"><?php echo get_field('from_year');?></span>  <?php }?> <?php if (get_field('beyond', get_the_ID())){?> & <span class="additional"><?php echo get_field('beyond');?></span> <?php }?></a>
                             <?php } else { ?>
                                 <div class="timeline-year">0000</div>
                             <?php } ?>
                 <div class="hist-title"><?php echo the_Title(); ?></div>
             
         </li>
-        <?php } ?>
+        <?php $counter++; ?>
+        <?php $firstLoop = false; } ?>
     </ul>
-    <div class="tab-content slider-for">
-        <?php  while ($agilex_unique_query->have_posts()) {
+    <div class="tab-content">
+        <?php  $counter = 1; 
+        $firstLoop2 = true;
+        while ($agilex_unique_query->have_posts()) {
                 $agilex_unique_query->the_post();?>
-        <div class="timeline-blk">
+        <div id="history<?php echo $counter; ?>" role="tabpanel" class="timeline-blk tab-pane 
+        <?php 
+        
+        if($firstLoop2 == true){
+            echo ' active"';
+        }
+        ?>
+        ">
         
         <div class="timeline-item flex-sec ">
         
@@ -153,7 +173,8 @@ get_header(); ?>
                 </div> 
             
                                 </div>
-    <?php   } ?>
+                                <?php $counter++; ?>
+    <?php $firstLoop2 = false;  } ?>
     </div></div>
 <?php /* Restore original Post Data */
 wp_reset_postdata();?>
@@ -168,3 +189,171 @@ wp_reset_postdata();?>
 
 
     <?php get_footer(); ?>
+
+    <style>
+.scrtabs-tabs-fixed-container {
+overflow: visible;
+}
+#magic-line2 {     
+    position: absolute;
+    top: 40px;
+    left: -14px;
+    width: 100px;
+    height: 0;
+     background: transparent; 
+     transform: translateX(0);
+      transform-origin: left; 
+      transition: transform 0.4s; 
+      }
+      .hist-title {
+    margin-top: 50px;
+    color: #174a79;
+    transition-duration: 0.5s;
+    opacity: 0;
+    white-space: normal;
+}
+.nav-tabs {
+    border-bottom: 0;
+}
+.nav-tabs li a:before {
+content: '';
+    background: url(/wp-content/themes/agilex/images/scale.jpg);
+    width: 170px;
+    height: 28px;
+    position: absolute;
+    left: -8px;
+    top: 43px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#magic-line2:before {
+    content: '';
+    background: url(/wp-content/themes/agilex/images/scale-ho.jpg);
+    width: 180px;
+    height: 28px;
+    position: absolute;
+    left: 7px;
+    top: 4px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.scrtabs-tabs-fixed-container {
+    min-height: 125px;
+}
+.tab-content {
+margin-top: 100px;
+display: inline-block;
+width: 100%;
+}
+.timeline-item.flex-sec {
+    float: left;
+}
+
+.nav.nav-tabs>li { position: unset; margin-right: 2px;}
+.nav > li > a:hover, .nav > li > a:focus{
+    background: transparent;
+}
+.nav-tabs { margin: 0 auto; list-style: none; position: relative; display: flex; justify-content: center; cursor: pointer;}
+.nav-tabs li { display: inline-block; min-width: 170px; max-width: 170px; text-align: center;}
+.nav-tabs li a { color: #bbb; font-size: 14px; display: block; padding: 6px 10px 4px 10px; text-decoration: none; text-transform: uppercase; border-color: white;}
+.nav-tabs li a:hover { color: white; }
+.nav-tabs li:hover .hist-title { opacity: 1 }
+.nav.nav-tabs>li.active>a, .nav.nav-tabs>li.active>a:hover, .nav.nav-tabs>li.active>a:focus {color: #174a79; font-weight: 600; border-color: transparent;}
+.nav.nav-tabs>li.active .hist-title { opacity: 1 }
+
+.timeline-section .scrtabs-tabs-fixed-container{
+    margin: 0 auto;
+    float: none;
+    
+}
+
+.touch .timeline-section .scrtabs-tabs-fixed-container{
+    overflow-x:scroll;
+}
+
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right,
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-left {
+    border-width: 0;
+    position: absolute;
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right:hover,
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-left:hover {
+    background: transparent;
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right:hover:after,
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-left:hover:after {
+    border-color: #174a79;
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right:after,
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-left:after {
+    content: '';
+    border: 2px solid #ddd;
+    width: 15px;
+    height: 15px;
+    border-left-width: 0;
+    border-top-width: 0;
+    position: absolute;
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right:after{
+    transform: rotate(-45deg);
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-left:after {
+    transform: rotate(135deg);
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right{
+    right: 15px;
+    top: 20px;
+}
+.scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-left{
+    left: 15px;
+    top: 20px;
+}
+.scrtabs-tab-scroll-arrow .glyphicon {
+    display: none;
+}
+
+@media screen and (max-width: 1024px) {
+    .hist-title{
+        font-size: 12px;
+    }
+}
+
+
+</style>
+<link href="<?php echo get_template_directory_uri(); ?>/css/jquery.scrolling-tabs.min.css" rel="stylesheet"/>
+ <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.scrolling-tabs.min.js"></script> 
+
+<script>
+$(document).ready(function(){
+$('.nav-tabs').scrollingTabs();
+});
+$(document).ready(function() {
+
+    var $el, leftPos, newWidth, ratio, origLeft, origRatio,
+        origWidth = 100,
+        $mainNav  = $(".nav-tabs");
+    
+    $mainNav.append("<span id='magic-line2'></span>");
+    var $magicLine = $("#magic-line2");
+    
+    origLeft  = $(".current_page_item a").position().left;
+    newWidth  = $(".current_page_item").width();
+    origRatio = newWidth / $magicLine.width();
+
+    $magicLine
+        .css("transform", "translateX("+origLeft+"px)");
+        // $(window).resize(function(){
+    $("li").not("#magic-line2").hover(function() {
+	$('.nav-tabs li').removeClass('active');
+	$(this).find("> a").click();
+	$(this).addClass('active');
+	
+        $el = $(this).find("> a");
+        leftPos = $el.position().left;
+        newWidth = $el.parent().width();
+        ratio = newWidth / origWidth;
+        $magicLine.css("transform", "translateX("+leftPos+"px)");
+    }
+);
+});
+</script>

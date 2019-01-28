@@ -4540,9 +4540,9 @@ html {
 .timeline-item .timeline-image {
     padding-right: 0px;
     padding-left: 0px;
-    max-width: 45%;
-    -ms-flex: 4;
-    flex: 0 0 45%;
+    max-width: 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
 }
 
 .timeline-image .img-sec {
@@ -4552,7 +4552,7 @@ html {
     transition: 0.5s ease-in-out 0s;
     position: relative;
     display: inline-block;
-    width: 75%;
+    width:100%;
 }
 
 .timeline-item:hover .timeline-image .img-sec {
@@ -4572,6 +4572,7 @@ html {
     -ms-transition: all 0.5s ease-in-out 0s;
     -o-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
+    width: 100%;
 }
 
 .timeline-item:hover .timeline-image img {
@@ -4583,6 +4584,7 @@ html {
 }
 
 .timeline-image .secondary-image {
+    display: none;
     left: 35%;
     top: 70%;
     z-index: 1;
@@ -4605,9 +4607,10 @@ html {
 .timeline-item .timeline-content {
     padding-left: 0px;
     padding-right: 0px;
-    max-width: 48%;
-    -ms-flex: 0 0 48%;
-    flex: 0 0 48%;
+    max-width: 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    right: -40px;
 }
 
 /* Careers page */
