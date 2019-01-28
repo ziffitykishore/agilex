@@ -8,6 +8,7 @@
 ?>
 
 <?php $maxQueryLength = $this->helper('Magento\CatalogSearch\Helper\Data')->getMaxQueryLength();?>
+<span class="close_mini_form">+</span>
 <form class="form search advanced" action="<?= /* @escapeNotVerified */ $this->getUrl('catalogsearch/advanced/result/') ?>" method="get" id="form-validate1">
 <fieldset class="fieldset">
     <legend class="legend"><span><?= /* @escapeNotVerified */ __('Search Settings') ?></span></legend>
@@ -174,6 +175,9 @@ require([
         $('.advance_from_mini').addClass('open');
         var search1 = $('#search').val();
         $('#search_value').val(search1);
+    });
+    $('.close_mini_form').on('click', function() {        
+        $('.advance_from_mini').removeClass('open');
     });
     $(document).click(function(e){
         if(!$(e.target).closest(".advance_from_mini").length) {
