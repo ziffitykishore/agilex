@@ -98,7 +98,7 @@ get_header(); ?>
                 'order' => 'ASC'
                 );
     $agilex_unique_query = new WP_Query($args); ?>
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs history-tab" role="tablist">
         <?php 
         $firstLoop = true;
         $counter = 1;
@@ -191,9 +191,7 @@ wp_reset_postdata();?>
     <?php get_footer(); ?>
 
     <style>
-.scrtabs-tabs-fixed-container {
-overflow: visible;
-}
+
 #magic-line2 {     
     position: absolute;
     top: 40px;
@@ -226,6 +224,11 @@ content: '';
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.nav-tabs li.active:first-child ~ #magic-line2{
+    transform: translateX(20px) !important;
+}
+
 #magic-line2:before {
     content: '';
     background: url(/wp-content/themes/agilex/images/scale-ho.jpg);
@@ -312,6 +315,11 @@ width: 100%;
     display: none;
 }
 
+
+.touch .scrtabs-tabs-fixed-container {
+overflow-y: visible;
+}
+
 @media screen and (max-width: 1024px) {
     .hist-title{
         font-size: 12px;
@@ -320,40 +328,3 @@ width: 100%;
 
 
 </style>
-<link href="<?php echo get_template_directory_uri(); ?>/css/jquery.scrolling-tabs.min.css" rel="stylesheet"/>
- <script src="<?php echo get_template_directory_uri(); ?>/js/jquery.scrolling-tabs.min.js"></script> 
-
-<script>
-$(document).ready(function(){
-$('.nav-tabs').scrollingTabs();
-});
-$(document).ready(function() {
-
-    var $el, leftPos, newWidth, ratio, origLeft, origRatio,
-        origWidth = 100,
-        $mainNav  = $(".nav-tabs");
-    
-    $mainNav.append("<span id='magic-line2'></span>");
-    var $magicLine = $("#magic-line2");
-    
-    origLeft  = $(".current_page_item a").position().left;
-    newWidth  = $(".current_page_item").width();
-    origRatio = newWidth / $magicLine.width();
-
-    $magicLine
-        .css("transform", "translateX("+origLeft+"px)");
-        // $(window).resize(function(){
-    $("li").not("#magic-line2").hover(function() {
-	$('.nav-tabs li').removeClass('active');
-	$(this).find("> a").click();
-	$(this).addClass('active');
-	
-        $el = $(this).find("> a");
-        leftPos = $el.position().left;
-        newWidth = $el.parent().width();
-        ratio = newWidth / origWidth;
-        $magicLine.css("transform", "translateX("+leftPos+"px)");
-    }
-);
-});
-</script>
