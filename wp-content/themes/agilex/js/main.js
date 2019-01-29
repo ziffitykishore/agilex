@@ -1116,13 +1116,13 @@ function myFunction() {
         }
       });
 
-      $('.contact-form .hbspt-form .hs-form-field .hs-input').each(function(){
-        if ($(this).val()) {
-          jQuery(this)
-            .parents(".form-group, .field:not(.hs-fieldtype-booleancheckbox)")
-            .toggleClass("focused");
-        }
-      });
+    $('.contact-form .hbspt-form .hs-form-field .hs-input').each(function () {
+      if ($(this).val()) {
+        jQuery(this)
+          .parents(".form-group, .field:not(.hs-fieldtype-booleancheckbox)")
+          .toggleClass("focused");
+      }
+    });
     $('input[type="file"]').change(function () {
       if ($(this).hasClass("valid")) {
         $(this)
@@ -1325,31 +1325,40 @@ function myFunction() {
       $(this).addClass('empty');
     }
   });
-  $('.history-tab').scrollingTabs();
-  var $elm, leftPos1, newWidth1, ratio, origLeft, origRatio,
-      origWidth = 100,
-      $mainNav1  = $(".history-tab");
+
   
+})(jQuery);
+
+
+var historyTab = $('.history-tab');
+  if (historyTab.length) {
+  
+    historyTab.scrollingTabs();
+  }
+
+
+  var $elm, leftPos1, newWidth1, ratio, origLeft, origRatio,
+    origWidth = 100,
+    $mainNav1 = $(".history-tab");    
   $mainNav1.append("<span id='magic-line2'></span>");
   var $magicLine1 = $("#magic-line2");
-  
-  origLeft  = $(".current_page_item a").position().left;
-  newWidth  = $(".current_page_item").width();
+
+  origLeft = $(".current_page_item a").position().left;
+  newWidth = $(".current_page_item").width();
   origRatio = newWidth / $magicLine1.width();
 
   $magicLine1
-      .css("transform", "translateX("+origLeft+"px)");
-      // $(window).resize(function(){
-  $("li").not("#magic-line2").hover(function() {
-$('.history-tab li').removeClass('active');
-$(this).find("> a").click();
-$(this).addClass('active');
+    .css("transform", "translateX(" + origLeft + "px)");
+  // $(window).resize(function(){
 
-      $elm = $(this).find("> a");
-      leftPos1 = $elm.position().left;
-      newWidth = $elm.parent().width();
-      ratio = newWidth / origWidth;
-      $magicLine1.css("transform", "translateX("+leftPos1+"px)");
+  $("li").not("#magic-line2").hover(function () {
+    $('.history-tab li').removeClass('active');
+    $(this).find("> a").click();
+    $(this).addClass('active');
+
+    $elm = $(this).find("> a");
+    leftPos1 = $elm.position().left;
+    newWidth = $elm.parent().width();
+    ratio = newWidth / origWidth;
+    $magicLine1.css("transform", "translateX(" + leftPos1 + "px)");
   });
-
-})(jQuery);
