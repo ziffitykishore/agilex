@@ -57,11 +57,13 @@ class SeoProRender
     {
         try{
             $removeQuery = explode('?', $this->url->getCurrentUrl())[0];
-            $this->pageConfig->addRemotePageAsset(
-                $removeQuery,
-                'canonical',
-                ['attributes' => ['rel' => 'canonical']]
-            );
+            if(!in_array('blog', explode('/', $removeQuery))){
+                $this->pageConfig->addRemotePageAsset(
+                    $removeQuery,
+                    'canonical',
+                    ['attributes' => ['rel' => 'canonical']]
+                );
+            }
         } catch (Exception $ex) {
             $this->helperData->logger('seopro', $ex->getMessage(), true);
         }
