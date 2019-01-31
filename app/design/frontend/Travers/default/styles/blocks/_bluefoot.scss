@@ -937,9 +937,12 @@ footer.page-footer {
 
 
 .bluefoot-row.triple-tout-row {
+    display: flex;
+    flex-direction: column;
     margin-top: 30px;
 
     @include min-screen($screen__m) {
+        flex-direction: row;
         margin: 40px auto 0 auto;
         padding-left: $indent__s;
         padding-right: $indent__s;
