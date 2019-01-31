@@ -573,8 +573,8 @@ $_password-very-strong: #81b562 !default;
     .form.send.confirmation,
     .form.password.forget,
     .form.create.account {
-        min-width: 600px;
-        width: 50%;
+        max-width: $form-field__width__desktop;
+        width: 100%;
     }
 
     //
