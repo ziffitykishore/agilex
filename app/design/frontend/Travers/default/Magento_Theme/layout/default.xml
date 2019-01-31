@@ -35,6 +35,11 @@
         </block>
     </referenceContainer>
 
+    <referenceContainer name="catalog.topnav">
+        <container name="quick.order.container" htmlTag="div" htmlClass="quick-order-container"/>
+    </referenceContainer>
+
+    <move element="quick_order_link" destination="quick.order.container" before='-' />
     <move element="footer.connect" destination="footer" after="-" />
     <move element="copyright" destination="before.body.end" after="-"/>
 
