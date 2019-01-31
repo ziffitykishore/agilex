@@ -3,7 +3,6 @@ $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
 $home-sidebar-width: 20.5%;
-$slider-dot--inactive__color: #a6a6a6;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -252,7 +251,7 @@ $slider-dot--inactive__color: #a6a6a6;
         }
 
         li:not(.slick-active) button {
-            background: $slider-dot--inactive__color;
+            background: $c-dusty-grey;
 
             @include hover {
                 background: $c-royal;
