@@ -79,7 +79,7 @@ svg {
   letter-spacing: .7px;
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 768px) {
   .main-error-message {
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
     font-size: 48px;
