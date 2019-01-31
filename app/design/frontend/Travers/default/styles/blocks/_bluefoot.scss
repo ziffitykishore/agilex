@@ -759,6 +759,12 @@ $slider-dot--inactive__color: #a6a6a6;
     margin-right: 0;
     max-width: none;
 
+    .footer-promo-header {
+        font-weight: $font-weight__bold;
+        margin-top: 0;
+        font-size: 16px;
+    }
+
     @include min-screen($screen__m) {
         display: flex;
         align-items: center;
@@ -770,10 +776,16 @@ $slider-dot--inactive__color: #a6a6a6;
             width: 100%;
             max-width: 450px;
             margin-right: $indent__m;
+            margin-bottom: $indent__s;
+
+            .bluefoot-textarea {
+                margin-bottom: 0;
+            }
         }
 
         .footer-promo-header {
             margin-top: 15px;
+            font-size: 22px;
         }
 
         .catalog-image {
@@ -794,11 +806,6 @@ $slider-dot--inactive__color: #a6a6a6;
     .bluefoot-buttons,
     button {
         margin-bottom: 0;
-    }
-
-    .footer-promo-header {
-        font-weight: $font-weight__bold;
-        margin-top: 0;
     }
 
     .footer-promo-text {
