@@ -1024,12 +1024,22 @@ footer.page-footer {
         }
 
         &-giver {
-            color: $secondary__color;
             font-size: 13px;
         }
 
         &-slider {
             margin-bottom: 0 !important; // override Slick
+        }
+
+        &-details,
+        &-giver,
+        &-title {
+            font-size: $font-size__base--desktop;
+            color: $text__color;
+
+            @include min-screen($screen__m) {
+                font-size: 16px;
+            }
         }
     }
 
@@ -1048,12 +1058,6 @@ footer.page-footer {
 
             .bluefoot-full-width {
                 padding-bottom: 0;
-            }
-
-            .testimonial {
-                &-title {
-                    font-size: 15px;
-                }
             }
 
             .slick-dots {
