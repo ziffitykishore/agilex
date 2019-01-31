@@ -35,3 +35,34 @@ svg {
 .social-media svg:hover {
   fill: #0361C1;
 }
+
+.error-message h5,
+.contact-information h5 {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: .7px;
+  text-transform: uppercase;
+}
+
+.main-error-message {
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
+  font-size: 30px;
+  line-height: 1.1;
+  letter-spacing: 2.4;
+  text-transform: uppercase;
+}
+
+.error-text {
+  font-size: 14px;
+  line-height: 1.9;
+  letter-spacing: 1px;
+}
+
+@media only screen and (min-width: 1024px) {
+  .main-error-message {
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: 1.4;
+  }
+}
