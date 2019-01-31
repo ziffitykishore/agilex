@@ -48,7 +48,7 @@ svg {
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
   font-size: 30px;
   line-height: 1.1;
-  letter-spacing: 2.4;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
 }
 
@@ -58,11 +58,37 @@ svg {
   letter-spacing: 1px;
 }
 
+.contact-information a {
+  font-size: 14px;
+  line-height: 1.7;
+  letter-spacing: .5px;
+  color: white;
+}
+
+.contact-information a:hover {
+  color: #0361C1;
+}
+
+.contact-information .phone {
+  text-decoration: none;
+}
+
+.copyright {
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .7px;
+}
+
 @media only screen and (min-width: 1024px) {
   .main-error-message {
     font-family: Impact, 'Arial Narrow Bold', sans-serif;
     font-size: 48px;
     line-height: 1;
-    letter-spacing: 1.4;
+    letter-spacing: 1.4px;
+  }
+
+  .copyright {
+    font-size: 12px;
+    line-height: 1.3;
   }
 }
