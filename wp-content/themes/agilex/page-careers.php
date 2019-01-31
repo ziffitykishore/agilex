@@ -9,16 +9,16 @@
   get_header(); ?>
 
     <div class="main-banner-wrap">
-        <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
-        <div class="main-banner">
-        <?php if($featured_img_url){     
-                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
-                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
-                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
-            <?php } else  { ?>
-                <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
-            <?php }?>
-        </div>
+        <?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
+                $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>       
+                <div class="main-banner bg-image" data-src="<?php echo $featured_img_url; ?>">
+                        <?php if($featured_img_url){?>
+                        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" data-src="<?php echo $featured_img_url; ?>" class="lazy" alt="<?php echo $alt_text; ?>"/>
+                        <?php } else  { ?>
+                        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
+                        <?php }?>
+                    </div>
         <div class="page-header-content">
             <div class="container">
                 <h1>
@@ -133,58 +133,5 @@ endforeach; ?>
     </div>
 </div> -->
 
-<script>
-    jQuery(function($){
-        var currentValue = $('.nice-select .current').text();
 
-        $('.jobpost-form').submit(function(){
-            if($('#job-post-list').val() == ''){
-                $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
-            }    
-        });
-
-        $(".jobpost-form .btn").on('click', function () {
-        if ($('#job-post-list').val() == '') {
-            $('select').niceSelect('update');
-            //alert("Please select the job");
-            $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
-        } 
-
-        $('#job-post-list').on('change', function(){
-            if ($('#job-post-list').val()){
-                $('select').niceSelect('update');
-                $('.not-valid').hide();
-            }
-        })
-            
-        
-    });
-
-        $(window).on('load', function(){
-       /*  $('.nice-select .list').prepend('<li data-value class="label-content">Apply for</li>');
-
-            var noOption = $('.label-content').text();
-            if( currentValue !== noOption){
-            $('.nice-select .current').text(noOption);
-            } */
-        });
-
-
-
-
-        function scrollPostion(){
-        var  careerForm = $('.careers-form').offset().top;
-        header = $('.header-container').height();
-            $('html, body').animate({
-                scrollTop: careerForm - header
-            }, 800);
-
-    }
-        $('.btn-job').click(function() {
-            scrollPostion();
-            $('#job-post-list').val($(this).data('val')).trigger('change');
-            $('select').niceSelect('update');
-        });
-    });
-</script>
     <?php get_footer(); ?>

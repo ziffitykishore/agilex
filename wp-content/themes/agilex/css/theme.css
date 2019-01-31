@@ -3413,6 +3413,11 @@ p+p {
     background: #192a3e;
 }
 
+.main-banner-wrap img{
+    object-fit: cover;
+    height: 100%;
+}
+
 .main-banner {
     height: 100%;
     width: 100%;

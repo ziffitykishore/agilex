@@ -79,10 +79,10 @@
                                         <a class="media-left post-thumb" href="<?php echo get_permalink( $popularpost->ID ); ?>" rel="<?php the_title() ?>">
                                             <?php  $thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $popularpost->ID ), "thumbnail" ); ?>
                                             <?php if($thumbnail) {?>
-                                                <img class="" src="<?php echo $thumbnail[0]; ?>" alt="<?php the_title() ?>"/>
+                                                <img class="lazy" src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" data-src="<?php echo $thumbnail[0]; ?>" alt="<?php the_title() ?>"/>
                                             <?php } else {?>
 
-                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" alt="<?php the_title() ?>"/>
+                                                <img class="lazy" data-src="<?php echo get_template_directory_uri()?>/images/blog-small.jpg" alt="<?php the_title() ?>"/>
                                             <?php } ?>
                                         </a>
 

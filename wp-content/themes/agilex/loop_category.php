@@ -23,12 +23,12 @@
                                             ?>
                                             <?php $featured_img_url = get_the_post_thumbnail_url($postValue->ID,'thumbnail'); ?>
                                             <?php if($image_object){ ?>
-                                            <img src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/>
+                                            <img class="lazy" src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg" data-src="<?php echo $image_object['url']; ?>" alt="<?php the_title(); ?>" title="<?php the_title(); ?>"/>
                                             <?php } elseif($featured_img_url) {?>
                                                 
-                                                <img src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
+                                                <img class="lazy" src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg" data-src="<?php echo $featured_img_url ?>" alt="<?php the_title(); ?>"/>
                                             <?php } else { ?>
-                                                <img src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg"/>                    
+                                                <img class="lazy" data-src="<?php echo get_template_directory_uri()?>/images/blog-thumb.jpg"/>                    
                                             <?php  }?>
 
                                             </a>

@@ -7,24 +7,23 @@
  */
 get_header(); ?>
 <div class="main-banner-wrap">
-<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
-<div class="main-banner">
-<?php if($featured_img_url){     
-                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
-                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
-                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
+$thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+$alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>      
+    <div class="main-banner bg-image" data-src="<?php echo $featured_img_url; ?>">
+        <?php if($featured_img_url){?>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" data-src="<?php echo $featured_img_url; ?>" class="lazy" alt="<?php echo $alt_text; ?>"/>
         <?php } else  { ?>
-            <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
         <?php }?>
-        </div>
-        <div class="page-header-content">
-       <div class="container">
-         <h1><?php echo the_Title(); ?></h1>
-         <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
+    </div>
+    <div class="page-header-content">
+        <div class="container">
+            <h1><?php echo the_Title(); ?></h1>
+            <p><?php echo wp_strip_all_tags( get_the_excerpt(), true ); ?></p>       
         </div>     
-      
- </div>
-        </div>
+    </div>
+</div>
 
 <!-- <div class="timeline-sec" id="our-history">
     <div class="container">
@@ -128,7 +127,10 @@ get_header(); ?>
         <?php  $counter = 1; 
         $firstLoop2 = true;
         while ($agilex_unique_query->have_posts()) {
-                $agilex_unique_query->the_post();?>
+                $agilex_unique_query->the_post();
+                $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+                $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>
         <div id="history<?php echo $counter; ?>" role="tabpanel" class="timeline-blk tab-pane 
         <?php 
         
@@ -144,9 +146,9 @@ get_header(); ?>
                         <div class="img-sec">
                             
                             <figure class="feature-image">
-                            <?php if ( has_post_thumbnail() ) {
-                                    the_post_thumbnail('full');
-                                } else { ?>
+                            <?php if ( has_post_thumbnail() ) { ?>
+                                    <img data-src="<?php echo $featured_img_url;?>" alt="<?php echo $alt_text;?>" class="lazy">
+                                <?php } else { ?>
                                     <img  class="" src="<?php bloginfo('template_directory'); ?>/images/placeholder_500X350.png" alt="Placeholder" />
                             <?php } ?>
                                 
@@ -225,9 +227,7 @@ content: '';
     background-repeat: no-repeat;
 }
 
-.nav-tabs li.active:first-child ~ #magic-line2{
-    transform: translateX(20px) !important;
-}
+
 
 #magic-line2:before {
     content: '';
@@ -271,7 +271,7 @@ width: 100%;
 }
 
 .touch .timeline-section .scrtabs-tabs-fixed-container{
-    overflow-x:scroll;
+    overflow-x:auto;
 }
 
 .scrtabs-tab-scroll-arrow.scrtabs-tab-scroll-arrow-right,
@@ -317,7 +317,13 @@ width: 100%;
 
 
 .touch .scrtabs-tabs-fixed-container {
-overflow-y: visible;
+
+}
+
+@media screen and (min-width: 1300px) {
+.nav-tabs li.active:first-child ~ #magic-line2{
+    transform: translateX(20px) !important;
+}
 }
 
 @media screen and (max-width: 1024px) {
