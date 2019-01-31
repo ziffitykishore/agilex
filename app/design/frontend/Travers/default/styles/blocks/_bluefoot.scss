@@ -782,17 +782,22 @@ $slider-dot--inactive__color: #a6a6a6;
 
         .footer-promo-text {
             width: 100%;
-            max-width: 450px;
+            max-width: 550px;
             margin-right: $indent__m;
-            margin-bottom: $indent__s;
+            margin-bottom: 0;
 
             .bluefoot-textarea {
                 margin-bottom: 0;
+
+                p {
+                    font-size: 16px;
+                    margin-bottom: 0;
+                }
             }
         }
 
         .footer-promo-header {
-            margin-top: 15px;
+            margin-top: 0;
             font-size: 22px;
         }
 
