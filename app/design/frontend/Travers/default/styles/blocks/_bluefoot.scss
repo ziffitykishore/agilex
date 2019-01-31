@@ -808,6 +808,8 @@ $home-sidebar-width: 20.5%;
     .catalog-image {
         max-width: 100px;
         width: 100%;
+        box-shadow: $indent__xs 0 $indent__s -2px $c-silver;
+        margin-right: $indent__s;
 
         figure { // The image's container
             margin: 0;
