@@ -965,10 +965,9 @@ footer.page-footer {
     .homepage-tout {
         button {
             @include button--type(primary);
-            margin-bottom: $indent__l;
+            margin-bottom: 0;
 
             @include min-screen($screen__m) {
-                margin-bottom: 0;
                 max-width: 160px;
                 width: 100%;
             }
@@ -1019,14 +1018,19 @@ footer.page-footer {
         .bluefoot-advanced-slide-content {
             margin-bottom: 0 !important; // override Slick
         }
+
+        .bluefoot-advanced-slide-content {
+            margin-top: 0 !important; // override Slick
+        }
     }
 
     .section-heading {
-        margin-top: $indent__xl;
+        margin-top: 0;
         margin-bottom: $indent__s;
         font-size: 26px;
 
         @include min-screen($screen__m) {
+            margin-top: $indent__xl;
             font-size: 34px;
         }
     }
