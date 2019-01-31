@@ -644,14 +644,14 @@ $slider-dot--inactive__color: #a6a6a6;
             margin: 0;
         }
 
-        span,
+        p,
         .tout-subheader {
             font-size: $font-size__base--desktop;
             line-height: 1.3;
         }
 
         @include min-screen($screen__m) {
-            span,
+            p,
             button,
             .tout-subheader {
                 font-size: 16px;
