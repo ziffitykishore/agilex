@@ -189,7 +189,7 @@ wp_enqueue_script( 'timeline-js', get_template_directory_uri() . '/js/timeline.j
     /* wp_enqueue_script( 'TweenMax-js', get_template_directory_uri() . '/js/TweenMax.min.js', array( 'jquery' ), '', true ); */
 /*     wp_enqueue_script( 'animsition-js', get_template_directory_uri() . '/js/jquery.animsition.min.js', array( 'jquery' ), '', true ); */
 wp_enqueue_script( 'scrollingtab-js', get_template_directory_uri() . '/js/jquery.scrolling-tabs.min.js', array( 'jquery' ), '', true );
-
+wp_enqueue_script( 'infinitescroll-js', get_template_directory_uri() . '/js/infinite-scroll.pkgd.min.js', array( 'jquery' ), '', true );
 
 
     wp_enqueue_script( 'main-js', get_template_directory_uri() . '/js/main.js', array( 'jquery' ), '', true );

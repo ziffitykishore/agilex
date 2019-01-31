@@ -7,16 +7,16 @@
  */
 get_header(); ?>
 <div class="main-banner-wrap">
-<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>      
-<div class="main-banner">
-<?php if($featured_img_url){     
-                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
-                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
-                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); 
+$thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+$alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>       
+<div class="main-banner bg-image" data-src="<?php echo $featured_img_url; ?>">
+        <?php if($featured_img_url){?>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" data-src="<?php echo $featured_img_url; ?>" class="lazy" alt="<?php echo $alt_text; ?>"/>
         <?php } else  { ?>
-          <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1920X450.png" class="" alt="Agilex Fragrances"/>
+        <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
         <?php }?>
-        </div>
+    </div>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
@@ -58,9 +58,9 @@ get_header(); ?>
             <div class="border-ani"></div>
               <?php if (get_field('full_image', get_the_ID())){ ?>
                     <?php $image = get_field('full_image'); ?>
-                      <img class="full-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+                      <img class="full-image lazy" data-src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
                   <?php } else { ?>
-                      <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
+                      <img class="lazy" data-src="<?php bloginfo('template_directory'); ?>/images/placeholder_1170X500.png" alt="<?php the_title(); ?>" />
             <?php } ?>
             <div class="categories-content  wow fadeIn">
             <a href="<?php echo get_permalink() ?>"><h2><?php echo the_Title(); ?></h2></a>

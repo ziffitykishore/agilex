@@ -6,18 +6,17 @@
  * @since Agilex 1.0
  */
 get_header(); ?>
-<script src="<?php echo get_template_directory_uri(); ?>/js/infinite-scroll.pkgd.min.js"></script>
 <div class="main-banner-wrap">
-<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
-<div class="main-banner">
-<?php if($featured_img_url){     
-                   $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
-                   $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
-                    <img src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
-        <?php } else  { ?>
-            <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
-        <?php }?>
-        </div>
+<?php $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
+        $thumbnail_ID = get_post_thumbnail_id( get_the_ID() );
+        $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>       
+        <div class="main-banner bg-image" data-src="<?php echo $featured_img_url; ?>">
+                <?php if($featured_img_url){?>
+                <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" data-src="<?php echo $featured_img_url; ?>" class="lazy" alt="<?php echo $alt_text; ?>"/>
+                <?php } else  { ?>
+                <img src="<?php bloginfo('template_directory'); ?>/images/blog-header.jpg" class="" alt="<?php echo the_Title(); ?>"/>
+                <?php }?>
+            </div>
         <div class="page-header-content">
        <div class="container">
          <h1><?php echo the_Title(); ?></h1>
@@ -65,32 +64,4 @@ get_header(); ?>
         </div>
       </div>
     </div>
-
-    <script type="text/javascript" charset="utf-8">
-        var postPage = jQuery("#post_per_page").val();
-        var publishedPost = jQuery("#published_posts").val();
-        var pageUrl = <?php echo $_SERVER['REQUEST_URI']; ?>;
-        jQuery(window).load(function() {
-        jQuery('.curated-container').infiniteScroll({
-            // options
-            path: function() {
-                if (publishedPost < 15 ||
-                        (Math.round(publishedPost/postPage) + 1) == parseInt(this.loadCount + 2)  ) {
-                    return false;
-                }
-                if (jQuery().niceScroll) {
-                    jQuery("html.no-touch").getNiceScroll().hide();
-                }
-                jQuery('html, body').css({overflow: 'visible'});
-                var pageNumber = ( this.loadCount + 2 );
-                return pageUrl+'page/' + pageNumber;
-            },
-            status: '.page-load-status',
-            append: '.curated-content',
-            history: false,
-        });
-        });
-
-
-    </script>
     <?php get_footer(); ?>

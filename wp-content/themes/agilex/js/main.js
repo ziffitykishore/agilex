@@ -293,7 +293,7 @@ function myFunction() {
 
   //bgSource('.no-touch .sub-category .image-sec');
 
-  bgSource(".main-banner");
+  //bgSource(".main-banner");
 
   function bgImage() {
     $('.bg-image').each(function () {
@@ -309,6 +309,20 @@ function myFunction() {
   }
 
   bgImage();
+
+  function bannerWidth(){
+    $('.main-banner').each(function(){
+      var img = $(this).find('img'),
+          winW = $(window).width();
+          img.attr('width', winW);
+    });
+  }
+
+  bannerWidth();
+  $(window).on('load resize', function(e){
+    bannerWidth();
+  });
+
 
   $(".btn-ripple").click(function (e) {
     /* Remove any old one */
@@ -1326,39 +1340,107 @@ function myFunction() {
     }
   });
 
-  
-})(jQuery);
-
-
-var historyTab = $('.history-tab');
+  var historyTab = $('.history-tab');
   if (historyTab.length) {
-  
+
     historyTab.scrollingTabs();
+
+
+
+    var $elm, leftPos1, newWidth1, ratio, origLeft, origRatio,
+      origWidth = 100,
+      $mainNav1 = $(".history-tab");
+    $mainNav1.append("<span id='magic-line2'></span>");
+    var $magicLine1 = $("#magic-line2");
+
+    origLeft = $(".current_page_item a").position().left;
+    newWidth = $(".current_page_item").width();
+    origRatio = newWidth / $magicLine1.width();
+
+    $magicLine1
+      .css("transform", "translateX(" + origLeft + "px)");
+    // $(window).resize(function(){
+
+    $("li").not("#magic-line2").hover(function () {
+      $('.history-tab li').removeClass('active');
+      $(this).find("> a").click();
+      $(this).addClass('active');
+
+      $elm = $(this).find("> a");
+      leftPos1 = $elm.position().left;
+      newWidth = $elm.parent().width();
+      ratio = newWidth / origWidth;
+      $magicLine1.css("transform", "translateX(" + leftPos1 + "px)");
+    });
+
   }
 
+  /* cureate News */
 
-  var $elm, leftPos1, newWidth1, ratio, origLeft, origRatio,
-    origWidth = 100,
-    $mainNav1 = $(".history-tab");    
-  $mainNav1.append("<span id='magic-line2'></span>");
-  var $magicLine1 = $("#magic-line2");
-
-  origLeft = $(".current_page_item a").position().left;
-  newWidth = $(".current_page_item").width();
-  origRatio = newWidth / $magicLine1.width();
-
-  $magicLine1
-    .css("transform", "translateX(" + origLeft + "px)");
-  // $(window).resize(function(){
-
-  $("li").not("#magic-line2").hover(function () {
-    $('.history-tab li').removeClass('active');
-    $(this).find("> a").click();
-    $(this).addClass('active');
-
-    $elm = $(this).find("> a");
-    leftPos1 = $elm.position().left;
-    newWidth = $elm.parent().width();
-    ratio = newWidth / origWidth;
-    $magicLine1.css("transform", "translateX(" + leftPos1 + "px)");
+  var postPage = jQuery("#post_per_page").val();
+  var publishedPost = jQuery("#published_posts").val();
+  var pageUrl = window.location.pathname;
+  jQuery(window).load(function () {
+    jQuery('.curated-container').infiniteScroll({
+      // options
+      path: function () {
+        if (publishedPost < 15 ||
+          (Math.round(publishedPost / postPage) + 1) == parseInt(this.loadCount + 2)) {
+          return false;
+        }
+        if (jQuery().niceScroll) {
+          jQuery("html.no-touch").getNiceScroll().hide();
+        }
+        jQuery('html, body').css({ overflow: 'visible' });
+        var pageNumber = (this.loadCount + 2);
+        return pageUrl + 'page/' + pageNumber;
+      },
+      status: '.page-load-status',
+      append: '.curated-content',
+      history: false,
+    });
   });
+  /* careers */
+
+  jQuery(function ($) {
+    var currentValue = $('.nice-select .current').text();
+
+    $('.jobpost-form').submit(function () {
+      if ($('#job-post-list').val() == '') {
+        $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
+      }
+    });
+
+    $(".jobpost-form .btn").on('click', function () {
+      if ($('#job-post-list').val() == '') {
+        $('select').niceSelect('update');
+        //alert("Please select the job");
+        $('<span class="not-valid">Please select job post</span>').appendTo('.select-box');
+      }
+
+      $('#job-post-list').on('change', function () {
+        if ($('#job-post-list').val()) {
+          $('select').niceSelect('update');
+          $('.not-valid').hide();
+        }
+      });
+
+
+    });
+
+    function scrollPostion() {
+      var careerForm = $('.careers-form').offset().top;
+      header = $('.header-container').height();
+      $('html, body').animate({
+        scrollTop: careerForm - header
+      }, 800);
+
+    }
+    $('.btn-job').click(function () {
+      scrollPostion();
+      $('#job-post-list').val($(this).data('val')).trigger('change');
+      $('select').niceSelect('update');
+    });
+  });
+
+})(jQuery);
