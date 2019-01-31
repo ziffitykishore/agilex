@@ -20,7 +20,7 @@
       enctype="multipart/form-data"
       autocomplete="off">
     <?= $block->getBlockHtml('formkey') ?>
-    <fieldset class="fieldset info">
+    <fieldset class="fieldset info" data-hasrequired="* Required Fields">
         <legend class="legend"><span><?= $block->escapeHtml(__('Company Information')) ?></span></legend><br>
         <div class="field company-name _required">
             <label class="label" for="company_name">
@@ -86,7 +86,7 @@
         </div>
     </fieldset>
 
-    <fieldset class="fieldset info">
+    <fieldset class="fieldset info" data-hasrequired="* Required Fields">
         <legend class="legend"><span><?= $block->escapeHtml(__('Legal Address')) ?></span></legend><br>
         <div class="field street _required">
             <label class="label" for="street0">
@@ -179,7 +179,7 @@
         </div>
     </fieldset>
 
-    <fieldset class="fieldset create info">
+    <fieldset class="fieldset create info" data-hasrequired="* Required Fields">
         <legend class="legend"><span><?= /* @noEscape */ __('Company Administrator') ?></span></legend><br>
 
         <div class="field legal-name">
