@@ -10,7 +10,7 @@ body {
 .maintenance-page {
   max-width: 900px;
   margin: 0 auto;
-  padding: 100px 60px 0;
+  padding: 100px 20px 0 20px;
   padding-top: 100px;
 }
 
@@ -44,6 +44,11 @@ svg {
   text-transform: uppercase;
 }
 
+.error-message h5,
+.main-error-message {
+  margin-top: 25px;
+}
+
 .main-error-message {
   font-family: Impact, 'Arial Narrow Bold', sans-serif;
   font-size: 30px;
@@ -58,11 +63,21 @@ svg {
   letter-spacing: 1px;
 }
 
+.contact-information {
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.contact-information h5 {
+  margin-bottom: 10px;
+}
+
 .contact-information a {
   font-size: 14px;
   line-height: 1.7;
   letter-spacing: .5px;
   color: white;
+  display: block;
 }
 
 .contact-information a:hover {
@@ -77,6 +92,13 @@ svg {
   font-size: 11px;
   line-height: 1.5;
   letter-spacing: .7px;
+  margin-top: 125px;
+
+}
+
+.logo {
+  max-width: 375px;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
