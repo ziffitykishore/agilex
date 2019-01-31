@@ -1063,6 +1063,11 @@ footer.page-footer {
         }
 
         @include min-screen($screen__m) {
+            width: 70% !important; // override Slick
+            margin: 30px auto 50px auto !important; // override Slick;
+        }
+
+        @include min-screen($screen__l) {
             border: 0;
             width: 100% !important; //override Slick
             padding: 0 !important; //override Slick
