@@ -1,0 +1,23 @@
+.contact.form {
+  max-width: $form-field__width__desktop;
+}
+
+.contact-index-index {
+  .contact-description {
+    max-width: 700px;
+  }
+
+  .note,
+  .contact.form {
+    margin-top: $indent__xl;
+  }
+
+  .note,
+  .contact-description {
+    font-size: $font-size__base--desktop;
+  }
+
+  .input-text {
+    border: 1px solid $c-border;
+  }
+}
