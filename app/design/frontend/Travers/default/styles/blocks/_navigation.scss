@@ -62,10 +62,14 @@ $nav-section-title__height: 60px;
 
 .secondary-nav-links {
     width: 100vw;
-    margin: 0 0 15px -20px !important; // override BF
+    margin: 0 0 15px -15px !important; // override BF
     text-align: center;
     background-color: $c-smoke;
     padding: $indent__s 0 8px 0;
+
+    @include min-screen($screen__xs) {
+        margin: 0 0 15px -20px !important; // override BF
+    }
 
     &-link {
         width: 50% !important; // override BF
@@ -73,7 +77,6 @@ $nav-section-title__height: 60px;
         a {
             color: $c-cobalt;
             text-decoration: none;
-            font-weight: $font-weight__bold;
             font-size: $font-size__base--desktop;
 
             @include hover {
