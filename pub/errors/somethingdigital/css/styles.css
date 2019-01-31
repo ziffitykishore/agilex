@@ -1,0 +1,15 @@
+body {
+  background-color: #00377B;
+  color: #fff;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+.maintenance-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 100px 60px 0;
+  padding-top: 100px;
+}
