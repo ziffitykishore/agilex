@@ -23,6 +23,8 @@ $_password-very-strong: #81b562 !default;
 //  _____________________________________________
 
 .login-container {
+    margin-top: $indent__m;
+
     .block {
         &-new-customer {
             .actions-toolbar {
@@ -42,6 +44,7 @@ $_password-very-strong: #81b562 !default;
         &:before {
             @include min-screen($screen__m) {
                 max-width: $form-field__width__desktop;
+                width: 100%;
             }
         }
 
