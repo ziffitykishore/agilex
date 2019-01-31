@@ -5,12 +5,6 @@
  */
 namespace Ziffity\Core\Model;
 
-use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Catalog\Model\Product;
-use Magento\Checkout\Model\Cart\CartInterface;
-use Magento\Framework\DataObject;
-use Magento\Framework\Exception\NoSuchEntityException;
-
 /**
  * Shopping cart model
  *
@@ -28,8 +22,7 @@ class Cart extends \Magento\Checkout\Model\Cart
      */
     public function getItemsCount()
     {
-        $items = $this->getQuote()->getAllItems();
-        
+        $items = $this->getQuote()->getAllVisibleItems();
         return count($items);
     }
 
@@ -41,7 +34,7 @@ class Cart extends \Magento\Checkout\Model\Cart
      */
     public function getItemsQty()
     {
-        $items = $this->getQuote()->getAllItems();
+        $items = $this->getQuote()->getAllVisibleItems();
         $qty = 0;
         foreach($items as $item) {
             $qty += $item->getQty();

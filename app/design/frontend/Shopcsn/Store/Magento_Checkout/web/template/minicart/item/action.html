@@ -78,34 +78,38 @@
                     <button data-bind="attr: {
                                     id:'decrement-cart-item-'+item_id,
                                     'data-cart-item' : item_id,
-                                    title: $t('Decrement')
-                                    }"
-                                            class="decrement-cart-item">
+                                    title: $t('Decrement'),
+                                    'disabled': !product_has_url
+                                }"
+                            class="decrement-cart-item">
                             <span>-</span>						
                     </button>					
             <!-- Button for Decrement -->
                     <input data-bind="attr: {
-                           id: 'cart-item-'+item_id+'-qty',
-                           'data-cart-item': item_id,
-                           'data-item-qty': qty,
-                           'data-cart-item-id': product_sku,
-                           title: $t('Qty')
-                           }, value: qty" type="number" size="4" class="item-qty cart-item-qty"/>
-            <!--Button For Increment -->
+                            id: 'cart-item-'+item_id+'-qty',
+                            'data-cart-item': item_id,
+                            'data-item-qty': qty,
+                            'data-cart-item-id': product_sku,
+                            title: $t('Qty'),
+                            'disabled': !product_has_url
+                            }, value: qty" type="number" size="4" class="item-qty cart-item-qty"/>
+                    <!--Button For Increment -->
                     <button data-bind="attr: {
-                                    id:'increment-cart-item-'+item_id,
-                                    'data-cart-item' : item_id,
-                                    title: $t('Increment')
-                                    }"
-                                            class="increment-cart-item">
+                                id:'increment-cart-item-'+item_id,
+                                'data-cart-item' : item_id,
+                                title: $t('Increment'),
+                                'disabled': !product_has_url
+                            }"
+                            class="increment-cart-item">
                             <span>+</span>						
                     </button>
-            <!--Button For Increment -->                    
+                    <!--Button For Increment -->
                     <button data-bind="attr: {
                             id: 'update-cart-item-'+item_id,
                             class:'update-cart-item data-prod-id-'+item.product_id,
                             'data-cart-item': item_id,
-                            title: $t('Update')
+                            title: $t('Update'),
+                            'disabled': !product_has_url
                             }" style="display: none">
                         <span class="fa fa-refresh"></span>
                     </button>
@@ -120,11 +124,13 @@
                     </a>
                 </div>
                 <!-- /ko -->
+                <!-- ko if: product_has_url -->
                 <div class="secondary">
                     <a href="#" data-bind="attr: {'data-cart-item': item_id, title: $t('Remove item')}" class="action delete">
                         <span data-bind="i18n: 'Remove'"></span>
                     </a>
                 </div>
+                <!-- /ko -->
             </div>
         </div>
     </div>
