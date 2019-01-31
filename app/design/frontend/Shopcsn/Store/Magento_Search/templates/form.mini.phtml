@@ -11,7 +11,6 @@
 /** @var $helper \Magento\Search\Helper\Data */
 $helper = $this->helper(\Magento\Search\Helper\Data::class);
 ?>
-<div class="block block-search">
     <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
     <div class="block block-content">
         <form class="form minisearch" id="search_mini_form" action="<?= /* @escapeNotVerified */ $helper->getResultUrl() ?>" method="get">
@@ -36,8 +35,10 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            aria-haspopup="false"
                            aria-autocomplete="both"
                            autocomplete="off"/>
+                           <div class="wrapper_suggest">
                     <div id="search_autocomplete" class="search-autocomplete"></div>
                     <?= $block->getChildHtml() ?>
+                    <div class="_adv_trig"><span>Advanced Search</span></div></div>
                 </div>
             </div>
             <div class="actions">
@@ -48,8 +49,7 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                 </button>
             </div>
         </form>
-        <a href="<?= $block->getUrl('catalogsearch/advanced') ?>" class="advanced-search">
+        <!-- <a href="<?= $block->getUrl('catalogsearch/advanced') ?>" class="advanced-search">
         <?= /* @escapeNotVerified */ __('Advanced Search') ?>
-        </a>
+        </a> -->
     </div>
-</div>

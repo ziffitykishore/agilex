@@ -58,9 +58,7 @@ define([
             e.preventDefault();
             var popup = modal(options, authOptions.popupModalId);
             authOptions.clearForm(authOptions.popupModalId);
-            authOptions.popupModalId.modal('openModal').on('modalclosed', function(){
-            authOptions.loginNotify.hide().html('');
-            });
+            authOptions.popupModalId.modal('openModal');
             if(authOptions.isCheckoutPage){
                 authOptions.popupModalId.closest('.modal-inner-wrap').addClass('fullwidth-popup');
             }

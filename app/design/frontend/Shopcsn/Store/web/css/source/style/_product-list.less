@@ -57,6 +57,18 @@
 /* Layered Filter */
 
 & when (@media-common =true) {
+    .wishlist-shared-index {
+        .action.towishlist {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        a.product.photo {
+            display: block;
+        }
+        a.action.back {
+            visibility: hidden;
+        }
+    }
     #layered-filter-block {
         &.filter {
             background: @color-whitesmoke;

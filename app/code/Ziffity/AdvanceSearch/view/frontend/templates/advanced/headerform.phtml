@@ -8,9 +8,10 @@
 ?>
 
 <?php $maxQueryLength = $this->helper('Magento\CatalogSearch\Helper\Data')->getMaxQueryLength();?>
-<form class="form search advanced" action="<?= /* @escapeNotVerified */ $block->getSearchPostUrl() ?>" method="get" id="form-validate">
+<span class="close_mini_form">+</span>
+<form class="form search advanced" action="<?= /* @escapeNotVerified */ $this->getUrl('catalogsearch/advanced/result/') ?>" method="get" id="form-validate1">
 <fieldset class="fieldset">
-    <legend class="legend"><span><?= /* @escapeNotVerified */ __('Search Settings') ?></span></legend><br />
+    <legend class="legend"><span><?= /* @escapeNotVerified */ __('Search Settings') ?></span></legend>
     <div class="field name">
         <label class="label" for="name">
             <span><?= /* @escapeNotVerified */ __('Search:') ?></span>
@@ -18,7 +19,7 @@
         <div class="control">
             <input type="text"
                 name="<?= 'search_value' ?>"
-                id="<?= 'search_value1' ?>"
+                id="<?= 'search_value' ?>"
                 placeholder="<?= $block->escapeHtml(__('Search')) ?>"
                 title="<?= $block->escapeHtml(__('Search')) ?>"
                 class="input-text validate-length maximum-length-255"
@@ -155,7 +156,7 @@ require([
     "mage/mage",
     "mage/validation"
 ], function($){
-    $('#form-validate').mage('validation', {
+    $('#form-validate1').mage('validation', {
         errorPlacement: function (error, element) {
             var parent = element.parent();
             if (parent.hasClass('range')) {
@@ -169,5 +170,25 @@ require([
             'price[from]': {'less-than-equals-to': 'Please enter a valid price range.'}
         }
     });
+    $('._adv_trig').on('click', function(event) {
+        event.stopPropagation();
+        $('.advance_from_mini').addClass('open');
+        var search1 = $('#search').val();
+        $('#search_value').val(search1);
+    });
+    $('.close_mini_form').on('click', function() {        
+        $('.advance_from_mini').removeClass('open');
+    });
+    $(document).click(function(e){
+        if(!$(e.target).closest(".advance_from_mini").length) {
+            $('.advance_from_mini').removeClass('open');
+        }
+    });
+    $(document).keyup(function(e) {
+        if (e.key === "Escape") { 
+            $('.advance_from_mini').removeClass('open');
+        }
+    });
 });
+
 </script>

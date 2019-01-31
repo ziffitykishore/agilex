@@ -17,4 +17,5 @@
     </type>
 <!--     Ziffity rewrite to show not visible product in minicart -->
     <preference for="Magento\Checkout\CustomerData\Cart" type="Ziffity\Promo\CustomerData\Cart" />
+    <preference for="Magento\Sales\Controller\Order\Reorder" type="Ziffity\Promo\Controller\Order\Reorder" />
 </config>

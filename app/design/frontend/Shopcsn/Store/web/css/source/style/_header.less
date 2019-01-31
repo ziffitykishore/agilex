@@ -72,6 +72,280 @@
         }
     }
     .header-wrapper {
+        .block-search {
+            position: relative;
+            .advance_from_mini {
+            label {
+                display: block;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-right: 35px;
+                position: relative;
+                height: auto;
+                width: auto;
+                clip: unset;
+                &:before {
+                    display: none;
+                }
+                span {
+                    position: relative;
+                    height: auto;
+                    width: auto;
+                    clip: unset;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
+        }
+        div#search_autocomplete {
+            position: relative !important;
+        }
+        }
+        .advance_from_mini {
+            display: none;
+            background: #f2f5f8;
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            max-width: ~"calc(80% - 24px)";
+            margin: auto;
+            padding: 60px 55px 40px 70px;
+            box-shadow: 0px 5px 20px 0px rgba(51, 51, 51, 0.29);
+            z-index: 99;
+            @media screen and (max-width: 1200px){
+                padding: 60px 20px 50px 20px;
+            }
+            span.close_mini_form {
+                padding: 20px;
+                display: none;
+                font-size: 0;
+                position: absolute;
+                width: 40px;
+                height: 40px;
+                right: 0;
+                top: 40px;
+                cursor: pointer;
+                &:after {
+                    content: '+';
+                    position: absolute;
+                    display: block;
+                    font-size: 25px;
+                    top: 0;
+                    left: 0;
+                    margin: auto;
+                    right: 0;
+                    bottom: 0;
+                    transform: rotate(45deg);
+                }
+            }
+            @media screen and (max-width: 768px){
+                max-width: ~"calc(100% - 30px)";
+                top: 10px;
+                padding-top: 60px;
+                span.close_mini_form {
+                    display: block;
+                }
+            }
+            .field.name label.label {
+                display: none;
+            }
+            .fieldset {
+                margin-bottom: 0;
+            }
+            .form.search.advanced {
+                .fields.range div.field.with-addon div.control {
+                    padding-right: 35px;
+                    @media screen and (max-width: 480px){
+                        padding-right: 0;
+                    }   
+                }
+                .fields.range.price {
+                    .control {
+                        position: relative;
+                        &:after {
+                            visibility: hidden;
+                        }
+                        &:before {
+                            content: '$';
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            padding: 15px;
+                            font-size: 15px;
+                        }
+                        input {
+                            padding-left: 35px;
+                            padding-right: 10px; 
+                        }
+                    }
+                    .field:first-child .control {
+                        padding-right: 35px; 
+                        @media screen and (max-width: 480px){
+                            padding-right: 10px; 
+                        }  
+                    }
+                    .field:last-child .control {                        
+                        @media screen and (max-width: 480px){
+                            padding-left: 10px; 
+                            &:before {
+                                left: 10px;
+                            }
+                        }  
+                    }
+                }
+                .group.price .addon .addafter {
+                    right: -10px;
+                    top: 10px;
+                    font-weight: normal;
+                    @media screen and (max-width: 480px){
+                        right: 0;
+                        top: -30px;
+                    }   
+                }
+            }
+            .actions-toolbar {
+                text-align: center;
+                margin-bottom: 20px;
+                .primary {
+                    float: none;
+                }
+                &.findcoin {
+                    margin-bottom: 0;
+                }
+                .ortext {
+                    a {
+                        margin-left: -25px;
+                        span {
+                            text-transform: none;
+                            color: #000;
+                            border-bottom: 1px solid #000;
+                            font-weight: normal;
+                            font-size: 15px;
+                        }
+                        @media screen and (max-width: 480px){
+                            margin-left: 0;
+                        } 
+                    }
+                    .btn-action {
+                        background: transparent;
+                        border: 0;
+                    }
+                }
+            }
+            input {
+                background: #f2f5f8;
+                border: 1px solid #c2c2c2;
+            }
+            input#search_value {
+                position: absolute;
+                left: 0;
+                min-width: 100%;
+                top: 0;
+                padding: 0 20px;
+                background: #fff;
+                border-width: 0;
+                height: 40px;
+            }
+            .control {
+                text-align: left;
+                padding-right: 35px;
+                @media screen and (max-width: 480px){
+                    padding-right: 0;
+                }   
+            }
+            .legend {
+                display: none;
+            }            
+            &.open {
+                display: block;
+            }
+            .action.search {
+                position: unset;
+                border: 0;
+                width: auto;
+                display: inline-block;
+                &:before {
+                    display: none;
+                }
+                span {
+                    position: relative;
+                    height: auto;
+                    width: auto;
+                    clip: unset;
+                    font-size: 15px;
+                }
+            }
+            .category_search_field {
+                width: 50%;
+                display: inline-block; 
+                @media screen and (max-width: 480px){
+                    min-width: 100%;
+                }     
+                &.select-group {
+                    .control {
+                        position: relative;
+                        select {
+                            background: none !important;
+                        }
+                        &:after {
+                            content: '\e622';
+                            font-family: 'luma-icons';
+                            float: right;
+                            position: absolute;
+                            top: 15px;
+                            right: 45px;
+                            pointer-events: none;
+                            @media screen and (max-width: 480px){
+                                right: 15px;
+                            }  
+                        }
+                    }
+                }          
+            }
+            button.action {
+                padding: 10px 30px;
+                background: #e32129;
+                font-size: 12px;
+                color: #fff;
+                font-weight: 600;
+                margin-left: -25px;
+                &:hover,
+                &:focus,
+                &:active {
+                    background: #e32129;
+                }
+                @media screen and (max-width: 480px){
+                    margin-left: 0;
+                }  
+            }
+        }
+        .wrapper_suggest {
+            position: absolute;
+            width: 100%;            
+        }
+        form.minisearch.active {
+            ._adv_trig {
+                display: block;
+            }
+        }
+        ._adv_trig {
+            width: 100%;
+            background: #f2f5f8;
+            padding: 15px;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: none;            
+            span {
+                font-weight: 700;
+                font-size: 13px;
+                line-height: 13px;
+                border-bottom: 2px solid #000;
+                display: inline-block;
+            }
+        }
         .logo-wrap {
             text-align: center;
             padding: 6px;
@@ -157,20 +431,7 @@
                     -moz-transform-origin: left center;
                     -o-transform-origin: left center;
                     transform-origin: left center;
-                } //   .hamburger.open span:nth-child(1) {
-                //     .transform(rotate(45deg));
-                //     top: -3px;
-                //     left: 8px;
-                //   }
-                //   .hamburger.open span:nth-child(2) {
-                //     width: 0%;
-                //     opacity: 0;
-                //   }
-                //   .hamburger.open span:nth-child(3) {
-                //     .transform(rotate(-45deg));
-                //     top: 18px;
-                //     left: 8px;
-                //   }
+                } 
                 .cat-trigger {
                     .disp(inline-block);
                     vertical-align: middle;
@@ -592,6 +853,20 @@
                 .btn-wrap>* {
                     float: left;
                     width: 50%;
+                }
+                .btn-wrap {                    
+                    .secondary {
+                        position: unset;
+                        a.action {
+                            padding: 30px 20px !important;
+                            span {
+                                text-indent: 0;
+                            }
+                            &:after {
+                                display: none;
+                            }
+                        }
+                    }
                 }
             }
         }

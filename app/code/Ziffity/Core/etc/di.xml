@@ -9,4 +9,7 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magefan\Blog\Controller\Adminhtml\Post\Save" type="Ziffity\Core\Controller\Adminhtml\Post\Save" />
+    <preference for="Xtento\SavedCc\Block\Info" type="Ziffity\Core\Block\Xtento\SavedCc\Info" />
+    <preference for="Mageplaza\SocialLogin\Block\Css" type="Ziffity\Core\Block\Mageplaza\SocialLogin\Css" />
+    <preference for="Magento\Checkout\Model\Cart" type="Ziffity\Core\Model\Cart" />
 </config>

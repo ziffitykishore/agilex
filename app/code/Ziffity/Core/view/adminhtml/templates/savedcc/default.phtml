@@ -1,0 +1,45 @@
+<?php
+
+// @codingStandardsIgnoreFile
+/**
+ * @var \Xtento\SavedCc\Block\Info $block
+ * @see \Magento\Payment\Block\Info
+ */
+$specificInfo = $block->getSpecificInformation();
+?>
+<?= $block->escapeHtml($block->getMethod()->getTitle()) ?>
+
+<?php if ($block->isAllowedToWipeCreditCardInfo() && $block->showWipeButtonInBackend()): ?>
+    [<a href="<?= $block->getWipeUrl() ?>"><?= __('Wipe Credit Card Information') ?></a>]
+<?php endif; ?>
+
+<?php if ($specificInfo): ?>
+    <table class="data-table admin__table-secondary">
+        <?php foreach ($specificInfo as $label => $value): ?>
+            <?php
+            $isSecretValue = stristr($value, 'hidden_') !== false;
+            if ($isSecretValue && (!$block->isAllowedToSeeCreditCardInfo() || !$block->showCreditCardInfoInBackend())) {
+                continue;
+            }
+            $maskedCss = "";
+            $unmaskHtml = "";
+            if ($isSecretValue && $block->showMaskedCreditCardInfoInBackend()) {
+                $maskedCss = ' style="display:none;"';
+                $unmaskHtml = '<a href="#" onclick="jQuery(this).prev().show(); jQuery(this).hide(); return false;">[Show]</a>';
+            }
+            $value = str_replace('hidden_', '', $value);
+            ?>
+            <tr>
+                <th><?= $block->escapeHtml($label) ?>:</th>
+                <td><span<?=$maskedCss?>>
+                    <?= /* @noEscape */
+                    nl2br($block->escapeHtml(implode("\n", $block->getValueAsArray($value, true)))) ?>
+                    </span>
+                    <?= $unmaskHtml ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+
+<?= $block->getChildHtml() ?>
