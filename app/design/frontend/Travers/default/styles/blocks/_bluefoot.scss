@@ -636,6 +636,14 @@ $slider-dot--inactive__color: #a6a6a6;
         @include max-screen($screen__m) {
             padding: 0 !important; // override BF columns
             padding-top: $indent__l !important; // override BF columns
+
+            button {
+                margin-top: 0;
+            }
+
+            .bluefoot-textarea {
+                margin-bottom: 0;
+            }
         }
 
         .tout-header {
