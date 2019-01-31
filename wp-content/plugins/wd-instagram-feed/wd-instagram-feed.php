@@ -3,7 +3,7 @@
 Plugin Name: Instagram Feed by 10Web
 Plugin URI: https://10web.io/plugins/wordpress-instagram-feed/
 Description: Instagram Feed by 10Web is a user-friendly tool for displaying user or hashtag-based feeds on your website. You can create feeds with one of the available layouts. It allows displaying image metadata, open up images in lightbox, download them and even share in social networking websites.
-Version: 1.3.11
+Version: 1.3.12
 Author: 10Web
 Author URI: https://10Web.io
 License: GPLv2 or later
@@ -20,7 +20,7 @@ define("WDI_META", "_".WDI_VAR."_meta");
 //define("wdi",'wdi');
 define('WDI_FEED_TABLE','wdi_feeds');
 define('WDI_THEME_TABLE','wdi_themes');
-define('WDI_VERSION','1.3.11');
+define('WDI_VERSION','1.3.12');
 define('WDI_IS_PRO','false');
 $wdi_minify = ((isset($_GET['wdi_no_minify']) && $_GET['wdi_no_minify'] == "true") ? false : true);
 define('WDI_MINIFY', $wdi_minify);
@@ -68,7 +68,7 @@ function wdi_save_user_access_token(){
     return;
   }
 
-  $business_accounts = [];
+  $business_accounts = array();
 
   foreach($accounts['data'] as $accounts_data) {
 
@@ -100,6 +100,36 @@ add_action('wp_ajax_wdi_set_cache_data', 'wdi_set_cache_data');
 add_action('wp_ajax_nopriv_wdi_set_cache_data', 'wdi_set_cache_data');
 
 add_action('wp_ajax_wdi_set_reset_cache', 'wdi_set_reset_cache');
+
+// Enqueue block editor assets for Gutenberg.
+add_filter('tw_get_plugin_blocks', 'wdi_register_plugin_block');
+add_filter('tw_get_block_editor_assets', 'wdi_register_block_editor_assets');
+function wdi_register_plugin_block($blocks) {
+  require_once(WDI_DIR . '/framework/WDILibrary.php');
+  $data = WDILibrary::get_shortcode_data();
+  $blocks['tw/' . 'wdi'] = array(
+    'nothing_selected' => __('Nothing selected.', 'wdi'),
+    'title' => "Instagram WD",
+    'titleSelect' => sprintf(__('Select %s', 'wdi'), 'Instagram WD'),
+    'iconUrl' => WDI_URL . '/images/insta_2.svg',
+    'iconSvg' => array('width' => 20, 'height' => 20, 'src' => WDI_URL . '/images/insta.svg'),
+    'isPopup' => false,
+    'data' => $data,
+  );
+  return $blocks;
+}
+function wdi_register_block_editor_assets($assets) {
+  $wd_bp_plugin_url = WDI_URL;
+  $version = '2.0.3';
+  $js_path = $wd_bp_plugin_url.'/js/block.js';
+  $css_path = $wd_bp_plugin_url.'/css/block.css';
+  if (!isset($assets['version']) || version_compare($assets['version'], $version) === -1) {
+    $assets['version'] = $version;
+    $assets['js_path'] = $js_path;
+    $assets['css_path'] = $css_path;
+  }
+  return $assets;
+}
 
 function wdi_set_reset_cache(){
   if(wp_verify_nonce($_POST["wdi_nonce"] , 'wdi_cache')) {
@@ -619,37 +649,29 @@ function wdi_load_styles() {
 
 }
 
-add_action( 'enqueue_block_editor_assets', 'enqueue_block_editor_assets' );
+add_action( 'enqueue_block_editor_assets', 'wdi_enqueue_block_editor_assets' );
 
-function enqueue_block_editor_assets() {
-  $wd_bp_plugin_url = WDI_URL;
-  $key = 'tw/wdi';
-  $plugin_name = "Instagram WD";
-  require_once(WDI_DIR . '/framework/WDILibrary.php');
-  $data = WDILibrary::get_shortcode_data();
-  $icon_url = $wd_bp_plugin_url . '/images/insta_2.svg';
-  $icon_svg = $wd_bp_plugin_url . '/images/insta.svg';
-  ?>
-  <script>
-    if ( !window['tw_gb_wdi'] ) {
-      window['tw_gb_wdi'] = {};
+function wdi_enqueue_block_editor_assets() {
+  // Remove previously registered or enqueued versions
+  $wp_scripts = wp_scripts();
+  foreach ($wp_scripts->registered as $key => $value) {
+    // Check for an older versions with prefix.
+    if (strpos($key, 'tw-gb-block') > 0) {
+      wp_deregister_script( $key );
+      wp_deregister_style( $key );
     }
-    if ( !window['tw_gb_wdi']['<?php echo $key; ?>'] ) {
-      window['tw_gb_wdi']['<?php echo $key; ?>'] = {
-        title: '<?php echo $plugin_name; ?>',
-        iconUrl: '<?php echo $icon_url; ?>',
-        iconSvg: {
-          width: '30',
-          height: '30',
-          src: '<?php echo $icon_svg; ?>'
-        },
-        data: '<?php echo $data; ?>',
-      };
-    }
-  </script>
-  <?php
-  wp_enqueue_style('wditw-gb-wdi_block', $wd_bp_plugin_url . '/css/wdi_block.css', array( 'wp-edit-blocks' ), WDI_VERSION );
-  wp_enqueue_script( 'wditw-gb-wdi_block', $wd_bp_plugin_url . '/js/wdi_block.js', array( 'wp-blocks', 'wp-element' ), WDI_VERSION );
+  }
+  // Get the last version from all 10Web plugins.
+  $assets = apply_filters('tw_get_block_editor_assets', array());
+  $blocks = apply_filters('tw_get_plugin_blocks', array());
+  // Not performing unregister or unenqueue as in old versions all are with prefixes.
+  wp_enqueue_script('tw-gb-block', $assets['js_path'], array( 'wp-blocks', 'wp-element' ), $assets['version']);
+  wp_localize_script('tw-gb-block', 'tw_obj_translate', array(
+    'nothing_selected' => __('Nothing selected.', 'wdi'),
+    'empty_item' => __('- Select -', 'wdi'),
+    'blocks' => json_encode($blocks),
+  ));
+  wp_enqueue_style('tw-gb-block', $assets['css_path'], array( 'wp-edit-blocks' ), $assets['version']);
 }
 
 // Instagram WDI Widget.
