@@ -501,6 +501,8 @@ $_password-very-strong: #81b562 !default;
 
 @include max-screen($screen__m) {
     .login-container {
+        max-width: $form-field__width__desktop;
+
         .fieldset {
             &:after {
                 text-align: center;
