@@ -399,7 +399,7 @@ $_password-very-strong: #81b562 !default;
     line-height: $form-element-input__height;
     z-index: 1;
     background-color: $_password-default;
-    font-size: $font-size__base;
+    font-size: $font-size__base--desktop;
 
     &:before {
         content: '';
