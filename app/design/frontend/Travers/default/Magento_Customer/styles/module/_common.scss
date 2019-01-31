@@ -51,6 +51,23 @@ $_password-very-strong: #81b562 !default;
         &:after {
             margin-top: 35px;
         }
+
+        .actions-toolbar {
+            @include min-screen($screen__m) {
+                display: flex;
+                align-items: center;
+            }
+
+            .action {
+                &.login {
+                    min-width: 150px;
+                }
+
+                &.remind {
+                    margin-top: 0;
+                }
+            }
+        }
     }
 }
 
@@ -337,6 +354,10 @@ $_password-very-strong: #81b562 !default;
 
 .block {
     @extend .abs-margin-for-blocks-and-widgets;
+
+    &-new-company .block-content p {
+        margin-bottom: $indent__m;
+    }
 
     .column.main & {
         &:last-child {
