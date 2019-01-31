@@ -8,6 +8,8 @@
 /** @var \Magento\Contact\Block\ContactForm $block */
 ?>
 <?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact_us_content')->toHtml() ?>
+<legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend><br />
+<div class="field note no-label"><?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?></div>
 <form class="form contact"
       action="<?= $block->escapeUrl($block->getFormAction()) ?>"
       id="contact-form"
@@ -15,8 +17,6 @@
       data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
       data-mage-init='{"validation":{}}'>
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend><br />
-        <div class="field note no-label"><?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?></div>
         <div class="field name required">
             <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
             <div class="control">
