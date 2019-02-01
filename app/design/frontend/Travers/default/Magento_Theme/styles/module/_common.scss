@@ -197,8 +197,8 @@ body {
 .header.content {
     @include layout-container();
     @include lib-clearfix();
-    padding-top: $indent__s;
     position: relative;
+    min-height: 70px;
 
     @include min-screen($mobile-nav__breakpoint) {
         padding: $layout__width-xs-indent $layout__width-xs-indent 0;

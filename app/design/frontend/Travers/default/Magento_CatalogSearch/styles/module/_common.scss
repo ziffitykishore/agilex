@@ -67,9 +67,7 @@
     }
 
     input {
-        left: -300%;
         margin: 15px 0;
-        position: absolute;
     }
 
     .nested {
@@ -266,4 +264,17 @@
 
 .catalogsearch-result-index .columns .sidebar-main {
     order: 0;
+}
+
+.block {
+  .magnifying-glass {
+    @include max-screen($screen__m) {
+      top: 30px;
+    }
+  }
+}
+
+.algolia-search-input {
+  max-width: none !important;
+  width: 100%;
 }
