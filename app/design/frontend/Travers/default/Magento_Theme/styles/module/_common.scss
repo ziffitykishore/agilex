@@ -212,6 +212,7 @@ body {
 
         .minicart-wrapper {
             order: 1;
+            margin-top: 13px;
         }
     }
 }
@@ -224,11 +225,6 @@ body {
 
     @include min-screen($mobile-nav__breakpoint) {
         margin: 0 10% 20px 0;
-
-        // If the account nav is present, collapse the margin
-        .panel + .header & {
-            margin-top: -20px;
-        }
     }
 
     @include min-screen($screen__l) {
