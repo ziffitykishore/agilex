@@ -27,11 +27,11 @@ class CustomHeaderLinks extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getAboutLink()
     {
-        return $this->getConfig($this->moduleConfigPath . 'contact_link');
+        return $this->getConfig($this->moduleConfigPath . 'about_link');
     }
 
     public function getContactLink()
     {
-        return $this->getConfig($this->moduleConfigPath . 'about_link');
+        return $this->getConfig($this->moduleConfigPath . 'contact_link');
     }
 }
