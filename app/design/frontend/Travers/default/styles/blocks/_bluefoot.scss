@@ -299,7 +299,7 @@ $home-sidebar-width: 20.5%;
             }
 
             @include min-screen($screen__m) {
-                margin-left: -5%; // brings it outside of the slick container
+                margin-left: 0%;
             }
 
             @include min-screen($screen__l) {
