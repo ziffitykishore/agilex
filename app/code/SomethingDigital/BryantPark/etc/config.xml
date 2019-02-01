@@ -7,6 +7,10 @@
                 <social_twitter>https://twitter.com/somethingdigitl</social_twitter>
                 <social_instagram>https://www.instagram.com/somethingdigitl</social_instagram>
             </socialprofiles>
+            <headerlinks>
+                <contact_link>/contact</contact_link>
+                <about_link>/about</about_link>
+            </headerlinks>
         </design>
         <customer>
             <create_account>
