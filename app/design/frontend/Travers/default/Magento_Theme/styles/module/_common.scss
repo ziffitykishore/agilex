@@ -200,6 +200,10 @@ body {
     position: relative;
     min-height: 70px;
 
+    @include max-screen($screen__m) {
+        margin-top: $indent__l;
+    }
+
     @include min-screen($mobile-nav__breakpoint) {
         padding: $layout__width-xs-indent $layout__width-xs-indent 0;
         display: flex;
