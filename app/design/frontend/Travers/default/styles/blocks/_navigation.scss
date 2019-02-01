@@ -241,6 +241,11 @@ $nav-section-title__height: 60px;
                 }
             }
 
+            .about-link,
+            .contact-link {
+                display: none;
+            }
+
             .greet.welcome,
             li > a {
                 padding: 14px $indent__xl 14px 15px;

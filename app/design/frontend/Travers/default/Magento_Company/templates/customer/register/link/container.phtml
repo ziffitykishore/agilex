@@ -31,14 +31,16 @@ $contact = $customHeaderLink->getContactLink();
         </ul>
     </div>
 </li>
+<?php endif; ?>
+
 <?php if ($about): ?>
-  <li>
-      <a href="<?php echo $about ?>"><?php echo __('About') ?></a>
-  </li>
+    <li class="about-link">
+        <a href="<?php echo $about ?>"><?php echo __('About') ?></a>
+    </li>
 <?php endif; ?>
 <?php if ($contact): ?>
-  <li>
-      <a href="<?php echo $contact ?>"><?php echo __('Contact') ?></a>
-  </li>
+    <li class="contact-link">
+        <a href="<?php echo $contact ?>"><?php echo __('Contact') ?></a>
+    </li>
 <?php endif; ?>
-<?php endif; ?>
+
