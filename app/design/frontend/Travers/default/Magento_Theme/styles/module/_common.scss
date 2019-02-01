@@ -202,6 +202,17 @@ body {
 
     @include min-screen($mobile-nav__breakpoint) {
         padding: $layout__width-xs-indent $layout__width-xs-indent 0;
+        display: flex;
+        margin: 0;
+        max-width: none;
+
+        .algolia-search-block {
+            flex-basis: 50%;
+        }
+
+        .minicart-wrapper {
+            order: 1;
+        }
     }
 }
 
@@ -212,12 +223,17 @@ body {
     z-index: 5;
 
     @include min-screen($mobile-nav__breakpoint) {
-        margin: 0 auto 20px 0;
+        margin: 0 10% 20px 0;
 
         // If the account nav is present, collapse the margin
         .panel + .header & {
             margin-top: -20px;
         }
+    }
+
+    @include min-screen($screen__l) {
+        padding-left: 70px;
+        margin-left: 0;
     }
 
     .page-print & {

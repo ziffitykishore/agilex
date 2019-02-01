@@ -268,8 +268,10 @@
 
 .block {
   .magnifying-glass {
-    @include max-screen($screen__m) {
-      top: 30px;
+    top: 30px;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        display: none !important;
     }
   }
 }
