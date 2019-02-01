@@ -37,6 +37,7 @@ $nav-section-title__height: 60px;
     @include layout-container;
 
     @include min-screen($screen__l) {
+        max-width: none;
         margin-left: 0;
         margin-right: 0;
 
@@ -56,6 +57,30 @@ $nav-section-title__height: 60px;
 
         a {
             font-weight: $font-weight__regular;
+        }
+    }
+
+    .quick-order-container {
+        display: none;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            display: block;
+            float: right;
+            margin-top: 8px;
+            padding-right: 70px;
+
+            a {
+                font-size: 18px;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: $font-family__sans-serif;
+                font-weight: $font-weight__semibold;
+
+                    @include hover {
+                    text-decoration: none;
+                    color: $c-royal;
+                }
+            }
         }
     }
 }
