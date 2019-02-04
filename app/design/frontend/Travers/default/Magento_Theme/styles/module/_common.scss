@@ -39,6 +39,7 @@ body {
         color: $c-steel;
         text-transform: uppercase;
         display: none;
+        box-sizing: border-box;
 
         @include max-screen($mobile-nav__breakpoint) {
             margin-bottom: $indent__s;
@@ -227,7 +228,7 @@ body {
         max-width: none;
 
         .algolia-search-block {
-            flex-basis: 50%;
+            flex-basis: 48%;
         }
 
         .minicart-wrapper {
