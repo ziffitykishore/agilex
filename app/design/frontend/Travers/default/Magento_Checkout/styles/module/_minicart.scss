@@ -97,11 +97,10 @@ $minicart-items__max-height  : 260px !default;
     );
 
   float: right;
-  margin-top: 5px;
+  margin-top: $indent__xs;
 
   @include max-screen($mobile-nav__breakpoint) {
     display: flex;
-    margin-top: 2px;
     align-items: center;
     min-height: 42px;
   }
@@ -109,7 +108,7 @@ $minicart-items__max-height  : 260px !default;
   .action.showcart {
     @include icon-svg(
       $icon: cart,
-      $width: 20px,
+      $width: 25px,
       $height: 30px,
       $fill: $minicart-icons-color,
       $fill-hover: $minicart-icons-color-hover,
