@@ -413,6 +413,11 @@ $nav-section-title__height: 60px;
                 position: static;
             }
         }
+
+        .about-link,
+        .contact-link {
+            display: none;
+        }
     }
 
     .nav-toggle {
