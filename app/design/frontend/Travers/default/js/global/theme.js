@@ -9,4 +9,5 @@ domready(() => {
     $('.contact-link').first().clone().appendTo('.navigation ul');
     $('.about-link').first().clone().appendTo('.navigation ul');
     $('.phone-number').first().clone().prependTo('.page-header');
+    $('#algolia-searchbox').append('<button type="submit" class="search-button">Search</button>');
 });

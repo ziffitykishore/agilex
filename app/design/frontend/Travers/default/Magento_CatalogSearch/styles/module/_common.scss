@@ -299,3 +299,19 @@
         }
     }
 }
+
+#algolia-searchbox {
+    width: 100%;
+}
+
+.algolia-search-block .search-button{
+    display: none;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        display: block;
+        position: absolute;
+        top: 1px;
+        right: 0;
+        padding: 15px 40px;
+    }
+}
