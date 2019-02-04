@@ -278,6 +278,22 @@ body {
     }
 }
 
+.header.links li {
+    a,
+    span,
+    button {
+        color: $c-cobalt;
+
+        @include hover {
+            color: $c-royal;
+        }
+    }
+
+    &.greet.welcome {
+        display: none;
+    }
+}
+
 .action.skip {
     &:not(:focus) {
         @include lib-visually-hidden();
