@@ -284,3 +284,18 @@
     font-size: $font-size__base--desktop;
   }
 }
+
+#algolia-autocomplete-container {
+    max-width: 800px !important;
+    width: 100%;
+
+    .aa-dataset-products {
+        width: 100%;
+    }
+
+    @include min-screen(869px) { // Algolia's breakpoint where it turns into dual menu
+        .aa-dropdown-menu {
+            width: 90% !important;
+        }
+    }
+}
