@@ -415,10 +415,26 @@ $minicart-items__max-height  : 260px !default;
 @include min-screen($mobile-nav__breakpoint) {
   .minicart-wrapper {
     margin-left: 13px;
+    position: absolute;
+    right: 85px;
 
     .block-minicart {
       right: -15px;
       width: 390px;
+    }
+
+    .action.showcart {
+      display: flex;
+
+      .text {
+        order: -1;
+        overflow: visible;
+        position: static;
+        width: auto;
+        margin-right: $indent__s;
+        margin-top: 2px;
+        color: $c-steel;
+      }
     }
   }
 }
