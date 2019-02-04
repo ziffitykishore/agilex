@@ -37,15 +37,17 @@ body {
 //  ---------------------------------------------
 .panel.header {
     @include layout-container;
+    background-color: $c-smoke;
+    padding: 0;
+    max-width: none;
+
+    a {
+        color: $c-cobalt;
+    }
 
     @include min-screen($mobile-nav__breakpoint) {
         @include lib-clearfix();
-        padding-bottom: $indent__s;
-        padding-top: $indent__s;
-    }
-
-    @include min-screen($screen__m) {
-        padding: 10px 20px;
+        padding: $indent__s 20px $indent__xs 0;
     }
 }
 
