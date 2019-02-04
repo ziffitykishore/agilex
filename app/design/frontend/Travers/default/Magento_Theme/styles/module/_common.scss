@@ -244,7 +244,7 @@ body {
     z-index: 5;
 
     @include min-screen($mobile-nav__breakpoint) {
-        margin: 0 $indent__s 20px 0;
+        margin: 0 $indent__s 0 0;
     }
 
     @include min-screen($screen__l) {
