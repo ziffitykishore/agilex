@@ -196,10 +196,12 @@ $nav-section-title__height: 60px;
         .contact-link a,
         .about-link a {
             text-transform: uppercase;
-            font-size: 18px;
+            font-size: 16px;
+            letter-spacing: .5px;
             text-decoration: none;
             font-family: $font-family__sans-serif;
             font-weight: $font-weight__semibold;
+            color: $c-steel;
 
             &:visited {
                 color: $text__color;
@@ -352,17 +354,18 @@ $nav-section-title__height: 60px;
         line-height: $nav-section-title__height;
         text-align: center;
         width: 33.33%;
+        background: $primary__color;
 
         a {
-            color: $text__color;
+            color: $color-white;
             font-size: $font-size__base--desktop;
         }
 
         &.active {
-            background: $primary__color;
+            background: $color-white;
 
             a {
-                color: $color-white;
+                color: $text__color;
                 font-weight: $font-weight__semibold;
             }
         }
