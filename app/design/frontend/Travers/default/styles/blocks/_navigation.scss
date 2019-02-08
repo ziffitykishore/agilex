@@ -27,12 +27,6 @@ $nav-section-title__height: 60px;
     }
 }
 
-.nav-sections-items {
-    @include max-screen($mobile-nav__breakpoint) {
-        background: $flyout-background-color;
-    }
-}
-
 .navigation {
     @include layout-container;
 
@@ -144,6 +138,7 @@ $nav-section-title__height: 60px;
 .nav-sections-item-title[aria-controls="close.menu"] {
     text-align: right;
     position: relative;
+    background-color: $color-white;
 
     a {
         @include button--close();
@@ -344,19 +339,26 @@ $nav-section-title__height: 60px;
     }
 
     .nav-sections-item-title {
-        background: darken($navigation__background, 5%);
-        border: solid darken($navigation__background, 10%);
-        border-width: 0 0 1px 1px;
+        background-color: $color-white;
         box-sizing: border-box;
         float: left;
-        height: ($nav-section-title__height + 1px); // 1px = border
+        height: $nav-section-title__height;
         line-height: $nav-section-title__height;
         text-align: center;
         width: 33.33%;
 
+        a {
+            color: $text__color;
+            font-size: $font-size__base--desktop;
+        }
+
         &.active {
-            background: $flyout-active-color;
-            border-bottom: 0;
+            background: $primary__color;
+
+            a {
+                color: $color-white;
+                font-weight: $font-weight__semibold;
+            }
         }
 
         .nav-sections-item-switch {
