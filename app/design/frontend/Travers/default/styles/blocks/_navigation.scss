@@ -195,6 +195,10 @@ $nav-section-title__height: 60px;
             .submenu:not(:first-child) {
                 background-color: $c-smoke;
 
+                ul {
+                    padding-left: 0;
+                }
+
                 li {
                     font-size: $font-size__base--desktop;
                     letter-spacing: 0;
@@ -207,6 +211,10 @@ $nav-section-title__height: 60px;
                         @include hover {
                             color: $primary__color;
                         }
+                    }
+
+                    span:not(.ui-icon) {
+                        padding-left: 15px;
                     }
                 }
             }
@@ -420,11 +428,11 @@ $nav-section-title__height: 60px;
       $_nav-level0-item-padding: 9px $indent__xl 9px 15px,
       $_nav__indent-side: 17px,
       $_nav-level0-item__active__border-width: 0 0 0 2px,
-      $_nav-level0-item__active__border-color: $primary__color,
+      $_nav-level0-item__active__border-color: $c-cobalt,
 
       $_submenu-item__active__border-width: 0 0 0 2px,
       $_submenu-item__active__border: 2px,
-      $_submenu-item__active__border-color: $primary__color
+      $_submenu-item__active__border-color: $c-cobalt
     );
 }
 
@@ -511,7 +519,7 @@ $nav-section-title__height: 60px;
         $_nav-level0-item-color: $c-nickel,
         $_nav-level0-item-color-hover: $c-cobalt,
         $_nav-level0-item-color-active: $c-cobalt,
-        $_nav-level0-item__active__border-color: $link__hover__color,
+        $_nav-level0-item__active__border-color: $c-cobalt,
 
         $_submenu-background-color: $page__background-color,
         $_submenu-box-shadow: none,
