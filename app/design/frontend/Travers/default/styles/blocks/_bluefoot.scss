@@ -299,7 +299,7 @@ $home-sidebar-width: 20.5%;
             }
 
             @include min-screen($screen__m) {
-                margin-left: 0%;
+                margin-left: 0;
             }
 
             @include min-screen($screen__l) {
