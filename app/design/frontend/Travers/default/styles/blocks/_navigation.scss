@@ -189,6 +189,26 @@ $nav-section-title__height: 60px;
                         $pseudo   : after
                     );
                 }
+
+            }
+
+            .submenu:not(:first-child) {
+                background-color: $c-smoke;
+
+                li {
+                    font-size: $font-size__base--desktop;
+                    letter-spacing: 0;
+                    color: $text__color;
+
+                    a,
+                    a:visited {
+                        color: $text__color;
+
+                        @include hover {
+                            color: $primary__color;
+                        }
+                    }
+                }
             }
         }
 
