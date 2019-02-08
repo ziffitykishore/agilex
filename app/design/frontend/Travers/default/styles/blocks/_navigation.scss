@@ -37,6 +37,7 @@ $nav-section-title__height: 60px;
     @include layout-container;
 
     @include min-screen($screen__l) {
+        max-width: none;
         margin-left: 0;
         margin-right: 0;
 
@@ -56,6 +57,30 @@ $nav-section-title__height: 60px;
 
         a {
             font-weight: $font-weight__regular;
+        }
+    }
+
+    .quick-order-container {
+        display: none;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            display: block;
+            float: right;
+            margin-top: 8px;
+            padding-right: 70px;
+
+            a {
+                font-size: 18px;
+                text-decoration: none;
+                text-transform: uppercase;
+                font-family: $font-family__sans-serif;
+                font-weight: $font-weight__semibold;
+
+                    @include hover {
+                    text-decoration: none;
+                    color: $c-royal;
+                }
+            }
         }
     }
 }
@@ -169,6 +194,18 @@ $nav-section-title__height: 60px;
                         $pseudo   : after
                     );
                 }
+            }
+        }
+
+        .parent .level-top,
+        .contact-link a,
+        .about-link a {
+            color: $text__color;
+            font-weight: $font-weight__semibold;
+            font-size: $font-size__base--desktop;
+
+            @include hover {
+                color: $c-cobalt;
             }
         }
     }
@@ -365,22 +402,33 @@ $nav-section-title__height: 60px;
 //  _____________________________________________
 
 @include min-screen($mobile-nav__breakpoint) {
-    .navigation .level-top {
-        font-size: 16px;
-
-        &.category-item .submenu {
-            padding: $indent__xl;
-            padding-top: $indent__s;
-            width: 100vw;
-            left: 0 !important; // overrides the nav JS
-            box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
-            box-sizing: border-box;
-            column-count: 4;
-            column-gap: $indent__xl;
+    .navigation {
+        .level0.active > a.level-top {
+            border-bottom: 0;
         }
 
-        &.parent {
-            position: static;
+        .level-top {
+            font-size: 16px;
+
+            &.category-item .submenu {
+                padding: $indent__xl;
+                padding-top: $indent__s;
+                width: 100vw;
+                left: 0 !important; // overrides the nav JS
+                box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
+                box-sizing: border-box;
+                column-count: 4;
+                column-gap: $indent__xl;
+            }
+
+            &.parent {
+                position: static;
+            }
+        }
+
+        .about-link,
+        .contact-link {
+            display: none;
         }
     }
 
@@ -426,7 +474,7 @@ $nav-section-title__height: 60px;
         $_nav-font-size: 16px,
         $_nav-font-weight: $font-weight__regular,
 
-        $_nav-level0-item-margin: 0 40px 0 0,
+        $_nav-level0-item-margin: 0 30px 0 0,
         $_nav-level0-item-padding: 0,
         $_nav-level0-item-line-height: 45px,
         $_nav-level0-item-color: $c-nickel,

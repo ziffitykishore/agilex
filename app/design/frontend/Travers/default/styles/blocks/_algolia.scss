@@ -1,0 +1,43 @@
+// All !importants are necessary in order to override Algolia
+//
+
+.algolia-search-input {
+    max-width: none !important;
+    width: 100%;
+
+    &::placeholder {
+        font-size: $font-size__base--desktop;
+    }
+}
+
+#algolia-autocomplete-container {
+    max-width: 800px !important;
+    width: 100%;
+
+    .aa-dataset-products {
+        width: 100%;
+    }
+
+    @include min-screen(869px) { // Algolia's breakpoint where it turns into dual menu
+        .aa-dropdown-menu {
+            width: 90% !important;
+        }
+    }
+}
+
+#algolia-searchbox {
+    width: 100%;
+}
+
+.algolia-search-block .search-button{
+    display: none;
+
+    @include min-screen($mobile-nav__breakpoint) {
+        @include button--type(secondary);
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -2px;
+        padding: 15px 40px;
+    }
+}

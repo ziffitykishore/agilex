@@ -276,11 +276,3 @@
   }
 }
 
-.algolia-search-input {
-  max-width: none !important;
-  width: 100%;
-
-  &::placeholder {
-    font-size: $font-size__base--desktop;
-  }
-}

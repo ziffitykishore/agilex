@@ -30,6 +30,25 @@ body {
     .cms-index-index & {
         margin-bottom: 0;
     }
+
+    .phone-number {
+        float: left;
+        margin: 0;
+        font-size: $font-size__base;
+        font-weight: $font-weight__semibold;
+        color: $c-steel;
+        text-transform: uppercase;
+        display: none;
+        box-sizing: border-box;
+
+        @include max-screen($mobile-nav__breakpoint) {
+            margin-bottom: $indent__s;
+            padding: $indent__xs $indent__s;
+            background-color: $c-smoke;
+            width: 100%;
+            display: block;
+        }
+    }
 }
 
 //
@@ -37,15 +56,17 @@ body {
 //  ---------------------------------------------
 .panel.header {
     @include layout-container;
+    background-color: $c-smoke;
+    padding: 0;
+    max-width: none;
+
+    a {
+        color: $c-cobalt;
+    }
 
     @include min-screen($mobile-nav__breakpoint) {
         @include lib-clearfix();
-        padding-bottom: $indent__s;
-        padding-top: $indent__s;
-    }
-
-    @include min-screen($screen__m) {
-        padding: 10px 20px;
+        padding: $indent__s 20px $indent__xs 0;
     }
 }
 
@@ -207,7 +228,7 @@ body {
         max-width: none;
 
         .algolia-search-block {
-            flex-basis: 50%;
+            flex-basis: 48%;
         }
 
         .minicart-wrapper {
@@ -224,7 +245,7 @@ body {
     z-index: 5;
 
     @include min-screen($mobile-nav__breakpoint) {
-        margin: 0 10% 20px 0;
+        margin: 0 $indent__s 0 0;
     }
 
     @include min-screen($screen__l) {
@@ -237,11 +258,13 @@ body {
     }
 
     svg {
-        max-width: 300px;
+        max-width: 170px;
         width: 100%;
+        margin-top: 12px;
 
-        @include min-screen($screen__m) {
-            max-width: 400px;
+        @include min-screen($mobile-nav__breakpoint) {
+            max-width: 280px;
+            margin-top: 3px;
             margin-bottom: $indent__m;
         }
     }
@@ -266,6 +289,32 @@ body {
         @include min-screen($mobile-nav__breakpoint) {
             float: right;
             margin-top: $indent__base;
+        }
+    }
+}
+
+.header.links {
+    li {
+        a,
+        span,
+        button {
+            color: $c-cobalt;
+
+            @include hover {
+                color: $c-royal;
+            }
+        }
+
+        &.greet.welcome {
+            display: none;
+        }
+    }
+
+    .phone-number {
+        display: none;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            display: block;
         }
     }
 }

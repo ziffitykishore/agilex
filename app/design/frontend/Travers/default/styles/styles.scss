@@ -53,6 +53,7 @@ $theme-web-path: '../web' !default;
 @import 'blocks/tables';
 @import 'blocks/tooltips';
 @import 'blocks/contact-us';
+@import 'blocks/algolia';
 
 // BryantPark Blocks
 @import 'blocks/collapsible-navigation';
