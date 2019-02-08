@@ -1,12 +1,23 @@
 // All !importants are necessary in order to override Algolia
-//
 
-.algolia-search-input {
-    max-width: none !important;
-    width: 100%;
+#algolia-searchbox {
+    .algolia-search-input {
+        max-width: none !important;
+        width: 100%;
 
-    &::placeholder {
-        font-size: $font-size__base--desktop;
+        &::placeholder {
+            font-size: $font-size__base--desktop;
+        }
+    }
+
+    @include max-screen($mobile-nav__breakpoint) {
+        .algolia-search-input {
+            margin-top: 0 !important;
+        }
+
+        .magnifying-glass {
+            top: 15px !important;
+        }
     }
 }
 

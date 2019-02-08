@@ -42,7 +42,7 @@ body {
         box-sizing: border-box;
 
         @include max-screen($mobile-nav__breakpoint) {
-            margin-bottom: $indent__s;
+            margin-bottom: 3px;
             padding: $indent__xs $indent__s;
             background-color: $c-smoke;
             width: 100%;
