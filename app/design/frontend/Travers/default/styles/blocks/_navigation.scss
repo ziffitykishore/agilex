@@ -201,6 +201,10 @@ $nav-section-title__height: 60px;
             font-family: $font-family__sans-serif;
             font-weight: $font-weight__semibold;
 
+            &:visited {
+                color: $text__color;
+            }
+
             @include hover {
                 color: $c-cobalt;
             }
