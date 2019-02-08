@@ -426,7 +426,7 @@ $nav-section-title__height: 60px;
         margin-left: -100%;
         margin-top: ($nav-section-title__height + 1px);
         width: 100%;
-        padding: $indent__s 0;
+        padding: 0;
         background-color: $flyout-active-color;
 
         &.active {
