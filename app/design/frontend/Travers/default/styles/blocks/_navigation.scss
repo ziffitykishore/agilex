@@ -203,6 +203,7 @@ $nav-section-title__height: 60px;
                     font-size: $font-size__base--desktop;
                     letter-spacing: 0;
                     color: $text__color;
+                    margin: 0;
 
                     a,
                     a:visited {
@@ -291,12 +292,21 @@ $nav-section-title__height: 60px;
 
         .header.links {
             @include lib-list-reset-styles();
-            border-bottom: 1px solid $color-gray82;
 
             li {
+                font-family: $font-family__sans-serif;
                 font-size: 16px;
-                margin: 0;
-                font-weight: 700;
+                letter-spacing: .5px;
+                font-weight: $font-weight__semibold;
+                text-transform: uppercase;
+                margin-top: 0;
+                margin-bottom: 0;
+
+                a,
+                a:visited {
+                    color: $text__color;
+                    padding: 9px $indent__xl 9px 15px;
+                }
 
                 .counter {
                     &::before {
@@ -306,6 +316,10 @@ $nav-section-title__height: 60px;
                     &::after {
                         content: ')';
                     }
+                }
+
+                @include hover {
+                    color: $c-cobalt;
                 }
             }
 
