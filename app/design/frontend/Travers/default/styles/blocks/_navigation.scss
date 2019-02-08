@@ -200,6 +200,18 @@ $nav-section-title__height: 60px;
                 }
             }
         }
+
+        .parent .level-top,
+        .contact-link a,
+        .about-link a {
+            color: $text__color;
+            font-weight: $font-weight__semibold;
+            font-size: $font-size__base--desktop;
+
+            @include hover {
+                color: $c-cobalt;
+            }
+        }
     }
 
     .nav-sections {
