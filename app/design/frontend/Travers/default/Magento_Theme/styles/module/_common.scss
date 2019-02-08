@@ -236,6 +236,12 @@ body {
             margin-top: 13px;
         }
     }
+
+    @include min-screen($screen__xl) {
+        .algolia-search-block {
+            flex-basis: 53%;
+        }
+    }
 }
 
 .logo {
