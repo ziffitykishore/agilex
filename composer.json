@@ -45,15 +45,16 @@
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
         "snowdog/theme-blank-sass": "1.100.4",
-        "somethingdigital/magento2-theme-bryantpark": "2.12.2",
+        "somethingdigital/magento2-theme-bryantpark": "2.13.0",
         "somethingdigital/magento2-migration": "~1.4.1",
-        "somethingdigital/magento2-bluefoot": "1.1.4",
+        "somethingdigital/magento2-bluefoot": "1.2.0",
         "gene/bluefoot": "^1.0",
         "jamescowie/composer-patcher": "1.0.3",
         "somethingdigital/module-admin-notify": "^1.0",
         "msp/adminrestriction": "^1.3",
         "msp/twofactorauth": "^2.1",
-        "ethanyehuda/magento2-cronjobmanager": "^1.6"
+        "ethanyehuda/magento2-cronjobmanager": "^1.6",
+        "pelago/emogrifier": "~2.0.0||>=2.1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",

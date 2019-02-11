@@ -1,6 +1,6 @@
 ---
 
-- name: prebuild provision
+- name: image provision
   hosts: localhost
   connection: local
   become: yes
@@ -68,7 +68,7 @@
         - "/home/magento/.vault_pass"
         - "/docker-entrypoint.d/mysql.sh"
   tags:
-    - prebuild
+    - image
 
 
 - name: database provision
@@ -83,7 +83,7 @@
               -proot_password \
               -h database \
               {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item }}');"
+              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item.domain | item }}');"
       loop: "{{ site_domains }}"
   tags:
     - database
@@ -242,6 +242,7 @@
       unarchive:
         src: "https://download.unirgy.com/simple/download/{{ urapidflow_license_key }}/Unirgy_RapidFlow.zip?php={{ urapidflow_pkg_version }}&ioncube={{ ioncube_version }}"
         dest: "{{ tmp_download_path }}"
+      become: yes
     - name: make sure urapidflow does not exist
       file:
         path: "{{ magento_root }}/app/code/Unirgy"
