@@ -1,0 +1,72 @@
+/**
+ * Styling for a standard promotional bar, typically added as a widget
+ */
+
+$promobar__background-color: $secondary__color !default;
+$promobar__color: $color-white !default;
+$promobar__padding-top: 8px !default;
+$promobar__padding-bottom: 7px !default;
+
+.promobar {
+    padding-top: $promobar__padding-top;
+    padding-bottom: $promobar__padding-bottom;
+    color: $promobar__color;
+    background: $promobar__background-color;
+
+    @include max-screen($screen__m) {
+        padding-right: $layout-indent__width;
+    }
+
+    /**
+     * Because widget placement doesn't allow for page exclusions,
+     * we have to manually "exclude" pages by hiding on body class
+     */
+    .checkout-index-index &,
+    .sales-order-print &,
+    .page-layout-empty &,
+    body[class*="multishipping-checkout"] &,
+    .paypal-express-review & {
+        display: none !important; // Overwrite inline styles via JS
+    }
+
+    &.js-hide {
+        display: none;
+    }
+
+    .container {
+        position: relative;
+    }
+
+    &__cta {
+        text-decoration: underline;
+        color: inherit;
+
+        @include hover{
+            color: $primary__color;
+        }
+
+        &:visited {
+            color: inherit;
+        }
+    }
+
+    &__close {
+        @include button--transparent;
+        @include vertically-center($position: absolute);
+        right: 0;
+        width: 25px;
+        height: 25px;
+
+        @include min-screen($screen__m) {
+            right: $layout-indent__width;
+        }
+
+        svg {
+            @include vertically-center($position: absolute);
+            right: 0;
+            width: 25px;
+            height: 25px;
+            fill: $promobar__color;
+        }
+    }
+}
