@@ -12,12 +12,21 @@ $promobar__padding-bottom: 7px !default;
     padding-bottom: $promobar__padding-bottom;
     color: $promobar__color;
     background: $promobar__background-color;
-    text-align: center;
+    text-align: left;
     line-height: 1.5;
     letter-spacing: 0;
 
+    @include max-screen($screen__xs) {
+        display: none !important; // override JS
+    }
+
     @include max-screen($screen__m) {
         padding-right: $layout-indent__width;
+    }
+
+
+    @include min-screen($mobile-nav__breakpoint) {
+        text-align: center;
     }
 
     /**
@@ -39,6 +48,7 @@ $promobar__padding-bottom: 7px !default;
     .container {
         position: relative;
         max-width: none;
+        padding-left: $indent__s;
     }
 
     &__cta {
@@ -64,9 +74,10 @@ $promobar__padding-bottom: 7px !default;
         font-family: $font-family__base;
         font-size: 30px;
         font-weight: $font-weight__regular;
-        top: 7px;
+        top: 4px;
 
-        @include min-screen($screen__m) {
+        @include min-screen($mobile-nav__breakpoint) {
+            top: 7px;
             right: $layout-indent__width;
         }
 
