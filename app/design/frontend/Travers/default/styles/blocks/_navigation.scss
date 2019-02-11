@@ -306,6 +306,10 @@ $nav-section-title__height: 60px;
                 a:visited {
                     color: $text__color;
                     padding: 9px $indent__xl 9px 15px;
+
+                    @include hover {
+                        color: $c-cobalt;
+                    }
                 }
 
                 .counter {
@@ -316,10 +320,6 @@ $nav-section-title__height: 60px;
                     &::after {
                         content: ')';
                     }
-                }
-
-                @include hover {
-                    color: $c-cobalt;
                 }
             }
 
