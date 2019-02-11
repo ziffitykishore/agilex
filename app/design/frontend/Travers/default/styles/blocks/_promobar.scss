@@ -2,7 +2,7 @@
  * Styling for a standard promotional bar, typically added as a widget
  */
 
-$promobar__background-color: $secondary__color !default;
+$promobar__background-color: $primary__color !default;
 $promobar__color: $color-white !default;
 $promobar__padding-top: 8px !default;
 $promobar__padding-bottom: 7px !default;
@@ -12,6 +12,9 @@ $promobar__padding-bottom: 7px !default;
     padding-bottom: $promobar__padding-bottom;
     color: $promobar__color;
     background: $promobar__background-color;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0;
 
     @include max-screen($screen__m) {
         padding-right: $layout-indent__width;
@@ -35,6 +38,7 @@ $promobar__padding-bottom: 7px !default;
 
     .container {
         position: relative;
+        max-width: none;
     }
 
     &__cta {
@@ -42,7 +46,8 @@ $promobar__padding-bottom: 7px !default;
         color: inherit;
 
         @include hover{
-            color: $primary__color;
+            text-decoration: none;
+            color: $color-white;
         }
 
         &:visited {
@@ -56,6 +61,10 @@ $promobar__padding-bottom: 7px !default;
         right: 0;
         width: 25px;
         height: 25px;
+        font-family: $font-family__base;
+        font-size: 30px;
+        font-weight: $font-weight__regular;
+        top: 7px;
 
         @include min-screen($screen__m) {
             right: $layout-indent__width;
