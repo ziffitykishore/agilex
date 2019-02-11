@@ -29,6 +29,12 @@ $promobar__padding-bottom: 7px !default;
         text-align: center;
     }
 
+    &.only-on-mobile {
+        @include min-screen($mobile-nav__breakpoint) {
+            display: none !important;
+        }
+    }
+
     /**
      * Because widget placement doesn't allow for page exclusions,
      * we have to manually "exclude" pages by hiding on body class
