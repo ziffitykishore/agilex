@@ -275,7 +275,8 @@ return [
         'Unirgy_RapidFlowPro' => 1,
         'Unirgy_SimpleUp' => 1,
         'Unirgy_SimpleLicense' => 1,
-        'Vertex_Tax' => 1
+        'Vertex_Tax' => 1,
+        'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
         'websites' => [
