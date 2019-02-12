@@ -181,7 +181,7 @@
                     &:before {
                         content: '';
                         position: absolute;
-                        border: 1px solid #d7dded;
+                        border: 1px solid #000;
                         left: -10px;
                         top: 2px;
                         width: 13px;
@@ -200,6 +200,7 @@
                     }
                     & span {
                         font-weight: normal;
+                        color: #656565;
                     }
                 }
                 input#boxc,
@@ -216,6 +217,7 @@
                 p {
                     font-size: 12px;
                     line-height: normal;
+                    color: #656565;
                 }
             }
             .actions-toolbar {
@@ -229,10 +231,18 @@
                 }
             }
             .field {
+                &.note {
+                    color: #1c3f93;
+                    font-weight: 600;
+                }
+                label.label {
+                    color: #000;
+                }
                 .input-text {
                     height: 50px;
                     width: 100%;
                     padding: 10px 15px;
+                    border-color: #000;
                 }
             }
             .secondary a {
