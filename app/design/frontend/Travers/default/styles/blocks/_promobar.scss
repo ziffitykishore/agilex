@@ -1,0 +1,87 @@
+/**
+ * Styling for a standard promotional bar, typically added as a widget
+ */
+
+$promobar__background-color: $primary__color !default;
+$promobar__color: $color-white !default;
+$promobar__padding-top: 8px !default;
+$promobar__padding-bottom: 7px !default;
+
+.promobar {
+    padding-top: $promobar__padding-top;
+    padding-bottom: $promobar__padding-bottom;
+    color: $promobar__color;
+    background: $promobar__background-color;
+    text-align: left;
+    line-height: 1.5;
+    letter-spacing: 0;
+
+    @include max-screen($screen__xxs) {
+        display: none !important; // override JS
+    }
+
+    @include min-screen($mobile-nav__breakpoint) {
+        text-align: center;
+    }
+
+    /**
+     * Because widget placement doesn't allow for page exclusions,
+     * we have to manually "exclude" pages by hiding on body class
+     */
+    .checkout-index-index &,
+    .sales-order-print &,
+    .page-layout-empty &,
+    body[class*="multishipping-checkout"] &,
+    .paypal-express-review & {
+        display: none !important; // Overwrite inline styles via JS
+    }
+
+    &.js-hide {
+        display: none;
+    }
+
+    .container {
+        position: relative;
+        max-width: none;
+        padding-left: $indent__s;
+    }
+
+    &__cta {
+        text-decoration: underline;
+        color: inherit;
+
+        @include hover{
+            text-decoration: none;
+            color: $color-white;
+        }
+
+        &:visited {
+            color: inherit;
+        }
+    }
+
+    &__close {
+        @include button--transparent;
+        @include vertically-center($position: absolute);
+        right: 0;
+        width: 25px;
+        height: 25px;
+        font-family: $font-family__base;
+        font-size: 30px;
+        font-weight: $font-weight__regular;
+        top: 8px;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            top: 9px;
+            right: $layout-indent__width;
+        }
+
+        svg {
+            @include vertically-center($position: absolute);
+            right: 0;
+            width: 25px;
+            height: 25px;
+            fill: $promobar__color;
+        }
+    }
+}
