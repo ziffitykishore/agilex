@@ -16,18 +16,12 @@ $promobar__padding-bottom: 7px !default;
     line-height: 1.5;
     letter-spacing: 0;
 
-    @include max-screen($screen__xs) {
+    @include max-screen($screen__xxs) {
         display: none !important; // override JS
     }
 
     @include min-screen($mobile-nav__breakpoint) {
         text-align: center;
-    }
-
-    &.only-on-mobile {
-        @include min-screen($mobile-nav__breakpoint) {
-            display: none !important;
-        }
     }
 
     /**

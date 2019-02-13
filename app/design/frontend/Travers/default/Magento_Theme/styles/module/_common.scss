@@ -499,3 +499,13 @@ body {
         display: none;
     }
 }
+
+//
+//  Miscellaneous
+//  ---------------------------------------------
+
+.only-on-mobile {
+    @include min-screen($mobile-nav__breakpoint) {
+        display: none !important;
+    }
+}
