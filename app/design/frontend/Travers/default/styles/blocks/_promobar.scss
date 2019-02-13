@@ -20,11 +20,6 @@ $promobar__padding-bottom: 7px !default;
         display: none !important; // override JS
     }
 
-    @include max-screen($screen__m) {
-        padding-right: $layout-indent__width;
-    }
-
-
     @include min-screen($mobile-nav__breakpoint) {
         text-align: center;
     }
@@ -80,10 +75,10 @@ $promobar__padding-bottom: 7px !default;
         font-family: $font-family__base;
         font-size: 30px;
         font-weight: $font-weight__regular;
-        top: 4px;
+        top: 8px;
 
         @include min-screen($mobile-nav__breakpoint) {
-            top: 7px;
+            top: 9px;
             right: $layout-indent__width;
         }
 
