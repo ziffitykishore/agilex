@@ -8,5 +8,5 @@ domready(() => {
     // this clones the custom header links from desktop to the mobile main menu
     $('.contact-link').first().clone().appendTo('.navigation ul:first');
     $('.about-link').first().clone().appendTo('.navigation ul:first');
-    $('.phone-number').first().clone().prependTo('.page-header');
+    $('.phone-number.only-on-mobile').first().clone().prependTo('.page-header');
 });

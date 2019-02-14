@@ -219,7 +219,6 @@ body {
 .header.content {
     @include layout-container();
     @include lib-clearfix();
-    position: relative;
     min-height: 70px;
 
     @include min-screen($mobile-nav__breakpoint) {
