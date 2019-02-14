@@ -13,10 +13,12 @@
     @include max-screen($mobile-nav__breakpoint) {
         .algolia-search-input {
             margin-top: 0 !important;
+            min-height: 40px;
+            height: 100%;
         }
 
         .magnifying-glass {
-            top: 15px !important;
+            top: 11px !important;
         }
     }
 }
