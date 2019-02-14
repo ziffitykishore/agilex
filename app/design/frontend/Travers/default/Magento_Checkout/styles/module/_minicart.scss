@@ -188,18 +188,22 @@ $minicart-items__max-height  : 260px !default;
       }
 
       .counter.qty {
-        background: $active__color;
-        color: $page__background-color;
+        color: $c-cobalt;
         height: $minicart-qty__height;
         line-height: $minicart-qty__height;
         display: inline-block;
-        margin: 3px 0 0;
+        margin: -2px 0 0;
         min-width: 18px;
         overflow: hidden;
         padding: 0 3px;
         text-align: center;
         white-space: normal;
         vertical-align: middle;
+        font-weight: $font-weight__bold;
+
+        @include min-screen($mobile-nav__breakpoint) {
+          margin-top: 1px;
+        }
 
         &.empty {
           display: none;
