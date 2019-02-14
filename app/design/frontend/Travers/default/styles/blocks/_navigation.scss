@@ -41,7 +41,8 @@ $nav-section-title__height: 60px;
     }
 
     .level-top {
-        font-weight: $font-weight__bold;
+        font-weight: $font-weight__semibold;
+        color: $text__color;
     }
 
     .submenu {
