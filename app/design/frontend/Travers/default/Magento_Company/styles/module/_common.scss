@@ -744,9 +744,11 @@ $nav-delimiter__border-color: $color-gray82 !default;
         }
 
         ul.header.links {
-            min-width: 190px;
+            min-width: 220px;
             right: 0;
             padding: 10px 0;
+            border: 0;
+            background-color: $c-smoke;
 
             &:before,
             &:after {
@@ -757,9 +759,14 @@ $nav-delimiter__border-color: $color-gray82 !default;
             a {
                 text-decoration: none;
                 padding: 10px 0;
+                color: $text__color;
 
                 &:not(.no-display) {
                     display: block;
+                }
+
+                @include hover {
+                    color: $text__color-alt;
                 }
             }
         }

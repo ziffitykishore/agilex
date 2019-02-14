@@ -13,10 +13,12 @@
     @include max-screen($mobile-nav__breakpoint) {
         .algolia-search-input {
             margin-top: 0 !important;
+            min-height: 40px;
+            height: 100%;
         }
 
         .magnifying-glass {
-            top: 15px !important;
+            top: 11px !important;
         }
     }
 }
@@ -40,7 +42,7 @@
     width: 100%;
 }
 
-.algolia-search-block .search-button{
+.algolia-search-block .search-button {
     display: none;
 
     @include min-screen($mobile-nav__breakpoint) {
@@ -50,5 +52,8 @@
         top: 0;
         right: -2px;
         padding: 15px 40px;
+        box-shadow: inset 0 -2px $c-aluminum, inset -1px 0px 0px 2px $c-grey;
+        border-radius: 0 6px 6px 0;
+        min-height: 49px;
     }
 }
