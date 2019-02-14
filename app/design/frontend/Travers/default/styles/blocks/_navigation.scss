@@ -461,9 +461,6 @@ $nav-section-title__height: 60px;
 
             &.category-item {
                 .submenu {
-                    font-size: $font-size__base--desktop;
-                    color: $text__color;
-                    line-height: 1;
                     padding: $indent__s $indent__m;
                     box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
                     box-sizing: border-box;
@@ -472,14 +469,12 @@ $nav-section-title__height: 60px;
                 }
 
                 &.first .submenu {
-                    padding: $indent__s 100px $indent__xl 70px;
+                    padding: $indent__xl;
+                    padding-top: $indent__s;
                     width: 100vw;
                     left: 0 !important; // overrides the nav JS
                     column-count: 4;
-
-                    @include min-screen($screen__xl) {
-                        padding-right: 20%;
-                    }
+                    column-gap: $indent__xl;
                 }
             }
 
