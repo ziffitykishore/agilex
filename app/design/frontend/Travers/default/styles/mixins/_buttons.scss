@@ -151,6 +151,20 @@ category: Blocks - Links
         }
     }
 
+    @if $button-type == "tertiary" {
+        @include button--transparent;
+        font-size: $font-size__base--desktop;
+        font-weight: $font-weight__semibold;
+        line-height: 1.4;
+        letter-spacing: .8px;
+        text-transform: capitalize;
+        color: $text__color-alt;
+
+        @include hover {
+            color: $c-steel;
+        }
+    }
+
     &:hover,
     &:focus {
         color: $color-white;
