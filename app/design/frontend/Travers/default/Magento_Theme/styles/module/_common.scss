@@ -99,8 +99,9 @@ body {
         }
     }
 
-    > li {
-        font-size: $font-size__base;
+    > li,
+    > .phone-number {
+        font-size: $font-size__base--desktop;
         margin: 0 0 0 15px;
 
         &.welcome,
