@@ -476,6 +476,10 @@ $nav-section-title__height: 60px;
                     font-size: $font-size__base--desktop;
                     color: $text__color;
                     line-height: 1;
+
+                    @include min-screen($screen__l) {
+                        padding-right: 20%;
+                    }
                 }
             }
 
