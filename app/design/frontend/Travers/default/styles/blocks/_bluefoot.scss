@@ -766,6 +766,7 @@ $home-sidebar-width: 20.5%;
     margin-right: 0;
     max-width: none;
     overflow: hidden;
+    border-top: 1px solid $c-silver;
 
     .footer-promo-header {
         font-weight: $font-weight__bold;
