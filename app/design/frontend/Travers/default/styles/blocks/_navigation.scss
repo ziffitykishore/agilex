@@ -469,12 +469,13 @@ $nav-section-title__height: 60px;
                 }
 
                 &.first .submenu {
-                    padding: $indent__xl;
-                    padding-top: $indent__s;
+                    padding: $indent__s 100px $indent__xl 70px;
                     width: 100vw;
                     left: 0 !important; // overrides the nav JS
                     column-count: 4;
-                    column-gap: $indent__xl;
+                    font-size: $font-size__base--desktop;
+                    color: $text__color;
+                    line-height: 1;
                 }
             }
 
