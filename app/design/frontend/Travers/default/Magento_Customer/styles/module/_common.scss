@@ -480,6 +480,15 @@ $_password-very-strong: #81b562 !default;
     .captcha-img {
         vertical-align: middle;
     }
+
+    .action.reload {
+        @include button--type(tertiary);
+        margin-bottom: $indent__s;
+
+        @include hover {
+            color: $c-steel;
+        }
+    }
 }
 
 .block-reviews-dashboard .item .rating-summary  {
