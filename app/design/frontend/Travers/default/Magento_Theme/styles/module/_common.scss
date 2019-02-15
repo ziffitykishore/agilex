@@ -219,7 +219,7 @@ body {
 .header.content {
     @include layout-container();
     @include lib-clearfix();
-    min-height: 70px;
+    min-height: 85px;
 
     @include min-screen($mobile-nav__breakpoint) {
         padding: $layout__width-xs-indent $layout__width-xs-indent 0;
@@ -271,7 +271,6 @@ body {
         @include min-screen($mobile-nav__breakpoint) {
             max-width: 280px;
             margin-top: 3px;
-            margin-bottom: $indent__m;
         }
     }
 
