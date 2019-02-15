@@ -477,9 +477,8 @@ $nav-section-title__height: 60px;
                     left: 0 !important; // overrides the nav JS
                     column-count: 4;
 
-                    @include min-screen($screen__l) {
-                        padding-left: 10%;
-                        padding-right: 10%;
+                    @include min-screen($screen__xl) {
+                        padding-right: 20%;
                     }
                 }
             }
