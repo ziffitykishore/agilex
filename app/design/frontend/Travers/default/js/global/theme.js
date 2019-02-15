@@ -5,9 +5,6 @@ domready(() => {
     // this clones the account links from desktop to the mobile account menu
     $('.panel.header > .header.links').clone().appendTo('#store\\.links');
 
-    // this clones the main category's submenu items to the homepage sidebar
-    $('.navigation .first .level0.submenu').clone().appendTo('.sidebar-menu');
-
     // this clones the custom header links from desktop to the mobile main menu
     $('.contact-link').first().clone().appendTo('.navigation ul:first');
     $('.about-link').first().clone().appendTo('.navigation ul:first');
