@@ -111,15 +111,17 @@ class AddProductData implements ObserverInterface
             ];
         }
 
-        foreach ($product->getData('tier_price') as $tier) {
-            if (!isset($tiers[$tier['cust_group']])) {
-                continue; // unwanted record for non-exiting customer group
+        if ($product->getData('tier_price')) {
+            foreach ($product->getData('tier_price') as $tier) {
+                if (!isset($tiers[$tier['cust_group']])) {
+                    continue; // unwanted record for non-exiting customer group
+                }
+                $tiers[$tier['cust_group']][round($tier['price_qty'], 4)] = [
+                    'qty' => $tier['price_qty'],
+                    'price' => $tier['price'],
+                    'price_formatted' => $this->formatPrice($tier['price'], $store, $baseCurrencyCode)
+                ];
             }
-            $tiers[$tier['cust_group']][round($tier['price_qty'], 4)] = [
-                'qty' => $tier['price_qty'],
-                'price' => $tier['price'],
-                'price_formatted' => $this->formatPrice($tier['price'], $store, $baseCurrencyCode)
-            ];
         }
 
         foreach ($tiers as $groupId => $formattedTier) {
