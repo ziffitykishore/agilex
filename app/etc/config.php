@@ -255,6 +255,7 @@ return [
         'Magento_MultipleWishlistSampleData' => 1,
         'Magento_Worldpay' => 1,
         'SomethingDigital_AdminNotify' => 1,
+        'SomethingDigital_AlgoliaSearch' => 1,
         'SomethingDigital_AssetOptimizer' => 1,
         'SomethingDigital_Bluefoot' => 1,
         'SomethingDigital_Migration' => 1,
