@@ -14,5 +14,6 @@
         <referenceContainer name="after.body.start">
             <block class="MagePal\GoogleTagManager\Block\GtmCode" name="magepal_gtm_iframe" as="magepal_gtm_iframe" template="MagePal_GoogleTagManager::iframe.phtml" before='-'/>
         </referenceContainer>
+        <referenceBlock name='customer-account-navigation-downloadable-products-link' remove='true'/>
     </body>
 </page>
