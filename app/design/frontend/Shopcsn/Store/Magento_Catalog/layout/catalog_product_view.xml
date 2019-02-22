@@ -39,7 +39,7 @@
              </arguments>
           </block>
         </referenceBlock>        
-
+        <move element="catalog.product.related" destination="content" before="custom_products"/>
         <move element="product.info.media" destination="pdp-container" after="pdp-info"/>
         <move element="product.info.main" destination="pdp-container" after="product.info.media" />
         <referenceBlock name="product.info.review" remove="true"/>
