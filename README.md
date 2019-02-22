@@ -8,7 +8,7 @@ Something Digital's standard Magento 2 setup. Makes use of Gulp, [Hologram](http
 
 See [CHECKLIST.md](docs/CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
 
-Track your static content additions/updates in [static-content-log.md](docs/static-content-log.md). 
+Track your CMS content additions/updates (static blocks, pages, custom BlueFoot blocks)  in [static-content-log.md](docs/static-content-log.md). 
 
 ### How to Update to Latest Accelerator
 
