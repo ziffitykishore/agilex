@@ -30,7 +30,15 @@ define([
             lazyLoad: 'ondemand'
         });
     }
+    /*search*/
 
+    $(document).on('click', function() {
+        $('._adv_trig').removeClass('active');
+    });
+    $('.form.minisearch').on('click', function(e) {
+        e.stopPropagation();
+        $('._adv_trig').addClass('active');
+    });
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function() {
@@ -292,12 +300,12 @@ define([
         $.ajax({
             async: true,
             type: "GET",
-            url: BASE_URL+"zcore/index/iframe",
+            url: BASE_URL + "zcore/index/iframe",
             crossDomain: false,
-            success: function (res) {
+            success: function(res) {
                 $('.ticker.jFrame .container').html(res.html);
             },
-            error: function (){
+            error: function() {
                 console.log('Iframe content not loading');
             }
         });
