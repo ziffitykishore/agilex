@@ -111,6 +111,7 @@
             left: 0;
             right: 0;
             max-width: ~"calc(80% - 24px)";
+            width: 100%;
             margin: auto;
             padding: 60px 55px 40px 70px;
             box-shadow: 0px 5px 20px 0px rgba(51, 51, 51, 0.29);
@@ -263,7 +264,7 @@
                 display: block;
             }
             .action.search {
-                position: unset;
+                position: static;
                 border: 0;
                 width: auto;
                 display: inline-block;
@@ -326,8 +327,8 @@
             position: absolute;
             width: 100%;            
         }
-        form.minisearch.active {
-            ._adv_trig {
+        form.minisearch {
+            ._adv_trig.active {
                 display: block;
             }
         }
