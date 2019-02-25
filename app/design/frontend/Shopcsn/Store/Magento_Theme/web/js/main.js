@@ -30,8 +30,7 @@ define([
             lazyLoad: 'ondemand'
         });
     }
-    /*search*/
-
+    /*advanced search button hide and show */
     $(document).on('click', function() {
         $('._adv_trig').removeClass('active');
     });
