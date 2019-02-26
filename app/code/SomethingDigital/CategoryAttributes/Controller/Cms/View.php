@@ -1,5 +1,5 @@
 <?php
-namespace SomethingDigital\CategoryStaticBlocks\Controller\Cms;
+namespace SomethingDigital\CategoryAttributes\Controller\Cms;
  
 use Magento\Framework\UrlFactory;
  

@@ -1,5 +1,5 @@
 <?php
-namespace SomethingDigital\CategoryStaticBlocks\Setup;
+namespace SomethingDigital\CategoryAttributes\Setup;
 
 use Magento\Eav\Setup\EavSetup;
 use Magento\Eav\Setup\EavSetupFactory;

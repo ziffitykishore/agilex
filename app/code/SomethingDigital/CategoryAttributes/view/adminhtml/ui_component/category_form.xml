@@ -29,5 +29,35 @@
                 </item>
             </argument>
         </field>
+        <field name="grouping_attribute_1">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Grouping Attribute 1</item>
+                </item>
+            </argument>
+        </field>
+        <field name="grouping_attribute_2">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">101</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Grouping Attribute 2</item>
+                </item>
+            </argument>
+        </field>
+        <field name="grouping_attribute_3">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">102</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Grouping Attribute 3</item>
+                </item>
+            </argument>
+        </field>
     </fieldset>
 </form>
