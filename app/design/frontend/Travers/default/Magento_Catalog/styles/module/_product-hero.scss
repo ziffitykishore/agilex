@@ -67,4 +67,14 @@
         width: 100%;
         max-width: 800px; // for readability
     }
+
+    .product-options-bottom {
+        display: flex;
+        align-items: center;
+
+        .pricing {
+            order: 1;
+            margin-top: $indent__s;
+        }
+    }
 }
