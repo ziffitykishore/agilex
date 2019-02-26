@@ -39,6 +39,6 @@
     <move element="quick_order_link" destination="quick.order.container" before='-' />
     <move element="footer.connect" destination="footer" after="-" />
     <move element="copyright" destination="before.body.end" after="-"/>
-
+    <move element="product.info.extrahint.qtyincrements" destination="product.info.options.wrapper.bottom" before='-' />
 </page>
 
