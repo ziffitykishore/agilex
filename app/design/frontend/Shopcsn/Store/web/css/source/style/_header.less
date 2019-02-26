@@ -145,7 +145,7 @@
             @media screen and (max-width: 768px){
                 max-width: ~"calc(100% - 30px)";
                 top: 10px;
-                padding-top: 60px;
+                padding-top: 30px;
                 span.close_mini_form {
                     display: block;
                 }
@@ -162,6 +162,15 @@
                     @media screen and (max-width: 480px){
                         padding-right: 0;
                     }   
+                    div.mage-error[generated] {
+                        top: 50px;
+                        @media screen and (max-width: 768px){
+                            top: 40px;
+                        } 
+                        @media screen and (max-width: 480px){
+                            left: 10px;
+                        } 
+                    }
                 }
                 .fields.range.price {
                     .control {
@@ -176,6 +185,9 @@
                             top: 0;
                             padding: 15px;
                             font-size: 15px;
+                            @media screen and (max-width: 768px){
+                                padding: 10px 15px;
+                            }  
                         }
                         input {
                             padding-left: 35px;
@@ -239,6 +251,9 @@
             input {
                 background: #f2f5f8;
                 border: 1px solid #c2c2c2;
+                @media screen and (max-width: 768px){
+                    height: 40px;
+                } 
             }
             input#search_value {
                 position: absolute;
@@ -279,17 +294,23 @@
                     font-size: 15px;
                 }
             }
-            .category_search_field {
+            div.category_search_field {
                 width: 50%;
                 display: inline-block; 
                 @media screen and (max-width: 480px){
                     min-width: 100%;
+                }  
+                @media screen and (max-width: 768px){
+                    margin-bottom: 10px;
                 }     
                 &.select-group {
                     .control {
                         position: relative;
                         select {
                             background: none !important;
+                            @media screen and (max-width: 768px){
+                                height: 40px;
+                            }   
                         }
                         &:after {
                             content: '\e622';
@@ -302,6 +323,9 @@
                             @media screen and (max-width: 480px){
                                 right: 15px;
                             }  
+                            @media screen and (max-width: 768px){
+                                top: 10px;
+                            } 
                         }
                     }
                 }          
