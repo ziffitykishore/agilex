@@ -3,4 +3,7 @@
     <event name="algolia_after_create_product_object">
         <observer name="SomethingDigital_AlgoliaSearch" instance="SomethingDigital\AlgoliaSearch\Observer\AddProductData" />
     </event>
+    <event name="algolia_after_create_category_object">
+        <observer name="SomethingDigital_AlgoliaSearch" instance="SomethingDigital\AlgoliaSearch\Observer\AddCategoryData" />
+    </event>
 </config>
