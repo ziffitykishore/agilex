@@ -15,9 +15,11 @@ define([
     'mage/translate'
 ], function ($, _, mageTemplate, mediaCheck) {
     'use strict';
+    /** Custom code to avoid multiple ajax request and set timedelay- starts */
     var typeDelay = window.typingSearchDelay || 500;
     var typeCounter;
     var currentRequest = null;
+    /** Custom code to avoid multiple ajax request and set timedelay- ends */
     /**
      * Check whether the incoming string is not empty or if doesn't consist of spaces.
      *
@@ -287,6 +289,7 @@ define([
             this.submitBtn.disabled = isEmpty(value);
 
             if (value.length >= parseInt(this.options.minSearchLength, 10)) {
+                /** Custom code to avoid multiple ajax request and set timedelay- starts */
                 var url = this.options.url;
                 var autocomplete = this.autoComplete;
                 var object = this;
@@ -343,6 +346,7 @@ define([
                         }
                     }, object));
                 }, typeDelay);
+                /** Custom code to avoid multiple ajax request and set timedelay- ends */
             } else {
                 this._resetResponseList(true);
                 this.autoComplete.hide();
