@@ -28,6 +28,7 @@ class AddCategoryData implements ObserverInterface
         $transport = $observer->getEvent()->getData('categoryObject');
         $this->addParentCategoryId($category, $transport);
         $this->addGrouping($category, $transport);
+        $this->removePubDirectory($category, $transport);
         
     }
 
@@ -66,6 +67,20 @@ class AddCategoryData implements ObserverInterface
         if(!empty($cat->getGroupingAttribute3()))
             $algoliaCategoryData['grouping'][] = $cat->getGroupingAttribute3();
 
+        $transport->setData($algoliaCategoryData);
+    }
+
+    /**
+     * Remove /pub directory
+     *
+     * @param \Magento\Catalog\Model\Category $category
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function removePubDirectory($category, $transport)
+    {
+        $algoliaCategoryData = $transport->getData();
+        $algoliaCategoryData['image_url'] = str_replace('/pub/', '/', $category->getImageUrl());
+        
         $transport->setData($algoliaCategoryData);
     }
     
