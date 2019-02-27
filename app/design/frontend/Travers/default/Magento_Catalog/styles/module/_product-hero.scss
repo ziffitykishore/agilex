@@ -38,6 +38,10 @@
     .product-info-main {
         float: none;
         width: auto;
+
+        @include max-screen($screen__m) {
+            width: 100%;
+        }
     }
 
     .product.media {
