@@ -33,6 +33,7 @@ define([
     /*advanced search button hide and show */
     $(document).on('click', function() {
         $('._adv_trig').removeClass('active');
+        $('#search_autocomplete').css('display', 'none');
     });
     $('.form.minisearch').on('click', function(e) {
         e.stopPropagation();
