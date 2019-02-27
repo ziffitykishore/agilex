@@ -378,6 +378,26 @@
     padding: $indent__s (0.75 * $indent__base);
     padding-left: 0; // left align with column data
 
+    tr {
+        &:first-of-type {
+            background-color: $c-cobalt;
+            color: $color-white;
+        }
+
+        &:last-of-type {
+            color: $c-nickel;
+        }
+
+        td {
+            font-size: $font-size__base--desktop;
+        }
+    }
+
+    th {
+        font-weight: $font-weight__semibold;
+        font-size: 16px;
+    }
+
     .price-container {
         display: inline-block;
     }
@@ -391,6 +411,10 @@
             font-size: 14px;
             font-weight: $font-weight__bold;
         }
+    }
+
+    .item {
+        padding-bottom: $indent__xs;
     }
 }
 
