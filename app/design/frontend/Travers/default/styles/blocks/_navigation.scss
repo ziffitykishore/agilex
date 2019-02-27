@@ -478,8 +478,7 @@ $nav-section-title__height: 60px;
                     column-count: 4;
 
                     @include min-screen($screen__l) {
-                        padding-left: 10%;
-                        padding-right: 10%;
+                        padding-right: 20%;
                     }
                 }
             }

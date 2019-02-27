@@ -1,8 +1,10 @@
-.contact.form {
-  max-width: $form-field__width__desktop;
-}
-
 .contact-index-index {
+  .contact.form {
+    max-width: $form-field__width__desktop;
+    width: 100% !important;
+    float: none !important;
+  }
+
   .contact-description {
     max-width: 700px;
   }
