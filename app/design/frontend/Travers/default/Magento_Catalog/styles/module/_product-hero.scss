@@ -1,0 +1,89 @@
+// Container div for: main product info, gallery, & related products
+/*
+    <div class="product-hero">
+        <div class="product-hero__info">...</div>
+        <div class="block related">...</div>
+    </div>
+*/
+.product-hero {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include max-screen($screen__m) {
+        flex-direction: column;
+    }
+
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+        width: calc(100% - #{$width__product-related} - #{$indent__base});
+
+        @include max-screen($screen__l) {
+            width: 100%;
+        }
+    }
+
+    .block.related {
+        order: 4;
+        float: none;
+        width: 100%;
+
+        @include min-screen($screen__l) {
+            width: $width__product-related;
+            order: 2;
+        }
+    }
+
+    .product.media,
+    .product-info-main {
+        float: none;
+        width: auto;
+    }
+
+    .product.media {
+        order: 1;
+        width: 100%;
+
+        @include min-screen($screen__m) {
+            width: calc(100% - #{$width__product-info} - #{$indent__base});
+        }
+    }
+
+    .product-info-main {
+        order: 2;
+
+        @include max-screen($screen__m) {
+            margin-bottom: $indent__m;
+        }
+
+        @include min-screen($screen__m) {
+            width: $width__product-info;
+            margin-left: $indent__base;
+        }
+    }
+
+    .product.info.detailed {
+        order: 3;
+        width: 100%;
+        max-width: 800px; // for readability
+    }
+
+    .product-options-bottom {
+        display: flex;
+        align-items: center;
+
+        .pricing {
+            order: 1;
+            margin-top: $indent__s;
+        }
+    }
+
+    .as-low-as {
+        font-size: 16px;
+        font-weight: $font-weight__semibold;
+
+        .price-wrapper {
+            font-size: 22px;
+        }
+    }
+}
