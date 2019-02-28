@@ -219,13 +219,15 @@ body {
 .header.content {
     @include layout-container();
     @include lib-clearfix();
-    min-height: 70px;
+    min-height: 85px;
 
     @include min-screen($mobile-nav__breakpoint) {
-        padding: $layout__width-xs-indent $layout__width-xs-indent 0;
+        padding: 0 $layout__width-xs-indent 0;
         display: flex;
         margin: 0;
+        margin-bottom: $indent__xs;
         max-width: none;
+        align-items: center;
 
         .algolia-search-block {
             flex-basis: 46%;
@@ -233,7 +235,7 @@ body {
 
         .minicart-wrapper {
             order: 1;
-            margin-top: 13px;
+            margin-top: 0;
         }
     }
 
@@ -271,7 +273,6 @@ body {
         @include min-screen($mobile-nav__breakpoint) {
             max-width: 280px;
             margin-top: 3px;
-            margin-bottom: $indent__m;
         }
     }
 
