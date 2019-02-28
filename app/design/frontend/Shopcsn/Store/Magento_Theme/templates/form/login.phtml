@@ -17,9 +17,6 @@
         <div class="common-form sign-in">
             <div class="login-notify" style="display: none;"></div>
             <div class="block-title main-head text-center">
-                <strong id="block-customer-login-heading" role="heading" aria-level="2">
-                    <?= $block->escapeHtml(__('Welcome Back!')) ?>
-                </strong>
             </div>
             <div class="block-content" aria-labelledby="block-customer-login-heading">
                 <form class="form form-login wpcf7-form"
@@ -31,7 +28,7 @@
                      >
                     <?= $block->getBlockHtml('formkey') ?>
                     <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-                        <div class="field note mb-20 text-center"><?= $block->escapeHtml(__('Sign In to access your account')) ?></div>
+                        <div class="field note mb-20"><?= $block->escapeHtml(__('Sign In to access your account')) ?></div>
                         <div class="field email required mb-20 form-group">
                             <label class="label txt-grey" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                             <div class="control form-control-wrap">
