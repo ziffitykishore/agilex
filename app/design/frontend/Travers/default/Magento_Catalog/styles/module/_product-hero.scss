@@ -66,6 +66,13 @@
         }
     }
 
+    .product-info-price {
+        .manufacturer_price {
+            font-size: 16px;
+            color: $c-dusty-grey;
+        }
+    }
+
     .product.info.detailed {
         order: 3;
         width: 100%;
