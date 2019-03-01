@@ -57,6 +57,12 @@ class SeoProRender
     {
         try{
             $removeQuery = explode('?', $this->url->getCurrentUrl())[0];
+            //To change product details page canonical url
+	    $urlArray = explode('/', $removeQuery);	
+	    if ($this->request->getFullActionName() == 'catalog_product_view' && count($urlArray) > 4) {
+		$removeQuery = $urlArray[0]."/".$urlArray[1]."/".$urlArray[2]."/".end($urlArray);
+
+	    }
             if(!in_array('blog', explode('/', $removeQuery))){
                 $this->pageConfig->addRemotePageAsset(
                     $removeQuery,
