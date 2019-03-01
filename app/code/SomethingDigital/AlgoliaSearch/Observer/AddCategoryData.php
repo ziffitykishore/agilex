@@ -60,12 +60,15 @@ class AddCategoryData implements ObserverInterface
 
         $cat = $this->categoryRepository->get($category->getId(), $this->_storeManager->getStore()->getId());
 
-        if(!empty($cat->getGroupingAttribute1()))
+        if (!empty($cat->getGroupingAttribute1())) {
             $algoliaCategoryData['grouping'][] = $cat->getGroupingAttribute1();
-        if(!empty($cat->getGroupingAttribute2()))
+        }
+        if (!empty($cat->getGroupingAttribute2())) {
             $algoliaCategoryData['grouping'][] = $cat->getGroupingAttribute2();
-        if(!empty($cat->getGroupingAttribute3()))
+        }
+        if (!empty($cat->getGroupingAttribute3())) {
             $algoliaCategoryData['grouping'][] = $cat->getGroupingAttribute3();
+        }
 
         $transport->setData($algoliaCategoryData);
     }

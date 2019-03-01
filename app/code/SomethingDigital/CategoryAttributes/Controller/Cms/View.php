@@ -5,9 +5,23 @@ use Magento\Framework\UrlFactory;
  
 class View extends \Magento\Framework\App\Action\Action
 {
-    protected $_context;
-    protected $_pageFactory;
-    protected $_jsonEncoder;
+    protected $context;
+    protected $pageFactory;
+    protected $jsonEncoder;
+    protected $categoryRepository;
+    protected $storeManager;
+    protected $blockRepository;
+    protected $filterProvider;
+
+    /**
+     * @param Context                  $context
+     * @param EncoderInterface         $encoder
+     * @param PageFactory              $pageFactory
+     * @param StoreManagerInterface    $storeManager
+     * @param CategoryRepository       $categoryRepository
+     * @param BlockRepositoryInterface $blockRepository
+     * @param FilterProvider           $filterProvider
+     */
     
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -18,39 +32,38 @@ class View extends \Magento\Framework\App\Action\Action
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
         \Magento\Cms\Model\Template\FilterProvider $filterProvider
     ) {
-        $this->_context = $context;
-        $this->_pageFactory = $pageFactory;
-        $this->_jsonEncoder = $encoder;
-        $this->_storeManager = $storeManager;
+        $this->context = $context;
+        $this->pageFactory = $pageFactory;
+        $this->jsonEncoder = $encoder;
+        $this->storeManager = $storeManager;
         $this->categoryRepository = $categoryRepository;
         $this->blockRepository = $blockRepository;
-        $this->_filterProvider = $filterProvider;
+        $this->filterProvider = $filterProvider;
         parent::__construct($context);
     }
     
     public function execute() 
     {       
-
         $cid = $this->getRequest()->getParam('id');
-        $category = $this->categoryRepository->get($cid, $this->_storeManager->getStore()->getId());
+        $category = $this->categoryRepository->get($cid, $this->storeManager->getStore()->getId());
 
-        if($bottomBlockId = $category->getStaticBlockBottom()) {
+        if ($bottomBlockId = $category->getStaticBlockBottom()) {
             $bottomBlock = $this->blockRepository->getById($bottomBlockId);
-            $bottomBlockHtml = $this->_filterProvider->getPageFilter()->filter($bottomBlock->getContent());
+            $bottomBlockHtml = $this->filterProvider->getPageFilter()->filter($bottomBlock->getContent());
         } else {
             $bottomBlockHtml = '';
         }
 
-        if($leftBlockId = $category->getStaticBlockLeftBar()) {
+        if ($leftBlockId = $category->getStaticBlockLeftBar()) {
             $leftBlock = $this->blockRepository->getById($leftBlockId);
-            $leftBlockHtml = $this->_filterProvider->getPageFilter()->filter($leftBlock->getContent());
+            $leftBlockHtml = $this->filterProvider->getPageFilter()->filter($leftBlock->getContent());
         } else {
             $leftBlockHtml = '';
         }
 
-        if($cmsBlockId = $category->getLandingPage()) {
+        if ($cmsBlockId = $category->getLandingPage()) {
             $cmsBlock = $this->blockRepository->getById($cmsBlockId);
-            $description = $this->_filterProvider->getPageFilter()->filter($cmsBlock->getContent());
+            $description = $this->filterProvider->getPageFilter()->filter($cmsBlock->getContent());
         } else {
             $description = $category->getDescription();
         }
@@ -62,8 +75,6 @@ class View extends \Magento\Framework\App\Action\Action
         ];
         
         
-        $this->getResponse()->representJson($this->_jsonEncoder->encode($data))->setHeader('Cache-Control', 'max-age=86400, public');
-        return;
+        $this->getResponse()->representJson($this->jsonEncoder->encode($data))->setHeader('Cache-Control', 'max-age=86400, public');
     }
 }
-?>
