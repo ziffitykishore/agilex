@@ -90,11 +90,6 @@ class M20190301204658SampleFilters implements MigrationInterface
         $this->eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, 'color', 'layered_nav_description', 'This is sample description');
         $this->eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, 'color', 'include_in_table', 1);
         $this->eavSetup->updateAttribute(\Magento\Catalog\Model\Product::ENTITY, 'color', 'include_in_flyout', 1);
-        
-        // Set product attribute value
-        $product = $this->productRepository->getById(1);
-        $product->setSampleAttribute($this->getOptionId('sample_attribute', 'Value 1'));
-        $this->productRepository->save($product);
     }
 
     /**
