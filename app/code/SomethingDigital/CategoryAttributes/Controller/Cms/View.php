@@ -45,7 +45,7 @@ class View extends \Magento\Framework\App\Action\Action
     public function execute() 
     {       
         $cid = $this->getRequest()->getParam('id');
-        if($cid != 'search') {
+        if ($cid != 'search') {
             $category = $this->categoryRepository->get($cid, $this->storeManager->getStore()->getId());
 
             if ($bottomBlockId = $category->getStaticBlockBottom()) {
