@@ -45,35 +45,43 @@ class View extends \Magento\Framework\App\Action\Action
     public function execute() 
     {       
         $cid = $this->getRequest()->getParam('id');
-        $category = $this->categoryRepository->get($cid, $this->storeManager->getStore()->getId());
+        if($cid != 'search') {
+            $category = $this->categoryRepository->get($cid, $this->storeManager->getStore()->getId());
 
-        if ($bottomBlockId = $category->getStaticBlockBottom()) {
-            $bottomBlock = $this->blockRepository->getById($bottomBlockId);
-            $bottomBlockHtml = $this->filterProvider->getPageFilter()->filter($bottomBlock->getContent());
-        } else {
-            $bottomBlockHtml = '';
-        }
+            if ($bottomBlockId = $category->getStaticBlockBottom()) {
+                $bottomBlock = $this->blockRepository->getById($bottomBlockId);
+                $bottomBlockHtml = $this->filterProvider->getPageFilter()->filter($bottomBlock->getContent());
+            } else {
+                $bottomBlockHtml = '';
+            }
 
-        if ($leftBlockId = $category->getStaticBlockLeftBar()) {
-            $leftBlock = $this->blockRepository->getById($leftBlockId);
-            $leftBlockHtml = $this->filterProvider->getPageFilter()->filter($leftBlock->getContent());
-        } else {
-            $leftBlockHtml = '';
-        }
+            if ($leftBlockId = $category->getStaticBlockLeftBar()) {
+                $leftBlock = $this->blockRepository->getById($leftBlockId);
+                $leftBlockHtml = $this->filterProvider->getPageFilter()->filter($leftBlock->getContent());
+            } else {
+                $leftBlockHtml = '';
+            }
 
-        if ($cmsBlockId = $category->getLandingPage()) {
-            $cmsBlock = $this->blockRepository->getById($cmsBlockId);
-            $description = $this->filterProvider->getPageFilter()->filter($cmsBlock->getContent());
+            if ($cmsBlockId = $category->getLandingPage()) {
+                $cmsBlock = $this->blockRepository->getById($cmsBlockId);
+                $descriptionHtml = $this->filterProvider->getPageFilter()->filter($cmsBlock->getContent());
+            } else {
+                $descriptionHtml = $category->getDescription();
+            }
         } else {
-            $description = $category->getDescription();
+            $descriptionHtml = $this->blockRepository->getById('catalogsearch_description');
+            $descriptionHtml = $this->filterProvider->getPageFilter()->filter($descriptionHtml->getContent());
+            $leftBlockHtml = $this->blockRepository->getById('catalogsearch_after_sidebar');
+            $leftBlockHtml = $this->filterProvider->getPageFilter()->filter($leftBlockHtml->getContent());
+            $bottomBlockHtml = $this->blockRepository->getById('catalogsearch_after_content');
+            $bottomBlockHtml = $this->filterProvider->getPageFilter()->filter($bottomBlockHtml->getContent());
         }
 
         $data = [
-            'description' => $description, 
+            'description' => $descriptionHtml, 
             'after_sidebar' => $leftBlockHtml, 
             'after_content' => $bottomBlockHtml
         ];
-        
         
         $this->getResponse()->representJson($this->jsonEncoder->encode($data))->setHeader('Cache-Control', 'max-age=86400, public');
     }
