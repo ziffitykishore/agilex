@@ -38,6 +38,10 @@
     .product-info-main {
         float: none;
         width: auto;
+
+        @include max-screen($screen__m) {
+            width: 100%;
+        }
     }
 
     .product.media {
@@ -59,6 +63,13 @@
         @include min-screen($screen__m) {
             width: $width__product-info;
             margin-left: $indent__base;
+        }
+    }
+
+    .product-info-price {
+        .manufacturer_price {
+            font-size: 16px;
+            color: $c-dusty-grey;
         }
     }
 
