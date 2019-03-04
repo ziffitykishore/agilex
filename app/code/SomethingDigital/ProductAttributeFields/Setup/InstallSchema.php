@@ -21,7 +21,7 @@ class InstallSchema implements InstallSchemaInterface
             $setup->getTable($tableName),
             'include_in_table',
             [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
                 'nullable' => false,
                 'unsigned' => true,
                 'default' => '0',
@@ -42,7 +42,7 @@ class InstallSchema implements InstallSchemaInterface
             $setup->getTable($tableName),
             'include_in_flyout',
             [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
                 'nullable' => false,
                 'unsigned' => true,
                 'default' => '0',
@@ -63,7 +63,7 @@ class InstallSchema implements InstallSchemaInterface
             $setup->getTable($tableName),
             'searchable_in_layered_nav',
             [
-                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
                 'nullable' => false,
                 'unsigned' => true,
                 'default' => '0',
