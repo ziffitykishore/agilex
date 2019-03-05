@@ -234,11 +234,12 @@
                             }
                         }
                         .action {
-                            float: none;
-                            width: auto;
-                            &.edit {
-                                margin-right: 7px;
-                            }
+                            float: left;
+                            width: 50%;
+                            margin: 0;
+                            span {
+                                font-size: 11px;
+                            }                            
                         }
                     }
                 }
@@ -263,7 +264,7 @@
                     height: 100%;
                     background: #c2c2c2;
                     position: absolute;
-                    left: -10px;
+                    left: 0;
                     top: 0;
                 }
             }
@@ -1053,10 +1054,16 @@
                         float: none;
                         margin-right: 0;
                         .field.qty{
-                            display: block;
+                            display: inline-block;
+                            vertical-align: bottom;
+                            margin-bottom: 0px;
+                            input {
+                                height: 36px;
+                            }
                         }
                         .product-item-actions{
                             display: block;
+                            margin-top: 10px;
                         }
                         .action {
                             width: 100%;

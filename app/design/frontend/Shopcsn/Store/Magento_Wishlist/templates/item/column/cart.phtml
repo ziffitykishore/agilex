@@ -29,16 +29,15 @@ $product = $item->getProduct();
         <button  type="button"  onclick="incrementValue()"><span>+</span></button>
     <?php endif; ?>
     <?php if ($product->isSaleable()): ?>
-    <div class="product-item-actions">
-        <div class="actions-primary">
-            <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $product->getEntityId();?>" href="javascript:void(0);">
-                                                <span><?php echo __('Quick View') ?></span>
-                                            </a>
-        </div>
+    <div class="product-item-actions clearfix">
+       
         <div class="actions-primary">             
             <button type="button" data-role="tocart" data-post='<?= /* @noEscape */ $block->getItemAddToCartParams($item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>" class="action tocart primary">
                 <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
             </button>
+            <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $product->getEntityId();?>" href="javascript:void(0);">
+                                                <span><?php echo __('Quick View') ?></span>
+                                            </a>
         </div>
     </div>
     <?php else: ?>
