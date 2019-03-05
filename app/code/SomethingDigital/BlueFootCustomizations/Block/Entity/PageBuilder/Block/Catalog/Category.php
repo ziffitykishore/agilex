@@ -10,11 +10,12 @@ class Category extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Catalog\Cat
      * @var \Magento\Eav\Model\Entity\Collection\AbstractCollection;
      */
     protected $_productCollection;
+
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
     private $productCollectionFactory;
-    
+
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
         \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
@@ -39,18 +40,16 @@ class Category extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Catalog\Cat
         );
         $this->productCollectionFactory = $productCollectionFactory;
     }
+
     /**
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
     public function _getProductCollection()
     {
-        return $this->productCollectionFactory->create();
-    }
-    /**
-     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
-     */
-    public function getProductCollection()
-    {
+        if ($this->_productCollection) {
+            return $this->_productCollection;
+        }
+
         /* @var $dataModel \Gene\BlueFoot\Model\Attribute\Data\Widget\Category */
         $dataModel = $this->getEntity()
             ->getResource()
@@ -58,11 +57,22 @@ class Category extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Catalog\Cat
                 'category_id'
             )
             ->getDataModel($this->getEntity());
+
         if ($dataModel instanceof  \Gene\BlueFoot\Model\Attribute\Data\Widget\Category
             && method_exists($dataModel, 'getProductCollection')
         ) {
-            return $dataModel->getProductCollection();
+            $this->_productCollection = $dataModel->getProductCollection();
+            return $this->_productCollection;
         }
-        return false;
+
+        return $this->productCollectionFactory->create();
+    }
+    
+    /**
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    public function getProductCollection()
+    {
+        return $this->_getProductCollection();
     }
 }
