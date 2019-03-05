@@ -1,6 +1,6 @@
 <?php
 
-namespace SomethingDigital\Catalog\Block\Entity\PageBuilder\Block\Catalog;
+namespace SomethingDigital\BlueFootCustomizations\Block\Entity\PageBuilder\Block\Catalog;
 
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 
