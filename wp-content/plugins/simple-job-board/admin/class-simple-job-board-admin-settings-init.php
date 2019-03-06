@@ -14,6 +14,7 @@
  * 
  * @link        https://wordpress.org/plugins/simple-job-board
  * @since       2.2.3
+ * @since       2.7.2 Added prefix to the main wrapper class
  * 
  * @package     Simple_Job_Board
  * @subpackage  Simple_Job_Board/admin
@@ -146,10 +147,11 @@ class Simple_Job_Board_Settings_Init {
      * Add Settings Tab Menu.
      * 
      * @Since   2.0.0
+     * @Since   2.7.2 Renamed classname 'wrap' to 'sjb-tabs-wrap' to avoid from conflict
      */
     public function sjb_settings_tab_menu() {
         ?>
-        <div class="wrap">
+        <div class="sjb-tabs-wrap">
             <h1><?php esc_html_e('Settings', 'simple-job-board'); ?></h1>        
             <h2 class="nav-tab-wrapper">
 

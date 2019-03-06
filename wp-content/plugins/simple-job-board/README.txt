@@ -3,9 +3,10 @@ Contributors: PressTigers
 Donate link: http://www.presstigers.com
 Tags: job board, career, job listing, job manager, job portal
 Requires at least: 4.4
-Tested up to: 4.9.8
-Stable tag: 2.7.1
+Tested up to: 5.1
+Stable tag: 2.7.2
 License: GPLv3
+Requires PHP: 7.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Powerful & robust plugin to create a job board on your website in a simple & elegant way.
@@ -190,6 +191,10 @@ You can visit <a href="http://www.presstigers.com">PressTigers Website</a> or <a
 
 == Changelog ==
 
+= 2.7.2 =
+* Fixed the compatibility issues with PHP 7.3
+* Fix - Fixed the wrapping issue in Admin Script to avoid from conflict.
+
 = 2.7.1 =
 * Fix - Fixed the job application HTML issue.
 
@@ -342,5 +347,5 @@ Tweak - Introduced new filters in email notification templates.
 
 == Upgrade Notice ==
 
-= 2.7.1 =
-2.7.1 is a minor release with the fix of job application HTML.
+= 2.7.2 =
+Fully compatible with PHP 7.3 & wrapped the Admin script with proper prefix.
