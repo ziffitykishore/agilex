@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9db4f5b6c99556efef1b73bb29aae1a",
+    "content-hash": "107beafabedd8051aac0ec7808214570",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -64,16 +64,16 @@
         },
         {
             "name": "algolia/algoliasearch-magento-2",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-magento-2.git",
-                "reference": "09182bf9dd17bad689ed443bc0e59f3504327322"
+                "reference": "166b11ec0df78f11176ebf6e8237a30e2714a3ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/09182bf9dd17bad689ed443bc0e59f3504327322",
-                "reference": "09182bf9dd17bad689ed443bc0e59f3504327322",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/166b11ec0df78f11176ebf6e8237a30e2714a3ec",
+                "reference": "166b11ec0df78f11176ebf6e8237a30e2714a3ec",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "MIT"
             ],
             "description": "Algolia Search integration for Magento 2",
-            "time": "2018-12-18T13:20:17+00:00"
+            "time": "2019-01-15T13:28:19+00:00"
         },
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -1261,12 +1261,6 @@
                 "url": "https://github.com/fastly/fastly-magento2.git",
                 "reference": "01906d95b38677a7d689fa7be352af87accc4e19"
             },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/01906d95b38677a7d689fa7be352af87accc4e19",
-                "reference": "01906d95b38677a7d689fa7be352af87accc4e19",
-                "shasum": ""
-            },
             "require": {
                 "magento/framework": ">=100.0.0",
                 "magento/module-cache-invalidate": ">=100.0.0",
@@ -1284,7 +1278,6 @@
                     "Fastly\\Cdn\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2321,6 +2314,12 @@
         {
             "name": "magento/extension-b2b",
             "version": "1.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/extension-b2b/magento-extension-b2b-1.0.6.0.zip",
+                "reference": null,
+                "shasum": "dae38eb00fe7bee36184cb01e85607c5a81b44be"
+            },
             "require": {
                 "magento/magento2-b2b-base": "1.0.6",
                 "magento/module-b2b": "100.0.3",
@@ -2692,6 +2691,12 @@
         {
             "name": "magento/magento-cloud-metapackage",
             "version": "2.2.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/magento-cloud-metapackage/magento-magento-cloud-metapackage-2.2.6.0.zip",
+                "reference": null,
+                "shasum": "32d9f853d14906bf673b654c67e69418abc56b35"
+            },
             "require": {
                 "fastly/magento2": "^1.2.34",
                 "magento/ece-tools": "~2002.0.11",
@@ -11977,6 +11982,12 @@
         {
             "name": "magento/product-community-edition",
             "version": "2.2.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/product-community-edition/magento-product-community-edition-2.2.6.0.zip",
+                "reference": null,
+                "shasum": "2aacefd94b6be05d85e58a1269347b71bc4b2a71"
+            },
             "require": {
                 "amzn/amazon-pay-and-login-with-amazon-core-module": "2.1.0",
                 "amzn/amazon-pay-module": "2.1.0",
@@ -12189,6 +12200,12 @@
         {
             "name": "magento/product-enterprise-edition",
             "version": "2.2.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/magento/product-enterprise-edition/magento-product-enterprise-edition-2.2.6.0.zip",
+                "reference": null,
+                "shasum": "daf4546754fde35eb26a38e87776402178a9d4ab"
+            },
             "require": {
                 "amzn/amazon-pay-and-login-with-amazon-core-module": "2.1.0",
                 "amzn/amazon-pay-module": "2.1.0",
@@ -13680,7 +13697,7 @@
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2018-05-09 16:49:43"
+            "time": "2018-05-09T16:49:43+00:00"
         },
         {
             "name": "snowdog/theme-blank-sass",
@@ -18024,6 +18041,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-08-03T14:08:16+00:00"
         },
         {
@@ -19095,6 +19113,12 @@
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-xml.git",
                 "reference": "a2ef9388bbcef094e06d8447145b2782861c87ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-xml/zipball/a2ef9388bbcef094e06d8447145b2782861c87ef",
+                "reference": "a2ef9388bbcef094e06d8447145b2782861c87ef",
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
