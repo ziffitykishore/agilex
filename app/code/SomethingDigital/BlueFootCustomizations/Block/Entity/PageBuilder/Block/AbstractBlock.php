@@ -10,6 +10,7 @@ class AbstractBlock extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Abstra
 {
     protected $categoryHelper;
     protected $categoryRepository;
+    protected $categoryFactory;
     
     /**
      * AbstractBlock constructor.
@@ -19,6 +20,7 @@ class AbstractBlock extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Abstra
      * @param \Magento\Framework\Data\CollectionFactory        $dataCollectionFactory
      * @param \Magento\Catalog\Helper\Category                 $categoryHelper
      * @param \Magento\Catalog\Model\CategoryRepository        $categoryRepository
+     * @param \Magento\Catalog\Model\CategoryFactory           $categoryFactory
      * @param array                                            $data
      */
     public function __construct(
