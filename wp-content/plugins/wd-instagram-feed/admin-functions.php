@@ -175,6 +175,8 @@ function wdi_install(){
     mobile_breakpoint varchar(10) NOT NULL,
 		redirect_url varchar(255) NOT NULL,
 		feed_resolution varchar(255) NOT NULL,
+        hashtag_top_recent varchar(10) NOT NULL,
+
     
     UNIQUE KEY id (id)
   ) $charset_collate;";

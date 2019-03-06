@@ -191,7 +191,7 @@ function WDIInstagram(args)
    *
    * @return object of founded media
    */
-  this.getTagRecentMedia = function (tagname, args, next_url)
+  this.getTagRecentMedia = function (tagname, args, next_url, endpoint)
   {
 
       var hastag_data_url = 'https://graph.facebook.com/ig_hashtag_search/';
@@ -206,9 +206,11 @@ function WDIInstagram(args)
       statusCode = this.statusCode,
       errorFlag = false,
       argFlag = false,
-      filter = this.getFilter('getTagRecentMedia'),
+      filter = this.getFilter('getTagRecentMedia');
 
-      baseUrl = 'https://graph.facebook.com/{tagid}/recent_media/?fields=media_url,caption,id,media_type,comments_count,like_count,permalink,children{media_url,id,media_type,permalink}';
+      endpoint = (parseInt(endpoint) === 0) ? "top_media" : "recent_media"
+
+      var baseUrl = 'https://graph.facebook.com/{tagid}/' + endpoint + '/?fields=media_url,caption,id,media_type,comments_count,like_count,permalink,children{media_url,id,media_type,permalink}';
 
 
     if (typeof args == 'undefined' || args.length === 0) {
@@ -339,7 +341,7 @@ function WDIInstagram(args)
                   return;
     }
 
-              if (typeof next_url === "undefined") {
+              if (typeof next_url === "undefined" || next_url === null) {
                   baseUrl = baseUrl.replace('{tagid}', wdiTagId);
               } else {
                   baseUrl = next_url;
@@ -363,7 +365,7 @@ function WDIInstagram(args)
           });
       } else {
 
-          if (typeof next_url === "undefined") {
+          if (typeof next_url === "undefined" || next_url === null) {
               baseUrl = baseUrl.replace('{tagid}', wdiTagId);
           } else {
               baseUrl = next_url;
