@@ -9,17 +9,10 @@
 ?>
 <?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
 <?php $_product = $block->getProduct() ?>
-
+<?php $stockStatus = $block->getViewModel()->getStockStatus() ?>
 <?php if ($block->displayProductStockStatus()): ?>
-    <?php if ($_product->isAvailable()): ?>
-        <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
-            <span><?= /* @escapeNotVerified */ __('In stock') ?></span>
-            <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
-        </div>
-    <?php else: ?>
-        <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
-            <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span>
-            <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
-        </div>
-    <?php endif; ?>
+    <p class="stock available" title="<?= /* @escapeNotVerified */ __('Availability:') ?>">
+        <span><?= /* @escapeNotVerified */ $stockStatus ?></span>
+        <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
+    </p>
 <?php endif; ?>
