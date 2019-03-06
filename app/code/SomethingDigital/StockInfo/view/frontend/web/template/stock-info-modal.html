@@ -1,0 +1,18 @@
+<div id="stock-info-modal-popup" data-bind="afterRender: createModalPopup" style="display: none">
+    <div class="product-inventory-table-mobile">
+        <h3 data-bind="i18n: 'Check Warehouse Stock Availability'"></h3>
+        <!-- ko if: stockDataIsEmptyObservable -->
+        <p data-bind="i18n: 'There are no available items'"></p>
+        <!-- /ko -->
+        <!-- ko ifnot: stockDataIsEmptyObservable -->
+            <!-- ko foreach: { data: stockDataObservable(), as: 'element' } -->
+            <div>
+                <p><span data-bind="i18n: 'SKU:'"></span><span data-bind="text: element.sku"></p>
+                <p><span data-bind="i18n: 'Warehouse:'"></span><span data-bind="text: element.label"></p>
+                <p><span data-bind="i18n: 'Status:'"></span><span data-bind="text: element.in_stock"></p>
+                <p><span data-bind="i18n: 'QTY:'"></span><span data-bind="text: element.qty"></p>
+            </div>
+            <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>

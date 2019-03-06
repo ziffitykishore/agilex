@@ -1,0 +1,19 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle */
+?>
+<?php $_product = $block->getProduct() ?>
+<?php $stockStatus = $block->getViewModel()->getStockStatus() ?>
+<?php if ($block->displayProductStockStatus()): ?>
+    <p class="stock available" title="<?= /* @escapeNotVerified */ __('Availability:') ?>">
+        <span><?= /* @escapeNotVerified */ $stockStatus ?></span>
+        <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
+    </p>
+<?php endif; ?>
+<?= $block->getChildHtml('bundle_prices') ?>
