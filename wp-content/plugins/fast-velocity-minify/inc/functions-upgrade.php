@@ -7,7 +7,7 @@ function fastvelocity_version_check() {
 	$ver = get_option("fastvelocity_plugin_version");
 	if ($ver == false) { $ver = '0.0.0'; }
 	
-	# save on upgrade
+	# save current version on upgrade
 	if ($ver != $fastvelocity_plugin_version) {
 		update_option( "fastvelocity_plugin_version", $fastvelocity_plugin_version);
 	}
@@ -43,7 +43,17 @@ function fastvelocity_version_check() {
 		}
 	
 	}
-
+	
+	
+	# changed on 2.6.0
+	if($dots[0] < 2 || ($dots[0] == 2 && $dots[1] < 6)) {
+	
+		# add old cache purge event cron
+		if (!wp_next_scheduled ('fastvelocity_purge_old_cron')) {
+			wp_schedule_event(time(), 'daily', 'fastvelocity_purge_old_cron_event');
+		}
+	
+	}
 }
 add_action( 'plugins_loaded', 'fastvelocity_version_check' );
 
