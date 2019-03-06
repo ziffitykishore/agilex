@@ -4,6 +4,7 @@ namespace SomethingDigital\BlueFootCustomizations\Block\Entity\PageBuilder\Block
 
 use Magento\Catalog\Model\CategoryRepository;
 use Magento\Catalog\Helper\Category as CategoryHelper;
+use Magento\Catalog\Model\CategoryFactory;
 
 class AbstractBlock extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\AbstractBlock
 {
@@ -26,11 +27,13 @@ class AbstractBlock extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Abstra
         \Magento\Framework\Data\CollectionFactory $dataCollectionFactory,
         CategoryHelper $categoryHelper,
         CategoryRepository $categoryRepository,
+        CategoryFactory $categoryFactory,
         array $data = []
     ) {
         parent::__construct($context, $render, $dataCollectionFactory, $data);
         $this->categoryHelper = $categoryHelper;
         $this->categoryRepository = $categoryRepository;
+        $this->categoryFactory = $categoryFactory;
     }
     
     /**
@@ -42,7 +45,12 @@ class AbstractBlock extends \Gene\BlueFoot\Block\Entity\PageBuilder\Block\Abstra
     public function getCategorySubcategories($categoryId)
     {
         $categoryObj = $this->categoryRepository->get($categoryId);
-        $subcategories = $categoryObj->getChildrenCategories();
-        return $subcategories;
+        $subcategories = $categoryObj->getChildren();
+
+        $collection = $this->categoryFactory->create()->getCollection()->addAttributeToSelect('*')
+              ->addAttributeToFilter('is_active', 1)
+              ->setOrder('name', 'ASC')
+              ->addIdFilter($subcategories);
+        return $collection;
     }
 }
