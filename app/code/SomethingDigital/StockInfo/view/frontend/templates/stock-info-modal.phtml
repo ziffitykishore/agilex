@@ -1,0 +1,26 @@
+<?php $stockData = $block->getViewModel()->getStockData() ?>
+<?php $productType = $block->getViewModel()->getProductType() ?>
+<div id="stock-info-modal" data-bind="scope: 'stockInfoModal'" style="display: none;">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#stock-info-modal": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "stockInfoModal": {
+                        "component": "SomethingDigital_StockInfo/js/stock-info-modal",
+                        "config": {
+                            "template": "SomethingDigital_StockInfo/stock-info-modal",
+                            "productType": "<?= $productType ?>",
+                            "stockData": <?= json_encode($stockData) ?>,
+                            "popupSelector": "#stock-info-modal-popup",
+                            "popupOpenerSelector": ".stock-info-popup-trigger",
+                            "swatchSelector": ".swatch-opt"
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>

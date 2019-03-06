@@ -270,6 +270,7 @@ return [
         'SomethingDigital_MigrationProject' => 1,
         'SomethingDigital_ProductCompareDisabler' => 1,
         'SomethingDigital_SidebarMinicart' => 1,
+        'SomethingDigital_StockInfo' => 1,
         'SomethingDigital_VirtualThemes' => 1,
         'Temando_Shipping' => 1,
         'Unirgy_RapidFlow' => 1,
