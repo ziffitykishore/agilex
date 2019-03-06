@@ -18,12 +18,11 @@ if( ! defined("SS_VERSION") ) {
 					</th>
 					<td>
 						<input type="checkbox" id="facebook_share" name="wp_social_sharing[social_options][]" value="facebook" <?php checked( in_array( 'facebook', $opts['social_options'] ), true ); ?> /><label for="facebook_share"><?php echo _e('Facebook','wp-social-sharing')?></label>
-						<input type="checkbox" id="twitter_share" name="wp_social_sharing[social_options][]" value="twitter" <?php checked( in_array( 'twitter', $opts['social_options'] ), true ); ?> /><label for="twitter_share"><?php echo _e('Twitter','wp-social-sharing')?></label>
-						<input type="checkbox" id="googleplus_share" name="wp_social_sharing[social_options][]" value="googleplus" <?php checked( in_array( 'googleplus', $opts['social_options'] ), true ); ?> /><label for="googleplus_share"><?php echo _e('Google Plus','wp-social-sharing')?></label>
-						<br /><input type="checkbox" id="linkedin_share" name="wp_social_sharing[social_options][]" value="linkedin" <?php checked( in_array( 'linkedin', $opts['social_options'] ), true ); ?> /><label for="linkedin_share"><?php echo _e('Linkedin','wp-social-sharing')?></label>
-						<input type="checkbox" id="pinterest_share" name="wp_social_sharing[social_options][]" value="pinterest" <?php checked( in_array( 'pinterest', $opts['social_options'] ), true ); ?> /><label for="pinterest_share"><?php echo _e('Pinterest','wp-social-sharing')?></label>
-                        <input type="checkbox" id="xing_share" name="wp_social_sharing[social_options][]" value="xing" <?php checked( in_array( 'xing', $opts['social_options'] ), true ); ?> /><label for="xing_share"><?php echo _e('Xing','wp-social-sharing')?></label>
-                        <input type="checkbox" id="reddit_share" name="wp_social_sharing[social_options][]" value="reddit" <?php checked( in_array( 'reddit', $opts['social_options'] ), true ); ?> /><label for="reddit_share"><?php echo _e('Reddit','wp-social-sharing')?></label>
+						&nbsp;&nbsp;<input type="checkbox" id="twitter_share" name="wp_social_sharing[social_options][]" value="twitter" <?php checked( in_array( 'twitter', $opts['social_options'] ), true ); ?> /><label for="twitter_share"><?php echo _e('Twitter','wp-social-sharing')?></label>
+						&nbsp;&nbsp;<input type="checkbox" id="linkedin_share" name="wp_social_sharing[social_options][]" value="linkedin" <?php checked( in_array( 'linkedin', $opts['social_options'] ), true ); ?> /><label for="linkedin_share"><?php echo _e('Linkedin','wp-social-sharing')?></label>
+						<br /><br /><input type="checkbox" id="pinterest_share" name="wp_social_sharing[social_options][]" value="pinterest" <?php checked( in_array( 'pinterest', $opts['social_options'] ), true ); ?> /><label for="pinterest_share"><?php echo _e('Pinterest','wp-social-sharing')?></label>
+                        &nbsp;&nbsp;<input type="checkbox" id="xing_share" name="wp_social_sharing[social_options][]" value="xing" <?php checked( in_array( 'xing', $opts['social_options'] ), true ); ?> /><label for="xing_share"><?php echo _e('Xing','wp-social-sharing')?></label>
+                        &nbsp;&nbsp;<input type="checkbox" id="reddit_share" name="wp_social_sharing[social_options][]" value="reddit" <?php checked( in_array( 'reddit', $opts['social_options'] ), true ); ?> /><label for="reddit_share"><?php echo _e('Reddit','wp-social-sharing')?></label>
 					</td>
 				</tr>
 				<tr valign="top">
@@ -31,15 +30,12 @@ if( ! defined("SS_VERSION") ) {
 					<td>
 						<div class="dndicon">
 							<?php $s_order=get_option('wss_wp_social_sharing');
-								  if(empty($s_order)) $s_order='f,t,g,l,p,x,r';
+								  if(empty($s_order)) $s_order='f,t,l,p,x,r';
 								  $io=explode(',',rtrim($s_order,','));
 							foreach ($io as $i){
 								switch($i){
 									case 'f':
 										echo '<div class="s-icon facebook-icon" id="f"></div>';				
-										break;
-									case 'g':
-										echo '<div class="s-icon googleplus-icon" id="g"></div>';
 										break;
 									case 't':
 										echo '<div class="s-icon twitter-icon" id="t"></div>';
@@ -104,12 +100,6 @@ if( ! defined("SS_VERSION") ) {
 					<th><label for="twitter_text"><?php _e('Twitter Share button text','wp-social-sharing');?></label></th>
 					<td>
 						<input type="text" class="widefat" name="wp_social_sharing[twitter_text]" id="twitter_text" value="<?php echo esc_attr($opts['twitter_text']); ?>" /> 
-					</td>
-				</tr>
-				<tr valign="top">
-					<th><label for="googleplus_text"><?php _e('Google plus share button text','wp-social-sharing');?></label></th>
-					<td>
-						<input type="text" name="wp_social_sharing[googleplus_text]" id="googleplus_text" class="widefat" value="<?php echo esc_attr($opts['googleplus_text']); ?>" /> 
 					</td>
 				</tr>
 				<tr valign="top">
@@ -203,13 +193,16 @@ if( ! defined("SS_VERSION") ) {
 				<li><a href="http://wordpress.org/support/view/plugin-reviews/wp-social-sharing?rate=5#postform" target="_blank"><?php printf( __( 'Leave a %s review on WordPress.org', 'wp-social-sharing' ), '&#9733;&#9733;&#9733;&#9733;&#9733;' ); ?></a></li>
 				<li><a href="http://twitter.com/intent/tweet/?text=<?php echo urlencode('I am using Wordpress "WP Social Sharing" plugin to show social sharing buttons on my WordPress site.'); ?>&via=arjun077&url=<?php echo urlencode('http://wordpress.org/plugins/wp-social-sharing/'); ?>" target="_blank"><?php _e('Tweet about this plugin','wp-social-sharing');?></a></li>
 				<li><a href="http://wordpress.org/plugins/wp-social-sharing/#compatibility"  target="_blank"><?php _e( 'Vote "works" on the WordPress.org plugin page', 'wp-social-sharing' ); ?></a></li>
+				<li><a href="http://www.arjunjain.info">Hire Me</a>
 			</ul>
 		</div>
 		<div class="ss-box">
 			<h3 class="ss-title"><?php _e( 'Looking for support?', 'wp-social-sharing' ); ?></h3>
-			<p><?php printf( __( 'Please use the %splugin support forums%s on WordPress.org.', 'wp-social-sharing' ), '<a href="#">', '</a>' ); ?></p>
+			<p><?php printf( __( 'Please use the %splugin support forums%s on WordPress.org.', 'wp-social-sharing' ), '<a href="https://wordpress.org/support/plugin/wp-social-sharing/" target="blank">', '</a>' ); ?></p>
 		</div>
 		<br style="clear:both; " />
+		<a href="//inmotion-hosting.evyy.net/c/1193876/274454/4222"><img src="//a.impactradius-go.com/display-ad/4222-274454" border="0" alt="" width="200" height="200"/></a><img height="0" width="0" src="//inmotion-hosting.evyy.net/i/1193876/274454/4222" style="position:absolute;visibility:hidden;" border="0" />
+		
 	</div>
 </div>
 </div>

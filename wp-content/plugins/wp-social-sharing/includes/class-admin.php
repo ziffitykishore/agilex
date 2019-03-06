@@ -25,12 +25,11 @@ class SS_Admin {
 		$defaults = array(
 				'twitter_username' => "",
 				'auto_add_post_types' => array( 'post' ),
-				'social_options'=>array('facebook','twitter','googleplus'),
+				'social_options'=>array('facebook','twitter','linkedin'),
 				'social_icon_position'=>'after',
 				'load_static'=>array('load_css','load_js'),
 				'facebook_text'=>"Share on Facebook",
 				'twitter_text'=>"Share on Twitter",
-				'googleplus_text'=>"Share on Google+",
 				'linkedin_text'=>"Share on Linkedin",
 				'pinterest_text'=>"Share on Pinterest",
 				'pinterest_image'=>"",
@@ -41,7 +40,7 @@ class SS_Admin {
 				'text_position'=>'left'
 		);
 		update_option( 'wp_social_sharing', $defaults );
-		update_option( 'wss_wp_social_sharing','f,t,g,l,p,x,r');
+		update_option( 'wss_wp_social_sharing','f,t,l,p,x,r');
 		update_option( 'wss_pluign_version ',SS_VERSION);
 	}
 	
@@ -60,7 +59,6 @@ class SS_Admin {
 		$settings['twitter_username'] 		= 	trim( strip_tags( $settings['twitter_username'] ) );
 		$settings['facebook_text'] 			=	trim( strip_tags( $settings['facebook_text'] ) );
 		$settings['twitter_text'] 			= 	trim( strip_tags( $settings['twitter_text'] ) );
-		$settings['googleplus_text'] 		=	trim( strip_tags( $settings['googleplus_text'] ) );
 		$settings['linkedin_text'] 			= 	trim( strip_tags( $settings['linkedin_text'] ) );
 		$settings['pinterest_text'] 		= 	trim( strip_tags( $settings['pinterest_text'] ) );
 		$settings['pinterest_image'] 		= 	trim( strip_tags( $settings['pinterest_image'] ) );
