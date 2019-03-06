@@ -663,6 +663,7 @@ wdi_controller.makeInstagramUserRequest = function(user_input, ignoreConfirm) {
 
 				var tagname = user_input.substr(1, user_input.length);
 				tagname = tagname.replace(" ",'');
+                var radio = jQuery("input[name='wdi_feed_settings[hashtag_top_recent]']:checked").val();
 				this.instagram.getTagRecentMedia(tagname, {
 					success: function(response) {
                         jQuery('#wdi_add_user_ajax').removeAttr('disabled');
@@ -713,7 +714,7 @@ wdi_controller.makeInstagramUserRequest = function(user_input, ignoreConfirm) {
 						}
 
 					}
-				});
+				},null,radio);
 
 				break;
 			}
@@ -850,6 +851,7 @@ wdi_controller.removeFeedUser = function($this) {
 		}
 	}
 
+    wdi_controller.changed_users();
 }
 
 
@@ -1106,7 +1108,26 @@ wdi_controller.addHashtag = function(tagname, response) {
 
 	wdi_controller.saveFeedAfterAjaxWait(true);
 
+    wdi_controller.changed_users();
+
 }
+
+wdi_controller.changed_users = function () {
+    var has_hashtag = false;
+    for (var i = 0; i < this.feed_users.length; i++) {
+        if (this.feed_users[i].username[0] === '#') {
+            has_hashtag = true;
+            break;
+        }
+    }
+
+    if(has_hashtag){
+        jQuery('.wdi_element_name_hashtag_top_recent').show();
+    }else{
+        jQuery('.wdi_element_name_hashtag_top_recent').hide();
+    }
+};
+
 
 
 /**

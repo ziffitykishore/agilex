@@ -7,6 +7,7 @@
  * @since       2.4.3
  * @since       2.4.4   Fixed the "File not found error" & verified the authentication before resume download
  * @since       2.4.5   Resolved the resume downloading issue
+ * @since       2.7.2   Resolved the compatibility issues with PHP 7.0*
  * 
  * @package     Simple_Job_Board
  * @subpackage  Simple_Job_Board/includes
@@ -109,14 +110,10 @@ class Simple_Job_Board_Resume_Download_Handler {
      * Check and set certain server config variables to ensure downloads work as intended.
      * 
      * @since   2.4.3
+     * @since   2.7.2 Removed 'get_magic_quotes_runtime' as it is deprecated since PHP 5.3 and removed since PHP 7.0
      */
     private function set_server_config() {
         $this->set_time_limit(0); // No Time Limit
-        
-        // Sets the current active configuration's setting of magic_quotes_runtime
-        if (function_exists('get_magic_quotes_runtime') && get_magic_quotes_runtime() && version_compare(phpversion(), '5.4', '<')) {
-            set_magic_quotes_runtime(0);
-        }
 
         // Disable mod_deflate
         if (function_exists('apache_setenv')) {
@@ -153,9 +150,10 @@ class Simple_Job_Board_Resume_Download_Handler {
      * Set execution time to no limit
      * 
      * @since   2.4.3
+     * @since   2.7.2 Removed 'safe_mode' as it has been depricated as of PHP 5.3.0 & removed as of PHP 5.4.0
      */
     private function set_time_limit($limit = 0) {
-        if (function_exists('set_time_limit') && FALSE === strpos(ini_get('disable_functions'), 'set_time_limit') && !ini_get('safe_mode')) {
+        if (function_exists('set_time_limit') && FALSE === strpos(ini_get('disable_functions'), 'set_time_limit')) {
             @set_time_limit($limit);
         }
     }

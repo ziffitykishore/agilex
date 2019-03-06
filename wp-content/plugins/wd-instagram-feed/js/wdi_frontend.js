@@ -311,7 +311,7 @@ wdi_front.init = function (currentFeed)
         all_tags = window["wdi_all_tags"];
     }
 
-    for (var k in currentFeed.feed_users) {
+    for (var k =0; k < currentFeed.feed_users.length; k++) {
         if (currentFeed.feed_users[k].username[0] === "#" && typeof currentFeed.feed_users[k].tag_id !== "undefined") {
             all_tags[currentFeed.feed_users[k].tag_id] = currentFeed.feed_users[k];
         }
@@ -454,7 +454,7 @@ wdi_front.instagramRequest = function (id, currentFeed)
             _this.saveUserData(response, currentFeed.feed_users[id], currentFeed);
           }
         }
-      });
+      },null, currentFeed.feed_row.hashtag_top_recent);
     }
     else
       if (this.getInputType(feed_users[id]['username']) == 'user') {
@@ -2236,7 +2236,7 @@ wdi_front.loadMoreRequest = function (user, next_url, currentFeed, button)
         });
     }else{
       currentFeed.instagram.getTagRecentMedia(user.username, {success
-          :success_function}, next_url)
+          :success_function}, next_url, currentFeed.feed_row.hashtag_top_recent)
     }
 
 

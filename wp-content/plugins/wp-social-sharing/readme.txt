@@ -3,22 +3,22 @@ Contributors: arjunjain08
 Author URI: http://www.arjunjain.info
 Plugin URI: https://wordpress.org/plugins/wp-social-sharing/
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=SQC4WR7X5JGDY&lc=IN&item_name=WP%20Social%20Sharing&item_number=7&button_subtype=services&currency_code=USD&bn=PP%2dBuyNowBF%3abtn_buynowCC_LG%2egif%3aNonHosted
-Tags: responsive social buttons, responsive social sharing buttons, responsive button, social buttons, social sharing, sharing buttons, twitter share, xing share, googleplus share, facebook share, linkedin share, pinterest share, reddit share, share button for custom post type
+Tags: responsive social buttons, responsive social sharing buttons, responsive button, social buttons, social sharing, sharing buttons, twitter share, xing share, facebook share, linkedin share, pinterest share, reddit share, share button for custom post type
 Requires at least: 3.5
-Tested up to: 4.9
-Stable tag: 2.1
+Tested up to: 5.1
+Stable tag: 2.2
 License: GPLv3 
 
-Adds very attractive responsive social sharing buttons of Facebook, Twitter, Linkedin, Reddit, Pinterest, Xing and Google+ to wordpress posts, pages or media.
+Adds very attractive responsive social sharing buttons of Facebook, Twitter, Linkedin, Reddit, Pinterest and Xing to wordpress posts, pages or media.
 
 == Description ==
 
-WP Social sharing adds very attractive responsive social share buttons of Facebook, Twitter, Linkedin, Xing, Reddit, Google+ and Pinterest to wordpress posts, page, media or any custom post type. This is very lightweight and simple social sharing plugin. This plugin provide option whether you want to include plugin CSS/JS or not. 
+WP Social sharing adds very attractive responsive social share buttons of Facebook, Twitter, Linkedin, Xing, Reddit and Pinterest to wordpress posts, page, media or any custom post type. This is very lightweight and simple social sharing plugin. This plugin provide option whether you want to include plugin CSS/JS or not. 
 Most of the social sharing plugins uses images/api to display social share buttons, but this plugin created large social sharing buttons using CSS3. Also these social sharing buttons are responsive. For device width <strong>less than 480px</strong> these buttons converted into their respective icons.
 
 **Plugin Features**
 
-- Social sharing support for Facebook, Google+, Linkedin, Reddit, Twitter, Xing and Pinterest.
+- Social sharing support for Facebook, Linkedin, Reddit, Twitter, Xing and Pinterest.
 - Auto display to Post, Page, Media and Custom Post type.
 - Custom Social Button text. 
 - 100% responsive. 
@@ -32,7 +32,7 @@ Most of the social sharing plugins uses images/api to display social share butto
 You can also use following shortcode
 
 ` 
-[wp_social_sharing social_options='facebook,twitter,googleplus,linkedin,pinterest,xing,reddit' twitter_username='arjun077' facebook_text='Share on Facebook' twitter_text='Share on Twitter' googleplus_text='Share on Google+' linkedin_text='Share on Linkedin' pinterest_text="Share on Pinterest" xing_text="Share on Xing" reddit_text="Share on Reddit" icon_order='f,t,g,l,p,x,r' show_icons='0' before_button_text='' text_position='' social_image='']
+[wp_social_sharing social_options='facebook,twitter,linkedin,pinterest,xing,reddit' twitter_username='arjun077' facebook_text='Share on Facebook' twitter_text='Share on Twitter' linkedin_text='Share on Linkedin' pinterest_text="Share on Pinterest" xing_text="Share on Xing" reddit_text="Share on Reddit" icon_order='f,t,l,p,x,r' show_icons='0' before_button_text='' text_position='' social_image='']
 `
 [Demo](http://www.arjunjain.info/wp-social-sharing/)
 
@@ -54,6 +54,10 @@ You can also use following shortcode
 2. Alternatively, download the plugin and upload the contents of `wp-social-sharing.zip` to your plugins directory, which usually is `/wp-content/plugins/`. Activate the plugin.
 
 == Changelog ==
+
+= 2.2 - Februry 20, 2019 = 
+- Remove Google Plus
+
 = 2.1 - November 11, 2017 =
 - Fix Mobile Button
 

@@ -3,7 +3,7 @@
 Plugin Name: Instagram Feed by 10Web
 Plugin URI: https://10web.io/plugins/wordpress-instagram-feed/
 Description: Instagram Feed by 10Web is a user-friendly tool for displaying user or hashtag-based feeds on your website. You can create feeds with one of the available layouts. It allows displaying image metadata, open up images in lightbox, download them and even share in social networking websites.
-Version: 1.3.12
+Version: 1.3.13
 Author: 10Web
 Author URI: https://10Web.io
 License: GPLv2 or later
@@ -20,7 +20,7 @@ define("WDI_META", "_".WDI_VAR."_meta");
 //define("wdi",'wdi');
 define('WDI_FEED_TABLE','wdi_feeds');
 define('WDI_THEME_TABLE','wdi_themes');
-define('WDI_VERSION','1.3.12');
+define('WDI_VERSION','1.3.13');
 define('WDI_IS_PRO','false');
 $wdi_minify = ((isset($_GET['wdi_no_minify']) && $_GET['wdi_no_minify'] == "true") ? false : true);
 define('WDI_MINIFY', $wdi_minify);
@@ -65,6 +65,7 @@ function wdi_save_user_access_token(){
 
   if(!is_array($accounts)) {
     //invalid access token
+    add_action('admin_notices', 'wdi_invalid_fb_token_notice');
     return;
   }
 
@@ -82,6 +83,7 @@ function wdi_save_user_access_token(){
 
   if(empty($business_accounts)) {
     //no business accounts
+    add_action('admin_notices', 'wdi_no_business_account_notice');
     return;
   }
 
@@ -91,6 +93,14 @@ function wdi_save_user_access_token(){
   $options['business_account_id'] = $business_accounts[$key];
   update_option(WDI_OPT, $options);
   echo "<script>window.location.href='admin.php?page=wdi_settings';</script>";
+}
+
+function wdi_no_business_account_notice(){
+  echo "<div class='notice notice-error'><p>Cannot find connected Instagram business page. Either you do not have Instagram business account or it is not connected to current Facebook user's page. <a href='https://help.10web.io/hc/en-us/articles/360021344111' target='_blank'>See more in documentation.</a> </p></div>";
+}
+
+function wdi_invalid_fb_token_notice(){
+  echo "<div class='notice notice-error'><p>Could not get Instagram business pages. Either do not have any Facebook page or your token does not have manage_pages permission. Try to remove '10Web Hashtag Feed Plugin' app and reconnect it.</p></div>";
 }
 
 add_action('wp_ajax_wdi_get_cache_data', 'wdi_get_cache_data');
@@ -582,7 +592,7 @@ function wdi_load_scripts($hook){
       'user_not_exist' => __('User %s does not exist.', "wd-instagram-feed"),
       'network_error' => __("Network Error, please try again later. :(", "wd-instagram-feed"),
       'invalid_hashtag' => __('Invalid hashtag', "wd-instagram-feed"),
-      'hashtag_no_data' => __('This hashtag currently has no posts. Are you sure you want to add it?','wd-instagram-feed'),
+      'hashtag_no_data' => __('This hashtag has no media published within last 24 hours. Are you sure you want to add it? Try to display its top media.', 'wd-instagram-feed'),
       'only_one_user_or_hashtag'=> __('You can add only one username or hashtag in FREE Version', "wd-instagram-feed"),
       'available_in_pro' => __('Available in Premium','wd-instagram-feed'),
       'username_hashtag_multiple' => __('Combined Usernames/Hashtags are available only in Premium version'),

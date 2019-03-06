@@ -57,7 +57,7 @@ class Simple_Job_Board
     public function __construct()
     {
         $this->simple_job_board = 'simple-job-board';
-        $this->version = '2.7.1';
+        $this->version = '2.7.2';
 
         $this->load_dependencies();
         $this->set_locale();

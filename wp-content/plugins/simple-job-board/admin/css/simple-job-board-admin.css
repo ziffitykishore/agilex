@@ -525,7 +525,7 @@ body.jobpost_page_sjb-add-ons {
     }
 }
 @media (min-width: 320px) and (max-width: 992px) {
-    .wrap h2.nav-tab-wrapper,
+    .sjb-tabs-wrap h2.nav-tab-wrapper,
     h1.nav-tab-wrapper,
     h3.nav-tab-wrapper {
         border-bottom: none;

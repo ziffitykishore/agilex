@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: WP Social Sharing
-Version: 2.1
+Version: 2.2
 Plugin URI: http://wordpress.org/plugins/wp-social-sharing/
-Description: Adds very attractive responsive social sharing buttons of Facebook, Twitter, Linkedin, Reddit, Pinterest, Xing and Google+ to wordpress posts, pages or media. 
+Description: Adds very attractive responsive social sharing buttons of Facebook, Twitter, Linkedin, Reddit, Pinterest and Xing to wordpress posts, pages or media. 
 Author: Arjun Jain
 Author URI: http://www.arjunjain.info/
 Text Domain: wp-social-sharing
@@ -40,7 +40,7 @@ function wss_update_db_check_while_plugin_upgrade(){
 		$db_version='1.0';
 
 	if($db_version == '1.0' ){
-		update_option('wss_wp_social_sharing','f,t,g,l,p,x,r');
+		update_option('wss_wp_social_sharing','f,t,l,p,x,r');
 		$default=get_option('wp_social_sharing');
 		$default['linkedin_text']='Share on Linkedin';
 		$default['pinterest_text']='Share on Pinterest';

@@ -163,7 +163,8 @@ class WDIModelFeeds_wdi {
     'mobile_breakpoint' => '640',
     'redirect_url' => '',
     'feed_resolution' => 'optimal',
-    );
+    'hashtag_top_recent' => '1',
+  );
   return $settings;
 }
 
@@ -236,7 +237,8 @@ class WDIModelFeeds_wdi {
     'mobile_breakpoint' => 'number',
     'redirect_url' => 'string',
     'feed_resolution' => 'string',
-    );
+    'hashtag_top_recent' => 'bool',
+  );
   return $sanitize_types;
 }
 

@@ -3,67 +3,119 @@ Contributors: webdorado,10web,progmastery
 Tags: custom instagram feed, feed, instagram, hashtag, Instagram feed, instagram gallery, instagram posts, Instagram images, Instagram photos, lightbox, photos,instagram account
 Requires at least: 3.9
 Requires PHP: 5.2
-Tested up to: 5.0
-Stable tag: 1.3.12
+Tested up to: 5.1
+Stable tag: 1.3.13
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-10Web Instagram Feed is a user-friendly plugin to display user or hashtag-based Instagram feeds as a responsive customizable gallery.
+10Web Instagram Feed is the leading plugin for easily presenting a customizable Instagram feed on your website.
 
 == Description ==
 
-https://www.youtube.com/watch?v=CgZNya0HZCQ
+10Web Instagram Feed is the leading plugin for easily presenting a customizable Instagram feed on your website.
 
 = Useful Links: =
-[Special Offer for all Premium Plugins](https://10web.io/plugins-bundle-pricing/)
-[WordPress 10Web Instagram Feed ](https://10web.io/plugins/wordpress-instagram-feed/)
-[Demo](https://demo.10web.io/instagram-feed/)
-[User Guide](https://docs.10web.io/docs/wd-instagram-feed/)
-[Support Forum](https://wordpress.org/plugins/wd-instagram-feed/)
+
+[Live Demo](https://demo.10web.io/instagram-feed/)      
+    
+[Premium Instagram Feed by 10Web](https://10web.io/plugins/wordpress-instagram-feed/)    
+    
+[Special Offer for all Premium Plugins](https://10web.io/plugins-bundle-pricing/)    
 
 
-10Web Instagram Feed is a user-friendly WordPress plugin that can help you bring Instagram feeds with the media of your Instagram account to any of your posts and pages. It will take couple of minutes to set up and customize to your needs. 10Web Instagram Feed's settings and features will allow you to take full control over how to display the feeds and the content on your website.
+https://www.youtube.com/watch?v=CgZNya0HZCQ
 
-10Web Instagram Feed is a perfect fit for bloggers, photography websites, travel and food blogs and for WordPress users that want to spice up their posts with the latest images and videos from their Instagram profiles. The plugin is responsive and scales perfectly to screens of all sizes, providing better user experience across the board.
+Having a hard time finding the perfect Instagram plugin to showcase your feed? 
+
+Is it difficult for you to match your website’s design with the default Instagram look?
+
+Looking for an alternative to embedding Instagram posts one by one? 
+
+== Instagram Feed Features  ==
+
+**Present Content**
+Present images from hashtags or your Instagram accounts.
+
+**Mixed Feeds\***
+Merge Instagram accounts with chosen hashtags.
+  
+**Mobile-Friendly & Responsive**
+Your feeds will look excellent on all types of devices: desktops, tablets, and mobile phones.
+
+**Any Number of Feeds**
+Display however many Instagram feeds on one page. 
+
+**Customizable Layouts**
+Pick one of the four layouts: Thumbnails, Masonry*, Blog Style*, and Image Browser.
+
+**Functional Lightbox**
+Use transition effects*, show captions and comments*.
+
+**Customizable Themes\***
+Choose one of our predefined themes or create a new one.
+
+**In-Depth Metadata\***
+Show profile information, captions, comments, and likes.  
+
+**Infinite Scroll & Pagination** 
+Choose the number of displayed images per page or set an infinite scroll.
+
+**Instagram Feed Widget** 
+Display Instagram feeds on your website’s sidebars.
+
+**Downloads and Shares\***
+Your users can download images from the lightbox and share them on social media. 
+
+**Publish Easily** 
+Embed feeds into posts or pages in just a click. 
+
+_\* Premium version only_
+
+== World Class Customer Support ==
+*  Low response time
+We always respond within a few hours.
+*  Quick issue resolution
+Resolving an issue never takes more than 24 hours.
+
+== FEATURED REVIEWS ==
+
+> Fantastic, outstanding plugin that did exactly what I wanted it to do – show my Instagram feed on my site, 
+> increasing traffic flow and improving Google ranking. 
+> So easy to install! Perfect!
+> **[by @herm1one](https://wordpress.org/support/topic/working-so-well-for-seo/)**
+
+> Good Plugin, my daughter can update her hairdressing photos on Instagram, and the website keeps automatically up to date. 
+> Does the job well, and shows that the Salon is up to the minute. 
+> **[by @elainekay](https://wordpress.org/support/topic/great-little-plug-in-10/)**
+
+> This plugin is great!  
+> Very clean layout and easy to use! 
+> Will be using this plugin for all my sites that require instagram feeds! Thanks
+> **[by @csmithfcedge](https://wordpress.org/support/topic/clean-layout-2/)**
+
+== Steps for integrating an Instagram feed: ==
+1. Install 10Web Instagram Feed.   
+2. Connect your Instagram account.    
+3. Publish your feed.   
+
+> **[Premium version adds](https://10web.io/plugins/wordpress-instagram-feed/)**
+> 
+> *   Masonry Layout feeds
+> *   Blog Style Layout feeds
+> *   Image metadata (Instagram tags, image captions, comments, likes) displayed
+> *   Mixed and multiple feeds (Instagram account posts with multiple hashtags)
+> *   Fully customizable themes
+> *   Vertical/horizontal filmstrip in lightbox
+> *   HTML5 Video support in Lightbox
+> *   Blog Style and Image Browser views for displaying Instagram videos
+> *   15 Lightbox transition effects
+> *   Social sharing buttons (Facebook, Twitter, Google+, LinkedIn and Pinterest)
+> *   Infinite scroll for the feed (Similar to Instagram standard)
+> *   Instagram comments displayed in Lightbox
+> *   Instagram hashtag filtering options
+> *   Conditional filters
 
 
-== Benefits ==
-*   **Increase user engagement** - Engagement on Instagram is higher than on any other social platform. Keep your visitors engaged and significantly increase surfing time and visitor retention on your website.
-*   **Increase brand/blog awareness** - Let your site visitors get into conversation and connect with your blog or brand. Keep your visitors tuned and increase your blog's/brand's awareness.
-*  **Save your time** – Keep your posts authentic  with content from your Instagram account without any manual work involved. Your feeds will be  fresh and up to date and synced automatically.
-*   **Add appeal to your website** - Stunning display views, custom styling features and image lightbox effects will bring vibrancy to your posts and pages, and add to your website's overall look and feel.
-*   **Control** - Take pure charge of what content to display and how to display it with an extensive list of content and display settings. Specify the number of photos you display on the page and choose what happens when a visitor clicks on an image from the feed. Custom styled display views and filtered Instagram content will be a great addition to any post you publish.
-*   **Minimal effort** – Set the plugin up and have it up and running in no time and with minimal efforts. Out of box solution that's user-friendly and simple in use.
-*   **Support** - The team behind 10Web Instagram Feed provides timely and effective support to all its users. We keep standards high and response time low.
-*   **Resource efficient** - WordPress 10Web Instagram Feed plugin loads the images pretty fast as no feed data is stored in the database. All the  images, videos, captions and comments are retrieved directly from the Instagram in the front-end.
-
-
-
-== What's in it ==
-
-= CUSTOMIZABLE LAYOUTS =
-Display the feeds in one of the available layouts Thumbnail, Image Browser, Masonry (Premium version), Blog Style(Premium version). Whether you want to have small sized image thumbnails or larger images displayed you'll find the right layout for that. Customize layouts to get exactly what you need and display the metadata that's most relevant for your niche.
-
-= INSTAGRAM GALLERY =
-Create Instagram galleries on your website by embedding entire timelines to your posts using a shortcode or the plugin's Instagram widget on your sidebar.
-
-= INDIVIDUAL AND MIXED FEEDS =
-You can choose to show a single feed on your pages and posts, but you can make things more interesting and create mixed feeds (Premium version). With single feeds you can show posts from your Instagram account and single hashtag. Mixed feeds, on the other hand, can contain your Instagram account and multiple hashtags. A front end filter is available for mixed feeds (Premium version).
-
-= FILTERED FEEDS =
-Use Conditional Filters of the 10Web Instagram Feed plugin to display or skip certain content from the feeds by setting up a filter logic and condition types. Add custom condition types if necessary and fine-tune your feeds. Conditional Filters option is available for Premium version only.
-
-= INSTAGRAM WIDGET =
-Want to show Instagram feeds on your website sidebar? Do it quick and easy with the help of the Instagram Feed Widget.
-
-= LIGHTBOX =
-10Web Instagram Feed features a powerful lightbox. It provides support for HTML5 video, 15 transition effects (Premium version), filmstrip (Premium version) and carousel features. The lightbox works great with Instagram touch as well.
-
-= SCROLL AND PAGINATION =
-The plugin comes with a classic pagination with next and previous buttons. You can also choose the infinite scroll option (Premium version) to bring better user experience. This allows to view more images when scrolling the page down. You can set the the number of images you want to show per page.
-
-= THEMES =
-Choose from the two default themes offered by the plugin or create multifarious themes (Premium version) by customizing the colors, sizes and display styles. 10Web Instagram Feed allows you to have separate layout settings for each theme with custom settings for header, user data and pagination.
 
 = SETTINGS/CUSTOMIZATION =
 
@@ -71,23 +123,6 @@ Choose from the two default themes offered by the plugin or create multifarious 
 
 10Web Instagram Feed comes with extensive customization options for the feeds, layouts, themes and content display. Every new feed you add to your website has its own settings for the feed and for the lightbox that pops up when people click on an image or video. Upon clicking on the image you can choose to redirect people to Instagram, open the image in the lightbox, or chose the custom redirect option. There are various image sorting options available based on the date, likes, comments,  and on random basis. Media loading options include load more button, infinite Instagram scrolling, or classic pagination with next and previous buttons. You can enable "Follow on Instagram" button from the feed settings and let your visitors follow the displayed Instagram accounts directly from your site. The number of photos you display on the page or post can be specified from the feed settings, as well as the number of the loading images.
 
-
-[Premium version adds](https://10web.io/plugins/wordpress-instagram-feed/)
-
-*   Masonry Layout feeds
-*   Blog Style Layout feeds
-*   Image metadata (Instagram tag,image caption, comments, like) display
-*   Mixed and multiple feeds (Instagram account posts with multiple hashtags)
-*   Fully Customizable Themes
-*   Vertical/horizontal filmstrip in lightbox
-*   HTML5 Video Support in Lightbox
-*   Blog Style and Image Browser views for displaying Instagram videos
-*   15 Lightbox transition effects
-*   Social sharing buttons (Facebook, Twitter, Google+, LinkedIn and Pinterest)
-*   Infinite scroll for the feed (Similar to Instagram standard)
-*   Instagram Comments display in Lightbox
-*   Instagram Hashtag filtering options
-*   Conditional Filters
 
 ###IMPORTANT:
 If you think you found a bug in 10Web Instagram Feed or wonder how to add Instagram to your website, or  how to get Instagram plugin up and running, please check out [Support Forum](https://wordpress.org/support/plugin/wd-instagram-feed). Additional information on how to download Instagram plugin to your website you can find in our user manual If you do not find a solution in the forum, do not hesitate to [click here to contact us](https://10web.io/contact-us/).
@@ -501,6 +536,11 @@ Please make sure you don't have any important information before you proceed.
 10Web Instagram Feed plugin uses Instagram API on website front end. You have to authorize the plugin via sign in to get data from Instagram on your behalf. The plugin does not send any user’s data to Instagram. All the data received from Instagram via API is cached in WordPress database for some short customizable period to provide front end optimization. You can delete or update cached data. Instagram saves some cookies in browsers of website visitors via API data. These cookies are mostly used for security purposes. They are regulated under terms of Instagram’s privacy policy https://instagram.com/legal/privacy. The plugin asks for your consent to collect site administrator’s email address and site URL to offer customer support, deals and discounts on premium products and more.
 
 == Changelog ==
+
+= 1.3.13 =
+New: Option to get hashtag top media
+Improved: Notices during Facebook Log in
+Fixed: Occasional JS  error on front  end
 
 = 1.3.12 =
 Fixed: Conflict with Gutenberg.   

@@ -81,10 +81,10 @@ class Simple_Job_Board_Public {
     public function enqueue_styles() {
         
         // Enqueue Google Fonts
-        //wp_enqueue_style( $this->simple_job_board . '-google-fonts', 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i', array(), $this->version, 'all');
+        wp_enqueue_style( $this->simple_job_board . '-google-fonts', 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i', array(), $this->version, 'all');
         
         // Enqueue Font Awesome Styles
-        //wp_enqueue_style( $this->simple_job_board . '-font-awesome', plugin_dir_url(__FILE__) . 'css/font-awesome.min.css', array(), '4.7.0', 'all' );        
+        wp_enqueue_style( $this->simple_job_board . '-font-awesome', plugin_dir_url(__FILE__) . 'css/font-awesome.min.css', array(), '4.7.0', 'all' );        
         wp_enqueue_style( $this->simple_job_board . '-jquery-ui', plugin_dir_url(__FILE__) . 'css/jquery-ui.css', array(), '1.12.1', 'all' );
         
         // Enqueue Front-end RTL Styles

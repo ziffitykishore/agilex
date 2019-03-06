@@ -311,6 +311,11 @@ border: 1px solid rgb(185, 185, 185);
 	padding-bottom: 5px;
 }
 
+.wdi_element_name_hashtag_top_recent{
+	display: none;
+}
+
+
 /*
 .wdi_multiple_accounts_section tr:not(:first-child) th{
 	font-style: italic;
