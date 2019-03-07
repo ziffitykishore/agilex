@@ -1,0 +1,15 @@
+<?php
+// @codingStandardsIgnoreFile
+/**  @var $block \Magento\Checkout\Block\Cart */
+?>
+<div class="cart-empty text-center">
+    <?= $block->getChildHtml('checkout_cart_empty_widget') ?>    
+    <img src=<?php echo $block->getViewFileUrl('images/cart.png')?> alt="" />
+    <p class="cart-emp"><?= /* @escapeNotVerified */ __('Your cart is empty') ?></p>
+    <p><?= /* @escapeNotVerified */ __('Your have no items in your shopping cart.') ?></p>
+    <p><?= /* @escapeNotVerified */ __('Before proceed to checkout you must add some products to your shopping cart.') ?></p>
+    <?php /* @escapeNotVerified */ echo __('<a class="btn-pri" href="%1">Return to shop</a>',
+            $block->escapeUrl($block->getContinueShoppingUrl())) ?>
+    <?= $block->getChildHtml('shopping.cart.table.after') ?>
+</div>
+
