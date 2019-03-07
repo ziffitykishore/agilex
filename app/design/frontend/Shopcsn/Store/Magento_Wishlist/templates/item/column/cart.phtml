@@ -18,15 +18,15 @@ $product = $item->getProduct();
 <div class="box-tocart">
     <div class="fieldset">
     <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility()): ?>
-        <button type="button" onclick="decrementValue()"><span>-</span></button>
+        <button type="button" onclick="decrementValue(<?= $block->escapeHtmlAttr($item->getId()) ?>)"><span>-</span></button>
         <div class="field qty">
             <label class="label" for="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
             <div class="control">
-                <input type="number"  id="qty" data-role="qty" id="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" class="input-text qty" data-validate="{'required-number':true,'validate-greater-than-zero':true}"
+                <input type="number"  id="qty-<?= $block->escapeHtmlAttr($item->getId()) ?>" data-role="qty" id="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" class="input-text qty" data-validate="{'required-number':true,'validate-greater-than-zero':true}"
                name="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" value="<?= /* @noEscape */ (int)($block->getAddToCartQty($item) * 1) ?>">
             </div>
         </div>
-        <button  type="button"  onclick="incrementValue()"><span>+</span></button>
+        <button  type="button"  onclick="incrementValue(<?= $block->escapeHtmlAttr($item->getId()) ?>)"><span>+</span></button>
     <?php endif; ?>
     <?php if ($product->isSaleable()): ?>
     <div class="product-item-actions clearfix">
@@ -54,16 +54,17 @@ $product = $item->getProduct();
     </div>
 </div>
 <script type="text/javascript">
-    var qty = document.getElementById("qty");
-    function decrementValue(){
-         if(!isNaN(qty.value) && qty.value > 0 ) {
-             qty.value--;
-         }
+    function decrementValue(id) {
+        var qty = document.getElementById("qty-"+id);
+        if(!isNaN(qty.value) && qty.value > 0 ) {
+            qty.value--;
+        }
     }
 
-    function incrementValue(){
-         if(!isNaN(qty.value)) {
-             qty.value++;
-         }
+    function incrementValue(id) {
+        var qty = document.getElementById("qty-"+id);
+        if(!isNaN(qty.value)) {
+            qty.value++;
+        }
     }
 </script>
