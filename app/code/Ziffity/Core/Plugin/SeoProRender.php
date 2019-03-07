@@ -56,7 +56,7 @@ class SeoProRender
     public function afterRenderMetadata(\Magento\Framework\View\Page\Config\Renderer $subject, $result)
     {
         try{
-            $removeQuery = explode('?', $this->url->getCurrentUrl())[0];
+            $removeQuery = explode('?', $this->url->getCurrentUrl())[0];           
             if(!in_array('blog', explode('/', $removeQuery))){
                 $this->pageConfig->addRemotePageAsset(
                     $removeQuery,

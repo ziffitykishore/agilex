@@ -41,6 +41,13 @@
             <container name="footer.copy-wrapper" htmlClass="footer-copy-wrapper" htmlTag="div">
                 <container name="footer.copy-container" htmlClass="copyright-inner" htmlTag="div"/>
             </container>
+            <container name="footer.popular-cat" htmlClass="footer-popular-cat" htmlTag="div">
+                <block class="Magento\Cms\Block\Block" name="footer.popular.cat" >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">popular_categories</argument>
+                    </arguments>
+                </block>
+            </container>
             <referenceContainer name="footer-container">
                 <block class="Mconnect\Ajaxlogin\Block\Ajaxlogin" name="custom_customer_form_login" template="Magento_Theme::form/login.phtml" />
                 <block class="Magento\Framework\View\Element\Template" template="Magento_Theme::mob-sticky.phtml" name="mob.icons" />
@@ -53,6 +60,7 @@
         <move element="form.subscribe" destination="footer.news-wrapper"/>
         <move element="copyright" destination="footer.copy-container" />
         <move element="footer.copy-wrapper" destination="footerlinks" after="payment-method" />
+        <move element="footer.popular-cat" destination="footer.grid-container" after="footer-links"/>
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
         <move element="store.menu" destination="header-wrapper" after="logo"/>
