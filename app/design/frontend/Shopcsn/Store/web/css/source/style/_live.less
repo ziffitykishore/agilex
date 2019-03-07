@@ -473,28 +473,26 @@ body > .loading-mask{z-index: 100000;}
         color: #000;
         font-size: 16px;
         line-height: normal;
-    }
-    
-    .btn-pri{
+    }    
+   
+    .btn-pri {
         margin-top: 20px;
         display: inline-block;
-    }
-}
-
-
-.btn-pri {
-    border: transparent;
-    font-weight: bold;
-    padding: 12px 24px;
-    line-height: normal;
-    font-size: @f-size-xs;
-    text-decoration: none;
-    width: auto;
-    .button();
-
-    &:hover,
-    &:focus {
+        border: transparent;
+        font-weight: bold;
+        padding: 12px 24px;
+        line-height: normal;
+        font-size: @f-size-xs;
         text-decoration: none;
-        .lib-css(color, @color-white);
+        width: auto;
+        .button();
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            .lib-css(color, @color-white);
+        }
     }
 }
+
+
