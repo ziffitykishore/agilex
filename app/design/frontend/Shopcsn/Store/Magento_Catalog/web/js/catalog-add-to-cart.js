@@ -143,7 +143,8 @@ define([
                     }
                     self.enableAddToCartButton(form);
                     
-                    self.enableAutoScroll();
+                    //self.enableAutoScroll();                    
+                    $('.page.messages').addClass('addcart-message');
                 }
             });
             
