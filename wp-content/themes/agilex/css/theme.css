@@ -4638,8 +4638,8 @@ html {
 }
 
 .careers-wrap .content-wrap+.content-wrap {
-    padding-top: 30px;
-    border-top: 1px solid #e2e2e2;
+    /* padding-top: 30px;
+     border-top: 1px solid #e2e2e2; */
 }
 
 .careers-wrap .content-wrap .heading .heading-title {
@@ -6448,4 +6448,9 @@ form.jobpost-form .form-group .form-control {
 
 .sjb-page .sjb-detail .jobpost-form .intl-tel-input {
     z-index: 50;
+}
+
+.careers-form-wrap, 
+.opening-wrap{
+    display: none;
 }
