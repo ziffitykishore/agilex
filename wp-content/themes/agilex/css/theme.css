@@ -6454,3 +6454,9 @@ form.jobpost-form .form-group .form-control {
 .opening-wrap{
     display: none;
 }
+
+.apply-button-wrap a{
+    line-height: normal;
+    white-space: normal;
+    height: auto;
+}
