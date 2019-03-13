@@ -13,7 +13,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
     {
         $setup->startSetup();
 
-        if(version_compare($context->getVersion(), '0.0.2', '<')) {
+        if (version_compare($context->getVersion(), '0.0.2', '<')) {
 
             $tableName = 'catalog_eav_attribute';
 
