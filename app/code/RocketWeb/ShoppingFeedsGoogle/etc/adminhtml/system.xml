@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Web Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="rocketweb" translate="label" sortOrder="110000">
+            <label>Rocket Web Extensions</label>
+        </tab>
+        <section id="shoppingfeeds" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Rocket Shoping Feeds</label>
+            <tab>rocketweb</tab>
+            <resource>RocketWeb_ShoppingFeeds::configuration</resource>
+            <group id="google" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google</label>
+                <field id="microdata_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Automatic Updates (Microdata)</label>
+                    <comment>Adds hidden schema.org microdata information to your product pages. For Google Shopping, you also need to enable Automatic Item Updates in your merchant account.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="microdata_include_tax" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Tax in Microdata</label>
+                    <comment>Include tax in microdata prices.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="microdata_condition_attribute" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Condition Attribute</label>
+                    <comment>The product attribute to be used as the condition attribute (new, refurbished, used).</comment>
+                    <source_model>RocketWeb\ShoppingFeeds\Model\Feed\Source\Product\Attributes::toOptionArrayWithEmpty</source_model>
+                </field>
+                <field id="remarketing_enable" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Google Remarketing updates</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="remarketing_conversion_id" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Remarketing Conversion ID</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

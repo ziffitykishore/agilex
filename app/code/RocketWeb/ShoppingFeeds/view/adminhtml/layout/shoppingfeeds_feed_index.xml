@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Web Inc. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="RocketWeb_ShoppingFeeds::css/shoppingfeeds.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="feed_grid"/>
+            <block class="RocketWeb\ShoppingFeeds\Block\Adminhtml\Feed" name="feed_list"/>
+        </referenceContainer>
+    </body>
+</page>

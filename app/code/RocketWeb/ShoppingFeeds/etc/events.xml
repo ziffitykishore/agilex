@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Web Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_carriers">
+        <observer name="carriers_update" instance="RocketWeb\ShoppingFeeds\Observer\CarriersUpdate" />
+    </event>
+    <event name="controller_action_postdispatch_adminhtml_system_currency_saveRates">
+        <observer name="rates_update" instance="RocketWeb\ShoppingFeeds\Observer\RatesUpdate" />
+    </event>
+    <event name="layout_generate_blocks_after">
+        <observer name="remove_block" instance="RocketWeb\ShoppingFeeds\Observer\PopupLayout" />
+    </event>
+</config>

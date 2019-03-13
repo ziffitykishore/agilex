@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Web Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_feed_edit_tab_filters_prepare_form_google_shopping">
+        <observer name="shoppingfeedsgoogle_observer" instance="RocketWeb\ShoppingFeedsGoogle\Block\Adminhtml\Feed\Edit\Tab\AddGoogleFiltersFieldsObserver" />
+    </event>
+</config>

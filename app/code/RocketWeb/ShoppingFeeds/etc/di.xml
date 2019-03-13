@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Web Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="RocketWeb\ShoppingFeeds\Model\ResourceModel\Feed\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">rw_shoppingfeeds_feed</argument>
+            <argument name="resourceModel" xsi:type="string">RocketWeb\ShoppingFeeds\Model\ResourceModel\Feed</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="feed_grid_data_source" xsi:type="string">RocketWeb\ShoppingFeeds\Model\ResourceModel\Feed\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="generate" xsi:type="object">RocketWeb\ShoppingFeeds\Console\Command\GenerateCommand</item>
+                <item name="generate_schedule" xsi:type="object">RocketWeb\ShoppingFeeds\Console\Command\ScheduleCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
