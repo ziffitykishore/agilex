@@ -1,0 +1,95 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Cart $block */
+
+/** @var \Magento\Wishlist\Model\Item $item */
+$item = $block->getItem();
+$product = $item->getProduct();
+?>
+<?php foreach ($block->getChildNames() as $childName): ?>
+    <?= /* @noEscape */ $block->getLayout()->renderElement($childName, false) ?>
+<?php endforeach;?>
+<div class="box-tocart">
+    <div class="fieldset">
+    <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility()): ?>
+        <?php if ($product->getTypeId() == 'configurable'): ?>        
+        <div class="field qty">
+            <label class="label" for="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+            <div class="control">
+                <input type="number"  readonly id="qty-<?= $block->escapeHtmlAttr($item->getId()) ?>" data-role="qty" id="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" class="input-text qty readonlycls" data-validate="{'required-number':true,'validate-greater-than-zero':true}"
+               name="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" value="<?= /* @noEscape */ (int)($block->getAddToCartQty($item) * 1) ?>">
+            </div>
+        </div>        
+        <?php else: ?>
+        <button type="button" onclick="decrementValue(<?= $block->escapeHtmlAttr($item->getId()) ?>)"><span>-</span></button>
+        <div class="field qty">
+            <label class="label" for="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
+            <div class="control">
+                <input type="number"  id="qty-<?= $block->escapeHtmlAttr($item->getId()) ?>" data-role="qty" id="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" class="input-text qty" data-validate="{'required-number':true,'validate-greater-than-zero':true}"
+               name="qty[<?= $block->escapeHtmlAttr($item->getId()) ?>]" value="<?= /* @noEscape */ (int)($block->getAddToCartQty($item) * 1) ?>">
+            </div>
+        </div>       
+        <button  type="button"  onclick="incrementValue(<?= $block->escapeHtmlAttr($item->getId()) ?>)"><span>+</span></button>  
+        <?php endif; ?>
+    <?php endif; ?>
+    <?php if ($product->isSaleable()): ?>
+    <div class="product-item-actions clearfix">
+       
+        <div class="actions-primary">
+            <?php if ($product->getTypeId() == 'configurable'): ?>
+                <a href="<?= /* @escapeNotVerified */ $block->getItemConfigureUrl($item) ?>"
+                   title="<?= $block->escapeHtml(__('View Details')) ?>"
+                   class="action tocart primary">
+                    <span><?= /* @escapeNotVerified */ __('View Details') ?></span>
+                </a>
+            <?php else: ?>
+                <button type="button" data-role="tocart" data-post='<?= /* @noEscape */ $block->getItemAddToCartParams($item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>" class="action tocart primary">
+                    <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                </button>
+            <?php endif; ?>
+            <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $product->getEntityId();?>" href="javascript:void(0);">
+                                                <span><?php echo __('Quick View') ?></span>
+                                            </a>
+        </div>
+    </div>
+    <?php else: ?>
+        <?php if ($product->getIsSalable()): ?>
+            <p class="available stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                <span><?= $block->escapeHtml(__('In stock')) ?></span>
+            </p>
+        <?php else: ?>
+            <p class="unavailable stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+            </p>
+        <?php endif; ?>
+    <?php endif; ?>
+    </div>
+</div>
+<script type="text/javascript">
+    function decrementValue(id) {
+        var qty = document.getElementById("qty-"+id);
+        if(!isNaN(qty.value) && qty.value > 0 ) {
+            qty.value--;
+        }
+    }
+
+    function incrementValue(id) {
+        var qty = document.getElementById("qty-"+id);
+        if(!isNaN(qty.value)) {
+            qty.value++;
+        }
+    }
+    requirejs(['jquery'],
+        function   ($) {
+            $(document).ready(function() {
+               $('.page.messages').addClass('addcart-message');
+            });
+        });
+    
+</script>

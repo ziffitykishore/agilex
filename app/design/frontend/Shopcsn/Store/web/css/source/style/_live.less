@@ -454,3 +454,62 @@ body > .loading-mask{z-index: 100000;}
 #password-signup{ms-flex-order: 0;-webkit-order: 0;order: 0;}
 #strength-meter{ms-flex-order: 1;-webkit-order: 1;order: 1;font-size: 13px;}
 #password-signup-error{ms-flex-order: 2;-webkit-order: 2;order: 2;}
+
+
+
+
+.cart-empty {
+    padding: 30px 0;
+    .cart-emp{
+        color: #e03d25;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    p{
+        color: #000;
+        font-size: 16px;
+        line-height: normal;
+    }    
+   
+    .btn-pri {
+        margin-top: 20px;
+        display: inline-block;
+        border: transparent;
+        font-weight: bold;
+        padding: 12px 24px;
+        line-height: normal;
+        font-size: @f-size-xs;
+        text-decoration: none;
+        width: auto;
+        .button();
+
+        &:hover,
+        &:focus {
+            text-decoration: none;
+            .lib-css(color, @color-white);
+        }
+    }
+}
+
+.addcart-message {
+    .messages {
+        top: 50%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 9;
+    }
+}
+#wishlist-view-form .wishlist{
+    input:read-only {
+    background-color: #cccccc;
+    }
+}
+
+
+

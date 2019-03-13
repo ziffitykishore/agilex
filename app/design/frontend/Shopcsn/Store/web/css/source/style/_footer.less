@@ -336,14 +336,17 @@
         }
         .footer-links-wrapper {
             .footer-links {
+                    .flex();
                     margin-left: 0;
                     margin-right: 0;
+                    
                 .footer-list,
                 .footer-list.social-links {
                     width: percentage(1/4);
                     padding-left: 15px;
                     padding-right: 15px;
                     &.payment-method {
+                        order: 6;
                         width: percentage(1);
                         .block-title {
                             display: none;
@@ -356,6 +359,15 @@
                         .footer-copy-wrapper {
                             text-align: right;
                         }
+                    }
+                }
+
+
+                .footer-popular-cat{
+                    margin-bottom: 20px;
+                    .popular-cat{
+                        width: 100%;
+                        float: none;
                     }
                 }
             }
@@ -440,6 +452,33 @@
                     }
                     .payment-method {
                         padding-top: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.page-footer{
+    .footer-popular-cat {
+        clear: left;
+        .footer-list {
+            width: 100% !important;
+            .block-content {
+                color: #fff;
+                a{
+                    &:first-child:before{
+                        display: none;
+                    }
+                    &:before{
+                        content: '';
+                        margin: 0 10px;
+                        height: 12px;
+                        background: #ddd;
+                        width: 1px;
+                        display: inline-block;
+                        vertical-align: middle;
                     }
                 }
             }
