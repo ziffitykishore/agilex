@@ -56,8 +56,12 @@ class SeoProRender
     public function afterRenderMetadata(\Magento\Framework\View\Page\Config\Renderer $subject, $result)
     {
         try{
-            $removeQuery = explode('?', $this->url->getCurrentUrl())[0];           
+            $removeQuery = explode('?', $this->url->getCurrentUrl())[0];
             if(!in_array('blog', explode('/', $removeQuery))){
+                $productUrl = $this->getCurrentProduct();
+                if (!empty($productUrl)) {
+                    $removeQuery = $productUrl;
+                }
                 $this->pageConfig->addRemotePageAsset(
                     $removeQuery,
                     'canonical',
@@ -69,6 +73,17 @@ class SeoProRender
         }
 
         return $result;
+    }
+    
+    public function getCurrentProduct()
+    {
+        $productUrl ='';
+        $currentProduct = $this->helperData->getRegister()->registry('current_product');
+        if ($currentProduct != null) {
+            $this->helperData->getRegister()->unregister('current_category');
+            $productUrl = $currentProduct->getProductUrl();
+        }
+        return $productUrl;
     }
 
 }
