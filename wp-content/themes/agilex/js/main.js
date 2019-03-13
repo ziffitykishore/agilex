@@ -789,6 +789,7 @@ function myFunction() {
     slidesToShow: 5,
     slidesToScroll: 1,
     arrows: true,
+    lazyLoad: 'ondemand',
     prevArrow:
       '<button class="slick-prev btn btn-ripple ripple-link" aria-label="Previous" type="button">Previous</button>',
     nextArrow:
