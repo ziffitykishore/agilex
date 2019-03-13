@@ -8,6 +8,7 @@
  * @since Agilex 1.0
  */
 ?><!DOCTYPE html>
+<!-- [if IE 8]><html class="ie ie8" lang="en"><![endif]-->
 <html <?php language_attributes(); ?>>
   <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">

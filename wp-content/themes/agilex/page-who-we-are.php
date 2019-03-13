@@ -246,9 +246,9 @@ $featured_img_url = get_the_post_thumbnail_url(get_the_ID(),'full'); ?>
       $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true ); ?>
         <div class="affiliate-thumb hover_ani">
           <?php if ( has_post_thumbnail() ) {?>
-            <img data-src="<?php echo $featured_img_url ?>" class="lazy" alt="<?php echo the_Title(); ?>"/>
+            <img data-lazy="<?php echo $featured_img_url ?>" alt="<?php echo the_Title(); ?>"/>
           <?php } else { ?>
-            <img src="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php the_title(); ?>" />
+            <img data-lazy="<?php bloginfo('template_directory'); ?>/images/placeholder_130X130.png" alt="<?php the_title(); ?>" />
           <?php } ?>
         </div>
     <?php }?>
