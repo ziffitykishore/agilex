@@ -122,7 +122,7 @@ switch ($type = $block->getType()) {
             $showCart = true;
             $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
             $description = false;
-            $canItemsAddToCart = false;            
+            $canItemsAddToCart = false;
         }
     break;
 
@@ -203,7 +203,7 @@ switch ($type = $block->getType()) {
 
                             <?php if ($showAddTo || $showCart): ?>
                             <div class="product-item-inner">
-                                <div class="product actions product-item-actions">                                    
+                                <div class="product actions product-item-actions">
                                    <?php if ($type == 'related' || $type == 'crosssell'): ?>
                                    <div class="actions-primary">
                                     <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_item->getId();?>" href="javascript:void(0);">
