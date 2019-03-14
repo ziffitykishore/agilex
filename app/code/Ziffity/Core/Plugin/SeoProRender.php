@@ -58,7 +58,7 @@ class SeoProRender
         try{
             $removeQuery = explode('?', $this->url->getCurrentUrl())[0];
             if(!in_array('blog', explode('/', $removeQuery))){
-                $productUrl = $this->getCurrentProduct();
+                $productUrl = $this->getCurrentproductUrl();
                 if (!empty($productUrl)) {
                     $removeQuery = $productUrl;
                 }
@@ -75,7 +75,12 @@ class SeoProRender
         return $result;
     }
     
-    public function getCurrentProduct()
+    /**
+     * Retrieve a value from registry
+     * @param \Magento\Framework\Registry
+     * @return producturl
+    */
+    public function getCurrentproductUrl()
     {
         $productUrl ='';
         $currentProduct = $this->helperData->getRegister()->registry('current_product');
