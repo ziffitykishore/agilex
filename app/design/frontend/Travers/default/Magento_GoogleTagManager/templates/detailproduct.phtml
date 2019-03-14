@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/** @var \Magento\GoogleTagManager\Block\ListJson $block */
+$product = $block->getCurrentProduct();
+$data = [
+	'id' => $product->getSku(),
+	'name' => $product->getName(),
+	'category' => $block->getCurrentCategoryName()
+];
+
+if (!empty($product->getPrimaryCategory())) {
+	$data['primary_category'] = $product->getPrimaryCategory();
+}
+
+if (!empty($product->getManufacturer())) {
+	$attributeId = $product->getResource()->getAttribute('manufacturer');
+	$manufacturerId = $product->getData('manufacturer');
+	if ($attributeId->usesSource()) {
+		$data['manufacturer'] = $attributeId->getSource()->getOptionText($product->getData('manufacturer'));
+	}
+}
+?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_GoogleTagManager/js/actions/product-detail": <?php echo json_encode($data); ?>
+        }
+    }
+</script>
