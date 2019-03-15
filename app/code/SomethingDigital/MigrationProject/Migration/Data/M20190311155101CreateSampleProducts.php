@@ -9,7 +9,6 @@ use SomethingDigital\Migration\Helper\Cms\Block as BlockHelper;
 use SomethingDigital\Migration\Helper\Email\Template as EmailHelper;
 use Magento\Config\Model\ResourceModel\Config as ResourceConfig;
 use Magento\Catalog\Api\Data\ProductInterfaceFactory;
-use Magento\Framework\App\State;
 
 
 class M20190311155101CreateSampleProducts implements MigrationInterface
@@ -19,28 +18,23 @@ class M20190311155101CreateSampleProducts implements MigrationInterface
     protected $email;
     protected $resourceConfig;
     protected $productFactory;
-    private $state;
 
     public function __construct(
         PageHelper $page, 
         BlockHelper $block, 
         EmailHelper $email, 
         ResourceConfig $resourceConfig,
-        ProductInterfaceFactory $productFactory,
-        State $state
+        ProductInterfaceFactory $productFactory
     ) {
         $this->page = $page;
         $this->block = $block;
         $this->email = $email;
         $this->resourceConfig = $resourceConfig;
         $this->productFactory = $productFactory;
-        $this->state = $state;
     }
 
     public function execute(SetupInterface $setup)
     {
-        $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
-
         //1st Product Tiered pricing
         $product = $this->productFactory->create();
         $product->setSku('sample-product-tp');
