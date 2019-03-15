@@ -48,8 +48,6 @@ class AddCategoryData implements ObserverInterface
         $transport->setData($algoliaCategoryData);
     }
 
-
-
     /**
      * Add parent_category_id attribute to algolia data
      *
@@ -79,7 +77,6 @@ class AddCategoryData implements ObserverInterface
         $algoliaCategoryData['parent_category_ids'] = $parentCategoryIds;
         $transport->setData($algoliaCategoryData);
     }
-
 
     /**
      * Add grouping attributes to algolia data
