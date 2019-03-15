@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config>
+	<content_blocks>
+        <templates>
+            <template name="homepage_categories" file="SomethingDigital_BlueFootCustomizations::pagebuilder/blocks/custom/homepage-categories.phtml" />
+        </templates>
+    </content_blocks>
+</config>
