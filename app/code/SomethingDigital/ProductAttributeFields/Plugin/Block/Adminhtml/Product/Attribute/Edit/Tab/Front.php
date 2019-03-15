@@ -67,6 +67,28 @@ class Front
             ]
         );
         $fieldset->addField(
+            'include_in_list',
+            'select',
+            [
+                'name' => 'include_in_list',
+                'label' => __('Include In List'),
+                'title' => __('Include In List'),
+                'note' => __('Depends on design theme.'),
+                'values' => $yesnoSource
+            ]
+        );
+        $fieldset->addField(
+            'list_position',
+            'text',
+            [
+                'name' => 'list_position',
+                'label' => __('List Position'),
+                'title' => __('List Position'),
+                'note' => __('Depends on design theme.'),
+                'class' => 'validate-number'
+            ]
+        );
+        $fieldset->addField(
             'include_in_flyout',
             'select',
             [
