@@ -1,13 +1,13 @@
 <?php
-	$categoryId = $this->getAttributeText('category_id');
-	$subcategories =  $this->getCategorySubcategories($categoryId);
+    $categoryId = $this->getAttributeText('category_id');
+    $subcategories =  $this->getCategorySubcategories($categoryId);
 ?>
-<?php  if (!empty($subcategories)): ?>
+<?php if (!empty($subcategories)): ?>
 <ul class="bluefoot__categories">
-	<?php foreach ($subcategories as $subcategory) {
-		    echo '<li><a href="'.$subcategory->getUrl().'">'.$subcategory->getName().'</a></li>';
-		}
-	?>
+    <?php foreach ($subcategories as $subcategory) {
+            echo '<li><a href="'.$subcategory->getUrl().'">'.$subcategory->getName().'</a></li>';
+        }
+    ?>
 </ul>
 <?php endif; ?>
 
