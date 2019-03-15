@@ -1,0 +1,31 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<!-- ko if: (visible)-->
+<div class="field address-search thisistest">
+    <label for="address-search-input" class="label"><!-- ko i18n: 'Search Addresses' --><!-- /ko --></label>
+    <div class="control">
+        <input type="text" class="input-text" id="address-search-input" data-bind="textInput: searchInput, attr: {placeholder: $t('Search address')}">
+        <div class="search-icon">
+            <svg class="icon" role="img" focusable="false">
+                <use href="#search" xlink:href="#search"></use>
+            </svg>
+        </div>
+    </div>
+</div>
+<div class="field addresses">
+    <div class="control">
+        <div class="shipping-address-items" id="shipping-addresses">
+            <!-- ko foreach: { data: elems, as: 'element', afterRender: renderHandler} -->
+                <!-- ko if: (element.isVisible()) -->
+                    <!-- ko template: element.getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+<!-- /ko -->
