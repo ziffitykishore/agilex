@@ -1,0 +1,12 @@
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
+    "require": {
+        "magento/product-enterprise-edition": "2.3.1-beta1"
+    },
+    "minimum-stability": "beta"
+}
