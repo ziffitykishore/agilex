@@ -19,7 +19,6 @@ if (!empty($product->getPrimaryCategory())) {
 
 if (!empty($product->getManufacturer())) {
 	$attributeId = $product->getResource()->getAttribute('manufacturer');
-	$manufacturerId = $product->getData('manufacturer');
 	if ($attributeId->usesSource()) {
 		$data['manufacturer'] = $attributeId->getSource()->getOptionText($product->getData('manufacturer'));
 	}
