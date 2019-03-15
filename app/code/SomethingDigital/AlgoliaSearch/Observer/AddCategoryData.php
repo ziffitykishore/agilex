@@ -26,10 +26,25 @@ class AddCategoryData implements ObserverInterface
     {
         $category = $observer->getEvent()->getData('category');
         $transport = $observer->getEvent()->getData('categoryObject');
+        $this->addCategoryId($category, $transport);
         $this->addParentCategoryId($category, $transport);
         $this->addGrouping($category, $transport);
         $this->removePubDirectory($category, $transport);
         
+    }
+
+    /**
+     * Add category_id attribute to algolia data
+     *
+     * @param \Magento\Catalog\Model\Category $category
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function addCategoryId($category, $transport)
+    {
+        $algoliaCategoryData = $transport->getData();
+        $categoryId = $category->getId();
+        $algoliaCategoryData['category_id'] = $categoryId;
+        $transport->setData($algoliaCategoryData);
     }
 
     /**
