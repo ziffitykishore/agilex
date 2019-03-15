@@ -4,11 +4,7 @@ var config = {
             'Magento_Checkout/template/shipping-address/list.html':
                 'SomethingDigital_CheckoutAddress/template/shipping-address/list.html',
             'Magento_NegotiableQuote/template/shipping-address/list.html':
-                'SomethingDigital_CheckoutAddress/template/shipping-address/list.html',
-            'Magento_Checkout/template/shipping-address/address-renderer/default.html':
-                'SomethingDigital_CheckoutAddress/template/shipping-address/address-renderer/default.html',
-            'Magento_NegotiableQuote/template/shipping-address/address-renderer/default.html':
-                'SomethingDigital_CheckoutAddress/template/shipping-address/address-renderer/default.html',
+                'SomethingDigital_CheckoutAddress/template/shipping-address/list.html'
         }
     },
     config: {
