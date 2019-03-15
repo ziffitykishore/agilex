@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Rocket Web Inc. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="RocketWeb_ShoppingFeeds::shoppingfeeds" title="Rocket Shopping Feeds" module="RocketWeb_ShoppingFeeds"
+             sortOrder="10" parent="Magento_Catalog::catalog" dependsOnModule="Magento_Backend"
+             resource="Magento_Catalog::catalog"/>
+        <add id="RocketWeb_ShoppingFeeds::index" title="Feeds Management" module="RocketWeb_ShoppingFeeds"
+             sortOrder="10" parent="RocketWeb_ShoppingFeeds::shoppingfeeds" action="shoppingfeeds/feed/index/"
+             resource="RocketWeb_ShoppingFeeds::grid"/>
+    </menu>
+</config>

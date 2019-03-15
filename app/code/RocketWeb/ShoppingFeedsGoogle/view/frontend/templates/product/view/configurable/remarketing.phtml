@@ -1,0 +1,23 @@
+<?php /** @var $this \RocketWeb\ShoppingFeedsGoogle\Block\Product\View\Configurable\Remarketing */ ?>
+<?php if ($this->isEnabled()): ?>
+    <script type="text/javascript">
+        var google_conversion_id = <?php echo $block->escapeHtml($this->getGoogleConversionId()) ?>;
+        var google_remarketing_only = true;
+
+        require(['jquery','rw_sf_rm_configurable'], function($, GSF_Configurable) {
+            // timeout is set here to allow events to register after document.ready() before firing them
+            $(document).ready(function() {
+                var gsf_associated_products = {
+                    <?php foreach ($this->getProducts() as $product): ?>
+                        '<?php echo (int) $product->getId(); ?>': '<?php echo $this->escapeJsQuote($block->escapeHtml($product->getSku())); ?>',
+                    <?php endforeach; ?>
+                };
+
+                setTimeout(function() {
+                    gsf_configurable = new GSF_Configurable(<?php /* @noEscape */ echo $this->getJsonConfig(); ?>, gsf_associated_products);
+                }, 10);
+            });
+        });
+    </script>
+    <div id="gsf_associated_products"></div>
+<?php endif; ?>

@@ -1,0 +1,27 @@
+{
+  "name": "rocketweb/module-shopping-feeds",
+  "description": "Rocket Web Shopping Feeds for Magento 2",
+  "type": "magento2-module",
+  "version": "2.1.7",
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "magento/module-store": "*",
+    "magento/module-backend": "*",
+    "magento/framework": "*"
+  },
+  "license": "GPL-3.0",
+  "authors": [
+    {
+      "name": "Rocket Web Inc.",
+      "email": "info@rocketweb.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "RocketWeb\\ShoppingFeeds\\": ""
+    }
+  }
+}

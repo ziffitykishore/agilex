@@ -1,0 +1,10 @@
+<?php
+/* @var $block \RocketWeb\ShoppingFeeds\Block\Adminhtml\Feed\Edit\Form\Options\Renderer\Concatenate */
+?>
+<div><?php echo $block->escapeHtml(__('Value:')) ?></div>
+
+<div>
+    <textarea name="#{htmlName}[#{index}][param]" class="textarea" rows="2" cols="10">#{param}</textarea>
+</div>
+<p><span><?php echo $block->escapeHtml(__('Use product attributes in this format: {{attribute_code}}. Attribute codes can be found in  Manage Attributes. Any columns selected in \'Map columns from parents\' from Configurable and Grouped section will inherit values from parent.')) ?></span></p>
+
