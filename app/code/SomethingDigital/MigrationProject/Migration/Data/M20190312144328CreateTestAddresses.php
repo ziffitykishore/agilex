@@ -24,7 +24,7 @@ class M20190312144328CreateTestAddresses implements MigrationInterface
     protected $customerRepoInterface;
     protected $encryptor;
     protected $addressFactory;
-    protected $appState;
+    protected $state;
 
     public function __construct(
         PageHelper $page, 
@@ -35,7 +35,7 @@ class M20190312144328CreateTestAddresses implements MigrationInterface
         CustomerRepositoryInterface $customerRepoInterface,
         Encryptor $encryptor,
         AddressFactory $addressFactory,
-        State $appState
+        State $state
     ) {
         $this->page = $page;
         $this->block = $block;
@@ -45,11 +45,17 @@ class M20190312144328CreateTestAddresses implements MigrationInterface
         $this->customerRepoInterface = $customerRepoInterface;
         $this->encryptor = $encryptor;
         $this->addressFactory = $addressFactory;
-        $appState->setAreaCode('adminhtml');
+        $this->state = $state;
     }
 
     public function execute(SetupInterface $setup)
     {
+        try {
+            $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        } catch (\Exception $e) {
+            //do nothing. area code already set
+        }
+        
         //addresses are randomly generated
         $addresses = [
             [

@@ -39,7 +39,11 @@ class M20190311155101CreateSampleProducts implements MigrationInterface
 
     public function execute(SetupInterface $setup)
     {
-        $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        try {
+            $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        } catch (\Exception $e) {
+            //do nothing. area code already set
+        }
 
         //1st Product Tiered pricing
         $product = $this->productFactory->create();
