@@ -76,7 +76,8 @@ class SeoProRender
     }
     /**
     * Retrieve a value from registry
-    * @return string || null
+    * 
+    * @return string|null
     */
     public function getCurrentproductUrl()
     {
