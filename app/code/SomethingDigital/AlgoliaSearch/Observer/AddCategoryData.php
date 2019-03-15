@@ -28,6 +28,7 @@ class AddCategoryData implements ObserverInterface
         $transport = $observer->getEvent()->getData('categoryObject');
         $this->addCategoryId($category, $transport);
         $this->addParentCategoryId($category, $transport);
+        $this->addParentCategoryIds($category, $transport);
         $this->addGrouping($category, $transport);
         $this->removePubDirectory($category, $transport);
         
@@ -47,6 +48,8 @@ class AddCategoryData implements ObserverInterface
         $transport->setData($algoliaCategoryData);
     }
 
+
+
     /**
      * Add parent_category_id attribute to algolia data
      *
@@ -58,6 +61,22 @@ class AddCategoryData implements ObserverInterface
         $algoliaCategoryData = $transport->getData();
         $parentCategoryId = $category->getParentId();
         $algoliaCategoryData['parent_category_id'] = $parentCategoryId;
+        $transport->setData($algoliaCategoryData);
+    }
+
+    /**
+     * Add parent_category_ids attribute to algolia data
+     *
+     * @param \Magento\Catalog\Model\Category $category
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function addParentCategoryIds($category, $transport)
+    {
+        $algoliaCategoryData = $transport->getData();
+        $parentCategoryIds = $category->getPathIds();
+        $parentCategoryIds = array_slice($parentCategoryIds,2); //removing first two: Root Catalog and Root Category
+        array_pop($parentCategoryIds); //removing id of current category
+        $algoliaCategoryData['parent_category_ids'] = $parentCategoryIds;
         $transport->setData($algoliaCategoryData);
     }
 
