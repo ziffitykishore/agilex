@@ -74,11 +74,9 @@ class SeoProRender
 
         return $result;
     }
-    
     /**
-     * Retrieve a value from registry
-     * @param \Magento\Framework\Registry
-     * @return producturl
+    * Retrieve a value from registry
+    * @return string || null
     */
     public function getCurrentproductUrl()
     {
