@@ -158,6 +158,7 @@ class IndexTest extends \Magento\TestFramework\TestCase\AbstractController
         ];
 
         $this->getRequest()->setPostValue($request);
+        $this->getRequest()->setMethod('POST');
 
         $this->_objectManager->get(\Magento\Framework\Registry::class)->register(
             'wishlist',
@@ -170,9 +171,7 @@ class IndexTest extends \Magento\TestFramework\TestCase\AbstractController
             \Magento\TestFramework\Mail\Template\TransportBuilderMock::class
         );
 
-        $actualResult = \Zend_Mime_Decode::decodeQuotedPrintable(
-            $transportBuilder->getSentMessage()->getBodyHtml()->getContent()
-        );
+        $actualResult = quoted_printable_decode($transportBuilder->getSentMessage()->getRawMessage());
 
         $this->assertStringMatchesFormat(
             '%A' . $this->_customerViewHelper->getCustomerName($this->_customerSession->getCustomerDataObject())
