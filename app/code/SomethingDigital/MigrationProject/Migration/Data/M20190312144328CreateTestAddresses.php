@@ -12,6 +12,7 @@ use Magento\Customer\Model\CustomerFactory;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\Encryption\Encryptor;
 use Magento\Customer\Model\AddressFactory;
+use Magento\Framework\App\State;
 
 class M20190312144328CreateTestAddresses implements MigrationInterface
 {
@@ -23,6 +24,7 @@ class M20190312144328CreateTestAddresses implements MigrationInterface
     protected $customerRepoInterface;
     protected $encryptor;
     protected $addressFactory;
+    protected $state;
 
     public function __construct(
         PageHelper $page, 
@@ -32,7 +34,8 @@ class M20190312144328CreateTestAddresses implements MigrationInterface
         CustomerFactory $customerFactory,
         CustomerRepositoryInterface $customerRepoInterface,
         Encryptor $encryptor,
-        AddressFactory $addressFactory
+        AddressFactory $addressFactory,
+        State $state
     ) {
         $this->page = $page;
         $this->block = $block;
@@ -42,10 +45,17 @@ class M20190312144328CreateTestAddresses implements MigrationInterface
         $this->customerRepoInterface = $customerRepoInterface;
         $this->encryptor = $encryptor;
         $this->addressFactory = $addressFactory;
+        $this->state = $state;
     }
 
     public function execute(SetupInterface $setup)
     {
+        try {
+            $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_ADMINHTML);
+        } catch (\Exception $e) {
+            //do nothing. area code already set
+        }
+        
         //addresses are randomly generated
         $addresses = [
             [
