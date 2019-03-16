@@ -68,9 +68,12 @@ class View extends \Magento\Framework\App\Action\Action
             } else {
                 $descriptionHtml = $category->getDescription();
             }
+            $mobileDescriptionHtml = $category->getMobileDescription();
         } else {
             $descriptionHtml = $this->blockRepository->getById('catalogsearch_description');
             $descriptionHtml = $this->filterProvider->getPageFilter()->filter($descriptionHtml->getContent());
+            $mobileDescriptionHtml = $this->blockRepository->getById('catalogsearch_mobile_description');
+            $mobileDescriptionHtml = $this->filterProvider->getPageFilter()->filter($mobileDescriptionHtml->getContent());
             $leftBlockHtml = $this->blockRepository->getById('catalogsearch_after_sidebar');
             $leftBlockHtml = $this->filterProvider->getPageFilter()->filter($leftBlockHtml->getContent());
             $bottomBlockHtml = $this->blockRepository->getById('catalogsearch_after_content');
@@ -79,6 +82,7 @@ class View extends \Magento\Framework\App\Action\Action
 
         $data = [
             'description' => $descriptionHtml, 
+            'mobile_description' => $mobileDescriptionHtml,
             'after_sidebar' => $leftBlockHtml, 
             'after_content' => $bottomBlockHtml
         ];
