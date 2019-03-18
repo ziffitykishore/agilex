@@ -1728,19 +1728,19 @@ msgstr ""
 msgid "Delete this item"
 msgstr ""
 
-#: wordpress-creation-kit-api/wordpress-creation-kit.php:821
+#: wordpress-creation-kit-api/wordpress-creation-kit.php:823
 msgid "Please enter a value for the required field "
 msgstr ""
 
-#: wordpress-creation-kit-api/wordpress-creation-kit.php:871
+#: wordpress-creation-kit-api/wordpress-creation-kit.php:873
 msgid "You are not allowed to do this."
 msgstr ""
 
-#: wordpress-creation-kit-api/wordpress-creation-kit.php:1498
+#: wordpress-creation-kit-api/wordpress-creation-kit.php:1500
 msgid "Syncronize WCK"
 msgstr ""
 
-#: wordpress-creation-kit-api/wordpress-creation-kit.php:1510
+#: wordpress-creation-kit-api/wordpress-creation-kit.php:1512
 msgid "Syncronize WCK Translation"
 msgstr ""
 
@@ -1888,7 +1888,7 @@ msgstr ""
 msgid "Available meta-data for %1$s"
 msgstr ""
 
-#: wordpress-creation-kit-api/wck-stp/stp-init-mustache.php:306, wordpress-creation-kit-api/wck-stp/stp-init-mustache.php:308
+#: wordpress-creation-kit-api/wck-stp/stp-init-mustache.php:307, wordpress-creation-kit-api/wck-stp/stp-init-mustache.php:309
 msgid "View more"
 msgstr ""
 
