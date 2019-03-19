@@ -74,6 +74,12 @@ class AddCategoryData implements ObserverInterface
         $parentCategoryIds = $category->getPathIds();
         $parentCategoryIds = array_slice($parentCategoryIds,2); //removing first two: Root Catalog and Root Category
         array_pop($parentCategoryIds); //removing id of current category
+        foreach ($parentCategoryIds as $index => $catId) {
+            $cat = $this->categoryRepository->get($catId);
+            if (!$cat->getIsActive()) {
+                unset($parentCategoryIds[$index]); //removing inactive category
+            }
+        }
         $algoliaCategoryData['parent_category_ids'] = $parentCategoryIds;
         $transport->setData($algoliaCategoryData);
     }
