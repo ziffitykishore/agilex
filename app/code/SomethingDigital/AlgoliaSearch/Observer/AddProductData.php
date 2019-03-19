@@ -117,8 +117,8 @@ class AddProductData implements ObserverInterface
                     continue; // unwanted record for non-exiting customer group
                 }
                 $tiers[$tier['cust_group']][round($tier['price_qty'], 4)] = [
-                    'qty' => $tier['price_qty'],
-                    'price' => $tier['price'],
+                    'qty' => floatval($tier['price_qty']),
+                    'price' => number_format($tier['price'], 2),
                     'price_formatted' => $this->formatPrice($tier['price'], $store, $baseCurrencyCode)
                 ];
             }
