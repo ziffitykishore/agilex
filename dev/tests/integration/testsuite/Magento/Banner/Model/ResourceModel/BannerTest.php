@@ -57,7 +57,7 @@ class BannerTest extends \PHPUnit\Framework\TestCase
         $banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             \Magento\Banner\Model\Banner::class
         );
-        $banner->load('Test Banner', 'name');
+        $banner->load('Test Dynamic Block', 'name');
 
         $this->assertSame(
             [$banner->getId()],

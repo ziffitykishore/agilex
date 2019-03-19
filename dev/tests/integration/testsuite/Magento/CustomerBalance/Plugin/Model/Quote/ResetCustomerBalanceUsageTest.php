@@ -23,7 +23,7 @@ class ResetCustomerBalanceUsageTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    public function testAfterRemoveItem(bool $useCustomerBalance, bool $expected)
+    public function testAfterRemoveItem(bool $useCustomerBalance, bool $expected): void
     {
         $quote = Bootstrap::getObjectManager()->create(Quote::class);
         $quote->load('test01', 'reserved_order_id');

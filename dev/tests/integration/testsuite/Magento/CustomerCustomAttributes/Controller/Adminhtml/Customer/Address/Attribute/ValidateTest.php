@@ -11,8 +11,6 @@ use Magento\TestFramework\TestCase\AbstractBackendController;
 use Magento\Framework\Data\Form\FormKey;
 
 /**
- * Tests customer custom address attribute validation.
- *
  * @magentoAppArea adminhtml
  */
 class ValidateTest extends AbstractBackendController
@@ -22,7 +20,7 @@ class ValidateTest extends AbstractBackendController
      *
      * @return void
      */
-    public function testFileExtensions()
+    public function testFileExtensions(): void
     {
         $params = $this->getRequestNewAttributeData();
         $request = $this->getRequest();

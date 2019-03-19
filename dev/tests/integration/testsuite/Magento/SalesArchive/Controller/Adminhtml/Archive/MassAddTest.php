@@ -1,4 +1,5 @@
 <?php
+
 /***
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -15,17 +16,7 @@ class MassAddTest extends \Magento\TestFramework\TestCase\AbstractBackendControl
     {
         $this->resource = 'Magento_SalesArchive::add';
         $this->uri = 'backend/sales/archive/massadd';
-        $this->_request = Bootstrap::getObjectManager()
-            ->get(RequestInterface::class);
+        $this->httpMethod = HttpRequest::METHOD_POST;
         parent::setUp();
-    }
-
-    public function testAclHasAccess()
-    {
-        /** @var HttpRequest $request */
-        $request = $this->_request;
-        $request->setMethod(HttpRequest::METHOD_POST);
-
-        parent::testAclHasAccess();
     }
 }

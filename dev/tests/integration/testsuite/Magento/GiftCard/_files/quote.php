@@ -8,6 +8,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 require __DIR__ . '/../../Customer/_files/customer.php';
 require __DIR__ . '/../../Customer/_files/customer_address.php';
@@ -32,30 +33,18 @@ $quoteShippingAddress->importCustomerAddressData($addressRepository->getById(1))
 /** @var \Magento\Quote\Model\Quote $quote */
 $quote = $objectManager->create(\Magento\Quote\Model\Quote::class);
 
-$quote->setStoreId(
-    1
-)->setIsActive(
-    true
-)->setIsMultiShipping(
-    false
-)->assignCustomerWithAddressChange(
-    $customer
-)->setShippingAddress(
-    $quoteShippingAddress
-)->setBillingAddress(
-    $quoteShippingAddress
-)->setCheckoutMethod(
-    'customer'
-)->setPasswordHash(
-    $accountManagement->getPasswordHash('password')
-)->setCustomerEmail(
-    'aaa@aaa.com'
-);
+$quote->setStoreId(1)
+    ->setIsActive(true)
+    ->setIsMultiShipping(false)
+    ->assignCustomerWithAddressChange($customer)
+    ->setShippingAddress($quoteShippingAddress)
+    ->setBillingAddress($quoteShippingAddress)
+    ->setCheckoutMethod('customer')
+    ->setPasswordHash($accountManagement->getPasswordHash('password'))
+    ->setCustomerEmail('aaa@aaa.com');
 /** @var  Magento\Catalog\Model\Product $product */
 $product = $objectManager->create(\Magento\Catalog\Model\Product::class);
 $quoteProduct = $product->load($product->getIdBySku('gift-card-with-allowed-messages'));
-
-
 $quote->setReservedOrderId('test01');
 $quote->save();
 

@@ -24717,7 +24717,7 @@ vars.put("admin_user", adminUser);
     <TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Admin Create Order" enabled="true"/>
     <hashTree>
       <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="SetUp - Set Arguments" enabled="true">
-        <stringProp name="TestPlan.comments">mpaf/tool/fragments/ce/admin_create_order/admin_create_order.jmx</stringProp>
+        <stringProp name="TestPlan.comments">mpaf/tool/fragments/ee/admin_create_order/admin_create_order.jmx</stringProp>
         <stringProp name="BeanShellSampler.query">import org.apache.jmeter.samplers.SampleResult;
 import java.util.Random;
 Random random = new Random();
@@ -25466,6 +25466,13 @@ catch (java.lang.Exception e) {
               <boolProp name="HTTPArgument.always_encode">true</boolProp>
               <stringProp name="Argument.name">order[shipping_method]</stringProp>
               <stringProp name="Argument.value">flatrate_flatrate</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+              <boolProp name="HTTPArgument.use_equals">true</boolProp>
+            </elementProp>
+            <elementProp name="giftwrapping[quote][863][design]" elementType="HTTPArgument">
+              <boolProp name="HTTPArgument.always_encode">true</boolProp>
+              <stringProp name="Argument.name">giftwrapping[quote][863][design]</stringProp>
+              <stringProp name="Argument.value"/>
               <stringProp name="Argument.metadata">=</stringProp>
               <boolProp name="HTTPArgument.use_equals">true</boolProp>
             </elementProp>

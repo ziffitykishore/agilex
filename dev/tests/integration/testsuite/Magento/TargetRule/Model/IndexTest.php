@@ -3,8 +3,14 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
+declare(strict_types=1);
+
 namespace Magento\TargetRule\Model;
 
+/**
+ * Test for Magento\TargetRule\Model\Index
+ */
 class IndexTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -34,9 +40,16 @@ class IndexTest extends \PHPUnit\Framework\TestCase
      * @param string $valueType
      * @param string $attributeValue
      * @param array $productsSku
+     *
+     * @return void
      */
-    public function testGetProductIds($ruleType, $actionAttribute, $valueType, $attributeValue, array $productsSku)
-    {
+    public function testGetProductIds(
+        int $ruleType,
+        string $actionAttribute,
+        string $valueType,
+        string $attributeValue,
+        array $productsSku
+    ): void {
         /** @var \Magento\Catalog\Model\ProductRepository $productRepository */
         $productRepository = $this->objectManager->create(\Magento\Catalog\Model\ProductRepository::class);
         $product = $productRepository->get('simple1');
@@ -56,7 +69,10 @@ class IndexTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($expectedProductIds, $productIds, '', 0.0, 10, true);
     }
 
-    public function rulesDataProvider()
+    /**
+     * @return array
+     */
+    public function rulesDataProvider(): array
     {
         return [
             'cross sells rule by the same global attribute' => [
@@ -109,10 +125,15 @@ class IndexTest extends \PHPUnit\Framework\TestCase
      * @param string $actionAttribute
      * @param string $valueType
      * @param string $attributeValue
+     *
      * @return \Magento\TargetRule\Model\Rule
      */
-    private function createRuleModel($ruleType, $actionAttribute, $valueType, $attributeValue)
-    {
+    private function createRuleModel(
+        int $ruleType,
+        string $actionAttribute,
+        string $valueType,
+        string $attributeValue
+    ): \Magento\TargetRule\Model\Rule {
         /** @var \Magento\TargetRule\Model\Rule $model */
         $model = $this->objectManager->create(\Magento\TargetRule\Model\Rule::class);
         $model->setName('Test rule');

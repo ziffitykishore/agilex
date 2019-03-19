@@ -11,18 +11,17 @@ use Magento\TestFramework\TestCase\AbstractBackendController;
 use Magento\Framework\Data\Form\FormKey;
 
 /**
- * Tests customer custom attribute save.
- *
  * @magentoAppArea adminhtml
  */
 class SaveTest extends AbstractBackendController
 {
+
     /**
      * Tests that controller validate file extensions.
      *
      * @return void
      */
-    public function testFileExtensions()
+    public function testFileExtensions(): void
     {
         $params = $this->getRequestNewAttributeData();
         $request = $this->getRequest();
