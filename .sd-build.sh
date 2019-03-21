@@ -93,3 +93,6 @@ rsync -a pub/styleguide/ init/pub/styleguide/
 
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
+
+# initialize submodules config file and fetch data from submodules
+git submodule update --init
