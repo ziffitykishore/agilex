@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "107beafabedd8051aac0ec7808214570",
+    "content-hash": "41da3be13ef16fae2e483f8c15d75792",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -64,20 +64,20 @@
         },
         {
             "name": "algolia/algoliasearch-magento-2",
-            "version": "1.9.1",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-magento-2.git",
-                "reference": "166b11ec0df78f11176ebf6e8237a30e2714a3ec"
+                "reference": "847e1f7ba8c33c8f5809a82e927082f1605c09a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/166b11ec0df78f11176ebf6e8237a30e2714a3ec",
-                "reference": "166b11ec0df78f11176ebf6e8237a30e2714a3ec",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/847e1f7ba8c33c8f5809a82e927082f1605c09a3",
+                "reference": "847e1f7ba8c33c8f5809a82e927082f1605c09a3",
                 "shasum": ""
             },
             "require": {
-                "algolia/algoliasearch-client-php": ">=1.10.2 <2.0",
+                "algolia/algoliasearch-client-php": ">=1.27.0 <2.0",
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
@@ -99,7 +99,7 @@
                 "MIT"
             ],
             "description": "Algolia Search integration for Magento 2",
-            "time": "2019-01-15T13:28:19+00:00"
+            "time": "2019-03-15T12:01:25+00:00"
         },
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -19339,6 +19339,7 @@
     "stability-flags": {
         "composer/composer": 15,
         "snowdog/frontools": 20,
+        "algolia/algoliasearch-magento-2": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
