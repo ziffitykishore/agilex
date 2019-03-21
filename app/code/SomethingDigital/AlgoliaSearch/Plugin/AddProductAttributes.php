@@ -34,12 +34,6 @@ class AddProductAttributes
             'retrievable' => 1
         ];
         $result[] = [
-            'attribute' => 'tier_price',
-            'searchable' => 2,
-            'order' => 'unordered',
-            'retrievable' => 1
-        ];
-        $result[] = [
             'attribute' => 'min_sale_qty',
             'searchable' => 2,
             'order' => 'unordered',
