@@ -72,9 +72,6 @@ if [ "$HAS_PUB_FILES" == "0" -a "$HAS_INIT_FILES" != "0" ]; then
     fi
 fi
 
-# initialize submodules config file and fetch data from submodules
-git submodule update --init
-
 echo -e "\nBuilding..."
 yarn build:production
 
