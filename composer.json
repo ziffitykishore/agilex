@@ -87,7 +87,7 @@
         "magento/module-gift-registry-sample-data": "100.2.*",
         "magento/module-target-rule-sample-data": "100.2.*",
         "magento/module-multiple-wishlist-sample-data": "100.2.*",
-        "algolia/algoliasearch-magento-2": "1.9.1",
+        "algolia/algoliasearch-magento-2": "dev-develop",
         "yotpo/module-review": "^2.4"
 
     },
