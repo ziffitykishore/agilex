@@ -245,7 +245,7 @@ define([
             });
         }
     }
-    stickyBar(".ticker");
+    /*stickyBar(".ticker");*/
 
     /* to find if mobile */
     /* var win_w = $(window).width();
@@ -303,7 +303,7 @@ define([
             url: BASE_URL + "zcore/index/iframe",
             crossDomain: false,
             success: function(res) {
-                $('.ticker.jFrame .container').html(res.html);
+                $('.ticker.jFrame .content').html(res.html);
             },
             error: function() {
                 console.log('Iframe content not loading');
