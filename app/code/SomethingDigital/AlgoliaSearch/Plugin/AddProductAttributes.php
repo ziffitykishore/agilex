@@ -33,7 +33,6 @@ class AddProductAttributes
             'order' => 'unordered',
             'retrievable' => 1
         ];
-        
         $result[] = [
             'attribute' => 'min_sale_qty',
             'searchable' => 2,
