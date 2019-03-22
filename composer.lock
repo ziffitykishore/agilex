@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df85e7967d0143aadcd559862c4bb2b6",
+    "content-hash": "1afa0d4a12f2501670e9b00702e1116f",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -14424,12 +14424,43 @@
             "time": "2017-10-12 01:48:37"
         },
         {
+            "name": "somethingdigital/magento2-migration",
+            "version": "dev-nobluefoot",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Migration.git",
+                "reference": "b2b122dffc8cd027da43f3a031176081d0b9e143"
+            },
+            "require": {
+                "magento/framework": "*",
+                "magento/module-cms": "*",
+                "magento/module-eav": "*",
+                "magento/module-email": "*",
+                "magento/module-store": "*",
+                "php": ">= 5.6.0 <7.2.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "SomethingDigital\\Migration\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Utility library to allow migration-style data upgrade scripts.",
+            "time": "2019-03-22 15:17:51"
+        },
+        {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "2.13.0",
+            "version": "dev-integration/magento-v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "9557e792cf20f0c4fd7bfc5a42f1521796658e8d"
+                "reference": "2c658aa58ea3b979e8e9d306bc4f3459b73fe338"
             },
             "require": {
                 "magento/framework": "*",
@@ -14446,7 +14477,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2019-02-07T19:51:42+00:00"
+            "time": "2019-03-22 14:26:42"
         },
         {
             "name": "somethingdigital/module-admin-notify",
@@ -20192,6 +20223,8 @@
         "composer/composer": 15,
         "snowdog/frontools": 20,
         "snowdog/theme-blank-sass": 20,
+        "somethingdigital/magento2-theme-bryantpark": 20,
+        "somethingdigital/magento2-migration": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
