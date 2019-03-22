@@ -678,7 +678,7 @@ function wdi_get_settings(){
     'wdi_transient_time' => array('name'=>'wdi_transient_time','sanitize_type'=>'number','field_or_not'=>'','type'=>'input', 'input_type'=>'number', 'section'=>'wdi_customize_section', 'title'=>__('Check for new posts every (min)',"wd-instagram-feed"),'default'=>'' ,'value'=>60),
     'wdi_reset_cache' => array('name'=>'wdi_reset_cache','sanitize_type'=>'','field_or_not'=>'','type'=>'link_button', 'section'=>'wdi_customize_section', 'href'=>admin_url( 'admin.php?page=wdi_settings' ), 'title'=>__('Reset cache with Instagram data',"wd-instagram-feed"),'default'=>'', 'value'=>'Reset cache'),
     'wdi_authenticated_users_list' => array('name' => 'wdi_authenticated_users_list','sanitize_type'=>'users_list','input_size'=>'53','type'=>'users_list','default'=>'[]','field_or_not'=>'field','section'=>'wdi_customize_section','title'=>__('Multiple Instagram accounts ?',"wd-instagram-feed")),
-    'wdi_feeds_min_capability' => array('name' => 'wdi_feeds_min_capability', "sanitize_type" => "text", 'title' => __('Minimal role to add and manage Feeds or Themes', "wd-instagram-feed"), 'type' => 'select', 'field_or_not' => 'field', "default" => "manage_options", 'section' => 'wdi_customize_section', 'valid_options' => array('manage_options' => __('Administrator', 'wd-instagram-feed'), 'publish_posts' => __('Author', 'wd-instagram-feed'))),
+    'wdi_feeds_min_capability' => array('name' => 'wdi_feeds_min_capability', "sanitize_type" => "text", 'title' => __('Minimal role to add and manage Feeds or Themes', "wd-instagram-feed"), 'type' => 'select', 'field_or_not' => 'field', "default" => "manage_options", 'section' => 'wdi_customize_section', 'valid_options' => array('manage_options' => __('Administrator', 'wd-instagram-feed'), 'publish_posts' => __('Author', 'wd-instagram-feed'), 'contributor'=>__('Contributor', 'wd-instagram-feed'))),
     'wdi_custom_css' => array('name' => 'wdi_custom_css', 'sanitize_type' => 'css', 'type' => 'textarea', 'section' => 'wdi_customize_section', 'field_or_not' => 'field', 'default' => '', 'title' => __('Custom CSS', "wd-instagram-feed")),
     'wdi_custom_js' => array('name' => 'wdi_custom_js', 'sanitize_type' => 'css', 'type' => 'textarea', 'section' => 'wdi_customize_section', 'field_or_not' => 'field', 'default' => '', 'title' => __('Custom JavaScript', "wd-instagram-feed")),
     //'wdi_preserve_settings_when_remove'=>array('name'=>'wdi_preserve_settings_when_remove','field_or_not'=>'field','type'=>'checkbox','default'=>'1', 'section'=>'wdi_configure_section','title'=>__('Preserve Settings When Remove',"wd-instagram-feed")),
@@ -757,7 +757,13 @@ function wdi_get_create_feeds_cap()
 {
   global $wdi_options;
   $min_feeds_capability = isset($wdi_options['wdi_feeds_min_capability']) ? $wdi_options['wdi_feeds_min_capability'] : "manage_options";
-  $min_feeds_capability = $min_feeds_capability == 'publish_posts' ? 'publish_posts' : "manage_options";
+  if( $min_feeds_capability == 'publish_posts' ) {
+      $min_feeds_capability = 'publish_posts';
+  } else if( $min_feeds_capability == 'contributor' ) {
+      $min_feeds_capability = 'contributor';
+  } else {
+      $min_feeds_capability = 'manage_options';
+  }
 
   return $min_feeds_capability;
 }

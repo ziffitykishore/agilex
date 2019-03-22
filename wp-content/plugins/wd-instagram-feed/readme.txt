@@ -4,7 +4,7 @@ Tags: custom instagram feed, feed, instagram, hashtag, Instagram feed, instagram
 Requires at least: 3.9
 Requires PHP: 5.2
 Tested up to: 5.1
-Stable tag: 1.3.13
+Stable tag: 1.3.14
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -536,6 +536,10 @@ Please make sure you don't have any important information before you proceed.
 10Web Instagram Feed plugin uses Instagram API on website front end. You have to authorize the plugin via sign in to get data from Instagram on your behalf. The plugin does not send any user’s data to Instagram. All the data received from Instagram via API is cached in WordPress database for some short customizable period to provide front end optimization. You can delete or update cached data. Instagram saves some cookies in browsers of website visitors via API data. These cookies are mostly used for security purposes. They are regulated under terms of Instagram’s privacy policy https://instagram.com/legal/privacy. The plugin asks for your consent to collect site administrator’s email address and site URL to offer customer support, deals and discounts on premium products and more.
 
 == Changelog ==
+
+= 1.3.14 =
+New: Added contributor role in the option 'Minimal role to add and manage Feeds or Themes'.    
+Fixed: Conditional filters for hashtags.   
 
 = 1.3.13 =
 New: Option to get hashtag top media

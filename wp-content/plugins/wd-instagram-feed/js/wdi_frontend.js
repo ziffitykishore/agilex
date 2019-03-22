@@ -2357,10 +2357,24 @@ wdi_front.mergeData = function (array1, array2)
 //broken image handling
 wdi_front.brokenImageHandler = function (source)
 {
-  source.src = wdi_url.plugin_url + "images/missing.png";
-  source.onerror = "";
-  return true;
+    var url_params = source.src.split("/p/");
+    if(typeof url_params[0] !== "undefined" && typeof url_params[1] !== "undefined" && url_params[0] !== "https://www.instagram.com"){
+        var main_url = wdi_baseName(url_params[0]);
+        var new_url = main_url+"/p/"+url_params[1];
+        source.src = new_url;
+    }else{
+        source.src = wdi_url.plugin_url + "images/missing.png";
+    }
 
+
+    source.onerror = "";
+    return true;
+
+}
+function wdi_baseName(str)
+{
+    var base = str.substr(str.lastIndexOf('/'));
+    return str.replace(base, "");
 }
 
 

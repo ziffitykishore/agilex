@@ -38,7 +38,7 @@ class WDIElementor {
   }
 
   public function register_widget_category($elements_manager){
-    $elements_manager->add_category('tenweb-widgets', array(
+    $elements_manager->add_category('tenweb-plugins-widgets', array(
       'title' => __('10WEB', 'tenweb-builder'),
       'icon' => 'fa fa-plug',
     ));
