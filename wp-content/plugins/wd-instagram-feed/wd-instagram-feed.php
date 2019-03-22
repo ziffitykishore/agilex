@@ -3,7 +3,7 @@
 Plugin Name: Instagram Feed by 10Web
 Plugin URI: https://10web.io/plugins/wordpress-instagram-feed/
 Description: Instagram Feed by 10Web is a user-friendly tool for displaying user or hashtag-based feeds on your website. You can create feeds with one of the available layouts. It allows displaying image metadata, open up images in lightbox, download them and even share in social networking websites.
-Version: 1.3.13
+Version: 1.3.14
 Author: 10Web
 Author URI: https://10Web.io
 License: GPLv2 or later
@@ -20,7 +20,7 @@ define("WDI_META", "_".WDI_VAR."_meta");
 //define("wdi",'wdi');
 define('WDI_FEED_TABLE','wdi_feeds');
 define('WDI_THEME_TABLE','wdi_themes');
-define('WDI_VERSION','1.3.13');
+define('WDI_VERSION','1.3.14');
 define('WDI_IS_PRO','false');
 $wdi_minify = ((isset($_GET['wdi_no_minify']) && $_GET['wdi_no_minify'] == "true") ? false : true);
 define('WDI_MINIFY', $wdi_minify);
@@ -58,10 +58,13 @@ function wdi_save_user_access_token(){
 
   $token = $_GET['wdi_code'];
 
-
+  $accounts = null;
   $url = "https://graph.facebook.com/me/accounts?fields=instagram_business_account&limit=500&access_token=" . $token;
-  $accounts = @file_get_contents($url);
-  $accounts = json_decode($accounts, true);
+  $request = wp_remote_get($url);
+  if (!is_wp_error($request) || wp_remote_retrieve_response_code($request) === 200) {
+    $body = $request['body'];
+    $accounts = json_decode($body, true);
+  }
 
   if(!is_array($accounts)) {
     //invalid access token
@@ -96,7 +99,7 @@ function wdi_save_user_access_token(){
 }
 
 function wdi_no_business_account_notice(){
-  echo "<div class='notice notice-error'><p>Cannot find connected Instagram business page. Either you do not have Instagram business account or it is not connected to current Facebook user's page. <a href='https://help.10web.io/hc/en-us/articles/360021344111' target='_blank'>See more in documentation.</a> </p></div>";
+  echo "<div class='notice notice-error'><p>Cannot find connected Instagram business page. Either you do not have Instagram business account or it is not connected to current Facebook user's page. <a href='https://help.10web.io/hc/en-us/articles/360022629872' target='_blank'>See more in documentation.</a> </p></div>";
 }
 
 function wdi_invalid_fb_token_notice(){
