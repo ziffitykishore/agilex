@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\Cybersource\Model;
 
 use Magento\Checkout\Model\Session as CheckoutSession;
@@ -22,6 +24,8 @@ use Magento\TestFramework\ObjectManager;
 use \PHPUnit_Framework_MockObject_MockObject as MockObject;
 
 /**
+ * Tests Magento\Multishipping\Model\Checkout\Type\Multishipping.
+ *
  * @magentoAppArea frontend
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
@@ -37,6 +41,9 @@ class MultishippingTest extends \PHPUnit\Framework\TestCase
      */
     private $model;
 
+    /**
+     * @inheritdoc
+     */
     protected function setUp()
     {
         $this->objectManager = Bootstrap::getObjectManager();
@@ -56,6 +63,7 @@ class MultishippingTest extends \PHPUnit\Framework\TestCase
      *
      * @magentoDataFixture Magento/Cybersource/Fixtures/quote_with_split_items.php
      * @magentoConfigFixture current_store payment/cybersource/active 1
+     * @return void
      */
     public function testCreateOrders()
     {
@@ -82,8 +90,8 @@ class MultishippingTest extends \PHPUnit\Framework\TestCase
 
         $this->model->createOrders();
 
-        $orderList = $this->getOrderList($quote->getId());
-        self::assertEquals(3, sizeof($orderList));
+        $orderList = $this->getOrderList((int)$quote->getId());
+        self::assertCount(3, $orderList);
     }
 
     /**
@@ -132,7 +140,7 @@ class MultishippingTest extends \PHPUnit\Framework\TestCase
         $response = [
             'req_card_expiry_date' => '01-2018-25',
             'req_card_number' => 'xxxxxxxx4463',
-            'req_card_type' => '001'
+            'req_card_type' => '001',
         ];
         $client = $this->getMockBuilder(Zend::class)
             ->disableOriginalConstructor()

@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
 /** @var $product \Magento\Catalog\Model\Product */
@@ -11,7 +12,7 @@ $product = $objectManager->create(\Magento\Catalog\Model\Product::class);
 $amountData = [
     'value' => 50,
     'website_id' => 0,
-    'attribute_id' => 132
+    'attribute_id' => 132,
 ];
 
 $extensionAttributes = $objectManager->create(\Magento\Catalog\Api\Data\ProductExtension::class);
@@ -19,7 +20,7 @@ $giftCardAmountFactory = $objectManager->create(\Magento\GiftCard\Api\Data\Giftc
 $amount = $giftCardAmountFactory->create(['data' => $amountData]);
 $extensionAttributes->setGiftcardAmounts([$amount]);
 $product->setTypeId(\Magento\GiftCard\Model\Catalog\Product\Type\Giftcard::TYPE_GIFTCARD)
-    ->setAttributeSetId(4)
+    ->setAttributeSetId($product->getDefaultAttributeSetId())
     ->setWebsiteIds([1])
     ->setName('Gift Card with fixed amount 50')
     ->setSku('gift-card-with-fixed-amount-50')
@@ -34,6 +35,6 @@ $product->setTypeId(\Magento\GiftCard\Model\Catalog\Product\Type\Giftcard::TYPE_
     ->setCanSaveCustomOptions(true)
     ->setHasOptions(true)
     ->setAllowOpenAmount(0)
-    ->setGiftcardType(1)
+    ->setGiftcardType(\Magento\GiftCard\Model\Giftcard::TYPE_PHYSICAL)
     ->setExtensionAttributes($extensionAttributes)
     ->save();

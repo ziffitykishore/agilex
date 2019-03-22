@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 use Magento\TestFramework\Helper\Bootstrap;
 use Magento\Eav\Api\AttributeRepositoryInterface;
@@ -16,7 +17,6 @@ $eavConfig->clear();
 $installer = Bootstrap::getObjectManager()->create(\Magento\Catalog\Setup\CategorySetup::class);
 
 if (!$attribute->getId()) {
-
     /** @var $attribute \Magento\Catalog\Model\ResourceModel\Eav\Attribute */
     $attribute = Bootstrap::getObjectManager()->create(
         \Magento\Catalog\Model\ResourceModel\Eav\Attribute::class

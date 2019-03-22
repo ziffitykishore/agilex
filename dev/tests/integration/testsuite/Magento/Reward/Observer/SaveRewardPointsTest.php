@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\Reward\Observer;
 
 use Magento\Customer\Api\Data\CustomerInterface;
@@ -23,6 +25,9 @@ class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
      */
     private $objectManager;
 
+    /**
+     * {@inheritDoc}
+     */
     protected function setUp()
     {
         $this->objectManager = Bootstrap::getObjectManager();
@@ -34,8 +39,9 @@ class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
      *
      * @param string $pointsDelta
      * @param int|null $expectedBalance
+     * @return void
      */
-    public function testSaveRewardPoints(string $pointsDelta, $expectedBalance)
+    public function testSaveRewardPoints(string $pointsDelta, $expectedBalance): void
     {
         $initialBalance = 500;
 
@@ -54,7 +60,7 @@ class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
     /**
      * @return array
      */
-    public function saveRewardPointsDataProvider()
+    public function saveRewardPointsDataProvider(): array
     {
         return [
             'points delta is not set' => ['$pointsDelta' => '', '$expectedBalance' => 500],
@@ -68,8 +74,9 @@ class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
      * @dataProvider invalidRewardPointsDataProvider
      *
      * @param string $pointsDelta
+     * @return void
      */
-    public function testInvalidRewardPoints(string $pointsDelta)
+    public function testInvalidRewardPoints(string $pointsDelta): void
     {
         $customer = $this->getCustomer();
         $this->expectException(LocalizedException::class);
@@ -93,8 +100,9 @@ class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
     /**
      * @param CustomerInterface $customer
      * @param mixed $pointsDelta
+     * @return void
      */
-    private function saveRewardPoints(CustomerInterface $customer, $pointsDelta = '')
+    private function saveRewardPoints(CustomerInterface $customer, $pointsDelta = ''): void
     {
         $reward = ['points_delta' => (string)$pointsDelta];
 
@@ -130,7 +138,7 @@ class SaveRewardPointsTest extends \PHPUnit\Framework\TestCase
      * @param int $balance
      * @return void
      */
-    private function setInitialBalance(CustomerInterface $customer, int $balance)
+    private function setInitialBalance(CustomerInterface $customer, int $balance): void
     {
         $this->saveRewardPoints($customer, $balance);
     }

@@ -40,8 +40,41 @@ return [
     'md5' => [
         'replacement' => '',
         'exclude' => [
-            ['type' => 'library', 'name' => 'magento/framework', 'path' => 'App/Utility/Files.php'],
-        ],
+            /*
+             * Usage of md5 in MessageQueue key generation algorithm
+             * added to exclude list to avoid backward incompatible changes
+             */
+            [
+                'type' => 'library',
+                'name' => 'magento/framework',
+                'path' => 'MessageQueue/Rpc/Publisher.php',
+            ],
+            [
+                'type' => 'library',
+                'name' => 'magento/framework',
+                'path' => 'MessageQueue/MessageController.php',
+            ],
+            [
+                'type' => 'library',
+                'name' => 'magento/framework',
+                'path' => 'MessageQueue/Publisher.php',
+            ],
+            [
+                'type' => 'module',
+                'name' => 'Magento_AsynchronousOperations',
+                'path' => 'Model/ResourceModel/System/Message/Collection/Synchronized/Plugin.php'
+            ],
+            [
+                'type' => 'module',
+                'name' => 'Magento_AuthorizenetAcceptjs',
+                'path' => 'Gateway/Validator/TransactionHashValidator.php'
+            ],
+            [
+                'type' => 'module',
+                'name' => 'Magento_Authorizenet',
+                'path' => 'Model/Directpost/Response.php'
+            ]
+        ]
     ],
     'srand' => [
         'replacement' => '',

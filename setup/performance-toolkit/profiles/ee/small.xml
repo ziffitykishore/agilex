@@ -15,6 +15,18 @@
         <simple_products>800</simple_products> <!-- Simple products count -->
         <configurable_products>
             <config>
+                <attributeSet>Attribute Set 1</attributeSet>
+                <products>5</products>
+            </config>
+            <config>
+                <attributeSet>Attribute Set 2</attributeSet>
+                <products>5</products>
+            </config>
+            <config>
+                <attributeSet>Attribute Set 3</attributeSet>
+                <products>5</products>
+            </config>
+            <config>
                 <attributes>
                     <attribute>
                         <options>3</options>
@@ -22,9 +34,6 @@
                     </attribute>
                     <attribute>
                         <options>8</options>
-                    </attribute>
-                    <attribute>
-                        <options>5</options>
                     </attribute>
                 </attributes>
                 <sku>Configurable Product %s</sku>
@@ -45,13 +54,13 @@
         <cart_price_rules_floor>2</cart_price_rules_floor>
 
         <product_attribute_sets>10</product_attribute_sets> <!-- Number of product attribute sets -->
-        <product_attribute_sets_attributes>10</product_attribute_sets_attributes> <!-- Number of attributes per set -->
-        <product_attribute_sets_attributes_values>2</product_attribute_sets_attributes_values> <!-- Number of values per attribute -->
+        <product_attribute_sets_attributes>5</product_attribute_sets_attributes> <!-- Number of attributes per set -->
+        <product_attribute_sets_attributes_values>5</product_attribute_sets_attributes_values> <!-- Number of values per attribute -->
 
         <order_quotes_enable>true</order_quotes_enable>
         <order_simple_product_count_from>2</order_simple_product_count_from>
         <order_simple_product_count_to>2</order_simple_product_count_to>
-        <orders>200</orders> <!-- Orders count -->
+        <orders>80</orders> <!-- Orders count -->
 
         <tax_rates_file>tax_rates_small.csv</tax_rates_file> <!-- Tax rates file in fixtures directory-->
 

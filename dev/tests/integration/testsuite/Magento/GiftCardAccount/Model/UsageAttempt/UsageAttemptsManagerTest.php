@@ -11,7 +11,7 @@ namespace Magento\GiftCardAccount\Model\UsageAttempt;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
-use Magento\GiftCardAccount\Model\Spi\Exception\TooManyAttemptsExceptionInterface;
+use Magento\GiftCardAccount\Api\Exception\TooManyAttemptsException;
 use Magento\GiftCardAccount\Model\Spi\UsageAttemptFactoryInterface;
 use Magento\GiftCardAccount\Model\Spi\UsageAttemptsManagerInterface;
 use Magento\TestFramework\Helper\Bootstrap;
@@ -83,7 +83,7 @@ class UsageAttemptsManagerTest extends TestCase
      * @param int $id
      * @return void
      */
-    private function loginCustomer(int $id)
+    private function loginCustomer(int $id): void
     {
         $success = $this->loggedInManager->loginById($id);
         if (!$success) {
@@ -135,14 +135,14 @@ class UsageAttemptsManagerTest extends TestCase
      * @magentoConfigFixture default_store customer/captcha/failed_attempts_login 10
      * @magentoConfigFixture default_store customer/captcha/failed_attempts_ip 2
      *
-     * @expectedException \Magento\GiftCardAccount\Model\Spi\Exception\TooManyAttemptsExceptionInterface
+     * @expectedException \Magento\GiftCardAccount\Api\Exception\TooManyAttemptsException
      */
     public function testAboveLimitNotLoggedIn()
     {
         try {
             $this->manager->attempt($this->factory->create('fakeCode'));
             $this->manager->attempt($this->factory->create('fakeCode'));
-        } catch (TooManyAttemptsExceptionInterface $exception) {
+        } catch (TooManyAttemptsException $exception) {
             $this->fail('Attempt denied before reaching the limit');
         }
         $this->manager->attempt($this->factory->create('fakeCode'));
@@ -158,7 +158,7 @@ class UsageAttemptsManagerTest extends TestCase
      *
      * @magentoDataFixture Magento/Customer/_files/customer.php
      *
-     * @expectedException \Magento\GiftCardAccount\Model\Spi\Exception\TooManyAttemptsExceptionInterface
+     * @expectedException \Magento\GiftCardAccount\Api\Exception\TooManyAttemptsException
      */
     public function testAboveLimitLoggedIn()
     {
@@ -166,7 +166,7 @@ class UsageAttemptsManagerTest extends TestCase
             $this->loginCustomer(1);
             $this->manager->attempt($this->factory->create('fakeCode'));
             $this->manager->attempt($this->factory->create('fakeCode'));
-        } catch (TooManyAttemptsExceptionInterface $exception) {
+        } catch (TooManyAttemptsException $exception) {
             $this->fail('Attempt denied before reaching the limit');
         }
         $this->manager->attempt($this->factory->create('fakeCode'));
@@ -183,7 +183,7 @@ class UsageAttemptsManagerTest extends TestCase
      *
      * @magentoDataFixture Magento/Customer/_files/customer.php
      *
-     * @expectedException \Magento\GiftCardAccount\Model\Spi\Exception\TooManyAttemptsExceptionInterface
+     * @expectedException \Magento\GiftCardAccount\Api\Exception\TooManyAttemptsException
      */
     public function testCustomerNotAllowedWithoutCode()
     {
@@ -200,7 +200,7 @@ class UsageAttemptsManagerTest extends TestCase
      * @magentoConfigFixture default_store customer/captcha/failed_attempts_ip 10
      * @magentoConfigFixture default_store customer/captcha/mode always
      *
-     * @expectedException \Magento\GiftCardAccount\Model\Spi\Exception\TooManyAttemptsExceptionInterface
+     * @expectedException \Magento\GiftCardAccount\Api\Exception\TooManyAttemptsException
      */
     public function testGuestNotAllowedWithoutCode()
     {
@@ -218,7 +218,7 @@ class UsageAttemptsManagerTest extends TestCase
      * @magentoDataFixture Magento/GiftCardAccount/_files/giftcardaccount.php
      * @magentoDataFixture Magento/Customer/_files/customer.php
      *
-     * @expectedException \Magento\GiftCardAccount\Model\Spi\Exception\TooManyAttemptsExceptionInterface
+     * @expectedException \Magento\GiftCardAccount\Api\Exception\TooManyAttemptsException
      */
     public function testLoggingOnlyInvalidCodes()
     {
@@ -232,7 +232,7 @@ class UsageAttemptsManagerTest extends TestCase
             );
             $this->manager->attempt($this->factory->create('fakeCode'));
             $this->manager->attempt($this->factory->create('fakeCode'));
-        } catch (TooManyAttemptsExceptionInterface $exception) {
+        } catch (TooManyAttemptsException $exception) {
             $this->fail('Attempts are logged for existing codes');
         }
         $this->manager->attempt($this->factory->create('fakeCode'));

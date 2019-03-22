@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\UrlRewrite\Model\StoreSwitcher;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
@@ -50,7 +52,7 @@ class RewriteUrlTest extends \PHPUnit\Framework\TestCase
      * @throws StoreSwitcher\CannotSwitchStoreException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function testSwitchToNonExistingPage()
+    public function testSwitchToNonExistingPage(): void
     {
         $fromStoreCode = 'default';
         /** @var \Magento\Store\Api\StoreRepositoryInterface $storeRepository */
@@ -78,7 +80,7 @@ class RewriteUrlTest extends \PHPUnit\Framework\TestCase
      * @throws StoreSwitcher\CannotSwitchStoreException
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function testSwitchToExistingPage()
+    public function testSwitchToExistingPage(): void
     {
         $fromStoreCode = 'default';
         /** @var \Magento\Store\Api\StoreRepositoryInterface $storeRepository */
@@ -90,7 +92,8 @@ class RewriteUrlTest extends \PHPUnit\Framework\TestCase
         $storeRepository = $this->objectManager->create(\Magento\Store\Api\StoreRepositoryInterface::class);
         $toStore = $storeRepository->get($toStoreCode);
 
-        $redirectUrl = $expectedUrl = "http://localhost/page-c";
+        $redirectUrl = "http://localhost/index.php/page-c/";
+        $expectedUrl = "http://localhost/index.php/page-c-on-2nd-store";
 
         $this->assertEquals($expectedUrl, $this->storeSwitcher->switch($fromStore, $toStore, $redirectUrl));
     }
@@ -101,7 +104,7 @@ class RewriteUrlTest extends \PHPUnit\Framework\TestCase
      * @param StoreInterface $targetStore
      * @return void
      */
-    private function setBaseUrl(StoreInterface $targetStore)
+    private function setBaseUrl(StoreInterface $targetStore): void
     {
         $configValue = $this->objectManager->create(Value::class);
         $configValue->load('web/unsecure/base_url', 'path');

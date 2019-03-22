@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\Staging\Model\ResourceModel\Db;
 
 use Magento\Framework\ObjectManagerInterface;
@@ -48,7 +50,7 @@ class UpdateTest extends \PHPUnit\Framework\TestCase
      * @magentoDataFixture Magento/Staging/_files/staging_temporary_update.php
      * @return void
      */
-    public function testMovedFromTemporaryToPermanent()
+    public function testMovedFromTemporaryToPermanent(): void
     {
         $update = $this->repository->get(2000);
         $update->setStartTime(date('Y-m-d H:i:s', strtotime('+ 5 minutes', strtotime($update->getEndTime()))));

@@ -3,9 +3,9 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Magento\Logging\Model\Event;
+declare(strict_types=1);
 
-use \Magento\Logging\Model\Event\Changes;
+namespace Magento\Logging\Model\Event;
 
 /**
  * Test Enterprise logging processor
@@ -27,8 +27,12 @@ class ChangesTest extends \Magento\TestFramework\TestCase\AbstractController
      * @dataProvider cleanupDataDataProvider
      */
 
-    public function testCleanupData($originalData, $expectedOriginalData, $resultData, $expectedResultData)
-    {
+    public function testCleanupData(
+        array $originalData,
+        array $expectedOriginalData,
+        array $resultData,
+        array $expectedResultData
+    ): void {
         $objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $this->changes = $objectManager->get(\Magento\Logging\Model\Event\Changes::class);
         $this->changes->setOriginalData($originalData)->setResultData($resultData);
@@ -39,9 +43,11 @@ class ChangesTest extends \Magento\TestFramework\TestCase\AbstractController
     }
 
     /**
+     * Cleanup data provider
+     *
      * @return array
      */
-    public function cleanupDataDataProvider()
+    public function cleanupDataDataProvider(): array
     {
         $originalData = [
             'name' => 'Simple',
@@ -63,6 +69,7 @@ class ChangesTest extends \Magento\TestFramework\TestCase\AbstractController
             ],
             'related_object' => new \Magento\Framework\DataObject(),
         ];
+
         $expectedOriginalData = [
             'name' => 'Simple',
             'sku' => 'Simple-sku',
@@ -80,6 +87,7 @@ class ChangesTest extends \Magento\TestFramework\TestCase\AbstractController
             ],
             'modify_date' => '07/22/2018',
         ];
+
         $expectedResultData = [
             'name' => 'Config',
             'sku' => 'Config-sku',
