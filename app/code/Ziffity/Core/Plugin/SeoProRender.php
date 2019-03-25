@@ -8,6 +8,8 @@ use Ziffity\Core\Helper\Data as HelperData;
 
 class SeoProRender
 {
+    const PRODUCT_SUFFIX_URL = 'settings/seo/pdp_suffix_title';
+    
     /**
      * @var \Magento\Framework\View\Page\Config
      */
@@ -27,6 +29,7 @@ class SeoProRender
      * @var \Ziffity\Core\Helper\Data
      */
     protected $helperData;
+    
 
     /**
      * SeoProRender constructor.
@@ -56,17 +59,9 @@ class SeoProRender
     public function afterRenderMetadata(\Magento\Framework\View\Page\Config\Renderer $subject, $result)
     {
         try{
-            $removeQuery = explode('?', $this->url->getCurrentUrl())[0];
-            if(!in_array('blog', explode('/', $removeQuery))){
-                $productUrl = $this->getCurrentproductUrl();
-                if (!empty($productUrl)) {
-                    $removeQuery = $productUrl;
-                }
-                $this->pageConfig->addRemotePageAsset(
-                    $removeQuery,
-                    'canonical',
-                    ['attributes' => ['rel' => 'canonical']]
-                );
+            $cleanUrl = explode('?', $this->url->getCurrentUrl())[0];
+            if(!in_array('blog', explode('/', $cleanUrl))){
+                $this->AddCanonicalAndSuffixMetaTitle($cleanUrl);
             }
         } catch (Exception $ex) {
             $this->helperData->logger('seopro', $ex->getMessage(), true);
@@ -74,12 +69,26 @@ class SeoProRender
 
         return $result;
     }
+
+    protected function AddCanonicalAndSuffixMetaTitle($cleanUrl)
+    {
+        $productUrl = $this->getCurrentProductUrl();
+        if (!empty($productUrl)) {
+            $cleanUrl = $productUrl;
+            $suffixMetaTitle = $this->helperData->getScopeConfig(self::PRODUCT_SUFFIX_URL);
+            $this->pageConfig->getTitle()->set($this->pageConfig->getTitle()->get() . $suffixMetaTitle);
+        }
+        $this->pageConfig->addRemotePageAsset(
+            $cleanUrl, 'canonical', ['attributes' => ['rel' => 'canonical']]
+        );
+    }
+
     /**
     * Retrieve a value from registry
     * 
     * @return string|null
     */
-    public function getCurrentproductUrl()
+    public function getCurrentProductUrl()
     {
         $productUrl ='';
         $currentProduct = $this->helperData->getRegister()->registry('current_product');
