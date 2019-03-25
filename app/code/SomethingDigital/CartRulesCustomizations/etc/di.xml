@@ -3,5 +3,4 @@
     <type name="Magento\SalesRule\Model\RulesApplier">
         <plugin name="SomethingDigital_ApplyRules" type="SomethingDigital\CartRulesCustomizations\Plugin\AddRules" />
     </type>
-    <preference for="Magento\Checkout\Controller\Cart\CouponPost" type="SomethingDigital\CartRulesCustomizations\Controller\Cart\CouponPost" />
 </config>
