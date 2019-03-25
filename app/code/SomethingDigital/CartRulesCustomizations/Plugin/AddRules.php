@@ -8,29 +8,33 @@ use Magento\Framework\App\ObjectManager;
 
 class AddRules{
 
-    /**
-     * Rule source collection
-     *
-     * @var \Magento\SalesRule\Model\ResourceModel\Rule\Collection
-     */
-    protected $_rules;
-
     public function __construct(
-        \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory $collectionFactory
+        \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory $collectionFactory,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Customer\Model\Session $customerSession
     ) {
-        $this->_collectionFactory = $collectionFactory;
+        $this->collectionFactory = $collectionFactory;
+        $this->storeManager = $storeManager;
+        $this->customerSession = $customerSession;
     }
 
     public function beforeApplyRules (\Magento\SalesRule\Model\RulesApplier $subject, $item, $rules, $skipValidation, $couponCode)
     {
         if ($couponCode) {
-            $collection = $this->_collectionFactory->create();
+            $websiteId = $this->storeManager->getStore()->getWebsiteId();
+            if ($this->customerSession->isLoggedIn()) {
+                $customerGroupId = $this->customerSession->getCustomer()->getGroupId();
+            } else {
+                $customerGroupId = 0;
+            }
+            $collection = $this->collectionFactory->create();
 
             $collection->getSelect()->joinLeft(
                 ['salesrule_coupon' => $collection->getTable('salesrule_coupon')],
                 'main_table.rule_id = salesrule_coupon.rule_id',
                 ['code']
             );
+            $collection->addWebsiteGroupDateFilter($websiteId, $customerGroupId);
             $collection->addFieldToFilter('salesrule_coupon.code', array(
                 array('like' => $couponCode.'%'),
             ));
