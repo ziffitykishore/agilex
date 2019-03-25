@@ -8,7 +8,7 @@ use Magento\Framework\App\ObjectManager;
 
 class AddRules{
 
-	/**
+    /**
      * Rule source collection
      *
      * @var \Magento\SalesRule\Model\ResourceModel\Rule\Collection
@@ -21,22 +21,22 @@ class AddRules{
         $this->_collectionFactory = $collectionFactory;
     }
 
-	public function beforeApplyRules (\Magento\SalesRule\Model\RulesApplier $subject, $item, $rules, $skipValidation, $couponCode)
-	{
-		if ($couponCode) {
-			$collection = $this->_collectionFactory->create();
+    public function beforeApplyRules (\Magento\SalesRule\Model\RulesApplier $subject, $item, $rules, $skipValidation, $couponCode)
+    {
+        if ($couponCode) {
+            $collection = $this->_collectionFactory->create();
 
-	        $collection->getSelect()->joinLeft(
-			    ['salesrule_coupon' => $collection->getTable('salesrule_coupon')],
-			    'main_table.rule_id = salesrule_coupon.rule_id',
-			    ['code']
-	        );
-	        $collection->addFieldToFilter('salesrule_coupon.code', array(
-			    array('like' => $couponCode.'%'),
-			));
-	        $rules = $collection->load(); 
+            $collection->getSelect()->joinLeft(
+                ['salesrule_coupon' => $collection->getTable('salesrule_coupon')],
+                'main_table.rule_id = salesrule_coupon.rule_id',
+                ['code']
+            );
+            $collection->addFieldToFilter('salesrule_coupon.code', array(
+                array('like' => $couponCode.'%'),
+            ));
+            $rules = $collection->load(); 
 
-			return [$item, $rules, $skipValidation, $couponCode];
-		}
-	}
+            return [$item, $rules, $skipValidation, $couponCode];
+        }
+    }
 }
