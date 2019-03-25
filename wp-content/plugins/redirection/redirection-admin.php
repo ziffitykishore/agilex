@@ -283,10 +283,12 @@ class Redirection_Admin {
 
 	private function get_preload_data() {
 		if ( $this->get_menu_page() === 'support' ) {
-			$api = new Redirection_Api_Plugin( REDIRECTION_API_NAMESPACE );
+			include_once dirname( REDIRECTION_FILE ) . '/models/fixer.php';
+
+			$fixer = new Red_Fixer();
 
 			return array(
-				'pluginStatus' => $api->route_status( new WP_REST_Request() ),
+				'pluginStatus' => $fixer->get_status(),
 			);
 		}
 
@@ -335,7 +337,7 @@ class Redirection_Admin {
 	}
 
 	public function admin_menu() {
-		$hook = add_management_page( 'Redirection', 'Redirection', $this->get_access_role(), basename( REDIRECTION_FILE ), [ &$this, 'admin_screen' ] );
+		$hook = add_management_page( 'Redirection', 'Redirection', $this->get_access_role(), basename( REDIRECTION_FILE ), [ $this, 'admin_screen' ] );
 		add_action( 'load-' . $hook, [ $this, 'redirection_head' ] );
 	}
 
