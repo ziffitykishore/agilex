@@ -7,6 +7,8 @@
     "build": "npm-run-all build:prep build:inheritance -p \"build:travers --pipeline\"",
     "build:production": "npm-run-all build:prep build:inheritance -p \"build:travers --prod --ci --pipeline\"",
 
+    "build:react": "cd TraversTool-ReactPLP && npm-run-all build",
+
     "build:prep": "npm-run-all -p build-prep:travers",
     "build-prep:travers": "gulp styles:prep --gulpfile app/design/frontend/Travers/default/gulpfile.js",
     "build:inheritance": "gulp snowdog:inheritance --gulpfile app/design/frontend/Travers/default/gulpfile.js",
