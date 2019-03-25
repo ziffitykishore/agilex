@@ -35,9 +35,10 @@ class AddRules{
                 ['code']
             );
             $collection->addWebsiteGroupDateFilter($websiteId, $customerGroupId);
-            $collection->addFieldToFilter('salesrule_coupon.code', array(
-                array('like' => $couponCode.'%'),
-            ));
+            $collection->addFieldToFilter('salesrule_coupon.code', [
+                ['like' => $couponCode.':%'],
+                ['eq' => $couponCode]
+            ]);
             $rules = $collection->load(); 
 
             return [$item, $rules, $skipValidation, $couponCode];
