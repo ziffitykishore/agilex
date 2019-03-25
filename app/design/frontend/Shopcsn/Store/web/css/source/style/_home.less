@@ -722,11 +722,14 @@
         background: none !important;
         border: 0 !important;
         .block.newsletter {
+            width:100%;
             .bg-smoke();
-            padding-bottom: 11px;
-            padding-top: 11px;
+            padding:11px 20px;
             margin-top: 30px;
             margin-bottom: 20px;
+            @media screen and (max-width: 1366px) {
+                padding:11px 5px;
+            }
         }
         .newsletter {
             .sign-up {
@@ -744,7 +747,6 @@
                 padding-right:0;
             }
         }
-
         .block.newsletter {
             input {
                 border:1px solid @color-gainsboro;
