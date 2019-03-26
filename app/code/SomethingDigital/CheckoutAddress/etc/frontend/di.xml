@@ -3,4 +3,11 @@
     <type name="Magento\Checkout\Model\DefaultConfigProvider">
         <plugin name="sd_checkoutaddress_data_customer" type="SomethingDigital\CheckoutAddress\Plugin\Checkout\Model\DefaultConfigProvider" />
     </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="checkout_address_config_provider" xsi:type="object">SomethingDigital\CheckoutAddress\Model\Ui\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
