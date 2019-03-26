@@ -22,7 +22,7 @@
                     </address>
                 </div>
                 <div class="box-actions">
-                    <?php if(!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
+                    <?php if (!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
                         <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
                             <span><?= $block->escapeHtml(__('Change Billing Address')) ?></span>
                         </a>
@@ -49,7 +49,7 @@
                     </address>
                 </div>
                 <div class="box-actions">
-                    <?php if(!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
+                    <?php if (!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
                         <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
                             <span><?= $block->escapeHtml(__('Change Shipping Address')) ?></span>
                         </a>
