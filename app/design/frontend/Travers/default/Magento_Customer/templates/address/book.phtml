@@ -22,9 +22,11 @@
                     </address>
                 </div>
                 <div class="box-actions">
-                    <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
-                        <span><?= $block->escapeHtml(__('Change Billing Address')) ?></span>
-                    </a>
+                    <?php if(!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
+                        <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
+                            <span><?= $block->escapeHtml(__('Change Billing Address')) ?></span>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php else: ?>
@@ -47,9 +49,11 @@
                     </address>
                 </div>
                 <div class="box-actions">
-                    <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
-                        <span><?= $block->escapeHtml(__('Change Shipping Address')) ?></span>
-                    </a>
+                    <?php if(!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
+                        <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
+                            <span><?= $block->escapeHtml(__('Change Shipping Address')) ?></span>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php else: ?>
@@ -74,8 +78,10 @@
                             <?= $block->getAddressHtml($_address) ?><br />
                         </address>
                         <div class="item actions">
-                            <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/address/edit', ['id' => $_address->getId()])) ?>"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
-                            <a class="action delete" href="#" role="delete-address" data-address="<?= $block->escapeHtmlAttr($_address->getId()) ?>"><span><?= $block->escapeHtml(__('Delete Address')) ?></span></a>
+                            <?php if (!$_address->getCustomAttribute('is_read_only')->getValue()): ?>
+                                <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/address/edit', ['id' => $_address->getId()])) ?>"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
+                                <a class="action delete" href="#" role="delete-address" data-address="<?= $block->escapeHtmlAttr($_address->getId()) ?>"><span><?= $block->escapeHtml(__('Delete Address')) ?></span></a>
+                            <?php endif; ?>
                         </div>
                     </li>
                 <?php endforeach; ?>
