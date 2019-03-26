@@ -105,11 +105,6 @@ $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::cla
             <div class="message info">
                 <span><?= /* @escapeNotVerified */ __("This is your default billing address.") ?></span>
             </div>
-        <?php elseif ($block->canSetAsDefaultBilling()): ?>
-        <div class="field choice set billing">
-            <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox"/>
-            <label class="label" for="primary_billing"><span><?= /* @escapeNotVerified */ __('Use as my default billing address') ?></span></label>
-        </div>
         <?php else: ?>
             <input type="hidden" name="default_billing" value="1"/>
         <?php endif; ?>
