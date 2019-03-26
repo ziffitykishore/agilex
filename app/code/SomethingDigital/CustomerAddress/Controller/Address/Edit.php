@@ -4,11 +4,6 @@ namespace SomethingDigital\CustomerAddress\Controller\Address;
 
 class Edit extends \Magento\Customer\Controller\Address\Edit
 {
-    /**
-     * Customer address edit action
-     *
-     * @return \Magento\Framework\Controller\Result\Forward
-     */
     public function execute()
     {
         $addressId = $this->getRequest()->getParam('id', false);

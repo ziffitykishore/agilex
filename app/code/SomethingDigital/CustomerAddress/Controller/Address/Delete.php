@@ -4,7 +4,6 @@ namespace SomethingDigital\CustomerAddress\Controller\Address;
  
 class Delete extends \Magento\Customer\Controller\Address\Delete
 {
- 
 	public function execute()
 	{
         $addressId = $this->getRequest()->getParam('id', false);
@@ -28,5 +27,4 @@ class Delete extends \Magento\Customer\Controller\Address\Delete
         }
         return $this->resultRedirectFactory->create()->setPath('*/*/index');
 	}
- 
 }

@@ -4,7 +4,6 @@ namespace SomethingDigital\CustomerAddress\Controller\Address;
 
 class FormPost extends \Magento\Customer\Controller\Address\FormPost
 {
-    
     public function execute()
     {
         $redirectUrl = null;
@@ -15,7 +14,7 @@ class FormPost extends \Magento\Customer\Controller\Address\FormPost
         if ($isReadOnly->getValue()) {
             return $this->resultRedirectFactory->create()->setPath('*/*/index');
         }
-        
+
         if (!$this->_formKeyValidator->validate($this->getRequest())) {
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
@@ -51,5 +50,4 @@ class FormPost extends \Magento\Customer\Controller\Address\FormPost
 
         return $this->resultRedirectFactory->create()->setUrl($this->_redirect->error($url));
     }
-
 }
