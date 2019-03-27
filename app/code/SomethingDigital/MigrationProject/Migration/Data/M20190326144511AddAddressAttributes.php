@@ -46,7 +46,7 @@ class M20190326144511AddAddressAttributes implements MigrationInterface
             'source'        => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
             'required'      =>  false,
             'visible'       =>  true,
-            'user_defined'  =>  true,
+            'user_defined'  =>  false,
             'sort_order'    =>  13,
             'position'      =>  150,
             'system'        =>  0,
@@ -59,7 +59,8 @@ class M20190326144511AddAddressAttributes implements MigrationInterface
                 'used_in_forms' => [
                   'adminhtml_checkout',
                   'adminhtml_customer',
-                  'adminhtml_customer_address'
+                  'adminhtml_customer_address',
+                  'customer_address_edit'
                 ],
             ]);
 
@@ -72,7 +73,7 @@ class M20190326144511AddAddressAttributes implements MigrationInterface
             'source'        => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
             'required'      =>  false,
             'visible'       =>  true,
-            'user_defined'  =>  true,
+            'user_defined'  =>  false,
             'sort_order'    =>  13,
             'position'      =>  160,
             'system'        =>  0,
@@ -85,7 +86,8 @@ class M20190326144511AddAddressAttributes implements MigrationInterface
                 'used_in_forms' => [
                   'adminhtml_checkout',
                   'adminhtml_customer',
-                  'adminhtml_customer_address'
+                  'adminhtml_customer_address',
+                  'customer_address_edit'
                 ],
             ]);
 
