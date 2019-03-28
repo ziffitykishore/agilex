@@ -67,15 +67,15 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'customerGroupId' => $customerGroupId,
             'apiUrls' => [
                 'cms' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/cms/view/id/',
+                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/cms/view/id',
                     'params' => []
                 ],
                 'grouping' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/grouping/view/id/',
+                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/grouping/view/id',
                     'params' => []
                 ],
                 'addToCart' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'checkout/cart/add/product/', ///checkout/cart/add/product/1432/qty/4/form_key/d7dh6whdxgaew
+                    'url' => $this->storeManager->getStore()->getBaseUrl().'checkout/cart/add/product', ///checkout/cart/add/product/1432/qty/4/form_key/d7dh6whdxgaew
                     'params' => [
                         'form_key' => $this->formKey->getFormKey()
                     ]
