@@ -82,6 +82,7 @@ hooks:
     build: |
         set -e
         php ./vendor/bin/ece-tools build:generate
+        /bin/bash ./.sd-build.sh
         php ./vendor/bin/ece-tools build:transfer
     # We run deploy hook after your application has been deployed and started.
     deploy: |
