@@ -71,7 +71,7 @@ function magentostat {
         echo "⏲️ Cron is currently $CRONSTATUS" | grep --color=auto Disabled
     fi
 
-    find vendor/ app/ -name default.xml | grep layout | xargs grep --color=auto -E 'cacheable.*false'
+    find vendor/ app/ -name default.xml -o name default_head_blocks.xml -o -name catalog_product_view.xml -o -name cms_index_index.xml -o -name cms_noroute_index.xml -o -name cms_page_view.xml -o -name catalog_category_view.xml -o -name catalog_category_view_type_default.xml -o -name catalog_category_view_type_layered.xml -o -name catalog_category_view_type_default_without_children.xml | grep frontend/layout | xargs grep --color=auto -E 'cacheable.*false'
     ps axo etime,args | grep -v grep | grep --color=auto -e cron:run -e indexer
 
     composer show magento/* --working-dir=$HOME 2>/dev/null | grep -e magento/magento-cloud-metapackage -e magento/ece-tools --color=auto
