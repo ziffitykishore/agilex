@@ -10,6 +10,7 @@ use Magento\Framework\Data\Form\FormKey;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
+use Magento\Swatches\Helper\Data;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -28,7 +29,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         StoreManagerInterface $storeManager,
         FormKey $formKey,
         ScopeConfigInterface $scopeConfig,
-        CollectionFactory $collectionFactory
+        CollectionFactory $collectionFactory,
+        Data $swatchHelper
     ) {
         $this->coreRegistry = $registry;
         $this->jsonEncoder = $jsonEncoder;
@@ -37,6 +39,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->formKey = $formKey;
         $this->scopeConfig = $scopeConfig;
         $this->collectionFactory = $collectionFactory;
+        $this->swatchHelper = $swatchHelper;
     }
 
     /**
@@ -173,10 +176,26 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             $attr[] = [
                 'id' => $item->getAttributeCode(),
                 'searchable' => $item->getSearchableInLayeredNav(),
-                'displayType' => $item->getFrontendInput(),
+                'displayType' => $this->getDisplayType($item),
                 'description' => $item->getLayeredNavDescription()
             ];
         }
         return $attr;
+    }
+
+    /** 
+     * Returns attribute display type
+     *
+     * @return string
+     */
+    public function getDisplayType($attribute)
+    {
+        if ($this->swatchHelper->isVisualSwatch($attribute)) {
+            return 'visual-swatch';
+        } elseif ($this->swatchHelper->isTextSwatch($attribute)) {
+            return 'text-swatch';
+        } else {
+            return $attribute->getFrontendInput();
+        }
     }
 }
