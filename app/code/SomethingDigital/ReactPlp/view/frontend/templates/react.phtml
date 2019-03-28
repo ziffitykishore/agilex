@@ -1,0 +1,13 @@
+<?php
+/** @var SomethingDigital\ReactPlp\ViewModel\ReactPlp $viewModel */
+$viewModel = $block->getViewModel();
+?>
+
+<div id="react-plp"></div>
+
+<script type="text/javascript">
+	
+	const props = <?php echo $viewModel->getJsProps() ?>;
+
+	//renderReactPLP(document.getElementById('reacr-plp'), props);
+</script>
