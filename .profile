@@ -41,9 +41,24 @@ function magentostat {
         curl -s "http://$SEARCH_CONNECTION" | grep number | gawk -F'"' '{ print $4; }'
     fi
 
+    URLS="`magentodb -B -e "SELECT value FROM core_config_data WHERE path LIKE 'web/%/base_url';" | grep -v value | sort -u`"
+    if [[ "$URLS" == *http:* ]]; then
+        echo "🔓 Non-SSL URLs in configuration.";
+    fi
     CACHING="`magentodb -B -e "SELECT value FROM core_config_data WHERE path = 'system/full_page_cache/caching_application'" | grep -v value`"
     if [ "$CACHING" != "fastly" ]; then
         echo "⏳ Caching backend not Fastly ($CACHING)"
+    else
+        for url in $URLS; do
+            URL_HOSTNAME="`echo $url | gawk -F'/' '{ print $3; }'`"
+            echo -n "SSL for $URL_HOSTNAME: "
+            timeout 1s curl -XHEAD -sSI --resolve $URL_HOSTNAME:443:443:151.101.193.124 https://$URL_HOSTNAME/ | grep HTTP
+            URL_WWW="`echo $URL_HOSTNAME | sed -E 's/^(mcprod|mcstaging|prod|staging)\./www./'`"
+            if [ "$URL_WWW" != "$URL_HOSTNAME" ]; then
+                echo -n "SSL for $URL_WWW: "
+                timeout 1s curl -XHEAD -sSI --resolve $URL_WWW:443:443:151.101.193.124 https://$URL_WWW/ | grep HTTP
+            fi
+        done
     fi
 
     REPORTS_SIZE="`(timeout 1s ls -1f var/report || true) | wc -l`"
