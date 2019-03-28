@@ -11,6 +11,7 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
 use Magento\Swatches\Helper\Data;
+use Magento\Swatches\Helper\Media;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -21,6 +22,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     private $collectionFactory;
     private $coreRegistry;
     private $jsonEncoder;
+    private $swatchHelper;
+    private $swatchHelperMedia;
 
     public function __construct(
         Registry $registry,
@@ -30,7 +33,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         FormKey $formKey,
         ScopeConfigInterface $scopeConfig,
         CollectionFactory $collectionFactory,
-        Data $swatchHelper
+        Data $swatchHelper,
+        Media $swatchHelperMedia
     ) {
         $this->coreRegistry = $registry;
         $this->jsonEncoder = $jsonEncoder;
@@ -40,6 +44,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->scopeConfig = $scopeConfig;
         $this->collectionFactory = $collectionFactory;
         $this->swatchHelper = $swatchHelper;
+        $this->swatchHelperMedia = $swatchHelperMedia;
     }
 
     /**
@@ -91,6 +96,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'tableAttributes' => $this->getTableAttributes(),
             'hasSpotPricing' => $this->customerSession->isLoggedIn(),
             'filterAttributesInfo' => $this->getFilterAttributes(),
+            'swatchImages' => $this->getSwatchImages(),
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
@@ -197,5 +203,39 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         } else {
             return $attribute->getFrontendInput();
         }
+    }
+
+    /** 
+     * Returns array with swatch images
+     *
+     * @return array
+     */
+    public function getSwatchImages()
+    {
+        $collection = $this->collectionFactory->create();
+        $collection->addFieldToFilter('is_filterable', true);
+        $attr = [];
+        foreach ($collection as $item) {
+            if ($this->swatchHelper->isVisualSwatch($item)) {
+                $options = $item->getSource()->getAllOptions();
+                $valueIds = [];
+                $optionsLabels = [];
+                foreach ( $options as $option ) {
+                    $valueIds[] = $option['value'];
+                    $optionsLabels[$option['value']] = $option['label'];
+                }
+                $swatches = $this->swatchHelper->getSwatchesByOptionsId($valueIds);
+
+                foreach ($swatches as $key => $swatch) {
+                    if ($swatch['type'] == 2) {
+                        $attr[$item->getAttributeCode()][] = [
+                            'value' => $optionsLabels[$swatch['option_id']],
+                            'image_url' => $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value'])
+                        ];
+                    }
+                }
+            }
+        }
+        return $attr;
     }
 }
