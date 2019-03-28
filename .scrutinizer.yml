@@ -1,0 +1,114 @@
+build:
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - 'true'
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: phpcs-run
+                    - js-scrutinizer-run
+    dependencies:
+        after:
+            - if [ -e vendor/bin/ece-tools ]; then vendor/bin/ece-tools patch; fi
+    environment:
+        php:
+            version: '7.1'
+        node: 'v10.15.3'
+
+filter:
+    excluded_paths:
+        - 'vendor/*'
+        - 'app/*'
+        - 'bin/*'
+        - 'update/*'
+        - 'setup/*'
+        - 'lib/*'
+        - 'dev/tests/api-functional/framework/*'
+        - 'dev/tests/api-functional/_files/*'
+        - 'dev/tests/api-functional/testsuite/Magento/*'
+        - 'dev/tests/functional/lib/Magento/*'
+        - 'dev/tests/functional/tests/app/Magento/*'
+        - 'dev/tests/functional/testsuites/Magento/*'
+        - 'dev/tests/functional/utils/*'
+        - 'dev/tests/integration/framework/*'
+        - 'dev/tests/integration/testsuite/Magento/*'
+        - 'dev/tests/integration/framework/Magento/*'
+        - 'dev/tests/js/JsTestDriver/*'
+        - 'dev/tests/js/jasmine/tests/lib/*'
+        - 'dev/tests/js/jasmine/tests/app/code/Magento/*'
+        - 'dev/tests/js/jasmine/spec_runner/*'
+        - 'dev/tests/js/jasmine/assets/*'
+        - dev/tests/js/jasmine/require.conf.js
+        - 'dev/tests/static/framework/*'
+        - 'dev/tests/static/testsuite/Magento/*'
+        - 'dev/tests/unit/framework/*'
+        - 'dev/tools/*'
+        - magento-vars.php
+        - '*.min.js'
+        - '*/vendor/*'
+    dependency_paths:
+        - 'update/*'
+        - 'setup/*'
+        - 'hologram/*'
+        - 'phpserver/*'
+        - 'lib/*'
+        - hologram/Cortana/theme-build/polyfill/html5shiv.js
+        - hologram/Cortana/theme-build/js/main.js
+        - hologram/Cortana/assets/js/app.js
+        - app/autoload.php
+        - app/bootstrap.php
+        - dev/tests/functional/bootstrap.php
+        - dev/tests/functional/isolation.php
+        - pub/errors/404.php
+        - pub/errors/processorFactory.php
+        - pub/errors/503.php
+        - pub/errors/processor.php
+        - pub/errors/processorFactory.php
+        - pub/errors/report.php
+        - 'app/code/Bg/*'
+        - 'app/code/Bronto/*'
+        - 'app/code/FishPig/*'
+        - 'app/code/IWD/*'
+        - 'app/code/Listrak/*'
+        - 'app/code/Mageplaza/*'
+        - 'app/code/Magery/*'
+        - 'app/code/MageWorx/*'
+        - 'app/code/ParadoxLabs/*'
+        - 'app/code/Plumrocket/*'
+        - 'app/code/RocketWeb/*'
+        - 'app/code/ShipperHQ/*'
+        - 'app/code/Unirgy/*'
+        - 'app/code/Wyomind/*'
+        - 'app/code/Xtento/*'
+ 
+checks:
+    php:
+        duplication: false
+        unused_methods: false
+        unused_parameters: false
+        argument_type_checks: false
+        verify_property_names: false
+        method_calls_on_non_object: false
+        fix_doc_comments: false
+        instanceof_class_exists: false
+        catch_class_exists: false
+        assignment_of_null_return: false
+        use_statement_alias_conflict: false
+        fix_line_ending: true
+        no_goto: true
+        simplify_boolean_return: true
+    javascript: true
+
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: true
+            other:
+                after_type_cast: false
+
+build_failure_conditions:
+    - 'issues.severity(>= MAJOR).new.exists'
