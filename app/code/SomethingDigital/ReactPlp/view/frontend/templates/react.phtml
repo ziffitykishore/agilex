@@ -6,8 +6,6 @@ $viewModel = $block->getViewModel();
 <div id="react-plp"></div>
 
 <script type="text/javascript">
-	
 	const props = <?php echo $viewModel->getJsProps() ?>;
-
-	//renderReactPLP(document.getElementById('reacr-plp'), props);
+	renderReactPLP(document.getElementById('react-plp'), props);
 </script>
