@@ -6,6 +6,11 @@
 /README_EE.md
 # We've got our own PR template
 /PULL_REQUEST_TEMPLATE.md
+/.github/CODE_OF_CONDUCT.md
+/.github/CONTRIBUTING.md
+/.github/ISSUE_TEMPLATE.md
+/.github/ISSUE_TEMPLATE/*.md
+/.github/PULL_REQUEST_TEMPLATE.md
 # BlueFoot
 /pub/media/gene-cms/*
 !/pub/media/gene-cms/.htaccess
