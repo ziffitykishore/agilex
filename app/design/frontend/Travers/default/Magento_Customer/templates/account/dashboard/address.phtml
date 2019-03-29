@@ -34,7 +34,8 @@
                 </address>
             </div>
             <div class="box-actions">
-                <?php if (!$block->getAddressById($block->getCustomer()->getDefaultShipping())->getCustomAttribute('is_read_only')->getValue()): ?>
+                <?php $viewModel = $block->getViewModel(); ?>
+                <?php if (!$viewModel->getAddressById($block->getCustomer()->getDefaultShipping())->getCustomAttribute('is_read_only')->getValue()): ?>
                     <a class="action edit" href="<?= $block->escapeUrl($block->getPrimaryShippingAddressEditUrl()) ?>" data-ui-id="default-shipping-edit-link"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
                 <?php endif; ?>
             </div>

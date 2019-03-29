@@ -3,5 +3,4 @@
     <preference for="Magento\Customer\Controller\Address\Edit" type="SomethingDigital\CustomerAddress\Controller\Address\Edit" />
     <preference for="Magento\Customer\Controller\Address\Delete" type="SomethingDigital\CustomerAddress\Controller\Address\Delete" />
     <preference for="Magento\Customer\Controller\Address\FormPost" type="SomethingDigital\CustomerAddress\Controller\Address\FormPost" />
-    <preference for="Magento\Customer\Block\Account\Dashboard\Address" type="SomethingDigital\CustomerAddress\Block\Account\Dashboard\Address" />
 </config>
