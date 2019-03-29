@@ -84,7 +84,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                     'params' => []
                 ],
                 'addToCart' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'checkout/cart/add/product', ///checkout/cart/add/product/1432/qty/4/form_key/d7dh6whdxgaew
+                    'url' => $this->storeManager->getStore()->getBaseUrl().'checkout/cart/add/product',
                     'params' => [
                         'form_key' => $this->formKey->getFormKey()
                     ]
