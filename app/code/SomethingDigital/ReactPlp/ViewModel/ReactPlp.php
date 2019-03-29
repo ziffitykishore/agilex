@@ -10,6 +10,7 @@ use Magento\Framework\Data\Form\FormKey;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
+use Magento\Swatches\Model\Swatch;
 use Magento\Swatches\Helper\Data;
 use Magento\Swatches\Helper\Media;
 
@@ -227,7 +228,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 $swatches = $this->swatchHelper->getSwatchesByOptionsId($valueIds);
 
                 foreach ($swatches as $key => $swatch) {
-                    if ($swatch['type'] == 2) {
+                    if ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_IMAGE) {
                         $attr[$item->getAttributeCode()][] = [
                             'value' => $optionsLabels[$swatch['option_id']],
                             'image_url' => $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value'])
