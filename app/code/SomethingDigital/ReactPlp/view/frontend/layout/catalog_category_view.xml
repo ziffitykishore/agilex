@@ -1,0 +1,20 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="ReactPLP::js/ReactPLP.js"/>
+        <css src="ReactPLP::css/reactPLP.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="somethingdigital_reactplp"
+                   template="SomethingDigital_ReactPlp::react.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">SomethingDigital\ReactPlp\ViewModel\ReactPlp</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="category.products" display="false" />
+        </referenceContainer>
+        <referenceContainer name="catalog.leftnav" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="page.main.title" remove="true" />
+    </body>
+</page>
