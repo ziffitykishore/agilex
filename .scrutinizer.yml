@@ -19,7 +19,6 @@ build:
 filter:
     excluded_paths:
         - 'vendor/*'
-        - 'app/*'
         - 'bin/*'
         - 'update/*'
         - 'setup/*'
@@ -34,6 +33,7 @@ filter:
         - 'dev/tests/integration/framework/*'
         - 'dev/tests/integration/testsuite/Magento/*'
         - 'dev/tests/integration/framework/Magento/*'
+        - 'dev/tests/integration/_files/Magento/*'
         - 'dev/tests/js/JsTestDriver/*'
         - 'dev/tests/js/jasmine/tests/lib/*'
         - 'dev/tests/js/jasmine/tests/app/code/Magento/*'
@@ -42,7 +42,9 @@ filter:
         - dev/tests/js/jasmine/require.conf.js
         - 'dev/tests/static/framework/*'
         - 'dev/tests/static/testsuite/Magento/*'
+        - dev/tests/static/get_github_changes.php
         - 'dev/tests/unit/framework/*'
+        - dev/tests/acceptance/RoboFile.php
         - 'dev/tools/*'
         - magento-vars.php
         - '*.min.js'
