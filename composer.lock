@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e644301fd15c551c1d75d952e23e5289",
+    "content-hash": "ba2f85315cb1a8c81331b1be73a7818f",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -1060,21 +1060,21 @@
         },
         {
             "name": "ethanyehuda/magento2-cronjobmanager",
-            "version": "v1.8.0",
+            "version": "v1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Ethan3600/magento2-CronjobManager.git",
-                "reference": "a90e9f94be9ea737674676ec7449549ef58d0581"
+                "reference": "dc48cb618276b036a64c19bbe486c7abc5f02bd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Ethan3600/magento2-CronjobManager/zipball/a90e9f94be9ea737674676ec7449549ef58d0581",
-                "reference": "a90e9f94be9ea737674676ec7449549ef58d0581",
+                "url": "https://api.github.com/repos/Ethan3600/magento2-CronjobManager/zipball/dc48cb618276b036a64c19bbe486c7abc5f02bd9",
+                "reference": "dc48cb618276b036a64c19bbe486c7abc5f02bd9",
                 "shasum": ""
             },
             "require": {
-                "magento/framework": "~100.3.0-dev|~101.0.0|~102.0.0",
-                "php": "~7.1.0||~7.2.0"
+                "magento/framework": "~100.3.0-dev|~101.0.0",
+                "php": "~7.0.0||~7.1.0"
             },
             "type": "magento2-module",
             "autoload": {
@@ -1090,7 +1090,7 @@
                 "OSL-3.0"
             ],
             "description": "A module for managing scheduled cron jobs from magento's admin panel",
-            "time": "2019-03-17T16:49:03+00:00"
+            "time": "2018-05-13T02:35:14+00:00"
         },
         {
             "name": "gene/bluefoot",
@@ -11612,7 +11612,7 @@
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2017-07-05T19:43:44+00:00"
+            "time": "2017-07-05 19:43:44"
         },
         {
             "name": "snowdog/theme-blank-sass",
@@ -11697,19 +11697,18 @@
         },
         {
             "name": "somethingdigital/magento2-bluefoot",
-            "version": "1.2.0",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Bluefoot.git",
-                "reference": "f1ddbc61455a52b14d5f8e1f86acb2b2bb99419c"
+                "reference": "d5f7fb7b9e95835fd84af367cc019062d7386b35"
             },
             "require": {
                 "magento/framework": "^100.1.0||101.0.*",
                 "magento/module-cms": "^101.0.0||102.0.*",
                 "magento/module-email": "^100.1.0||100.2.*",
                 "magento/module-store": "^100.1.0||100.2.*",
-                "php": ">= 5.6.0 <7.2.0",
-                "somethingdigital/magento2-migration": "^1.3.0"
+                "php": ">= 5.6.0 <7.2.0"
             },
             "type": "magento2-module",
             "autoload": {
@@ -11724,7 +11723,7 @@
                 "proprietary"
             ],
             "description": "Module to implement custom Bluefoot templates.",
-            "time": "2019-02-07T19:47:29+00:00"
+            "time": "2017-11-06T20:08:22+00:00"
         },
         {
             "name": "somethingdigital/magento2-migration",
@@ -14909,34 +14908,32 @@
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
-            "version": "1.2.0",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "a2c590166b2133a4633738648b6b064edae0814a"
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/a2c590166b2133a4633738648b6b064edae0814a",
-                "reference": "a2c590166b2133a4633738648b6b064edae0814a",
+                "url": "https://api.github.com/repos/doctrine/instantiator/zipball/8e884e78f9f0eb1329e445619e04456e64d8051d",
+                "reference": "8e884e78f9f0eb1329e445619e04456e64d8051d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": ">=5.3,<8.0-DEV"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^6.0",
+                "athletic/athletic": "~0.1.8",
                 "ext-pdo": "*",
                 "ext-phar": "*",
-                "phpbench/phpbench": "^0.13",
-                "phpstan/phpstan-phpunit": "^0.11",
-                "phpstan/phpstan-shim": "^0.11",
-                "phpunit/phpunit": "^7.0"
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -14956,12 +14953,12 @@
                 }
             ],
             "description": "A small, lightweight utility to instantiate objects in PHP without invoking their constructors",
-            "homepage": "https://www.doctrine-project.org/projects/instantiator.html",
+            "homepage": "https://github.com/doctrine/instantiator",
             "keywords": [
                 "constructor",
                 "instantiate"
             ],
-            "time": "2019-03-17T17:37:11+00:00"
+            "time": "2015-06-14T21:17:01+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -15144,28 +15141,25 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.8.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
+                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
+                "reference": "3b8a3a99ba1f6a3952ac2747d989303cbd6b7a3e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
-            },
-            "replace": {
-                "myclabs/deep-copy": "self.version"
+                "php": "^5.6 || ^7.0"
             },
             "require-dev": {
                 "doctrine/collections": "^1.0",
                 "doctrine/common": "^2.6",
-                "phpunit/phpunit": "^7.1"
+                "phpunit/phpunit": "^4.1"
             },
             "type": "library",
             "autoload": {
@@ -15188,7 +15182,7 @@
                 "object",
                 "object graph"
             ],
-            "time": "2018-06-11T23:09:50+00:00"
+            "time": "2017-10-19T19:58:43+00:00"
         },
         {
             "name": "pdepend/pdepend",
