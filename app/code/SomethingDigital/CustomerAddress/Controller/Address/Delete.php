@@ -4,8 +4,8 @@ namespace SomethingDigital\CustomerAddress\Controller\Address;
  
 class Delete extends \Magento\Customer\Controller\Address\Delete
 {
-	public function execute()
-	{
+    public function execute()
+    {
         $addressId = $this->getRequest()->getParam('id', false);
 
         if ($addressId && $this->_formKeyValidator->validate($this->getRequest())) {
@@ -13,7 +13,7 @@ class Delete extends \Magento\Customer\Controller\Address\Delete
                 $address = $this->_addressRepository->getById($addressId);
                 $isReadOnly = $address->getCustomAttribute('is_read_only');
                 if ($isReadOnly->getValue()) {
-                	return $this->resultRedirectFactory->create()->setPath('*/*/index');
+                    return $this->resultRedirectFactory->create()->setPath('*/*/index');
                 }
                 if ($address->getCustomerId() === $this->_getSession()->getCustomerId()) {
                     $this->_addressRepository->deleteById($addressId);
@@ -26,5 +26,5 @@ class Delete extends \Magento\Customer\Controller\Address\Delete
             }
         }
         return $this->resultRedirectFactory->create()->setPath('*/*/index');
-	}
+    }
 }

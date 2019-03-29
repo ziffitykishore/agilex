@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
-   	<preference for="Magento\Customer\Controller\Address\Edit" type="SomethingDigital\CustomerAddress\Controller\Address\Edit" />
-	<preference for="Magento\Customer\Controller\Address\Delete" type="SomethingDigital\CustomerAddress\Controller\Address\Delete" />
-	<preference for="Magento\Customer\Controller\Address\FormPost" type="SomethingDigital\CustomerAddress\Controller\Address\FormPost" />
-	<preference for="Magento\Customer\Block\Account\Dashboard\Address" type="SomethingDigital\CustomerAddress\Block\Account\Dashboard\Address" />
+    <preference for="Magento\Customer\Controller\Address\Edit" type="SomethingDigital\CustomerAddress\Controller\Address\Edit" />
+    <preference for="Magento\Customer\Controller\Address\Delete" type="SomethingDigital\CustomerAddress\Controller\Address\Delete" />
+    <preference for="Magento\Customer\Controller\Address\FormPost" type="SomethingDigital\CustomerAddress\Controller\Address\FormPost" />
+    <preference for="Magento\Customer\Block\Account\Dashboard\Address" type="SomethingDigital\CustomerAddress\Block\Account\Dashboard\Address" />
 </config>

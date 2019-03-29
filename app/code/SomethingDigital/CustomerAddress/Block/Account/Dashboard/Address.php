@@ -6,7 +6,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class Address extends \Magento\Customer\Block\Account\Dashboard\Address
 {
-	/**
+    /**
      * @var AddressRepositoryInterface
      */
     protected $addressRepository;
@@ -32,7 +32,7 @@ class Address extends \Magento\Customer\Block\Account\Dashboard\Address
     protected $addressMapper;
 
     public function __construct(
-       	\Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
+        \Magento\Customer\Api\AddressRepositoryInterface $addressRepository,
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Helper\Session\CurrentCustomer $currentCustomer,
         \Magento\Customer\Helper\Session\CurrentCustomerAddress $currentCustomerAddress,
@@ -44,7 +44,7 @@ class Address extends \Magento\Customer\Block\Account\Dashboard\Address
         $this->addressRepository = $addressRepository;
     }
     
-	/**
+    /**
      * @param int $addressId
      * @return \Magento\Customer\Api\Data\AddressInterface|null
      */
