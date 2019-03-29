@@ -2,23 +2,26 @@
 
 namespace SomethingDigital\CartRulesCustomizations\Plugin;
 
-use Magento\Quote\Model\Quote\Address;
-use Magento\SalesRule\Model\Quote\ChildrenValidationLocator;
-use Magento\Framework\App\ObjectManager;
+use Magento\SalesRule\Model\ResourceModel\Rule\Collection;
+use Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Customer\Model\Session;
+use Magento\SalesRule\Model\RulesApplier;
 
-class AddRules{
+class AddRules
+{
 
     public function __construct(
-        \Magento\SalesRule\Model\ResourceModel\Rule\CollectionFactory $collectionFactory,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Customer\Model\Session $customerSession
+        CollectionFactory $collectionFactory,
+        StoreManagerInterface $storeManager,
+        Session $customerSession
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->storeManager = $storeManager;
         $this->customerSession = $customerSession;
     }
 
-    public function beforeApplyRules (\Magento\SalesRule\Model\RulesApplier $subject, $item, $rules, $skipValidation, $couponCode)
+    public function beforeApplyRules(RulesApplier $subject, $item, $rules, $skipValidation, $couponCode)
     {
         if ($couponCode) {
             $websiteId = $this->storeManager->getStore()->getWebsiteId();
@@ -39,6 +42,7 @@ class AddRules{
                 ['like' => $couponCode.':%'],
                 ['eq' => $couponCode]
             ]);
+            $collection->setOrder('sort_order', Collection::SORT_ORDER_ASC);
             $rules = $collection->load(); 
 
             return [$item, $rules, $skipValidation, $couponCode];
