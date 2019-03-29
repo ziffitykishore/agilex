@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Controller\Address\Edit">
+        <plugin name="SomethingDigital_Customer_Address_Edit_Plugin" type="SomethingDigital\CustomerAddress\Plugin\EditAddress"/>
+    </type>
+    <type name="Magento\Customer\Controller\Address\Delete">
+        <plugin name="SomethingDigital_Customer_Address_Delete_Plugin" type="SomethingDigital\CustomerAddress\Plugin\DeleteAddress"/>
+    </type>
+    <type name="Magento\Customer\Controller\Address\FormPost">
+        <plugin name="SomethingDigital_Customer_Address_FormPost_Plugin" type="SomethingDigital\CustomerAddress\Plugin\FormPostAddress"/>
+    </type>
+</config>
