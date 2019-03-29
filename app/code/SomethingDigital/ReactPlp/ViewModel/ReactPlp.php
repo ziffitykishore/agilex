@@ -233,6 +233,11 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                             'value' => $optionsLabels[$swatch['option_id']],
                             'image_url' => $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value'])
                         ];
+                    } elseif ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_COLOR) {
+                        $attr[$item->getAttributeCode()][] = [
+                            'value' => $optionsLabels[$swatch['option_id']],
+                            'hex_code' => $swatch['value']
+                        ];
                     }
                 }
             }
