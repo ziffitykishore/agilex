@@ -751,10 +751,36 @@
             input {
                 border:1px solid @color-gainsboro;
             }
+            div{
+                &.mage-error {
+                    margin-top:3px;
+                    font-weight: 600;
+                }
+                  @media screen and (max-width: 767px) {
+                    margin-top: 0 !important;
+                }
+            }
         }
         .subscribe-ticer-sec {
             margin-bottom:10px;
             margin-top:10px;
+        }
+    }
+    .block{
+        &.newsletter {
+            div{
+                &.mage-error {
+                    position: static;
+                }
+            }
+            .form{
+                &.subscribe {
+                    background:none;
+                }
+            }
+            input {
+                background:#fff;
+            }
         }
     }
 }
