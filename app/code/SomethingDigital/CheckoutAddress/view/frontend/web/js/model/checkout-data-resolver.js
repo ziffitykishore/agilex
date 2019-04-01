@@ -225,15 +225,6 @@ define([
 
                 return;
             }
-            shippingAddress = quote.shippingAddress();
-
-            if (shippingAddress &&
-                shippingAddress.canUseForBilling() &&
-                (shippingAddress.isDefaultShipping() || !quote.isVirtual())
-            ) {
-                //set billing address same as shipping by default if it is not empty
-                selectBillingAddress(quote.shippingAddress());
-            } 
         }
     };
 });

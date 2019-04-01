@@ -35,10 +35,6 @@ define([
         saveShippingInformation: function () {
             var payload;
 
-            if (!quote.billingAddress()) {
-                selectBillingAddressAction(quote.shippingAddress());
-            }
-
             payload = {
                 addressInformation: {
                     'shipping_address': quote.shippingAddress(),
