@@ -71,6 +71,12 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         } else {
             $customerGroupId = 0;
         }
+
+        if ($this->scopeConfig->getValue("algoliasearch_credentials/credentials/read_index_prefix", ScopeInterface::SCOPE_STORE)) {
+            $index_prefix = $this->scopeConfig->getValue("algoliasearch_credentials/credentials/read_index_prefix", ScopeInterface::SCOPE_STORE);
+        } else {
+            $index_prefix = $this->scopeConfig->getValue("algoliasearch_credentials/credentials/index_prefix", ScopeInterface::SCOPE_STORE);
+        }
         $props = [
             'defaultCategoryId' => $category->getId(),
             'customerGroupId' => $customerGroupId,
@@ -101,8 +107,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
-                'productsIndexName' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/index_prefix", ScopeInterface::SCOPE_STORE).$this->storeManager->getStore()->getCode().'_products',
-                'categoriesIndexName' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/index_prefix", ScopeInterface::SCOPE_STORE).$this->storeManager->getStore()->getCode().'_categories'
+                'productsIndexName' => $index_prefix.$this->storeManager->getStore()->getCode().'_products',
+                'categoriesIndexName' => $index_prefix.$this->storeManager->getStore()->getCode().'_categories'
             ]
         ];
         return $this->jsonEncoder->serialize($props);
@@ -232,6 +238,11 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                         $attr[$item->getAttributeCode()][] = [
                             'value' => $optionsLabels[$swatch['option_id']],
                             'image_url' => $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value'])
+                        ];
+                    } elseif ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_COLOR) {
+                        $attr[$item->getAttributeCode()][] = [
+                            'value' => $optionsLabels[$swatch['option_id']],
+                            'hex_code' => $swatch['value']
                         ];
                     }
                 }
