@@ -53,7 +53,8 @@ function (
             return address.getType() == 'customer-address' && address.customAttributes.is_billing.value == 1; //eslint-disable-line eqeqeq
         });
 
-    addressOptions.push(newAddressOption);
+
+    //addressOptions.push(newAddressOption);
 
     return Component.extend({
         defaults: {
@@ -81,7 +82,7 @@ function (
                 .observe({
                     selectedAddress: null,
                     isAddressDetailsVisible: quote.billingAddress() != null,
-                    isAddressFormVisible: !customer.isLoggedIn() || addressOptions.length === 1,
+                    isAddressFormVisible: !customer.isLoggedIn() || addressOptions.length === 0,
                     isAddressSameAsShipping: false,
                     saveInAddressBook: 1
                 });
