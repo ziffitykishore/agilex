@@ -50,7 +50,7 @@ function (
         },
         countryData = customerData.get('directory-data'),
         addressOptions = addressList().filter(function (address) {
-            return address.getType() == 'customer-address'; //eslint-disable-line eqeqeq
+            return address.getType() == 'customer-address' && address.customAttributes.is_billing.value == 1; //eslint-disable-line eqeqeq
         });
 
     addressOptions.push(newAddressOption);
