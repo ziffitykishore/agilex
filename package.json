@@ -7,7 +7,7 @@
     "build": "npm-run-all build:prep build:inheritance -p \"build:travers --pipeline\" build:react",
     "build:production": "npm-run-all build:prep build:inheritance -p \"build:travers --prod --ci --pipeline\" build:react",
 
-    "build:react": "if [ -e TraversTool-ReactPLP/package.json ]; then cd TraversTool-ReactPLP && yarn && npm-run-all build && cp -R build/static/ ../pub/static/frontend/Travers/default/en_US/ReactPLP; else echo 'Please run git submodule update --init'; exit 1; fi",
+    "build:react": "if [ -e TraversTool-ReactPLP/package.json ]; then cd TraversTool-ReactPLP && yarn && npm-run-all build && rm -rf ../pub/static/frontend/Travers/default/en_US/ReactPLP && mkdir ../pub/static/frontend/Travers/default/en_US/ReactPLP && mv build/static/ ../pub/static/frontend/Travers/default/en_US/ReactPLP; else echo 'Please run git submodule update --init'; exit 1; fi",
 
     "build:prep": "npm-run-all -p build-prep:travers",
     "build-prep:travers": "gulp styles:prep --gulpfile app/design/frontend/Travers/default/gulpfile.js",
