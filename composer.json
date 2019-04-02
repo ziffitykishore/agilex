@@ -6,45 +6,48 @@
     "license": [
         "proprietary"
     ],
-    "repositories": [
-        {
+    "repositories": {
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
         },
-        {
+        "1": {
             "type": "git",
             "url": "https://github.com/sdinteractive/magento2-theme-blank-sass.git"
         },
-        {
+        "2": {
             "type": "git",
             "url": "https://github.com/sdinteractive/magento2-frontools.git"
         },
-        {
+        "3": {
             "type": "git",
             "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git"
         },
-        {
+        "4": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Migration.git"
         },
-        {
+        "5": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_Bluefoot.git"
         },
-        {
+        "6": {
             "type": "git",
             "url": "https://github.com/sdinteractive/composer-patcher.git"
         },
-        {
+        "7": {
             "type": "git",
             "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_AdminNotify.git"
         },
-        {
+        "8": {
             "type": "git",
             "url": "https://github.com/fastly/fastly-magento2.git"
+        },
+        "mageworx_packages": {
+            "type": "composer",
+            "url": "https://packages.mageworx.com/"
         }
-
-    ],
+    },
     "require": {
         "magento/magento-cloud-metapackage": ">=2.2.6 <2.2.7",
         "composer/composer": "@alpha",
@@ -88,8 +91,9 @@
         "magento/module-target-rule-sample-data": "100.2.*",
         "magento/module-multiple-wishlist-sample-data": "100.2.*",
         "algolia/algoliasearch-magento-2": "dev-develop",
-        "yotpo/module-review": "^2.4"
-
+        "yotpo/module-review": "^2.4",
+        "mageworx/module-sitemapsuitemeta": "^2.3",
+        "mageworx/module-xmlsitemap": "^2.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.2.0",
