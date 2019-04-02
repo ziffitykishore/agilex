@@ -13,6 +13,7 @@ set -e
 SD_THEME="Travers/default"
 SD_YARN="1.3.2"
 
+node -v
 
 reportStats() {
     local error_code="$?"
@@ -93,5 +94,3 @@ rsync -a pub/styleguide/ init/pub/styleguide/
 
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
-
-node -v
