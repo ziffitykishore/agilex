@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41da3be13ef16fae2e483f8c15d75792",
+    "content-hash": "9ad34d29ba7d33989086ce21768dd7a2",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -12515,6 +12515,107 @@
                 "framework"
             ],
             "time": "2017-06-21T14:56:23+00:00"
+        },
+        {
+            "name": "mageworx/module-htmlsitemap",
+            "version": "2.3.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.mageworx.com//dist/mageworx/module-htmlsitemap/mageworx-module-htmlsitemap-2.3.2.zip",
+                "reference": null,
+                "shasum": "b20b018a83a9224f9a4b12f926c29e4c4bcd252f"
+            },
+            "require": {
+                "magento/framework": ">=100.0.0 <103",
+                "magento/module-catalog": ">=100.0.0 <104",
+                "magento/module-cms": ">=100.0.0 <104",
+                "magento/module-store": ">=100.0.0 <102",
+                "magento/module-theme": ">=100.0.0 <102",
+                "mageworx/module-seoall": ">=2.4.2"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageWorx\\HtmlSitemap\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "HTML sitemap module for Magento 2"
+        },
+        {
+            "name": "mageworx/module-seoall",
+            "version": "2.4.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.mageworx.com//dist/mageworx/module-seoall/mageworx-module-seoall-2.4.2.zip",
+                "reference": null,
+                "shasum": "72c65fa9a47373f1157359ff67fb8564b43c839c"
+            },
+            "require": {
+                "magento/module-catalog": ">=100.0.0 <104",
+                "magento/module-cms": ">=100.0.0 <104"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageWorx\\SeoAll\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "SEO All for Magento 2"
+        },
+        {
+            "name": "mageworx/module-sitemapsuitemeta",
+            "version": "2.3.4",
+            "require": {
+                "mageworx/module-htmlsitemap": "2.3.2",
+                "mageworx/module-seoall": "2.4.2",
+                "mageworx/module-xmlsitemap": "2.4.5"
+            },
+            "type": "metapackage"
+        },
+        {
+            "name": "mageworx/module-xmlsitemap",
+            "version": "2.4.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.mageworx.com//dist/mageworx/module-xmlsitemap/mageworx-module-xmlsitemap-2.4.5.zip",
+                "reference": null,
+                "shasum": "2f0b162043f1c1a7f9e40d4f1062c6a8357820ec"
+            },
+            "require": {
+                "magento/framework": ">=100.0.0 <103",
+                "magento/module-catalog": ">=100.0.0 <104",
+                "magento/module-cms": ">=100.0.0 <104",
+                "magento/module-sitemap": ">=100.0.0 <101",
+                "mageworx/module-seoall": ">=2.4.2"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MageWorx\\XmlSitemap\\": ""
+                }
+            },
+            "license": [
+                "OSL-3.0",
+                "AFL-3.0"
+            ],
+            "description": "XML sitemap module for Magento 2"
         },
         {
             "name": "monolog/monolog",
