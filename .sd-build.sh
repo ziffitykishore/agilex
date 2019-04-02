@@ -95,6 +95,10 @@ else
     exit 1
 fi
 
+for f in `find pub/static/frontend/Travers/default/en_US/ReactPLP -name '*.js'`; do
+    cp -f $f ${f/.js/.min.js};
+done
+
 # Also setup the styleguide.
 rsync -a pub/styleguide/ init/pub/styleguide/
 
