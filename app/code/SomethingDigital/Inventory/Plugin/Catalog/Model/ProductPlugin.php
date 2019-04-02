@@ -1,4 +1,5 @@
 <?php
+
 namespace SomethingDigital\Inventory\Plugin\Catalog\Model;
  
 class ProductPlugin
