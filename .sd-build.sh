@@ -82,6 +82,10 @@ fi
 echo -e "\nBuilding..."
 yarn build:production
 
+for f in `find pub/static/frontend/Travers/default/en_US/ReactPLP -name '*.js'`; do
+    cp -f $f ${f/.js/.min.js};
+done
+
 # Now, unfortunately, we need to take those built files into a separate directory.
 # Cloud doesn't copy pub/ across.
 if [ "$REMOVE_PUB_STATIC" == "no" ]; then
@@ -94,10 +98,6 @@ else
     echo "ERROR: Unexpected REMOVE_PUB_STATIC."
     exit 1
 fi
-
-for f in `find pub/static/frontend/Travers/default/en_US/ReactPLP -name '*.js'`; do
-    cp -f $f ${f/.js/.min.js};
-done
 
 # Also setup the styleguide.
 rsync -a pub/styleguide/ init/pub/styleguide/
