@@ -13,7 +13,13 @@ set -e
 SD_THEME="Travers/default"
 SD_YARN="1.3.2"
 
-node -v
+unset NPM_CONFIG_PREFIX
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | dash
+export NO_UPDATE_NOTIFIER=1
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install 10.15.3
+nvm use 10.15.3
 
 reportStats() {
     local error_code="$?"
