@@ -13,6 +13,7 @@ set -e
 SD_THEME="Travers/default"
 SD_YARN="1.3.2"
 
+node -v
 
 reportStats() {
     local error_code="$?"
