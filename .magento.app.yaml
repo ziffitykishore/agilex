@@ -78,6 +78,12 @@ mounts:
 hooks:
     # We run build hooks before your application has been packaged.
     build: |
+        unset NPM_CONFIG_PREFIX
+        curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | dash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        nvm current
+        nvm install 9.5.0
         set -e
         php ./vendor/bin/ece-tools build:generate
         php ./vendor/bin/ece-tools build:transfer
@@ -85,6 +91,8 @@ hooks:
 
     # We run deploy hook after your application has been deployed and started.
     deploy: |
+        unset NPM_CONFIG_PREFIX
+        nvm use 9.5.0
         php ./vendor/bin/ece-tools deploy
     # We run post deploy hook to clean and warm the cache. Available with ECE-Tools 2002.0.10.
     post_deploy: |

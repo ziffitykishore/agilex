@@ -13,7 +13,10 @@ set -e
 SD_THEME="Travers/default"
 SD_YARN="1.3.2"
 
-node -v
+unset NPM_CONFIG_PREFIX
+export NO_UPDATE_NOTIFIER=1
+export NVM_DIR="$PLATFORM_APP_DIR/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 reportStats() {
     local error_code="$?"
