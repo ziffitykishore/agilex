@@ -39,6 +39,13 @@ define([
         e.stopPropagation();
         $('._adv_trig').addClass('active');
     });
+    /** placeholder issue **/
+    var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+    if (isChrome) {
+        $("input:-webkit-autofill").each(function () {
+            $(this).closest('.field').addClass('focused');
+        });
+    }
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function() {
