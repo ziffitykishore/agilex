@@ -18,8 +18,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | d
 export NO_UPDATE_NOTIFIER=1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install 10.15.3
-nvm use 10.15.3
+nvm install 8.15.1
+nvm use 8.15.1
 
 reportStats() {
     local error_code="$?"
