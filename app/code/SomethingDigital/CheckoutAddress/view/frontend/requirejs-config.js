@@ -16,6 +16,9 @@ var config = {
             },
             'Magento_Checkout/js/view/shipping-address/address-renderer/default': {
                 'SomethingDigital_CheckoutAddress/js/view/shipping-address/address-renderer/default-mixin': true
+            },
+            'Magento_Customer/js/model/customer/address': {
+                'SomethingDigital_CheckoutAddress/js/model/customer/address-mixin': true
             }
         }
     }
