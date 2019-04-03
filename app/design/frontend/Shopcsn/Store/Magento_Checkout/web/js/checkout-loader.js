@@ -24,9 +24,11 @@ define([
         var street = $('[name="street[0]"');
         street.closest('fieldset').find('legend').remove();
         street.closest('fieldset').find('label').text('Street Address');
-        if(street.val() !== '') {
-            street.closest('.field').addClass('focused');
-        }
+        $('#co-shipping-form .input-text').each(function() {
+            if($(this).val().trim() !== '') {
+                $(this).closest('.field').addClass('focused');
+            } 
+        });
        
     }
 
