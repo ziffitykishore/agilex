@@ -101,6 +101,29 @@
   .refinement-list {
     list-style-type: none;
     padding-left: $indent__s;
+
+    .refinement-label {
+      &::before,
+      &::after {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    li {
+      line-height: 1;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      a {
+        color: $text__color;
+        font-weight: $font-weight__semibold;
+
+        @include hover {
+          color: $c-royal;
+        }
+      }
+    }
   }
 
   .Collapsible {
@@ -165,6 +188,10 @@
 
     li,
     li a {
+      margin: 0;
+      font-weight: $font-weight__semibold;
+      font-size: $font-size__base--desktop;
+
       @include hover {
         color: $c-cobalt;
       }
