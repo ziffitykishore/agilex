@@ -171,6 +171,8 @@
 }
 
 .ais-ClearRefinements {
+  margin-bottom: $indent__s;
+
   button {
     background-color: transparent;
     color: $c-cobalt;
@@ -205,6 +207,8 @@
 
   .clear-refinement-x {
     @include lib-button-reset();
+    transform: translateY(-3px);
+    line-height: 1;
     padding: 0;
     background-color: transparent;
     border: 0;
@@ -212,4 +216,9 @@
     font-size: 30px;
     cursor: pointer;
   }
+}
+
+.ais-ClearRefinements,
+.filter-heading {
+  padding-left: $indent__m;
 }
