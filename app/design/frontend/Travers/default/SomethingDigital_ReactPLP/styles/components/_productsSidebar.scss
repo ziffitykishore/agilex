@@ -147,42 +147,42 @@
   font-family: cursive;
 }
 
-  .ais-ClearRefinements {
-    button {
-      background-color: transparent;
-      color: $c-cobalt;
-      font-weight: $font-weight__semibold;
-      border: 0;
-      padding: 0;
-    }
+.ais-ClearRefinements {
+  button {
+    background-color: transparent;
+    color: $c-cobalt;
+    font-weight: $font-weight__semibold;
+    border: 0;
+    padding: 0;
   }
+}
 
-  .current-refinements {
-    list-style-type: none;
+.current-refinements {
+  list-style-type: none;
 
-    ul {
-      @include lib-list-reset-styles();
+  ul {
+    @include lib-list-reset-styles();
 
-      li,
-      li a {
-        @include hover {
-          color: $c-cobalt;
-        }
+    li,
+    li a {
+      @include hover {
+        color: $c-cobalt;
       }
     }
-
-    a {
-      color: $c-steel;
-      text-decoration: none;
-    }
-
-    .clear-refinement-x {
-      @include lib-button-reset();
-      padding: 0;
-      background-color: transparent;
-      border: 0;
-      color: $c-cobalt;
-      font-size: 30px;
-      cursor: pointer;
-    }
   }
+
+  a {
+    color: $c-steel;
+    text-decoration: none;
+  }
+
+  .clear-refinement-x {
+    @include lib-button-reset();
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    color: $c-cobalt;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
