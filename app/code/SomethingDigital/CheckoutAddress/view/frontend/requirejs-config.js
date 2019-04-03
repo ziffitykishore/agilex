@@ -5,6 +5,8 @@ var config = {
                 'SomethingDigital_CheckoutAddress/template/shipping-address/list.html',
             'Magento_NegotiableQuote/template/shipping-address/list.html':
                 'SomethingDigital_CheckoutAddress/template/shipping-address/list.html',
+            'Magento_NegotiableQuote/template/billing-address/list.html':
+                'SomethingDigital_CheckoutAddress/template/billing-address/list.html',
             'Magento_Checkout/js/model/shipping-save-processor/default':
                 'SomethingDigital_CheckoutAddress/js/model/shipping-save-processor/default'
         }
@@ -19,9 +21,6 @@ var config = {
             },
             'Magento_Customer/js/model/customer/address': {
                 'SomethingDigital_CheckoutAddress/js/model/customer/address-mixin': true
-            },
-            'Magento_Checkout/js/view/billing-address': {
-                'SomethingDigital_CheckoutAddress/js/view/billing-address-mixin': true
             }
         }
     }
