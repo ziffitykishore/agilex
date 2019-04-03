@@ -54,22 +54,23 @@ body {
 
 .product-view-toggles {
   margin: $indent__m 0;
-
-  a {
-    border: 1px solid $c-smoke;
+  
+  button {
+    @include lib-button-reset();
+    border: 1px solid $c-grey;
     padding: 5px 15px;
     color: $color-black;
     border-radius: 5px;
     text-decoration: none;
 
     &.active {
-      border: 0;
       background-color: $c-royal;
       color: $color-white;
     }
 
     &:hover,
     &:active {
+      border: 1px solid $c-grey;
       text-decoration: none;
       background-color: $c-royal;
       color: $color-white;
