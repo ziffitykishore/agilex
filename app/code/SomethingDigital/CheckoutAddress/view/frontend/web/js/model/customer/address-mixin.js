@@ -3,7 +3,6 @@ define(['mage/utils/wrapper'], function (wrapper) {
 
     return function (address) {
  
-        /** Override place-order-mixin for set-payment-information action as they differs only by method signature */
         return wrapper.wrap(address, function (originalAction, addressData) {
             
             var obj = originalAction(addressData);
