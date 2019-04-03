@@ -1,0 +1,129 @@
+.category-landing-page {
+  .catland-sibling-categories {
+    background-color: $c-smoke;
+
+    @include min-screen($screen__m) {
+      width: 30%;
+    }
+
+    .ais-Hits-list {
+      display: block;
+    }
+
+    .ais-Hits-item {
+      width: 100%;
+      padding: $indent__xs;
+      border: 0;
+      box-shadow: none;
+
+      button {
+        background-color: transparent;
+        border: 0;
+        
+        @include hover {
+          cursor: pointer;
+          color: $c-royal;
+        }
+      }
+    }
+  }
+
+  .bottom-cms-content {
+    width: 100%;
+  }
+}
+
+.catland-content {
+  display: flex;
+  flex-direction: column;
+
+  @include min-screen($screen__m) {
+    flex-direction: row;
+  }
+
+  .Collapsible {
+    @include max-screen($screen__m) {
+      width: 100%;
+    }
+  }
+
+  .catland-subcategories {
+    width: 100%;
+
+    @include min-screen($screen__m) {
+      width: 70%;
+    }
+
+    .ais-Hits-list {
+      margin-left: 0;
+      margin-top: $indent__l;
+
+      @include max-screen($screen__s) {
+        justify-content: center;
+      }
+    }
+
+    .ais-Hits-item,
+    .ais-Hits-item button {
+      margin: 0;
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+
+      img {
+        width: 100%;
+        max-width: 150px;
+      }
+    }
+
+    .ais-Hits-item {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      max-width: 200px;
+
+      @include min-screen($screen__m) {
+        max-width: 250px;
+      }
+
+      @include min-screen($screen__l) {
+        max-width: 300px;
+      }
+
+      button {
+        color: $c-cobalt;
+        font-weight: $font-weight__semibold;
+        font-size: 15px;
+        cursor: pointer;
+
+        @include hover {
+          color: $color-black;
+        }
+      }
+    }
+
+    .product-count,
+    .subcategory-name {
+      display: block;
+    }
+
+    .product-count {
+      font-size: 12px;
+      color: $c-steel;
+    }
+  }
+
+  .catland-sibling-categories {
+    padding-top: $indent__l;
+
+    .sibling-buttons {
+      .ais-Hits-item button {
+        font-size: 14px;
+      }
+
+      .active {
+        color: $c-cobalt;
+      }
+    }
+  }
+}

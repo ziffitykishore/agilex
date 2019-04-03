@@ -1,0 +1,37 @@
+.list-view {
+  .product-name {
+    display: block;
+    color: $c-steel;
+    text-decoration: none;
+
+    @include hover {
+      color: $c-cobalt;
+    }
+  }
+
+  .quantity-and-cart {
+    justify-content: flex-end;
+  }
+
+  .list-item {
+    padding-bottom: 30px;
+    padding-top: 30px;
+    border-bottom: 2px solid $c-grey;
+
+    @include min-screen($screen__m) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .list-inner {
+      display: flex;
+      flex-basis: 60%;
+    }
+
+    .list-image {
+      width: 100%;
+      max-width: 200px;
+    }
+  }
+}
