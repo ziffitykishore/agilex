@@ -1,0 +1,38 @@
+.product-info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  padding: $indent__m $indent__s;
+  background-color: $c-smoke;
+
+  .close-button {
+    cursor: pointer;
+    margin-left: 80%;
+    margin-bottom: $indent__m;
+    border: 0;
+    color: $c-royal;
+    background-color: transparent;
+    font-size: 35px;
+  }
+
+  .tier-group-table {
+    border-collapse: collapse;
+    width: 90%;
+
+     tr {
+      height: 30px;
+
+      span {
+        display: inline-block;
+        margin-top: $indent__xs;
+      }
+    }
+
+     .quantity-row {
+      border-bottom: 2px solid $c-royal;
+      font-weight: $font-weight__bold;
+    }
+  }
+}

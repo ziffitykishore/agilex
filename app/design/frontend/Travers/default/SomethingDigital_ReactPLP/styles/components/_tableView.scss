@@ -1,0 +1,56 @@
+.products-table {
+  font-weight: $font-weight__regular;
+  line-height: 1.7;
+  border-collapse: collapse;
+
+  thead {
+    border-bottom: 2px solid $c-royal;
+
+    th {
+      text-align: left;
+      padding-left: 15px;
+    }
+
+    .sorting-arrow {
+      color: $c-cobalt;
+      margin-left: $indent__xs;
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $c-smoke;
+  }
+
+  .selected-row {
+    background-color: $c-smoke;
+  }
+
+  &-rows {
+    &:hover {
+      background-color: $c-smoke;
+      cursor: default;
+    }
+  }
+
+  td {
+    padding: $indent__xs $indent__s;
+    font-size: 14px;
+  }
+}
+
+.table-and-flyout {
+  display: flex;
+
+  .view-all {
+    text-align: center;
+    margin-top: $indent__s;
+
+    button {
+      font-weight: $font-weight__semibold;
+      background-color: transparent;
+      border: 0;
+      color: $c-cobalt;
+      font-size: 14px;
+    }
+  }
+}
