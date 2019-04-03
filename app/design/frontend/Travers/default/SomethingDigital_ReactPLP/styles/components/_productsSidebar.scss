@@ -105,6 +105,28 @@
 
   .Collapsible {
     border-top: 2px solid $c-grey;
+    padding-top: $indent__s;
+    padding-bottom: $indent__s;
+
+    &__opened {
+      position: relative;
+
+      .sidebar-description-icon {
+        position: absolute;
+        top: $indent__xs;
+        right: $indent__m;
+      }
+
+      .sidebar-description-content {
+        position: absolute;
+        margin-top: 0;
+        top: -$indent__xs;
+        transform: translateX(95%);
+        background-color: $color-white;
+        padding: $indent__xs;
+        border: 1px solid $c-steel;
+      }
+    }
 
     &__trigger,
     &__contentOuter {
