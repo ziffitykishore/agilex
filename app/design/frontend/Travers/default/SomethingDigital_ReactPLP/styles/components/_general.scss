@@ -17,10 +17,8 @@ body {
 
     @include min-screen($plp_breakpoint) {
       &.productInfo-opened {
-        .numHits-view-switcher {
-          .number-of-hits {
-            right: 300px;
-          }
+        .numHits-view-switcher .number-of-hits {
+          right: 300px;
         }
       }
 
