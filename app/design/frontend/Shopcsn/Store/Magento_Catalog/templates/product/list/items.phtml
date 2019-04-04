@@ -97,7 +97,7 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
+            $title = __('More Choices');
             $items = $block->getItemCollection();
 
             $showAddTo = true;
@@ -115,7 +115,7 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
+            $title = __('More Choices');
             $items = $block->getItems();
 
             $showAddTo = true;
@@ -204,7 +204,7 @@ switch ($type = $block->getType()) {
                             <?php if ($showAddTo || $showCart): ?>
                             <div class="product-item-inner">
                                 <div class="product actions product-item-actions">
-                                   <?php if ($type == 'related'): ?>
+                                   <?php if ($type == 'related' || $type == 'crosssell'): ?>
                                    <div class="actions-primary">
                                     <a class="weltpixel-quickview weltpixel_quickview_button_v2 action quick-view" data-quickview-url="<?php echo $this->getUrl() ?>weltpixel_quickview/catalog_product/view/id/<?php echo $_item->getId();?>" href="javascript:void(0);">
                                                 <span><?php echo __('Quick View') ?></span>
@@ -242,6 +242,12 @@ switch ($type = $block->getType()) {
                                         <div class="secondary-addto-links actions-secondary" data-role="add-to-links">
                                             <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
                                                 <?= $addToBlock->setProduct($_item)->getChildHtml() ?>
+                                            <?php endif;
+                                            if ($type == 'crosssell') :
+                                            ?>
+                                            <a href="#" data-post='<?php echo $block->getAddToWishlistParams($_item); ?>'  class="action towishlist" data-action="add-to-wishlist" title="<?php echo __('Add to Wish List') ?>">
+                                                    <span><?php echo __('Add to Wish List') ?></span>
+                                                </a>
                                             <?php endif; ?>
                                         </div>
                                     <?php endif; ?>

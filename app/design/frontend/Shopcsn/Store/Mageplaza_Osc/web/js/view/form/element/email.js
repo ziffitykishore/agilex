@@ -190,6 +190,7 @@ define([
             if (window.checkoutConfig.oscConfig.isUsedMaterialDesign) {
                 $(customerEmailElement).val() ? $(customerEmailElement).addClass('active') : $(customerEmailElement).removeClass('active');
             }
+	    $(customerEmailElement).val() ? $(customerEmailElement).closest('.field').addClass('focused') : $(customerEmailElement).parentsUntil('field').removeClass('focused');
         }
     });
 });

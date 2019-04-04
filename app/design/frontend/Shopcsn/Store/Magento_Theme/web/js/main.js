@@ -39,6 +39,18 @@ define([
         e.stopPropagation();
         $('._adv_trig').addClass('active');
     });
+    /** placeholder issue **/
+    function chromeAutoCompleteCheck() {
+        var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        if (isChrome) {
+            $("input:-webkit-autofill").each(function () {
+                $(this).closest('.field').addClass('focused');
+            });
+        }
+    }
+    chromeAutoCompleteCheck();
+    setTimeout(chromeAutoCompleteCheck,3000);
+    
     /* Header Section */
     $('<div class="overlay"></div>').appendTo('.page-wrapper');
     $('.nav-toggle').on('click', function() {
@@ -245,7 +257,7 @@ define([
             });
         }
     }
-    stickyBar(".ticker");
+    /*stickyBar(".ticker");*/
 
     /* to find if mobile */
     /* var win_w = $(window).width();
@@ -303,7 +315,7 @@ define([
             url: BASE_URL + "zcore/index/iframe",
             crossDomain: false,
             success: function(res) {
-                $('.ticker.jFrame .container').html(res.html);
+                $('.ticker.jFrame .content').html(res.html);
             },
             error: function() {
                 console.log('Iframe content not loading');
