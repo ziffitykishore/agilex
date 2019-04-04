@@ -1,3 +1,5 @@
+$productInfo__offset-top: 50px;
+
 body {
   box-sizing: border-box;
   padding: $indent__s;
@@ -7,16 +9,21 @@ body {
   width: 20%;
 }
 
-.right-panel {
+.right-panel .plp-content {
   .numHits-view-switcher {
     display: none;
   }
 
   @include min-screen($plp_breakpoint) {
-    padding-left: $indent__xl;
-
     .numHits-view-switcher {
-      display: block;
+      position: relative;
+      height: $productInfo__offset-top;
+      display: flex;
+
+      .product-view-toggles,
+      .number-of-hits {
+        position: absolute;
+      }
     }
   }
 }
