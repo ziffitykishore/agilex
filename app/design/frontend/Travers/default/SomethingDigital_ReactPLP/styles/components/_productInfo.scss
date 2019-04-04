@@ -8,6 +8,11 @@
   padding: $indent__m $indent__s;
   background-color: $c-smoke;
 
+  &-content {
+    position: sticky;
+    top: 50px;
+  }
+
   .close-button {
     cursor: pointer;
     margin-left: 80%;
@@ -31,7 +36,7 @@
       }
     }
 
-     .quantity-row {
+    .quantity-row {
       border-bottom: 2px solid $c-royal;
       font-weight: $font-weight__bold;
     }
