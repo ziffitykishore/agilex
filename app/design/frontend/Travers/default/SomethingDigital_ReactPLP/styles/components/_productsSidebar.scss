@@ -37,39 +37,43 @@
   margin: $indent__s 0 $indent__xl;
 }
 
-.show-hide {
-  right: $indent__s;
-  width: 100%;
-  max-width: 70px;
-  padding: 8px 30px;
-  color: $c-cobalt;
-  background-color: $color-white;
-  border: 1px solid #d5d5d5;
-  border-radius: 5px;
-  font-weight: bold;
-  position: relative;
+.show-button-container,
+.hide-button-container {
+  .show-hide {
+    right: $indent__s;
+    width: 100%;
+    max-width: 80px;
+    padding: 8px $indent__l;
+    color: $c-cobalt;
+    background-color: $color-white;
+    border: 1px solid $c-grey;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
 
-  &.show {
-    padding-left: $indent__xs;
-    margin-top: $indent__s;
-    margin-left: $indent__s;
-  }
+    &.show {
+      padding-left: $indent__xs;
+      margin-top: $indent__s;
+      margin-left: $indent__s;
+    }
 
-  &.hide {
-    position: absolute;
-  }
+    &.hide {
+      position: absolute;
+    }
 
-  @include hover {
-    background-color: $c-cobalt;
-    border: 0;
-    box-shadow: 0;
+    @include hover {
+      background-color: $c-cobalt;
+      border: 0;
+      box-shadow: 0;
 
-    .arrow {
-      background-color: $color-white;
-      color: $c-cobalt;
+      .arrow {
+        background-color: $color-white;
+        color: $c-cobalt;
+      }
     }
   }
 }
+
 
 .arrow {
   position: absolute;
@@ -101,10 +105,55 @@
   .refinement-list {
     list-style-type: none;
     padding-left: $indent__s;
+
+    .refinement-label {
+      &::before,
+      &::after {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    li {
+      line-height: 1;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      a {
+        color: $text__color;
+        font-weight: $font-weight__semibold;
+
+        @include hover {
+          color: $c-royal;
+        }
+      }
+    }
   }
 
   .Collapsible {
     border-top: 2px solid $c-grey;
+    padding-top: $indent__s;
+    padding-bottom: $indent__s;
+
+    &__opened {
+      position: relative;
+
+      .sidebar-description-icon {
+        position: absolute;
+        top: $indent__xs;
+        right: $indent__m;
+      }
+
+      .sidebar-description-content {
+        position: absolute;
+        margin-top: 0;
+        top: -$indent__xs;
+        transform: translateX(95%);
+        background-color: $color-white;
+        padding: $indent__xs;
+        border: 1px solid $c-steel;
+      }
+    }
 
     &__trigger,
     &__contentOuter {
@@ -115,7 +164,7 @@
 }
 
 .sidebar-description-icon {
-  padding: 2px 11px;
+  padding: 5px 9px;
   transform: scale(.8);
   background-color: $color-black;
   color: $color-white;
@@ -123,4 +172,57 @@
   border-radius: 50%;
   font-size: 14px;
   font-family: cursive;
+}
+
+.ais-ClearRefinements {
+  margin-bottom: $indent__s;
+
+  button {
+    background-color: transparent;
+    color: $c-cobalt;
+    font-weight: $font-weight__semibold;
+    border: 0;
+    padding: 0;
+  }
+}
+
+.current-refinements {
+  list-style-type: none;
+
+  ul {
+    @include lib-list-reset-styles();
+
+    li,
+    li a {
+      margin: 0;
+      font-weight: $font-weight__semibold;
+      font-size: $font-size__base--desktop;
+
+      @include hover {
+        color: $c-cobalt;
+      }
+    }
+  }
+
+  a {
+    color: $c-steel;
+    text-decoration: none;
+  }
+
+  .clear-refinement-x {
+    @include lib-button-reset();
+    transform: translateY(-3px);
+    line-height: 1;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    color: $c-cobalt;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
+
+.ais-ClearRefinements,
+.filter-heading {
+  padding-left: $indent__m;
 }

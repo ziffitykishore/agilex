@@ -2,10 +2,16 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  transform: translateY(-$productInfo__offset-top);
   width: 100%;
   max-width: 250px;
   padding: $indent__m $indent__s;
   background-color: $c-smoke;
+
+  &-content {
+    position: sticky;
+    top: 50px;
+  }
 
   .close-button {
     cursor: pointer;
@@ -30,7 +36,7 @@
       }
     }
 
-     .quantity-row {
+    .quantity-row {
       border-bottom: 2px solid $c-royal;
       font-weight: $font-weight__bold;
     }

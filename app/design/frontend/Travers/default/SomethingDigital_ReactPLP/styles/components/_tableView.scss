@@ -1,4 +1,4 @@
-.products-table {
+.table-view .products-table {
   font-weight: $font-weight__regular;
   line-height: 1.7;
   border-collapse: collapse;
@@ -26,8 +26,9 @@
   }
 
   &-rows {
-    &:hover {
-      background-color: $c-smoke;
+    @include hover {
+      background-color: $c-royal;
+      color: $color-white;
       cursor: default;
     }
   }
