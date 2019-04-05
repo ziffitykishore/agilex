@@ -102,6 +102,42 @@
 }
 
 .sidebar-filters {
+  .searchable {
+    background-color: $color-white;
+    padding: 15px;
+    border: 1px solid $c-grey;
+    margin-top: 15px;
+
+    .search-container {
+      position: relative;
+
+      button {
+        position: absolute;
+        right: $indent__s;
+        top: $indent__xs;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        pointer-events: none;
+
+        @include icon-svg(
+          $icon       : search,
+          $fill       : $c-scorpion,
+          $width      : 25px
+          );
+      }
+
+      .searchbox {
+        height: 35px;
+        margin-bottom: $indent__xs;
+      }
+    }
+
+    .refinement-list {
+      padding-left: 0;
+    }
+  }
+
   .refinement-list {
     list-style-type: none;
     padding-left: $indent__s;
