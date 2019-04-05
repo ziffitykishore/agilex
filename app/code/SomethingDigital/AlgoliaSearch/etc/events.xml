@@ -6,4 +6,7 @@
     <event name="algolia_after_create_category_object">
         <observer name="SomethingDigital_AlgoliaSearch" instance="SomethingDigital\AlgoliaSearch\Observer\AddCategoryData" />
     </event>
+    <event name="algolia_products_index_before_set_settings">
+        <observer name="SomethingDigital_AlgoliaSearch" instance="SomethingDigital\AlgoliaSearch\Observer\AddFacets" />
+    </event>
 </config>
