@@ -150,6 +150,40 @@
       }
     }
 
+    &.swatches {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      justify-content: center;
+
+      li {
+        margin: $indent__s;
+        box-sizing: border-box;
+        max-width: 85px;
+
+        a,
+        a:active {
+          text-align: center;
+          font-size: $font-size__base--desktop;
+
+          @include hover {
+            color: $c-cobalt;
+            text-decoration: none;
+          }
+        }
+
+        img {
+          border: 2px solid $c-grey;
+
+          &:hover,
+          &:focus,
+          &:active {
+            border: 2px solid $c-cobalt;
+          }
+        }
+      }
+    }
+
     li {
       line-height: 1;
       margin-top: 0;
