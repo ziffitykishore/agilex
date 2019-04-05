@@ -50,16 +50,16 @@ function fastvelocity_plugin_activate() {
 	fvm_cache_increment();
 	
 	# old cache purge event cron
-	if (!wp_next_scheduled ('fastvelocity_purge_old_cron')) {
-		wp_schedule_event(time(), 'daily', 'fastvelocity_purge_old_cron_event');
+	wp_clear_scheduled_hook( 'fastvelocity_purge_old_cron_event' );
+	if (!wp_next_scheduled('fastvelocity_purge_old_cron_event')) {
+		wp_schedule_event(time()+86400, 'daily', 'fastvelocity_purge_old_cron_event');
 	}
-	
 	
 	# setup defaults if no option to preserve exists
 	if(get_option('fastvelocity_preserve_settings_on_uninstall') == false) {
 		
 		# default options to enable (1)
-		$options_enable_default = array('fastvelocity_min_remove_print_mediatypes',  'fastvelocity_fvm_clean_header_one', 'fastvelocity_min_skip_google_fonts', 'fastvelocity_min_force_inline_css_footer', 'fastvelocity_min_skip_cssorder', 'fastvelocity_gfonts_method', 'fastvelocity_fontawesome_method', 'fastvelocity_min_disable_css_inline_merge');
+		$options_enable_default = array('fastvelocity_min_fvm_fix_editor', 'fastvelocity_min_remove_print_mediatypes',  'fastvelocity_fvm_clean_header_one', 'fastvelocity_min_skip_google_fonts', 'fastvelocity_min_force_inline_css_footer', 'fastvelocity_min_skip_cssorder', 'fastvelocity_gfonts_method', 'fastvelocity_fontawesome_method', 'fastvelocity_min_disable_css_inline_merge');
 		foreach($options_enable_default as $option) {
 			update_option($option, 1, 'yes');
 		}
@@ -69,7 +69,7 @@ function fastvelocity_plugin_activate() {
 		update_option('fastvelocity_min_blacklist', implode(PHP_EOL, $exc)); 
 		
 		# default ignore list
-		$exc = array('/Avada/assets/js/main.min.js', '/woocommerce-product-search/js/product-search.js', '/includes/builder/scripts/frontend-builder-scripts.js', '/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/jupiter/assets/js/min/full-scripts', '/wp-content/themes/Divi/core/admin/js/react-dom.production.min.js', '/LayerSlider/static/layerslider/js/greensock.js', '/themes/kalium/assets/js/main.min.js');
+		$exc = array('/Avada/assets/js/main.min.js', '/woocommerce-product-search/js/product-search.js', '/includes/builder/scripts/frontend-builder-scripts.js', '/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/jupiter/assets/js/min/full-scripts', '/wp-content/themes/Divi/core/admin/js/react-dom.production.min.js', '/LayerSlider/static/layerslider/js/greensock.js', '/themes/kalium/assets/js/main.min.js', '/elementor/assets/js/common.min.js', '/elementor/assets/js/frontend.min.js', '/elementor-pro/assets/js/frontend.min.js');
 		update_option('fastvelocity_min_ignorelist', implode(PHP_EOL, $exc));
 		
 	}
@@ -83,10 +83,7 @@ function fastvelocity_plugin_deactivate() {
 	fvm_purge_others();
 	
 	# old cache purge event cron
-	if (wp_next_scheduled ('fastvelocity_purge_old_cron')) {
-		$timestamp = wp_next_scheduled ('fastvelocity_purge_old_cron');
-		wp_unschedule_event ($timestamp, 'fastvelocity_purge_old_cron_event');
-	}
+	wp_clear_scheduled_hook( 'fastvelocity_purge_old_cron_event' );
 	
 }
 
@@ -803,6 +800,24 @@ function fastvelocity_exclude_contents() {
 	# Thrive plugins and other post_types
 	$arr = array('tve_form_type', 'tve_lead_shortcode', 'tqb_splash');
 	foreach ($arr as $a) { if(isset($_GET['post_type']) && $_GET['post_type'] == $a) { return true; } }
+	
+	# elementor
+	if(isset($_GET['elementor-preview'])) { return true; }
+	if(is_array($_GET)) {
+		foreach ($_GET as $k=>$v) {
+			if(is_string($v) && is_string($k)) {
+				if(stripos($k, 'elementor') !== false || stripos($v, 'elementor') !== false) {
+					return true;
+				}
+			}
+		}
+	}
+	
+	
+	# any wp-admin url
+	if(isset($_SERVER['REQUEST_URI']) && stripos($_SERVER['REQUEST_URI'], '/wp-admin/') !== false) {
+		return true;
+	}
 	
 	# default
 	return false;

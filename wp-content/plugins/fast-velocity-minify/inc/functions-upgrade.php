@@ -16,44 +16,20 @@ function fastvelocity_version_check() {
 	$dots = explode('.', $ver);
 	if(!is_array($dots) || count($dots) != 3) { return false; }
 	
-	
-	# changed options in 2.4.0
-	if($dots[0] < 2 || ($dots[0] == 2 && $dots[1] < 4)) {
-	
-		# delete some old fields and define them on a radio option, by this priority
-		if(get_option("fastvelocity_css_hide_googlefonts") != false) {
-			update_option( "fastvelocity_gfonts_method", 3);
-			delete_option('fastvelocity_min_force_inline_googlefonts');
-			delete_option('fastvelocity_min_async_googlefonts');
-			delete_option('fastvelocity_css_hide_googlefonts');
-		}
+	# changed options on 2.6.1 (elementor fixes)
+	if($dots[0] <= 2 && $dots[1] <= 6 && $dots[2] < 1) {
 		
-		if(get_option("fastvelocity_min_async_googlefonts") != false) {
-			update_option( "fastvelocity_gfonts_method", 2);
-			delete_option('fastvelocity_min_force_inline_googlefonts');
-			delete_option('fastvelocity_min_async_googlefonts');
-			delete_option('fastvelocity_css_hide_googlefonts');
-		}
+		# ignore list
+		$ignorelist = array_filter(array_map('trim', explode(PHP_EOL, get_option('fastvelocity_min_ignorelist', ''))));
+		$exc = array('/Avada/assets/js/main.min.js', '/woocommerce-product-search/js/product-search.js', '/includes/builder/scripts/frontend-builder-scripts.js', '/assets/js/jquery.themepunch.tools.min.js', '/js/TweenMax.min.js', '/jupiter/assets/js/min/full-scripts', '/Divi/core/admin/js/react-dom.production.min.js', '/LayerSlider/static/layerslider/js/greensock.js', '/kalium/assets/js/main.min.js', '/elementor/assets/js/common.min.js', '/elementor/assets/js/frontend.min.js', '/elementor-pro/assets/js/frontend.min.js');
+		$new = array_unique(array_merge($ignorelist, $exc));
+		update_option('fastvelocity_min_ignorelist', implode(PHP_EOL, $new));
 		
-		if(get_option("fastvelocity_min_force_inline_googlefonts") != false) {
-			update_option( "fastvelocity_gfonts_method", 1);
-			delete_option('fastvelocity_min_force_inline_googlefonts');
-			delete_option('fastvelocity_min_async_googlefonts');
-			delete_option('fastvelocity_css_hide_googlefonts');
-		}
-	
+		# default minimal settings
+		update_option('fastvelocity_preserve_settings_on_uninstall', 1);
+		update_option('fastvelocity_min_fvm_fix_editor', 1);
 	}
 	
-	
-	# changed on 2.6.0
-	if($dots[0] < 2 || ($dots[0] == 2 && $dots[1] < 6)) {
-	
-		# add old cache purge event cron
-		if (!wp_next_scheduled ('fastvelocity_purge_old_cron')) {
-			wp_schedule_event(time(), 'daily', 'fastvelocity_purge_old_cron_event');
-		}
-	
-	}
 }
 add_action( 'plugins_loaded', 'fastvelocity_version_check' );
 

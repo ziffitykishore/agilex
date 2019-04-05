@@ -5,7 +5,7 @@ Plugin URI: http://fastvelocity.com
 Description: Improve your speed score on GTmetrix, Pingdom Tools and Google PageSpeed Insights by merging and minifying CSS and JavaScript files into groups, compressing HTML and other speed optimizations. 
 Author: Raul Peixoto
 Author URI: http://fastvelocity.com
-Version: 2.6.0
+Version: 2.6.4
 License: GPL2
 
 ------------------------------------------------------------------------
@@ -24,7 +24,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-
 # check for minimum requirements and prevent activation or disable if not fully compatible
 function fvm_compat_checker() {
 	global $wp_version; 
@@ -34,8 +33,8 @@ function fvm_compat_checker() {
 	$nwpv = implode('.', array_slice(explode('.', $wp_version), 0, 2)); # get 2 p only
 	
 	# php version requirements
-	if (version_compare( PHP_VERSION, '5.4', '<' )) { 
-		$error = 'Fast Velocity Minify requires PHP 5.4 or higher. You’re still on '. PHP_VERSION; 
+	if (version_compare( PHP_VERSION, '5.5', '<' )) { 
+		$error = 'Fast Velocity Minify requires PHP 5.5 or higher. You’re still on '. PHP_VERSION; 
 	}
 
 	# php extension requirements	
