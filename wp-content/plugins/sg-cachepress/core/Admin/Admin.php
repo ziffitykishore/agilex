@@ -139,10 +139,13 @@ class Admin {
 			true
 		);
 
+		$php_version_info = Htaccess::get_instance()->get_php_version();
+
 		$data = array(
 			'rest_base'          => untrailingslashit( get_rest_url( null, Rest::REST_NAMESPACE ) ),
 			'home_url'           => Helper::get_home_url(),
-			'php_version'        => Htaccess::get_instance()->get_php_version(),
+			'php_version'        => $php_version_info['version'],
+			'is_php_changed'     => $php_version_info['has_been_changed'],
 			'is_cron_disabled'   => Helper::is_cron_disabled(),
 			'modules'            => $this->modules->get_active_modules(),
 			'tabs'               => $this->modules->get_active_tabs(),

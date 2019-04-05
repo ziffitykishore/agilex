@@ -138,12 +138,14 @@ class Combinator {
 
 		// Get groups of handles.
 		foreach ( $styles->to_do as $handle ) {
+			// Get the src host.
+			$host = parse_url( $wp_styles->registered[ $handle ]->src, PHP_URL_HOST );
 
 			if (
 				( true === $in_header && $styles->groups[ $handle ] > 0 ) || // Bail if the style is not in the header/footer.
 				in_array( $handle, $excluded_styles ) || // If the style is excluded from combination.
 				false === $wp_styles->registered[ $handle ]->src || // If the source is empty.
-				strpos( Helper::get_home_url(), chr( parse_url( $wp_styles->registered[ $handle ]->src, PHP_URL_HOST ) ) ) === false || // Skip all external sources.
+				@strpos( Helper::get_home_url(), parse_url( $wp_styles->registered[ $handle ]->src, PHP_URL_HOST ) ) === false || // Skip all external sources.
 				pathinfo( $wp_styles->registered[ $handle ]->src, PATHINFO_EXTENSION ) === 'php' // If it's dynamically generated css.
 			) {
 				continue;
