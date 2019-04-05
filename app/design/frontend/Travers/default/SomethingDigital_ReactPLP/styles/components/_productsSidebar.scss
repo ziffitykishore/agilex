@@ -8,6 +8,8 @@
   .Collapsible {
     &__trigger {
       font-weight: $font-weight__bold;
+      font-size: $font-size__base--desktop;
+      text-transform: capitalize;
 
     &.is-closed::before {
       content: '+ ';
@@ -74,7 +76,6 @@
   }
 }
 
-
 .arrow {
   position: absolute;
   top: $indent__xs;
@@ -102,15 +103,85 @@
 }
 
 .sidebar-filters {
+  .searchable {
+    background-color: $color-white;
+    padding: 15px;
+    border: 1px solid $c-grey;
+    margin-top: 15px;
+
+    .search-container {
+      position: relative;
+
+      button {
+        position: absolute;
+        right: $indent__s;
+        top: $indent__xs;
+        padding: 0;
+        border: 0;
+        background-color: transparent;
+        pointer-events: none;
+
+        @include icon-svg(
+          $icon       : search,
+          $fill       : $c-scorpion,
+          $width      : 25px
+          );
+      }
+
+      .searchbox {
+        height: 35px;
+        margin-bottom: $indent__xs;
+      }
+    }
+
+    .refinement-list {
+      padding-left: 0;
+    }
+  }
+
   .refinement-list {
     list-style-type: none;
-    padding-left: $indent__s;
+    padding-left: 15px;
 
     .refinement-label {
       &::before,
       &::after {
         width: 18px;
         height: 18px;
+      }
+    }
+
+    &.swatches {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0;
+      justify-content: center;
+
+      li {
+        margin: $indent__s;
+        box-sizing: border-box;
+        max-width: 85px;
+
+        a,
+        a:active {
+          text-align: center;
+          font-size: $font-size__base--desktop;
+
+          @include hover {
+            color: $c-cobalt;
+            text-decoration: none;
+          }
+        }
+
+        img {
+          border: 2px solid $c-grey;
+
+          &:hover,
+          &:focus,
+          &:active {
+            border: 2px solid $c-cobalt;
+          }
+        }
       }
     }
 
@@ -181,6 +252,8 @@
     background-color: transparent;
     color: $c-cobalt;
     font-weight: $font-weight__semibold;
+    text-transform: initial;
+    font-family: $font-family__base;
     border: 0;
     padding: 0;
   }
@@ -188,9 +261,14 @@
 
 .current-refinements {
   list-style-type: none;
+  margin-top: 15px;
 
   ul {
     @include lib-list-reset-styles();
+
+    li {
+      margin-bottom: $indent__xs;
+    }
 
     li,
     li a {
@@ -217,7 +295,9 @@
     background-color: transparent;
     border: 0;
     color: $c-cobalt;
-    font-size: 30px;
+    font-size: 20px;
+    font-family: $font-family__base;
+    margin-right: 15px;
     cursor: pointer;
   }
 }
@@ -225,4 +305,97 @@
 .ais-ClearRefinements,
 .filter-heading {
   padding-left: $indent__m;
+}
+
+@include max-screen($screen__m) {
+  .products-sidebar {
+    .hide-button-container {
+      display: none;
+    }
+
+    .action.search {
+      width: auto;
+    }
+
+    .current-refinements {
+      padding: 0;
+
+      .clear-refinement-x {
+        width: auto;
+      }
+    }
+
+    .ais-ClearRefinements {
+      padding-left: 0;
+      margin-bottom: 0;
+
+      button {
+        width: auto;
+      }
+    }
+
+    .sidebar-filters {
+      background-color: $color-white;
+
+      .Collapsible {
+        border-top: 1px solid $c-grey;
+
+        &__trigger {
+          padding: $indent__s;
+          padding-right: 100%;
+
+          &::before {
+            vertical-align: sub;
+          }
+        }
+
+        &__contentOuter {
+          padding-left: 0;
+          padding-right: 0;
+
+          .Collapsible__trigger {
+            padding-right: 15px;
+
+            &::before {
+              vertical-align: baseline;
+            }
+          }
+        }
+
+        &__contentInner {
+          background-color: $c-smoke;
+          margin-top: $indent__s;
+        }
+      }
+    }
+
+    .sidebar-description-icon {
+      width: auto;
+    }
+
+    .filter-heading {
+      @include lib-button-reset();
+      position: absolute;
+      width: 100%;
+      padding: $indent__s $indent__l;
+      color: $text__color;
+      font-size: 16px;
+      border: 2px solid $c-grey;
+      text-align: left;
+      box-sizing: border-box;
+      pointer-events: none;
+      cursor: pointer;
+      z-index: 2;
+      font-weight: $font-weight__semibold;
+
+      @include hover {
+        border: 2px solid $c-grey;
+        color: $c-cobalt;
+      }
+    }
+
+    .Collapsible__trigger {
+      padding-right: 200px;
+    }
+  }
 }
