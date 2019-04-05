@@ -8,6 +8,8 @@
   .Collapsible {
     &__trigger {
       font-weight: $font-weight__bold;
+      font-size: $font-size__base--desktop;
+      text-transform: capitalize;
 
     &.is-closed::before {
       content: '+ ';
@@ -74,7 +76,6 @@
   }
 }
 
-
 .arrow {
   position: absolute;
   top: $indent__xs;
@@ -140,7 +141,7 @@
 
   .refinement-list {
     list-style-type: none;
-    padding-left: $indent__s;
+    padding-left: 15px;
 
     .refinement-label {
       &::before,
@@ -251,6 +252,8 @@
     background-color: transparent;
     color: $c-cobalt;
     font-weight: $font-weight__semibold;
+    text-transform: initial;
+    font-family: $font-family__base;
     border: 0;
     padding: 0;
   }
@@ -258,9 +261,14 @@
 
 .current-refinements {
   list-style-type: none;
+  margin-top: 15px;
 
   ul {
     @include lib-list-reset-styles();
+
+    li {
+      margin-bottom: $indent__xs;
+    }
 
     li,
     li a {
@@ -287,7 +295,9 @@
     background-color: transparent;
     border: 0;
     color: $c-cobalt;
-    font-size: 30px;
+    font-size: 20px;
+    font-family: $font-family__base;
+    margin-right: 15px;
     cursor: pointer;
   }
 }
