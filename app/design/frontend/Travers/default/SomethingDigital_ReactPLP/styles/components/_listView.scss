@@ -9,6 +9,17 @@
     }
   }
 
+  .pricing {
+    .price,
+    .as-low-as {
+      margin-top: 0;
+      font-weight: $font-weight__bold;
+      font-size: 16px;
+      font-family: $font-family__base;
+      margin-bottom: $indent__xs;
+    }
+  }
+
   .quantity-and-cart {
     justify-content: flex-end;
   }
@@ -18,20 +29,29 @@
     padding-top: 30px;
     border-bottom: 2px solid $c-grey;
 
-    @include min-screen($screen__m) {
+    @include min-screen($screen__m) { 
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
+    ul li {
+      margin: 0;
+      padding: 2px 0;
+      color: $c-nickel;
+    }
+
     .list-inner {
       display: flex;
       flex-basis: 60%;
+      align-items: center;
     }
 
     .list-image {
       width: 100%;
-      max-width: 200px;
+      max-width: 125px;
+      margin-left: $indent__m;
+      margin-right: 15px;
     }
   }
 }
