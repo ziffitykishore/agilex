@@ -306,3 +306,96 @@
 .filter-heading {
   padding-left: $indent__m;
 }
+
+@include max-screen($screen__m) {
+  .products-sidebar {
+    .hide-button-container {
+      display: none;
+    }
+
+    .action.search {
+      width: auto;
+    }
+
+    .current-refinements {
+      padding: 0;
+
+      .clear-refinement-x {
+        width: auto;
+      }
+    }
+
+    .ais-ClearRefinements {
+      padding-left: 0;
+      margin-bottom: 0;
+
+      button {
+        width: auto;
+      }
+    }
+
+    .sidebar-filters {
+      background-color: $color-white;
+
+      .Collapsible {
+        border-top: 1px solid $c-grey;
+
+        &__trigger {
+          padding: $indent__s;
+          padding-right: 100%;
+
+          &::before {
+            vertical-align: sub;
+          }
+        }
+
+        &__contentOuter {
+          padding-left: 0;
+          padding-right: 0;
+
+          .Collapsible__trigger {
+            padding-right: 15px;
+
+            &::before {
+              vertical-align: baseline;
+            }
+          }
+        }
+
+        &__contentInner {
+          background-color: $c-smoke;
+          margin-top: $indent__s;
+        }
+      }
+    }
+
+    .sidebar-description-icon {
+      width: auto;
+    }
+
+    .filter-heading {
+      @include lib-button-reset();
+      position: absolute;
+      width: 100%;
+      padding: $indent__s 30px;
+      color: $text__color;
+      font-size: 16px;
+      border: 2px solid $c-grey;
+      text-align: left;
+      box-sizing: border-box;
+      pointer-events: none;
+      cursor: pointer;
+      z-index: 2;
+      font-weight: $font-weight__semibold;
+
+      @include hover {
+        border: 2px solid $c-grey;
+        color: $c-cobalt;
+      }
+    }
+
+    .Collapsible__trigger {
+      padding-right: 200px;
+    }
+  }
+}
