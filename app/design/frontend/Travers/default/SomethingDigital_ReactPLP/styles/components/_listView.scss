@@ -29,7 +29,7 @@
     padding-top: 30px;
     border-bottom: 2px solid $c-grey;
 
-    @include min-screen($screen__m) { 
+    @include min-screen($screen__m) {
       display: flex;
       align-items: center;
       justify-content: space-between;
