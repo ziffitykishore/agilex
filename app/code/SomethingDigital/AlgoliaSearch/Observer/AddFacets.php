@@ -5,19 +5,20 @@ namespace SomethingDigital\AlgoliaSearch\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
-use Magento\Framework\App\ResourceConnection;
+use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollection;
 
 class AddFacets implements ObserverInterface
 {
     private $collectionFactory;
     private $resource;
+    private $categoryCollection;
 
     public function __construct(
         CollectionFactory $collectionFactory,
-        ResourceConnection $resource
+        CategoryCollection $categoryCollection
     ) {
         $this->collectionFactory = $collectionFactory;
-        $this->resource = $resource;
+        $this->categoryCollection = $categoryCollection;
     }
 
     /**
@@ -42,20 +43,15 @@ class AddFacets implements ObserverInterface
             $attrForFaceting[] = 'searchable('.$item->getAttributeCode().')';
         }
 
-        $connection = $this->resource->getConnection();
-        $storeId = $observer->getEvent()->getData('store_id');
-        
-        $categoryFlatTable = $connection->getTableName('catalog_category_flat_store_'.$storeId);
-        $groupingAttributes = $connection->fetchAll('
-            SELECT DISTINCT grouping_attribute_1 FROM `'.$categoryFlatTable.'` UNION 
-            SELECT DISTINCT grouping_attribute_2 FROM `'.$categoryFlatTable.'` UNION 
-            SELECT DISTINCT grouping_attribute_3 FROM `'.$categoryFlatTable.'`
-        ');
+        $categories = $this->categoryCollection->create()
+            ->addAttributeToSelect('grouping_attribute_1')
+            ->addAttributeToSelect('grouping_attribute_2')
+            ->addAttributeToSelect('grouping_attribute_3');
 
-        foreach ($groupingAttributes as $value) {
-            if ($value['grouping_attribute_1'] != NULL) {
-                $attrForFaceting[] = 'searchable('.$value['grouping_attribute_1'].')';
-            }
+        foreach ($categories as $category) {
+            $attrForFaceting[] = 'searchable('.$category->getGroupingAttribute1().')';
+            $attrForFaceting[] = 'searchable('.$category->getGroupingAttribute2().')';
+            $attrForFaceting[] = 'searchable('.$category->getGroupingAttribute3().')';
         }
 
         $indexSettings['attributesForFaceting'] = array_values(array_unique($attrForFaceting));
