@@ -377,7 +377,7 @@
       @include lib-button-reset();
       position: absolute;
       width: 100%;
-      padding: $indent__s 30px;
+      padding: $indent__s $indent__l;
       color: $text__color;
       font-size: 16px;
       border: 2px solid $c-grey;
