@@ -137,6 +137,7 @@ In version 5.0 we've added full WP-CLI support for all plugin options and functi
 * wp sg optimize lazyload enable|disable - enables or disables Lazy loading of images
 * wp sg optimize gzip enable|disable - enables or disables Gzip compression for your site
 * wp sg optimize browsercache enable|disable - enables or disables Browser caching rules
+* wp sg status html|js|js-async|css|combine-css|querystring|emojis|images|lazyload_images|lazyload_gravatars|lazyload_thumbnails|lazyload_responsive|lazyload_textwidgets|gzip|browser-caching|memcache|ssl|ssl-fix|autoflush|dynamic-cache - returns optimization current status (enabled|disabled)
 
 = Requirements =
 
@@ -168,6 +169,14 @@ Our plugin uses a cookie in order to function properly. It does not store person
 1. Go to Plugins -> Installed Plugins and click the 'Activate' link under the WordPress SG CachePress listing
 
 == Changelog ==
+
+= Version 5.1.2 =
+* Added support for Recommended by SiteGround PHP Version
+* Improved LazyLoad Support for WooCommerce sites
+* Improved Image Optimization checks
+* Improved PHP Version switching checks
+* Added wp cli status command for checking optimization status
+* Fixed bug with Combine CSS
 
 = Version 5.1.1 =
 * Improved cache invalidation for combined styles

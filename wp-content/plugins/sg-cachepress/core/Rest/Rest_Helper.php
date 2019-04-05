@@ -338,6 +338,8 @@ class Rest_Helper {
 
 		$php_versions_request = wp_remote_get( 'https://updates.sgvps.net/supported-versions.json' );
 		$php_versions = json_decode( wp_remote_retrieve_body( $php_versions_request ), true );
+		// Add the new recommended php version.
+		$php_versions['versions'][] = 'recommended-php';
 
 		if ( ! in_array( $php_version, $php_versions['versions'], false ) ) {
 			wp_send_json(
@@ -354,7 +356,7 @@ class Rest_Helper {
 		$result = $this->htaccess->enable(
 			'php',
 			array(
-				'search'  => '_PHPVERSION_',
+				'search'  => 'recommended-php' === $php_version ? 'php_PHPVERSION_' : '_PHPVERSION_',
 				'replace' => str_replace( '.', '', $php_version ),
 			)
 		);

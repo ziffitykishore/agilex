@@ -69,9 +69,10 @@ class Front_End_Optimization {
 			new Images_Optimizer();
 		}
 
+
 		if (
 			is_admin() ||
-			isset( $_GET['fl_builder'], $_GET['vcv-action'] )
+			$this->check_for_builders()
 		) {
 			return;
 		}
@@ -296,5 +297,24 @@ class Front_End_Optimization {
 		);
 	}
 
+	/**
+	 * Checks if the page is being rendered via page builder.
+	 *
+	 * @since  5.1.2
+	 *
+	 * @return bool True/false.
+	 */
+	private function check_for_builders() {
+
+		$builder_paramas = apply_filters( 'sgo_pb_params', array( 'fl_builder', 'vcv-action', 'et_fb' ) );
+
+		foreach ( $builder_paramas as $param ) {
+			if ( isset( $_GET[ $param ] ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 
 }

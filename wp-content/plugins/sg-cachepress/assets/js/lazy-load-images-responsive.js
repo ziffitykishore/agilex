@@ -113,4 +113,10 @@
         }
     });
 
+    $(window).on('ajaxComplete', function() {
+        setTimeout(function() {
+            $(window).lazyLoadSG();
+        }, 1000 );
+    });
+
 })(window.jQuery || window.Zepto || window.$, window, document);

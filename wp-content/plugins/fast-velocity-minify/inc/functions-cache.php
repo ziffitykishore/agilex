@@ -61,8 +61,8 @@ if($fvm_change_cache_path !== false && $fvm_change_cache_base !== false && strle
 $ctime = get_option('fvm-last-cache-update', '0'); 
 
 # create
-$uploadsdir  = $upload['basedir'].'/cache';
-$uploadsurl  = $upload['baseurl'].'/cache';
+$uploadsdir  = str_ireplace('cache/cache', 'cache', $upload['basedir'].'/cache');
+$uploadsurl  = str_ireplace('cache/cache', 'cache', $upload['baseurl'].'/cache');
 $cachebase   = $uploadsdir.'/fvm/'.$ctime;
 $cachebaseurl  = $uploadsurl.'/fvm/'.$ctime;
 $cachedir    = $cachebase.'/out';
@@ -72,8 +72,8 @@ $cachedirurl = $cachebaseurl.'/out';
 
 # get permissions from uploads directory
 $dir_perms = 0777; 
-if(is_dir($uploadsdir.'/cache') && function_exists('stat') && fvm_function_available('stat')) {
-	if ($stat = @stat($uploadsdir.'/cache')) { $dir_perms = $stat['mode'] & 0007777; }
+if(is_dir($uploadsdir) && function_exists('stat') && fvm_function_available('stat')) {
+	if ($stat = @stat($uploadsdir)) { $dir_perms = $stat['mode'] & 0007777; }
 }
 
 # mkdir and check if umask requires chmod

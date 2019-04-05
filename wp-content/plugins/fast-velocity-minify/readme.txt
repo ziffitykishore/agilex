@@ -2,8 +2,9 @@
 Contributors: Alignak
 Tags: PHP Minify, Lighthouse, GTmetrix, Pingdom, Pagespeed, CSS Merging, JS Merging, CSS Minification, JS Minification, Speed Optimization, HTML Minification, Performance, Optimization, Speed, Fast
 Requires at least: 4.5
-Stable tag: 2.6.0
-Tested up to: 5.1
+Requires PHP: 5.5
+Stable tag: 2.6.4
+Tested up to: 5.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -195,6 +196,21 @@ Please backup your site before updating. Version 3.0 will have a major code rewr
 
 
 == Changelog ==
+
+= 2.6.4 [2019.03.31] =
+* fixed subdirectories permissions
+
+= 2.6.3 [2019.03.30] =
+* fixed another minor PHP notice
+
+= 2.6.2 [2019.03.27] =
+* fixed a PHP notice on urls with query strings that include arrays on keys or values
+
+= 2.6.1 [2019.03.26] =
+* fixed compatibility with the latest elementor plugin
+* fixed adding duplicate cron jobs + existing duplicate cronjobs cleanup
+* fixed duplicate "cache/cache" directory path
+* changed the minimum PHP requirements to PHP 5.5
 
 = 2.6.0 [2019.03.02] =
 * fixed cache purging with the hypercache plugin
