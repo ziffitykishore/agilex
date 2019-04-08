@@ -53,6 +53,10 @@
       margin-right: $indent__m;
     }
   }
+
+  .cms-footer-border {
+    transform: translateX(-50px);
+  }
 }
 
 .catland-content {
