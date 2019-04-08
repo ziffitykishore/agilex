@@ -65,6 +65,12 @@
 }
 
 .catalog-category-view {
+    .page-main {
+        @include min-screen($screen__m) {
+            padding: 0;
+        }
+    }
+
     .sidebar-main {
         order: 0;
     }
