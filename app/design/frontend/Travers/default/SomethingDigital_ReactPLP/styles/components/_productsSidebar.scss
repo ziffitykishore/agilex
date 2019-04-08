@@ -227,6 +227,7 @@
         background-color: $color-white;
         padding: $indent__xs;
         border: 1px solid $c-grey;
+        z-index: 2;
 
         &::after {
           content: " ";
