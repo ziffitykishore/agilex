@@ -17,6 +17,7 @@ $productInfo__offset-top: 50px;
     @include min-screen($plp_breakpoint) {
       &.productInfo-opened {
         .numHits-view-switcher .number-of-hits {
+          position: absolute;
           right: 300px;
         }
       }
@@ -26,14 +27,8 @@ $productInfo__offset-top: 50px;
         height: $productInfo__offset-top;
         display: flex;
 
-        .product-view-toggles,
-        .number-of-hits {
-          position: absolute;
-        }
-
         .number-of-hits {
           right: 0;
-          margin: 15px 0;
         }
       }
     }
