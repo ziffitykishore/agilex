@@ -45,6 +45,13 @@
 
   .bottom-cms-content {
     width: 100%;
+    display: flex;
+    padding-right: 50px;
+    box-sizing: border-box;
+
+    div:not(:last-of-type) {
+      margin-right: $indent__m;
+    }
   }
 }
 
