@@ -5,6 +5,10 @@ $productInfo__offset-top: 50px;
 }
 
 .right-panel {
+  @include min-screen($screen__m) {
+    padding: 0 $indent__l;
+  }
+
   .plp-content {
     .numHits-view-switcher {
       display: none;
@@ -216,7 +220,7 @@ $productInfo__offset-top: 50px;
 .table-view,
 .list-view {
   @include min-screen($screen__m) {
-    padding: 0 $indent__l;
+    padding-right: $indent__l;
   }
 }
 
@@ -224,7 +228,7 @@ $productInfo__offset-top: 50px;
   .table-view,
   .list-view {
     @include min-screen($screen__m) {
-      padding: 0;
+      padding-right: 0;
     }
   }
 }
