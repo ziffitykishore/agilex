@@ -90,7 +90,15 @@
     .ais-Hits-item {
       display: flex;
       width: 100%;
-      max-width: 200px;
+      flex-basis: 50%;
+
+      @include min-screen($screen__m) {
+        flex-basis: 50%;
+      }
+
+      @include min-screen($screen__l) {
+        flex-basis: 25%;
+      }
 
       button {
         color: $c-cobalt;
