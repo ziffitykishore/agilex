@@ -33,6 +33,14 @@
         }
       }
     }
+
+    .content-after-sidebar {
+      padding: $indent__m $indent__l;
+
+      img {
+        border: 1px solid $c-grey;
+      }
+    }
   }
 
   .bottom-cms-content {
