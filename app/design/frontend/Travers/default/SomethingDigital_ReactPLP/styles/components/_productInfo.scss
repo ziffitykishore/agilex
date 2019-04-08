@@ -4,7 +4,7 @@
   position: relative;
   transform: translateY(-$productInfo__offset-top);
   width: 100%;
-  max-width: 250px;
+  max-width: 280px;
   background-color: $c-smoke;
 
   &-content {
@@ -33,10 +33,15 @@
 
   .tier-group-table {
     border-collapse: collapse;
-    width: 90%;
+    width: 100%;
+    table-layout: fixed;
 
      tr {
       height: 30px;
+
+      td {
+        padding: $indent__xs;
+      }
 
       span {
         display: inline-block;
