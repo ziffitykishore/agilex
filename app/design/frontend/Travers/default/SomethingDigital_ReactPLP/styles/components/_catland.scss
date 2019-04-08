@@ -3,7 +3,7 @@
     background-color: $c-smoke;
 
     @include min-screen($screen__m) {
-      width: 30%;
+      width: 25%;
     }
 
     .ais-Hits-list {
@@ -11,18 +11,25 @@
     }
 
     .ais-Hits-item {
+      @include lib-list-reset-styles();
       width: 100%;
-      padding: $indent__xs;
-      border: 0;
+      padding: 0;
       box-shadow: none;
+      box-sizing: border-box;
 
       button {
         background-color: transparent;
+        font-family: $font-family__base;
+        text-transform: none;
         border: 0;
+        color: $text__color;
+        font-weight: $font-weight__semibold;
+        padding: 15px 0;
+        letter-spacing: 0;
         
         @include hover {
           cursor: pointer;
-          color: $c-royal;
+          color: $c-cobalt;
         }
       }
     }
@@ -52,11 +59,15 @@
 
     @include min-screen($screen__m) {
       width: 70%;
+      padding-left: 50px;
     }
 
     .ais-Hits-list {
       margin-left: 0;
       margin-top: $indent__l;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
 
       @include max-screen($screen__s) {
         justify-content: center;
@@ -78,16 +89,15 @@
 
     .ais-Hits-item {
       display: flex;
-      justify-content: center;
       width: 100%;
-      max-width: 200px;
+      flex-basis: 50%;
 
       @include min-screen($screen__m) {
-        max-width: 250px;
+        flex-basis: 50%;
       }
 
       @include min-screen($screen__l) {
-        max-width: 300px;
+        flex-basis: 25%;
       }
 
       button {
@@ -95,6 +105,7 @@
         font-weight: $font-weight__semibold;
         font-size: 15px;
         cursor: pointer;
+        padding-left: 0;
 
         @include hover {
           color: $color-black;
@@ -107,9 +118,17 @@
       display: block;
     }
 
+    .subcategory-name {
+      text-transform: none;
+      font-size: 18px;
+      margin-top: $indent__s;
+    }
+
     .product-count {
       font-size: 12px;
       color: $c-steel;
+      margin-top: $indent__xs;
+      font-family: $font-family__base;
     }
   }
 
@@ -117,12 +136,17 @@
     padding-top: $indent__l;
 
     .sibling-buttons {
+      border-bottom: 1px solid $c-grey;
+
       .ais-Hits-item button {
         font-size: 14px;
+        width: 100%;
+        text-align: left;
       }
 
       .active {
         color: $c-cobalt;
+        border-right: 3px solid $c-cobalt;
       }
     }
   }

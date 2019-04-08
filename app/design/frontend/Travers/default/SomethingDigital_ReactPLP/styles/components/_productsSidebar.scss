@@ -13,10 +13,14 @@
 
     &.is-closed::before {
       content: '+ ';
+      font-size: 20px;
+      font-weight: $font-weight__semibold;
     }
 
     &.is-open::before {
       content: '− ';
+      font-size: 20px;
+      font-weight: $font-weight__semibold;
       }
     }
   }
@@ -150,6 +154,12 @@
         width: 18px;
         height: 18px;
       }
+
+      @include hover {
+        &::after {
+          border-width: 0;
+        }
+      }
     }
 
     &.swatches {
@@ -227,6 +237,7 @@
         background-color: $color-white;
         padding: $indent__xs;
         border: 1px solid $c-grey;
+        z-index: 2;
 
         &::after {
           content: " ";
