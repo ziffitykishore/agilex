@@ -59,11 +59,15 @@
 
     @include min-screen($screen__m) {
       width: 70%;
+      padding-left: 50px;
     }
 
     .ais-Hits-list {
       margin-left: 0;
       margin-top: $indent__l;
+      padding-left: 0;
+      display: flex;
+      flex-wrap: wrap;
 
       @include max-screen($screen__s) {
         justify-content: center;
@@ -88,14 +92,6 @@
       justify-content: center;
       width: 100%;
       max-width: 200px;
-
-      @include min-screen($screen__m) {
-        max-width: 250px;
-      }
-
-      @include min-screen($screen__l) {
-        max-width: 300px;
-      }
 
       button {
         color: $c-cobalt;
