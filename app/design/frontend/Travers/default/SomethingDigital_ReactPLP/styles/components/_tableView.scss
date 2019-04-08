@@ -8,12 +8,14 @@
 
     th {
       text-align: left;
-      padding-left: 15px;
+      padding-left: $indent__s;
+      padding-bottom: $indent__xs;
     }
 
     .sorting-arrow {
       color: $c-cobalt;
       margin-left: $indent__xs;
+      font-family: $font-family__sans-serif;
     }
   }
 
