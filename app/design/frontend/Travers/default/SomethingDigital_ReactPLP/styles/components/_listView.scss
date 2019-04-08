@@ -50,8 +50,11 @@
     .list-image {
       width: 100%;
       max-width: 125px;
-      margin-left: $indent__m;
       margin-right: 15px;
+
+      @include min-screen($screen__m) {
+        margin-left: $indent__m;
+      }
     }
   }
 }

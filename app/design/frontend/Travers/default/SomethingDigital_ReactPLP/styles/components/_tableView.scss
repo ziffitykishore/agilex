@@ -8,7 +8,8 @@
 
     th {
       text-align: left;
-      padding-left: 15px;
+      padding-left: $indent__s;
+      padding-bottom: $indent__xs;
     }
 
     .sorting-arrow {

@@ -5,22 +5,30 @@
   transform: translateY(-$productInfo__offset-top);
   width: 100%;
   max-width: 250px;
-  padding: $indent__m $indent__s;
   background-color: $c-smoke;
 
   &-content {
     position: sticky;
     top: 50px;
+    padding: 0 $indent__m;
+
+    img {
+      max-width: none;
+      margin-top: 50px;
+    }
   }
 
   .close-button {
     cursor: pointer;
-    margin-left: 80%;
-    margin-bottom: $indent__m;
+    position: absolute;
+    padding: $indent__s 0;
+    right: $indent__s;
     border: 0;
     color: $c-royal;
     background-color: transparent;
     font-size: 35px;
+    font-family: $font-family__base;
+    font-weight: $font-weight__regular;
   }
 
   .tier-group-table {
