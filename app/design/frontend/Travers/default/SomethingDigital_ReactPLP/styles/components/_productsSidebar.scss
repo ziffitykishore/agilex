@@ -160,6 +160,15 @@
           border-width: 0;
         }
       }
+
+      a {
+        vertical-align: middle;
+
+        @include hover {
+          text-decoration: none;
+          color: $c-cobalt;
+        }
+      }
     }
 
     &.swatches {
@@ -213,9 +222,9 @@
   }
 
   .Collapsible {
-    border-top: 2px solid $c-grey;
-    padding-top: $indent__s;
-    padding-bottom: $indent__s;
+    border-top: 1px solid $c-grey;
+    padding-top: 7px;
+    padding-bottom: 7px;
 
     &__opened {
       position: relative;
