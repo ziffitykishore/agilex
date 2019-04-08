@@ -89,7 +89,6 @@
 
     .ais-Hits-item {
       display: flex;
-      justify-content: center;
       width: 100%;
       max-width: 200px;
 
@@ -98,6 +97,7 @@
         font-weight: $font-weight__semibold;
         font-size: 15px;
         cursor: pointer;
+        padding-left: 0;
 
         @include hover {
           color: $color-black;
@@ -110,9 +110,17 @@
       display: block;
     }
 
+    .subcategory-name {
+      text-transform: none;
+      font-size: 18px;
+      margin-top: $indent__s;
+    }
+
     .product-count {
       font-size: 12px;
       color: $c-steel;
+      margin-top: $indent__xs;
+      font-family: $font-family__base;
     }
   }
 
