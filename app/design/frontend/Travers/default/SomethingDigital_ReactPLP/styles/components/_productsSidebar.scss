@@ -238,6 +238,7 @@
         padding: $indent__xs;
         border: 1px solid $c-grey;
         z-index: 2;
+        font-size: $font-size__base--desktop;
 
         &::after {
           content: " ";
@@ -248,6 +249,17 @@
           border-width: 5px;
           border-style: solid;
           border-color: transparent $c-grey transparent transparent;
+        }
+
+        @include max-screen($screen__m) {
+          right: 230px;
+          max-width: 170px;
+
+          &::after {
+            right: -$indent__s;
+            top: 20px;
+            transform: rotate(180deg);
+          }
         }
       }
     }
