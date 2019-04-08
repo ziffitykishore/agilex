@@ -214,16 +214,30 @@
         position: absolute;
         top: $indent__xs;
         right: $indent__m;
+        text-transform: lowercase;
+        font-style: italic;
       }
 
       .sidebar-description-content {
         position: absolute;
         margin-top: 0;
-        top: -$indent__xs;
+        top: 0;
+        right: 0;
         transform: translateX(95%);
         background-color: $color-white;
         padding: $indent__xs;
-        border: 1px solid $c-steel;
+        border: 1px solid $c-grey;
+
+        &::after {
+          content: " ";
+          position: absolute;
+          top: 50%;
+          right: 100%;
+          margin-top: -$indent__xs;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent $c-grey transparent transparent;
+        }
       }
     }
 
@@ -243,7 +257,6 @@
   font-weight: $font-weight__bold;
   border-radius: 50%;
   font-size: 14px;
-  font-family: cursive;
 }
 
 .ais-ClearRefinements {
