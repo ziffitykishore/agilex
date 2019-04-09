@@ -74,7 +74,7 @@ $productInfo__offset-top: 50px;
   button {
     @include lib-button-reset();
     border: 1px solid $c-grey;
-    padding: 5px $indent__s;
+    padding: $indent__xs $indent__s;
     color: $color-black;
     border-radius: 5px;
     text-decoration: none;
