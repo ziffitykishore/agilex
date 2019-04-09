@@ -247,3 +247,27 @@ $productInfo__offset-top: 50px;
     }
   }
 }
+
+.group {
+  h2,
+  h3,
+  h4 {
+    font-weight: $font-weight__semibold;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h4 {
+    color: $c-nickel;
+    text-transform: none;
+    font-family: $font-family__base;
+  }
+
+  h3,
+  h4 {
+    font-size: 16px;
+  }
+}
