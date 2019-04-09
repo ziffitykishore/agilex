@@ -302,29 +302,37 @@
     font-family: $font-family__base;
     border: 0;
     padding: 0;
+    letter-spacing: 0;
+    font-size: $font-size__base--desktop;
   }
 }
 
 .current-refinements {
   list-style-type: none;
   margin-top: 15px;
+  padding-left: $indent__m;
 
   ul {
     @include lib-list-reset-styles();
 
     li {
       margin-bottom: $indent__xs;
+
+      @include hover {
+        color: $c-cobalt;
+        cursor: pointer;
+
+        a {
+          color: $c-cobalt;
+        }
+      }
     }
 
     li,
     li a {
       margin: 0;
-      font-weight: $font-weight__semibold;
-      font-size: $font-size__base--desktop;
-
-      @include hover {
-        color: $c-cobalt;
-      }
+      font-size: $font-size__base;
+      text-transform: capitalize;
     }
   }
 
@@ -342,8 +350,9 @@
     border: 0;
     color: $c-cobalt;
     font-size: 20px;
+    font-weight: $font-weight__semibold;
     font-family: $font-family__base;
-    margin-right: 15px;
+    margin-right: $indent__s;
     cursor: pointer;
   }
 }
