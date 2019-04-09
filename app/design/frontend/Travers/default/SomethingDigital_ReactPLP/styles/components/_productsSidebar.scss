@@ -13,13 +13,11 @@
 
     &.is-closed::before {
       content: '+ ';
-      font-size: 20px;
       font-weight: $font-weight__semibold;
     }
 
     &.is-open::before {
       content: '− ';
-      font-size: 20px;
       font-weight: $font-weight__semibold;
       }
     }
@@ -147,8 +145,11 @@
   .refinement-list {
     list-style-type: none;
     padding-left: 15px;
+    margin-top: 15px;
 
     .refinement-label {
+      min-height: $indent__s;
+
       &::before,
       &::after {
         width: 18px;
@@ -206,9 +207,10 @@
     }
 
     li {
-      line-height: 1;
-      margin-top: 0;
+      display: flex;
+      margin-top: $indent__xs;
       margin-bottom: 0;
+      line-height: 1;
 
       a {
         color: $text__color;
@@ -223,8 +225,8 @@
 
   .Collapsible {
     border-top: 1px solid $c-grey;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: $indent__s;
+    padding-bottom: $indent__s;
 
     &__opened {
       position: relative;
@@ -429,7 +431,7 @@
 
         &__contentInner {
           background-color: $c-smoke;
-          margin-top: $indent__s;
+          margin-top: 15px;
         }
       }
     }
