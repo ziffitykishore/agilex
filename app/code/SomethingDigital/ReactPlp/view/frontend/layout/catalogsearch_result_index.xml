@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="ReactPLP::js/ReactPLP.js"/>
+        <css src="ReactPLP::css/reactPLP.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block name="somethingdigital_reactplp"
+                   template="SomethingDigital_ReactPlp::react.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">SomethingDigital\ReactPlp\ViewModel\ReactPlp</argument>
+                    <argument name="search_result_page" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="search.result" display="false" />
+        </referenceContainer>
+        <referenceBlock name="catalogsearch.leftnav" remove="true" />
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="page.main.title" remove="true" />
+    </body>
+</page>
