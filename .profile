@@ -51,15 +51,13 @@ function magentostat_check_elasticsearch {
     fi
 }
 
-function magenostat_check_dbconfig {
+function magentostat_check_fastly {
     # Magento seems to still default some URLs to http://, make sure we haven't left any.
     URLS="`magentodb -B -e "SELECT value FROM core_config_data WHERE path LIKE 'web/%/base_url';" | grep -v value | sort -u`"
     if [[ "$URLS" == *http:* ]]; then
         echo "🔓 Non-SSL URLs in configuration.";
     fi
-}
 
-function magentostat_check_fastly {
     CACHING="`magentodb -B -e "SELECT value FROM core_config_data WHERE path = 'system/full_page_cache/caching_application'" | grep -v value`"
     if [ "$CACHING" != "fastly" ]; then
         echo "⏳ Caching backend not Fastly ($CACHING)"
