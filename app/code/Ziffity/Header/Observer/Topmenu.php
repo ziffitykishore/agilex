@@ -39,7 +39,6 @@ class Topmenu implements ObserverInterface
         $menuId = $menuTree->getId();
 
         if ($childLevel == 1) {
-
             $html .= '<div class="category_image"><img class="magebees_lazyload" alt="" data-src="' . $this->getCategoryImage($menuId) . '"/></div>';
         }
 
@@ -54,43 +53,19 @@ class Topmenu implements ObserverInterface
     protected function getCategoryImage($categoryId)
     {
         $categoryIdElements = explode('-', $categoryId);
-        $category = $this->categoryRepository->get(end($categoryIdElements));
-        $data = $this->getCategoryData($category->getId());
+        $category = $this->categoryRepository->get(end($categoryIdElements));        
+        $customImage = $category->getCustomImage();
         $categoryImage = false;
-        if (!empty($data['image_url'])) {
-            $imageUrl = $data['image_url'];
+        if (!empty($customImage)) {
             $mediaUrl = $this->getMediaUrl();
-            $categoryImage = $mediaUrl . SELF::CATEGORY_IMG_PATH . $imageUrl;
+            $categoryImage = $mediaUrl . SELF::CATEGORY_IMG_PATH . $customImage;
         }
         return $categoryImage;
-    }
-
-    public function getCategoryCollection()
-    {
-        $collection = $this->_categoryCollection->create()->addAttributeToSelect('*');
-        return $collection;
-    }
-
-    public function getCategoryData($menuId = null)
-    {
-        $collection = $this->getCategoryCollection();
-
-        $categoryData = [];
-        foreach ($collection as $categories) {
-            $data = $categories->getData();
-            if ($data['entity_id'] == $menuId && array_key_exists('custom_image', $data)) {
-                $categoryData['id'] = $data['entity_id'];
-                $categoryData['image_url'] = $data['custom_image'];
-            }
-        }
-
-        return $categoryData;
     }
 
     public function getMediaUrl()
     {
         return $this->_storeManager->getStore()
-                    ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+            ->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
     }
-
 }
