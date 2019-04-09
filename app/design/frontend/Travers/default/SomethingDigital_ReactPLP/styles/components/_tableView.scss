@@ -1,51 +1,56 @@
-.table-view .products-table {
-  font-weight: $font-weight__regular;
-  line-height: 1.7;
-  border-collapse: collapse;
+.table-view {
+  width: 100%;
 
-  thead {
-    border-bottom: 2px solid $c-royal;
+  .products-table {
+    font-weight: $font-weight__regular;
+    line-height: 1.7;
+    border-collapse: collapse;
 
-    th {
-      text-align: left;
-      padding-left: $indent__s;
-      padding-bottom: $indent__xs;
-    }
+    thead {
+      border-bottom: 2px solid $c-royal;
 
-    .sorting-arrow {
-      color: $c-cobalt;
-      margin-left: $indent__xs;
-      display: inline-block;
-
-      &.up-arrow {
-        transform: rotate(-90deg);
+      th {
+        text-align: left;
+        padding-left: $indent__s;
+        padding-bottom: $indent__xs;
       }
 
-      &.down-arrow {
-        transform: rotate(90deg);
+      .sorting-arrow {
+        color: $c-cobalt;
+        margin-left: $indent__xs;
+        display: inline-block;
+        font-family: $font-family__base;
+
+        &.up-arrow {
+          transform: rotate(-90deg);
+        }
+
+        &.down-arrow {
+          transform: rotate(90deg);
+        }
       }
     }
-  }
 
-  tbody tr {
-    border-bottom: 1px solid $c-smoke;
-  }
-
-  .selected-row {
-    background-color: $c-smoke;
-  }
-
-  &-rows {
-    @include hover {
-      background-color: $c-royal;
-      color: $color-white;
-      cursor: default;
+    tbody tr {
+      border-bottom: 1px solid $c-smoke;
     }
-  }
 
-  td {
-    padding: $indent__xs $indent__s;
-    font-size: 14px;
+    .selected-row {
+      background-color: $c-smoke;
+    }
+
+    &-rows {
+      @include hover {
+        background-color: $c-royal;
+        color: $color-white;
+        cursor: default;
+      }
+    }
+
+    td {
+      padding: $indent__xs $indent__s;
+      font-size: 14px;
+    }
   }
 }
 

@@ -7,6 +7,7 @@ $productInfo__offset-top: 50px;
 .right-panel {
   @include min-screen($screen__m) {
     padding: 0 $indent__l;
+    width: 100%;
   }
 
   .plp-content {
