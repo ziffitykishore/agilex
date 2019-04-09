@@ -15,6 +15,15 @@
     .sorting-arrow {
       color: $c-cobalt;
       margin-left: $indent__xs;
+      display: inline-block;
+
+      &.up-arrow {
+        transform: rotate(-90deg);
+      }
+
+      &.down-arrow {
+        transform: rotate(90deg);
+      }
     }
   }
 
