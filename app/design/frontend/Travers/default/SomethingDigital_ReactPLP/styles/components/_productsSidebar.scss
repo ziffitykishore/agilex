@@ -362,6 +362,11 @@
   padding-left: $indent__m;
 }
 
+.filter-heading {
+  font-size: 22px;
+  letter-spacing: 0;
+}
+
 @include max-screen($screen__m) {
   .products-sidebar {
     .hide-button-container {
