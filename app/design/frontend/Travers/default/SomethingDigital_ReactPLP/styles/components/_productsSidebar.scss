@@ -38,7 +38,7 @@
 
 .hide-button-container {
   position: relative;
-  margin: $indent__s 0 $indent__xl;
+  margin: $indent__s 0 50px;
 }
 
 .show-button-container,
@@ -46,7 +46,6 @@
   .show-hide {
     right: $indent__s;
     width: 100%;
-    max-width: 80px;
     padding: 8px $indent__l;
     color: $c-cobalt;
     background-color: $color-white;
@@ -54,20 +53,23 @@
     border-radius: 5px;
     font-weight: bold;
     position: relative;
+    text-transform: none;
+    font-family: $font-family__base;
 
     &.show {
       padding-left: $indent__xs;
       margin-top: $indent__s;
       margin-left: $indent__s;
+      max-width: 80px;
     }
 
     &.hide {
       position: absolute;
+      max-width: 70px;
     }
 
     @include hover {
       background-color: $c-cobalt;
-      border: 0;
       box-shadow: 0;
       color: $color-white;
 
