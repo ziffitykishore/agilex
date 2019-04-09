@@ -33,10 +33,29 @@
         }
       }
     }
+
+    .content-after-sidebar {
+      padding: $indent__m $indent__l;
+
+      img {
+        border: 1px solid $c-grey;
+      }
+    }
   }
 
   .bottom-cms-content {
     width: 100%;
+    display: flex;
+    padding-right: 50px;
+    box-sizing: border-box;
+
+    div:not(:last-of-type) {
+      margin-right: $indent__m;
+    }
+  }
+
+  .cms-footer-border {
+    transform: translateX(-50px);
   }
 }
 
@@ -87,6 +106,10 @@
       }
     }
 
+    .description__desktop {
+      max-width: 700px;
+    }
+
     .ais-Hits-item {
       display: flex;
       width: 100%;
@@ -122,6 +145,7 @@
       text-transform: none;
       font-size: 18px;
       margin-top: $indent__s;
+      line-height: 1.4;
     }
 
     .product-count {
@@ -129,6 +153,7 @@
       color: $c-steel;
       margin-top: $indent__xs;
       font-family: $font-family__base;
+      letter-spacing: 0;
     }
   }
 

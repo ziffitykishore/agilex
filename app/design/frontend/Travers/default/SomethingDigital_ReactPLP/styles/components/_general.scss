@@ -5,6 +5,10 @@ $productInfo__offset-top: 50px;
 }
 
 .right-panel {
+  @include min-screen($screen__m) {
+    padding: 0 $indent__l;
+  }
+
   .plp-content {
     .numHits-view-switcher {
       display: none;
@@ -13,6 +17,7 @@ $productInfo__offset-top: 50px;
     @include min-screen($plp_breakpoint) {
       &.productInfo-opened {
         .numHits-view-switcher .number-of-hits {
+          position: absolute;
           right: 300px;
         }
       }
@@ -22,14 +27,8 @@ $productInfo__offset-top: 50px;
         height: $productInfo__offset-top;
         display: flex;
 
-        .product-view-toggles,
-        .number-of-hits {
-          position: absolute;
-        }
-
         .number-of-hits {
           right: 0;
-          margin: 15px 0;
         }
       }
     }
@@ -216,7 +215,7 @@ $productInfo__offset-top: 50px;
 .table-view,
 .list-view {
   @include min-screen($screen__m) {
-    padding: 0 $indent__l;
+    padding-right: $indent__l;
   }
 }
 
@@ -224,7 +223,7 @@ $productInfo__offset-top: 50px;
   .table-view,
   .list-view {
     @include min-screen($screen__m) {
-      padding: 0;
+      padding-right: 0;
     }
   }
 }
