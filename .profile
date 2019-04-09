@@ -79,6 +79,25 @@ function magentostat_check_fastly {
     fi
 }
 
+function magentostat_check_websites {
+    # Make sure every store has sequence metadata setup right.
+    WEBSITESTAT="`magentodb --table -e "SELECT store_id, code, GROUP_CONCAT(entity_type) AS entities, IF(COUNT(meta_id) = 5, 'OK', 'Error') AS status FROM store LEFT JOIN sales_sequence_meta AS meta USING (store_id) LEFT JOIN sales_sequence_profile AS profile USING (meta_id) GROUP BY store_id;"`"
+    echo "$WEBSITESTAT" | grep -q Error && echo "💥 Wrong store meta/profile data" && echo "$WEBSITESTAT"
+
+    # The keys must match the IDs or weird things happen.
+    $PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/config.php"); if (isset($config["scopes"])) { foreach ($config["scopes"]["websites"] as $code => $website) { if ($code != $website["code"]) { echo "Invalid website: $code\n"; } } }' | grep "Invalid website" --color=auto
+    $PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/config.php"); if (isset($config["scopes"])) { foreach ($config["scopes"]["groups"] as $group_id => $group) { if ($group_id != $group["group_id"]) { echo "Invalid group: $group_id\n"; } } }' | grep "Invalid group" --color=auto
+    $PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/config.php"); if (isset($config["scopes"])) { foreach ($config["scopes"]["stores"] as $code => $store) { if ($code != $store["code"]) { echo "Invalid website: $code\n"; } } }' | grep "Invalid website" --color=auto
+
+    # All root categories must be valid and exist.
+    ROOTCATIDS="`$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/config.php"); if (isset($config["scopes"])) { $cats = []; foreach ($config["scopes"]["groups"] as $group) { if ($group["group_id"] != 0) { $cats[] = $group["root_category_id"]; } } echo implode(", ", array_unique($cats)); }'`"
+    TOTALROOTCATS="`echo "$ROOTCATIDS" | tr -cd , | awk '{ print length + 1; }'`"
+    GOODROOTCATS="`magentodb -B -e "SELECT COUNT(entity_id) FROM catalog_category_entity WHERE entity_id IN ($ROOTCATIDS) AND level = 1" | grep -v COUNT`"
+    if [ "$GOODROOTCATS" != "$TOTALROOTCATS" ]; then
+        echo "💥 Bad root category IDs: Missing or bad level" | grep "Bad root category IDs" --color=auto
+    fi
+}
+
 function magentostat_check_var_report {
     # If var/report/ gets too big, it will cause deploys to hang during setup:upgrade.
     # Big enough, and it'll even cause an error and setup:upgrad will just fail.
@@ -136,6 +155,7 @@ function magentostat {
     magentostat_check_elasticsearch
     magentostat_check_fastly
     magentostat_check_fpc
+    magentostat_check_websites
     magentostat_check_var_report
     magentostat_check_cron
     magentostat_check_versions
