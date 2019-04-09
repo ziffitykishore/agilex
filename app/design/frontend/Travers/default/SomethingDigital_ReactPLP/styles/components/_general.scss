@@ -68,18 +68,33 @@ $productInfo__offset-top: 50px;
 
 .product-view-toggles {
   margin: $indent__m 0;
+  display: flex;
   
   button {
     @include lib-button-reset();
     border: 1px solid $c-grey;
-    padding: 5px 15px;
+    padding: 5px $indent__s;
     color: $color-black;
     border-radius: 5px;
     text-decoration: none;
+    text-transform: none;
+    font-family: $font-family__base;
+    font-weight: $font-weight__semibold;
+    display: flex;
+    margin-right: $indent__xs;
 
     &.active {
       background-color: $c-royal;
       color: $color-white;
+
+      svg {
+        fill: $color-white;
+      }
+    }
+
+    svg {
+      height: 18px;
+      margin-right: $indent__xs;
     }
 
     &:hover,
@@ -88,6 +103,10 @@ $productInfo__offset-top: 50px;
       text-decoration: none;
       background-color: $c-royal;
       color: $color-white;
+
+      svg {
+        fill: $color-white;
+      }
     }
   }
 }
