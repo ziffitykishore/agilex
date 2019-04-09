@@ -304,6 +304,10 @@
     padding: 0;
     letter-spacing: 0;
     font-size: $font-size__base--desktop;
+
+    @include hover {
+      color: $text__color;
+    }
   }
 }
 
@@ -332,6 +336,7 @@
     li a {
       margin: 0;
       font-size: $font-size__base;
+      font-weight: $font-weight__semibold;
       text-transform: capitalize;
     }
   }
