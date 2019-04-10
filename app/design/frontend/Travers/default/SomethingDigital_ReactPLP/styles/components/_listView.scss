@@ -9,6 +9,10 @@
     }
   }
 
+  .product-sku {
+    margin-bottom: $indent__s;
+  }
+
   .pricing {
     .price,
     .as-low-as {
@@ -36,17 +40,13 @@
       a::before {
         display: none;
       }
-
-      @include min-screen($screen__l) {
-        width: auto;
-      }
     }
   }
 
   .list-item {
-    padding-bottom: 30px;
-    padding-top: 30px;
-    border-bottom: 2px solid $c-grey;
+    padding-bottom: $indent__s;
+    padding-top: $indent__s;
+    border-bottom: 1px solid $c-grey;
 
     @include min-screen($screen__l) {
       display: flex;
