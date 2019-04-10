@@ -201,7 +201,8 @@
             &.sku {
                 display: inline-block;
                 vertical-align: top;
-                color: $text__color-alt;
+                color: $c-nickel;
+                font-size: $font-size__base;
 
                 > .value {
                     display: inline-block;
@@ -228,8 +229,14 @@
         margin-top: $indent__s;
     }
 
-    .product-reviews-summary .reviews-actions {
+    .product-reviews-summary .reviews-actions a {
         font-size: $font-size__base;
+        color: $c-cobalt;
+
+        @include hover {
+            color: $text__color;
+            text-decoration: none;
+        }
     }
 }
 

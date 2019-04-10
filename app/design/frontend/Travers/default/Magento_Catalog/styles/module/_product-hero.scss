@@ -64,11 +64,22 @@
             width: $width__product-info;
             margin-left: $indent__base;
         }
+
+        .stock-info-popup-trigger {
+            font-size: $font-size__base;
+            color: $c-cobalt;
+            text-transform: none;
+            font-weight: $font-weight__regular;
+            cursor: pointer;
+        }
     }
 
     .product-info-price {
         .manufacturer_price {
-            font-size: 16px;
+            margin-top: $indent__m;
+            margin-bottom: 15px;
+            font-size: 15px;
+            font-weight: $font-weight__semibold;
             color: $c-dusty-grey;
         }
     }
@@ -89,9 +100,14 @@
         }
     }
 
+    .percent-saved {
+        display: none;
+    }
+
     .as-low-as {
-        font-size: 16px;
+        font-size: $font-size__base--desktop;
         font-weight: $font-weight__semibold;
+        text-transform: uppercase;
 
         .price-wrapper {
             font-size: 22px;
@@ -105,15 +121,23 @@
     }
 
     .product-info-stock-sku {
-        margin-top: $indent__m;
+        margin-top: 20px;
 
         .product.sku {
             display: block;
+
+            .value {
+                font-weight: $font-weight__semibold;
+            }
         }
     }
 
     .product-add-form .tocart {
         max-width: 220px;
         width: 100%;
+    }
+
+    .product-reviews-summary {
+        margin-top: $indent__xs;
     }
 }
