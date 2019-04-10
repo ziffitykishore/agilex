@@ -13,13 +13,11 @@
 
     &.is-closed::before {
       content: '+ ';
-      font-size: 20px;
       font-weight: $font-weight__semibold;
     }
 
     &.is-open::before {
       content: '− ';
-      font-size: 20px;
       font-weight: $font-weight__semibold;
       }
     }
@@ -40,7 +38,7 @@
 
 .hide-button-container {
   position: relative;
-  margin: $indent__s 0 $indent__xl;
+  margin: $indent__s 0 50px;
 }
 
 .show-button-container,
@@ -48,7 +46,6 @@
   .show-hide {
     right: $indent__s;
     width: 100%;
-    max-width: 80px;
     padding: 8px $indent__l;
     color: $c-cobalt;
     background-color: $color-white;
@@ -56,20 +53,23 @@
     border-radius: 5px;
     font-weight: bold;
     position: relative;
+    text-transform: none;
+    font-family: $font-family__base;
 
     &.show {
       padding-left: $indent__xs;
       margin-top: $indent__s;
       margin-left: $indent__s;
+      max-width: 80px;
     }
 
     &.hide {
       position: absolute;
+      max-width: 70px;
     }
 
     @include hover {
       background-color: $c-cobalt;
-      border: 0;
       box-shadow: 0;
       color: $color-white;
 
@@ -147,8 +147,11 @@
   .refinement-list {
     list-style-type: none;
     padding-left: 15px;
+    margin-top: 15px;
 
     .refinement-label {
+      min-height: $indent__s;
+
       &::before,
       &::after {
         width: 18px;
@@ -206,9 +209,10 @@
     }
 
     li {
-      line-height: 1;
-      margin-top: 0;
+      display: flex;
+      margin-top: $indent__xs;
       margin-bottom: 0;
+      line-height: 1;
 
       a {
         color: $text__color;
@@ -223,8 +227,8 @@
 
   .Collapsible {
     border-top: 1px solid $c-grey;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: $indent__s;
+    padding-bottom: $indent__s;
 
     &__opened {
       position: relative;
@@ -302,29 +306,42 @@
     font-family: $font-family__base;
     border: 0;
     padding: 0;
+    letter-spacing: 0;
+    font-size: $font-size__base--desktop;
+
+    @include hover {
+      color: $text__color;
+    }
   }
 }
 
 .current-refinements {
   list-style-type: none;
   margin-top: 15px;
+  padding-left: $indent__m;
 
   ul {
     @include lib-list-reset-styles();
 
     li {
       margin-bottom: $indent__xs;
+
+      @include hover {
+        color: $c-cobalt;
+        cursor: pointer;
+
+        a {
+          color: $c-cobalt;
+        }
+      }
     }
 
     li,
     li a {
       margin: 0;
+      font-size: $font-size__base;
       font-weight: $font-weight__semibold;
-      font-size: $font-size__base--desktop;
-
-      @include hover {
-        color: $c-cobalt;
-      }
+      text-transform: capitalize;
     }
   }
 
@@ -342,8 +359,9 @@
     border: 0;
     color: $c-cobalt;
     font-size: 20px;
+    font-weight: $font-weight__semibold;
     font-family: $font-family__base;
-    margin-right: 15px;
+    margin-right: $indent__s;
     cursor: pointer;
   }
 }
@@ -351,6 +369,11 @@
 .ais-ClearRefinements,
 .filter-heading {
   padding-left: $indent__m;
+}
+
+.filter-heading {
+  font-size: 22px;
+  letter-spacing: 0;
 }
 
 @include max-screen($screen__m) {
@@ -410,7 +433,7 @@
 
         &__contentInner {
           background-color: $c-smoke;
-          margin-top: $indent__s;
+          margin-top: 15px;
         }
       }
     }

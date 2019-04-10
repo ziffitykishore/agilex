@@ -68,6 +68,7 @@
     .page-main {
         @include min-screen($screen__m) {
             padding: 0;
+            max-width: none;
         }
     }
 

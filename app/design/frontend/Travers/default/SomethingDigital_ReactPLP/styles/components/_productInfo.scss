@@ -4,7 +4,7 @@
   position: relative;
   transform: translateY(-$productInfo__offset-top);
   width: 100%;
-  max-width: 280px;
+  max-width: 300px;
   background-color: $c-smoke;
 
   &-content {
@@ -29,6 +29,7 @@
     font-size: 35px;
     font-family: $font-family__base;
     font-weight: $font-weight__regular;
+    z-index: 3;
   }
 
   .tier-group-table {
