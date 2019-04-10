@@ -644,8 +644,12 @@
     color: $c-dark-grey;
     width: 100%; // force flexed elements to wrap
 
+    span {
+        display: none;
+    }
+
     svg {
-        @include vertically-center($position: absolute)
+        @include vertically-center($position: absolute);
         left: 0;
         width: 15px;
         height: 15px;
