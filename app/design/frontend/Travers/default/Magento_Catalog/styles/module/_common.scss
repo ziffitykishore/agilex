@@ -295,7 +295,7 @@
         }
 
         .price-wrapper .price {
-            font-size: 18px;
+            font-size: 26px;
             font-weight: $font-weight__bold;
         }
 
@@ -360,10 +360,11 @@
         }
 
         .input-text.qty {
-            $tocart-input-size: $form-element-input__height;
+            $tocart-input-size: 43px;
             height: $tocart-input-size + 2px;
             text-align: center;
             width: $tocart-input-size + 2px;
+            margin-top: $indent__s;
         }
     }
 

@@ -97,4 +97,23 @@
             font-size: 22px;
         }
     }
+
+    .page-title {
+        font-size: 30px;
+        font-weight: $font-weight__regular;
+        margin-bottom: $indent__m;
+    }
+
+    .product-info-stock-sku {
+        margin-top: $indent__m;
+
+        .product.sku {
+            display: block;
+        }
+    }
+
+    .product-add-form .tocart {
+        max-width: 220px;
+        width: 100%;
+    }
 }
