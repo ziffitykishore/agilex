@@ -147,4 +147,13 @@
     .product-reviews-summary {
         margin-top: $indent__xs;
     }
+
+    .fotorama__stage {
+        border: 1px solid $c-grey;
+        box-sizing: border-box;
+    }
+
+    .fotorama__thumb-border {
+        border: 2px solid $c-royal;
+    }
 }
