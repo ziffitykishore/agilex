@@ -388,25 +388,35 @@
     margin: $indent__s 0;
     padding: $indent__s (0.75 * $indent__base);
     padding-left: 0; // left align with column data
+    width: auto;
 
     tr {
         &:first-of-type {
-            background-color: $c-cobalt;
-            color: $color-white;
+            background-color: transparent;
+            color: $text__color;
+            font-weight: $font-weight__bold;
+            border-bottom: 2px solid $c-royal;
         }
 
         &:last-of-type {
-            color: $c-dusty-grey;
+            color: $c-cobalt;
+            border-top: 1px solid $c-grey;
+            font-weight: $font-weight__bold;
         }
 
         td {
             font-size: $font-size__base--desktop;
+
+            .price-wrapper .price {
+                font-weight: $font-weight__regular;
+            }
         }
     }
 
     th {
         font-weight: $font-weight__semibold;
-        font-size: 16px;
+        font-size: $font-size__base--desktop;
+        padding-bottom: $indent__xs;
     }
 
     .price-container {
@@ -425,7 +435,7 @@
     }
 
     .item {
-        padding-bottom: $indent__xs;
+        padding-bottom: $indent__s;
     }
 }
 
