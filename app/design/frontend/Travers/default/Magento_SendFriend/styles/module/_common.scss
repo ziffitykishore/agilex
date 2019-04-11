@@ -30,16 +30,13 @@
     }
 
     svg {
-        height: 45px;
-        width: 45px;
+        height: 25px;
+        width: 25px;
 
-        @include min-screen($screen__m) {
-            height: 40px;
-            width: 40px;
-        }
+        margin-right: $indent__s;
 
         * {
-            fill: $link__color;
+            fill: $c-royal;
         }
     }
 
@@ -55,7 +52,7 @@
 
     &--email {
         svg {
-            width: 30px;
+            width: 22px;
         }
     }
 }
