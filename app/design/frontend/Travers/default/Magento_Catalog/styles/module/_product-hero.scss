@@ -172,3 +172,19 @@
         border: 2px solid $c-royal;
     }
 }
+
+.product-inventory-table {
+    &-desktop {
+        display: none;
+    }
+
+    @include min-screen($screen__m) {
+        &-mobile {
+            display: none;
+        }
+
+        &-desktop {
+            display: block;
+        }
+    }
+}
