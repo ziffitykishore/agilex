@@ -20,7 +20,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
     &__info {
         display: flex;
         flex-wrap: wrap;
-        width: calc(100% - #{$width__product-related} - #{$indent__base});
+        width: calc(100% - #{$width__product-related} - #{$indent__xl});
 
         @include max-screen($screen__l) {
             width: 100%;
@@ -53,7 +53,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
         width: 100%;
 
         @include min-screen($screen__m) {
-            width: calc(100% - #{$width__product-info} - #{$indent__base});
+            width: calc(100% - #{$width__product-info} - #{$indent__xl});
         }
     }
 
@@ -66,7 +66,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
 
         @include min-screen($screen__m) {
             width: $width__product-info;
-            margin-left: $indent__base;
+            margin-left: $indent__xl;
         }
 
         .stock-info-popup-trigger {
