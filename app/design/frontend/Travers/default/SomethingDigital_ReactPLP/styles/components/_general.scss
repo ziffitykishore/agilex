@@ -8,6 +8,10 @@ $productInfo__offset-top: 50px;
   @include min-screen($screen__m) {
     padding: 0 $indent__l;
     width: 100%;
+
+    h2 {
+      margin-top: 55px;
+    }
   }
 
   .plp-content {
@@ -275,7 +279,7 @@ $productInfo__offset-top: 50px;
 .breadcrumbs {
   display: flex;
   position: absolute;
-  top: 0;
+  top: $indent__base;
   left: 260px;
   align-items: flex-end;
 
