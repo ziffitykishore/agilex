@@ -231,7 +231,21 @@
     }
 }
 
-.popup-stock-info .modal-inner-wrap {
-    width: 100%;
-    max-width: 700px;
+.popup-stock-info {
+    @include max-screen($screen__m) {
+        &.modal-popup {
+            left: 0;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+    }
+
+    .modal-inner-wrap {
+        width: 100%;
+        padding: $indent__m;
+
+        @include min-screen($screen__m) {
+            max-width: 600px;
+        }
+    }
 }
