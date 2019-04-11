@@ -542,10 +542,14 @@ body {
 
         button {
             width: 100%;
-            max-width: 180px;
+            margin-top: $indent__s;
 
-            &:not(:last-of-type) {
-                margin-right: $indent__s;
+            @include min-screen($screen__m) {
+                max-width: 180px;
+
+                &:not(:last-of-type) {
+                    margin-right: $indent__s;
+                }
             }
         }
     }
