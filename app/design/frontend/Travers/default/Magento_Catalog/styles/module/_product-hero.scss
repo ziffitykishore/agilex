@@ -160,8 +160,10 @@ $product-inventory-table--header__font-size--desktop: 16px;
     }
 
     .product-add-form .tocart {
-        max-width: 220px;
-        width: 100%;
+        @include min-screen($screen__m) {
+            max-width: 220px;
+            width: 100%;
+        }
     }
 
     .product-reviews-summary {
