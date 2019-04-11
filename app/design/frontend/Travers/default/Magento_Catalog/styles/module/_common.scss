@@ -329,11 +329,12 @@
 
     .special-price {
         display: block;
+        width: 100%;
         order: 2;
-        color: $c-red;
+        color: $text__color;
 
         .price-container {
-            font-size: 14px;
+            font-size: $font-size__base--desktop;
         }
 
         .price-label + .price-wrapper {
@@ -342,7 +343,15 @@
     }
 
     .old-price {
-        margin-right: $indent__s;
+        width: 100%;
+
+        .price-wrapper .price {
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: $font-size__base--desktop;
+            color: $c-nickel;
+            text-decoration: line-through;
+        }
     }
 
     .old-price,
