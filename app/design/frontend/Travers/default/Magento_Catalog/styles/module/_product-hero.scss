@@ -174,8 +174,29 @@
 }
 
 .product-inventory-table {
+    h2 {
+        text-align: center;
+    }
+
     &-desktop {
         display: none;
+
+        thead {
+            border-bottom: 2px solid $c-royal;
+
+            th {
+                font-size: 16px;
+                padding: $indent__xs;
+            }
+        }
+
+        tbody tr {
+            border-bottom: 1px solid $c-grey;
+
+            td {
+                padding: $indent__xs;
+            }
+        }
     }
 
     @include min-screen($screen__m) {
@@ -187,4 +208,9 @@
             display: block;
         }
     }
+}
+
+.popup-stock-info .modal-inner-wrap {
+    width: 100%;
+    max-width: 700px;
 }
