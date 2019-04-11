@@ -190,6 +190,10 @@ $product-inventory-table--header__font-size--desktop: 16px;
 }
 
 .product-inventory-table {
+    .no-inventory {
+       text-align: center;
+    }
+
     h2 {
         margin-top: 0;
         text-align: center;
