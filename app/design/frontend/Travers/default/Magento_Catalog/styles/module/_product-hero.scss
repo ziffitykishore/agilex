@@ -97,8 +97,17 @@ $product-inventory-table--header__font-size--desktop: 16px;
         .data.switch {
             font-family: $font-family__sans-serif;
             text-transform: uppercase;
-            background-color: $c-grey;
             font-size: 16px;
+
+            &::after {
+                font-size: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            @include min-screen($screen__m) {
+                background-color: $c-grey;
+            }
         }
     }
 
