@@ -20,6 +20,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
     &__info {
         display: flex;
         flex-wrap: wrap;
+        align-content: start;
         width: calc(100% - #{$width__product-related} - #{$indent__xl});
 
         @include max-screen($screen__l) {
