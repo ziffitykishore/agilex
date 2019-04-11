@@ -7,10 +7,12 @@
         <!-- ko ifnot: stockDataIsEmptyObservable -->
         <div class="product-inventory-table-mobile">
             <!-- ko foreach: { data: stockDataObservable(), as: 'element' } -->
-            <p><strong data-bind="i18n: 'SKU:'"></strong><span data-bind="text: element.sku"></p>
-            <p><strong data-bind="i18n: 'Warehouse:'"></strong><span data-bind="text: element.label"></p>
-            <p><strong data-bind="i18n: 'Status:'"></strong><span data-bind="text: element.in_stock"></p>
-            <p><strong data-bind="i18n: 'QTY:'"></strong><span data-bind="text: element.qty"></p>
+            <div class="inventory-table--row">
+                <p><strong data-bind="i18n: 'SKU:'"></strong><span data-bind="text: element.sku"></p>
+                <p><strong data-bind="i18n: 'Warehouse:'"></strong><span data-bind="text: element.label"></p>
+                <p><strong data-bind="i18n: 'Status:'"></strong><span data-bind="text: element.in_stock"></p>
+                <p><strong data-bind="i18n: 'Qty:'"></strong><span data-bind="text: element.qty"></p>
+            </div>
             <!-- /ko -->
         </div>
         <div class="product-inventory-table-desktop">

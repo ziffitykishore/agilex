@@ -176,6 +176,12 @@
 .product-inventory-table {
     h2 {
         text-align: center;
+        font-size: 24px;
+        margin-top: 0;
+
+        @include min-screen($screen__m) {
+            margin: $indent__l 0;
+        }
     }
 
     &-desktop {
@@ -196,6 +202,21 @@
             td {
                 padding: $indent__xs;
             }
+        }
+    }
+
+    &-mobile {
+        .inventory-table--row {
+            border-top: 1px solid $c-grey;
+            padding: $indent__xs;
+
+            &:last-of-type {
+                border-bottom: 1px solid $c-grey;
+            }
+        }
+
+        strong {
+            margin-right: $indent__xs;
         }
     }
 
