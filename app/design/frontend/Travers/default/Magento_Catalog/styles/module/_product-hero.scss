@@ -108,7 +108,7 @@
     }
 
     .percent-saved {
-        display: none;
+        display: none !important; // override JS
     }
 
     .as-low-as {
