@@ -218,6 +218,10 @@
         strong {
             margin-right: $indent__xs;
         }
+
+        p {
+            margin: 2px 0;
+        }
     }
 
     @include min-screen($screen__m) {
