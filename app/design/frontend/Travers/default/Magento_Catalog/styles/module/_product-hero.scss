@@ -143,6 +143,15 @@
                 font-weight: $font-weight__semibold;
             }
         }
+
+        .yotpo-display-wrapper {
+            position: absolute;
+        }
+
+        .yotpoBottomLine {
+            line-height: 1;
+            margin-bottom: $indent__xl;
+        }
     }
 
     .product-add-form .tocart {
