@@ -69,7 +69,7 @@
             font-size: $font-size__base;
             color: $c-cobalt;
             text-transform: none;
-            font-weight: $font-weight__regular;
+            font-weight: $font-weight__semibold;
             cursor: pointer;
         }
     }
@@ -129,6 +129,12 @@
 
     .product-info-stock-sku {
         margin-top: 20px;
+
+        span:not(.stock-info-popup-trigger) {
+            color: $c-nickel;
+            font-size: $font-size__base;
+            margin-right: $indent__xs;
+        }
 
         .product.sku {
             display: block;
