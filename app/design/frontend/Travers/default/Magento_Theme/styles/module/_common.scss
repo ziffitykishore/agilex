@@ -515,6 +515,10 @@ body {
 //  404 Page
 //  ---------------------------------------------
 
+.cms-no-route .page-title-wrapper {
+    display: none;
+}
+
 .page-not-found {
     display: flex;
     flex-direction: column;
