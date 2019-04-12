@@ -167,6 +167,7 @@ $_password-very-strong: #81b562 !default;
         .order-title {
             display: flex;
             flex-wrap: wrap;
+            width: 100%;
 
             h3 {
                 flex-basis: 100%;
@@ -257,6 +258,11 @@ $_password-very-strong: #81b562 !default;
 
     .actions-toolbar {
         clear: left;
+
+        .actions {
+            display: flex;
+            align-items: flex-end;
+        }
     }
 }
 

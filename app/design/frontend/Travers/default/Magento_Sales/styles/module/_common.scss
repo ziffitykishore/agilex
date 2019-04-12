@@ -9,14 +9,16 @@ $tab-control__active__background-color-mobile: $primary__color;
         strong {
             background: $tab-control__active__background-color;
             border: $border-width__base solid $border-color__base;
+            border-right: 0;
             display: block;
-            font-weight: $font-weight__regular;
+            font-weight: $font-weight__semibold;
             padding: 0 12px;
 
             @include max-screen($screen__l) {
                 background-color: $tab-control__active__background-color-mobile;
                 padding-left: 13px; 
                 color: $color-white;
+                font-size: $font-size__base--desktop;
             }
 
         }
@@ -25,8 +27,9 @@ $tab-control__active__background-color-mobile: $primary__color;
             background: $tab-control__background-color;
             color: $tab-control__color;
             border: $border-width__base solid $border-color__base;
+            border-right: 0;
             display: block;
-            font-weight: $font-weight__regular;
+            font-weight: $font-weight__semibold;
             padding: 0 20px;
             text-decoration: $tab-control__text-decoration;
 
@@ -62,7 +65,7 @@ $tab-control__active__background-color-mobile: $primary__color;
     }
 
     .product-item-name {
-        font-size: $h3__font-size;
+        font-size: 16px;
     }
 
     .items-qty {
@@ -107,6 +110,10 @@ $tab-control__active__background-color-mobile: $primary__color;
 
         tbody + tbody {
             border-top: $border-width__base solid $border-color__base;
+
+            .item.options {
+              margin-bottom: 0;
+            }
         }
 
         .name::before {
@@ -117,6 +124,11 @@ $tab-control__active__background-color-mobile: $primary__color;
 
         .sku {
             clear: both;
+        }
+
+        .grand_total {
+            font-weight: $font-weight__semibold;
+            font-size: $font-size__base--desktop;
         }
 
         .col {
@@ -174,6 +186,17 @@ $tab-control__active__background-color-mobile: $primary__color;
         @include min-screen($screen__m) {
             display: inline-block;
             vertical-align: middle; // ensure we're next to .order-status
+        }
+    }
+
+    .page-main .page-title-wrapper {
+        .negotiable-quote-order-information {
+            margin-top: 0;
+            margin-bottom: $indent__s;
+
+            .order-date {
+                font-size: $font-size__base--desktop;
+            }
         }
     }
 }
