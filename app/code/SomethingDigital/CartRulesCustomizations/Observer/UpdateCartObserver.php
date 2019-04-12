@@ -9,6 +9,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Checkout\Model\Cart;
 use Magento\Quote\Model\Quote\TotalsCollector;
 use Magento\Framework\Session\SessionManagerInterface;
+use Psr\Log\LoggerInterface;
 
 class UpdateCartObserver implements ObserverInterface
 {
@@ -21,13 +22,15 @@ class UpdateCartObserver implements ObserverInterface
         ProductRepositoryInterface $productRepository,
         Cart $cart,
         TotalsCollector $collector,
-        SessionManagerInterface $session
+        SessionManagerInterface $session,
+        LoggerInterface $logger
     ) {
         $this->freeGiftSku = $freeGiftSku;
         $this->productRepository = $productRepository;
         $this->cart = $cart;
         $this->collector = $collector;
         $this->session = $session;
+        $this->logger = $logger;
     }
 
     /**
@@ -68,7 +71,7 @@ class UpdateCartObserver implements ObserverInterface
                     $quoteItem->save();
                     $addedGift = true;
                 } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-                    
+                    $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
                 }
             }
         }
