@@ -206,12 +206,12 @@ $productInfo__offset-top: 50px;
 
   label {
     font-size: 14px;
-    margin-bottom: $indent__xs;
+    margin-bottom: 0;
   }
 
   input {
-    max-width: 45px;
-    height: 45px;
+    max-width: 50px;
+    height: 50px;
     text-align: center;
     font-weight: $font-weight__semibold;
     font-size: 16px;

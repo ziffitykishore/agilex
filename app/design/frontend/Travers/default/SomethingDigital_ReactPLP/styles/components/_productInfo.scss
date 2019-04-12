@@ -7,6 +7,12 @@
   max-width: 300px;
   background-color: $c-smoke;
 
+  ul li {
+    margin: 0;
+    padding: 2px 0;
+    color: $c-nickel;
+  }
+
   &-content {
     position: sticky;
     top: 50px;
@@ -15,6 +21,27 @@
     img {
       max-width: none;
       margin-top: 50px;
+    }
+  }
+
+  .pricing p,
+  .product-name {
+    font-weight: $font-weight__semibold;
+    font-size: 18px;
+    font-family: $font-family__sans-serif;
+    color: $c-aluminum;
+    text-transform: none;
+  }
+
+  .pricing {
+    .msrp {
+      font-weight: $font-weight__semibold;
+      text-transform: none;
+      font-family: $font-family__base;
+    }
+
+    p {
+      margin-top: 0;
     }
   }
 

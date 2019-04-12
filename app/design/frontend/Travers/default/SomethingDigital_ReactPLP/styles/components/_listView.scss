@@ -9,6 +9,10 @@
     }
   }
 
+  .product-sku {
+    margin-bottom: $indent__s;
+  }
+
   .pricing {
     .price,
     .as-low-as {
@@ -22,14 +26,29 @@
 
   .quantity-and-cart {
     justify-content: flex-end;
+    flex-wrap: wrap;
+
+    .message {
+      width: 100%;
+      margin-top: $indent__s;
+      background-color: transparent;
+      font-weight: $font-weight__bold;
+      text-align: right;
+      font-size: $font-size__base;
+      padding: 0;
+
+      a::before {
+        display: none;
+      }
+    }
   }
 
   .list-item {
-    padding-bottom: 30px;
-    padding-top: 30px;
-    border-bottom: 2px solid $c-grey;
+    padding-bottom: $indent__s;
+    padding-top: $indent__s;
+    border-bottom: 1px solid $c-grey;
 
-    @include min-screen($screen__m) {
+    @include min-screen($screen__l) {
       display: flex;
       align-items: center;
       justify-content: space-between;
