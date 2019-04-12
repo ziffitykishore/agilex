@@ -19,7 +19,7 @@ $productInfo__offset-top: 50px;
       &.productInfo-opened {
         .numHits-view-switcher .number-of-hits {
           position: absolute;
-          right: 300px;
+          right: 330px;
         }
       }
 
@@ -29,7 +29,7 @@ $productInfo__offset-top: 50px;
         display: flex;
 
         .number-of-hits {
-          right: 0;
+          right: 30px;
         }
       }
     }
@@ -240,6 +240,8 @@ $productInfo__offset-top: 50px;
 }
 
 .groups {
+  width: 100%;
+
   .table-view,
   .list-view {
     @include min-screen($screen__m) {
