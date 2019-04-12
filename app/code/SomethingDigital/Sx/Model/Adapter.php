@@ -79,7 +79,7 @@ abstract class Adapter
     {
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
-        $curl->setTimeout(45);
+        $curl->setTimeout(20);
         $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
         $curl->addHeader('Cache-Control', 'no-cache');
         $curl->addHeader('Content-Type', 'application/x-www-form-urlencoded');
