@@ -42,7 +42,7 @@ class InstallData implements InstallDataInterface
                 'required'     => false,
                 'visible'      => true,
                 'user_defined' => false,
-                'position'     => 999,
+                'position'     => 998,
                 'system'       => 0,
             ]
         );
