@@ -224,6 +224,12 @@ $requisition-print__font-size-m: 1.4rem !default;
 }
 
 .requisition-grid {
+    @include min-screen($screen__l) {
+        tr {
+            border-bottom: 1px solid $c-silver;
+        }
+    }
+
     .col {
         padding-top: $indent__base;
 
@@ -445,6 +451,8 @@ $requisition-print__font-size-m: 1.4rem !default;
 
                 &.subtotal .actions-toolbar {
                     text-align: left;
+                    z-index: 2;
+                    margin-top: $indent__s;
                 }
 
                 &.product {
@@ -809,8 +817,8 @@ $requisition-print__font-size-m: 1.4rem !default;
         .actions-toolbar {
             position: relative;
 
-            > .action-delete {
-                margin-left: 2rem;
+            > .action-edit {
+                margin-right: $indent__s;
             }
         }
 
