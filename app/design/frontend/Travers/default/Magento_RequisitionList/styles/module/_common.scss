@@ -198,9 +198,13 @@ $requisition-print__font-size-m: 1.4rem !default;
 }
 
 .data-grid-wrap {
+    th {
+        padding-bottom: $indent__xs;
+    }
+
     .list-name-field {
         .cell-label-line-name {
-            @include bryant-park-headings-h5;
+            @include bryant-park-headings-h3;
             margin-top: 0;
             margin-bottom: 0;
             text-transform: capitalize;
@@ -312,18 +316,21 @@ $requisition-print__font-size-m: 1.4rem !default;
 
 .requisition-view-links {
     @include lib-clearfix();
-    padding-top: $indent__s;
     margin-bottom: $indent__s;
     clear: both;
 
     .print {
-        float: right;
-        padding-left: $indent__m;
+        padding-left: 0;
         padding-right: 0;
     }
 
     .requisition-toolbar-select {
         float: left;
+    }
+
+    @include min-screen($screen__l) {
+        position: absolute;
+        right: 0;
     }
 }
 
@@ -345,10 +352,24 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
     }
 
+    .requisition-toolbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @include min-screen($screen__l) {
+            flex-direction: row;
+        }
+    }
+
     .requisition-toolbar-select,
     .requisition-toolbar-actions {
         display: inline-block;
         vertical-align: bottom;
+
+        .mobile-label {
+            display: none;
+        }
     }
 
     .requisition-toolbar-select {
@@ -715,7 +736,9 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-info {
-            float: left;
+            @include min-screen($screen__l) {
+                float: left;
+            }
         }
     }
 
@@ -947,7 +970,6 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-info {
-            float: left;
             margin-bottom: 1.5rem;
         }
 
@@ -963,7 +985,12 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-toolbar-actions {
-            display: block;
+            display: flex;
+            align-items: baseline;
+
+            .mobile-label {
+                display: none;
+            }
 
             button {
                 &.action {
