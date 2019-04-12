@@ -3,4 +3,7 @@
     <event name="sales_quote_collect_totals_after">
         <observer name="SomethingDigital_UpdateCart" instance="SomethingDigital\CartRulesCustomizations\Observer\UpdateCartObserver" />
     </event>
+    <event name="checkout_cart_update_items_before">
+        <observer name="SomethingDigital_CheckIfGiftBeforeUpdate" instance="SomethingDigital\CartRulesCustomizations\Observer\CheckIfGiftBeforeUpdate" />
+    </event>
 </config>
