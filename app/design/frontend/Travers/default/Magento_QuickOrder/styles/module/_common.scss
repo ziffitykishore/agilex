@@ -49,12 +49,31 @@ $order-product-bg__color: $color-gray94;
             .fieldset {
                 .fields {
                     .actions-toolbar {
-                        display: inline-block;
+                        display: none;
                         margin-bottom: $indent__s;
                         margin-left: $indent__xs;
                         position: relative;
                         top: .3rem;
                         vertical-align: top;
+                    }
+
+                    .field.required {
+                        margin-top: 0;
+
+                        &.qty {
+                            display: flex;
+                            flex-direction: column;
+
+                            @include min-screen($screen__m) {
+                                label {
+                                    transform: translateX(-$indent__s);
+                                }
+                            }
+
+                            .control {
+                                margin-top: 0;
+                            }
+                        }
                     }
                 }
             }
