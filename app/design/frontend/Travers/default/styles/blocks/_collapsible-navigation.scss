@@ -1,0 +1,158 @@
+//
+//  Variables
+//  _____________________________________________
+
+$collapsible-nav-background: $color-white !default;
+$collapsible-nav-color: $link__color !default;
+$collapsible-nav-current-border: 2px solid transparent !default;
+$collapsible-nav-current-border-color: $link__hover__color !default;
+$collapsible-nav-current-color: $collapsible-nav-color !default;
+$collapsible-nav-current-font-weight: $font-weight__bold !default;
+$collapsible-nav-delimiter__border-color: $color-gray82 !default;
+$collapsible-nav-item-hover: transparent !default;
+$collapsible-nav-box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.35) !default;
+
+//
+//  Common
+//  _____________________________________________
+
+//
+//  Collapsible navigation
+//  -----------------------------------------
+
+.block-collapsible-nav {
+    background-color: $collapsible-nav-background;
+    box-sizing: border-box;
+
+    .heading {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+}
+
+.block-collapsible-nav-content {
+    padding: 15px 0;
+
+    @include max-screen($screen__m) {
+        box-shadow: $collapsible-nav-box-shadow;
+    }
+
+    .item {
+        margin: 3px 0 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        a,
+        > strong {
+            border-left: 3px solid transparent;
+            display: block;
+            padding: 8px 18px 8px 15px;
+            font-weight: $collapsible-nav-current-font-weight;
+        }
+
+        a {
+            text-decoration: none;
+
+            @include hover {
+              background-color: $collapsible-nav-item-hover;
+            }
+        }
+
+        &.current {
+            a,
+            > strong {
+              border-color: $collapsible-nav-current-border-color;
+              font-weight: $collapsible-nav-current-font-weight;
+            }
+
+            a {
+              border-color: $collapsible-nav-current-border-color;
+            }
+        }
+
+        .delimiter {
+            border-top: 1px solid $collapsible-nav-delimiter__border-color;
+            display: block;
+            margin: $indent__s 1.8rem;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@include max-screen($screen__m) {
+    .block-collapsible-nav {
+        left: 0;
+        position: absolute;
+        top: -$indent__base; // same amount as page-header
+        width: 100%;
+        z-index: 10;
+
+        .heading {
+            padding: 0 $indent__base;
+            border-bottom: $border-width__base solid $border-color__base;
+        }
+    }
+
+    .block.block-collapsible-nav .block-collapsible-nav-title {
+        position: relative;
+        width: 100%;
+        padding: 0;
+        font-family: $font-family__base;
+        text-align: left;
+        text-transform: none;
+        color: inherit;
+        background-color: transparent;
+        padding: $layout__width-xs-indent 0;
+        border: 0; // reset border
+        margin-bottom: 0;
+        font-size: 16px;
+        display: block;
+        @include icon-svg(
+            $icon     : expand,
+            $fill     : $secondary__color,
+            $width    : 15px,
+            $height   : auto,
+            $pseudo   : after
+        );
+
+        &::after {
+            @include vertically-center($position: absolute);
+            right: 0;
+        }
+
+        &[aria-expanded="true"] {
+            @include icon-svg(
+                $icon     : collapse,
+                $fill     : $secondary__color,
+                $width    : 15px,
+                $height   : auto,
+                $pseudo   : after
+            );
+        }
+    }
+
+    .block-collapsible-nav-content {
+        border-bottom: $border-width__base solid $border-color__base;
+
+        hidden {
+            display: none;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .block-collapsible-nav {
+        .title {
+            @include lib-visually-hidden;
+        }
+    }
+}
