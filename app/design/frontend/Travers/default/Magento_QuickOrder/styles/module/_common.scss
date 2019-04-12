@@ -32,15 +32,6 @@ $order-product-bg__color: $color-gray94;
                     );
                 }
 
-                &:active,
-                &:not(:focus) {
-                    box-shadow: none;
-                }
-
-                &:focus {
-                    box-shadow: $focus__box-shadow;
-                }
-
                 &.add {
                     display: none;
                 }
@@ -90,6 +81,11 @@ $order-product-bg__color: $color-gray94;
 
             .box-upload {
                 margin-bottom: $indent__l*2;
+
+                button,
+                .file-upload {
+                    @include button--type(secondary);
+                }
             }
 
             .deletable-item {
@@ -132,12 +128,6 @@ $order-product-bg__color: $color-gray94;
             position: absolute;
             top: 0;
             width: 100%;
-        }
-
-        .file-upload {
-            @include lib-button();
-            border-radius: $button__border-radius;
-            text-align: center;
         }
     }
 
