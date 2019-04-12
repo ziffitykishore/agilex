@@ -1,4 +1,5 @@
 $productInfo__offset-top: 50px;
+$sidebar__max-width: 250px;
 
 .left-panel {
   width: 20%;
@@ -8,6 +9,10 @@ $productInfo__offset-top: 50px;
   @include min-screen($screen__m) {
     padding: 0 $indent__l;
     width: 100%;
+
+    h2 {
+      margin-top: 55px;
+    }
   }
 
   .plp-content {
@@ -270,4 +275,50 @@ $productInfo__offset-top: 50px;
   h4 {
     font-size: 16px;
   }
+}
+
+.breadcrumbs {
+  display: flex;
+  position: absolute;
+  top: $indent__base;
+  align-items: flex-end;
+  padding-left: 0;
+
+  button,
+  span {
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    text-transform: none;
+    font-weight: $font-weight__regular;
+    font-family: $font-family__base;
+    font-size: $font-size__base;
+    padding-left: $indent__xs;
+  }
+
+  button {
+    color: $c-cobalt;
+
+    &::after {
+      content: "/";
+      padding-left: $indent__xs;
+      color: $text__color;
+    }
+
+    @include hover {
+      color: $text__color;
+    }
+  }
+}
+
+.catland-sibling-categories,
+.products-sidebar {
+  @include min-screen($screen__m) {
+    width: 100%;
+    max-width: $sidebar__max-width;
+  }
+}
+
+.product-landing-page .breadcrumbs {
+  left: $sidebar__max-width + 30px;
 }
