@@ -56,7 +56,7 @@ class UpdateCartObserver implements ObserverInterface
         }
         $addedGift = false;
         foreach ($this->freeGiftSku->skus as $giftSku) {
-            if (!in_array($giftSku, $skusInCart)) {
+            if (!in_array($giftSku, $skusInCart) && !in_array($giftSku, $this->session->getRemovedGifts())) {
                 try {
                     $product = $this->productRepository->get($giftSku);
                     $quoteItem = $quote->addProduct($product, 1);

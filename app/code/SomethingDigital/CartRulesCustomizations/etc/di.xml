@@ -3,4 +3,7 @@
     <type name="Magento\SalesRule\Model\RulesApplier">
         <plugin name="SomethingDigital_ApplyRules" type="SomethingDigital\CartRulesCustomizations\Plugin\AddRules" />
     </type>
+    <type name="Magento\Checkout\Controller\Cart\CouponPost">
+        <plugin name="SomethingDigital_CouponPost" type="SomethingDigital\CartRulesCustomizations\Plugin\ClearRemovedGifts" />
+    </type>
 </config>
