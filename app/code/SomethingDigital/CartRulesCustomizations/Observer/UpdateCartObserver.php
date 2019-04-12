@@ -6,22 +6,28 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use SomethingDigital\CartRulesCustomizations\Model\FreeGiftSku;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Checkout\Model\Cart;
 use Magento\Quote\Model\Quote\TotalsCollector;
-
+use Magento\Framework\Session\SessionManagerInterface;
 
 class UpdateCartObserver implements ObserverInterface
 {
     protected $freeGiftSku;
     protected $productRepository;
+    protected $cart;
 
     public function __construct(
         FreeGiftSku $freeGiftSku,
         ProductRepositoryInterface $productRepository,
-        TotalsCollector $collector
+        Cart $cart,
+        TotalsCollector $collector,
+        SessionManagerInterface $session
     ) {
         $this->freeGiftSku = $freeGiftSku;
         $this->productRepository = $productRepository;
+        $this->cart = $cart;
         $this->collector = $collector;
+        $this->session = $session;
     }
 
     /**
@@ -32,6 +38,19 @@ class UpdateCartObserver implements ObserverInterface
     {
         $quote = $observer->getEvent()->getQuote();
         $skusInCart = [];
+        foreach ($quote->getAllVisibleItems() as $item) {
+            $skusInCart[] = $item->getSku();
+            $options = $item->getOptions();
+            if ($options) {
+                foreach ($options as $option) {
+                    if ($option->getCode() == 'free_gift' && $option->getValue() == 1) {
+                        if (!in_array($item->getSku(), $this->freeGiftSku->skus)) {
+                            $this->cart->removeItem($item->getId())->save();
+                        }
+                    }
+                }
+            }
+        }
         $addedGift = false;
         foreach ($this->freeGiftSku->skus as $giftSku) {
             if (!in_array($giftSku, $skusInCart)) {
