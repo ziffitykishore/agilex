@@ -49,6 +49,18 @@ function magentostat_check_elasticsearch {
         # We're assuming not Solr here.
         echo -n "Catalog filter backend: Elasticsearch "
         curl -s "http://$SEARCH_CONNECTION" | grep number | awk -F'"' '{ print $4; }'
+
+        # Output index status if any are not green.
+        ESINDEXSTATUS="`curl -s "http://$SEARCH_CONNECTION/_cat/indices?v"`"
+        if echo "$ESINDEXSTATUS" | grep -qE -e '^red' -e '^yellow'; then
+            echo "$ESINDEXSTATUS" | grep -C100 --color=auto -e red -e yellow
+        fi
+
+        # Check for duplicate Elasticsearch indexes, caused by reindex crashing.
+        # This can cause weird errors on the frontend.
+        if hash gawk; then
+            echo "$ESINDEXSTATUS" | gawk 'match($3, /^(.+_[0-9]+)_v([0-9]+)$/, data) { if (data[1] in versions) { print "Duplicate version: " data[1] "_v" data[2]; } versions[data[1]] = data[2]; }' | grep --color=auto 'Duplicate version:'
+        fi
     fi
 }
 
