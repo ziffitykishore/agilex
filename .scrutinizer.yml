@@ -11,7 +11,12 @@ build:
     dependencies:
         after:
             - if [ -e vendor/bin/ece-tools ]; then vendor/bin/ece-tools patch; fi
-            - php bin/magento setup:di:compile
+            - |
+                curl https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz | tar xvz ioncube/ioncube_loader_lin_7.1_ts.so
+                cp ioncube/ioncube_loader_lin_7.1_ts.so `php -r 'echo ini_get("extension_dir");'`/ioncube-loader.so
+                cp `php -r 'echo php_ini_loaded_file();'` `php -r 'echo php_ini_loaded_file();'`~
+                (echo 'zend_extension=ioncube-loader.so' && cat `php -r 'echo php_ini_loaded_file();'`~) > `php -r 'echo php_ini_loaded_file();'`
+            - if grep -q scopes app/etc/config.php; then php bin/magento setup:di:compile; fi
     environment:
         php:
             version: '7.1'
