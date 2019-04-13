@@ -11,6 +11,7 @@ build:
     dependencies:
         after:
             - if [ -e vendor/bin/ece-tools ]; then vendor/bin/ece-tools patch; fi
+            - php bin/magento setup:di:compile
     environment:
         php:
             version: '7.1'
@@ -34,6 +35,9 @@ filter:
         - 'dev/tests/integration/testsuite/Magento/*'
         - 'dev/tests/integration/framework/Magento/*'
         - 'dev/tests/integration/_files/Magento/*'
+        - 'dev/tests/setup-integration/framework/Magento/*'
+        - 'dev/tests/setup-integration/testsuite/Magento/*'
+        - 'dev/tests/setup-integration/_files/Magento/*'
         - 'dev/tests/js/JsTestDriver/*'
         - 'dev/tests/js/jasmine/tests/lib/*'
         - 'dev/tests/js/jasmine/tests/app/code/Magento/*'
@@ -45,6 +49,8 @@ filter:
         - dev/tests/static/get_github_changes.php
         - 'dev/tests/unit/framework/*'
         - dev/tests/acceptance/RoboFile.php
+        - dev/tests/setup-integration/framework/bootstrap.php
+        - dev/tests/setup-integration/framework/removeTestModules.php
         - 'dev/tools/*'
         - magento-vars.php
         - '*.min.js'
@@ -83,6 +89,7 @@ filter:
         - 'app/code/Unirgy/*'
         - 'app/code/Wyomind/*'
         - 'app/code/Xtento/*'
+        - 'generated/code/*'
  
 checks:
     php:
