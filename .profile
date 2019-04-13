@@ -127,7 +127,7 @@ function magentostat_check_fpc {
 
 function magentostat_check_cron {
     # On Cloud, this happens most commonly when a deploy fails and someone manually fixes setup:upgrade.
-    CRONSTATUS="`$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); if (empty($config["cron"]["enabled"])) { echo "Disabled"; }'`"
+    CRONSTATUS="`$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); if (isset($config["cron"]["enabled"]) && $config["cron"]["enabled"] == false) { echo "Disabled"; }'`"
     if [ "$CRONSTATUS" != "" ]; then
         echo "⏲️ Cron is currently $CRONSTATUS" | grep --color=auto Disabled
     fi
