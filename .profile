@@ -11,7 +11,8 @@ fi
 export PATH="$MAGENTO_ROOT/bin:$PATH"
 
 function magentodb {
-    `$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); $db = $config["db"]["connection"]["default"]; echo "mysql -h$db[host] -u$db[username] $db[dbname]"; if ($db["password"]) { echo " -p" . $db["password"]; }'` "$@"
+    # This also handles port being in the hostname, which happens sometimes.
+    `$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); $db = $config["db"]["connection"]["default"]; $port = 3306; if (strpos($db["host"], ":") !== false) { list ($db["host"], $port) = explode(":", $db["host"]); } echo "mysql -h$db[host] -u$db[username] $db[dbname]"; if ($db["password"]) { echo " -p" . $db["password"]; }'` "$@"
 }
 
 function magentostat_check_deploy {
