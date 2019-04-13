@@ -44,7 +44,7 @@ class Processor
         $fullPath = $area . '/' . $theme;
         $theme = $this->collectionFactory->create()->getThemeByFullPath($fullPath);
         if (!$theme->getId()) {
-            throw new NotFoundException('Could not find theme: ' . $path);
+            throw new NotFoundException('Could not find theme: ' . $fullPath);
         }
         return $theme;
     }
