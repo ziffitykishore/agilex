@@ -3,23 +3,29 @@
 namespace SomethingDigital\BryantPark\Helper;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context as HelperContext;
+use Magento\Framework\View\Asset\Repository as AssetRepository;
  
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+class Data extends AbstractHelper
 {
+    protected $assetRepo;
+    protected $directoryList;
+
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\View\Asset\Repository $assetRepository,
+        HelperContext $context,
+        AssetRepository $assetRepository,
         DirectoryList $directoryList
     ) {
         parent::__construct($context);
-        $this->_assetRepo = $assetRepository;
-        $this->_directoryList = $directoryList;
+        $this->assetRepo = $assetRepository;
+        $this->directoryList = $directoryList;
     }
 
     public function getStaticPath($svg)
     {
-        return $this->_directoryList->getPath(DirectoryList::STATIC_VIEW) . '/' . 
-            $this->_assetRepo->getStaticViewFileContext()->getPath() . '/' . 
+        return $this->directoryList->getPath(DirectoryList::STATIC_VIEW) . '/' . 
+            $this->assetRepo->getStaticViewFileContext()->getPath() . '/' . 
             $svg;
     }
 }
