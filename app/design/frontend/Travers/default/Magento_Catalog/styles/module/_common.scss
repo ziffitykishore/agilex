@@ -329,11 +329,12 @@
 
     .special-price {
         display: block;
+        width: 100%;
         order: 2;
-        color: $c-red;
+        color: $text__color;
 
         .price-container {
-            font-size: 14px;
+            font-size: $font-size__base--desktop;
         }
 
         .price-label + .price-wrapper {
@@ -342,7 +343,15 @@
     }
 
     .old-price {
-        margin-right: $indent__s;
+        width: 100%;
+
+        .price-wrapper .price {
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: $font-size__base--desktop;
+            color: $c-nickel;
+            text-decoration: line-through;
+        }
     }
 
     .old-price,
@@ -367,7 +376,6 @@
         margin: $indent__base 0;
 
         .field.qty {
-            margin-bottom: $indent__base;
             padding-right: 0.75 * $indent__base;
         }
 
@@ -376,7 +384,7 @@
             height: $tocart-input-size + 2px;
             text-align: center;
             width: $tocart-input-size + 2px;
-            margin-top: $indent__s;
+            margin-top: $indent__xs;
         }
     }
 
@@ -400,7 +408,8 @@
     margin: $indent__s 0;
     padding: $indent__s (0.75 * $indent__base);
     padding-left: 0; // left align with column data
-    width: auto;
+    width: 100%;
+    max-width: 600px;
 
     tr {
         &:first-of-type {
@@ -458,6 +467,34 @@
 .block.related {
     .action.select {
         margin: 0 $indent__xs;
+    }
+
+    .block-title h3 {
+        font-weight: $font-weight__semibold;
+        margin-bottom: 0;
+    }
+
+    .product {
+        &-item {
+            &-name {
+                margin-bottom: $indent__s;
+            }
+
+            &-link {
+                color: $text__color;
+                text-decoration: none;
+                font-size: $font-size__base--desktop;
+
+                @include hover {
+                    color: $c-cobalt;
+                    text-decoration: none;
+                }
+            }
+
+            .price {
+                font-size: 16px;
+            }
+        }
     }
 }
 
@@ -643,6 +680,7 @@
 }
 
 .product__zoom-button {
+    display: none;
     position: relative;
     margin-bottom: 5px;
     padding-left: 25px;

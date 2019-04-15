@@ -2,7 +2,7 @@
     <div class="product-inventory-table">
         <h2 data-bind="i18n: 'Check Warehouse Stock Availability'"></h2>
         <!-- ko if: stockDataIsEmptyObservable -->
-        <p data-bind="i18n: 'There are no available items'"></p>
+        <p class="no-inventory" data-bind="i18n: 'There are no available items'"></p>
         <!-- /ko -->
         <!-- ko ifnot: stockDataIsEmptyObservable -->
         <div class="product-inventory-table__mobile">

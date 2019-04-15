@@ -20,7 +20,8 @@ $product-inventory-table--header__font-size--desktop: 16px;
     &__info {
         display: flex;
         flex-wrap: wrap;
-        width: calc(100% - #{$width__product-related} - #{$indent__base});
+        align-content: start;
+        width: calc(100% - #{$width__product-related} - #{$indent__xl});
 
         @include max-screen($screen__l) {
             width: 100%;
@@ -53,7 +54,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
         width: 100%;
 
         @include min-screen($screen__m) {
-            width: calc(100% - #{$width__product-info} - #{$indent__base});
+            width: calc(100% - #{$width__product-info} - #{$indent__xl});
         }
     }
 
@@ -66,7 +67,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
 
         @include min-screen($screen__m) {
             width: $width__product-info;
-            margin-left: $indent__base;
+            margin-left: $indent__xl;
         }
 
         .stock-info-popup-trigger {
@@ -96,8 +97,17 @@ $product-inventory-table--header__font-size--desktop: 16px;
         .data.switch {
             font-family: $font-family__sans-serif;
             text-transform: uppercase;
-            background-color: $c-grey;
             font-size: 16px;
+
+            &::after {
+                font-size: 16px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            @include min-screen($screen__m) {
+                background-color: $c-grey;
+            }
         }
     }
 
@@ -159,8 +169,10 @@ $product-inventory-table--header__font-size--desktop: 16px;
     }
 
     .product-add-form .tocart {
-        max-width: 220px;
-        width: 100%;
+        @include min-screen($screen__m) {
+            max-width: 220px;
+            width: 100%;
+        }
     }
 
     .product-reviews-summary {
@@ -178,6 +190,10 @@ $product-inventory-table--header__font-size--desktop: 16px;
 }
 
 .product-inventory-table {
+    .no-inventory {
+       text-align: center;
+    }
+
     h2 {
         margin-top: 0;
         text-align: center;

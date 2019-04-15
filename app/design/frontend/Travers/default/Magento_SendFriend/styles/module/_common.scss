@@ -1,0 +1,58 @@
+.form.send.friend {
+    @extend .abs-add-fields;
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .form.send.friend {
+        @extend .abs-add-fields-desktop;
+    }
+}
+
+.link-sharing {
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+
+    li {
+        margin: 0;
+
+        &:not(:last-child) {
+            margin-right: $indent__s;
+
+            @include min-screen($screen__m) {
+                margin-right: $indent__xs;
+            }
+        }
+    }
+
+    svg {
+        height: 25px;
+        width: 25px;
+
+        margin-right: $indent__s;
+
+        * {
+            fill: $c-royal;
+        }
+    }
+
+    a {
+        display: block;
+
+        @include hover {
+            svg * {
+                fill: $link__hover__color;
+            }
+        }
+    }
+
+    &--email {
+        svg {
+            width: 22px;
+        }
+    }
+}

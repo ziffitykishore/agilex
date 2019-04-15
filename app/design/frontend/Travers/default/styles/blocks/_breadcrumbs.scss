@@ -34,6 +34,7 @@ $font-size__base--desktop: $font-size__base !default;
 
     .items {
         line-height: 1.8;
+        margin-top: $indent__s;
 
         .item {
             strong,
