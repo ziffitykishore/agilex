@@ -5,6 +5,10 @@
         <div class="block related">...</div>
     </div>
 */
+
+$product-inventory-table--header__font-size: 24px;
+$product-inventory-table--header__font-size--desktop: 16px;
+
 .product-hero {
     display: flex;
     flex-wrap: wrap;
@@ -177,7 +181,7 @@
     h2 {
         margin-top: 0;
         text-align: center;
-        font-size: 24px;
+        font-size: $product-inventory-table--header__font-size;
 
         @include min-screen($screen__m) {
             margin: $indent__l 0;
@@ -192,7 +196,7 @@
 
             th {
                 padding: $indent__xs;
-                font-size: 16px;
+                font-size: $product-inventory-table--header__font-size--desktop;
             }
         }
 
