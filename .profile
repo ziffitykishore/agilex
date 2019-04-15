@@ -11,7 +11,8 @@ fi
 export PATH="$MAGENTO_ROOT/bin:$PATH"
 
 function magentodb {
-    `$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); $db = $config["db"]["connection"]["default"]; echo "mysql -h$db[host] -u$db[username] $db[dbname]"; if ($db["password"]) { echo " -p" . $db["password"]; }'` "$@"
+    # This also handles port being in the hostname, which happens sometimes.
+    `$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); $db = $config["db"]["connection"]["default"]; $port = 3306; if (strpos($db["host"], ":") !== false) { list ($db["host"], $port) = explode(":", $db["host"]); } echo "mysql -h$db[host] -u$db[username] $db[dbname]"; if ($db["password"]) { echo " -p" . $db["password"]; }'` "$@"
 }
 
 function magentostat_check_deploy {
@@ -48,6 +49,18 @@ function magentostat_check_elasticsearch {
         # We're assuming not Solr here.
         echo -n "Catalog filter backend: Elasticsearch "
         curl -s "http://$SEARCH_CONNECTION" | grep number | awk -F'"' '{ print $4; }'
+
+        # Output index status if any are not green.
+        ESINDEXSTATUS="`curl -s "http://$SEARCH_CONNECTION/_cat/indices?v"`"
+        if echo "$ESINDEXSTATUS" | grep -qE -e '^red' -e '^yellow'; then
+            echo "$ESINDEXSTATUS" | grep -C100 --color=auto -e red -e yellow
+        fi
+
+        # Check for duplicate Elasticsearch indexes, caused by reindex crashing.
+        # This can cause weird errors on the frontend.
+        if hash gawk; then
+            echo "$ESINDEXSTATUS" | gawk 'match($3, /^(.+_[0-9]+)_v([0-9]+)$/, data) { if (data[1] in versions) { print "Duplicate version: " data[1] "_v" data[2]; } versions[data[1]] = data[2]; }' | grep --color=auto 'Duplicate version:'
+        fi
     fi
 }
 
@@ -114,7 +127,7 @@ function magentostat_check_fpc {
 
 function magentostat_check_cron {
     # On Cloud, this happens most commonly when a deploy fails and someone manually fixes setup:upgrade.
-    CRONSTATUS="`$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); if (empty($config["cron"]["enabled"])) { echo "Disabled"; }'`"
+    CRONSTATUS="`$PHP -r '$config = require(getenv("MAGENTO_ROOT") . "/app/etc/env.php"); if (isset($config["cron"]["enabled"]) && $config["cron"]["enabled"] == false) { echo "Disabled"; }'`"
     if [ "$CRONSTATUS" != "" ]; then
         echo "⏲️ Cron is currently $CRONSTATUS" | grep --color=auto Disabled
     fi

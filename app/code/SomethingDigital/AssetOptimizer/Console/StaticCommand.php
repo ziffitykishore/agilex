@@ -55,14 +55,15 @@ class StaticCommand extends Command
             return 1;
         }
 
-        $this->state->setAreaCode($input->getOption('area'));
-        $this->objectManager->configure($this->configLoader->load($input->getOption('area')));
+        $area = (string) $input->getOption('area');
+        $this->state->setAreaCode($area);
+        $this->objectManager->configure($this->configLoader->load($area));
 
         foreach ($input->getArgument('theme') as $theme) {
             $params = [
-                'area' => $input->getOption('area'),
+                'area' => $area,
                 'theme' => $theme,
-                'locale' => $input->getOption('locale'),
+                'locale' => (string) $input->getOption('locale'),
                 'requirejs-only' => $input->getOption('requirejs-only'),
                 'https' => true,
             ];
