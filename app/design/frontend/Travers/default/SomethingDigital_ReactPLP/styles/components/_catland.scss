@@ -127,14 +127,18 @@
   .catland-subcategories {
     width: 100%;
 
+    h1 {
+      margin-top: $indent__m;
+    }
+
     @include min-screen($screen__m) {
       width: 70%;
       padding-left: 50px;
       overflow-x: hidden;
-    }
 
-    h1 {
-      margin-top: 55px;
+      h1 {
+        margin-top: 55px;
+      }
     }
 
     .ais-Hits-list {

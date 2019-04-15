@@ -51,6 +51,10 @@ $sidebar__max-width: 250px;
   }
 }
 
+.description {
+  margin-bottom: $indent__m;
+}
+
 .description__mobile {
   display: none;
 }
@@ -69,6 +73,10 @@ $sidebar__max-width: 250px;
     &.description .description__desktop {
       display: block;
     }
+  }
+
+  .description__mobile {
+    display: none;
   }
 }
 
@@ -296,9 +304,12 @@ $sidebar__max-width: 250px;
     font-weight: $font-weight__regular;
     font-family: $font-family__base;
     font-size: $font-size__base;
-    padding-left: $indent__xs;
     width: auto;
     vertical-align: baseline;
+
+    &:not(:first-of-type) {
+      padding-left: $indent__xs;
+    }
   }
 
   button {
