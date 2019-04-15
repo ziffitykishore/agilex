@@ -42,6 +42,9 @@
 
     .message {
       width: 100%;
+      max-width: 250px;
+      flex-basis: 100%;
+      order: 1;
       margin-top: $indent__s;
       background-color: transparent;
       font-weight: $font-weight__bold;

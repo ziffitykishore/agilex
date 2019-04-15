@@ -240,8 +240,21 @@ $sidebar__max-width: 250px;
 
 .quantity-and-cart {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-end;
   padding-right: $indent__m;
+
+  @include max-screen($screen__m) {
+    .add-to-cart {
+      max-width: 150px;
+    }
+
+    .quantity-input {
+      order: 0;
+      margin-left: 0;
+      margin-right: $indent__s;
+    }
+  }
 }
 
 .groups,
