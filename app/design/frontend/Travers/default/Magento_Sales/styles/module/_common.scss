@@ -1,5 +1,6 @@
 // TODO: move to lib-data-tabs()
 $tab-control__active__background-color-mobile: $primary__color;
+$product-item-name__font-size: 16px;
 
 .order-links {
     .item {
@@ -7,10 +8,10 @@ $tab-control__active__background-color-mobile: $primary__color;
         margin: 0 0 -1px;
 
         strong {
+            display: block;
             background: $tab-control__active__background-color;
             border: $border-width__base solid $border-color__base;
             border-right: 0;
-            display: block;
             font-weight: $font-weight__semibold;
             padding: 0 12px;
 
@@ -24,11 +25,11 @@ $tab-control__active__background-color-mobile: $primary__color;
         }
 
         a {
+            display: block;
             background: $tab-control__background-color;
             color: $tab-control__color;
             border: $border-width__base solid $border-color__base;
             border-right: 0;
-            display: block;
             font-weight: $font-weight__semibold;
             padding: 0 20px;
             text-decoration: $tab-control__text-decoration;
@@ -65,7 +66,7 @@ $tab-control__active__background-color-mobile: $primary__color;
     }
 
     .product-item-name {
-        font-size: 16px;
+        font-size: $product-item-name__font-size;
     }
 
     .items-qty {
@@ -112,7 +113,7 @@ $tab-control__active__background-color-mobile: $primary__color;
             border-top: $border-width__base solid $border-color__base;
 
             .item.options {
-              margin-bottom: 0;
+                margin-bottom: 0;
             }
         }
 

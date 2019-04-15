@@ -450,9 +450,9 @@ $requisition-print__font-size-m: 1.4rem !default;
                 }
 
                 &.subtotal .actions-toolbar {
-                    text-align: left;
-                    z-index: 2;
                     margin-top: $indent__s;
+                    z-index: 2;
+                    text-align: left;
                 }
 
                 &.product {
