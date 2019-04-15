@@ -5,6 +5,10 @@
         <div class="block related">...</div>
     </div>
 */
+
+$product-inventory-table--header__font-size: 24px;
+$product-inventory-table--header__font-size--desktop: 16px;
+
 .product-hero {
     display: flex;
     flex-wrap: wrap;
@@ -69,7 +73,7 @@
             font-size: $font-size__base;
             color: $c-cobalt;
             text-transform: none;
-            font-weight: $font-weight__regular;
+            font-weight: $font-weight__semibold;
             cursor: pointer;
         }
     }
@@ -108,7 +112,7 @@
     }
 
     .percent-saved {
-        display: none;
+        display: none !important; // override JS
     }
 
     .as-low-as {
@@ -130,12 +134,27 @@
     .product-info-stock-sku {
         margin-top: 20px;
 
+        span:not(.stock-info-popup-trigger) {
+            margin-right: $indent__xs;
+            color: $c-nickel;
+            font-size: $font-size__base;
+        }
+
         .product.sku {
             display: block;
 
             .value {
                 font-weight: $font-weight__semibold;
             }
+        }
+
+        .yotpo-display-wrapper {
+            position: absolute;
+        }
+
+        .yotpoBottomLine {
+            margin-bottom: $indent__xl;
+            line-height: 1;
         }
     }
 
@@ -155,5 +174,86 @@
 
     .fotorama__thumb-border {
         border: 2px solid $c-royal;
+    }
+}
+
+.product-inventory-table {
+    h2 {
+        margin-top: 0;
+        text-align: center;
+        font-size: $product-inventory-table--header__font-size;
+
+        @include min-screen($screen__m) {
+            margin: $indent__l 0;
+        }
+    }
+
+    &__desktop {
+        display: none;
+
+        thead {
+            border-bottom: 2px solid $c-royal;
+
+            th {
+                padding: $indent__xs;
+                font-size: $product-inventory-table--header__font-size--desktop;
+            }
+        }
+
+        tbody tr {
+            border-bottom: 1px solid $c-grey;
+
+            td {
+                padding: $indent__xs;
+            }
+        }
+    }
+
+    &__mobile {
+        .inventory-table--row {
+            padding: $indent__xs;
+            border-top: 1px solid $c-grey;
+
+            &:last-of-type {
+                border-bottom: 1px solid $c-grey;
+            }
+        }
+
+        strong {
+            margin-right: $indent__xs;
+        }
+
+        p {
+            margin: 2px 0;
+        }
+    }
+
+    @include min-screen($screen__m) {
+        &__mobile {
+            display: none;
+        }
+
+        &__desktop {
+            display: block;
+        }
+    }
+}
+
+.popup-stock-info {
+    @include max-screen($screen__m) {
+        &.modal-popup {
+            left: 0;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+    }
+
+    .modal-inner-wrap {
+        width: 100%;
+        padding: $indent__m;
+
+        @include min-screen($screen__m) {
+            max-width: 600px;
+        }
     }
 }

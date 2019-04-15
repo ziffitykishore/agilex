@@ -24,7 +24,7 @@ $sidebar__max-width: 250px;
       &.productInfo-opened {
         .numHits-view-switcher .number-of-hits {
           position: absolute;
-          right: 300px;
+          right: 330px;
         }
       }
 
@@ -34,7 +34,7 @@ $sidebar__max-width: 250px;
         display: flex;
 
         .number-of-hits {
-          right: 0;
+          right: 30px;
         }
       }
     }
@@ -245,6 +245,8 @@ $sidebar__max-width: 250px;
 }
 
 .groups {
+  width: 100%;
+
   .table-view,
   .list-view {
     @include min-screen($screen__m) {

@@ -58,6 +58,10 @@
         }
     }
 
+    &-view {
+        display: none;
+    }
+
     &-image,
     &-description {
         margin-bottom: $indent__base;
