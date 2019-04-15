@@ -279,7 +279,7 @@ $sidebar__max-width: 250px;
   }
 }
 
-.breadcrumbs {
+.plp-breadcrumbs {
   display: flex;
   position: absolute;
   top: $indent__base;
@@ -296,6 +296,8 @@ $sidebar__max-width: 250px;
     font-family: $font-family__base;
     font-size: $font-size__base;
     padding-left: $indent__xs;
+    width: auto;
+    vertical-align: baseline;
   }
 
   button {
@@ -321,6 +323,11 @@ $sidebar__max-width: 250px;
   }
 }
 
-.product-landing-page .breadcrumbs {
-  left: $sidebar__max-width + 30px;
+.product-landing-page .plp-breadcrumbs {
+  top: 0;
+
+  @include min-screen($screen__m) {
+    left: $sidebar__max-width + 30px;
+    top: $indent__base;
+  }
 }
