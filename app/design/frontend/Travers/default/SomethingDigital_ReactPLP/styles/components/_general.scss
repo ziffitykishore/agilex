@@ -7,7 +7,7 @@ $sidebar__max-width: 250px;
 
 .right-panel {
   @include min-screen($screen__m) {
-    padding: 0 $indent__l;
+    padding: 0;
     width: 100%;
 
     h2 {
@@ -30,6 +30,7 @@ $sidebar__max-width: 250px;
 
       .numHits-view-switcher {
         position: relative;
+        padding: 0 $indent__l;
         height: $productInfo__offset-top;
         display: flex;
 
@@ -261,17 +262,18 @@ $sidebar__max-width: 250px;
 .table-view,
 .list-view {
   @include min-screen($screen__m) {
-    padding-right: $indent__l;
+    padding: 0 $indent__l;
   }
 }
 
 .groups {
   width: 100%;
+  box-sizing: border-box;
 
   .table-view,
   .list-view {
     @include min-screen($screen__m) {
-      padding-right: 0;
+      padding: 0;
     }
   }
 }
@@ -354,5 +356,12 @@ $sidebar__max-width: 250px;
   @include min-screen($screen__m) {
     left: $sidebar__max-width + 30px;
     top: $indent__base;
+  }
+}
+
+.category-title,
+.plp-top {
+  @include min-screen($screen__m) {
+    margin-left: $indent__l;
   }
 }
