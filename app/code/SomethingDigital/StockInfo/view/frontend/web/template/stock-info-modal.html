@@ -5,7 +5,7 @@
         <p data-bind="i18n: 'There are no available items'"></p>
         <!-- /ko -->
         <!-- ko ifnot: stockDataIsEmptyObservable -->
-        <div class="product-inventory-table-mobile">
+        <div class="product-inventory-table__mobile">
             <!-- ko foreach: { data: stockDataObservable(), as: 'element' } -->
             <div class="inventory-table--row">
                 <p><strong data-bind="i18n: 'SKU:'"></strong><span data-bind="text: element.sku"></p>
@@ -15,7 +15,7 @@
             </div>
             <!-- /ko -->
         </div>
-        <div class="product-inventory-table-desktop">
+        <div class="product-inventory-table__desktop">
             <table>
                 <thead>
                     <th><strong data-bind="i18n: 'SKU:'"></strong></th>

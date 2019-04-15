@@ -131,9 +131,9 @@
         margin-top: 20px;
 
         span:not(.stock-info-popup-trigger) {
+            margin-right: $indent__xs;
             color: $c-nickel;
             font-size: $font-size__base;
-            margin-right: $indent__xs;
         }
 
         .product.sku {
@@ -149,8 +149,8 @@
         }
 
         .yotpoBottomLine {
-            line-height: 1;
             margin-bottom: $indent__xl;
+            line-height: 1;
         }
     }
 
@@ -175,24 +175,24 @@
 
 .product-inventory-table {
     h2 {
+        margin-top: 0;
         text-align: center;
         font-size: 24px;
-        margin-top: 0;
 
         @include min-screen($screen__m) {
             margin: $indent__l 0;
         }
     }
 
-    &-desktop {
+    &__desktop {
         display: none;
 
         thead {
             border-bottom: 2px solid $c-royal;
 
             th {
-                font-size: 16px;
                 padding: $indent__xs;
+                font-size: 16px;
             }
         }
 
@@ -205,10 +205,10 @@
         }
     }
 
-    &-mobile {
+    &__mobile {
         .inventory-table--row {
-            border-top: 1px solid $c-grey;
             padding: $indent__xs;
+            border-top: 1px solid $c-grey;
 
             &:last-of-type {
                 border-bottom: 1px solid $c-grey;
@@ -225,11 +225,11 @@
     }
 
     @include min-screen($screen__m) {
-        &-mobile {
+        &__mobile {
             display: none;
         }
 
-        &-desktop {
+        &__desktop {
             display: block;
         }
     }
