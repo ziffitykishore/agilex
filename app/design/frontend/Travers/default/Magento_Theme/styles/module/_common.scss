@@ -510,3 +510,51 @@ body {
         display: none !important;
     }
 }
+
+//
+//  404 Page
+//  ---------------------------------------------
+
+.cms-no-route .page-title-wrapper {
+    display: none;
+}
+
+.page-not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: $indent__l 0;
+
+    h1 {
+        margin-bottom: $indent__s;
+    }
+
+    h4 {
+        font-size: $font-size__base--desktop;
+        font-weight: $font-weight__semibold;
+        margin-top: 0;
+    }
+
+    .buttons {
+        width: 100%;
+        margin-top: 60px;
+
+        button {
+            width: 100%;
+            margin-top: $indent__s;
+
+            @include min-screen($screen__m) {
+                max-width: 180px;
+
+                &:not(:last-of-type) {
+                    margin-right: $indent__s;
+                }
+            }
+        }
+    }
+
+    img {
+        margin-top: $indent__l;
+    }
+}
