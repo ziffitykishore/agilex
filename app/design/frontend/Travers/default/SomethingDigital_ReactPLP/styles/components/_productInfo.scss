@@ -23,6 +23,26 @@
       max-width: none;
       margin-top: 50px;
     }
+
+    .message {
+      width: 100%;
+      max-width: 250px;
+      margin-top: $indent__s;
+      background-color: transparent;
+      font-weight: $font-weight__bold;
+      font-size: $font-size__base;
+      padding: 0;
+      line-height: 20px;
+
+      a::before {
+        opacity: 0;
+      }
+    }
+  }
+
+  .add-to-cart {
+    margin-top: $indent__m;
+    width: 100%;
   }
 
   .pricing p,
