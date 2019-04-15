@@ -281,6 +281,7 @@ $sidebar__max-width: 250px;
 
 .plp-breadcrumbs {
   display: flex;
+  flex-wrap: wrap;
   position: absolute;
   top: $indent__base;
   align-items: flex-end;
