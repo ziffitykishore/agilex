@@ -315,6 +315,16 @@ $product-item-name__font-size: 16px;
     }
 }
 
+.reorder-quote-popup {
+    .action.replace {
+        @include button--type(secondary);
+    }
+
+    .action.cancel.secondary {
+        margin-top: 0;
+    }
+}
+
 //
 //  Guest order view page
 //  ---------------------------------------------
