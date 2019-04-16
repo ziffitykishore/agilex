@@ -13,6 +13,7 @@ use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
 use Magento\Swatches\Model\Swatch;
 use Magento\Swatches\Helper\Data;
 use Magento\Swatches\Helper\Media;
+use Magento\Framework\App\Request\Http;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -25,6 +26,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     private $jsonEncoder;
     private $swatchHelper;
     private $swatchHelperMedia;
+    private $request;
 
     public function __construct(
         Registry $registry,
@@ -35,7 +37,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         ScopeConfigInterface $scopeConfig,
         CollectionFactory $collectionFactory,
         Data $swatchHelper,
-        Media $swatchHelperMedia
+        Media $swatchHelperMedia,
+        Http $request
     ) {
         $this->coreRegistry = $registry;
         $this->jsonEncoder = $jsonEncoder;
@@ -46,14 +49,20 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->collectionFactory = $collectionFactory;
         $this->swatchHelper = $swatchHelper;
         $this->swatchHelperMedia = $swatchHelperMedia;
+        $this->request = $request;
     }
 
     /**
-     * @return \Magento\Catalog\Api\Data\CategoryInterface
+     * @return integer
      */
-    public function getCategory()
+    public function getCategoryId()
     {
-        return $this->coreRegistry->registry('current_category');
+        if ($this->request->getFullActionName() == 'catalog_category_view') {
+            $category = $this->coreRegistry->registry('current_category');
+            return $category->getId();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -64,7 +73,6 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     public function getJsProps()
     {
         // * @var \Magento\Catalog\Api\Data\CategoryInterface $category 
-        $category = $this->getCategory();
 
         if ($this->customerSession->isLoggedIn()) {
             $customerGroupId = $this->customerSession->getCustomer()->getGroupId();
@@ -78,7 +86,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             $index_prefix = $this->scopeConfig->getValue("algoliasearch_credentials/credentials/index_prefix", ScopeInterface::SCOPE_STORE);
         }
         $props = [
-            'defaultCategoryId' => $category->getId(),
+            'defaultCategoryId' => $this->getCategoryId(),
             'customerGroupId' => $customerGroupId,
             'apiUrls' => [
                 'cms' => [
