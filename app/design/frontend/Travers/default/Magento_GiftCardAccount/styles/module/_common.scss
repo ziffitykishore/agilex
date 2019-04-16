@@ -52,6 +52,10 @@
                     flex: 0 0 100%;
                 }
             }
+
+            .action.check {
+                @include button--type(secondary);
+            }
         }
 
         .balance {
