@@ -167,9 +167,9 @@ $_password-very-strong: #81b562 !default;
         }
 
         .order-title {
-            width: 100%;
             display: flex;
             flex-wrap: wrap;
+            width: 100%;
 
             h3 {
                 flex-basis: 100%;

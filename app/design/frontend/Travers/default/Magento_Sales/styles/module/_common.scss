@@ -9,30 +9,30 @@ $product-item-name__font-size: 16px;
 
         strong {
             display: block;
+            padding: 0 12px;
+            font-weight: $font-weight__semibold;
             background: $tab-control__active__background-color;
             border: $border-width__base solid $border-color__base;
             border-right: 0;
-            font-weight: $font-weight__semibold;
-            padding: 0 12px;
 
             @include max-screen($screen__l) {
-                background-color: $tab-control__active__background-color-mobile;
                 padding-left: 13px; 
-                color: $color-white;
                 font-size: $font-size__base--desktop;
+                color: $color-white;
+                background-color: $tab-control__active__background-color-mobile;
             }
 
         }
 
         a {
             display: block;
-            background: $tab-control__background-color;
+            padding: 0 20px;
+            font-weight: $font-weight__semibold;
             color: $tab-control__color;
+            text-decoration: $tab-control__text-decoration;
+            background: $tab-control__background-color;
             border: $border-width__base solid $border-color__base;
             border-right: 0;
-            font-weight: $font-weight__semibold;
-            padding: 0 20px;
-            text-decoration: $tab-control__text-decoration;
 
             @include hover {
                 background: $tab-control__hover__background-color;
