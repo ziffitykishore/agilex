@@ -213,9 +213,17 @@ $_password-very-strong: #81b562 !default;
         .block:not(.widget) {
             @extend %abs-account-blocks;
 
-            .block-title strong {
-                font-size: $block-title__font-size;
-                font-weight: $font-weight__semibold;
+            .block-title {
+                strong {
+                    font-size: $block-title__font-size;
+                    font-weight: $font-weight__semibold;
+                }
+
+                .action {
+                    font-weight: $font-weight__semibold;
+                    font-family: $font-family__base;
+                    letter-spacing: 0;
+                }
             }
         }
     }
