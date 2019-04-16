@@ -1,0 +1,87 @@
+.giftcard-account {
+    .please-wait {
+        display: none;
+    }
+
+    .form-giftcard-redeem {
+        @include min-screen($screen__s) {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .giftcard.info {
+            margin-bottom: $indent__l;
+        }
+
+        .fieldset {
+            margin-bottom: 10px;
+
+            @include min-screen($screen__s) {
+                flex-grow: 1;
+                max-width: 460px;
+            }
+
+            @include min-screen($screen__m) {
+                max-width: $form-field__width__desktop;
+            }
+        }
+
+        .actions-toolbar {
+            margin-bottom: 10px;
+
+            @include min-screen($screen__xs) {
+                float: left;
+            }
+
+            @include min-screen($screen__s) {
+                margin-top: 35px;
+            }
+
+            &:last-of-type {
+                @include min-screen($screen__xs) {
+                    float: none;
+                    clear: none;
+                    margin-top: 0;
+                }
+
+                @include min-screen($screen__s) {
+                    flex: 0 0 100%;
+                }
+
+                @include min-screen($screen__m) {
+                    flex: 0 0 100%;
+                }
+            }
+
+            .action.check {
+                @include button--type(secondary);
+            }
+        }
+
+        .balance {
+            width: 100%;
+        }
+    }
+}
+
+.opc-wrapper {
+    .form-giftcard-account {
+        max-width: 500px;
+
+        .field {
+            margin: 0 0 $indent__base;
+
+            .label {
+                @include lib-visually-hidden();
+            }
+        }
+    }
+
+    .giftcard-account-info {
+        margin: 0 0 $indent__base;
+
+        .giftcard-account-number {
+            margin: 0 0 $indent__s;
+        }
+    }
+}

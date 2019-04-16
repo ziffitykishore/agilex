@@ -148,13 +148,13 @@ $requisition-print__font-size-m: 1.4rem !default;
 .requisition-list-button {
     .social-button & {
         span {
+            position: relative;
+            padding: $indent__xs $indent__s;
             clip: auto;
             overflow: visible;
-            position: relative;
             text-transform: none;
             text-decoration: none;
             font-family: $font-family__base;
-            padding: $indent__xs $indent__s;
             border: 1px solid $c-grey;
         }
     }
@@ -201,9 +201,13 @@ $requisition-print__font-size-m: 1.4rem !default;
 }
 
 .data-grid-wrap {
+    th {
+        padding-bottom: $indent__xs;
+    }
+
     .list-name-field {
         .cell-label-line-name {
-            @include bryant-park-headings-h5;
+            @include bryant-park-headings-h3;
             margin-top: 0;
             margin-bottom: 0;
             text-transform: capitalize;
@@ -223,6 +227,12 @@ $requisition-print__font-size-m: 1.4rem !default;
 }
 
 .requisition-grid {
+    @include min-screen($screen__l) {
+        tr {
+            border-bottom: 1px solid $c-silver;
+        }
+    }
+
     .col {
         padding-top: $indent__base;
 
@@ -320,13 +330,17 @@ $requisition-print__font-size-m: 1.4rem !default;
     clear: both;
 
     .print {
-        float: right;
-        padding-left: $indent__m;
+        padding-left: 0;
         padding-right: 0;
     }
 
     .requisition-toolbar-select {
         float: left;
+    }
+
+    @include min-screen($screen__l) {
+        position: absolute;
+        right: 0;
     }
 }
 
@@ -348,10 +362,24 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
     }
 
+    .requisition-toolbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        @include min-screen($screen__l) {
+            flex-direction: row;
+        }
+    }
+
     .requisition-toolbar-select,
     .requisition-toolbar-actions {
         display: inline-block;
         vertical-align: bottom;
+
+        .mobile-label {
+            display: none;
+        }
     }
 
     .requisition-toolbar-select {
@@ -426,6 +454,8 @@ $requisition-print__font-size-m: 1.4rem !default;
                 }
 
                 &.subtotal .actions-toolbar {
+                    margin-top: $indent__s;
+                    z-index: 2;
                     text-align: left;
                 }
 
@@ -516,6 +546,18 @@ $requisition-print__font-size-m: 1.4rem !default;
                 display: none;
             }
         }
+    }
+
+    .requisition-list-button.toggle::after,
+    .requisition-list-button.toggle.active::after {
+        padding: 0;
+        line-height: 1;
+        vertical-align: middle;
+        border: 0;
+    }
+
+    .requisition-view-links {
+        padding-top: 0;
     }
 }
 
@@ -718,7 +760,9 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-info {
-            float: left;
+            @include min-screen($screen__l) {
+                float: left;
+            }
         }
     }
 
@@ -789,8 +833,8 @@ $requisition-print__font-size-m: 1.4rem !default;
         .actions-toolbar {
             position: relative;
 
-            > .action-delete {
-                margin-left: 2rem;
+            > .action-edit {
+                margin-right: $indent__s;
             }
         }
 
@@ -950,7 +994,6 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-info {
-            float: left;
             margin-bottom: 1.5rem;
         }
 
@@ -966,7 +1009,12 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-toolbar-actions {
-            display: block;
+            display: flex;
+            align-items: baseline;
+
+            .mobile-label {
+                display: none;
+            }
 
             button {
                 &.action {
