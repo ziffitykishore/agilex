@@ -208,7 +208,7 @@ $sidebar__max-width: 300px;
 
     .strikethrough {
       margin-top: $indent__xs;
-      font-weight: $font-weight__bold;
+      font-weight: $font-weight__semibold;
     }
   }
 }
@@ -326,6 +326,10 @@ $sidebar__max-width: 300px;
     &:not(:first-of-type) {
       padding-left: $indent__xs;
     }
+  }
+
+  span {
+    padding-left: $indent__xs;
   }
 
   button {
