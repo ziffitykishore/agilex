@@ -77,6 +77,10 @@
         }
     }
 
+    .page.messages {
+        display: none;
+    }
+
     .sidebar-main {
         order: 0;
     }
@@ -348,7 +352,7 @@
         .price-wrapper .price {
             display: inline-block;
             margin-bottom: 15px;
-            font-size: $font-size__base--desktop;
+            font-size: 16px;
             color: $c-nickel;
             text-decoration: line-through;
         }

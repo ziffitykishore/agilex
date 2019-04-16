@@ -7,10 +7,14 @@
   max-width: 300px;
   background-color: $c-smoke;
 
-  ul li {
-    margin: 0;
-    padding: 2px 0;
-    color: $c-nickel;
+  ul {
+    margin-top: $indent__m;
+
+    li {
+      margin: 0;
+      padding: 2px 0;
+      color: $c-nickel;
+    }
   }
 
   &-content {
@@ -23,15 +27,40 @@
       max-width: none;
       margin-top: 50px;
     }
+
+    .message {
+      width: 100%;
+      max-width: 250px;
+      margin-top: $indent__s;
+      background-color: transparent;
+      font-weight: $font-weight__bold;
+      font-size: $font-size__base;
+      padding: 0;
+      line-height: 20px;
+
+      a::before {
+        opacity: 0;
+      }
+    }
+  }
+
+  .add-to-cart {
+    margin-top: $indent__m;
+    width: 100%;
   }
 
   .pricing p,
   .product-name {
     font-weight: $font-weight__semibold;
     font-size: 18px;
-    font-family: $font-family__sans-serif;
+    font-family: $font-family__base;
     color: $c-aluminum;
     text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .pricing p {
+    font-size: 22px;
   }
 
   .pricing {

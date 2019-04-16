@@ -3,6 +3,8 @@
     display: block;
     color: $c-steel;
     text-decoration: none;
+    font-weight: $font-weight__semibold;
+    font-size: 18px;
 
     @include hover {
       color: $c-cobalt;
@@ -17,19 +19,39 @@
     .price,
     .as-low-as {
       margin-top: 0;
-      font-weight: $font-weight__bold;
-      font-size: 16px;
+      font-weight: $font-weight__semibold;
+      font-size: 18px;
       font-family: $font-family__base;
       margin-bottom: $indent__xs;
+    }
+
+    .msrp {
+      font-size: $font-size__base__desktop;
+      font-weight: $font-weight__semibold;
     }
   }
 
   .quantity-and-cart {
     justify-content: flex-end;
-    flex-wrap: wrap;
+
+    @include max-screen($screen__m) {
+      padding-right: 0;
+
+      .quantity-input {
+        order: 1;
+        margin-left: $indent__s;
+      }
+    }
+
+    @include min-screen($screen__m) {
+      flex-wrap: wrap;
+    }
 
     .message {
       width: 100%;
+      max-width: 250px;
+      flex-basis: 100%;
+      order: 1;
       margin-top: $indent__s;
       background-color: transparent;
       font-weight: $font-weight__bold;

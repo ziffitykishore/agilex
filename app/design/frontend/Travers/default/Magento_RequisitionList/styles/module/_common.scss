@@ -83,6 +83,10 @@ $requisition-print__font-size-m: 1.4rem !default;
             .action {
                 &.new {
                     @include lib-button-reset();
+
+                    &::before {
+                        vertical-align: baseline;
+                    }
                 }
             }
         }
@@ -90,6 +94,26 @@ $requisition-print__font-size-m: 1.4rem !default;
 
     > .action {
         @include lib-action-button-as-link;
+
+        @include hover {
+            text-decoration: none;
+            color: $text__color;
+        }
+
+        &.toggle::after,
+        &.toggle.active::after {
+            vertical-align: middle;
+            border: 1px solid $c-grey;
+            width: 30px;
+            line-height: 26px;
+            font-size: 20px;
+            transform: translate(-3px, -2px);
+
+            @include min-screen($screen__m) {
+                line-height: 29px;
+                transform: translate(-$indent__xs, -1px);
+            }
+        }
     }
 
     .cart.table-wrapper & {
@@ -123,36 +147,15 @@ $requisition-print__font-size-m: 1.4rem !default;
 
 .requisition-list-button {
     .social-button & {
-        @include icon-svg(
-            $icon       : requisition,
-            $fill       : $primary__color,
-            $fill-hover : $primary__color__dark,
-            $width      : 22px
-        );
-        color: $requisition-link__color;
-        font-size: 1.4rem;
-        font-weight: $font-weight__semibold;
-        letter-spacing: .05rem;
-        line-height: $line-height__base;
-        padding: 0 $indent__xs 0 0;
-        text-transform: uppercase;
-
-        &:active,
-        &:focus,
-        &:hover {
-            color: $addto-hover-color;
+        span {
+            position: relative;
+            padding: $indent__xs $indent__s;
+            clip: auto;
+            overflow: visible;
+            text-transform: none;
             text-decoration: none;
-        }
-
-        &:after {
-            height: 1.5rem;
-            margin: .3rem 0 0;
-        }
-
-        &.active {
-            &:after {
-                margin: .4rem 0 0;
-            }
+            font-family: $font-family__base;
+            border: 1px solid $c-grey;
         }
     }
 
@@ -322,6 +325,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 
 .requisition-view-links {
     @include lib-clearfix();
+    padding-top: $indent__s;
     margin-bottom: $indent__s;
     clear: both;
 
@@ -542,6 +546,18 @@ $requisition-print__font-size-m: 1.4rem !default;
                 display: none;
             }
         }
+    }
+
+    .requisition-list-button.toggle::after,
+    .requisition-list-button.toggle.active::after {
+        padding: 0;
+        line-height: 1;
+        vertical-align: middle;
+        border: 0;
+    }
+
+    .requisition-view-links {
+        padding-top: 0;
     }
 }
 

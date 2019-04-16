@@ -1,9 +1,16 @@
 .category-landing-page {
+  @include max-screen($screen__m) {
+    .plp-breadcrumbs {
+      top: -$indent__s;
+    }
+  }
+
   .catland-sibling-categories {
     background-color: $c-smoke;
 
     .ais-Hits-list {
       display: block;
+      margin-top: 0;
     }
 
     .ais-Hits-item {
@@ -68,6 +75,45 @@
   display: flex;
   flex-direction: column;
 
+  @include max-screen($screen__m) {
+    .Collapsible {
+      margin-top: 50px;
+
+      &__contentOuter {
+        margin-top: 3px;
+      }
+    }
+
+    .filter-heading {
+      @include lib-button-reset();
+      position: absolute;
+      width: 100%;
+      padding: $indent__s $indent__l;
+      margin-top: $indent__m;
+      color: $text__color;
+      font-size: 16px;
+      border: 2px solid $c-grey;
+      text-align: left;
+      box-sizing: border-box;
+      pointer-events: none;
+      cursor: pointer;
+      z-index: 2;
+      font-weight: $font-weight__semibold;
+
+      @include hover {
+        border: 2px solid $c-grey;
+        color: $c-cobalt;
+      }
+    }
+
+    .Collapsible__trigger {
+      box-sizing: border-box;
+      padding: $indent__m 100% $indent__s 0;
+      z-index: 3;
+      opacity: 0;
+    }
+  }
+
   @include min-screen($screen__m) {
     flex-direction: row;
   }
@@ -75,20 +121,28 @@
   .Collapsible {
     @include max-screen($screen__m) {
       width: 100%;
+
+      &__contentInner {
+        border: 1px solid $c-grey;
+      }
     }
   }
 
   .catland-subcategories {
     width: 100%;
 
+    h1 {
+      margin-top: $indent__m;
+    }
+
     @include min-screen($screen__m) {
       width: 70%;
       padding-left: 50px;
       overflow-x: hidden;
-    }
 
-    h1 {
-      margin-top: 55px;
+      h1 {
+        margin-top: 55px;
+      }
     }
 
     .ais-Hits-list {
@@ -117,7 +171,7 @@
     }
 
     .description__desktop {
-      max-width: 700px;
+      max-width: 90%;
     }
 
     .ais-Hits-item {
@@ -167,14 +221,32 @@
     }
   }
 
-  .catland-sibling-categories {
-    .sibling-buttons {
+  .catland-sibling-categories .sibling-buttons {
+    .ais-Hits-list {
+      padding-left: $indent__s;
+    }
+
+    .ais-Hits-item button {
+      font-size: $font-size__base;
+      width: 100%;
+      padding-bottom: $indent__s;
+      text-align: left;
+    }
+
+    .active {
+      color: $c-cobalt;
+    }
+
+    @include min-screen($screen__m) {
       border-bottom: 1px solid $c-grey;
 
+      .ais-Hits-list {
+        padding-left: $indent__l;
+      }
+
       .ais-Hits-item button {
-        font-size: 14px;
-        width: 100%;
-        text-align: left;
+        font-size: $font-size__base--desktop;
+        font-weight: $font-weight__semibold;
       }
 
       .active {
