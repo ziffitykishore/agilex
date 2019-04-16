@@ -64,9 +64,12 @@
     button {
       font-weight: $font-weight__semibold;
       background-color: transparent;
+      text-transform: capitalize;
+      font-family: $font-family__base;
       border: 0;
       color: $c-cobalt;
-      font-size: 14px;
+      font-size: $font-size__base--desktop;
+      letter-spacing: 0;
     }
   }
 }
