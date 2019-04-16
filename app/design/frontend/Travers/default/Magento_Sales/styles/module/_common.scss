@@ -106,6 +106,7 @@ $product-item-name__font-size: 16px;
     .table-order-items {
         .product.name.product-item-name {
             margin-top: 0;
+            margin-bottom: 0;
             vertical-align: middle;
         }
 
@@ -340,7 +341,6 @@ $product-item-name__font-size: 16px;
                 .price-excluding-tax,
                 .items-qty {
                     display: inline-block;
-                    vertical-align: top;
                 }
             }
         }
