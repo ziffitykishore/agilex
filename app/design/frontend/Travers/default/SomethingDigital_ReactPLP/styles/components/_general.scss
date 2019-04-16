@@ -370,7 +370,7 @@ $sidebar__max-width: 300px;
 }
 
 .category-title,
-.plp-top {
+.plp-category-image {
   @include min-screen($screen__m) {
     margin-left: $indent__l;
   }
