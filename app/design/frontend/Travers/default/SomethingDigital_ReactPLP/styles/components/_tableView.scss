@@ -18,16 +18,18 @@
       }
 
       .sorting-arrow {
-        color: $c-cobalt;
+        fill: $c-cobalt;
         margin-left: $indent__xs;
-        font-family: $font-family__base;
 
-        &.up-arrow {
-          transform: rotate(-90deg);
+        svg {
+          width: 12px;
+          height: 12px;
         }
 
         &.down-arrow {
-          transform: rotate(90deg);
+          svg {
+            transform: rotate(180deg);
+          }
         }
       }
     }
