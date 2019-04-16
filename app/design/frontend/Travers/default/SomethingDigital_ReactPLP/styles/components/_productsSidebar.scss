@@ -168,6 +168,10 @@
     padding-left: 15px;
     margin-top: 15px;
 
+    .refinement-checkbox {
+      padding-right: 100%;
+    }
+
     .refinement-label {
       min-height: $indent__s;
 
@@ -185,6 +189,7 @@
 
       a {
         vertical-align: middle;
+        pointer-events: none;
 
         @include hover {
           text-decoration: none;
