@@ -1,5 +1,5 @@
 $productInfo__offset-top: 50px;
-$sidebar__max-width: 250px;
+$sidebar__max-width: 300px;
 
 .left-panel {
   width: 20%;
@@ -88,7 +88,7 @@ $sidebar__max-width: 250px;
   button {
     @include lib-button-reset();
     border: 1px solid $c-grey;
-    padding: $indent__xs $indent__s;
+    padding: $indent__xs 15px $indent__xs $indent__s;
     color: $color-black;
     border-radius: 5px;
     text-decoration: none;
@@ -147,6 +147,7 @@ $sidebar__max-width: 250px;
     max-width: 150px;
     max-height: 150px;
     width: 100%;
+    border: 1px solid $c-grey;
 
     @include max-screen($screen__m) {
       display: none;
@@ -202,7 +203,7 @@ $sidebar__max-width: 250px;
       color: $c-nickel;
       font-weight: $font-weight__bold;
       margin-bottom: 0;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .strikethrough {
@@ -287,7 +288,7 @@ $sidebar__max-width: 250px;
   }
 
   h2 {
-    font-size: 22px;
+    font-size: 35px;
   }
 
   h4 {
@@ -298,7 +299,7 @@ $sidebar__max-width: 250px;
 
   h3,
   h4 {
-    font-size: 16px;
+    font-size: 22px;
   }
 }
 
@@ -320,7 +321,7 @@ $sidebar__max-width: 250px;
     font-family: $font-family__base;
     font-size: $font-size__base;
     width: auto;
-    vertical-align: baseline;
+    vertical-align: middle;
 
     &:not(:first-of-type) {
       padding-left: $indent__xs;
@@ -351,7 +352,7 @@ $sidebar__max-width: 250px;
 }
 
 .product-landing-page .plp-breadcrumbs {
-  top: 0;
+  top: -$indent__s;
 
   @include min-screen($screen__m) {
     left: $sidebar__max-width + 30px;
@@ -364,4 +365,10 @@ $sidebar__max-width: 250px;
   @include min-screen($screen__m) {
     margin-left: $indent__l;
   }
+}
+
+.category-title {
+  @include min-screen($screen__m) {
+    font-size: 40px;
+  } 
 }
