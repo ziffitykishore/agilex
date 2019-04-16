@@ -12,6 +12,8 @@ $account-nav-current-font-weight: $font-weight__semibold;
 
 $account-nav-item-hover: $color-gray91;
 
+$block-title__font-size: 18px;
+
 $_password-default: $color-gray-light01 !default;
 $_password-weak: #ffafae !default;
 $_password-medium: #ffd6b3 !default;
@@ -210,6 +212,11 @@ $_password-very-strong: #81b562 !default;
 
         .block:not(.widget) {
             @extend %abs-account-blocks;
+
+            .block-title strong {
+                font-size: $block-title__font-size;
+                font-weight: $font-weight__semibold;
+            }
         }
     }
 
