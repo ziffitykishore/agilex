@@ -7,6 +7,7 @@ use Magento\Framework\Event\Observer;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\UrlInterface;
+use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory;
 
 class Topmenu implements ObserverInterface
 {
@@ -17,17 +18,28 @@ class Topmenu implements ObserverInterface
     protected $categoryCollection;
     protected $storeManager;
 
+    
+    /**
+     * 
+     * @param CollectionFactory           $categoryCollection
+     * @param StoreManagerInterface       $storeManager
+     * @param CategoryRepositoryInterface $categoryRepository
+     */
     public function __construct(
-        \Magento\Catalog\Model\ResourceModel\Category\CollectionFactory $categoryCollection,
+        CollectionFactory $categoryCollection,
         StoreManagerInterface $storeManager,
         CategoryRepositoryInterface $categoryRepository
-    )
-    {
+    ) {
         $this->_categoryCollection = $categoryCollection;
         $this->_storeManager = $storeManager;
         $this->categoryRepository = $categoryRepository;
     }
-
+    /**
+     * Execute Method
+     * 
+     * @param Observer $observer
+     * @return void
+     */
     public function execute(Observer $observer)
     {
         $transport = $observer->getTransport();
@@ -39,21 +51,24 @@ class Topmenu implements ObserverInterface
         $menuId = $menuTree->getId();
 
         if ($childLevel == 1) {
-            $html .= '<div class="category_image"><img class="magebees_lazyload" alt="" data-src="' . $this->getCategoryImage($menuId) . '"/></div>';
+            $html .= '<div class="category_image">'
+                    . '<img class="magebees_lazyload" alt="" data-src="' 
+                    . $this->getCategoryImage($menuId) . '"/></div>';
         }
 
         $transport->setHtml($html);
     }
 
     /**
-     * to get category image URL
+     * To get category image URL
+     * 
      * @param int $categoryId
      * @return string
      */
     protected function getCategoryImage($categoryId)
     {
         $categoryIdElements = explode('-', $categoryId);
-        $category = $this->categoryRepository->get(end($categoryIdElements));        
+        $category = $this->categoryRepository->get(end($categoryIdElements));
         $customImage = $category->getCustomImage();
         $categoryImage = false;
         if (!empty($customImage)) {
@@ -62,7 +77,11 @@ class Topmenu implements ObserverInterface
         }
         return $categoryImage;
     }
-
+    /**
+     * To get medial URL
+     * 
+     * @return string
+     */
     public function getMediaUrl()
     {
         return $this->_storeManager->getStore()

@@ -4,7 +4,6 @@ define([
     'jquery/ui',
     'slick',
     'fancybox',
-    'bminjs',
     'domReady!'
 ], function($, modal) {
     var _body = $('body'),
@@ -323,4 +322,17 @@ define([
         });
     });
 
+    /*mobile menu toggle function*/
+    if ($(window).width() <= 768) {
+        $(".parent .ui-menu-icon").on("click", function (e) {
+            var parent = $(this).parent('.parent');
+            if (parent.has("ul")) {
+                e.preventDefault();
+            }
+            parent.find("ul").slideToggle();
+            parent.toggleClass("menu-open");
+            parent.siblings("li").find("ul").slideUp();
+            parent.siblings("li").removeClass("menu-open");
+        });
+    }
 });
