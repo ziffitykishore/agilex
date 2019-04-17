@@ -17,6 +17,10 @@ define([
                     'value' : true
                 });
             }
+            addressData['custom_attributes'].push({
+                'attribute_code' : 'is_read_only',
+                'value' : false
+            })
             return originalAction(addressData);
         });
     };
