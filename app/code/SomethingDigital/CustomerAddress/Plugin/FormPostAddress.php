@@ -25,10 +25,12 @@ class FormPostAddress
     public function aroundExecute(FormPost $subject, callable $proceed)
     {
         $addressId = $subject->getRequest()->getParam('id', false);
-        $address = $this->addressRepository->getById($addressId);
-        $isReadOnly = $address->getCustomAttribute('is_read_only');
-        if ($isReadOnly->getValue()) {
-            return $this->resultRedirectFactory->create()->setPath('*/*/index');
+        if ($addressId) {
+            $address = $this->addressRepository->getById($addressId);
+            $isReadOnly = $address->getCustomAttribute('is_read_only');
+            if ($isReadOnly->getValue()) {
+                return $this->resultRedirectFactory->create()->setPath('*/*/index');
+            }
         }
 
         return $proceed();
