@@ -381,3 +381,21 @@ $sidebar__max-width: 300px;
     font-size: 40px;
   } 
 }
+
+.cart-actions {
+  .increment-message {
+    color: $c-nickel;
+    font-weight: $font-weight__semibold;
+    text-align: right;
+  }
+
+  @include min-screen($plp_breakpoint) {
+    display: flex;
+    align-items: center;
+
+    .increment-message {
+      margin: $indent__base $indent__s 0 0;
+      text-align: left;
+    }
+  }
+}

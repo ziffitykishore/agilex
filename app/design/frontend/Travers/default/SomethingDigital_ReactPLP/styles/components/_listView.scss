@@ -84,8 +84,11 @@
 
     .list-inner {
       display: flex;
-      flex-basis: 60%;
       align-items: center;
+
+      .product-name {
+        max-width: 300px;
+      }
     }
 
     .list-image {

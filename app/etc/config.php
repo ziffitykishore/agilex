@@ -284,6 +284,7 @@ return [
         'SomethingDigital_ReactPlp' => 1,
         'SomethingDigital_SidebarMinicart' => 1,
         'SomethingDigital_StockInfo' => 1,
+        'SomethingDigital_Sx' => 1,
         'SomethingDigital_VirtualThemes' => 1,
         'SomethingDigital_WebsiteSwitcher' => 1,
         'Temando_Shipping' => 1,
@@ -292,6 +293,8 @@ return [
         'Unirgy_SimpleUp' => 1,
         'Unirgy_SimpleLicense' => 1,
         'Vertex_Tax' => 1,
+        'WeltPixel_Backend' => 1,
+        'WeltPixel_GoogleCards' => 1,
         'Yotpo_Yotpo' => 1
     ],
     'scopes' => [
