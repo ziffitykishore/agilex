@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "c822654601f615831be63cd8c9a86c53",
@@ -14790,7 +14790,7 @@
                 "MIT"
             ],
             "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2017-07-05 19:43:44"
+            "time": "2017-07-05T19:43:44+00:00"
         },
         {
             "name": "snowdog/theme-blank-sass",
@@ -14813,7 +14813,7 @@
                 "MIT"
             ],
             "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2017-10-12 01:48:37"
+            "time": "2017-10-12T01:48:37+00:00"
         },
         {
             "name": "somethingdigital/magento2-migration",
@@ -14844,7 +14844,7 @@
                 "proprietary"
             ],
             "description": "Utility library to allow migration-style data upgrade scripts.",
-            "time": "2019-03-22 21:51:02"
+            "time": "2019-03-22T21:51:02+00:00"
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
@@ -14852,12 +14852,11 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "2c658aa58ea3b979e8e9d306bc4f3459b73fe338"
+                "reference": "f0a1c4d650995bf3171f23180033fca682ec302f"
             },
             "require": {
-                "magento/framework": "*",
                 "magento/magento-composer-installer": "*",
-                "php": "~7.0.0||~7.1.0"
+                "php": ">= 7.0.0 <8.0.0"
             },
             "type": "magento2-theme",
             "autoload": {
@@ -14869,7 +14868,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2019-03-22 14:26:42"
+            "time": "2019-04-12T20:57:05+00:00"
         },
         {
             "name": "somethingdigital/module-admin-notify",
@@ -20201,12 +20200,12 @@
             "version": "v1.6.5",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mikey179/vfsStream.git",
+                "url": "https://github.com/bovigo/vfsStream.git",
                 "reference": "d5fec95f541d4d71c4823bb5e30cf9b9e5b96145"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikey179/vfsStream/zipball/d5fec95f541d4d71c4823bb5e30cf9b9e5b96145",
+                "url": "https://api.github.com/repos/bovigo/vfsStream/zipball/d5fec95f541d4d71c4823bb5e30cf9b9e5b96145",
                 "reference": "d5fec95f541d4d71c4823bb5e30cf9b9e5b96145",
                 "shasum": ""
             },
