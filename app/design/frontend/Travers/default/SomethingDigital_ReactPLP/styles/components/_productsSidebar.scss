@@ -169,11 +169,13 @@
     margin-top: 15px;
 
     .refinement-checkbox {
+      position: absolute;
       padding-right: 100%;
     }
 
     .refinement-label {
       min-height: $indent__s;
+      margin-bottom: $indent__xs;
 
       &::before,
       &::after {
