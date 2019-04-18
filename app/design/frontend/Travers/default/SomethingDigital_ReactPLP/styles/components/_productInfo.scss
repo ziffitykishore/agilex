@@ -52,15 +52,9 @@
   .pricing p,
   .product-name {
     font-weight: $font-weight__semibold;
-    font-size: 18px;
     font-family: $font-family__base;
     color: $c-aluminum;
-    text-transform: none;
     letter-spacing: 0;
-  }
-
-  .pricing p {
-    font-size: 22px;
   }
 
   .pricing {

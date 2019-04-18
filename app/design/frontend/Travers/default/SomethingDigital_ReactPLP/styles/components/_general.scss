@@ -402,3 +402,19 @@ $sidebar__max-width: 300px;
     }
   }
 }
+
+.list-view,
+.table-view,
+.product-info {
+  .product-name,
+  .pricing .price,
+  .pricing .as-low-as,
+  .product-info-content .pricing p {
+    font-size: $font-size__base__desktop;
+    text-transform: capitalize;
+
+    @include min-screen($screen__m) {
+      font-size: 16px;
+    }
+  }
+}
