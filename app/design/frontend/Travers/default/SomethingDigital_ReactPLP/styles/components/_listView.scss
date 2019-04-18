@@ -64,6 +64,7 @@ $list-image__margin--desktop: $indent__m;
     @include min-screen($screen__l) {
       justify-content: flex-end;
       width: auto;
+      max-width: 300px;
       margin-left: 0;
     }
 
@@ -89,7 +90,7 @@ $list-image__margin--desktop: $indent__m;
 
       @include min-screen($screen__l) {
         flex-basis: 100%;
-        width: auto;
+        width: 100%;
         text-align: right;
       }
     }
@@ -125,6 +126,10 @@ $list-image__margin--desktop: $indent__m;
 
       @include min-screen($screen__m) {
         margin-left: $list-image__margin--desktop;
+      }
+
+      @include min-screen($screen__l) {
+        max-width: 130px;
       }
     }
   }
