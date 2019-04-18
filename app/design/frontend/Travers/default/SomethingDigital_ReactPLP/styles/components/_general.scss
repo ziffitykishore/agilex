@@ -292,16 +292,17 @@ $sidebar__max-width: 240px;
     font-size: 30px;
   }
 
-  h4 {
-    color: $c-nickel;
-    text-transform: none;
-    font-family: $font-family__base;
-  }
-
-  h3,
-  h4 {
+  h3 {
     font-size: 20px;
   }
+
+  h4 {
+    font-family: $font-family__base;
+    font-size: 16px;
+    color: $c-nickel;
+    text-transform: none;
+  }
+
 }
 
 .plp-breadcrumbs {
