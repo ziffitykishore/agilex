@@ -71,10 +71,8 @@ $product-inventory-table--header__font-size--desktop: 16px;
         }
 
         .stock-info-popup-trigger {
-            font-size: $font-size__base;
             color: $c-cobalt;
             text-transform: none;
-            font-weight: $font-weight__semibold;
             cursor: pointer;
         }
     }
@@ -148,14 +146,14 @@ $product-inventory-table--header__font-size--desktop: 16px;
             margin-right: $indent__xs;
             color: $c-nickel;
             font-size: $font-size__base;
+
+            @include min-screen($screen__m) {
+                font-size: $font-size__base--desktop;
+            }
         }
 
         .product.sku {
             display: block;
-
-            .value {
-                font-weight: $font-weight__semibold;
-            }
         }
 
         .yotpo-display-wrapper {
