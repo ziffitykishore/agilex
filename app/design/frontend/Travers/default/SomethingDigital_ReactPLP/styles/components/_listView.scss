@@ -38,8 +38,11 @@
       padding-right: 0;
 
       .quantity-input {
-        order: 1;
-        margin-left: $indent__s;
+        margin-right: $indent__s;
+
+        input {
+          margin: 0;
+        }
       }
     }
 
