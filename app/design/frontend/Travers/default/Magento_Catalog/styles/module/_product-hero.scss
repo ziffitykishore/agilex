@@ -107,6 +107,12 @@ $product-inventory-table--header__font-size--desktop: 16px;
                 background-color: $c-grey;
             }
         }
+
+        .description {
+            ul li {
+                font-size: $font-size__base--desktop;
+            }
+        }
     }
 
     .product-options-bottom {
