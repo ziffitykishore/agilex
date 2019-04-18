@@ -9,6 +9,7 @@ set -e
 # Add any additional commands at the end.
 
 SD_YARN="1.15.2"
+SD_NODE="8.15.1"
 
 reportStats() {
     local error_code="$?"
@@ -37,6 +38,15 @@ echo 'set hlsearch' >> ~/.vimrc
 
 # Yarn refuses to install unless a profile exists.
 touch ~/.profile
+
+# Start by installing node.
+unset NPM_CONFIG_PREFIX
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+export NO_UPDATE_NOTIFIER=1
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+nvm install "$SD_NODE"
+nvm use "$SD_NODE"
 
 curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version "$SD_YARN"
 export PATH="$HOME/.yarn/bin:$PATH"

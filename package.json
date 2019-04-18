@@ -14,6 +14,7 @@
     "start": "gulp watch"
   },
   "workspaces": [
-    "app/design/frontend/*/*"
+    "app/design/frontend/*/*",
+    "vendor/somethingdigital/magento2-theme-bryantpark"
   ]
 }
