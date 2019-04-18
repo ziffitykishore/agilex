@@ -45,8 +45,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | b
 export NO_UPDATE_NOTIFIER=1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install "$SD_BUILD"
-nvm use "$SD_BUILD"
+nvm install "$SD_NODE"
+nvm use "$SD_NODE"
 
 curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version "$SD_YARN"
 export PATH="$HOME/.yarn/bin:$PATH"
