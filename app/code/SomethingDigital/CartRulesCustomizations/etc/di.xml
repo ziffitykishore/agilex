@@ -6,4 +6,7 @@
     <type name="Magento\Checkout\Controller\Cart\CouponPost">
         <plugin name="SomethingDigital_CouponPost" type="SomethingDigital\CartRulesCustomizations\Plugin\ClearRemovedGifts" />
     </type>
+    <type name="Magento\Checkout\Controller\Cart\Delete">
+        <plugin name="SomethingDigital_DeleteItem" type="SomethingDigital\CartRulesCustomizations\Plugin\DeleteItem" />
+    </type>
 </config>
