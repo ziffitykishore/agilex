@@ -307,10 +307,13 @@ $sidebar__max-width: 300px;
 .plp-breadcrumbs {
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
-  top: $indent__base;
   align-items: flex-end;
   padding-left: 0;
+
+  @include min-screen($screen__m) {
+    position: absolute;
+    top: $indent__base;
+  }
 
   button,
   span {
