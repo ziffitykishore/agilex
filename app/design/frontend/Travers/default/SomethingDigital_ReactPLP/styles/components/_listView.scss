@@ -4,7 +4,6 @@
     color: $c-steel;
     text-decoration: none;
     font-weight: $font-weight__semibold;
-    font-size: 18px;
 
     @include hover {
       color: $c-cobalt;
@@ -15,12 +14,22 @@
     margin-bottom: $indent__s;
   }
 
+  .product-name,
+  .pricing .price,
+  .pricing .as-low-as {
+    font-size: $font-size__base__desktop;
+    text-transform: capitalize;
+
+    @include min-screen($screen__m) {
+      font-size: 16px;
+    }
+  }
+
   .pricing {
     .price,
     .as-low-as {
       margin-top: 0;
       font-weight: $font-weight__semibold;
-      font-size: 18px;
       font-family: $font-family__base;
       margin-bottom: $indent__xs;
     }
