@@ -195,6 +195,56 @@ body {
     }
 }
 
+.page-header--sticky {
+    @include min-screen($mobile-nav__breakpoint) {
+        min-height: 60px;
+
+        .header.content {
+            min-height: 60px;
+            padding-left: 0;
+        }
+
+        .logo {
+            position: absolute;
+            left: $indent__base;
+
+            svg {
+                margin-top: 0;
+            }
+        }
+
+        .sections.nav-sections,
+        .algolia-search-block {
+            display: block;
+        }
+
+        .algolia-search-block {
+            flex-basis: auto;
+        }
+
+        .navigation .level-top.category-item {
+            .submenu {
+                top: 50px !important; // overrides megamenu JS
+            }
+
+            &.first {
+                padding-left: 180px;
+
+                .submenu {
+                    left: 0 !important; // overrides megamenu JS
+                }
+            }
+        }
+    }
+
+    @include min-screen($screen__l) {
+        .algolia-search-block {
+            position: absolute;
+            right: $indent__base;
+        }
+    }
+}
+
 //
 //  Account Navigation & Currency Switcher
 //  ---------------------------------------------
@@ -373,19 +423,9 @@ body {
         max-width: none;
         align-items: center;
 
-        .algolia-search-block {
-            flex-basis: 46%;
-        }
-
         .minicart-wrapper {
             order: 1;
             margin-top: 0;
-        }
-    }
-
-    @include min-screen($screen__xl) {
-        .algolia-search-block {
-            flex-basis: 53%;
         }
     }
 }
