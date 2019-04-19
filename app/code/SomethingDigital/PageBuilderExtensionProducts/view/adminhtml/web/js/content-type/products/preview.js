@@ -2,11 +2,7 @@
 
 function _inheritsLoose(subClass, superClass) { subClass.prototype = Object.create(superClass.prototype); subClass.prototype.constructor = subClass; subClass.__proto__ = superClass; }
 
-define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/config", "Magento_PageBuilder/js/content-type-menu/hide-show-option", "Magento_PageBuilder/js/content-type/preview"], function (_jquery, _knockout, _translate, _config, _hideShowOption, _preview) {
-    /**
-     * Copyright © Magento, Inc. All rights reserved.
-     * See COPYING.txt for license details.
-     */
+define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/config", "Magento_PageBuilder/js/content-type-menu/hide-show-option", "Magento_PageBuilder/js/content-type/preview", "Magento_PageBuilder/js/events", "slick"], function (_jquery, _knockout, _translate, _config, _hideShowOption, _preview, _events, _slick) {
 
     /**
      * @api
@@ -100,10 +96,63 @@ define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/config",
                         _this2.data.main.html(response.data.content);
 
                         _this2.displayPreview(true);
+
+                        if(_this2.element) {
+                            _this2.buildSlick();
+                        }
                     }
                 }).fail(function () {
                     _this2.placeholderText(_this2.messages.UNKNOWN_ERROR);
                 });
+            };
+
+            /**
+             * Build our instance of slick
+             */
+
+            _proto.buildSlick = function buildSlick() {
+                var _this5 = this,
+                    data = _this5.contentType.dataStore.getState();
+
+                if (this.element && data.is_slider == 'true') {
+                    var slider = (0, _jquery)(this.element).find(".product-items");
+                    try {
+                        (0, _jquery)(slider).slick("unslick");
+                    } catch (e) {};
+                    (0, _jquery)(slider).slick(this.buildSlickConfig());
+                }
+            };
+
+            _proto.bindEvents = function bindEvents() {
+                var _this4 = this;
+                _preview2.prototype.bindEvents.call(this);
+                _events.on(this.config.name + ":renderAfter", function (args) {
+                    if (args.id === _this4.contentType.id) {
+                        _this4.element = args.element;
+                        _this4.buildSlick();
+                    }
+                });
+            };
+
+            /**
+             * Build the slick config object
+             *
+             * @returns {{autoplay: boolean; autoplaySpeed: (any | number);
+             * fade: boolean; infinite: boolean; arrows: boolean; dots: boolean}}
+             */
+
+            _proto.buildSlickConfig = function buildSlickConfig() {
+                var data = this.contentType.dataStore.getState();
+                return {
+                    arrows: data.products_show_arrows === "true",
+                    slidesToShow: data.slides_to_show,
+                    slidesToScroll: 1,
+                    autoplay: data.products_autoplay === "true",
+                    autoplaySpeed: data.products_autoplay_speed,
+                    dots: data.products_show_dots === "true",
+                    fade: data.products_fade === "true",
+                    infinite: data.products_is_infinite === "true",
+                };
             };
 
             return Preview;
