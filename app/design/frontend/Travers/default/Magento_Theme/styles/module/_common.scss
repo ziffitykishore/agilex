@@ -57,6 +57,49 @@ body {
             display: block;
         }
     }
+
+    &:not(.page-header--sticky) {
+        @include min-screen($mobile-nav__breakpoint) {
+            .header.content {
+                position: relative;
+                flex-wrap: wrap;
+                margin-top: $indent__base;
+                padding-left: 0;
+                padding-right: 0;
+
+                .nav-sections {
+                    flex-basis: 100%;
+                }
+
+                .navigation ul {
+                    margin-top: $indent__base;
+                }
+
+                .algolia-search-block {
+                    flex-basis: 52%;
+                }
+
+                .logo,
+                .navigation ul {
+                    padding-left: 15px;
+                }
+
+                .quick-order-container {
+                    padding-right: 0;
+                }
+
+                .minicart-wrapper {
+                    right: 15px;
+                }
+            }
+        }
+
+        @include min-screen($screen__xl) {
+            .algolia-search-block {
+                flex-basis: 53%;
+            }
+        }
+    }
 }
 
 .page-header--sticky {
