@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "71f1cecde6f9f5de5ddecd4e6b49875e",
+    "content-hash": "216b1965155f8243c15c7c0b505f9e13",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-with-amazon-core-module",
@@ -11533,11 +11533,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "2.14.0",
+            "version": "2.14.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "96ba7312972f83b176a944320d7b6d072e674109"
+                "reference": "e52fee44c46f036f561ab47d544ff2c5b2e66ac0"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -11553,7 +11553,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2019-04-11T20:02:44+00:00"
+            "time": "2019-04-19T15:56:01+00:00"
         },
         {
             "name": "somethingdigital/module-admin-notify",
