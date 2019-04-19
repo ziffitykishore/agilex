@@ -1201,11 +1201,30 @@ footer.page-footer {
 
         button {
             padding: 15px $indent__m;
+            position: relative;
 
-            span {
-                font-size: 18px;
-                letter-spacing: 0;
+            &::before {
+                position: absolute;
+                font-size: 28px;
             }
+
+            &[aria-expanded="true"] {
+                &::before {
+                    content: "−";
+                }
+            }
+
+            &[aria-expanded="false"] {
+                &::before {
+                    content: "+";
+                }
+            }
+        }
+
+        span {
+            padding-left: $indent__base;
+            font-size: 16px;
+            letter-spacing: 0;
         }
     }
 
