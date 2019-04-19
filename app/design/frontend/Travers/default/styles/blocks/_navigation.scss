@@ -363,6 +363,10 @@ $nav-section-title__height: 60px;
             z-index: 99;
         }
 
+        .header.content {
+            padding-left: 0;
+        }
+
         .nav-toggle {
             &:after {
                 background: $modal-overlay__background-color;

@@ -76,27 +76,28 @@ body {
                 }
 
                 .algolia-search-block {
-                    flex-basis: 52%;
+                    flex-basis: 45%;
                 }
 
                 .logo,
                 .navigation ul {
-                    padding-left: 15px;
+                    padding-left: 50px;
                 }
 
                 .quick-order-container {
-                    padding-right: 0;
+                    padding-right: 50px;
                 }
 
                 .minicart-wrapper {
-                    right: 15px;
+                    right: 60px;
+                    margin-left: 0;
                 }
-            }
-        }
 
-        @include min-screen($screen__xl) {
-            .algolia-search-block {
-                flex-basis: 53%;
+                @include min-screen($screen__xl) {
+                    .algolia-search-block {
+                        flex-basis: 55%;
+                    }
+                }
             }
         }
     }
@@ -450,7 +451,7 @@ body {
     }
 
     svg {
-        max-width: 170px;
+        max-width: 150px;
         width: 100%;
         margin-top: 12px;
 
