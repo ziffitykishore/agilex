@@ -27,6 +27,14 @@ body {
         margin-bottom: 0;
     }
 
+    .minicart-wrapper {
+        top: 0;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            top: 15px;
+        }
+    }
+
     .cms-index-index & {
         margin-bottom: 0;
     }
@@ -47,6 +55,99 @@ body {
             background-color: $c-smoke;
             width: 100%;
             display: block;
+        }
+    }
+}
+
+.page-header--sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: 40px;
+    z-index: 15;
+    background-color: $color-white;
+    box-shadow: 2px 3px 7px 0 rgba(0, 0, 0, 0.1);
+
+    .panel.wrapper,
+    .social-links,
+    .quick-order-container {
+        display: none;
+    }
+
+    .header.content {
+        display: flex;
+        position: relative;
+        min-height: 40px;
+        margin-bottom: 0;
+    }
+
+    .logo {
+        margin-bottom: 0;
+        padding-left: 0;
+        order: 0;
+        line-height: 1;
+
+        svg {
+            width: 150px;
+            margin-top: 15px;
+        }
+    }
+
+    .algolia-search-block {
+        max-width: 300px;
+        margin-right: 60px;
+        flex-basis: auto;
+        order: 2;
+
+        @include min-screen($screen__m) {
+            .search-button {
+                min-height: 0;
+                padding-left: $indent__s;
+                padding-right: $indent__s;
+            }
+        }
+    }
+
+    .algolia-search-input,
+    .search-button {
+        height: 40px;
+    }
+
+    .nav-sections,
+    .algolia-search-block {
+        display: none;
+    }
+
+    .minicart-wrapper {
+        position: absolute;
+        right: $indent__s;
+        order: 3;
+
+        .text {
+            display: none;
+        }
+    }
+
+    .navigation {
+        ul:first-of-type {
+            padding-left: $indent__s;
+        }
+
+        li.level0 {
+            height: 0;
+            margin-right: $indent__base;
+
+            span {
+                font-size: $font-size__base--desktop;
+            }
+        }
+    }
+
+    .nav-sections {
+        order: 1;
+
+        &-items {
+            border-bottom: 0;
         }
     }
 }

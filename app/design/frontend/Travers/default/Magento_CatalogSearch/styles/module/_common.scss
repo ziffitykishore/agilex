@@ -226,10 +226,15 @@
 
 @include min-screen($mobile-nav__breakpoint) {
     .block-search {
+        width: 230px;
+        padding-left: 0;
         float: right;
-        padding-left: 15px;
-        width: 250px;
         z-index: 4;
+
+        @include min-screen($screen__l) {
+            width: 250px;
+            padding-left: 15px;
+        }
 
         .label {
             @include lib-visually-hidden();
