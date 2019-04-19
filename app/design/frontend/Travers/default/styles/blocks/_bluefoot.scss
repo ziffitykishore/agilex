@@ -1159,5 +1159,28 @@ footer.page-footer {
             background-color: $c-smoke;
             z-index: 2;
         }
+
+        ul {
+            list-style-type: none;
+            padding-left: 50px;
+            padding-right: $indent__base;
+
+            li {
+                margin-top: $indent__s;
+                margin-bottom: $indent__s;
+
+                a {
+                    color: $c-nickel;
+                    text-decoration: none;
+                    font-size: $font-size__base--desktop;
+                    line-height: 1.3;
+
+                    @include hover {
+                        text-decoration: none;
+                        color: $c-cobalt;
+                    }
+                }
+            }
+        }
     }
 }
