@@ -198,7 +198,6 @@
         &.available,
         &.unavailable {
             display: inline-block;
-            font-weight: $font-weight__bold;
             margin-right: $indent__base;
             text-transform: uppercase;
             vertical-align: top;
@@ -221,6 +220,7 @@
 
                 .type {
                     margin-right: $indent__xs;
+                    font-weight: $font-weight__regular;
                 }
             }
 
@@ -655,6 +655,13 @@
             .page-title {
                 margin-top: 0;
             }
+        }
+    }
+
+    .product-info-stock-sku {
+        .sku strong,
+        .value {
+            font-size: $font-size__base--desktop;
         }
     }
 

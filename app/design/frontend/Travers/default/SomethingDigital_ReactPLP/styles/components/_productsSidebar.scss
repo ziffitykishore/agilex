@@ -1,8 +1,13 @@
 .products-sidebar {
-  box-sizing: border-box;
   position: relative;
+  display: none;
   width: 100%;
+  box-sizing: border-box;
   background-color: $c-smoke;
+
+  &__opened {
+    display: block;
+  }
 
   .Collapsible {
     &__trigger {
