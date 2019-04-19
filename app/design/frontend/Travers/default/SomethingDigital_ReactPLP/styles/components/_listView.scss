@@ -4,7 +4,6 @@
     color: $c-steel;
     text-decoration: none;
     font-weight: $font-weight__semibold;
-    font-size: 18px;
 
     @include hover {
       color: $c-cobalt;
@@ -20,7 +19,6 @@
     .as-low-as {
       margin-top: 0;
       font-weight: $font-weight__semibold;
-      font-size: 18px;
       font-family: $font-family__base;
       margin-bottom: $indent__xs;
     }
@@ -38,8 +36,11 @@
       padding-right: 0;
 
       .quantity-input {
-        order: 1;
-        margin-left: $indent__s;
+        margin-right: $indent__s;
+
+        input {
+          margin: 0;
+        }
       }
     }
 
@@ -49,18 +50,27 @@
 
     .message {
       width: 100%;
-      max-width: 250px;
       flex-basis: 100%;
       order: 1;
-      margin-top: $indent__s;
+      margin-top: $indent__base;
       background-color: transparent;
       font-weight: $font-weight__bold;
-      text-align: right;
+      text-align: center;
       font-size: $font-size__base;
       padding: 0;
 
       a::before {
         display: none;
+      }
+
+      @include min-screen($screen__l) {
+        flex-basis: auto;
+        width: auto;
+        text-align: right;
+      }
+
+      @include min-screen($screen__xl) {
+        flex-basis: 100%;
       }
     }
   }
@@ -85,10 +95,7 @@
     .list-inner {
       display: flex;
       align-items: center;
-
-      .product-name {
-        max-width: 300px;
-      }
+      flex-basis: 55%;
     }
 
     .list-image {

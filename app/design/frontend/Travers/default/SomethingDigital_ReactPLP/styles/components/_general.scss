@@ -1,5 +1,5 @@
 $productInfo__offset-top: 50px;
-$sidebar__max-width: 300px;
+$sidebar__max-width: 240px;
 
 .left-panel {
   width: 20%;
@@ -307,10 +307,13 @@ $sidebar__max-width: 300px;
 .plp-breadcrumbs {
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
-  top: $indent__base;
   align-items: flex-end;
   padding-left: 0;
+
+  @include min-screen($screen__m) {
+    position: absolute;
+    top: $indent__base;
+  }
 
   button,
   span {
@@ -396,6 +399,22 @@ $sidebar__max-width: 300px;
     .increment-message {
       margin: $indent__base $indent__s 0 0;
       text-align: left;
+    }
+  }
+}
+
+.list-view,
+.table-view,
+.product-info {
+  .product-name,
+  .pricing .price,
+  .pricing .as-low-as,
+  .product-info-content .pricing p {
+    font-size: $font-size__base__desktop;
+    text-transform: capitalize;
+
+    @include min-screen($screen__m) {
+      font-size: 16px;
     }
   }
 }

@@ -169,11 +169,13 @@
     margin-top: 15px;
 
     .refinement-checkbox {
+      position: absolute;
       padding-right: 100%;
     }
 
     .refinement-label {
       min-height: $indent__s;
+      margin-bottom: $indent__xs;
 
       &::before,
       &::after {
@@ -207,7 +209,7 @@
       li {
         margin: $indent__s;
         box-sizing: border-box;
-        max-width: 85px;
+        max-width: 75px;
 
         a,
         a:active {
