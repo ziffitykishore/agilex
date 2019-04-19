@@ -1131,6 +1131,7 @@ footer.page-footer {
 
     @include max-screen($screen__m) {
         width: 100%;
+        margin-top: $indent__base;
     }
 
     .carousel,
@@ -1163,9 +1164,9 @@ footer.page-footer {
 }
 
 .bluefoot__categories {
-    list-style-type: none;
     padding-left: 50px;
     padding-right: $indent__base;
+    list-style-type: none;
 
     li {
         margin-top: $indent__s;
@@ -1185,8 +1186,33 @@ footer.page-footer {
     }
 }
 
-.category-accordion .bluefoot__categories {
-    padding-left: $indent__base;
-    background-color: $c-smoke;
-    border: 1px solid $c-dusty-grey;
+.categories-accordion {
+    &.bluefoot-row {
+        margin: 0;
+    }
+
+    &__trigger {
+        border: 1px solid $c-grey;
+
+        &.bluefoot-entity {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        button {
+            padding: 15px $indent__m;
+
+            span {
+                font-size: 18px;
+                letter-spacing: 0;
+            }
+        }
+    }
+
+    .bluefoot__categories {
+        margin-top: 0;
+        padding-left: $indent__base;
+        background-color: $c-smoke;
+        border: 1px solid $c-grey;
+    }
 }
