@@ -1187,6 +1187,10 @@ footer.page-footer {
 }
 
 .categories-accordion {
+    @include min-screen($screen__m) {
+        display: none;
+    }
+
     &.bluefoot-row {
         margin: 0;
     }
