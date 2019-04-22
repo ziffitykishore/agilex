@@ -92,6 +92,28 @@ $checkout-shipping-method__padding             : $indent__base !default;
         }
     }
 
+    .address-search {
+        .control {
+            position: relative;
+            max-width: 400px;
+
+            input::placeholder {
+                color: $c-silver;
+            }
+
+            .search-icon {
+                @include vertically-center($position: absolute);
+                right: $indent__s;
+
+                svg {
+                    width: 25px;
+                    height: 25px;
+                    fill: $c-silver;
+                }
+            }
+        }
+    }
+
     .field.addresses {
         @include lib-clearfix();
     }
