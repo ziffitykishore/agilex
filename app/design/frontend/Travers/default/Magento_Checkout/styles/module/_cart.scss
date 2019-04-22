@@ -55,6 +55,15 @@ $cart-image-mobile-width: 60px !default;
         display: flex;
         justify-content: space-between;
     }
+
+    .action.continue,
+    .action.update {
+        @include button--type(secondary);
+
+        @include hover {
+            border: inherit;
+        }
+    }
 }
 
 .summary.title {
