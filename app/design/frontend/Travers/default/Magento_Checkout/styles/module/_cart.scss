@@ -158,7 +158,7 @@ $cart-image-mobile-width: 60px !default;
 // Used for "Apply Discount" and "Add Gift Card"
 .cart-summary .action.add,
 .cart-summary .action.apply {
-    @include lib-button();
+    @include button--type(primary);
 }
 
 // Totals block
