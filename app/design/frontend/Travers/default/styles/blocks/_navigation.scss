@@ -578,23 +578,23 @@ $nav-section-title__height: 60px;
     }
 
     &--sticky {
-        @include min-screen($mobile-nav__breakpoint) {
-            .navigation .level-top.category-item {
-                .submenu {
-                    top: 50px !important; // overrides megamenu JS
-                }
-
-                &.first {
-                    padding-left: 180px;
-
+        .navigation {
+            .level-top.category-item {
+                @include min-screen($mobile-nav__breakpoint) {
                     .submenu {
-                        left: 0 !important; // overrides megamenu JS
+                        top: 50px !important; // overrides megamenu JS
+                    }
+
+                    &.first {
+                        padding-left: 180px;
+
+                        .submenu {
+                            left: 0 !important; // overrides megamenu JS
+                        }
                     }
                 }
             }
-        }
 
-        .navigation {
             ul:first-of-type {
                 padding-left: $indent__s;
             }

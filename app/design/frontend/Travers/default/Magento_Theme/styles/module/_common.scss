@@ -59,84 +59,67 @@ body {
                 margin-bottom: 0;
                 padding-left: 0;
                 padding-right: 0;
+            }
 
-                .logo {
-                    padding-left: 50px;
-                }
+            .logo {
+                padding-left: 50px;
+            }
 
-                .quick-order-container {
-                    padding-right: 50px;
-                }
-
-                .minicart-wrapper {
-                    right: 60px;
-                    margin-left: 0;
-                }
+            .quick-order-container {
+                padding-right: 50px;
             }
         }
     }
-}
 
-.page-header--sticky {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    min-height: 40px;
-    z-index: 15;
-    background-color: $color-white;
-    box-shadow: 2px 3px 7px 0 rgba(0, 0, 0, 0.1);
-
-    .panel.wrapper,
-    .social-links,
-    .quick-order-container {
-        display: none;
-    }
-
-    .header.content {
-        display: flex;
-        position: relative;
+    &--sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
         min-height: 40px;
-        margin-bottom: 0;
-    }
+        z-index: 15;
+        background-color: $color-white;
+        box-shadow: 2px 3px 7px 0 rgba(0, 0, 0, 0.1);
 
-    .logo {
-        margin-bottom: 0;
-        padding-left: 0;
-        order: 0;
-        line-height: 1;
-
-        svg {
-            width: 150px;
-            margin-top: 15px;
+        @include min-screen($mobile-nav__breakpoint) {
+            min-height: 60px;
         }
-    }
 
-    .minicart-wrapper {
-        position: absolute;
-        right: $indent__s;
-        order: 3;
-
-        .text {
+        .panel.wrapper,
+        .social-links,
+        .quick-order-container {
             display: none;
         }
-    }
-}
-
-.page-header--sticky {
-    @include min-screen($mobile-nav__breakpoint) {
-        min-height: 60px;
 
         .header.content {
-            min-height: 60px;
-            padding-left: 0;
+            display: flex;
+            position: relative;
+            min-height: 40px;
+            margin-bottom: 0;
+
+            @include min-screen($mobile-nav__breakpoint) {
+                min-height: 60px;
+                padding-left: 0;
+            }
         }
 
         .logo {
-            position: absolute;
-            left: $indent__base;
+            margin-bottom: 0;
+            padding-left: 0;
+            order: 0;
+            line-height: 1;
 
             svg {
-                margin-top: 0;
+                width: 150px;
+                margin-top: 15px;
+            }
+
+            @include min-screen($mobile-nav__breakpoint) {
+                position: absolute;
+                left: $indent__base;
+
+                svg {
+                    margin-top: 0;
+                }
             }
         }
     }
