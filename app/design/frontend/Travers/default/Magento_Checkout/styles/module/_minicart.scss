@@ -102,6 +102,7 @@ $minicart-items__max-height  : 260px !default;
   @include max-screen($mobile-nav__breakpoint) {
     display: flex;
     align-items: center;
+    top: 0;
     min-height: 42px;
   }
 
@@ -418,9 +419,10 @@ $minicart-items__max-height  : 260px !default;
 
 @include min-screen($mobile-nav__breakpoint) {
   .minicart-wrapper {
-    margin-left: 13px;
     position: absolute;
+    top: 15px;
     right: 85px;
+    margin-left: 13px;
 
     .block-minicart {
       right: -15px;

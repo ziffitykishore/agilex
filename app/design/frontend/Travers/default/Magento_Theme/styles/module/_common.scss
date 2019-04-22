@@ -27,14 +27,6 @@ body {
         margin-bottom: 0;
     }
 
-    .minicart-wrapper {
-        top: 0;
-
-        @include min-screen($mobile-nav__breakpoint) {
-            top: 15px;
-        }
-    }
-
     .cms-index-index & {
         margin-bottom: 0;
     }
