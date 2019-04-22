@@ -8,6 +8,7 @@
 
 /** @var \Magento\Customer\Block\Address\Book $block */
 ?>
+<?php $viewModel = $block->getViewModel(); ?>
 <div class="block block-addresses-default">
     <div class="block-title"><strong><?= $block->escapeHtml(__('Default Addresses')) ?></strong></div>
     <div class="block-content">
@@ -22,12 +23,10 @@
                     </address>
                 </div>
                 <div class="box-actions">
-                    <?php if ($_pAddsses): ?>
-                        <?php if (!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
-                            <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
-                                <span><?= $block->escapeHtml(__('Change Billing Address')) ?></span>
-                            </a>
-                        <?php endif; ?>
+                    <?php if (!$viewModel->isAddressIdReadOnly($_pAddsses)): ?>
+                        <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
+                            <span><?= $block->escapeHtml(__('Change Billing Address')) ?></span>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -51,12 +50,10 @@
                     </address>
                 </div>
                 <div class="box-actions">
-                    <?php if ($block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')): ?>
-                        <?php if (!$block->getAddressById($_pAddsses)->getCustomAttribute('is_read_only')->getValue()): ?>
-                            <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
-                                <span><?= $block->escapeHtml(__('Change Shipping Address')) ?></span>
-                            </a>
-                        <?php endif; ?>
+                    <?php if (!$viewModel->isAddressIdReadOnly($_pAddsses)): ?>
+                        <a class="action edit" href="<?= $block->escapeUrl($block->getAddressEditUrl($_pAddsses)) ?>">
+                            <span><?= $block->escapeHtml(__('Change Shipping Address')) ?></span>
+                        </a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -82,7 +79,7 @@
                             <?= $block->getAddressHtml($_address) ?><br />
                         </address>
                         <div class="item actions">
-                            <?php if (!$_address->getCustomAttribute('is_read_only')->getValue()): ?>
+                            <?php if (!$viewModel->isAddressIdReadOnly($_address->getId())): ?>
                                 <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/address/edit', ['id' => $_address->getId()])) ?>"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
                                 <a class="action delete" href="#" role="delete-address" data-address="<?= $block->escapeHtmlAttr($_address->getId()) ?>"><span><?= $block->escapeHtml(__('Delete Address')) ?></span></a>
                             <?php endif; ?>
