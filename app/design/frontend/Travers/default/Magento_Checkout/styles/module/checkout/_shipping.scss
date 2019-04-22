@@ -13,7 +13,7 @@ $checkout-shipping-item__transition            : 0.3s border-color !default;
 $checkout-shipping-item__width                 : 33.3333% !default;
 $checkout-shipping-item-tablet__width          : 50% !default;
 $checkout-shipping-item-mobile__width          : 100% !default;
-$checkout-shipping-item__active__border-color  : $color-orange-red1 !default;
+$checkout-shipping-item__active__border-color  : $c-royal !default;
 
 $checkout-shipping-item-icon__background-color : $checkout-shipping-item__active__border-color !default;
 $checkout-shipping-item-icon__color            : $color-white !default;
@@ -93,6 +93,8 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 
     .address-search {
+        margin-bottom: $indent__m;
+
         .control {
             position: relative;
             max-width: 400px;
@@ -119,6 +121,7 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 
     .action-show-popup {
+        @include button--type(secondary);
         margin: 0 0 $indent__base;
 
         > span::before {
@@ -128,6 +131,7 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 
     .action-select-shipping-item {
+        @include button--type(secondary);
         float: right;
         margin: $indent__base 0 0;
     }
