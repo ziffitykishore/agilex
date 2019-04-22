@@ -188,7 +188,7 @@ $cart-image-mobile-width: 60px !default;
 }
 
 .grand.totals {
-    @include lib-heading(h4);
+    @include lib-heading(h3);
 }
 
 //
@@ -356,7 +356,7 @@ $cart-image-mobile-width: 60px !default;
 
     .checkout-methods-items {
         @extend .abs-reset-list;
-        margin-top: $indent__base;
+        margin-top: $indent__xl;
         padding: 0 $mobile-cart-padding;
         text-align: center;
 

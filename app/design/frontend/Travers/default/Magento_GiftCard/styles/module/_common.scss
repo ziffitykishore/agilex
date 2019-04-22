@@ -1,8 +1,13 @@
 .cart-summary .block.giftcard .secondary {
+    width: 100%;
+    text-align: center;
+
     .action.check {
-        @include button--inline-link();
-        text-align: left;
-        white-space: normal;
+        @include button--type(tertiary);
+
+        @include hover {
+            color: $c-steel;
+        }
     }
 }
 
@@ -42,7 +47,7 @@ $giftcard-inline__secondary-height: 40px;
 
         .secondary {
             position: absolute;
-            bottom: 0;
+            bottom: -$indent__base;
             left: 0;
             right: 0;
             text-align: center;
