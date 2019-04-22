@@ -610,6 +610,7 @@ $nav-section-title__height: 60px;
         }
 
         .nav-sections {
+            display: block;
             order: 1;
 
             &-items {

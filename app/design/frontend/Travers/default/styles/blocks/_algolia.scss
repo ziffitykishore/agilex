@@ -57,3 +57,62 @@
         min-height: 49px;
     }
 }
+
+.page-header {
+    &:not(.page-header--sticky) {
+        @include min-screen($mobile-nav__breakpoint) {
+            .algolia-search-block {
+                flex-basis: 45%;
+            }
+        }
+
+        @include min-screen($screen__xl) {
+            .algolia-search-block {
+                flex-basis: 55%;
+            }
+        }
+    }
+
+    &--sticky {
+        .algolia-search-block {
+            display: none;
+        }
+
+        @include min-screen($screen__m) {
+            .algolia-search-block .search-button {
+                min-height: 0;
+                padding-left: $indent__s;
+                padding-right: $indent__s;
+            }
+        }
+
+        @include min-screen($mobile-nav__breakpoint) {
+            .algolia-search-block {
+                display: block;
+            }
+
+            .algolia-search-block {
+                flex-basis: auto;
+            }
+        }
+
+        @include min-screen($screen__l) {
+            .algolia-search-block {
+                position: absolute;
+                right: $indent__base;
+            }
+        }
+
+        .algolia-search-block {
+            max-width: 300px;
+            margin-right: 60px;
+            flex-basis: auto;
+            order: 2;
+        }
+
+        .algolia-search-input,
+        .search-button {
+            height: 40px;
+        }
+    }
+}
