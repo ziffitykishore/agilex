@@ -29,7 +29,7 @@ $font-size__base--desktop: $font-size__base !default;
         $_icon-font-line-height: 1,
         $_breadcrumbs-icon-use: false,
         $_breadcrumbs-separator-symbol: '/',
-        $_breadcrumbs-current-font-weight: $font-weight__semibold
+        $_breadcrumbs-current-font-weight: $font-weight__regular
     );
 
     .items {
@@ -39,7 +39,7 @@ $font-size__base--desktop: $font-size__base !default;
         .item {
             strong,
             a {
-                font-weight: $font-weight__semibold;
+                font-weight: $font-weight__regular;
                 margin: 0 $indent__xs;
             }
         }
