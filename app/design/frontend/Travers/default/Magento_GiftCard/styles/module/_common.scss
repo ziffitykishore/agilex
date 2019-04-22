@@ -1,0 +1,51 @@
+.cart-summary .block.giftcard .secondary {
+    .action.check {
+        @include button--inline-link();
+        text-align: left;
+        white-space: normal;
+    }
+}
+
+.page-product-giftcard {
+    .giftcard-amount {
+        text-align: left;
+    }
+
+    .product-options-wrapper .field:first-of-type {
+        margin-top: $form-field__vertical-indent;
+    }
+
+    .fieldset.giftcard {
+        & > .legend {
+            @include lib-visually-hidden();
+            & + br {
+                display: none;
+            }
+        }
+    }
+}
+
+.giftcard.add {
+    margin-bottom: 20px;
+}
+
+//
+//  Desktop
+//  _____________________________________________
+$giftcard-inline__secondary-height: 40px;
+
+@include min-screen($screen__l) {
+    .cart-summary .block.giftcard {
+        .actions-toolbar {
+            margin-bottom: $giftcard-inline__secondary-height;
+        }
+
+        .secondary {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+    }
+}
