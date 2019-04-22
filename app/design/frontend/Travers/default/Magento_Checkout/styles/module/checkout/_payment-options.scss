@@ -27,13 +27,19 @@ $checkout-payment-option-content__padding__xl    : $checkout-payment-method-cont
     }
 
     .payment-option-title {
-        border-top: $checkout-payment-option-title__border;
+        @include button--type(tertiary);
+        min-height: auto;
         padding: $checkout-payment-option-title__padding 0;
+        border-top: $checkout-payment-option-title__border;
+
+        @include hover {
+            border-top: $checkout-payment-option-title__border;
+        }
 
         .action-toggle {
             @include icon-svg(
                 $icon       : expand,
-                $fill       : $secondary__color,
+                $fill       : $c-royal,
                 $width      : $toggling-icon-width,
                 $height     : auto,
                 $hideLabel  : false,
@@ -52,7 +58,7 @@ $checkout-payment-option-content__padding__xl    : $checkout-payment-method-cont
     .payment-option._active .payment-option-title .action-toggle {
         @include icon-svg(
             $icon       : collapse,
-            $fill       : $secondary__color,
+            $fill       : $c-royal,
             $width      : $toggling-icon-width,
             $height     : auto,
             $hideLabel  : false,
