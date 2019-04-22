@@ -69,6 +69,12 @@ body {
                 padding-right: 50px;
             }
         }
+
+        @include min-screen($screen__l) {
+            .logo {
+                padding-left: 70px;
+            }
+        }
     }
 
     &--sticky {
