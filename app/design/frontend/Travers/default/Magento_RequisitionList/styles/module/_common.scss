@@ -316,6 +316,10 @@ $requisition-print__font-size-m: 1.4rem !default;
         &.hidden {
             display: none;
         }
+
+        &.cancel {
+            @include button--type(tertiary);
+        }
     }
 
     .modal-title {
