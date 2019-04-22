@@ -267,9 +267,19 @@ $cart-image-mobile-width: 60px !default;
     }
 
     .product-item-name {
-        font-weight: $font-weight__regular;
         margin-top: 0;
         line-height: 1;
+
+        a {
+            color: $c-steel;
+            margin-top: 0;
+            line-height: 1;
+
+            @include hover {
+                color: $c-cobalt;
+                text-decoration: none;
+            }
+        }
     }
 
     .item-actions td {
@@ -284,7 +294,7 @@ $cart-image-mobile-width: 60px !default;
         > .action {
             @include button--inline-link();
             margin-bottom: $indent__s;
-            margin-right: $indent__s;
+            margin-right: $indent__m;
 
             &:last-child {
                 margin-right: 0;
