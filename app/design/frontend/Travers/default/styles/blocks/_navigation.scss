@@ -609,4 +609,8 @@ $nav-section-title__height: 60px;
             border-bottom: 0;
         }
     }
+
+    .phone-number.only-on-mobile {
+        display: none;
+    }
 }
