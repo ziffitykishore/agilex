@@ -49,6 +49,80 @@ body {
             display: block;
         }
     }
+
+    &:not(.page-header--sticky) {
+        @include min-screen($mobile-nav__breakpoint) {
+            .header.content {
+                position: relative;
+                flex-wrap: wrap;
+                margin-top: $indent__base;
+                margin-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .logo {
+                padding-left: 50px;
+            }
+
+            .quick-order-container {
+                padding-right: 50px;
+            }
+        }
+    }
+
+    &--sticky {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        min-height: 40px;
+        z-index: 15;
+        background-color: $color-white;
+        box-shadow: 2px 3px 7px 0 rgba(0, 0, 0, 0.1);
+
+        @include min-screen($mobile-nav__breakpoint) {
+            min-height: 60px;
+        }
+
+        .panel.wrapper,
+        .social-links,
+        .quick-order-container {
+            display: none;
+        }
+
+        .header.content {
+            display: flex;
+            position: relative;
+            min-height: 40px;
+            margin-bottom: 0;
+
+            @include min-screen($mobile-nav__breakpoint) {
+                min-height: 60px;
+                padding-left: 0;
+            }
+        }
+
+        .logo {
+            margin-bottom: 0;
+            padding-left: 0;
+            order: 0;
+            line-height: 1;
+
+            svg {
+                width: 150px;
+                margin-top: 15px;
+            }
+
+            @include min-screen($mobile-nav__breakpoint) {
+                position: absolute;
+                left: $indent__base;
+
+                svg {
+                    margin-top: 0;
+                }
+            }
+        }
+    }
 }
 
 //
@@ -229,19 +303,9 @@ body {
         max-width: none;
         align-items: center;
 
-        .algolia-search-block {
-            flex-basis: 46%;
-        }
-
         .minicart-wrapper {
             order: 1;
             margin-top: 0;
-        }
-    }
-
-    @include min-screen($screen__xl) {
-        .algolia-search-block {
-            flex-basis: 53%;
         }
     }
 }
@@ -266,7 +330,7 @@ body {
     }
 
     svg {
-        max-width: 170px;
+        max-width: 150px;
         width: 100%;
         margin-top: 12px;
 

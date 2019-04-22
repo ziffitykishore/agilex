@@ -6,6 +6,7 @@ import promobar from './promobar';
 import collapsible from './collapsible';
 import './backToTop';
 import './fullbleed';
+import './stickyNav';
 import './theme';
 
 require('lazysizes');
