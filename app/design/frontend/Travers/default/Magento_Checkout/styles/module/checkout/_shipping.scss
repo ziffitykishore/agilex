@@ -175,9 +175,13 @@ $checkout-shipping-method__padding             : $indent__base !default;
             padding-top: $checkout-shipping-method__padding;
 
             &:first-child {
+                width: 35px;
                 padding-left: 0;
                 padding-right: 0;
-                width: 35px;
+
+                input {
+                    position: absolute;
+                }
             }
         }
 
@@ -265,7 +269,7 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 
     .table-checkout-shipping-method {
-        width: auto;
+        width: 100%;
     }
 }
 
