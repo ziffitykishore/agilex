@@ -4,7 +4,7 @@ Tags: custom instagram feed, feed, instagram, hashtag, Instagram feed, instagram
 Requires at least: 3.9
 Requires PHP: 5.2
 Tested up to: 5.1
-Stable tag: 1.3.14
+Stable tag: 1.3.15
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -537,8 +537,11 @@ Please make sure you don't have any important information before you proceed.
 
 == Changelog ==
 
+= 1.3.15 =
+Added: Banner to install 10Web manager.
+
 = 1.3.14 =
-New: Added contributor role in the option 'Minimal role to add and manage Feeds or Themes'.    
+New: Added contributor role in the option 'Minimal role to add and manage Feeds or Themes'.
 Fixed: Conditional filters for hashtags.   
 
 = 1.3.13 =

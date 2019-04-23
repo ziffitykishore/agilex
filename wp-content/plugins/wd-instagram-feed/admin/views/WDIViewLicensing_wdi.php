@@ -24,7 +24,8 @@ class WDIViewLicensing_wdi {
   ////////////////////////////////////////////////////////////////////////////////////////
   public function display() {
     ?>
-    <div class="update-nag wdi_help_bar_wrap">
+    <div class="wrap">
+    <div class="update-nag notice wd-notice wdi_help_bar_wrap">
       <div class="wdi_hb_buy_pro">
         <a class="wdi_update_pro_link" target="_blank" href="https://web-dorado.com/files/fromInstagramFeedWD.php">
           <?php _e("UPGRADE TO PREMIUM VERSION", "wd-instagram-feed"); ?>
@@ -131,6 +132,7 @@ class WDIViewLicensing_wdi {
         <li><?php _e("Delete Instagram Feed plugin.", 'wd-instagram-feed'); ?></li>
         <li><?php _e("Install the downloaded commercial version of the plugin.", 'wd-instagram-feed'); ?></li>
       </ol>
+    </div>
     </div>
     <?php
   }
