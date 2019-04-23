@@ -153,15 +153,23 @@ category: Blocks - Links
 
     @if $button-type == "tertiary" {
         @include button--transparent;
+        padding: 0;
         font-size: $font-size__base--desktop;
         font-weight: $font-weight__semibold;
         line-height: 1.4;
         letter-spacing: .8px;
         text-transform: capitalize;
         color: $text__color-alt;
+        box-shadow: none;
+        outline: 0;
 
         @include hover {
             color: $c-steel;
+
+            span,
+            a {
+                color: $c-steel;
+            }
         }
     }
 

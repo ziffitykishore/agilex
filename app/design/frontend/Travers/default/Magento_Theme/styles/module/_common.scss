@@ -69,6 +69,12 @@ body {
                 padding-right: 50px;
             }
         }
+
+        @include min-screen($screen__l) {
+            .logo {
+                padding-left: 70px;
+            }
+        }
     }
 
     &--sticky {
@@ -579,8 +585,14 @@ body {
 //  404 Page
 //  ---------------------------------------------
 
-.cms-no-route .page-title-wrapper {
-    display: none;
+.cms-no-route {
+    .columns .column.main {
+        width: 100%;
+    }
+
+    .page-title-wrapper {
+        display: none;
+    }
 }
 
 .page-not-found {

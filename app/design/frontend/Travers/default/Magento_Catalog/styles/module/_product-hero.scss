@@ -90,7 +90,10 @@ $product-inventory-table--header__font-size--desktop: 16px;
     .product.info.detailed {
         order: 3;
         width: 100%;
-        max-width: 700px;
+
+        @include min-screen($screen__l) {
+            margin-right: 35px;
+        }
 
         .data.switch {
             font-family: $font-family__sans-serif;

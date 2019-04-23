@@ -156,6 +156,7 @@ $requisition-print__font-size-m: 1.4rem !default;
             text-decoration: none;
             font-family: $font-family__base;
             border: 1px solid $c-grey;
+            letter-spacing: 0;
         }
     }
 
@@ -315,6 +316,10 @@ $requisition-print__font-size-m: 1.4rem !default;
     .action {
         &.hidden {
             display: none;
+        }
+
+        &.cancel {
+            @include button--type(tertiary);
         }
     }
 

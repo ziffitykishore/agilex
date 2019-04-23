@@ -62,7 +62,7 @@
     &:not(.page-header--sticky) {
         .algolia-search-block {
             @include min-screen($mobile-nav__breakpoint) {
-                flex-basis: 45%;
+                flex-basis: 44%;
             }
 
             @include min-screen($screen__xl) {
