@@ -96,6 +96,11 @@ $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::cla
                 <?= $block->getCountryHtmlSelect() ?>
             </div>
         </div>
+
+        <?php $userDefinedAttributes = $block->getLayout()->getBlock('customer_form_address_user_attributes'); ?>
+        <?php if ($userDefinedAttributes):?>
+            <?= $userDefinedAttributes->setShowContainer(false)->toHtml() ?>
+        <?php endif;?>
         <?php if ($block->isDefaultBilling()): ?>
             <div class="message info">
                 <span><?= /* @escapeNotVerified */ __("This is your default billing address.") ?></span>
