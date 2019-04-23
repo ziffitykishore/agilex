@@ -1,20 +1,25 @@
 <?php global $redux_builder_amp; ?>
 <?php if(!isset($redux_builder_amp['amp_font_selector']) || $redux_builder_amp['amp_font_selector'] == 1 || empty($redux_builder_amp['amp_font_selector'])){
 if(!ampforwp_levelup_compatibility('levelup_theme_and_elementor')){ // Level up Condition starts ?>
-@font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 300;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Light.ttf');}
-@font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 400;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Regular.ttf');}
-@font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 500;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Medium.ttf');} 
-@font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 600;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-SemiBold.ttf'); }
-@font-face {font-family: 'Poppins';font-display: auto;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); }
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 300;src: local('Poppins Light'), local('Poppins-Light'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Light.ttf');}
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 400;src: local('Poppins Regular'), local('Poppins-Regular'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Regular.ttf');}
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 500;src: local('Poppins Medium'), local('Poppins-Medium'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Medium.ttf');} 
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 600;src: local('Poppins SemiBold'), local('Poppins-SemiBold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-SemiBold.ttf'); }
+@font-face {font-family: 'Poppins';font-display: swap;font-style: normal;font-weight: 700;src: local('Poppins Bold'), local('Poppins-Bold'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/Poppins-Bold.ttf'); }
 <?php } // Level up Condition ends 
 } ?>
-body{<?php $fontFamily = "font-family: 'Poppins', sans-serif;";
+body{<?php  
 $hovercolor = '';
 $hovercolor = ampforwp_get_setting('swift-hover-color-scheme');
 $hovercolor = $hovercolor['color'];
-if(isset($redux_builder_amp['amp_font_selector']) && $redux_builder_amp['amp_font_selector'] != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
-$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';"; }  
-echo $fontFamily;?>
+	$fontFamily = "font-family: 'Arial', 'Helvetica', 'sans-serif';";
+if( !ampforwp_levelup_compatibility('levelup_theme') && 1==ampforwp_get_setting('ampforwp-google-font-switch') ){
+	$fontFamily = "font-family: 'Poppins', sans-serif;";
+	if(ampforwp_get_setting('amp_font_selector') != 1 && !empty($redux_builder_amp['amp_font_selector'])){ 
+		$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector']."';";
+	}
+}
+echo $fontFamily; ?>
 <?php $swift_cs_color = '#005be2';
 $swift_cs = ampforwp_get_setting('swift-color-scheme');
 if( !empty($swift_cs['color']) ) {
@@ -55,7 +60,7 @@ amp-instagram{box-sizing: initial;}
 if( class_exists('\Elementor\Plugin') && \Elementor\Plugin::$instance->db->is_built_with_elementor($post->ID) &&  (is_page() || ampforwp_is_front_page() )  ) {}
 else{ ?>.cntr {max-width: 1100px;margin: 0 auto;width:100%;padding:0px 20px} <?php } ?>
 <?php if(!ampforwp_levelup_compatibility('levelup_elementor') ){  // Level up Condition starts ?>
-@font-face {font-family: 'icomoon';font-display: auto;font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');} 
+@font-face {font-family: 'icomoon';font-display: swap;font-style: normal;font-weight: normal;src:  local('icomoon'), local('icomoon'), url('<?php echo plugin_dir_url(__FILE__) ?>fonts/icomoon.ttf');} 
 header .cntr{
 <?php if( ampforwp_get_setting('swift-width-control') ){?>
 	max-width:<?php echo esc_html(ampforwp_get_setting('swift-width-control'));?>;
@@ -280,7 +285,18 @@ if( ampforwp_is_home() || is_archive() || is_search() || (function_exists('is_sh
 .right a, .left a{background: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;padding: 8px 22px 12px 25px;color: #fff;line-height: 1;border-radius: 46px;font-size: 14px;display: inline-block;}
 .right a:after{content:"»";display: inline-block;padding-left: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: 1px;}
 .left a:before{content:"«";display: inline-block;padding-right: 6px;font-size: 20px;line-height: 20px;height: 20px;position: relative;top: -1px;}
-
+.cntn-wrp.srch p { margin: 30px 0px 30px 0px; }
+.cntn-wrp.srch{
+font-size:18px;color:#000;line-height:1.7;word-wrap: break-word;
+<?php
+if(1==ampforwp_get_setting('ampforwp-google-font-switch')){
+	if(ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 	
+		$fontFamily = "font-family: '".ampforwp_get_setting('amp_font_selector_content_single')."';";	
+	}  
+}
+echo $fontFamily;
+?>
+}
 @media(max-width:1110px){
     .amppb-fluid .col{max-width:95%}
     .sf-img .wp-caption-text{width:100%;padding:10px 40px;}
@@ -389,17 +405,23 @@ if( is_page() || ampforwp_is_front_page() || ampforwp_polylang_front_page() ){?>
 <?php if(is_singular()){ ?>
 /** Pre tag Styling **/
 pre {padding: 30px 15px;background: #f7f7f7;white-space: pre-wrap;;font-size: 14px;color: #666666;border-left: 3px solid;border-color: <?php echo ampforwp_sanitize_color($swift_cs_color); ?>;margin-bottom: 20px;}
+.cntn-wrp{
+<?php
+
+if(1==ampforwp_get_setting('ampforwp-google-font-switch') && 1 == ampforwp_get_setting('content-font-family-enable')){
+
+	if( ampforwp_get_setting('amp_font_selector_content_single') != 1 && !empty(ampforwp_get_setting('amp_font_selector_content_single')) ){ 
+		$fontFamily = "font-family: '".esc_attr(ampforwp_get_setting('amp_font_selector_content_single'))."';";
+	}  
+}
+echo $fontFamily;
+?>
+}
 <?php } ?>
 <?php if($redux_builder_amp['single-design-type'] == '1' || $redux_builder_amp['single-design-type'] == '4'){?>
 <?php // Single
 
 if(is_single() ) { ?>
-.content-wrapper{
-<?php $fontFamily = "font-family: 'Poppins', sans-serif;";
-if(isset($redux_builder_amp['amp_font_selector_content_single']) && $redux_builder_amp['amp_font_selector_content_single'] != 1 && !empty($redux_builder_amp['amp_font_selector_content_single'])){ 
-$fontFamily = "font-family: '".$redux_builder_amp['amp_font_selector_content_single']."';"; }  
-echo $fontFamily;?>
-}
 table {
     display: -webkit-box;
     overflow-x: auto;
@@ -1414,7 +1436,7 @@ if(isset($redux_builder_amp['enable-single-pocket-share']) && $redux_builder_amp
 <?php } ?>
 .s_stk{background: #f1f1f1;display:inline-block;width: 100%;padding:0;position:fixed;bottom: 0;text-align: center;border: 0;}
 .s_stk ul{width:100%;display:inline-flex;}
-.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;}
+.s_stk ul li{flex-direction: column;flex-basis: 0;flex: 1 0 5%;max-width: calc(100% - 10px);display: flex;height:35px}
 .s_stk li a{margin:0;border-radius: 0;padding:12px;}
 
 <?php } ?>
@@ -1588,4 +1610,44 @@ if (ampforwp_get_setting('enable-amp-ads-resp-6')){?>
     html {
    scroll-behavior: smooth;
   }
-<?php } ?>
+<?php } 
+// Infinate Scroll Home & Archive page CSS
+if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_setting('ampforwp-infinite-scroll-home') ){?>
+	/** Home & Archive CSS **/
+	.body amp-next-page{
+	   margin:0px -30px 0px -30px
+	}
+	.amp-next-page-default-separator {
+	    padding-top: 30px;
+	    border:none;
+	}
+
+	@media(max-width:1024px){
+	    .body amp-next-page {
+	        margin: 0px -20px 0px -20px;
+	    }
+	    .amp-next-page-default-separator {
+	        padding-top: 10px;
+	    }
+	}
+	@media(max-width:480px){
+	    .body amp-next-page {
+	        margin: 0px;
+	    }
+	    .fsp, .fbp{
+		    margin:15px 0px;
+		}
+		.loop-wrapper{margin:0;display: inline-block;}
+	}
+
+<?php } // Infinate Scroll Single page CSS
+if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_setting('ampforwp-infinite-scroll-single') ){?>
+	.r-pf .fsp {
+	    margin: 15px;
+	}
+	@media(max-width:1024px){
+	    .body amp-next-page {
+		    margin: 0px 0px 0px 0px;
+		}
+	}
+<?php }
