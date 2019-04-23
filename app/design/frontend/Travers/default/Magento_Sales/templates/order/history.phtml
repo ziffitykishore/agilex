@@ -11,6 +11,9 @@
 <?= $block->getChildHtml('info') ?>
 <?php if ($_orders && count($_orders)): ?>
     <div class="table-wrapper orders-history">
+        <input placeholder="Customer PO #" type="text" name="customer_po_number" />
+        <input placeholder="Product" type="text" name="product" />
+        <input placeholder="Order #" type="text" name="order_number" />
         <table class="data table table-order-items history" id="my-orders-table">
             <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
             <thead>
