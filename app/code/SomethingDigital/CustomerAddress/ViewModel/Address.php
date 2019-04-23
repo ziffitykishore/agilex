@@ -19,12 +19,20 @@ class Address implements \Magento\Framework\View\Element\Block\ArgumentInterface
      * @param int $addressId
      * @return \Magento\Customer\Api\Data\AddressInterface|null
      */
-    public function getAddressById($addressId)
+    public function isAddressIdReadOnly($addressId)
     {
         try {
-            return $this->addressRepository->getById($addressId);
+            $shippingAddress = $this->addressRepository->getById($addressId);
+            if ($shippingAddress) {
+                $shippingAddressReadOnly = $shippingAddress ? $shippingAddress->getCustomAttribute('is_read_only') : null;
+                if ($shippingAddress !== null && ($shippingAddressReadOnly === null || !$shippingAddressReadOnly->getValue())) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         } catch (NoSuchEntityException $e) {
-            return null;
+            return false;
         }
     }
 }
