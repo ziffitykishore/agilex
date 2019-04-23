@@ -4,7 +4,7 @@ Plugin Name: Better AMP - WordPress Complete AMP
 Plugin URI: https://betterstudio.com/wp-plugins/better-amp/
 Description: Add FULL AMP support to your WordPress site.
 Author: Better Studio
-Version: 1.9.10
+Version: 1.9.11
 Author URI: http://betterstudio.com
 */
 
@@ -52,7 +52,7 @@ class Better_AMP {
 	 *
 	 * @since 1.0.0
 	 */
-	const VERSION = '1.9.10';
+	const VERSION = '1.9.11';
 
 
 	/**
@@ -225,16 +225,16 @@ class Better_AMP {
 	protected function apply_hooks() {
 
 		// Registers the AMP rewrite rules
-		add_filter( 'init', array( $this, 'add_rewrite' ) );
-		add_filter( 'init', array( $this, 'append_index_rewrite_rule' ) );
+		add_action( 'init', array( $this, 'add_rewrite' ) );
+		add_action( 'init', array( $this, 'append_index_rewrite_rule' ) );
 
-		add_filter( 'template_redirect', array( $this, 'plugins_compatibility' ) );
+		add_action( 'template_redirect', array( $this, 'plugins_compatibility' ) );
 
 		// Initialize AMP components
-		add_filter( 'init', array( $this, 'include_components' ) );
+		add_action( 'init', array( $this, 'include_components' ) );
 
 		// Changes page template file with AMP template file
-		add_action( 'template_include', array( $this, 'include_template_file' ), 9999 );
+		add_filter( 'template_include', array( $this, 'include_template_file' ), 9999 );
 
 		// override template file
 		add_filter( 'comments_template', array( $this, 'override_comments_template' ), 9999 );
@@ -269,7 +269,7 @@ class Better_AMP {
 
 		register_activation_hook( __FILE__, array( $this, 'install' ) );
 
-		add_action( 'request', array( $this, 'fix_search_page_queries' ) );
+		add_filter( 'request', array( $this, 'fix_search_page_queries' ) );
 		add_filter( 'redirect_canonical', array( $this, '_fix_prevent_extra_redirect_single_pagination' ) );
 
 		// Auto Redirect Mobile Users
@@ -279,7 +279,6 @@ class Better_AMP {
 		add_action( 'template_redirect', 'Better_AMP::init_json_ld', 1 );
 
 		$this->fix_front_page_display_options();
-
 
 		// Fire the modules
 		Better_Amp_Redirect_Router::Run();
@@ -312,8 +311,8 @@ class Better_AMP {
 	 */
 	public function fix_front_page_display_options() {
 
-		add_action( 'pre_option_page_on_front', array( $this, '_return_zero_in_amp' ) );
-		add_action( 'pre_option_show_on_front', array( $this, '_fix_show_on_front' ) );
+		add_filter( 'pre_option_page_on_front', array( $this, '_return_zero_in_amp' ) );
+		add_filter( 'pre_option_show_on_front', array( $this, '_fix_show_on_front' ) );
 	}
 
 
@@ -377,7 +376,7 @@ class Better_AMP {
 
 		if ( $this->is_amp_excluded_by_url() ) {
 
-			return false;
+			return apply_filters( 'better-amp/amp-version-exists', false );
 		}
 
 		if ( ! isset( $filters ) ) {
@@ -410,26 +409,26 @@ class Better_AMP {
 
 			if ( get_post_meta( $post_id, 'disable-better-amp', true ) || isset( $this->excluded_posts_id[ $post_id ] ) ) {
 
-				return false;
+				return apply_filters( 'better-amp/amp-version-exists', false );
 			}
 		}
 
 		if ( empty( $filters ) ) {
-			return true;
+			return apply_filters( 'better-amp/amp-version-exists', true );
 		}
 
 		if ( is_home() || is_front_page() ) {
 
-			return ! $filters['disabled_homepage'];
+			return apply_filters( 'better-amp/amp-version-exists', ! $filters['disabled_homepage'] );
 		}
 
 		if ( is_search() ) {
-			return ! $filters['disabled_search'];
+			return apply_filters( 'better-amp/amp-version-exists', ! $filters['disabled_search'] );
 		}
 
 		if ( is_singular() ) {
 
-			return ! in_array( get_queried_object()->post_type, $filters['disabled_post_types'] );
+			return apply_filters( 'better-amp/amp-version-exists', ! in_array( get_queried_object()->post_type, $filters['disabled_post_types'] ) );
 		}
 
 		if ( is_post_type_archive() ) {
@@ -446,18 +445,19 @@ class Better_AMP {
 
 			} else {
 
-				return false;
+				return apply_filters( 'better-amp/amp-version-exists', false );
 			}
 
-			return ! in_array( $post_type, $filters['disabled_post_types'] );
+			return apply_filters( 'better-amp/amp-version-exists', ! in_array( $post_type, $filters['disabled_post_types'] ) );
+
 		}
 
 		if ( is_tax() || is_category() || is_tag() ) {
 
-			return ! in_array( get_queried_object()->taxonomy, $filters['disabled_taxonomies'] );
+			return apply_filters( 'better-amp/amp-version-exists', ! in_array( get_queried_object()->taxonomy, $filters['disabled_taxonomies'] ) );
 		}
 
-		return true;
+		return apply_filters( 'better-amp/amp-version-exists', true );
 	}
 
 
@@ -788,9 +788,7 @@ class Better_AMP {
 			}
 
 			apply_filters( 'better-amp/template/init', $theme_root );
-
 		}
-
 	}
 
 
