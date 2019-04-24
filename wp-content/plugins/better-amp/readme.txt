@@ -51,7 +51,28 @@ Also BetterAMP supports the /amp/ in the end of url to cover "Automatic AMP" plu
 
 == Changelog ==
 
-= 1.9.10 = 5 Jan 2018
+= 1.9.11 = 15 Apr 2019
+- Added: AMP-Embed to valid tags.
+- Added: Buttons style added.
+
+- Improved: AMP URL Converter with Unit Tests
+- Improved: AMP WPForo plugin compatibility
+
+- Fixed: Undefined index in JetPack.
+- Fixed: “View Desktop Version” Wrong link on WordPress Directory Installation
+- Fixed: DOMElement::setAttribute(): string is not in UTF-8
+- Fixed: 404 error on some pages with end-point
+- Fixed: Wrong AMP pages redirect on WPML.
+- Fixed: Wrong false result on is_better_amp() early calls, when WPML with ‘Different languages in directories’ setting enabled
+- Fixed: Wrong wp directory installation detection
+- Fixed: Do not convert link  when started with wp-content
+- Fixed: Some end-point AMP URL issues
+- Fixed: Some start-point AMP URL issues
+- Fixed: AMP URL on pagination archive pages.
+- Fixed: AMP version for paginated comments.
+
+
+= 1.9.10 = 5 Jan 2019
 - Fixed: Always remove AMP query var when transforming URL to non-AMP.
 - Fixed: Wrap text in a pre tags (BetterAMP)
 

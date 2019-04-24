@@ -1,8 +1,9 @@
 <?php
+namespace AMPforWP\AMPVendor;
 /**
  * Class AMP_Tag_And_Attribute_Sanitizer
  *
- * @package AMP
+ * 
  */
 
 /**
@@ -212,6 +213,9 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 				$ext_key,
 				$version
 			);
+		}
+		if(count($scriptArray)>0){
+			remove_filter('the_content', 'wpautop');
 		}
 		return $scriptArray;
 	}
@@ -432,7 +436,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		}
 
 		// Remove element if it has illegal CDATA.
-		if ( ! empty( $cdata ) && $node instanceof DOMElement ) {
+		if ( ! empty( $cdata ) && $node instanceof \DOMElement ) {
 			$validity = $this->validate_cdata_for_node( $node, $cdata );
 			if ( is_wp_error( $validity ) ) {
 				$this->remove_node( $node );
@@ -472,7 +476,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			}
 
 			// Check if element needs amp-bind component.
-			if ( $node instanceof DOMElement && ! in_array( 'amp-bind', $this->script_components, true ) ) {
+			if ( $node instanceof \DOMElement && ! in_array( 'amp-bind', $this->script_components, true ) ) {
 				foreach ( $node->attributes as $name => $value ) {
 					$is_bind_attribute = (
 						'[' === $name[0]
@@ -607,7 +611,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			return 0.5;
 		}
 
-		if ( ! $node instanceof DOMElement ) {
+		if ( ! $node instanceof \DOMElement ) {
 			/*
 			 * A DOMNode is not valid for checks so might
 			 * as well bail here is not an DOMElement.
@@ -819,7 +823,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function get_disallowed_attributes_in_node( $node, $attr_spec_list ) {
 
-		if ( ! $node instanceof DOMElement ) {
+		if ( ! $node instanceof \DOMElement ) {
 			/**
 			 * If $node is only a DOMNode and not a DOMElement we can't
 			 * remove an attribute from it anyway.  So bail out now.
@@ -854,7 +858,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	 */
 	private function sanitize_disallowed_attribute_values_in_node( $node, $attr_spec_list, $attributes_pending_removal ) {
 
-		if ( ! $node instanceof DOMElement ) {
+		if ( ! $node instanceof \DOMElement ) {
 			/*
 			 * If $node is only a DOMNode and not a DOMElement we can't
 			 * remove an attribute from it anyway.  So bail out now.
@@ -1185,6 +1189,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			if ( $node->hasAttribute( $attr_name ) ) {
 				foreach ( $this->extract_attribute_urls( $node->getAttributeNode( $attr_name ) ) as $url ) {
 					$url = urldecode( $url );
+
 					// Check if the protocol contains invalid chars (protocolCharIsValid: https://github.com/ampproject/amphtml/blob/af1e3a550feeafd732226202b8d1f26dcefefa18/validator/engine/parse-url.js#L31-L39).
 					$protocol = $this->parse_protocol( $url );
 					if ( isset( $protocol ) ) {
@@ -1207,7 +1212,6 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 
 		return AMP_Rule_Spec::NOT_APPLICABLE;
 	}
-	
 	/**
 	 * Parse protocol from URL.
 	 *
@@ -1223,7 +1227,6 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 		}
 		return null;
 	}
-
 	/**
 	 * Check if attribute has a protocol value rule determine if it matches.
 	 *
@@ -1303,6 +1306,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 			return array( $attribute_node->nodeValue );
 		}
 	}
+
 	/**
 	 * Check if attribute has disallowed relative value rule determine if disallowed relative value matches.
 	 *
@@ -1551,7 +1555,7 @@ class AMP_Tag_And_Attribute_Sanitizer extends AMP_Base_Sanitizer {
 	 * @return bool Return true if the specified node's name is an AMP allowed tag, false otherwise.
 	 */
 	private function is_amp_allowed_tag( $node ) {
-		if ( ! $node instanceof DOMElement ) {
+		if ( ! $node instanceof \DOMElement ) {
 			return false;
 		}
 		/**

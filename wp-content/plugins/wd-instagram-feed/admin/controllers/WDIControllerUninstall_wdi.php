@@ -129,6 +129,7 @@ class WDIControllerUninstall_wdi{
     delete_option('wdi_subscribe_done');
     delete_option('wdi_redirect_to_settings');
     delete_option('wdi_do_activation_set_up_redirect');
+    delete_option('tenweb_notice_version');
   }
 
   private function is_uninstalled(){

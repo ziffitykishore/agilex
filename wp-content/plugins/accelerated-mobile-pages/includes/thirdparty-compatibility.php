@@ -28,74 +28,13 @@ add_action('pre_amp_render_post','ampforwp_schema_lazy_load_remover');
 function ampforwp_schema_lazy_load_remover(){
 	remove_filter( 'wp_get_attachment_image_attributes', 'mts_image_lazy_load_attr', 10, 3 );
 	remove_filter('the_content', 'mts_content_image_lazy_load_attr');
+	//Remove CSS header from the GoodLife Theme #2673
+	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
+	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
 }
 
 //Updater to check license
 require_once AMPFORWP_PLUGIN_DIR . '/includes/updater/update.php';
-
-
-if(!function_exists('ampforwp_amp_nonamp_convert')){
-	function ampforwp_amp_nonamp_convert($ampData, $type=""){
-		$returnData = '';
-		if("check" === $type){
-			return ampforwp_is_non_amp('non_amp_check_convert');
-		}
-		if(!ampforwp_is_non_amp('non_amp_check_convert')){
-			return $ampData;
-		}
-		switch($type){
-			case 'filter':
-				$returnData = str_replace(array(
-												"amp-img",
-												"<style amp-custom>",
-												"<amp-sidebar ",
-												"</amp-sidebar>",
-												'on="tap:ampforwpConsent.dismiss"',
-												'<div id="post-consent-ui"',
-												'on="tap:ampforwpConsent.reject"',
-												'on="tap:ampforwpConsent.accept"'
-												),
-											array(
-												"img",
-												"<style type=\"text/css\">",
-												"<sidebar ",
-												"</sidebar>",
-												'onClick="ampforwp_gdrp_set()"',
-												'<script>
-												function ampforwp_gdpr_getCookie(name) {
-												  var value = "; " + document.cookie;
-												  var parts = value.split("; " + name + "=");
-												  if (parts.length == 2) return parts.pop().split(";").shift();
-												}
-												function ampforwp_gdpr(){
-											if(ampforwp_gdpr_getCookie(\'ampforwpcookie\') == \'1\'){document.getElementById(\'gdpr_c\').remove();}
-											}ampforwp_gdpr();
-											function ampforwp_gdrp_set(){document.getElementById(\'ampforwpConsent\').remove(); document.cookie = \'ampforwpcookie=1;expires;path=/\';}
-												</script><div id="post-consent-ui"',
-												'onClick="ampforwp_gdrp_set()"',
-												'onClick="ampforwp_gdrp_set()"',
-												)
-											, $ampData);
-
-				$nonampCss = '
-				.cntr img{height:auto !important;}
-				img{height:auto;}
-				.amp-featured-image img{width:100%;height:auto;}
-				.content-wrapper, .header, .header-2, .header-3{width:100% !important;}
-				.image-mod img{width:100%;}
-				
-				';
-				$re = '/<style\s*type="text\/css">(.*?)<\/style>/si';
-				$subst = "<style type=\"text/css\">$1 ".$nonampCss."</style>";
-				$returnData = preg_replace($re, $subst, $returnData);
-				$returnData = preg_replace(
-                '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
-                 '<iframe src="'. esc_url("https://www.youtube.com/embed/$1").'" style="width:100%;height:360px;" ></iframe>', $returnData);
-			break;
-		}
-		return $returnData;
-	}
-}
 
 //Facility to create child theme For AMP
 	add_filter( 'amp_post_template_file', 'ampforwp_child_custom_header_file', 20, 3 );
@@ -443,97 +382,6 @@ function ampforwp_add_upcomminglayouts($layoutTemplate){
 
 }
 
-
-
-
-if ( ! function_exists( 'ampforwp_isexternal ') ) {
-	function ampforwp_isexternal($url) {
-	    $components = parse_url($url);
-
-	    // we will treat url like '/relative.php' as relative
-	    if ( empty($components['host']) ) return false;  
-	    
-	    // url host looks exactly like the local host
-	    if ( strcasecmp($components['host'], $_SERVER['HTTP_HOST']) === 0 ) return false; 
-	    
-	    // check if the url host is a subdomain
-	    return strrpos(strtolower($components['host']), $_SERVER['HTTP_HOST']) !== strlen($components['host']) - strlen($_SERVER['HTTP_HOST']); 
-  	}
-} // end ampforwp_isexternal
-
-if(!function_exists('ampforwp_findInternalUrl')){
-	function ampforwp_findInternalUrl($url){
-	    global $redux_builder_amp;
-	    if(isset($redux_builder_amp['convert-internal-nonamplinks-to-amp']) && ! $redux_builder_amp['convert-internal-nonamplinks-to-amp']){
-	        return $url;
-	    }
-		$get_skip_media_path 	= array();
-		$skip_media_extensions 	= array();
-		$get_skip_media_path 	= pathinfo($url);
-		$skip_media_extensions 	= array('jpg','jpeg','gif','png');
-
-		if ( isset( $get_skip_media_path['extension'] ) ){
-			if (! in_array( $get_skip_media_path['extension'], $skip_media_extensions ) ){
-				$skip_media_extensions[] = $get_skip_media_path['extension'];
-			}
-		}
-		$skip_media_extensions = apply_filters( 'ampforwp_internal_links_skip_media', $skip_media_extensions );
-
-		if ( isset( $get_skip_media_path['extension'] ) ){
-			if( in_array( $get_skip_media_path['extension'], $skip_media_extensions ) ) {
-				return $url;
-			}
-		}
-		if ( false !== strpos($url, '#') && false === ampforwp_is_amp_inURL($url) && !ampforwp_isexternal($url) ) {
-			$url_array = explode('#', $url);
-			if ( !empty($url_array) && '' !== $url_array[0]) {
-	      		$url = ampforwp_url_controller($url_array[0]).'#'.$url_array[1];
-				return $url;
-			}
-		}
-	    if( false === wp_http_validate_url($url) ) {
-	        return $url;
-	    }
-	    if(!ampforwp_isexternal($url) && ampforwp_is_amp_inURL($url)===false){
-	      // Skip the URL's that have edit link to it
-	      $parts = parse_url($url);
-	      if ( isset($parts['query']) && $parts['query']) {
-	      	parse_str($parts['query'], $query);
-	      }
-	      if ( (isset( $query['action'] ) && $query['action']) || (isset( $query['amp'] ) && $query['amp'] ) ) {
-	          return $url;
-	      }
-	      $qmarkAmp = (isset($redux_builder_amp['amp-core-end-point']) ? $redux_builder_amp['amp-core-end-point']: false );//amp-core-end-point
-	      if ( $qmarkAmp ){
-	      	$url = add_query_arg( 'amp', '1', $url);
-			return $url;
-	      }
-		  else{
-	      	if ( get_option('permalink_structure') ) {
-		      	if ( strpos($url, "?") && strpos($url, "=") ){
-		      		$url = explode('?', $url);
-		      		$url = ampforwp_url_controller($url[0]).'?'.$url[1];
-		      	}
-		      	else
-		      		$url = ampforwp_url_controller($url);
-	      	}
-	      	else
-	      		$url = add_query_arg( 'amp', '1', $url );
-	      }
-	      return $url;
-	    }
-	    return $url;
-	}
-} // end ampforwp_findInternalUrl
-
-function ampforwp_is_amp_inURL($url){
-	$urlArray = explode("/", $url);
-	if( !in_array( AMPFORWP_AMP_QUERY_VAR , $urlArray ) ) {
-		return false;
-	}
-	return true;
-}
-
 if(is_admin()){
 	add_action( 'redux/options/redux_builder_amp/saved', 'ampforwp_extension_individual_amp_page',10,2);
 	function ampforwp_extension_individual_amp_page($options, $changed_values){
@@ -608,39 +456,6 @@ function ampforwp_update_seo_options(){
 	}
 }
 
-//Levelup Compatibility
-function ampforwp_levelup_compatibility($type='levelup_theme_and_elementor_check'){
-	//check theme
-	$returnVal = false;
-	switch($type){
-		case 'levelup_theme':
-			if(function_exists('levelup_theme_is_active')){
-				$returnVal = levelup_theme_is_active();
-			}
-		break;
-		case 'levelup_elementor':
-			if(function_exists('levelup_has_enable_elementor_builder')){
-				$returnVal = levelup_has_enable_elementor_builder();				
-			}
-		break;
-		case 'levelup_theme_and_elementor':
-			if(function_exists('levelup_theme_is_active') && function_exists('levelup_has_enable_elementor_builder')){
-				$returnVal = levelup_theme_is_active() && levelup_has_enable_elementor_builder();
-			}
-		break;
-		case 'hf_builder_foot':
-			if(function_exists('levelup_check_hf_builder')){
-				$returnVal = levelup_check_hf_builder('foot');
-			}
-		break;
-		case 'hf_builder_head':
-			if(function_exists('levelup_check_hf_builder')){
-				$returnVal = levelup_check_hf_builder('head');
-			}
-		break;
-	}
-	return $returnVal;
-}
 //Compatibility with the footnotes plugin. #2447
 add_action('amp_post_template_css','ampforwp_footnote_support');
 if ( ! function_exists('ampforwp_footnote_support') ) {
@@ -660,4 +475,431 @@ function ampforwp_simple_author_box(){
 	if( class_exists('Simple_Author_Box') ){ ?>
 		.saboxplugin-wrap .saboxplugin-gravatar amp-img {max-width: 100px;height: auto;}
 	<?php }
+}
+
+// WP-AppBox CSS #2791
+add_action('amp_post_template_css', 'ampforwp_app_box_styles');
+function ampforwp_app_box_styles(){
+	if ( function_exists('wpAppbox_createAppbox') ) { ?>
+		.wpappbox{clear:both;background-color:#F9F9F9;line-height:1.4;color:#545450;margin:16px 0;font-size:15px;border:1px solid #E5E5E5;box-shadow:0 0 8px 1px rgba(0,0,0,.11);border-radius:8px;display:inline-block;width:100%}.wpappbox a{transition:all .3s ease-in-out 0s}.wpappbox.compact .appicon{height:66px;width:68px;float:left;padding:6px;margin-right:15px}.appicon amp-img{max-width:92px;height:92px;border-radius:5%}.wpappbox a:hover amp-img{opacity:.9;filter:alpha(opacity=90);-webkit-filter:grayscale(100%)}.wpappbox .appicon{position:relative;height:112px;width:112px;float:left;padding:10px;background:#FFF;text-align:center;border-right:1px solid #E5E5E5;border-top-left-radius:6px;border-bottom-left-radius:6px;margin-right:10px}.wpappbox .appdetails{margin-top:15px}.wpappbox .appbuttons a{font-size:13px;box-shadow:0 1px 3px 0 rgba(0,0,0,.15);background:#F1F1F1;border-bottom:0;color:#323232;padding:3px 5px;display:inline-block;margin:12px 0 0;border-radius:3px;cursor:pointer;font-weight:400}.wpappbox .appbuttons a:hover{color:#fff;background:#111}.wpappbox div.applinks,div.wpappbox.compact a.applinks{float:right;position:relative;background:#FFF;text-align:center;border-left:1px solid #E5E5E5;border-top-right-radius:6px;border-bottom-right-radius:6px}.wpappbox div.applinks{height:112px;width:92px;display:block}.wpappbox .apptitle,.wpappbox .developer{margin-bottom:15px}.wpappbox .developer a{color:#333}.wpappbox .apptitle a{font-size:18px;font-weight:500;color:#333}.wpappbox .apptitle a:hover,.wpappbox .developer a:hover{color:#5588b5}.wpappbox .appbuttons span,.wpappbox .qrcode{display:none}.wpappbox.screenshots>div.screenshots{width:auto;margin:0 auto;padding:10px;clear:both;border-top:1px solid #E5E5E5}.wpappbox .screenshots .slider>ul>li{padding:0;margin:0 6px 0 0;list-style-type:none;display:inline-block}.wpappbox .screenshots .slider{overflow-x:scroll;overflow-y:hidden;height:320px;margin-top:0}.wpappbox .screenshots .slider>ul{display:inline-flex;width:100%}.wpappbox .screenshots .slider>ul>li amp-img{height:320px;display:inline-block;}
+		div.wpappbox div.appbuttons {position: absolute;bottom: 30px;width: 92px;}
+		<?php $wpappbox_image_path = plugins_url().'/wp-appbox/img/'; ?>
+		div.wpappbox:not(.colorful) div.applinks {filter: grayscale(100%);}
+		div.wpappbox .applinks, div.wpappbox div.applinks{background-color: #FFF;}
+		div.wpappbox.amazonapps a.applinks, div.wpappbox.amazonapps div.applinks {background: url(<?php echo esc_url($wpappbox_image_path.'amazonapps.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.appstore a.applinks, div.wpappbox.appstore div.applinks {background: url(<?php echo esc_url($wpappbox_image_path.'appstore.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.chromewebstore a.applinks, div.wpappbox.chromewebstore div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'chromewebstore.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.firefoxaddon a.applinks, div.wpappbox.firefoxaddon div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'firefoxaddon.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.googleplay a.applinks, div.wpappbox.googleplay div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'googleplay.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}	
+		div.wpappbox.operaaddons a.applinks, div.wpappbox.operaaddons div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'operaaddons.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.steam a.applinks, div.wpappbox.steam div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'steam.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.windowsstore a.applinks, div.wpappbox.windowsstore div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'windowsstore.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.wordpress a.applinks, div.wpappbox.wordpress div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'wordpress.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox.xda a.applinks, div.wpappbox.xda div.applinks{background: url(<?php echo esc_url($wpappbox_image_path.'xda.png'); ?>);background-repeat: no-repeat;background-size: auto 42px;background-position: center 7px;}
+		div.wpappbox div.stars-monochrome {background: url(<?php echo esc_url($wpappbox_image_path.'stars-sprites-monochrome.png'); ?>) no-repeat;}
+		div.wpappbox div.rating-stars {width: 65px;height: 13px;margin-left: 5px;margin-top: 4px;display: inline-block;}
+		div.wpappbox div.stars50 {background-position: 0 -130px;}
+		div.wpappbox div.stars45 {background-position: 0 -117px;}
+		div.wpappbox div.stars40 {background-position: 0 -104px;}
+		div.wpappbox div.stars35 {background-position: 0 -91px;}	
+		div.wpappbox div.stars30 {background-position: 0 -78px;}
+		div.wpappbox div.stars25 {background-position: 0px -65px;}
+		div.wpappbox div.stars20 {background-position: 0px -52px;}
+		div.wpappbox div.stars15 {background-position: 0px -39px;}
+		div.wpappbox div.stars10 {background-position: 0px -26px;}
+		div.wpappbox div.stars5 {background-position: 0px -12px;}
+		div.wpappbox div.stars0 {background-position: 0px -0px;}
+		@media(max-width:500px){.appicon amp-img{max-width:70px;height:70px}.wpappbox .appicon{height:90px;width:90px;display:inline-block;vertical-align:middle;}.wpappbox .apptitle a{font-size:14px}.wpappbox{font-size:13px;text-align:center;padding:10px 0}.wpappbox .apptitle,.wpappbox .developer{margin-bottom:6px}.wpappbox .appdetails{text-align:left;padding-left:10px}.wpappbox .screenshots .slider{height:290px}.wpappbox .screenshots .slider>ul>li amp-img{max-width:160px;height:280px}
+		.wpappbox div.applinks{display:none;}}
+	<?php 
+	} // ampforwp_app_box_styles Function Ends 
+}
+
+// SEOPress Compatibility #1589
+add_action('amp_post_template_head', 'ampforwp_seopress_social');
+function ampforwp_seopress_social(){
+	$options = $facebook = $twitter = $advanced_options = $seopress_social_og_title = $seopress_social_og_desc = '';
+	$post_id = ampforwp_get_the_ID();
+	$options = get_option("seopress_social_option_name");
+	$advanced_options = get_option("seopress_advanced_option_name");
+	if ( !empty($options) ) {
+		if (isset($options['seopress_social_facebook_og'])) {
+			global $wp;
+			if (isset($advanced_options['seopress_advanced_advanced_trailingslash']) ) {
+				$current_url = home_url(add_query_arg(array(), $wp->request));
+			} else {
+				$current_url = trailingslashit(home_url(add_query_arg(array(), $wp->request)));
+			}
+			if (is_search()) {
+				$seopress_social_og_url = '<meta property="og:url" content="'.esc_url(htmlspecialchars(urldecode(get_home_url().'/search/'.get_search_query()))).'" />';
+			} else {
+				$seopress_social_og_url = '<meta property="og:url" content="'.esc_url(htmlspecialchars(urldecode($current_url),ENT_COMPAT, 'UTF-8')).'" />';
+			}
+			//Hook on post OG URL - 'seopress_social_og_url'
+			if (has_filter('seopress_social_og_url')) {
+				$seopress_social_og_url = apply_filters('seopress_social_og_url', $seopress_social_og_url);
+		    }			
+			echo $seopress_social_og_url."\n";
+		}
+		if (isset($options['seopress_social_facebook_og'])) {
+			$seopress_social_og_site_name = '<meta property="og:site_name" content="'.esc_html(get_bloginfo('name')).'" />';
+			//Hook on post OG site name - 'seopress_social_og_site_name'
+			if (has_filter('seopress_social_og_site_name')) {
+				$seopress_social_og_site_name = apply_filters('seopress_social_og_site_name', $seopress_social_og_site_name);
+		    }
+			echo $seopress_social_og_site_name."\n";
+		}
+		if (isset($options['seopress_social_facebook_og'])) {
+			$seopress_social_og_locale = '<meta property="og:locale" content="'.esc_attr(get_locale()).'" />';
+			//Polylang
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			if ( is_plugin_active( 'polylang/polylang.php' ) || is_plugin_active( 'polylang-pro/polylang.php' )) {
+				//@credits Polylang
+				if (did_action('pll_init') && function_exists('PLL')) {
+					$alternates = array();
+
+					foreach ( PLL()->model->get_languages_list() as $language ) {
+						if ( PLL()->curlang->slug !== $language->slug && PLL()->links->get_translation_url( $language ) && isset( $language->facebook ) ) {
+							$alternates[] = $language->facebook;
+						}
+					}
+					// There is a risk that 2 languages have the same Facebook locale. So let's make sure to output each locale only once.
+					$alternates = array_unique( $alternates );
+
+					foreach ( $alternates as $lang ) {
+						$seopress_social_og_locale .= "\n";
+						$seopress_social_og_locale .= '<meta property="og:locale:alternate" content="'.esc_attr($lang).'" />';
+					}
+				}
+			}
+			//Hook on post OG locale - 'seopress_social_og_locale'
+			if (has_filter('seopress_social_og_locale')) {
+				$seopress_social_og_locale = apply_filters('seopress_social_og_locale', $seopress_social_og_locale);
+		    }
+			if (isset($seopress_social_og_locale) && $seopress_social_og_locale !='') {
+				echo $seopress_social_og_locale."\n";
+			}
+		}
+		if (isset($options['seopress_social_facebook_og'])) {
+			if (is_home() || is_front_page()) {
+				$seopress_social_og_type = '<meta property="og:type" content="website" />';
+			} elseif (is_singular('product') || is_singular('download')) {
+				$seopress_social_og_type = '<meta property="og:type" content="product" />';
+			} elseif (is_singular()) {
+				global $post;
+				$seopress_video_disabled     	= get_post_meta($post->ID,'_seopress_video_disabled', true);
+			  	$seopress_video     			= get_post_meta($post->ID,'_seopress_video');
+
+			  	if (!empty($seopress_video[0][0]['url']) && $seopress_video_disabled =='') {
+					$seopress_social_og_type = '<meta property="og:type" content="video.other" />';
+			  	} else {
+			  		$seopress_social_og_type = '<meta property="og:type" content="article" />';
+			  	}
+			} 
+			elseif (is_search() || is_archive() || is_404()) {
+				$seopress_social_og_type = '<meta property="og:type" content="object" />';
+			}
+			if (isset($seopress_social_og_type)) {
+				//Hook on post OG type - 'seopress_social_og_type'
+				if (has_filter('seopress_social_og_type')) {
+					$seopress_social_og_type = apply_filters('seopress_social_og_type', $seopress_social_og_type);
+			    }
+				echo $seopress_social_og_type."\n";
+			}
+		}
+		if ( isset($options['seopress_social_facebook_og']) && ( isset($options['seopress_social_accounts_facebook']) && '' != $options['seopress_social_accounts_facebook'] ) ) {
+			if (is_singular() && !is_home() && !is_front_page()) {
+				global $post;
+				$seopress_video_disabled     	= get_post_meta($post->ID,'_seopress_video_disabled', true);
+			  	$seopress_video     			= get_post_meta($post->ID,'_seopress_video');
+
+			  	if (!empty($seopress_video[0][0]['url']) && $seopress_video_disabled =='') {		
+					//do nothing
+				} else {
+					$seopress_social_og_author = '<meta property="article:author" content="'.esc_url($options['seopress_social_accounts_facebook']).'" />';
+					$seopress_social_og_author .= "\n";
+					$seopress_social_og_author .= '<meta property="article:publisher" content="'.esc_url($options['seopress_social_accounts_facebook']).'" />';
+				}
+			}
+			if (isset($seopress_social_og_author)) {
+				//Hook on post OG author - 'seopress_social_og_author'
+				if (has_filter('seopress_social_og_author')) {
+					$seopress_social_og_author = apply_filters('seopress_social_og_author', $seopress_social_og_author);
+			    }
+				echo $seopress_social_og_author."\n";
+			}
+		}
+		if (isset($options['seopress_social_facebook_og'])) {
+			$title = '';
+			$title = ampforwp_get_seopress_title();
+			if ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_title',true) ){
+				$title = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_title',true);
+			}
+			if ((is_tax() || is_category() || is_tag()) && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_title',true) )  {
+				$title = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_title',true);
+			}
+			if ( '' != get_post_meta($post_id,'_seopress_social_fb_title',true) ){
+				$title = get_post_meta($post_id,'_seopress_social_fb_title',true);
+			}
+			if ( '' == $title && '' != get_the_title() ){
+				$title = get_the_title();
+			}
+			$seopress_social_og_title .= '<meta property="og:title" content="'.esc_attr($title).'" />'; 
+		 	$seopress_social_og_title .= "\n";
+		 	//Hook on post OG title - 'seopress_social_og_title'
+			if (has_filter('seopress_social_og_title')) {
+				$seopress_social_og_title = apply_filters('seopress_social_og_title', $seopress_social_og_title);
+		    }
+		    if (isset($seopress_social_og_title) && $seopress_social_og_title !='') {
+		    	echo $seopress_social_og_title;
+		    }
+		}
+
+		if (isset($options['seopress_social_facebook_og'])) {
+			$description = ampforwp_generate_meta_desc();
+			if ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_desc',true) ) {
+				$description = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_desc',true);
+			}
+			if (is_tax() || is_category() || is_tag() && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_desc',true) ) {
+				$description = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_desc',true);
+			}
+			if ( '' != get_post_meta($post_id,'_seopress_social_fb_desc',true) ) {
+				$description = get_post_meta($post_id,'_seopress_social_fb_desc',true);
+			}
+			$seopress_social_og_desc .= '<meta property="og:description" content="'.esc_html($description).'" />';
+			$seopress_social_og_desc .= "\n";
+			//Hook on post OG description - 'seopress_social_og_desc'
+			if (has_filter('seopress_social_og_desc')) {
+				$seopress_social_og_desc = apply_filters('seopress_social_og_desc', $seopress_social_og_desc);
+		    }
+		    if (isset($seopress_social_og_desc) && $seopress_social_og_desc !='') {
+		    	echo $seopress_social_og_desc;
+			}
+		}
+		if (isset($options['seopress_social_facebook_og'])) {
+			$url = '';
+			if ( ampforwp_is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_img',true) ){
+				$url = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_img',true);
+			}
+			if (is_tax() || is_category() || is_tag() && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_img',true) ) {
+				$url = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_img',true);
+			}
+			if ( '' != get_post_meta(ampforwp_get_the_ID(),'_seopress_social_fb_img',true) ) {
+				$url = get_post_meta(ampforwp_get_the_ID(),'_seopress_social_fb_img',true);
+			}
+			if ( '' == $url && has_post_thumbnail() ) {
+				$url = get_the_post_thumbnail_url();
+			}
+			if (function_exists('attachment_url_to_postid')) {
+				$image_id = attachment_url_to_postid( $url );
+				if ( !$image_id ){
+					return;
+				}
+
+				$image_src = wp_get_attachment_image_src( $image_id, 'full' );
+
+				//OG:IMAGE
+				$seopress_social_og_img = '';
+				$seopress_social_og_img .= '<meta property="og:image" content="'.esc_url($url).'" />';
+				$seopress_social_og_img .= "\n";
+
+				//OG:IMAGE:SECURE_URL IF SSL
+				if (is_ssl()) {
+					$seopress_social_og_img .= '<meta property="og:image:secure_url" content="'.esc_url($url).'" />';
+					$seopress_social_og_img .= "\n";
+				}
+
+				//OG:IMAGE:WIDTH + OG:IMAGE:HEIGHT
+				if (!empty($image_src)) {
+					$seopress_social_og_img .= '<meta property="og:image:width" content="'.esc_attr($image_src[1]).'" />';
+					$seopress_social_og_img .= "\n";
+					$seopress_social_og_img .= '<meta property="og:image:height" content="'.esc_attr($image_src[2]).'" />';
+					$seopress_social_og_img .= "\n";
+				}
+
+				//OG:IMAGE:ALT
+				if (get_post_meta($image_id, '_wp_attachment_image_alt', true) !='') {
+					$seopress_social_og_img .= '<meta property="og:image:alt" content="'.esc_attr(get_post_meta($image_id, '_wp_attachment_image_alt', true)).'" />';
+					$seopress_social_og_img .= "\n";
+				}
+				//Hook on post OG thumbnail - 'seopress_social_og_thumb'
+				if (has_filter('seopress_social_og_thumb')) {
+					$seopress_social_og_img = apply_filters('seopress_social_og_thumb', $seopress_social_og_img);
+			    }
+			    if (isset($seopress_social_og_img) && $seopress_social_og_img !='') {
+		    		echo $seopress_social_og_img;
+			    }
+			}
+		}
+		if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id'])) {
+			$seopress_social_link_ownership_id = '<meta property="fb:pages" content="'.esc_attr($options['seopress_social_facebook_link_ownership_id']).'" />';	
+			echo $seopress_social_link_ownership_id."\n";
+		}
+		if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id']) ) {
+			$seopress_social_admin_id = '<meta property="fb:admins" content="'.esc_attr($options['seopress_social_facebook_admin_id']).'" />';		
+			echo $seopress_social_admin_id."\n";
+		}
+		if (isset($options['seopress_social_facebook_og']) && isset($options['seopress_social_facebook_link_ownership_id']) ) {
+			$seopress_social_app_id = '<meta property="fb:app_id" content="'.esc_attr($options['seopress_social_facebook_app_id']).'" />';		
+			echo $seopress_social_app_id."\n";
+		}
+		if (isset($options['seopress_social_twitter_card'])) {
+			if ( isset($options['seopress_social_twitter_card_img_size']) && $options['seopress_social_twitter_card_img_size'] =='large') {
+				$seopress_social_twitter_card_summary = '<meta name="twitter:card" content="summary_large_image">';
+			} else {
+				$seopress_social_twitter_card_summary = '<meta name="twitter:card" content="summary" />';
+			}
+			//Hook on post Twitter card summary - 'seopress_social_twitter_card_summary'
+			if (has_filter('seopress_social_twitter_card_summary')) {
+				$seopress_social_twitter_card_summary = apply_filters('seopress_social_twitter_card_summary', $seopress_social_twitter_card_summary);
+		    }
+			echo $seopress_social_twitter_card_summary."\n";
+		}
+		if (isset($options['seopress_social_twitter_card']) && isset($options['seopress_social_accounts_twitter']) ) {
+			$seopress_social_twitter_card_site = '<meta name="twitter:site" content="'.esc_attr($options['seopress_social_accounts_twitter']).'" />';	
+			//Hook on post Twitter card site - 'seopress_social_twitter_card_site'
+			if (has_filter('seopress_social_twitter_card_site')) {
+				$seopress_social_twitter_card_site = apply_filters('seopress_social_twitter_card_site', $seopress_social_twitter_card_site);
+		    }
+			echo $seopress_social_twitter_card_site."\n";
+		}
+		if (isset($options['seopress_social_twitter_card'])) {
+			//Init
+			$seopress_social_twitter_card_creator ='';
+			if ($options['seopress_social_twitter_card'] =='1' && get_the_author_meta('twitter') ) {
+
+				$seopress_social_twitter_card_creator .= '<meta name="twitter:creator" content="@'.esc_attr(get_the_author_meta('twitter')).'" />';
+
+			} elseif ($options['seopress_social_twitter_card'] =='1' && isset($options['seopress_social_accounts_twitter']) && $options['seopress_social_accounts_twitter'] !='' ) {
+				$seopress_social_twitter_card_creator .= '<meta name="twitter:creator" content="'.esc_attr($options['seopress_social_accounts_twitter']).'" />';
+			}
+			//Hook on post Twitter card creator - 'seopress_social_twitter_card_creator'
+			if (has_filter('seopress_social_twitter_card_creator')) {
+				$seopress_social_twitter_card_creator = apply_filters('seopress_social_twitter_card_creator', $seopress_social_twitter_card_creator);
+		    }
+		    if (isset($seopress_social_twitter_card_creator) && $seopress_social_twitter_card_creator !='') {
+		    	echo $seopress_social_twitter_card_creator."\n";
+			}
+		}
+		if (isset($options['seopress_social_twitter_card'])) {
+			$title = $seopress_social_twitter_card_title = '';
+			$title = ampforwp_get_seopress_title();
+			if ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_title',true) ){
+				$title = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_title',true);
+			}elseif ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_title',true) ){
+				$title = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_title',true);
+			}
+			if ((is_tax() || is_category() || is_tag()) && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_twitter_title',true) )  {
+				$title = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_twitter_title',true);
+			}elseif ((is_tax() || is_category() || is_tag()) && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_title',true) )  {
+				$title = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_title',true);
+			}
+			if ( '' != get_post_meta(ampforwp_get_the_ID(),'_seopress_social_twitter_title',true) ){
+				$title = get_post_meta(ampforwp_get_the_ID(),'_seopress_social_twitter_title',true);
+			}elseif ( '' != get_post_meta($post_id,'_seopress_social_fb_title',true) ){
+				$title = get_post_meta($post_id,'_seopress_social_fb_title',true);
+			}
+			if ( '' == $title && '' != get_the_title() ){
+				$title = get_the_title();
+			}
+			$seopress_social_twitter_card_title .= '<meta name="twitter:title" content="'.esc_attr($title).'" />';
+			//Hook on post Twitter card title - 'seopress_social_twitter_card_title'
+			if (has_filter('seopress_social_twitter_card_title')) {
+				$seopress_social_twitter_card_title = apply_filters('seopress_social_twitter_card_title', $seopress_social_twitter_card_title);
+		    }
+		    if (isset($seopress_social_twitter_card_title) && $seopress_social_twitter_card_title !='') {
+		    	echo $seopress_social_twitter_card_title."\n";
+		    }
+		}
+		if (isset($options['seopress_social_twitter_card'])) {
+			$seopress_social_twitter_card_desc = $description  = '';
+			$description = ampforwp_generate_meta_desc();
+			if ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_desc',true) ) {
+				$description = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_desc',true);
+			}elseif ( is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_desc',true) ) {
+				$description = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_desc',true);
+			}
+			if (is_tax() || is_category() || is_tag() && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_twitter_desc',true) ) {
+				$description = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_twitter_desc',true);
+			}elseif (is_tax() || is_category() || is_tag() && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_desc',true) ) {
+				$description = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_desc',true);
+			}
+
+			if ( '' != get_post_meta(ampforwp_get_the_ID(),'_seopress_social_twitter_desc',true) ) {
+				$description = get_post_meta(ampforwp_get_the_ID(),'_seopress_social_twitter_desc',true);
+			}elseif ( '' != get_post_meta(ampforwp_get_the_ID(),'_seopress_social_fb_desc',true) ) {
+				$description = get_post_meta(ampforwp_get_the_ID(),'_seopress_social_fb_desc',true);
+			}
+			$seopress_social_twitter_card_desc .= '<meta name="twitter:description" content="'.esc_html($description).'" />';
+			//Hook on post Twitter card description - 'seopress_social_twitter_card_desc'
+			if (has_filter('seopress_social_twitter_card_desc')) {
+				$seopress_social_twitter_card_desc = apply_filters('seopress_social_twitter_card_desc', $seopress_social_twitter_card_desc);
+		    }
+		    if (isset($seopress_social_twitter_card_desc) && $seopress_social_twitter_card_desc !='') {
+		    	echo $seopress_social_twitter_card_desc."\n";
+		    }
+		}
+		if (isset($options['seopress_social_twitter_card'])) {
+			$url = '';
+			if ( ampforwp_is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_img',true) ){
+				$url = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_twitter_img',true);
+			}elseif ( ampforwp_is_home() && '' != get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_img',true) ){
+				$url = get_post_meta(get_option( 'page_for_posts' ),'_seopress_social_fb_img',true);
+			}
+			if (is_tax() || is_category() || is_tag() && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_twitter_img',true) ) {
+				$url = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_twitter_img',true);
+			}elseif (is_tax() || is_category() || is_tag() && '' != get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_img',true) ) {
+				$url = get_term_meta(get_queried_object()->{'term_id'},'_seopress_social_fb_img',true);
+			}
+			if ( '' != get_post_meta(ampforwp_get_the_ID(),'_seopress_social_twitter_img',true) ) {
+				$url = get_post_meta(ampforwp_get_the_ID(),'_seopress_social_twitter_img',true);
+			}elseif ( '' != get_post_meta(ampforwp_get_the_ID(),'_seopress_social_fb_img',true) ) {
+				$url = get_post_meta(ampforwp_get_the_ID(),'_seopress_social_fb_img',true);
+			}
+			if ( '' == $url && has_post_thumbnail() ) {
+				$url = get_the_post_thumbnail_url();
+			}
+			if (function_exists('attachment_url_to_postid')) {
+				$image_id = attachment_url_to_postid( $url );
+				if ( !$image_id ){
+					return;
+				}
+
+				$image_src = wp_get_attachment_image_src( $image_id, 'full' );
+
+				//OG:IMAGE
+				$seopress_twitter_img = '';
+				$seopress_twitter_img .= '<meta property="twitter:image" content="'.esc_url($url).'" />';
+				$seopress_twitter_img .= "\n";
+
+				//OG:IMAGE:SECURE_URL IF SSL
+				if (is_ssl()) {
+					$seopress_twitter_img .= '<meta property="twitter:image:secure_url" content="'.esc_url($url).'" />';
+					$seopress_twitter_img .= "\n";
+				}
+
+				//OG:IMAGE:WIDTH + OG:IMAGE:HEIGHT
+				if (!empty($image_src)) {
+					$seopress_twitter_img .= '<meta property="twitter:image:width" content="'.esc_attr($image_src[1]).'" />';
+					$seopress_twitter_img .= "\n";
+					$seopress_twitter_img .= '<meta property="twitter:image:height" content="'.esc_attr($image_src[2]).'" />';
+					$seopress_twitter_img .= "\n";
+				}
+
+				//OG:IMAGE:ALT
+				if (get_post_meta($image_id, '_wp_attachment_image_alt', true) !='') {
+					$seopress_twitter_img .= '<meta property="twitter:image:alt" content="'.esc_attr(get_post_meta($image_id, '_wp_attachment_image_alt', true)).'" />';
+					$seopress_twitter_img .= "\n";
+				}
+
+				//Hook on post OG thumbnail - 'seopress_social_og_thumb'
+				if (has_filter('seopress_social_og_thumb')) {
+					$seopress_twitter_img = apply_filters('seopress_social_og_thumb', $seopress_twitter_img);
+			    }
+			    if (isset($seopress_twitter_img) && $seopress_twitter_img !='') {
+			    	echo $seopress_twitter_img;
+			    }
+			}
+		}
+	}
 }

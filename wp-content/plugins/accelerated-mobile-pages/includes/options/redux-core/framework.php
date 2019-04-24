@@ -735,7 +735,7 @@
                      *
                      * @param array $value option value to set global_variable with
                      */
-                    $GLOBALS[ $this->args['global_variable'] ] = apply_filters( "redux/options/{$this->args['opt_name']}/global_variable", $this->options );
+                    $GLOBALS[ $this->args['global_variable'] ] = (array) apply_filters( "redux/options/{$this->args['opt_name']}/global_variable", $this->options );
                     if ( isset ( $this->transients['last_save'] ) ) {
                         // Deprecated
                         $GLOBALS[ $this->args['global_variable'] ]['REDUX_last_saved'] = $this->transients['last_save'];
@@ -3235,7 +3235,7 @@
                     $addClass = ''; $style="";
                     $current_screen = get_current_screen(); 
                     if(is_object($current_screen) && $current_screen->parent_base=='amp_options'){
-                        $enabledOptions = array('basic', 'design', 'opt-go-premium','opt-choose','ampforwp-theme-subsection');
+                        $enabledOptions = array('automatic-amp-features','basic', 'design', 'opt-go-premium','opt-choose','ampforwp-theme-subsection');
                         if(!in_array($section['id'], $enabledOptions)){
                             $addClass = 'otherSectionFields';
                             $style="style='display:none;'";

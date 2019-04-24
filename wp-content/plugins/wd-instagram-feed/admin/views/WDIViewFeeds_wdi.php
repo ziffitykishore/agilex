@@ -54,7 +54,7 @@ class WDIViewFeeds_wdi
     ?>
     <div class="wrap">
       <h2 class="wdi_page_title"></h2>
-      <div class="update-nag wdi_help_bar_wrap">
+      <div class="update-nag notice wd-notice wdi_help_bar_wrap">
         <span class="wdi_help_bar_text">
           <?php _e('This section allows you to create, edit and delete Feeds.', "wd-instagram-feed"); ?>
           <a style="color: #5CAEBD; text-decoration: none;border-bottom: 1px dotted;" class="wdi_hb_t_link" target="_blank"
@@ -522,7 +522,7 @@ public function genarateFeedViews()
     }
 
     ?>
-    <div class="update-nag wdi_help_bar_wrap">
+    <div class="update-nag notice wd-notice wdi_help_bar_wrap">
       <span class="wdi_help_bar_text">
         <?php _e('Here You Can Change Feed Parameters.', "wd-instagram-feed"); ?>
         <a style="color: #5CAEBD; text-decoration: none;border-bottom: 1px dotted;" class="wdi_hb_t_link" target="_blank"

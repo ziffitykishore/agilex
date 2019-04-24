@@ -44,7 +44,8 @@ private $model;
 			<?php
 		} 
 		?>
-    <div class="update-nag wdi_help_bar_wrap">
+    <div class="wrap">
+    <div class="update-nag notice wd-notice wdi_help_bar_wrap">
       <span class="wdi_help_bar_text">
         <?php _e('This section allows you to set API parameters.', "wd-instagram-feed"); ?>
         <a style="color: #5CAEBD; text-decoration: none;border-bottom: 1px dotted;" class="wdi_hb_t_link" target="_blank"
@@ -151,6 +152,7 @@ private $model;
 		 	            });
 		 	        });
 	         	</script>
+    </div>
 		<?php
 	}
 }

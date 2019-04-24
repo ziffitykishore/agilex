@@ -1,3 +1,6 @@
+= 1.3.15 =
+Added: Banner to install 10Web manager.
+
 = 1.3.14 =
 New: Added contributor role in the option 'Minimal role to add and manage Feeds or Themes'.
 Fixed: Conditional filters for hashtags.

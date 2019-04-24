@@ -24,7 +24,8 @@ class WDIViewThemes_wdi {
   public function display() {
 
     ?>
-    <div class="update-nag wdi_help_bar_wrap">
+    <div class="wrap">
+    <div class="update-nag notice wd-notice wdi_help_bar_wrap">
       <span class="wdi_help_bar_text">
         <?php _e('This section allows you to create, edit and delete Themes.', "wd-instagram-feed"); ?>
         <a style="color: #5CAEBD; text-decoration: none;border-bottom: 1px dotted;" class="wdi_hb_t_link" target="_blank"
@@ -43,14 +44,17 @@ class WDIViewThemes_wdi {
 
 
     <div class="wdi_pro_notice"> <?php _e("This is free version, Customizing themes is available only in premium version","wd-instagram-feed"); ?> </div>
-    
 
-<?php
+
+    <?php
     $this->buildFreeThemeDemo();
-}
+    ?>
+    </div>
+    <?php
+    }
 
-public function buildFreeThemeDemo(){
-  ?>
+    public function buildFreeThemeDemo(){
+    ?>
     <div class="wdi_demo_img" demo-tab="general"><img src="<?php echo WDI_URL . '/demo_images/1.png'; ?>" alt=""></div>
     <div class="wdi_demo_img" demo-tab="header"><img src="<?php echo WDI_URL . '/demo_images/2.png'; ?>" alt=""></div>
     <div class="wdi_demo_img" demo-tab="load_more"><img src="<?php echo WDI_URL . '/demo_images/3.png'; ?>" alt=""></div>
@@ -66,8 +70,8 @@ public function buildFreeThemeDemo(){
     <div class="wdi_demo_img" demo-tab="lb_filmstrip"><img src="<?php echo WDI_URL . '/demo_images/l5.png'; ?>" alt=""></div>
     <div class="wdi_demo_img" demo-tab="lb_info"><img src="<?php echo WDI_URL . '/demo_images/l6.png'; ?>" alt=""></div>
     <div class="wdi_demo_img" demo-tab="lb_comments"><img src="<?php echo WDI_URL . '/demo_images/l7.png'; ?>" alt=""></div>
-  <?php
-}
+    <?php
+  }
 
 
 

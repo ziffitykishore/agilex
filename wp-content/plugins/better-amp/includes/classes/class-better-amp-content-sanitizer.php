@@ -333,9 +333,15 @@ class Better_AMP_Content_Sanitizer {
 	 *
 	 * @return bool
 	 */
-	protected static function transform_to_end_point_amp( $url ) {
+	public static function transform_to_end_point_amp( $url ) {
 
-		if ( ! preg_match( '#^https?://w*\.?' . self::regex_url() . '/?#', $url ) ) {
+		if ( ! preg_match( '#^https?://w*\.?' . self::regex_url() . '/?([^/]*)#', $url, $matched ) ) {
+
+			return false;
+		}
+
+
+		if ( $matched[1] === 'wp-content' ) { // Do not convert link  when started with wp-content
 
 			return false;
 		}
@@ -349,9 +355,24 @@ class Better_AMP_Content_Sanitizer {
 			return false;
 		}
 
+		if ( ! better_amp_using_permalink_structure() ) {
+
+			return add_query_arg( Better_AMP::SLUG, true, $url );
+		}
+
+		$trailing_slash = substr( $url, - 1 ) === '/';
 
 		$url = sprintf( '%s://%s/%s', $parsed['scheme'], $parsed['host'], ltrim( $path, '/' ) );
-		$url = trailingslashit( $url ) . Better_AMP::SLUG . '/';
+
+		if ( preg_match( '#(.*?)/(page/(\d+)|comment-page-([0-9]{1,}))/*$#', $url, $matched ) ) {
+
+			$url = trailingslashit( $matched[1] ) . Better_AMP::SLUG . '/' . $matched[2];
+		} else {
+
+			$url = trailingslashit( $url ) . Better_AMP::SLUG;
+		}
+
+		$url .= $trailing_slash ? '/' : '';
 
 		if ( $query ) {
 			$url .= '?';
@@ -369,7 +390,7 @@ class Better_AMP_Content_Sanitizer {
 	 *
 	 * @return bool|string url on success or false on failure.
 	 */
-	protected static function transform_to_start_point_amp( $url ) {
+	public static function transform_to_start_point_amp( $url ) {
 
 		// check is url internal?
 		// todo support parked domains
@@ -411,7 +432,10 @@ class Better_AMP_Content_Sanitizer {
 			$path = implode( '/', array_filter( $matched ) );
 		}
 
-		return better_amp_site_url( $path . ( substr( $url, - 1 ) === '/' ? '/' : '' ), $before_sp );
+		$path = rtrim( $path, '/' );
+		$path .= substr( $url, - 1 ) === '/' ? '/' : '';
+
+		return better_amp_site_url( $path, $before_sp, true );
 	}
 
 
@@ -912,7 +936,7 @@ class Better_AMP_Content_Sanitizer {
 
 						if ( ! empty( $atts['value_url'] ) ) {
 
-							$val    = isset( $element_atts[ $atts['name'] ] ) ? $element_atts[ $atts['name'] ] : null;
+							$val    = isset( $element_atts[ $atts['name'] ] ) ? htmlentities( $element_atts[ $atts['name'] ] ) : null;
 							$parsed = $val ? parse_url( $val ) : array();
 
 
