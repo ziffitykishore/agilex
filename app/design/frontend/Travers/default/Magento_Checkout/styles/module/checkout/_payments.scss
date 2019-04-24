@@ -100,12 +100,14 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
 
         .primary {
             .action-update {
+                @include button--type(secondary);
                 margin-right: 0;
             }
-        }
 
-        .action-cancel {
-            @include button--inline-link();
+            .action-cancel {
+                @include button--type(tertiary);
+                margin-top: 0;
+            }
         }
 
         .billing-address-details {
