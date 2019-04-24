@@ -41,6 +41,10 @@
       a::before {
         opacity: 0;
       }
+
+      &.list-message {
+        display: none;
+      }
     }
   }
 
