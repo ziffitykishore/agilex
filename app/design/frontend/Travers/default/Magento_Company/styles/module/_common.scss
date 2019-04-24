@@ -579,6 +579,11 @@ $nav-delimiter__border-color: $color-gray82 !default;
             display: none;
         }
     }
+
+    .cancel-quote-request.action {
+        @include button--type(tertiary);
+        margin-top: 0;
+    }
 }
 
 .popup-tree {
@@ -796,6 +801,10 @@ $nav-delimiter__border-color: $color-gray82 !default;
                         box-shadow: none;
                     }
                 }
+            }
+
+            .cancel-quote-request.action {
+                margin-top: 0;
             }
         }
 

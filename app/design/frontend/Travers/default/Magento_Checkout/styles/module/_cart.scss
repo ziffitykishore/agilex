@@ -372,6 +372,10 @@ $cart-image-mobile-width: 60px !default;
         .item + .item {
             margin-top: $indent__base;
         }
+
+        .negotiable-quote button {
+            @include button--type(secondary);
+        }
     }
 
     .widget {
