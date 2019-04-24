@@ -117,6 +117,7 @@ $minicart-items__max-height  : 260px !default;
     position: absolute;
     right: $indent__s;
     order: 3;
+    z-index: 5;
 
     .text {
       display: none;
