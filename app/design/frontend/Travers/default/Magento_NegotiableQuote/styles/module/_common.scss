@@ -466,11 +466,17 @@ $icon-gripper: '\e900' !default;
     }
 }
 
-.field-attachment {
+.quote-attach-file .field-attachment {
     &._disabled {
         cursor: default;
         opacity: .5;
         pointer-events: none;
+    }
+
+    label {
+        padding-left: $indent__s;
+        text-align: left;
+        font-size: $font-size__base--desktop;
     }
 }
 
