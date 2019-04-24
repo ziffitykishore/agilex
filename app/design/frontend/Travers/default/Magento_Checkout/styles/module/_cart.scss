@@ -379,6 +379,10 @@ $cart-image-mobile-width: 60px !default;
 
         .negotiable-quote button {
             @include button--type(secondary);
+
+            @include min-screen($screen__xs) {
+                width: 100%;
+            }
         }
     }
 
