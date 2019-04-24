@@ -70,7 +70,8 @@ $checkout-payment-option-content__padding__xl    : $checkout-payment-method-cont
         padding: 0 0 $indent__base $checkout-payment-option-content__padding__xl;
 
         .action-check,
-        .action-apply {
+        .action-apply,
+        .action-cancel {
             @include button--type(secondary);
         }
     }
