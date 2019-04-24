@@ -14,6 +14,7 @@ const stickyElement = '.page-header';
 
 const marginClass = '.page-wrapper';
 const className = 'page-header--sticky';
+const navBreakpoint = 880;
 let transitionOffset = null;
 let paddingTop = 0;
 
@@ -28,10 +29,10 @@ const stickyHandler = () => {
   const $stickyElement = $(stickyElement);
 
   const getTransitionElement = () => {
-    if (window.matchMedia(`(min-width: ${breakpoints.screen__menuSwitch + 1}px)`).matches) {
+    if (window.matchMedia(`(min-width: ${navBreakpoint + 1}px)`).matches) {
       return $(`.navigation`);
     } else {
-      return $(`.page-header`);
+      return $(`.page-main`);
     }
   };
 
