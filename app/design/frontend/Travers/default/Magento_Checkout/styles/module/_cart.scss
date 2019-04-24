@@ -207,6 +207,10 @@ $cart-image-mobile-width: 60px !default;
             border-top: $border-width__base solid $border-color__base;
         }
 
+        th {
+            font-size: 16px;
+        }
+
         > .item {
             border-bottom: $border-width__base solid $border-color__base;
             position: relative;
