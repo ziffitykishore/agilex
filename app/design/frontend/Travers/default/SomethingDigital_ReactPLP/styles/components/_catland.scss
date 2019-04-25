@@ -207,9 +207,10 @@
     }
 
     .subcategory-name {
+      max-width: 200px;
+      margin: $indent__s auto 0 auto;
       text-transform: none;
       font-size: 18px;
-      margin-top: $indent__s;
       line-height: 1.4;
     }
 
