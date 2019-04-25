@@ -1,0 +1,9 @@
+<?php if (!$block->isCustomerLoggedIn()): ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "cspView": <?= $block->getJsConfig(); ?>
+    }
+}
+</script>
+<?php endif; ?>
