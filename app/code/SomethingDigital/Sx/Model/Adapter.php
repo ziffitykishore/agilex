@@ -2,7 +2,7 @@
 
 namespace SomethingDigital\Sx\Model;
 
-use SomethingDigital\OracleApi\Exception\ApiRequestException;
+use SomethingDigital\Sx\Exception\ApiRequestException;
 use Magento\Framework\HTTP\ClientFactory;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -59,7 +59,7 @@ abstract class Adapter
     {
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
-        $curl->setTimeout(20);
+        $curl->setTimeout(40);
         $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
         $curl->addHeader('cache-control', 'no-cache');
         try {
