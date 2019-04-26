@@ -26,21 +26,23 @@ class Index extends Action
     {
         $params = $this->getRequest()->getParam('products');
         $jsonResult = $this->resultFactory->create('json');
+        $data = [];
 
-        try { 
-            $prices = $this->spotPricingApi->getSpotPrice($params[0]['sku']);
+        try {
+            foreach ($params as $id => $sku) {
+                $prices = $this->spotPricingApi->getSpotPrice($sku);
+                $data[$sku] = $prices['body']['Price'];
+            }
         } catch (LocalizedException $e) {
             return $this->prepareFailedJsonResult($e->getMessage(), $jsonResult);
         }
-        
+
         $jsonResult->setHttpResponseCode(200);
         $jsonResult->setData(
             [
                 'status' => 'success',
                 'code' => 200,
-                'data' => [
-                    $params[0]['sku'] => $prices['body']['Price']
-                ]
+                'data' => $data
             ]
         );
         return $jsonResult;
