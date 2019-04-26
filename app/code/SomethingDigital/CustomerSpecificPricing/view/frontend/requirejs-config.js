@@ -5,7 +5,8 @@ var config = {
             cspView: 'SomethingDigital_CustomerSpecificPricing/js/view/price-updater',
             cspViewStrategy: 'SomethingDigital_CustomerSpecificPricing/js/view/strategy',
             cspSimple: 'SomethingDigital_CustomerSpecificPricing/js/view/types/simple',
-            cspConfigurable: 'SomethingDigital_CustomerSpecificPricing/js/view/types/configurable'
+            cspConfigurable: 'SomethingDigital_CustomerSpecificPricing/js/view/types/configurable',
+            cspGrouped: 'SomethingDigital_CustomerSpecificPricing/js/view/types/grouped',
         }
     }
 };

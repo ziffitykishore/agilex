@@ -3,8 +3,10 @@
 namespace SomethingDigital\CustomerSpecificPricing\Model;
 
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\ConfigurableProduct\Api\LinkManagementInterface;
+use SomethingDigital\CustomerSpecificPricing\Helper\Data as ProductHelper;
 
 
 class SkuMap
@@ -14,10 +16,17 @@ class SkuMap
      */
     private $linkManagement;
 
+    /**
+     * @var ProductHelper
+     */
+    private $productHelper;
+
     public function __construct(
-        LinkManagementInterface $linkManagement
+        LinkManagementInterface $linkManagement,
+        ProductHelper $productHelper
     ) {
         $this->linkManagement = $linkManagement;
+        $this->productHelper = $productHelper;
     }
 
     /**
@@ -31,13 +40,15 @@ class SkuMap
         $productType = $product->getTypeId();
         if ($productType == Configurable::TYPE_CODE) {
             return $this->getConfigurableMapping($product);
+        } else if ($productType == Grouped::TYPE_CODE) {
+            return $this->getGroupedMapping($product);
         } else {
             return '';
         }
     }
 
     /**
-     * Creates a map of magento id to nourison skus 
+     * Creates a map of magento id to magento skus 
      *
      * @param ProductInterface $product
      * @return string[]
@@ -54,6 +65,23 @@ class SkuMap
 
         /** @var ProductInterface $child */
         foreach ($childProducts as $child) {
+            $map[$child->getId()] = $child->getSku();
+        }
+        return $map;
+    }
+
+    /**
+     * @param ProductInterface $product
+     * @return string[]
+     */
+    private function getGroupedMapping(ProductInterface $product)
+    {
+        /** @var string[] $map */
+        $map = [];
+
+        /** @var \Magento\Catalog\Api\Data\ProductInterface[] $children */
+        $children = $this->productHelper->getGroupedAssociatedProducts($product);
+        foreach ($children as $child) {
             $map[$child->getId()] = $child->getSku();
         }
         return $map;

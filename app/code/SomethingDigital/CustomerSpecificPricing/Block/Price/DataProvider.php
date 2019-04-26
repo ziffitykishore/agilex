@@ -6,6 +6,7 @@ use Magento\Framework\View\Element\Template;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product\Type\Simple;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
+use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Framework\Registry;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Serialize\Serializer\Json as JsonEncoder;
@@ -13,6 +14,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Customer\Model\Session;
 use Magento\ConfigurableProduct\Api\LinkManagementInterface;
 use SomethingDigital\CustomerSpecificPricing\Model\SkuMap;
+use SomethingDigital\CustomerSpecificPricing\Helper\Data as ProductHelper;
 
 class DataProvider extends Template
 {
@@ -48,6 +50,11 @@ class DataProvider extends Template
     */
     private $skuMap;
 
+    /**
+     * @var ProductHelper
+     */
+    private $productHelper;
+
     public function __construct(
         Context $context,
         Registry $registry,
@@ -55,7 +62,8 @@ class DataProvider extends Template
         JsonEncoder $jsonEncoder,
         Session $customerSession,
         LinkManagementInterface $linkManagement,
-        SkuMap $skuMap
+        SkuMap $skuMap,
+        ProductHelper $productHelper
     ) {
         parent::__construct($context);
         $this->coreRegistry = $registry;
@@ -64,6 +72,7 @@ class DataProvider extends Template
         $this->customerSession = $customerSession;
         $this->linkManagement = $linkManagement;
         $this->skuMap = $skuMap;
+        $this->productHelper = $productHelper;
     }
     
     /**
@@ -101,6 +110,8 @@ class DataProvider extends Template
             $config['data'] = $this->getSimpleProductData($productData);
         } else if ($productType == Configurable::TYPE_CODE) {
             $config['data'] = $this->getConfigurableProductData($productData);
+        } else if ($productType == Grouped::TYPE_CODE) {
+            $config['data'] = $this->getGroupedProductData($productData);
         }
         $this->appendConfigurations($config, $productData);
         return $this->jsonEncoder->serialize($config);
@@ -126,6 +137,19 @@ class DataProvider extends Template
 
         /** @var \Magento\Catalog\Api\Data\ProductInterface $child */
         foreach ($childProducts as $child) {
+            $this->appendProductData($data, $child);
+        }
+        return $data;
+    }
+
+    private function getGroupedProductData(\Magento\Catalog\Api\Data\ProductInterface $productData) 
+    {
+        /** @var string[][] $data */
+        $data = [];
+        /** @var \Magento\Catalog\Api\Data\ProductInterface[] $children */
+        $children = $this->productHelper->getGroupedAssociatedProducts($productData);
+        
+        foreach ($children as $child) {
             $this->appendProductData($data, $child);
         }
         return $data;
