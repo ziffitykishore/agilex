@@ -2,7 +2,6 @@ define([
     'jquery',
 ], function ($) {
     return function (data, productMap) {
-        console.log(productMap);
         for (var productId in productMap) {
             var sku = productMap[productId];
             var price = data[sku];
