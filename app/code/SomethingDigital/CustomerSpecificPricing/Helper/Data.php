@@ -10,6 +10,7 @@ use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Eav\Api\AttributeRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Catalog\Model\ProductFactory;
 
 class Data
 {
@@ -43,13 +44,15 @@ class Data
         ProductRepositoryInterface $productRepository,
         FilterBuilder $filterBuilder,
         AttributeRepositoryInterface $attributeRepo,
-        FilterGroupBuilder $groupBuilder
+        FilterGroupBuilder $groupBuilder,
+        ProductFactory $productFactory
     ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->productRepository = $productRepository;
         $this->filterBuilder = $filterBuilder;
         $this->attributeRepo = $attributeRepo;
         $this->groupBuilder = $groupBuilder;
+        $this->productFactory = $productFactory;
     }
 
     /**
@@ -112,6 +115,24 @@ class Data
             return  $attribute->getSource()->getOptionText($optionId);
         }
         return null;
+    }
+
+    /**
+     * Get bundle product’s items
+     *
+     * @param ProductInterface
+     * @return ProductInterface[]
+     */
+    public function getBundleProductOptionsData(ProductInterface $productData)
+    {
+        $product = $this->productFactory->create()->load($productData->getId());
+        //get all the selection products used in bundle product.
+        $selectionCollection = $product->getTypeInstance(true)
+            ->getSelectionsCollection(
+                $product->getTypeInstance(true)->getOptionsIds($product),
+                $product
+            );
+        return $selectionCollection;
     }
 }
 

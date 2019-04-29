@@ -32,7 +32,7 @@
                 <?php if ($_option->getRequired()) echo 'data-validate = {required:true}' ?>>
                 <option value=""><?= /* @escapeNotVerified */ __('Choose a selection...') ?></option>
                 <?php foreach ($_selections as $_selection): ?>
-                    <option value="<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>"
+                    <option data-price="<?= $_selection->getPrice() ?>" data-title="<?= $block->escapeHtml($_selection->getName()) ?>" data-sku="<?= /* @escapeNotVerified */ $_selection->getSku() ?>" value="<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>"
                         <?php if ($block->isSelected($_selection)) echo ' selected="selected"' ?>
                         <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>>
                         <?= /* @escapeNotVerified */ $block->getSelectionTitlePrice($_selection, false) ?>

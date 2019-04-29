@@ -7,6 +7,7 @@ use Magento\Catalog\Block\Product\Context;
 use Magento\Catalog\Model\Product\Type\Simple;
 use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
 use Magento\GroupedProduct\Model\Product\Type\Grouped;
+use Magento\Bundle\Model\Product\Type as Bundle;
 use Magento\Framework\Registry;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Serialize\Serializer\Json as JsonEncoder;
@@ -112,6 +113,8 @@ class DataProvider extends Template
             $config['data'] = $this->getConfigurableProductData($productData);
         } else if ($productType == Grouped::TYPE_CODE) {
             $config['data'] = $this->getGroupedProductData($productData);
+        } else if ($productType == Bundle::TYPE_CODE) {
+            $config['data'] = $this->getBundleProductData($productData);
         }
         $this->appendConfigurations($config, $productData);
         return $this->jsonEncoder->serialize($config);
@@ -152,6 +155,20 @@ class DataProvider extends Template
         foreach ($children as $child) {
             $this->appendProductData($data, $child);
         }
+        return $data;
+    }
+
+    private function getBundleProductData(\Magento\Catalog\Api\Data\ProductInterface $productData) 
+    {
+        /** @var string[][] $data */
+        $data = [];
+        /** @var \Magento\Catalog\Api\Data\ProductInterface[] $children */
+        $children = $this->productHelper->getBundleProductOptionsData($productData);
+
+        foreach ($children as $child) {
+            $this->appendProductData($data, $child);
+        }
+
         return $data;
     }
 
