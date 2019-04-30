@@ -6,4 +6,7 @@
     <type name="Magento\Bundle\Helper\Catalog\Product\Configuration">
         <plugin name="somethingdigital_customerspecificpricing_bundle_configuration" type="SomethingDigital\CustomerSpecificPricing\Plugin\BundleItemConfiguration"/>
     </type>
+    <type name="Magento\Checkout\Model\Session">
+        <plugin name="somethingdigital_customerspecificpricing_after_load_customer_quote" type="SomethingDigital\CustomerSpecificPricing\Plugin\UpdateCustomerQuote"/>
+    </type>
 </config>
