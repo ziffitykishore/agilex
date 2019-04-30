@@ -79,10 +79,6 @@
             flex-basis: auto;
             order: 2;
 
-            @include screen($mobile-nav__breakpoint, $screen__l) {
-                display: none;
-            }
-
             @include min-screen($screen__l) {
                 display: block;
                 flex-basis: auto;
