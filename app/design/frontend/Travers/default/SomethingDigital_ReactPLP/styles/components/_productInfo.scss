@@ -19,7 +19,7 @@
 
   &-content {
     position: sticky;
-    top: 50px;
+    top: 120px;
     padding: 0 $indent__m;
     padding-bottom: $indent__l;
 
@@ -40,6 +40,10 @@
 
       a::before {
         opacity: 0;
+      }
+
+      &.list-message {
+        display: none;
       }
     }
   }
