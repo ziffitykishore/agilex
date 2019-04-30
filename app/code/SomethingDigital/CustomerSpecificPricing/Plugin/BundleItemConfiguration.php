@@ -43,12 +43,12 @@ class BundleItemConfiguration
             try {
                 $prices = $this->spotPricingApi->getSpotPrice($selectionProduct->getSku());
                 $price = $prices['body']['Price'];
+                if ($price != 0 && $price < $result) {
+                    return $price;
+                }
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
             }
-        }
-        if ($price != 0 && $price < $result) {
-            return $price;
         }
 
         return $result;
