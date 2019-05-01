@@ -106,7 +106,7 @@ class Data
     {
         try {
             /** @var \Magento\Eav\Model\Entity\Attribute\AbstractAttribute $attribute */
-            $attribute = $this->attributeRepo->get('catalog_product', $attributeCode);
+            $attribute = $this->attributeRepo->get(\Magento\Catalog\Api\Data\ProductAttributeInterface::ENTITY_TYPE_CODE, $attributeCode);
         } catch (NoSuchEntityException $e) {
             return null;
         }
