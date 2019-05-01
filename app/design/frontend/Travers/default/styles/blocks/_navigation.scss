@@ -481,6 +481,10 @@ $nav-section-title__height: 60px;
                     left: 0 !important; // overrides the nav JS
                     column-count: 4;
 
+                    &:not(.level0) {
+                        display: none !important; // overrides the nav JS
+                    }
+
                     @include min-screen($screen__l) {
                         padding-right: 20%;
                     }
