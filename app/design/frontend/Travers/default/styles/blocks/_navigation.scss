@@ -581,6 +581,12 @@ $nav-section-title__height: 60px;
                     }
                 }
             }
+
+            &.has-active {
+                & > .level-top {
+                    border-bottom: 0;
+                }
+            }
         }
 
         ul {
