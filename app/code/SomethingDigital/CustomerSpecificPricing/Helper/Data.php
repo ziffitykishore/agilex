@@ -80,7 +80,7 @@ class Data
                 ->setValue($id)
                 ->create();
             
-                $filters[] = $filter;
+            $filters[] = $filter;
         }
         /** @var \Magento\Framework\Api\Search\FilterGroup $group */
         $group = $this->groupBuilder
