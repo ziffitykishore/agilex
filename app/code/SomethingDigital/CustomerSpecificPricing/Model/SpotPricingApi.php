@@ -38,7 +38,7 @@ class SpotPricingApi extends Adapter
      */
     public function getSpotPrice($productSku)
     {
-        $this->requestPath = $this->path.'/'.$productSku.'?' . http_build_query([
+        $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
             'customerId' => $this->getCustomerAccountId()
         ]);
 
