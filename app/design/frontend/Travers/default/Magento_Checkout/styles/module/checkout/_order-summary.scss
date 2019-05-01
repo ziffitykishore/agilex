@@ -102,6 +102,12 @@ $checkout-summary-items__padding   : 15px !default;
         .product {
             position: relative;
         }
+
+        .actions-toolbar .secondary {
+            width: 100%;
+            margin-top: $indent__s;
+            text-align: center;
+        }
     }
 
     //
