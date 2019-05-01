@@ -132,6 +132,14 @@
 }
 
 .sidebar-filters {
+  .accordion {
+    display: none;
+
+    &.show-accordion {
+      display: block;
+    }
+  }
+
   .searchable {
     background-color: $color-white;
     padding: 15px;

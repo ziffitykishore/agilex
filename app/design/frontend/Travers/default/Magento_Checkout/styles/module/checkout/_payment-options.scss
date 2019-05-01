@@ -3,7 +3,7 @@
 //  _____________________________________________
 
 $checkout-payment-option-title__border           : $checkout-payment-method-title__border !default;
-$checkout-payment-option-title__color            : $link__color !default;
+$checkout-payment-option-title__color            : $text__color !default;
 $checkout-payment-option-title__padding          : $checkout-payment-method-title__padding !default;
 $checkout-payment-option-title-mobile__padding   : $checkout-payment-method-title-mobile__padding !default;
 
@@ -39,7 +39,7 @@ $checkout-payment-option-content__padding__xl    : $checkout-payment-method-cont
         .action-toggle {
             @include icon-svg(
                 $icon       : expand,
-                $fill       : $c-royal,
+                $fill       : $text__color,
                 $width      : $toggling-icon-width,
                 $height     : auto,
                 $hideLabel  : false,
@@ -58,7 +58,7 @@ $checkout-payment-option-content__padding__xl    : $checkout-payment-method-cont
     .payment-option._active .payment-option-title .action-toggle {
         @include icon-svg(
             $icon       : collapse,
-            $fill       : $c-royal,
+            $fill       : $text__color,
             $width      : $toggling-icon-width,
             $height     : auto,
             $hideLabel  : false,
