@@ -14,6 +14,7 @@ use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
 use SomethingDigital\CustomerSpecificPricing\Helper\Data as ProductHelper;
 use SomethingDigital\CustomerSpecificPricing\Model\SpotPricingApi;
+use Magento\Framework\Stdlib\ArrayManager;
 
 class QuoteItemProcessor
 {
@@ -47,13 +48,19 @@ class QuoteItemProcessor
      */
     private $spotPricingApi;
 
+    /**
+     * @var ArrayManager
+     */
+    private $arrayManager;
+
     public function __construct (
         CustomerRepositoryInterface $customerRepo,
         ProductRepositoryInterface $productRepo,
         Session $session,
         LoggerInterface $logger, 
         ProductHelper $productHelper,
-        SpotPricingApi $spotPricingApi
+        SpotPricingApi $spotPricingApi,
+        ArrayManager $arrayManager
     ) {
         $this->customerRepo = $customerRepo;
         $this->productRepo = $productRepo;
@@ -61,6 +68,7 @@ class QuoteItemProcessor
         $this->logger = $logger;
         $this->productHelper = $productHelper;
         $this->spotPricingApi = $spotPricingApi;
+        $this->arrayManager = $arrayManager;
     }
 
     public function beforePrepare(
@@ -91,8 +99,8 @@ class QuoteItemProcessor
         if ($this->session->isLoggedIn()) {
             try { 
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
-                $price = $prices['body']['Price'];
-                if ($price != 0 && $price < $product->getPrice()) {
+                $price = $this->arrayManager->get('body/Price', $prices);
+                if ($price && $price < $product->getPrice()) {
                     $request->setCustomPrice($price);
                 }
             } catch (LocalizedException $e) {

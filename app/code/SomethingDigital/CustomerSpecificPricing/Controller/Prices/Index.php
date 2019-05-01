@@ -6,6 +6,7 @@ use SomethingDigital\CustomerSpecificPricing\Model\SpotPricingApi;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Stdlib\ArrayManager;
 
 class Index extends Action
 {
@@ -14,11 +15,18 @@ class Index extends Action
      */
     private $spotPricingApi;
 
+    /**
+     * @var ArrayManager
+     */
+    private $arrayManager;
+
     public function __construct(
         Context $context,
-        SpotPricingApi $spotPricingApi
+        SpotPricingApi $spotPricingApi,
+        ArrayManager $arrayManager
     ) {
         $this->spotPricingApi = $spotPricingApi;
+        $this->arrayManager = $arrayManager;
         parent::__construct($context);
     }
 
@@ -31,7 +39,7 @@ class Index extends Action
         try {
             foreach ($params as $id => $sku) {
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
-                $data[$sku] = $prices['body']['Price'];
+                $data[$sku] = $this->arrayManager->get('body/Price', $prices);
             }
         } catch (LocalizedException $e) {
             return $this->prepareFailedJsonResult($e->getMessage(), $jsonResult);
