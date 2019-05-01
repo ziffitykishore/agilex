@@ -21,8 +21,23 @@ $cart-image-mobile-width: 60px !default;
 }
 
 // Cart empty page
-.cart-empty a {
-    @include button--type(primary);
+.cart-empty {
+    a {
+        @include button--type(primary);
+        padding: 15px $indent__l;
+        font-family: $font-family__sans-serif;
+        font-weight: $font-weight__regular;
+        text-transform: uppercase;
+        color: $color-white;
+
+        @include hover {
+            text-decoration: none;
+        }
+    }
+
+    p {
+        margin-bottom: $indent__m;
+    }
 }
 
 //
