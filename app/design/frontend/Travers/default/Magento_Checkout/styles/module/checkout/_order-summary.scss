@@ -1,0 +1,176 @@
+//
+//  Variables
+//  _____________________________________________
+
+$checkout-summary__background-color: transparent !default;
+$checkout-summary__padding         : 22px $indent__l !default;
+
+$checkout-summary-title__margin    : $indent__s !default;
+$checkout-summary-mark-value__color: $color-gray60 !default;
+
+$checkout-summary-items__max-height: 370px !default;
+$checkout-summary-items__padding   : 15px !default;
+
+//
+//  Order Summary
+//  _____________________________________________
+
+.opc-block-summary {
+    box-sizing: border-box;
+    background: $checkout-summary__background-color;
+    padding: $checkout-summary__padding;
+    margin: 0 0 $indent__base;
+
+    & > .title {
+        @extend .abs-checkout-title;
+        display: block;
+        // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
+        margin-bottom: 0;
+    }
+
+    .table-totals {
+        @extend .abs-sidebar-totals;
+    }
+
+    .mark {
+        .value {
+            color: $checkout-summary-mark-value__color;
+            display: block;
+        }
+    }
+
+    .grand.incl {
+        & + .grand.excl {
+            .mark,
+            .amount {
+                border-top: 0;
+                font-size: 14px;
+                padding-top: 0;
+
+                strong {
+                    font-weight: $font-weight__regular;
+                }
+            }
+        }
+    }
+
+    .not-calculated {
+        font-style: italic;
+    }
+
+    //
+    //  Items list
+    //  _____________________________________________
+
+    .items-in-cart {
+        & > .title {
+            @include icon-svg(
+                $icon       : expand,
+                $fill       : $secondary__color,
+                $width      : $toggling-icon-width,
+                $height     : auto,
+                $pseudo     : after
+            );
+            border-bottom: $border-width__base solid $border-color__base;
+            padding: $indent__s $indent__xl $indent__s 0;
+            cursor: pointer;
+            margin-bottom: 0;
+            position: relative;
+
+            &::after {
+                @include vertically-center($position: absolute);
+                right: 0;
+            }
+
+            strong {
+                @include bryant-park-headings-h5();
+            }
+        }
+
+        &.active {
+            & > .title {
+                @include icon-svg(
+                    $icon       : collapse,
+                    $fill       : $secondary__color,
+                    $width      : $toggling-icon-width,
+                    $height     : auto,
+                    $pseudo     : after
+                );
+            }
+        }
+
+        .product {
+            position: relative;
+        }
+    }
+
+    //
+    //  Cart items
+    //  _____________________________________________
+
+    .minicart-items-wrapper {
+        margin: 0 (-$checkout-summary-items__padding) 0 0;
+        max-height: $checkout-summary-items__max-height;
+        padding: $checkout-summary-items__padding $checkout-summary-items__padding 0 0;
+        border: 0;
+    }
+
+    .column.main & {
+        .product-item {
+            margin: 0;
+            padding-left: 0;
+        }
+    }
+
+    .product-item {
+        .product-item-inner {
+            display: table;
+            margin: 0 0 $indent__s;
+            width: 100%;
+        }
+
+        .product-item-name-block {
+            display: table-cell;
+            padding-right: $indent__xs;
+            text-align: left;
+        }
+
+        .subtotal {
+            display: table-cell;
+            text-align: right;
+        }
+
+        .price {
+            font-size: 16px;
+            font-weight: $font-weight__regular;
+        }
+
+        .price-including-tax {
+            & + .price-excluding-tax {
+                margin: 0;
+
+                .price {
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .opc-summary-wrapper {
+        .modal-header {
+            .action-close {
+                display: none;
+            }
+        }
+    }
+
+    .opc-block-summary {
+        border: solid 1px $c-border;
+    }
+}
