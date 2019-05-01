@@ -46,7 +46,7 @@ class UpdateCustomerQuote
             foreach ($items as $item) {
                 $price = $item->getPrice();
                 try {
-                    if ($item->getProductType() == 'simple') {
+                    if ($item->getProductType() === \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE) {
                         $prices = $this->spotPricingApi->getSpotPrice($item->getSku());
                         $spotPrice = $prices['body']['Price'];
                         if ($spotPrice != 0 && $spotPrice < $price) {
