@@ -292,7 +292,7 @@ $cart-image-mobile-width: 60px !default;
         a {
             color: $c-steel;
             margin-top: 0;
-            line-height: 1;
+            line-height: 1.2;
 
             @include hover {
                 color: $c-cobalt;
@@ -455,6 +455,10 @@ $cart-image-mobile-width: 60px !default;
 
     .product-item-info {
         width: 200px;
+    }
+
+    .actions-secondary {
+        display: none;
     }
 }
 
