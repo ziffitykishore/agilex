@@ -10,15 +10,21 @@
         }
     }
 
-    @include max-screen($mobile-nav__breakpoint) {
+    .magnifying-glass {
+        top: 11px !important;
+    }
+
+    @include max-screen($screen__l) {
         .algolia-search-input {
             margin-top: 0 !important;
             min-height: 40px;
             height: 100%;
         }
+    }
 
+    @include min-screen($screen__m) {
         .magnifying-glass {
-            top: 11px !important;
+            top: 20px !important;
         }
     }
 }
