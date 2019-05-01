@@ -1204,8 +1204,9 @@ footer.page-footer {
         }
 
         button {
-            padding: 15px $indent__m;
             position: relative;
+            width: 100%;
+            padding: 15px $indent__m;
 
             &::before {
                 position: absolute;
