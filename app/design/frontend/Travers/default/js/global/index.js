@@ -19,7 +19,6 @@ promobar();
 
 domready(() => {
   objectFitImages();
-  $('.algolia-search-input').attr("placeholder", "Search Products");
   $('.categories-accordion__trigger').peekaboo();
   $('.toggle-content').peekaboo();
   $('.so-smooth').smoothScroll();
