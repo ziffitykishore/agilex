@@ -2,28 +2,28 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_types.xsd">
     <type name="banner">
         <appearances>
-            <appearance name="collage-left">
+            <appearance name="collage-left" master_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/collage-left/master">
                 <elements>
                     <element name="main">
                         <attribute name="fullbleed" source="data-fullbleed"/>
                     </element>
                 </elements>
             </appearance>
-            <appearance name="collage-right">
+            <appearance name="collage-right" master_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/collage-right/master">
                 <elements>
                     <element name="main">
                         <attribute name="fullbleed" source="data-fullbleed"/>
                     </element>
                 </elements>
             </appearance>
-            <appearance name="poster">
+            <appearance name="poster" master_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/poster/master">
                 <elements>
                     <element name="main">
                         <attribute name="fullbleed" source="data-fullbleed"/>
                     </element>
                 </elements>
             </appearance>
-            <appearance name="collage-centered">
+            <appearance name="collage-centered" master_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/collage-centered/master">
                 <elements>
                     <element name="main">
                         <attribute name="fullbleed" source="data-fullbleed"/>
