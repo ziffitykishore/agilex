@@ -11,6 +11,8 @@ body {
 
 body {
     background-color: $page__background-color;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 //
