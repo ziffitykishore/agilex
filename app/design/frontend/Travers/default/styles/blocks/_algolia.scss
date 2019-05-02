@@ -20,6 +20,11 @@
             min-height: 40px;
             height: 100%;
         }
+
+        .search-button {
+            min-height: 40px;
+            padding: $indent__s $indent__base;
+        }
     }
 
     @include min-screen($screen__m) {
