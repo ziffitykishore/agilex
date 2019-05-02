@@ -9,7 +9,7 @@
     {
         "[data-role=swatch-options]": {
             "SomethingDigital_CustomerSpecificPricing/js/swatch-renderer": {
-                "jsonConfig": <?= /* @escapeNotVerified */ $swatchOptions = $block->getJsonConfig() ?>,
+                "jsonConfig": <?= /* @noEscape */ $swatchOptions = $block->getJsonConfig() ?>,
                 "jsonSwatchConfig": <?php /* @noEscape */ echo $block->getJsonSwatchConfig(); ?>,
                 "mediaCallback": <?= /* @escapeNotVerified */ json_encode($block->getMediaCallback()) ?>,
                 "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
