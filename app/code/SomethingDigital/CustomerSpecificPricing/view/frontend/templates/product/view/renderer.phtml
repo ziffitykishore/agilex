@@ -11,7 +11,7 @@
             "SomethingDigital_CustomerSpecificPricing/js/swatch-renderer": {
                 "jsonConfig": <?= /* @escapeNotVerified */ $swatchOptions = $block->getJsonConfig() ?>,
                 "jsonSwatchConfig": <?php /* @noEscape */ echo $block->getJsonSwatchConfig(); ?>,
-                "mediaCallback": "<?= /* @escapeNotVerified */ $block->getMediaCallback() ?>",
+                "mediaCallback": <?= /* @escapeNotVerified */ json_encode($block->getMediaCallback()) ?>,
                 "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
                     'Magento_ConfigurableProduct') ?: 'replace'; ?>"
             },
