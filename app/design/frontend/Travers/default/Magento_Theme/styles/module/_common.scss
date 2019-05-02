@@ -450,6 +450,20 @@ body {
         }
     }
 
+    &-links{
+        margin-top: $indent__s;
+        margin-bottom: $indent__s;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            display: flex;
+            margin-top: 0;
+
+            &-block {
+                width: 100%;
+            }
+        }
+    }
+
     .block {
         float: right;
     }
@@ -458,8 +472,8 @@ body {
     .links {
         @include min-screen($mobile-nav__breakpoint) {
             display: inline-block;
+            padding-right: $indent__m;
             vertical-align: top;
-            padding-right: 50px;
         }
     }
 
@@ -519,7 +533,8 @@ body {
         }
 
         .action.toggle::before {
-            float: right;
+            position: absolute;
+            right: -$indent__s;
         }
     }
 
