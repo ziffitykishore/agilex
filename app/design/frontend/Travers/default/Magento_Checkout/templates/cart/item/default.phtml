@@ -92,7 +92,7 @@ $showOriginalPrice = ($originalPrice > $finalPrice) ? true : false;
                 <?php endif; ?>
                 <?= $block->getUnitPriceHtml($_item) ?>
                 <?php if ($showMsrp || $showOriginalPrice): ?>
-                    <?= 'You save ' ?>
+                    <?= __('You save ') ?>
                     <?php if ($showMsrp): ?>
                         <?= floor((($customMsrp - $finalPrice) / $customMsrp) * 100) . "%" ?>
                     <?php elseif ($showOriginalPrice): ?>
