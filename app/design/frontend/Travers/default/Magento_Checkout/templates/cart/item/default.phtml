@@ -12,11 +12,14 @@ $_item = $block->getItem();
 $product = $_item->getProduct();
 $originalPrice = $_item->getProduct()->getPrice();
 $finalPrice = $_item->getProduct()->getFinalPrice();
+$customMsrp = $_item->getProduct()->getManufacturerPrice();
 $isVisibleProduct = $product->isVisibleInSiteVisibility();
 /** @var \Magento\Msrp\Helper\Data $helper */
 $helper = $this->helper('Magento\Msrp\Helper\Data');
 $pricing = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+$showMsrp = ($customMsrp && $customMsrp > $originalPrice && $customMsrp > $finalPrice) ? true : false;
+$showOriginalPrice = ($originalPrice > $finalPrice) ? true : false;
 ?>
 <tbody class="cart item">
     <tr class="item-info">
@@ -82,10 +85,20 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
             </td>
         <?php else: ?>
             <td class="col price <?= ($originalPrice > $finalPrice)? 'price--sale' : '' ?>" data-th="<?= $block->escapeHtml(__('Price')) ?>">
-                <?php if ($originalPrice > $finalPrice): ?>
+                <?php if ($showMsrp): ?>
+                    <?= /* @escapeNotVerified */ $pricing->currency(number_format($customMsrp)) ?>
+                <?php elseif ($showOriginalPrice): ?>
                     <?= /* @escapeNotVerified */ $pricing->currency(number_format($originalPrice)) ?>
                 <?php endif; ?>
                 <?= $block->getUnitPriceHtml($_item) ?>
+                <?php if ($showMsrp || $showOriginalPrice): ?>
+                    <?= 'You save ' ?>
+                    <?php if ($showMsrp): ?>
+                        <?= floor((($customMsrp - $finalPrice) / $customMsrp) * 100) . "%" ?>
+                    <?php elseif ($showOriginalPrice): ?>
+                        <?= floor((($originalPrice - $finalPrice) / $originalPrice) * 100) . "%" ?>
+                    <?php endif; ?>
+                <?php endif; ?>
             </td>
         <?php endif; ?>
         <td class="col qty" data-th="<?= $block->escapeHtml(__('Qty')) ?>">
