@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_types.xsd">
+    <type name="banner">
+        <appearances>
+            <appearance name="collage-left">
+                <elements>
+                    <element name="main">
+                        <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                </elements>
+            </appearance>
+            <appearance name="collage-right">
+                <elements>
+                    <element name="main">
+                        <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                </elements>
+            </appearance>
+            <appearance name="poster">
+                <elements>
+                    <element name="main">
+                        <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                </elements>
+            </appearance>
+            <appearance name="collage-centered">
+                <elements>
+                    <element name="main">
+                        <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                </elements>
+            </appearance>
+        </appearances>
+    </type>
+</config>
