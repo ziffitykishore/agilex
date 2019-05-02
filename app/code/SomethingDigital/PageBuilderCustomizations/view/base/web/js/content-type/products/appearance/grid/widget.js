@@ -1,7 +1,7 @@
 define([
     'jquery',
     'slick',
-    'SomethingDigital_PageBuilderExtensionProducts/js/breakpoints'
+    'SomethingDigital_PageBuilderCustomizations/js/breakpoints'
 ], function ($, slick, breakpoints) {
     'use strict';
 

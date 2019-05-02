@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
-    <type name="products" preview_component="SomethingDigital_PageBuilderExtensionProducts/js/content-type/products/preview">
+    <type name="products" preview_component="SomethingDigital_PageBuilderCustomizations/js/content-type/products/preview">
         <appearances>
             <appearance name="grid">
                 <elements>

@@ -5,7 +5,7 @@
             <argument name="config" xsi:type="array">
                 <item name="products" xsi:type="array">
                     <item name="grid" xsi:type="array">
-                        <item name="component" xsi:type="string">SomethingDigital_PageBuilderExtensionProducts/js/content-type/products/appearance/grid/widget</item>
+                        <item name="component" xsi:type="string">SomethingDigital_PageBuilderCustomizations/js/content-type/products/appearance/grid/widget</item>
                     </item>
                 </item>
             </argument>
