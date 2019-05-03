@@ -84,6 +84,10 @@ $list-image__margin--desktop: $indent__m;
         display: none;
       }
 
+      &.hide {
+        display: none;
+      }
+
       @include min-screen($screen__m) {
         margin-left: -($list-image__max-width + $list-image__margin--desktop);
       }
