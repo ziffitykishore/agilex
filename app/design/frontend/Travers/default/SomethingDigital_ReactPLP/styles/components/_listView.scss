@@ -33,6 +33,10 @@ $list-image__margin--desktop: $indent__m;
     }
   }
 
+  .cart-actions {
+    overflow-x: hidden
+  }
+
   .quantity-and-cart {
     width: 100%;
 
