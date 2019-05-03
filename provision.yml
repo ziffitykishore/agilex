@@ -15,18 +15,20 @@
       loop:
         - /home/magento/.ssh
         - /home/magento/.composer
-    - name: copy private key
+    - name: create known host keys
+      shell: |
+        ssh-keyscan -R github.com
+        ssh-keyscan github.com >> /home/magento/.ssh/known_hosts
+        ssh-keyscan vs-ssh.visualstudio.com >> /home/magento/.ssh/known_hosts
+        chown magento:magento /home/magento/.ssh/known_hosts
+    - name: copy all ssh keys
       copy:
-        remote_src: yes
-        src: files/id_rsa
-        dest: "/home/magento/.ssh/id_rsa"
+        src: "{{ item }}"
+        dest: "/home/magento/.ssh/{{ item | basename }}"
         owner: magento
         group: magento
         mode: 0600
-    - name: install ioncube
-      yum:
-        name: php71u-ioncube-loader
-        state: present
+      loop: "{{ query('fileglob', 'files/ssh/*') }}"
     - name: change magento user:group permissions
       file:
         state: directory
@@ -39,6 +41,12 @@
         - /usr/local/rvm/
         - /var/lib/php/session/
         - "{{ site_root }}/"
+    - name: copy auth.json to path
+      copy:
+        src: auth.json
+        dest: "/home/magento/.composer/auth.json"
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
     - name: apply templates
       template:
         src: "{{ item.src }}.j2"
@@ -46,10 +54,6 @@
         owner: "{{ magento_user }}"
         group: "{{ magento_group }}"
       loop:
-        - src: app/etc/env.php
-          dest: "{{ playbook_dir }}/app/etc/env.php"
-        - src: auth.json
-          dest: "/home/magento/.composer/auth.json"
         - src: default.conf
           dest: "/etc/nginx/sites-available/{{ site_domain }}.conf"
     - name: set symlink for site
@@ -67,23 +71,22 @@
       loop:
         - "/home/magento/.vault_pass"
         - "/docker-entrypoint.d/mysql.sh"
+        - "{{ playbook_dir }}/files"
   tags:
     - image
-
 
 - name: database provision
   hosts: localhost
   connection: local
   tasks:
-    - name: run magento install
+    - name: set correct url
       shell: |
-        OLDDOMAIN='{{ item | replace("test", "com") }}'
-        mysql \
-              -u root \
-              -proot_password \
-              -h database \
-              {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item.domain | item }}');"
+        sudo mysql \
+          -h database \
+          -proot_password \
+          {{ mysql_database | default('magento_database') }} \
+          -e "update core_config_data set value = 'https://{{ item.domain | default(item) }}/' where path like '%secure/base_url%';"
+
       loop: "{{ site_domains }}"
   tags:
     - database
@@ -114,7 +117,7 @@
     - sync
     - install
 
-- name: template play
+- name: php template play
   hosts: localhost
   connection: local
   tasks:
@@ -123,7 +126,7 @@
       register: envphp
     - name: generate env.php when doesn't exist
       template:
-        src: "app/etc/env.php.j2"
+        src: "env.php.j2"
         dest: "{{ playbook_dir }}/app/etc/env.php"
       when: not envphp.stat.exists
     - name: check for config.php file
@@ -135,28 +138,27 @@
         dest: "{{ playbook_dir }}/app/etc/config.php"
       when: not configphp.stat.exists
   tags:
-    - build
     - sync
     - template
-
 
 - name: build provision
   hosts: localhost
   connection: local
   tasks:
-    - name: get submodules
-      shell: "git {{ item }}"
-      loop:
-        - "fetch --recurse-submodules --tags origin"
-        - "submodule update --init --recursive"
     - name: make sure vendor doesn't exist
       file:
         path: "{{ playbook_dir }}/vendor"
         state: absent
     - name: run composer
       shell: composer install
-    - name: run bundle
-      shell: bash -lc "bundle install"
+    - name: create media directory
+      file:
+        state: directory
+        path: "{{ playbook_dir }}/pub/media"
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+    - name: run bundle install
+      shell: bundle install
     - name: run yarn
       shell: yarn
       args:
@@ -170,6 +172,22 @@
       file: path=/home/magento/.vault_pass state=absent
   tags:
     - build
+
+- name: production provision
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: PHP compilation
+      shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
+      loop:
+        - "setup:di:compile"
+        - "setup:static-content:deploy {{ static_content_deploy_zone | default('en_us') }} -f" 
+        - "setup:static-content:deploy --area adminhtml en_US -f"
+    - name: r.js optimizer on static assets
+      shell: yarn build-za
+      when: lookup('env', 'RJS_OPTIMIZATION') == "true"
+  tags:
+    - production
 
 - name: sync provision
   hosts: localhost
@@ -194,8 +212,8 @@
     - name: setup static content of theme
       shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
       loop:
-        - "sd:dev:static '{{ client_theme }}'"
-        - "sd:dev:static  --area=adminhtml '{{ magento_theme }}'"
+        - "sd:dev:static {{ client_theme }}"
+        - "sd:dev:static --area=adminhtml {{ magento_theme }}"
     - name: run yarn build (for develop)
       shell: "yarn build"
   tags:
@@ -212,17 +230,18 @@
           --db-name=magento_database \
           --db-user=magento_user \
           --db-password=magento_password \
-          --base-url=http://{{ site_domain  }}/ \
+          --base-url=https://{{ site_domain  }}/ \
           --admin-firstname=Admin \
           --admin-lastname=User \
           --admin-email=admin@user.com \
           --admin-user=magento2 \
           --admin-password=magento2_password \
           --backend-frontname=admin \
+          --cleanup-database \
           --key={{ magento_crypt_key }}
     - name: apply template
       template:
-        src: "app/etc/env.php.j2"
+        src: "env.php.j2"
         dest: "{{ playbook_dir }}/app/etc/env.php"
   tags:
     - install
