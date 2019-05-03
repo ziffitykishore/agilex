@@ -1,9 +1,3 @@
-<!--
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
 
 <div class="pagebuilder-content-type pagebuilder-banner type-nested" attr="data.main.attributes" ko-style="data.main.style" css="data.main.css" event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
     <render args="getOptions().template" />
@@ -13,7 +7,9 @@
              attr="data.wrapper.attributes"
              ko-style="data.wrapper.style"
              event="{mouseover: onMouseOverWrapper, mouseout: onMouseOutWrapper, mousedown: activateEditor }">
-            <div data-bind="css: { 'fullbleed__wrapper': data.main.attributes()['data-fullbleed'] == 1}">
+            <div class="layout_wrapper"
+                 ko-style="data.layout_wrapper.style"
+                 attr="data.layout_wrapper.attributes">
                 <div class="pagebuilder-overlay" css="data.overlay.css" attr="data.overlay.attributes" ko-style="data.overlay.style">
                     <scope args="getUploader().getUiComponent()">
                         <render />
