@@ -7,6 +7,7 @@ use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\ArrayManager;
+use Psr\Log\LoggerInterface;
 
 class Index extends Action
 {
@@ -20,13 +21,18 @@ class Index extends Action
      */
     private $arrayManager;
 
+    /** @var \Psr\Log\LoggerInterface */
+    protected $logger;
+
     public function __construct(
         Context $context,
         SpotPricingApi $spotPricingApi,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        LoggerInterface $logger
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->arrayManager = $arrayManager;
+        $this->logger = $logger;
         parent::__construct($context);
     }
 
@@ -42,6 +48,7 @@ class Index extends Action
                 $data[$sku] = $this->arrayManager->get('body/Price', $prices);
             }
         } catch (LocalizedException $e) {
+            $this->logger->critical('Request has failed with exception: ' . $e->getMessage());
             return $this->prepareFailedJsonResult($e->getMessage(), $jsonResult);
         }
 
