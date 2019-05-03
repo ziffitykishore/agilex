@@ -260,6 +260,10 @@ $cart-image-mobile-width: 60px !default;
                 @include lib-visually-hidden();
             }
         }
+
+        &.price .percent-saved {
+            white-space: nowrap;
+        }
     }
 
     .product-image-container {
