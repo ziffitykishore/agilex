@@ -34,12 +34,12 @@ class M20190423111849UpdateAddressAttributes implements MigrationInterface
         $eavSetup->updateAttribute(
             'customer_address',
             'is_read_only',
-            array('is_user_defined'=>true)
+            ['is_user_defined'=>true]
         );
         $eavSetup->updateAttribute(
             'customer_address',
             'is_billing',
-            array('is_user_defined'=>true)
+            ['is_user_defined'=>true]
         );
     }
 }
