@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Quote\Model\Quote\Item\Processor">
+        <plugin name="somethingdigital_customerspecificpricing_magento_quote_model_quote_item_processor" type="SomethingDigital\CustomerSpecificPricing\Plugin\QuoteItemProcessor"/>
+    </type>
+    <type name="Magento\Bundle\Helper\Catalog\Product\Configuration">
+        <plugin name="somethingdigital_customerspecificpricing_bundle_configuration" type="SomethingDigital\CustomerSpecificPricing\Plugin\BundleItemConfiguration"/>
+    </type>
+    <type name="Magento\Checkout\Model\Session">
+        <plugin name="somethingdigital_customerspecificpricing_after_load_customer_quote" type="SomethingDigital\CustomerSpecificPricing\Plugin\UpdateCustomerQuote"/>
+    </type>
+</config>
