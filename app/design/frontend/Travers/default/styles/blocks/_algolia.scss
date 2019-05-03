@@ -10,15 +10,26 @@
         }
     }
 
-    @include max-screen($mobile-nav__breakpoint) {
+    .magnifying-glass {
+        top: 11px !important;
+    }
+
+    @include max-screen($screen__l) {
         .algolia-search-input {
             margin-top: 0 !important;
             min-height: 40px;
             height: 100%;
         }
 
+        .search-button {
+            min-height: 40px;
+            padding: $indent__s $indent__base;
+        }
+    }
+
+    @include min-screen($screen__m) {
         .magnifying-glass {
-            top: 11px !important;
+            top: 20px !important;
         }
     }
 }
@@ -79,12 +90,9 @@
             flex-basis: auto;
             order: 2;
 
-            @include min-screen($mobile-nav__breakpoint) {
+            @include min-screen($screen__l) {
                 display: block;
                 flex-basis: auto;
-            }
-
-            @include min-screen($screen__l) {
                 position: absolute;
                 right: $indent__base;
             }

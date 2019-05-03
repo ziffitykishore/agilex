@@ -1,0 +1,64 @@
+//
+//  Variables
+//  _____________________________________________
+
+$checkout-sidebar-shipping-information__padding               : $indent__l !default;
+$checkout-sidebar-shipping-information__line-height           : $checkout-billing-address-details__line-height !default;
+
+$checkout-sidebar-shipping-information-edit-icon__color       : $minicart-icons-color !default;
+$checkout-sidebar-shipping-information-edit-icon__content     : $icon-settings !default;
+$checkout-sidebar-shipping-information-edit-icon__font-size   : 28px !default;
+$checkout-sidebar-shipping-information-edit-icon__line-height : 28px !default;
+$checkout-sidebar-shipping-information-edit-icon__top         : 2px !default;
+$checkout-sidebar-shipping-information-edit-icon__hover__color: $primary__color !default;
+
+//
+//  Shipping Information
+//  _____________________________________________
+
+.opc-block-shipping-information {
+    margin-top: 40px;
+    padding-right: $checkout-sidebar-shipping-information__padding;
+
+    @include max-screen($screen__m) {
+        padding-left: $checkout-sidebar-shipping-information__padding;
+    }
+
+    .shipping-information-title {
+        @extend .abs-checkout-title;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border-bottom: $checkout-step-title__border;
+        margin: 0 0 $indent__base;
+
+        span {
+            margin-right: 5px;
+        }
+
+        .action-edit {
+            @include lib-button-as-link();
+            @include lib-button-reset();
+            flex-basis: 35px;
+            font-size: 16px;
+            color: $primary__color;
+
+            @include hover {
+                color: $secondary__color;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .shipping-information-content {
+        line-height: $checkout-sidebar-shipping-information__line-height;
+        .actions-toolbar {
+            margin-left: 0;
+        }
+    }
+
+    .ship-to,
+    .ship-via {
+        margin: 0 0 $indent__base;
+    }
+}

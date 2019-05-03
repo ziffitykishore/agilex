@@ -19,6 +19,7 @@ promobar();
 
 domready(() => {
   objectFitImages();
+  $('.categories-accordion__trigger').peekaboo();
   $('.toggle-content').peekaboo();
   $('.so-smooth').smoothScroll();
   $('.back-to-top').smoothScroll();

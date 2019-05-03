@@ -1,0 +1,617 @@
+$cart-image-mobile-width: 60px !default;
+
+//
+//  Shopping cart
+//  ---------------------------------------------
+
+/**
+ * We're stripping out the wrapper's padding at mobile so
+ * that certain elements can expand full-bleed
+ */
+.checkout-cart-index .page-main {
+    @include layout-gutters(
+        $s-gutters: 0,
+        $m-gutters: 0
+    );
+}
+
+.checkout-cart-index .page-title-wrapper,
+.cart-empty {
+    @include layout-gutters($l-gutters: 0);
+}
+
+// Cart empty page
+.cart-empty {
+    a {
+        @include button--type(primary);
+        padding: 15px $indent__l;
+        font-family: $font-family__sans-serif;
+        font-weight: $font-weight__regular;
+        text-transform: uppercase;
+        color: $color-white;
+
+        @include hover {
+            text-decoration: none;
+        }
+    }
+
+    p {
+        margin-bottom: $indent__m;
+    }
+}
+
+//
+//  Sidebar
+//  ---------------------------------------------
+
+.cart-summary {
+    @extend .abs-adjustment-incl-excl-tax;
+    box-sizing: border-box;
+    background: $sidebar__background-color;
+    margin-bottom: $indent__m;
+    padding: 1px 0 $indent__m;
+
+    @include min-screen($screen__m) {
+        float: right;
+        position: relative;
+        padding: 1px 15px $indent__m;
+        border: solid 1px $c-border;
+        width: 40%;
+    }
+
+    @include min-screen($screen__l) {
+        width: 28%;
+    }
+}
+
+
+.cart.actions {
+    @include min-screen($screen__xs) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .action.continue,
+    .action.update {
+        @include button--type(secondary);
+
+        @include hover {
+            border: inherit;
+        }
+    }
+}
+
+.summary.title {
+    @include bryant-park-headings-h3();
+    display: none;
+
+    @include min-screen($screen__m) {
+        display: block;
+    }
+}
+
+.cart-summary .block {
+    margin-bottom: 0;
+    margin: 0;
+
+    > .title {
+        @extend %abs-toggling-title;
+
+        @include max-screen($screen__m) {
+            padding-left: $mobile-cart-padding;
+            padding-right: $mobile-cart-padding;
+        }
+
+        &::after {
+            right: $indent__base;
+        }
+    }
+
+    &:last-of-type > .title {
+        border-bottom: $border-width__base solid $border-color__base;
+    }
+
+    .content {
+        @include layout-gutters(
+            $s-gutters: $mobile-cart-padding,
+            $m-gutters: $mobile-cart-padding,
+            $l-gutters: 0
+        );
+        display: none;
+        padding-top: $indent__xs;
+        padding-bottom: 25px;
+        position: relative;
+    }
+
+    &.active {
+        > .title {
+            @include icon-svg(
+            $icon       : collapse,
+            $fill       : $secondary__color,
+            $width      : $toggling-icon-width,
+            $height     : auto,
+            $pseudo     : after
+            );
+        }
+
+        .content {
+            display: block;
+        }
+    }
+
+    .item-options {
+        margin-left: 0;
+    }
+
+    .fieldset {
+        .field {
+            margin-bottom: $indent__s;
+
+            @include min-screen($screen__m) {
+                @include lib-form-field-type-revert($_type: block);
+                margin: 0 0 $indent__m;
+            }
+        }
+
+        .item-options .field {
+            margin-bottom: 0;
+        }
+
+        .methods .field  > .label {
+            display: inline;
+        }
+    }
+
+    .fieldset.estimate {
+        & > .legend,
+        & > .legend + br {
+            display: none;
+        }
+    }
+}
+
+// Used for "Apply Discount" and "Add Gift Card"
+.cart-summary .action.add,
+.cart-summary .action.apply {
+    @include button--type(primary);
+}
+
+// Totals block
+.cart-totals {
+    @extend .abs-sidebar-totals;
+    @include layout-gutters(
+        $s-gutters: $mobile-cart-padding,
+        $m-gutters: $mobile-cart-padding,
+        $l-gutters: 0
+    );
+    border-top: 1px solid $border-color__base;
+    padding-top: $indent__s;
+    padding-bottom: $indent__s;
+
+    .table-wrapper {
+        margin-bottom: 0;
+        overflow: inherit;
+    }
+
+    tbody > tr > th,
+    tbody > tr > td,
+    .mark {
+        padding-top: $indent__xs;
+        padding-bottom: $indent__xs;
+        text-align: left;
+    }
+}
+
+.grand.totals {
+    @include lib-heading(h3);
+}
+
+//
+//  Cart products grid
+//  ---------------------------------------------
+
+.cart.table-wrapper {
+    $_cart-product-image-margin: $cart-image-mobile-width + 15px;
+
+    @include max-screen($screen__m) {
+        overflow: inherit;
+    }
+
+    .items {
+        thead + .item {
+            border-top: $border-width__base solid $border-color__base;
+        }
+
+        th {
+            font-size: 16px;
+        }
+
+        > .item {
+            border-bottom: $border-width__base solid $border-color__base;
+            position: relative;
+        }
+    }
+
+    .col {
+        padding: $indent__m $indent__s $indent__s;
+        vertical-align: top;
+
+        &.item {
+            @include max-screen($screen__m) {
+                display: block;
+                min-height: $_cart-product-image-margin;
+                padding: $indent__m 0 $indent__s $_cart-product-image-margin;
+                position: relative;
+            }
+        }
+
+        &.qty {
+            .input-text {
+                @extend .abs-input-qty;
+                margin-top: -5px;
+            }
+
+            .label {
+                @include lib-visually-hidden();
+            }
+        }
+    }
+
+    .product-image-container {
+        @include min-screen($screen__m) {
+            max-width: $_cart-product-image-margin;
+        }
+
+        @include min-screen($screen__l) {
+            max-width: 100%;
+        }
+    }
+
+    .product-image-wrapper {
+        @extend .abs-reset-image-wrapper;
+    }
+
+    .product-item-photo {
+        display: block;
+        left: 0;
+        max-width: $cart-image-mobile-width;
+        padding: 0;
+        position: absolute;
+        top: 15px;
+        width: 100%;
+    }
+
+    .product-item-details {
+        white-space: normal;
+    }
+
+    .product-item-name {
+        margin-top: 0;
+        line-height: 1;
+
+        a {
+            color: $c-steel;
+            margin-top: 0;
+            line-height: 1.2;
+
+            @include hover {
+                color: $c-cobalt;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .item-actions td {
+        padding-bottom: $indent__s;
+        text-align: center;
+        white-space: normal;
+    }
+
+    .actions-toolbar {
+        @include lib-clearfix();
+
+        > .action {
+            @include button--type(teriary);
+            margin-bottom: $indent__s;
+            margin-right: $indent__m;
+            letter-spacing: 0;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            @include hover {
+                color: $text__color;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .action.help.map {
+        @include button--inline-link();
+        font-weight: $font-weight__regular;
+    }
+
+    .price-including-tax,
+    .price-excluding-tax {
+        @include max-screen($screen__l) {
+            font-size: $font-size__base + 2;
+        }
+    }
+
+    .gift-registry-name-label::after {
+        content: ':';
+    }
+
+    //  Product options
+    .item-options {
+        @extend .abs-product-options-list;
+        @include lib-clearfix();
+        font-size: $font-size__s;
+        margin-bottom: $indent__s;
+    }
+
+    .product-item-name + .item-options {
+        margin-top: $indent__s;
+    }
+
+    .action.configure {
+        display: inline-block;
+        margin: 0 0 $indent__base;
+    }
+}
+
+.cart-container {
+    @include min-screen($screen__m) {
+        @include lib-clearfix();
+    }
+
+    .form-cart {
+        @extend .abs-shopping-cart-items;
+        @include layout-gutters(
+            $s-gutters: $mobile-cart-padding,
+            $m-gutters: $mobile-cart-padding,
+            $l-gutters: 0
+        );
+
+        @include min-screen($screen__m) {
+            @extend .abs-shopping-cart-items-desktop;
+        }
+    }
+
+    .checkout-methods-items {
+        @extend .abs-reset-list;
+        margin-top: $indent__xl;
+        padding: 0 $mobile-cart-padding;
+        text-align: center;
+
+        @include min-screen($screen__m) {
+            padding: 0;
+        }
+
+        .action.primary {
+            @include lib-button-l();
+            width: 100%;
+        }
+
+        .item + .item {
+            margin-top: $indent__base;
+        }
+
+        .negotiable-quote button {
+            @include button--type(secondary);
+
+            @include min-screen($screen__xs) {
+                width: 100%;
+            }
+        }
+    }
+
+    .widget {
+        @include min-screen($screen__m) {
+            float: left;
+        }
+    }
+
+    .gift-message .gift-options-content .field {
+        label {
+            float: none;
+        }
+
+        .control {
+            width: 100%;
+        }
+    }
+}
+
+.cart-tax-info,
+.cart .cart-tax-info {
+    & + .cart-tax-total {
+        display: block;
+    }
+}
+
+.cart.table-wrapper,
+.order-items.table-wrapper {
+    .col.price,
+    .col.qty,
+    .col.subtotal,
+    .col.msrp {
+        text-align: right;
+    }
+}
+
+//
+//  Cross sell
+//  ---------------------------------------------
+
+.block.crosssell {
+    @include layout-gutters(
+        $s-gutters: $mobile-cart-padding,
+        $m-gutters: $mobile-cart-padding,
+        $l-gutters: 0
+    );
+    margin-top: 70px;
+
+    .product-item-info {
+        width: 200px;
+    }
+
+    .actions-secondary {
+        display: none;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@include max-screen($screen__m) {
+    .cart.table-wrapper {
+        thead .col {
+            &.item,
+            &.qty,
+            &.price,
+            &.subtotal,
+            &.msrp {
+                display: none;
+            }
+        }
+
+        .col {
+            &.qty,
+            &.price,
+            &.subtotal,
+            &.msrp {
+                box-sizing: border-box;
+                display: block;
+                float: left;
+                text-align: center;
+                white-space: nowrap;
+                width: 33%;
+
+                &::before {
+                    content: attr(data-th);
+                    display: block;
+                    font-weight: $font-weight__regular;
+                    padding-bottom: $indent__s;
+                }
+            }
+
+            &.msrp {
+                white-space: normal;
+            }
+        }
+    }
+
+    .cart-totals {
+        .table-wrapper {
+            border-top: 0;
+        }
+
+        .totals tbody > tr:not(:last-child) > td:last-child {
+            border: 0;
+        }
+    }
+
+    .cart-container .form-cart {
+        .actions {
+            @include max-screen($screen__xs) {
+                text-align: center;
+            }
+        }
+
+        .action.update,
+        .action.continue {
+            @include max-screen($screen__xs) {
+                display: block !important;
+                margin-bottom: 10px !important;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .gift-options-cart,
+    .cart-discount,
+    .crosssell {
+        @extend .abs-shopping-cart-items-desktop;
+    }
+
+    .actions-toolbar .column.main .cart-summary {
+        @include min-screen($screen__m) {
+            margin-left: 0;
+        }
+
+        > .secondary {
+            float: none;
+        }
+    }
+
+    .cart.table-wrapper {
+        .items { // Google Chrome version 44.0.2403.107 m fix
+            min-width: 100%;
+            width: auto;
+        }
+
+        .item-actions td {
+            text-align: right;
+        }
+
+        .product-item-photo {
+            display: table-cell;
+            max-width: 100%;
+            padding-right: $indent__base;
+            position: static;
+            vertical-align: top;
+            width: 1%;
+        }
+
+        .product-item-details {
+            display: table-cell;
+            vertical-align: top;
+            white-space: normal;
+            width: 99%;
+        }
+
+        .item-actions .actions-toolbar {
+            text-align: left;
+            margin-left: 0;
+        }
+    }
+
+    //  Cross sell
+    .block.crosssell {
+        @include lib-layout-column(2, 1, 72%);
+        padding: 0 4% 0 0;
+        box-sizing: border-box;
+
+        .products-grid .product-item {
+            width: percentage(1/3);
+            box-sizing: border-box;
+        }
+
+        .actions-secondary {
+            text-align: left;
+        }
+    }
+}
+
+
+@include min-screen($screen__l) {
+    .cart-summary .block.discount,
+    .cart-summary .block.giftcard {
+        .fieldset {
+            @include inlinefieldset();
+        }
+    }
+}
+
+// Sale Price
+.price--sale > .price {
+    text-decoration: line-through;
+}

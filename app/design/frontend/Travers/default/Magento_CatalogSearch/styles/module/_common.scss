@@ -267,8 +267,31 @@
     }
 }
 
-.catalogsearch-result-index .columns .sidebar-main {
-    order: 0;
+.catalogsearch-result-index {
+    .columns .sidebar-main {
+        order: 0;
+    }
+
+    .page-main {
+        @include min-screen($screen__m) {
+            max-width: none;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+        }
+    }
+
+    .product-landing-page {
+        .category-title,
+        .plp-top {
+            display: none;
+        }
+
+        .plp-content {
+            margin-top: $indent__m;
+        }
+    }
 }
 
 .block {

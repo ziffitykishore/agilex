@@ -1131,6 +1131,7 @@ footer.page-footer {
 
     @include max-screen($screen__m) {
         width: 100%;
+        margin-top: $indent__base;
     }
 
     .carousel,
@@ -1159,5 +1160,83 @@ footer.page-footer {
             background-color: $c-smoke;
             z-index: 2;
         }
+    }
+}
+
+.bluefoot__categories {
+    padding-left: 50px;
+    padding-right: $indent__base;
+    list-style-type: none;
+
+    li {
+        margin-top: $indent__s;
+        margin-bottom: $indent__s;
+
+        a {
+            color: $c-nickel;
+            text-decoration: none;
+            font-size: $font-size__base--desktop;
+            line-height: 1.3;
+
+            @include hover {
+                text-decoration: none;
+                color: $c-cobalt;
+            }
+        }
+    }
+}
+
+.categories-accordion {
+    @include min-screen($screen__m) {
+        display: none;
+    }
+
+    &.bluefoot-row {
+        margin: 0;
+    }
+
+    &__trigger {
+        border: 1px solid $c-grey;
+
+        &.bluefoot-entity {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        button {
+            position: relative;
+            width: 100%;
+            padding: 15px $indent__m;
+
+            &::before {
+                position: absolute;
+                font-size: 28px;
+            }
+
+            &[aria-expanded="true"] {
+                &::before {
+                    content: "−";
+                }
+            }
+
+            &[aria-expanded="false"] {
+                &::before {
+                    content: "+";
+                }
+            }
+        }
+
+        span {
+            padding-left: $indent__base;
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+    }
+
+    .bluefoot__categories {
+        margin-top: 0;
+        padding-left: $indent__base;
+        background-color: $c-smoke;
+        border: 1px solid $c-grey;
     }
 }
