@@ -457,8 +457,10 @@ body {
         @include min-screen($mobile-nav__breakpoint) {
             display: flex;
             margin-top: 0;
+        }
 
-            &-block {
+        &-block {
+            @include min-screen($mobile-nav__breakpoint) {
                 width: 100%;
             }
         }
