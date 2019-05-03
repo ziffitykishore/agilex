@@ -7,7 +7,13 @@
                         preview_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/collage-left/preview">
                 <elements>
                     <element name="main">
+                        <style name="justify_content" source="justify_content" persistence_mode="read"/>
                         <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                    <element name="layout_wrapper">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
                     </element>
                 </elements>
             </appearance>
@@ -16,7 +22,13 @@
                         preview_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/collage-right/preview">
                 <elements>
                     <element name="main">
+                        <style name="justify_content" source="justify_content" persistence_mode="read"/>
                         <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                    <element name="layout_wrapper">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
                     </element>
                 </elements>
             </appearance>
@@ -25,7 +37,13 @@
                         preview_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/poster/preview">
                 <elements>
                     <element name="main">
+                        <style name="justify_content" source="justify_content" persistence_mode="read"/>
                         <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                    <element name="layout_wrapper">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
                     </element>
                 </elements>
             </appearance>
@@ -34,7 +52,13 @@
                         preview_template="SomethingDigital_PageBuilderCustomizations/content-type/banner/collage-centered/preview">
                 <elements>
                     <element name="main">
+                        <style name="justify_content" source="justify_content" persistence_mode="read"/>
                         <attribute name="fullbleed" source="data-fullbleed"/>
+                    </element>
+                    <element name="layout_wrapper">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
                     </element>
                 </elements>
             </appearance>

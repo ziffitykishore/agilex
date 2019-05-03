@@ -24,5 +24,25 @@
                 </checkbox>
             </formElements>
         </field>
+        <field name="justify_content" sortOrder="20" formElement="select" component="Magento_PageBuilder/js/form/element/visual-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="string">flex-start</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Vertical Alignment</label>
+                <notice translate="true">Vertical alignment controls how the child blocks of this container will be positioned. Set minimum height in order to use vertical alignment.</notice>
+                <elementTmpl>Magento_PageBuilder/form/element/visual-select</elementTmpl>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magento\PageBuilder\Model\Source\VerticalAlignment"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
     </fieldset>
 </form>
