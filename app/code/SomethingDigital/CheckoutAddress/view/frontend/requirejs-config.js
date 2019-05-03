@@ -7,6 +7,8 @@ var config = {
                 'SomethingDigital_CheckoutAddress/template/shipping-address/list.html',
             'Magento_Checkout/template/billing-address/list.html':
                 'SomethingDigital_CheckoutAddress/template/billing-address/list.html',
+            'Magento_Checkout/template/billing-address/details.html':
+                'SomethingDigital_CheckoutAddress/template/billing-address/details.html',
             'Magento_Checkout/js/model/shipping-save-processor/default':
                 'SomethingDigital_CheckoutAddress/js/model/shipping-save-processor/default'
         }
