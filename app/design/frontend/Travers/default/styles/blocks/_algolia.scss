@@ -4,6 +4,7 @@
     .algolia-search-input {
         max-width: none !important;
         width: 100%;
+        line-height: normal;
 
         &::placeholder {
             font-size: $font-size__base--desktop;
