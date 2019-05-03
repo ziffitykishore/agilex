@@ -111,8 +111,9 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
         }
 
         .billing-address-details {
-            line-height: $checkout-billing-address-details__line-height;
             padding: $checkout-billing-address-details__padding;
+            font-size: $font-size__base--desktop;
+            line-height: $checkout-billing-address-details__line-height;
 
             .action-edit-address {
                 @include button--inline-link();
