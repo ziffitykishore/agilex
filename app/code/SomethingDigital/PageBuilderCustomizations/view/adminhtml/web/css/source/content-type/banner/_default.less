@@ -20,7 +20,7 @@
         }
     }
 
-    .fullbleed__wrapper {
+    &:not([data-appearance="poster"])[data-fullbleed='1'] .layout_wrapper {
         position: absolute;
         top: 0;
         left: 0;
@@ -34,6 +34,20 @@
 
         @media only screen and (min-width: 769px) {
             padding: 20px;
+        }
+    }
+
+    .pagebuilder-banner-wrapper .pagebuilder-overlay:not(.pagebuilder-poster-overlay) {
+        width: 100%;
+        max-width: 540px;
+    }
+
+    &[data-fullbleed='0'] .pagebuilder-banner-wrapper {
+        display: flex;
+
+        & > div {
+            align-self: stretch;
+            flex-grow: 1;
         }
     }
 }
