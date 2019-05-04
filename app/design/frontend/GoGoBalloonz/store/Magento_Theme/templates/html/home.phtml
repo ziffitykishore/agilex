@@ -1,0 +1,123 @@
+<section class="category-sec wrapper sec-space">
+    <div class="row no-gutters">
+        <div class="col-12 col-sm-6 category-block">
+            <img src="<?php echo $block->getViewFileUrl('images/birthday_balloons.jpg');?>" alt="Birthday Balloons">
+            <div class="category-content">
+                <h2>Birthday Balloons</h2>
+                <a href="#" class="btn btn-outline-white">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 category-block">
+            <img src="<?php echo $block->getViewFileUrl('images/life_events.jpg'); ?>" alt="Life Events">
+            <div class="category-content">
+                <h2>Life Events</h2>
+                <a href="#" class="btn btn-outline-white">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 category-block">
+            <img src="<?php echo $block->getViewFileUrl('images/seasonal_balloons.jpg');?>" alt="Seasonal Balloons">
+            <div class="category-content">
+                <h2>Seasonal Balloons</h2>
+                <a href="#" class="btn btn-outline-white">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 category-block">
+            <img src="<?php echo $block->getViewFileUrl('images/balloons_decor.jpg');?>" alt="">
+            <div class="category-content">
+                <h2>Balloons Decor</h2>
+                <a href="#" class="btn btn-outline-white">Shop Now</a>
+            </div>
+        </div>
+        <div class="col-12 col-sm-4 category-block">
+            <img src="<?php echo $block->getViewFileUrl('images/custom_balloons.jpg');?>" alt="">
+            <div class="category-content">
+                <h2>Custom Balloons</h2>
+                <a href="#" class="btn btn-outline-white">Shop Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="featured-product-sec">
+    <div class="featured-product-inner">
+        <li class="product-item featured-heading">
+            <div class="featured-inner">
+                <img src="<?php echo $block->getViewFileUrl('images/featured_products.png');?>" alt="">
+                <h2>Featured Products</h2>
+            </div>
+        </li>
+        <?php echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('featured-product')
+            ->toHtml(); ?>
+    </div>
+</section>
+
+<section class="promotional-sec">
+    <div class="container-md">
+        <div class="promo-banner">
+            <img src="<?php echo $block->getViewFileUrl('images/promotional_banner.jpg');?>" alt="">
+        </div>
+    </div>
+</section>
+
+<section class="best-seller-sec">
+    <div class="container-md">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="best-seller">
+                <?php echo $this->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId('featured-product')
+                    ->toHtml(); ?>
+            </div>
+        </div>
+        <div class="col-sm-6 promo-banner-wrap">
+            <div class="row">
+            <div class="col-sm-6">
+                <div class="promo-banner">
+                    <img src="<?php echo $block->getViewFileUrl('images/clearance_sale.jpg');?>" alt="">
+                </div>
+            </div>
+            <div class="col-sm-6 promo-banner">
+                <div class="promo-banner">
+                    <img src="<?php echo $block->getViewFileUrl('images/discount_banner.jpg');?>" alt="">
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="delivery-sec">
+    <div class="container-md">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="promo-banner">
+                    <img src="<?php echo $block->getViewFileUrl('images/location_store.jpg');?>" alt="">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="promo-banner">
+                    <img src="<?php echo $block->getViewFileUrl('images/gogo_delivery.jpg');?>" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    require([
+            'jquery',
+            'jquery/ui',
+            'slick',
+            'bootstrap',
+            'wow',
+            'scroller',
+            'custom'],
+        function ($) {
+
+        });
+</script>

@@ -12,7 +12,7 @@
         <referenceBlock name="wish-list-link" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <move element="top.links" destination="account-links" after="-"/>
-        <move element="minicart" destination="header-wrapper" after="-"/>
+        <move element="minicart" destination="header.container" before="-" />
         <move element="navigation.sections" destination="header-wrapper" after="logo"/>
         <move element="top.search" destination="header-wrapper" after="navigation.sections"/>
         <referenceContainer name="header.container">
@@ -22,5 +22,31 @@
             </referenceContainer>
         </referenceContainer>
         <move element="location" destination="header-wrapper" after="top.search" />
+
+        <referenceContainer name="footer">
+            <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>
+            <container name="footerlinks" label="Footer Links" htmlTag="div"  htmlClass="footer-links">
+                <block class="Magento\Cms\Block\Block" name="footer.links" >
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="sociallinks" label="Social Links" htmlTag="div"  htmlClass="social-wrapper">
+            <block class="Magento\Cms\Block\Block" name="social-links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">social-links</argument>
+                </arguments>
+            </block>
+            </container>
+        </referenceContainer>
+
+        <move element="form.subscribe" destination="footerlinks"/>
+        <move element="sociallinks" destination="form.subscribe"/>
+        <move element="copyright" destination="before.body.end"/>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+
+
     </body>
 </page>

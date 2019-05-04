@@ -1,0 +1,110 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .page-footer {
+        background: @color-white;
+        .footer {
+            .clearfix();
+        }
+    }
+    .footer-links {
+        .block {
+            &-title {
+                strong {
+                    color: @color-blue;
+                    padding-bottom: 20px;
+                    display: block;
+                }
+                
+                p {
+                    font-size: 12px;
+                    color: @color-textcolor;
+                    padding-bottom: 15px;
+                }
+            }
+
+            &-content {
+                .links {
+                    li {
+                        a {
+                            font-size: 12px;
+                            color: @color-textcolor;
+                            padding: 8px 0;
+
+                        }
+
+                        a:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+                
+                .subscribe {
+                    position: relative;
+                    .label {
+                        display: none;
+                    }
+                    input {
+                        height: 40px;
+                        padding-right: 108px;
+                        .br-radius(5px);
+                        font-size: 12px;
+
+                        &:focus {
+                            box-shadow: none;
+                        }
+                    }
+                    .actions {
+                        position: absolute;
+                        right: 0;
+                        top: 0;
+
+                    }
+
+                    .primary {
+                        height: 40px;
+                        .btn-red();
+                        .br-radius(0 5px 5px 0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .page-wrapper {
+        .page-footer {
+            .footer {
+                .block {
+                    float: none;
+                }
+
+                .footer-links {
+                    .block {
+                        width: percentage(1/4);
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        float: left;
+                    }
+                }
+            }
+        }
+    }
+
+}

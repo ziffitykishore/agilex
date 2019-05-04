@@ -1,0 +1,29 @@
+.btn {
+    .br-radius(5px);
+    &-outline-white {
+        color: @color-white;
+        background-color: transparent;
+        background-image: none;
+        border-color: @color-white;
+
+        &:visited {
+            color: @color-white;
+        }
+
+        &:hover {
+            color: @color-black;
+            background-color: @color-white;
+            border-color: @color-white;
+        }
+    }
+}
+
+.btn-red() {
+    .lib-css(background, @color-red);
+    .lib-css(color, @color-white);
+    .lib-css(border-color, @color-red);
+
+    &:focus {
+        .lib-css(background, lighten(@color-red, 10%));
+    }
+}
