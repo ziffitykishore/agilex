@@ -376,6 +376,7 @@ $nav-delimiter__border-color: $color-gray82 !default;
     list-style-type: none;
     list-style-image: none;
     margin: 0;
+    margin-top: $indent__s;
     padding: 0;
 }
 
@@ -448,20 +449,13 @@ $nav-delimiter__border-color: $color-gray82 !default;
 
     .box-actions {
         button.action {
-            @extend .abs-account-actions;
-            background: none;
-            border: 0;
-            color: $company-button__color;
-            font-weight: $font-weight__regular;
-            padding: 0 $indent__m $indent__s 0;
+            @include button--type(tertiary);
             position: relative;
-
-            @include hover {
-                background: none;
-                border: 0;
-                box-shadow: none;
-                color: $company-button__hover__color;
-            }
+            min-height: auto;
+            margin: 7px 0;
+            padding: 0;
+            padding-right: $indent__m;
+            line-height: 1;
 
             &:active {
                 background: none;
@@ -472,6 +466,10 @@ $nav-delimiter__border-color: $color-gray82 !default;
 
             &:not(:focus) {
                 box-shadow: none;
+            }
+
+            &::before {
+                display: none;
             }
 
             &:after {
@@ -489,6 +487,14 @@ $nav-delimiter__border-color: $color-gray82 !default;
 
             &._hidden {
                 display: none;
+            }
+
+            @include min-screen($screen__m) {
+                span {
+                    display: inline-block;
+                    margin-bottom: $indent__base;
+                    padding-bottom: $indent__s;
+                }
             }
         }
     }

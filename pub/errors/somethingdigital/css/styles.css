@@ -13,7 +13,6 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   box-sizing: border-box;
-  max-width: 900px;
   width: 100%;
   padding: 0 20px;
 }
@@ -61,6 +60,12 @@ svg {
   text-transform: uppercase;
 }
 
+@media only screen and (min-width: 900px) {
+  .main-error-message {
+    max-width: 50%;
+  }
+}
+
 .error-text {
   font-size: 14px;
   line-height: 1.9;
@@ -82,14 +87,15 @@ svg {
   letter-spacing: .5px;
   color: white;
   display: block;
-}
-
-.contact-information a:hover {
-  color: #0361C1;
+  display: inline-block
 }
 
 .contact-information .phone {
   text-decoration: none;
+}
+
+.contact-information span a:hover {
+  color: #0361C1;
 }
 
 .copyright {
@@ -112,7 +118,6 @@ svg {
     line-height: 1;
     letter-spacing: 1.4px;
     margin: 20px auto 0 auto;
-    max-width: 50%;
   }
 
   .error-message h5 {

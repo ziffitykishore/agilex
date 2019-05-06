@@ -423,14 +423,14 @@
         &:first-of-type {
             background-color: transparent;
             color: $text__color;
-            font-weight: $font-weight__bold;
+            font-weight: $font-weight__semibold;
             border-bottom: 2px solid $c-royal;
         }
 
         &:last-of-type {
             color: $c-cobalt;
             border-top: 1px solid $c-grey;
-            font-weight: $font-weight__bold;
+            font-weight: $font-weight__semibold;
         }
 
         td {

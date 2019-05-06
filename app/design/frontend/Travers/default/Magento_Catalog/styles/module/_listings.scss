@@ -92,7 +92,7 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
 
             .price {
                 font-size: 14px;
-                font-weight: $font-weight__bold;
+                font-weight: $font-weight__semibold;
                 white-space: nowrap;
             }
 
@@ -109,7 +109,7 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
         .minimal-price {
             .price {
                 font-size: 14px;
-                font-weight: $font-weight__bold;
+                font-weight: $font-weight__semibold;
             }
 
             .price-wrapper {
