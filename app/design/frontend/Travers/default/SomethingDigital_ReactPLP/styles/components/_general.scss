@@ -110,6 +110,12 @@ $sidebar__max-width: 240px;
     svg {
       height: 18px;
       margin-right: $indent__xs;
+
+      &.list-icon {
+        display: inline-block;
+        height: 14px;
+        margin-top: 2px;
+      }
     }
 
     &:hover,
