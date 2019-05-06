@@ -31,6 +31,10 @@ function ampforwp_schema_lazy_load_remover(){
 	//Remove CSS header from the GoodLife Theme #2673
 	remove_filter('amp_post_template_file', 'thb_custom_amp_templates');
 	remove_action( 'amp_post_template_css', 'thb_amp_additional_css_styles' );
+	// Viewport appear more than once in Zox news theme. #2971
+	if ( function_exists( 'mvp_setup' ) && ampforwp_get_setting('amp-design-selector') != 4 ) {
+		remove_action( 'amp_post_template_head','ampforwp_add_meta_viewport');
+	}
 }
 
 //Updater to check license
@@ -901,5 +905,20 @@ function ampforwp_seopress_social(){
 			    }
 			}
 		}
+	}
+}
+
+// yoast author twitter handle #2133
+if ( ! function_exists('ampforwp_yoast_twitter_handle') ) {
+	function ampforwp_yoast_twitter_handle() {
+		$twitter = '';
+		if (  class_exists('WPSEO_Frontend') ) {
+		    global $post;
+		    $twitter = get_the_author_meta( 'twitter', $post->post_author );
+		}
+		if($twitter){
+		    return ' <span><a href="https://twitter.com/'.esc_attr($twitter).'" target="_blank">@'.esc_html($twitter).'</a></span>';
+		}
+		return '';
 	}
 }

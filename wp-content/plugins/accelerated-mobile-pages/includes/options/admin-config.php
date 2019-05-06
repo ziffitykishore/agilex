@@ -505,7 +505,9 @@ foreach ($extension_listing_array as $key => $extension) {
             $amplicense = $selectedOption['amp-license'][$pathExploded]['license'];
         }
         $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-activate">Activate</button>';
+        $license_status = '';
         if(isset($selectedOption['amp-license'][$pathExploded]['status']) && $selectedOption['amp-license'][$pathExploded]['status']==='valid'){
+            $license_status = $selectedOption['amp-license'][$pathExploded]['status'];
              $currentStatus = 'active valid';
              $verify = '<button type="button" id="'.$pathExploded.'" class="redux-ampforwp-ext-deactivate">Deactivate</button>';
             if($ampforwp_nameOfUser=="" && isset($selectedOption['amp-license'][$pathExploded]['all_data']['customer_name'])){
@@ -529,7 +531,7 @@ foreach ($extension_listing_array as $key => $extension) {
             }
              $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][plugin_active_path]" type="hidden" value="'.$extension['plugin_active_path'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][name]" type="hidden" value="'.$extension['name'].'">
-            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$selectedOption['amp-license'][$pathExploded]['status'].'">';
+            <input name="redux_builder_amp[amp-license]['.$pathExploded.'][status]" type="hidden" value="'.$license_status.'">';
              $pluginReview .= '<input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][success]" type="hidden" value="'.$allResponseData['success'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][license]" type="hidden" value="'.$allResponseData['license'].'">
             <input name="redux_builder_amp[amp-license]['.$pathExploded.'][all_data][item_name]" type="hidden" value="'.$allResponseData['item_name'].'">
@@ -1231,8 +1233,7 @@ Redux::setArgs( "redux_builder_amp", $args );
         return $value;
     }
     function ampforwp_custom_logo_dimensions_options(){
-        $selectedOption = (array) get_option('redux_builder_amp',true);
-        $opCheck = $selectedOption['ampforwp-custom-logo-dimensions'];
+        $opCheck = ampforwp_get_setting('ampforwp-custom-logo-dimensions');
         if($opCheck==1){
             return 'prescribed';
         }else{
@@ -1515,6 +1516,7 @@ Redux::setArgs( "redux_builder_amp", $args );
                     'rank_math' => 'Rank Math SEO',
                     'genesis'    => 'Genesis',
                     'seopress'    => 'SEOPress',
+                    'bridge'    => 'Bridge Qode SEO'
                 ),
                 'default'  => ampforwp_seo_default(),
             ),
@@ -1920,7 +1922,7 @@ Redux::setSection( $opt_name, array(
                         'type'      => 'text',
                         'title'     => esc_html__('Number of Posts', 'accelerated-mobile-pages'),
                         'tooltip-subtitle' => esc_html__('Enter the number of posts to generate for Instant Articles.', 'accelerated-mobile-pages'),
-                         'desc' => esc_html__('Leave this empty to generate All Posts.', 'accelerated-mobile-pages'),
+                         'desc' => esc_html__('Leave this empty to generate All Posts (500).', 'accelerated-mobile-pages'),
                         'required'  => array('fb-instant-article-switch', '=', 1),
                         'default'   => '50'
                     ),
@@ -3293,6 +3295,25 @@ Redux::setSection( $opt_name, array(
                                     
                 ),
                 array(
+                       'id' => 'google-icons',
+                       'type' => 'section',
+                       'title' => esc_html__('Google Icon Library', 'accelerated-mobile-pages'),
+                       'indent' => true,
+                       'layout_type' => 'accordion',
+                        'accordion-open'=> 1,
+                        'required' => array( array('amp-design-selector', '=' , '4') ),
+                ),
+                array(
+                    'id'       => 'ampforwp_font_icon',
+                    'type'     => 'select',
+                    'title'    => esc_html__('Icon Font Library', 'accelerated-mobile-pages'),
+                    'options'  => array(
+                        'swift-icons'       => 'Swift Icons',
+                        'fontawesome-icons'     => 'Font Awesome Icons'
+                    ),
+                    'default'  => 'swift-icons',
+                ),
+                array(
                            'id' => 'design-advanced',
                            'type' => 'section',
                            'title' => esc_html__('Advanced', 'accelerated-mobile-pages'),
@@ -3322,8 +3343,11 @@ Redux::setSection( $opt_name, array(
 
     // Header Elements default Color
     function ampforwp_get_element_default_color() {
-        $default_value = (array) get_option('redux_builder_amp', true);
-        $default_value = $default_value['amp-opt-color-rgba-colorscheme']['color'];
+        $option = $default_value = '';
+        $option = ampforwp_get_setting('amp-opt-color-rgba-colorscheme');
+        if ( !empty($option['color']) ) {
+            $default_value = $option['color'];
+        }
         if ( empty( $default_value ) ) {
           $default_value = '#333';
         }
@@ -4342,7 +4366,6 @@ $single_page_options = array(
               'default'  =>  '1',
               'title'    => esc_html__('Categories', 'accelerated-mobile-pages'),
               'tooltip-subtitle' => esc_html__('Enable or Disable Categories in Single', 'accelerated-mobile-pages'),              
-             'required' => array( array('amp-design-selector', '!=' , '4') )
            ),
          //Tags  ON/OFF
          array(
@@ -5225,6 +5248,55 @@ else{
         'desc'      => esc_html__('All the Social sharing and the social profile related settings are here','accelerated-mobile-pages'),
         'subsection' => true,
         'fields'     => array(
+            // AddThis Support  
+        array(
+           'id' => 'add-this-support',
+           'type' => 'section',
+           'title' => esc_html__('AddThis Support', 'accelerated-mobile-pages'),
+           'indent' => true,
+           'layout_type' => 'accordion',
+           'accordion-open'=> 1,
+        ), 
+        
+        array(
+              'id'        =>  'enable-add-this-option',
+              'type'      =>  'switch',
+              'title'     =>  esc_html__('Enable AddThis', 'accelerated-mobile-pages'),
+              'desc'    =>sprintf('<a href="https://www.addthis.com/academy/how-to-install-addthis-inline-share-buttons-on-amp-accelerated-mobile-pages/" target="_blank">%s</a> %s',esc_html__('Click Here','accelerated-mobile-pages'),esc_html__('to know how to Install AddThis Share Buttons on AMP','accelerated-mobile-pages')),
+              'default'   =>  false,
+        ),
+        array(
+                'id'       => 'swift-add-this-position',
+                'type'     => 'select',
+                'title'    => esc_html__( 'Position', 'accelerated-mobile-pages' ),
+                'options'  => array(
+                                'default' => 'Single Sidebar (left side)',
+                                'above-content' => 'Above Content',
+                                'below-content' => 'Below Content'
+                                ),
+                'default'  => 'default',
+                'required' => array(
+                                array('amp-design-selector', '=', '4'),
+                                array('enable-add-this-option', '=', '1') )
+        ), 
+        array(
+               'id'       => 'add-this-pub-id',
+               'title'    => esc_html__('Enter Pub ID', 'accelerated-mobile-pages'),
+               'type'     => 'text',
+               'required'  => array('enable-add-this-option', '=' , '1'),
+               'placeholder'  => esc_html__('ra-xxxxxxxxxx','accelerated-mobile-pages'),
+               'default'  => '',
+        ),
+        array(
+               'id'       => 'add-this-widget-id',
+               'title'    => esc_html__('Enter Widget ID', 'accelerated-mobile-pages'),
+               'type'     => 'text',
+               'required'  => array('enable-add-this-option', '=' , '1'),
+               'placeholder'  => esc_html__('xxxx','accelerated-mobile-pages'),
+               'default'  => '',
+        ),
+
+         //End AddThis Support    
         array(
            'id' => 'social-shre',
            'type' => 'section',
@@ -5937,8 +6009,7 @@ else{
         )
 
     ) );
-   $redux_option = (array) get_option('redux_builder_amp',true);
-   if ( 4 == $redux_option['amp-design-selector'] ) {
+   if ( 4 == ampforwp_get_setting('amp-design-selector')) {
     $post_builder = '';
    }
    else{

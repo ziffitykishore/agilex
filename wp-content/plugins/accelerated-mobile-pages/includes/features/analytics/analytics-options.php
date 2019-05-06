@@ -1,9 +1,8 @@
 <?php
 use ReduxCore\ReduxFramework\Redux;
 function ampforwp_get_default_analytics($param=""){
-    $options = $default = ''; 
-    $options = (array) get_option('redux_builder_amp', true);
-    $default = $options['amp-analytics-select-option'];
+    $default = ''; 
+    $default = ampforwp_get_setting('amp-analytics-select-option');
     if($param == $default){
         return true;
     }
@@ -99,6 +98,15 @@ function ampforwp_analytics_options($opt_name){
                             array('ampforwp-ga-switch', '=' , '1')
                           ),
                           'default'  => 1,
+                      ),
+                      array(
+                          'class'    => 'child_opt',
+                          'id'       => 'ampforwp-ga-field-linker',
+                          'type'     => 'switch',
+                          'title'    => esc_html__( 'AMP Linker', 'accelerated-mobile-pages' ),
+                          'required' => array('ampforwp-ga-switch', '=' , '1'),
+                          'tooltip-subtitle' => esc_html__( '<a href="https://amphtml.wordpress.com/2018/09/17/measuring-user-journeys-across-the-amp-cache-and-your-website/amp/" target="_blank">Click Here</a> for more details on AMP Linker', 'accelerated-mobile-pages' ),
+                          'default'  => 0,
                       ),
                       array(
                           'class' => 'child_opt',

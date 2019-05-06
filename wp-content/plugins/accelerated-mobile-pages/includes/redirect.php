@@ -189,6 +189,9 @@ function ampforwp_page_template_redirect() {
     if ( is_feed() ) { 
       return; 
     }
+    if(get_query_var( 'json' )){
+      return; 
+    }
     // #1192 Password Protected posts exclusion
     if ( post_password_required( $post ) ) { 
       return; 
@@ -311,9 +314,13 @@ function ampforwp_custom_query_var($vars) {
 add_filter( 'query_vars', 'ampforwp_custom_query_var' );
 add_action( 'template_redirect', 'ampforwp_redirect_to_orginal_url' );
 function ampforwp_redirect_to_orginal_url(){
+  global $wp;
   $go_to_url  = "";
   $url        = "";
   $url = ampforwp_amphtml_generator();
+  if ( empty($url) ) {
+    $url = home_url( $wp->request );
+  }
   $nonamp_checker = get_query_var( 'nonamp');
    if($url){
      if( $nonamp_checker == 1 ){ 

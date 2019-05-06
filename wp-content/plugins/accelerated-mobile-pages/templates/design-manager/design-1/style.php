@@ -18,6 +18,7 @@ use AMPforWP\AMPVendor\AMP_Post_Template;
 ?>
 
 #statcounter{width: 1px;height:1px;}
+.amp-wp-article amp-addthis{margin-top: -68px;}
 <?php if ( true == ampforwp_get_setting('ampforwp-d1-font') ): ?> 
 @font-face {
   font-family: 'Merriweather';
@@ -432,4 +433,13 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
   .single-post amp-next-page{
     margin-top:30px;
   }
+<?php } 
+// image floats removed in mobile view #2525
+if(is_singular() || ampforwp_is_front_page()){?>
+@media(max-width:480px){
+.amp-wp-content .alignright , .amp-wp-content .alignleft {
+  float:none;
+  margin:0 auto;
+}
+}
 <?php } ?> 
