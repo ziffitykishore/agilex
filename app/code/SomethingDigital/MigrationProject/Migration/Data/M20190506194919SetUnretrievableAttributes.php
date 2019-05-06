@@ -9,7 +9,7 @@ use SomethingDigital\Migration\Helper\Cms\Block as BlockHelper;
 use SomethingDigital\Migration\Helper\Email\Template as EmailHelper;
 use Magento\Config\Model\ResourceModel\Config as ResourceConfig;
 
-class M20190425105610SetCategoriesAttrForFaceting implements MigrationInterface
+class M20190506194919SetUnretrievableAttributes implements MigrationInterface
 {
     protected $page;
     protected $block;
