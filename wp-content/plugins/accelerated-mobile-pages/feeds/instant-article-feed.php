@@ -7,8 +7,8 @@
 
 <channel>
     <title><?php bloginfo_rss('name'); ?></title>
-    <link><?php bloginfo_rss('url') ?></link>
-    <description><?php bloginfo_rss("description") ?></description>
+    <link><?php bloginfo_rss('url'); ?></link>
+    <description><?php bloginfo_rss("description"); ?></description>
     <lastBuildDate><?php echo esc_attr(mysql2date('c', get_lastpostmodified('GMT'), false)); ?></lastBuildDate>
     <language><?php bloginfo_rss( 'language' ); ?></language>
     <?php
@@ -19,7 +19,7 @@
         $number_of_articles = round( abs( floatval( $number_of_articles ) ) );
     }
     else{
-        $number_of_articles = -1;
+        $number_of_articles = 500;
     }
     $exclude_ids = get_option('ampforwp_ia_exclude_post');
     $ia_args = array(

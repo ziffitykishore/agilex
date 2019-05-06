@@ -32,6 +32,10 @@ a{ color: #312C7E; text-decoration: none }
 amp-anim { max-width: 100%; }
 amp-wistia-player {margin:5px 0px;}
 .amp-wp-content amp-iframe{max-width:100%}
+.amp-wp-article amp-addthis{margin-bottom: -89px;top: -113px;}
+@media screen and (min-width: 1025px){
+.amp-wp-article amp-addthis{margin-left: 150px;}
+}
 .hide{display:none}
 @font-face {
     font-family: 'Roboto Slab';
@@ -224,7 +228,7 @@ h1.amp-wp-title{ margin: 0; color: #333333; font-size: 48px; line-height: 58px; 
 .amp-social-reddit{background:#ff4500}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-telegram-share') ) { ?>
-.amp-social-telegram{background:#0088cc}
+.amp-social-telegram{background:#61A8DE}
 <?php } ?>
 <?php if ( true == ampforwp_get_setting('enable-single-tumblr-share') ) { ?>
 .amp-social-tumblr{background:#35465c}
@@ -743,4 +747,13 @@ if( true == ampforwp_get_setting('ampforwp-infinite-scroll') && ampforwp_get_set
   .amp_home_body .amp-next-page-default-separator {border:none;}
   #headerwrap{position:relative;}
   header{padding:0;}
+<?php } 
+// image floats removed in mobile view #2525
+if(is_singular() || ampforwp_is_front_page()){?>
+@media(max-width:480px){
+.amp-wp-content .alignright , .amp-wp-content .alignleft {
+  float:none;
+  margin:0 auto;
+}
+}
 <?php } ?> 

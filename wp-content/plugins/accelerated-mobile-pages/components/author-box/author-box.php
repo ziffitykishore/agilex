@@ -79,13 +79,16 @@ if ( isset($args['show_time']) ) {
         if ( true == $redux_builder_amp['ampforwp-author-page-url'] ){
             if ( function_exists('coauthors_posts_links') ) {
                 echo '<span class="author-name">' .esc_attr($author_prefix) . esc_attr($author_link) . ' </span>';
+                echo ampforwp_yoast_twitter_handle();
             }
             else {
                 echo '<span class="author-name">' .esc_attr($author_prefix) . ' <a href="'. ampforwp_url_controller($author_link).'"> ' .esc_html( $author_name ).'</a></span>';
+                 echo ampforwp_yoast_twitter_handle();
             }
         }
         else
             echo '<span class="author-name">' . esc_attr($author_prefix) . esc_html( $author_name ) . '</span>';
+            echo  ampforwp_yoast_twitter_handle();
 
         //to show date and time
         if ( $show_date || $show_time ) {
@@ -105,7 +108,7 @@ if ( isset($args['show_time']) ) {
         </div>
     </div>
 <?php 
-    if(is_singular() && ( isset($args['ads_below_the_author']) && true == $args['ads_below_the_author'] ) && 1 == ampforwp_get_setting('ampforwp-standard-ads-7')){
+    if(is_singular() && ( isset($args['ads_below_the_author']) && true == $args['ads_below_the_author'] )){
             do_action('ampforwp_below_author_box');
         }
     }

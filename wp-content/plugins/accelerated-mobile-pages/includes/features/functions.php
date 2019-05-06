@@ -35,13 +35,13 @@ function ampforwp_is_front_page(){
     $get_front_page_reading_settings  = get_option('page_on_front');
 
     // Homepage support on   
-    $get_amp_homepage_settings        =  $redux_builder_amp['ampforwp-homepage-on-off-support'];
+    $get_amp_homepage_settings        =  ampforwp_get_setting('ampforwp-homepage-on-off-support');
 
     // AMP Custom front page from AMP panel
-    $get_custom_frontpage_settings    =  $redux_builder_amp['amp-frontpage-select-option'];
+    $get_custom_frontpage_settings    =  ampforwp_get_setting('amp-frontpage-select-option');
 
     // Frontpage id should be assigned
-    if ( isset($redux_builder_amp['amp-frontpage-select-option-pages'])) {
+    if ( ampforwp_get_setting('amp-frontpage-select-option-pages') ) {
         $get_amp_custom_frontpage_id      =  $redux_builder_amp['amp-frontpage-select-option-pages'];
     }
 
@@ -306,6 +306,10 @@ function ampforwp_generate_meta_desc($json=""){
             if ( $rank_math_desc ) {
                 $desc = $rank_math_desc;
             }
+        }
+        //Bridge Qode SEO Compatibility #2538 
+        if ( function_exists('qode_header_meta') && 'bridge' == ampforwp_get_setting('ampforwp-seo-selection')){
+        $desc = get_post_meta($post_id, "qode_seo_description", true);
         }
         // strip_shortcodes  strategy not working here so had to do this way
         // strips shortcodes
@@ -591,7 +595,7 @@ function ampforwp_url_purifier($url){
         else{
             $query_name = isset($wp_query->query['pagename'])?$wp_query->query['pagename']:'';
         }
-        if( ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
+        if( $query_name && ampforwp_is_query_post_same( $_SERVER['QUERY_STRING'],$query_name) && isset( $query_arg['q'] ) ){
             unset($query_arg['q']);
         }
         else if ( $query_name && isset( $query_arg['q'] ) ){ 
@@ -718,6 +722,11 @@ if(!function_exists('ampforwp_amp_nonamp_convert')){
                 $returnData = preg_replace(
                 '/<amp-youtube\sdata-videoid="(.*?)"(.*?)><\/amp-youtube>/',
                  '<iframe src="'. esc_url("https://www.youtube.com/embed/$1").'" style="width:100%;height:360px;" ></iframe>', $returnData);
+                $returnData = preg_replace_callback(
+                '/<amp-iframe(.*?)src="(.*?)"(.*?)><\/amp-iframe>/', 
+                function($matches){
+                    return '<iframe src="'.esc_url($matches[2]).'" style="width:100%;height:400px;" ></iframe>';
+                }, $returnData);
             break;
         }
         return $returnData;
