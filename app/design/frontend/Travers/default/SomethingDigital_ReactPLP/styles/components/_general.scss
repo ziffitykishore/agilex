@@ -375,6 +375,10 @@ $sidebar__max-width: 240px;
   @include min-screen($screen__m) {
     left: $sidebar__max-width + 30px;
     top: $indent__base;
+
+    &.sidebar__closed {
+      left: 125px;
+    }
   }
 }
 
