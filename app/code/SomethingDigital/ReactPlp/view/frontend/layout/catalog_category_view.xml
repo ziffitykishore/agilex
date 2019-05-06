@@ -5,7 +5,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block name="somethingdigital_reactplp"
+            <block cacheable="false" name="somethingdigital_reactplp"
                    template="SomethingDigital_ReactPlp::react.phtml">
                 <arguments>
                     <argument name="view_model" xsi:type="object">SomethingDigital\ReactPlp\ViewModel\ReactPlp</argument>
