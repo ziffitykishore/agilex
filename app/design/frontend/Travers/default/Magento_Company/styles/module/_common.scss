@@ -455,15 +455,7 @@ $nav-delimiter__border-color: $color-gray82 !default;
             margin: 7px 0;
             padding: 0;
             padding-right: $indent__m;
-            vertical-align: text-top;
-
-            @include min-screen($screen__m) {
-                span {
-                    display: inline-block;
-                    margin-bottom: $indent__base;
-                    padding-bottom: $indent__s;
-                }
-            }
+            line-height: 1;
 
             &:active {
                 background: none;
@@ -495,6 +487,14 @@ $nav-delimiter__border-color: $color-gray82 !default;
 
             &._hidden {
                 display: none;
+            }
+
+            @include min-screen($screen__m) {
+                span {
+                    display: inline-block;
+                    margin-bottom: $indent__base;
+                    padding-bottom: $indent__s;
+                }
             }
         }
     }

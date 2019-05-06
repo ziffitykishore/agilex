@@ -16,12 +16,14 @@
       text-transform: capitalize;
 
       &.is-closed::before {
-        content: '+ ';
+        content: '+';
+        margin-right: $indent__xs;
         font-weight: $font-weight__semibold;
       }
 
       &.is-open::before {
-        content: '− ';
+        content: '−';
+        margin-right: $indent__xs;
         font-weight: $font-weight__semibold;
       }
     }
