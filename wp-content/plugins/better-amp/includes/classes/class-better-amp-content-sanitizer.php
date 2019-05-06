@@ -936,7 +936,7 @@ class Better_AMP_Content_Sanitizer {
 
 						if ( ! empty( $atts['value_url'] ) ) {
 
-							$val    = isset( $element_atts[ $atts['name'] ] ) ? htmlentities( $element_atts[ $atts['name'] ] ) : null;
+							$val    = isset( $element_atts[ $atts['name'] ] ) ? wp_check_invalid_utf8( $element_atts[ $atts['name'] ] ) : null;
 							$parsed = $val ? parse_url( $val ) : array();
 
 
@@ -1104,11 +1104,18 @@ class Better_AMP_Content_Sanitizer {
 					for ( $i = $elements->length - 1; $i >= 0; $i -- ) {
 						$element = $elements->item( $i );
 
-						if ( $tag_name === 'script' && $element->parentNode->tagName === 'amp-analytics' ) {
+						if ( $tag_name === 'script' ) {
 
 							$atts = self::get_node_attributes( $element );
 
-							if ( isset( $atts['type'] ) && $atts['type'] === 'application/json' ) {
+							if ( $element->parentNode->tagName === 'amp-analytics' ) {
+
+								if ( isset( $atts['type'] ) && $atts['type'] === 'application/json' ) {
+									continue;
+								}
+
+							} elseif ( isset( $atts['type'] ) && 'application/ld+json' === $atts['type'] ) {
+
 								continue;
 							}
 						}
