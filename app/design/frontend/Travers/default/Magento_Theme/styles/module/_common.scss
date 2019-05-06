@@ -52,6 +52,14 @@ body {
         }
     }
 
+    .logo svg {
+        height: 25px;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            height: 45px;
+        }
+    }
+
     &:not(.page-header--sticky) {
         @include min-screen($mobile-nav__breakpoint) {
             .header.content {

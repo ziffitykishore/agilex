@@ -226,12 +226,14 @@
   .catland-sibling-categories .sibling-buttons {
     .ais-Hits-list {
       padding-left: $indent__s;
+      padding-right: $indent__xs;
     }
 
     .ais-Hits-item button {
-      font-size: $font-size__base;
       width: 100%;
-      padding-bottom: $indent__s;
+      padding-bottom: 0;
+      font-size: $font-size__base;
+      line-height: 1.5;
       text-align: left;
     }
 

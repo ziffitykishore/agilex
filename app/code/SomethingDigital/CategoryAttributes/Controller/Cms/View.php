@@ -84,7 +84,10 @@ class View extends \Magento\Framework\App\Action\Action
             }
 
             if (strpos($descriptionHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
-                $descriptionHtml = $this->stageRender->render($leftBlockHtml);
+                $descriptionHtml = $this->stageRender->render($descriptionHtml);
+            }
+            if (strpos($mobileDescriptionHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
+                $mobileDescriptionHtml = $this->stageRender->render($mobileDescriptionHtml);
             }
             if (strpos($leftBlockHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
                 $leftBlockHtml = $this->stageRender->render($leftBlockHtml);

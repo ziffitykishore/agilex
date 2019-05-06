@@ -228,6 +228,7 @@ $cart-image-mobile-width: 60px !default;
 
         th {
             font-size: 16px;
+            font-weight: $font-weight__semibold;
         }
 
         > .item {
@@ -258,6 +259,10 @@ $cart-image-mobile-width: 60px !default;
             .label {
                 @include lib-visually-hidden();
             }
+        }
+
+        &.price .percent-saved {
+            white-space: nowrap;
         }
     }
 
@@ -292,6 +297,7 @@ $cart-image-mobile-width: 60px !default;
     .product-item-name {
         margin-top: 0;
         line-height: 1;
+        font-weight: $font-weight__semibold;
 
         a {
             color: $c-steel;
@@ -340,6 +346,10 @@ $cart-image-mobile-width: 60px !default;
     .price-excluding-tax {
         @include max-screen($screen__l) {
             font-size: $font-size__base + 2;
+        }
+
+        span {
+            font-weight: $font-weight__semibold;
         }
     }
 

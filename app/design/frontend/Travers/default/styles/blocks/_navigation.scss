@@ -471,8 +471,6 @@ $nav-section-title__height: 60px;
                     padding: $indent__s $indent__m;
                     box-shadow: 0 $indent__xs $indent__s -2px $c-silver;
                     box-sizing: border-box;
-                    column-count: 2;
-                    column-gap: $indent__s;
                 }
 
                 &.first .submenu {
@@ -480,6 +478,7 @@ $nav-section-title__height: 60px;
                     width: 100vw;
                     left: 0 !important; // overrides the nav JS
                     column-count: 4;
+                    column-gap: $indent__s;
 
                     &:not(.level0) {
                         display: none !important; // overrides the nav JS
