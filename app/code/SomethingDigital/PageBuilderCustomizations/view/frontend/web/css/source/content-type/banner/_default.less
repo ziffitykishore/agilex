@@ -25,6 +25,7 @@
 
     .pagebuilder-banner-wrapper {
         position: relative;
+        height: 0; //IE fix when min-height set
 
         .pagebuilder-overlay {
             padding: 15px;
@@ -32,6 +33,14 @@
             @media only screen and (min-width: 769px) {
                 padding: 30px;
             }
+        }
+    }
+
+    &[data-appearance="poster"] .pagebuilder-banner-wrapper {
+        height: auto;
+
+        .pagebuilder-poster-overlay {
+            height: 0; //IE fix when min-height set
         }
     }
 
