@@ -105,6 +105,10 @@ $cart-image-mobile-width: 60px !default;
         &::after {
             right: $indent__base;
         }
+
+        strong {
+            font-weight: $font-weight__semibold;
+        }
     }
 
     &:last-of-type > .title {

@@ -218,7 +218,7 @@ $minicart-items__max-height  : 260px !default;
         text-align: center;
         white-space: normal;
         vertical-align: middle;
-        font-weight: $font-weight__bold;
+        font-weight: $font-weight__semibold;
 
         @include min-screen($mobile-nav__breakpoint) {
           margin-top: 1px;
