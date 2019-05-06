@@ -49,13 +49,15 @@ $related-products__price-box__margin-bottom: $indent__s !default;
         }
 
         .product-item {
-            width: 50%;
+            width: 45%;
+            margin-right: $indent__s;
             margin-bottom: $related-products__item__margin-bottom;
             padding-left: $indent__s;
 
             @include min-screen($screen__m) {
-                width: 25%;
+                width: 20%;
                 margin-bottom: 0;
+                margin-right: $indent__m;
                 padding-top: $indent__s;
                 padding-left: 0;
                 padding-bottom: $indent__s;
