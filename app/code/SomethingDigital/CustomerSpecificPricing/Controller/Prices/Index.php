@@ -45,7 +45,7 @@ class Index extends Action
         try {
             foreach ($params as $id => $sku) {
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
-                $data[$sku] = $this->arrayManager->get('body/Price', $prices);
+                $data[$sku] = $this->arrayManager->get('body/Price', $prices, 0);
             }
         } catch (LocalizedException $e) {
             $this->logger->critical('Request has failed with exception: ' . $e->getMessage());
