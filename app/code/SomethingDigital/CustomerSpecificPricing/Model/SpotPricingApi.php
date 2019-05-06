@@ -38,24 +38,29 @@ class SpotPricingApi extends Adapter
      */
     public function getSpotPrice($productSku)
     {
-        $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
-            'customerId' => $this->getCustomerAccountId()
-        ]);
+        $customerAccountId = $this->getCustomerAccountId();
 
-        return $this->getRequest();
+        if ($customerAccountId) {
+            $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
+                'customerId' => $customerAccountId
+            ]);
+
+            return $this->getRequest();
+        } else {
+            return [];
+        }
     }
 
     /**
      * @return string
-     * @throws ApiRequestException
      */
     protected function getCustomerAccountId()
     {
         if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
             return $accountId->getValue();
+        } else {
+            return false;
         }
-
-        throw new ApiRequestException(__('Request requires Customer account ID.'));
     }
 
 }
