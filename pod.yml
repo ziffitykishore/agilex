@@ -21,6 +21,8 @@ services:
     image: '754729414608.dkr.ecr.us-east-2.amazonaws.com/accelerator-magento2:v2.10.0'
     cap_add:
       - SYS_PTRACE
+    volumes:
+      - ~/.ssh:/home/magento/.ssh
     depends_on:
       - database
       - elasticsearch
