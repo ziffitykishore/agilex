@@ -103,7 +103,10 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                         'form_key' => $this->formKey->getFormKey()
                     ]
                 ],
-                'pricing' => []
+                'pricing' => [
+                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/pricing/view/products',
+                    'params' => []
+                ]
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
             'listAttributes' => $this->getListAttributes(),
