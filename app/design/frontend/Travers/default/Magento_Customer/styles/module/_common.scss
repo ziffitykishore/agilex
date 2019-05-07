@@ -258,6 +258,44 @@ $_password-very-strong: #81b562 !default;
         }
     }
 
+    .orders-history .order-search {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: $indent__base;
+
+        button {
+            @include button--type(primary);
+            width: 100%;
+            max-width: 460px;
+        }
+
+        input {
+            max-width: 460px;
+            margin-bottom: $indent__s;
+        }
+
+        @include min-screen($screen__m) {
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            input {
+                width: 25%;
+                margin-right: $indent__s;
+                margin-bottom: 0;
+            }
+
+            .order {
+                display: flex;
+                margin-top: $indent__s;
+
+                button {
+                    margin-top: $indent__base;
+                    width: 100%;
+                }
+            }
+        }
+    }
+
     .table-return-items {
         .qty {
             .input-text {
