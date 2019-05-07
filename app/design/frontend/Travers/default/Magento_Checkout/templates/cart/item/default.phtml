@@ -86,7 +86,7 @@ $showOriginalPrice = ($originalPrice > $finalPrice) ? true : false;
         <?php else: ?>
             <td class="col price <?= ($originalPrice > $finalPrice)? 'price--sale' : '' ?>" data-th="<?= $block->escapeHtml(__('Price')) ?>">
                 <?php if ($showMsrp): ?>
-                    <?= /* @escapeNotVerified */ $pricing->currency(number_format($customMsrp)) ?>
+                    <span class="msrp"><?= __('MSRP: ') ?><span class="msrp-price"><?= /* @escapeNotVerified */ $pricing->currency(number_format($customMsrp)) ?></span></span>
                 <?php elseif ($showOriginalPrice): ?>
                     <?= /* @escapeNotVerified */ $pricing->currency(number_format($originalPrice)) ?>
                 <?php endif; ?>
