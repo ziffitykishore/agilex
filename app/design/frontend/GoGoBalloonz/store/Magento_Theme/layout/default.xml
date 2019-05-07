@@ -9,9 +9,10 @@
    
     <body>       
         <referenceBlock name="header.panel" remove="true" />
-        <referenceBlock name="wish-list-link" remove="true"/>
+        <!--<referenceBlock name="wish-list-link" remove="true"/>-->
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <move element="top.links" destination="account-links" after="-"/>
+        <move element="wish-list-link" destination="header.links" before="authorization-link"/>
         <move element="minicart" destination="header.container" before="-" />
         <move element="navigation.sections" destination="header-wrapper" after="logo"/>
         <move element="top.search" destination="header-wrapper" after="navigation.sections"/>
@@ -20,11 +21,13 @@
                 <block class="Magento\Framework\View\Element\Template" name="location" template="Magento_Theme::location.phtml"/>
                 <container name="account-links" as="accountLinks" htmlTag="div" htmlClass="account-links" after="location" />
             </referenceContainer>
+            <container name="header-section" label="Header Section" htmlTag="div"  htmlClass="header-wrapper"/>
         </referenceContainer>
         <move element="location" destination="header-wrapper" after="top.search" />
-
+        <move element="header-wrapper" destination="header-section" after="-" />
         <referenceContainer name="footer">
             <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>
+            <container name="footermiddle" label="Footer Middle" htmlTag="div"  htmlClass="footer-middle"/>
             <container name="footerlinks" label="Footer Links" htmlTag="div"  htmlClass="footer-links">
                 <block class="Magento\Cms\Block\Block" name="footer.links" >
                     <arguments>
@@ -32,18 +35,14 @@
                     </arguments>
                 </block>
             </container>
-            <container name="sociallinks" label="Social Links" htmlTag="div"  htmlClass="social-wrapper">
-            <block class="Magento\Cms\Block\Block" name="social-links">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">social-links</argument>
-                </arguments>
-            </block>
-            </container>
+            <block class="Magento\Theme\Block\Html\Footer" name="footer-logo" template="Magento_Theme::html/footer-top.phtml"/>
+            <container name="footerbottom" label="Footer Top" htmlTag="div"  htmlClass="footer-bottom"/>
         </referenceContainer>
 
         <move element="form.subscribe" destination="footerlinks"/>
-        <move element="sociallinks" destination="form.subscribe"/>
-        <move element="copyright" destination="before.body.end"/>
+        <move element="footer-logo" destination="footertop"/>
+        <move element="footerlinks" destination="footermiddle"/>
+        <move element="copyright" destination="footerbottom"/>
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
 

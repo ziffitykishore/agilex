@@ -9,8 +9,8 @@
 /** @var \Magento\Newsletter\Block\Subscribe $block */
 
 ?>
-<div class="block newsletter-wrapper">
-	<div class="newsletter">
+<div class="footer-list newsletter-wrapper">
+	<div class="block newsletter">
     <div class="block-title">
 	<strong><?= $block->escapeHtml(__('Email Newsletters')) ?></strong>
 	<p>Keep me up to date with content, updates and offers from Gogoballoonz</p>
@@ -39,4 +39,8 @@
         </form>
     </div>
 </div>
+    <?php echo $this->getLayout()
+        ->createBlock('Magento\Cms\Block\Block')
+        ->setBlockId('social-links')
+        ->toHtml(); ?>
 </div>

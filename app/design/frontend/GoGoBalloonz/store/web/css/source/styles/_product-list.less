@@ -23,7 +23,8 @@
                 border: none;
                 padding: 15px;
                 position: relative;
-
+                top: 2px;
+                overflow: hidden;
                 .product-item-photo {
                     display: block;
                     text-align: center;
@@ -95,23 +96,78 @@
                         z-index: 5;
                     }
                 }
+
+                &:hover {
+                    .product-item-actions {
+                        .actions-primary {
+                            .transform(translateY(0));
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
             }
 
             .product-item-actions {
                 margin: 0;
+                position: static;
+
+                .actions-primary {
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    visibility: hidden;
+                    opacity: 0;
+                    display: block;
+                    text-align: center;
+                    .transition(all 0.5s ease 0s);
+                    .transform(translateY(100%));
+                    .flex();
+                    justify-content: space-between;
+
+                    > * {
+                        width: 50%;
+                    }
+                    
+                    .tocart {
+                        width: 100%;
+                    }
+
+                    .action {
+                        height: 40px;
+                        .br-radius(0);
+                        border: none;
+                    }
+                }
             }
         }
+
+
+        .price-box {
+            display: flex;
+            flex-flow: row-reverse;
+            justify-content: center;
+            align-items: center;
+
+            .price-label {
+                display: none;
+            }
+            .normal-price {
+                .lib-css(color, @color-red);
+
+            }
+
+            .old-price {
+                display: block;
+                margin-right: 15px;
+            }
+
+        }
     }
 
 
-    .price-box {
-        .price-label {
-            display: none;
-        }
-        .normal-price {
-            .lib-css(color, @color-red);
-        }
-    }
+
 }
 
 //

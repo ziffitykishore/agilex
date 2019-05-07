@@ -5,7 +5,7 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         var didScroll;
         var lastScrollTop = 0;
         var delta = 5;
-        var navbarHeight = $('.page-header > .header').outerHeight();
+        var navbarHeight = $('.header-wrapper').outerHeight();
 
         setInterval(function() {
             if (didScroll) {
@@ -25,22 +25,34 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             // This is necessary so you never see what is "behind" the navbar.
             if (st > lastScrollTop && st > navbarHeight) {
                 // Scroll Down
-                $('.page-header > .header').removeClass('nav-down').addClass('nav-up');
+                $('.header-wrapper').removeClass('nav-down').addClass('nav-up');
                 $('.mob-sticky').removeClass('scroll-down').addClass('scroll-up');
             } else {
                 // Scroll Up
                 if (st + $(window).height() < $(document).height()) {
-                    $('.page-header > .header').removeClass('nav-up').addClass('nav-down');
+                    $('.header-wrapper').removeClass('nav-up').addClass('nav-down');
                     $('.mob-sticky').removeClass('scroll-up').addClass('scroll-down');
                 }
             }
 
             if (st == 0) {
-                $('.page-header > .header').removeClass('nav-down');
+                $('.header-wrapper').removeClass('nav-down');
             }
 
             lastScrollTop = st;
         }
+
+
+        $(window).scroll(function(){
+            if ($(window).scrollTop() >= 100) {
+                $('.header-wrapper').addClass('fixed-header');
+                $('nav div').addClass('visible-title');
+            }
+            else {
+                $('.header-wrapper').removeClass('fixed-header');
+                $('nav div').removeClass('visible-title');
+            }
+        });
 
         // Home slider
         $('.home-slider').on('init', function (e, slick) {

@@ -1,0 +1,27 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="footer-bottom-container">
+    <div class="d-flex justify-content-between align-items-center">
+        <div class="link-copyright col col-sm-6">
+            <div class="bottom-links">
+                <ul class="d-flex">
+                    <li><a href=#">Privacy Policy</a></li>
+                    <li><a href=#">Terms and Conditions</a></li>
+                    <li><a href=#">Faq's</a></li>
+                </ul>
+            </div>
+            <small class="copyright">
+                <span><?= /* @escapeNotVerified */ $block->getCopyright() ?></span>
+            </small>
+        </div>
+        <div class="payment-wrap col col-sm-6">
+            <div class="payment-icons">
+                <img src="<?php echo $block->getViewFileUrl('images/payment_card.png');?>" alt="">
+            </div>
+        </div>
+    </div>
+</div>
