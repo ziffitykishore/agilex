@@ -29,7 +29,7 @@
                                                 $alt_text = get_post_meta( $thumbnail_ID, '_wp_attachment_image_alt', true );  ?>
                                                 <img class="lazy" src="<?php echo get_template_directory_uri()?>/images/blog_thumb-sm.jpg" data-src="<?php echo $featured_img_url; ?>" alt="<?php echo $alt_text; ?>"/>
                                             <?php } else { ?>
-                                                <img class="lazy" data-src="<?php echo get_template_directory_uri()?>/images/blog_thumb-sm.jpg" alt="Agilex Fragrances"/>                    
+                                                <img class="lazy" src="<?php echo get_template_directory_uri()?>/images/blog_thumb-sm.jpg" data-src="<?php echo get_template_directory_uri()?>/images/blog_thumb-sm.jpg" alt="Agilex Fragrances"/>                    
                                             <?php  }?>
 
                                             </a>
