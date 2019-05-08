@@ -214,7 +214,17 @@ $sidebar__max-width: 240px;
 
     .strikethrough {
       margin-top: $indent__xs;
+      color: $c-nickel;
       font-weight: $font-weight__semibold;
+    }
+
+    .spot-price,
+    .strikethrough {
+      display: inline-block;
+    }
+
+    .spot-price {
+      margin-left: $indent__s;
     }
   }
 }
