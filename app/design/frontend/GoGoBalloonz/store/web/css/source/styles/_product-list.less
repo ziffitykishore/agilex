@@ -153,16 +153,40 @@
             .price-label {
                 display: none;
             }
-            .normal-price {
+
+            .price {
                 .lib-css(color, @color-red);
+            }
+            .normal-price {
+
 
             }
 
             .old-price {
                 display: block;
                 margin-right: 15px;
+                .price {
+                    .lib-css(color, @color-textcolor);
+                }
             }
 
+        }
+    }
+
+
+
+    .product-social-links,
+    .block-bundle-summary,
+    .product-item,
+    .table-comparison{
+        .action {
+            &.towishlist {
+                &:before {
+                    content: '\e906' !important;
+                    font-family: @icon-gogo !important;
+
+                }
+            }
         }
     }
 

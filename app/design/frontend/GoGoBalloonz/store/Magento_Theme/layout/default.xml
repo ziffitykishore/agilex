@@ -22,8 +22,10 @@
                 <container name="account-links" as="accountLinks" htmlTag="div" htmlClass="account-links" after="location" />
             </referenceContainer>
             <container name="header-section" label="Header Section" htmlTag="div"  htmlClass="header-wrapper"/>
+            <container name="nav-right-sec" label="Search Location" htmlTag="div"  htmlClass="nav-right-sec"/>
         </referenceContainer>
         <move element="location" destination="header-wrapper" after="top.search" />
+        <move element="nav-right-sec" destination="header-section" after="-" />
         <move element="header-wrapper" destination="header-section" after="-" />
         <referenceContainer name="footer">
             <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>

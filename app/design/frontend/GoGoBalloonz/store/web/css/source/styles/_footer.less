@@ -10,8 +10,21 @@
                 .clearfix();
 
                 a {
-                    font-size: 12px;
+                    &:hover {
+                        text-decoration: none;
+                        .lib-css(color, @color-blue);
+                    }
+
+                }
+
+                a,
+                address {
+                    font-size: @font-size__s;
                     color: @color-textcolor;
+                }
+
+                address {
+                    line-height: 25px;
                 }
             }
 
@@ -59,6 +72,10 @@
 
                     }
 
+                    [class*=icon-] {
+                        font-family: @font-family-name__primary;
+                    }
+
                     .icon-ph {
                         &:before {
                             background: url('@{baseDir}images/icon_phone.png');
@@ -89,9 +106,10 @@
 
                 .copyright {
                     .lib-css(background, @color-white);
-                    .lib-css(color, @color-textcolor);
+                    .lib-css(color, @color-blue);
                     text-align: left;
                     padding-left: 0;
+                    font-size: @font-size__s;
                 }
             }
         }
@@ -105,6 +123,7 @@
 
     .footer-links {
         margin-top: 40px;
+        margin-bottom: 40px;
         .container-lg();
 
 
@@ -144,12 +163,13 @@
                         display: none;
                     }
                     .control:before {
-                        display: none;
+                        display: none !important;
                     }
 
                     input {
                         height: 40px;
                         padding-right: 108px;
+                        padding-left: 15px;
                         .br-radius(5px);
                         font-size: 12px;
 
@@ -177,6 +197,17 @@
         .social-links {
             .block-title {
                 display: none;
+            }
+
+            ul {
+                padding-right: 0 !important;
+            }
+
+            .heading {
+                .lib-css(color, @color-blue);
+                font-size: @font-size__s + 2;
+                font-weight: bold;
+                margin-right: 15px;
             }
             
             a {

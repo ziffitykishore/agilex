@@ -29,11 +29,13 @@
 
                         &-inner {
                             display: inline-block;
+                            text-align: left;
+                            margin-left: 10%;
                         }
 
                         h2{
                             font-family: @font-family-name__curly;
-                            font-size: 40px;
+                            font-size: 50px;
                             text-align: left;
                             margin-bottom: 20px;
                             .lib-css(color, @color-blue);
@@ -48,6 +50,7 @@
                     bottom: 20px;
                     .fillup();
                 }
+
             }
         }
 
@@ -118,10 +121,23 @@
         }
 
 
+        .best-seller-inner {
+            .br-radius(5px);
+        }
+
+
         .best-seller {
+            background: @color-white;
+            height: 100%;
+
+            .product-items {
+                .flex();
+            }
             .block-products-list {
                 margin-bottom: 0;
                 position: relative;
+                top: 50%;
+                .transform(translateY(-50%));
                 .block-title {
                     position: absolute;
                     left: -5px;
@@ -154,8 +170,13 @@
                     .product-item-info {
                         background: @color-white;
                         .br-radius(5px);
+                        padding: 15px 30px;
                         .product-item-details {
                             text-align: left;
+                        }
+
+                        .towishlist{
+                            right: 30px;
                         }
                     }
                     .product-image-container {
@@ -168,9 +189,36 @@
                     .actions-primary {
                         display: none;
                     }
+
+
                 }
             }
+            .slick-arrow {
+                width: 40px;
+                height: 40px;
+                background: #f6f6f6;
+                border:none;
+                z-index: 15;
+                .br-radius(50%);
+                &:before {
+                    font-family: @icon-gogo;
+                    color: @color-blue;
+                    font-size: 10px;
+                }
+                &.slick-prev {
+                    left: 25px;
+                    &:before {
+                    content: '\e908';
+                    }
+                }
 
+                &.slick-next {
+                    right: 25px;
+                    &:before {
+                        content: '\e909';
+                    }
+                }
+            }
 
         }
 

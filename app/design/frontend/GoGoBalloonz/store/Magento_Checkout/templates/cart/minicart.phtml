@@ -35,8 +35,9 @@
                 "closeOnEscape": true,
                 "triggerClass":"active",
                 "parentClass":"active",
+                "bodyClass":"cart-open",
                 "buttons":[]}}'>
-            <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+            <div id="minicart-content-wrapper" class="minicart-content-wrap" data-bind="scope: 'minicart_content'">
                 <!-- ko template: getTemplate() --><!-- /ko -->
             </div>
             <?= $block->getChildHtml('minicart.addons') ?>
