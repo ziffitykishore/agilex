@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <type name="Magento\Customer\Controller\Account\CreatePost">
+        <plugin name="SomethingDigital_Customer_Validation_Plugin" type="SomethingDigital\CustomerValidation\Plugin\ValidateCustomer"/>
+    </type>
+    <type name="Magento\Company\Controller\Account\CreatePost">
+        <plugin name="SomethingDigital_Customer_Validation_Plugin" type="SomethingDigital\CustomerValidation\Plugin\ValidateCompany"/>
+    </type>
+</config>
