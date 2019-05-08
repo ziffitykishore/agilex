@@ -29,15 +29,46 @@ return [
     'x-frame-options' => 'SAMEORIGIN',
     'MAGE_MODE' => 'default',
     'session' => [
-        'save' => 'files'
+      'save' => 'redis',
+      'redis' => [
+        'host' => '127.0.0.1',
+        'port' => '6379',
+        'password' => '',
+        'timeout' => '2.5',
+        'persistent_identifier' => '',
+        'database' => '2',
+        'compression_threshold' => '2048',
+        'compression_library' => 'gzip',
+        'log_level' => '3',
+        'max_concurrency' => '6',
+        'break_after_frontend' => '5',
+        'break_after_adminhtml' => '30',
+        'first_lifetime' => '600',
+        'bot_first_lifetime' => '60',
+        'bot_lifetime' => '7200',
+        'disable_locking' => '0',
+        'min_lifetime' => '60',
+        'max_lifetime' => '2592000'
+      ]
     ],
     'cache' => [
         'frontend' => [
             'default' => [
-                'id_prefix' => 'ccd_'
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => '127.0.0.1',
+                    'database' => '0',
+                    'port' => '6379'
+                ],
             ],
             'page_cache' => [
-                'id_prefix' => 'ccd_'
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => '127.0.0.1',
+                    'database' => '1',
+                    'port' => '6379',
+                    'compress_data' => '0'
+                ],
             ]
         ]
     ],
