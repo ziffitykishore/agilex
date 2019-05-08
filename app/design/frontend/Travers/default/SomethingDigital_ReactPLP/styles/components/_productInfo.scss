@@ -20,8 +20,10 @@
   &-content {
     position: sticky;
     top: 120px;
+    height: 100vh;
     padding: 0 $indent__m;
     padding-bottom: $indent__l;
+    overflow-y: scroll;
 
     img {
       max-width: none;
@@ -33,7 +35,7 @@
       max-width: 250px;
       margin-top: $indent__s;
       background-color: transparent;
-      font-weight: $font-weight__bold;
+      font-weight: $font-weight__semibold;
       font-size: $font-size__base;
       padding: 0;
       line-height: 20px;
@@ -49,8 +51,9 @@
   }
 
   .add-to-cart {
-    margin-top: $indent__m;
     width: 100%;
+    margin-top: $indent__m;
+    margin-bottom: 150px;
   }
 
   .pricing p,
@@ -107,7 +110,7 @@
 
     .quantity-row {
       border-bottom: 2px solid $c-royal;
-      font-weight: $font-weight__bold;
+      font-weight: $font-weight__semibold;
     }
   }
 }

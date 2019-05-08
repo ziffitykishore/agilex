@@ -220,7 +220,6 @@
       display: flex;
       flex-wrap: wrap;
       padding: 0;
-      justify-content: center;
 
       li {
         margin: $indent__s;
@@ -243,7 +242,7 @@
 
           &:hover,
           &:focus,
-          &:active {
+          &.active {
             border: 2px solid $c-cobalt;
           }
         }
