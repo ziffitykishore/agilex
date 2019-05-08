@@ -623,3 +623,16 @@ $nav-section-title__height: 60px;
         display: none;
     }
 }
+
+@include min-screen($mobile-nav__breakpoint) {
+    .page-header--sticky {
+        .header.content {
+            padding-top: $indent__xs;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 7px;
+        }
+    }
+}
