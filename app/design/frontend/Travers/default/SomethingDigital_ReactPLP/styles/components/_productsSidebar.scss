@@ -242,7 +242,7 @@
 
           &:hover,
           &:focus,
-          &:active {
+          &.active {
             border: 2px solid $c-cobalt;
           }
         }
