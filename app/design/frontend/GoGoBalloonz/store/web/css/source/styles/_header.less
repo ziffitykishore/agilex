@@ -9,7 +9,6 @@
     .nav-sections {
         background: transparent;
         display: inline-block;
-        margin-right: 10%;
 
         .navigation {
             background: inherit;
@@ -34,7 +33,7 @@
 
             .logo {
                 max-width: none;
-                margin-bottom: 0;
+                margin: 0;
             }
             
             .nav-sections {
@@ -51,6 +50,7 @@
                     .lib-css(color, @color-blue);
                     font-size: 14px;
                     font-weight: @font-weight__bold;
+                    cursor: pointer;
                     &:before {
                         content:'\e901';
                         font-family: 'gogo';
@@ -63,7 +63,9 @@
                     }
                 }
                 .block-content {
-                    display: none;
+                    min-width: 320px;
+                    position: absolute;
+                    right: 0;
                 }
             }
 
@@ -323,6 +325,27 @@
 
 
 
+    /* breadcrumbs */
+
+    .breadcrumbs {
+        .lib-css(background, @color-sky-blue);
+        &-inner {
+            padding: 15px 0;
+            .flex();
+            justify-content: space-between;
+
+            strong, a {
+                .lib-css(color, @color-white);
+            }
+
+            .current-page{
+                font-size: @font-size__s + 2;
+            }
+        }
+    }
+
+
+
 }
 
 //
@@ -360,6 +383,7 @@
                 .container-lg();
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
                 padding-top: 0px;
                 height: 110px;
 

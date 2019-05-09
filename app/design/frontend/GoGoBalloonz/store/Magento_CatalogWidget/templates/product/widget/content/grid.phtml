@@ -56,13 +56,13 @@ use Magento\Framework\App\Action\Action;
                                 <?= $block->getProductPriceHtml($_item, $type) ?>
 
                                 <?= $block->getProductDetailsHtml($_item) ?>
-
+                                <?= $block->getProductDetailsHtml($_item) ?>
                                 <?php if ($showWishlist || $showCompare || $showCart): ?>
                                     <div class="product-item-inner">
                                         <div class="product-item-actions">
                                             <?php if ($showCart): ?>
                                                 <div class="actions-primary">
-                                                    <a href="#" class="action qview primary">Quick View</a>
+
                                                     <?php if ($_item->isSaleable()): ?>
                                                         <?php $postParams = $block->getAddToCartPostParams($_item); ?>
                                                         <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_item->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">

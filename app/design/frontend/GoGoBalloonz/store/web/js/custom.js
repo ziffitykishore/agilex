@@ -46,11 +46,9 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         $(window).scroll(function(){
             if ($(window).scrollTop() >= 100) {
                 $('.header-wrapper').addClass('fixed-header');
-                $('nav div').addClass('visible-title');
             }
             else {
                 $('.header-wrapper').removeClass('fixed-header');
-                $('nav div').removeClass('visible-title');
             }
         });
 

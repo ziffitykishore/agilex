@@ -70,12 +70,12 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
                         <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
-                        <?= $block->getProductDetailsHtml($_product) ?>
+
 
                         <div class="product-item-inner">
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
                                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
-                                    <a href="#" class="action qview primary">Quick View</a>
+                                    <?= $block->getProductDetailsHtml($_product) ?>
                                     <?php if ($_product->isSaleable()): ?>
                                         <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                         <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
