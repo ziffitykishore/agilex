@@ -9,7 +9,7 @@
    
     <body>       
         <referenceBlock name="header.panel" remove="true" />
-        <!--<referenceBlock name="wish-list-link" remove="true"/>-->
+        <referenceBlock name="wish-list-link" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <move element="top.links" destination="account-links" after="-"/>
         <move element="wish-list-link" destination="header.links" before="authorization-link"/>
@@ -19,7 +19,13 @@
         <referenceContainer name="header.container">
             <referenceContainer name="header-wrapper">
                 <block class="Magento\Framework\View\Element\Template" name="location" template="Magento_Theme::location.phtml"/>
-                <container name="account-links" as="accountLinks" htmlTag="div" htmlClass="account-links" after="location" />
+                 <container name="account-links"  htmlTag="div" htmlClass="account-links" after="location">
+                    <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
+                        <arguments>
+                            <argument name="css_class" xsi:type="string">header links</argument>
+                        </arguments>
+                    </block>
+                </container>
             </referenceContainer>
             <container name="header-section" label="Header Section" htmlTag="div"  htmlClass="header-wrapper"/>
             <container name="nav-right-sec" label="Search Location" htmlTag="div"  htmlClass="nav-right-sec"/>
@@ -40,14 +46,11 @@
             <block class="Magento\Theme\Block\Html\Footer" name="footer-logo" template="Magento_Theme::html/footer-top.phtml"/>
             <container name="footerbottom" label="Footer Top" htmlTag="div"  htmlClass="footer-bottom"/>
         </referenceContainer>
-
         <move element="form.subscribe" destination="footerlinks"/>
         <move element="footer-logo" destination="footertop"/>
         <move element="footerlinks" destination="footermiddle"/>
         <move element="copyright" destination="footerbottom"/>
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
-
-
     </body>
 </page>
