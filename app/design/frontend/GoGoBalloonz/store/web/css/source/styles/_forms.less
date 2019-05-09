@@ -15,6 +15,16 @@
         .lib-css(border-color, @color-gray);
         font-size: @font-size__s;
         height: 44px;
+        .br-radius(3px);
+
+        &:focus {
+            .box-shadow(inset 0px 0px 0px 1px @color-black);
+
+        }
+    }
+
+    label {
+        .lib-css(color, @color-blue);
     }
 
     .form-control-error, input+.mage-error, textarea+.mage-error, select+.mage-error, .control>div.mage-error {

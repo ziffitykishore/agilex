@@ -8,8 +8,11 @@
         .products {
             &-grid {
                 .product-item {
-                    .product-item-details {
+                    &-details {
                         position: static;
+                    }
+                    &-inner {
+                        margin: 0;
                     }
                 }
             }
@@ -19,12 +22,13 @@
 
             }
         }
-
     }
 
 
     .product-items {
         .product-item {
+            .transition(all 0.5s ease 0s);
+
             .product-item-info {
 
                 position: relative;
@@ -37,8 +41,6 @@
                         text-decoration: none;
                     }
                 }
-
-
 
                 .product-reviews-summary {
                     display: none;
@@ -67,7 +69,6 @@
                             .lib-css(color, @color-textcolor);
                         }
                     }
-
                 }
 
                 .product-item-inner {
@@ -82,9 +83,13 @@
                         .button();
                         .br-radius(0);
                         display: block;
+                        line-height:  20px;
                     }
                 }
+            }
 
+            &:hover {
+                box-shadow: 1px 1px 10px 5px rgba(0,0,0,0.05);
             }
         }
     }
@@ -127,14 +132,25 @@
                         }
                         .towishlist {
                             position: absolute;
-                            top: 0;
-                            left: 0;
+                            top: 15px;
+                            left: 15px;
                             z-index: 5;
                         }
                     }
 
 
                 }
+            }
+        }
+
+        &-grid {
+            .product-item {
+                &-details {
+                    .price-box {
+                        margin-bottom: 0;
+                    }
+                }
+
             }
         }
     }
@@ -206,15 +222,15 @@
                     position: static !important;
                     box-shadow: none;
                     display: block;
-                    margin: 0;
+                    margin: 0 !important;
                     border: none;
                     box-shadow: none !important;
                     padding: 0;
                     
                     .towishlist {
                         position: absolute;
-                        top: 0;
-                        right: 0;
+                        top: 15px;
+                        right: 15px;
                         z-index: 5;
                     }
                 }
@@ -292,6 +308,26 @@
     }
 
 
+    .page-with-filter {
+        .toolbar {
+            
+            .modes {
+                float: right;
+                margin-right: 0;
+            } 
+            
+
+            &-amount {
+                display: none;
+            }
+
+            &-sorter {
+                .sorter-action {
+                    display: none;
+                }
+            }
+        }
+    }
 
 }
 

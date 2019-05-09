@@ -66,6 +66,21 @@
                     min-width: 320px;
                     position: absolute;
                     right: 0;
+                    visibility: hidden;
+                    opacity: 0;
+                    backface-visibility: hidden;
+                    .transition(all 0.5s ease 0s);
+
+                    .actions {
+                        display: none;
+                    }
+                }
+
+                &._active {
+                    .block-content {
+                        visibility: visible;
+                        opacity: 1;
+                    }
                 }
             }
 
@@ -132,7 +147,7 @@
 
         .minicart-wrapper {
             position: fixed;
-            top: 25%;
+            top: 20%;
             right: 0%;
             z-index: 31;
 
@@ -330,16 +345,18 @@
     .breadcrumbs {
         .lib-css(background, @color-sky-blue);
         &-inner {
-            padding: 15px 0;
+            padding: 20px 0;
             .flex();
             justify-content: space-between;
+            align-items: center;
 
             strong, a {
                 .lib-css(color, @color-white);
             }
 
             .current-page{
-                font-size: @font-size__s + 2;
+                font-size: @font-size__xl;
+
             }
         }
     }
@@ -364,20 +381,20 @@
     .cms-index-index {
         .header-wrapper {
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 10;
-            .transition(all 0.5s ease 0s);
-
-
-
         }
     }
 
     .page-header {
         .header-wrapper {
+            .transition(all 0.5s ease 0s);
+            width: 100%;
+            top: 0;
+            z-index: 10;
+
             &.fixed-header {
                 .lib-css(background, @color-white);
+                position: fixed;
+                .box-shadow(1px 1px 10px 10px rgba(0,0,0,.05));
             }
             > .header {
                 .container-lg();

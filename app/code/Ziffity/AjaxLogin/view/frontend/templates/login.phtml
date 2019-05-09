@@ -14,7 +14,6 @@ if (!$block->customerIsAlreadyLoggedIn()): ?>
                     <?php echo $block->getBlockHtml('formkey'); ?>
                     <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
                     <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
-                        <div class="field note"><?php /* @escapeNotVerified */ echo __('If you have an account, sign in with your email address.') ?></div>
                         <div class="messages"></div>
                         <div class="field email required">
                             <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
@@ -28,18 +27,27 @@ if (!$block->customerIsAlreadyLoggedIn()): ?>
                                 <input name="password" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass-login" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}" >
                             </div>
                         </div>
-                        <div class="secondary">
-                            <a id="customer-forgot-popup" href="javascript:void(0);">
-                                <span>Forgot Password?</span>
-                            </a>
-                        </div>
+
                         <div class="actions-toolbar">
+                            <div class="secondary">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                </div>
+                                <a id="customer-forgot-popup action remind" href="javascript:void(0);">
+                                    <span>Forgot Password?</span>
+                                </a>
+
+                            </div>
                             <div class="primary"><button type="submit" class="action login primary" name="send" id="send2-login"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></button></div>
-                            <?php if ($block->getRegistration()->isAllowed()): ?>
-                                <div class="or-another-selection"><?php echo __('or'); ?></div>
-                                <div class="secondary"><a class="action remind" href="javascript:void(0);" id="customer-popup-registration"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></a></div>
-                            <?php endif; ?>
+
+
+
                         </div>
+                        <?php if ($block->getRegistration()->isAllowed()): ?>
+                            <div class="create-ac">Don't have an account? <a class="action create" href="javascript:void(0);" id="customer-popup-registration"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></a>
+                            </div>
+                        <?php endif; ?>
                     </fieldset>
                 </form>
             </div>

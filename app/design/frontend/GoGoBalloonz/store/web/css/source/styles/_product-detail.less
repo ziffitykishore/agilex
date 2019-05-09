@@ -3,7 +3,29 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    .catalog-product-view,
+    .weltpixel_quickview-catalog_product-view{
+        .product {
+            &.media {
+                display: block;
+            }
+        }
 
+
+        .product-info-main {
+            .product-reviews-summary {
+                display: none;
+            }
+
+            .product-options-wrapper {
+                .swatch-opt {
+                    .size {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
 }
 
 //

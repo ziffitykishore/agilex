@@ -1,0 +1,145 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .modals-wrapper {
+        .modals-overlay {
+            z-index: 899 !important;
+        }
+
+        .modal-popup {
+            .modal-header {
+                background: rgb(119, 220, 255);
+                background: linear-gradient(180deg, rgba(119, 220, 255, 1) 0%, rgba(0, 189, 255, 1) 100%);
+                border: none;
+                padding: 20px;
+                position: relative;
+                .br-radius(10px 10px 0 0);
+
+                .modal-title {
+                    .lib-css(color, @color-white);
+                    width: 100%;
+                    padding-bottom: 0;
+                    border: none;
+                }
+
+                .action-close {
+                    position: absolute;
+                    top: -20px;
+                    right: -20px;
+                    width: 35px;
+                    height: 35px;
+                    margin: 0;
+                    .br-radius(100%);
+                    .lib-css(background, @color-white);
+                    .lib-css(color, @color-blue);
+                    &:before {
+                        font-size: 12px;
+                    }
+                }
+            }
+
+            .modal-inner-wrap {
+                .br-radius(10px 10px 0 0);
+
+                a {
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            &._show {
+                .modal-inner-wrap {
+                    -webkit-transform: translateY(-50%);
+                    transform: translateY(-50%);
+                    margin: auto;
+                    top: 50%;
+                }
+            }
+
+            &.popup-modal {
+                .modal-header {
+                    position: relative;
+                    &:before {
+                        background: url('@{baseDir}images/popup_balloons.png') no-repeat top right;
+                        background-size: 100%;
+                        top: -100px;
+                        right: 25px;
+                        content: '';
+                        position: absolute;
+                        width: 100px;
+                        height: 160px;
+                    }
+                }
+
+                .modal-content {
+                    padding-top: 3rem;
+                }
+
+                .block {
+                    margin-bottom: 0;
+                }
+
+                .fieldset {
+                    margin-bottom: 0;
+                }
+
+                .form-check {
+                    padding-left: 0;
+
+                    label {
+                        color: @color-icons;
+                    }
+                }
+
+                .actions-toolbar {
+
+                    .secondary {
+                        .flex();
+                        justify-content: space-between;
+                        margin-bottom: 10px;
+                    }
+
+                    .remind {
+                        color: @color-icons;
+                    }
+
+                    .primary {
+                        float: none;
+                        width: 100%;
+                    }
+
+                    .action {
+                        .br-radius(3px);
+                    }
+                }
+
+                .create-ac {
+                    text-align: center;
+                    margin: 10px 0;
+                    color: @color-icons;
+                }
+            }
+        }
+
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}

@@ -126,6 +126,16 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             arrows: true,
             autoplay: true
         });
+
+
+        function toggle(container, item) {
+            $(container).find(item).on('click', function(){
+                $(container).toggleClass('_active');
+            })
+        }
+
+        toggle('.block-search', '.block-title');
+
     });
 });
 

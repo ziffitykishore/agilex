@@ -6,8 +6,8 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-   
-    <body>       
+
+    <body>
         <referenceBlock name="header.panel" remove="true" />
         <referenceBlock name="wish-list-link" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
@@ -19,7 +19,7 @@
         <referenceContainer name="header.container">
             <referenceContainer name="header-wrapper" htmlClass="header">
                 <block class="Magento\Framework\View\Element\Template" name="location" template="Magento_Theme::location.phtml"/>
-                 <container name="account-links"  htmlTag="div" htmlClass="account-links" after="location">
+                <container name="account-links"  htmlTag="div" htmlClass="account-links" after="location">
                     <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
                         <arguments>
                             <argument name="css_class" xsi:type="string">header links</argument>
@@ -35,7 +35,7 @@
         <move element="header-wrapper" destination="header-section" after="-" />
         <move element="account-links" destination="nav-right-sec" after="-" />
         <move element="top.search" destination="nav-right-sec" after="-" />
-        <move element="location" destination="nav-right-sec" after="-" />
+        <move element="location" destination="nav-right-sec" after="top.search" />
         <referenceContainer name="footer">
             <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>
             <container name="footermiddle" label="Footer Middle" htmlTag="div"  htmlClass="footer-middle"/>

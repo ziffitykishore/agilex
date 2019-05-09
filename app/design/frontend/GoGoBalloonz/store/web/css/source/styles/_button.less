@@ -53,8 +53,9 @@
     .lib-css(color, @color-white);
     .transition(all 0.5s ease-in-out 0s);
     font-family: @font-family-name__primary;
+    font-weight: @font-weight__bold;
     padding: 10px 20px;
-    line-height: 1;
+    line-height: 20px;
 
     &:hover,&:focus, &:active {
         .lib-css(background, @color-blue);
@@ -66,4 +67,11 @@
     &.primary {
         .button();
     }
+
+    &s-toolbar {
+        a.primary {
+            .br-radius(0);
+        }
+    }
 }
+

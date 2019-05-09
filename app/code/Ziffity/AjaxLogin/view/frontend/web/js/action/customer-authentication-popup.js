@@ -26,7 +26,7 @@ define([
                 authentication_options = {
                     type: 'popup',
                     clickableOverlay: false,
-                    modalClass: 'popup-modal',
+                    modalClass: 'popup-modal asd',
                     responsive: true,
                     innerScroll: true,
                     title: this.options.popupTitle,
