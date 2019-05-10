@@ -103,7 +103,7 @@ $requisition-print__font-size-m: 1.4rem !default;
         &.toggle::after,
         &.toggle.active::after {
             vertical-align: middle;
-            border: 1px solid $c-grey;
+            border: 1px solid $c-silver;
             width: 30px;
             line-height: 26px;
             font-size: 20px;
@@ -137,7 +137,7 @@ $requisition-print__font-size-m: 1.4rem !default;
             text-transform: none;
             text-decoration: none;
             font-family: $font-family__base;
-            border: 1px solid $c-grey;
+            border: 1px solid $c-silver;
             letter-spacing: 0;
         }
     }
