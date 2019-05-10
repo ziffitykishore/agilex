@@ -128,13 +128,25 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         });
 
 
-        function toggle(container, item) {
+        function toggle(container, item, bodyClass) {
             $(container).find(item).on('click', function(){
                 $(container).toggleClass('_active');
-            })
+
+                $('body').toggleClass(bodyClass);
+
+            });
+
+            $(container).on("click", function(e) {
+                e.stopPropagation()
+            });
         }
 
-        toggle('.block-search', '.block-title');
+
+        toggle('.block-search', '.block-title', 'search-opened');
+
+        $(document).click(function() {
+            $("body").removeClass("search-opened")
+        });
 
     });
 });
