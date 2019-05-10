@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <container name="page.title.div" htmlTag="div" htmlClass="page-title-div" />
+        </referenceContainer>
+        <move element="breadcrumbs" destination="page.title.div" before="main.content"/>
+        <move element="page.main.title" destination="page.title.div" before="breadcrumbs"/>
+        <move element="category.image" destination="category.product.list.additional" before="category.products" />
+        <move element="category.description" destination="category.product.list.additional" after="category.image" />
+    </body>
+</page>
