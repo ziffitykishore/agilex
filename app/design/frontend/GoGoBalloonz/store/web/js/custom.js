@@ -44,13 +44,11 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
 
         $(window).scroll(function(){
-            if ($(window).scrollTop() >= 100) {
+            if ($(window).scrollTop() >= 1) {
                 $('.header-wrapper').addClass('fixed-header');
-                $('nav div').addClass('visible-title');
             }
             else {
                 $('.header-wrapper').removeClass('fixed-header');
-                $('nav div').removeClass('visible-title');
             }
         });
 
@@ -92,6 +90,34 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
         // Home our products
 
+        body_sizer();
+        $(window).resize(body_sizer);
+
+        function body_sizer() {
+            var bodyheight = $(window).height();
+            $(".home-slider .banner-item").height(bodyheight);
+        }
+
+        function bgSource(imgcontainer) {
+            $(imgcontainer).each(function () {
+                var img = $(this).find("img");
+
+                var height = img.height();
+                var img_src = img.attr("src");
+
+                $(this).css({
+                    "background-image": "url(" + img_src + ")",
+                    "background-size": "cover",
+                    "background-repeat": "no-repeat",
+                    "background-position": "center"
+                });
+
+                img.hide();
+            });
+        }
+
+        bgSource(".home-slider .banner-item");
+
         $('.featured-product-inner > .product-item').prependTo('.featured-product-inner .product-items');
 
         $('.best-seller .product-items').slick({
@@ -102,21 +128,25 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         });
 
 
-        /* function call stick  */
-        function stickyBar(elm) {
-            var elment = $(elm);
-            if (elment.length) {
-                var stickyOffset = elment.offset().top;
-                $(window).scroll(function() {
-                    var sticky = elment,
-                        scroll = $(window).scrollTop();
-                    if (scroll >= stickyOffset) sticky.addClass("fixed");
-                    else sticky.removeClass("fixed");
-                });
-            }
-        }
-        stickyBar(".page-header > .header");
+        function toggle(container, item, bodyClass) {
+            $(container).find(item).on('click', function(){
+                $(container).toggleClass('_active');
 
+                $('body').toggleClass(bodyClass);
+
+            });
+
+            $(container).on("click", function(e) {
+                e.stopPropagation()
+            });
+        }
+
+
+        toggle('.block-search', '.block-title', 'search-opened');
+
+        $(document).click(function() {
+            $("body").removeClass("search-opened")
+        });
 
     });
 });

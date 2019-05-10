@@ -74,6 +74,11 @@
     margin-right: auto;
     padding-left: 61px;
     padding-right: 61px;
+
+    @media screen and (max-width: 1600px) {
+        padding-left: 31px;
+        padding-right: 31px;
+    }
 }
 
 .container-md() {
@@ -86,6 +91,11 @@
 
 .container-md {
     .container-md();
+}
+
+
+.container-lg {
+    .container-lg();
 }
 
 .container-sm() {
@@ -103,5 +113,24 @@
         display: block;
         content: "";
         clear: both;
+    }
+}
+
+
+
+.lib-link( @_link-color: @color-blue, @_link-text-decoration: @link__text-decoration, @_link-color-visited: @link__visited__color, @_link-text-decoration-visited: @link__visited__text-decoration, @_link-color-hover: @link__hover__color, @_link-text-decoration-hover: @link__hover__text-decoration, @_link-color-active: @link__active__color, @_link-text-decoration-active: none) {
+    .lib-css(color, @color-blue);
+    .lib-css(text-decoration, @_link-text-decoration);
+    &:visited {
+        .lib-css(color, @color-blue);
+        .lib-css(text-decoration, @_link-text-decoration-visited);
+    }
+    &:hover {
+        .lib-css(color, @color-blue);
+        .lib-css(text-decoration, @_link-text-decoration-hover);
+    }
+    &:active {
+        .lib-css(color, @color-blue);
+        .lib-css(text-decoration, @_link-text-decoration-active);
     }
 }
