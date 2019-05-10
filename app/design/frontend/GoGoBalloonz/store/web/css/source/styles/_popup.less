@@ -7,6 +7,7 @@
     .modals-wrapper {
         .modals-overlay {
             z-index: 899 !important;
+            .lib-css(background, rgba(0,0,0,0.80));
         }
 
         .modal-popup {
@@ -66,12 +67,13 @@
                     &:before {
                         background: url('@{baseDir}images/popup_balloons.png') no-repeat top right;
                         background-size: 100%;
-                        top: -100px;
+                        top: -70px;
                         right: 25px;
                         content: '';
                         position: absolute;
                         width: 100px;
                         height: 160px;
+                        .transform(rotateY(180deg));
                     }
                 }
 

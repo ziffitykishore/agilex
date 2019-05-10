@@ -8,19 +8,19 @@ if (!$block->customerIsAlreadyLoggedIn() && $block->getRegistration()->isAllowed
             <?php echo $block->getBlockHtml('formkey'); ?>
             <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
             <div class="messages"></div>
-            <p><?php /* @escapeNotVerified */ echo __('Creating an account has many benefits: check out faster, keep more than one address, track orders and more.') ?></p>
+
             <fieldset class="fieldset create info">
                 <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend><br>
                 <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
                 <?php if ($block->isNewsletterEnabled()): ?>
                     <div class="field choice newsletter">
                         <input type="checkbox" name="is_subscribed" title="<?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?>" value="1" id="popup-is_subscribed" class="checkbox">
-                        <label for="is_subscribed" class="label"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?></span></label>
+                        <label for="popup-is_subscribed" class="label"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?></span></label>
                     </div>
                 <?php endif ?>
             </fieldset>
             <fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
-                <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend><br>
+                <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend>
                 <div class="field required">
                     <label for="popup-email_address" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                     <div class="control">
@@ -58,9 +58,9 @@ if (!$block->customerIsAlreadyLoggedIn() && $block->getRegistration()->isAllowed
                 <div class="primary">
                     <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Create an Account') ?>"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></button>
                 </div>
-                <div class="or-another-selection"><?php echo __('or'); ?></div>
+
                 <div class="secondary"><a class="action remind" href="javascript:void(0);" id="customer-popup-sign-in"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></a></div>
-                                <a href="#" class="d">a</a>
+
             </div>
         </form>
         <script type="text/x-magento-init">

@@ -10,6 +10,7 @@
                 .clearfix();
 
                 a {
+                    .lib-css(color, @color-icons);
                     &:hover {
                         text-decoration: none;
                         .lib-css(color, @color-blue);
@@ -31,6 +32,7 @@
 
             .footer-top {
                 padding: 20px 0;
+                border-top: 1px solid @color-light-blue;
                 .footer-top-container {
                     .container-lg();
                 }
@@ -130,12 +132,13 @@
                     .links {
                         li {
                             a {
-
+                                .lib-css(color, @color-icons);
                                 padding: 8px 0;
 
                             }
 
                             a:hover {
+                                .lib-css(color, @color-blue);
                                 text-decoration: none;
                             }
                         }

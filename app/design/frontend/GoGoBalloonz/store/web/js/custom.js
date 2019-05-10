@@ -44,7 +44,7 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
 
         $(window).scroll(function(){
-            if ($(window).scrollTop() >= 100) {
+            if ($(window).scrollTop() >= 1) {
                 $('.header-wrapper').addClass('fixed-header');
             }
             else {
