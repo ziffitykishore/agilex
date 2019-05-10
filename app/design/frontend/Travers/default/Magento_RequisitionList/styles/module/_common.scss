@@ -111,7 +111,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 
             @include min-screen($screen__m) {
                 line-height: 29px;
-                transform: translate(-$indent__xs, -1px);
+                transform: translate(-$indent__xs, $indent__xs);
             }
         }
     }
@@ -541,6 +541,7 @@ $requisition-print__font-size-m: 1.4rem !default;
         line-height: 1;
         vertical-align: middle;
         border: 0;
+        transform: translate(0);
     }
 
     .requisition-view-links {

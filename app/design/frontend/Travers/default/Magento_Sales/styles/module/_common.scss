@@ -45,6 +45,26 @@ $product-item-name__font-size: 16px;
 .order-actions-toolbar {
     .action {
         margin: 0 20px 0 0;
+
+        &.requisition-list-button {
+            @include hover {
+                text-decoration: none;
+
+                span {
+                    color: $c-steel;
+                }
+            }
+
+            span {
+                padding: $indent__xs;
+                color: $c-cobalt;
+                border: 1px solid $c-grey;
+            }
+
+            &::after {
+                transform: translate(-$indent__xs, $indent__xs);
+            }
+        }
     }
 }
 
@@ -177,7 +197,12 @@ $product-item-name__font-size: 16px;
     margin-bottom: 25px;
 
     .action {
-        margin-right: 30px;
+        margin-right: $indent__s;
+        white-space: nowrap;
+
+        @include min-screen($screen__m) {
+            margin-right: $indent__l;
+        }
     }
 }
 
