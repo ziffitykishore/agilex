@@ -8,6 +8,9 @@ use Magento\Company\Api\CompanyManagementInterface;
 
 class AssignTraversAccountId
 {
+    private $customerRepository;
+    private $companyRepository;
+
     public function __construct(
         CustomerRepositoryInterface $customerRepository,
         CompanyManagementInterface $companyRepository

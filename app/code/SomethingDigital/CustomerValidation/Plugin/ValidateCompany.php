@@ -14,6 +14,13 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class ValidateCompany
 {
+    private $customerFactory;
+    private $messageManager;
+    private $result;
+    private $redirect;
+    private $customerSession;
+    private $scopeConfig;
+
     public function __construct(
         CustomerFactory $customerFactory,
         UrlFactory $urlFactory,
