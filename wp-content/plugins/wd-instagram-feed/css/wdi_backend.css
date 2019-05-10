@@ -1804,8 +1804,3 @@ body.instagram-feed_page_wdi_settings table:nth-of-type(1) tr:nth-of-type(4){
 #wpbody-content>div:not(.wrap):not(.wd_topic), .wrap .notice:not(.wd-notice), .notice:not(.wd-notice) {
 	display: none;
 }
-
-#wpbody-content .wrap #v2_tenweb_notice_cont {
-	display: flex;
-}
-

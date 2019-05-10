@@ -11,7 +11,7 @@ class WDIControllerUninstall_wdi{
       include_once (WDI_DIR . "/wd/config.php");
     }
 
-    if(!class_exists("TenWebDeactivate")) {
+    if(!class_exists("TenWebLibDeactivate")) {
       include_once(WDI_DIR . "/wd/includes/deactivate.php");
     }
     $config = new TenWebLibConfig();
@@ -109,6 +109,7 @@ class WDIControllerUninstall_wdi{
           delete_option('wdi_sample_feed_post_id');
           delete_option('wdi_sample_feed_post_url');
           delete_option('wdi_first_user_username');
+          delete_option('tenweb_notice_status');
 
 
             $default_option=array();

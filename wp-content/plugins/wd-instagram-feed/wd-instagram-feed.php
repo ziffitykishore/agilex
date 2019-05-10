@@ -3,7 +3,7 @@
 Plugin Name: Instagram Feed by 10Web
 Plugin URI: https://10web.io/plugins/wordpress-instagram-feed/
 Description: Instagram Feed by 10Web is a user-friendly tool for displaying user or hashtag-based feeds on your website. You can create feeds with one of the available layouts. It allows displaying image metadata, open up images in lightbox, download them and even share in social networking websites.
-Version: 1.3.15
+Version: 1.3.16
 Author: 10Web
 Author URI: https://10Web.io
 License: GPLv2 or later
@@ -20,7 +20,7 @@ define("WDI_META", "_".WDI_VAR."_meta");
 //define("wdi",'wdi');
 define('WDI_FEED_TABLE','wdi_feeds');
 define('WDI_THEME_TABLE','wdi_themes');
-define('WDI_VERSION','1.3.15');
+define('WDI_VERSION','1.3.16');
 define('WD_WDI_PREFIX', 'wdi' );
 define('WDI_IS_PRO', false );
 $wdi_minify = ((isset($_GET['wdi_no_minify']) && $_GET['wdi_no_minify'] == "true") ? false : true);
@@ -1044,327 +1044,25 @@ function wdi_elementor(){
   }
 }
 
-
 /**
- * Show 10Web manager plugin install or activate banner.
- *
- * @return string
+ * Show 10Web plugin's install/activate banner.
  */
-function wdi_tenweb_install_notice() {
-  if ( ( !isset($_GET['page']) || strpos(esc_html($_GET['page']), 'wdi_') === FALSE ) ) {
-    return '';
-  }
-
-  // Remove old notice.
-  if ( get_option('tenweb_notice_status') !== FALSE ) {
-    update_option('tenweb_notice_status', '1', 'no');
-  }
-
-  $meta_value = get_option('tenweb_notice_status'); 
-  if ( $meta_value === '' || $meta_value === FALSE ) {
-    require_once(WDI_DIR . '/framework/WDILibrary.php');
-    ob_start();
-    $prefix = WD_WDI_PREFIX;
-    $url = WDI_URL;
-    $dismiss_url = add_query_arg(array( 'action' => 'wd_tenweb_dismiss' ), admin_url('admin-ajax.php'));
-    $verify_url = add_query_arg( array ('action' => 'wdi_tenweb_status'), admin_url('admin-ajax.php'));
-    ?>
-    <style>
-      .hide {
-        display: none !important;
-      }
-      #verifyUrl {
-        display: none
-      }
-      #loading {
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0px;
-        background: url("<?php echo $url . '/images/ajax_loader.png'; ?>") no-repeat;
-        background-size: 20px 20px;
-        filter: alpha(opacity=70);
-      }
-      #wd_tenweb_logo_notice {
-        height: 32px;
-        float: left;
-      }
-      .error_install, .error_activate {
-        color: red;
-        font-size: 10px;
-      }
-      /* -------------------Version 2 styles------------------ */
-      #wpbody-content #v2_tenweb_notice_cont {
-        display: none;
-        flex-wrap: wrap;
-        background: #fff;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
-        position: relative;
-        padding: 5px 0;
-        overflow: hidden;
-        border-left: 4px solid #0073AA;
-        font-family: Open Sans, sans-serif;
-        height: 40px;
-        min-height: 40px;
-      }
-      .v2_logo {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: inherit;
-      }
-
-      #v2_tenweb_notice_cont {
-        height: 50px;
-        padding: 0px;
-      }
-
-      .v2_content {
-        flex-grow: 1;
-        height: inherit;
-        margin-left: 34px;
-      }
-
-      .v2_content p {
-        font-size: 16px;
-        color: #333B46;
-        font-weight: 600;
-        line-height: 40px;
-        margin: 0;
-      }
-      #wd_tenweb_logo_notice {
-        margin-left: 35px;
-        height: 30px;
-        line-height: 100%;
-      }
-
-      .v2_button {
-        display: flex;
-        margin-right: 30px;
-        flex-direction: column;
-        justify-content: center;
-      }
-
-      .v2_button #install_now, #activate_now {
-        width: 112px;
-        height: 32px;
-        line-height: 30px;
-        font-size: 14px;
-        text-align: center;
-        padding: 0;
-      }
-
-      #v2_tenweb_notice_cont .wd_tenweb_notice_dissmiss.notice-dismiss {
-        top: 3px;
-        right: 3px;
-        padding: 0px;
-      }
-
-      .v2_button .button {
-        position: relative;
-      }
-
-      .v2_button .button #loading {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        margin: 0px;
-        background-size: 12px 12px;
-        filter: alpha(opacity=70);
-        width: 12px;
-        height: 12px;
-      }
-
-      @media only screen and (max-width: 1200px) and (min-width: 821px) {
-        #wpbody-content #v2_tenweb_notice_cont {
-          height: 50px;
-          min-height: 50px;
-        }
-
-        #v2_tenweb_notice_cont {
-          height: 60px;
-        }
-
-        .v2_content {
-          margin-left: 25px;
-        }
-        .v2_content p {
-          font-size: 14px;
-          color: #333B46;
-          font-weight: 600;
-          line-height: 20px;
-          margin-top: 5px;
-        }
-        .v2_content p span {
-          display: block;
-        }
-
-        #wd_tenweb_logo_notice {
-          margin-left: 25px;
-          height: 30px;
-          line-height: 100%;
-        }
-
-        .v2_button {
-          display: flex;
-          margin-right: 30px;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .v2_button #install_now {
-          width: 112px;
-          height: 32px;
-          line-height: 30px;
-          font-size: 14px;
-          text-align: center;
-          padding: 0;
-        }
-
-        #v2_tenweb_notice_cont .wd_tenweb_notice_dissmiss.notice-dismiss {
-          top: 3px;
-          right: 3px;
-        }
-      }
-
-      @media only screen and (max-width: 820px) and (min-width: 781px) {
-
-        #wpbody-content #v2_tenweb_notice_cont {
-          height: 50px;
-          min-height: 50px;
-        }
-
-        #v2_tenweb_notice_cont {
-          height: 60px;
-        }
-
-        .v2_content {
-          margin-left: 25px;
-        }
-
-        .v2_content p {
-          font-size: 13px;
-          color: #333B46;
-          font-weight: 600;
-          line-height: 20px;
-          margin-top: 5px;
-        }
-
-        .v2_content p span {
-          display: block;
-        }
-
-      }
-
-      @media only screen and (max-width: 780px) {
-
-        #wpbody-content #v2_tenweb_notice_cont {
-          height: auto;
-          min-height: auto;
-        }
-
-        #v2_tenweb_notice_cont {
-          height: auto;
-          padding: 5px;
-        }
-
-        .v2_logo {
-          display: block;
-          height: auto;
-          width: 100%;
-          margin-top: 5px;
-        }
-
-        .v2_content {
-          display: block;
-          margin-left: 9px;
-          margin-top: 10px;
-          width: calc(100% - 10px);
-        }
-
-        .v2_content p {
-          line-height: unset;
-          font-size: 15px;
-          line-height: 25px;
-        }
-        .v2_content p span{
-          display: block
-        }
-        #wd_tenweb_logo_notice {
-          margin-left: 9px;
-        }
-
-        .v2_button {
-          margin-left: 9px;
-          margin-top: 10px;
-          margin-bottom: 5px;
-        }
-      }
-    </style>
-    <div id="v2_tenweb_notice_cont" class="notice wd-notice">
-      <div class="v2_logo">
-        <img id="wd_tenweb_logo_notice" src="<?php echo $url . '/images/instagram_logo.png'; ?>" />
-      </div>
-      <div class="v2_content">
-        <p>
-          <?php echo sprintf(__('%s10Web Instagram Feed advises:%s %sUse Image Optimizer service to optimize your images quickly and easily.%s', $prefix), '<span>','</span>', '<span>','</span>'); ?>
-        </p>
-      </div>
-      <div class="v2_button">
-        <?php WDILibrary::twbb_install_button(2); ?>
-      </div>
-      <button type="button" class="wd_tenweb_notice_dissmiss notice-dismiss" onclick="jQuery('#v2_tenweb_notice_cont').attr('style', 'display: none !important;'); jQuery.post('<?php echo $dismiss_url; ?>');"><span class="screen-reader-text"></span></button>
-      <div id="verifyUrl" data-url="<?php echo $verify_url; ?>"></div>
-    </div>
-    <?php
-
-    echo ob_get_clean();
-  }
+if ( !class_exists ( 'TWBanner' ) ) {
+  require_once( WDI_DIR . '/banner_class.php' );
 }
-
-if ( !function_exists('is_plugin_active') ) {
-  include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+if ( !WDI_IS_PRO ) {
+  $tw_banner_params = array(
+    'menu_postfix' => WD_WDI_PREFIX . '_', // To display on only current plugin pages.
+    'prefix' => WD_WDI_PREFIX, // Current plugin prefix.
+    'logo' => '/images/insta_2.svg', // Current plugin logo relative URL.
+    'plugin_slug' => 'wd-instagram-feed', // Current plugin slug.
+    'plugin_url' => WDI_URL, // Current plugin URL.
+    'plugin_id' => 43, // Current plugin id.
+    'text' => sprintf(__("%s Instagram Feed advises:%s %sUse Image Optimizer service to optimize your images quickly and easily.%s", WD_WDI_PREFIX), '<span>','</span>', '<span>','</span>'), // Banner text.
+    'slug' => '10web-manager', // Plugin slug to be installed.
+    'mu_plugin_slug' => '10web-manager', // Must use plugin slug.
+    'base_php' => '10web-manager.php', // Plugin base php filename to be installed.
+    'page_url' => admin_url('admin.php?page=tenweb_menu'), // Redirect to URL after activating the plugin.
+  );
+  new TWBanner($tw_banner_params);
 }
-
-if ( !is_plugin_active( '10web-manager/10web-manager.php' ) ) {
-  add_action('admin_notices', 'wdi_tenweb_install_notice');
-}
-
-if ( !function_exists('wd_tenwebps_install_notice_status') ) {
-  // Add usermeta to DB.
-  function wd_tenwebps_install_notice_status() {
-    update_option('tenweb_notice_status', '1', 'no');
-  }
-  add_action('wp_ajax_wd_tenweb_dismiss', 'wd_tenwebps_install_notice_status');
-}
-// Check status 10web manager install
-function wdi_check_tenweb_status() {
-  require_once(WDI_DIR . '/framework/WDILibrary.php');
-  $status_install = 0;
-  $status_active = 0;
-  if ( WDILibrary::is_plugin_installed('10web-manager') ) {
-    $status_install = 1;
-  }
-  else {
-    if ( is_plugin_active('10web-manager/10web-manager.php') ) {
-      $status_active = 1;
-    }
-  }
-  if ( WDILibrary::is_plugin_installed('10web-manager') ) {
-    $old_opt_array = array();
-    $new_opt_array = array( 'wd-instagram-feed' => 43 ); // core_id
-    $key = 'tenweb_manager_installed';
-    $option = get_option($key);
-    if ( !empty($option) ) {
-      $old_opt_array = (array) json_decode($option);
-    }
-    $array_installed = array_merge($new_opt_array, $old_opt_array);
-    update_option($key, json_encode($array_installed));
-  }
-  $jsondata = array( 'status_install' => $status_install, 'status_active' => $status_active );
-  echo json_encode($jsondata);
-  exit;
-}
-add_action('wp_ajax_wdi_tenweb_status', 'wdi_check_tenweb_status');

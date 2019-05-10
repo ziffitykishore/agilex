@@ -1,3 +1,6 @@
+= 1.3.16 =
+Fixed: First time authorization.
+
 = 1.3.15 =
 Added: Banner to install 10Web manager.
 
@@ -7,7 +10,7 @@ Fixed: Conditional filters for hashtags.
 
 = 1.3.13 =
 New: Option to get hashtag top media
-Improved: Notices during Facebook login
+Improved: Notices during Facebook Log in
 Fixed: Occasional JS error on front end
 
 = 1.3.12 =
