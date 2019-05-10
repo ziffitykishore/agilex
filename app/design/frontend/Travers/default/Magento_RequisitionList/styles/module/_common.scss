@@ -46,7 +46,7 @@ $requisition-print__font-size-m: 1.4rem !default;
         $_icon-font-color: $addto-color,
         $_icon-font-color-hover: $addto-hover-color,
         $_dropdown-split-list-pointer-position: left,
-        $_dropdown-split-list-min-width: 250px,
+        $_dropdown-split-list-min-width: 200px,
         $_icon-font-text-hide: false
     );
     @extend .abs-dropdown-items-new;
@@ -122,24 +122,6 @@ $requisition-print__font-size-m: 1.4rem !default;
         > .action {
             &.toggle {
                 padding: .4rem $indent__xs;
-            }
-        }
-    }
-
-    .requisition-toolbar-actions & {
-        &.active {
-            .items {
-                right: 0;
-
-                &:before {
-                    left: auto;
-                    right: 11px;
-                }
-
-                &:after {
-                    left: auto;
-                    right: 10px;
-                }
             }
         }
     }
@@ -777,6 +759,20 @@ $requisition-print__font-size-m: 1.4rem !default;
         .mobile-label {
             display: none;
         }
+
+        &.active .items {
+            right: 0;
+
+            &:before {
+                left: auto;
+                right: 11px;
+            }
+
+            &:after {
+                left: auto;
+                right: 10px;
+            }
+        }
     }
 
     .requisition-grid {
@@ -985,6 +981,15 @@ $requisition-print__font-size-m: 1.4rem !default;
 
         .admin__data-grid-pager {
             margin-top: $indent__base;
+        }
+    }
+
+    .block-requisition-list:not(:first-of-type) .items {
+        right: 0;
+
+        &::before,
+        &::after {
+            left: 90%;
         }
     }
 
