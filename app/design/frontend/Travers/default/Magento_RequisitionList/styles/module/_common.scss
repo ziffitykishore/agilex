@@ -224,6 +224,14 @@ $requisition-print__font-size-m: 1.4rem !default;
                 @extend .abs-input-qty;
             }
         }
+
+        &.col-checkbox {
+            float: left;
+
+            @include screen($screen__s, $screen__l) {
+                margin-right: $indent__l;
+            }
+        }
     }
 
     .product-item-name {
@@ -801,7 +809,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 
                 &.qty {
                     .input-text {
-                        margin-top: -$indent__xs;
+                        margin-top: $indent__xs;
                     }
                 }
 
@@ -824,6 +832,10 @@ $requisition-print__font-size-m: 1.4rem !default;
                     .actions-toolbar {
                         margin-top: $indent__s;
                     }
+                }
+
+                .product-item-name {
+                    margin-top: 0;
                 }
 
                 &.col-checkbox {
