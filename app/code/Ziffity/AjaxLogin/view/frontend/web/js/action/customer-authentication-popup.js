@@ -23,36 +23,35 @@ define([
          */
         _create: function () {
             var self = this,
-                authentication_options = {
-                    type: 'popup',
-                    clickableOverlay: false,
-                    modalClass: 'popup-modal asd',
-                    responsive: true,
-                    innerScroll: true,
-                    title: this.options.popupTitle,
-                    buttons: false
-                };
-
+            authentication_options = {
+                type: 'popup',
+                clickableOverlay: false,
+                modalClass: 'popup-modal asd',
+                responsive: true,
+                innerScroll: true,
+                title: this.options.popupTitle,
+                buttons: false
+            };
             modal(authentication_options, this.element);
 
             $('body').on('click', '.signin-link, '+self.options.loginLink, function() {
-                $(self.options.register).modal('closeModal');
-                $(self.options.forgot).modal('closeModal');
+                self._closePopup(self.options.register);
+                self._closePopup(self.options.forgot);
                 $(self.options.login).modal('openModal');
                 self._setStyleCss();
                 return false;
             });
 
             $('body').on('click', self.options.registerLink, function() {
-                $(self.options.login).modal('closeModal');
+                self._closePopup(self.options.login);
                 $(self.options.register).modal('openModal');
                 self._setStyleCss(self.options.innerWidth);
                 return false;
             });
             
-            $('body').on('click', "a.forget-link," + self.options.forgotLink, function() {
-                $(self.options.login).modal('closeModal');
-                $(self.options.register).modal('closeModal');
+            $('body').on('click',self.options.forgotLink + ',a.forget-link', function() {
+                self._closePopup(self.options.login);
+                self._closePopup(self.options.register);
                 $(self.options.forgot).modal('openModal');
                 self._setStyleCss(self.options.innerWidth);
                 return false;
@@ -67,6 +66,7 @@ define([
                     }
                 });
             });
+            
             this._ajaxSubmit();
             this._resetStyleCss();
         },
@@ -193,6 +193,16 @@ define([
             this.element.find('.messages').html('');
             this._displayMessages('message-error error', $t('An error occurred, please try again later.'));
             this.element.find('.messages .message').show();
+        },
+        
+        /**
+         * Close the popup
+         * @param {string} popup
+         */
+        _closePopup(popup) {
+            if ($(popup).closest('aside').hasClass('_show')) {
+                $(popup).modal('closeModal');
+            }
         }
     });
 
