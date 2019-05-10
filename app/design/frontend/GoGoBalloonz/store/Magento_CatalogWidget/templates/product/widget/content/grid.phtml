@@ -66,7 +66,7 @@ use Magento\Framework\App\Action\Action;
                                                         <span><?php echo __('Quick View') ?></span>
                                                     </a>
                                                     <?php if ($_item->isSaleable()): ?>
-                                                        <?php if($_product->getTypeId() == 'simple'): ?>
+                                                        <?php if($_item->getTypeId() == 'simple'): ?>
                                                             <?php $postParams = $block->getAddToCartPostParams($_item); ?>
                                                             <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_item->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
                                                                 <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
@@ -79,7 +79,7 @@ use Magento\Framework\App\Action\Action;
                                                                 </button>
                                                             </form>
                                                         <?php else: ?>
-                                                            <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" title="<?= $block->escapeHtml(__('View Details')) ?>" class="action tocart primary">
+                                                            <a href="<?= /* @escapeNotVerified */ $_item->getProductUrl() ?>" title="<?= $block->escapeHtml(__('View Details')) ?>" class="action primary">
                                                                 <span><?= /* @escapeNotVerified */ __('View Details') ?></span>
                                                             </a>
                                                         <?php endif; ?>

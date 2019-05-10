@@ -31,6 +31,10 @@
     .page-header {
         > .header-wrapper {
 
+            &.scrollUp {
+                transform: translateY(-100%);
+            }
+
             .logo {
                 max-width: none;
                 margin: 0;
@@ -47,7 +51,7 @@
                 font-size: 14px;
                 font-weight: @font-weight__bold;
                 &:before {
-                    content:'\e900';
+                    content:'\e907';
                     font-family: 'gogo';
                     display: inline-block;
                     vertical-align: middle;
@@ -114,7 +118,7 @@
 
         .minicart-wrapper {
             position: fixed;
-            top: 20%;
+            top: 25%;
             right: 0%;
             z-index: 31;
 
@@ -139,6 +143,8 @@
                     position: absolute;
                     top: -20px;
                     right: -16px;
+
+
                 }
 
                 .counter-number {
@@ -147,11 +153,15 @@
                 }
 
                 &:before {
-                    content: '';
-                    background: url('@{baseDir}images/icon-cart.png') no-repeat center center;
+                    content: '\e901';
+                    font-family: @icon-gogo;
+                    .lib-css(color, @color-blue);
                     width: 32px;
                     height: 32px;
                     display: block;
+                    font-size: 25px;
+                    text-align: center;
+
                 }
             }
 
@@ -325,8 +335,24 @@
             justify-content: space-between;
             align-items: center;
 
+            .item {
+                &:after {
+                    .lib-css(color, @color-white);
+                }
+            }
+
             strong, a {
                 .lib-css(color, @color-white);
+            }
+
+            a {
+                &:hover {
+                    text-decoration: none;
+                    .lib-css(color, @color-white);
+                }
+                &:visited {
+                    .lib-css(color, @color-white);
+                }
             }
 
             .current-page{

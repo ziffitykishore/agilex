@@ -40,16 +40,18 @@
             <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>
             <container name="footermiddle" label="Footer Middle" htmlTag="div"  htmlClass="footer-middle"/>
             <container name="footerlinks" label="Footer Links" htmlTag="div"  htmlClass="footer-links">
-                <block class="Magento\Cms\Block\Block" name="footer.links" >
-                    <arguments>
-                        <argument name="block_id" xsi:type="string">footer_links</argument>
-                    </arguments>
-                </block>
+                <container name="footerlinks-inner" label="Footer Links Inner" htmlTag="div"  htmlClass="inner-sec row">
+                    <block class="Magento\Cms\Block\Block" name="footer.links" >
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_links</argument>
+                        </arguments>
+                    </block>
+                </container>
             </container>
             <block class="Magento\Theme\Block\Html\Footer" name="footer-logo" template="Magento_Theme::html/footer-top.phtml"/>
             <container name="footerbottom" label="Footer Top" htmlTag="div"  htmlClass="footer-bottom"/>
         </referenceContainer>
-        <move element="form.subscribe" destination="footerlinks"/>
+        <move element="form.subscribe" destination="footerlinks-inner"/>
         <move element="footer-logo" destination="footertop"/>
         <move element="footerlinks" destination="footermiddle"/>
         <move element="copyright" destination="footerbottom"/>

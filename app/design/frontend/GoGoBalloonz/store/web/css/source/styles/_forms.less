@@ -27,6 +27,16 @@
         .lib-css(color, @color-blue);
     }
 
+    div.mage-error[generated] {
+        font-size: 10px;
+        display: none !important;
+    }
+
+
+    input.mage-error, select.mage-error, textarea.mage-error {
+        border-color: @color-red;
+    }
+
     /*.form-control-error, input+.mage-error, textarea+.mage-error, select+.mage-error, .control>div.mage-error {
         background: @message-error__background;
         color: #fff !important;

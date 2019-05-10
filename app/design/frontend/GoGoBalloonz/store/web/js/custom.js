@@ -1,46 +1,22 @@
 define(['jquery', 'slick', 'scroller'], function ($) {
     $(document).ready(function ($) {
 
-        // Hide Header on on scroll down
-        var didScroll;
-        var lastScrollTop = 0;
-        var delta = 5;
-        var navbarHeight = $('.header-wrapper').outerHeight();
+        var c, currentScrollTop = 0,
+            navbar = $('.header-wrapper');
 
-        setInterval(function() {
-            if (didScroll) {
-                hasScrolled();
-                didScroll = false;
+        $(window).scroll(function () {
+            var a = $(window).scrollTop();
+            var b = navbar.height();
+
+            currentScrollTop = a;
+
+            if (c < currentScrollTop && a > b + b) {
+                navbar.addClass("scrollUp");
+            } else if (c > currentScrollTop && !(a <= b)) {
+                navbar.removeClass("scrollUp");
             }
-        }, 250);
-
-        function hasScrolled() {
-            var st = $(window).scrollTop();
-
-            // Make sure they scroll more than delta
-            if (Math.abs(lastScrollTop - st) <= delta)
-                return;
-
-            // If they scrolled down and are past the navbar, add class .nav-up.
-            // This is necessary so you never see what is "behind" the navbar.
-            if (st > lastScrollTop && st > navbarHeight) {
-                // Scroll Down
-                $('.header-wrapper').removeClass('nav-down').addClass('nav-up');
-                $('.mob-sticky').removeClass('scroll-down').addClass('scroll-up');
-            } else {
-                // Scroll Up
-                if (st + $(window).height() < $(document).height()) {
-                    $('.header-wrapper').removeClass('nav-up').addClass('nav-down');
-                    $('.mob-sticky').removeClass('scroll-up').addClass('scroll-down');
-                }
-            }
-
-            if (st == 0) {
-                $('.header-wrapper').removeClass('nav-down');
-            }
-
-            lastScrollTop = st;
-        }
+            c = currentScrollTop;
+        });
 
 
         $(window).scroll(function(){
@@ -102,21 +78,26 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             $(imgcontainer).each(function () {
                 var img = $(this).find("img");
 
-                var height = img.height();
-                var img_src = img.attr("src");
+                if(img.length) {
+                    var height = img.height();
+                    var img_src = img.attr("src");
 
-                $(this).css({
-                    "background-image": "url(" + img_src + ")",
-                    "background-size": "cover",
-                    "background-repeat": "no-repeat",
-                    "background-position": "center"
-                });
+                    $(this).css({
+                        "background-image": "url(" + img_src + ")",
+                        "background-size": "cover",
+                        "background-repeat": "no-repeat",
+                        "background-position": "center"
+                    });
+                }
 
                 img.hide();
             });
         }
 
         bgSource(".home-slider .banner-item");
+
+        bgSource(".category-info");
+
 
         $('.featured-product-inner > .product-item').prependTo('.featured-product-inner .product-items');
 
@@ -146,6 +127,13 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
         $(document).click(function() {
             $("body").removeClass("search-opened")
+        });
+
+        $(".scroll-down").on("click", function(e) {
+            e.preventDefault();
+            $("html, body").animate({
+                scrollTop: $($(this).attr("href")).offset().top
+            }, 500, "linear")
         });
 
     });

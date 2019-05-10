@@ -17,6 +17,7 @@
 
 
         .home-banner {
+            position: relative;
             .home-slider {
                 margin-bottom: 0;
                 .banner-item {
@@ -39,6 +40,7 @@
                             text-align: left;
                             margin-bottom: 20px;
                             .lib-css(color, @color-blue);
+                            font-weight: normal;
                             span {
                                 display: block;
                             }
@@ -51,6 +53,50 @@
                     .fillup();
                 }
 
+            }
+
+
+            .scroll-down {
+                font-size: 40px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: auto;
+                display: block;
+                text-align: center;
+                bottom: 60px;
+                height: 66px;
+                color: #fff;
+                -webkit-animation: bounce 2s infinite;
+                animation: bounce 2s infinite;
+                width: 46px;
+                line-height: 60px;
+                transition: all 0.5s ease 0s;
+
+                &:hover {
+                    text-decoration: none;
+                }
+
+
+
+                &:before, &:after {
+                    width: 100%;
+                    content: '';
+                    height: 28px;
+                    border: 2px solid #fff;
+                    position: absolute;
+                    margin: auto;
+                    left: 0;
+                }
+
+                &:before {
+                    border-bottom: transparent;
+                }
+
+                &:after {
+                    border-top: transparent;
+                    bottom: 0;
+                }
             }
         }
 
@@ -113,9 +159,6 @@
                     h2 {
                         font-weight: bold;
                     }
-                }
-                .product-item {
-                    width: percentage(1/5);
                 }
             }
         }
@@ -211,14 +254,14 @@
                 &.slick-prev {
                     left: 25px;
                     &:before {
-                    content: '\e908';
+                    content: '\f053';
                     }
                 }
 
                 &.slick-next {
                     right: 25px;
                     &:before {
-                        content: '\e909';
+                        content: '\f054';
                     }
                 }
             }

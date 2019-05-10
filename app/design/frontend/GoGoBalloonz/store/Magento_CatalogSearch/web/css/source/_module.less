@@ -288,7 +288,7 @@
             font-weight: @font-weight__bold;
             cursor: pointer;
             &:before {
-                content:'\e901';
+                content:'\e906';
                 font-family: 'gogo';
                 display: inline-block;
                 vertical-align: middle;
@@ -299,7 +299,7 @@
             }
         }
         .block-content {
-            z-index: 10;
+            z-index: 35;
             position: fixed;
             width: 100%;
             right: 0;
@@ -324,7 +324,7 @@
             .actions {
                 button {
                     &:before {
-                        content:'\e901';
+                        content:'\e906';
                         font-family: 'gogo';
                         display: inline-block;
                         vertical-align: middle;
@@ -340,6 +340,7 @@
 
 
     .search-opened {
+        overflow: hidden;
         .block-search {
             .block-content {
                 visibility: visible;

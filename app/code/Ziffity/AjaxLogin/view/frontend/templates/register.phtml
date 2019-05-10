@@ -1,16 +1,16 @@
 <?php
 
- /** @var \Ziffity\AjaxLogin\Block\Form\Register $block */
+/** @var \Ziffity\AjaxLogin\Block\Form\Register $block */
 
 if (!$block->customerIsAlreadyLoggedIn() && $block->getRegistration()->isAllowed()): ?>
     <div id="customer-popup-register" class="customer-popup-register">
-        <form class="form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="customer-popup-form-register" enctype="multipart/form-data" autocomplete="off" data-mage-init='{"validation":{}}'>
+        <form class="create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="customer-popup-form-register" enctype="multipart/form-data" autocomplete="off" data-mage-init='{"validation":{}}'>
             <?php echo $block->getBlockHtml('formkey'); ?>
             <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
             <div class="messages"></div>
 
-            <fieldset class="fieldset create info">
-                <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend><br>
+            <fieldset class="fieldset create info account">
+                <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend>
                 <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
                 <?php if ($block->isNewsletterEnabled()): ?>
                     <div class="field choice newsletter">
@@ -18,15 +18,21 @@ if (!$block->customerIsAlreadyLoggedIn() && $block->getRegistration()->isAllowed
                         <label for="popup-is_subscribed" class="label"><span><?php /* @escapeNotVerified */ echo __('Sign Up for Newsletter') ?></span></label>
                     </div>
                 <?php endif ?>
-            </fieldset>
-            <fieldset class="fieldset create account" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
-                <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend>
-                <div class="field required">
+
+                <div class="field field-name-email required">
                     <label for="popup-email_address" class="label"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                     <div class="control">
                         <input type="email" name="email" autocomplete="email" id="popup-email_address" value="" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
+
+                <div class="field field-name-phone">
+                    <label for="popup-phone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+                    <div class="control">
+                        <input type="email" name="phone" autocomplete="email" id="popup-phone" value="" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="input-text">
+                    </div>
+                </div>
+
                 <div class="field password required" data-mage-init='{"passwordStrengthIndicator": {}}'>
                     <label for="password" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
                     <div class="control">
@@ -53,13 +59,21 @@ if (!$block->customerIsAlreadyLoggedIn() && $block->getRegistration()->isAllowed
                         <input type="password" name="password_confirmation" title="<?php /* @escapeNotVerified */ echo __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
                     </div>
                 </div>
+
+            </fieldset>
+            <fieldset class="fieldset create " data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+                <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend>
+
+
             </fieldset>
             <div class="actions-toolbar">
                 <div class="primary">
                     <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Create an Account') ?>"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></button>
                 </div>
 
-                <div class="secondary"><a class="action remind" href="javascript:void(0);" id="customer-popup-sign-in"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></a></div>
+                <div class="secondary">
+                    <div class="create-ac">Already have an account? <a class="action create" href="javascript:void(0);" id="customer-popup-sign-in"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></a></div>
+                </div>
 
             </div>
         </form>
