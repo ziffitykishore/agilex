@@ -453,9 +453,9 @@ define('AMPFORWP_COMMENTS_PER_PAGE',  ampforwp_define_comments_number() );
 
 		$explode_url 	= explode('/', $amp_url);
 		$explode_url 	= array_flip($explode_url);
-		unset($explode_url['amp']); 
+		unset($explode_url[AMPFORWP_AMP_QUERY_VAR]); 
 		$explode_url 	= array_flip($explode_url);
-		$amp_endpoint 	= array('amp');
+		$amp_endpoint 	= array(AMPFORWP_AMP_QUERY_VAR);
 		$offset 		= count($explode_url) - 2; 
 		array_splice( $explode_url, $offset, 0, $amp_endpoint );
 		$amp_url 		= implode('/', $explode_url);
@@ -1145,6 +1145,7 @@ function ampforwp_remove_schema_data() {
 		ampforwp_remove_filters_for_class( 'wp_nav_menu_args', 'BF_Menus', 'walker_front', 10 );
 		// Removing Smush Pro Lazy Load plugin #2990
 		ampforwp_remove_filters_for_class( 'the_content', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
+		ampforwp_remove_filters_for_class( 'post_thumbnail_html', 'WP_Smush_Lazy_Load', 'set_lazy_load_attributes', 100 );
 		// Removing A3 Lazy Load plugin #2872
 		ampforwp_remove_filters_for_class( 'the_content', 'A3_Lazy_Load', 'filter_content_images', 100 );
 		//SiteOrigin Page builder compatibilty with AMP Frontpage
@@ -2507,7 +2508,7 @@ function ampforwp_output_widget_content_above_loop() {
 	   		<div class="amp-wp-content widget-wrapper amp_widget_above_loop">
 	   			<div class="f-w">
 			  		<?php echo do_shortcode($sidebar_output); ?>
-					<div style="clear:both"></div>
+					<div class="cb"></div>
 				</div>
 	  		</div>
 	  	</div> 
@@ -4532,7 +4533,9 @@ if( ! function_exists( 'featured_image_content_filter' ) ){
 			// Remove the figure (due to caption)
 			$content = preg_replace('/<figure(.*)src="'.$featured_image.'"(.*?)<\/figure>/', '', $content);
 			// Remove the amp-img 
+		  if(false == has_post_thumbnail()){
 			$content = preg_replace('/<amp-img(.*)src="'.$featured_image.'"(.*?)<\/amp-img>/', '', $content);
+		  }
 		}
 	return $content;
 	}
@@ -5570,7 +5573,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
-	    
+	    if(true == ampforwp_get_setting('gnrl-sidebar')){
 	    register_sidebar( array(
 	        'name' => esc_html__( 'AMP Sidebar', 'accelerated-mobile-pages' ),
 	        'id' => 'swift-sidebar',
@@ -5581,6 +5584,7 @@ function swifttheme_footer_widgets_init() {
 	        'before_title' => '<h4>',
 	        'after_title' => '</h4>',
 	    ) );
+	    }
 	}
 }
 add_action( 'init', 'swifttheme_footer_widgets_init' );
@@ -6631,6 +6635,12 @@ if ( ! class_exists('AMP_Base_Sanitizer') && class_exists('AMPforWP\\AMPVendor\\
 
 	}
 }
+// Class AMP_Base_Embed_Handler
+if ( ! class_exists('AMP_Base_Embed_Handler') && class_exists('AMPforWP\\AMPVendor\\AMP_Base_Embed_Handler') ) {
+	abstract class AMP_Base_Embed_Handler extends AMPforWP\AMPVendor\AMP_Base_Embed_Handler
+	{
+ 	}
+}
 // Class AMP_HTML_Utils
 if ( ! class_exists('AMP_HTML_Utils') && class_exists('AMPforWP\\AMPVendor\\AMP_HTML_Utils') ) {
 	class AMP_HTML_Utils extends AMPforWP\AMPVendor\AMP_HTML_Utils{}
@@ -6732,9 +6742,8 @@ function ampforwp_ivory_search_css(){
 add_filter('amp_post_template_data','ampforwp_register_addthis_script', 20);
 function ampforwp_register_addthis_script( $data ){ 
 	global $redux_builder_amp;
-	if( ampforwp_get_setting('enable-add-this-option') ) {
-		
-		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
+	if ( ampforwp_get_setting('enable-add-this-option') && ( is_single() || (is_page() && ampforwp_get_setting('ampforwp-page-social') ) ) )  {
+ 		if ( empty( $data['amp_component_scripts']['amp-addthis'] ) ) {
 			$data['amp_component_scripts']['amp-addthis'] = 'https://cdn.ampproject.org/v0/amp-addthis-0.1.js';
 		}
 	}
@@ -6747,3 +6756,55 @@ function ampforwp_fontawesome_canonical_link(){
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
         <?php }
     }
+
+// Yoast BreadCrumbs #1473
+add_action('pre_amp_render_post', 'ampforwp_yoast_breadcrumbs');
+if ( ! function_exists('ampforwp_yoast_breadcrumbs') ) {
+	function ampforwp_yoast_breadcrumbs(){
+		if ( ampforwp_get_setting('ampforwp-yoast-bread-crumb') ) {
+			// Remove the separator of Yoast
+			add_filter('wpseo_breadcrumb_separator','ampforwp_yoast_breadcrumbs_sep');
+			function ampforwp_yoast_breadcrumbs_sep($sep) {
+				$sep = '';
+				return $sep;
+			}
+			// Remove xmlns:v to avoid validation error
+			add_filter('wpseo_breadcrumb_output','ampforwp_yoast_breadcrumbs_modified_output');
+			function ampforwp_yoast_breadcrumbs_modified_output($output){
+				$output = str_replace('xmlns:v="http://rdf.data-vocabulary.org/#"', '', $output);
+				return $output;
+			}
+			// Change the wrapper to div
+			add_filter('wpseo_breadcrumb_output_wrapper', 'ampforwp_yoast_breadcrumbs_wrapper');
+			function ampforwp_yoast_breadcrumbs_wrapper($wrap) {
+				$wrap = 'div';
+				return $wrap;
+			}
+			// Add the Breadcrumbs class to wrapper
+			add_filter('wpseo_breadcrumb_output_class','ampforwp_yoast_breadcrumbs_wrapper_class');
+			function ampforwp_yoast_breadcrumbs_wrapper_class($class) {
+				$class = 'breadcrumbs';
+				return $class;
+			}
+		}
+	}
+}
+function ampforwp_yoast_breadcrumbs_output(){
+	if ( class_exists('WPSEO_Options') ){
+		$breadcrumb = '';
+		if ( true == ampforwp_get_setting('ampforwp-yoast-bread-crumb') && true === WPSEO_Options::get( 'breadcrumbs-enable' ) && function_exists('yoast_breadcrumb')) {
+			$breadcrumb = yoast_breadcrumb('','', false);
+			return $breadcrumb;
+		}
+	}
+}
+
+// Slide Anything compatibility #2891
+add_filter('amp_content_embed_handlers','ampforwp_slide_anything_embed');
+function ampforwp_slide_anything_embed($data) {
+	if ( function_exists('cpt_slider_plugin_activation') ) {
+		require_once( AMPFORWP_PLUGIN_DIR. 'classes/class-ampforwp-slide-anything-embed.php' );
+		$data['AMPFORWP_Slide_Anything_Embed_Handler'] = array();
+	}
+	return $data;
+}
