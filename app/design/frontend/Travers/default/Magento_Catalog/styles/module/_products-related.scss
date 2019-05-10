@@ -85,8 +85,19 @@ $related-products__price-box__margin-bottom: $indent__s !default;
             }
 
             .price-box {
+                display: flex;
                 margin-top: 0;
                 margin-bottom: $related-products__price-box__margin-bottom;
+
+                .price {
+                    font-weight: $font-weight__semibold;
+                }
+
+                .special-price {
+                    float: none;
+                    order: 1;
+                    margin-left: $indent__s;
+                }
             }
         }
     }
