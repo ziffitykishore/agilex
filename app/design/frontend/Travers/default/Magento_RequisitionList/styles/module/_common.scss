@@ -349,6 +349,10 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
     }
 
+    .requisition-info {
+        margin-bottom: $indent__s;
+    }
+
     .requisition-toolbar {
         display: flex;
         flex-direction: column;
@@ -370,17 +374,17 @@ $requisition-print__font-size-m: 1.4rem !default;
     }
 
     .requisition-toolbar-select {
-        margin-right: $indent__base;
+        margin-right: $indent__l;
     }
 
     .requisition-toolbar-actions {
         .remove-selected {
             @include button--inline-link;
-            margin-right: $indent__s;
+            margin-right: 15px;
             vertical-align: middle;
 
-            span {
-                vertical-align: text-bottom;
+            @include max-screen($screen__m) {
+                margin-bottom: 2px;
             }
         }
     }
@@ -431,9 +435,10 @@ $requisition-print__font-size-m: 1.4rem !default;
                 }
 
                 &.number {
+                    margin-bottom: $indent__m;
+                    padding-top: 0;
                     color: $color-white;
                     border-bottom: $border-width__base solid $c-border;
-                    margin-bottom: $indent__m;
 
                     &::before {
                         display: none;
@@ -516,7 +521,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 .order-actions-toolbar,
 .requisition-toolbar-actions {
     .block-requisition-list {
-        margin-left: $indent__s;
+        margin-left: $indent__xs;
     }
 }
 
@@ -750,6 +755,10 @@ $requisition-print__font-size-m: 1.4rem !default;
         .requisition-info {
             @include min-screen($screen__l) {
                 float: left;
+            }
+
+            .counter.qty {
+                margin-right: $indent__m;
             }
         }
     }
@@ -1005,12 +1014,12 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
 
         .requisition-info {
-            margin-bottom: 1.5rem;
+            margin-bottom: 15px;
         }
 
         .requisition-toolbar-select,
         .requisition-toolbar-actions {
-            margin-bottom: 1.5rem;
+            margin-bottom: $indent__xs;
         }
 
         .requisition-toolbar-select {
@@ -1183,6 +1192,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 
                                 &.number {
                                     display: none;
+                                    padding-top: 0;
                                 }
 
                                 &:before {
