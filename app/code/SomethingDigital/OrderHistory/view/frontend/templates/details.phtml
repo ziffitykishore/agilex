@@ -1,0 +1,109 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var  $block SomethingDigital\OrderHistory\Block\Sales\OrderDetails*/?>
+<div class="order-details-items ordered">
+    <?php $order = $block->getOrder() ?>
+
+    <div class="order-title">
+        <strong><?= /* @escapeNotVerified */ __('Items Ordered') ?></strong>
+    </div>
+
+    <div class="table-wrapper order-items">
+        <table class="data table table-order-items" id="my-orders-table" summary="<?= /* @escapeNotVerified */ __('Items Ordered') ?>">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Items Ordered') ?></caption>
+            <thead>
+                <tr>
+                    <th class="col name"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
+                    <th class="col sku"><?= /* @escapeNotVerified */ __('SKU') ?></th>
+                    <th class="col price"><?= /* @escapeNotVerified */ __('Price') ?></th>
+                    <th class="col qty"><?= /* @escapeNotVerified */ __('Qty') ?></th>
+                    <th class="col subtotal"><?= /* @escapeNotVerified */ __('Subtotal') ?></th>
+                </tr>
+            </thead>
+            <?php $items = $order->getData('LineItems'); ?>
+            <tbody>
+                <?php foreach ($items as $item): ?>
+                    <tr id="order-item-row-<?= $item['SKU'] ?>">
+                       <td class="col name" data-th="Item">
+                          <strong class="product name product-item-name"><?= $item['Title'] ?></strong>
+                       </td>
+                       <td class="col sku" data-th="SKU"><?= $item['SKU'] ?></td>
+                       <td class="col price" data-th="Price">
+                            <span class="price-excluding-tax" data-label="Excl. Tax">
+                                <span class="cart-price">
+                                    <span class="price">$<?= $item['SoldPrice'] ?></span> 
+                                </span>
+                            </span>
+                       </td>
+                       <td class="col qty" data-th="Qty">
+                          <ul class="items-qty">
+                             <li class="item">
+                                <span class="title">Ordered</span>
+                                <span class="content"><?= $item['Qty'] ?></span>
+                             </li>
+                          </ul>
+                       </td>
+                       <td class="col subtotal" data-th="Subtotal">
+                          <span class="price-excluding-tax" data-label="Excl. Tax">
+                              <span class="cart-price">
+                                  <span class="price">$<?= $item['SoldPrice'] ?></span>
+                              </span>
+                          </span>
+                       </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr class="subtotal">
+                    <th colspan="4" class="mark" scope="row">
+                        Subtotal                    
+                    </th>
+                    <td class="amount" data-th="Subtotal">
+                    <span class="price">$<?= $order->getData('Total') ?></span>                    
+                    </td>
+                </tr>
+                <?php if ($order->getDiscountAmount() != 0): ?>
+                    <tr class="discount_amount">
+                        <th colspan="4" class="mark" scope="row">
+                            Discount                    
+                        </th>
+                        <td class="amount" data-th="Subtotal">
+                        <span class="price">$<?= $order->getData('DiscountAmount') ?></span>                    
+                        </td>
+                    </tr>
+                <?php endif; ?>
+                <tr class="shipping">
+                    <th colspan="4" class="mark" scope="row">
+                        Shipping &amp; Handling                    
+                    </th>
+                    <td class="amount" data-th="Shipping &amp; Handling">
+                        <span class="price">$<?= $order->getData('ShipFee') ?></span>                    
+                    </td>
+                </tr>
+                <tr class="grand_total">
+                    <th colspan="4" class="mark" scope="row">
+                        <strong>Grand Total</strong>
+                    </th>
+                    <td class="amount" data-th="Grand Total">
+                        <strong><span class="price">$<?= $order->getData('Total') ?></span></strong>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="actions-toolbar">
+        <div class="secondary">
+            <a class="action back" href="<?= /* @escapeNotVerified */ $block->getBackUrl() ?>">
+                <span><?= /* @escapeNotVerified */ $block->getBackTitle() ?></span>
+            </a>
+        </div>
+    </div>
+</div>

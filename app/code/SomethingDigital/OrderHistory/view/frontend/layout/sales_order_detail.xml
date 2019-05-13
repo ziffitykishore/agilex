@@ -1,0 +1,19 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="page.main.title">
+            <block class="SomethingDigital\OrderHistory\Block\Sales\OrderInfo" name="sd.sx.order.date" template="SomethingDigital_OrderHistory::order_date.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="SomethingDigital\OrderHistory\Block\Sales\OrderDetails" 
+                name="sd.orderhistory.order.details" 
+                template="SomethingDigital_OrderHistory::details.phtml"
+                cacheable="false"/>
+            <block class="SomethingDigital\OrderHistory\Block\Sales\OrderInfo" 
+                name="sd.sx.sales.order.info" 
+                after="sd.sx.order.details"
+                template="SomethingDigital_OrderHistory::info.phtml"/>
+        </referenceContainer>
+        <block class="Magento\Framework\View\Element\Template" name="additional.product.info" template="Magento_Theme::template.phtml"/>
+    </body> 
+</page>

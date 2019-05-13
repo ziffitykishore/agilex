@@ -1,0 +1,66 @@
+<?php $order = $block->getOrder() ?>
+<div class="block block-order-details-view">
+    <div class="block-title">
+        <h3 class="title"><?= /* @escapeNotVerified */ __('Order Information') ?></h3>
+    </div>
+    <div class="block-content">
+        <div class="box box-order-shipping-address">
+            <strong class="box-title"><span><?= /* @escapeNotVerified */ __('Shipping Address') ?></span></strong>
+            <div class="box-content">
+                <?php if ($order->getData('ShipTo')): ?>
+                    <address>
+                        <?php $shippingAddress = $order->getData('ShipTo'); ?>
+                        <?= $shippingAddress['ToName'] ?><br>
+                        <?= $shippingAddress['Line1'] ?><br>
+                        <?php if ($shippingAddress['Line2']): ?>
+                            <?= $shippingAddress['Line2'] ?><br>
+                        <?php endif; ?>
+                        <?php if ($shippingAddress['Line3']): ?>
+                            <?= $shippingAddress['Line3'] ?><br>
+                        <?php endif; ?>
+                        <?= $shippingAddress['City'] ?>,  <?= $shippingAddress['State'] ?>, <?= $shippingAddress['PostalCode'] ?><br>
+                        <?= $shippingAddress['CountryCode'] ?><br>
+                        <?php if ($shippingAddress['Phone']): ?>
+                            T: <?= $shippingAddress['Phone'] ?>
+                        <?php endif; ?>
+                    </address>
+                <?php else: ?>
+                    <?= /* @escapeNotVerified */ __('No shipping information available') ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <?php if ($order->getData('ShipServiceCode')): ?>
+            <div class="box box-order-shipping-method">
+                <strong class="box-title">
+                    <span><?= /* @escapeNotVerified */ __('Shipping Method') ?></span>
+                </strong>
+                <div class="box-content">
+                    <?= $order->getData('ShipServiceCode'); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="box box-order-billing-address">
+            <div class="box-title">
+                <h4><?= /* @escapeNotVerified */ __('Billing Address') ?></h4>
+            </div>
+            <div class="box-content">
+                <address>
+                    <?php $billingAddr = $order->getData('Customer'); ?>
+                    <?= $billingAddr['Name'] ?><br>
+                    <?= $billingAddr['Address']['Line1'] ?><br>
+                    <?php if ($billingAddr['Address']['Line2']): ?>
+                        <?= $billingAddr['Address']['Line2'] ?><br>
+                    <?php endif; ?>
+                    <?php if ($billingAddr['Address']['Line3']): ?>
+                        <?= $billingAddr['Address']['Line3'] ?><br>
+                    <?php endif; ?>
+                    <?= $billingAddr['Address']['City'] ?>,  <?= $billingAddr['Address']['State'] ?>, <?= $billingAddr['Address']['PostalCode'] ?><br>
+                    <?= $billingAddr['Address']['CountryCode'] ?><br>
+                    <?php if ($billingAddr['Address']['Phone']): ?>
+                        T: <?= $billingAddr['Address']['Phone'] ?>
+                    <?php endif; ?>
+                </address>
+            </div>
+        </div>
+    </div>
+</div>

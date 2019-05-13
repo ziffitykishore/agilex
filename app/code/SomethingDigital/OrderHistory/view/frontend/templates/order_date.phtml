@@ -1,0 +1,3 @@
+<div class="order-date">
+    <?= /* @escapeNotVerified */ __('<span class="label">Order Date:</span> %1', '<date>' . $block->formatDate(date_create($block->getOrder()->getData('Date'))->format('Y-m-d H:m:s'), \IntlDateFormatter::LONG) . '</date>') ?>
+</div>
