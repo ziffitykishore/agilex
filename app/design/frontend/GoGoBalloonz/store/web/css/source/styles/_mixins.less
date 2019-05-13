@@ -72,10 +72,14 @@
     max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 61px;
-    padding-right: 61px;
 
-    @media screen and (max-width: 1600px) {
+
+    @media screen and (min-width: 1440px) {
+        padding-left: 61px;
+        padding-right: 61px;
+    }
+
+    @media screen and (max-width: 1439px) {
         padding-left: 31px;
         padding-right: 31px;
     }
@@ -89,14 +93,17 @@
     padding-right: 20px;
 }
 
+
+.container-lg {
+    .container-lg();
+}
+
 .container-md {
     .container-md();
 }
 
 
-.container-lg {
-    .container-lg();
-}
+
 
 .container-sm() {
     max-width: 1210px;

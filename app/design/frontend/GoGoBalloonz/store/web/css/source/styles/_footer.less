@@ -130,6 +130,7 @@
 
                 &-content {
                     .links {
+                        padding: 0;
                         li {
                             a {
                                 .lib-css(color, @color-icons);
@@ -183,7 +184,13 @@
 
             .social-links {
                 .block-title {
-                    display: none;
+                    display: inline-block;
+                    margin-right: 10px;
+                }
+
+                .block-content {
+                    display:  inline-block;
+                    vertical-align: middle;
                 }
 
                 ul {
@@ -197,9 +204,14 @@
                     margin-right: 15px;
                 }
 
+                li {
+                    & + li {
+                        margin-left: 15px;
+                    }
+                }
+
                 li a {
                     display: block;
-                    margin-right: 20px;
                     font-size: 0;
 
                     &:hover {
@@ -224,10 +236,57 @@
 }
 
 //
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .page-wrapper {
+        .page-footer {
+            .social-links {
+                li {
+                    & + li {
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .page-wrapper {
+        .page-footer {
+            margin-top: 0;
+
+            .footer-top {
+                border-top: none;
+                padding-top: 0;
+
+                .footer-logo {
+                    display: none;
+                }
+            }
+
+            .footer-links {
+                .footer-list {
+                    .flex-width(100%);
+                    .block {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+
+        }
+
+
+
+
+    }
 
 }
 
@@ -250,9 +309,6 @@
                 .footer-links {
                     .clearfix();
                     .footer-list {
-                        width: percentage(1/4);
-                        padding-left: 20px;
-                        padding-right: 20px;
                         float: left;
                         
                         .block {
@@ -270,3 +326,5 @@
     }
 
 }
+
+

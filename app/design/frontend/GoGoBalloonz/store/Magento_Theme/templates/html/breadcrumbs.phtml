@@ -11,13 +11,6 @@
 <div class="breadcrumbs">
     <div class="container-lg">
         <div class="breadcrumbs-inner">
-            <div class="current-page">
-                <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
-                    <?php if ($crumbInfo['last']) : ?>
-                        <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
-                    <?php endif; ?>
-                <?php endforeach; ?>
-            </div>
             <ul class="items">
                 <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
                     <li class="item <?= /* @escapeNotVerified */ $crumbName ?>">
