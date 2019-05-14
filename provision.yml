@@ -71,24 +71,6 @@
     - image
 
 
-- name: database provision
-  hosts: localhost
-  connection: local
-  tasks:
-    - name: run magento install
-      shell: |
-        OLDDOMAIN='{{ item | replace("test", "com") }}'
-        mysql \
-              -u root \
-              -proot_password \
-              -h database \
-              {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item.domain | item }}');"
-      loop: "{{ site_domains }}"
-  tags:
-    - database
-    - sync
-
 - name: owner play
   hosts: localhost
   connection: local
@@ -139,6 +121,34 @@
     - sync
     - template
 
+- name: database provision
+  hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: coping local ssh key to env
+      copy:
+        remote_src: yes
+        src: files/ssh/id_rsa
+        dest: "/home/magento/.ssh/id_rsa"
+        owner: magento
+        group: magento
+        mode: 0600
+  tags:
+    - database
+    - sync
+
+- name: Updating database url
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: run magento install
+      shell: |
+        php {{ playbook_dir }}/bin/magento setup:store-config:set --base-url=https://{{ item }}
+        php {{ playbook_dir }}/bin/magento setup:store-config:set --base-url-secure=https://{{ item }}
+      loop: "{{ site_domains }}"
+  tags:
+    - database
 
 - name: build provision
   hosts: localhost
