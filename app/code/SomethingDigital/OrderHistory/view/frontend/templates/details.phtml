@@ -32,13 +32,13 @@
                 <?php foreach ($items as $item): ?>
                     <tr id="order-item-row-<?= $item['SKU'] ?>">
                        <td class="col name" data-th="<?= __('Item') ?>">
-                          <strong class="product name product-item-name"><?= $item['Title'] ?></strong>
+                          <strong class="product name product-item-name"><?= $block->escapeHtml($item['Title']) ?></strong>
                        </td>
-                       <td class="col sku" data-th="<?= __('SKU') ?>"><?= $item['SKU'] ?></td>
+                       <td class="col sku" data-th="<?= __('SKU') ?>"><?= $block->escapeHtml($item['SKU']) ?></td>
                        <td class="col price" data-th="<?= __('Price') ?>">
                             <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                                 <span class="cart-price">
-                                    <span class="price"><?= $block->getCurrencyFormat($item['SoldPrice']) ?></span> 
+                                    <span class="price"><?= $block->getCurrencyFormat($block->escapeHtml($item['SoldPrice'])) ?></span> 
                                 </span>
                             </span>
                        </td>
@@ -46,14 +46,14 @@
                           <ul class="items-qty">
                              <li class="item">
                                 <span class="title"><?= __('Ordered') ?></span>
-                                <span class="content"><?= $item['Qty'] ?></span>
+                                <span class="content"><?= $block->escapeHtml($item['Qty']) ?></span>
                              </li>
                           </ul>
                        </td>
                        <td class="col subtotal" data-th="<?= __('Subtotal') ?>">
                           <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                               <span class="cart-price">
-                                  <span class="price"><?= $block->getCurrencyFormat($item['SoldPrice']) ?></span>
+                                  <span class="price"><?= $block->getCurrencyFormat($block->escapeHtml($item['SoldPrice'])) ?></span>
                               </span>
                           </span>
                        </td>
