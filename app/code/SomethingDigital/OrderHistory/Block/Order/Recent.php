@@ -81,6 +81,7 @@ class Recent extends RecentOrders
 
     public function getRecentOrders()
     {
+        $orders = [];
         try {
             $orders = $this->ordersApi->getOrders();
         } catch (LocalizedException $e) {
