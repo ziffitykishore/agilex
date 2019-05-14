@@ -192,9 +192,9 @@ $customerHelper = $this->helper(SomethingDigital\BryantPark\Helper\Customer::cla
     <fieldset class="fieldset create travers-account">
         <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Travers Account') ?></span></legend><br>
         <div class="field travers-account-number">
-            <label for="travers_account_number" class="label"><span><?php /* @escapeNotVerified */ echo __('Travers Account Number') ?></span></label>
+            <label for="travers_account_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Travers Account Number') ?></span></label>
             <div class="control">
-                <input type="text" name="travers_account_number" id="travers_account_number" value="<?php echo $block->escapeHtml($block->getFormData()->getTraversAccountNumber()) ?>" title="<?php /* @escapeNotVerified */ echo __('Travers Account Number') ?>" class="input-text"/>
+                <input type="text" name="travers_account_id" id="travers_account_id" value="<?php echo $block->escapeHtml($block->getFormData()->getTraversAccountId()) ?>" title="<?php /* @escapeNotVerified */ echo __('Travers Account Number') ?>" class="input-text"/>
             </div>
         </div>
         <div class="field account-zip-code">
