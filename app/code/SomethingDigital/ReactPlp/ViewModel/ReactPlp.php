@@ -14,6 +14,7 @@ use Magento\Swatches\Model\Swatch;
 use Magento\Swatches\Helper\Data;
 use Magento\Swatches\Helper\Media;
 use Magento\Framework\App\Request\Http;
+use Magento\Framework\App\Http\Context as HttpContext;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -27,6 +28,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     private $swatchHelper;
     private $swatchHelperMedia;
     private $request;
+    private $httpContext;
 
     public function __construct(
         Registry $registry,
@@ -38,7 +40,9 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         CollectionFactory $collectionFactory,
         Data $swatchHelper,
         Media $swatchHelperMedia,
-        Http $request
+        Http $request,
+        HttpContext $httpContext
+
     ) {
         $this->coreRegistry = $registry;
         $this->jsonEncoder = $jsonEncoder;
@@ -50,6 +54,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->swatchHelper = $swatchHelper;
         $this->swatchHelperMedia = $swatchHelperMedia;
         $this->request = $request;
+        $this->httpContext = $httpContext;
     }
 
     /**
@@ -74,8 +79,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     {
         // * @var \Magento\Catalog\Api\Data\CategoryInterface $category 
 
-        if ($this->customerSession->isLoggedIn()) {
-            $customerGroupId = $this->customerSession->getCustomer()->getGroupId();
+        if ($this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH)) {
+            $customerGroupId = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_GROUP);
         } else {
             $customerGroupId = 0;
         }
@@ -112,7 +117,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'listAttributes' => $this->getListAttributes(),
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
             'tableAttributes' => $this->getTableAttributes(),
-            'hasSpotPricing' => $this->customerSession->isLoggedIn(),
+            'hasSpotPricing' => $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH),
             'filterAttributesInfo' => $this->getFilterAttributes(),
             'swatchImages' => $this->getSwatchImages(),
             'algolia' => [
