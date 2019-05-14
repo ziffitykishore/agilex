@@ -6,28 +6,22 @@ use Magento\Customer\Model\AccountManagement;
 
 class Register extends \Magento\Directory\Block\Data
 {
-    /**
-     * @var \Magento\Customer\Model\Session
-     */
-    protected $customerSession;
-
+    
     /**
      * @var \Magento\Framework\Module\Manager
      */
     protected $moduleManager;
-
+    
     /**
-     * @var \Magento\Framework\App\Http\Context
+     * @var \Magento\Customer\Model\Session
      */
-    protected $httpContext;
-
+    protected $customerSession;
+    
     /**
-     * Registration
-     *
-     * @var \Magento\Customer\Model\Registration
+     * @var \Ziffity\AjaxLogin\Helper\Data $blockHelper 
      */
-    protected $registration;
-
+    protected $blockHelper;
+    
     /**
      * Constructor
      *
@@ -39,9 +33,8 @@ class Register extends \Magento\Directory\Block\Data
      * @param \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $countryCollectionFactory
      * @param \Magento\Framework\Module\Manager                                $moduleManager
      * @param \Magento\Customer\Model\Session                                  $customerSession
-     * @param \Magento\Framework\App\Http\Context                              $httpContext
-     * @param \Magento\Customer\Model\Registration                             $registration
-     * @param array $data
+     * @param \Ziffity\AjaxLogin\Helper\Data                                   $blockHelper
+     * @param array                                                            $data
      *
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
@@ -54,14 +47,12 @@ class Register extends \Magento\Directory\Block\Data
         \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $countryCollectionFactory,
         \Magento\Framework\Module\Manager $moduleManager,
         \Magento\Customer\Model\Session $customerSession,
-        \Magento\Framework\App\Http\Context $httpContext,
-        \Magento\Customer\Model\Registration $registration,
+        \Ziffity\AjaxLogin\Helper\Data $blockHelper,
         array $data = []
     ) {
         $this->moduleManager = $moduleManager;
         $this->customerSession = $customerSession;
-        $this->httpContext = $httpContext;
-        $this->registration = $registration;
+        $this->blockHelper = $blockHelper;
         parent::__construct(
             $context,
             $directoryHelper,
@@ -71,16 +62,6 @@ class Register extends \Magento\Directory\Block\Data
             $countryCollectionFactory,
             $data
         );
-    }
-
-    /**
-     * Return registration
-     *
-     * @return \Magento\Customer\Model\Registration
-     */
-    public function getRegistration()
-    {
-        return $this->registration;
     }
 
     /**
@@ -152,14 +133,11 @@ class Register extends \Magento\Directory\Block\Data
     }
 
     /**
-     * Checking customer login status
-     *
-     * @return bool
+     * Returns the helper class
+     * 
+     * @return Ziffity\AjaxLogin\Helper\Data
      */
-    public function customerIsAlreadyLoggedIn()
-    {
-        return (bool)$this->httpContext->getValue(
-            \Magento\Customer\Model\Context::CONTEXT_AUTH
-        );
+    public function getHelper() {
+        return $this->blockHelper;
     }
 }

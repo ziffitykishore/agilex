@@ -2,7 +2,7 @@
 
  /** @var \Ziffity\AjaxLogin\Block\Form\Login $block */
 
-if (!$block->customerIsAlreadyLoggedIn()): ?>
+if (!$block->getHelper()->customerIsAlreadyLoggedIn()): ?>
     <div id="customer-popup-login" class="customer-popup-login">
         <div class="block block-customer-login">
             <div class="block-content" aria-labelledby="block-customer-popup-login-heading">
@@ -12,19 +12,19 @@ if (!$block->customerIsAlreadyLoggedIn()): ?>
                       id="customer-popup-login-form"
                       data-mage-init='{"validation":{}}'>
                     <?php echo $block->getBlockHtml('formkey'); ?>
-                    <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
+                    <input type="hidden" name="redirect_url" id="redirect-url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
                     <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
                         <div class="messages"></div>
                         <div class="field email required">
                             <label class="label" for="email"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></label>
                             <div class="control">
-                                <input name="username" value="" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="email-login" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
+                                <input name="username" value="" <?php if ($block->getHelper()->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="email-login" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}">
                             </div>
                         </div>
                         <div class="field password required">
                             <label for="pass" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
                             <div class="control">
-                                <input name="password" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass-login" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}" >
+                                <input name="password" type="password" <?php if ($block->getHelper()->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass-login" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}" >
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@ if (!$block->customerIsAlreadyLoggedIn()): ?>
 
 
                         </div>
-                        <?php if ($block->getRegistration()->isAllowed()): ?>
+                        <?php if ($block->getHelper()->getRegistration()->isAllowed()): ?>
                             <div class="create-ac">Don't have an account? <a class="action create" href="javascript:void(0);" id="customer-popup-registration"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></a>
                             </div>
                         <?php endif; ?>
