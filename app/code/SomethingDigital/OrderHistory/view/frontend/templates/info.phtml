@@ -10,18 +10,18 @@
                 <?php if ($order->getData('ShipTo')): ?>
                     <address>
                         <?php $shippingAddress = $order->getData('ShipTo'); ?>
-                        <?= $shippingAddress['ToName'] ?><br>
-                        <?= $shippingAddress['Line1'] ?><br>
+                        <?= $block->escapeHtml($shippingAddress['ToName']) ?><br>
+                        <?= $block->escapeHtml($shippingAddress['Line1']) ?><br>
                         <?php if ($shippingAddress['Line2']): ?>
-                            <?= $shippingAddress['Line2'] ?><br>
+                            <?= $block->escapeHtml($shippingAddress['Line2']) ?><br>
                         <?php endif; ?>
                         <?php if ($shippingAddress['Line3']): ?>
-                            <?= $shippingAddress['Line3'] ?><br>
+                            <?= $block->escapeHtml($shippingAddress['Line3']) ?><br>
                         <?php endif; ?>
-                        <?= $shippingAddress['City'] ?>, <?= $shippingAddress['State'] ?>, <?= $shippingAddress['PostalCode'] ?><br>
+                        <?= $block->escapeHtml($shippingAddress['City']) ?>, <?= $block->escapeHtml($shippingAddress['State']) ?>, <?= $block->escapeHtml($shippingAddress['PostalCode']) ?><br>
                         <?= $shippingAddress['CountryCode'] ?><br>
                         <?php if ($shippingAddress['Phone']): ?>
-                            T: <?= $shippingAddress['Phone'] ?>
+                            T: <?= $block->escapeHtml($shippingAddress['Phone']) ?>
                         <?php endif; ?>
                     </address>
                 <?php else: ?>
@@ -46,18 +46,18 @@
             <div class="box-content">
                 <address>
                     <?php $billingAddr = $order->getData('Customer'); ?>
-                    <?= $billingAddr['Name'] ?><br>
-                    <?= $billingAddr['Address']['Line1'] ?><br>
+                    <?= $block->escapeHtml($billingAddr['Name']) ?><br>
+                    <?= $block->escapeHtml($billingAddr['Address']['Line1']) ?><br>
                     <?php if ($billingAddr['Address']['Line2']): ?>
-                        <?= $billingAddr['Address']['Line2'] ?><br>
+                        <?= $block->escapeHtml($billingAddr['Address']['Line2']) ?><br>
                     <?php endif; ?>
                     <?php if ($billingAddr['Address']['Line3']): ?>
-                        <?= $billingAddr['Address']['Line3'] ?><br>
+                        <?= $block->escapeHtml($billingAddr['Address']['Line3']) ?><br>
                     <?php endif; ?>
-                    <?= $billingAddr['Address']['City'] ?>, <?= $billingAddr['Address']['State'] ?>, <?= $billingAddr['Address']['PostalCode'] ?><br>
-                    <?= $billingAddr['Address']['CountryCode'] ?><br>
+                    <?= $block->escapeHtml($billingAddr['Address']['City']) ?>, <?= $block->escapeHtml($billingAddr['Address']['State']) ?>, <?= $block->escapeHtml($billingAddr['Address']['PostalCode']) ?><br>
+                    <?= $block->escapeHtml($billingAddr['Address']['CountryCode']) ?><br>
                     <?php if ($billingAddr['Address']['Phone']): ?>
-                        T: <?= $billingAddr['Address']['Phone'] ?>
+                        T: <?= $block->escapeHtml($billingAddr['Address']['Phone']) ?>
                     <?php endif; ?>
                 </address>
             </div>
