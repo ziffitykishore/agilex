@@ -137,7 +137,7 @@ $requisition-print__font-size-m: 1.4rem !default;
             text-transform: none;
             text-decoration: none;
             font-family: $font-family__base;
-            border: 1px solid $c-silver;
+            border: 1px solid $c-border;
             letter-spacing: 0;
         }
     }
@@ -212,7 +212,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 .requisition-grid {
     @include min-screen($screen__l) {
         tr {
-            border-bottom: 1px solid $c-silver;
+            border-bottom: 1px solid $c-border;
         }
     }
 
