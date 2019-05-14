@@ -30,8 +30,10 @@ class AssignTraversAccountId
             $companyOwnerId = $company->getSuperUserId();
             $parentCustomer = $this->customerRepository->getById($companyOwnerId);
             $traversAccountId = $parentCustomer->getCustomAttribute('travers_account_id')->getValue();
-            $customer->setCustomAttribute('travers_account_id', $traversAccountId);
-            $this->customerRepository->save($customer);
+            if ($traversAccountId != '') {
+                $customer->setCustomAttribute('travers_account_id', $traversAccountId);
+                $this->customerRepository->save($customer);
+            }
         }
 
         return $result;
