@@ -1,6 +1,7 @@
 .category-landing-page {
   @include max-screen($screen__m) {
     .plp-breadcrumbs {
+      position: absolute;
       top: -$indent__s;
     }
   }
