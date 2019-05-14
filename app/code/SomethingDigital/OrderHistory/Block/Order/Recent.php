@@ -109,7 +109,7 @@ class Recent extends RecentOrders
         return $this->getUrl('sales/order/detail', ['order' => $order->getData('SxId')]);
     }
 
-    public function formatTime($time = NULL, $format = IntlDateFormatter::SHORT, $showDate = false)
+    public function formatTime($time = NULL, $format = \IntlDateFormatter::SHORT, $showDate = false)
     {
         return date("m/d/y", strtotime($time));
     }
