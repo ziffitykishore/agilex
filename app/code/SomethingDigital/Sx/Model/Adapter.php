@@ -52,7 +52,6 @@ abstract class Adapter
         $this->logger = $logger;
         $this->config = $config;
         $this->storeManager = $storeManager;
-        $this->setRequestPath();
     }
     
     protected function getRequest()
@@ -109,17 +108,6 @@ abstract class Adapter
     protected function getRequestUrl()
     {
         return $this->getApiBaseUrl() . $this->requestPath;
-    }
-
-    protected function setRequestPath()
-    {
-        if (!$this->path) {
-            throw new \Exception('API endpoint path is not defined');
-        }
-        
-        $this->requestPath = $this->path;
-
-        return $this;
     }
 
     /**
