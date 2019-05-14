@@ -1,0 +1,9 @@
+<?php 
+    $urlsession =  $block->geturlsession();
+    $url = $block->geturlprocess(); 
+?>
+<script type="text/x-magento-init">
+ { "#viewprocess": { "Cenpos_SimpleWebpay/js/cardstore": {
+     "url":"<?php echo $url ?>", "urlsession":"<?php echo $urlsession ?>"} } 
+}</script>
+<div id="viewprocess"></div>
