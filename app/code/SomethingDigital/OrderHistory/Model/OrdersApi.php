@@ -52,7 +52,7 @@ class OrdersApi extends Adapter
     }
 
     /**
-     * @param array $orderId
+     * @param int $orderId
      * @return array
      * @throws LocalizedException
      */
