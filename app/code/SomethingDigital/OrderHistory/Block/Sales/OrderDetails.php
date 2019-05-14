@@ -7,6 +7,7 @@ use Magento\Customer\Model\Context as CustomerContext;
 use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\Registry;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 class OrderDetails extends Template
 {
@@ -33,10 +34,12 @@ class OrderDetails extends Template
         Context $context,
         Registry $registry,
         HttpContext $httpContext,
+        PriceCurrencyInterface $priceCurrency,
         array $data = []
     ) {
         $this->coreRegistry = $registry;
         $this->httpContext = $httpContext;
+        $this->priceCurrency = $priceCurrency;
         parent::__construct($context, $data);
     }
 
@@ -82,5 +85,14 @@ class OrderDetails extends Template
             return __('Back to My Orders');
         }
         return __('View Another Order');
+    }
+
+    /**
+     * Get current store currency symbol with price
+     */
+    public function getCurrencyFormat($price)
+    {
+        $price = $this->priceCurrency->format($price,true,2);
+        return $price;
     }
 }
