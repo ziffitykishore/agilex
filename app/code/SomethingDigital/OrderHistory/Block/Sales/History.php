@@ -93,14 +93,11 @@ class History extends SalesHistory
 
         $collection = $this->collectionFactory->create();
 
-        $i = 0;
+        $orders = array_slice($orders, $offset, $limit);
         foreach ($orders as $key => $item) {
-            if ($key >= $offset && $i < $limit) {
-                $varienObject = new \Magento\Framework\DataObject();
-                $varienObject->setData($item);
-                $collection->addItem($varienObject);
-                $i++;
-            }
+            $varienObject = new \Magento\Framework\DataObject();
+            $varienObject->setData($item);
+            $collection->addItem($varienObject);
         }
 
         return $collection;
