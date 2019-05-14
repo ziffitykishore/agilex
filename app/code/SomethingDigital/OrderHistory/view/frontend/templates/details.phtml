@@ -31,27 +31,27 @@
             <tbody>
                 <?php foreach ($items as $item): ?>
                     <tr id="order-item-row-<?= $item['SKU'] ?>">
-                       <td class="col name" data-th="Item">
+                       <td class="col name" data-th="<?= __('Item') ?>">
                           <strong class="product name product-item-name"><?= $item['Title'] ?></strong>
                        </td>
-                       <td class="col sku" data-th="SKU"><?= $item['SKU'] ?></td>
-                       <td class="col price" data-th="Price">
-                            <span class="price-excluding-tax" data-label="Excl. Tax">
+                       <td class="col sku" data-th="<?= __('SKU') ?>"><?= $item['SKU'] ?></td>
+                       <td class="col price" data-th="<?= __('Price') ?>">
+                            <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                                 <span class="cart-price">
                                     <span class="price">$<?= $item['SoldPrice'] ?></span> 
                                 </span>
                             </span>
                        </td>
-                       <td class="col qty" data-th="Qty">
+                       <td class="col qty" data-th="<?= __('Qty') ?>">
                           <ul class="items-qty">
                              <li class="item">
-                                <span class="title">Ordered</span>
+                                <span class="title"><?= __('Ordered') ?></span>
                                 <span class="content"><?= $item['Qty'] ?></span>
                              </li>
                           </ul>
                        </td>
-                       <td class="col subtotal" data-th="Subtotal">
-                          <span class="price-excluding-tax" data-label="Excl. Tax">
+                       <td class="col subtotal" data-th="<?= __('Subtotal') ?>">
+                          <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                               <span class="cart-price">
                                   <span class="price">$<?= $item['SoldPrice'] ?></span>
                               </span>
@@ -63,35 +63,35 @@
             <tfoot>
                 <tr class="subtotal">
                     <th colspan="4" class="mark" scope="row">
-                        Subtotal                    
+                        <?= __('Subtotal') ?>
                     </th>
-                    <td class="amount" data-th="Subtotal">
+                    <td class="amount" data-th="<?= __('Subtotal') ?>">
                     <span class="price">$<?= $order->getData('Total') ?></span>                    
                     </td>
                 </tr>
                 <?php if ($order->getDiscountAmount() != 0): ?>
                     <tr class="discount_amount">
                         <th colspan="4" class="mark" scope="row">
-                            Discount                    
+                          <?= __('Discount') ?>
                         </th>
-                        <td class="amount" data-th="Subtotal">
+                        <td class="amount" data-th="<?= __('Subtotal') ?>">
                         <span class="price">$<?= $order->getData('DiscountAmount') ?></span>                    
                         </td>
                     </tr>
                 <?php endif; ?>
                 <tr class="shipping">
                     <th colspan="4" class="mark" scope="row">
-                        Shipping &amp; Handling                    
+                        <?= __('Shipping &amp; Handling') ?>
                     </th>
-                    <td class="amount" data-th="Shipping &amp; Handling">
+                    <td class="amount" data-th="<?= __('Shipping &amp; Handling') ?>">
                         <span class="price">$<?= $order->getData('ShipFee') ?></span>                    
                     </td>
                 </tr>
                 <tr class="grand_total">
                     <th colspan="4" class="mark" scope="row">
-                        <strong>Grand Total</strong>
+                        <strong><?= __('Grand Total') ?></strong>
                     </th>
-                    <td class="amount" data-th="Grand Total">
+                    <td class="amount" data-th="<?= __('Grand Total') ?>">
                         <strong><span class="price">$<?= $order->getData('Total') ?></span></strong>
                     </td>
                 </tr>
