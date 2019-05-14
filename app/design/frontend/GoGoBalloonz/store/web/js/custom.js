@@ -136,7 +136,9 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         }
 
         $(document).click(function() {
-            $("body").removeClass("search-opened")
+            $("body").removeClass("search-opened");
+            inputSearch.blur();
+            inputSearch.value = ""
         });
 
         $(".scroll-down").on("click", function(e) {

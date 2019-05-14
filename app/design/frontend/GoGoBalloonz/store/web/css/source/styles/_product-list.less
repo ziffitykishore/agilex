@@ -11,10 +11,10 @@
         background-color: @color-sky-blue;
 
         .category-title {
-            max-width: 500px;
+            max-width: 650px;
             width: 100%;
             padding: 20px 35px;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.4);
         }
 
         .page-title {
@@ -505,6 +505,28 @@
                 background: @color-aliceblue;
             }
 
+            .radio-button {
+                .item {
+                    a {
+                        &:before {
+                            border-radius: 100%;
+                        }
+                    }
+
+                    &.wp-ln-selected {
+                        a {
+                            &:before {
+                                content: '.';
+                            }
+
+
+                        }
+                    }
+                }
+
+
+            }
+
             .item {
                 a {
 
@@ -517,6 +539,7 @@
                         height: 15px;
                         content: '';
                         display: inline-block;
+                        vertical-align: middle;
                         border: 1px solid @color-icons;
                         line-height: 15px;
                         font-size: 12px;

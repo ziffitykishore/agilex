@@ -382,6 +382,12 @@
                 }
             }
         }
+        
+        .location-track {
+            span {
+                display: none;
+            }
+        }
 
         .nav-sections {
 
@@ -413,6 +419,97 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
 }
+
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+
+    .nav-sections {
+
+        .navigation {
+
+            .level0 {
+                position: relative;
+
+                &.active, &:hover {
+                    > a {
+                        .lib-css(border-color, @color-sky-blue);
+                        color: @color-sky-blue;
+                    }
+                }
+
+                &.submenu {
+                    &:before {
+                        position: absolute;
+                        pointer-events: none;
+                        top: -10px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        height: 0;
+                        width: 0;
+                        border-bottom: 10px solid #fff;
+                        border-left: 9px solid transparent;
+                        border-right: 9px solid transparent;
+                    }
+                }
+
+
+            }
+
+            li {
+                position: static;
+
+                > .submenu {
+                    .lib-css(background, @color-white);
+                    position: absolute;
+                    top: 100%;
+                    min-width: 220px;
+                    left: -55px;
+                    margin-top: 25px;
+                    -ms-transform: translateY(17px);
+                    transform: translateY(17px);
+                    opacity: 0;
+                    visibility: hidden;
+                    display: block;
+                    will-change: transform,opacity;
+                    .br-radius(4px);
+                    .box-shadow(0px 0px 20px 5px rgba(0, 0, 0, 0.05));
+                    transition: transform .3s linear,opacity .3s linear,visibility .3s linear;
+
+                    li {
+
+                        &:hover {
+                            > a {
+                                border-left: 3px solid @color-sky-blue;
+                                .lib-css(background, @color-aliceblue);
+                            }
+                        }
+                    }
+
+                }
+
+                .submenu {
+                    a {
+                        padding: 10px 20px;
+                        border-left: 3px solid transparent;
+                        .transition(all 0.5s ease 0s);
+                    }
+                }
+
+                &:hover {
+                    > .submenu {
+                        opacity: 1;
+                        visibility: visible;
+                        -ms-transform: translateY(0);
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 
 //
 //  Desktop
