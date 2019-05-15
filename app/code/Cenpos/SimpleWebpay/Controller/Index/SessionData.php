@@ -1,0 +1,97 @@
+<?php 
+namespace Cenpos\SimpleWebpay\Controller\Index;
+
+class SessionData extends \Magento\Framework\App\Action\Action
+{
+    protected $_customerSession;
+    protected $resultPageFactory;
+    protected $_paymentMethod;
+    protected $_checkoutSession;
+    protected $checkout;
+    protected $cartManagement;
+    protected $guestcartManagement;
+    protected $orderRepository;
+    protected $_scopeConfig;
+    
+    /**
+     * @param \Magento\Framework\App\Action\Context $context
+     * @param \Magento\Customer\Model\Session $customerSession
+     */
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Magento\Customer\Model\Session $customerSession,
+        \Cenpos\SimpleWebpay\Model\Ui\ConfigProvider $paymentMethod,
+        \Magento\Checkout\Model\Session $checkoutSession,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+    ) {
+        $this->_customerSession = $customerSession;
+        parent::__construct($context);
+        $this->_paymentMethod = $paymentMethod;
+        $this->_checkoutSession = $checkoutSession;
+        $this->orderRepository = $orderRepository;
+        $this->_scopeConfig = $scopeConfig;
+    }
+
+    public function execute()
+    {
+        $ResponseSave = new \stdClass();
+        try{
+            $ip = $_SERVER["REMOTE_ADDR"];
+            if($this->method->getConfigData('url') == null || $this->method->getConfigData('url') == "" ) $this->throwMessageCustom("The url credit card must be configured");
+
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+            $cartObj = $objectManager->get('\Magento\Checkout\Model\Cart');
+
+            $billingAddressInfo = $cartObj->getQuote()->getBillingAddress();
+
+            $dataAddress = $billingAddressInfo->getData();
+
+            $Street = "";
+            if($dataAddress != null && array_key_exists("street", $dataAddress)){
+                if (strpos($dataAddress['street'], "\n") !== FALSE) {
+                    $Street = str_replace("\n", " ", $dataAddress['street']);
+                }
+            }else $Street = "";
+
+            $ch = curl_init($this->method->getConfigData('url')."?app=genericcontroller&action=siteVerify");
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt ($ch, CURLOPT_POST, 1);
+
+            $postSend = "secretkey=".$this->method->getConfigData('secretkey');
+            $postSend .= "&merchant=".$this->method->getConfigData('merchantid');
+            $postSend .= "&address=".$Street;
+            $postSend .= "&isrecaptcha=false";
+            $postSend .= "&zipcode=".$dataAddress["postcode"];
+            if ($this->_customerSession->isLoggedIn()) {
+                $customerData = $this->_customerSession->getCustomer();
+                $postSend .= "&customercode=".$customerData->getId();
+            }
+            $postSend .= "&email=".$dataAddress["email"];
+            $postSend .= "&ip=$ip";
+            curl_setopt ($ch, CURLOPT_POSTFIELDS, $postSend);
+
+            curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
+
+            $response = curl_exec($ch);
+
+            $error = curl_error($ch);
+            curl_close ($ch);
+            if(!empty($error))  {
+                $this->throwMessageCustom($error, "", self::THROW_ERROR);
+            }
+        
+            $ResponseSave = json_decode($ResponseSave);
+            if($ResponseSave->Result != 0) {
+                throw new \Exception($ResponseSave->Message);
+            }
+        } catch (\Exception $ex) {
+            $ResponseSave->Message = $ex->getMessage();
+            $ResponseSave->Result = -1;
+        }
+        
+        echo json_encode($ResponseSave);
+        //return json_encode($ResponseSave);
+    }
+}
