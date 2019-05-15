@@ -109,16 +109,27 @@ $showOriginalPrice = ($originalPrice > $finalPrice) ? true : false;
                     <span><?= /* @escapeNotVerified */ __('Qty') ?></span>
                 </label>
                 <div class="control qty">
-                    <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+                    <?php if ($_item->getPrice() != 0): ?>
+                        <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+                               name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
+                               data-cart-item-id="<?= /* @escapeNotVerified */ $_item->getSku() ?>"
+                               value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
+                               type="number"
+                               size="4"
+                               title="<?= $block->escapeHtml(__('Qty')) ?>"
+                               class="input-text qty"
+                               data-validate="{required:true,'validate-greater-than-zero':true}"
+                               data-role="cart-item-qty"/>
+                    <?php else: ?>
+                        <span id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
                            name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
                            data-cart-item-id="<?= /* @escapeNotVerified */ $_item->getSku() ?>"
                            value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
-                           type="number"
-                           size="4"
                            title="<?= $block->escapeHtml(__('Qty')) ?>"
                            class="input-text qty"
                            data-validate="{required:true,'validate-greater-than-zero':true}"
-                           data-role="cart-item-qty"/>
+                           data-role="cart-item-qty"><?= /* @escapeNotVerified */ $block->getQty() ?></span>
+                    <?php endif; ?>
                 </div>
             </div>
         </td>
