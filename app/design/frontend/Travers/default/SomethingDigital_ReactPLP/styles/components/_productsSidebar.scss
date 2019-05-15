@@ -276,10 +276,8 @@
 
       .sidebar-description-icon {
         position: absolute;
-        top: $indent__xs;
+        top: 8px;
         right: $indent__m;
-        text-transform: lowercase;
-        font-style: italic;
       }
 
       .sidebar-description-content {
@@ -327,13 +325,19 @@
 }
 
 .sidebar-description-icon {
-  padding: 5px 9px;
-  transform: scale(.8);
-  background-color: $color-black;
-  color: $color-white;
-  font-weight: $font-weight__bold;
-  border-radius: 50%;
-  font-size: 14px;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+
+  @include hover {
+    border: 0;
+    background-color: transparent;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .ais-ClearRefinements {
