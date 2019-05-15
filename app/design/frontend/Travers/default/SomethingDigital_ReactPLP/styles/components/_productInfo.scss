@@ -6,6 +6,7 @@
   width: 100%;
   max-width: 300px;
   background-color: $c-smoke;
+  -ms-overflow-style: none;
 
   ul {
     margin-top: $indent__m;
