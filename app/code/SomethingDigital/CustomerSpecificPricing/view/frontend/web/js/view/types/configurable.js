@@ -1,7 +1,7 @@
 define([
     'jquery',
 ], function ($) {
-    return function (data, map) {
+    return function (data, currencySymbol, map) {
 
         // Updates default price on configurable PDP when no 
         // swatches are selected
@@ -12,7 +12,7 @@ define([
             var sku = map[simpleProductId];
             if (data[sku] != null) {
                 if (data[sku] != 0) {
-                    $('.product-info-main .price').text('$' + data[sku]);
+                    $('.product-info-main .price').text(currencySymbol + data[sku]);
                 }
             } else {
                 // if the user deslected a swatch we'll need to fall
@@ -31,7 +31,7 @@ define([
                 return;
             }
             if (data[sku] != 0) {
-                $('.product-info-main .price').text('$' + data[sku]);
+                $('.product-info-main .price').text(currencySymbol + data[sku]);
             }
         }
     }
