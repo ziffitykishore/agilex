@@ -48,11 +48,13 @@ class View extends \Magento\Framework\App\Action\Action
 
                 foreach ($productsSkusArray as $sku) {
                     $prices = $this->spotPricingApi->getSpotPrice($sku);
-                    $data[] = [
-                        "sku" => $sku,
-                        "price" => $this->arrayManager->get('body/Price', $prices),
-                        "price_formatted" => $this->priceCurrency->format($this->arrayManager->get('body/Price', $prices),false,2)
-                    ];
+                    if ($this->arrayManager->get('body/Price', $prices)) {
+                        $data[] = [
+                            "sku" => $sku,
+                            "price" => $this->arrayManager->get('body/Price', $prices),
+                            "price_formatted" => $this->priceCurrency->format($this->arrayManager->get('body/Price', $prices),false,2)
+                        ];
+                    }
                 }
 
                 $this->getResponse()->representJson($this->jsonEncoder->encode($data))->setHeader('Cache-Control', 'no-cache, public');
