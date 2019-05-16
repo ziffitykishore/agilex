@@ -81,6 +81,7 @@ class History extends SalesHistory
 
     public function getOrders()
     {
+        $orders = [];
         try {
             $orders = $this->ordersApi->getOrders();
         } catch (LocalizedException $e) {
