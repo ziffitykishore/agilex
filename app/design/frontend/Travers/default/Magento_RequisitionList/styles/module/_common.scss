@@ -100,18 +100,21 @@ $requisition-print__font-size-m: 1.4rem !default;
             color: $text__color;
         }
 
+        &.toggle.change {
+            display: flex;
+        }
+
         &.toggle::after,
         &.toggle.active::after {
             vertical-align: middle;
             border: 1px solid $c-border;
             width: 30px;
-            line-height: 26px;
+            line-height: 30px;
             font-size: 20px;
-            transform: translate(-3px, -2px);
+            transform: translateX(-1px);
 
             @include min-screen($screen__m) {
-                line-height: 29px;
-                transform: translate(-$indent__xs, $indent__xs);
+                line-height: 33px;
             }
         }
     }
@@ -131,7 +134,7 @@ $requisition-print__font-size-m: 1.4rem !default;
     .social-button & {
         span {
             position: relative;
-            padding: $indent__xs $indent__s;
+            padding: 6px $indent__s;
             clip: auto;
             overflow: visible;
             text-transform: none;
