@@ -280,6 +280,16 @@ $product-inventory-table--header__font-size--desktop: 16px;
         width: 100%;
         padding: $indent__m;
 
+        .action-close {
+            &::before {
+                font-size: 40px;
+            }
+
+            @include hover {
+                color: $c-cobalt;
+            }
+        }
+
         @include min-screen($screen__m) {
             max-width: 600px;
         }
