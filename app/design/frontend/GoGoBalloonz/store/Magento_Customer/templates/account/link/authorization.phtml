@@ -14,7 +14,7 @@ if ($block->isLoggedIn()) {
 <?php 
 if ($block->isLoggedIn()) {?>
     <li>
-        <a  href="/sales/orders/history">
+        <a  href="/sales/order/history">
            <span><?= __('My Orders') ?></span>
         </a>
     </li>
@@ -32,7 +32,7 @@ if ($block->isLoggedIn()) {?>
 <?php 
 if (!$block->isLoggedIn()) { ?>
     <li class="signin-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
-        <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?> >  
+        <a href="javascript:void(0);" >  
             <span class="icon-user"></span>
             <span><?= __('My Account') ?></span>
         </a>

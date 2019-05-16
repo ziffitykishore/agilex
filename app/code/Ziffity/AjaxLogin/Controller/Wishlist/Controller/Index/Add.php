@@ -15,7 +15,7 @@ use Magento\Framework\Controller\ResultFactory;
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class Add extends \Magento\Wishlist\Controller\AbstractIndex
+class Add extends \Magento\Wishlist\Controller\Index\Add
 {
     /**
      * @var \Magento\Wishlist\Controller\WishlistProviderInterface
@@ -25,7 +25,7 @@ class Add extends \Magento\Wishlist\Controller\AbstractIndex
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $_customerSession;
+    protected $customerSession;
 
     /**
      * @var ProductRepositoryInterface
@@ -51,7 +51,7 @@ class Add extends \Magento\Wishlist\Controller\AbstractIndex
         ProductRepositoryInterface $productRepository,
         Validator $formKeyValidator
     ) {
-        $this->_customerSession = $customerSession;
+        $this->customerSession = $customerSession;
         $this->wishlistProvider = $wishlistProvider;
         $this->productRepository = $productRepository;
         $this->formKeyValidator = $formKeyValidator;
@@ -81,7 +81,7 @@ class Add extends \Magento\Wishlist\Controller\AbstractIndex
         if (!$wishlist) {
             throw new NotFoundException(__('Page not found.'));
         }
-        $session = $this->_customerSession;
+        $session = $this->customerSession;
 
         if ($session->getBeforeWishlistRequest()) {
             $requestParams = $session->getBeforeWishlistRequest();
