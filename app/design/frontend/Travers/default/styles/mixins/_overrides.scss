@@ -1,0 +1,798 @@
+/**
+ * Magento UI mixin overrides
+ *
+ * You can define a mixin with the exact same name to "override" it.
+ * Since we generally don't want to directly edit the Magento UI
+ * files, we can extend its mixins here.
+ */
+
+/**
+ * Lot here, but this is just a direct copy of Snowdog's
+ * lib-button-primary implementation. Only changes are the
+ * @includes underneath lib-button
+ *
+ * This is done because the mixin itself does not support
+ * several properties we're using, e.g text-decoration
+ */
+@mixin lib-button-primary(
+    $_button-line-height                : $font-size__base + 2,
+    $_button-width                      : auto,
+    $_button-margin                     : 0,
+    $_button-padding                    : $button-primary__padding,
+
+    $_button-color                      : $button-primary__color,
+    $_button-border                     : $button-primary__border,
+    $_button-background                 : $button-primary__background,
+
+    $_button-color-hover                : $button-primary__hover__color,
+    $_button-border-hover               : $button-primary__hover__border,
+    $_button-background-hover           : $button-primary__hover__background,
+
+    $_button-color-active               : $button-primary__active__color,
+    $_button-border-active              : $button-primary__active__border,
+    $_button-background-active          : $button-primary__active__background,
+
+    $_button-gradient                   : inherit,
+    $_button-gradient-direction         : inherit,
+    $_button-gradient-color-start       : inherit,
+    $_button-gradient-color-end         : inherit,
+
+    $_button-gradient-color-start-active: inherit,
+    $_button-gradient-color-end-active  : inherit,
+
+    $_button-gradient-color-start-hover : inherit,
+    $_button-gradient-color-end-hover   : inherit
+) {
+    @include lib-button(
+        $_button-line-height                : $_button-line-height,
+        $_button-width                      : $_button-width,
+        $_button-margin                     : $_button-margin,
+        $_button-padding                    : $_button-padding,
+        $_button-color                      : $_button-color,
+        $_button-background                 : $_button-background,
+        $_button-border                     : $_button-border,
+        $_button-color-hover                : $_button-color-hover,
+        $_button-background-hover           : $_button-background-hover,
+        $_button-border-hover               : $_button-border-hover,
+        $_button-color-active               : $_button-color-active,
+        $_button-background-active          : $_button-background-active,
+        $_button-border-active              : $_button-border-active,
+        $_button-gradient                   : $_button-gradient,
+        $_button-gradient-direction         : $_button-gradient-direction,
+        $_button-gradient-color-start       : $_button-gradient-color-start,
+        $_button-gradient-color-end         : $_button-gradient-color-end,
+        $_button-gradient-color-start-hover : $_button-gradient-color-start-hover,
+        $_button-gradient-color-end-hover   : $_button-gradient-color-end-hover,
+        $_button-gradient-color-start-active: $_button-gradient-color-start-active,
+        $_button-gradient-color-end-active  : $_button-gradient-color-end-active
+     );
+
+    @include lib-link-as-button();
+    @include headingFont;
+}
+
+@mixin lib-popup(
+    $_popup-width                                             : 100%,
+    $_popup-height                                            : $popup__height,
+    $_popup-padding                                           : 22px,
+    $_popup-background                                        : $popup__background,
+    $_popup-border                                            : 1px solid $color-gray-light3,
+    $_popup-shadow                                            : 0 3px 3px rgba(0, 0, 0, 0.15),
+    $_popup-fade                                              : opacity 0.3s linear,
+    $_popup-z-index                                           : 1001,
+
+    $_popup-position                                          : fixed,
+    $_popup-position-top                                      : 0,
+    $_popup-position-right                                    : 0,
+    $_popup-position-bottom                                   : 0,
+    $_popup-position-left                                     : 0,
+
+    $_popup-margin-top                                        : inherit,
+    $_popup-margin-right                                      : inherit,
+    $_popup-margin-bottom                                     : inherit,
+    $_popup-margin-left                                       : inherit,
+
+    $_popup-content-height                                    : auto,
+    $_popup-header-margin                                     : 0 0 25px,
+    $_popup-content-margin                                    : inherit,
+    $_popup-footer-margin                                     : inherit,
+
+    $_popup-title-headings                                    : true, // [true|false]
+    $_popup-title-headings-level                              : h3, // [h1|h2|h3|h4|h5|h6]
+
+    // Icons parameters
+    $_popup-button-close-icon                                 : true,
+    $_popup-button-close-reset                                : true,
+    $_popup-button-close-position                             : absolute,
+    $_popup-button-close-position-top                         : $indent__s,
+    $_popup-button-close-position-right                       : $indent__s,
+    $_popup-button-close-position-bottom                      : inherit,
+    $_popup-button-close-position-left                        : inherit,
+    $_popup-icon-font-content                                 : $icon-remove,
+    $_popup-icon-font                                         : $icon-font,
+    $_popup-icon-font-size                                    : $popup-icon-font__size,
+    $_popup-icon-font-line-height                             : $popup-icon-font__line-height,
+    $_popup-icon-font-color                                   : $popup-icon-font__color,
+    $_popup-icon-font-color-hover                             : $popup-icon-font__color-hover,
+    $_popup-icon-font-color-active                            : $popup-icon-font__color-active,
+    $_popup-icon-font-margin                                  : inherit,
+    $_popup-icon-font-vertical-align                          : top,
+    $_popup-icon-font-position                                : $button-icon__position,
+    $_popup-icon-font-text-hide                               : true,
+
+    // Actions toolbar parameters
+    $_popup-actions-toolbar                                   : inherit,
+    $_popup-actions-toolbar-actions-position                  : $actions-toolbar-actions__position,
+    $_popup-actions-toolbar-actions-reverse                   : $actions-toolbar-actions__reverse,
+    $_popup-actions-toolbar-actions-margin                    : $actions-toolbar-actions__margin,
+    $_popup-actions-toolbar-margin                            : $actions-toolbar__margin,
+    $_popup-actions-toolbar-padding                           : $actions-toolbar__padding,
+    $_popup-actions-toolbar-primary-actions-margin            : $actions-toolbar-actions-primary__margin,
+    $_popup-actions-toolbar-secondary-actions-margin          : $actions-toolbar-actions-secondary__margin,
+    $_popup-actions-toolbar-actions-links-margin-top          : $actions-toolbar-actions-links__margin-top,
+    $_popup-actions-toolbar-primary-actions-links-margin-top  : $actions-toolbar-actions-links-primary__margin-top,
+    $_popup-actions-toolbar-secondary-actions-links-margin-top: $actions-toolbar-actions-links-secondary__margin-top
+) {
+    background: $_popup-background;
+    border: $_popup-border;
+    padding: $_popup-padding;
+    width: $_popup-width;
+    @include _lib-popup-height($_popup-height);
+    @include _lib-popup-shadow($_popup-shadow);
+    @include _lib-popup-action-toolbar(
+        $_popup-actions-toolbar,
+        $_popup-actions-toolbar-actions-position,
+        $_popup-actions-toolbar-actions-reverse,
+        $_popup-actions-toolbar-margin,
+        $_popup-actions-toolbar-padding,
+        $_popup-actions-toolbar-actions-margin,
+        $_popup-actions-toolbar-primary-actions-margin,
+        $_popup-actions-toolbar-secondary-actions-margin,
+        $_popup-actions-toolbar-actions-links-margin-top,
+        $_popup-actions-toolbar-primary-actions-links-margin-top,
+        $_popup-actions-toolbar-secondary-actions-links-margin-top
+    );
+
+    .popup-header {
+        margin: $_popup-header-margin;
+
+        .title {
+            @include _lib-popup-headings(
+                $_popup-title-headings,
+                $_popup-title-headings-level
+            );
+        }
+
+        padding-right: $_popup-icon-font-size;
+    }
+
+    .popup-content {
+        @include _lib-popup-height($_popup-content-height);
+        margin: $_popup-content-margin;
+    }
+
+    .popup-footer {
+        margin: $_popup-footer-margin;
+    }
+
+    .popup-actions {
+        .action.close {
+            position: $_popup-button-close-position;
+            @include _lib-popup-button-close-icon(
+                $_popup-button-close-icon,
+                $_popup-icon-font-content,
+                $_popup-icon-font,
+                $_popup-icon-font-size,
+                $_popup-icon-font-line-height,
+                $_popup-icon-font-color,
+                $_popup-icon-font-color-hover,
+                $_popup-icon-font-color-active,
+                $_popup-icon-font-margin,
+                $_popup-icon-font-vertical-align,
+                $_popup-icon-font-position,
+                $_popup-icon-font-text-hide
+            );
+            @include _lib-popup-button-close-reset(
+                $_popup-button-close-reset
+            );
+            width: auto;
+            bottom: $_popup-button-close-position-bottom;
+            left: $_popup-button-close-position-left;
+            right: $_popup-button-close-position-right;
+            top: $_popup-button-close-position-top;
+        }
+    }
+
+    @include _lib-popup-fade($_popup-fade);
+    bottom: $_popup-position-bottom;
+    left: $_popup-position-left;
+    margin: $_popup-margin-top $_popup-margin-right $_popup-margin-bottom $_popup-margin-left;
+    position: $_popup-position;
+    right: $_popup-position-right;
+    top: $_popup-position-top;
+    z-index: $_popup-z-index;
+    display: none;
+    opacity: 0;
+
+    &.active {
+        opacity: 1;
+    }
+}
+
+//Drop Downs
+
+//
+//  Dropdowns
+//  _____________________________________________
+
+//
+//  Simple dropdown
+//  ---------------------------------------------
+
+@mixin lib-dropdown(
+    $_toggle-selector                          : ".action.toggle",
+    $_options-selector                         : "ul.dropdown",
+
+    $_dropdown-actions-padding                 : inherit,
+    $_dropdown-list-min-width                  : 100%,
+    $_dropdown-list-width                      : inherit,
+    $_dropdown-list-height                     : inherit,
+    $_dropdown-list-margin-top                 : 4px,
+    $_dropdown-list-position-top               : 100%,
+    $_dropdown-list-position-bottom            : inherit,
+    $_dropdown-list-position-left              : inherit,
+    $_dropdown-list-position-right             : inherit,
+    $_dropdown-list-background                 : $color-white,
+    $_dropdown-list-border                     : 1px solid $color-gray-light2,
+
+    $_dropdown-list-pointer                    : true,
+    $_dropdown-list-pointer-border             : $color-gray-light2,
+    $_dropdown-list-pointer-position           : left,
+    $_dropdown-list-pointer-position-top       : -12px,
+    $_dropdown-list-pointer-position-left-right: 10px,
+
+    $_dropdown-list-item-border                : 0,
+    $_dropdown-list-item-padding               : 3px $indent__xs,
+    $_dropdown-list-item-margin                : 0,
+    $_dropdown-list-item-hover                 : $color-gray91,
+    $_dropdown-list-item-type-hover            : $primary__color,
+    $_dropdown-list-shadow                     : 0 3px 3px rgba(0, 0, 0, 0.15),
+    $_dropdown-list-z-index                    : 100,
+
+    $_dropdown-toggle-icon-content             : '\e607',
+    $_dropdown-toggle-active-icon-content      : '\e621',
+
+    $_icon-font                                : $icon-font,
+    $_icon-font-size                           : 22px,
+    $_icon-font-line-height                    : $_icon-font-size,
+    $_icon-font-color                          : inherit,
+    $_icon-font-color-hover                    : inherit,
+    $_icon-font-color-active                   : inherit,
+    $_icon-font-margin                         : 0,
+    $_icon-font-position                       : $icon__position,
+    $_icon-font-vertical-align                 : top,
+    $_icon-font-text-hide                      : inherit
+) {
+    @include lib-clearfix();
+    position: relative;
+
+    #{$_toggle-selector} {
+        padding: $_dropdown-actions-padding;
+        cursor: pointer;
+        @include _lib-dropdown-icon(
+            $_dropdown-toggle-icon-content,
+            $_dropdown-toggle-active-icon-content,
+            $_icon-font,
+            $_icon-font-size,
+            $_icon-font-line-height,
+            $_icon-font-color,
+            $_icon-font-color-hover,
+            $_icon-font-color-active,
+            $_icon-font-margin,
+            $_icon-font-vertical-align,
+            $_icon-font-position,
+            $_icon-font-text-hide
+        );
+    }
+    @include _lib-dropdown-styles(
+        $_options-selector,
+        $_dropdown-list-min-width,
+        $_dropdown-list-width,
+        $_dropdown-list-height,
+        $_dropdown-list-margin-top,
+        $_dropdown-list-background,
+        $_dropdown-list-border,
+        $_dropdown-list-z-index,
+        $_dropdown-list-shadow,
+        $_dropdown-list-item-padding,
+        $_dropdown-list-item-margin,
+        $_dropdown-list-item-border,
+        $_dropdown-list-item-hover,
+        $_dropdown-list-item-type-hover,
+        $_dropdown-list-position-top,
+        $_dropdown-list-position-bottom,
+        $_dropdown-list-position-left,
+        $_dropdown-list-position-right,
+        $_dropdown-list-pointer,
+        $_dropdown-list-pointer-border,
+        $_dropdown-list-pointer-position,
+        $_dropdown-list-pointer-position-top,
+        $_dropdown-list-pointer-position-left-right
+    );
+}
+
+//
+//  Split dropdown
+//  ---------------------------------------------
+
+@mixin lib-dropdown-split(
+    $_toggle-selector                                : ".action.toggle",
+    $_options-selector                               : "ul.dropdown",
+    $_button-selector                                : ".action.split",
+
+    $_dropdown-split-actions-padding                 : inherit,
+
+    $_dropdown-split-list-min-width                  : 100%,
+    $_dropdown-split-list-width                      : inherit,
+    $_dropdown-split-list-height                     : inherit,
+    $_dropdown-split-list-margin-top                 : 4px,
+    $_dropdown-split-list-position-top               : 100%,
+    $_dropdown-split-list-position-bottom            : inherit,
+    $_dropdown-split-list-position-left              : inherit,
+    $_dropdown-split-list-position-right             : inherit,
+    $_dropdown-split-list-background                 : $color-white,
+    $_dropdown-split-list-border                     : 1px solid $color-gray-light2,
+
+    $_dropdown-split-list-pointer                    : true,
+    $_dropdown-split-list-pointer-border             : $color-gray-light2,
+    $_dropdown-split-list-pointer-position           : left,
+    $_dropdown-split-list-pointer-position-top       : -12px,
+    $_dropdown-split-list-pointer-position-left-right: 10px,
+
+    $_dropdown-split-list-item-border                : 0,
+    $_dropdown-split-list-item-padding               : 3px $indent__xs,
+    $_dropdown-split-list-item-margin                : 0,
+    $_dropdown-split-list-item-hover                 : $_dropdown-split-list-item-hover-background,
+    $_dropdown-split-list-item-type-hover            : $primary__color,
+    $_dropdown-split-list-shadow                     : 0 3px 3px rgba(0, 0, 0, 0.15),
+    $_dropdown-split-list-z-index                    : 100,
+
+    $_dropdown-split-button-border-radius-fix        : inherit,
+    $_dropdown-split-button-actions-padding          : inherit,
+
+    $_dropdown-split-toggle-actions-padding          : inherit,
+    $_dropdown-split-toggle-position                 : right,
+    $_dropdown-split-toggle-icon-content             : '\e607',
+    $_dropdown-split-toggle-active-icon-content      : '\e621',
+
+    $_icon-font                                      : $icons__font-name,
+    $_icon-font-size                                 : 22px,
+    $_icon-font-line-height                          : 22px,
+    $_icon-font-color                                : inherit,
+    $_icon-font-color-hover                          : inherit,
+    $_icon-font-color-active                         : inherit,
+    $_icon-font-margin                               : inherit,
+    $_icon-font-vertical-align                       : top,
+    $_icon-font-position                             : after,
+    $_icon-font-text-hide                            : true
+) {
+    @include lib-clearfix();
+    display: inline-block;
+    position: relative;
+    @include _lib-dropdown-split-toggle-position(
+        $_button-selector,
+        $_toggle-selector,
+        $_dropdown-split-toggle-position,
+        $_dropdown-split-button-border-radius-fix
+    );
+
+    #{$_button-selector} {
+        padding: $_dropdown-split-button-actions-padding;
+    }
+
+    #{$_toggle-selector} {
+        padding: $_dropdown-split-toggle-actions-padding;
+        @include _lib-dropdown-split-icon(
+            $_dropdown-split-toggle-icon-content,
+            $_dropdown-split-toggle-active-icon-content,
+            $_icon-font,
+            $_icon-font-size,
+            $_icon-font-line-height,
+            $_icon-font-color,
+            $_icon-font-color-hover,
+            $_icon-font-color-active,
+            $_icon-font-margin,
+            $_icon-font-vertical-align,
+            $_icon-font-position,
+            $_icon-font-text-hide
+        );
+    }
+    @include _lib-dropdown-styles(
+        $_options-selector,
+        $_dropdown-split-list-min-width,
+        $_dropdown-split-list-width,
+        $_dropdown-split-list-height,
+        $_dropdown-split-list-margin-top,
+        $_dropdown-split-list-background,
+        $_dropdown-split-list-border,
+        $_dropdown-split-list-z-index,
+        $_dropdown-split-list-shadow,
+        $_dropdown-split-list-item-padding,
+        $_dropdown-split-list-item-margin,
+        $_dropdown-split-list-item-border,
+        $_dropdown-split-list-item-hover,
+        $_dropdown-split-list-item-type-hover,
+        $_dropdown-split-list-position-top,
+        $_dropdown-split-list-position-bottom,
+        $_dropdown-split-list-position-left,
+        $_dropdown-split-list-position-right,
+        $_dropdown-split-list-pointer,
+        $_dropdown-split-list-pointer-border,
+        $_dropdown-split-list-pointer-position,
+        $_dropdown-split-list-pointer-position-top,
+        $_dropdown-split-list-pointer-position-left-right
+    );
+}
+
+//
+//  Internal use mixins
+//  ---------------------------------------------
+
+@mixin _lib-dropdown-styles(
+    $_options-selector,
+    $_dropdown-list-min-width,
+    $_dropdown-list-width,
+    $_dropdown-list-height,
+    $_dropdown-list-margin-top,
+    $_dropdown-list-background,
+    $_dropdown-list-border,
+    $_dropdown-list-z-index,
+    $_dropdown-list-shadow,
+    $_dropdown-list-item-padding,
+    $_dropdown-list-item-margin,
+    $_dropdown-list-item-border,
+    $_dropdown-list-item-hover,
+    $_dropdown-list-item-type-hover,
+    $_dropdown-list-position-top,
+    $_dropdown-list-position-bottom,
+    $_dropdown-list-position-left,
+    $_dropdown-list-position-right,
+    $_dropdown-list-pointer,
+    $_dropdown-list-pointer-border,
+    $_dropdown-list-pointer-position,
+    $_dropdown-list-pointer-position-top,
+    $_dropdown-list-pointer-position-left-right
+) {
+    #{$_options-selector} {
+        background: $_dropdown-list-background;
+        border: $_dropdown-list-border;
+        z-index: $_dropdown-list-z-index;
+        @include lib-list-reset-styles();
+        box-sizing: border-box;
+        position: absolute;
+
+        @include _lib-dropdown-list-position(
+            $_dropdown-list-position-top,
+            $_dropdown-list-position-bottom,
+            $_dropdown-list-position-left,
+            $_dropdown-list-position-right
+        );
+
+        @include _lib-dropdown-list-shadow($_dropdown-list-shadow);
+        height: $_dropdown-list-height;
+        margin-top: $_dropdown-list-margin-top;
+        min-width: $_dropdown-list-min-width;
+        width: $_dropdown-list-width;
+        display: none;
+
+        li {
+            margin: $_dropdown-list-item-margin;
+            padding: $_dropdown-list-item-padding;
+            @include _lib-dropdown-list-item-border(
+                $_dropdown-list-item-border
+            );
+
+            @include hover {
+                background: $_dropdown-list-item-hover;
+                color: $_dropdown-list-item-type-hover;
+                cursor: pointer;
+            }
+        }
+
+        @include _lib-dropdown-list-pointer(
+            $_dropdown-list-background,
+            $_dropdown-list-pointer,
+            $_dropdown-list-pointer-border,
+            $_dropdown-list-pointer-position,
+            $_dropdown-list-pointer-position-top,
+            $_dropdown-list-pointer-position-left-right
+        );
+    }
+    &.active {
+        overflow: visible;
+        #{$_options-selector} {
+            display: block;
+        }
+    }
+}
+
+//
+//  Dropdown list position
+//  ---------------------------------------------
+
+@mixin _lib-dropdown-list-position(
+    $_dropdown-list-position-top,
+    $_dropdown-list-position-bottom,
+    $_dropdown-list-position-left,
+    $_dropdown-list-position-right
+) {
+    @if not $_dropdown-list-position-top and $_dropdown-list-position-top != auto {
+        top: $_dropdown-list-position-top;
+    }
+    @if not $_dropdown-list-position-bottom and $_dropdown-list-position-bottom != auto {
+        bottom: $_dropdown-list-position-bottom;
+    }
+    @if not $_dropdown-list-position-left and $_dropdown-list-position-left != auto {
+        left: $_dropdown-list-position-left;
+    }
+    @if not $_dropdown-list-position-right and $_dropdown-list-position-right != auto {
+        right: $_dropdown-list-position-right;
+    }
+}
+
+//
+//  Simple dropdown icon
+//  ---------------------------------------------
+
+@mixin _lib-dropdown-icon(
+    $_dropdown-toggle-icon-content,
+    $_dropdown-toggle-active-icon-content,
+    $_icon-font,
+    $_icon-font-size,
+    $_icon-font-line-height,
+    $_icon-font-color,
+    $_icon-font-color-hover,
+    $_icon-font-color-active,
+    $_icon-font-margin,
+    $_icon-font-vertical-align,
+    $_icon-font-position,
+    $_icon-font-text-hide
+) {
+    @include lib-icon-font(
+        $_icon-font-content: $_dropdown-toggle-icon-content,
+        $_icon-font: $_icon-font,
+        $_icon-font-size: $_icon-font-size,
+        $_icon-font-line-height: $_icon-font-line-height,
+        $_icon-font-color: $_icon-font-color,
+        $_icon-font-color-hover: $_icon-font-color-hover,
+        $_icon-font-color-active: $_icon-font-color-active,
+        $_icon-font-margin: $_icon-font-margin,
+        $_icon-font-vertical-align: $_icon-font-vertical-align,
+        $_icon-font-position: $_icon-font-position,
+        $_icon-font-text-hide: $_icon-font-text-hide
+    );
+
+    &.active {
+        @include lib-icon-font(
+            $_icon-font-content: $_dropdown-toggle-active-icon-content,
+            $_icon-font: $_icon-font,
+            $_icon-font-size: $_icon-font-size,
+            $_icon-font-line-height: $_icon-font-line-height,
+            $_icon-font-color: $_icon-font-color,
+            $_icon-font-color-hover: $_icon-font-color-hover,
+            $_icon-font-color-active: $_icon-font-color-active,
+            $_icon-font-margin: $_icon-font-margin,
+            $_icon-font-vertical-align: $_icon-font-vertical-align,
+            $_icon-font-position: $_icon-font-position,
+            $_icon-font-text-hide: $_icon-font-text-hide
+        );
+    }
+}
+
+//
+//  Split dropdowns
+//  ---------------------------------------------
+
+//  Split dropdown icon
+@mixin _lib-dropdown-split-icon(
+    $_dropdown-toggle-icon-content,
+    $_dropdown-toggle-active-icon-content,
+    $_icon-font,
+    $_icon-font-size,
+    $_icon-font-line-height,
+    $_icon-font-color,
+    $_icon-font-color-hover,
+    $_icon-font-color-active,
+    $_icon-font-margin,
+    $_icon-font-vertical-align,
+    $_icon-font-position,
+    $_icon-font-text-hide
+) {
+    @include lib-button-icon(
+        $_icon-font-content: $_dropdown-toggle-icon-content,
+        $_icon-font: $_icon-font,
+        $_icon-font-size: $_icon-font-size,
+        $_icon-font-line-height: $_icon-font-line-height,
+        $_icon-font-color: $_icon-font-color,
+        $_icon-font-color-hover: $_icon-font-color-hover,
+        $_icon-font-color-active: $_icon-font-color-active,
+        $_icon-font-margin: $_icon-font-margin,
+        $_icon-font-vertical-align: $_icon-font-vertical-align,
+        $_icon-font-position: $_icon-font-position,
+        $_icon-font-text-hide: $_icon-font-text-hide
+    );
+
+    &.active {
+        @include lib-button-icon(
+            $_icon-font-content: $_dropdown-toggle-active-icon-content,
+            $_icon-font: $_icon-font,
+            $_icon-font-size: $_icon-font-size,
+            $_icon-font-line-height: $_icon-font-line-height,
+            $_icon-font-color: $_icon-font-color,
+            $_icon-font-color-hover: $_icon-font-color-hover,
+            $_icon-font-color-active: $_icon-font-color-active,
+            $_icon-font-margin: $_icon-font-margin,
+            $_icon-font-vertical-align: $_icon-font-vertical-align,
+            $_icon-font-position: $_icon-font-position,
+            $_icon-font-text-hide: $_icon-font-text-hide
+        );
+    }
+}
+
+@mixin _lib-dropdown-split-toggle-position(
+    $_button-selector,
+    $_toggle-selector,
+    $_dropdown-split-toggle-position,
+    $_dropdown-split-button-border-radius-fix
+) {
+    @if $_dropdown-split-toggle-position == left {
+        #{$_button-selector} {
+            float: right;
+            margin: 0;
+        }
+        #{$_toggle-selector} {
+            float: left;
+            margin: 0;
+        }
+        @if $_dropdown-split-button-border-radius-fix {
+            button#{$_button-selector} {
+                border-bottom-left-radius: 0;
+                border-top-left-radius: 0;
+            }
+
+            button + #{$_toggle-selector} {
+                border-bottom-right-radius: 0;
+                border-right: 0;
+                border-top-right-radius: 0;
+            }
+        }
+    }
+    @else if $_dropdown-split-toggle-position == right {
+        #{$_button-selector} {
+            float: left;
+            margin: 0;
+        }
+        #{$_toggle-selector} {
+            float: right;
+            margin: 0;
+        }
+        @if $_dropdown-split-button-border-radius-fix {
+            button#{$_button-selector} {
+                border-bottom-right-radius: 0;
+                border-top-right-radius: 0;
+            }
+
+            button + #{$_toggle-selector} {
+                border-bottom-left-radius: 0;
+                border-left: 0;
+                border-top-left-radius: 0;
+            }
+        }
+    }
+}
+
+//
+//  Dropdown show pointer
+//  ---------------------------------------------
+
+@mixin _lib-dropdown-list-pointer(
+    $_dropdown-list-background,
+    $_dropdown-list-pointer,
+    $_dropdown-list-pointer-border,
+    $_dropdown-list-pointer-position,
+    $_dropdown-list-pointer-position-top,
+    $_dropdown-list-pointer-position-left-right
+) {
+    @if $_dropdown-list-pointer {
+        @include _lib-dropdown-pointer(
+            $_dropdown-list-background,
+            $_dropdown-list-pointer-border,
+            $_dropdown-list-pointer-position,
+            $_dropdown-list-pointer-position-top,
+            $_dropdown-list-pointer-position-left-right
+        );
+    }
+}
+
+@mixin _lib-dropdown-pointer(
+    $_dropdown-list-background,
+    $_dropdown-list-pointer-border,
+    $_dropdown-list-pointer-position,
+    $_dropdown-list-pointer-position-top,
+    $_dropdown-list-pointer-position-left-right
+) {
+    @if $_dropdown-list-pointer-position == left {
+        @include _lib-dropdown-pointer-default(
+            $_dropdown-list-background,
+            $_dropdown-list-pointer-border
+        );
+
+        &:before {
+            left: $_dropdown-list-pointer-position-left-right;
+            top: $_dropdown-list-pointer-position-top;
+        }
+
+        &:after {
+            left: $_dropdown-list-pointer-position-left-right - 1;
+            top: $_dropdown-list-pointer-position-top - 2;
+        }
+    }
+    @else if $_dropdown-list-pointer-position == right {
+        @include _lib-dropdown-pointer-default(
+            $_dropdown-list-background,
+            $_dropdown-list-pointer-border
+        );
+
+        &:before {
+            right: $_dropdown-list-pointer-position-left-right;
+            top: $_dropdown-list-pointer-position-top;
+        }
+
+        &:after {
+            right: $_dropdown-list-pointer-position-left-right - 1;
+            top: $_dropdown-list-pointer-position-top - 2;
+        }
+    }
+}
+
+@mixin _lib-dropdown-pointer-default(
+    $_dropdown-list-background,
+    $_dropdown-list-pointer-border
+) {
+    &:before,
+    &:after {
+        border-bottom-style: solid;
+        content: '';
+        display: block;
+        height: 0;
+        position: absolute;
+        width: 0;
+    }
+
+    &:before {
+        border: 6px solid;
+        border-color: transparent transparent $_dropdown-list-background transparent;
+        z-index: 99;
+    }
+
+    &:after {
+        border: 7px solid;
+        border-color: transparent transparent $_dropdown-list-pointer-border transparent;
+        z-index: 98;
+    }
+}
+
+//  Dropdown list item border != 0
+@mixin _lib-dropdown-list-item-border($_dropdown-list-item-border) {
+    @if not $_dropdown-list-item-border and $_dropdown-list-item-border != 0 and $_dropdown-list-item-border != '' {
+        border-top: $_dropdown-list-item-border;
+        &:first-child {
+            border: none;
+        }
+    }
+}
+
+//  Dropdown list shadow
+@mixin _lib-dropdown-list-shadow($_dropdown-list-shadow) {
+    box-shadow: $_dropdown-list-shadow;
+}
