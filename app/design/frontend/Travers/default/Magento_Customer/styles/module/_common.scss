@@ -271,44 +271,40 @@ $_password-very-strong: #81b562 !default;
             margin-top: $indent__xl;
             margin-bottom: $indent__base;
 
-            button {
-                @include button--type(primary);
-                width: 100%;
-                max-width: 460px;
-            }
-
-            label {
-                position: absolute;
-                transform: translateY(-$indent__m);
-            }
-
-            div {
-                max-width: 460px;
-                margin-bottom: $indent__l;
-            }
-
             @include min-screen($screen__m) {
                 flex-direction: row;
                 flex-wrap: wrap;
                 margin-top: $indent__base;
 
-                div {
+                .order {
+                    display: flex;
+                    margin-top: $indent__s;
+                }
+            }
+
+            button {
+                @include button--type(primary);
+                width: 100%;
+                max-width: 460px;
+
+                @include min-screen($screen__m) {
+                    margin-top: $indent__base;
+                    width: auto;
+                }
+            }
+
+            div {
+                max-width: 460px;
+                margin-bottom: $indent__l;
+
+                @include min-screen($screen__m) {
                     width: 25%;
                     margin: 20px $indent__s 0 0;
                 }
 
-                button {
-                    margin-top: $indent__base;
-                }
-
-                .order {
-                    display: flex;
-                    margin-top: $indent__s;
-
-                    button {
-                        margin-top: $indent__base;
-                        width: 100%;
-                    }
+                label {
+                    position: absolute;
+                    transform: translateY(-$indent__m);
                 }
             }
         }
