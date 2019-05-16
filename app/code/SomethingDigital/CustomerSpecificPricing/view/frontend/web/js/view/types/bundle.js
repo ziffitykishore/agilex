@@ -1,13 +1,13 @@
 define([
     'jquery',
 ], function ($) {
-    return function (data) {
+    return function (data, currencySymbol) {
         $('#product-options-wrapper .bundle.option').each(function() {
             $('option',$(this)).each(function() {
                 var sku = $(this).data('sku');
                 var title = $(this).data('title');
                 if (sku && data[sku] != 0 && title) {
-                    $(this).text(title + ' +$' + data[sku]);
+                    $(this).text(title + ' +' + currencySymbol + data[sku]);
                     $(this).attr('data-price', data[sku]);
                 }
             })
@@ -22,7 +22,7 @@ define([
                 }
                 totalPrice += parseFloat(price);
             });
-            $('.price-configured_price span.price').text('$'+totalPrice.toFixed(2));
+            $('.price-configured_price span.price').text(currencySymbol+totalPrice.toFixed(2));
         });
         var pricesArr = Object.keys( data ).map(function ( key ) { return data[key]; });
         var minPrice = $('.product-info-main .price-from .price-wrapper').data('price-amount');
@@ -30,10 +30,10 @@ define([
         var minSpotPrice = Math.min.apply(null, pricesArr);
         var maxSportPrice = Math.max.apply(null, pricesArr);
         if (minSpotPrice != 0 && minSpotPrice < minPrice) {
-            $('.product-info-main .price-from .price').text('$' + minSpotPrice);
+            $('.product-info-main .price-from .price').text(currencySymbol + minSpotPrice);
         }
         if (maxSportPrice > maxPrice) {
-            $('.product-info-main .price-to .price').text('$' + maxSportPrice);
+            $('.product-info-main .price-to .price').text(currencySymbol + maxSportPrice);
         }
     }
 });

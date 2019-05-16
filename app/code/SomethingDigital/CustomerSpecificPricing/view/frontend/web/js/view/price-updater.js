@@ -6,12 +6,13 @@ define([
     return function (config) {
         var model = cspModel(config);
         var type = config.type;
+        var currencySymbol = config.currencySymbol;
         var productMap = config.map;
         if (config['parent'] != null) {
             productMap['parent'] = config['parent'];
         }
         model.getPrices().done(function (response, textStatus) {
-            strategy(type, response.data, productMap);
+            strategy(type, response.data, currencySymbol, productMap);
         }).fail(function (jqXHR, textStatus, errorThrown) {
             // In this case we don't want to update the prices
         });

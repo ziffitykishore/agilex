@@ -16,6 +16,7 @@ use Magento\Customer\Model\Session;
 use Magento\ConfigurableProduct\Api\LinkManagementInterface;
 use SomethingDigital\CustomerSpecificPricing\Model\SkuMap;
 use SomethingDigital\CustomerSpecificPricing\Helper\Data as ProductHelper;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 class DataProvider extends Template
 {
@@ -56,6 +57,11 @@ class DataProvider extends Template
      */
     private $productHelper;
 
+    /**
+     * @var Currency
+     */
+    private $currency;
+
     public function __construct(
         Context $context,
         Registry $registry,
@@ -64,7 +70,8 @@ class DataProvider extends Template
         Session $customerSession,
         LinkManagementInterface $linkManagement,
         SkuMap $skuMap,
-        ProductHelper $productHelper
+        ProductHelper $productHelper,
+        PriceCurrencyInterface $currency
     ) {
         parent::__construct($context);
         $this->coreRegistry = $registry;
@@ -74,6 +81,7 @@ class DataProvider extends Template
         $this->linkManagement = $linkManagement;
         $this->skuMap = $skuMap;
         $this->productHelper = $productHelper;
+        $this->currency = $currency;
     }
     
     /**
@@ -176,6 +184,7 @@ class DataProvider extends Template
     {
         $config['url'] = $this->getBaseUrl() . self::CSP_ENDPOINT_URL;
         $config['type'] = $productData->getTypeId();
+        $config['currencySymbol'] = $this->currency->getCurrency()->getCurrencySymbol();
         if ($config['type'] === Configurable::TYPE_CODE) {
             $config['parent'] = $productData->getId();
         }
