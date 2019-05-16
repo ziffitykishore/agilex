@@ -32,6 +32,7 @@
     }
 
     .message {
+      position: absolute;
       width: 100%;
       max-width: 250px;
       margin-top: $indent__s;
