@@ -169,6 +169,11 @@ $product-inventory-table--header__font-size--desktop: 16px;
             position: absolute;
         }
 
+        .yotpo-icon.yotpo-icon-star {
+            margin-right: 1px;
+            color: $c-royal;
+        }
+
         .yotpoBottomLine {
             margin-bottom: $indent__xl;
             line-height: 1;
