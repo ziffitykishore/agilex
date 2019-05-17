@@ -60,10 +60,6 @@ $product-item-name__font-size: 16px;
                 color: $c-cobalt;
                 border: 1px solid $c-silver;
             }
-
-            &::after {
-                transform: translate(-$indent__xs, $indent__xs);
-            }
         }
     }
 }
@@ -225,6 +221,11 @@ $product-item-name__font-size: 16px;
                 font-size: $font-size__base--desktop;
             }
         }
+    }
+
+    .action.requisition-list-button::after,
+    .action.requisition-list-button.active::after {
+        line-height: 31px;
     }
 }
 
