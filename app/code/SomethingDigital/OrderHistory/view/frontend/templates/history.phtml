@@ -13,10 +13,20 @@
 <?= $block->getChildHtml('info') ?>
 <?php if ($_orders && count($_orders)): ?>
     <div class="table-wrapper orders-history">
+        <h3 class="orders-history-header"><?= __('Search By') ?></h3>
         <div class="order-search">
-            <input placeholder="<?= __('Customer PO #') ?>" type="text" name="customer_po_number" />
-            <input placeholder="<?= __('Product') ?>" type="text" name="product" />
-            <input placeholder="<?= __('Order #') ?>" type="text" name="order_number" />
+            <div>
+                <label for="order-number"><?= __('Order Number') ?></label>
+                <input type="text" id="order-number" name="order_number" />
+            </div>
+            <div>
+                <label for="customer-po-number"><?= __('PO Number') ?></label>
+                <input type="text" id="customer-po-number" name="customer_po_number" />
+            </div>
+            <div>
+                <label for="item-number"><?= __('Item Number') ?></label>
+                <input type="text" id="item-number" name="product" />
+            </div>
             <button type="submit"><?= __('Search') ?></button>
         </div>
         <table class="data table table-order-items history" id="my-orders-table">
