@@ -144,7 +144,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         foreach ($collection as $item) {
             $attr[] = [
                 'id' => $item->getAttributeCode(),
-                'label' => $item->getFrontendLabel()
+                'label' => $item->getStoreLabel()
             ];
         }
         return $attr;
@@ -164,7 +164,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         foreach ($collection as $item) {
             $attr[] = [
                 'id' => $item->getAttributeCode(),
-                'label' => $item->getFrontendLabel()
+                'label' => $item->getStoreLabel()
             ];
         }
         return $attr;
@@ -184,7 +184,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         foreach ($collection as $item) {
             $attr[] = [
                 'id' => $item->getAttributeCode(),
-                'label' => $item->getFrontendLabel()
+                'label' => $item->getStoreLabel()
             ];
         }
         return $attr;
