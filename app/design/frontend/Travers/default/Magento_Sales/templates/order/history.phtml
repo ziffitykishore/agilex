@@ -11,7 +11,7 @@
 <?= $block->getChildHtml('info') ?>
 <?php if ($_orders && count($_orders)): ?>
     <div class="table-wrapper orders-history">
-        <h3 class="orders-history-header">Search By</h3>
+        <h3 class="orders-history-header"><?= __('Search By') ?></h3>
         <div class="order-search">
             <div>
                 <label for="order-number"><?= __('Order Number') ?></label>
