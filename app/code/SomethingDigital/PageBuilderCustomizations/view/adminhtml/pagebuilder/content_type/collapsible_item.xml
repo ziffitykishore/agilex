@@ -55,4 +55,9 @@
         </appearances>
         <is_system>false</is_system>
     </type>
+    <type name="column">
+        <parents default_policy="deny">
+            <parent name="collapsible-item" policy="allow"/>
+        </parents>
+    </type>
 </config>
