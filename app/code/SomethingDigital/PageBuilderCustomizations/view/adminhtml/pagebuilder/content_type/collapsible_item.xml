@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
+    <type name="collapsible-item"
+          label="Collapsible Item"
+          component="Magento_PageBuilder/js/content-type-collection"
+          preview_component="Magento_PageBuilder/js/content-type/preview-collection"
+          master_component="Magento_PageBuilder/js/content-type/master-collection"
+          form="pagebuilder_collapsible_item_form"
+          menu_section="layout"
+          icon="icon-pagebuilder-collapsible"
+          sortOrder="25"
+          translate="label">
+        <parents default_policy="deny">
+            <parent name="collapsible" policy="allow"/>
+        </parents>
+        <children default_policy="allow">
+            <child name="row" policy="deny"/>
+            <child name="collapsible" policy="deny"/>
+        </children>
+        <appearances>
+            <appearance name="default"
+                        default="true"
+                        preview_template="SomethingDigital_PageBuilderCustomizations/content-type/collapsible-item/default/preview"
+                        master_template="SomethingDigital_PageBuilderCustomizations/content-type/collapsible-item/default/master"
+                        reader="Magento_PageBuilder/js/master-format/read/configurable">
+                <elements>
+                    <element name="main">
+                        <style name="text_align" source="text_align"/>
+                        <style name="border" source="border_style" converter="Magento_PageBuilder/js/converter/style/border-style"/>
+                        <style name="border_color" source="border_color"/>
+                        <style name="border_width" source="border_width" converter="Magento_PageBuilder/js/converter/style/remove-px"/>
+                        <style name="border_radius" source="border_radius" converter="Magento_PageBuilder/js/converter/style/remove-px"/>
+                        <style name="margins" storage_key="margins_and_padding" reader="Magento_PageBuilder/js/property/margins" converter="Magento_PageBuilder/js/converter/style/margins"/>
+                        <style name="padding" storage_key="margins_and_padding" reader="Magento_PageBuilder/js/property/paddings" converter="Magento_PageBuilder/js/converter/style/paddings"/>
+                        <attribute name="name" source="data-content-type"/>
+                        <attribute name="appearance" source="data-appearance"/>
+                        <css name="css_classes"/>
+                    </element>
+                    <element name="container">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
+                    </element>
+                </elements>
+                <converters>
+                    <converter name="background_images" component="Magento_PageBuilder/js/mass-converter/background-images">
+                        <config>
+                            <item name="attribute_name" value="background_images"/>
+                            <item name="desktop_image_variable" value="background_image"/>
+                            <item name="mobile_image_variable" value="mobile_image"/>
+                        </config>
+                    </converter>
+                </converters>
+            </appearance>
+        </appearances>
+        <is_system>false</is_system>
+    </type>
+</config>
