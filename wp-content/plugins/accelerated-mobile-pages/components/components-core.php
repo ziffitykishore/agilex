@@ -202,17 +202,17 @@ function amp_author_box($args=array() ){
 }
 
 // Categories List
-function amp_categories_list( ){
+function amp_categories_list( $separator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_categories_list( );
+		ampforwp_framework_get_categories_list( $separator );
 	}
 }
 // Tags List
-function amp_tags_list( ){
+function amp_tags_list( $separator = '' ){
 	global $loadComponent;
 	if(isset($loadComponent['AMP-categories-tags']) && $loadComponent['AMP-categories-tags']==true){
-		ampforwp_framework_get_tags_list( );
+		ampforwp_framework_get_tags_list( $separator );
 	}
 }
 
@@ -359,7 +359,9 @@ function amp_header_core(){
 				<?php $thisTemplate->load_parts( array( 'style' ) ); ?>
 				<?php do_action( 'amp_post_template_css', $thisTemplate ); ?>
 				<?php do_action( 'amp_css', $thisTemplate ); ?>
-				<?php echo $redux_builder_amp['css_editor']; ?>
+				<?php $custom_css = ampforwp_get_setting('css_editor'); 
+					  $sanitized_css = ampforwp_sanitize_i_amphtml($custom_css);
+					  echo $sanitized_css; ?>
 			</style>
 			<?php do_action('ampforwp_before_head', $thisTemplate);  ?>
 		</head>
