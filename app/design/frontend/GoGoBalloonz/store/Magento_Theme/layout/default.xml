@@ -13,10 +13,10 @@
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <move element="top.links" destination="account-links" after="-"/>
         <move element="wish-list-link" destination="header.links" before="authorization-link"/>
-        <move element="minicart" destination="header.container" before="-" />
+        <move element="minicart" destination="page.wrapper" before="header.container" />
         <move element="navigation.sections" destination="header-wrapper" after="logo"/>
         <move element="top.search" destination="header-wrapper" after="navigation.sections"/>
-        <referenceContainer name="header.container">
+        <referenceContainer name="header.container" htmlClass="page-header header-wrapper">
             <referenceContainer name="header-wrapper" htmlClass="header">
                 <block class="Magento\Framework\View\Element\Template" name="location" template="Magento_Theme::location.phtml"/>
                 <container name="account-links"  htmlTag="div" htmlClass="account-links" after="location">
@@ -27,12 +27,10 @@
                     </block>
                 </container>
             </referenceContainer>
-            <container name="header-section" label="Header Section" htmlTag="div"  htmlClass="header-wrapper"/>
             <container name="nav-right-sec" label="Search Location" htmlTag="div"  htmlClass="nav-right-sec d-flex justify-content-between align-items-center"/>
         </referenceContainer>
         <move element="location" destination="header-wrapper" after="top.search" />
         <move element="nav-right-sec" destination="header-wrapper" after="navigation.sections" />
-        <move element="header-wrapper" destination="header-section" after="-" />
         <move element="account-links" destination="nav-right-sec" after="-" />
         <move element="top.search" destination="nav-right-sec" after="-" />
         <move element="location" destination="nav-right-sec" after="top.search" />

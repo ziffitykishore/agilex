@@ -16,8 +16,8 @@
             z-index: 31;
 
             .action.showcart {
-                height: 65px;
-                width: 65px;
+                height: 60px;
+                width: 60px;
                 background: @color-white;
                 z-index: 3;
                 color: transparent;
@@ -50,7 +50,7 @@
                     width: 32px;
                     height: 32px;
                     display: block;
-                    font-size: 25px;
+                    font-size: 20px;
                     text-align: center;
 
                 }
@@ -97,8 +97,8 @@
                 right: 0;
                 z-index: 2;
                 overflow: hidden;
-                height: 65px;
-                width: 65px;
+                height: 60px;
+                width: 60px;
                 border-radius: 6px;
                 -webkit-transition: height .4s .1s, width .4s .1s, box-shadow .3s;
                 transition: height .4s .1s, width .4s .1s, box-shadow .3s;
@@ -255,7 +255,7 @@
     }
 
     .page-header {
-        > .header-wrapper {
+
 
             &.scrollUp {
                 transform: translateY(-100%);
@@ -346,22 +346,14 @@
                 
 
             }
-        }
-
-
-
-
-
-
-
 
     }
 
     .cart-open {
         .page-header {
-            .header-wrapper {
+
                 z-index: 10;
-            }
+
         }
         .page-wrapper::before {
             opacity: 1;
@@ -391,6 +383,7 @@
 
     .breadcrumbs {
         .lib-css(background, @color-sky-blue);
+        margin-bottom: 0;
         &-inner {
             padding: 20px 0;
             .flex();
@@ -606,19 +599,20 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
     .cms-index-index {
-        .header-wrapper {
-            position: fixed;
+        .page-header {
+            .lib-css(background, transparent);
         }
     }
 
     .page-header {
-        .header-wrapper {
+            position: fixed;
+            .lib-css(background, @color-white);
             .transition(all 0.5s ease 0s);
             width: 100%;
             top: 0;
-            z-index: 33;
+            z-index: 10;
 
             &.fixed-header {
                 .lib-css(background, @color-white);
@@ -633,29 +627,37 @@
                 padding-top: 0px;
                 height: 110px;
             }
+
+        & + .breadcrumbs {
+            margin-top: 110px;
         }
+
+        & + .page-main {
+            margin-top: 110px;
+        }
+
     }
 
 }
 
 @media screen and (min-width: @screen__xl) {
     .page-header {
-        .header-wrapper {
-            > .header {
+
+             > .header {
                 padding-left: 61px;
                 padding-right: 61px;
             }
-        }
+
     }
 }
 
 @media screen and (max-width: 1439px) {
     .page-header {
-        .header-wrapper {
-            > .header {
+
+             > .header {
                 padding-left: 31px;
                 padding-right: 31px;
             }
-        }
+
     }
 }
