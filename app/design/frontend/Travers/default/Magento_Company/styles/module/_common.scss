@@ -924,8 +924,8 @@ $nav-delimiter__border-color: $color-gray82 !default;
             padding: 10px 0;
             background-color: $c-smoke;
 
-            &:before,
-            &:after {
+            &::before,
+            &::after {
                 // hide arrow - per bb2 convention
                 display: none;
             }
