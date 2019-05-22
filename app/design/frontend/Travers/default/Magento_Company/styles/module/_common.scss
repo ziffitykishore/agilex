@@ -753,34 +753,6 @@ $nav-delimiter__border-color: $color-gray82 !default;
                 display: none;
             }
         }
-
-        ul.header.links {
-            min-width: 220px;
-            right: 0;
-            padding: 10px 0;
-            border: 0;
-            background-color: $c-smoke;
-
-            &:before,
-            &:after {
-                // hide arrow - per bb2 convention
-                display: none;
-            }
-
-            a {
-                text-decoration: none;
-                padding: 10px 0;
-                color: $text__color;
-
-                &:not(.no-display) {
-                    display: block;
-                }
-
-                @include hover {
-                    color: $text__color-alt;
-                }
-            }
-        }
     }
 
     .manage-company-accounts {
@@ -940,6 +912,36 @@ $nav-delimiter__border-color: $color-gray82 !default;
         li {
             a {
                position: relative;
+            }
+        }
+    }
+
+    .customer-register,
+    .customer-welcome {
+        ul.header.links {
+            min-width: 220px;
+            right: 0;
+            padding: 10px 0;
+            background-color: $c-smoke;
+
+            &::before,
+            &::after {
+                // hide arrow - per bb2 convention
+                display: none;
+            }
+
+            a {
+                text-decoration: none;
+                padding: $indent__s 0;
+                color: $text__color;
+
+                &:not(.no-display) {
+                    display: block;
+                }
+
+                @include hover {
+                    color: $text__color-alt;
+                }
             }
         }
     }
