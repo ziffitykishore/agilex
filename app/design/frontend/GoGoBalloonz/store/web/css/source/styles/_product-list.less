@@ -408,6 +408,7 @@
             padding: 18px 20px 18px 31px;
             border-bottom: 1px solid @color-light-blue;
             color: @color-blue;
+            height: auto;
             strong {
                 font-size: 16px;
                 font-weight: @font-weight__semibold;
@@ -586,14 +587,60 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .products-grid {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+
+    .products-grid() {
         .product-items {
             .product-item {
                 width: percentage(1/2);
             }
         }
     }
+    .page-with-filter,
+    .page-products {
+        .products-grid {
+            .products-grid();
+        }
+
+        .columns {
+            padding-top: 0;
+        }
+
+        .toolbar {
+            margin-bottom: 0;
+
+            .sorter {
+                padding: 10px;
+                right: 0;
+            }
+        }
+    }
+    .products-grid {
+        .products-grid();
+    }
+
+    .wp-filters-text {
+        display: none;
+    }
+
+    #layered-filter-block {
+        .filter-title {
+            strong {
+                color: inherit;
+                display: block;
+                text-align: left;
+
+                &:after {
+                    float: right;
+                }
+            }
+        }
+
+        .filter-options {
+            top: 54px;
+        }
+    }
+
 }
 
 //

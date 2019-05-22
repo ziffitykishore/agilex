@@ -1,78 +1,92 @@
-.btn {
-    .br-radius(5px);
-    &-outline {
-        &-white {
-            color: @color-white;
-            background-color: transparent;
-            background-image: none;
-            border-color: @color-white;
+//
+//  Common
+//  _____________________________________________
 
-            &:visited {
+& when (@media-common = true) {
+
+    .btn {
+
+        &.btn-outline {
+            &-white {
+                .br-radius(5px);
                 color: @color-white;
-            }
-
-            &:hover {
-                color: @color-black;
-                background-color: @color-white;
+                background-color: transparent;
+                background-image: none;
                 border-color: @color-white;
-            }
-        }
-        &-blue {
-            color: @color-blue;
-            background-color: transparent;
-            background-image: none;
-            border-color: @color-blue;
 
-            &:visited {
+                &:visited {
+                    color: @color-white;
+                }
+
+                &:hover {
+                    color: @color-black;
+                    background-color: @color-white;
+                    border-color: @color-white;
+                }
+            }
+            &-blue {
+                .br-radius(5px);
                 color: @color-blue;
-            }
-
-            &:hover {
-                color: @color-white;
-                background-color: @color-blue;
+                background-color: transparent;
+                background-image: none;
                 border-color: @color-blue;
+
+                &:visited {
+                    color: @color-blue;
+                }
+
+                &:hover {
+                    color: @color-white;
+                    background-color: @color-blue;
+                    border-color: @color-blue;
+                }
             }
         }
     }
-}
 
-.btn-red() {
-    .lib-css(background, @color-red);
-    .lib-css(color, @color-white);
-    .lib-css(border-color, @color-red);
+ }
 
-    &:focus {
-        .lib-css(background, lighten(@color-red, 10%));
-    }
-}
+    .btn-red() {
+        .lib-css(background, @color-red);
+        .lib-css(color, @color-white);
+        .lib-css(border-color, @color-red);
 
-.button() {
-    .lib-css(background, @color-blue);
-    .lib-css(border-color,@color-blue);
-    font-size: @font-size__s;
-    .lib-css(color, @color-white);
-    .transition(all 0.5s ease-in-out 0s);
-    font-family: @font-family-name__primary;
-    font-weight: @font-weight__bold;
-    padding: 10px 20px;
-    line-height: 20px;
-
-    &:hover,&:focus, &:active {
-        .lib-css(background, @color-sky-blue);
-        .lib-css(border-color, @color-sky-blue);
-        text-decoration: none;
-    }
-}
-
-.action {
-    &.primary {
-        .button();
-    }
-
-    &s-toolbar {
-        a.primary {
-            .br-radius(0);
+        &:focus {
+            .lib-css(background, lighten(@color-red, 10%));
         }
     }
-}
+
+    .button() {
+        .lib-css(background, @color-blue);
+        .lib-css(border-color, @color-blue);
+        font-size: @font-size__s;
+        .lib-css(color, @color-white);
+        .transition(all 0.5s ease-in-out 0s);
+        font-family: @font-family-name__primary;
+        font-weight: @font-weight__bold;
+        padding: 10px 20px;
+        line-height: 20px;
+
+        &:hover, &:focus, &:active {
+            .lib-css(background, @color-sky-blue);
+            .lib-css(border-color, @color-sky-blue);
+            text-decoration: none;
+        }
+    }
+
+    .action {
+        &.primary {
+            .button();
+        }
+
+        &s-toolbar {
+            a.primary {
+                .br-radius(0);
+            }
+        }
+    }
+
+
+
+
 

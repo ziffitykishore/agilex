@@ -185,16 +185,16 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         {
             if(status == 'enable')
             {
-                $('.footer-list .block-title').on('click', function(e){
+                $('.accordion-menu .block-title').on('click', function(e){
                     $(this).toggleClass('active').parent().find('.block-content').stop().slideToggle('medium');
                     e.preventDefault();
                 })
-                $('.footer-list').addClass('accordion').find('.block-content').slideUp('fast');
+                $('.accordion-menu').addClass('accordion').find('.block-content').slideUp('fast');
             }
             else
             {
-                $('.footer-list .block-title').removeClass('active').off().parent().find('.block-content').removeAttr('style').slideDown('fast');
-                $('.footer-list').removeClass('accordion');
+                $('.accordion-menu .block-title').removeClass('active').off().parent().find('.block-content').removeAttr('style').slideDown('fast');
+                $('.accordion-menu').removeClass('accordion');
             }
         }
 

@@ -6,6 +6,9 @@
 
 & when (@media-common = true) {
     .page-wrapper {
+
+
+
         .minicart-wrapper {
             position: fixed;
             top: 100px;
@@ -82,14 +85,11 @@
                 pointer-events: none;
                 min-width: auto;
                 display: block;
+
+
             }
 
-            .block-content {
-                height: 100%;
-                .actions {
-                    margin-top: 0;
-                }
-            }
+
 
             .minicart-content-wrap {
                 position: absolute;
@@ -118,13 +118,37 @@
                 .subtotal {
                     display: none;
                 }
+
+                .block-content {
+                    height: 100%;
+                    > .actions {
+                        margin-top: 0;
+
+                        > .primary {
+                            margin: 0;
+                            display: none;
+                            .action.primary {
+                                font-size: 14px;
+                            }
+                        }
+
+                        .viewcart {
+                            .button();
+                            display: block;
+                            font-size: 14px;
+                            padding: 14px 17px;
+                        }
+                    }
+
+                }
+
             }
 
             .minicart-items-wrapper {
                 margin: 0;
                 overflow-y: auto;
                 overflow-x: hidden;
-                height: calc(100% - 68px) !important;
+                height: calc(100% - 48px) !important;
 
                 li {
                     position: relative;
@@ -137,6 +161,39 @@
                     transition: opacity 0s .2s, transform 0s .2s;
                     transition: opacity 0s .2s, transform 0s .2s, -webkit-transform 0s .2s;
                 }
+
+                .product-item-details {
+                    .product-item-name {
+                        a {
+                            .lib-css(color, @color-blue);
+                        }
+                    }
+
+                    .options {
+                        .label {
+                            .lib-css(color, @color-blue);
+                        }
+
+                        &.list {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .price-container {
+                        .price {
+                            .lib-css(color, @color-red);
+                        }
+                    }
+                }
+
+                .action.edit,
+                .action.delete{
+
+                    &:before {
+                        .lib-css(color, @color-icons);
+                    }
+                }
+
             }
 
             &.active .minicart-content-wrap {
@@ -263,7 +320,13 @@
                         font-weight:bold;
                         font-size: 14px;
                         font-weight: @font-weight__bold;
+
+                        .action.switch{
+                            .lib-css(color, @color-blue);
+                        }
                     }
+
+
 
                     a {
                         .lib-css(color, @color-blue);
@@ -416,8 +479,36 @@
 //  Mobile
 //  _____________________________________________
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+
+    .page-wrapper {
+        .minicart-wrapper {
+            .action.showcart,
+            .block-minicart {
+                right: 20px;
+            }
+        }
+
+        header{
+            &.page-header {
+                margin-bottom: 0;
+
+                .nav-sections {
+                    background: @color-white;
+                }
+            }
+        }
+    }
+
+}
+
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
+    .breadcrumbs {
+        display: block;
+        margin-bottom: 0;
+    }
 }
 
 
@@ -462,15 +553,15 @@
                 > .submenu {
                     .lib-css(background, @color-white);
                     position: absolute;
-                    top: 100%;
+                    top: 100% !important;
                     min-width: 220px;
-                    left: -55px;
+                    left: -55px !important;
                     margin-top: 25px;
                     -ms-transform: translateY(17px);
                     transform: translateY(17px);
                     opacity: 0;
                     visibility: hidden;
-                    display: block;
+                    display: block !important;
                     will-change: transform,opacity;
                     .br-radius(4px);
                     .box-shadow(0px 0px 20px 5px rgba(0, 0, 0, 0.05));

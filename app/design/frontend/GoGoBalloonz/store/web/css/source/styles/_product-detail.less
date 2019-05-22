@@ -26,14 +26,116 @@
             }
         }
     }
+
+
+
+        .swatch-attribute-options {
+            .color {
+                width: 30px;
+                height: 30px;
+                .br-radius(50%);
+            }
+        }
+
+
+    .review-product-list,
+    .catalog-product-view {
+        .product-info-wrap {
+            .container-md();
+            .product-info-inner {
+                .clearfix();
+            }
+        }
+
+        .detailed {
+            .product.data.items {
+                .lib-css(background, @color-sky-blue);
+
+                .item.title {
+                    a {
+                        background: transparent;
+                        border: none;
+                        height: auto;
+                        padding: 0 35px;
+                        .lib-css(color, @color-white);
+                        font-weight: 600;
+
+                        &:hover,
+                        &:focus{
+                            .lib-css(color, @color-blue);
+                            .lib-css(background, transparent);
+                        }
+                    }
+
+                    &.active {
+                        a {
+                            .lib-css(color, @color-blue);
+                        }
+                    }
+
+                    .counter {
+                        display: none;
+                    }
+
+                }
+            }
+
+            .sub-content {
+                .container-sm();
+            }
+        }
+    }
+
+
+
+    .additional-attributes {
+        .label,
+        .data {
+            width: auto;
+        }
+    }
+
+
+    .review-ratings {
+        .rating-summary {
+            .rating-result {
+                > span:before {
+                    .lib-css(color, @color-yellow);
+                }
+            }
+        }
+    }
+
+
+    .review-form {
+        .actions-primary {
+            .action.submit.primary {
+                .button();
+                .br-radius(5px);
+            }
+        }
+
+        .review-control-vote {
+            label:before {
+                .lib-css(color,@color-yellow);
+            }
+        }
+    }
 }
 
 //
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .catalog-product-view {
+        .detailed {
+            .items {
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+    }
 }
 
 //

@@ -11,7 +11,7 @@ if ($block->isLoggedIn()) {
     $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
 }
 ?>
-<?php 
+<?php
 if ($block->isLoggedIn()) {?>
     <li>
         <a  href="/sales/orders/history">
@@ -29,7 +29,7 @@ if ($block->isLoggedIn()) {?>
         </a>
     </li>
 <?php  }?>
-<?php 
+<?php
 if (!$block->isLoggedIn()) { ?>
     <li class="signin-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
         <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?> >  
