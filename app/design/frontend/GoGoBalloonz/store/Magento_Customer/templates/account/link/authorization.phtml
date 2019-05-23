@@ -13,25 +13,31 @@ if ($block->isLoggedIn()) {
 ?>
 <?php
 if ($block->isLoggedIn()) {?>
-    <li>
-        <a  href="/sales/orders/history">
-           <span><?= __('My Orders') ?></span>
-        </a>
-    </li>
-    <li>
-        <a  href="/wishlist">
-           <span><?= __('My Wishlist') ?></span>
-        </a>
-    </li>
-    <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
-        <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
-            <?= $block->escapeHtml($block->getLabel()) ?>
-        </a>
-    </li>
+    <?php if ($block->getWrapper()=='ul') {?>
+        <ul>
+    <?php  }?>            
+        <li>
+            <a  href="/sales/orders/history">
+               <span><?= __('My Orders') ?></span>
+            </a>
+        </li>
+        <li>
+            <a  href="/wishlist">
+               <span><?= __('My Wishlist') ?></span>
+            </a>
+        </li>
+        <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+            <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+                <?= $block->escapeHtml($block->getLabel()) ?>
+            </a>
+        </li>
+    <?php if ($block->getWrapper()=='ul') {?>        
+        </ul>        
+    <?php  }?>    
 <?php  }?>
 <?php
 if (!$block->isLoggedIn()) { ?>
-    <li class="signin-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+    <li class="signin-link <?= $block->getDisplay() ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
         <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?> >  
             <span class="icon-user"></span>
             <strong><?= __('My Account') ?></strong>
