@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ziffity_Banners::image"
+             title="Image Uploader"
+             module="Ziffity_Banners"
+             sortOrder="75" resource="Ziffity_Banners::image"
+             action="banners/image/index"/>
+    </menu>
+</config>
