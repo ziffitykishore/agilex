@@ -14,7 +14,8 @@ if ($block->isLoggedIn()) {
 <?php
 if ($block->isLoggedIn()) {?>
     <?php if ($block->getWrapper()=='ul') {?>
-        <ul>
+        <li class="level0"><a href="#">My Account</a>
+        <ul class="level0 submenu">
     <?php  }?>            
         <li>
             <a  href="/sales/orders/history">
@@ -32,7 +33,8 @@ if ($block->isLoggedIn()) {?>
             </a>
         </li>
     <?php if ($block->getWrapper()=='ul') {?>        
-        </ul>        
+        </ul>
+        </li>
     <?php  }?>    
 <?php  }?>
 <?php

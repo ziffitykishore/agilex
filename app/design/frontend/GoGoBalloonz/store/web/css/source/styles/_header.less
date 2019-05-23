@@ -11,13 +11,13 @@
 
         .minicart-wrapper {
             position: fixed;
-            top: 100px;
+            top: 111px;
             right: 0%;
             z-index: 31;
 
             .action.showcart {
-                height: 60px;
-                width: 60px;
+                height: 55px;
+                width: 55px;
                 background: @color-white;
                 z-index: 3;
                 color: transparent;
@@ -97,8 +97,8 @@
                 right: 0;
                 z-index: 2;
                 overflow: hidden;
-                height: 60px;
-                width: 60px;
+                height: 55px;
+                width: 55px;
                 border-radius: 6px;
                 -webkit-transition: height .4s .1s, width .4s .1s, box-shadow .3s;
                 transition: height .4s .1s, width .4s .1s, box-shadow .3s;
@@ -148,7 +148,7 @@
                 margin: 0;
                 overflow-y: auto;
                 overflow-x: hidden;
-                height: calc(100% - 48px) !important;
+                height: ~"calc(100% - 48px)" !important;
 
                 li {
                     position: relative;
@@ -182,6 +182,44 @@
                     .price-container {
                         .price {
                             .lib-css(color, @color-red);
+                        }
+                    }
+
+                    .qty {
+                        .label {
+                            display: block;
+                        }
+
+                        button,
+                        .item-qty{
+                            float: left;
+                            margin-left: -1px;
+                        }
+                        
+                        button {
+                            width: 44px;
+                            height: 44px;
+                            background: transparent;
+                            border-color: @color-gray;
+                            display: inline-block;
+                            vertical-align: top;
+                            .box-shadow(none);
+
+                        }
+                        .item-qty {
+                            margin-right: 0;
+                            .br-radius(0);
+                        }
+
+                        .update-cart-item {
+                            &:before {
+                                font-family: @icon-gogo;
+                                content: '\f021';
+                                color: @color-textcolor;
+                            }
+                            span {
+                                display: none;
+                            }
                         }
                     }
                 }
