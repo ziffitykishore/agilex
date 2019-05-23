@@ -19,5 +19,14 @@
 
         <move element="product.info.media" destination="product-info-inner" before="-"/>
         <move element="product.info.main" destination="product-info-inner" after="product.info.media" />
+        
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View" name="balloonz_position" template="product/view/baloonz_position.phtml" group="detailed_info" >
+               <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Balloonz Position</argument>
+                    <argument name="sort_order" xsi:type="string">20</argument>
+               </arguments>
+            </block>
+        </referenceBlock>        
     </body>
 </page>
