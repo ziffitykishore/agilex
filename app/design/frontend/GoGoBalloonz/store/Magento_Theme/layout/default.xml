@@ -12,7 +12,6 @@
         <referenceBlock name="wish-list-link" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <move element="top.links" destination="account-links" after="-"/>
-        <move element="wish-list-link" destination="header.links" before="authorization-link"/>
         <move element="minicart" destination="page.wrapper" before="header.container" />
         <move element="navigation.sections" destination="header-wrapper" after="logo"/>
         <move element="top.search" destination="header-wrapper" after="navigation.sections"/>

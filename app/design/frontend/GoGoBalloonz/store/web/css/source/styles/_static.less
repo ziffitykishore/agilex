@@ -12,6 +12,43 @@
                 color: @color-white;
             }
         }
+
+        .about-info {
+            h2 {
+                .lib-css(color, @color-blue);
+                font-size: 30px;
+            }
+            .inner-wrap {
+                margin: 25px 0 120px;
+                text-align: center;
+                position: relative;
+
+                img {
+                    .br-radius(5px);
+                }
+
+                p {
+                    background: fade(@color-sky-blue, 85%);
+                    .lib-css(color, @color-white);
+                    padding: 25px;
+                    position: absolute;
+                    bottom: -65px;
+                    max-width: 650px;
+                    margin: 0 auto;
+                    left: 0;
+                    right: 0;
+                    .br-radius(8px);
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+
+    .contact-index-index {
+        .columns {
+            .container-sm();
+        }
     }
 }
 

@@ -167,14 +167,18 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
         function responsiveResize() {
 
-            if (($(window).width()) <= 770 && responsiveflag == false)
+            if (($(window).width()) <= 768 && responsiveflag == false)
             {
                 accordionFooter('enable');
+
+                $('.location-track').appendTo('.nav-sections');
+
                 responsiveflag = true;
             }
-            else if (($(window).width()) >= 771)
+            else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
+                $('.location-track').insertBefore('.account-links')
                 responsiveflag = false;
             }
 
