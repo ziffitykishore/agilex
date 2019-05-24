@@ -232,7 +232,7 @@
             }
         }
         .block-content {
-            z-index: 35;
+            z-index: 105;
             position: fixed;
             width: 100%;
             right: 0;
@@ -253,9 +253,14 @@
                 position: relative;
                 .transition(all 0.5s ease 0.5s);
 
+                .label {
+                    display: none;
+                }
+
                 input {
                     border: none;
                     font-size: 1.4rem;
+                    height: 50px;
 
                     &:focus {
                         .box-shadow(none);
@@ -264,6 +269,8 @@
             }
 
             .actions {
+
+
                 button {
                     &:before {
                         content:'\e906';
