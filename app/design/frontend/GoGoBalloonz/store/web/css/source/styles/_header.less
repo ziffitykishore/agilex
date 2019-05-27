@@ -467,8 +467,22 @@
 
 }
 
+@media screen and (max-width: @screen__xl){
+    .nav-sections {
 
-@media screen and (max-width: @screen__ls){
+        .navigation {
+
+            .level0 {
+                a {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: @screen__ls + 50){
     .page-header {
         .account-links {
             .signin-link {
@@ -513,6 +527,64 @@
     }
 }
 
+
+
+//
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l + 1) {
+
+    .page-header {
+
+        > .header {
+            height: 110px;
+        }
+
+        & + .breadcrumbs {
+            margin-top: 110px;
+        }
+
+        & + .page-main {
+            margin-top: 110px;
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .page-header {
+        height: 70px;
+        .logo {
+            max-width: 75px;
+        }
+        .account-links {
+            >.links {
+                margin-left: 10px;
+                .customer-name {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .location-track{
+            margin-left: 10px;
+        }
+
+        > .header {
+            height: 70px;
+        }
+
+        & + .breadcrumbs {
+            margin-top: 70px;
+        }
+
+        & + .page-main {
+            margin-top: 70px;
+        }
+    }
+
+}
 
 //
 //  Mobile
@@ -834,17 +906,7 @@
                 align-items: center;
                 justify-content: space-between;
                 padding-top: 0px;
-                height: 110px;
             }
-
-        & + .breadcrumbs {
-            margin-top: 110px;
-        }
-
-        & + .page-main {
-            margin-top: 110px;
-        }
-
     }
 
 
@@ -854,6 +916,10 @@
 
             .level0 {
                 position: relative;
+                
+                &.my-account-link {
+                    display: none;
+                }
 
                 &.active, &:hover {
                     > a {
