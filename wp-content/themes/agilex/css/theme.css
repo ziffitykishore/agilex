@@ -5704,7 +5704,7 @@ div.wpcf7 .ajax-loader {
     position: absolute;
     background: #174a79;
     border-radius: 2px;
-    min-width: 150px;
+    width: auto !important;
     opacity: 0;
     visibility: hidden;
     transition: all 0.5s ease 0s;
@@ -6463,4 +6463,29 @@ form.jobpost-form .form-group .form-control {
     line-height: normal;
     white-space: normal;
     height: auto;
+}
+
+
+.social_sharing-content .social-sharing {
+    justify-content: normal;
+}
+
+.social-sharing a[href*="facebook"]:before {
+    content: '\f230';
+    font-family: 'FontAwesome';
+}
+
+.social-sharing a[href*="twitter"]:before {
+    content: '\f099';
+    font-family: 'FontAwesome';
+}
+
+.social-sharing a[href*="linkedin"]:before {
+    content: "\f08c";
+    font-family: 'FontAwesome';
+}
+
+.social-sharing a[href*="pinterest"]:before {
+    content: '\f0d2';
+    font-family: 'FontAwesome';
 }
