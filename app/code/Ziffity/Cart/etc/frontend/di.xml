@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="deliveryDate" xsi:type="object">Ziffity\Cart\Block\Checkout\LayoutProcessorDisplay</item>
+            </argument>
+        </arguments>
+    </type>    
+    <type name="Magento\Checkout\Block\Cart\Totals">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="deliveryDate" xsi:type="object">Amasty\Deliverydate\Block\Checkout\LayoutProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Amasty\Deliverydate\Block\Checkout\LayoutProcessor" type="Ziffity\Cart\Block\Checkout\LayoutProcessor"/>
+</config>
