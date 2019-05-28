@@ -10,15 +10,31 @@
         <title>Contact Us</title>
     </head>
     <body>
+
+
         <referenceContainer name="content">
-            <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml">
-                <container name="form.additional.info" label="Form Additional Info"/>
+            <block class="Magento\Cms\Block\Block" name="contact-title" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">contact-title</argument>
+                </arguments>
             </block>
 
+            <container name="contact.us.form.address" htmlClass="form-wrapper" htmlTag="div">
+            <block class="Magento\Cms\Block\Block" name="contact-info">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">contact-info</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Contact\Block\ContactForm" name="contactForm" template="Magento_Contact::form.phtml" after="contact-info">
+                <container name="form.additional.info" label="Form Additional Info"/>
+            </block>
+            </container>
 
             <container name="contact.us.googlemap.wrapper" htmlClass="map-wrap" htmlTag="div" after="contact.us.form.wrapper">
                 <block class="Magento\Framework\View\Element\Template" name="contact.us.googlemap" template="Magento_Contact::map.phtml"/>
             </container>
         </referenceContainer>
+
+            <referenceContainer name="page.main.title" remove="true"/>
     </body>
 </page>
