@@ -149,6 +149,15 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         });
 
 
+        $('.navigation .parent > a').on('click', function (){
+            $(this).closest('.parent').toggleClass('active-slide');
+        });
+
+        $('.nav-toggle').on('click', function() {
+            $('body').toggleClass('nav-open');
+        })
+
+
 
 
         //global variables
@@ -172,6 +181,8 @@ define(['jquery', 'slick', 'scroller'], function ($) {
                 accordionFooter('enable');
 
                 $('.location-track').appendTo('.nav-sections');
+
+
 
                 responsiveflag = true;
             }

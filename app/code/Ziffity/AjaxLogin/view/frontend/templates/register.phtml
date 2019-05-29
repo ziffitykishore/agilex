@@ -3,7 +3,7 @@
 /** @var \Ziffity\AjaxLogin\Block\Form\Register $block */
 
 if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->getRegistration()->isAllowed()): ?>
-    <div id="customer-popup-register" class="customer-popup-register">
+    <div id="customer-popup-register" class="customer-popup-register form-login">
         <form class="create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="customer-popup-form-register" enctype="multipart/form-data" autocomplete="off" data-mage-init='{"validation":{}}'>
             <?php echo $block->getBlockHtml('formkey'); ?>
             <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
