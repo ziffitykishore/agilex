@@ -533,7 +533,7 @@
 //  Tablet
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l + 1) {
+@media screen and (min-width: @screen__l + 1) {
 
     .page-header {
 
@@ -552,7 +552,7 @@
 
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+@media screen and (max-width: @screen__l) {
     .page-header {
         height: 70px;
         .logo {
