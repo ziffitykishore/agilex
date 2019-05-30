@@ -1,0 +1,42 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: isBothPricesDisplayed() -->
+<div class="totals sub excl">
+    <p class="mark">
+        <span data-bind="i18n: title"></span>
+        <span data-bind="i18n: excludingTaxMessage"></span>
+    </p>
+    <p class="amount">
+        <span class="price" data-bind="text: getValue(), attr: {'data-th': excludingTaxMessage}"></span>
+    </p>
+</div>
+<div class="totals sub incl">
+    <p class="mark">
+        <span data-bind="i18n: title"></span>
+        <span data-bind="i18n: includingTaxMessage"></span>
+    </p>
+    <p class="amount">
+        <span class="price" data-bind="text: getValueInclTax(), attr: {'data-th': includingTaxMessage}"></span>
+    </p>
+</div>
+<!-- /ko -->
+<!-- ko if: !isBothPricesDisplayed() && isIncludingTaxDisplayed() -->
+<div class="totals sub">
+    <p data-bind="i18n: title" class="mark"></p>
+    <p class="amount">
+        <span class="price" data-bind="text: getValueInclTax(), attr: {'data-th': title}"></span>
+    </p>
+</div>
+<!-- /ko -->
+<!-- ko if: !isBothPricesDisplayed() && !isIncludingTaxDisplayed() -->
+<div class="totals sub">
+    <p data-bind="i18n: title" class="mark"></p>
+    <p class="amount">
+        <span class="price" data-bind="text: getValue(), attr: {'data-th': title}"></span>
+    </p>
+</div>
+<!-- /ko -->
