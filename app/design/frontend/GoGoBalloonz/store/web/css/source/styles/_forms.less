@@ -92,6 +92,32 @@
     }*/
 
 
+    .fieldset {
+        .field.date ._has-datepicker, .field-dob ._has-datepicker, .form-giftregistry-search .fields-specific-options .datetime-picker {
+            margin-right: 0;
+            width: 100%;
+        }
+
+
+
+        .field {
+            .control {
+                position: relative;
+            }
+
+
+
+
+            ._has-datepicker {
+                padding-right: 30px;
+                & ~ .ui-datepicker-trigger {
+                    position: absolute;
+                    right: 8px;
+                    top: 12px;
+                }
+            }
+        }
+    }
 
 
 }

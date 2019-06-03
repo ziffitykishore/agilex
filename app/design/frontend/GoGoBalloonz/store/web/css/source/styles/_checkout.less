@@ -4,50 +4,21 @@
 
 & when (@media-common = true) {
 
-
-
-
-    .password-strength-meter {
-        &:before {
-            .transition(all 0.5s ease 0s);
-        }
-    }
-
-    .customer-account-login,
-    .customer-account-create,
-    .customer-account-forgotpassword,
-    .account,
-    .customer-account-index,
-    .wishlist-index-index{
-        .page-main {
+    .checkout-index-index {
+        .checkout-container {
             .container-lg();
         }
 
-        .page-title-wrapper {
-            .page-title {
-                .lib-css(color, @color-blue);
-            }
-        }
-    }
-
-
-    .account{
-        .sidebar-main {
-            .block-collapsible-nav {
-                .content {
-                    .lib-css(background, @color-aliceblue);
-                }
-                .item {
+        .field {
+            .control._with-tooltip {
+                input {
+                    margin-right: 0;
                     width: 100%;
-                    a {
-                        width: inherit;
-                    }
+                }
 
-                    &.current {
-                        > strong {
-                            border-left-color: @color-blue;
-                        }
-                    }
+                .field-tooltip {
+                    right: 8px;
+                    top: 8px;
                 }
             }
         }

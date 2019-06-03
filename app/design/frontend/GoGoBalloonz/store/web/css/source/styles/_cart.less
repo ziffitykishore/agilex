@@ -157,8 +157,48 @@
 
 
         .cart-summary {
+            padding: 0;
+            background: @color-aliceblue;
+            .summary.title {
+                .lib-css(background, @color-sky-blue);
+                .lib-css(color, @color-white);
+                padding: 15px;
+                font-size: 1.4rem;
+                font-weight:  700;
+                margin: 0;
+                .br-radius(5px 5px 0 0);
+
+            }
             #block-shipping {
                 display: none;
+            }
+
+            .cart-totals {
+                padding: 15px;
+                max-width: 350px;
+                margin: 0 auto;
+                border-top: none;
+
+                .table-caption {
+                    display: none;
+                }
+
+                .nav-tabs {
+                    border: none;
+                }
+
+                .nav-item {
+                    .nav-link {
+                        padding: 15px 20px;
+                        border: none;
+                    }
+                }
+
+
+                .tab-content {
+                    background: @color-white;
+                    padding: 20px;
+                }
             }
         }
     }

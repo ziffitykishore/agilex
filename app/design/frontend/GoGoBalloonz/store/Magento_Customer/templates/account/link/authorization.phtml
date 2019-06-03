@@ -14,7 +14,7 @@ if ($block->isLoggedIn()) {
 <?php
 if ($block->isLoggedIn()) {?>
     <?php if ($block->getWrapper()=='ul') {?>
-        <li class="level0 my-account-link"><a href="#">My Account</a>
+        <li class="level0 my-account-link parent"><a href="#">My Account</a>
         <ul class="level0 submenu">
     <?php  }?>            
         <li>
@@ -57,7 +57,7 @@ if (!$block->isLoggedIn()) { ?>
     <li class="level0 signin-link <?= $block->getDisplay() ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
         <a href="javascript:void(0);" >
             <span class="icon-user"></span>
-            <strong><?= __('My Account') ?></strong>
+            <strong><?= __('Sign In') ?></strong>
         </a>
     </li>
 <?php }?>

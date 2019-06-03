@@ -149,13 +149,8 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         });
 
 
-        $('.navigation .parent > a').on('click', function (){
-            $(this).closest('.parent').toggleClass('active-slide');
-        });
 
-        $('.nav-toggle').on('click', function() {
-            $('body').toggleClass('nav-open');
-        })
+
 
 
 
@@ -174,6 +169,22 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         }
 
 
+
+
+        $('.navigation .parent > a').on('click', function (){
+            $(this).closest('.parent').toggleClass('active-slide');
+        });
+
+        $('.nav-toggle').on('click', function(){
+            var parentLi = $('.navigation .parent');
+            if (parentLi.hasClass('active-slide')) {
+                parentLi.removeClass('active-slide');
+            }
+        });
+
+
+
+
         function responsiveResize() {
 
             if (($(window).width()) <= 768 && responsiveflag == false)
@@ -184,12 +195,29 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
 
 
+                $('.navigation .parent').each(function(){
+
+                    //var icon = '<span class="icon icon-angle-right"></span>';
+
+                    $(this).find('> a').click(function(e){
+                        e.preventDefault();
+                    });
+
+                    if(!$(this).find('.icon').length){
+                        //$(icon).appendTo($(this));
+                    }
+
+                });
+
+
+
                 responsiveflag = true;
             }
             else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
-                $('.location-track').insertBefore('.account-links')
+                $('.location-track').insertBefore('.account-links');
+                $('.navigation .parent .icon').remove();
                 responsiveflag = false;
             }
 

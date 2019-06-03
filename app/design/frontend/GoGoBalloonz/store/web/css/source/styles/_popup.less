@@ -233,7 +233,27 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1 ) {
+    .modals-wrapper {
+        .modal-popup.popup-modal {
+            .modal-content {
+
+                .form-create-account {
+                    .fieldset {
+                        .field {
+                            width: 100%;
+                            padding-left: 15px;
+                            padding-right: 15px;
+                        }
+                    }
+
+                    .actions-toolbar > * {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
 
 }
 
