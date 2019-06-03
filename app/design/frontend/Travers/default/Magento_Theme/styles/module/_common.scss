@@ -53,10 +53,10 @@ body {
     }
 
     .logo svg {
-        height: 25px;
+        height: 35px;
 
         @include min-screen($mobile-nav__breakpoint) {
-            height: 45px;
+            height: 55px;
         }
     }
 
@@ -126,7 +126,7 @@ body {
 
             svg {
                 width: 150px;
-                margin-top: 15px;
+                margin-top: $indent__s;
             }
 
             @include min-screen($mobile-nav__breakpoint) {
