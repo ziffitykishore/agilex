@@ -11,9 +11,6 @@
         <img src="<?= $block->getLayout()->getBlock('logo')->getLogoSrc() ?>" alt="Gogoballonz"/>
 
     </div>
-        <div class="contact-info col-12 col-md-6">
-            <a href="tel:469-555-1212"><span class="icon-phone"></span> (469)-555-1212</a>
-            <a href="mailto:hi@gogoballonz.com"><span class="icon-envelope"></span> hi@gogoballoonz.com</a>
-        </div>
+<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('footer-top')->toHtml(); ?>
     </div>
 </div>
