@@ -47,7 +47,6 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
     const MVP = 'no';
     const TEST_TYPE = 'extended_acceptance_test';
     const SEVERITY = 'S1';
-    const STABLE = 'no';
     /* end tags */
 
     /**
@@ -93,13 +92,14 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
      * Creation for assign Related Cart and Catalog Rules to BannerEntity test.
      *
      * @param Banner $banner
-     * @param Customer|string $customer
-     * @param CustomerSegment|string $customerSegment
      * @param CmsPage $cmsPage
      * @param string $catalogPriceRule
      * @param string $cartPriceRule
+     * @param Customer|string $customer
+     * @param CustomerSegment|string $customerSegment
      * @param string $widget
      * @return array
+     * @throws \Exception
      */
     public function test(
         Banner $banner,
@@ -128,10 +128,10 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
         /** @var \Magento\Banner\Test\Block\Adminhtml\Banner\Edit\Tab\RelatedPromotions $tab */
         $tab = $this->bannerNew->getBannerForm()->getTab('related_promotions');
         if (!empty($rules['banner_sales_rules'])) {
-            $tab->getCartPriceRulesGrid()->searchAndSelect(['id' => $rules['banner_sales_rules']]);
+            $tab->selectRelatedCartPriceRule(['id' => $rules['banner_sales_rules']]);
         }
         if (!empty($rules['banner_catalog_rules'])) {
-            $tab->getCatalogPriceRulesGrid()->searchAndSelect(['id' => $rules['banner_catalog_rules']]);
+            $tab->selectRelatedCatalogPriceRule(['id' => $rules['banner_catalog_rules']]);
         }
         $this->bannerNew->getPageMainActions()->save();
 
@@ -258,7 +258,7 @@ class AssignRelatedPromotionsToBannerEntityWithCustomerSegmentTest extends Injec
                 'data' => [
                     'parameters' => [
                         'entities' => [$banner],
-                        'display_mode' => 'Specified Banners',
+                        'display_mode' => 'Specified Dynamic Blocks',
                     ],
                 ]
             ]

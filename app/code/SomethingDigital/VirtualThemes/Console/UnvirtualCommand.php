@@ -33,10 +33,11 @@ class UnvirtualCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $area = $input->getOption('area');
-        if (count($input->getArgument('theme')) == 0) {
+        $themes = (array) $input->getArgument('theme');
+        if (count($themes) == 0) {
             $this->processor->makeAllPhysical($area);
         }
-        foreach ($input->getArgument('theme') as $theme) {
+        foreach ($themes as $theme) {
             $this->processor->makePhysical($area, $theme);
         }
 

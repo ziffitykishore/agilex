@@ -84,8 +84,10 @@ class CleanerTest extends \PHPUnit\Framework\TestCase
      * Checks a case when cleaner executed to remove old updates.
      *
      * @magentoDataFixture Magento/Staging/_files/staging_entity_with_updates.php
+     *
+     * @return void
      */
-    public function testRemoveOldUpdates()
+    public function testRemoveOldUpdates(): void
     {
         $this->versionHistory->setCurrentId(strtotime('+15 minutes'));
         $this->cleaner->execute();
@@ -93,9 +95,12 @@ class CleanerTest extends \PHPUnit\Framework\TestCase
         $this->searchCriteriaBuilder->addFilter('start_time', null, 'notnull');
         $items = $this->updateRepository->getList($this->searchCriteriaBuilder->create())
             ->getItems();
-        $nameList = array_map(function (UpdateInterface $update) {
-            return $update->getName();
-        }, $items);
+        $nameList = array_map(
+            function (UpdateInterface $update) {
+                return $update->getName();
+            },
+            $items
+        );
 
         self::assertEquals(
             [

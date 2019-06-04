@@ -13,7 +13,6 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\ObjectManagerInterface;
 use Magento\GiftCardAccount\Api\Data\GiftCardAccountInterface;
 use Magento\GiftCardAccount\Api\GiftCardAccountRepositoryInterface;
-use Magento\GiftCardAccount\Model\Giftcardaccount;
 use Magento\Sales\Api\CreditmemoRepositoryInterface;
 use Magento\Sales\Api\Data\CreditmemoInterface;
 use Magento\Sales\Api\Data\OrderInterface;
@@ -131,7 +130,7 @@ class CreditmemoSaveAfterTest extends \PHPUnit\Framework\TestCase
      * @param float $customerBalanceRefunded
      * @param int $expectedMessages
      * @param array $expectedAmount
-     * @magentoDataFixture  Magento/GiftCardAccount/_files/creditmemo_with_gift_card_account.php
+     * @magentoDataFixture Magento/GiftCardAccount/_files/creditmemo_with_gift_card_account.php
      * @magentoConfigFixture customer/magento_customerbalance/is_enabled 1
      * @dataProvider giftCardDataProvider
      */

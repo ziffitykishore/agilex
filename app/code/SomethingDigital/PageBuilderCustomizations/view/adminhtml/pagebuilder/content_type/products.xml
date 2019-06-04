@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
+    <type name="products" preview_component="SomethingDigital_PageBuilderCustomizations/js/content-type/products/preview">
+        <appearances>
+            <appearance name="grid">
+                <elements>
+                    <element name="main">
+                        <attribute name="is_slider" source="data-is-slider"/>
+                        <attribute name="slides_to_show" source="data-slides-to-show"/>
+                        <attribute name="slides_to_show_mobile" source="data-slides-to-show-mobile"/>
+                        <attribute name="slides_to_show_tablet" source="data-slides-to-show-tablet"/>
+                        <attribute name="products_autoplay" source="data-products-autoplay"/>
+                        <attribute name="products_autoplay_speed" source="data-products-autoplay-speed"/>
+                        <attribute name="products_fade" source="data-products-fade"/>
+                        <attribute name="products_is_infinite" source="data-products-infinite-loop"/>
+                        <attribute name="products_show_arrows" source="data-products-show-arrows"/>
+                        <attribute name="products_show_dots" source="data-products-show-dots"/>
+                    </element>
+                </elements>
+            </appearance>
+        </appearances>
+    </type>
+</config>

@@ -3,10 +3,17 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
+declare(strict_types=1);
+
 namespace Magento\TargetRule\Model\ResourceModel\Rule;
 
 use Magento\TargetRule\Model\ResourceModel\Rule\Collection as RuleCollection;
+use Magento\TestFramework\Helper\Bootstrap;
 
+/**
+ * Test for Magento\TargetRule\Model\ResourceModel\Rule\Collection
+ */
 class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -20,7 +27,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $this->collection = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
+        $this->collection = Bootstrap::getObjectManager()->create(
             RuleCollection::class
         );
     }
@@ -28,8 +35,10 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
     /**
      * @magentoDataFixture Magento/TargetRule/_files/upsell_rule_with_customer_segment.php
      * @magentoDbIsolation enabled
+     *
+     * @return void
      */
-    public function testCollectionContainsCustomerSegmentData()
+    public function testCollectionContainsCustomerSegmentData(): void
     {
         $this->collection->addIsActiveFilter()->setPriorityOrder()->setFlag('do_not_run_after_load', true);
 

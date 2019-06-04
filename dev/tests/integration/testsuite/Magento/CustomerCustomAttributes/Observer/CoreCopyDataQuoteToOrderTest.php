@@ -14,11 +14,9 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event;
 use Magento\Quote\Model\Quote;
 use Magento\Sales\Model\Order;
-use Magento\TestFramework\Helper\Bootstrap;
-use Magento\Eav\Api\AttributeRepositoryInterface;
 
 /**
- * Test for converting quote customer custom attributes to order customer custom attributes.
+ * Test for converting quote customer custom attributes to order customer custom attributes
  *
  * @magentoDbIsolation enabled
  */
@@ -59,16 +57,16 @@ class CoreCopyDataQuoteToOrderTest extends \PHPUnit\Framework\TestCase
      */
     protected function setUp()
     {
-        $this->objectManager = Bootstrap::getObjectManager();
+        $this->objectManager = \Magento\TestFramework\Helper\Bootstrap::getObjectManager();
         $this->event = $this->objectManager->create(Event::class);
         $this->observer = $this->objectManager->create(Observer::class);
-        $this->model = $this->objectManager->create(
+        $this->model = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             \Magento\CustomerCustomAttributes\Observer\CoreCopyDataQuoteToOrder::class
         );
     }
 
     /**
-     * Test for converting quote customer custom attributes to order customer custom attributes.
+     * Test for converting quote customer custom attributes to order customer custom attributes
      *
      * @magentoDataFixture Magento/Sales/_files/quote.php
      * @magentoDataFixture Magento/Sales/_files/order.php
@@ -77,8 +75,8 @@ class CoreCopyDataQuoteToOrderTest extends \PHPUnit\Framework\TestCase
      */
     public function testExecute()
     {
-        /** @var AttributeRepositoryInterface $eavRepository */
-        $eavRepository = $this->objectManager->get(AttributeRepositoryInterface::class);
+        /** @var \Magento\Eav\Api\AttributeRepositoryInterface $eavRepository */
+        $eavRepository = $this->objectManager->get(\Magento\Eav\Api\AttributeRepositoryInterface::class);
         $attribute = $eavRepository->get('customer', 'test_select_code');
         $selectOptions = [];
         foreach ($attribute->getOptions() as $option) {
@@ -86,7 +84,7 @@ class CoreCopyDataQuoteToOrderTest extends \PHPUnit\Framework\TestCase
                 $selectOptions[$option->getLabel()] = $option->getValue();
             }
         }
-        $this->order = $this->objectManager->get(Order::class);
+        $this->order = $this->objectManager->get(\Magento\Sales\Model\Order::class);
         $this->order->loadByIncrementId('100000001');
         $this->event->setData('order', $this->order);
 
@@ -108,10 +106,12 @@ class CoreCopyDataQuoteToOrderTest extends \PHPUnit\Framework\TestCase
     {
         /** @var SearchCriteriaBuilder $searchCriteriaBuilder */
         $searchCriteriaBuilder = $this->objectManager->get(SearchCriteriaBuilder::class);
-        $searchCriteria = $searchCriteriaBuilder->addFilter('reserved_order_id', $reservedOrderId)->create();
+        $searchCriteria = $searchCriteriaBuilder->addFilter('reserved_order_id', $reservedOrderId)
+            ->create();
         /** @var CartRepositoryInterface $repository */
         $repository = $this->objectManager->get(CartRepositoryInterface::class);
-        $items = $repository->getList($searchCriteria)->getItems();
+        $items = $repository->getList($searchCriteria)
+            ->getItems();
 
         return array_pop($items);
     }
