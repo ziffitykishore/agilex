@@ -7,14 +7,6 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-    
-        <!-- Home slider Begin -->
-        <referenceContainer name="page.top">
-            <container name="home.banner" htmlClass="home-banner" htmlTag="div" before="-">
-                <block class="Magento\Framework\View\Element\Template" name="home.slide" template="Magento_Theme::html/home_slider.phtml" />
-            </container>
-        </referenceContainer>
-        <!-- Home slider End -->
         <!-- Home content Begin -->
         <referenceContainer name="content">
             <block class="Magento\Framework\View\Element\Template" name="home.content" template="Magento_Theme::html/home.phtml" />
