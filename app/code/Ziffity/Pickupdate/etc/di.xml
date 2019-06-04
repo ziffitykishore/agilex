@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pickupdate_holidays_listing_data_source" xsi:type="string">Ziffity\Pickupdate\Model\ResourceModel\Holidays\Grid\Collection</item>
+                <item name="pickupdate_dinterval_listing_data_source" xsi:type="string">Ziffity\Pickupdate\Model\ResourceModel\Dinterval\Grid\Collection</item>
+                <item name="pickupdate_tinterval_listing_data_source" xsi:type="string">Ziffity\Pickupdate\Model\ResourceModel\Tinterval\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Model\OrderRepository">
+        <plugin sortOrder="1" name="ziffityPickupdateOrderRepository" type="\Ziffity\Pickupdate\Plugin\Order\OrderRepositoryPlugin"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Email\Sender\OrderSender">
+        <plugin sortOrder="1" name="ziffityPickupdateOrderSender" type="Ziffity\Pickupdate\Plugin\Order\OrderSenderPlugin"/>
+    </type>
+    <virtualType name="Ziffity\Pickupdate\Model\ResourceModel\Holidays\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ziffity_pickupdate_holidays</argument>
+            <argument name="resourceModel" xsi:type="string">Ziffity\Pickupdate\Model\ResourceModel\Holidays</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Ziffity\Pickupdate\Model\ResourceModel\Dinterval\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ziffity_pickupdate_dinterval</argument>
+            <argument name="resourceModel" xsi:type="string">Ziffity\Pickupdate\Model\ResourceModel\Dinterval</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Ziffity\Pickupdate\Model\ResourceModel\Tinterval\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ziffity_pickupdate_tinterval</argument>
+            <argument name="resourceModel" xsi:type="string">Ziffity\Pickupdate\Model\ResourceModel\Tinterval</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Ziffity\Pickupdate\Ui\Component\Listing\Column\MonthWithEach" type="Ziffity\Pickupdate\Ui\Component\Listing\Column\Month">
+        <arguments>
+            <argument name="eachMonthAvailable" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Checkout\Model\ShippingInformationManagement">
+        <plugin name="save-in-quote" type="Ziffity\Pickupdate\Plugin\Checkout\ShippingInformationManagement"/>
+    </type>
+    <type name="Magento\Sales\Block\Items\AbstractItems">
+        <plugin name="Ziffity_Pickupdate::OrderEmail" type="Ziffity\Pickupdate\Plugin\Order\Email" />
+    </type>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="pickupdateSaveOrder" type="Ziffity\Pickupdate\Plugin\Order\OrderSave"/>
+    </type>
+    <type name="Magento\Sales\Model\Order\Pdf\Invoice">
+        <plugin name="Ziffity_Pickupdate::PrintInvoice" type="Ziffity\Pickupdate\Plugin\Order\InvoicePdf" />
+    </type>
+    <type name="Magento\Sales\Model\Order\Pdf\Shipment">
+        <plugin name="Ziffity_Pickupdate::PrintShipment" type="Ziffity\Pickupdate\Plugin\Order\ShipmentPdf" />
+    </type>
+</config>

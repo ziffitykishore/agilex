@@ -1,0 +1,7 @@
+</section><section class="admin__page-section Ziffity-pickupdate">
+    <div class="admin__page-section-title">
+        <span class="title"><?php echo __('Pickup Information') ?></span>
+    </div>
+    <?php foreach ($this->getFormElements() as $element): ?>
+        <?php echo $element->toHtml(); ?>
+    <?php endforeach; ?>

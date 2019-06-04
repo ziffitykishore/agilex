@@ -1,0 +1,24 @@
+<?php /** @var $block \Ziffity\Pickupdate\Block\Sales\Order\Info\Pickupdate */ ?>
+<?php /** @var $list array */ ?>
+<?php if (!empty($list)) : ?>
+    <div class="block ">
+        <div class="block-title"><strong><?php /* @noEscape */ echo __('Pickup Date') ?></strong></div>
+        <div class="block-content">
+            <div class="box">
+                <?php foreach ($list as $fieldCode => $field) : ?>
+                <div class="box-content">
+                    <p><?php /* @noEscape */ echo $field['label']; ?>
+                        <?php echo $block->escapeHtml($field['value']); ?>
+                        <?php if ($block->isFieldEditable($fieldCode)) : ?>
+                            <a href="<?php /* @escapeNotVerified */ echo $block->getEditUrl() ?>">
+                                <?php /* @noEscape */ echo __('Edit') ?>
+                            </a>
+                        <?php endif; ?>
+                    </p>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+

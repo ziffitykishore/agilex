@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="pickupdate_admin_email_template" label="Pickup Date Admin Notification" file="ziffity_pickupdate_notification_email.html" type="html" module="Ziffity_Pickupdate" area="adminhtml"/>
+    <template id="pickupdate_general_email_template" label="Pickup Date Notification" file="ziffity_pickupdate_notification_email.html" type="html" module="Ziffity_Pickupdate" area="frontend"/>
+    <template id="pickupdate_reminder_email_template" label="Pickup Date Reminder" file="ziffity_pickupdate_reminder_email.html" type="html" module="Ziffity_Pickupdate" area="frontend"/>
+    <template id="pickupdate_create_custom_template" label="Pickup Date Custom Template" file="ziffity_pickupdate_custom_template.html" type="html" module="Ziffity_Pickupdate" area="frontend"/>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ziffity\Pickupdate\Observer\Order\Place\Before" type="Ziffity\PickupdateOR\Observer\Order\Place\Before"/>
+    <preference for="Ziffity\Pickupdate\Plugin\Order\OrderSave" type="Ziffity\PickupdateOR\Plugin\Order\OrderSave"/>
+    <preference for="Ziffity\Pickupdate\Model\Pickupdate" type="Ziffity\PickupdateOR\Model\Pickupdate"/>
+    <preference for="Ziffity\Pickupdate\Model\PickupDate\Validator" type="Ziffity\PickupdateOR\Model\PickupDate\Validator"/>
+    <preference for="Ziffity\Pickupdate\Model\PickupdateConfigProvider" type="Ziffity\PickupdateOR\Model\PickupdateConfigProvider"/>
+    <preference for="Ziffity\Pickupdate\Model\ResourceModel\Pickupdate\Collection" type="Ziffity\PickupdateOR\Model\ResourceModel\Pickupdate\PickupCollection"/>    
+</config>

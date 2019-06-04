@@ -1,0 +1,29 @@
+<!-- ko if: (isModuleEnabled()) -->
+<ul class="nav nav-tabs" id="delivery-ul">
+  <li><a data-toggle="tab" href="#deliverydate" class="shipping-type-li">Delivery</a></li>
+  <li><a data-toggle="tab" href="#pickupdate" class="shipping-type-li">Pickup</a></li>
+</ul>
+<div class="tab-content" id="delivery-tabs">
+    <div id="pickupdate" class="tab-pane">
+        <form id="pickup-form">
+        <div class="fieldset">
+            <!-- ko if: (showGeneralComment()) -->
+                <!-- ko if: (styleMagentoNotice()) -->
+                    <div class="messages">
+                        <div class="message message-notice notice">
+                            <span class="value" data-bind="html: showGeneralComment()"></span>
+                        </div>
+                    </div>
+                <!--/ko-->
+                <!-- ko if: (!styleMagentoNotice()) -->
+                    <span class="value ziffity-pickupdate-comment" data-bind="html: showGeneralComment()"></span>
+                <!--/ko-->
+            <!--/ko-->
+            <each args="data: elems, as: 'element'">
+                <render if="hasTemplate()"/>
+            </each>
+        </div>
+        </form>
+      </div>
+</div>
+<!--/ko-->

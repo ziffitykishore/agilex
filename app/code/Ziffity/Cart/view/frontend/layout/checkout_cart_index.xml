@@ -28,7 +28,17 @@
                                     </item>
                                     <item name="children" xsi:type="array">
                                     </item>
-                                </item>                                                        
+                                </item>
+                                <item name="ziffity-pickup-date" xsi:type="array">
+                                    <item name="component" xsi:type="string">Ziffity_Pickupdate/js/checkout/pickupdate</item>
+                                    <item name="sortOrder" xsi:type="string">2</item>
+                                    <item name="displayArea" xsi:type="string">ziffity-pickup-date</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Ziffity_Pickupdate/pickupdate</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                    </item>
+                                </item>                                                          
                             </item>
                         </item>
                     </item>

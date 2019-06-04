@@ -1,0 +1,13 @@
+<!-- ko if: (isModuleEnabled()) -->
+<div class="shipping-pickup-date">
+    <!-- ko if: (getPickupDate()) -->
+    <!-- ko i18n: 'Pickup Date'--><!-- /ko -->: <span class="value" data-bind="text: getPickupDate()"></span><br/>
+    <!--/ko-->
+    <!-- ko if: (getPickupTime()) -->
+    <!-- ko i18n: 'Pickup Time'--><!-- /ko -->: <span class="value" data-bind="text: getPickupTime()"></span><br/>
+    <!--/ko-->
+    <!-- ko if: (getPickupComment()) -->
+    <!-- ko i18n: 'Pickup Comment'--><!-- /ko -->: <span class="value" data-bind="text: getPickupComment()"></span><br/>
+    <!--/ko-->
+</div>
+<!--/ko-->

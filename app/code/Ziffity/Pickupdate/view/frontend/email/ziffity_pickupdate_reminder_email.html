@@ -1,0 +1,29 @@
+<!--@subject Pickup Reminder for Order # {{var order.increment_id}} @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"var order.increment_id":"Order #",
+"var pickup.date":"Pickup Date",
+"var pickup.time":"Pickup Time Interval",
+"var pickup.comment":"Pickup Comments"}
+@-->
+
+<!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+{{template config_path="design/email/header_template"}}
+
+<h1 style="font-size:22px; font-weight:normal; line-height:22px; margin:0 0 11px 0;">Dear Admin,</h1>
+<p style="font-size:12px; line-height:16px; margin:0 0 16px 0;">Awaiting Pickup</p>
+<p style="border:1px solid #E0E0E0; font-size:12px; line-height:16px; margin:0; padding:13px 18px; background:#f9f9f9;">
+    Information:<br/>
+    <strong>Order #</strong>: {{var order.increment_id}}<br/>
+    <strong>Pickup Date</strong>: {{var pickup.date}}<br/>
+    <strong>Pickup Time Interval</strong>: {{var pickup.time}}<br/>
+    <strong>Pickup Comments</strong>:<br/>
+    {{var pickup.comment}}</br>
+</p>
+
+{{template config_path="design/email/footer_template"}}

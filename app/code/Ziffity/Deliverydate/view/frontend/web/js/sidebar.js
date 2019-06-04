@@ -20,24 +20,30 @@ define(
 
             getDeliveryDate: function() {
               var date = this.getLocalStorageData();
-               if (date['amdeliverydate_date'] != null) {
-                   return date['amdeliverydate_date'];
-               }
-                return '';
+              if (date !== null) {
+                if (date['amdeliverydate_date'] != null) {
+                    return date['amdeliverydate_date'];
+                }
+              }
+              return '';
             },
 
             getDeliveryTime: function() {
               var time = this.getLocalStorageData();
-               if (time['amdeliverydate_time'] != null) {
+              if (time !== null) {
+                if (time['amdeliverydate_time'] != null) {
                    return time['amdeliverydate_time'];
-               }
+                }
+             }
             },
 
             getDeliveryComment: function() {
               var comment = this.getLocalStorageData();
-               if (comment['amdeliverydate_comment'] != null) {
+              if (comment !== null) {
+                if (comment['amdeliverydate_comment'] != null) {
                    return comment['amdeliverydate_comment'];
-               }
+                }
+              }
                 return '';
             },
 

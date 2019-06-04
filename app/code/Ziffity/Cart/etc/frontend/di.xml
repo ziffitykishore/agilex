@@ -12,8 +12,10 @@
         <arguments>
             <argument name="layoutProcessors" xsi:type="array">
                 <item name="deliveryDate" xsi:type="object">Amasty\Deliverydate\Block\Checkout\LayoutProcessor</item>
+                <item name="pickupDate" xsi:type="object">Ziffity\Pickupdate\Block\Checkout\LayoutProcessor</item>
             </argument>
         </arguments>
     </type>
     <preference for="Amasty\Deliverydate\Block\Checkout\LayoutProcessor" type="Ziffity\Cart\Block\Checkout\LayoutProcessor"/>
+    <preference for="Ziffity\Pickupdate\Block\Checkout\LayoutProcessor" type="Ziffity\Cart\Block\Checkout\PickupLayoutProcessor"/>
 </config>
