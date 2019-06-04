@@ -459,7 +459,7 @@ define([
                 }
             });
 
-            subMenus = this.element.find('> a');
+            subMenus = this.element.find('.level-top');
             $.each(subMenus, $.proxy(function (index, item) {
                 var category = $(item).find('> a span').not('.ui-menu-icon').text(),
                     categoryUrl = $(item).find('> a').attr('href'),

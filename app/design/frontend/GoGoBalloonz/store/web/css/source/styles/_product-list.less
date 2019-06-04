@@ -4,6 +4,83 @@
 
 & when (@media-common = true) {
 
+
+    .account {
+        &.wishlist-index-index {
+            .products-grid {
+                .product-item-info, .product-item-info:hover {
+                    .product-item-inner {
+                        position: relative !important;
+                    }
+                }
+                .product-item-actions {
+                    .action {
+                        position: absolute;
+                        top: 85px;
+                        right: 0;
+
+                        & + .action {
+                            margin-right: 60px;
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    .catalogsearch-result-index {
+        .page-title-wrapper {
+            display: none;
+        }
+
+        .results {
+            .block {
+                padding: 15px;
+                margin-bottom: 0;
+                margin-top: -1px;
+                border-top:1px solid @color-light-blue;
+                .title {
+                    .lib-css(color, @color-blue);
+                }
+
+                .item {
+                    display: inline-block;
+
+                    a {
+                        .lib-css(background, @color-blue);
+                        .lib-css(color, @color-white);
+                        .br-radius(5px);
+                        padding: 5px;
+                    }
+
+                    & + .item {
+                        margin-left: 10px;
+                    }
+
+                }
+            }
+        }
+    }
+
+    .page-wrapper {
+
+        .sidebar {
+            .action.tocart {
+                .br-radius(5px);
+            }
+
+            .block-wishlist {
+                .product-items .product-item:hover {
+                    .box-shadow(none);
+                }
+            }
+        }
+
+
+    }
+
     .category-info {
         padding: 30px 0;
         .flex();
@@ -35,6 +112,7 @@
 
     .page-products {
         .products {
+            margin-top: 0;
             &-grid {
                 .product-item {
                     &-details {
@@ -339,7 +417,7 @@
                 margin-right: 0;
 
                 .modes-mode {
-                    padding: 18px;
+                    padding: 19px 18px;
                     background: transparent;
                     .box-shadow(none);
                     .br-radius(0);
@@ -383,6 +461,9 @@
         }
 
     }
+
+
+
 
 
 
@@ -574,6 +655,12 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .catalogsearch-result-index {
+        .page-title-wrapper {
+            display: none;
+        }
+
+    }
 
     .products-grid() {
         .product-items {
@@ -587,7 +674,19 @@
         .products-grid {
             margin-top:0;
             .products-grid();
+
+            .product-item {
+                .product-item-info {
+                    .product-item-inner {
+                       .actions-primary {
+                            display: none;
+                        }
+                    }
+                }
+            }
         }
+
+
 
         .columns {
             padding-top: 0;
@@ -649,6 +748,23 @@
 
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .account {
+        &.wishlist-index-index {
+            .products-grid {
+                .product-items {
+                    .product-item {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+    }
+
+
+}
+
 //
 //  Desktop
 //  _____________________________________________
@@ -685,7 +801,24 @@
 
 }
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+
+    .page-products.page-layout-2columns-left {
+        .columns {
+            .flex();
+            .column.main,
+            .sidebar-main{
+                -webkit-flex-basis: auto;
+                flex-basis: auto;
+                -webkit-flex-grow: initial;
+                flex-grow:initial;
+            }
+
+            #layered-filter-block {
+                height: 100%;
+            }
+        }
+    }
 
 }
 

@@ -169,15 +169,115 @@
                 .br-radius(5px 5px 0 0);
 
             }
+
+            .block {
+                > .title {
+                    &:after {
+                        font-family: 'luma-icons';
+                        content: '\e621';
+                    }
+                }
+
+
+
+                &.discount {
+
+                    .title {
+                        position: relative;
+                        padding-bottom: 20px;
+                        border-bottom: 1px solid @color-gray;
+                        .lib-css(color, @color-blue);
+
+                        &:after {
+                            font-family: 'luma-icons';
+                            content: '\e621';
+                            position: absolute;
+                            right: 0;
+                            top: 0px;
+                        }
+                        strong {
+                            display: block;
+                            margin: 0;
+                        }
+                    }
+                    .content {
+                        padding-bottom: 5px;
+                    }
+
+                    .coupon {
+                        margin-bottom: 0;
+                    }
+
+                    &.active {
+                        .title {
+                            &:after {
+                                content: '\e622';
+                            }
+                        }
+                    }
+                }
+            }
+
+            .cart-totals,
+            .discount,
+            .checkout-methods-items {
+                padding: 15px;
+                max-width: 350px;
+                margin: 0 auto;
+            }
+
+            .actions-toolbar > .primary {
+                .action.primary {
+                    .box-shadow(none) !important;
+                }
+            }
+
+
+            .checkout-methods-items {
+                .checkout{
+                    .button-red();
+                }
+            }
+
+
+
+
             #block-shipping {
                 display: none;
             }
 
             .cart-totals {
-                padding: 15px;
-                max-width: 350px;
-                margin: 0 auto;
                 border-top: none;
+
+
+                .table {
+                    margin-bottom: 0;
+                    .lib-css(color, @color-blue);
+
+                    th, td {
+                        border: none;
+                    }
+
+                    .totals {
+                        .flex();
+                        justify-content: space-between;
+                        align-items: center;
+
+
+                        td,
+                        th,
+                        p {
+                            background: transparent;
+                            border: none;
+                            margin-bottom: 0;
+                            padding: .2em;
+                            font-weight: normal;
+                            font-size: 1.4rem;
+                        }
+
+
+                    }
+                }
 
                 .table-caption {
                     display: none;
@@ -198,6 +298,10 @@
                 .tab-content {
                     background: @color-white;
                     padding: 20px;
+                    margin-bottom: 20px;
+                    .fieldset:last-child {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }

@@ -12,7 +12,7 @@
             .transition(all 0.5s ease 0s);
         }
     }
-
+    .cms-noroute-index,
     .customer-account-login,
     .customer-account-create,
     .customer-account-forgotpassword,
@@ -94,7 +94,15 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .account {
+        .block-collapsible-nav{
+            top: 0;
+        }
 
+        .page-title-wrapper {
+            margin-top: 30px;
+        }
+    }
 }
 
 //

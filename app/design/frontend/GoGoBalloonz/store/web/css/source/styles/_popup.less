@@ -106,8 +106,7 @@
                     }
 
                     div.mage-error[generated] {
-                        position: absolute;
-                        bottom: -18px;
+
                     }
                 }
 
@@ -193,9 +192,9 @@
                         .fieldset {
                             margin-left: -15px;
                             margin-right: -15px;
+                            .flex();
                             .field {
-                                float: left;
-                                width: 50%;
+                                .flex-width(50%);
                                 padding-left: 15px;
                                 padding-right: 15px;
                             }
@@ -238,12 +237,54 @@
         .modal-popup.popup-modal {
             .modal-content {
 
+
+            }
+
+
+
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m ) {
+    .modals-wrapper {
+        .modal-popup.popup-modal {
+            &.modal-slide._inner-scroll {
+                .modal-content {
+                    padding: 1.5rem;
+                }
+                .modal-inner-wrap{
+                    max-height: 72%;
+                    min-height: auto;
+                    width: 85%;
+
+                    .modal-header:before{
+                        width: 50px;
+                        height: 80px;
+                        top: -20px;
+                    }
+                }
+
+                .create-ac {
+                    .create {
+                        display: block;
+                    }
+                }
+
+                .customer-popup-forgot {
+                    .actions-toolbar {
+                        .primary,
+                        .secondary {
+                            width: 100%;
+                        }
+                    }
+                }
+
                 .form-create-account {
                     .fieldset {
                         .field {
-                            width: 100%;
-                            padding-left: 15px;
-                            padding-right: 15px;
+                            .flex-width(100%);
                         }
                     }
 
@@ -254,7 +295,6 @@
             }
         }
     }
-
 }
 
 //

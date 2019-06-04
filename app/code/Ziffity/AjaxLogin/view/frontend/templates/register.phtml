@@ -9,7 +9,7 @@ if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->ge
             <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
             <div class="messages"></div>
 
-            <fieldset class="fieldset create info account">
+            <div class="fieldset create info account">
                 <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend>
                 <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
                 <?php if ($block->isNewsletterEnabled()): ?>
@@ -60,12 +60,12 @@ if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->ge
                     </div>
                 </div>
 
-            </fieldset>
-            <fieldset class="fieldset create " data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+            </div>
+            <div class="fieldset create " data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
                 <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend>
 
 
-            </fieldset>
+            </div>
             <div class="actions-toolbar">
                 <div class="primary">
                     <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Create an Account') ?>"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></button>
