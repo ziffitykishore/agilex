@@ -15,6 +15,7 @@ use Magento\Swatches\Helper\Data;
 use Magento\Swatches\Helper\Media;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\Http\Context as HttpContext;
+use Magento\Framework\App\Filesystem\DirectoryList;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -41,7 +42,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         Data $swatchHelper,
         Media $swatchHelperMedia,
         Http $request,
-        HttpContext $httpContext
+        HttpContext $httpContext,
+        DirectoryList $directoryList
 
     ) {
         $this->coreRegistry = $registry;
@@ -55,6 +57,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->swatchHelperMedia = $swatchHelperMedia;
         $this->request = $request;
         $this->httpContext = $httpContext;
+        $this->directoryList = $directoryList;
     }
 
     /**
@@ -251,9 +254,14 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
 
                 foreach ($swatches as $key => $swatch) {
                     if ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_IMAGE) {
+                        if (file_exists($this->directoryList->getPath('pub').'/media/attribute/swatch'.$swatch['value'])) {
+                            $swatchImage = $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value']);
+                        } else {
+                            $swatchImage = '';
+                        }
                         $attr[$item->getAttributeCode()][] = [
                             'value' => $optionsLabels[$swatch['option_id']],
-                            'image_url' => $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value'])
+                            'image_url' => $swatchImage
                         ];
                     } elseif ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_COLOR) {
                         $attr[$item->getAttributeCode()][] = [
