@@ -147,8 +147,8 @@ class Pickupdate extends \Magento\Framework\View\Element\Template
                 'comment',
                 'textarea',
                 [
-                    'label' => __('Pickup Comments'),
-                    'title' => __('Pickup Comments'),
+                    'label' => __('Message Card'),
+                    'title' => __('Message Card'),
                     'name' => 'pickupdate[comment]',
                     'required' => false,
                     'style' => 'width: 40%',

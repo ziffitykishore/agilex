@@ -139,7 +139,7 @@ class Pickupdate extends \Magento\Framework\View\Element\Template
                         $label = __('Pickup Time Interval') . ':';
                         break;
                     case 'comment':
-                        $label = __('Pickup Comments') . ':';
+                        $label = __('Message Card') . ':';
                         $value = $pickupDate->getFormattedComment();
                         break;
                 }

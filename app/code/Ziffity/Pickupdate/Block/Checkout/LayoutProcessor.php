@@ -143,7 +143,7 @@ class LayoutProcessor implements LayoutProcessorInterface
 
                 $elements['pickupdate_comment'] = [
                     'component' => 'Magento_Ui/js/form/element/textarea',
-                    'label' => __('Pickup Comments'),
+                    'label' => __('Message Card'),
                     'sortOrder' => 202,
                     'validation' => $validation,
                     'dataScope' => 'shippingAddress.pickupdate_comment',

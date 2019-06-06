@@ -198,7 +198,7 @@ define(['jquery', 'slick', 'scroller'], function ($) {
                 $('.navigation .parent').each(function(){
 
                     //var icon = '<span class="icon icon-angle-right"></span>';
-
+                    $(this).find('> a').addClass('level-top')
                     $(this).find('> a').click(function(e){
                         e.preventDefault();
                     });

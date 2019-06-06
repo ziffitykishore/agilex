@@ -43,6 +43,24 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+
+    .opc-progress-bar-item{
+        &._active {
+            &:before {
+                .lib-css(background, @color-sky-blue);
+                .lib-css(border-color, @color-sky-blue);
+            }
+            > span {
+                &:before {
+                    .lib-css(background, @color-sky-blue);
+                }
+                &:before,
+                &:after {
+                    .lib-css(border-color, @color-sky-blue);
+                }
+            }
+        }
+    }
 
 }

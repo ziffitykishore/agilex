@@ -110,7 +110,7 @@ class Pickupdate extends \Magento\Framework\View\Element\Template
                     break;
                 case 'comment':
                     $fields[] = array('code' => 'comment',
-                        'label' => __('Pickup Comments'),
+                        'label' => __('Message Card'),
                         'value' => $pickupDate['comment']);
                     break;
             }
