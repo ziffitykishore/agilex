@@ -254,7 +254,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
 
                 foreach ($swatches as $key => $swatch) {
                     if ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_IMAGE) {
-                        if (file_exists($this->directoryList->getPath('pub').'/media/attribute/swatch/'.$swatch['value'])) {
+                        if (file_exists($this->directoryList->getPath('pub').'/media/attribute/swatch'.$swatch['value'])) {
                             $swatchImage = $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value']);
                         } else {
                             $swatchImage = '';
