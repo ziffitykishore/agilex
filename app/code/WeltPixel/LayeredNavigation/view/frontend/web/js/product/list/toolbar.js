@@ -3,8 +3,9 @@ define([
     "jquery/ui",
     "Magento_Theme/js/view/messages",
     "ko",
-    "Magento_Catalog/js/product/list/toolbar"
-], function ($, ui, messageComponent, ko) {
+    "weltpixel_quickview",
+    "Magento_Catalog/js/product/list/toolbar",
+], function ($, ui, messageComponent, ko,quickview) {
     /**
      * ProductListToolbarForm Widget - this widget is setting cookie and submitting form according to toolbar controls
      */
@@ -185,6 +186,7 @@ define([
             return $.param(paramData);
         },
         _updateContent: function (content) {
+
             $(this.options.productsToolbarControl).remove();
             if (content.products_list) {
                 $(this.options.productsListBlock).html(content.products_list);
@@ -205,6 +207,31 @@ define([
             }
             $(document).trigger("wpproductlabels:init");
             $('body').trigger('contentUpdated');
+            /* Fix for Quickview Issue */
+            $('.weltpixel-quickview').bind('click', function() {
+                var prodUrl = $(this).attr('data-quickview-url');
+                if (prodUrl.length) {
+                    quickview.displayContent(prodUrl);
+                }
+            });
+            /* Fix for Category Banner */
+            $('.category-info').each(function () {
+                var img = $(this).find("img");
+
+                if(img.length) {
+                    var height = img.height();
+                    var img_src = img.attr("src");
+
+                    $(this).css({
+                        "background-image": "url(" + img_src + ")",
+                        "background-size": "cover",
+                        "background-repeat": "no-repeat",
+                        "background-position": "center"
+                    });
+                }
+
+                img.hide();
+            });
         },
         reinitializeIas: function() {
             if(require.defined('ias') && window.ajaxCatalog == 'infiniteScroll') {
