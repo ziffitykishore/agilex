@@ -1,0 +1,18 @@
+<div class="location-track" data-bind="scope: 'location-selector'">
+<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+ 
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "location-selector": {
+                        "component": "Ziffity_LocationSelector/js/locator",
+                        "template" : "Ziffity_LocationSelector/locator"
+                    }
+                }
+            }
+        }
+    }
+</script>

@@ -17,7 +17,6 @@
         <move element="top.search" destination="header-wrapper" after="navigation.sections"/>
         <referenceContainer name="header.container" htmlClass="page-header header-wrapper">
             <referenceContainer name="header-wrapper" htmlClass="header">
-                <block class="Magento\Framework\View\Element\Template" name="location" template="Magento_Theme::location.phtml"/>
                 <container name="account-links"  htmlTag="div" htmlClass="account-links" after="location">
                     <block class="Magento\Framework\View\Element\Html\Links" name="header.links" >
                         <arguments>
