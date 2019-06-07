@@ -64,6 +64,7 @@ class ValidateCompany
             $resultRedirect->setUrl($this->redirect->error($url));
             return $resultRedirect;
         }
+        
         return $proceed();
     }
 }
