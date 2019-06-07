@@ -7,7 +7,7 @@ use Magento\Customer\Model\CustomerFactory;
 use SomethingDigital\CustomerValidation\Model\CustomerApi;
 use Psr\Log\LoggerInterface;
  
-class Data extends \Magento\Framework\App\Helper\AbstractHelper
+class Validation extends \Magento\Framework\App\Helper\AbstractHelper
 {
     private $customerFactory;
     private $customerApi;
@@ -45,5 +45,33 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $this->logger->alert($e);
         }
         return false;
+    }
+
+    public function validate($traversAccountId, $accountZipCode) {
+        $message = '';
+
+        do {
+            if (!empty($traversAccountId) && empty($accountZipCode)) {
+                $message = __(
+                    'Account Zip Code field can not be empty.'
+                );
+                break;
+            }
+            if (!empty($traversAccountId)) {
+                if ($this->isCustomerRegistered($traversAccountId)) {
+                    $message = __(
+                        'There is already an account with this account number.'
+                    );
+                    break;
+                }
+            }
+            if (!$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
+                $message = __(
+                    'Zip Code doesn\'t match customer number.'
+                );
+            }          
+        } while (false);
+
+        return $message;
     }
 }
