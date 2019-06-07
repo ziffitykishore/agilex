@@ -11,6 +11,9 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Customer\Model\Session;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use SomethingDigital\CustomerValidation\Model\CustomerApi;
+use Psr\Log\LoggerInterface;
+use SomethingDigital\CustomerValidation\Helper\Validation;
 
 class ValidateCustomer
 {
@@ -20,6 +23,9 @@ class ValidateCustomer
     private $redirect;
     private $customerSession;
     private $scopeConfig;
+    private $customerApi;
+    private $customerValidationHelper;
+    protected $logger;
 
     public function __construct(
         CustomerFactory $customerFactory,
@@ -28,7 +34,10 @@ class ValidateCustomer
         ResultFactory $result,
         RedirectInterface $redirect,
         Session $customerSession,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        CustomerApi $customerApi,
+        LoggerInterface $logger,
+        Validation $customerValidationHelper
     ) {
         $this->customerFactory = $customerFactory;
         $this->urlModel = $urlFactory->create();
@@ -37,6 +46,9 @@ class ValidateCustomer
         $this->redirect = $redirect;
         $this->customerSession = $customerSession;
         $this->scopeConfig = $scopeConfig;
+        $this->customerApi = $customerApi;
+        $this->logger = $logger;
+        $this->customerValidationHelper = $customerValidationHelper;
     }
 
     public function aroundExecute(CreatePost $subject, callable $proceed)
@@ -48,22 +60,19 @@ class ValidateCustomer
             ResultFactory::TYPE_REDIRECT
         );
         $traversAccountId = $subject->getRequest()->getParam('travers_account_id');
+        $accountZipCode = $subject->getRequest()->getParam('account_zip_code');
+        
+        $message = $this->customerValidationHelper->validate($traversAccountId, $accountZipCode);
 
-        if (!empty($traversAccountId)) {
-            $customerCollection = $this->customerFactory->create()->getCollection()
-                ->addAttributeToFilter('travers_account_id', $traversAccountId)
-                ->load();
-            foreach ($customerCollection as $customer) {
-                $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
-                $message = __(
-                    'There is already an account with this account number.'
-                );
-                $this->customerSession->setCustomerFormData($subject->getRequest()->getParams());
-                $this->messageManager->addError($message);
-                $resultRedirect->setUrl($this->redirect->error($url));
-                return $resultRedirect;
-            }
+        if ($message != '') {
+            $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
+            $this->customerSession->setCustomerFormData($subject->getRequest()->getParams());
+            $this->messageManager->addError($message);
+            $resultRedirect->setUrl($this->redirect->error($url));
+            return $resultRedirect;
         }
+
+
         return $proceed();
     }
 }

@@ -11,6 +11,7 @@ use Magento\Framework\App\Response\RedirectInterface;
 use Magento\Customer\Model\Session;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use SomethingDigital\CustomerValidation\Helper\Validation;
 
 class ValidateCompany
 {
@@ -20,6 +21,8 @@ class ValidateCompany
     private $redirect;
     private $customerSession;
     private $scopeConfig;
+    private $customerValidationHelper;
+    protected $logger;
 
     public function __construct(
         CustomerFactory $customerFactory,
@@ -28,7 +31,8 @@ class ValidateCompany
         ResultFactory $result,
         RedirectInterface $redirect,
         Session $customerSession,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        Validation $customerValidationHelper
     ) {
         $this->customerFactory = $customerFactory;
         $this->urlModel = $urlFactory->create();
@@ -37,6 +41,7 @@ class ValidateCompany
         $this->redirect = $redirect;
         $this->customerSession = $customerSession;
         $this->scopeConfig = $scopeConfig;
+        $this->customerValidationHelper = $customerValidationHelper;
     }
 
     public function aroundExecute(CreatePost $subject, callable $proceed)
@@ -48,21 +53,16 @@ class ValidateCompany
             ResultFactory::TYPE_REDIRECT
         );
         $traversAccountId = $subject->getRequest()->getParam('travers_account_id');
+        $accountZipCode = $subject->getRequest()->getParam('account_zip_code');
+        
+        $message = $this->customerValidationHelper->validate($traversAccountId, $accountZipCode);
 
-        if (!empty($traversAccountId)) {
-            $customerCollection = $this->customerFactory->create()->getCollection()
-                ->addAttributeToFilter('travers_account_id', $traversAccountId)
-                ->load();
-            foreach ($customerCollection as $customer) {
-                $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
-                $message = __(
-                    'There is already an account with this account number.'
-                );
-                $this->customerSession->setCustomerFormData($subject->getRequest()->getParams());
-                $this->messageManager->addError($message);
-                $resultRedirect->setUrl($this->redirect->error($url));
-                return $resultRedirect;
-            }
+        if ($message != '') {
+            $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
+            $this->customerSession->setCustomerFormData($subject->getRequest()->getParams());
+            $this->messageManager->addError($message);
+            $resultRedirect->setUrl($this->redirect->error($url));
+            return $resultRedirect;
         }
         return $proceed();
     }
