@@ -97,6 +97,7 @@
                         .product-item-name {
                             font-size: 14px;
                             font-weight: bold;
+                            max-width: 300px;
                         }
 
                         .cart-price {
@@ -185,8 +186,11 @@
                     .title {
                         position: relative;
                         padding-bottom: 20px;
+                        padding-top: 0;
                         border-bottom: 1px solid @color-gray;
+                        border-top: none;
                         .lib-css(color, @color-blue);
+                        margin-bottom: 10px;
 
                         &:after {
                             font-family: 'luma-icons';
@@ -206,6 +210,10 @@
 
                     .coupon {
                         margin-bottom: 0;
+
+                        .label {
+                            display: none;
+                        }
                     }
 
                     &.active {
@@ -229,6 +237,7 @@
             .actions-toolbar > .primary {
                 .action.primary {
                     .box-shadow(none) !important;
+                    .button();
                 }
             }
 
@@ -289,8 +298,33 @@
 
                 .nav-item {
                     .nav-link {
-                        padding: 15px 20px;
+                        padding: 15px 20px 15px 35px;
                         border: none;
+                        position: relative;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            width: 12px;
+                            height: 12px;
+                            .br-radius(50%);
+                            border: 2px solid @color-blue;
+                            left: 18px;
+                            top: 18px;
+                        }
+
+                        &.active {
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                background: @color-blue;
+                                width: 4px;
+                                height: 4px;
+                                left: 22px;
+                                top: 22px;
+                                .br-radius(50%);
+                            }
+                        }
                     }
                 }
 
@@ -328,6 +362,12 @@
             .cart-summary {
                 position: static;
                 padding-left: 0;
+
+                .cart-totals,
+                .discount,
+                .checkout-methods-items {
+                    max-width: none;
+                }
             }
 
             .form-cart {

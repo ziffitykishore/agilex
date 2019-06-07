@@ -44,7 +44,14 @@
                         width: inherit;
                     }
 
+                    .delimiter {
+                        display: none;
+                    }
+
                     &.current {
+                        a {
+                            border-color: @color-blue;
+                        }
                         > strong {
                             border-left-color: @color-blue;
                         }
@@ -83,8 +90,53 @@
 
 
 
+        .table td,
+        .table th{
+            width: auto;
+        }
+
+    .sales-order-view,
+    .sales-order-history {
+        table thead th {
+            .lib-css(background, @color-sky-blue);
+            .lib-css(color, @color-white);
+            border-color: @color-sky-blue;
+            border-bottom: none;
+            padding: 1rem;
+        }
+
+        .table tbody+tbody {
+            border-top-width: 1px;
+        }
+
+        .toolbar {
+            select {
+                background-color: @color-white;
+            }
+        }
+    }
+
+    .sales-order-view {
+        .order-details-items {
+            .product-item-name {
+                .lib-css(color, @color-blue);
+                font-size: 14px;
+            }
+
+            .cart-price {
+                .lib-css(color, @color-red);
+                font-size: 14px;
+            }
+        }
+    }
 
 
+    .sales-order-print {
+        .minicart-wrapper,
+        .footer-bottom-container{
+            display: none;
+        }
+    }
 
 
 }
