@@ -13,16 +13,17 @@
                 <argument name="jsLayout" xsi:type="array">
                     <item name="components" xsi:type="array">
                         <item name="block-summary" xsi:type="array">
-                            <!-- My custom part: -->
-                            <item name="config" xsi:type="array">
-                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                            <item name="children" xsi:type="array">
+                                <!-- My custom part: -->
+                                <item name="config" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
                             </item>
-
                         </item>
                     </item>
                 </argument>
             </arguments>
-        </referenceBlock>        
+        </referenceBlock>
         <referenceBlock name="checkout.cart.totals">
             <arguments>
                 <argument name="jsLayout" xsi:type="array">
