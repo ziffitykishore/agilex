@@ -32,7 +32,7 @@ define(
               var time = this.getLocalStorageData();
               if (time !== null) {
                 if (time['amdeliverydate_time'] != null) {
-                   return time['amdeliverydate_time'];
+                    return JSON.parse(localStorage.getItem('deliverySlots'))[time['amdeliverydate_time']-1].label;
                 }
              }
             },

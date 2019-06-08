@@ -35,11 +35,21 @@
                                 <item name="template" xsi:type="string">Magento_Checkout/cart/totals</item>
                             </item>
                             <item name="children" xsi:type="array">
+                                <item name="shipping" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
                                 <item name="tax" xsi:type="array">
                                     <item name="config" xsi:type="array">
                                         <item name="componentDisabled" xsi:type="boolean">true</item>
                                     </item>
-                                </item>                                
+                                </item>
+                                <item name="grand-total" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
                                 <item name="amasty-delivery-date" xsi:type="array">
                                     <item name="component" xsi:type="string">Amasty_Deliverydate/js/checkout/deliverydate</item>
                                     <item name="sortOrder" xsi:type="string">2</item>

@@ -49,7 +49,7 @@ define([
 
                  }).done(function (data) {
                     self.options(data);
-
+                    localStorage.setItem('deliverySlots', JSON.stringify(data));
                  });
             }
 
