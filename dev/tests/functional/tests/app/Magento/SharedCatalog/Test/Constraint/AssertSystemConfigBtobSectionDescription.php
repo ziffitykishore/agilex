@@ -23,7 +23,7 @@ class AssertSystemConfigBtobSectionDescription extends AbstractConstraint
      */
     public function processAssert(SystemConfigBtob $systemConfigBtob, $sectionDescription)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $sectionDescription,
             $systemConfigBtob->getBtobFeatures()->getSectionDescription(),
             'System configuration B2B section description is incorrect.'

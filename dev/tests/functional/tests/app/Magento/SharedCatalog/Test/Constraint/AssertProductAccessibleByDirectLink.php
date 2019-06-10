@@ -41,7 +41,7 @@ class AssertProductAccessibleByDirectLink extends AbstractConstraint
         $cmsIndex->open();
         foreach ($productsPresentInCatalog as $product) {
             $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
-            \PHPUnit_Framework_Assert::assertNotEquals(
+            \PHPUnit\Framework\Assert::assertNotEquals(
                 self::NOT_FOUND_MESSAGE,
                 $productView->getTitleBlock()->getTitle(),
                 'Product \'' . $product->getName() . '\' is not accessible by direct link.'
@@ -50,7 +50,7 @@ class AssertProductAccessibleByDirectLink extends AbstractConstraint
 
         foreach ($productsAbsentInCatalog as $product) {
             $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 self::NOT_FOUND_MESSAGE,
                 $productView->getTitleBlock()->getTitle(),
                 'Product \'' . $product->getName() . '\' is accessible by direct link.'

@@ -34,7 +34,7 @@ class AssertQuoteGrandTotalInAdmin extends AbstractConstraint
         $negotiableQuoteGrid->getGrid()->searchAndOpen($filter);
         $totals = $negotiableQuoteEdit->getQuoteDetails()->getTotals();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $prices['quoteGrandTotal'],
             $totals['grand_total'],
             'Grand Total price does not equal to price from data set.'

@@ -48,7 +48,7 @@ class AssertCompanyAdminRoleIsDisabled extends AbstractConstraint
     {
         $companyAdminRole = $this->companyPage->getCustomerPopup()->getCompanyAdminRole();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedCompanyAdminRole,
             $companyAdminRole,
             'Company admin role is incorrect.'
@@ -64,7 +64,7 @@ class AssertCompanyAdminRoleIsDisabled extends AbstractConstraint
     {
         $isRoleSelectDisabled = $this->companyPage->getCustomerPopup()->isUserRoleSelectDisabled();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $isRoleSelectDisabled,
             'Ability to edit company admin role is not disabled.'
         );

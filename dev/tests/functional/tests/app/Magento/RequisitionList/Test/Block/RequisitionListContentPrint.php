@@ -28,7 +28,7 @@ class RequisitionListContentPrint extends Form
      *
      * @var string
      */
-    protected $logo = '.page-print .logo';
+    protected $logo = '.logo';
 
     /**
      * Requisition list name css selector
@@ -66,7 +66,7 @@ class RequisitionListContentPrint extends Form
      */
     public function isLogoVisible()
     {
-        return $this->waitForElementVisible($this->logo);
+        return $this->_rootElement->find($this->logo)->isVisible();
     }
 
     /**

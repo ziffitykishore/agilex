@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -43,7 +43,7 @@ class AssertProductPricesOnCustomWebsiteOnStorefront extends AbstractConstraint
             $browser->open(
                 $_ENV['app_frontend_url'] . 'websites/' . $website->getCode() . '/' . $product->getUrlKey() . '.html'
             );
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 str_replace('$', '', $customPrice['new_price']),
                 $productView->getGroupedProductViewBlock()->getPriceBlock()->getPrice(),
                 'Price for product \'' . $product->getName() . '\' is incorrect.'

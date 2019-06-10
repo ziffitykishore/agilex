@@ -25,7 +25,7 @@ class QuoteDeclinePopup extends Block
      *
      * @var string
      */
-    private $confirmDeclineButton = '.confirm.action-primary.action-accept';
+    private $confirmDeclineButton = '.modal-popup._show .confirm.action-primary.action-accept';
 
     /**
      * Reason textarea css selector.
@@ -66,6 +66,7 @@ class QuoteDeclinePopup extends Block
      */
     public function confirmDecline()
     {
+        $this->waitForElementVisible($this->confirmDeclineButton);
         $this->_rootElement->find($this->confirmDeclineButton)->click();
 
         return $this;

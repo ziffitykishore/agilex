@@ -2,26 +2,31 @@
 
 namespace SomethingDigital\BryantPark\Helper;
 
-class Social extends \Magento\Framework\App\Helper\AbstractHelper
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context as HelperContext;
+use Magento\Store\Model\ScopeInterface;
+
+class Social extends AbstractHelper
 {
+    protected $scopeConfig;
     protected $moduleConfigPath;
 
     public function __construct(
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        HelperContext $context,
+        ScopeConfigInterface $scopeConfig
     ) {
-        $this->_scopeConfig = $scopeConfig;
-        $this->_storeManager = $storeManager;
+        parent::__construct($context);
+        $this->scopeConfig = $scopeConfig;
         $this->moduleConfigPath = 'design/socialprofiles/';
     }
 
     public function getConfig($config_path)
     {
-        $store = $this->_storeManager->getStore()->getId();
-
-        return $this->_scopeConfig->getValue(
+        return $this->scopeConfig->getValue(
             $config_path,
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+            ScopeInterface::SCOPE_STORE,
+            null
         );
     }
 

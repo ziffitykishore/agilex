@@ -33,14 +33,14 @@ class AssertSalesOrderCommentsHistory extends AbstractConstraint
         /** @var \Magento\Sales\Test\Block\Adminhtml\Order\View\Tab\Info $infoTab */
         $infoTab = $salesOrderView->getOrderForm()->openTab('info')->getTab('info');
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $commentsHistory,
             $infoTab->getCommentsHistoryBlock()->getLatestComment()['comment'],
             'Comments history is not correct.'
         );
         /** @var \Magento\CompanyCredit\Test\Block\Adminhtml\Order\View\Tab\History $historyTab */
         $historyTab = $salesOrderView->getOrderForm()->openTab('history')->getTab('history');
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $commentsHistory,
             $historyTab->getCommentsHistoryBlock()->getLatestComment()['comment'],
             'Comments history is not correct on tab "Comments history".'

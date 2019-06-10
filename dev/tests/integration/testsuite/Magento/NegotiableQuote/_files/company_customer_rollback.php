@@ -22,10 +22,10 @@ if ($companyAdmin->getExtensionAttributes()->getCompanyAttributes()) {
     $companyId = $companyAdmin->getExtensionAttributes()
         ->getCompanyAttributes()
         ->getCompanyId();
+
     if ($companyId) {
         /** @var CompanyRepositoryInterface $companyRepository */
-        $companyRepository = Bootstrap::getObjectManager()
-            ->get(CompanyRepositoryInterface::class);
+        $companyRepository = Bootstrap::getObjectManager()->get(CompanyRepositoryInterface::class);
         $companyRepository->deleteById($companyId);
     }
 }

@@ -16,6 +16,11 @@ use Magento\SharedCatalog\Model\SharedCatalog;
 class SharedCatalogGrid extends DataGrid
 {
     /**
+     * SharedCatalog::CATALOG_PUBLIC
+     */
+    const CATALOG_PUBLIC = 'Public';
+
+    /**
      * @var string
      */
     protected $selectButton = '//*[@title="Select Items"]';
@@ -165,7 +170,7 @@ class SharedCatalogGrid extends DataGrid
         $this->waitLoader();
         $this->resetFilter();
         $this->sortGridByField('Type', 'desc');
-        $this->selectItems([['type' => SharedCatalog::CATALOG_PUBLIC]]);
+        $this->selectItems([['type' => self::CATALOG_PUBLIC]]);
     }
 
     /**

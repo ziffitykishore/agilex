@@ -50,14 +50,14 @@ class AssertTierPrices extends AbstractConstraint
                 $product = reset($childProducts);
             }
             if ($product->getPrice()) {
-                \PHPUnit_Framework_Assert::assertTrue(
+                \PHPUnit\Framework\Assert::assertTrue(
                     strpos(
                         $pricingGrid->getColumnValue($productId, self::PRICE_COLUMN),
                         $product->getPrice()
                     ) !== false,
                     'Wrong product price.'
                 );
-                \PHPUnit_Framework_Assert::assertTrue(
+                \PHPUnit\Framework\Assert::assertTrue(
                     strpos(
                         $pricingGrid->getColumnValue($productId, self::NEW_PRICE_COLUMN),
                         (string)($product->getPrice() - $product->getPrice()*$data['discount']/100)
@@ -69,12 +69,12 @@ class AssertTierPrices extends AbstractConstraint
                 $pricingGrid->openTierPriceConfiguration();
                 foreach ($prices as $price) {
                     $rowData = $tierPriceModal->getRowDataByQty($price['qty']);
-                    \PHPUnit_Framework_Assert::assertEquals(
+                    \PHPUnit\Framework\Assert::assertEquals(
                         $price['value_type'],
                         $rowData['value_type'],
                         'Wrong value_type for tier price with qty = 1'
                     );
-                    \PHPUnit_Framework_Assert::assertEquals(
+                    \PHPUnit\Framework\Assert::assertEquals(
                         $price['percentage_value'],
                         $rowData['percentage_value'],
                         'Wrong value for tier price with qty = 1'

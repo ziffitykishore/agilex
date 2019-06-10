@@ -51,7 +51,7 @@ class AssertProductsInRequisitionList extends AbstractConstraint
 
         $result = array_diff($skuArr, $requisitionListView->getRequisitionListContent()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Requisition list products are not correct.'
         );
@@ -70,7 +70,7 @@ class AssertProductsInRequisitionList extends AbstractConstraint
 
         $result = array_diff($qtyArray, $requisitionListView->getRequisitionListContent()->getQtys());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Product qtys are correct.'
         );

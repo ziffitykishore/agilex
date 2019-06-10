@@ -35,7 +35,7 @@ class AssertSharedCatalogGroupSelectedOnCartPriceRuleForm extends AbstractConstr
         $promoQuoteNew->getSalesRuleForm()->fill($cartPriceRule);
         /** @var RuleInformation $ruleInformationTab */
         $ruleInformationTab = $promoQuoteNew->getSalesRuleForm()->getSection('rule_information');
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $ruleInformationTab->isVisibleSharedCatalogGroup($sharedCatalog),
             "Shared catalog group {$sharedCatalog->getName()} not selected in cart price rule page."
         );

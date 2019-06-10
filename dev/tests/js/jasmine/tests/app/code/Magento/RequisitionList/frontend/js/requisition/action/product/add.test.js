@@ -26,6 +26,13 @@ define([
             );
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"performNewListAction" method', function () {
             it('calls "_isActionValid" method', function () {
                 spyOn(action, '_isActionValid').and.returnValue(false);

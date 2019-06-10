@@ -42,17 +42,17 @@ class AssertCreditHistoryIsCorrectOnStorefront extends \Magento\Mtf\Constraint\A
      */
     public function checkBalance(array $amounts, \Magento\CompanyCredit\Test\Page\CreditHistory $creditHistory)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             (float)$amounts['outstandingBalance'],
             $creditHistory->getCreditHistory()->getOutstandingBalance(),
             'Outstanding Balance value is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             (float)$amounts['availableCredit'],
             $creditHistory->getCreditHistory()->getAvailableCredit(),
             'Available Credit value is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             (float)$amounts['creditLimit'],
             $creditHistory->getCreditHistory()->getCreditLimit(),
             'Credit Limit value is incorrect.'
@@ -81,7 +81,7 @@ class AssertCreditHistoryIsCorrectOnStorefront extends \Magento\Mtf\Constraint\A
                 break;
             }
         }
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Credit History grid on Credit History page is incorrect.' . "\n" . implode("\n", $diffLog)
         );

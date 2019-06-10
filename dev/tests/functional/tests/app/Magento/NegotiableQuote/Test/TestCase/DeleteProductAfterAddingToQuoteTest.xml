@@ -6,8 +6,8 @@
  */
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
-    <testCase name="Magento\NegotiableQuote\Test\TestCase\DeleteProductAfterAddingToQuoteTest" summary="Verify that product successfully deleted after adding to quote" ticketId="MAGETWO-83362">
-        <variation name="DeleteProductAfterAddingToQuoteTestVariation1" summary="Delete product after adding it to quote">
+    <testCase name="Magento\NegotiableQuote\Test\TestCase\DeleteProductAfterAddingToQuoteTest" summary="Verify that product successfully deleted after adding to quote">
+        <variation name="DeleteProductAfterAddingToQuoteTestVariation1" summary="Delete product after adding it to quote" ticketId="MAGETWO-89399">
             <data name="configData" xsi:type="string">company_enable, shared_catalog_enable</data>
             <data name="customer/dataset" xsi:type="string">default</data>
             <data name="company" xsi:type="string">company_with_required_fields_and_sales_rep</data>

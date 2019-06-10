@@ -94,7 +94,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Message is not correct.'
         );
@@ -124,7 +124,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'History log is not correct'
         );
@@ -214,7 +214,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Totals are not correct'
         );
@@ -228,7 +228,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
      */
     protected function checkShippingMethod($method, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuoteEdit->getQuoteDetails()->isMethodCorrect($method),
             'Method is not correct.'
         );
@@ -249,7 +249,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
 
         $result = array_diff($skuArr, $negotiableQuoteEdit->getQuoteDetails()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Quote products are not correct.'
         );
@@ -265,7 +265,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
     {
         $result = array_diff($qtys, $negotiableQuoteEdit->getQuoteDetails()->getQtyList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Quote product qtys are not correct.'
         );
@@ -279,7 +279,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
      */
     protected function checkExpirationDate(\DateTime $expirationDate, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expirationDate->format('n/j/y'),
             $negotiableQuoteEdit->getQuoteDetails()->getExpirationDate(),
             'Quote expiration date is not correct.'
@@ -294,7 +294,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
      */
     protected function checkName(array $quote, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quote['quote-name'],
             $negotiableQuoteEdit->getQuoteDetails()->getQuoteName(),
             'Quote name is not correct.'
@@ -309,7 +309,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
      */
     protected function checkStatus($adminStatus, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $adminStatus,
             $negotiableQuoteEdit->getQuoteDetails()->getQuoteStatus(),
             'Quote status is not correct.'
@@ -324,7 +324,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
      */
     protected function checkLock($adminLock, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $adminLock,
             $negotiableQuoteEdit->getQuoteDetails()->isLock(),
             'Quote lock is not correct.'
@@ -339,7 +339,7 @@ class AssertQuoteCorrectInAdmin extends AbstractConstraint
      */
     protected function checkDisabledButtons(array $disabledButtons, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuoteEdit->getQuoteDetailsActions()->areButtonsDisabled($disabledButtons),
             'Disabled buttons are not correct.'
         );

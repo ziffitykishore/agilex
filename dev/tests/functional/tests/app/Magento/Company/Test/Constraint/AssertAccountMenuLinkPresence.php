@@ -40,7 +40,7 @@ class AssertAccountMenuLinkPresence extends AbstractConstraint
         $this->logoutCustomer();
         $this->loginCustomer($companyUser);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $linkPresenceInMenu,
             $this->companyUsers->getAccountMenu()->isMenuLinkPresented($rolesAndPermissionsLinkText),
             'Link presence in menu is not correct.'

@@ -113,7 +113,7 @@ class AssertInvoiceCorrectInAdmin extends AbstractConstraint
         if (0.001 < ($uiPrice - ($subtotal + $shippingAmount + ($subtotal * $tax / 100) - $giftCardAmount))) {
             $result = false;
         }
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Order grand total is not correct.'
         );
@@ -133,7 +133,7 @@ class AssertInvoiceCorrectInAdmin extends AbstractConstraint
             $result = false;
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Gift card discounts do not match.'
         );

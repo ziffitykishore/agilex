@@ -23,7 +23,7 @@ class AssertCompanyGridColumns extends AbstractConstraint
     {
         $sharedCatalogCompanyGrid = $sharedCatalogCompany->getCompanyGrid();
         $columnTitles = $sharedCatalogCompanyGrid->getColumnsTitles();
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             'Assigned',
             $columnTitles,
             'Shared catalog companies grid columns are incorrect.'

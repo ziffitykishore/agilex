@@ -25,7 +25,7 @@ class AssertColumnsOrderGrid extends AbstractConstraint
         OrderIndex $orderIndex,
         array $fieldData
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $orderIndex->getStructureGrid()->retrievePreviousColumnTitle($fieldData['title']),
             $fieldData['previous'],
             'Previous column title is not correct, expected ' . $fieldData['previous']

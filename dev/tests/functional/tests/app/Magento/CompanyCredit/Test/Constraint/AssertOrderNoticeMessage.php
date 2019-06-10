@@ -63,7 +63,7 @@ class AssertOrderNoticeMessage extends AbstractConstraint
                 $amounts['outstandingBalance']
             ));
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $noticeMessage,
             $salesOrderView->getMessagesBlock()->getNoticeMessage(),
             'Notice message on order page in Admin is incorrect.'

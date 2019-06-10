@@ -44,7 +44,7 @@ class AssertAdminOrderInfoIsCorrectOnStorefront extends AbstractConstraint
     {
         $created = $orderView->getQuoteCreatedAtBlock()->getCreated();
         $result = strpos($created, $admin->getFirstname()) && strpos($created, $admin->getLastname());
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Created By name is not correct.'
         );

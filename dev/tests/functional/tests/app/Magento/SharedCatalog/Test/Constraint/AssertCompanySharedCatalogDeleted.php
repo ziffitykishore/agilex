@@ -32,7 +32,7 @@ class AssertCompanySharedCatalogDeleted extends AbstractConstraint
         $companyEdit->open(['id' => $company->getId()]);
         $data = $companyEdit->getCompanyForm()->getData();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $data['customer_group_id'],
             $publicName,
             'Shared catalog is wrong on a company page.'

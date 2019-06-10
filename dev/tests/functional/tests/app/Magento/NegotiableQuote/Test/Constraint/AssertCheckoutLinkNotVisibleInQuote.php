@@ -28,7 +28,7 @@ class AssertCheckoutLinkNotVisibleInQuote extends AbstractConstraint
         $negotiableQuoteGrid->open();
         $negotiableQuoteGrid->getQuoteGrid()->openFirstItem();
 
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $negotiableQuoteView->getQuoteDetails()->isCheckoutButtonVisible(),
             'Checkout button is visible.'
         );

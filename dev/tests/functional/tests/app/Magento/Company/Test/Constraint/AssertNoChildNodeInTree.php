@@ -23,7 +23,7 @@ class AssertNoChildNodeInTree extends AbstractAssertForm
         CompanyPage $companyPage
     ) {
         $companyPage->open();
-        \PHPUnit_Framework_Assert::assertFalse($companyPage->getTree()->hasChildren());
+        \PHPUnit\Framework\Assert::assertFalse($companyPage->getTree()->hasChildren());
     }
 
     /**

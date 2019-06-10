@@ -16,8 +16,6 @@ use Magento\Sales\Model\Order\Payment;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\TestFramework\Helper\Bootstrap;
 
-// @codingStandardsIgnoreFile
-
 require __DIR__ . '/../../../Magento/Sales/_files/default_rollback.php';
 require __DIR__ . '/../../../Magento/Catalog/_files/product_simple.php';
 /** @var \Magento\Catalog\Model\Product $product */

@@ -28,7 +28,7 @@ class AssertProductPricesAreVisible extends AbstractConstraint
         $requisitionListGrid->open();
         $requisitionListGrid->getRequisitionListGrid()->openFirstItem();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $requisitionListView->getRequisitionListContent()->arePricesVisible(),
             'Prices are not visible.'
         );

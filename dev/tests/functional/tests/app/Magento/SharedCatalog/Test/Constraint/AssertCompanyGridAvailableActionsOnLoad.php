@@ -25,19 +25,19 @@ class AssertCompanyGridAvailableActionsOnLoad extends AbstractConstraint
         $id = $sharedCatalogCompanyGrid->getFirstItemId();
         $actionColumnValue = $sharedCatalogCompanyGrid->getColumnValue($id, 'Action');
 
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             'Unassign',
             $actionColumnValue,
             'Shared catalog companies grid available actions are not correct on first grid load.'
         );
-        \PHPUnit_Framework_Assert::assertNotContains(
+        \PHPUnit\Framework\Assert::assertNotContains(
             'Assign',
             $actionColumnValue,
             'Shared catalog companies grid available actions are not correct on first grid load.'
         );
 
         $firstActiveFilter = $sharedCatalogCompanyGrid->getFirstActiveFilter();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             'Assigned:',
             $firstActiveFilter,
             'Shared catalog companies grid default filter is not correct on first grid load.'

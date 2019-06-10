@@ -27,7 +27,7 @@ class AssertPublicCatalogNotDeleted extends AbstractConstraint
     {
         $sharedCatalogIndex->getMessages()->assertErrorMessage();
         $errorMessage = $sharedCatalogIndex->getMessages()->getErrorMessage();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             false !== strpos($errorMessage, 'cannot be deleted because it is a public catalog.'),
             'Shared Catalog \'' . $sharedCatalog->getName() . '\' not present in pages grid.'
         );

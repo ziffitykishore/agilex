@@ -11,12 +11,17 @@ define([
     'use strict';
 
     describe('Magento_CompanyCredit/js/convert-credit/rates-fields', function () {
-        var obj;
+        var obj, originalJQueryAjax;
 
         beforeEach(function () {
+            originalJQueryAjax = $.ajax;
             obj = new RatesFields({
                 dataScope: ''
             });
+        });
+
+        afterEach(function () {
+            $.ajax = originalJQueryAjax;
         });
 
         describe('"getConversionRates" method', function () {

@@ -25,7 +25,7 @@ class AssertCheckoutLinksAreNotVisible extends AbstractConstraint
         $checkoutCart->open();
         $result = $checkoutCart->getCheckoutMethodsBlock()->isProceedToCheckoutVisible() &&
             $checkoutCart->getCheckoutMethodsBlock()->isMultipleAddressesCheckoutVisible();
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $result,
             'Checkout links are visible.'
         );

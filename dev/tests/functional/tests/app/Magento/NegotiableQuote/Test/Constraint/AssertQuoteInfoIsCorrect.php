@@ -47,7 +47,7 @@ class AssertQuoteInfoIsCorrect extends AbstractConstraint
         );
         $pattern = $this->makeAddressPattern($shippingAddress);
         $dataDiff = $this->verifyAddressMatch($pattern, $selectedAddress);
-        \PHPUnit_Framework_Assert::assertEmpty(
+        \PHPUnit\Framework\Assert::assertEmpty(
             $dataDiff,
             'Shipping addresses don\'t match.'
             . "\nLog:\n" . implode(";\n", $dataDiff)
@@ -67,7 +67,7 @@ class AssertQuoteInfoIsCorrect extends AbstractConstraint
         if ($pattern != $checkoutOnepage->getQuoteShippingMethodBlock()->getShippingMethod()) {
             $result = false;
         }
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Shipping methods don\'t match.'
         );
@@ -85,7 +85,7 @@ class AssertQuoteInfoIsCorrect extends AbstractConstraint
         if ($paymentMethod != $checkoutOnepage->getQuotePaymentBlock()->getPaymentMethod()) {
             $result = false;
         }
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Payment methods don\'t match.'
         );

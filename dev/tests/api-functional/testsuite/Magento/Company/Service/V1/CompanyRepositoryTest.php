@@ -3,7 +3,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-declare(strict_types=1);
 
 namespace Magento\Company\Service\V1;
 
@@ -56,16 +55,6 @@ class CompanyRepositoryTest extends WebapiAbstract
     private $dataObjectProcessor;
 
     /**
-     * @var \Magento\Company\Api\Data\CompanyExtensionFactory
-     */
-    private $companyExtensionFactory;
-
-    /**
-     * @var string
-     */
-    private $availablePaymentMethods = 'checkmo,companycredit';
-
-    /**
      * @var array
      */
     private $fieldsToCheck = [
@@ -75,15 +64,7 @@ class CompanyRepositoryTest extends WebapiAbstract
         'comment',
         'customer_group_id',
         'sales_representative_id',
-        'super_user_id',
-        'extension_attributes',
-    ];
-
-    /**
-     * @var array
-     */
-    private $extensionAttributesToCheck = [
-        'available_payment_methods',
+        'super_user_id'
     ];
 
     /**
@@ -109,9 +90,6 @@ class CompanyRepositoryTest extends WebapiAbstract
         );
         $this->dataObjectProcessor = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             \Magento\Framework\Reflection\DataObjectProcessor::class
-        );
-        $this->companyExtensionFactory = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
-            \Magento\Company\Api\Data\CompanyExtensionFactory::class
         );
     }
 
@@ -174,7 +152,6 @@ class CompanyRepositoryTest extends WebapiAbstract
     public function testUpdateCompany()
     {
         $customer = $this->customerRepository->get('email@companyquote.com');
-        /** @var \Magento\Company\Api\Data\CompanyInterface $company */
         $company = $this->companyManagement->getByCustomerId($customer->getId());
 
         $serviceInfo = [
@@ -190,7 +167,6 @@ class CompanyRepositoryTest extends WebapiAbstract
         ];
 
         $company->setCompanyName('other company');
-        $company = $this->setPaymentMethods($company);
 
         $companyDataObject = $this->dataObjectProcessor->buildOutputDataArray(
             $company,
@@ -199,27 +175,6 @@ class CompanyRepositoryTest extends WebapiAbstract
         $requestData = ['company' => $companyDataObject];
         $response = $this->_webApiCall($serviceInfo, $requestData);
         $this->assertTrue($this->compare($company, $response));
-    }
-
-    /**
-     * Sets payment methods for company.
-     *
-     * @param \Magento\Company\Api\Data\CompanyInterface $company
-     * @return \Magento\Company\Api\Data\CompanyInterface
-     */
-    private function setPaymentMethods(\Magento\Company\Api\Data\CompanyInterface $company)
-    {
-        /** @var \Magento\Company\Api\Data\CompanyExtensionInterface|null $companyExtension */
-        $companyExtension = $company->getExtensionAttributes();
-
-        if ($companyExtension === null) {
-            /** @var \Magento\Company\Api\Data\CompanyExtension $companyExtension */
-            $companyExtension = $this->companyExtensionFactory->create();
-        }
-        $companyExtension->setAvailablePaymentMethods($this->availablePaymentMethods);
-        $company->setExtensionAttributes($companyExtension);
-
-        return $company;
     }
 
     /**
@@ -284,74 +239,16 @@ class CompanyRepositoryTest extends WebapiAbstract
      * @param array $response
      * @return bool
      */
-    private function compare(\Magento\Company\Api\Data\CompanyInterface $company, array $response): bool
+    private function compare(\Magento\Company\Api\Data\CompanyInterface $company, array $response)
     {
         $originalData = $company->getData();
         $equal = true;
         foreach ($this->fieldsToCheck as $field) {
-            if (!$this->checkFieldsAreEqual($field, $originalData, $response)) {
+            if ($response[$field] != $originalData[$field]) {
                 $equal = false;
                 break;
             }
         }
-        return $equal;
-    }
-
-    /**
-     * Check that fields of company saved correctly.
-     *
-     * @param string $field
-     * @param array $originalData
-     * @param array $response
-     * @return bool
-     */
-    private function checkFieldsAreEqual(string $field, array $originalData, array $response): bool
-    {
-        $equal = true;
-
-        if ($field === \Magento\Framework\Api\ExtensibleDataInterface::EXTENSION_ATTRIBUTES_KEY) {
-            $equal = $this->checkExtensionAttributes($originalData, $response);
-        } elseif ($response[$field] != $originalData[$field]) {
-            $equal = false;
-        }
-
-        return $equal;
-    }
-
-    /**
-     * Checks that extension attributes saved correctly.
-     *
-     * @param array $originalData
-     * @param array $response
-     * @return bool
-     */
-    private function checkExtensionAttributes(array $originalData, array $response): bool
-    {
-        $equal = true;
-
-        foreach ($this->extensionAttributesToCheck as $attribute) {
-            $originalExtenstionAttributes
-                = $originalData[\Magento\Framework\Api\ExtensibleDataInterface::EXTENSION_ATTRIBUTES_KEY];
-
-            $method = 'get' . \Magento\Framework\Api\SimpleDataObjectConverter::snakeCaseToUpperCamelCase($attribute);
-            if (!method_exists($originalExtenstionAttributes, $method)) {
-                continue;
-            }
-
-            $extentionAttribute = $originalExtenstionAttributes->$method();
-            if (null === $extentionAttribute) {
-                continue;
-            }
-
-            $responseExtensionAttributes
-                = $response[\Magento\Framework\Api\ExtensibleDataInterface::EXTENSION_ATTRIBUTES_KEY];
-
-            if ($extentionAttribute !== $responseExtensionAttributes[$attribute]) {
-                $equal = false;
-                break;
-            }
-        }
-
         return $equal;
     }
 

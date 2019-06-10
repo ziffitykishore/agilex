@@ -28,7 +28,7 @@ class AssertSharedCatalogIsInGrid extends AbstractConstraint
         $sharedCatalogIndex->open();
         $filter = ['name' => $sharedCatalogName];
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $sharedCatalogIndex->getGrid()->isRowVisible($filter),
             'Shared catalog with name \'' . $sharedCatalogName . '\' is absent in a shared catalogs grid.'
         );

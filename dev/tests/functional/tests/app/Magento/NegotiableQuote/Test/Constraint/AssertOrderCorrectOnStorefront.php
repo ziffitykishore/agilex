@@ -105,7 +105,7 @@ class AssertOrderCorrectOnStorefront extends AbstractConstraint
             $result = false;
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Order grand total is not correct.'
         );
@@ -125,7 +125,7 @@ class AssertOrderCorrectOnStorefront extends AbstractConstraint
             $result = false;
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Discount is present in order totals.'
         );

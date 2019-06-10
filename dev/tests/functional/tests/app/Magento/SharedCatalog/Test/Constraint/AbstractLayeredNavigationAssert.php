@@ -32,7 +32,7 @@ abstract class AbstractLayeredNavigationAssert extends AbstractConstraint
      */
     protected function assertFilterItemText($expectedValue, $value)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedValue,
             $value,
             'Filter item text is incorrect.'

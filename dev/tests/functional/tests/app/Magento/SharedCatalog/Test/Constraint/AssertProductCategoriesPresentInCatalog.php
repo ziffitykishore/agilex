@@ -30,7 +30,7 @@ class AssertProductCategoriesPresentInCatalog extends AbstractConstraint
         $cmsIndex->open();
         foreach ($productsPresentOnCategoryPage as $product) {
             $categoryName = $product->hasData('category_ids') ? $product->getCategoryIds()[0] : 'No Category';
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $cmsIndex->getNavigationMenu()->isCategoryPresentInMenu($categoryName),
                 'Category \'' . $categoryName . '\' is not present in the top menu.'
             );
@@ -38,7 +38,7 @@ class AssertProductCategoriesPresentInCatalog extends AbstractConstraint
 
         foreach ($productsAbsentOnCategoryPage as $product) {
             $categoryName = $product->hasData('category_ids') ? $product->getCategoryIds()[0] : 'No Category';
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $cmsIndex->getNavigationMenu()->isCategoryPresentInMenu($categoryName),
                 'Category \'' . $categoryName . '\' is present in the top menu.'
             );

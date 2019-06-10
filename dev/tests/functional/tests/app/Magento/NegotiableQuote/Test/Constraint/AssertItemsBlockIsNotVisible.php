@@ -22,7 +22,7 @@ class AssertItemsBlockIsNotVisible extends AbstractConstraint
     public function processAssert(
         NegotiableQuoteEdit $negotiableQuoteView
     ) {
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $negotiableQuoteView->getQuoteDetails()->isItemsBlockVisible(),
             'Block with items is visible.'
         );

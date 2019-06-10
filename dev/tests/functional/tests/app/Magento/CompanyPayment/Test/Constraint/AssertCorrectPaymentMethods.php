@@ -27,7 +27,7 @@ class AssertCorrectPaymentMethods extends AbstractConstraint
     ) {
         $expectedMethodsArray = explode(',', $expectedPaymentMethods);
         $actualMethodsArray = $checkoutOnepage->getPaymentBlock()->getPaymentMethods();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             sort($expectedMethodsArray),
             sort($actualMethodsArray),
             'Payment methods available are not correct.'

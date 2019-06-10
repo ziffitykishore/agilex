@@ -38,7 +38,7 @@ class AssertSharedCatalogProductsCount extends AbstractConstraint
         $categoriesTree = $sharedCatalogConfigure->getStructureJstree();
         $categoriesTree->setTreeType('structure')->expandAll();
         foreach ($categoriesStructure as $category) {
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 strpos(
                     $categoriesTree->getProductCount($category['category']->getName()),
                     $category['product_count']

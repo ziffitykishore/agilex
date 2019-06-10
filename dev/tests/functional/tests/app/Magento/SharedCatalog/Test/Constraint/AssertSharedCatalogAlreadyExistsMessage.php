@@ -39,7 +39,7 @@ class AssertSharedCatalogAlreadyExistsMessage extends AbstractConstraint
         $sharedCatalogCreate->getSharedCatalogForm()->setName($defaultSharedCatalogName);
         $sharedCatalogCreate->getFormPageActions()->save();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             sprintf($errorMessagePattern, $defaultSharedCatalogName),
             $sharedCatalogCreate->getMessagesBlock()->getErrorMessage(),
             'Shared catalog error message is incorrect.'

@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\SharedCatalog\Test\TestCase;
 
 use Magento\Catalog\Test\Fixture\Category;
@@ -88,7 +90,7 @@ class CreateCategoryFromProductPageTest extends Injectable
         SharedCatalog $sharedCatalog,
         $customerLogIn,
         $configData = null
-    ) {
+    ): array {
         $this->configData = $configData;
         // Steps
         $sharedCatalog->persist();

@@ -39,7 +39,7 @@ class AssertReimburseBalanceCurrencySymbol extends AbstractConstraint
         }
 
         $companyEdit->getCompanyCreditFormActions()->reimburseBalance();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $currencySymbol,
             $companyEdit->getModalReimburseBalance()->getCurrencySymbol(),
             'Reimburse balance amount currency symbol is incorrect.'

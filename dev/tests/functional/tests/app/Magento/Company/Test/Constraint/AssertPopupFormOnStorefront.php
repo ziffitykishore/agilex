@@ -32,7 +32,7 @@ class AssertPopupFormOnStorefront extends AbstractAssertForm
         $companyPage->getTreeControl()->clickEditSelected();
         $formData = $companyPage->$popupMethod()->getData($entity);
         $errors = $this->verifyData($entity->getData(), $formData);
-        \PHPUnit_Framework_Assert::assertEmpty($errors, $errors);
+        \PHPUnit\Framework\Assert::assertEmpty($errors, $errors);
     }
 
     /**

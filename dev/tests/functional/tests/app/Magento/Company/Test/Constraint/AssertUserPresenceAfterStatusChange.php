@@ -82,7 +82,7 @@ class AssertUserPresenceAfterStatusChange extends AbstractConstraint
     {
         $userPresence = $this->companyUsers->getUsersGrid()->isUserInGrid($customer->getEmail());
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedUserPresence,
             $userPresence,
             'User presence in grid is incorrect.'
@@ -99,7 +99,7 @@ class AssertUserPresenceAfterStatusChange extends AbstractConstraint
     {
         $userPresence = $this->companyPage->getTree()->isUserInCompanyTree($this->prepareCustomerName($customer));
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedUserPresence,
             $userPresence,
             'User presence in company tree is incorrect.'

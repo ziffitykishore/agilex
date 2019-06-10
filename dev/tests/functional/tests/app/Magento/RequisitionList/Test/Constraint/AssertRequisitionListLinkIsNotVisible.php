@@ -26,7 +26,7 @@ class AssertRequisitionListLinkIsNotVisible extends AbstractConstraint
         RequisitionListGrid $requisitionListGrid
     ) {
         $cmsIndex->getCmsPageBlock()->waitPageInit();
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $requisitionListGrid->getRequisitionListActions()->checkCreateLinkIsVisible(),
             'Requisition list link is visible.'
         );

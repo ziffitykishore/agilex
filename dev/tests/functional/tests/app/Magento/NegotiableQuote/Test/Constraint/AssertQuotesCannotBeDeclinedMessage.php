@@ -25,7 +25,7 @@ class AssertQuotesCannotBeDeclinedMessage extends AbstractConstraint
         NegotiableQuoteIndex $quoteGrid,
         $declinePopupMessage
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $declinePopupMessage,
             $quoteGrid->getDeclinePopupBlock()->getNotificationMessage(),
             'Decline message is not correct.'

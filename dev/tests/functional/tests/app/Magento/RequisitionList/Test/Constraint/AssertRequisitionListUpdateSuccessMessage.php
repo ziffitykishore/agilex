@@ -28,14 +28,14 @@ class AssertRequisitionListUpdateSuccessMessage extends AbstractConstraint
     ) {
         $productName = '';
         foreach ($products as $product) {
-            if (strpos($product->getSku(), $productToUpdate)) {
+            if (strpos($product->getSku(), $productToUpdate) !== false) {
                 $productName = $product->getName();
                 break;
             }
         }
         $message = $productName . ' has been updated in your requisition list.';
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $requisitionListView->getMessagesBlock()->getSuccessMessage(),
             'Requisition list update success message is incorrect.'

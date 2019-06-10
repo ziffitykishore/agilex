@@ -11,9 +11,11 @@ define([
     'use strict';
 
     describe('Magento_Company/js/hierarchy-tree', function () {
-        var obj, params, popup, tplElement;
+        var obj, params, popup, tplElement, originalJQueryAjax;
 
         beforeEach(function () {
+            originalJQueryAjax = $.ajax;
+
             obj = new HierarchyTree();
             obj.options.isAjax = false;
             params = {
@@ -27,6 +29,10 @@ define([
                 'data-edit-customer-url="customerUrl">Edit</button>');
             popup.appendTo(document.body);
             tplElement.appendTo(document.body);
+        });
+
+        afterEach(function () {
+            $.ajax = originalJQueryAjax;
         });
 
         describe('"_populateForm" method', function () {

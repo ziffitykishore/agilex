@@ -57,7 +57,7 @@ class AssertPercentageTierPriceInPriceBlockOnProductPage extends AbstractConstra
                 }
             }
         }
-        \PHPUnit_Framework_Assert::assertNotEmpty(
+        \PHPUnit\Framework\Assert::assertNotEmpty(
             $percentageValue,
             'There is no percentage_value with qty = 1 in fixture.'
         );
@@ -73,7 +73,7 @@ class AssertPercentageTierPriceInPriceBlockOnProductPage extends AbstractConstra
         $fixturePrice = number_format($product->getPrice(), 2, '.', '');
         $currentOldPrice = $priceBlock->getOldPrice();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $fixturePrice,
             $currentOldPrice,
             'Old price on product page is not correct in price block.'
@@ -92,7 +92,7 @@ class AssertPercentageTierPriceInPriceBlockOnProductPage extends AbstractConstra
         $expectedPrice = number_format($expectedPrice, 2, '.', '');
         $currentPrice = $priceBlock->getPrice();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedPrice,
             $currentPrice,
             'Percentage tier price on product page is not correct in price block.'

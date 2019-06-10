@@ -23,7 +23,7 @@ class AssertLegalAddressNotVisible extends AbstractConstraint
     ) {
         $companyProfilePage->open();
 
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $companyProfilePage->getProfileContent()->isLegalAddressSectionVisible(),
             'Legal address is visible when it should not.'
         );

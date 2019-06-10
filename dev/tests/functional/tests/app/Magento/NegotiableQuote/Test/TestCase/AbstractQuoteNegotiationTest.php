@@ -278,6 +278,11 @@ abstract class AbstractQuoteNegotiationTest extends Injectable
     protected $spinner = '[data-role="spinner"]';
 
     /**
+     * @var array
+     */
+    protected $payment;
+
+    /**
      * Perform needed injections
      *
      * @param ObjectManager $objectManager
@@ -539,6 +544,12 @@ abstract class AbstractQuoteNegotiationTest extends Injectable
                 'shipping' => $this->shipping
             ]
         )->run();
+        if (!empty($this->payment)) {
+            $this->objectManager->create(
+                \Magento\Checkout\Test\TestStep\SelectPaymentMethodStep::class,
+                ['payment' => $this->payment]
+            )->run();
+        }
         $this->updateData['orderId'] = $this->objectManager
             ->create(
                 \Magento\Checkout\Test\TestStep\PlaceOrderStep::class,
@@ -578,6 +589,12 @@ abstract class AbstractQuoteNegotiationTest extends Injectable
                 'shipping' => $this->shipping
             ]
         )->run();
+        if (!empty($this->payment)) {
+            $this->objectManager->create(
+                \Magento\Checkout\Test\TestStep\SelectPaymentMethodStep::class,
+                ['payment' => $this->payment]
+            )->run();
+        }
         $this->updateData['orderId'] = $this->objectManager
             ->create(
                 \Magento\Checkout\Test\TestStep\PlaceOrderStep::class,

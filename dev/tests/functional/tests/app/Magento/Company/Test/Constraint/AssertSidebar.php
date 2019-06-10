@@ -27,17 +27,17 @@ class AssertSidebar extends AbstractConstraint
         CustomerAccountIndex $customerAccountIndex,
         array $sidebarBlocks
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             (bool) $sidebarBlocks['wishlist'],
             $customerAccountIndex->getWishlistBlock()->isVisible(),
             'Wishlist block visibility is not correct.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             (bool) $sidebarBlocks['compare'],
             $customerAccountIndex->getCompareBlock()->isVisible(),
             'Compare block visibility is not correct.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             (bool) $sidebarBlocks['reorder'],
             $customerAccountIndex->getReorderBlock()->isVisible(),
             'Reorder block visibility is not correct.'

@@ -30,7 +30,7 @@ class AssertEditLinkIsNotVisibleInRequisitionList extends AbstractConstraint
         $requisitionListGrid->open();
         $requisitionListGrid->getRequisitionListGrid()->openFirstItem();
 
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $requisitionListView->getRequisitionListContent()->isEditLinkVisible(),
             'Edit link is visible.'
         );

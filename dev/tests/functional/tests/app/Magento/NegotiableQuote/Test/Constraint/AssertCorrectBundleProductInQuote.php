@@ -36,7 +36,7 @@ class AssertCorrectBundleProductInQuote extends AbstractConstraint
         $skuArr[] = $bundleProduct->getSku() . '-' . $simpleProductSku;
         $result = array_diff($skuArr, $negotiableQuoteView->getQuoteDetails()->getComplexProductsSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Bundle product is not correct.'
         );

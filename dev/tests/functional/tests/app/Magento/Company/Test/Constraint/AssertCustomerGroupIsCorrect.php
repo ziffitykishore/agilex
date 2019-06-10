@@ -43,7 +43,7 @@ class AssertCustomerGroupIsCorrect extends AbstractConstraint
         $customerIndex->open();
         $customerIndex->getCustomerGridBlock()->searchAndOpen($filter);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $customerGroup,
             $customerIndexEdit->getCustomerForm()->getData($customer)['group_id'],
             'Customer group is not correct.'

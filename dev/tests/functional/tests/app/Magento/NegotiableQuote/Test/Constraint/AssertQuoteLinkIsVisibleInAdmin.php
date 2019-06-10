@@ -47,7 +47,7 @@ class AssertQuoteLinkIsVisibleInAdmin extends AbstractConstraint
      */
     public function checkQuoteLinkIsCorrect(SalesOrderView $orderView, $quote)
     {
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             $quote['quote-name'],
             $orderView->getNegotiableQuoteInformation()->getOrderQuoteText(),
             'Quote link is not correct.'
@@ -64,7 +64,7 @@ class AssertQuoteLinkIsVisibleInAdmin extends AbstractConstraint
     public function verifyNegotiableQuotePage(SalesOrderView $orderView, NegotiableQuoteEdit $quoteView, $quote)
     {
         $orderView->getNegotiableQuoteInformation()->clickQuoteLink();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quote['quote-name'],
             $quoteView->getQuoteDetails()->getQuoteName(),
             'Wrong page is displayed.'

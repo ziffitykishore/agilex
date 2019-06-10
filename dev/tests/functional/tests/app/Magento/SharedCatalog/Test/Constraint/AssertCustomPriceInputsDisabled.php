@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2016 Magento. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -19,22 +19,22 @@ class AssertCustomPriceInputsDisabled extends AbstractConstraint
      *
      * @param SharedCatalogConfigure $sharedCatalogConfigure
      * @param array $products
-     * @param string $allWebsitesName
+     * @param string $websiteName
      * @return void
      */
     public function processAssert(
         SharedCatalogConfigure $sharedCatalogConfigure,
         array $products,
-        $allWebsitesName
+        $websiteName
     ) {
-        $sharedCatalogConfigure->getPricingGrid()->filterProductsByWebsite($allWebsitesName);
+        $sharedCatalogConfigure->getPricingGrid()->filterProductsByWebsite($websiteName);
         foreach ($products as $product) {
             $sharedCatalogConfigure->getPricingGrid()->search(['sku' => $product->getSku()]);
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $sharedCatalogConfigure->getPricingGrid()->isCustomPriceTypeSelectDisabled(),
                 'Custom price type select for product \'' . $product->getName() . '\'' . ' is enabled.'
             );
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $sharedCatalogConfigure->getPricingGrid()->isCustomPriceInputDisabled(),
                 'Custom price input for product \'' . $product->getName() . '\'' . ' is enabled.'
             );

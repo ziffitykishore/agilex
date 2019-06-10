@@ -28,7 +28,7 @@ class AssertCompanyUserRole extends AbstractConstraint
         $companyPage->getTreeControl()->clickEditSelected();
         $userRole = $companyPage->getCustomerPopup()->getUserRole();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $companyUserRole,
             $userRole,
             'Company user role is incorrect.'

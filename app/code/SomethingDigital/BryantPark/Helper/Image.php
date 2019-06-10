@@ -2,7 +2,11 @@
 
 namespace SomethingDigital\BryantPark\Helper;
 
-class Image extends \Magento\Framework\App\Helper\AbstractHelper
+use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context as HelperContext;
+
+class Image extends AbstractHelper
 {
     protected $_imageFactory;
     protected $_mediaDirectory;
@@ -10,12 +14,14 @@ class Image extends \Magento\Framework\App\Helper\AbstractHelper
     protected $_storeManager;
 
     public function __construct(
+        HelperContext $context,
         \Magento\Framework\Filesystem $filesystem,
         \Magento\Framework\Image\AdapterFactory $imageFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
+        parent::__construct($context);
         $this->_filesystem = $filesystem;
-        $this->_mediaDirectory = $filesystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+        $this->_mediaDirectory = $filesystem->getDirectoryRead(DirectoryList::MEDIA);
         $this->_imageFactory = $imageFactory;
         $this->_storeManager = $storeManager;
     }

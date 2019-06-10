@@ -27,7 +27,7 @@ class AssertEmptyCategoriesNotPresentInCatalog extends AbstractConstraint
     ) {
         $cmsIndex->open();
         foreach ($emptyCategoriesAbsentInCatalog as $category) {
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $cmsIndex->getNavigationMenu()->isCategoryVisible($category->getName()),
                 'Category \'' . $category->getName() . '\' is present in the top menu.'
             );

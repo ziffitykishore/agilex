@@ -39,7 +39,7 @@ class AssertFiltersGrid extends AbstractConstraint
         $filters = $sharedCatalogConfigure->getStructureGrid()->getFiltersTitle();
         $diff = array_diff($expectedFilters, $filters);
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             empty($diff),
             'List of filters in "Shared Catalog: Products in Catalog" filter panel is incorrect: ' . implode(',', $diff)
         );

@@ -54,12 +54,12 @@ class AssertOrderCancelConfirmation extends AbstractConstraint
         $salesOrder->getSalesOrderGrid()->searchAndOpen(['id' => $orderId]);
         $salesOrderView->getOrderActions()->clickCancel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             self::CONFIRMATION_TITLE,
             $salesOrderView->getOrderActions()->getConfirmationTitle(),
             'Confirmation title by order cancel is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             sprintf(constant('self::' . $confirmationMessage), $company->getCompanyName()),
             $salesOrderView->getOrderActions()->getConfirmationMessage(),
             'Confirmation message by order cancel is incorrect.'

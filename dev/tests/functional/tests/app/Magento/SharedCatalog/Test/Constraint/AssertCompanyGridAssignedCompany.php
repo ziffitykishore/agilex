@@ -28,7 +28,7 @@ class AssertCompanyGridAssignedCompany extends AbstractConstraint
         $assignedCompanyId = $sharedCatalogCompanyGrid->getFirstItemId();
         $assignedCompanyName = $sharedCatalogCompanyGrid->getColumnValue($assignedCompanyId, 'Company');
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedAssignedCompanyName,
             $assignedCompanyName,
             'Assigned company for current shared catalog at shared catalog companies grid is incorrect.'

@@ -24,7 +24,7 @@ class AssertNoQuoteInGridOnStorefront extends AbstractConstraint
     ) {
         $negotiableQuoteGrid->open();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuoteGrid->getQuoteGrid()->isEmpty(),
             'Quote is not absent in grid.'
         );

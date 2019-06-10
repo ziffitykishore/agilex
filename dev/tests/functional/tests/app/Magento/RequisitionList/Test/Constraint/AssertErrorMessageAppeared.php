@@ -33,7 +33,7 @@ class AssertErrorMessageAppeared extends AbstractConstraint
         $expectedMessage
     ) {
         $errorMessage =  $orderView->getRequisitionListMessages()->getErrorMessage();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             false !== strpos($errorMessage, $expectedMessage),
             'Error message ' . $errorMessage . ' is not equals to expected "'
             . $expectedMessage . ' " or is absent'

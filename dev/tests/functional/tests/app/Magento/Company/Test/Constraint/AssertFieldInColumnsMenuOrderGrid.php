@@ -25,14 +25,14 @@ class AssertFieldInColumnsMenuOrderGrid extends AbstractConstraint
         OrderIndex $orderIndex,
         array $fieldData
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $orderIndex->getStructureGrid()->retrievePreviousTitleFieldInColumnsMenu($fieldData['title']),
             $fieldData['previous'],
             'Previous field is not correct, expected ' . $fieldData['previous']
         );
 
         $field = $orderIndex->getStructureGrid()->retrieveFieldInColumnsMenu($fieldData['title']);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $field->find('[type="checkbox"]')->isSelected(),
             $fieldData['checked'],
             $fieldData['title'] . ' field is not correct.'

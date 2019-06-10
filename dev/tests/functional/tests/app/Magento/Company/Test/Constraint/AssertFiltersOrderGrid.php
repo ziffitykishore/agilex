@@ -27,14 +27,14 @@ class AssertFiltersOrderGrid extends AbstractConstraint
         array $companiesData,
         array $fieldData
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $orderIndex->getStructureGrid()->retrievePreviousFilterTitle($fieldData['title']),
             $fieldData['previous'],
             'Previous filter title is not correct, expected ' . $fieldData['previous']
         );
         $companyData = array_shift($companiesData);
         $orderIndex->getStructureGrid()->search(['company_name' => $companyData['company']->getCompanyName()]);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $orderIndex->getSalesOrderGrid()->getFirstItemId(),
             $companyData['order']->getId(),
             'Filter by Company Name is not correct.'

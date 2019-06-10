@@ -29,7 +29,7 @@ class AssertInvitationNewPageCustomerGroupField extends AbstractConstraint
         $invitationsIndex->open();
         $invitationsIndex->getGridPageActions()->addNew();
         $invitationsIndexNew->getCustomerGroup()->searchGroupByName($customerGroupName);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $customerGroupName,
             $invitationsIndexNew->getCustomerGroup()->getResultFromField(),
             'Customer group field is not correct.'

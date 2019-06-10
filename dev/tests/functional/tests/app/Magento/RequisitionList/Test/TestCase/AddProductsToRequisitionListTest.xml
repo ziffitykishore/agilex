@@ -29,6 +29,7 @@
             <constraint name="Magento\RequisitionList\Test\Constraint\AssertProductIsCorrectAfterUpdate" />
         </variation>
         <variation name="AddProductsToRequisitionListTestVariation2" ticketId="MAGETWO-68139, MAGETWO-68187, MAGETWO-68210">
+            <data name="issue" xsi:type="string">MAGETWO-81744: [Jenkins] Random fail of Requisition List Test</data>
             <data name="customer/dataset" xsi:type="string">default</data>
             <data name="productsList/0" xsi:type="string">catalogProductSimple::product_10_dollar</data>
             <data name="productsList/1" xsi:type="string">catalogProductSimple::rl_default_2</data>

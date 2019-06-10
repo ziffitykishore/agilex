@@ -28,7 +28,7 @@ class AssertProductsChecked extends AbstractConstraint
     ) {
         foreach ($products as $product) {
             $sharedCatalogConfigure->getPricingGrid()->search(['sku' => $product->getSku()]);
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $product->getId(),
                 $sharedCatalogConfigure->getPricingGrid()->getFirstItemId(),
                 'Wrong product is showing.'

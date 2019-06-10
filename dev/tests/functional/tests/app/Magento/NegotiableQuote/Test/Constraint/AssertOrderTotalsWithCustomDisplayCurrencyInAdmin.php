@@ -33,17 +33,17 @@ class AssertOrderTotalsWithCustomDisplayCurrencyInAdmin extends AbstractConstrai
         $salesOrder->open();
         $salesOrder->getSalesOrderGrid()->searchAndOpen(['id' => $orderId]);
         $totals = $salesOrderView->getNegotiableSectionTotalsBlock()->getTotalsWithDifferentCurrencies();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedTotals['catalog_total_price'],
             $totals['col-catalog_price'],
             'Catalog total prices are incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedTotals['negotiated_discount'],
             $totals['col-negotiated_discount'],
             'Negotiated discount is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedTotals['subtotal'],
             $totals['col-subtotal'],
             'Subtotal is incorrect.'

@@ -27,6 +27,13 @@ define([
             });
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('getTableClass method', function () {
             it('Check method call', function () {
                 spyOn(listing, 'getTableClass');

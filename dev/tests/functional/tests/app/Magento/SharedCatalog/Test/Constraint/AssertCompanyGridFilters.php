@@ -24,19 +24,19 @@ class AssertCompanyGridFilters extends AbstractConstraint
     ) {
         $sharedCatalogCompanyGrid = $sharedCatalogCompany->getCompanyGrid();
         $filtersTitles = $sharedCatalogCompanyGrid->getFiltersTitles();
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             'Assigned',
             $filtersTitles,
             'Shared catalog companies grid filter titles are incorrect'
         );
 
         $assignFilterOptions = $sharedCatalogCompanyGrid->getAssignFilterOptions();
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             'Yes',
             $assignFilterOptions,
             'Shared catalog companies grid filter options for \'Assigned\' filter are incorrect'
         );
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             'No',
             $assignFilterOptions,
             'Shared catalog companies grid filter options for \'Assigned\' filter are incorrect'
