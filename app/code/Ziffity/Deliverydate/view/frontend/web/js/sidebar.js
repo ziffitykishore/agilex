@@ -32,7 +32,11 @@ define(
               var time = this.getLocalStorageData();
               if (time !== null) {
                 if (time['amdeliverydate_time'] != null) {
-                    return JSON.parse(localStorage.getItem('deliverySlots'))[time['amdeliverydate_time']-1].label;
+                    var timeSlot = JSON.parse(localStorage.getItem('deliverySlots'));
+                    console.log(timeSlot);
+                    var selectedTimeSlot = timeSlot.filter(obj=>obj.value === time['amdeliverydate_time']);
+                    console.log(selectedTimeSlot);
+                    return selectedTimeSlot[0].label;
                 }
              }
             },
