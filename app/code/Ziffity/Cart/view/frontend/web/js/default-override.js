@@ -80,7 +80,7 @@ define(
                     amdeliverydate_date: mageCacheToJson['checkout-data']['shippingAddressFromData']["amdeliverydate_date"],
                     amdeliverydate_time: mageCacheToJson['checkout-data']['shippingAddressFromData']["amdeliverydate_time"],
                     amdeliverydate_comment: mageCacheToJson['checkout-data']['shippingAddressFromData']["amdeliverydate_comment"],
-                    pickupdate_date: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_date"]='',
+                    pickupdate_date: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_date"],
                     pickupdate_time: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_time"],
                     pickupdate_comment: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_comment"],
                 };
