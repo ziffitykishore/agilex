@@ -76,6 +76,9 @@ define(['jquery', 'slick', 'scroller'], function ($) {
 
 
 
+        new Mmenu( document.querySelector( '#menu' ) );
+
+
 
         $('.featured-product-inner > .product-item').prependTo('.featured-product-inner .product-items');
 
@@ -268,6 +271,9 @@ define(['jquery', 'slick', 'scroller'], function ($) {
     bgSource(".home-slider .banner-item");
 
     bgSource(".category-info");
+
+    $('.product-social-links').appendTo('.box-tocart .fieldset');
+
 });
 
 
