@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="authentication" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="before-login-form" xsi:type="array">
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="authentication" xsi:type="array">
+                                                                            <item name="sortOrder" xsi:type="string">1</item>
+                                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/authentication</item>
+                                                                            <!-- <item name="displayArea" xsi:type="string">authentication</item> -->
+                                                                            <item name="children" xsi:type="array">
+                                                                                <!--Additional authentication fields-->
+                                                                                <item name="errors" xsi:type="array">
+                                                                                    <item name="sortOrder" xsi:type="string">0</item>
+                                                                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/authentication-messages</item>
+                                                                                    <item name="displayArea" xsi:type="string">messages</item>
+                                                                                </item>
+                                                                            </item>
+                                                                        </item>                                                                        
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="telephone" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">70</item>
+                                                                </item>
+                                                                <item name="postcode" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">120</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <move element="logo" destination="content" before="-"/>
+    </body>
+</page>
