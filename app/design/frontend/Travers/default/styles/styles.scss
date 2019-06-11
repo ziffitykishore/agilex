@@ -6,9 +6,6 @@ $theme-web-path: '../web' !default;
 @import 'vendor/normalize/lib'; // Normalize.css
 @import 'vendor/magento-ui/lib'; // Magento UI
 
-// Vendor lib overrides
-@import 'mixins/overrides';
-
 // Mixins
 @import 'mixins/utilities';
 @import 'mixins/brand-color';
@@ -75,6 +72,7 @@ $theme-web-path: '../web' !default;
 
 // Vendor Block Libraries
 @import 'vendor/catland'; // Category Landing Styling
+@import 'vendor/pagebuilder/module'; // Page Builder Module Styling
 
 // Components styles (modal/sliding panel)
 @import 'blocks/components/modals'; // from lib

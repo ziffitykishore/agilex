@@ -113,6 +113,8 @@ $font-weight__bold: $font-weight__semibold;
 $font-size__base: 12px;
 $font-size__base--desktop: 14px;
 
+$letter-spacing__base: .6px;
+
 $line-height__base: 1.5;
 $line-height__base--desktop: 1.4;
 
@@ -144,6 +146,7 @@ $heading__font-family__base: $font-family__sans-serif;
 $heading__font-family__secondary: $font-family__base;
 $heading__font-weight__base: $font-weight__semibold;
 $heading__text-transform: uppercase;
+$heading__letter-spacing__base: .5px;
 
 $heading-h1: (
   font-family: $heading__font-family__base,

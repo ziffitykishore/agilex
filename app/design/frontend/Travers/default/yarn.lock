@@ -21,14 +21,14 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@sdinteractive/requirejs-export-plugin@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@sdinteractive/requirejs-export-plugin/-/requirejs-export-plugin-1.2.0.tgz#13c756bf9b5e682a4fcd08ac128a29e126575829"
+"@sdinteractive/requirejs-export-plugin@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@sdinteractive/requirejs-export-plugin/-/requirejs-export-plugin-2.0.1.tgz#5057683300cf819615551db60706e249081d9e2e"
   integrity sha1-E8dWv5teaCpPzQisEoop4SZXWCk=
 
-"@sdinteractive/requirejs-loader@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@sdinteractive/requirejs-loader/-/requirejs-loader-1.0.1.tgz#ceb8e16f3cd3e4dbaadcd93192401900c5bc9ebc"
+"@sdinteractive/requirejs-loader@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@sdinteractive/requirejs-loader/-/requirejs-loader-2.0.0.tgz#3aae2a590183ed67d50b3ff90abdd0406c8a2944"
   integrity sha1-zrjhbzzT5Nuq3NkxkkAZAMW8nrw=
 
 "@sdinteractive/requirejs-resolver@^1.1.0":
@@ -4167,6 +4167,10 @@ sshpk@^1.7.0:
     ecc-jsbn "~0.1.1"
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
+
+stickybits@^3.3.2:
+  version "3.3.7"
+  resolved "https://registry.npmjs.org/stickybits/-/stickybits-3.3.7.tgz#38a02eccb3e47f17d64448ee7c6c024adb55a69a"
 
 stream-browserify@^2.0.1:
   version "2.0.1"

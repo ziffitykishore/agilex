@@ -630,10 +630,10 @@ $_password-very-strong: #81b562 !default;
 
 @include min-screen($screen__m) {
     .login-container {
-        @extend .abs-add-clearfix-desktop;
+        @include lib-clearfix();
 
         .block {
-            @extend .abs-blocks-2columns;
+            @include abs-blocks-2columns();
             &.login {
                 .actions-toolbar {
                     & > .primary {
@@ -687,10 +687,10 @@ $_password-very-strong: #81b562 !default;
         .column.main {
             .block:not(.widget) {
                 .block-content {
-                    @extend .abs-add-clearfix-desktop;
+                    @include lib-clearfix();
 
                     .box {
-                        @extend .abs-blocks-2columns;
+                        @include abs-blocks-2columns();
                     }
                 }
             }
@@ -713,7 +713,7 @@ $_password-very-strong: #81b562 !default;
 
     .form-edit-account {
         .fieldset {
-            @extend .abs-blocks-2columns;
+            @include abs-blocks-2columns();
 
             &:nth-child(even) {
                 float: none;
@@ -723,10 +723,10 @@ $_password-very-strong: #81b562 !default;
 
     .block-addresses-list {
         .items.addresses {
-            @extend .abs-add-clearfix-desktop;
+            @include lib-clearfix();
 
             & > .item {
-                @extend .abs-blocks-2columns;
+                @include abs-blocks-2columns();
                 margin-bottom: $indent__base;
 
                 &:nth-last-child(1),
