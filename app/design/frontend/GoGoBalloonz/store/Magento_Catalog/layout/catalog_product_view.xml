@@ -19,7 +19,7 @@
 
         <move element="product.info.media" destination="product-info-inner" before="-"/>
         <move element="product.info.main" destination="product-info-inner" after="product.info.media" />
-        <move element="product.info.social" destination="product.info.options.wrapper.bottom" after="-"/>
+        <!--<move element="product.info.social" destination="product.info.addtocart" after="-"/>-->
 
         <move element="product.info.sku" destination="product.info.main" after="page.main.title"/>
         <move element="product.info.overview" destination="product.info.main" before="product.info.price"/>
