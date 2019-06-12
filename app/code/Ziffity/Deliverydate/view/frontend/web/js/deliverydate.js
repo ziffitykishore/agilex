@@ -35,6 +35,11 @@ define(
                 }
             },
             onChangeDate: function (val){
+                if(val){
+                    var date = new Date(val);
+                    var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : '0'+(date.getMonth() + 1);
+                    localStorage.setItem("selectedDeliveryDate",date.getDate() + '/' + month + '/' +  date.getFullYear());
+                }
                 if (this.deliverydateConfig.moduleEnabled) {
                     quote.amastyDeliveryDateDate = val;
                     if (this.deliverydateTime()) {

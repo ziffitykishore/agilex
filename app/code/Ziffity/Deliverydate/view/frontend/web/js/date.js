@@ -28,6 +28,14 @@ define([
 
                         return this;
                 },
+                preserveFormData: function() {
+                    if(localStorage.getItem('selectedDeliveryDate')){
+                        setTimeout(function(){
+                            $("input[name=amdeliverydate_date]").val(localStorage.getItem('selectedDeliveryDate')).trigger('change');
+                            localStorage.setItem("saveDeliveryFormData",true);
+                        }, 1000);
+                    }
+                },
                 getElem: function(){
                         return this;
                 },

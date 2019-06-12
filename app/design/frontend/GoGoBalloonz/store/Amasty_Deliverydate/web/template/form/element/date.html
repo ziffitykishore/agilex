@@ -1,6 +1,7 @@
 <input class="input-text" type="text" data-bind="
     hasFocus: focused,
     valueUpdate: valueUpdate,
+    afterRender: preserveFormData,
     attr: {
         value: shiftedValue,
         name: inputName,

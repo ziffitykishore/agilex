@@ -22,7 +22,10 @@ define([
                 this.fullIntervalsSet = config.options.full == undefined ? config.options[0] : config.options.full;
                 this.displayed = this.fullIntervalsSet;
             },
-            onUpdate: function () {
+            onUpdate: function (val) {
+                if(val){
+                    localStorage.setItem("selectedDeliveryTime",val);
+                }
                 this.bubble('update', this.hasChanged());
             },
 
@@ -50,6 +53,13 @@ define([
                  }).done(function (data) {
                     self.options(data);
                     localStorage.setItem('deliverySlots', JSON.stringify(data));
+                    if(localStorage.getItem('saveDeliveryFormData') === 'true'){
+                        localStorage.setItem("saveDeliveryFormData",false);
+                        setTimeout(function(){
+                            $("select[name=amdeliverydate_time]").val(localStorage.getItem('selectedDeliveryTime'));
+                            $("textarea[name=amdeliverydate_comment]").val(localStorage.getItem('selectedDeliveryComment'));
+                        }, 1000);
+                    }
                  });
             }
 

@@ -151,7 +151,12 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             }, 500, "linear")
         });
 
-
+        //To preserve delivery comment
+        $(document).on("blur", "textarea[name=amdeliverydate_comment]" , function() {
+            $("textarea[name=amdeliverydate_comment]").on('blur',function(){
+                localStorage.setItem('selectedDeliveryComment', $("textarea[name=amdeliverydate_comment]").val());
+            });
+        });
 
 
 
