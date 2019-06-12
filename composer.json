@@ -149,5 +149,16 @@
     "extra": {
         "magento-force": "override",
         "patches": {}
+    },
+     "replace": {
+        "dotmailer/dotmailer-magento2-extension": "*",
+        "dotmailer/dotmailer-magento2-extension-enterprise": "*",
+        "klarna/m2-payments": "*",
+        "klarna/module-core": "*",
+        "klarna/module-kp": "*",
+        "klarna/module-ordermanagement": "*",
+        "vertex/module-tax": "*",
+        "vertex/product-magento-module": "*",
+        "vertex/sdk": "*"
     }
 }
