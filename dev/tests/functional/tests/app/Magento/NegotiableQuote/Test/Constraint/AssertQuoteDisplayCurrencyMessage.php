@@ -41,7 +41,7 @@ class AssertQuoteDisplayCurrencyMessage extends AbstractConstraint
         );
         $negotiableQuoteGrid->open();
         $negotiableQuoteGrid->getQuoteGrid()->openFirstItem();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $negotiableQuoteView->getQuoteDetails()->getNotificationMessage(),
             'Notification message is not correct.'

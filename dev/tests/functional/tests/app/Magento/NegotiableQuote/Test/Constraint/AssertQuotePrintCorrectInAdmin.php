@@ -88,7 +88,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Message is not correct.'
         );
@@ -182,7 +182,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Totals are not correct'
         );
@@ -196,7 +196,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
      */
     protected function checkShippingMethod($method, AdminNegotiableQuotePrintView $negotiableQuotePrintView)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuotePrintView->getPrintQuoteDetails()->isMethodCorrect($method),
             'Method is not correct.'
         );
@@ -217,7 +217,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
 
         $result = array_diff($skuArr, $negotiableQuotePrintView->getPrintQuoteDetails()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Quote products are not correct.'
         );
@@ -233,7 +233,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
     {
         $result = array_diff($qtys, $negotiableQuotePrintView->getPrintQuoteDetails()->getQtyList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Quote product qtys are not correct.'
         );
@@ -249,7 +249,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
         \DateTime $expirationDate,
         AdminNegotiableQuotePrintView $negotiableQuotePrintView
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expirationDate->format('M j, Y'),
             $negotiableQuotePrintView->getPrintQuoteDetails()->getExpirationDate(),
             'Quote expiration date is not correct.'
@@ -264,7 +264,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
      */
     protected function checkName(array $quote, AdminNegotiableQuotePrintView $negotiableQuotePrintView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quote['quote-name'],
             $negotiableQuotePrintView->getPrintQuoteDetails()->getQuoteName(),
             'Quote name is not correct.'
@@ -279,7 +279,7 @@ class AssertQuotePrintCorrectInAdmin extends AbstractConstraint
      */
     protected function checkStatus($adminStatus, AdminNegotiableQuotePrintView $negotiableQuotePrintView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $adminStatus,
             $negotiableQuotePrintView->getPrintQuoteDetails()->getQuoteStatus(),
             'Quote status is not correct.'

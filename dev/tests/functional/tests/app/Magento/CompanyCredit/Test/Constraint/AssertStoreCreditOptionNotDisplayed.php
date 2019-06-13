@@ -42,7 +42,7 @@ class AssertStoreCreditOptionNotDisplayed extends AbstractConstraint
         $rmaNew->getRmaForm()->fill($rma);
         $rmaNew->getRmaForm()->openTab('items');
         foreach ($rmaNew->getRmaItems()->getResolutionOptions() as $option) {
-            \PHPUnit_Framework_Assert::assertNotEquals(
+            \PHPUnit\Framework\Assert::assertNotEquals(
                 self::OPTION,
                 $option->getText(),
                 sprintf('Option \'%s\' is available in Resolution field.', self::OPTION)

@@ -24,7 +24,7 @@ class AssertNoCategoriesOnStorefront extends AbstractConstraint
     {
         $cmsIndex->open();
         $cmsIndex->getLinksBlock()->waitWelcomeMessage();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $cmsIndex->getNavigationMenu()->isEmpty(),
             'Navigation menu is not empty.'
         );

@@ -108,7 +108,7 @@ class RoleRepositoryTest extends WebapiAbstract
      * @magentoApiDataFixture Magento/NegotiableQuote/_files/company_with_customer_for_quote.php
      * @dataProvider defaultRolePermissionsDataProvider
      */
-    public function testGetRoleList(array $expectedPermissions)
+    public function testGetRoleList(array $expectedPermissions): void
     {
         $customer = $this->customerRepository->get('email@companyquote.com');
         $company = $this->companyManagement->getByCustomerId($customer->getId());
@@ -163,7 +163,7 @@ class RoleRepositoryTest extends WebapiAbstract
      * @magentoApiDataFixture Magento/NegotiableQuote/_files/company_with_customer_for_quote.php
      * @dataProvider createRolePermissionsDataProvider
      */
-    public function testCreateRole(array $expectedPermissions)
+    public function testCreateRole(array $expectedPermissions): void
     {
         $customer = $this->customerRepository->get('email@companyquote.com');
         $company = $this->companyManagement->getByCustomerId($customer->getId());
@@ -216,7 +216,7 @@ class RoleRepositoryTest extends WebapiAbstract
      * @magentoApiDataFixture Magento/NegotiableQuote/_files/company_with_customer_for_quote.php
      * @dataProvider updateRolePermissionsDataProvider
      */
-    public function testUpdateRole(array $requestPermissions, array $responsePermissions)
+    public function testUpdateRole(array $requestPermissions, array $responsePermissions): void
     {
         $customer = $this->customerRepository->get('email@companyquote.com');
         $company = $this->companyManagement->getByCustomerId($customer->getId());
@@ -304,7 +304,7 @@ class RoleRepositoryTest extends WebapiAbstract
      * @param array $actualPermissions
      * @return void
      */
-    private function assertRolePermissions(array $expectedPermissions, array $actualPermissions)
+    private function assertRolePermissions(array $expectedPermissions, array $actualPermissions): void
     {
         $actualPermissions = array_map(function ($value) {
             return ['permission' => $value['permission'], 'resource_id' => $value['resource_id']];

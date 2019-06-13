@@ -20,7 +20,7 @@ define([
         },
         RequisitionComponent;
 
-    describe('Magento_SharedCatalog/js/notification', function () {
+    describe('Magento_RequisitionList/js/requisition/action/abstract', function () {
 
         beforeEach(function (done) {
             injector.mock(mocks);
@@ -33,6 +33,13 @@ define([
                 });
                 done();
             });
+        });
+
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
         });
 
         describe('"getTitle" method', function () {

@@ -62,7 +62,7 @@ class AssertQuoteShippingInfoInAdmin extends AbstractConstraint
     {
         $shippingMethodLabel = $negotiableQuoteEdit->getQuoteShippingInformation()->getShippingMethodLabel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->shippingMethodLabel,
             $shippingMethodLabel,
             'Shipping method label is not correct'
@@ -81,7 +81,7 @@ class AssertQuoteShippingInfoInAdmin extends AbstractConstraint
     ) {
         $proposedShippingPrice = $negotiableQuoteEdit->getQuoteDetails()->getProposedShippingPrice();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedProposedShippingPrice,
             $proposedShippingPrice,
             'Proposed shipping price value is not correct'
@@ -101,7 +101,7 @@ class AssertQuoteShippingInfoInAdmin extends AbstractConstraint
         $expectedShippingAndHandlingPrice = '$' .$expectedShippingAndHandlingPrice .'.00';
         $shippingAndHandlingPrice = $negotiableQuoteEdit->getQuoteDetails()->getShippingAndHandlingPrice();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedShippingAndHandlingPrice,
             $shippingAndHandlingPrice,
             'Shipping and handling price value is not correct'

@@ -37,7 +37,7 @@ class AssertCompanyForm extends AbstractAssertForm
 
         $companyFormData = $companyEdit->getCompanyForm()->getData($company);
         $errors = $this->verifyData($this->prepareCompanyData($company->getData()), $companyFormData);
-        \PHPUnit_Framework_Assert::assertEmpty($errors, $errors);
+        \PHPUnit\Framework\Assert::assertEmpty($errors, $errors);
     }
 
     /**

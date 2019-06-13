@@ -40,7 +40,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->_banner = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->create(
             \Magento\Banner\Model\Banner::class
         );
-        $this->_banner->load('Test Banner', 'name');
+        $this->_banner->load('Test Dynamic Block', 'name');
     }
 
     protected function tearDown()

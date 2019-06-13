@@ -31,7 +31,7 @@ class AssertProductNewPageCustomerGroupField extends AbstractConstraint
         $newProductPage->getProductForm()->openSection('advanced-pricing');
         $newProductPage->getCustomerGroup()->openCustomerGroupPrice();
         $newProductPage->getCustomerGroup()->searchGroupByName($customerGroupName);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $customerGroupName,
             $newProductPage->getCustomerGroup()->getResultFromField(),
             'Customer group field is not correct.'

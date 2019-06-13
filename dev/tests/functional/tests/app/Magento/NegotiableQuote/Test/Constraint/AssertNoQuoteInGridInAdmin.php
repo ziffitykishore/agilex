@@ -28,7 +28,7 @@ class AssertNoQuoteInGridInAdmin extends AbstractConstraint
         $filter = ['quote_name' => $quote['quote-name']];
         $negotiableQuoteGrid->getGrid()->search($filter);
 
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $negotiableQuoteGrid->getGrid()->isFirstRowVisible(),
             'Quote is not absent in grid.'
         );

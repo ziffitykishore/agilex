@@ -20,12 +20,21 @@ define(['squire'], function (Squire) {
                             {
                                 'name': 'simple01',
                                 'product_sku': 'simple01',
+                                'product_id': '1',
                                 'price': 100
                             },
                             {
                                 'name': 'simple02',
                                 'product_sku': 'simple02',
+                                'product_id': '2',
                                 'price': 200
+                            },
+                            {
+                                'name': 'simple04',
+                                'product_sku': 'simple04',
+                                'product_id': '4',
+                                'price': 400,
+                                'qty': 0
                             }
                         ]
                     });
@@ -49,31 +58,45 @@ define(['squire'], function (Squire) {
     });
 
     describe('Magento_GoogleTagManager/js/google-tag-manager-cart', function () {
-        describe('"getProductBySku" method', function () {
+        describe('"getProductById" method', function () {
             it('Check for gtm definition', function () {
                 expect(gtm).toBeDefined();
             });
 
             it('Check result value for "simple01"', function () {
-                var product = gtm.getProductBySku('simple01');
+                var product = gtm.getProductById('1');
 
                 expect(product.price).toBe(100);
                 expect(product.name).toBe('simple01');
             });
 
             it('Check result value for "simple02"', function () {
-                var product = gtm.getProductBySku('simple02');
+                var product = gtm.getProductById('2');
 
                 expect(product.price).toBe(200);
                 expect(product.name).toBe('simple02');
             });
 
             it('Check result value for sku that do not exists', function () {
-                var product = gtm.getProductBySku('simple03');
+                var product = gtm.getProductById('3');
 
                 expect(typeof product).toBe('object');
                 expect(product.price).not.toBeDefined();
                 expect(product.name).not.toBeDefined();
+            });
+        });
+        describe('"_executeEvents" method', function () {
+            it('Check execute events "ajax:addToCart" for product with quantity 0', function () {
+                gtm.options.actions['ajax:addToCart'] = jasmine.createSpy();
+                gtm.options.temporaryEventStorage = [
+                    {
+                        'type': 'ajax:addToCart',
+                        'productIds': ['4']
+                    }
+                ];
+                gtm._executeEvents();
+
+                expect(gtm.options.actions['ajax:addToCart']).not.toHaveBeenCalled();
             });
         });
     });

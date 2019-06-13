@@ -8,6 +8,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
     <testCase name="Magento\CompanyCredit\Test\TestCase\RevertForReassignedCustomerTest" summary="Test revert functionality for Payment on Account method">
         <variation name="RevertForReassignedCustomerTestVariation1" ticketId="MAGETWO-68426" summary="Revert an order placed via Payment on Account method for a customer that reassigned to a different company">
+            <data name="issue" xsi:type="string">https://github.com/magento-engcom/msi/issues/1624</data>
             <data name="companyDataset" xsi:type="string">company_with_credit_in_usd</data>
             <data name="customerDataset" xsi:type="string">customer_US</data>
             <data name="orderInjectable" xsi:type="string">default_payment_on_account</data>

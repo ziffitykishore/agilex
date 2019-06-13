@@ -30,6 +30,21 @@ $collapsible-nav-box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.35) !default;
     }
 }
 
+.block-collapsible-nav-title {
+    &--disabled {
+        @include min-screen($screen__m + 1) {
+            background: 0;
+            pointer-events: none;
+            border: 0;
+            color: inherit;
+
+            span {
+                @include lib-visibility-hidden();
+            }
+        }
+    }
+}
+
 .block-collapsible-nav-content {
     padding: 15px 0;
     background-color: $collapsible-nav-background;

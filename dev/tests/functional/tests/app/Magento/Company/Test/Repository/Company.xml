@@ -130,7 +130,7 @@
 
         <dataset name="company_fixture_for_update">
             <field name="company_name" xsi:type="string">Company updated %isolation%</field>
-            <field name="company_email" xsi:type="string">updated_some@email.com</field>
+            <field name="company_email" xsi:type="string">updated_some_%isolation%@email.com</field>
             <field name="legal_name" xsi:type="string">Legal Company Updated %isolation%</field>
             <field name="street" xsi:type="string">6161 West Centinela Avenue</field>
             <field name="telephone" xsi:type="string">987-65-43-21</field>

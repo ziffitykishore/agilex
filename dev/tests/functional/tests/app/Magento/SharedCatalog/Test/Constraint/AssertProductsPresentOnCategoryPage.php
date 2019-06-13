@@ -44,7 +44,7 @@ class AssertProductsPresentOnCategoryPage extends AbstractConstraint
                         ->getProductItem($product)->getPriceBlock()->getPrice()
                     == number_format($product->getPrice() * (100 - $discount) / 100, 2);
             }
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $isProductVisible && $isPriceCorrect,
                 'Product \'' . $product->getName() . '\' is absent on category page or price is incorrect.'
             );

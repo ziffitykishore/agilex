@@ -61,7 +61,7 @@ class AssertTierPricesCurrencyInWebsite extends AbstractConstraint
         $sharedCatalogConfigure->getNavigation()->nextStep();
         $sharedCatalogConfigure->getPricingGrid()->search(['sku' => $product->getSku()]);
         $sharedCatalogConfigure->getPricingGrid()->openTierPriceConfiguration();
-        \PHPUnit_Framework_Assert::assertArraySubset(
+        \PHPUnit\Framework\Assert::assertArraySubset(
             [$this->allWebsitesId => $allWebsitesCurrency['price']],
             $sharedCatalogConfigure->getTierPriceModal()->getPriceCurrencySymbol($this->defaultQty),
             'Tier price currency symbol in ' . $this->allWebsiteFilter . ' scope is incorrect.'
@@ -69,7 +69,7 @@ class AssertTierPricesCurrencyInWebsite extends AbstractConstraint
         foreach ($websites as $key => $website) {
             $sharedCatalogConfigure->getTierPriceModal()->switchScope($website->getName());
             if (isset($expectedCurrencies[$key]['custom_price'])) {
-                \PHPUnit_Framework_Assert::assertArraySubset(
+                \PHPUnit\Framework\Assert::assertArraySubset(
                     [$website->getWebsiteId() => $expectedCurrencies[$key]['custom_price']],
                     $sharedCatalogConfigure->getTierPriceModal()->getPriceCurrencySymbol($this->defaultQty),
                     'Tier price currency symbol in ' . $website->getName() . ' scope is incorrect.'

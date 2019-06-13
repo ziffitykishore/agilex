@@ -66,7 +66,7 @@ class AssertProductPresentOnSearchResultsPage extends AbstractConstraint
                     $isProductVisible = $searchResults->getListProductBlock()->getProductItem($product)->isVisible();
                 }
 
-                \PHPUnit_Framework_Assert::assertTrue(
+                \PHPUnit\Framework\Assert::assertTrue(
                     $isPresent ? $isProductVisible : !$isProductVisible,
                     'Product \'' . $product->getName() . '\' is ' . ($isPresent ? 'absent' : 'present')
                     . ' on the search results page.'

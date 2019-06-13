@@ -34,7 +34,7 @@ class AssertCompanyOrderLinkIsVisible extends AbstractConstraint
         $companyIndex->open();
         $companyIndex->getGrid()->searchAndOpen(['company_name' => $company->getCompanyName()]);
         $companyEdit->getCompanyForm()->openSection('company_credit');
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $companyEdit->getCreditHistoryGrid()->getOrderLink($orderId)->isVisible(),
             'Company order link is not visible.'
         );

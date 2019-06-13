@@ -31,6 +31,11 @@ use Magento\Backend\Test\Page\Adminhtml\SystemConfigEditSectionPayment;
 class ChangeCompanyCreditCurrencyTest extends AbstractCompanyCreditTest
 {
     /**
+     * ScopeInterface::SCOPE_WEBSITE
+     */
+    const SCOPE_WEBSITE = 'website';
+
+    /**
      * Website fixture.
      *
      * @var \Magento\Store\Test\Fixture\Website
@@ -258,9 +263,9 @@ class ChangeCompanyCreditCurrencyTest extends AbstractCompanyCreditTest
                 ],
                 'scope' => [
                     'fixture' => $website,
-                    'scope_type' => \Magento\Store\Model\ScopeInterface::SCOPE_WEBSITE,
+                    'scope_type' => self::SCOPE_WEBSITE,
                     'website_id' => $website->getWebsiteId(),
-                    'set_level' => \Magento\Store\Model\ScopeInterface::SCOPE_WEBSITE
+                    'set_level' => self::SCOPE_WEBSITE
                 ]
             ]
         ];

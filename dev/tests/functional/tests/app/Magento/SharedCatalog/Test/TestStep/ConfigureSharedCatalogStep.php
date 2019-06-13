@@ -21,6 +21,16 @@ use Magento\Mtf\Util\Command\Cli\Queue;
 class ConfigureSharedCatalogStep implements TestStepInterface
 {
     /**
+     * TierPriceInterface::PRICE_TYPE_FIXED
+     */
+    const PRICE_TYPE_FIXED = 'fixed';
+
+    /**
+     * TierPriceInterface::PRICE_TYPE_DISCOUNT
+     */
+    const PRICE_TYPE_DISCOUNT = 'discount';
+
+    /**
      * @var Queue
      */
     private $queue;
@@ -111,11 +121,11 @@ class ConfigureSharedCatalogStep implements TestStepInterface
             ->getPricingGrid()
             ->resetFilter();
         if (!empty($this->data['discount'])) {
-            if ($this->data['type'] == TierPriceInterface::PRICE_TYPE_DISCOUNT) {
+            if ($this->data['type'] == self::PRICE_TYPE_DISCOUNT) {
                 $this->sharedCatalogConfigure
                     ->getPricingGrid()
                     ->applyDiscount();
-            } elseif ($this->data['type'] == TierPriceInterface::PRICE_TYPE_FIXED) {
+            } elseif ($this->data['type'] == self::PRICE_TYPE_FIXED) {
                 $this->sharedCatalogConfigure
                     ->getPricingGrid()
                     ->adjustFixedPrice();

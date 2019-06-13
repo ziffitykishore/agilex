@@ -96,7 +96,7 @@ class AssertCreditLimitFilter extends AbstractConstraint
      */
     private function verifyCreditLimitsSortOrder(array $expectedNamesList, array $namesList)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedNamesList,
             $namesList,
             'Companies list is not correct.'

@@ -33,6 +33,13 @@ define([
             });
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"edit" method', function () {
             it('Check for defined', function () {
                 expect(editObj.edit).toBeDefined();

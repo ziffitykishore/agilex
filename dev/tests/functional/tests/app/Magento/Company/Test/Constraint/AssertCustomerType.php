@@ -105,7 +105,7 @@ class AssertCustomerType extends AbstractConstraint
         $itemId = $this->customerIndex->getCustomerGridBlock()->getFirstItemId();
         $userType = $this->customerIndex->getCompanyCustomerGrid()->getColumnValue($itemId, 'Customer Type');
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedUserType,
             $userType,
             'User type is incorrect.'
@@ -126,7 +126,7 @@ class AssertCustomerType extends AbstractConstraint
         $this->customerIndex->getCustomerGridBlock()->searchAndOpen($filter);
         $userType = $this->customerEdit->getCustomerView()->getCustomerType();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedUserType,
             $userType,
             'User type is incorrect.'

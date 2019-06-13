@@ -79,7 +79,7 @@ class AssertQuoteChangesAfterDisablingProductInAdmin extends AbstractConstraint
             . ' has been deleted from the catalog. The items quoted list has been updated.';
         $warningMessages = $negotiableQuoteEdit->getQuoteMessages()->getWarningMessages();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             in_array($expectedWarningMessage, $warningMessages),
             'Product deleted message is incorrect'
         );
@@ -96,7 +96,7 @@ class AssertQuoteChangesAfterDisablingProductInAdmin extends AbstractConstraint
         $expectedHistoryMessage = $sku . ' - deleted from catalog';
         $historyLogMessages = $negotiableQuoteEdit->getQuoteDetails()->getHistoryLog();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             in_array($expectedHistoryMessage, $historyLogMessages),
             'History log message is incorrect'
         );
@@ -111,7 +111,7 @@ class AssertQuoteChangesAfterDisablingProductInAdmin extends AbstractConstraint
     {
         $quoteItemTaxLabel = $negotiableQuoteEdit->getQuoteDetails()->getQuoteItemsTaxLabel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->taxLabel,
             $quoteItemTaxLabel,
             'Quote items subtotal tax label is incorrect'
@@ -127,7 +127,7 @@ class AssertQuoteChangesAfterDisablingProductInAdmin extends AbstractConstraint
     {
         $quoteTotalsTaxLabel = $negotiableQuoteEdit->getQuoteDetails()->getQuoteTotalsTaxLabel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->taxLabel,
             $quoteTotalsTaxLabel,
             'Quote totals tax label is incorrect'
@@ -143,7 +143,7 @@ class AssertQuoteChangesAfterDisablingProductInAdmin extends AbstractConstraint
     {
         $quoteTotalsSubtotalTaxLabel = $negotiableQuoteEdit->getQuoteDetails()->getQuoteTotalsSubtotalTaxLabel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->taxLabel,
             $quoteTotalsSubtotalTaxLabel,
             'Quote totals subtotal tax label is incorrect'

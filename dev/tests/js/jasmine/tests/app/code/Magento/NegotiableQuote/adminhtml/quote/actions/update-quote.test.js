@@ -11,14 +11,19 @@ define([
     'use strict';
 
     describe('Magento_NegotiableQuote/quote/actions/update-quote', function () {
-        var obj, Event, tplElement;
+        var obj, Event, tplElement, originalJQueryAjax;
 
         beforeEach(function () {
+            originalJQueryAjax = $.ajax;
             obj = new UpdateQuote({});
             Event = 'testEvent';
             tplElement = $('<input type="hidden" name="quote_id" value="10">');
 
             tplElement.appendTo(document.body);
+        });
+
+        afterEach(function () {
+            $.ajax = originalJQueryAjax;
         });
 
         describe('"_setUrl" method', function () {

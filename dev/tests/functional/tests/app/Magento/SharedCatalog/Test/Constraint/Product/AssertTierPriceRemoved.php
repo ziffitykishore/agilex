@@ -36,7 +36,7 @@ class AssertTierPriceRemoved extends AbstractConstraint
         $catalogProductIndex->getProductGrid()->searchAndOpen(['sku' => $sku]);
         $catalogProductNew->getProductForm()->openSection($this->advancedPricingSection);
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             !$catalogProductNew->getTierPrice()->isTierPriceOptionsPresent(),
             'Tier price options are present in advanced price options.'
         );

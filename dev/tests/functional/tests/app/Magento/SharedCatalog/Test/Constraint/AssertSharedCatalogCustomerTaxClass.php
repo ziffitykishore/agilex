@@ -36,7 +36,7 @@ class AssertSharedCatalogCustomerTaxClass extends AbstractConstraint
         $sharedCatalogIndex->getGrid()->search($filter);
         $sharedCatalogIndex->getGrid()->openEdit($sharedCatalogIndex->getGrid()->getFirstItemId());
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $customerTaxClass,
             $sharedCatalogCreate->getSharedCatalogForm()->getCustomerTaxClass(),
             'Shared catalog has wrong Customer Tax Class value.'

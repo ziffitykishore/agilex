@@ -40,7 +40,7 @@ class AssertCompanyCustomerGroupCorrect extends AbstractConstraint
         $companyIndex->getGrid()->search(['customer_group_id' => $customerGroup, 'company_name' => $companyName]);
         $rowId = $companyIndex->getGrid()->getFirstItemId();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $customerGroup,
             $companyIndex->getGrid()->getColumnValue($rowId, $columnName),
             $this->groupColumnName . ' is not correct.'

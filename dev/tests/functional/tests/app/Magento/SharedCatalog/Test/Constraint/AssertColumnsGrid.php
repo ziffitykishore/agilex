@@ -38,7 +38,7 @@ class AssertColumnsGrid extends AbstractConstraint
         $expectedColumns = explode(', ', $expectedColumns);
         $filters = $sharedCatalogConfigure->getStructureGrid()->getColumnsGrid();
         $diff = array_diff($expectedColumns, $filters);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             empty($diff),
             'List of columns in "Shared Catalog: Products in Catalog" grid is incorrect: ' . implode(',', $diff)
         );

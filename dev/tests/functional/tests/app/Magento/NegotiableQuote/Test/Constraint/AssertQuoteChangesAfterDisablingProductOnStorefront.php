@@ -71,7 +71,7 @@ class AssertQuoteChangesAfterDisablingProductOnStorefront extends AbstractConstr
         $expectedNoticeMessage = 'Product ' . $sku . ' is no longer available. It was removed from your quote.';
         $noticeMessage = $quoteFrontendEdit->getMessagesBlock()->getNoticeMessage();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedNoticeMessage,
             $noticeMessage,
             'Notice message is incorrect'
@@ -87,7 +87,7 @@ class AssertQuoteChangesAfterDisablingProductOnStorefront extends AbstractConstr
     {
         $quoteTotalsLabel = $quoteFrontendEdit->getQuoteDetails()->getQuoteTotalsTaxLabel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->taxLabel,
             $quoteTotalsLabel,
             'Notice message is incorrect'
@@ -103,7 +103,7 @@ class AssertQuoteChangesAfterDisablingProductOnStorefront extends AbstractConstr
     {
         $quoteTotalsSubtotalLabel = $quoteFrontendEdit->getQuoteDetails()->getQuoteTotalsTaxLabel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->taxLabel,
             $quoteTotalsSubtotalLabel,
             'Notice message is incorrect'
@@ -122,7 +122,7 @@ class AssertQuoteChangesAfterDisablingProductOnStorefront extends AbstractConstr
         $quoteFrontendEdit->getQuoteDetails()->openHistoryLogTab();
         $historyMessages = $quoteFrontendEdit->getQuoteDetails()->getHistoryLog();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             in_array($expectedHistoryLogMessage, $historyMessages),
             'Notice message is incorrect'
         );

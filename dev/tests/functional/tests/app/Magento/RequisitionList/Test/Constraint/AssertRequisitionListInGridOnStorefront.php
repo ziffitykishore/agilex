@@ -29,7 +29,7 @@ class AssertRequisitionListInGridOnStorefront extends AbstractConstraint
             'name' => $name,
         ];
         $requisitionListGrid->open();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $requisitionListGrid->getRequisitionListGrid()->isRequisitionListVisible($filter),
             'Requisition list with following name \'' . $name . '\' is absent in grid on Storefront.'
         );

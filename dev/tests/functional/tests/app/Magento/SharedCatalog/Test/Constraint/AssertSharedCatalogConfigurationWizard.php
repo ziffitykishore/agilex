@@ -48,17 +48,17 @@ class AssertSharedCatalogConfigurationWizard extends AbstractConstraint
         $sharedCatalogIndex->getGrid()->search(['name' => $sharedCatalog->getName()]);
         $sharedCatalogIndex->getGrid()->openConfigure($sharedCatalogIndex->getGrid()->getFirstItemId());
         $sharedCatalogConfigure->getContainer()->openConfigureWizard();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             self::WIZARD_TITLE,
             $sharedCatalogConfigure->getWizard()->getTitle(),
             'Title of the configuration wizard is wrong.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             self::WIZARD_STEP_TITLE,
             $sharedCatalogConfigure->getWizard()->getStepTitle(),
             'Wizard step title is wrong.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->wizardSteps,
             $sharedCatalogConfigure->getWizard()->getSteps(),
             'Wizard steps are wrong.'

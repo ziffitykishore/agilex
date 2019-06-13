@@ -25,7 +25,7 @@ class AssertSubtotalInShoppingCart extends AbstractAssertForm
      */
     public function processAssert(CheckoutCart $checkoutCart, $subtotal)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $subtotal,
             $checkoutCart->getTotalsBlock()->getSubtotal(),
             'Subtotal price in the shopping cart not equals to the expected subtotal price.'

@@ -28,7 +28,7 @@ class AssertReassignWarning extends AbstractConstraint
         $companyId = $sharedCatalogCompany->getCompanyGrid()->getFirstItemId();
         $sharedCatalogCompany->getCompanyGrid()->assignCatalog($companyId);
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             (bool)strpos(
                 $sharedCatalogCompany->getModalBlock()->getText(),
                 'This action will change a shared catalog for selected companies'

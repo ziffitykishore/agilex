@@ -27,7 +27,7 @@ class AssertCategoryCheckedInTree extends AbstractConstraint
         CatalogProductSimple $catalogProduct
     ) {
         $categoryName = $catalogProduct->getCategoryIds()[0];
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $sharedCatalogConfigure->getStructureJstree()->findTreeNode($categoryName)->isVisible(),
             'No category was shown on structure configuration step.'
         );

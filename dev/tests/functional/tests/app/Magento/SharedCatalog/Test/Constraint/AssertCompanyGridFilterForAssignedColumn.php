@@ -32,7 +32,7 @@ class AssertCompanyGridFilterForAssignedColumn extends AbstractConstraint
         $this->sharedCatalogCompanyGrid->search($filter);
         $columnValues = $this->getColumnValues('Assigned');
         $result = count(array_keys($columnValues, 'No')) == count($columnValues);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Filtering at shared catalog company grid is not correct.'
         );

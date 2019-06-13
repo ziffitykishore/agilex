@@ -30,7 +30,7 @@ class AssertQuoteViewIsRestricted extends AbstractConstraint
         $negotiableQuoteGrid->getQuoteGrid()->openFirstItem();
         $heading = $accessDeniedPage->getAccessDenied()->getContentHeading();
         $content = $accessDeniedPage->getAccessDenied()->getPageContent();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $this->isPageValid($deniedPage, $heading, $content),
             'Quote view is not restricted.'
         );

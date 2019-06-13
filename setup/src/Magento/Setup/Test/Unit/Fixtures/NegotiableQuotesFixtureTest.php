@@ -163,7 +163,6 @@ class NegotiableQuotesFixtureTest extends \PHPUnit\Framework\TestCase
      * Test execute method.
      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      * @return void
-     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     public function testExecute()
     {
@@ -200,7 +199,7 @@ class NegotiableQuotesFixtureTest extends \PHPUnit\Framework\TestCase
         $connection->expects($this->atLeastOnce())->method('select')->willReturn($select);
         $select->expects($this->atLeastOnce())->method('from')
             ->withConsecutive(
-                ['negotiable_quote', 'COUNT(*)'],
+                ['negotiable_quote',  'COUNT(*)'],
                 [['qa' => 'quote_address']],
                 ['quote_item'],
                 ['quote_item'],

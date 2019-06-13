@@ -39,26 +39,26 @@ class AssertCategoryPermissionsState extends AbstractConstraint
         $systemConfigCatalog->open();
         $systemConfigCatalog->getCatalog()->openCategoryPermissionsSection();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $systemConfigCatalog->getCatalog()->isCategoryPermissionsEnableControlDisabled(),
             'Category Permissions Enabled control is enabled.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->categoryPermissionsEnabledOptionText,
             $systemConfigCatalog->getCatalog()->getCategoryPermissionsEnableValue(),
             'Category Permissions are disabled.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->allowedForEveryoneOptionText,
             $systemConfigCatalog->getCatalog()->getCategoryPermissionsAllowBrowsingCategoryValue(),
             'Category Permissions Allow Browsing Category value is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->allowedForEveryoneOptionText,
             $systemConfigCatalog->getCatalog()->getCategoryPermissionsDisplayProductPricesValue(),
             'Category Permissions Display Product Prices value is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $this->allowedForEveryoneOptionText,
             $systemConfigCatalog->getCatalog()->getCategoryPermissionsAllowAddingToCartValue(),
             'Category Permissions Allow Adding to Cart value is incorrect.'

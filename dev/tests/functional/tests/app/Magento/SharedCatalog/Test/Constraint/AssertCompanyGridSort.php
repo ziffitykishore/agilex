@@ -45,7 +45,7 @@ class AssertCompanyGridSort extends AbstractConstraint
         $columnValues = $this->getColumnValues($columnLabel);
         $expectedColumnValues = $columnValues;
         arsort($expectedColumnValues);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedColumnValues,
             $columnValues,
             'Sorting at shared catalog companies grid is not correct .'

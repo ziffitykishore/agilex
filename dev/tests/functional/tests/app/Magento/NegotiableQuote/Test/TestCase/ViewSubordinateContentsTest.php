@@ -76,6 +76,7 @@ class ViewSubordinateContentsTest extends AbstractQuoteNegotiationTest
      * @param array $messages
      * @param array $steps
      * @param array $shipping
+     * @param array $payment
      * @param string $configData
      * @return array
      */
@@ -87,6 +88,7 @@ class ViewSubordinateContentsTest extends AbstractQuoteNegotiationTest
         array $messages = [],
         array $steps = [],
         array $shipping = [],
+        array $payment = [],
         $configData = null
     ) {
         $this->configData = $configData;
@@ -130,6 +132,7 @@ class ViewSubordinateContentsTest extends AbstractQuoteNegotiationTest
         $this->shipping = $shipping;
         $products = $this->createProducts($productsList);
         $this->products = $products;
+        $this->payment = $payment;
 
         //%isolation% not working on arrays
         if (isset($quote['quote-name'])) {

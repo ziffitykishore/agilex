@@ -11,8 +11,9 @@
 ?>
 
 <div data-block="minicart" class="minicart-wrapper">
-    <a class="action showcart" href="<?= /* @escapeNotVerified */ $block->getShoppingCartUrl() ?>"
-       data-bind="scope: 'minicart_content'">
+    <a id="minicart-show" class="action showcart" href="<?= /* @escapeNotVerified */ $block->getShoppingCartUrl() ?>"
+       data-bind="scope: 'minicart_content'"
+       onclick="dataLayer.push({'event': 'minicart_show'}); ">
         <span class="text"><?= /* @escapeNotVerified */ __('My Cart') ?></span>
         <span class="counter qty empty"
               data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
@@ -55,6 +56,14 @@
                     });
                 }
             );
+        </script>
+    <?php else: ?>
+        <script>
+            require(['jquery'], function ($) {
+                $('a.action.showcart').click(function() {
+                    $(document.body).trigger('processStart');
+                });
+            });
         </script>
     <?php endif ?>
     <script>

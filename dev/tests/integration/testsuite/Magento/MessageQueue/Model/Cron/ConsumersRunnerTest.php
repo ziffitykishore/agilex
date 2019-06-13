@@ -19,6 +19,7 @@ use Magento\Framework\App\Config\ReinitableConfigInterface;
  * Tests the different cases of consumers running by ConsumersRunner
  *
  * {@inheritdoc}
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class ConsumersRunnerTest extends \PHPUnit\Framework\TestCase
 {
@@ -104,21 +105,8 @@ class ConsumersRunnerTest extends \PHPUnit\Framework\TestCase
                 $command = str_replace('bin/magento', 'dev/tests/integration/bin/magento', $command);
                 $command = $params . ' ' . $command;
 
-                return exec("{$command} > /dev/null &");
+                return exec("{$command} >/dev/null &");
             });
-    }
-
-    /**
-     * Checks that pid files are created
-     *
-     * @return void
-     */
-    public function testCheckThatPidFilesWasCreated()
-    {
-        $this->consumersRunner->run();
-        foreach ($this->consumerConfig->getConsumers() as $consumer) {
-            $this->waitConsumerPidFile($consumer->getName());
-        }
     }
 
     /**
@@ -181,23 +169,6 @@ class ConsumersRunnerTest extends \PHPUnit\Framework\TestCase
         foreach ($this->consumerConfig->getConsumers() as $consumer) {
             $pidFileFullPath = $this->getPidFileFullPath($consumer->getName());
             $this->assertFalse(file_exists($pidFileFullPath));
-        }
-    }
-
-    /**
-     * @param string $consumerName
-     * @return void
-     */
-    private function waitConsumerPidFile($consumerName)
-    {
-        $pidFileFullPath = $this->getPidFileFullPath($consumerName);
-        $i = 0;
-        do {
-            sleep(1);
-        } while (!file_exists($pidFileFullPath) && ($i++ < 60));
-
-        if (!file_exists($pidFileFullPath)) {
-            $this->fail($consumerName . ' pid file does not exist.');
         }
     }
 

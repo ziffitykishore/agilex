@@ -52,7 +52,7 @@ class Deploy
         $assetRepo = $this->assetParams->getAssetRepo($params);
         $design = $this->assetParams->getDesign($params);
         $this->assetQueue->generate($assetRepo, $params);
-        $this->requireJsGenerator->generate($assetRepo, $design);
+        $this->requireJsGenerator->generate($assetRepo, $design, $params['locale']);
     }
 
     protected function enqueueModules($area)

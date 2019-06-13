@@ -25,7 +25,7 @@ class AssertUserExistsErrorMessage extends AbstractConstraint
         $errorMessage = 'A user with this email address already exists in the system. ' .
             'Enter a different email address to create this user.';
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $errorMessage,
             $companyPage->getCustomerPopup()->getErrorMessage(),
             'Error message is not correct.'

@@ -88,26 +88,26 @@ class AssertRolePermissionCheckboxState extends AbstractConstraint
         $rolesAndPermissionsIndex->getRolesGrid()->editRole($roleName);
         $this->roleEdit->getRoleEditForm()->unselectAllPermissions();
         $this->roleEdit->getRoleEditForm()->changeRolePermissions([$this->legalAddressEditPermission]);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $this->roleEdit->getRoleEditForm()->isPermissionSelected($this->legalAddressViewPermission),
             'Legal Address (View) permission is not selected.'
         );
         $roleEdit->getRoleEditForm()->changeRolePermissions([], [$this->legalAddressViewPermission]);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             !$this->roleEdit->getRoleEditForm()->isPermissionSelected($this->legalAddressEditPermission),
             'Legal Address Edit permission is selected.'
         );
         $this->roleEdit->getRoleEditForm()->changeRolePermissions([$this->quotesPermission]);
         $this->roleEdit->getRoleEditForm()->changeRolePermissions([], [$this->quotesViewPermission]);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             !$this->roleEdit->getRoleEditForm()->isPermissionSelected($this->quotesRequestEditDeletePermission),
             'Quotes Request, Edit, Delete permission is selected.'
         );
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             !$this->roleEdit->getRoleEditForm()->isPermissionSelected($this->quotesCheckoutWithQuotePermission, false),
             'Quotes Checkout with quote permission is selected.'
         );
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             !$this->roleEdit->getRoleEditForm()
                 ->isPermissionSelected($this->quotesViewQuotesOfSubordinateUsersPermission, false),
             'Quotes View quotes of subordinate users permission is selected.'

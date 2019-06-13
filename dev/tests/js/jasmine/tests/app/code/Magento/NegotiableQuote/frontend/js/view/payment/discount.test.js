@@ -35,6 +35,13 @@ define([
             });
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"apply" method', function () {
             it('Check for defined', function () {
                 expect(discount.apply).toBeDefined();

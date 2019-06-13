@@ -28,7 +28,7 @@ class AssertCategoryLevelInMenu extends AbstractConstraint
         foreach ($categoryLevels as $data) {
             $cmsIndex->open();
             $cmsIndex->getLinksBlock()->waitWelcomeMessage();
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $data['level'],
                 $cmsIndex->getNavigationMenu()->getCategoryNestingLevel($data['category']),
                 sprintf('Category \'%s\' is displayed at a wrong nesting level.', $data['category']->getName())

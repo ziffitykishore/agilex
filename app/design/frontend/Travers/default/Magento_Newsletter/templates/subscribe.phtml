@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -10,7 +10,7 @@
 
 ?>
 <div class="block newsletter">
-    <div class="title"><h3><?= $block->escapeHtml(__('Stay Connected')); ?></h3></div>
+    <div class="title"><h3><?= $block->escapeHtml(__('Stay Connected')) ?></h3></div>
     <div class="content">
         <form class="form subscribe"
             novalidate
@@ -22,6 +22,8 @@
             <div class="field newsletter">
                 <div class="control">
                     <input name="email" type="email" id="newsletter"
+                                placeholder="<?= $block->escapeHtml(__('Enter your email address')) ?>"
+                                data-mage-init='{"mage/trim-input":{}}'
                                 data-validate="{required:true, 'validate-email':true}"/>
                 </div>
             </div>

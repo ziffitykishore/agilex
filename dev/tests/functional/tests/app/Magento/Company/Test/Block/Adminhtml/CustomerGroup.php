@@ -26,7 +26,7 @@ class CustomerGroup extends SimpleElement
      *
      * @var string
      */
-    private $customerGroupField = '[data-mtf-selector="b2b-customer-group"]';
+    private $customerGroupField = '[data-action="open-search"]';
 
     /**
      * Selector for option.

@@ -3,12 +3,14 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\NegotiableQuote\Plugin\Customer;
 
 use Magento\TestFramework\Helper\Bootstrap;
 
 /**
- * Test for \Magento\NegotiableQuote\Plugin\Customer\SaveAddressPlugin class
+ * Test for \Magento\NegotiableQuote\Plugin\Customer\SaveAddressPlugin class.
  */
 class SaveAddressPluginTest extends \PHPUnit\Framework\TestCase
 {
@@ -37,6 +39,7 @@ class SaveAddressPluginTest extends \PHPUnit\Framework\TestCase
      * @magentoDataFixture Magento/NegotiableQuote/_files/company_with_customer_for_quote.php
      * @magentoDataFixture Magento/NegotiableQuote/_files/negotiable_quote_with_shipping_address.php
      * @magentoAppIsolation enabled
+     * @return void
      */
     public function testAroundSaveWithAllowedPermissions()
     {
@@ -58,7 +61,9 @@ class SaveAddressPluginTest extends \PHPUnit\Framework\TestCase
             ->disableOriginalConstructor()
             ->setMethods(['isAllowed'])
             ->getMock();
-        $authorizationMock->expects($this->any())->method('isAllowed')->with('Magento_NegotiableQuote::manage')
+        $authorizationMock->expects($this->any())
+            ->method('isAllowed')
+            ->with('Magento_NegotiableQuote::manage')
             ->willReturn(true);
         $restriction = $this->getMockBuilder(\Magento\NegotiableQuote\Model\Restriction\Customer::class)
             ->disableOriginalConstructor()
@@ -117,6 +122,7 @@ class SaveAddressPluginTest extends \PHPUnit\Framework\TestCase
      * @magentoDataFixture Magento/NegotiableQuote/_files/company_with_customer_for_quote.php
      * @magentoDataFixture Magento/NegotiableQuote/_files/negotiable_quote_with_shipping_address.php
      * @magentoAppIsolation enabled
+     * @return void
      */
     public function testAroundSaveWithDeniedPermissions()
     {

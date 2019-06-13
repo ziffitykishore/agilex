@@ -34,7 +34,7 @@ class AssertEditButtonNotVisible extends AbstractConstraint
         )->run();
         $companyProfilePage->open();
 
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $companyProfilePage->getProfileContent()->isEditButtonVisible(),
             'Edit button is visible.'
         );

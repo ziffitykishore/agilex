@@ -27,7 +27,7 @@ class AssertLastCategoryInMenu extends AbstractConstraint
     ) {
         $cmsIndex->open();
         $cmsIndex->getLinksBlock()->waitWelcomeMessage();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $lastCategoryName,
             $cmsIndex->getNavigationMenu()->getLastCategoryName(),
             'The last top-level category in the top menu is wrong.'

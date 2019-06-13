@@ -32,7 +32,7 @@ class AssertCompanyRejectReason extends AbstractConstraint
         $filter = ['company_name' => $company->getCompanyName()];
         $companyIndex->getGrid()->searchAndOpen($filter);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $company->getRejectReason(),
             $companyEdit->getCompanyForm()->getReasonForReject(),
             'Incorrect reject reason is specified.'

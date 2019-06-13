@@ -37,7 +37,7 @@ class AssertSharedCatalogTierPriceRemoved extends AbstractConstraint
         $sharedCatalogConfigure->getPricingGrid()->search(['sku' => $sku]);
         $sharedCatalogConfigure->getPricingGrid()->openTierPriceConfiguration();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             !$sharedCatalogConfigure->getTierPriceModal()->isTierPriceOptionsPresent(),
             'Tier price options are present in shared catalog advanced pricing options.'
         );

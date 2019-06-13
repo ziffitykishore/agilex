@@ -42,7 +42,7 @@ class AssertProductIsCorrectAfterUpdate extends AbstractConstraint
      */
     public function checkQty($updateData, $qty)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $qty,
             $updateData['qty'],
             'Updated qty is incorrect.'
@@ -71,7 +71,7 @@ class AssertProductIsCorrectAfterUpdate extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Updated options are incorrect.'
         );

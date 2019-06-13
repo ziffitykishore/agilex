@@ -25,7 +25,7 @@ class AssertCompanyGridColumnsPanel extends AbstractConstraint
         $sharedCatalogCompanyGrid = $sharedCatalogCompany->getCompanyGrid();
         $columns = $sharedCatalogCompanyGrid->getFieldsInColumnsPanel();
 
-        \PHPUnit_Framework_Assert::assertContains(
+        \PHPUnit\Framework\Assert::assertContains(
             'Assigned',
             $columns,
             '\'Assigned\' column is absent in shared catalog companies grid columns panel.'

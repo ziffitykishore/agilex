@@ -32,7 +32,7 @@ class AssertCompanyCreditState extends AbstractConstraint
             $companyEdit->getCompanyForm()->openSection('company_credit');
             if (!empty($expectedCreditState['amounts'])) {
                 foreach ($expectedCreditState['amounts'] as $key => $expectedValue) {
-                    \PHPUnit_Framework_Assert::assertSame(
+                    \PHPUnit\Framework\Assert::assertSame(
                         (float)$expectedValue,
                         $companyEdit->getCompanyCreditForm()->getCreditBalanceValue($key),
                         sprintf('Company credit balance (%s) is incorrect.', $key)
@@ -41,7 +41,7 @@ class AssertCompanyCreditState extends AbstractConstraint
             }
             if (!empty($expectedCreditState['operations'])) {
                 foreach ($expectedCreditState['operations'] as $operation) {
-                    \PHPUnit_Framework_Assert::assertTrue(
+                    \PHPUnit\Framework\Assert::assertTrue(
                         $companyEdit->getCompanyCreditForm()->getCreditBalanceHistoryRow($operation)->isVisible(),
                         sprintf('Operation \'%s\' is missing in credit balance history.', $operation)
                     );
@@ -49,7 +49,7 @@ class AssertCompanyCreditState extends AbstractConstraint
             }
             if (!empty($expectedCreditState['missingOperations'])) {
                 foreach ($expectedCreditState['missingOperations'] as $operation) {
-                    \PHPUnit_Framework_Assert::assertFalse(
+                    \PHPUnit\Framework\Assert::assertFalse(
                         $companyEdit->getCompanyCreditForm()->getCreditBalanceHistoryRow($operation)->isVisible(),
                         sprintf('Operation \'%s\' is missing in credit balance history.', $operation)
                     );

@@ -48,7 +48,7 @@ class AssertRequisitionListLinkIsVisible extends AbstractConstraint
      */
     public function checkLinkIsVisibleInCustomerMenu(CmsIndex $cmsIndex)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $cmsIndex->getLinksBlock()->isLinkVisible('Requisition Lists'),
             'Requisition list link is not visible.'
         );
@@ -65,7 +65,7 @@ class AssertRequisitionListLinkIsVisible extends AbstractConstraint
         BrowserInterface $browser
     ) {
         $browser->open($_ENV['app_frontend_url'] . $product->getUrlKey() . '.html');
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $catalogProductView->getProductSocialLinksBlock()->isLinkVisible('Add to Requisition List'),
             'Requisition list link is not visible on product page.'
         );
@@ -82,7 +82,7 @@ class AssertRequisitionListLinkIsVisible extends AbstractConstraint
         BrowserInterface $browser
     ) {
         $browser->open($_ENV['app_frontend_url'] . $category->getUrlKey() . '.html');
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $catalogCategoryView->getProductActionsBlock()->isLinkVisible('Add to Requisition List'),
             'Requisition list link is not visible on category page.'
         );

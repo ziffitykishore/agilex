@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\QuickOrder\Model;
 
 use Magento\TestFramework\Helper\Bootstrap;
@@ -40,7 +42,7 @@ class CartTest extends \PHPUnit\Framework\TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->objectManager = Bootstrap::getObjectManager();
 
@@ -55,7 +57,7 @@ class CartTest extends \PHPUnit\Framework\TestCase
      * @param array $expectedItem
      * @return void
      */
-    public function testCheckItem(array $passedData, array $expectedItem)
+    public function testCheckItem(array $passedData, array $expectedItem): void
     {
         $this->cart->setContext(\Magento\AdvancedCheckout\Model\Cart::CONTEXT_FRONTEND);
         $result = $this->cart->checkItem($passedData['sku'], $passedData['qty']);
@@ -72,7 +74,7 @@ class CartTest extends \PHPUnit\Framework\TestCase
      * @covers \Magento\QuickOrder\Model\Cart::checkItem
      * @see \Magento\SharedCatalog\Plugin\AdvancedCheckout\Model\HideProductsAbsentInSharedCatalogPlugin::afterCheckItem
      */
-    public function testCheckItemWithSharedCatalog(array $passedData, array $expectedItem)
+    public function testCheckItemWithSharedCatalog(array $passedData, array $expectedItem): void
     {
         $storeManager = $this->objectManager->get(StoreManagerInterface::class);
         $website = $storeManager->getWebsite();
@@ -110,7 +112,7 @@ class CartTest extends \PHPUnit\Framework\TestCase
      * @magentoDataFixture Magento/Catalog/_files/multiple_products.php
      * @magentoDataFixture Magento/SharedCatalog/_files/assigned_company.php
      */
-    public function testCheckItemWithSharedCatalogAndCompany(array $passedData, array $expectedItem)
+    public function testCheckItemWithSharedCatalogAndCompany(array $passedData, array $expectedItem): void
     {
         $customerRegistry = $this->objectManager->get(CustomerRegistry::class);
         $customer = $customerRegistry->retrieveByEmail('email1@companyquote.com');

@@ -37,8 +37,6 @@ class AdminDeleteDefaultAddressStep implements TestStepInterface
     {
         $this->customerIndexEdit->getAddressesBlock()->openAddressesBlock();
         $this->customerIndexEdit->getEditAddressesBlock()->deleteDefaultAddress();
-        $this->customerIndexEdit->getModalBlock()->acceptAlert();
-        $this->customerIndexEdit->getPageActionsBlock()->save();
 
         return [];
     }

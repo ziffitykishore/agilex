@@ -3,6 +3,8 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\SalesArchive\Model;
 
 use Braintree\Result\Successful;
@@ -14,19 +16,24 @@ use \PHPUnit_Framework_MockObject_MockObject as MockObject;
 
 /**
  * Class for testing QuoteManagement model with SalesArchive.
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class QuoteManagementTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * Place order using payment action "Sale" and check that this order is not present in order archive grid.
+     * Place order using payment action "Authorize and Capture" and check that this order
+     * is not present in order archive grid.
      *
      * @magentoConfigFixture current_store sales/magento_salesarchive/active 0
      * @magentoConfigFixture current_store payment/braintree/active 1
      * @magentoConfigFixture current_store payment/braintree/payment_action authorize_capture
      * @magentoAppIsolation enabled
      * @magentoDataFixture Magento/Sales/_files/quote_with_bundle.php
+     *
+     * @return void
      */
-    public function testPlacedOrderIsNotInArchiveGrid()
+    public function testPlacedOrderIsNotInArchiveGrid(): void
     {
         $objectManager = Bootstrap::getObjectManager();
 
@@ -85,6 +92,8 @@ class QuoteManagementTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Get HTTP Client for payment.
+     *
      * @return MockObject
      */
     private function getHttpClientMock(): MockObject
@@ -100,14 +109,14 @@ class QuoteManagementTest extends \PHPUnit\Framework\TestCase
             'last4'           => '4444',
             'expirationMonth' => '12',
             'expirationYear'  => '2020',
-            'cardType'        => 'visa'
+            'cardType'        => 'visa',
         ];
         $successTrue = new Successful();
         $successTrue->success = true;
         $successTrue->transaction = $transaction;
 
         $response = [
-            'object' => $successTrue
+            'object' => $successTrue,
         ];
         $client = $this->getMockBuilder(\Magento\Braintree\Gateway\Http\Client\TransactionSale::class)
             ->disableOriginalConstructor()

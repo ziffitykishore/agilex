@@ -38,7 +38,7 @@ class AssertCompanyCreditBalance extends AbstractConstraint
         $companyIndex->getGrid()->searchAndOpen(['company_name' => $company->getCompanyName()]);
         $companyEdit->getCompanyForm()->openSection('company_credit');
         foreach ($amounts as $key => $expectedValue) {
-            \PHPUnit_Framework_Assert::assertSame(
+            \PHPUnit\Framework\Assert::assertSame(
                 (float)$expectedValue,
                 $companyEdit->getCreditBalanceInformation()->getCreditBalanceValue($key),
                 'Company credit balance is incorrect.'

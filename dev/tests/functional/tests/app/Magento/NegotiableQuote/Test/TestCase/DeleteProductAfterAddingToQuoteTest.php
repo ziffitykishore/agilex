@@ -3,11 +3,11 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 namespace Magento\NegotiableQuote\Test\TestCase;
 
 use Magento\Customer\Test\Fixture\Customer;
-use Magento\Catalog\Test\Fixture\CatalogProductSimple;
 use Magento\Mtf\Fixture\FixtureFactory;
 use Magento\Customer\Test\TestStep\LogoutCustomerOnFrontendStep;
 use Magento\Mtf\TestCase\Injectable;
@@ -36,7 +36,7 @@ use Magento\Catalog\Test\Page\Adminhtml\CatalogProductIndex;
  * 3. Perform assertions.
  *
  * @group    NegotiableQuote
- * @ZephyrId MAGETWO-83362
+ * @ZephyrId MAGETWO-89400
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class DeleteProductAfterAddingToQuoteTest extends Injectable

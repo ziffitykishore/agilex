@@ -27,14 +27,14 @@ class AssertQuickOrderAutocomplete extends AbstractConstraint
         $list = $itemBlock->getAutocompleteResultList();
         $sortedList = $this->retrieveSortedTitlesList($list);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $list,
             $sortedList,
             'Sort order is not correct.'
         );
         $quickOrderPage->getItems()->selectFirstItem();
         $quickOrderPage->getItems()->focusOutFromInput();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $itemBlock->isResultVisible(),
             'Result block is not visible.'
         );

@@ -28,7 +28,7 @@ class AssertCompanyRightCatalog extends AbstractConstraint
     ) {
         $companyId = $sharedCatalogCompany->getCompanyGrid()->getFirstItemId();
         $sharedCatalogName = $sharedCatalogCompany->getCompanyGrid()->getColumnValue($companyId, 'Catalog');
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $sharedCatalogName,
             $sharedCatalog->getName(),
             'Company is wrong on a shared catalog companies page.'

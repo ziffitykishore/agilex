@@ -81,6 +81,9 @@ class BundleTest extends \Magento\TestFramework\TestCase\AbstractController
         ];
     }
 
+    /**
+     * Tear down after class
+     */
     public static function tearDownAfterClass()
     {
         $db = \Magento\TestFramework\Helper\Bootstrap::getInstance()->getBootstrap()

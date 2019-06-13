@@ -9,13 +9,14 @@ namespace Magento\SharedCatalog\Test\Constraint;
 use Magento\SharedCatalog\Test\Page\Adminhtml\SharedCatalogIndex;
 use Magento\SharedCatalog\Test\Fixture\SharedCatalog;
 use Magento\Mtf\Constraint\AbstractConstraint;
-use Magento\SharedCatalog\Model\SharedCatalog as SharedCatalogEntity;
 
 /**
  * Assert shared catalog type changed
  */
 class AssertCatalogTypeChanged extends AbstractConstraint
 {
+    const CATALOG_PUBLIC = 'Public';
+
     /** @var SharedCatalogIndex */
     protected $sharedCatalogIndex;
 
@@ -37,13 +38,13 @@ class AssertCatalogTypeChanged extends AbstractConstraint
         $grid->search(['name' => $sharedCatalog->getName()]);
         $publicId = $grid->getFirstItemId();
 
-        \PHPUnit_Framework_Assert::assertTrue(
-            $grid->getColumnValue($publicId, 'Type') == SharedCatalogEntity::CATALOG_PUBLIC,
+        \PHPUnit\Framework\Assert::assertTrue(
+            $grid->getColumnValue($publicId, 'Type') == self::CATALOG_PUBLIC,
             'Shared catalog type wasn\'t changed to Public.'
         );
         $grid->search(['name' => $publicName]);
         $customId = $grid->getFirstItemId();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $grid->getColumnValue($customId, 'Type') == 'Custom',
             'Shared catalog type wasn\'t changed to Custom.'
         );

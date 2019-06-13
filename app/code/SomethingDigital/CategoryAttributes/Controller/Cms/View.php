@@ -30,8 +30,7 @@ class View extends \Magento\Framework\App\Action\Action
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Catalog\Model\CategoryRepository $categoryRepository,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
-        \Magento\Cms\Model\Template\FilterProvider $filterProvider,
-        \Gene\BlueFoot\Model\Stage\Render $stageRender
+        \Magento\Cms\Model\Template\FilterProvider $filterProvider
     ) {
         $this->context = $context;
         $this->pageFactory = $pageFactory;
@@ -40,7 +39,6 @@ class View extends \Magento\Framework\App\Action\Action
         $this->categoryRepository = $categoryRepository;
         $this->blockRepository = $blockRepository;
         $this->filterProvider = $filterProvider;
-        $this->stageRender = $stageRender;
         parent::__construct($context);
     }
     
@@ -81,19 +79,6 @@ class View extends \Magento\Framework\App\Action\Action
                 $leftBlockHtml = $this->filterProvider->getPageFilter()->filter($leftBlockHtml->getContent());
                 $bottomBlockHtml = $this->blockRepository->getById('catalogsearch_after_content');
                 $bottomBlockHtml = $this->filterProvider->getPageFilter()->filter($bottomBlockHtml->getContent());
-            }
-
-            if (strpos($descriptionHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
-                $descriptionHtml = $this->stageRender->render($descriptionHtml);
-            }
-            if (strpos($mobileDescriptionHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
-                $mobileDescriptionHtml = $this->stageRender->render($mobileDescriptionHtml);
-            }
-            if (strpos($leftBlockHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
-                $leftBlockHtml = $this->stageRender->render($leftBlockHtml);
-            }
-            if (strpos($bottomBlockHtml, \Gene\BlueFoot\Model\Stage\Save::BLUEFOOT_STRING) !== false) {
-                $bottomBlockHtml = $this->stageRender->render($bottomBlockHtml);
             }
 
             $data = [

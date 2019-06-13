@@ -59,10 +59,16 @@ class QuickAddInvisibleSimpleSkusTest extends Injectable
      * @param Address $address
      * @param array $shipping
      * @param string $configData
+     * @param array $payment
      * @return array
      */
-    public function test(GroupedProduct $groupedProduct, Address $address, array $shipping, $configData = null)
-    {
+    public function test(
+        GroupedProduct $groupedProduct,
+        Address $address,
+        array $shipping,
+        $configData = null,
+        array $payment = []
+    ) {
         $this->configData = $configData;
         $this->objectManager->create(
             \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
@@ -73,7 +79,7 @@ class QuickAddInvisibleSimpleSkusTest extends Injectable
         $this->quickOrderPage->open();
         $this->quickOrderPage->getItems()->fill($simpleProducts);
         $this->quickOrderPage->getActions()->clickAddToCart();
-        $orderId = $this->placeOrder($address, $shipping);
+        $orderId = $this->placeOrder($address, $shipping, $payment);
 
         return ['orderId' => $orderId];
     }
@@ -83,9 +89,10 @@ class QuickAddInvisibleSimpleSkusTest extends Injectable
      *
      * @param Address $address
      * @param array $shipping
+     * @param array $payment
      * @return int
      */
-    protected function placeOrder(Address $address, array $shipping)
+    protected function placeOrder(Address $address, array $shipping, array $payment = [])
     {
         $this->objectManager->create(\Magento\Checkout\Test\TestStep\ClickProceedToCheckoutStep::class)->run();
         $this->objectManager->create(
@@ -96,6 +103,12 @@ class QuickAddInvisibleSimpleSkusTest extends Injectable
             \Magento\Checkout\Test\TestStep\FillShippingMethodStep::class,
             ['shipping' => $shipping]
         )->run();
+        if (!empty($payment)) {
+            $this->objectManager->create(
+                \Magento\Checkout\Test\TestStep\SelectPaymentMethodStep::class,
+                ['payment' => $payment]
+            )->run();
+        }
         $orderId = $this->objectManager
             ->create(
                 \Magento\Checkout\Test\TestStep\PlaceOrderStep::class,

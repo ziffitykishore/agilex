@@ -25,7 +25,7 @@ class AssertMyAccountMenu extends AbstractConstraint
      */
     public function processAssert(CustomerAccountIndex $customerAccountIndex, array $myAccountMenuLinks)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $myAccountMenuLinks,
             $customerAccountIndex->getAccountMenu()->getMenuItems(),
             'Account menu is not correct.'

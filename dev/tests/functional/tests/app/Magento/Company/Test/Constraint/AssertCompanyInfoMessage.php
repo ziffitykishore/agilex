@@ -24,7 +24,7 @@ class AssertCompanyInfoMessage extends AbstractConstraint
     public function processAssert(CompanyPage $companyPage)
     {
         $message = 'You don\'t have a company account yet.';
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $companyPage->getManageCompany()->getInfoMessage(),
             'Info message is not correct.'

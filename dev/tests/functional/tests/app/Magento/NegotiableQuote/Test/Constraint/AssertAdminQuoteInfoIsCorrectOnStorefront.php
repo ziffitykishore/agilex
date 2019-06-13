@@ -54,7 +54,7 @@ class AssertAdminQuoteInfoIsCorrectOnStorefront extends AbstractConstraint
         $createdByText = $negotiableQuoteView->getQuoteDetails()->getCreatedBy();
         $result = strpos($createdByText, $admin->getFirstname()) && strpos($createdByText, $admin->getLastname());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Created By name is not correct.'
         );
@@ -68,7 +68,7 @@ class AssertAdminQuoteInfoIsCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkName(array $quote, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quote['quote-name'],
             $negotiableQuoteView->getQuoteDetails()->getQuoteName(),
             'Quote name is not correct.'

@@ -26,7 +26,7 @@ class AssertDropDownMenu extends AbstractConstraint
     public function processAssert(CustomerAccountIndex $customerAccountIndex, array $headerMenuLinks)
     {
         $customerAccountIndex->getHeaderBlock()->clickMenu();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $headerMenuLinks,
             $customerAccountIndex->getHeaderBlock()->getMenuItems(),
             'Drop-down menu is not correct.'

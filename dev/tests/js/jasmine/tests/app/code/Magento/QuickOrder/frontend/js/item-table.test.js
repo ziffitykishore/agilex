@@ -33,6 +33,13 @@ define([
             tplElement.appendTo(document.body);
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"_add" method', function () {
             it('Check for defined', function () {
                 expect(obj._add).toBeDefined();

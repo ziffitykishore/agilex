@@ -37,6 +37,13 @@ define([
             });
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"isListVisible" method', function () {
             it('Check method call', function () {
                 spyOn(element, 'isListVisible');

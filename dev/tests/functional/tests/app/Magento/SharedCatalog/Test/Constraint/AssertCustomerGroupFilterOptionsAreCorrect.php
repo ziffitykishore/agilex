@@ -29,7 +29,7 @@ class AssertCustomerGroupFilterOptionsAreCorrect extends AbstractConstraint
         $customerIndex->getGridHeader()->expandFiltersPanel();
         $filterOptions = $customerIndex->getGridHeader()->getCustomerGroupSharedCatalogOptions();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $this->areFilterOptionsCorrect($customerGroupFilterOptions, $filterOptions),
             'Customer group filter options are incorrect.'
         );

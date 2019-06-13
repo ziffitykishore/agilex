@@ -188,7 +188,7 @@ class TeamRepositoryTest extends WebapiAbstract
      * @expectedException \Exception
      * @expectedExceptionMessage This team has child users or teams aligned to it and cannot be deleted.
      */
-    public function testDeleteTeamWithChildren()
+    public function testDeleteTeamWithChildren(): void
     {
         $customer = $this->customerRepository->get('email@companyquote.com');
         $company = $this->companyManagement->getByCustomerId($customer->getId());

@@ -25,7 +25,7 @@ class AssertSharedCatalogDisabledMessage extends AbstractConstraint
     {
         $sharedCatalogIndex->open();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $sharedCatalogIndex->getMessages()->getWarningMessage(),
             $sharedCatalogFeatureDisabledMessage,
             'Shared Catalog feature disabled message is incorrect.'
