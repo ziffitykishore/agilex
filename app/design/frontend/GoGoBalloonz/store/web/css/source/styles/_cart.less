@@ -231,7 +231,7 @@
             .discount,
             .checkout-methods-items {
                 padding: 15px;
-                max-width: 350px;
+                max-width: 450px;
                 margin: 0 auto;
             }
 
@@ -410,6 +410,15 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+
+.checkout-cart-index {
+    .cart-summary {
+        width: 30%;
+    }
+    .form-cart {
+        width: 70%;
+    }
+}
 
 .cart {
     &.table-wrapper {

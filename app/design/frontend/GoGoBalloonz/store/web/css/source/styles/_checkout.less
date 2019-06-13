@@ -110,6 +110,10 @@
                     .shipping-information-content {
                         padding: 20px;
                     }
+
+                    &.ship-via {
+                        display: none;
+                    }
                 }
 
                 .action {
@@ -274,7 +278,29 @@
                     .lib-css(color, @color-blue);
                 }
             }
+
+            .field-select-billing,
+            .billing-address-form {
+                max-width: 100%;
+
+
+            }
+
+            .actions-toolbar {
+                .action {
+                    .button();
+                    .box-shadow(none);
+                    margin-top: 0;
+
+                    &:hover {
+                        .lib-css(color, @color-white);
+                    }
+                }
+            }
         }
+
+
+
 
 
         .form-discount {
@@ -353,8 +379,11 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
     .checkout-index-index {
+        .logo {
+            margin-top: 10px;
+        }
         .column.main {
             padding-top: 0;
         }
@@ -398,6 +427,11 @@
         .form-login,
         .form-shipping-address {
 
+            .fieldset .field .label, .fieldset .field .label {
+                font-weight: 600;
+            }
+
+            max-width: 100%;
 
             .address {
                 .flex();
@@ -439,6 +473,9 @@
                 }
             }
         }
+
+
+        
 
         .opc-wrapper {
 
