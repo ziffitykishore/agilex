@@ -9,9 +9,12 @@
         ul.nav-tabs {
             display:none;
         }
-        
-        .minicart-wrapper {
-            display: none;
+
+        .page-wrapper {
+
+            > .minicart-wrapper {
+                display: none;
+            }
         }
 
         .column.main {
@@ -35,15 +38,24 @@
 
 
         .opc-wrapper {
+            .shipping-address-items {
+                .flex();
+                justify-content: space-between;
+            }
             .shipping-address-item{
+                border-color: @color-sky-blue;
+                .flex-width(48%);
                 &.selected-item {
                     border-color: @color-sky-blue;
                     &:after {
                         .lib-css(background, @color-sky-blue);
                     }
                 }
+
+
             }
 
+            .action-select-shipping-item,
             .action-show-popup {
                 .button();
                 .box-shadow(none);
@@ -51,6 +63,79 @@
 
             .step-title {
                 border-bottom-color: @color-gray;
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+
+        .opc-estimated-wrapper {
+            .minicart-wrapper {
+                position: relative;
+            }
+        }
+
+        .methods-shipping {
+            .price {
+                .lib-css(color, @color-blue);
+            }
+        }
+
+
+        .checkout-payment-method {
+            .checkout-billing-address {
+                .billing-address-details {
+                    border: 2px solid @color-sky-blue;
+                    padding: 20px;
+                    .br-radius(5px);
+                }
+            }
+
+            .shipping-information {
+                > [class*="ship"] {
+                    border: 2px solid @color-sky-blue;
+                    margin-bottom: 20px;
+                    .br-radius(5px);
+
+                    .shipping-information-title {
+                        .lib-css(background, @color-sky-blue);
+                        .lib-css(color, @color-white);
+                        padding: 5px 20px;
+                        font-size: 18px;
+                        .flex();
+                        justify-content: space-between;
+                        align-items: center;
+
+                    }
+
+                    .shipping-information-content {
+                        padding: 20px;
+                    }
+                }
+
+                .action {
+                    &-edit {
+                        background: transparent;
+                        color: @color-white;
+                        font-size: 20px;
+                        border: none;
+                        .box-shadow(none);
+                        &:before {
+                            content: '\e601';
+                            font-family: 'luma-icons';
+                        }
+
+                        > span {
+                            border: 0;
+                            clip: rect(0, 0, 0, 0);
+                            height: 1px;
+                            margin: -1px;
+                            overflow: hidden;
+                            padding: 0;
+                            position: absolute;
+                            width: 1px;
+                        }
+                    }
+                }
             }
         }
 
@@ -76,9 +161,32 @@
                     padding: 15px 30px;
                 }
 
+                .items-in-cart {
+                    > .title {
+                        .lib-css(color, @color-blue);
+                        font-size: 14px;
+                        border-bottom: @color-gray;
+                    }
+                    margin-bottom: 0;
+
+                    .product-item{
+                        &:not(:first-child) {
+                            border-color: @color-gray;
+                        }
+                    }
+                }
+
                 .shipping-delivery-date {
                     .lib-css(background, @color-white);
                     padding: 20px;
+                    text-align: center;
+
+                    span {
+                        &:first-child {
+                            color: @color-blue;
+                            font-weight: bold;
+                        }
+                    }
                 }
 
                 .modal-content {
@@ -86,7 +194,9 @@
                 }
 
                 .items-in-cart {
-                    padding: 20px;
+                    padding: 10px 20px 20px;
+
+
                 }
 
                 .minicart-items {
@@ -104,6 +214,7 @@
                 .table {
                     margin-bottom: 0;
                     .lib-css(color, @color-blue);
+                    border-color: @color-gray;
 
                     th, td {
                         border: none;
@@ -126,6 +237,12 @@
                             font-size: 1.4rem;
                         }
 
+                        &.sub {
+                            padding-top: 20px;
+                        }
+                        &.grand {
+                            padding-bottom: 20px;
+                        }
 
                     }
                 }
@@ -168,12 +285,25 @@
         }
 
         .modal-popup {
-            .form-shipping-address {
-                max-width: none;
-                .fieldset {
-                    .field {
-                        .label {
-                            font-weight: 600;
+            .modal-inner-wrap {
+                .form-shipping-address {
+                    max-width: none;
+                    .fieldset {
+                        .field {
+                            .label {
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+
+                .modal-footer {
+                    .action-hide-popup {
+                        .button();
+                        margin-top: 0;
+                        margin-left: 20px;
+                        &:hover {
+                            .lib-css(color, @color-white);
                         }
                     }
                 }
@@ -189,6 +319,10 @@
         .modal-content {
             border-color: @color-gray;
         }
+
+        .totals {
+            padding: 8px 20px;
+        }
     }
 
     .checkout-onepage-success {
@@ -196,10 +330,21 @@
             .page-main {
                 .container-lg();
             }
+
+            .page-title {
+                .lib-css(color, @color-blue);
+                font-size: 25px;
+            }
         }
     }
 
 
+
+    body._has-modal-custom {
+        .modal-custom-overlay {
+            z-index: 899 !important;
+        }
+    }
 
 
 }
@@ -209,7 +354,24 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-index-index {
+        .column.main {
+            padding-top: 0;
+        }
+        .checkout-container {
+            clear: both;
+        }
 
+
+
+        .opc-estimated-wrapper {
+            margin-top: 0;
+
+            .minicart-wrapper {
+                top: 0;
+            }
+        }
+    }
 }
 
 //
@@ -220,6 +382,62 @@
     .checkout-index-index {
         .logo {
             margin-right: 30px;
+        }
+
+        .modal-popup {
+            .form-shipping-address {
+                max-width: 100%;
+                .address {
+                    .choice {
+                        .flex-width(100%);
+                    }
+                }
+            }
+        }
+
+        .form-login,
+        .form-shipping-address {
+
+
+            .address {
+                .flex();
+                margin-left: -15px;
+                margin-right: -15px;
+
+                .field {
+                    .flex-width(50%);
+                    padding-left: 15px;
+                    padding-right: 15px;
+
+
+                    &.street {
+                        .flex-width(100%);
+                        padding-left: 0px;
+                        padding-right: 0px;
+
+                        .label {
+                            padding-left: 15px;
+                            padding-right: 15px;
+                        }
+
+                        .control {
+                            .flex();
+                            .label {
+                                display: none;
+                            }
+                            .field {
+                                &:first-of-type {
+                                    .flex-width(100%);
+                                }
+
+                                &.additional {
+                                    margin-top: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         .opc-wrapper {
@@ -252,57 +470,20 @@
             }
 
 
-            .form-login,
-            .form-shipping-address {
-                max-width: 100%;
 
-                .address {
-                    .flex();
-                    margin-left: -15px;
-                    margin-right: -15px;
-
-                    .field {
-                        .flex-width(50%);
-                        padding-left: 15px;
-                        padding-right: 15px;
-
-
-                        &.street {
-                            .flex-width(100%);
-                            padding-left: 0px;
-                            padding-right: 0px;
-
-                            .label {
-                                padding-left: 15px;
-                                padding-right: 15px;
-                            }
-
-                            .control {
-                                .flex();
-                                .label {
-                                    display: none;
-                                }
-                                .field {
-                                    &:first-of-type {
-                                        .flex-width(100%);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 
 
     .opc-progress-bar-item{
         &._active {
+
             &:before {
                 .lib-css(background, @color-sky-blue);
                 .lib-css(border-color, @color-sky-blue);
             }
             > span {
+                .lib-css(color, @color-blue);
                 &:before {
                     .lib-css(background, @color-sky-blue);
                 }
@@ -310,6 +491,12 @@
                 &:after {
                     .lib-css(border-color, @color-sky-blue);
                 }
+            }
+        }
+        &._complete {
+            > span {
+                .lib-css(color, @color-icons);
+                font-weight: 600;
             }
         }
     }
