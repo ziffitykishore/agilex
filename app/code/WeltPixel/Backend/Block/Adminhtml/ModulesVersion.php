@@ -77,7 +77,7 @@ class ModulesVersion extends  \Magento\Backend\Block\Template
         $moduleDetails = [];
 
         foreach ($modules as $moduleName => $isEnabled) {
-            if (strpos($moduleName, 'WeltPixel_') !== false || strpos($moduleName, 'WeSupply_') !== false) {
+            if (strpos($moduleName, 'WeltPixel_') !== false  ||  strpos($moduleName, 'WeSupply_') !== false) {
                 $moduleDetails[$moduleName]['enabled'] = $isEnabled;
                 $moduleDetails[$moduleName]['version'] = $this->getComposerVersion($moduleName, \Magento\Framework\Component\ComponentRegistrar::MODULE);
                 if (isset($this->latestVersions['modules'][$moduleName]['version']))  {

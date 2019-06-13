@@ -76,7 +76,17 @@ class PredispatchAdminActionControllerObserver implements ObserverInterface
 
             $licenseMessage = $this->wpHelper->getLicenseMessage();
             if ($licenseMessage) {
-                $this->messageManager->addError($licenseMessage);
+                $items = $this->messageManager->getMessages(false)->getItems();
+                $errorAlreadyAdded = false;
+                foreach ($items as $item) {
+                    if ($item->getText() == $licenseMessage ) {
+                        $errorAlreadyAdded = true;
+                    }
+                }
+
+                if (!$errorAlreadyAdded) {
+                    $this->messageManager->addError($licenseMessage);
+                }
             }
         }
 

@@ -202,7 +202,7 @@ class Collection extends \Magento\Framework\Data\Collection implements SearchRes
                  * these modules are sold as standalone ones, so we rewrite the class also in CategoryPage module
                  * where we merge the functionalities from those 2 modules, in this case this rewrite is marked as Ok,
                  */
-                if (($originalClass == 'Magento\Catalog\Block\Product\ImageBuilder') &&
+                if (($originalClass == 'Magento\Catalog\Block\Product\ImageFactory') &&
                     ($areaCode == 'frontend')
                 ) {
                     $checkRewriteStatus = true;
