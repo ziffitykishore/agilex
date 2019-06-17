@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Downloadable\Block\Sales\Order\Email\Items\Downloadable */ ?>
+<?php $_item = $block->getItem() ?>
+<?php $_order = $block->getItem()->getOrder(); ?>
+<tr>
+    <td class="item-info has-extra" style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px; border-top: 1px solid #d8dde7;">
+        <p class="product-name" style="margin-top: 0; font-weight: 700; margin-bottom: 5px; color: #001842;"><?= $block->escapeHtml($_item->getName()) ?></p>
+        <p class="sku" style="margin-top: 0; margin-bottom: 10px;"><?= /* @escapeNotVerified */  __('SKU') ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+        <?php if ($block->getItemOptions()): ?>
+        <dl style="margin-top: 0; margin-bottom: 0; padding-left: 20px;">
+            <?php foreach ($block->getItemOptions() as $option): ?>
+            <dt style="font-weight: 700; margin-top: 0; margin-bottom: 0; padding-bottom: 0;"><strong style="font-weight: 700;"><em style="font-style: normal;"><?= /* @escapeNotVerified */  $option['label'] ?></em></strong></dt>
+            <dd style="margin-top: 0; margin-left: 0; margin-bottom: 0; padding-bottom: 0; padding-left: 10px;"><?= /* @escapeNotVerified */  $option['value'] ?></dd>
+            <?php endforeach; ?>
+        </dl>
+        <?php endif; ?>
+        <?php if ($links = $block->getLinks()->getPurchasedItems()): ?>
+        <dl style="margin-top: 0; margin-bottom: 0; padding-left: 20px;">
+            <dt style="font-weight: 700; margin-top: 0; margin-bottom: 0; padding-bottom: 0;"><strong style="font-weight: 700;"><em style="font-style: normal;"><?= /* @escapeNotVerified */  $block->getLinksTitle() ?></em></strong></dt>
+            <?php foreach ($links as $link): ?>
+                <dd style="margin-top: 0; margin-left: 0; margin-bottom: 0; padding-bottom: 0; padding-left: 10px;">
+                    <?= $block->escapeHtml($link->getLinkTitle()) ?>
+                </dd>
+            <?php endforeach; ?>
+        </dl>
+        <?php endif; ?>
+        <?= $block->escapeHtml($_item->getDescription()) ?>
+    </td>
+    <td class="item-qty" style="font-weight: 600; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px; border-top: 1px solid #d8dde7; text-align: center;"><?= /* @escapeNotVerified */  $_item->getQty() * 1 ?></td>
+    <td class="item-price" style="color: #ff1200; font-weight: 600; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px; border-top: 1px solid #d8dde7; text-align: right;">
+        <?= /* @escapeNotVerified */  $block->getItemPrice($_item) ?>
+    </td>
+</tr>

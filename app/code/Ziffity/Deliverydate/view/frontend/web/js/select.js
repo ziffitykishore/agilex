@@ -56,8 +56,8 @@ define([
                     if(localStorage.getItem('saveDeliveryFormData') === 'true'){
                         localStorage.setItem("saveDeliveryFormData",false);
                         setTimeout(function(){
-                            $("select[name=amdeliverydate_time]").val(localStorage.getItem('selectedDeliveryTime'));
-                            $("textarea[name=amdeliverydate_comment]").val(localStorage.getItem('selectedDeliveryComment'));
+                            $("select[name=amdeliverydate_time]").val(localStorage.getItem('selectedDeliveryTime')).trigger('change');
+                            $("textarea[name=amdeliverydate_comment]").val(localStorage.getItem('selectedDeliveryComment')).trigger('change');
                         }, 1000);
                     }
                  });

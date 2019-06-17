@@ -25,14 +25,18 @@ if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->ge
                         <input type="email" name="email" autocomplete="email" id="popup-email_address" value="" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
-
-                <div class="field field-name-phone">
-                    <label for="popup-phone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+                <!-- Customer attribute (Phone No) -->
+                <div class="field field-name-phone required">
+                    <label for="phone" class="label"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
                     <div class="control">
-                        <input type="email" name="phone" autocomplete="email" id="popup-phone" value="" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="input-text">
+                        <input type="text"
+                            name="phone_number"
+                            value="<?= $block->escapeHtmlAttr($block->getFormData()->getPhoneNumber()) ?>"
+                            title="<?= $block->escapeHtmlAttr(__('Email')) ?>" id="phone_number"
+                            data-validate="{required:true, 'validate-number':true}"
+                            class="input-text required">
                     </div>
                 </div>
-
                 <div class="field password required" data-mage-init='{"passwordStrengthIndicator": {}}'>
                     <label for="password" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
                     <div class="control">
