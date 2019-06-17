@@ -33,14 +33,14 @@
     <?php endif; ?>
     <?php if (!$_item->getParentItem()): ?>
         <tr class="bundle-item bundle-parent">
-            <td class="item-info">
-                <p class="product-name"><?= $block->escapeHtml($_item->getName()) ?></p>
-                <p class="sku"><?= /* @escapeNotVerified */  __('SKU') ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
+            <td class="item-info" style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px; border-top: 1px solid #d8dde7;">
+                <p class="product-name" style="margin-top: 0; font-weight: 700; margin-bottom: 5px; color: #001842;"><?= $block->escapeHtml($_item->getName()) ?></p>
+                <p class="sku" style="margin-top: 0; margin-bottom: 10px;"><?= /* @escapeNotVerified */  __('SKU') ?>: <?= $block->escapeHtml($block->getSku($_item)) ?></p>
             </td>
-            <td class="item-qty">
+            <td class="item-qty" style="font-weight: 600; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px; border-top: 1px solid #d8dde7; text-align: center;">
                 <?= /* @escapeNotVerified */  $_item->getQtyOrdered() * 1 ?>
             </td>
-            <td class="item-price">
+            <td class="item-price" style="color: #ff1200; font-weight: 600; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px; border-top: 1px solid #d8dde7; text-align: right;">
                 <?= /* @escapeNotVerified */  $block->getItemPrice($_item) ?>
             </td>
         </tr>
