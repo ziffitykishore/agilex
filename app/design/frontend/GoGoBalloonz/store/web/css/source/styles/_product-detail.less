@@ -28,7 +28,7 @@
 
 
                 .fotorama__wrap {
-                    .fotorama__grab {
+                    .fotorama__stage__shaft {
                         border: 1px solid @color-gray;
                     }
 
@@ -76,7 +76,7 @@
 
                     .price-box {
                         .price-label {
-                            display: none;
+                            display: none !important;
                         }
 
                         .normal-price {
@@ -133,6 +133,15 @@
                         width: 30px;
                         height: 30px;
                         .br-radius(50%);
+                    }
+                }
+
+                .swatch-attribute {
+                    .swatch-attribute-label {
+                        .lib-css(color, @color-blue);
+                    }
+                    & + .swatch-attribute {
+                        margin-top: 20px;
                     }
                 }
             }
