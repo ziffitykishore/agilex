@@ -170,12 +170,30 @@
                         .lib-css(color, @color-blue);
                         font-size: 14px;
                         border-bottom: @color-gray;
+                        &:after {
+                            content: '\e621';
+                        }
                     }
                     margin-bottom: 0;
 
                     .product-item{
                         &:not(:first-child) {
                             border-color: @color-gray;
+                        }
+                    }
+
+                    .minicart-items {
+                        display: block !important;
+                    }
+
+                    &.active {
+                        > .title {
+                            &:after {
+                                content: '\e622';
+                            }
+                        }
+                        .minicart-items {
+                            display: none !important;
                         }
                     }
                 }
