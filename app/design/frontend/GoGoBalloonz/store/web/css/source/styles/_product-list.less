@@ -582,6 +582,22 @@
                 background: @color-aliceblue;
             }
 
+            .filter-options-title:after {
+                content: '\e621';
+            }
+            .filter-options-content {
+                display: block !important;
+            }
+
+            &.active {
+                .filter-options-title:after {
+                    content: '\e622';
+                }
+                .filter-options-content {
+                    display: none !important;
+                }
+            }
+
             .radio-button {
                 .item {
                     a {
