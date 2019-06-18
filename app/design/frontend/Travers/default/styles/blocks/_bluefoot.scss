@@ -973,7 +973,7 @@ footer.page-footer {
 }
 
 
-.bluefoot-row.triple-tout-row {
+.triple-tout-row {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -987,7 +987,7 @@ footer.page-footer {
     }
 
     .homepage-tout {
-        button {
+        .pagebuilder-button-secondary {
             @include button--type(primary);
             margin-bottom: 0;
 
