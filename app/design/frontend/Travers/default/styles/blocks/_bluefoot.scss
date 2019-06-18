@@ -230,6 +230,10 @@ $home-sidebar-width: 20.5%;
             margin-right: 0;
             max-width: none;
         }
+
+        [data-appearance='full-width'] > .row-full-width-inner {
+            max-width: none !important; // override PageBuilder
+        }
     }
 
     .column.main {
