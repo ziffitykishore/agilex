@@ -766,7 +766,7 @@ $home-sidebar-width: 20.5%;
     }
 }
 
-.bluefoot-row.footer-promo-banner {
+.footer-promo-banner {
     padding: $indent__m $indent__s;
     background-color: $c-smoke;
     flex-basis: 100%;
@@ -775,6 +775,10 @@ $home-sidebar-width: 20.5%;
     max-width: none;
     overflow: hidden;
     border-top: 1px solid $c-silver;
+
+    .pagebuilder-column-group div:last-of-type {
+        width: 100% !important; // override PageBuilder
+    }
 
     .footer-promo-header {
         font-weight: $font-weight__bold;
@@ -790,7 +794,7 @@ $home-sidebar-width: 20.5%;
         margin-bottom: $indent__xl;
 
         .footer-promo-text {
-            width: 100%;
+            width: 100% !important; // override PageBuilder
             max-width: 550px;
             margin-right: $indent__m;
             margin-bottom: 0;
@@ -832,16 +836,16 @@ $home-sidebar-width: 20.5%;
     }
 
     .footer-promo-header,
-    .bluefoot-buttons,
+    .pagebuilder-button-secondary,
     button {
         margin-bottom: 0;
     }
 
     .footer-promo-text {
-        width: 60%;
+        width: 60% !important; // override PageBuilder
     }
 
-    button {
+    .pagebuilder-button-secondary {
         @include button--type(secondary);
         @include max-screen($screen__m) {
             margin-top: $indent__s;
