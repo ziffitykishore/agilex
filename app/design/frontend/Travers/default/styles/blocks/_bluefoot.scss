@@ -222,22 +222,20 @@ $home-sidebar-width: 20.5%;
 }
 
 .cms-index-index {
-    @include min-screen($screen__m) {
-        .page-main {
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: 0;
-            margin-right: 0;
-            max-width: none;
-        }
-
-        [data-appearance='full-width'] > .row-full-width-inner {
-            max-width: none !important; // override PageBuilder
-        }
+    .page-main {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: none;
     }
 
     .column.main {
         padding-bottom: 0;
+
+        .product-items {
+            margin-left: 0;
+        }
     }
 }
 
@@ -1227,8 +1225,8 @@ footer.page-footer {
 
     &__trigger {
         border: 1px solid $c-grey;
-        margin: 0;
-        margin-right: 15px;
+        margin: 0 15px;
+        padding-left: 15px;
 
         button {
             position: relative;
