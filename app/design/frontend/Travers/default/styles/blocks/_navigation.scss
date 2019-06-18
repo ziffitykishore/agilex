@@ -92,7 +92,7 @@ $nav-section-title__height: 60px;
     }
 
     &-link {
-        width: 50% !important; // override BF
+        flex-basis: 50% !important; // override PageBuilder
 
         a {
             color: $c-cobalt;
@@ -111,7 +111,7 @@ $nav-section-title__height: 60px;
     }
 
     @include min-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder
     }
 }
 
