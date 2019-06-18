@@ -1,14 +1,13 @@
 <?php 
 	$currentUrl = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
 	$currentUrl = strtok($currentUrl, '?');
-        $currentUrl = rtrim($currentUrl,"/");
 	if(strpos($currentUrl, 'referer') !== false)
 	{
             $currentUrl = substr($currentUrl, 0, strpos($currentUrl, 'referer'));
 	}else if (strpos($currentUrl, 'index') !== false){
             $currentUrl = substr($currentUrl, 0, strpos($currentUrl, 'index'));
         }
-	
+        $currentUrl = rtrim($currentUrl,"/");
 ?>
 
 <?php if($this->getRequest()->getRouteName()!='catalog' && $currentUrl): ?>
