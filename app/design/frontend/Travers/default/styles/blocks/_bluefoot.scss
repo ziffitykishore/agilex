@@ -1192,28 +1192,28 @@ footer.page-footer {
 
 .categories-accordion {
     @include min-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder
     }
 
-    &.bluefoot-row {
+    &.row-full-width-inner {
         margin: 0;
     }
 
     &__trigger {
         border: 1px solid $c-grey;
-
-        &.bluefoot-entity {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
+        margin: 0;
+        margin-right: 15px;
 
         button {
             position: relative;
             width: 100%;
-            padding: 15px $indent__m;
+            padding: 15px $indent__m 15px 50px;
+            font-size: 16px;
+            letter-spacing: 0;
 
             &::before {
                 position: absolute;
+                left: $indent__m;
                 font-size: 28px;
             }
 
@@ -1228,12 +1228,6 @@ footer.page-footer {
                     content: "+";
                 }
             }
-        }
-
-        span {
-            padding-left: $indent__base;
-            font-size: 16px;
-            letter-spacing: 0;
         }
     }
 
