@@ -230,12 +230,12 @@ $home-sidebar-width: 20.5%;
         max-width: none;
     }
 
+    [data-appearance='full-width'] > .row-full-width-inner {
+        max-width: none !important; // override PageBuilder
+    }
+
     .column.main {
         padding-bottom: 0;
-
-        .product-items {
-            margin-left: 0;
-        }
     }
 }
 
@@ -535,6 +535,11 @@ $home-sidebar-width: 20.5%;
             .product-item {
                 padding: 0;
                 margin-top: $indent__m;
+                width: 47%;
+
+                &-details {
+                    text-align: center;
+                }
             }
         }
 
