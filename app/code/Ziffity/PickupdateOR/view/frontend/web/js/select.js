@@ -48,7 +48,7 @@ define([
 
                  }).done(function (data) {
                     self.options(data);
-
+                    localStorage.setItem('pickupSlots', JSON.stringify(data));
                  });
             }
 

@@ -19,7 +19,7 @@ define(
                 }
             }
         }
-
+        
         return Component.extend({
             defaults: {
                 formSelector: '#checkout-step-shipping_method button',
@@ -164,6 +164,14 @@ define(
 
             styleMagentoNotice: function () {
                 return this.pickupdateConfig.generalCommentStyle == 'notice';
+            },
+                      
+            setPickup: function () {
+                $.cookie("is_pickup", true);
+            },
+            
+            setDelivery: function () {
+                $.cookie("is_pickup", false);
             }
         });
     }
