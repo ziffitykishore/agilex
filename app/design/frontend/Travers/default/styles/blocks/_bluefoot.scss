@@ -589,9 +589,11 @@ $home-sidebar-width: 20.5%;
         padding-bottom: 0;
     }
 
-    &.bluefoot-row {
+    &.pagebuilder-column-group {
+        display: block !important; // override PageBuilder
+
         @include min-screen($screen__l) {
-            display: flex;
+            display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
@@ -599,7 +601,7 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    &-header.bluefoot-entity {
+    &-header {
         flex-basis: 100%;
         text-align: center;
         margin-top: 0;
@@ -608,7 +610,7 @@ $home-sidebar-width: 20.5%;
     }
 
     @include min-screen($screen__m) {
-        &-header.bluefoot-entity {
+        &-header {
             margin-top: $indent__m;
             margin-bottom: $indent__l;
             font-size: 34px;
@@ -620,15 +622,19 @@ $home-sidebar-width: 20.5%;
     }
 
     .text-tout,
-    .video-tout.bluefoot-column {
-        flex: .5;
+    .video-tout.pagebuilder-column {
+        @include min-screen($screen__m) {
+            flex: .5;
 
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            flex-basis: auto; // prevents scrolling and overlapping in IE
+            @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                flex-basis: auto; // prevents scrolling and overlapping in IE
+            }
         }
     }
 
     .text-tout {
+        flex-direction: row !important; // override PageBuilder column group styling
+        flex-wrap: wrap;
         position: relative;
         padding: $indent__xl $indent__m;
         background-color: $c-midnight;
@@ -644,7 +650,7 @@ $home-sidebar-width: 20.5%;
                 margin-top: 0;
             }
 
-            .bluefoot-textarea {
+            [data-content-type="text"] {
                 margin-bottom: 0;
             }
         }
@@ -675,16 +681,16 @@ $home-sidebar-width: 20.5%;
             transform: translateX(5%);
             padding: $indent__xl;
 
-            .bluefoot-textarea,
-            .bluefoot-buttons {
+            [data-content-type="text"],
+            [data-content-type="buttons"] {
                 padding-left: 20px;
             }
         }
     }
 
-    .bluefoot-html {
+    .overlapping-touts-text {
         float: left;
-        width: 33%;
+        width: 30%;
         text-align: center;
         padding: 0 $indent__xs;
 
@@ -692,26 +698,24 @@ $home-sidebar-width: 20.5%;
             border-right: 1px solid $color-white;
         }
 
-        &.overlapping-touts-text {
-            @include max-screen($screen__m) {
-                &:not(:nth-of-type(3)) {
-                    width: 50%;
-                }
+        @include max-screen($screen__m) {
+            &:not(:nth-of-type(3)) {
+                width: 47%;
+            }
 
-                &:nth-of-type(2) {
-                    border-right: 0;
-                }
+            &:nth-of-type(2) {
+                border-right: 0;
+            }
 
-                &:nth-of-type(3) {
-                    margin-top: $indent__s;
-                    float: right;
-                    width: 100%;
-                }
+            &:nth-of-type(3) {
+                margin-top: $indent__s;
+                float: right;
+                width: 100%;
             }
         }
     }
 
-    .bluefoot-textarea {
+    p {
         max-width: 90%;
         line-height: 1.8;
         margin: $indent__m 0;
@@ -723,8 +727,8 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    .bluefoot-textarea,
-    .bluefoot-buttons {
+    p,
+    .pagebuilder-button-secondary {
         margin-left: $indent__m;
 
         @include min-screen($screen__l) {
@@ -732,7 +736,7 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    button {
+    .pagebuilder-button-secondary {
         @include button--transparent;
         font-size: $font-size__base--desktop;
 
@@ -746,7 +750,7 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    .video-tout.bluefoot-column {
+    .video-tout {
         position: relative;
         padding: 0;
         width: 100%;
