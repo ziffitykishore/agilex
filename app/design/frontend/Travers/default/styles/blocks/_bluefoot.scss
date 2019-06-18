@@ -410,14 +410,22 @@ $home-sidebar-width: 20.5%;
     }
 
     &.category-grid {
+        @include max-screen($screen__m) {
+            [data-content-type="column"]:not(.section-heading-container) {
+                flex-basis: unset !important; // override PageBuilder
+                width: 50% !important; // override PageBuilder
+                box-sizing: border-box;
+            }
+        }
+
         @include min-screen($screen__m) {
-            width: 90%;
+            width: 90% !important; // override PageBuilder
             margin: 0 auto;
             margin-bottom: $indent__xl;
         }
 
         @include min-screen($screen__l) {
-            width: auto;
+            width: auto !important; // override PageBuilder
             padding-left: $indent__xl;
             padding-right: $indent__xl;
         }
@@ -435,25 +443,26 @@ $home-sidebar-width: 20.5%;
             }
         }
 
-        .bluefoot-column.bluefoot-structural {
+        .pagebuilder-column-group {
             margin-top: $indent__xs;
             margin-bottom: 50px;
-            width: 50%;
+            flex-basis: 50% !important; // override PageBuilder
 
             @include min-screen($screen__m) {
-                width: 25%;
+                flex-basis: 25% !important; // override PageBuilder
                 margin-top: 15px;
+                margin-bottom: 0;
             }
 
             @include hover {
-                .bluefoot-driver-text {
+                .pagebuilder-button-link {
                     color: $c-royal;
                 }
             }
         }
     }
 
-    .bluefoot-driver {
+    .pagebuilder-column-group {
         margin: 0 auto !important; // override drivers
 
         @include min-screen($screen__l) {
@@ -466,29 +475,38 @@ $home-sidebar-width: 20.5%;
             background-color: transparent;
         }
 
-        img {
-            width: 100%;
-            max-width: 100px;
-            left: 50% !important; //override driver
-            transform: translateX(-50%);
+        .pagebuilder-banner-wrapper {
+            background-position: center center !important; // override PageBuilder
+            background-size: unset !important; // override PageBuilder
+        }
 
-            @include min-screen($screen__s) {
-                max-width: 125px;
+        .pagebuilder-overlay {
+            position: relative;
+        }
+
+        .pagebuilder-poster-overlay {
+            min-height: unset !important; // override PageBuilder
+
+            .pagebuilder-poster-content div {
+                min-height: 250px !important; // override PageBuilder
             }
         }
 
-        &-text {
-            position: static;
+        .pagebuilder-banner-button {
             font-family: $font-family__sans-serif;
             font-weight: $font-weight__semibold;
             text-transform: capitalize;
             color: $c-cobalt;
             background-color: transparent !important; //override Bluefoot driver
+            border: 0;
+            font-size: $font-size__base--desktop;
+            text-align: center;
+            line-height: 1.4;
+            width: 100%;
+            margin-top: 0 !important; // override PageBuilder
 
-            @include max-screen($screen__m) {
-                bottom: 0;
-                font-size: $font-size__base--desktop;
-                line-height: 1.4;
+            @include min-screen($screen__m) {
+                font-size: 18px;
             }
         }
     }
@@ -498,7 +516,7 @@ $home-sidebar-width: 20.5%;
         margin-top: $indent__xs;
 
         @include min-screen($screen__m) {
-            &.bluefoot-row {
+            &.product-category {
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 90%;
@@ -1030,7 +1048,7 @@ footer.page-footer {
 .testimonials {
     margin-bottom: 80px;
 
-    &.bluefoot-row {
+    &.row-full-width-inner {
         @include min-screen($screen__m) {
             margin: $indent__m auto $indent__s auto;
             max-width: 90%;
