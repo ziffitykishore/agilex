@@ -164,7 +164,15 @@ define(
             },
 
             isModuleEnabled: function() {
-                $("#deliverydate").prependTo($("#delivery-tabs"));
+                if($('#deliverydate').length && $('#delivery-tabs').length) {
+                    $("#deliverydate").prependTo($("#delivery-tabs"));
+                    console.log("without timeout");
+                }else{
+                    setTimeout(function() {
+                        console.log("timeout triggered");
+                        $("#deliverydate").prependTo($("#delivery-tabs"));
+                    },1000);
+                }
                 return this.deliverydateConfig.moduleEnabled;
             },
 
