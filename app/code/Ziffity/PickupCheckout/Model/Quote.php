@@ -7,32 +7,13 @@
  */
 namespace Ziffity\PickupCheckout\Model;
 
-class Quote extends \Magento\Quote\Model\Quote
+class Quote 
 {
-    /**
-     * Check quote for virtual product only and pickup order
-     *
-     * @return bool
-     */
-    public function isVirtual()
+    public function afterIsVirtual(\Magento\Quote\Model\Quote $subject, $result)
     {
-        $isVirtual = true;
-        $countItems = 0;
-        foreach ($this->getItemsCollection() as $_item) {
-            /* @var $_item \Magento\Quote\Model\Quote\Item */
-            if ($_item->isDeleted() || $_item->getParentItemId()) {
-                continue;
-            }
-            $countItems++;
-            if (!$_item->getProduct()->getIsVirtual()) {
-                $isVirtual = false;
-                break;
-            }
-        }
         if (isset($_COOKIE["is_pickup"]) && $_COOKIE["is_pickup"] == "true") {
-            return true;
+            $result = true;
         }
-        
-        return $countItems == 0 ? false : $isVirtual;
+        return $result;
     }
 }

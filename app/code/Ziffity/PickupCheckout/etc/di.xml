@@ -8,5 +8,7 @@
             </argument>
         </arguments>
     </type>
-    <preference for="Magento\Quote\Model\Quote" type="Ziffity\PickupCheckout\Model\Quote" />
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="pickupCheck" type="Ziffity\PickupCheckout\Model\Quote" sortOrder="1" />
+    </type>
 </config>
