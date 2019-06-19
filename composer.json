@@ -37,7 +37,7 @@
         "magento/product-enterprise-edition": "2.3.1",
         "composer/composer": "@alpha",
         "snowdog/frontools": "dev-develop#a88aa6",
-        "somethingdigital/magento2-theme-bryantpark": "dev-integration/magento-v2.3.1",
+        "somethingdigital/magento2-theme-bryantpark": "3.0.2",
         "somethingdigital/magento2-migration": "dev-nobluefoot",
         "jamescowie/composer-patcher": "1.0.3",
         "somethingdigital/module-admin-notify": "^1.0",
