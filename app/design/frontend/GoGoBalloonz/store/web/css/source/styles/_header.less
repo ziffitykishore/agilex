@@ -528,9 +528,17 @@
 @media screen and (max-width: @screen__ls){
     .page-header {
         .account-links {
-            .signin-link {
-                strong {
-                    display: none;
+            > .links > li:first-child {
+                &.signin-link {
+                    > a {
+                        margin-top: 0;
+                        .icon-user {
+                            font-size: 14px;
+                        }
+                    }
+                    strong {
+                        display: none;
+                    }
                 }
             }
         }
