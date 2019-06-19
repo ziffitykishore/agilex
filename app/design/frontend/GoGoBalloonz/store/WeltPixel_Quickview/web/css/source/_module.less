@@ -1,8 +1,17 @@
 & when (@media-common = true) {
 	.weltpixel-quickview-catalog-product-view,
 	.weltpixel_quickview-catalog_product-view {
-		.box-tocart .action.tocart {
-			width: 100%;
+		.product-info-main {
+			.box-tocart {
+				float: none;
+				.actions {
+					float: none;
+					margin-left: 0;
+				}
+				.action.tocart {
+					width: 100%;
+				}
+			}
 		}
 		.page-wrapper .page-main {
 		}
@@ -22,14 +31,21 @@
 				}
 			}
 		}
+
+
 	}
 
-	.box-gotoproduct #product-gotoproduct-button {
-		width: 100%;
-		padding: 14px 17px;
-		font-size: 1.8rem;
-		text-align: center;
-		border: 1px solid transparent;
+	.box-gotoproduct {
+		margin-top: 20px;
+		#product-gotoproduct-button {
+			width: 100%;
+			padding: 10px 15px;
+			font-size: 1.4rem;
+			line-height: 2.2rem;
+			text-align: center;
+			border-radius: 5px;
+			border: 1px solid transparent;
+		}
 	}
 
 	.weltpixel-quickview-catalog-product-view,

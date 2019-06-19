@@ -87,6 +87,11 @@
                     border: 2px solid @color-sky-blue;
                     padding: 20px;
                     .br-radius(5px);
+
+                    .action-edit-address {
+                        .button();
+                        .box-shadow(none);
+                    }
                 }
             }
 
@@ -312,6 +317,15 @@
 
                     &:hover {
                         .lib-css(color, @color-white);
+                    }
+                }
+            }
+
+
+            .ccard.fieldset {
+                .cvv {
+                    ._with-tooltip {
+                        padding-right: 0;
                     }
                 }
             }
