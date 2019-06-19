@@ -20,7 +20,8 @@
     "gulp/vinyl-fs/glob-stream/glob/minimatch": "^3.0.4",
     "gulp/vinyl-fs/glob-stream/minimatch": "^3.0.4",
     "gulp/vinyl-fs/glob-watcher/gaze/globule/glob/minimatch": "^3.0.4",
-    "gulp/vinyl-fs/glob-watcher/gaze/globule/minimatch": "^3.0.4"
+    "gulp/vinyl-fs/glob-watcher/gaze/globule/minimatch": "^3.0.4",
+    "gulp/liftoff/findup-sync/micromatch": "^3.1.10"
   },
   "workspaces": [
     "app/design/frontend/*/*",
