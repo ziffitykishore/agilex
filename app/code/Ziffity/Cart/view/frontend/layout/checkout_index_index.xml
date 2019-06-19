@@ -53,6 +53,13 @@
                                                                 <item name="template" xsi:type="string">Amasty_Deliverydate/deliverydate-sidebar</item>
                                                             </item>
                                                         </item>
+                                                        <item name="ziffity-pickup-date-sidebar" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Ziffity_Pickupdate/js/checkout/sidebar</item>
+                                                            <item name="displayArea" xsi:type="string">ziffity-pickup-date-sidebar</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Ziffity_Pickupdate/pickupdate-sidebar</item>
+                                                            </item>
+                                                        </item>
                                                     </item>
                                                 </item>
                                             </item>
@@ -74,6 +81,7 @@
                                                             <item name="displayArea" xsi:type="string">ziffity-pickup-date-sidebar</item>
                                                             <item name="config" xsi:type="array">
                                                                 <item name="template" xsi:type="string">Ziffity_Pickupdate/pickupdate-sidebar</item>
+                                                                <item name="componentDisabled" xsi:type="boolean">true</item>
                                                             </item>
                                                         </item>
                                                     </item>

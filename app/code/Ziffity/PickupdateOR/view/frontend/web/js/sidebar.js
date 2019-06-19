@@ -14,14 +14,18 @@ define(
             getLocalStorageData: function() {
                 var mageCache = localStorage.getItem('mage-cache-storage');
                 var mageCacheToJson = JSON.parse(mageCache);
+                return mageCacheToJson['checkout-data']['billingAddressFromData'];
+            },
 
-                return mageCacheToJson['checkout-data']['shippingAddressFromData'];
+            isPickup: function() {
+                return quote.isVirtual();
             },
 
             getPickupDate: function() {
               var date = this.getLocalStorageData();
               if (date !== null) {
                 if (date['pickupdate_date'] != null) {
+                    console.log(date['pickupdate_date']);
                    return date['pickupdate_date'];
                 }
               }
@@ -32,6 +36,7 @@ define(
               var time = this.getLocalStorageData();
               if (time !== null) {
                 if (time['pickupdate_time'] != null) {
+                    console.log('pickupdate_time');
                    return time['pickupdate_time'];
                 }
               }
