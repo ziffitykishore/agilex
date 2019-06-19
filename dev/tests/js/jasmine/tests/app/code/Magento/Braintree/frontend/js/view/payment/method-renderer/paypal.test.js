@@ -24,7 +24,12 @@ define([
                     paymentMethod: ko.observable(),
                     totals: ko.observable({
                         'base_grand_total': 0
-                    })
+                    }),
+
+                    /** Stub */
+                    isVirtual: function () {
+                        return false;
+                    }
                 },
                 'Magento_Braintree/js/view/payment/adapter': {
                     config: {},
@@ -79,6 +84,13 @@ define([
                 component = new Constr();
                 done();
             });
+        });
+
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
         });
 
         it('The PayPal::initAuthFlow throws an exception.', function () {

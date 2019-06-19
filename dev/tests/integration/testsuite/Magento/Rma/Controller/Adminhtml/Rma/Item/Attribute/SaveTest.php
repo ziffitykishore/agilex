@@ -1,4 +1,5 @@
 <?php
+/**<?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
@@ -11,8 +12,6 @@ use Magento\TestFramework\TestCase\AbstractBackendController;
 use Magento\Framework\Data\Form\FormKey;
 
 /**
- * Tests rma item attribute save.
- *
  * @magentoAppArea adminhtml
  */
 class SaveTest extends AbstractBackendController
@@ -22,7 +21,7 @@ class SaveTest extends AbstractBackendController
      *
      * @return void
      */
-    public function testFileExtensions()
+    public function testFileExtensions(): void
     {
         $params = $this->getRequestNewAttributeData();
         $request = $this->getRequest();

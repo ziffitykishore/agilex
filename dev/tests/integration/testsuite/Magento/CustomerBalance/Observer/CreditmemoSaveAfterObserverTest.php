@@ -32,6 +32,9 @@ class CreditmemoSaveAfterObserverTest extends TestCase
      */
     private $observer;
 
+    /**
+     * @inheritdoc
+     */
     protected function setUp()
     {
         $this->objectManager = Bootstrap::getObjectManager();
@@ -44,10 +47,11 @@ class CreditmemoSaveAfterObserverTest extends TestCase
      * @param float $maxAllowedBalance
      * @param float $customerBalance
      * @param int $rewardPoints
+     * @return void
      * @throws \Magento\Framework\Exception\LocalizedException
      * @dataProvider totalsDataProvider
      */
-    public function testExecute(float $maxAllowedBalance, float $customerBalance, int $rewardPoints)
+    public function testExecute(float $maxAllowedBalance, float $customerBalance, int $rewardPoints): void
     {
         $creditMemo = $this->getCreditMemo('100000001');
         $creditMemo->setBaseCustomerBalanceReturnMax($maxAllowedBalance)
@@ -64,10 +68,11 @@ class CreditmemoSaveAfterObserverTest extends TestCase
     /**
      * Checks a case when the entered Customer Balance or Reward Points greater then allowed Balance.
      *
+     * @return void
      * @expectedException \Magento\Framework\Exception\LocalizedException
      * @expectedExceptionMessage You can't use more store credit than the order amount.
      */
-    public function testExecuteWithNotAllowedBalance()
+    public function testExecuteWithNotAllowedBalance(): void
     {
         $maxAllowedBalance = 66.48;
         $customerBalance = 28.53;
@@ -91,12 +96,12 @@ class CreditmemoSaveAfterObserverTest extends TestCase
             [
                 'maxAllowedBalance' => 66.48,
                 'customerBalance' => 28.53,
-                'rewardPoints' => 38
+                'rewardPoints' => 38,
             ],
             [
                 'maxAllowedBalance' => 66.02,
                 'customerBalance' => 28.53,
-                'rewardPoints' => 37
+                'rewardPoints' => 37,
             ]
         ];
     }
@@ -154,6 +159,7 @@ class CreditmemoSaveAfterObserverTest extends TestCase
         $customerBalance = $this->objectManager->create(Balance::class);
         $customerBalance->setCustomerId($customerId);
         $customerBalance->loadByCustomer();
+
         return $customerBalance;
     }
 }

@@ -14,8 +14,6 @@ use Magento\TestFramework\TestCase\AbstractBackendController;
 use Magento\Framework\Data\Form\FormKey;
 
 /**
- * Tests customer custom address attribute save.
- *
  * @magentoAppArea adminhtml
  */
 class SaveTest extends AbstractBackendController
@@ -27,6 +25,9 @@ class SaveTest extends AbstractBackendController
      */
     private $attributeRepository;
 
+    /**
+     * @inheritdoc
+     */
     protected function setUp()
     {
         parent::setUp();
@@ -41,8 +42,10 @@ class SaveTest extends AbstractBackendController
      * but frontend label of this attribute is visible in address forms as Region label.
      * So frontend label for RegionId should be synced with frontend label for Region attribute, which is
      * available for updating.
+     *
+     * @return void
      */
-    public function testRegionFrontendLabelUpdate()
+    public function testRegionFrontendLabelUpdate(): void
     {
         $params = $this->getRequestData();
         $request = $this->getRequest();
@@ -65,6 +68,25 @@ class SaveTest extends AbstractBackendController
     }
 
     /**
+     * Tests that controller validate file extensions.
+     *
+     * @return void
+     */
+    public function testFileExtensions(): void
+    {
+        $params = $this->getRequestNewAttributeData();
+        $request = $this->getRequest();
+        $request->setMethod('POST');
+        $request->setPostValue($params);
+
+        $this->dispatch('backend/admin/customer_address_attribute/save');
+
+        $this->assertSessionMessages(
+            $this->equalTo(['Please correct the value for file extensions.'])
+        );
+    }
+
+    /**
      * Gets request params.
      *
      * @return array
@@ -81,25 +103,6 @@ class SaveTest extends AbstractBackendController
             'frontend_label' => [self::$regionFrontendLabel],
             'form_key' => $this->_objectManager->get(FormKey::class)->getFormKey(),
         ];
-    }
-
-    /**
-     * Tests that controller validate file extensions.
-     *
-     * @return void
-     */
-    public function testFileExtensions()
-    {
-        $params = $this->getRequestNewAttributeData();
-        $request = $this->getRequest();
-        $request->setMethod('POST');
-        $request->setPostValue($params);
-
-        $this->dispatch('backend/admin/customer_address_attribute/save');
-
-        $this->assertSessionMessages(
-            $this->equalTo(['Please correct the value for file extensions.'])
-        );
     }
 
     /**

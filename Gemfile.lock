@@ -9,9 +9,10 @@ GEM
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   hologram
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

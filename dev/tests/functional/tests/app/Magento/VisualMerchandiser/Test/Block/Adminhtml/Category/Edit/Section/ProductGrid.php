@@ -12,28 +12,6 @@ use Magento\Mtf\Client\Locator;
 class ProductGrid extends \Magento\Catalog\Test\Block\Adminhtml\Category\Edit\Section\ProductGrid
 {
     /**
-     * Filters array mapping.
-     *
-     * @var array
-     */
-    protected $filters = [
-        'sku' => [
-            'selector' => '#catalog_category_products_filter_sku',
-        ],
-        'name' => [
-            'selector' => '#catalog_category_products_filter_name',
-        ],
-        'visibility' => [
-            'selector' => '#catalog_category_products_filter_visibility',
-            'input' => 'select',
-        ],
-        'status' => [
-            'selector' => '#catalog_category_products_filter_status',
-            'input' => 'select',
-        ],
-    ];
-
-    /**
      * 'Add Product' dialog XPath locator
      *
      * @var string
@@ -76,15 +54,12 @@ class ProductGrid extends \Magento\Catalog\Test\Block\Adminhtml\Category\Edit\Se
     }
 
     /**
-     * Prepare data to perform search, fill in search filter
+     * Search item via grid filter
      *
-     * @param array $filters
-     * @throws \Exception
+     * @param array $filter
+     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    protected function prepareForSearch(array $filters)
+    public function search(array $filter)
     {
-        unset($filters['in_category']);
-
-        parent::prepareForSearch($filters);
     }
 }

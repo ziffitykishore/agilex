@@ -1,0 +1,15 @@
+<div class="pagebuilder-content-type pagebuilder-collapsible children-min-height"
+     attr="data.main.attributes" ko-style="data.main.style" css="data.main.css"
+     event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
+    <render args="getOptions().template" />
+    <div>
+        <div class="coll-header"
+             attr="data.navigation.attributes" ko-style="data.navigation.style" css="data.navigation.css">
+            <span class="coll-title" data-bind="liveEdit: { field: 'tab_name', placeholder: $t('Edit title')}"></span>
+        </div>
+        <div data-role="content" class="tabs-content children-min-height" attr="data.content.attributes" ko-style="data.content.style" css="data.content.css">
+            <render args="childTemplate" />
+        </div>
+    </div>
+</div>
+

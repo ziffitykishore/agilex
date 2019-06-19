@@ -4,8 +4,6 @@
  * See COPYING.txt for license details.
  */
 
-// @codingStandardsIgnoreFile
-
 namespace Magento\ScheduledImportExport\Cron;
 
 use Magento\TestFramework\Helper\Bootstrap;
@@ -48,7 +46,8 @@ class ScheduledLogCleanTest extends \Magento\TestFramework\Indexer\TestCase
 
         // Create export directory if not exist
         /** @var \Magento\Framework\Filesystem\Directory\Write $varDir */
-        $varDir = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(\Magento\Framework\Filesystem::class
+        $varDir = \Magento\TestFramework\Helper\Bootstrap::getObjectManager()->get(
+            \Magento\Framework\Filesystem::class
         )->getDirectoryWrite(
             'var'
         );

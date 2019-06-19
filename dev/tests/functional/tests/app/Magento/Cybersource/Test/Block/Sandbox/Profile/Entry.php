@@ -49,7 +49,6 @@ class Entry extends Block
     public function openEditableVersion()
     {
         $this->_rootElement->find($this->openEditableSelector)->click();
-        $this->waitForElementVisible($this->promoteToActiveSelector);
     }
 
     /**
