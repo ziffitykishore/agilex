@@ -41,12 +41,8 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
 
     public function getAllOptions($withEmpty = true, $defaultValues = false)
     {
-        $this->coreSession->start();
-        $selectedLocation = $this->coreSession->getStoreLocation();
 
-        if(!$selectedLocation){
-            $selectedLocation = DEFAULT_LOCATION;
-        }
+        $selectedLocation = $_COOKIE["storeLocation"];
 
         $regionData = $this->regionModel->addFieldToFilter('default_name',$selectedLocation)->load()->getFirstItem();
         $regionId = $regionData->getRegionId();
