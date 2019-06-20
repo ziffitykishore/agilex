@@ -37,6 +37,7 @@
                     width: 35px;
                     height: 35px;
                     margin: 0;
+                    padding: 0;
                     .br-radius(100%);
                     .lib-css(background, @color-white);
                     .lib-css(color, @color-blue);
@@ -51,6 +52,11 @@
 
             .modal-footer {
                 padding: 15px 3rem;
+
+                button {
+                    .button();
+                    .box-shadow(none);
+                }
             }
 
             .modal-inner-wrap {
