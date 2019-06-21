@@ -34,10 +34,11 @@ class Before extends PlaceOrderBefore
             $order = $observer->getOrder();
             /** @var \Amasty\Deliverydate\Model\Deliverydate $deliveryDate */
             $deliveryDate = $this->deliverydateFactory->create();
-            $deliveryDate->prepareForSave($data, $order);
-            $deliveryDate->validateDelivery($data, $order);
+            if ($deliveryDate->isDelivery()) {
+                $deliveryDate->prepareForSave($data, $order);
+                $deliveryDate->validateDelivery($data, $order);
+            }
         }
-
         return $this;
     }    
 	

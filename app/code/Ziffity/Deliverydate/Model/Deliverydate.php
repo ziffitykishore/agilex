@@ -50,7 +50,7 @@ class Deliverydate extends AmastyDeliveryDate
 
     protected $helper;
 
-    protected $pickupHelper;
+    protected $cookieManager;
 
     protected function _construct()
     {
@@ -71,7 +71,7 @@ class Deliverydate extends AmastyDeliveryDate
         \Amasty\Deliverydate\Model\DeliveryDate\Validator $dateValidator,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         DeliverydateHelper $helper,
-        \Ziffity\Pickupdate\Helper\Data $pickupHelper,
+        \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
         array $data = []
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $orderRepository, 
@@ -79,18 +79,16 @@ class Deliverydate extends AmastyDeliveryDate
                 $configProvider, $dateValidator, $messageManager, $data);
         
         $this->dateValidator          = $dateValidator;
-        $this->helper                 = $helper;
-        $this->pickupHelper           = $pickupHelper;
+        $this->helper                    = $helper;
+        $this->cookieManager       = $cookieManager;
     }
     
     public function validateDelivery($data, $order)
     {
-                
         $shippingMethod = $order->getShippingMethod();
         $customerGroup = $order->getCustomerGroupId();
-        $pickupData = $this->pickupHelper->getPickupDataFromSession();
-        if(!$pickupData['date'] && !$pickupData['tinterval_id']) {
-            if ($data['tinterval_id']) {
+
+        if ($data['tinterval_id']) {
             /* load Time interval by ID and combine it to string */
             $tint = $this->tintervalFactory->create();
             $this->tintervalResourceModel->load($tint, (int)$data['tinterval_id']);
@@ -150,9 +148,12 @@ class Deliverydate extends AmastyDeliveryDate
             $this->throwValidatorException(__('Delivery Time is invalid, please choose another time'));
         }
     }
+
+    public function isDelivery()
+    {
+        return $this->cookieManager->getCookie('is_pickup') === 'true' ? false : true;
     }
     
-
     private function throwValidatorException($message)
     {
         $this->messageManager->addErrorMessage($message);

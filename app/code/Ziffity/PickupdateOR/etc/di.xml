@@ -5,5 +5,8 @@
     <preference for="Ziffity\Pickupdate\Model\Pickupdate" type="Ziffity\PickupdateOR\Model\Pickupdate"/>
     <preference for="Ziffity\Pickupdate\Model\PickupDate\Validator" type="Ziffity\PickupdateOR\Model\PickupDate\Validator"/>
     <preference for="Ziffity\Pickupdate\Model\PickupdateConfigProvider" type="Ziffity\PickupdateOR\Model\PickupdateConfigProvider"/>
-    <preference for="Ziffity\Pickupdate\Model\ResourceModel\Pickupdate\Collection" type="Ziffity\PickupdateOR\Model\ResourceModel\Pickupdate\PickupCollection"/>    
+    <preference for="Ziffity\Pickupdate\Model\ResourceModel\Pickupdate\Collection" type="Ziffity\PickupdateOR\Model\ResourceModel\Pickupdate\PickupCollection"/>
+    <type name="Magento\Webapi\Controller\Rest">
+        <plugin name="rest-api-log" type="Ziffity\PickupdateOR\Plugin\RestApi"/>
+    </type>
 </config>

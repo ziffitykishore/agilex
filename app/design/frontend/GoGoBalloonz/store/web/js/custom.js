@@ -157,11 +157,12 @@ define(['jquery', 'slick', 'scroller'], function ($) {
                 localStorage.setItem('selectedDeliveryComment', $("textarea[name=amdeliverydate_comment]").val());
             });
         });
-
-
-
-
-
+        //To preserve pickup comment
+        $(document).on("blur", "textarea[name=pickupdate_comment]" , function() {
+            $("textarea[name=pickupdate_comment]").on('blur',function(){
+                localStorage.setItem('selectedPickupComment', $("textarea[name=pickupdate_comment]").val());
+            });
+        });
 
         //global variables
         var responsiveflag = false;

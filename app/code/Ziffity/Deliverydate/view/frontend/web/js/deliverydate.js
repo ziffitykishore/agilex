@@ -36,9 +36,15 @@ define(
             },
             onChangeDate: function (val){
                 if(val){
-                    var date = new Date(val);
-                    var month = (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : '0'+(date.getMonth() + 1);
-                    localStorage.setItem("selectedDeliveryDate",date.getDate() + '/' + month + '/' +  date.getFullYear());
+                    var mageCache = localStorage.getItem('mage-cache-storage');
+                    var mageCacheToJson = JSON.parse(mageCache);
+                    var shippingData = mageCacheToJson['checkout-data']['shippingAddressFromData'];
+                    var billingData = mageCacheToJson['checkout-data']['billingAddressFromData'];
+                    if (shippingData !== null) {
+                        localStorage.setItem("selectedDeliveryDate", shippingData['amdeliverydate_date']);
+                    } else {
+                        localStorage.setItem("selectedDeliveryDate", billingData['amdeliverydate_date']);
+                    }
                 }
                 if (this.deliverydateConfig.moduleEnabled) {
                     quote.amastyDeliveryDateDate = val;
@@ -164,6 +170,7 @@ define(
             },
 
             isModuleEnabled: function() {
+                $.cookie("is_pickup", false);
                 $("#deliverydate").prependTo($("#delivery-tabs"));
                 return this.deliverydateConfig.moduleEnabled;
             },

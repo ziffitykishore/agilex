@@ -50,7 +50,7 @@ class Pickupdate extends ZiffityPickupDate
 
     protected $helper;
 
-    protected $deliverHelper;
+    protected $cookieManager;
 
     protected function _construct()
     {
@@ -71,7 +71,7 @@ class Pickupdate extends ZiffityPickupDate
         \Ziffity\Pickupdate\Model\PickupDate\Validator $dateValidator,
         \Magento\Framework\Message\ManagerInterface $messageManager,
         PickupdateHelper $helper,
-        \Amasty\Deliverydate\Helper\Data $deliverHelper,
+        \Magento\Framework\Stdlib\CookieManagerInterface $cookieManager,
         array $data = []
     ) {
         parent::__construct($context, $registry, $resource, $resourceCollection, $orderRepository, 
@@ -80,23 +80,19 @@ class Pickupdate extends ZiffityPickupDate
         
         $this->dateValidator          = $dateValidator;
         $this->helper                 = $helper;
-        $this->deliverHelper          = $deliverHelper;
+        $this->cookieManager           = $cookieManager;
     }
     
     public function validatePickup($data, $order)
     {
-                
         $shippingMethod = $order->getShippingMethod();
         $customerGroup = $order->getCustomerGroupId();
-        $deliveryData = $this->deliverHelper->getDeliveryDataFromSession();
-        if(!$deliveryData['date'] && !$deliveryData['tinterval_id']) {
         if ($data['tinterval_id']) {
             /* load Time interval by ID and combine it to string */
             $tint = $this->tintervalFactory->create();
             $this->tintervalResourceModel->load($tint, (int)$data['tinterval_id']);
             $data['time'] = $tint->getTimeFrom() . " - " . $tint->getTimeTo();
         }
-
 
         if (!$this->getDate()
             && $this->pickupHelper->isFieldEnabled('date', $shippingMethod, $customerGroup)
@@ -150,8 +146,11 @@ class Pickupdate extends ZiffityPickupDate
             $this->throwValidatorException(__('Pickup Time is invalid, please choose another time'));
         }
     }
-    }
     
+    public function isPickup()
+    {
+        return $this->cookieManager->getCookie('is_pickup') === 'true' ? true : false;
+    }
 
     private function throwValidatorException($message)
     {

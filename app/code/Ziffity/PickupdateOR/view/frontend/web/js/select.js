@@ -22,7 +22,10 @@ define([
                 this.fullIntervalsSet = config.options.full == undefined ? config.options[0] : config.options.full;
                 this.displayed = this.fullIntervalsSet;
             },
-            onUpdate: function () {
+            onUpdate: function (val) {
+                if(val){
+                    localStorage.setItem("selectedPickupTime",val);
+                }
                 this.bubble('update', this.hasChanged());
             },
 
@@ -35,7 +38,7 @@ define([
                 return this;
             },
             updateTimeInterval: function(){
-                self = this;
+                var select = this;
                 $.ajax({
                      showLoader: true,
                      url: window.location.origin+'/pickupOR/pickup/timeinterval',
@@ -47,8 +50,15 @@ define([
                      dataType: 'json'
 
                  }).done(function (data) {
-                    self.options(data);
+                    select.options(data);
                     localStorage.setItem('pickupSlots', JSON.stringify(data));
+                    if(localStorage.getItem('savePickupFormData') === 'true'){
+                        localStorage.setItem("savePickupFormData",false);
+                        setTimeout(function(){
+                            $("select[name=pickupdate_time]").val(localStorage.getItem('selectedPickupTime')).trigger('change');
+                            $("textarea[name=pickupdate_comment]").val(localStorage.getItem('selectedPickupComment')).trigger('change');
+                        }, 1000);
+                    }
                  });
             }
 

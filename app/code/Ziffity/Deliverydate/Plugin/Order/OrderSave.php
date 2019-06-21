@@ -44,8 +44,10 @@ class OrderSave extends OrderSavePlugin
         if (is_array($data)) {
             /** @var \Amasty\Deliverydate\Model\Deliverydate $deliveryDate */
             $deliveryDate = $this->deliverydateFactory->create();
-            $deliveryDate->prepareForSave($data, $order);
-            $deliveryDate->validateDelivery($data, $order);
+             if ($deliveryDate->isDelivery()) {
+                $deliveryDate->prepareForSave($data, $order);
+                $deliveryDate->validateDelivery($data, $order);
+            }
         }
 
         return [$order];
@@ -58,8 +60,10 @@ class OrderSave extends OrderSavePlugin
         if (is_array($data)) {
             /** @var \Amasty\Deliverydate\Model\Deliverydate $deliveryDate */
             $deliveryDate = $this->deliverydateFactory->create();
-            if ($deliveryDate->prepareForSave($data, $order)) {
-                $this->deliverydateResource->save($deliveryDate);
+            if ($deliveryDate->isDelivery()) {
+                if ($deliveryDate->prepareForSave($data, $order)) {
+                    $this->deliverydateResource->save($deliveryDate);
+                }
             }
         }
         return $order;
