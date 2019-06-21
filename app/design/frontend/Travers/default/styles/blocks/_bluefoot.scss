@@ -878,6 +878,11 @@ $home-sidebar-width: 20.5%;
 
     .pagebuilder-button-secondary {
         @include button--type(secondary);
+
+        @include hover {
+            border: 0;
+        }
+
         @include max-screen($screen__m) {
             margin-top: $indent__s;
         }
