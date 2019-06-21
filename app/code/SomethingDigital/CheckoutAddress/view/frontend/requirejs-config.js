@@ -9,6 +9,8 @@ var config = {
                 'SomethingDigital_CheckoutAddress/template/billing-address/list.html',
             'Magento_Checkout/template/billing-address/details.html':
                 'SomethingDigital_CheckoutAddress/template/billing-address/details.html',
+            'Magento_Checkout/template/billing-address.html':
+                'SomethingDigital_CheckoutAddress/template/billing-address.html',
             'Magento_Checkout/js/model/shipping-save-processor/default':
                 'SomethingDigital_CheckoutAddress/js/model/shipping-save-processor/default'
         }
@@ -29,6 +31,9 @@ var config = {
             },
             'Magento_Checkout/js/action/create-billing-address': {
                 'SomethingDigital_CheckoutAddress/js/action/create-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/model/checkout-data-resolver': {
+                'SomethingDigital_CheckoutAddress/js/model/checkout-data-resolver-mixin': true
             }
         }
     }
