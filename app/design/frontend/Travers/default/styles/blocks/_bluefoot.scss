@@ -490,6 +490,12 @@ $home-sidebar-width: 20.5%;
         .pagebuilder-poster-overlay {
             min-height: unset !important; // override PageBuilder
 
+            @include hover {
+                .pagebuilder-banner-button {
+                    text-decoration: underline;
+                }
+            }
+
             .pagebuilder-poster-content div {
                 min-height: 250px !important; // override PageBuilder
             }
@@ -615,9 +621,7 @@ $home-sidebar-width: 20.5%;
         padding-bottom: 0;
     }
 
-    &.pagebuilder-column-group {
-        display: block !important; // override PageBuilder
-
+    .pagebuilder-column-group {
         @include min-screen($screen__l) {
             display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
@@ -1192,6 +1196,10 @@ footer.page-footer {
     .carousel {
         @include min-screen($screen__l) {
             width: calc(100% - #{$home-sidebar-width})
+        }
+
+        .pagebuilder-button-primary {
+            @include button--type(primary);
         }
     }
 
