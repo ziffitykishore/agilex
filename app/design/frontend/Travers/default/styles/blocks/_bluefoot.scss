@@ -236,6 +236,7 @@ $home-sidebar-width: 20.5%;
 
     .column.main {
         padding-bottom: 0;
+        min-width: 0;
     }
 }
 
@@ -1133,7 +1134,6 @@ footer.page-footer {
 
     .bluefoot-advanced-slide-content {
         text-align: left !important; //override Slick
-        border: 1px solid $c-silver;
 
         .slick-dots {
             margin-top: 0;
@@ -1176,8 +1176,9 @@ footer.page-footer {
 
     .carousel,
     .category-grid.product-category {
+        width: 100% !important; // override BF desktop layout
+
         @include max-screen($screen__l) {
-            width: 100% !important; // override BF desktop layout
             padding: 0 !important; // override BF
             margin: 0 !important; // override BF
         }
