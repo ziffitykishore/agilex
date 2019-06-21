@@ -1,0 +1,10 @@
+<?php
+/** @var \Ewave\ExtendedBundleProduct\Block\Adminhtml\Product\Composite\Configure $block */
+?>
+<?php if ($block->getHasConfigurableProducts()): ?>
+    <div class="messages">
+        <div class="message message-info info">
+            <?php echo $block->escapeHtml(__('You\'re trying to add a bundle that has configurable product in its options. This could be done only on storefront.')); ?>
+        </div>
+    </div>
+<?php endif; ?>
