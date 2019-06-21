@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.price.render.bundle.customization" remove="true"/>
+        <referenceBlock name="bundle.product.view.options.notice" remove="true"/>
+        <referenceBlock name="bundle.back.button" remove="true"/>
+        <referenceBlock name="customize.button" remove="true"/>
+
+        <referenceContainer name="content">
+        <block class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper.addons"  template="Magento_Catalog::product/view/options/wrapper.phtml" before="product.info.details">
+            <block class="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle" name="product.info.bundle.options.addons" template="Magento_Bundle::catalog/product/view/type/bundle/option/option_addons.phtml" after="product.info.bundle.options">
+                <block class="Ziffity\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Select" name="product.info.bundle.options.select.addons" as="select"/>
+                <block class="Ziffity\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Multi" name="product.info.bundle.options.multi.addons" as="multi"/>
+                <block class="Ziffity\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio" name="product.info.bundle.options.radio.addons" as="radio"/>
+                <block class="Ziffity\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox" name="product.info.bundle.options.checkbox.addons" as="checkbox"/>
+            </block>            
+        </block>
+        </referenceContainer>
+
+        <move element="product.info" destination="product.info.main" after="-"/>
+        <move element="product.info.bundle" destination="product.info.main" before="product.info"/>
+        <move element="product.info.overview" destination="product.info.main" before="product.info"/>
+        <move element="product.info.bundle" destination="product.info.main" before="product.info.overview"/>
+    </body>
+</page>
