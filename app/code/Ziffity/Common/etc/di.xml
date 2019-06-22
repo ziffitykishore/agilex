@@ -5,5 +5,4 @@
     <type name="Magento\Framework\App\Action\AbstractAction">
         <plugin name="abstractaction-context-plugin" type="Ziffity\Common\Plugin\App\Action\Context" sortOrder="15"/>
     </type>
-    <preference for="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle" type="Ziffity\Common\Block\Catalog\Product\View\Type\Bundle" />
 </config>
