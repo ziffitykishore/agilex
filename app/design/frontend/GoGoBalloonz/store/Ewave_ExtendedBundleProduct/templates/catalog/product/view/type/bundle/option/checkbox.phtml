@@ -12,7 +12,7 @@
 <?php $_option = $block->getOption() ?>
 <?php $_selections = $_option->getSelections() ?>
 
-<div class="field option <?php echo ($_option->getRequired()) ? ' required': ''; ?>">
+<div class="field option <?php echo ($_option->getRequired()) ? ' required': ''; ?>" <?php echo ($_option->getRequired()) ? '': 'id="div-addons"'; ?> >
     <div class="control">
         <div class="nested options-list">
             <?php if ($block->showSingle()): ?>

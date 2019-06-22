@@ -38,9 +38,6 @@ class Bundle extends CatalogBundle
             return __('There is no defined renderer for "%1" option type.', $option->getType());
         }
         
-        if(!$option->getRequired()) {
-            return false;
-        }
         return $optionBlock->setOption($option)->toHtml();
     }
 

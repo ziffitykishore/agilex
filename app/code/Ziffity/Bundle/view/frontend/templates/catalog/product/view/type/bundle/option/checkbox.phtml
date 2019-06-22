@@ -25,16 +25,8 @@
                        value="<?= /* @escapeNotVerified */ $_selections[0]->getSelectionId() ?>"/>
             <?php else:?>
                 <?php foreach($_selections as $_selection): ?>
-                    <div class="field choice">
-                        <input class="bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?> checkbox product bundle option change-container-classname"
-                               id="bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>"
-                               type="checkbox"
-                               <?php if ($_option->getRequired()) /* @escapeNotVerified */ echo 'data-validate="{\'validate-one-required-by-name\':\'input[name^=&quot;bundle_option[' . $_option->getId() . ']&quot;]:checked\'}"'?>
-                               name="bundle_option[<?= /* @escapeNotVerified */ $_option->getId() ?>][<?= /* @escapeNotVerified */ $_selection->getId() ?>]"
-                               data-selector="bundle_option[<?= /* @escapeNotVerified */ $_option->getId() ?>][<?= /* @escapeNotVerified */ $_selection->getId() ?>]"
-                               <?php if ($block->isSelected($_selection)) echo ' checked="checked"' ?>
-                               <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>
-                               value="<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>"/>
+                    <div class="field choice addons-section">
+                        <input id="addons-bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>" type="checkbox" value="<?= /* @escapeNotVerified */ $_option->getId() ?>"/>
                         <label class="label"
                                for="bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>">
                             <span><?= /* @escapeNotVerified */ $block->getSelectionQtyTitlePrice($_selection) ?></span>
@@ -46,3 +38,29 @@
         </div>
     </div>
 </div>
+<script>
+    requirejs(['jquery'], function($) {
+        $(function() {
+            $("div.addons-section").on("click",function(event) {
+                var target = $(event.target);
+                if (target.is('input:checkbox')) return;
+
+                var checkbox = $(this).find("input[type='checkbox']");
+
+                if(checkbox.prop("checked")){
+                    debugger;
+                    //console.log(checkbox.attr('id').replace("addons-", ""));
+                    checkbox.prop("checked",false);
+                    var id = checkbox.attr('id').replace("addons-", "");
+                    $(id).attr('checked', false);
+                    //$('#'+id).clone().appendTo("#product_addtocart_form");
+                } else if(!checkbox.prop("checked")) {
+                    debugger;
+                    checkbox.prop("checked",true);
+                    var id = checkbox.attr('id').replace("addons-", "");
+                    $(id).attr('checked', true);
+                }
+            });
+        });
+    });
+</script>
