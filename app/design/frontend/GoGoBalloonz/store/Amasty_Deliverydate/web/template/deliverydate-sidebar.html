@@ -1,6 +1,8 @@
 <!-- ko if: (isModuleEnabled()) -->
+<!-- ko ifnot: isPickup() -->
 <div class="shipping-delivery-date">
     <!-- ko i18n: 'Delivery Details'--><!-- /ko -->: <span class="value" data-bind="text: getDeliveryDate()"></span>&nbsp;&nbsp;&nbsp;<span class="value" data-bind="text: getDeliveryTime()"></span>
 </div>
+<!-- /ko -->
 <!--/ko-->
 

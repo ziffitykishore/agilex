@@ -1,13 +1,7 @@
 <!-- ko if: (isModuleEnabled()) -->
+<!-- ko if: isPickup() -->
 <div class="shipping-pickup-date">
-    <!-- ko if: (getPickupDate()) -->
-    <!-- ko i18n: 'Pickup Date'--><!-- /ko -->: <span class="value" data-bind="text: getPickupDate()"></span><br/>
-    <!--/ko-->
-    <!-- ko if: (getPickupTime()) -->
-    <!-- ko i18n: 'Pickup Time'--><!-- /ko -->: <span class="value" data-bind="text: getPickupTime()"></span><br/>
-    <!--/ko-->
-    <!-- ko if: (getPickupComment()) -->
-    <!-- ko i18n: 'Pickup Comment'--><!-- /ko -->: <span class="value" data-bind="text: getPickupComment()"></span><br/>
-    <!--/ko-->
+        <!-- ko i18n: 'Pickup Details'--><!-- /ko -->: <span class="value" data-bind="text: getPickupDate()"></span>&nbsp;&nbsp;&nbsp;<span class="value" data-bind="text: getPickupTime()"></span>
 </div>
+<!--/ko-->
 <!--/ko-->

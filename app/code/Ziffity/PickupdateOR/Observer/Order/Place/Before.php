@@ -34,8 +34,10 @@ class Before extends PlaceOrderBefore
             $order = $observer->getOrder();
             /** @var \Ziffity\Pickupdate\Model\Pickupdate $pickupDate */
             $pickupDate = $this->pickupdateFactory->create();
-            $pickupDate->prepareForSave($data, $order);
-            $pickupDate->validatePickup($data, $order);
+            if ($pickupDate->isPickup()) {
+                $pickupDate->prepareForSave($data, $order);
+                $pickupDate->validatePickup($data, $order);
+            }
         }
 
         return $this;

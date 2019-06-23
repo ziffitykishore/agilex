@@ -42,8 +42,10 @@ class OrderSave extends OrderSavePlugin
         if (is_array($data)) {
             /** @var \Ziffity\Pickupdate\Model\Pickupdate $pickupDate */
             $pickupDate = $this->pickupdateFactory->create();
-            $pickupDate->prepareForSave($data, $order);
-            $pickupDate->validatePickup($data, $order);
+             if ($pickupDate->isPickup()) {
+                $pickupDate->prepareForSave($data, $order);
+                $pickupDate->validatePickup($data, $order);
+            }
         }
         return [$order];
     }
@@ -55,8 +57,10 @@ class OrderSave extends OrderSavePlugin
         if (is_array($data)) {
             /** @var \Ziffity\Pickupdate\Model\Pickupdate $pickupDate */
             $pickupDate = $this->pickupdateFactory->create();
-            if ($pickupDate->prepareForSave($data, $order)) {
-                $this->pickupdateResource->save($pickupDate);
+             if ($pickupDate->isPickup()) {
+                if ($pickupDate->prepareForSave($data, $order)) {
+                    $this->pickupdateResource->save($pickupDate);
+                }
             }
         }
         return $order;

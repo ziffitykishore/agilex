@@ -28,6 +28,14 @@ define([
 
                         return this;
                 },
+                preserveFormData: function() {
+                    if(localStorage.getItem('selectedPickupDate')){
+                        setTimeout(function(){
+                            $("input[name=pickupdate_date]").val(localStorage.getItem('selectedPickupDate')).trigger('change');
+                            localStorage.setItem("savePickupFormData",true);
+                        }, 1000);
+                    }
+                },
                 getElem: function(){
                         return this;
                 },

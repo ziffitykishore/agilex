@@ -1,7 +1,7 @@
 <!-- ko if: (isModuleEnabled()) -->
 <ul class="nav nav-tabs" id="delivery-ul">
-  <li class="nav-item"><a data-toggle="tab" href="#deliverydate" class="shipping-type-li nav-link active">Delivery</a></li>
-  <li class="nav-item"><a data-toggle="tab" href="#pickupdate" class="nav-link shipping-type-li">Pickup</a></li>
+  <li class="nav-item"><a data-toggle="tab" data-bind="click: function () { setDelivery() }" href="#deliverydate" class="shipping-type-li nav-link active">Delivery</a></li>
+  <li class="nav-item"><a data-toggle="tab" data-bind="click: function () { setPickup() }" href="#pickupdate" class="nav-link shipping-type-li">Pickup</a></li>
 </ul>
 <div class="tab-content" id="delivery-tabs">
     <div id="pickupdate" class="tab-pane fade">

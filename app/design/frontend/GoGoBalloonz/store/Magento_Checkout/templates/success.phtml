@@ -29,11 +29,14 @@
 <script>
     requirejs(['jquery'], function($) {
         $(function() {
-            console.log("Going to unset Localstorage");
             localStorage.removeItem("saveDeliveryFormData");
             localStorage.removeItem("selectedDeliveryDate");
             localStorage.removeItem("selectedDeliveryTime");
             localStorage.removeItem("selectedDeliveryComment");
+            localStorage.removeItem("savePickupFormData");
+            localStorage.removeItem("selectedPickupDate");
+            localStorage.removeItem("selectedPickupTime");
+            localStorage.removeItem("selectedPickupComment");
         });        
     });
 </script>

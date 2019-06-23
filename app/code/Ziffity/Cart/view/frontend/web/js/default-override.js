@@ -75,14 +75,33 @@ define(
                 
                 var mageCache = localStorage.getItem('mage-cache-storage');
                 var mageCacheToJson = JSON.parse(mageCache);
-
+                var shippingData = mageCacheToJson['checkout-data']['shippingAddressFromData'];
+                var billingData = mageCacheToJson['checkout-data']['billingAddressFromData']
+                var deliveryDate = '';
+                var deliveryTime = '';
+                var deliveryComment = '';
+                if (shippingData !== null) {
+                    deliveryDate = shippingData["amdeliverydate_date"];
+                    deliveryTime = shippingData["amdeliverydate_time"];
+                    deliveryComment = shippingData["amdeliverydate_comment"];
+                }
+                if (billingData !== null) {
+                    if (deliveryDate === '') {
+                        deliveryDate = billingData["amdeliverydate_date"];
+                        deliveryTime = billingData["amdeliverydate_time"];
+                        deliveryComment = billingData["amdeliverydate_comment"];
+                    }
+                }
+                
+                if(deliveryDate === '') {
+                    deliveryDate = localStorage.getItem("selectedDeliveryDate");
+                    deliveryTime = localStorage.getItem("selectedDeliveryTime");
+                    deliveryComment = localStorage.getItem("selectedDeliverycomment");
+                }
                 var data = {
-                    amdeliverydate_date: mageCacheToJson['checkout-data']['shippingAddressFromData']["amdeliverydate_date"],
-                    amdeliverydate_time: mageCacheToJson['checkout-data']['shippingAddressFromData']["amdeliverydate_time"],
-                    amdeliverydate_comment: mageCacheToJson['checkout-data']['shippingAddressFromData']["amdeliverydate_comment"],
-                    pickupdate_date: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_date"],
-                    pickupdate_time: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_time"],
-                    pickupdate_comment: mageCacheToJson['checkout-data']['shippingAddressFromData']["pickupdate_comment"],
+                    amdeliverydate_date: deliveryDate,
+                    amdeliverydate_time: deliveryTime,
+                    amdeliverydate_comment: deliveryComment
                 };
                 
                 payload.addressInformation.extension_attributes = _.extend(
