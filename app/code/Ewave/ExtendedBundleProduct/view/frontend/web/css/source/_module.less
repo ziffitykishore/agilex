@@ -1,0 +1,38 @@
+//
+//  Configurable Products in Bundles
+//  _____________________________________________
+
+//
+//  Variables
+//  ---------------------------------------------
+
+@bundle-configurable__margin: false;
+@bundle-configurable__padding: false;
+
+//  FieldSet
+@bundle-configurable-fieldset__margin: 15px 0 15px 15px;
+
+@bundle-configurable-fieldset-field__padding: 0;
+@bundle-configurable-fieldset-field__border: 0;
+
+//
+//  Common
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+    .bundle-configurable {
+        & {
+            .lib-css(margin, @bundle-configurable__margin);
+            .lib-css(padding, @bundle-configurable__padding);
+        }
+        &.fieldset {
+            .lib-css(margin, @bundle-configurable-fieldset__margin);
+        }
+    }
+    .bundle-options-container {
+        .product-options-wrapper .bundle-configurable.fieldset > .field {
+            .lib-css(padding, @bundle-configurable-fieldset-field__padding);
+            .lib-css(border, @bundle-configurable-fieldset-field__border);
+        }
+    }
+}
