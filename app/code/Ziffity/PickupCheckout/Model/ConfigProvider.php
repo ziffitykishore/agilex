@@ -24,12 +24,6 @@ class ConfigProvider implements ConfigProviderInterface
     public function getConfig()
     {
         $myBlockId = "store_address"; // CMS Block Identifier
-        //$myBlockId = 20; // CMS Block ID
-        
-        //$address = $this->_layout->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Ziffity_PickupCheckout::address/renderer.phtml')->toHtml();
-      //  $address = $this->_layout->createBlock('Magento\Framework\View\Element\Template')->setBlockId($myBlockId)->toHtml();
-        
-
         return [
             'my_block_content' => $this->_layout->createBlock('Magento\Cms\Block\Block')->setBlockId($myBlockId)->toHtml()
         ];
