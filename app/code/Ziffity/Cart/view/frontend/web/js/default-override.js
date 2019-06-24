@@ -86,14 +86,13 @@ define(
                     deliveryComment = shippingData["amdeliverydate_comment"];
                 }
                 if (billingData !== null) {
-                    if (deliveryDate === '') {
+                    if (deliveryDate === '' || deliveryDate === undefined) {
                         deliveryDate = billingData["amdeliverydate_date"];
                         deliveryTime = billingData["amdeliverydate_time"];
                         deliveryComment = billingData["amdeliverydate_comment"];
                     }
                 }
-                
-                if(deliveryDate === '') {
+                if(deliveryDate === '' || deliveryDate === undefined) {
                     deliveryDate = localStorage.getItem("selectedDeliveryDate");
                     deliveryTime = localStorage.getItem("selectedDeliveryTime");
                     deliveryComment = localStorage.getItem("selectedDeliverycomment");
@@ -103,7 +102,6 @@ define(
                     amdeliverydate_time: deliveryTime,
                     amdeliverydate_comment: deliveryComment
                 };
-                
                 payload.addressInformation.extension_attributes = _.extend(
                     payload.addressInformation.extension_attributes,
                     data

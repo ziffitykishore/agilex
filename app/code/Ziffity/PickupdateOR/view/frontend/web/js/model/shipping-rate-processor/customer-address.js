@@ -32,14 +32,14 @@ define([
                 pickupTime = shippingData["pickupdate_time"];
                 pickupComment =shippingData["pickupdate_comment"];
             }
-            if(billingData !== null) {
+            if(billingData !== null || pickupDate === undefined) {
                 if (pickupDate === '') {
                     pickupDate = billingData["pickupdate_date"];
                     pickupTime = billingData["pickupdate_time"];
                     pickupComment = billingData["pickupdate_comment"];
                 }
             }
-            if(pickupDate === '') {
+            if(pickupDate === '' || pickupDate === undefined) {
                     pickupDate = localStorage.getItem("selectedPickupDate");
                     pickupTime = localStorage.getItem("selectedPickupTime");
                     pickupComment = localStorage.getItem("selectedPickupComment");
