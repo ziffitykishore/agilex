@@ -74,20 +74,19 @@
 
 
             .inner-wrap {
-                margin: 25px 0 120px;
+                margin: 25px 0 25px;
                 text-align: center;
                 position: relative;
 
                 img {
                     .br-radius(5px);
+                    margin-bottom: 25px;
                 }
 
                 p {
                     background: fade(@color-sky-blue, 85%);
                     .lib-css(color, @color-white);
                     padding: 25px;
-                    position: absolute;
-                    bottom: -65px;
                     max-width: 650px;
                     margin: 0 auto;
                     left: 0;
@@ -322,6 +321,17 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+    .cms-page-view {
+        .about-info {
+            .inner-wrap {
+                margin: 25px 0 120px;
+                p {
+                    position: absolute;
+                    bottom: -65px;
+                }
 
+            }
+        }
+    }
 }

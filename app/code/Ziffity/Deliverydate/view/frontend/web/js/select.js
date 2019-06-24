@@ -52,7 +52,9 @@ define([
 
                  }).done(function (data) {
                     self.options(data);
-                    localStorage.setItem('deliverySlots', JSON.stringify(data));
+                    if(data[0].value){
+                        localStorage.setItem('deliverySlots', JSON.stringify(data));
+                    }
                     if(localStorage.getItem('saveDeliveryFormData') === 'true'){
                         localStorage.setItem("saveDeliveryFormData",false);
                         setTimeout(function(){

@@ -51,7 +51,10 @@ define([
 
                  }).done(function (data) {
                     select.options(data);
-                    localStorage.setItem('pickupSlots', JSON.stringify(data));
+                    console.log(data[0].value);
+                    if(data[0].value){
+                        localStorage.setItem('pickupSlots', JSON.stringify(data));
+                    }
                     if(localStorage.getItem('savePickupFormData') === 'true'){
                         localStorage.setItem("savePickupFormData",false);
                         setTimeout(function(){

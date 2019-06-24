@@ -75,7 +75,7 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
 
         } else {
             $availableTimeSlots = array(
-                ['value' => 'Please Choose Another Date', 'label' => 'Please Choose Another Date', 'disabled' => true]
+                ['value' => false, 'label' => 'Please Choose Another Date', 'disabled' => true]
             );
         }
 
