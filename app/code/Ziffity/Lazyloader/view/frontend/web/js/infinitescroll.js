@@ -74,12 +74,14 @@ define([
                 });
                 window.ias.on('rendered', function(items){
                     SgyIAS._log({eventName: 'render', items: items});
+                    /* Fix for Quickview Issue */
                     $('.weltpixel-quickview').bind('click', function() {
                         var prodUrl = $(this).attr('data-quickview-url');
                         if (prodUrl.length) {
                             quickview.displayContent(prodUrl);
                         }
                     });
+                    /* Fix for Ajax Addtocart Issue */
                     if ( $("form[data-role='tocart-form']").length ) {
                         $("form[data-role='tocart-form']").catalogAddToCart();
                     }

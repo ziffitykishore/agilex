@@ -13,24 +13,48 @@
     input[type="datetime"],
     input[type="email"],
     select{
+
+        height: 44px;
+
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="url"],
+    input[type="tel"],
+    input[type="search"],
+    input[type="number"],
+    input[type="datetime"],
+    input[type="email"],
+    select,
+    textarea {
         .lib-css(border-color, @color-gray);
         font-size: @font-size__s;
-        height: 44px;
         .br-radius(3px);
 
+        &:not([disabled]):focus,
         &:focus {
             .box-shadow(inset 0px 0px 0px 1px @color-black);
 
         }
+
+
+        &.mage-error {
+            &:focus {
+                .box-shadow(none);
+
+            }
+        }
     }
 
-    label {
+
+
+    label, .label {
         .lib-css(color, @color-blue);
     }
 
     div.mage-error[generated] {
         font-size: 10px;
-        display: none !important;
     }
 
 
@@ -67,6 +91,99 @@
     }*/
 
 
+    .fieldset {
+        .field.date ._has-datepicker, .field-dob ._has-datepicker, .form-giftregistry-search .fields-specific-options .datetime-picker {
+            margin-right: 0;
+            width: 100%;
+        }
+
+
+
+        .field {
+            .control {
+                position: relative;
+            }
+
+
+
+
+            ._has-datepicker {
+                padding-right: 30px;
+                & ~ .ui-datepicker-trigger {
+                    position: absolute;
+                    right: 8px;
+                    top: 12px;
+                }
+            }
+        }
+    }
+
+
+    .choice {
+        input[type=radio] {
+            opacity: 0;
+            visibility: hidden;
+            & + label {
+                position: relative;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 12px;
+                    height: 12px;
+                    .br-radius(50%);
+                    border: 2px solid @color-blue;
+                    left: -22px;
+                    top: 4px;
+                }
+            }
+            &:checked ~ label {
+                &:after {
+                    content: '';
+                    position: absolute;
+                    background: @color-blue;
+                    width: 4px;
+                    height: 4px;
+                    left: -18px;
+                    top: 8px;
+                    .br-radius(50%);
+                }
+            }
+        }
+
+
+        input[type=checkbox] {
+            opacity: 0;
+            visibility: hidden;
+            & + label {
+                position: relative;
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 12px;
+                    height: 12px;
+                    border: 2px solid @color-sky-blue;
+                    left: -22px;
+                    top: 4px;
+                }
+            }
+            &:checked ~ label {
+                &:after {
+                    content: "\f00c" !important;
+                    font-family: @icon-gogo;
+                    position: absolute;
+                    left: -22px;
+                    top: 4px;
+                    background: @color-sky-blue;
+                    width: 12px;
+                    height: 12px;
+                    line-height: 12px;
+                    color: @color-white;
+                }
+            }
+        }
+
+
+    }
 
 
 }

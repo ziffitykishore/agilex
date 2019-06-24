@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\Deliverydate\Observer\Order\Place\Before" type="Ziffity\Deliverydate\Observer\Order\Place\Before"/>
+    <preference for="Amasty\Deliverydate\Plugin\Order\OrderSave" type="Ziffity\Deliverydate\Plugin\Order\OrderSave"/>
+    <preference for="Amasty\Deliverydate\Model\Deliverydate" type="Ziffity\Deliverydate\Model\Deliverydate"/>
+    <preference for="Amasty\Deliverydate\Model\DeliveryDate\Validator" type="Ziffity\Deliverydate\Model\DeliveryDate\Validator"/>
+    <preference for="Amasty\Deliverydate\Model\DeliverydateConfigProvider" type="Ziffity\Deliverydate\Model\DeliverydateConfigProvider"/>
+    <preference for="Amasty\Deliverydate\Model\ResourceModel\Deliverydate\Collection" type="Ziffity\Deliverydate\Model\ResourceModel\Deliverydate\DeliveryCollection"/>    
+</config>

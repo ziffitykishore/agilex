@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ziffity_Pickupdate::pickupdate" title="Pickup Date" module="Ziffity_Pickupdate" parent="Magento_Sales::sales" sortOrder="100" resource="Ziffity_Pickupdate::pickupdate"/>
+
+        <add id="Ziffity_Pickupdate::pickupdate_holidays" title="Exceptions: Working Days and Holidays" sortOrder="10" module="Ziffity_Pickupdate" parent="Ziffity_Pickupdate::pickupdate" action="ziffity_pickupdate/holidays/" resource="Ziffity_Pickupdate::pickupdate_holidays"/>
+
+        <add id="Ziffity_Pickupdate::pickupdate_dinterval" title="Exceptions: Date Intervals" sortOrder="20" module="Ziffity_Pickupdate" parent="Ziffity_Pickupdate::pickupdate" action="ziffity_pickupdate/dinterval/" resource="Ziffity_Pickupdate::pickupdate_dinterval"/>
+
+        <add id="Ziffity_Pickupdate::pickupdate_tinterval" title="Time Intervals" sortOrder="30" module="Ziffity_Pickupdate" parent="Ziffity_Pickupdate::pickupdate" action="ziffity_pickupdate/tinterval/" resource="Ziffity_Pickupdate::pickupdate_tinterval"/>
+    </menu>
+</config>

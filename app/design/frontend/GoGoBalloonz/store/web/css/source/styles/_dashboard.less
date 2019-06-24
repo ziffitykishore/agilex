@@ -12,19 +12,28 @@
             .transition(all 0.5s ease 0s);
         }
     }
-
+    .cms-noroute-index,
     .customer-account-login,
     .customer-account-create,
     .customer-account-forgotpassword,
     .account,
     .customer-account-index,
-    .wishlist-index-index{
+    .wishlist-index-index,
+    .customer-account-logoutsuccess{
         .page-main {
             .container-lg();
         }
 
         .page-title-wrapper {
             .page-title {
+                .lib-css(color, @color-blue);
+            }
+        }
+    }
+
+    .login-container {
+        .block {
+            .block-title {
                 .lib-css(color, @color-blue);
             }
         }
@@ -41,9 +50,23 @@
                     width: 100%;
                     a {
                         width: inherit;
+                        padding: 15px 20px;
+                        .transition(all 0.5s ease 0s);
+
+                        &:hover {
+                            background: @color-blue;
+                            color: @color-white;
+                        }
+                    }
+
+                    .delimiter {
+                        display: none;
                     }
 
                     &.current {
+                        a {
+                            border-color: @color-blue;
+                        }
                         > strong {
                             border-left-color: @color-blue;
                         }
@@ -51,7 +74,125 @@
                 }
             }
         }
+
+        .block {
+            &-title {
+                margin-bottom: 20px;
+            }
+        }
+
+        .table-wrapper {
+            .table {
+                thead {
+                    th {
+                        border: none;
+                        .lib-css(background, @color-sky-blue);
+                        .lib-css(color, @color-white);
+
+                        &:first-child {
+                            .br-radius(5px 0 0 0);
+                        }
+                        &:last-child{
+                            .br-radius(0 5px 0 0);
+                        }
+                    }
+                }
+            }
+        }
     }
+
+    .form-wishlist-items {
+        .products-grid{
+            &.wishlist {
+                .product-item-actions {
+                    .action {
+                        &.edit, &.delete {
+                            &:before {
+                                .lib-css(color, @color-icons);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .actions-toolbar {
+            margin-top: 20px;
+            .primary {
+                .action {
+                    .button();
+                    .box-shadow(none);
+                }
+            }
+        }
+    }
+
+
+
+
+
+        .table td,
+        .table th{
+            width: auto;
+        }
+
+    .sales-order-view,
+    .sales-order-history {
+        table thead th {
+            .lib-css(background, @color-sky-blue);
+            .lib-css(color, @color-white);
+            border-color: @color-sky-blue;
+            border-bottom: none;
+            padding: 1rem;
+        }
+
+        .table tbody+tbody {
+            border-top-width: 1px;
+        }
+
+        .toolbar {
+            select {
+                background-color: @color-white;
+            }
+        }
+    }
+
+    .sales-order-view {
+        .order-details-items {
+            .product-item-name {
+                .lib-css(color, @color-blue);
+                font-size: 14px;
+            }
+
+            .cart-price {
+                .lib-css(color, @color-red);
+                font-size: 14px;
+            }
+        }
+    }
+
+
+    .sales-order-print {
+        .minicart-wrapper,
+        .footer-bottom-container{
+            display: none;
+        }
+    }
+
+
+    .customer-account-index {
+        .block-dashboard-orders {
+
+
+            .orders-recent {
+                margin-top: 0;
+            }
+
+
+        }
+    }
+
+
 
 }
 
@@ -60,7 +201,15 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .account {
+        .block-collapsible-nav{
+            top: 0;
+        }
 
+        .page-title-wrapper {
+            margin-top: 30px;
+        }
+    }
 }
 
 //

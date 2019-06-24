@@ -1,0 +1,23 @@
+<section class="admin__page-section ziffity-pickupdate">
+    <div class="admin__page-section-title">
+        <span class="title"><?php echo __('Pickup Information') ?></span>
+        <?php if ($this->isOrderViewPage()): ?>
+            <div class="actions"><a href="<?php echo $this->getEditUrl();?>">Edit</a></div>
+        <?php endif;?>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item" style="width: 49%;">
+            <?php $fields = $this->getPickupDateFields(); ?>
+            <?php if (!empty($fields)): ?>
+                <table class="admin__table-secondary">
+                    <?php foreach ($fields as $field): ?>
+                        <tr>
+                            <td><?php echo $field['label']; ?></td>
+                            <td style="text-align: right;"><?php echo $field['value']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </table>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>

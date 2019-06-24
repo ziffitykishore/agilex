@@ -56,6 +56,17 @@
         }
     }
 
+    .button-red() {
+        .lib-css(background, @color-red);
+        .lib-css(border-color, @color-red);
+
+        &:hover, &:focus, &:active {
+            .lib-css(background, @color-sky-blue);
+            .lib-css(border-color, @color-sky-blue);
+            text-decoration: none;
+        }
+    }
+
     .button() {
         .lib-css(background, @color-blue);
         .lib-css(border-color, @color-blue);
@@ -66,6 +77,7 @@
         font-weight: @font-weight__bold;
         padding: 10px 20px;
         line-height: 20px;
+        .br-radius(5px);
 
         &:hover, &:focus, &:active {
             .lib-css(background, @color-sky-blue);

@@ -8,6 +8,7 @@ use Magento\Framework\App\Action\Action;
 // @codingStandardsIgnoreFile
 
 /** @var \Magento\CatalogWidget\Block\Product\ProductsList $block */
+
 ?>
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())): ?>
     <?php
@@ -95,8 +96,15 @@ use Magento\Framework\App\Action\Action;
                                             <?php if ($showWishlist || $showCompare): ?>
                                                 <div class="actions-secondary" data-role="add-to-links">
                                                     <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
-                                                        <a href="#"
-                                                           data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>' class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                                        <?php $isCustomerLoggedIn = $this->helper('Ziffity\Common\Helper\Data')->getCustomerId();
+                                                        ?>
+                                                        <a href="javascript:void(0);"
+                                                            class="action towishlist <?= $isCustomerLoggedIn ? '' : 'wishlist-signin'?>" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>"
+                                                            <?php if($isCustomerLoggedIn) : ?>
+                                                            data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>'
+                                                            <?php else : ?>
+                                                            params='<?= /* @noEscape */ $block->getAddToWishlistParams($_item) ?>'
+                                                            <?php endif ?>>
                                                             <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
                                                         </a>
                                                     <?php endif; ?>

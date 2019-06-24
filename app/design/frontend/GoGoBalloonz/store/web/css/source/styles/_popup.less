@@ -37,6 +37,7 @@
                     width: 35px;
                     height: 35px;
                     margin: 0;
+                    padding: 0;
                     .br-radius(100%);
                     .lib-css(background, @color-white);
                     .lib-css(color, @color-blue);
@@ -44,6 +45,17 @@
                         font-size: 12px;
                         line-height: 20px;
                     }
+                }
+            }
+
+
+
+            .modal-footer {
+                padding: 15px 3rem;
+
+                button {
+                    .button();
+                    .box-shadow(none);
                 }
             }
 
@@ -106,8 +118,7 @@
                     }
 
                     div.mage-error[generated] {
-                        position: absolute;
-                        bottom: -18px;
+
                     }
                 }
 
@@ -193,9 +204,9 @@
                         .fieldset {
                             margin-left: -15px;
                             margin-right: -15px;
+                            .flex();
                             .field {
-                                float: left;
-                                width: 50%;
+                                .flex-width(50%);
                                 padding-left: 15px;
                                 padding-right: 15px;
                             }
@@ -233,8 +244,71 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1 ) {
+    .modals-wrapper {
+        .modal-popup {
+            .modal-content {
 
+                    padding: 3rem;
+
+
+            }
+
+
+
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m ) {
+    .modals-wrapper {
+        .modal-popup {
+            &.modal-slide._inner-scroll {
+                .modal-content {
+                    padding: 1.5rem;
+                }
+                .modal-inner-wrap{
+                    max-height: 72%;
+                    min-height: auto;
+                    width: 85%;
+
+                    .modal-header:before{
+                        width: 50px;
+                        height: 80px;
+                        top: -20px;
+                    }
+                }
+
+                .create-ac {
+                    .create {
+                        display: block;
+                    }
+                }
+
+                .customer-popup-forgot {
+                    .actions-toolbar {
+                        .primary,
+                        .secondary {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .form-create-account {
+                    .fieldset {
+                        .field {
+                            .flex-width(100%);
+                        }
+                    }
+
+                    .actions-toolbar > * {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
+    }
 }
 
 //

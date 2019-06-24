@@ -1,0 +1,17 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ Magento_Checkout/view/frontend/web/template/cart/totals.html
+-->
+<div class="table-wrapper" data-bind="blockLoader: isLoading">
+    <div class="data table totals">
+        <span class="table-caption" data-bind="text: $t('Total')"></span>
+        <div>
+        <!-- ko foreach: elems() -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        </div>
+    </div>
+</div>

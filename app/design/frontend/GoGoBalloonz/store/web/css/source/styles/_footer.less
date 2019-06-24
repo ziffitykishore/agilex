@@ -4,6 +4,9 @@
 
 & when (@media-common = true) {
     .page-wrapper {
+        > .form-login {
+            display: none;
+        }
         .page-footer {
             background: @color-white;
             .footer {
@@ -277,7 +280,7 @@
 //  Tablet
 //  _____________________________________________
 
-@media screen and (max-width: @screen__l + 100) {
+@media screen and (max-width: 1024px + 100) {
     .page-wrapper {
         .page-footer {
             .social-links {

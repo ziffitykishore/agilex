@@ -111,9 +111,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 <?= $block->getRowTotalHtml($_item) ?>
             <?php endif; ?>
         </td>
-    </tr>
-    <tr class="item-actions">
-        <td colspan="4">
+        <td class="col item-actions">
             <div class="actions-toolbar">
                 <?= /* @escapeNotVerified */ $block->getActions($_item) ?>
             </div>
@@ -124,7 +122,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
 require(["jquery"],function($){
     $('#<?php echo $_item->getId();?>-inc, #<?php echo $_item->getId();?>-dec').on("click",function(){
         var $this = $(this);
-        var ctrl = ($(this).attr('id').replace('-inc','')).replace('-dec','');          
+        var ctrl = ($(this).attr('id').replace('-inc','')).replace('-dec','');
         var currentQty = $("#cart-"+ctrl+"-qty").val();
         if($this.hasClass('increaseQty')){
             var newAdd = parseInt(currentQty)+parseInt(1);
@@ -132,7 +130,7 @@ require(["jquery"],function($){
         }else{
              if(currentQty>1){
                 var newAdd = parseInt(currentQty)-parseInt(1);
-                $("#cart-"+ctrl+"-qty").val(newAdd); 
+                $("#cart-"+ctrl+"-qty").val(newAdd);
              }
         }
     });

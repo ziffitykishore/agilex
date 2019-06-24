@@ -1,0 +1,27 @@
+
+<!--@subject {{trans "Newsletter subscription confirmation"}} @-->
+<!--@vars {
+"var customer.name":"Customer Name",
+"var subscriber.getConfirmationLink()":"Subscriber Confirmation URL"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting" style="margin-top: 0; margin-bottom: 10px;"><strong>{{trans "Thank you for subscribing to our newsletter."}}</strong></p>
+<p style="margin-top: 0; margin-bottom: 10px;">{{trans "To begin receiving the newsletter, you must first confirm your subscription by clicking on the following link:"}}</p>
+
+<table class="" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>
+            <table class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
+                <tr>
+                    <td align="center">
+                        <a href="{{var subscriber.getConfirmationLink()}}">{{var subscriber.getConfirmationLink()}}</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

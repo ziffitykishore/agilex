@@ -28,7 +28,7 @@
 
 
                 .fotorama__wrap {
-                    .fotorama__grab {
+                    .fotorama__stage__shaft {
                         border: 1px solid @color-gray;
                     }
 
@@ -76,7 +76,7 @@
 
                     .price-box {
                         .price-label {
-                            display: none;
+                            display: none !important;
                         }
 
                         .normal-price {
@@ -111,7 +111,8 @@
             }
 
             .product-info-stock-sku {
-                margin-left: 20px;
+                margin-left: 30px;
+                font-size: 10px;
                 .available {
                     .lib-css(color, @color-green);
                 }
@@ -134,72 +135,89 @@
                         .br-radius(50%);
                     }
                 }
+
+                .swatch-attribute {
+                    .swatch-attribute-label {
+                        .lib-css(color, @color-blue);
+                    }
+                    & + .swatch-attribute {
+                        margin-top: 20px;
+                    }
+                }
+            }
+
+
+            .product-options-wrapper {
+                border-bottom: 2px solid @color-gray;
             }
 
 
             .product-options-bottom {
                 .clearfix();
-                .box-tocart,
-                .product-social-links{
+             }
+
+
+            .box-tocart,
+            .product-social-links{
+                float: left;
+                width: auto;
+            }
+
+
+            .box-tocart {
+                margin: 0;
+                .fieldset {
+                    margin-bottom: 0;
+                }
+                .field,
+                .actions {
                     float: left;
-                    width: auto;
                 }
 
-                .box-tocart {
-                    margin: 0;
-                    .fieldset {
-                        margin-bottom: 0;
-                    }
-                    .field,
-                    .actions {
-                        float: left;
+
+
+                .field {
+                    margin-bottom: 0;
+                    .label {
+                        display: none;
                     }
 
 
 
-                    .field {
-                        margin-bottom: 0;
-                        .label {
-                            display: none;
-                        }
-
-
-
-                        button {
-                            background: transparent;
-                            padding: 0;
-                            width: 44px;
-                            height: 44px;
-                        }
-
-                        .qty {
-                            .br-radius(0);
-                        }
-
-                        .control {
-
-                            > * {
-                                border: 1px solid @color-gray;
-                                margin-left: -1px;
-                                color: @color-textcolor;
-                                font-size: 14px;
-                                float: left;
-                            }
-                        }
+                    button {
+                        background: transparent;
+                        padding: 0;
+                        width: 44px;
+                        height: 44px;
                     }
 
-                    .actions {
-                        margin-left: 20px;
+                    .qty {
+                        .br-radius(0);
                     }
 
-                    .action {
-                        &.tocart {
-                            width: 100%;
-                            padding: 10px 15px;
-                            margin-bottom: 0;
+                    .control {
+
+                        > * {
+                            border: 1px solid @color-gray;
+                            margin-left: -1px;
+                            color: @color-textcolor;
                             font-size: 14px;
-                            min-width: 150px;
+                            float: left;
                         }
+                    }
+                }
+
+                .actions {
+                    margin-left: 20px;
+                }
+
+                .action {
+                    &.tocart {
+                        width: 100%;
+                        padding: 10px 15px;
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        min-width: 150px;
                     }
                 }
             }
@@ -217,11 +235,13 @@
                     &.towishlist {
                         width: 44px;
                         height: 44px;
-                        border: 1px solid @color-gray;
+                        border: 1px solid @color-aliceblue;
                         text-align: center;
                         line-height: 40px;
+                        .br-radius(5px);
                         margin-right: 0;
                         color: @color-icons;
+                        background: @color-aliceblue;
 
                         &:before {
                             margin-right: 0;
@@ -236,16 +256,19 @@
                 #st-1 {
                     display: inline-block;
                     margin-left: 20px;
+                    z-index: 5 !important;
 
                     .st-btn {
                         width: 44px;
                         height: 44px;
+                        .br-radius(5px);
                         min-width: 44px;
                         display: flex !important;
                         align-items: center;
                         justify-content: center;
                         background: transparent;
-                        border: 1px solid @color-gray;
+                        border: 1px solid @color-aliceblue;
+                        background: @color-aliceblue;
 
 
                         &:hover {
@@ -272,6 +295,10 @@
 
     .review-product-list,
     .catalog-product-view {
+        .column.main {
+            padding-bottom: 0;
+        }
+
         .product-info-wrap {
             .container-md();
             .product-info-inner {
@@ -282,14 +309,13 @@
 
         .product-info-wrap {
             padding-top: 30px;
-
-
         }
 
 
 
 
         .detailed {
+            margin-bottom: 0;
             .product.data.items {
                 .lib-css(background, @color-sky-blue);
 
@@ -323,6 +349,7 @@
 
                 .item.content {
                     margin-top: 50px;
+                    border: transparent;
                 }
             }
 

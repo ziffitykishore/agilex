@@ -60,4 +60,13 @@
     <type name="Magento\Sales\Model\Order\Pdf\Shipment">
         <plugin name="Amasty_Delivarydate::PrintShipment" type="Amasty\Deliverydate\Plugin\Order\ShipmentPdf" />
     </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Grid\Collection">
+        <plugin name="Amasty_Deliverydate::GridSearchResult" type="Amasty\Deliverydate\Plugin\Grid\SearchResult" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Invoice\Grid\Collection">
+        <plugin name="Amasty_Deliverydate::GridSearchResult" type="Amasty\Deliverydate\Plugin\Grid\SearchResult" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Shipment\Grid\Collection">
+        <plugin name="Amasty_Deliverydate::GridSearchResult" type="Amasty\Deliverydate\Plugin\Grid\SearchResult" />
+    </type>    
 </config>

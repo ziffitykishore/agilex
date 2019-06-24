@@ -3,13 +3,13 @@
 /** @var \Ziffity\AjaxLogin\Block\Form\Register $block */
 
 if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->getRegistration()->isAllowed()): ?>
-    <div id="customer-popup-register" class="customer-popup-register">
+    <div id="customer-popup-register" class="customer-popup-register form-login">
         <form class="create account form-create-account" action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>" method="post" id="customer-popup-form-register" enctype="multipart/form-data" autocomplete="off" data-mage-init='{"validation":{}}'>
             <?php echo $block->getBlockHtml('formkey'); ?>
             <input type="hidden" name="redirect_url" value="<?php echo $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]); ?>" />
             <div class="messages"></div>
 
-            <fieldset class="fieldset create info account">
+            <div class="fieldset create info account">
                 <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Personal Information') ?></span></legend>
                 <?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
                 <?php if ($block->isNewsletterEnabled()): ?>
@@ -25,14 +25,18 @@ if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->ge
                         <input type="email" name="email" autocomplete="email" id="popup-email_address" value="" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
-
-                <div class="field field-name-phone">
-                    <label for="popup-phone" class="label"><span><?php /* @escapeNotVerified */ echo __('Phone Number') ?></span></label>
+                <!-- Customer attribute (Phone No) -->
+                <div class="field field-name-phone required">
+                    <label for="phone" class="label"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
                     <div class="control">
-                        <input type="email" name="phone" autocomplete="email" id="popup-phone" value="" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" class="input-text">
+                        <input type="text"
+                            name="phone_number"
+                            value="<?= $block->escapeHtmlAttr($block->getFormData()->getPhoneNumber()) ?>"
+                            title="<?= $block->escapeHtmlAttr(__('Email')) ?>" id="phone_number"
+                            data-validate="{required:true, 'validate-number':true}"
+                            class="input-text required">
                     </div>
                 </div>
-
                 <div class="field password required" data-mage-init='{"passwordStrengthIndicator": {}}'>
                     <label for="password" class="label"><span><?php /* @escapeNotVerified */ echo __('Password') ?></span></label>
                     <div class="control">
@@ -60,12 +64,12 @@ if (!$block->getHelper()->customerIsAlreadyLoggedIn() && $block->getHelper()->ge
                     </div>
                 </div>
 
-            </fieldset>
-            <fieldset class="fieldset create " data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+            </div>
+            <div class="fieldset create " data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
                 <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Sign-in Information') ?></span></legend>
 
 
-            </fieldset>
+            </div>
             <div class="actions-toolbar">
                 <div class="primary">
                     <button type="submit" class="action submit primary" title="<?php /* @escapeNotVerified */ echo __('Create an Account') ?>"><span><?php /* @escapeNotVerified */ echo __('Create an Account') ?></span></button>

@@ -1,0 +1,25 @@
+<?php
+
+?>
+<?php /** @var $block \Amasty\Deliverydate\Block\Sales\Order\Email\Deliverydate */ ?>
+<?php /** @var $list array */ ?>
+<?php if (!empty($list)) : ?>
+    <table class="order-details" style="border-collapse: collapse; width: 100%;">
+        <thead>
+        <tr>
+            <td class="address-details" style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px 10px 10px 0; width: 50%;">
+                <h3 style="font-weight: 600; line-height: 1.1; font-size: 18px; margin-bottom: 10px; margin-top: 0;"><?php /* @noEscape */ echo __('Delivery Date Info') . ':'; ?></h3>
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($list as $fieldCode => $field) : ?>
+            <tr>
+                <td style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top;"><label><?php /* @noEscape */ echo $field['label']; ?></label></td>
+                <td style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top;"><?php echo $block->escapeHtml($field['value']); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+    <br /><br />
+<?php endif; ?>

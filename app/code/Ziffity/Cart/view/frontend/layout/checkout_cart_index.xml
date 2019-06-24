@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+        <referenceBlock name="checkout.cart.shipping">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-summary" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <!-- My custom part: -->
+                                <item name="config" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="component" xsi:type="string">Magento_Checkout/js/view/cart/totals</item>
+                            <item name="displayArea" xsi:type="string">totals</item>
+                            <item name="config" xsi:type="array">
+                                <item name="template" xsi:type="string">Magento_Checkout/cart/totals</item>
+                            </item>
+                            <item name="children" xsi:type="array">
+                                <item name="shipping" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                                <item name="tax" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                                <item name="grand-total" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                    </item>
+                                </item>
+                                <item name="amasty-delivery-date" xsi:type="array">
+                                    <item name="component" xsi:type="string">Amasty_Deliverydate/js/checkout/deliverydate</item>
+                                    <item name="sortOrder" xsi:type="string">2</item>
+                                    <item name="displayArea" xsi:type="string">amasty-delivery-date</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Amasty_Deliverydate/deliverydate</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                    </item>
+                                </item>
+                                <item name="ziffity-pickup-date" xsi:type="array">
+                                    <item name="component" xsi:type="string">Ziffity_Pickupdate/js/checkout/pickupdate</item>
+                                    <item name="sortOrder" xsi:type="string">2</item>
+                                    <item name="displayArea" xsi:type="string">ziffity-pickup-date</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Ziffity_Pickupdate/pickupdate</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                    </item>
+                                </item>                                                          
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

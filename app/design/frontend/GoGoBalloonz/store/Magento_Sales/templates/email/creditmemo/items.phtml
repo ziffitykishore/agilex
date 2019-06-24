@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_creditmemo = $block->getCreditmemo() ?>
+<?php $_order      = $block->getOrder() ?>
+<?php if ($_creditmemo && $_order): ?>
+    <table class="email-items" style="width: 100%; border-collapse: collapse; border-spacing: 0; max-width: 100%;">
+        <thead>
+            <tr>
+                <th class="item-info" style="border-top-left-radius: 5px; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left; vertical-align: bottom; padding: 10px; background: #00bdff; color: #ffffff;">
+                    <?= /* @escapeNotVerified */  __('Items') ?>
+                </th>
+                <th class="item-qty" style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: bottom; padding: 10px; text-align: center; background: #00bdff; color: #ffffff;">
+                    <?= /* @escapeNotVerified */  __('Qty') ?>
+                </th>
+                <th class="item-subtotal" style="border-top-right-radius: 5px;  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: bottom; padding: 10px; text-align: right; background: #00bdff; color: #ffffff;">
+                    <?= /* @escapeNotVerified */  __('Subtotal') ?>
+                </th>
+            </tr>
+        </thead>
+        <?php foreach ($_creditmemo->getAllItems() as $_item): ?>
+            <?php if (!$_item->getOrderItem()->getParentItem())  : ?>
+                <tbody>
+                    <?= $block->getItemHtml($_item) ?>
+                </tbody>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <tfoot class="order-totals" style="border-top: 1px solid #d8dde7;">
+            <?= $block->getChildHtml('creditmemo_totals') ?>
+        </tfoot>
+    </table>
+<?php endif; ?>

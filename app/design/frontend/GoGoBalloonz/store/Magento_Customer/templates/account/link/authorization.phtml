@@ -14,7 +14,7 @@ if ($block->isLoggedIn()) {
 <?php
 if ($block->isLoggedIn()) {?>
     <?php if ($block->getWrapper()=='ul') {?>
-        <li class="level0"><a href="#">My Account</a>
+        <li class="level0 my-account-link parent"><a href="#">My Account</a>
         <ul class="level0 submenu">
     <?php  }?>            
         <li>
@@ -36,17 +36,17 @@ if ($block->isLoggedIn()) {?>
         </ul>
         </li>
     <?php  }?>
-    <li>
+    <li class="d-none">
         <a  href="/sales/order/history">
            <span><?= __('My Orders') ?></span>
         </a>
     </li>
-    <li>
+    <li  class="d-none">
         <a  href="/wishlist">
            <span><?= __('My Wishlist') ?></span>
         </a>
     </li>
-    <li class="authorization-link" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
+    <li class="authorization-link d-none" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
         <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
             <?= $block->escapeHtml($block->getLabel()) ?>
         </a>
@@ -57,7 +57,7 @@ if (!$block->isLoggedIn()) { ?>
     <li class="level0 signin-link <?= $block->getDisplay() ?>" data-label="<?= $block->escapeHtmlAttr(__('or')) ?>">
         <a href="javascript:void(0);" >
             <span class="icon-user"></span>
-            <strong><?= __('My Account') ?></strong>
+            <strong><?= __('Sign In') ?></strong>
         </a>
     </li>
 <?php }?>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="left">
+            <block class="Ziffity\Pickupdate\Block\Adminhtml\Holidays\Edit\Tabs" name="holidays_tabs">
+                <block class="Ziffity\Pickupdate\Block\Adminhtml\Holidays\Edit\Tab\General" name="ziffity_pickupdate_holidays_edit_tab_general" />
+
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">ziffity_pickupdate_holidays_edit_tab_general</argument>
+                    <argument name="block" xsi:type="string">ziffity_pickupdate_holidays_edit_tab_general</argument>
+                </action>
+
+            </block>
+        </referenceContainer>
+
+        <referenceContainer name="content">
+            <block class="Ziffity\Pickupdate\Block\Adminhtml\Holidays\Edit" name="holidays_edit"/>
+        </referenceContainer>
+    </body>
+</page>
