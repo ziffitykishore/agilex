@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Add new widget for category listing in PageBuilder -->
+    <virtualType name="AppearanceSourceCategories" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">list</item>
+                    <item name="title" xsi:type="string" translate="true">List</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
