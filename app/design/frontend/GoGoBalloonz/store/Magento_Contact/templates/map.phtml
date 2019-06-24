@@ -1,1 +1,23 @@
-<div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=Fairview+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+<?php
+use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$scopeConfig = $objectManager->get('\Magento\Framework\App\Config\ScopeConfigInterface');
+
+$storeName = $scopeConfig->getValue('general/store_information/name',ScopeInterface::SCOPE_STORE);
+$phoneNo = $scopeConfig->getValue('general/store_information/phone',ScopeInterface::SCOPE_STORE);
+$storeAddress1 = $scopeConfig->getValue('general/store_information/street_line1',ScopeInterface::SCOPE_STORE);
+$storeAddress2 = $scopeConfig->getValue('general/store_information/street_line2',ScopeInterface::SCOPE_STORE);
+$storeCity = $scopeConfig->getValue('general/store_information/city',ScopeInterface::SCOPE_STORE);
+$storeZip = $scopeConfig->getValue('general/store_information/postcode',ScopeInterface::SCOPE_STORE);
+?>
+
+<div id="map" style="display: none;">
+    <?php echo $storeAddress1;?><br>
+    <?php echo $storeAddress2;?>, <?php echo $storeCity; ?><br>
+    <?php echo $storeZip?>
+</div>
+
+<div style="width: 100%"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6682.270742396583!2d-96.650874!3d33.131808!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c112678e317ab%3A0xcb4a2405cbd53088!2s210+Town+Pl%2C+Fairview%2C+TX+75069%2C+USA!5e0!3m2!1sen!2sin!4v1561358544676!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0" allowfullscreen></iframe>/div>
