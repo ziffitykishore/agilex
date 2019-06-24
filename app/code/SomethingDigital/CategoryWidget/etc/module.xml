@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="SomethingDigital_PageBuilderCustomizations" setup_version="1.0.2">
+    <module name="SomethingDigital_CategoryWidget">
         <sequence>
-            <module name="Magento_PageBuilder"/>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_Widget"/>
         </sequence>
     </module>
 </config>

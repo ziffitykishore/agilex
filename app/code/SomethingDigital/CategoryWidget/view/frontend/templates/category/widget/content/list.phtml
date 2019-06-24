@@ -1,0 +1,26 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+/** @var \SomethingDigital\CategoryWidget\Block\Category\CategoriesList $block */
+?>
+<?php if ($exist = ($block->getCategoryCollection() && $block->getCategoryCollection()->getSize())): ?>
+    <?php
+        $items = $block->getCategoryCollection()->getItems();
+    ?>
+    <?php if ($block->getTitle()): ?>
+        <div class="block-title">
+            <strong><?= $block->escapeHtml(__($block->getTitle())) ?></strong>
+        </div>
+    <?php endif ?>
+    <?php $i = 1; ?>
+    <?php foreach ($items as $item): ?>
+        <li class="level2 nav-1-1-<?= $i; ?> category-item first ui-menu-item" role="presentation">
+            <a href="<?= $block->escapeUrl($item->getUrl()) ?>" class="ui-corner-all" tabindex="-1" role="menuitem">
+                <span><?= $block->escapeHtml($item->getName()) ?></span>
+            </a>
+        </li>
+        <?php $i++; ?>
+    <?php endforeach ?>
+<?php endif;?>
+<!-- TODO: This template may required to change as per UI requirement -->

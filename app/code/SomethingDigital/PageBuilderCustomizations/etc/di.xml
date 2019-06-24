@@ -16,4 +16,12 @@
             </argument>
         </arguments>
     </type>
+    <!-- Add new widget for category listing in PageBuilder -->
+    <type name="Magento\PageBuilder\Model\Stage\RendererPool">
+        <arguments>
+            <argument name="renderers" xsi:type="array">
+                <item name="categories" xsi:type="object">Magento\PageBuilder\Model\Stage\Renderer\WidgetDirective</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
