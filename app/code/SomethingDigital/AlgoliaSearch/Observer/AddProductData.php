@@ -55,11 +55,13 @@ class AddProductData implements ObserverInterface
     {
         $store = $product->getStore();
         $algoliaProductData = $transport->getData();
-        $baseCurrencyCode = $store->getBaseCurrencyCode();
+        $currentCurrencyCode = $store->getCurrentCurrencyCode();
         $price = $product->getData('manufacturer_price');
+        $priceConverted = $this->priceCurrency->convert($price, $store, $currentCurrencyCode); 
+
         $algoliaProductData['manufacturer_price'] = [
-            'price' => $this->priceCurrency->round($price),
-            'price_formated' => $this->formatPrice($price, $store, $baseCurrencyCode)
+            'price' => $this->priceCurrency->round($priceConverted),
+            'price_formated' => $this->formatPrice($priceConverted, $store, $currentCurrencyCode)
         ];
         $transport->setData($algoliaProductData);
     }
@@ -92,7 +94,7 @@ class AddProductData implements ObserverInterface
         $tiers = [];
         $store = $product->getStore();
         $algoliaProductData = $transport->getData();
-        $baseCurrencyCode = $store->getBaseCurrencyCode();
+        $currentCurrencyCode = $store->getCurrentCurrencyCode();
         $minSaleQty = 1;
         $stockItem = $this->stockRegistry->getStockItem($product->getId());
         if ($stockItem) {
@@ -100,13 +102,15 @@ class AddProductData implements ObserverInterface
         }
 
         $regularPrice = $product->getPrice();
+        $regularPriceConverted = $this->priceCurrency->convert($regularPrice, $store, $currentCurrencyCode); 
+
         $customerGroups = $this->customerGroupRepository->getList($this->searchCriteriaBuilder->create())->getItems();
         foreach ($customerGroups as $customerGroup) {
             $tiers[$customerGroup->getId()] = [
                 $minSaleQty => [
                     'qty' => $minSaleQty,
-                    'price' => $regularPrice,
-                    'price_formatted' => $this->formatPrice($regularPrice, $store, $baseCurrencyCode)
+                    'price' => $regularPriceConverted,
+                    'price_formatted' => $this->formatPrice($regularPriceConverted, $store, $currentCurrencyCode)
                 ]
             ];
         }
@@ -116,10 +120,12 @@ class AddProductData implements ObserverInterface
                 if (!isset($tiers[$tier['cust_group']])) {
                     continue; // unwanted record for non-exiting customer group
                 }
+                $tierPrice = $this->priceCurrency->convert($tier['price'], $store, $currentCurrencyCode);
+
                 $tiers[$tier['cust_group']][round($tier['price_qty'], 4)] = [
                     'qty' => floatval($tier['price_qty']),
-                    'price' => number_format($tier['price'], 2),
-                    'price_formatted' => $this->formatPrice($tier['price'], $store, $baseCurrencyCode)
+                    'price' => number_format($tierPrice, 2),
+                    'price_formatted' => $this->formatPrice($tierPrice, $store, $currentCurrencyCode)
                 ];
             }
         }
