@@ -32,7 +32,7 @@
             <block class="Magento\Catalog\Block\Product\View" name="balloonz_position" template="product/view/baloonz_position.phtml" group="detailed_info" >
                <arguments>
                     <argument translate="true" name="title" xsi:type="string">Balloonz Position</argument>
-                    <argument name="sort_order" xsi:type="string">20</argument>
+                    <argument name="sort_order" xsi:type="string">10</argument>
                </arguments>
             </block>
             <block class="Magento\Catalog\Block\Product\View" name="cancellation" template="product/view/baloonz_position.phtml" group="detailed_info" >
@@ -44,13 +44,13 @@
             <block class="Magento\Catalog\Block\Product\View" name="customer_service_and_float_times" template="product/view/baloonz_position.phtml" group="detailed_info" >
                <arguments>
                     <argument translate="true" name="title" xsi:type="string">Customer Service and Float Times</argument>
-                    <argument name="sort_order" xsi:type="string">20</argument>
+                    <argument name="sort_order" xsi:type="string">30</argument>
                </arguments>
             </block>
             <block class="Magento\Catalog\Block\Product\View" name="substitutions" template="product/view/baloonz_position.phtml" group="detailed_info" >
                <arguments>
                     <argument translate="true" name="title" xsi:type="string">Substitutions</argument>
-                    <argument name="sort_order" xsi:type="string">20</argument>
+                    <argument name="sort_order" xsi:type="string">40</argument>
                </arguments>
             </block>
         </referenceBlock>        
