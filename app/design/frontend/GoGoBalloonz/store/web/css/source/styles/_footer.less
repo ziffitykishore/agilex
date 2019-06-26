@@ -299,6 +299,13 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+
+.cms-index-index {
+    .footer-top {
+        border-top: none;
+    }
+}
+
     .page-wrapper {
         .page-footer {
             margin-top: 0;
@@ -309,11 +316,7 @@
             }
 
             .footer-top {
-                border-top: none;
 
-                .footer-logo {
-                    display: none;
-                }
 
                 .footer-top-container {
                     padding-left: 31px;
@@ -322,16 +325,8 @@
 
 
                 .contact-info {
-                    .flex-width(100%);
-
                     a {
                         font-size: 15px;
-                        display: block;
-
-                        & + a {
-                            margin-left: 0;
-                            margin-top: 15px;
-                        }
                     }
                 }
             }
@@ -341,6 +336,11 @@
                 .footer-bottom-container{
                     padding-left: 31px;
                     padding-right: 31px;
+                }
+
+                .link-copyright,
+                .payment-wrap {
+                    .flex-width(100%);
                 }
             }
 
@@ -440,6 +440,7 @@
                 .bottom-links {
                     ul {
                         justify-content: center;
+                        padding-right: 0;
                     }
                 }
 
@@ -478,6 +479,22 @@
                     padding-right: 10px;
                 }
 
+                .contact-info {
+                    a {
+                        font-size: 15px;
+                        display: block;
+
+                        & + a {
+                            margin-left: 0;
+                            margin-top: 15px;
+                        }
+                    }
+                }
+
+                .footer-logo {
+                    display: none;
+                }
+
             }
 
             .footer-bottom {
@@ -485,6 +502,7 @@
                     padding-left: 10px;
                     padding-right: 10px;
                 }
+
 
                 .bottom-links {
                     a {
@@ -497,6 +515,17 @@
 
     }
 
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page-wrapper {
+        .page-footer {
+            .contact-info,
+            .payment-icons {
+                text-align: right;
+            }
+        }
+    }
 }
 
 //

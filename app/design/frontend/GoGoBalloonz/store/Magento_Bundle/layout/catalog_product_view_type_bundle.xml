@@ -26,6 +26,6 @@
         <move element="product.info" destination="product.info.main" after="-"/>
         <move element="product.info.bundle" destination="product.info.main" before="product.info"/>
         <move element="product.info.overview" destination="product.info.main" before="product.info"/>
-        <move element="product.info.bundle" destination="product.info.main" before="product.info.overview"/>
+        <move element="product.info.bundle" destination="product.info.price" after="-"/>
     </body>
 </page>

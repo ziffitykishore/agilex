@@ -20,7 +20,15 @@
             position: relative;
             .home-slider {
                 margin-bottom: 0;
+
+                > .banner-item {
+                    &:not(:first-child) {
+                        display: none;
+                    }
+                }
+
                 .banner-item {
+
                     .slide-content {
                         position: absolute;
                         top: 50%;
@@ -247,33 +255,7 @@
 
                 }
             }
-            .slick-arrow {
-                width: 40px;
-                height: 40px;
-                background: #f6f6f6;
-                border:none;
-                z-index: 15;
-                .br-radius(50%);
-                &:before {
-                    font-family: @icon-gogo;
-                    color: @color-blue;
-                    font-size: 10px;
-                }
-                &.slick-prev {
-                    left: 25px;
-                    &:before {
-                    content: '\f053';
-                    }
-                }
 
-                &.slick-next {
-                    right: 25px;
-                    visibility: visible;
-                    &:before {
-                        content: '\f054';
-                    }
-                }
-            }
 
         }
 
