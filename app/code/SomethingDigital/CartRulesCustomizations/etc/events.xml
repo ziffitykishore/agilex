@@ -6,4 +6,7 @@
     <event name="checkout_cart_update_items_before">
         <observer name="SomethingDigital_CheckIfGiftBeforeUpdate" instance="SomethingDigital\CartRulesCustomizations\Observer\CheckIfGiftBeforeUpdate" />
     </event>
+    <event name="sales_quote_merge_after">
+        <observer name="SomethingDigital_ModifyGiftQtyAfterMerge" instance="SomethingDigital\CartRulesCustomizations\Observer\ModifyGiftQtyAfterMerge" />
+    </event>
 </config>
