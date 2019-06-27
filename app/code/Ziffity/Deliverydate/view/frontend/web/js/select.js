@@ -1,7 +1,8 @@
 define([
         'ko',
         'jquery',
-        'Magento_Ui/js/form/element/select'
+        'Magento_Ui/js/form/element/select',
+        'Magento_Theme/js/jstz.min'
     ], function (
     ko,
     $,
@@ -38,20 +39,19 @@ define([
                 return this;
             },
             updateTimeInterval: function(){
-
-                self = this;
+                var currentObj = this;
                 $.ajax({
                      showLoader: true,
                      url: window.location.origin+'/delivery/delivery/timeinterval',
                      type: 'POST',
                      data : {
                         'date' : window.deliveryDate,
-                        'timeZone' : Intl.DateTimeFormat().resolvedOptions().timeZone
+                        'timeZone' : currentObj.getClientLocalTimezone()
                      },
                      dataType: 'json'
 
                  }).done(function (data) {
-                    self.options(data);
+                    currentObj.options(data);
                     if(data[0].value){
                         localStorage.setItem('deliverySlots', JSON.stringify(data));
                     }
@@ -63,6 +63,18 @@ define([
                         }, 1000);
                     }
                  });
+            },
+            getClientLocalTimezone: function () {
+                var localTimezone = null;
+                if (typeof Intl !== 'undefined') {
+                    // use Intl approach
+                    localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                }
+                if (!localTimezone) {
+                    // use jstz approach in IE browser
+                    localTimezone = jstz.determine().name();
+                }
+                return localTimezone;
             }
 
         });

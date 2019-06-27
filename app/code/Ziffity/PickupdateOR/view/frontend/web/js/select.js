@@ -1,7 +1,8 @@
 define([
         'ko',
         'jquery',
-        'Magento_Ui/js/form/element/select'
+        'Magento_Ui/js/form/element/select',
+        'Magento_Theme/js/jstz.min'
     ], function (
     ko,
     $,
@@ -45,7 +46,7 @@ define([
                      type: 'POST',
                      data : {
                         'date' : window.pickupDate,
-                        'timeZone' : Intl.DateTimeFormat().resolvedOptions().timeZone
+                        'timeZone' : select.getClientLocalTimezone()
                      },
                      dataType: 'json'
 
@@ -62,6 +63,18 @@ define([
                         }, 1000);
                     }
                  });
+            },
+            getClientLocalTimezone: function () {
+                var localTimezone = null;
+                if (typeof Intl !== 'undefined') {
+                    // use Intl approach
+                    localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                }
+                if (!localTimezone) {
+                    // use jstz approach in IE browser
+                    localTimezone = jstz.determine().name();
+                }
+                return localTimezone;
             }
 
         });
