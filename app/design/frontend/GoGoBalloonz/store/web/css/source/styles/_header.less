@@ -5,10 +5,14 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+
+    .mm-wrapper_opening {
+        .mm-menu_offcanvas~.mm-slideout {
+            .transform(none) !important;
+        }
+    }
+
     .page-wrapper {
-
-
-
          .minicart-wrapper {
             position: fixed;
             top: 111px;
@@ -366,27 +370,34 @@
                 font-size: 14px;
                 font-weight: @font-weight__bold;
                 position: relative;
-                &:before {
-                    content:'\e907';
-                    font-family: 'gogo';
-                    display: inline-block;
-                    vertical-align: middle;
-                    font-size: 16px;
-                    font-weight: normal;
-                    margin-right: 2px;
-                    position: absolute;
-                    left: 0px;
-                    top: 12px;
+
+                .multiple,
+                .single {
+                    &:before {
+                        content: '\e907';
+                        font-family: 'gogo';
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin-right: 2px;
+                    }
                 }
 
-                > div {
+                > .multiple {
                     display: inline-block;
+                    position: relative;
+                    &:before {
+                    }
                     select {
                         background-color: transparent;
                         border-color: transparent;
                         font-weight: @font-weight__bold;
                         .lib-css(color, @color-blue);
-                        padding-left: 20px;
+                        padding-left: 10px;
+                        display: inline-block;
+                        width: auto;
+
                         &:focus {
                             box-shadow: none;
                         }
@@ -577,10 +588,12 @@
                 }
             }
         }
-        
+
         .location-track {
-            span {
-                display: none;
+            .single, .multiple {
+                span, select {
+                    display: none;
+                }
             }
         }
 
@@ -612,7 +625,7 @@
 //  Tablet
 //  _____________________________________________
 
-@media screen and (min-width: 1025px) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l + 1) {
 
     .page-header {
 
@@ -631,9 +644,31 @@
 
 }
 
-@media screen and (max-width: 1024px) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+
+    .cart-open {
+        .page-wrapper {
+            .minicart-wrapper {
+                top: 22px;
+            }
+        }
+    }
+
     .page-header {
         height: 70px;
+
+        > .header {
+            padding-left: 21px;
+            padding-right: 21px;
+
+            .account-links {
+                .welcome,
+                .username {
+                    display: none;
+                }
+            }
+        }
+
         .logo {
             max-width: 75px;
         }
@@ -673,8 +708,11 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
-
-
+    .nav-before-open{
+        .page-wrapper {
+            overflow: auto;
+        }
+    }
 
     .page-wrapper {
         .minicart-wrapper {
@@ -959,9 +997,13 @@
                     &:before{
                         position: static;
                     }
-                    span {
-                        display: inline-block;
-                    }
+
+                        .single, .multiple {
+                            span, select {
+                                display: inline-block;
+                            }
+                        }
+
                 }
             }
 
@@ -1187,14 +1229,6 @@
         margin-bottom: 0;
     }
 
-
-    .cart-open {
-        .page-wrapper {
-            .minicart-wrapper {
-                top: 10px;
-            }
-        }
-    }
 }
 
 
@@ -1364,24 +1398,6 @@
     }
 }
 
-
-@media screen and (max-width: 1024px) {
-    .page-header {
-
-        > .header {
-            padding-left: 21px;
-            padding-right: 21px;
-            
-            .account-links {
-                .welcome,
-                .username {
-                    display: none;
-                }
-            }
-        }
-
-    }
-}
 
 
 
