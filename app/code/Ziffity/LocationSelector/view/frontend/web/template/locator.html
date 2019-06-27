@@ -1,6 +1,8 @@
-<span data-bind="if: stores().length === 1" >
-    <span data-bind="text: storeLocations"></span>
-</span>
-<div data-bind="if: stores().length > 1" >
-    <select data-bind="options: stores(),value: storeLocations,event: { change: selectionChanged }"></select>
-</div>
+<!-- ko if: stores().length === 1  -->
+   <span data-bind="text: storeLocations"></span>
+<!-- /ko -->
+<!-- ko ifnot: stores().length === 1 -->
+    <div>
+        <select data-bind="options: stores(),value: storeLocations,event: { change: selectionChanged }"></select>
+    </div>
+<!-- /ko -->
