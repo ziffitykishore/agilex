@@ -790,6 +790,9 @@
             }
 
 
+
+
+
             .nav-sections {
                 width: 100%;
                 left: -100%;
@@ -953,6 +956,9 @@
                     bottom: 20px;
                     left: 0;
                     right: 0;
+                    &:before{
+                        position: static;
+                    }
                     span {
                         display: inline-block;
                     }
@@ -1015,6 +1021,12 @@
         .transform(translate3d(-100%, 0, 0));
         .transition(all 0.5s ease 0s);
         z-index: 99;
+
+
+            .signin-link {
+                display: block !important;
+            }
+
 
 
         .mm-navbar,
