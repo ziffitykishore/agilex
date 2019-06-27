@@ -46,11 +46,15 @@ define(
               var timeSlot = JSON.parse(localStorage.getItem('pickupSlots'));
               if (time !== null) {
                 if (time['pickupdate_time'] !== null) {
-                    var selectedTimeSlot = timeSlot.filter(obj=>obj.value === time['pickupdate_time']);
+                    var selectedTimeSlot = timeSlot.filter(function(obj) {
+                        return obj.value === time['pickupdate_time'];
+                    });
                     return selectedTimeSlot[0].label;
                 }
               }else{
-                   var selectedTimeSlot = timeSlot.filter(obj=>obj.value === localStorage.getItem('selectedPickupTime'));
+                   var selectedTimeSlot = timeSlot.filter(function(obj) {
+                       return obj.value === localStorage.getItem('selectedPickupTime');
+                   });
                    return selectedTimeSlot[0].label;
               }
               return '';
