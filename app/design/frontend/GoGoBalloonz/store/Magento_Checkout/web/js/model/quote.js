@@ -89,10 +89,8 @@ define([
             if(quoteData['is_virtual']) {
                 window.checkoutConfig.totalsData.subtotal = window.checkoutConfig.quoteData.base_subtotal;
                 window.checkoutConfig.totalsData.base_subtotal = window.checkoutConfig.quoteData.base_subtotal;
-                
-                //window.checkoutConfig.quoteData.base_grand_total;
                 var grandTotal = window.checkoutConfig.totalsData.total_segments;
-                var grandTotal = grandTotal.filter(function(obj){
+                grandTotal = grandTotal.filter(function(obj){
                     return obj.code === 'grand_total';
                 });
                 grandTotal[0].value = window.checkoutConfig.quoteData.base_subtotal;
