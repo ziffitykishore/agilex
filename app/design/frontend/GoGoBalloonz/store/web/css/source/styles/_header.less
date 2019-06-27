@@ -362,10 +362,10 @@
 
             .location-track{
                 margin-left: 20px;
-                font-weight: bold;
-                    .lib-css(color, @color-blue);
+                .lib-css(color, @color-blue);
                 font-size: 14px;
                 font-weight: @font-weight__bold;
+                position: relative;
                 &:before {
                     content:'\e907';
                     font-family: 'gogo';
@@ -374,6 +374,9 @@
                     font-size: 16px;
                     font-weight: normal;
                     margin-right: 2px;
+                    position: absolute;
+                    left: 0px;
+                    top: 12px;
                 }
 
                 > div {
@@ -381,6 +384,9 @@
                     select {
                         background-color: transparent;
                         border-color: transparent;
+                        font-weight: @font-weight__bold;
+                        .lib-css(color, @color-blue);
+                        padding-left: 20px;
                         &:focus {
                             box-shadow: none;
                         }
