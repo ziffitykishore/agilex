@@ -16,7 +16,6 @@ define([
             
             if($.cookie('storeLocation')){
                 this.storeLocations($.cookie('storeLocation'));
-                console.log("From Cookie");
             }else{
                 this.getLocation();
             }
@@ -30,10 +29,8 @@ define([
                 type: 'GET',
                 dataType: 'json'
             }).done(function (data) {
-                console.log("From Controller");
                 obj.storeLocations(data[0]);
                 $.cookie('storeLocation',data[0]);
-                console.log("Cookie Set");
             });            
         }
     });

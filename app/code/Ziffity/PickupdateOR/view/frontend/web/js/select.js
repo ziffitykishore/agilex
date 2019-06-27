@@ -51,7 +51,6 @@ define([
 
                  }).done(function (data) {
                     select.options(data);
-                    console.log(data[0].value);
                     if(data[0].value){
                         localStorage.setItem('pickupSlots', JSON.stringify(data));
                     }
