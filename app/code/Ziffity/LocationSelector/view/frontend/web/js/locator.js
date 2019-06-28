@@ -23,8 +23,7 @@ define([
             }
         },
         getLocation: function(){
-            var obj;
-            obj = this;
+            var obj = this;
             $.ajax({
                 showLoader: true,
                 url: window.location.origin+'/locator/index/index',
