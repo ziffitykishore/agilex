@@ -720,7 +720,7 @@ $home-sidebar-width: 20.5%;
 
             [data-content-type="text"],
             [data-content-type="buttons"] {
-                padding-left: 20px;
+                padding-left: $indent__base;
             }
         }
     }
