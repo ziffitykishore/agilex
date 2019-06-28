@@ -62,6 +62,15 @@ a.action.primary {
     @include button--type(secondary);
 }
 
+.pagebuilder-button-primary,
+.pagebuilder-button-secondary {
+    text-transform: uppercase;
+
+    @include hover {
+        cursor: pointer;
+    }
+}
+
 .button--transparent {
     @include button--transparent;
 }

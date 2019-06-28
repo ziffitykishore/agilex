@@ -222,18 +222,21 @@ $home-sidebar-width: 20.5%;
 }
 
 .cms-index-index {
-    @include min-screen($screen__m) {
-        .page-main {
-            padding-left: 0;
-            padding-right: 0;
-            margin-left: 0;
-            margin-right: 0;
-            max-width: none;
-        }
+    .page-main {
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: none;
+    }
+
+    [data-appearance='full-width'] > .row-full-width-inner {
+        max-width: none !important; // override PageBuilder
     }
 
     .column.main {
         padding-bottom: 0;
+        min-width: 0;
     }
 }
 
@@ -410,14 +413,22 @@ $home-sidebar-width: 20.5%;
     }
 
     &.category-grid {
+        @include max-screen($screen__m) {
+            [data-content-type="column"]:not(.section-heading-container) {
+                flex-basis: unset !important; // override PageBuilder
+                width: 50% !important; // override PageBuilder
+                box-sizing: border-box;
+            }
+        }
+
         @include min-screen($screen__m) {
-            width: 90%;
+            width: 90% !important; // override PageBuilder
             margin: 0 auto;
             margin-bottom: $indent__xl;
         }
 
         @include min-screen($screen__l) {
-            width: auto;
+            width: auto !important; // override PageBuilder
             padding-left: $indent__xl;
             padding-right: $indent__xl;
         }
@@ -435,25 +446,26 @@ $home-sidebar-width: 20.5%;
             }
         }
 
-        .bluefoot-column.bluefoot-structural {
+        .pagebuilder-column-group {
             margin-top: $indent__xs;
             margin-bottom: 50px;
-            width: 50%;
+            flex-basis: 50% !important; // override PageBuilder
 
             @include min-screen($screen__m) {
-                width: 25%;
+                flex-basis: 25% !important; // override PageBuilder
                 margin-top: 15px;
+                margin-bottom: 0;
             }
 
             @include hover {
-                .bluefoot-driver-text {
+                .pagebuilder-button-link {
                     color: $c-royal;
                 }
             }
         }
     }
 
-    .bluefoot-driver {
+    .pagebuilder-column-group {
         margin: 0 auto !important; // override drivers
 
         @include min-screen($screen__l) {
@@ -466,29 +478,44 @@ $home-sidebar-width: 20.5%;
             background-color: transparent;
         }
 
-        img {
-            width: 100%;
-            max-width: 100px;
-            left: 50% !important; //override driver
-            transform: translateX(-50%);
+        .pagebuilder-banner-wrapper {
+            background-position: center center !important; // override PageBuilder
+            background-size: unset !important; // override PageBuilder
+        }
 
-            @include min-screen($screen__s) {
-                max-width: 125px;
+        .pagebuilder-overlay {
+            position: relative;
+        }
+
+        .pagebuilder-poster-overlay {
+            min-height: unset !important; // override PageBuilder
+
+            @include hover {
+                .pagebuilder-banner-button {
+                    text-decoration: underline;
+                }
+            }
+
+            .pagebuilder-poster-content div {
+                min-height: 250px !important; // override PageBuilder
             }
         }
 
-        &-text {
-            position: static;
+        .pagebuilder-banner-button {
             font-family: $font-family__sans-serif;
             font-weight: $font-weight__semibold;
             text-transform: capitalize;
             color: $c-cobalt;
             background-color: transparent !important; //override Bluefoot driver
+            border: 0;
+            font-size: $font-size__base--desktop;
+            text-align: center;
+            line-height: 1.4;
+            width: 100%;
+            margin-top: 0 !important; // override PageBuilder
 
-            @include max-screen($screen__m) {
-                bottom: 0;
-                font-size: $font-size__base--desktop;
-                line-height: 1.4;
+            @include min-screen($screen__m) {
+                font-size: 18px;
             }
         }
     }
@@ -498,7 +525,7 @@ $home-sidebar-width: 20.5%;
         margin-top: $indent__xs;
 
         @include min-screen($screen__m) {
-            &.bluefoot-row {
+            &.product-category {
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 90%;
@@ -515,6 +542,11 @@ $home-sidebar-width: 20.5%;
             .product-item {
                 padding: 0;
                 margin-top: $indent__m;
+                width: 47%;
+
+                &-details {
+                    text-align: center;
+                }
             }
         }
 
@@ -589,9 +621,9 @@ $home-sidebar-width: 20.5%;
         padding-bottom: 0;
     }
 
-    &.bluefoot-row {
-        @include min-screen($screen__l) {
-            display: flex;
+    .pagebuilder-column-group {
+        @include min-screen($screen__m) {
+            display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
@@ -599,7 +631,7 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    &-header.bluefoot-entity {
+    &-header {
         flex-basis: 100%;
         text-align: center;
         margin-top: 0;
@@ -608,7 +640,7 @@ $home-sidebar-width: 20.5%;
     }
 
     @include min-screen($screen__m) {
-        &-header.bluefoot-entity {
+        &-header {
             margin-top: $indent__m;
             margin-bottom: $indent__l;
             font-size: 34px;
@@ -620,15 +652,22 @@ $home-sidebar-width: 20.5%;
     }
 
     .text-tout,
-    .video-tout.bluefoot-column {
-        flex: .5;
+    .video-tout.pagebuilder-column {
+        flex-basis: 100%;
+        width: 100% !important; // override PageBuilder
 
-        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-            flex-basis: auto; // prevents scrolling and overlapping in IE
+        @include min-screen($screen__l) {
+            flex: .5;
+
+            @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                flex-basis: auto; // prevents scrolling and overlapping in IE
+            }
         }
     }
 
     .text-tout {
+        flex-direction: row !important; // override PageBuilder column group styling
+        flex-wrap: wrap;
         position: relative;
         padding: $indent__xl $indent__m;
         background-color: $c-midnight;
@@ -644,7 +683,7 @@ $home-sidebar-width: 20.5%;
                 margin-top: 0;
             }
 
-            .bluefoot-textarea {
+            [data-content-type="text"] {
                 margin-bottom: 0;
             }
         }
@@ -661,6 +700,10 @@ $home-sidebar-width: 20.5%;
             line-height: 1.3;
         }
 
+        .tout-subheader {
+            margin: 0 6px;
+        }
+
         @include min-screen($screen__m) {
             p,
             button,
@@ -675,43 +718,41 @@ $home-sidebar-width: 20.5%;
             transform: translateX(5%);
             padding: $indent__xl;
 
-            .bluefoot-textarea,
-            .bluefoot-buttons {
-                padding-left: 20px;
+            [data-content-type="text"],
+            [data-content-type="buttons"] {
+                padding-left: $indent__base;
             }
         }
     }
 
-    .bluefoot-html {
+    .overlapping-touts-text {
         float: left;
-        width: 33%;
+        width: 30%;
         text-align: center;
         padding: 0 $indent__xs;
 
         &:not(:nth-of-type(3)) {
-            border-right: 1px solid $color-white;
+            border-right: 1px solid $color-white !important; // override PageBuilder
         }
 
-        &.overlapping-touts-text {
-            @include max-screen($screen__m) {
-                &:not(:nth-of-type(3)) {
-                    width: 50%;
-                }
+        @include max-screen($screen__m) {
+            &:not(:nth-of-type(3)) {
+                width: 47%;
+            }
 
-                &:nth-of-type(2) {
-                    border-right: 0;
-                }
+            &:nth-of-type(2) {
+                border-right: 0 !important; // override PageBuilder
+            }
 
-                &:nth-of-type(3) {
-                    margin-top: $indent__s;
-                    float: right;
-                    width: 100%;
-                }
+            &:nth-of-type(3) {
+                margin-top: $indent__s;
+                float: right;
+                width: 100%;
             }
         }
     }
 
-    .bluefoot-textarea {
+    p {
         max-width: 90%;
         line-height: 1.8;
         margin: $indent__m 0;
@@ -723,8 +764,8 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    .bluefoot-textarea,
-    .bluefoot-buttons {
+    p,
+    .pagebuilder-button-secondary {
         margin-left: $indent__m;
 
         @include min-screen($screen__l) {
@@ -732,7 +773,7 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    button {
+    .pagebuilder-button-secondary {
         @include button--transparent;
         font-size: $font-size__base--desktop;
 
@@ -746,9 +787,9 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    .video-tout.bluefoot-column {
+    .video-tout {
         position: relative;
-        padding: 0;
+        padding: 0 !important; // override PageBuilder
         width: 100%;
 
         @include min-screen($screen__l) {
@@ -762,7 +803,7 @@ $home-sidebar-width: 20.5%;
     }
 }
 
-.bluefoot-row.footer-promo-banner {
+.footer-promo-banner {
     padding: $indent__m $indent__s;
     background-color: $c-smoke;
     flex-basis: 100%;
@@ -771,6 +812,15 @@ $home-sidebar-width: 20.5%;
     max-width: none;
     overflow: hidden;
     border-top: 1px solid $c-silver;
+
+    .pagebuilder-column-group div:last-of-type {
+        align-self: center !important; // override PageBuilder
+        width: 100% !important; // override PageBuilder
+
+        @include min-screen($screen__m) {
+            width: auto !important; // override PageBuilder override
+        }
+    }
 
     .footer-promo-header {
         font-weight: $font-weight__bold;
@@ -786,7 +836,7 @@ $home-sidebar-width: 20.5%;
         margin-bottom: $indent__xl;
 
         .footer-promo-text {
-            width: 100%;
+            width: 100% !important; // override PageBuilder
             max-width: 550px;
             margin-right: $indent__m;
             margin-bottom: 0;
@@ -828,17 +878,22 @@ $home-sidebar-width: 20.5%;
     }
 
     .footer-promo-header,
-    .bluefoot-buttons,
+    .pagebuilder-button-secondary,
     button {
         margin-bottom: 0;
     }
 
     .footer-promo-text {
-        width: 60%;
+        width: 60% !important; // override PageBuilder
     }
 
-    button {
+    .pagebuilder-button-secondary {
         @include button--type(secondary);
+
+        @include hover {
+            border: 0;
+        }
+
         @include max-screen($screen__m) {
             margin-top: $indent__s;
         }
@@ -893,6 +948,8 @@ footer.page-footer {
                     a {
                         color: $c-steel;
                         font-weight: $font-weight__semibold;
+                        font-size: $font-size__base;
+                        letter-spacing: 0;
 
                         @include hover {
                             color: $c-cobalt;
@@ -969,7 +1026,7 @@ footer.page-footer {
 }
 
 
-.bluefoot-row.triple-tout-row {
+.triple-tout-row {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
@@ -983,7 +1040,7 @@ footer.page-footer {
     }
 
     .homepage-tout {
-        button {
+        .pagebuilder-button-secondary {
             @include button--type(primary);
             margin-bottom: 0;
 
@@ -1022,7 +1079,7 @@ footer.page-footer {
 .testimonials {
     margin-bottom: 80px;
 
-    &.bluefoot-row {
+    &.row-full-width-inner {
         @include min-screen($screen__m) {
             margin: $indent__m auto $indent__s auto;
             max-width: 90%;
@@ -1093,7 +1150,6 @@ footer.page-footer {
 
     .bluefoot-advanced-slide-content {
         text-align: left !important; //override Slick
-        border: 1px solid $c-silver;
 
         .slick-dots {
             margin-top: 0;
@@ -1136,8 +1192,9 @@ footer.page-footer {
 
     .carousel,
     .category-grid.product-category {
+        width: 100% !important; // override BF desktop layout
+
         @include max-screen($screen__l) {
-            width: 100% !important; // override BF desktop layout
             padding: 0 !important; // override BF
             margin: 0 !important; // override BF
         }
@@ -1146,6 +1203,10 @@ footer.page-footer {
     .carousel {
         @include min-screen($screen__l) {
             width: calc(100% - #{$home-sidebar-width})
+        }
+
+        .pagebuilder-button-primary {
+            @include button--type(primary);
         }
     }
 
@@ -1188,28 +1249,28 @@ footer.page-footer {
 
 .categories-accordion {
     @include min-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder
     }
 
-    &.bluefoot-row {
+    &.row-full-width-inner {
         margin: 0;
     }
 
     &__trigger {
         border: 1px solid $c-grey;
-
-        &.bluefoot-entity {
-            margin-top: 0;
-            margin-bottom: 0;
-        }
+        margin: 0 15px;
+        padding-left: 15px;
 
         button {
             position: relative;
             width: 100%;
-            padding: 15px $indent__m;
+            padding: 15px $indent__m 15px 50px;
+            font-size: 16px;
+            letter-spacing: 0;
 
             &::before {
                 position: absolute;
+                left: $indent__m;
                 font-size: 28px;
             }
 
@@ -1224,12 +1285,6 @@ footer.page-footer {
                     content: "+";
                 }
             }
-        }
-
-        span {
-            padding-left: $indent__base;
-            font-size: 16px;
-            letter-spacing: 0;
         }
     }
 

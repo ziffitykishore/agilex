@@ -82,17 +82,13 @@ $nav-section-title__height: 60px;
 
 .secondary-nav-links {
     width: 100vw;
-    margin: 0 0 15px -15px !important; // override BF
+    margin-bottom: 15px;
     text-align: center;
     background-color: $c-smoke;
     padding: $indent__s 0 8px 0;
 
-    @include min-screen($screen__xs) {
-        margin: 0 0 15px -20px !important; // override BF
-    }
-
     &-link {
-        width: 50% !important; // override BF
+        flex-basis: 50% !important; // override PageBuilder
 
         a {
             color: $c-cobalt;
@@ -111,7 +107,7 @@ $nav-section-title__height: 60px;
     }
 
     @include min-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder
     }
 }
 
