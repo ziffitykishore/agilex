@@ -8,6 +8,18 @@
         position: fixed;
     }
 
+    .ie {
+        .modals-wrapper {
+            aside.modal-popup {
+                display: block;
+                .modal-inner-wrap {
+                    .transform(translateY(-50%));
+                    top: 50%;
+                }
+            }
+        }
+    }
+
     .modals-wrapper {
         .modals-overlay {
             z-index: 899 !important;
