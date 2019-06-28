@@ -622,7 +622,7 @@ $home-sidebar-width: 20.5%;
     }
 
     .pagebuilder-column-group {
-        @include min-screen($screen__l) {
+        @include min-screen($screen__m) {
             display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
             justify-content: center;
@@ -653,7 +653,10 @@ $home-sidebar-width: 20.5%;
 
     .text-tout,
     .video-tout.pagebuilder-column {
-        @include min-screen($screen__m) {
+        flex-basis: 100%;
+        width: 100% !important; // override PageBuilder
+
+        @include min-screen($screen__l) {
             flex: .5;
 
             @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -697,6 +700,10 @@ $home-sidebar-width: 20.5%;
             line-height: 1.3;
         }
 
+        .tout-subheader {
+            margin: 0 6px;
+        }
+
         @include min-screen($screen__m) {
             p,
             button,
@@ -725,7 +732,7 @@ $home-sidebar-width: 20.5%;
         padding: 0 $indent__xs;
 
         &:not(:nth-of-type(3)) {
-            border-right: 1px solid $color-white;
+            border-right: 1px solid $color-white !important; // override PageBuilder
         }
 
         @include max-screen($screen__m) {
@@ -734,7 +741,7 @@ $home-sidebar-width: 20.5%;
             }
 
             &:nth-of-type(2) {
-                border-right: 0;
+                border-right: 0 !important; // override PageBuilder
             }
 
             &:nth-of-type(3) {
@@ -782,7 +789,7 @@ $home-sidebar-width: 20.5%;
 
     .video-tout {
         position: relative;
-        padding: 0;
+        padding: 0 !important; // override PageBuilder
         width: 100%;
 
         @include min-screen($screen__l) {
