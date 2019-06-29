@@ -57,9 +57,11 @@
     
 <?php 
     $product = $block->getProduct(); 
-    $options = $product->getBundleOption();
-    $opt_arr = json_decode($options);
-?>    
+    $colors = $product->getCustomProductColor();
+    $opt_arr = json_decode($colors);
+    $heights = $product->getCustomProductHeight();
+    $height_options = json_decode($heights);
+?>
     <?php if(!empty($opt_arr)) : ?>
         <label class="label">
             <span><?= __('Color') ?></span>
@@ -68,6 +70,18 @@
             <select class="option">
                 <?php foreach($opt_arr as $opt): ?>
                     <option value="<?= $block->getProducturl($opt->sku); ?>"><?= $opt->color; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    <?php endif; ?>
+    <?php if(!empty($$height_options)) : ?>
+        <label class="label">
+            <span><?= __('Height') ?></span>
+        </label>
+        <div class="custom-bundle-option">
+            <select class="option">
+                <?php foreach($height_options as $option): ?>
+                    <option value="<?= $block->getProducturl($option->sku); ?>"><?= $option->height; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
