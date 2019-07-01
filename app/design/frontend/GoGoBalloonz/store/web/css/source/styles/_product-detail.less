@@ -19,6 +19,17 @@
             }
         }
     }
+    
+    .bundle-options-container {
+        .product-add-form {
+            display: block;
+        }
+    }
+
+
+    .paypal-button.paypal-button-context-iframe {
+            display: none;
+    }
 
     .catalog-product-view,
     .weltpixel_quickview-catalog_product-view{
@@ -72,6 +83,8 @@
                 align-items: center;
                 border: none;
                 margin-bottom: 0;
+                margin-left: 0;
+                width: 100% !important;
 
 
                     .price-box {
@@ -122,8 +135,59 @@
                 }
             }
 
+            > .product-social-links {
+                display: none;
+            }
+
             .product-add-form {
                 padding-top: 0;
+            }
+
+            .fieldset-bundle-options {
+                margin-bottom: 0;
+
+                position: relative;
+                #div-addons {
+                    position: absolute;
+                }
+
+                .options-list {
+                    .bundle-item {
+                        display: none;
+                    }
+                }
+
+            }
+
+            .bundle-options-wrapper {
+                .product-options-wrapper {
+                    > .fieldset {
+                        margin-bottom:10px;
+                    }
+                }
+                .fieldset {
+                    &.bundle-configurable {
+                        margin-bottom: 0;
+                        margin-left: 0;
+                    }
+                }
+
+                .field {
+                    .control {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .block-bundle-summary {
+                .box-tocart {
+                    margin-top: 30px;
+                }
+                .product-details {
+                    > .product-addto-links {
+                        display: none;
+                    }
+                }
             }
 
             .swatch-opt {
@@ -168,6 +232,7 @@
                 margin: 0;
                 .fieldset {
                     margin-bottom: 0;
+                    .lib-clearfix();
                 }
                 .field,
                 .actions {
@@ -177,7 +242,8 @@
 
 
                 .field {
-                    margin-bottom: 0;
+                    margin-bottom: 20px;
+                    margin-right: 20px;
                     .label {
                         display: none;
                     }
@@ -208,7 +274,8 @@
                 }
 
                 .actions {
-                    margin-left: 20px;
+                    margin-right: 20px;
+                    margin-bottom: 20px;
                 }
 
                 .action {
@@ -225,7 +292,6 @@
 
             .product-social-links {
                 margin-bottom: 0;
-                margin-left: 20px;
 
                 .product-addto-links {
                     .flex();
@@ -309,6 +375,93 @@
 
         .product-info-wrap {
             padding-top: 30px;
+
+            & + .product-options-wrapper {
+                .lib-css(background, @color-aliceblue);
+                padding: 50px 0;
+                margin-top: 30px;
+                > .fieldset {
+                    margin-bottom: 0;
+                }
+                .fieldset-bundle-options {
+                    .container-sm();
+                    margin-bottom: 0;
+                    > .option {
+                        text-align: center;
+                        margin-bottom: 0;
+                        > .label {
+                            font-size: 3rem;
+                            margin-bottom: 30px;
+                        }
+                    }
+
+                    .slick-list {
+                        max-width: 88%;
+                        margin: 0 auto;
+                    }
+
+                    .slick-arrow {
+                        .lib-css(background, @color-white);
+
+                        &:hover {
+                            .lib-css(background, @color-sky-blue);
+                        }
+                    }
+
+                    .product-item {
+
+                        padding: 0 15px;
+
+                    }
+                    .product-item-info {
+                        margin: 0 auto 20px;
+                        .lib-css(background, @color-white);
+                        padding: 15px;
+                        width: auto;
+                        position: relative;
+
+                        .choice {
+                            position: absolute;
+                            right: 15px;
+                            top: 0;
+
+                            input[type=checkbox] + label {
+                                &:before {
+                                    border: 1px solid @color-gray;
+                                }
+                                &:before,
+                                &:after {
+                                    width: 25px;
+                                    height: 25px;
+                                    .br-radius(5px);
+                                }
+                                &:after {
+                                    line-height: 25px;
+                                }
+                            }
+                        }
+
+                        .product-item-photo {
+                            width: 150px;
+                            margin: 0 auto;
+                        }
+
+                        .label-text {
+                            display: none;
+                        }
+
+                        .product-item-name {
+                            .lib-css(color, @color-blue);
+                            font-weight: bold;
+
+                            .price-notice {
+                                display: block;
+                                .lib-css(color, @color-red);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 
@@ -446,7 +599,18 @@
             }
         }
     }
+
+    .page-layout-1column {
+        .product-info-wrap {
+            .product.media,
+            .product-info-main {
+                width: 100%;
+            }
+        }
+    }
 }
+
+
 
 //
 //  Desktop

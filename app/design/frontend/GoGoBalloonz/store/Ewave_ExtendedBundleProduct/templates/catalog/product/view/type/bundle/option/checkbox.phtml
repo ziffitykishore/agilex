@@ -12,10 +12,7 @@
 <?php $_option = $block->getOption() ?>
 <?php $_selections = $_option->getSelections() ?>
 
-<div class="field option <?php echo ($_option->getRequired()) ? ' required': ''; ?>">
-    <label class="label">
-        <span><?php echo $block->escapeHtml($_option->getTitle()) ?></span>
-    </label>
+<div class="field option <?php echo ($_option->getRequired()) ? ' required': ''; ?>" <?php echo ($_option->getRequired()) ? '': 'id="div-addons"'; ?> >
     <div class="control">
         <div class="nested options-list">
             <?php if ($block->showSingle()): ?>
@@ -40,28 +37,24 @@
                                    <?php if ($block->isSelected($_selection)) echo ' checked="checked"' ?>
                                    <?php if (!$_selection->isSaleable()) echo ' disabled="disabled"' ?>
                                    value="<?php /* @escapeNotVerified */ echo $_selection->getSelectionId() ?>"/>
-                            <label class="label"
-                                   for="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>-<?php /* @escapeNotVerified */ echo $_selection->getSelectionId() ?>">
-                                <span><?php /* @escapeNotVerified */ echo $block->getSelectionQtyTitlePrice($_selection) ?></span>
-                            </label>
                         </div>
                     </div>
                     <?php if ($selectionBlock = $block->getChildBlock('product.info.bundle.option.checkbox.selection')): ?>
                         <?php /* @escapeNotVerified */ echo $selectionBlock->setOption($_option)->setSelection($_selection)->toHtml(); ?>
                     <?php endif; ?>
                 <?php endforeach; ?>
-                <div id="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>-container"></div>
+<!--                <div id="bundle-option-<?php /* @escapeNotVerified */ //echo $_option->getId() ?>-container"></div>-->
             <?php endif; ?>
         </div>
     </div>
-    
-<?php 
-    $product = $block->getProduct(); 
-    $colors = $product->getCustomProductColor();
-    $opt_arr = json_decode($colors);
-    $heights = $product->getCustomProductHeight();
-    $height_options = json_decode($heights);
-?>
+<?php if($_option->getRequired()) :?>
+    <?php 
+        $product = $block->getProduct(); 
+        $colors = $product->getCustomProductColor();
+        $opt_arr = json_decode($colors);
+        $heights = $product->getCustomProductHeight();
+        $height_options = json_decode($heights);
+    ?>
     <?php if(!empty($opt_arr)) : ?>
         <label class="label">
             <span><?= __('Color') ?></span>
@@ -87,6 +80,8 @@
             </select>
         </div>
     <?php endif; ?>
+<?php endif; ?>
+
 </div>
 <script>
     require(['jquery'], function($){

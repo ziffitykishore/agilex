@@ -1,0 +1,101 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox */ ?>
+<?php $_option = $block->getOption() ?>
+<?php $_selections = $_option->getSelections() ?>
+<div class="field option <?= ($_option->getRequired()) ? ' required': '' ?>">
+    <label class="label">
+        <span><?= $block->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="control">
+        <div class="nested options-list row">
+            <?php if ($block->showSingle()): ?>
+                <?= /* @escapeNotVerified */ $block->getSelectionQtyTitlePrice($_selections[0]) ?>
+                <input type="hidden"
+                       class="bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>  product bundle option"
+                       name="bundle_option[<?= /* @escapeNotVerified */ $_option->getId() ?>]"
+                       value="<?= /* @escapeNotVerified */ $_selections[0]->getSelectionId() ?>"/>
+            <?php else:?>
+                <?php foreach($_selections as $_selection): ?>
+                    <div class="product-item col-12 col-md-4 col-lg-3">
+
+                        <div class="product-item-info addons-section">
+                            <div class="field choice ">
+                                <input id="addons-bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>" type="checkbox" value="<?= /* @escapeNotVerified */ $_option->getId() ?>"/>
+                                <label class="label"
+                                       for="bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>">
+                                    <span class="label-text"><?= /* @escapeNotVerified */ $block->getSelectionQtyTitlePrice($_selection) ?></span>
+                                </label>
+                            </div>
+                            <div class="product-item-photo">
+                                <img src="https://cdn.staging.gogoballoonz.com/pub/media/catalog/product/cache/2765542505660baab28ecd555e27366e/b/l/black_balloon_3.jpg">
+                            </div>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <?= /* @escapeNotVerified */ $block->getSelectionQtyTitlePrice($_selection) ?>
+                                </strong>
+                            </div>
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+                <!--<div id="bundle-option-<?php /* @escapeNotVerified */ //$_option->getId() ?>-container"></div> -->
+                <!-- commented for no use -->
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
+<script>
+    requirejs(['jquery', 'slick'], function($) {
+        $(function() {
+            $("div.addons-section").on("click",function(event) {
+                var target = $(event.target);
+                if (target.is('input:checkbox')) return;
+
+                var checkbox = $(this).find("input[type='checkbox']");
+
+                if(checkbox.prop("checked")){
+                    //console.log(checkbox.attr('id').replace("addons-", ""));
+                    checkbox.prop("checked",false);
+                    var id = checkbox.attr('id').replace("addons-", "");
+                    $(id).attr('checked', false);
+                    //$('#'+id).clone().appendTo("#product_addtocart_form");
+                } else if(!checkbox.prop("checked")) {
+                    checkbox.prop("checked",true);
+                    var id = checkbox.attr('id').replace("addons-", "");
+                    $(id).attr('checked', true);
+                }
+            });
+            if($('.options-list .product-item').length >= 4) {
+                $('.product-info-wrap').siblings('.product-options-wrapper').find('.options-list').slick({
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 4,
+                    slidesToScroll: 3,
+                    responsive: [
+                        {
+                            breakpoint: 768,
+                            settings: {
+                                slidesToShow: 3
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            settings: {
+                                slidesToShow: 1
+                            }
+                        }
+                    ]
+                });
+            }
+        });
+    });
+</script>
