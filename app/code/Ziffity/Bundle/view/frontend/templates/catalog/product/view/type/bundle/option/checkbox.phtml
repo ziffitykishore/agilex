@@ -25,6 +25,10 @@
                        value="<?= /* @escapeNotVerified */ $_selections[0]->getSelectionId() ?>"/>
             <?php else:?>
                 <?php foreach($_selections as $_selection): ?>
+                <?php
+                $imageHelper = $this->helper('\Magento\Catalog\Helper\Image');
+                $image_url = $imageHelper->init($_selection, 'product_page_image_small')->setImageFile($_selection->getFile())->resize(200, 200)->getUrl();
+                ?>
                     <div class="product-item col-12 col-md-4 col-lg-3">
 
                         <div class="product-item-info addons-section">
@@ -36,7 +40,7 @@
                                 </label>
                             </div>
                             <div class="product-item-photo">
-                                <img src="https://cdn.staging.gogoballoonz.com/pub/media/catalog/product/cache/2765542505660baab28ecd555e27366e/b/l/black_balloon_3.jpg">
+                                <img src="<?= $image_url ?>">
                             </div>
                             <div class="product-item-details">
                                 <strong class="product-item-name">
@@ -63,17 +67,16 @@
                 var checkbox = $(this).find("input[type='checkbox']");
 
                 if(checkbox.prop("checked")){
-                    //console.log(checkbox.attr('id').replace("addons-", ""));
                     checkbox.prop("checked",false);
                     var id = checkbox.attr('id').replace("addons-", "");
                     $(id).attr('checked', false);
-                    //$('#'+id).clone().appendTo("#product_addtocart_form");
                 } else if(!checkbox.prop("checked")) {
                     checkbox.prop("checked",true);
                     var id = checkbox.attr('id').replace("addons-", "");
                     $(id).attr('checked', true);
                 }
             });
+
             if($('.options-list .product-item').length >= 4) {
                 $('.product-info-wrap').siblings('.product-options-wrapper').find('.options-list').slick({
                     infinite: true,
