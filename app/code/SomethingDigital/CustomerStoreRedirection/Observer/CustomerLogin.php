@@ -27,9 +27,7 @@ class CustomerLogin implements ObserverInterface
         $customerStore = $this->storeManager->getStore($customerStoreId);
         $currectStore = $this->storeManager->getStore();
         if ($customerStore->getId() != $currectStore->getId()) {
-            if ($customerStore->getCode() == 'default' || $customerStore->getCode() == 'en_ca') {
-                $this->redirection->url = $customerStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB).'customer/account';
-            }
+            $this->redirection->url = $customerStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB).'customer/account';
         }
     }
 }
