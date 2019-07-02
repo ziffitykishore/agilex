@@ -418,6 +418,7 @@
                         padding: 15px;
                         width: auto;
                         position: relative;
+                        height: 100%;
 
                         .choice {
                             position: absolute;
@@ -493,9 +494,10 @@
                         background: transparent;
                         border: none;
                         height: auto;
-                        padding: 5px 35px;
+                        padding: 5px 15px;
                         .lib-css(color, @color-white);
                         font-weight: 600;
+                        font-size: 1.2rem;
 
                         &:hover,
                         &:focus{
@@ -663,6 +665,19 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__ls) {
+    .catalog-product-view,
+    .review-product-list {
+        .detailed {
+            .product.data.items {
+                .item.title {
+                    a {
+                        padding: 5px 35px;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
 }
+
