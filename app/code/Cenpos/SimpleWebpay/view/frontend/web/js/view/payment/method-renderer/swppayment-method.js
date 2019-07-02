@@ -54,19 +54,17 @@ define(
                 var isToken = window.checkoutConfig.payment.swppayment.usetoken == "true";
 
                 try{
-                    debugger;
                     $.ajax({
                         type: "POST",
                         url: window.checkoutConfig.payment.swppayment.urlsession,
-                        data: msg,
                         beforeSend: function () {
                             $(".payment-method-result-webpay").append("<div id='loadersavecard' style='background-color: rgba(255,255,255,0.5);width:100%;position: relative;z-index: 100;top: 0;height: 130px;margin-top: -120px;'><img style='display: block;margin: 28px 0 0 71px;float: left;' src='" + window.checkoutConfig.payment.swppayment.urlimage + "' /></div>");
                         },
-                        success: function (msg) {
-                            msg = $.parseJSON(msg);
-                            if (msg.Result === 0) {
+                        success: function (msg2) {
+                            msg2 = $.parseJSON(msg2);
+                            if (msg2.Result == 0) {
                                 var params = "";
-                                params += "verifyingpost=" + encodeURIComponent(msg.Data);
+                                params += "verifyingpost=" + encodeURIComponent(msg2.Data);
                                 //        params += "&address=9048";
                                 //       params += "&zipcode=33189";
                                 params += "&isemail=true";
@@ -96,7 +94,7 @@ define(
                                                     if (indice.toLowerCase() === "recurringsaletokenid") {
                                                         if (msg[indice].indexOf("CRYPTO") < 0  && isToken) isToken = false;
                                                     }
-                                                    if (indice.toLowerCase() === "cardtype") {
+                                                    if (indice.toLowerCase() === "cardtype" && (window.checkoutConfig.payment.swppayment.istoken19 !== "true")) {
                                                         $(".payment-method-result-webpay").append("<strong>Card Type: </strong>" + msg[indice] + "<br />");
                                                     }
                                                     if (indice.toLowerCase() === "protectedcardnumber") {
@@ -122,7 +120,7 @@ define(
                                                             success: function (msg) {
                                                                 $("#loadersavecard").remove();
                                                                 msg = $.parseJSON(msg);
-                                                                if (msg.Result === 0) {
+                                                                if (msg.Result == 0) {
                                                                     $("#SendTokenClick").hide();
                                                                 } else {
                                                                     alert(msg.Message);
@@ -152,7 +150,7 @@ define(
                 
                                 $("#cenposPayIFrameId").attr("style", "border: none !important;margin-top: 0px;");
                             } else {
-                                alert(msg.Message);
+                                alert(msg2.Message);
                             }
                         }
                     });

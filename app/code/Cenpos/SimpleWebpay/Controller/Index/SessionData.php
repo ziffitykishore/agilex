@@ -38,7 +38,7 @@ class SessionData extends \Magento\Framework\App\Action\Action
         $ResponseSave = new \stdClass();
         try{
             $ip = $_SERVER["REMOTE_ADDR"];
-            if($this->method->getConfigData('url') == null || $this->method->getConfigData('url') == "" ) $this->throwMessageCustom("The url credit card must be configured");
+            if($this->_paymentMethod->getConfigData('url') == null || $this->_paymentMethod->getConfigData('url') == "" ) $this->throwMessageCustom("The url credit card must be configured");
 
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 
@@ -55,12 +55,12 @@ class SessionData extends \Magento\Framework\App\Action\Action
                 }
             }else $Street = "";
 
-            $ch = curl_init($this->method->getConfigData('url')."?app=genericcontroller&action=siteVerify");
+            $ch = curl_init($this->_paymentMethod->getConfigData('url')."?app=genericcontroller&action=siteVerify");
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_POST, 1);
 
-            $postSend = "secretkey=".$this->method->getConfigData('secretkey');
-            $postSend .= "&merchant=".$this->method->getConfigData('merchantid');
+            $postSend = "secretkey=".$this->_paymentMethod->getConfigData('secretkey');
+            $postSend .= "&merchant=".$this->_paymentMethod->getConfigData('merchantid');
             $postSend .= "&address=".$Street;
             $postSend .= "&isrecaptcha=false";
             $postSend .= "&zipcode=".$dataAddress["postcode"];
@@ -74,15 +74,16 @@ class SessionData extends \Magento\Framework\App\Action\Action
 
             curl_setopt($ch,CURLOPT_RETURNTRANSFER, true);
 
-            $response = curl_exec($ch);
+            $ResponseSave = curl_exec($ch);
 
             $error = curl_error($ch);
             curl_close ($ch);
             if(!empty($error))  {
-                $this->throwMessageCustom($error, "", self::THROW_ERROR);
+                throw new Exception($error);
             }
         
             $ResponseSave = json_decode($ResponseSave);
+
             if($ResponseSave->Result != 0) {
                 throw new \Exception($ResponseSave->Message);
             }
