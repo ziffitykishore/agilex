@@ -27,8 +27,8 @@
                 <?php foreach($_selections as $_selection): ?>
                     <div class="product-item col-12 col-md-4 col-lg-3">
 
-                        <div class="product-item-info addons-section">
-                            <div class="field choice ">
+                        <div class="product-item-info">
+                            <div class="field choice addons-section">
                                 <input id="addons-bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>" type="checkbox" value="<?= /* @escapeNotVerified */ $_option->getId() ?>"/>
                                 <label class="label"
                                        for="bundle-option-<?= /* @escapeNotVerified */ $_option->getId() ?>-<?= /* @escapeNotVerified */ $_selection->getSelectionId() ?>">
@@ -74,7 +74,6 @@
                     $(id).attr('checked', true);
                 }
             });
-            if($('.options-list .product-item').length >= 4) {
                 $('.product-info-wrap').siblings('.product-options-wrapper').find('.options-list').slick({
                     infinite: true,
                     speed: 300,
@@ -84,18 +83,18 @@
                         {
                             breakpoint: 768,
                             settings: {
-                                slidesToShow: 3
+                                slidesToShow: 2
                             }
                         },
                         {
-                            breakpoint: 480,
+                            breakpoint: 640,
                             settings: {
                                 slidesToShow: 1
                             }
                         }
                     ]
                 });
-            }
+
         });
     });
 </script>

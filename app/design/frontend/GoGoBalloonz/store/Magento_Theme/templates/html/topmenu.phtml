@@ -17,8 +17,8 @@
 <?php $columnsLimit = $block->getColumnsLimit() ?: 0; ?>
 <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
 
-<nav class="navigation" data-action="navigation">
-    <ul data-mage-init='{"menu":{"responsive":false, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+<nav class="navigation">
+    <ul>
         <?= /* @escapeNotVerified */ $_menu ?>
         <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
         <?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Account\AuthorizationLink")->setDisplay('level0 d-none')->setWrapper('ul')->setTemplate("Magento_Customer::account/link/authorization.phtml")->toHtml();?>

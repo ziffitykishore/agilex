@@ -47,13 +47,15 @@
             <?php endif; ?>
         </div>
     </div>
+</div>
+<div class="field option">
 <?php if($_option->getRequired()) :?>
-    <?php 
-        $product = $block->getProduct(); 
-        $colors = $product->getCustomProductColor();
-        $opt_arr = json_decode($colors);
-        $heights = $product->getCustomProductHeight();
-        $height_options = json_decode($heights);
+    <?php
+    $product = $block->getProduct();
+    $colors = $product->getCustomProductColor();
+    $opt_arr = json_decode($colors);
+    $heights = $product->getCustomProductHeight();
+    $height_options = json_decode($heights);
     ?>
     <?php if(!empty($opt_arr)) : ?>
         <label class="label">
@@ -62,12 +64,13 @@
         <div class="custom-bundle-option">
             <select class="option">
                 <?php foreach($opt_arr as $opt): ?>
-                    <option value="<?= $block->getProducturl($opt->sku); ?>"><?= $opt->color; ?></option>
+                    <option value="8"><?= $opt->color; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
     <?php endif; ?>
-
+</div>
+<div class="field option">
     <?php if(!empty($height_options)) : ?>
         <label class="label">
             <span><?= __('Height') ?></span>
@@ -75,13 +78,12 @@
         <div class="custom-bundle-option">
             <select class="option">
                 <?php foreach($height_options as $option): ?>
-                    <option value="<?= $block->getProducturl($option->sku); ?>"><?= $option->height; ?></option>
+                    <option value="9"><?= $option->height; ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
     <?php endif; ?>
 <?php endif; ?>
-
 </div>
 <script>
     require(['jquery'], function($){
