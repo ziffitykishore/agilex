@@ -9,9 +9,11 @@
 /** @var \Magento\Catalog\Block\Product\View\Details $block */
 ?>
 <?php if ($detailedInfoGroup = $block->getGroupSortedChildNames('detailed_info', 'getChildHtml')):?>
-    <!-- Add custom add to cart button-->
-    <button id="custom-addtocart">Add to cart</button>
+
     <div class="product info detailed">
+        <!-- Add custom add to cart button-->
+        <button id="custom-addtocart" class="action primary tocart">Add to cart</button>
+
         <?php $layout = $block->getLayout(); ?>
         <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
             <?php foreach ($detailedInfoGroup as $name):?>

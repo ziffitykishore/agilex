@@ -1,32 +1,37 @@
 define(['jquery', 'slick', 'scroller'], function ($) {
     $(document).ready(function ($) {
 
-        var c, currentScrollTop = 0,
-            navbar = $('.header-wrapper');
 
-        $(window).scroll(function () {
-            var a = $(window).scrollTop();
-            var b = navbar.height();
+        function sticky(navbar) {
 
-            currentScrollTop = a;
+            var c, currentScrollTop = 0;
 
-            if (c < currentScrollTop && a > b + b) {
-                navbar.addClass("scrollUp");
-            } else if (c > currentScrollTop && !(a <= b)) {
-                navbar.removeClass("scrollUp");
-            }
-            c = currentScrollTop;
-        });
+            $(window).scroll(function () {
+                var a = $(window).scrollTop();
+                var b = navbar.height();
+
+                currentScrollTop = a;
+
+                if (c < currentScrollTop && a > b + b) {
+                    navbar.addClass("scrollUp");
+                } else if (c > currentScrollTop && !(a <= b)) {
+                    navbar.removeClass("scrollUp");
+                }
+                c = currentScrollTop;
+            });
 
 
-        $(window).scroll(function(){
-            if ($(window).scrollTop() >= 1) {
-                $('.header-wrapper').addClass('fixed-header');
-            }
-            else {
-                $('.header-wrapper').removeClass('fixed-header');
-            }
-        });
+            $(window).scroll(function () {
+                if ($(window).scrollTop() >= 1) {
+                    navbar.addClass('fixed-header');
+                }
+                else {
+                    navbar.removeClass('fixed-header');
+                }
+            });
+        }
+
+        sticky($('.header-wrapper'));
 
         // Home slider
         $('.home-slider').on('init', function (e, slick) {
@@ -185,23 +190,6 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             window.scrollTo(0, 1);
         }
 
-
-
-
-        $('.navigation .parent > a').on('click', function (){
-            $(this).closest('.parent').toggleClass('active-slide');
-        });
-
-        $('.nav-toggle').on('click', function(){
-            var parentLi = $('.navigation .parent');
-            if (parentLi.hasClass('active-slide')) {
-                parentLi.removeClass('active-slide');
-            }
-        });
-
-
-
-
         function responsiveResize() {
 
             if (($(window).width()) <= 768 && responsiveflag == false)
@@ -209,32 +197,12 @@ define(['jquery', 'slick', 'scroller'], function ($) {
                 accordionFooter('enable');
 
                 $('.location-track').appendTo('.nav-sections');
-
-
-
-                $('.navigation .parent').each(function(){
-
-                    //var icon = '<span class="icon icon-angle-right"></span>';
-                    $(this).find('> a').addClass('level-top')
-                    $(this).find('> a').click(function(e){
-                        e.preventDefault();
-                    });
-
-                    if(!$(this).find('.icon').length){
-                        //$(icon).appendTo($(this));
-                    }
-
-                });
-
-
-
                 responsiveflag = true;
             }
             else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
                 $('.location-track').insertBefore('.account-links');
-                $('.navigation .parent .icon').remove();
                 responsiveflag = false;
             }
 

@@ -350,7 +350,11 @@
 
     .page-header {
 
-
+            &.fixed-header {
+                .lib-css(background, @color-white);
+                position: fixed;
+                .box-shadow(1px 1px 10px 10px rgba(0,0,0,.05));
+            }
             &.scrollUp {
                 transform: translateY(-100%);
             }
@@ -655,7 +659,7 @@
     }
 
     .page-header {
-        height: 70px;
+        height: 60px;
 
         > .header {
             padding-left: 21px;
@@ -1098,7 +1102,7 @@
             width: 60px;
             line-height: 60px;
             text-align: center;
-            padding: 0;
+            padding: 20px;
         }
 
         .parent .level-top:first-child{
@@ -1112,6 +1116,7 @@
             padding: 20px 40px 20px 15px;
             color: @color-blue;
             text-transform: none;
+            font-weight: bold;
         }
 
         .mm-btn {
@@ -1128,6 +1133,7 @@
             height: 12px;
             content: '';
             position: static;
+            display: block;
         }
 
         .mm-listview {
@@ -1260,12 +1266,6 @@
             width: 100%;
             top: 0;
             z-index: 10;
-
-            &.fixed-header {
-                .lib-css(background, @color-white);
-                position: fixed;
-                .box-shadow(1px 1px 10px 10px rgba(0,0,0,.05));
-            }
             > .header {
                 .container-lg();
                 display: flex;

@@ -145,12 +145,7 @@
 
             .fieldset-bundle-options {
                 margin-bottom: 0;
-
                 position: relative;
-                #div-addons {
-                    position: absolute;
-                }
-
                 .options-list {
                     .bundle-item {
                         display: none;
@@ -398,6 +393,10 @@
                     .slick-list {
                         max-width: 88%;
                         margin: 0 auto;
+
+                        .product-item {
+                            .flex-width(100%);
+                        }
                     }
 
                     .slick-arrow {
@@ -469,6 +468,23 @@
 
         .detailed {
             margin-bottom: 0;
+            position: relative;
+            .tocart {
+                z-index: 9;
+                position: absolute; 
+                right: 20px;
+                top: 4px;
+                .lib-css(background, @color-white);
+                .lib-css(border-color,@color-white);
+                .lib-css(color, @color-blue);
+                min-width: 150px;
+
+                &:hover {
+                    .lib-css(background, @color-blue);
+                    .lib-css(border-color,@color-blue);
+                    .lib-css(color, @color-white);
+                }
+            }
             .product.data.items {
                 .lib-css(background, @color-sky-blue);
 
@@ -591,6 +607,8 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+
+
     .catalog-product-view {
         .detailed {
             .items {
@@ -608,6 +626,35 @@
             }
         }
     }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .catalog-product-view,
+    .review-product-list {
+        .detailed {
+            .tocart {
+                position: relative;
+                right: 0;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .catalog-product-view,
+    .review-product-list {
+        .detailed {
+            .product.data.items {
+                .item.content{
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+
 }
 
 
