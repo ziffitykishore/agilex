@@ -636,20 +636,6 @@ $home-sidebar-width: 20.5%;
         }
     }
 
-    .text-tout,
-    .video-tout.pagebuilder-column {
-        flex-basis: 100%;
-        width: 100% !important; // override PageBuilder
-
-        @include min-screen($screen__l) {
-            flex: .5;
-
-            @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-                flex-basis: auto !important; // prevents scrolling and overlapping in IE
-            }
-        }
-    }
-
     .text-tout {
         flex-direction: row !important; // override PageBuilder column group styling
         flex-wrap: wrap;
