@@ -45,3 +45,10 @@
         </div>
     </div>
 <?php endif; ?>
+<script>
+    requirejs(['jquery'], function($) {
+        $("#custom-addtocart").on("click", function(){
+            $('#product-addtocart-button').click();
+        });
+    });
+</script>
