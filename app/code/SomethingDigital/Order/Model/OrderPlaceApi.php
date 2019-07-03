@@ -80,54 +80,65 @@ class OrderPlaceApi extends Adapter
 
     protected function getShipto($order)
     {
+        $shipto = [];
         $shippingAddressObj = $order->getShippingAddress();
-        $shippingAddressArray = $shippingAddressObj->getData();
 
-        $address = $this->addressRepository->getById($shippingAddressArray['customer_address_id']);
-        $sxAddressId = $address->getCustomAttribute('sx_address_id');
+        if ($shippingAddressObj) {
+            $shippingAddressArray = $shippingAddressObj->getData();
 
-        $shipto = [
-            'id' => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
-            'ToName' => $shippingAddressArray['firstname'] . ' ' . $shippingAddressArray['lastname'],
-            'Line1' => $shippingAddressArray['street'],
-            'City' => $shippingAddressArray['city'],
-            'State' => $shippingAddressArray['region'],
-            'PostalCode' => $shippingAddressArray['postcode'],
-            'CountryCode' => $shippingAddressArray['country_id'],
-            'Phone' => $shippingAddressArray['telephone']
-        ];
+            $address = $this->addressRepository->getById($shippingAddressArray['customer_address_id']);
+            $sxAddressId = $address->getCustomAttribute('sx_address_id');
+
+            $shipto = [
+                'id' => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
+                'ToName' => $shippingAddressArray['firstname'] . ' ' . $shippingAddressArray['lastname'],
+                'Line1' => $shippingAddressArray['street'],
+                'City' => $shippingAddressArray['city'],
+                'State' => $shippingAddressArray['region'],
+                'PostalCode' => $shippingAddressArray['postcode'],
+                'CountryCode' => $shippingAddressArray['country_id'],
+                'Phone' => $shippingAddressArray['telephone']
+            ];
+        }
 
         return $shipto;
     }
 
     protected function getCustomerInfo($order)
     {
-        $billingAddressObj = $order->getBillingAddress();
-        $billingAddressArray = $billingAddressObj->getData();
-
-        $address = $this->addressRepository->getById($billingAddressArray['customer_address_id']);
-        $sxAddressId = $address->getCustomAttribute('sx_address_id');
-
         $customerInfo = [
             "Id" => $this->getCustomerAccountId(),
             "Name" => $order->getCustomerFirstname() . ' ' . $order->getCustomerLastname(),
-            "Address" => [
-              "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
-              "ToName" => $billingAddressArray['firstname'] . ' ' . $billingAddressArray['lastname'],
-              "Line1" => $billingAddressArray['street'],
-              "City" => $billingAddressArray['city'],
-              "State" => $billingAddressArray['region'],
-              "PostalCode" => $billingAddressArray['postcode'],
-              "CountryCode" => $billingAddressArray['country_id'],
-              "Phone" => $billingAddressArray['telephone']
-            ],
             "Comment" => '',
+            "Address" => '',
             "CustomerProductsFlag" => '',
-            "Fax" => $billingAddressArray['fax'],
+            "Fax" => '',
             "NotesIndicator" => '',
-            "Phone" => $billingAddressArray['telephone'],
+            "Phone" => '',
             "StatusType" => ''
         ];
+
+        $billingAddressObj = $order->getBillingAddress();
+
+        if ($billingAddressObj) {
+            $billingAddressArray = $billingAddressObj->getData();
+
+            $address = $this->addressRepository->getById($billingAddressArray['customer_address_id']);
+            $sxAddressId = $address->getCustomAttribute('sx_address_id');
+
+            $customerInfo["Address"] = [
+                "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
+                "ToName" => $billingAddressArray['firstname'] . ' ' . $billingAddressArray['lastname'],
+                "Line1" => $billingAddressArray['street'],
+                "City" => $billingAddressArray['city'],
+                "State" => $billingAddressArray['region'],
+                "PostalCode" => $billingAddressArray['postcode'],
+                "CountryCode" => $billingAddressArray['country_id'],
+                "Phone" => $billingAddressArray['telephone']
+            ];
+            $customerInfo["Fax"] = $billingAddressArray['fax'];
+            $customerInfo["Phone"] = $billingAddressArray['telephone'];
+        }
 
         return $customerInfo;
     }
