@@ -57,7 +57,7 @@ class ValidateCompany
         
         $message = $this->customerValidationHelper->validate($traversAccountId, $accountZipCode);
 
-        if ($message != '') {
+        if ($message) {
             $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
             $this->customerSession->setCustomerFormData($subject->getRequest()->getParams());
             $this->messageManager->addError($message);

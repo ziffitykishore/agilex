@@ -14,7 +14,7 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
     protected $logger;
 
     public function __construct(
-    	Context $context,
+        Context $context,
         CustomerFactory $customerFactory,
         CustomerApi $customerApi,
         LoggerInterface $logger
@@ -29,9 +29,11 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
         $customerCollection = $this->customerFactory->create()->getCollection()
             ->addAttributeToFilter('travers_account_id', $traversAccountId)
             ->load();
-        foreach ($customerCollection as $customer) {
+
+        if ($customerCollection->getSize()) {
             return true;
         }
+
         return false;
     }
 
@@ -50,27 +52,21 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
     public function validate($traversAccountId, $accountZipCode) {
         $message = '';
 
-        do {
-            if (!empty($traversAccountId) && empty($accountZipCode)) {
+        if (!empty($traversAccountId) && empty($accountZipCode)) {
+            $message = __(
+                'Account Zip Code field can not be empty.'
+            );
+        } elseif (!empty($traversAccountId)) {
+            if ($this->isCustomerRegistered($traversAccountId)) {
                 $message = __(
-                    'Account Zip Code field can not be empty.'
+                    'There is already an account with this account number.'
                 );
-                break;
             }
-            if (!empty($traversAccountId)) {
-                if ($this->isCustomerRegistered($traversAccountId)) {
-                    $message = __(
-                        'There is already an account with this account number.'
-                    );
-                    break;
-                }
-            }
-            if (!$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
-                $message = __(
-                    'Zip Code doesn\'t match customer number.'
-                );
-            }          
-        } while (false);
+        } elseif (!$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
+            $message = __(
+                'Zip Code doesn\'t match customer number.'
+            );
+        }          
 
         return $message;
     }
