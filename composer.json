@@ -11,6 +11,7 @@
         "sort-packages": true
     },
     "require": {
+        "avalara/avatax-magento": "^1.5",
         "magento/product-community-edition": "2.3.1",
         "magepal/magento2-gmailsmtpapp": "^2.6",
         "magepal/magento2-googletagmanager": "^2.2"
