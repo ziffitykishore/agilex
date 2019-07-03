@@ -74,7 +74,7 @@ class OrderPlaceApi extends Adapter
         if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
             return $accountId->getValue();
         } else {
-            return false;
+            return '';
         }
     }
 
