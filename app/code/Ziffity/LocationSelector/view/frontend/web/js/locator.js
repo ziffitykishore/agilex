@@ -10,31 +10,38 @@ define([
     return Component.extend({
         
         storeLocations : ko.observable(""),
+        stores : ko.observableArray(),
         
         initialize: function () {
             this._super();
-            
-            if($.cookie('storeLocation')){
+            var stores = JSON.parse($.cookie('stores'));
+            if($.cookie('storeLocation') && $.cookie('stores')){
                 this.storeLocations($.cookie('storeLocation'));
-                console.log("From Cookie");
+                this.stores(stores);
             }else{
                 this.getLocation();
             }
         },
         getLocation: function(){
-            var obj;
-            obj = this;
+            var obj = this;
             $.ajax({
                 showLoader: true,
                 url: window.location.origin+'/locator/index/index',
                 type: 'GET',
                 dataType: 'json'
             }).done(function (data) {
-                console.log("From Controller");
                 obj.storeLocations(data[0]);
+                var result = Object.keys(data).map(function(key) { // convert object to array
+                  return [data[key]];
+                });
+                obj.stores(result);
                 $.cookie('storeLocation',data[0]);
-                console.log("Cookie Set");
+                $.cookie('stores',JSON.stringify(result));
             });            
+        },
+        selectionChanged: function() {
+            $.cookie('storeLocation',this.storeLocations());
+            window.location.reload();
         }
     });
 });

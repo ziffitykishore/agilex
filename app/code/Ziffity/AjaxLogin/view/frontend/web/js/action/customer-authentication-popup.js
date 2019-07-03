@@ -59,9 +59,9 @@ define([
             
             $('body').on('click', '.wishlist-signin', function () {
                 $(self.options.login).modal('openModal');
-                let redirect = $(this).attr('params');
+                var redirect = $(this).attr('params');
                 redirect.replace(/\//g,'');
-                let url = JSON.parse(redirect);
+                var url = JSON.parse(redirect);
                 $('#redirect-url').val(url.action + 'product/' + url.data['product'] + '/uenc/' + url.data['uenc'] + '/isAjax/true');
                 self._setStyleCss();
             });
@@ -207,7 +207,7 @@ define([
          * Close the popup
          * @param {string} popup
          */
-        _closePopup(popup) {
+        _closePopup: function(popup) {
             if ($(popup).closest('aside').hasClass('_show')) {
                 $(popup).modal('closeModal');
             }

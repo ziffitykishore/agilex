@@ -82,7 +82,7 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         if ( !isIE ) {
             new Mmenu( document.querySelector( '#menu' ) );
         } else {
-
+            $('body').addClass('ie')
         }
 
 

@@ -79,9 +79,15 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
             );
         }
 
+        usort($availableTimeSlots, array($this, "sortTimeSlot"));
         $resultJson = $this->resultJsonFactory->create();
         $resultJson->setData($availableTimeSlots);
 
         return $resultJson;
+    }
+
+    public function sortTimeSlot($data1, $data2)
+    {
+        return $data1['value'] > $data2['value'];
     }    
 }

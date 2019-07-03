@@ -47,11 +47,15 @@ define(
               var timeSlot = JSON.parse(localStorage.getItem('deliverySlots'));
               if (time !== null) {
                 if (time['amdeliverydate_time'] !== null) {
-                    var selectedTimeSlot = timeSlot.filter(obj=>obj.value === time['amdeliverydate_time']);
+                    var selectedTimeSlot = timeSlot.filter(function(obj) {
+                        return obj.value === time['amdeliverydate_time'];
+                    });
                     return selectedTimeSlot[0].label;
                 }
              }else{
-                    var selectedTimeSlot = timeSlot.filter(obj=>obj.value === localStorage.getItem('selectedDeliveryTime'));
+                    var selectedTimeSlot = timeSlot.filter(function(obj) {
+                        return obj.value === localStorage.getItem('selectedDeliveryTime');
+                    });
                     return selectedTimeSlot[0].label;
              }
             },

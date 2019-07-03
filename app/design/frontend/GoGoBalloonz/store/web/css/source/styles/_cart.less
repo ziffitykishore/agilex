@@ -143,6 +143,7 @@
                                     margin-top: 0;
                                     .br-radius(0);
                                     width: 36px;
+                                    height: 36px;
                                 }
 
                                 button {
@@ -190,6 +191,7 @@
         .cart-summary {
             padding: 0;
             background: @color-aliceblue;
+            position: static;
             .summary.title {
                 .lib-css(background, @color-sky-blue);
                 .lib-css(color, @color-white);
@@ -446,9 +448,19 @@
                     }
 
 
+                    td {
+                        float: none;
+
+
+                        .control.qty {
+                            justify-content: flex-start;
+                        }
+                    }
+
 
                      .col.qty {
                          text-align: left;
+
                      }
                 }
             }
