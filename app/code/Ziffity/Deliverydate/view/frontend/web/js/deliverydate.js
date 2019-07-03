@@ -179,8 +179,11 @@ define(
                     },1000);
                 }
 
-                //To set default selection as Delivery in cart sidebar
-                $.cookie("is_pickup", false);
+                if($.cookie("is_pickup") == "true"){
+                    setTimeout(function() {
+                        jQuery('a[href="#pickupdate"]').click();
+                    },500);
+                }
                 
                 return this.deliverydateConfig.moduleEnabled;
             },
