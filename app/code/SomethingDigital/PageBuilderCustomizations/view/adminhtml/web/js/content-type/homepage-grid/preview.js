@@ -38,8 +38,8 @@ define([
         var self = this;
         var i;
 
-        // Create 5 homepage grid items
-        for (i = 0; i < 5; i++) {
+        // Create 4 grid items
+        for (i = 0; i < 4; i++) {
             console.log(this.contentType);
             createContentType(
                 pageBuilderConfig.getContentTypeConfig("homepage-grid-item"),
