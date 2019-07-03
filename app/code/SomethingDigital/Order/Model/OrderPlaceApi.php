@@ -148,7 +148,7 @@ class OrderPlaceApi extends Adapter
                 $items []= [
                     "SKU" => $value->getSku(),
                     "Title" => $value->getName(),
-                    "Qty" => $value->getQtyOrdered(),
+                    "Qty" => intval($value->getQtyOrdered()),
                     "SoldPrice" => $price,
                     "CostAtTimeOfPurchase" => $price,
                     "DiscountAmount" => $discountAmount
