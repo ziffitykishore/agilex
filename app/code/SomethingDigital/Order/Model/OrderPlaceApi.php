@@ -42,7 +42,7 @@ class OrderPlaceApi extends Adapter
     public function sendOrder($order)
     {
         if (!$this->isTestMode()) {
-            $this->requestPath = 'api/Order?customerId=110808';
+            $this->requestPath = 'api/Order?customerId='.$this->getCustomerAccountId();
         } else {
             $this->requestPath = 'api-mocks/Order/PlaceOrder';
         }
