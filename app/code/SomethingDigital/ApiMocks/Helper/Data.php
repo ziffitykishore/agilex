@@ -7,13 +7,13 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
  
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
-	const XML_PATH_APIMOCKS_ENABLE = 'apimocks/general/enable';
+    const XML_PATH_APIMOCKS_ENABLE = 'apimocks/general/enable';
 
-	/** @var \Magento\Framework\App\Config\ScopeConfigInterface */
+    /** @var \Magento\Framework\App\Config\ScopeConfigInterface */
     protected $config;
 
     public function __construct(
-    	Context $context,
+        Context $context,
         ScopeConfigInterface $config
     ) {
         parent::__construct($context);

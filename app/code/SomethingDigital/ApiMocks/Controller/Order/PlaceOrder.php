@@ -1,9 +1,24 @@
 <?php
 
 namespace SomethingDigital\ApiMocks\Controller\Order;
+
+use Magento\Framework\Controller\Result\JsonFactory;
  
 class PlaceOrder
 {
+    /** @var JsonFactory */
+    protected $jsonFactory;
+
+    /**
+     * AbstractController constructor.
+     * @param JsonFactory $jsonFactory
+     */
+    public function __construct(
+        JsonFactory $jsonFactory
+    ) {
+        $this->jsonFactory = $jsonFactory;
+    }
+
     public function execute() 
     {
         $resultJson = $this->jsonFactory->create();
