@@ -110,9 +110,11 @@
         }
     }
 
+    .page-with-filter,
     .page-products {
         .products {
             margin-top: 0;
+            margin-bottom: 0;
             &-grid {
                 .product-item {
                     &-details {
@@ -833,6 +835,26 @@
     }
 
 
+}
+
+
+@media screen and (min-width: @screen__m + 1 ) and (max-width: @screen__sl) {
+    .page-with-filter,
+    .page-products {
+        .page-main {
+            .column.main {
+                width: 70%;
+            }
+            .sidebar-main {
+                width: 30%;
+            }
+        }
+        .products-grid {
+            .product-item {
+                width: percentage(1/2);
+            }
+        }
+    }
 }
 
 //
