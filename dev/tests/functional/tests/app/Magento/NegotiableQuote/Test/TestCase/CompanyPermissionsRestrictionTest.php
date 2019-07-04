@@ -23,6 +23,7 @@ use Magento\Company\Test\Page\RoleEdit;
 use Magento\Company\Test\Page\CompanyUsers;
 use Magento\Mtf\TestCase\Injectable;
 use Magento\NegotiableQuote\Test\Page\NegotiableCheckoutCart as CheckoutCart;
+use Magento\Company\Test\Fixture\CompanyAttributes;
 
 /**
  * Preconditions:
@@ -188,6 +189,20 @@ class CompanyPermissionsRestrictionTest extends Injectable
                 ],
             ]
         );
+        /** @var CompanyAttributes $companyUserAttributes */
+        $companyUserAttributes = $this->fixtureFactory->createByCode(
+            'company_attributes',
+            [
+                'data' => [
+                    'company_id' => $company->getId(),
+                    'customer_id' => $companyUser->getId(),
+                    'job_title' => $companyUserCustomer->getJobTitle(),
+                    'telephone' => $companyUserCustomer->getTelephone(),
+                    'status' => 1
+                ]
+            ]
+        );
+        $companyUserAttributes->persist();
         $products = $this->createProducts($productsData);
 
         //Steps:
@@ -198,8 +213,6 @@ class CompanyPermissionsRestrictionTest extends Injectable
 
         $this->loginCustomer($companyAdmin);
         $this->companyPage->open();
-        $this->companyPage->getTreeControl()->clickAddCustomer();
-        $this->companyPage->getCustomerPopup()->addCustomer($companyUserCustomer);
         $this->rolesAndPermissionsIndex->open();
         $this->rolesAndPermissionsIndex->getRolesGrid()->addNewRole();
         $this->roleEdit->getRoleEditForm()->addRole($role, true);

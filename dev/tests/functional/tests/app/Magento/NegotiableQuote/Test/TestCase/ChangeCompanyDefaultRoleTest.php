@@ -23,6 +23,7 @@ use Magento\NegotiableQuote\Test\Page\NegotiableCheckoutCart as CheckoutCart;
 use Magento\Company\Test\Page\Adminhtml\CompanyIndex;
 use Magento\Company\Test\Page\Adminhtml\CompanyEdit;
 use Magento\PageCache\Test\Page\Adminhtml\AdminCache;
+use Magento\Company\Test\Fixture\CompanyAttributes;
 
 /**
  * Preconditions:
@@ -200,6 +201,20 @@ class ChangeCompanyDefaultRoleTest extends Injectable
                 ],
             ]
         );
+        /** @var CompanyAttributes $userAttributes */
+        $userAttributes = $this->fixtureFactory->createByCode(
+            'company_attributes',
+            [
+                'data' => [
+                    'company_id' => $company->getId(),
+                    'customer_id' => $companyUser->getId(),
+                    'job_title' => $companyUserCustomer->getJobTitle(),
+                    'telephone' => $companyUserCustomer->getTelephone(),
+                    'status' => 1
+                ]
+            ]
+        );
+        $userAttributes->persist();
         $products = $this->createProducts($productsData);
         $companyCreditFixture = $this->fixtureFactory->createByCode(
             'company',
@@ -208,8 +223,6 @@ class ChangeCompanyDefaultRoleTest extends Injectable
         //Steps:
         $this->loginCustomer($companyAdmin);
         $this->companyPage->open();
-        $this->companyPage->getTreeControl()->clickAddCustomer();
-        $this->companyPage->getCustomerPopup()->addCustomer($companyUserCustomer);
         $this->rolesAndPermissionsIndex->open();
         $this->rolesAndPermissionsIndex->getRolesGrid()->addNewRole();
         $this->roleEdit->getRoleEditForm()->addRole($role, true);

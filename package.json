@@ -1,7 +1,7 @@
 {
   "private": true,
   "dependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "npm-run-all": "^4.1.5"
   },
   "engines": {
@@ -10,13 +10,10 @@
   "scripts": {
     "build": "npm-run-all build:prep build:inheritance -p \"build:travers --pipeline\" build:react",
     "build:production": "npm-run-all build:prep build:inheritance -p \"build:travers --prod --ci --pipeline\" build:react",
-
     "build:react": "if [ -e TraversTool-ReactPLP/package.json ]; then cd TraversTool-ReactPLP && yarn && npm-run-all build && rm -rf ../pub/static/frontend/Travers/default/en_US/ReactPLP && mkdir ../pub/static/frontend/Travers/default/en_US/ReactPLP && mv build/static/js ../pub/static/frontend/Travers/default/en_US/ReactPLP; else echo 'Please run git submodule update --init'; exit 1; fi",
-
     "build:prep": "npm-run-all -p build-prep:travers",
     "build-prep:travers": "gulp styles:prep --gulpfile app/design/frontend/Travers/default/gulpfile.js",
     "build:inheritance": "gulp snowdog:inheritance --gulpfile app/design/frontend/Travers/default/gulpfile.js",
-
     "build:travers": "gulp build --gulpfile app/design/frontend/Travers/default/gulpfile.js --theme=default",
     "start": "gulp watch"
   },
@@ -25,4 +22,3 @@
     "vendor/somethingdigital/magento2-theme-bryantpark"
   ]
 }
-
