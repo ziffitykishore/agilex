@@ -86,15 +86,6 @@ define([
          * @return {*}
          */
         getTotals: function () {
-            if(quoteData['is_virtual']) {
-                window.checkoutConfig.totalsData.subtotal = window.checkoutConfig.quoteData.base_subtotal;
-                window.checkoutConfig.totalsData.base_subtotal = window.checkoutConfig.quoteData.base_subtotal;
-                var grandTotal = window.checkoutConfig.totalsData.total_segments;
-                grandTotal = grandTotal.filter(function(obj){
-                    return obj.code === 'grand_total';
-                });
-                grandTotal[0].value = window.checkoutConfig.quoteData.base_subtotal;
-            }            
             return totals;
         },
 
