@@ -40,24 +40,21 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                         <?= $block->escapeHtml($block->getProductName()) ?>
                     <?php endif; ?>
                 </strong>
+                <?php if ($_options = $block->getOptionList()):?>
+                    <dl class="item-options">
+                        <?php foreach ($_options as $_option) : ?>
+                            <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                            <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                            <dd>
+                                <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                                    <?= /* @escapeNotVerified */ $_formatedOptionValue['full_view'] ?>
+                                <?php else: ?>
+                                    <?= str_replace("<br />", "", $_formatedOptionValue['value']) ?>
+                                <?php endif; ?>
+                            </dd>
 
-                <?php if($product->getTypeId() != 'bundle'): ?>
-                    <?php if ($_options = $block->getOptionList()):?>
-                        <dl class="item-options">
-                            <?php foreach ($_options as $_option) : ?>
-                                <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
-                                <dt><?= $block->escapeHtml($_option['label']) ?></dt>
-                                <dd>
-                                    <?php if (isset($_formatedOptionValue['full_view'])): ?>
-                                        <?= /* @escapeNotVerified */ $_formatedOptionValue['full_view'] ?>
-                                    <?php else: ?>
-                                        <?= $block->escapeHtml($_formatedOptionValue['value'], ['span']) ?>
-                                    <?php endif; ?>
-                                </dd>
-
-                            <?php endforeach; ?>
-                        </dl>
-                    <?php endif;?>
+                        <?php endforeach; ?>
+                    </dl>
                 <?php endif; ?>
                 <?php if ($messages = $block->getMessages()): ?>
                     <?php foreach ($messages as $message): ?>
