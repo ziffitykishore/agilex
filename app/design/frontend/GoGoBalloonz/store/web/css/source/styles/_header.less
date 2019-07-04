@@ -710,8 +710,9 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
     .nav-before-open{
+        body,
         .page-wrapper {
-            overflow: auto;
+            overflow-y: auto;
         }
     }
 
@@ -764,15 +765,114 @@
 
             .block-search {
                 .block-title {
-                    right: 80px;
+                    right: 60px;
                     top: 16px;
                     position: absolute;
                     z-index: 99;
                 }
             }
 
-            .account-links {
-                display: none;
+            .nav-right-sec {
+
+                .account-links {
+                    position: absolute;
+                    right: 100px;
+                    top: 18px;
+
+                    .icon-user {
+                        font-weight: bold;
+                    }
+
+                    .signin-link {
+                        .icon-user {
+                            font-size: 20px !important;
+                        }
+                    }
+
+                    > .links {
+                        padding: 0;
+                    }
+
+                    > .links .customer-name {
+                        font-size: 20px;
+                    }
+                    
+                    .customer-name {
+                        display: block;
+                    }
+                    .customer-welcome {
+
+                        li {
+                            margin-bottom: 0;
+                            a {
+                                padding: 8px;
+                                display: block;
+
+                            }
+                        }
+                        
+                        & + .authorization-link {
+                            display: block;
+                        }
+
+                        &.active {
+                            ul {
+                                display: block;
+                            }
+                        }
+                        ul {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none none;
+                            background: #fff;
+                            border: 1px solid #bbb;
+                            margin-top: 4px;
+                            min-width: 175px;
+                            z-index: 1000;
+                            box-sizing: border-box;
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            right: 0;
+                            box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+                        }
+                        .action.switch{
+
+                            background-image: none;
+                            background: none;
+                            -moz-box-sizing: content-box;
+                            border: 0;
+                            box-shadow: none;
+                            line-height: inherit;
+                            margin: 0;
+                            padding: 0;
+                            text-decoration: none;
+                            text-shadow: none;
+                            font-weight: 400;
+
+                            > span {
+                                .lib-visually-hidden();
+                            }
+                            &:after {
+                                -webkit-font-smoothing: antialiased;
+                                -moz-osx-font-smoothing: grayscale;
+                                font-size: 10px;
+                                line-height: 22px;
+                                color: inherit;
+                                content: '\e622';
+                                font-family: 'luma-icons';
+                                margin: 0;
+                                vertical-align: top;
+                                display: inline-block;
+                                font-weight: normal;
+                                overflow: hidden;
+                                speak: none;
+                                text-align: center;
+                            }
+
+                        }
+                    }
+                }
             }
 
 
@@ -1252,6 +1352,12 @@
     .cms-index-index {
         .page-header {
             .lib-css(background, transparent);
+        }
+    }
+
+    .mm-wrapper_blocking {
+        body {
+            overflow-y: auto;
         }
     }
 

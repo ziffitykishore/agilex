@@ -132,6 +132,10 @@
 
                 .unavailable {
                     .lib-css(color, @color-red);
+
+                    & + .availability.only {
+                        display: none;
+                    }
                 }
             }
 

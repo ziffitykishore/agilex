@@ -15,7 +15,8 @@
             .opc-sidebar {
                 .opc-block-summary {
                     .table {
-                        .totals {
+                        .totals,
+                        .totals-tax-summary{
                             display: table;
                             width: 100%;
 
@@ -276,10 +277,15 @@
                         border: none;
                     }
 
+                    .totals-tax-summary,
+                    .totals-tax-details.shown,
                     .totals {
                         .flex();
                         justify-content: space-between;
                         align-items: center;
+                        padding: 15px;
+
+
 
                         td,
                         th,
@@ -287,7 +293,7 @@
                             background: transparent;
                             border: none;
                             margin-bottom: 0;
-                            padding: 10px;
+                            padding: 10px 0;
                             font-weight: normal;
                             font-size: 1.4rem;
                         }
@@ -436,6 +442,33 @@
 }
 
 //
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .checkout-index-index {
+        .opc-wrapper,
+        .opc-sidebar {
+            .flex-width(100%);
+            width: 100%;
+        }
+
+        .opc-summary-wrapper {
+            .modal-header {
+                padding: 1.6rem;
+            }
+
+        }
+
+        .opc-block-shipping-information {
+            padding: 0 15px;
+        }
+    }
+
+}
+
+
+//
 //  Mobile
 //  _____________________________________________
 
@@ -455,6 +488,9 @@
 
         .opc-estimated-wrapper {
             margin-top: 0;
+            .lib-css(background, @color-sky-blue);
+            .lib-css(border-color, @color-sky-blue);
+            .lib-css(color, @color-white);
 
             .minicart-wrapper {
                 top: 0;
