@@ -305,6 +305,18 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .contact-index-index {
         .form-wrapper {
+            .contact-info-wrap,
+            .form-wrapper-inner {
+                padding: 0;
+            }
+            .contact-info-wrap {
+                .contact-info-inner {
+                    a,
+                    address {
+                        font-size: 13px;
+                    }
+                }
+            }
             .form.contact {
                 .fieldset {
                     .field {

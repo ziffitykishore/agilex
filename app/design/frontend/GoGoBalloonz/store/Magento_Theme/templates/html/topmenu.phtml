@@ -21,7 +21,6 @@
     <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
         <?= /* @escapeNotVerified */ $_menu ?>
         <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
-        <?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Account\AuthorizationLink")->setDisplay('level0 d-none')->setWrapper('ul')->setTemplate("Magento_Customer::account/link/authorization.phtml")->toHtml();?>
     </ul>
 </nav>
 
@@ -30,7 +29,5 @@
     <ul >
         <?= /* @escapeNotVerified */ $_menu ?>
         <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
-        <?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Account\AuthorizationLink")->setDisplay('level0 d-none')->setWrapper('ul')->setTemplate("Magento_Customer::account/link/authorization.phtml")->toHtml();?>
-    </ul>
 </nav>
 
