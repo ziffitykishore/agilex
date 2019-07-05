@@ -173,16 +173,16 @@ define(
 
                 if($('#deliverydate').length && $('#delivery-tabs').length) {
                     $("#deliverydate").prependTo($("#delivery-tabs"));
+                    if($.cookie("is_pickup") == "true"){
+                        jQuery('a[href="#pickupdate"]').click();
+                    }
                 }else{
                     setTimeout(function() {
                         $("#deliverydate").prependTo($("#delivery-tabs"));
+                        if($.cookie("is_pickup") == "true"){
+                            jQuery('a[href="#pickupdate"]').click();
+                        }
                     },1000);
-                }
-
-                if($.cookie("is_pickup") == "true"){
-                    setTimeout(function() {
-                        jQuery('a[href="#pickupdate"]').click();
-                    },500);
                 }
                 
                 return this.deliverydateConfig.moduleEnabled;
