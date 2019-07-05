@@ -717,6 +717,24 @@
 }
 
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l + 1) {
+    .wishlist-index-index {
+        .products-grid() {
+            .product-items {
+                .product-item {
+                    width: percentage(1/2);
+
+                    .product-item-actions {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
     //
 //  Mobile
 //  _____________________________________________
