@@ -543,6 +543,15 @@
 
             .sub-content {
                 .container-sm();
+
+                ol, ul {
+                    padding-left: 0;
+                }
+
+                li, p {
+                    font-size: 1.6rem;
+
+                }
             }
         }
     }
@@ -630,10 +639,47 @@
 
     .catalog-product-view {
         .detailed {
-            .items {
+            .product.data.items {
                 margin-left: 0;
                 margin-right: 0;
+
+                > .item.title{
+                    width: 100%;
+                    float: none;
+
+                    &.active a:after {
+                        content: '\e621';
+                    }
+                    a {
+                        &:after {
+                            -webkit-font-smoothing: antialiased;
+                            -moz-osx-font-smoothing: grayscale;
+                            font-size: 14px;
+                            line-height: inherit;
+                            color: inherit;
+                            content: '\e622';
+                            font-family: 'luma-icons';
+                            vertical-align: middle;
+                            display: inline-block;
+                            font-weight: normal;
+                            overflow: hidden;
+                            speak: none;
+                            text-align: center;
+                            position: absolute;
+                            right: 10px;
+                            top: 1px;
+                        }
+                    }
+
+
+                }
+                > .item.content {
+                    margin-left: 0;
+                    float: none;
+                }
             }
+
+
         }
     }
 
@@ -647,16 +693,25 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
     .catalog-product-view,
     .review-product-list {
         .detailed {
+            .product.data.items {
+                .item.content {
+                    padding: 15px;
+                }
+                .sub-content {
+                    padding: 0;
+                }
+            }
             .tocart {
                 position: relative;
                 right: 0;
                 left: 0;
                 top: 0;
                 width: 100%;
+                border: 1px solid @color-gray;
             }
         }
     }

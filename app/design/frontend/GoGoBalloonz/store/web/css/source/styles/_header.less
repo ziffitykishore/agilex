@@ -648,7 +648,7 @@
 
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+@media screen and (max-width: 1024px) {
 
     .cart-open {
         .page-wrapper {
@@ -659,7 +659,7 @@
     }
 
     .page-header {
-        height: 60px;
+        padding: 8px 0; 
 
         > .header {
             padding-left: 21px;
