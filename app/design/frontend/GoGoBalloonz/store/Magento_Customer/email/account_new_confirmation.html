@@ -9,7 +9,7 @@
 
 {{template config_path="design/email/header_template"}}
 
-<p class="greeting" style="margin-top: 0; margin-bottom: 10px;"><strong>{{trans "%name," name=$customer.name}}</strong></p>
+<p class="greeting" style="margin-top: 0; margin-bottom: 10px;"><strong>Dear {{trans "%name," name=$customer.name}}</strong></p>
 <p style="margin-top: 0; margin-bottom: 10px;">{{trans "You must confirm your %customer_email email before you can sign in (link is only valid once):" customer_email=$customer.email}}</p>
 
 <table class="button" width="100%" border="0" cellspacing="0" cellpadding="0">

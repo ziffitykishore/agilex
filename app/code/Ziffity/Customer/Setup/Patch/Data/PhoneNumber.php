@@ -40,7 +40,7 @@ class PhoneNumber implements DataPatchInterface
 				'label' => 'Phone Number',
 				'input' => 'text',
 				'validate_rules' => '{"max_text_length" : 255, "min_text_length" : 1}',
-				'required' => true,
+				'required' => false,
 				'sort_order' => 120,
 				'position' => 120,
 				'visible' => true,
