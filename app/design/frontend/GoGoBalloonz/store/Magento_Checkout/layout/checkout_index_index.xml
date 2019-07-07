@@ -117,7 +117,7 @@
                                         </item>
                                         <item name="shipping-information" xsi:type="array">
                                             <item name="config" xsi:type="array">
-                                                <item name="componentDisabled" xsi:type="boolean">false</item>
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
                                             </item>
                                         </item>
                                     </item>
