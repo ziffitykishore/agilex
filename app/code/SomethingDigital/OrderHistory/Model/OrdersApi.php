@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
+use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 
 class OrdersApi extends Adapter
 {
@@ -18,13 +19,15 @@ class OrdersApi extends Adapter
         LoggerInterface $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
-        Session $session
+        Session $session,
+        TestMode $testMode
     ) {
         parent::__construct(
             $curlFactory,
             $logger,
             $config,
-            $storeManager
+            $storeManager,
+            $testMode
         );
         $this->session = $session;
     }
