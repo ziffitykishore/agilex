@@ -95,8 +95,11 @@ filter:
         - 'app/code/Wyomind/*'
         - 'app/code/Xtento/*'
         - 'app/code/WeltPixel/*'
+        - 'app/code/Aheadworks/*'
+        - 'app/code/Eyemagine/*'
+        - 'app/code/Cenpos/*'
         - 'generated/code/*'
- 
+
 checks:
     php:
         unused_variables: true
