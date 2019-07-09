@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="ClassyLlama\AvaTax\Plugin\Sales\Model\OrderRepository" type="Ziffity\Avalara\Plugin\PickupOrder" />
+    <preference for="ClassyLlama\AvaTax\Framework\Interaction\Tax" type="Ziffity\Avalara\Plugin\Tax" />
+    <preference for="ClassyLlama\AvaTax\Observer\CalculateVirtualOrder" type="Ziffity\Avalara\Plugin\CalculateVirtualOrder" />
+    <type name="ClassyLlama\AvaTax\Framework\Interaction\Address">
+        <plugin name="avalara-pickup-tax" type="Ziffity\Avalara\Plugin\Address" sortOrder="1" />
+    </type>
 </config>
