@@ -58,6 +58,7 @@ class Index extends \Magento\Framework\App\Action\Action
                 }
             }else $Street = "";
 
+
             $ch = curl_init($this->_paymentMethod->getConfigData('url')."/?app=genericcontroller&action=siteVerify");
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_POST, 1);
