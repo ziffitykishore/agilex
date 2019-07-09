@@ -85,20 +85,8 @@ class OrderPlaceApi extends Adapter
 
         if ($shippingAddressObj) {
             $shippingAddressArray = $shippingAddressObj->getData();
-
             $address = $this->addressRepository->getById($shippingAddressArray['customer_address_id']);
-            $sxAddressId = $address->getCustomAttribute('sx_address_id');
-
-            $shipto = [
-                'id' => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
-                'ToName' => $shippingAddressArray['firstname'] . ' ' . $shippingAddressArray['lastname'],
-                'Line1' => $shippingAddressArray['street'],
-                'City' => $shippingAddressArray['city'],
-                'State' => $shippingAddressArray['region'],
-                'PostalCode' => $shippingAddressArray['postcode'],
-                'CountryCode' => $shippingAddressArray['country_id'],
-                'Phone' => $shippingAddressArray['telephone']
-            ];
+            $shipto = $this->assignAddressInformation($address);
         }
 
         return $shipto;
@@ -122,20 +110,8 @@ class OrderPlaceApi extends Adapter
 
         if ($billingAddressObj) {
             $billingAddressArray = $billingAddressObj->getData();
-
             $address = $this->addressRepository->getById($billingAddressArray['customer_address_id']);
-            $sxAddressId = $address->getCustomAttribute('sx_address_id');
-
-            $customerInfo["Address"] = [
-                "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
-                "ToName" => $billingAddressArray['firstname'] . ' ' . $billingAddressArray['lastname'],
-                "Line1" => $billingAddressArray['street'],
-                "City" => $billingAddressArray['city'],
-                "State" => $billingAddressArray['region'],
-                "PostalCode" => $billingAddressArray['postcode'],
-                "CountryCode" => $billingAddressArray['country_id'],
-                "Phone" => $billingAddressArray['telephone']
-            ];
+            $customerInfo["Address"] = $this->assignAddressInformation($address);
             $customerInfo["Fax"] = $billingAddressArray['fax'];
             $customerInfo["Phone"] = $billingAddressArray['telephone'];
         }
@@ -168,6 +144,22 @@ class OrderPlaceApi extends Adapter
         }
 
         return $items;
+    }
+
+    public function assignAddressInformation($address) 
+    {
+        $sxAddressId = $address->getCustomAttribute('sx_address_id');
+
+        return [
+            "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
+            "ToName" => $address->getFirstname() . ' ' . $address->getLirstname(),
+            "Line1" => $address->getStreet(),
+            "City" => $address->getCity(),
+            "State" => $address->getRegionId(),
+            "PostalCode" => $address->getPostcode(),
+            "CountryCode" => $address->getCountryId(),
+            "Phone" => $address->getTelephone()
+        ]
     }
 
 }
