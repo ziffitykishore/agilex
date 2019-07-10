@@ -364,7 +364,7 @@ class Tax extends AvalaraTax
             ? $this->taxClassHelper->getAvataxTaxCodeForCustomer($quote->getCustomer())
             : null;
         
-        if($_COOKIE['is_pickup'] === 'true'){
+        if(isset($_COOKIE['is_pickup']) && $_COOKIE['is_pickup'] === 'true'){
             $address = $this->address->getAddress($this->config->getOriginAddress($store));
         }
         
