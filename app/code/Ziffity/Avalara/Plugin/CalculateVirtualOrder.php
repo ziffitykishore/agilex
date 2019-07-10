@@ -119,16 +119,17 @@ class CalculateVirtualOrder implements ObserverInterface
             $address->setFirstname($this->storeInfo->getStoreInformationObject($store)->getName())
                     ->setLastname($this->storeInfo->getStoreInformationObject($store)->getName())
                     ->setCountryId($origin['Country'])
-                    ->setRegionId($origin['RegionId'])
+                    ->setRegionId((int)$origin['RegionId'])
                     ->setCity($origin['City'])
-                    ->setPostcode($origin['PostalCode'])
-                    ->setStreet([$origin['Line1'],$origin['Line2']])
-                    ->setTelephone($this->storeInfo->getStoreInformationObject($store)->getPhone());
+                    ->setPostcode((int)$origin['PostalCode'])
+                    ->setStreet($origin['Line1'],$origin['Line2'])
+                    ->setTelephone((int)$this->storeInfo->getStoreInformationObject($store)->getPhone());
 
             $quote->setBillingAddress($address);
             $quote->setDataChanges(true);
             $this->quoteRepository->save($quote);
         }
+
         if (!is_null($quote) && $quote->isVirtual()) {
             try {                
                 $customer = $this->customerRepository->getById($this->customerSession->getCustomerId());
@@ -152,4 +153,3 @@ class CalculateVirtualOrder implements ObserverInterface
         return $this;
     }
 }
-
