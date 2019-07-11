@@ -1,7 +1,15 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Quote\Model\Quote">
         <plugin name="pickupCheck" type="Ziffity\PickupCheckout\Model\Quote" sortOrder="1" />
+    </type>
+    <type name="Magento\Bundle\Model\Product\Type">
+        <plugin name="bundle-product-pickup" type="Ziffity\PickupCheckout\Plugin\Type" sortOrder="1" />
+    </type>
+    <type name="Magento\Catalog\Model\Product\Type\AbstractType">
+        <plugin name="abstract-product-pickup" type="Ziffity\PickupCheckout\Plugin\AbstractType" sortOrder="1" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="configurable-product-pickup" type="Ziffity\PickupCheckout\Plugin\Configurable" sortOrder="1" />
     </type>
 </config>
