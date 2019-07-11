@@ -6,6 +6,10 @@
 
     .cms-page-view {
 
+        .page-main > .page-title-wrapper {
+            margin: 30px 0;
+        }
+
         .page-title-wrapper {
             text-align: center;
             color: @color-blue;
@@ -345,5 +349,30 @@
 
             }
         }
+
+        .img-container {
+            margin-left: -40px;
+            margin-right: -40px;
+            .img-inner {
+                .flex-width(20%);
+                text-align: center;
+                margin-bottom: 40px;
+
+                img{
+                    width: 100%;
+                }
+
+                &:nth-child(2),
+                &:nth-child(4){
+                    margin-top: 100px;
+                }
+
+                &:nth-child(3) {
+                    margin-top: 200px;
+                }
+            }
+        }
+
+
     }
 }

@@ -9,28 +9,9 @@
         display: none !important;
     }
 
+
+
     .checkout-index-index {
-
-        &.ie {
-            .opc-sidebar {
-                .opc-block-summary {
-                    .table {
-                        .totals,
-                        .totals-tax-summary{
-                            display: table;
-                            width: 100%;
-
-                            th, td, p {
-                                display: table-cell;
-                                width: 50%;
-                                padding: 15px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         .paypal-button.paypal-button-context-iframe {
             display: block !important;
         }
@@ -280,10 +261,8 @@
                     .totals-tax-summary,
                     .totals-tax-details.shown,
                     .totals {
-                        .flex();
-                        justify-content: space-between;
-                        align-items: center;
-                        padding: 15px;
+                       display: table;
+                        width: 100%;
 
 
 
@@ -293,9 +272,11 @@
                             background: transparent;
                             border: none;
                             margin-bottom: 0;
-                            padding: 10px 0;
+                            padding: 10px;
                             font-weight: normal;
                             font-size: 1.4rem;
+                            display: table-cell;
+                            vertical-align: middle;
                         }
 
                         &.sub {
@@ -496,6 +477,46 @@
                 top: 0;
             }
         }
+
+
+        .opc-progress-bar-item{
+            &._active {
+
+                &:before {
+                    .lib-css(background, @color-sky-blue);
+                    .lib-css(border-color, @color-sky-blue);
+                }
+                > span {
+                    .lib-css(color, @color-blue);
+                    &:before {
+                        .lib-css(background, @color-sky-blue);
+                    }
+                    &:before,
+                    &:after {
+                        .lib-css(border-color, @color-sky-blue);
+                    }
+                }
+            }
+            &._complete {
+                > span {
+                    .lib-css(color, @color-icons);
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-payment-method {
+        .payment-method-title {
+            .action-help {
+                display: block;
+            }
+        }
     }
 }
 
@@ -611,32 +632,4 @@
 
         }
     }
-
-
-    .opc-progress-bar-item{
-        &._active {
-
-            &:before {
-                .lib-css(background, @color-sky-blue);
-                .lib-css(border-color, @color-sky-blue);
-            }
-            > span {
-                .lib-css(color, @color-blue);
-                &:before {
-                    .lib-css(background, @color-sky-blue);
-                }
-                &:before,
-                &:after {
-                    .lib-css(border-color, @color-sky-blue);
-                }
-            }
-        }
-        &._complete {
-            > span {
-                .lib-css(color, @color-icons);
-                font-weight: 600;
-            }
-        }
-    }
-
 }

@@ -20,7 +20,8 @@
     .customer-account-index,
     .wishlist-index-index,
     .customer-account-logoutsuccess,
-    .customer-account-createpassword {
+    .customer-account-createpassword,
+    .customer-account-confirmation {
         .page-main {
             .container-lg();
         }
@@ -100,71 +101,74 @@
                 }
             }
         }
-    }
 
-    .wishlist-index-index {
-        .form-wishlist-items {
-            .products-grid {
-                &.wishlist {
-                    .product-item-photo {
-                        margin-right: 0;
-                        float: none;
-                    }
-                    .product-image-container {
-                        max-width: 100%;
-                    }
 
-                    .product-item-name {
-                        float: none;
-                        margin-left: 0;
-                        text-align: center;
-                    }
-
-                    .price-box {
-                        margin-left: 0;
-
-                    }
-
-                    .box-tocart {
-                        margin:0;
-                        .fieldset {
-                            margin-bottom: 0;
+        &.wishlist-index-index {
+            .form-wishlist-items {
+                .products-grid {
+                    &.wishlist {
+                        .product-item-photo {
+                            margin-right: 0;
+                            float: none;
                         }
-                    }
+                        .product-image-container {
+                            max-width: 100%;
+                        }
+
+                        .product-item-name {
+                            float: none;
+                            margin-left: 0;
+                            text-align: center;
+                        }
+
+                        .price-box {
+                            margin-left: 0;
+
+                        }
+
+                        .box-tocart {
+                            margin:0;
+                            .fieldset {
+                                margin-bottom: 0;
+                            }
+                        }
 
 
 
-                    .product-item-inner {
-                        .field.qty {
+                        .product-item-inner {
+                            .field.qty {
+                                display: block;
+                                margin-bottom: 0;
+                            }
+                        }
+                        .product-item-actions {
                             display: block;
-                            margin-bottom: 0;
-                        }
-                    }
-                    .product-item-actions {
-                        display: block;
-                        .action {
-                            &.edit, &.delete {
-                                &:before {
-                                    .lib-css(color, @color-icons);
+                            .action {
+                                &.edit, &.delete {
+                                    &:before {
+                                        .lib-css(color, @color-icons);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            .actions-toolbar {
-                margin-top: 20px;
-                .primary {
-                    .action {
-                        .button();
-                        .box-shadow(none);
+                .actions-toolbar {
+                    margin-top: 20px;
+                    .primary {
+                        .action {
+                            .button();
+                            .box-shadow(none);
+                        }
                     }
                 }
             }
-        }
 
+        }
     }
+
+
 
 
 
@@ -238,14 +242,67 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
     .account {
-        .block-collapsible-nav{
-            top: 0;
+        .page-main {
+            padding-top: 41px;
+            position: relative;
         }
+        .block-collapsible-nav{
+            left: 0;
+            position: absolute;
+            top: 5px;
+            width: 100%;
+            z-index: 5;
 
-        .page-title-wrapper {
-            margin-top: 30px;
+            .title {
+                height: auto;
+                width: auto;
+                overflow: auto;
+                border-top: 1px solid @color-gray;
+                cursor: pointer;
+                margin: 0;
+                position: relative;
+                border-bottom: 1px solid @color-gray;
+                padding: 10px 40px 10px 15px;
+                display: block;
+                text-decoration: none;
+
+                &.active{
+                    &:after {
+                        content: '\e621';
+                    }
+                }
+                &:after {
+                    position: absolute;
+                    right: 20px;
+                    top: 10px;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                    font-size: 12px;
+                    line-height: inherit;
+                    color: inherit;
+                    content: '\e622';
+                    font-family: 'luma-icons';
+                    margin: 3px 0 0 0;
+                    vertical-align: middle;
+                    display: inline-block;
+                    font-weight: normal;
+                    overflow: hidden;
+                    speak: none;
+                    text-align: center;
+                }
+            }
+
+            &-content {
+                display: none;
+
+                &.active {
+                    display: block;
+                }
+            }
+
+
         }
     }
 }
