@@ -7,16 +7,24 @@ define(['mage/utils/wrapper'], function (wrapper) {
             
             var obj = originalAction(addressData);
             obj.getType = function () {
-                if (addressData['custom_attributes']['is_billing']['value'] == 0)
-                    return 'customer-shipping-address';
-                else
-                    return 'customer-address';
+                if (addressData['custom_attributes'].length != 0) {
+                    if (addressData['custom_attributes']['is_billing']['value'] == 0)
+                        return 'customer-shipping-address';
+                    else
+                        return 'customer-address';
+                } else {
+                    return false;
+                }
             }
             obj.canUseForBilling = function () {
-                if (addressData['custom_attributes']['is_billing']['value'] == 0)
+                if (addressData['custom_attributes'].length != 0) {
+                    if (addressData['custom_attributes']['is_billing']['value'] == 0)
+                        return false;
+                    else
+                        return true;
+                } else {
                     return false;
-                else
-                    return true;
+                }
             }
             return obj;
         });

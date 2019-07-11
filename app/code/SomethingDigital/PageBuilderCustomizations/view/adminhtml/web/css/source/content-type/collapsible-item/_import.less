@@ -1,0 +1,54 @@
+.pagebuilder-collapsible {
+    font-size: 14px;
+    line-height: 1.1;
+
+    .coll-header {
+        position: relative;
+        overflow: hidden;
+        padding: 10px;
+        padding-right: 20px;
+        font-size: 16px;
+        font-weight: bold;
+        border: 1px solid #cccccc;
+
+        span {
+            float: left;
+
+            &.coll-title {
+                display: block;
+                cursor: text;
+            }
+
+            &:after {
+                font-family: @icons-admin__font-name;
+            }
+
+            &.content-opened,
+            &.content-closed {
+                margin-right: 10px;
+            }
+
+            &.content-opened:after {
+                content: @icon-caret-up__content;
+            }
+
+            &.content-closed:after {
+                content: @icon-caret-down__content;
+            }
+        }
+    }
+
+    &[data-only-mobile="true"] {
+        .content-opened,
+        .content-closed {
+            @media only screen and (min-width: 768px) {
+                display: none;
+            }
+        }
+    }
+
+    [data-role="content"] {
+        position: relative;
+        border: 1px solid #cccccc;
+    }
+}

@@ -52,8 +52,8 @@ class AssertCreditLimitFilter extends AbstractConstraint
         ];
         $this->companyIndex = $companyIndex;
         $this->companyIndex->open();
-        $this->companyIndex->getGrid()->addColumnByName($this->creditLimitColumnHeaderLabel);
         $this->companyIndex->getGrid()->resetFilter();
+        $this->companyIndex->getGrid()->addColumnByName($this->creditLimitColumnHeaderLabel);
         $creditLimitsList = $this->getCreditLimitsList($creditLimits[0], $creditLimits[1]);
         $this->companyIndex->getGrid()->search($filter);
         $creditLimitsListAfterFilter = $this->getCreditLimitsList();

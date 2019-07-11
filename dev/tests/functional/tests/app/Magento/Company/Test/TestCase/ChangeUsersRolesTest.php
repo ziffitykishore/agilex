@@ -14,6 +14,7 @@ use Magento\Company\Test\Page\Company as CompanyPage;
 use Magento\Company\Test\Page\RolesAndPermissionsIndex;
 use Magento\Company\Test\Page\RoleEdit;
 use Magento\Company\Test\Page\CompanyUsers;
+use Magento\Company\Test\Fixture\CompanyAttributes;
 
 /**
  * Preconditions:
@@ -142,7 +143,6 @@ class ChangeUsersRolesTest extends AbstractCompanyTest
             ['configData' => $configData]
         )->run();
         $companyAdmin->persist();
-        $companyUser->persist();
         $company = $this->fixtureFactory->createByCode(
             'company',
             [
@@ -153,15 +153,33 @@ class ChangeUsersRolesTest extends AbstractCompanyTest
             ]
         );
         $company->persist();
+        $companyUser->persist();
+        //Creating company relation.
         $companyUserCustomer = $this->fixtureFactory->createByCode(
             'customer',
             [
                 'dataset' => 'company_customer_1',
                 'data' => [
                     'email' => $companyUser->getEmail(),
+                    'firstname' => $companyUser->getFirstname(),
+                    'lastname' => $companyUser->getLastname()
                 ],
             ]
         );
+        /** @var CompanyAttributes $companyAttributes */
+        $companyAttributes = $this->fixtureFactory->createByCode(
+            'company_attributes',
+            [
+                'data' => [
+                    'customer_id' => $companyUser->getId(),
+                    'company_id' => $company->getId(),
+                    'job_title' => $companyUserCustomer->getJobTitle(),
+                    'telephone' => $companyUserCustomer->getTelephone(),
+                    'status' => 1
+                ]
+            ]
+        );
+        $companyAttributes->persist();
         $this->loginCustomer($companyAdmin);
         $this->companyPage->open();
         $this->companyPage->getTreeControl()->clickAddCustomer();

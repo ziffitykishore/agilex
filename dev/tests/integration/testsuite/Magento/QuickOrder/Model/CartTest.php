@@ -22,6 +22,7 @@ use Magento\Store\Model\StoreManagerInterface;
  * Test for Cart class.
  *
  * @magentoDataFixture Magento/Catalog/_files/multiple_products.php
+ * @magentoDataFixture Magento/Catalog/_files/simple_products_not_visible_individually.php
  * @magentoAppIsolation enabled
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
@@ -170,6 +171,17 @@ class CartTest extends \PHPUnit\Framework\TestCase
                     'sku' => 'not_existing_product',
                     'code' => \Magento\AdvancedCheckout\Helper\Data::ADD_ITEM_STATUS_FAILED_SKU
                 ]
+            ],
+            [
+                [
+                    'sku' => 'simple_not_visible_1',
+                    'qty' => '',
+                ],
+                [
+                    'qty' => (float)1,
+                    'sku' => 'simple_not_visible_1',
+                    'code' => \Magento\AdvancedCheckout\Helper\Data::ADD_ITEM_STATUS_FAILED_SKU,
+                ],
             ],
         ];
     }

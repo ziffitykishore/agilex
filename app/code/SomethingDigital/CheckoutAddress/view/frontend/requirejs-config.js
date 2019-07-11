@@ -34,6 +34,9 @@ var config = {
             },
             'Magento_Checkout/js/model/checkout-data-resolver': {
                 'SomethingDigital_CheckoutAddress/js/model/checkout-data-resolver-mixin': true
+            },
+            'Magento_Checkout/js/view/billing-address/list': {
+                'SomethingDigital_CheckoutAddress/js/view/billing-address/list-mixin': true
             }
         }
     }

@@ -105,7 +105,9 @@ class AddUserToCompanyOnStorefrontTest extends Injectable
         )->run();
         $firstCompanyAdmin->persist();
         $secondCompanyAdmin->persist();
-        $userWithoutCompany->persist();
+        if ($hasCompany) {
+            $userWithoutCompany = $secondCompanyAdmin;
+        }
         $firstCompany = $this->fixtureFactory->createByCode(
             'company',
             [
@@ -131,7 +133,9 @@ class AddUserToCompanyOnStorefrontTest extends Injectable
             [
                 'dataset' => 'company_customer_job_phone',
                 'data' => [
-                    'email' => $hasCompany ? $secondCompanyAdmin->getEmail() : $userWithoutCompany->getEmail(),
+                    'email' => $userWithoutCompany->getEmail(),
+                    'firstname' => $userWithoutCompany->getFirstname(),
+                    'lastname' => $userWithoutCompany->getLastname()
                 ],
             ]
         );

@@ -7,6 +7,7 @@
 namespace Magento\NegotiableQuote\Test\TestCase;
 
 use Magento\Customer\Test\Fixture\Customer;
+use Magento\Company\Test\Fixture\CompanyAttributes;
 
 /**
  * Preconditions:
@@ -122,13 +123,23 @@ class ViewSubordinateContentsTest extends AbstractQuoteNegotiationTest
                 ],
             ]
         );
+        /** @var CompanyAttributes $subUserAttributes */
+        $subUserAttributes = $this->fixtureFactory->createByCode(
+            'company_attributes',
+            [
+                'data' => [
+                    'customer_id' => $this->subUser->getId(),
+                    'company_id' => $company->getId(),
+                    'job_title' => $subUser->getJobTitle(),
+                    'telephone' => $subUser->getTelephone(),
+                    'status' => 1
+                ]
+            ]
+        );
+        $subUserAttributes->persist();
+
         $this->loginCustomer($this->companyAdmin);
         $this->companyPage->open();
-        $this->companyPage->getTreeControl()->clickAddCustomer();
-        $this->companyPage->getCustomerPopup()->fill($subUser);
-        $this->companyPage->getCustomerPopup()->setJobTitle($subUser->getJobTitle());
-        $this->companyPage->getCustomerPopup()->setTelephone($subUser->getTelephone());
-        $this->companyPage->getCustomerPopup()->submit();
         $this->shipping = $shipping;
         $products = $this->createProducts($productsList);
         $this->products = $products;
