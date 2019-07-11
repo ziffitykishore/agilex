@@ -85,7 +85,7 @@
                 text-align: center;
                 bottom: 60px;
                 height: 66px;
-                color: #fff;
+                color: @color-blue;
                 -webkit-animation: bounce 2s infinite;
                 animation: bounce 2s infinite;
                 width: 46px;
@@ -102,7 +102,7 @@
                     width: 100%;
                     content: '';
                     height: 28px;
-                    border: 2px solid #fff;
+                    border: 2px solid @color-blue;;
                     position: absolute;
                     margin: auto;
                     left: 0;
@@ -364,6 +364,12 @@
 
         .best-seller-sec {
             padding-bottom: 0;
+
+            .best-seller-container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
             .best-seller-inner,
             .promo-banner-wrap{
                 .flex-width(100%);

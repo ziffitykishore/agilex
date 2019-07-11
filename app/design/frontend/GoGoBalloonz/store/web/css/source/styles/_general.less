@@ -34,6 +34,7 @@ body {
   font-family: @font-family-name__primary;
   font-size: 1.4rem;
   color: @color-textcolor;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -84,15 +85,16 @@ p {
   li {
     position: relative;
     margin: 0 6px;
-    width: 6px;
-    height: 6px;
+    width: 15px;
+    height: 15px;
     cursor: pointer;
     button {
       overflow: hidden;
-      background-color: transparent;
-      box-shadow: inset 0 0 0 2px white;
+      background-color: #fff;
+      box-shadow: none;
       -webkit-transition: background 0.3s ease;
       transition: background 0.3s ease;
+      border: 2px solid @color-blue;
       top: 0;
       left: 0;
       width: 100%;
@@ -130,6 +132,7 @@ p {
 
     &.slick-active {
       button {
+        border-color: @color-sky-blue;
         &:after {
           height: 100%;
         }

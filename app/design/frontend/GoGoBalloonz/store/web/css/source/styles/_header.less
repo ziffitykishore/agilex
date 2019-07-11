@@ -704,6 +704,7 @@
 
 }
 
+
 //
 //  Mobile
 //  _____________________________________________
@@ -1359,7 +1360,12 @@
         body {
             overflow-y: auto;
         }
+
+        .mm-wrapper__blocker {
+            display: none;
+        }
     }
+
 
     #menu {
         display: none;
@@ -1425,7 +1431,7 @@
             }
 
             li {
-                position: static;
+                position: relative;
 
                 > .submenu {
                     .lib-css(background, @color-white);
@@ -1445,7 +1451,7 @@
                     transition: transform .3s linear,opacity .3s linear,visibility .3s linear;
 
                     li {
-
+                        &.active,
                         &:hover {
                             > a {
                                 border-left: 3px solid @color-sky-blue;
