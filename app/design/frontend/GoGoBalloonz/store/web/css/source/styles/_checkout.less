@@ -259,6 +259,7 @@
                     }
 
                     .totals-tax-summary,
+                    .totals-tax,
                     .totals-tax-details.shown,
                     .totals {
                        display: table;
@@ -420,6 +421,33 @@
     }
 
 
+    .opc-progress-bar-item{
+        &._active {
+
+            &:before {
+                .lib-css(background, @color-sky-blue);
+                .lib-css(border-color, @color-sky-blue);
+            }
+            > span {
+                .lib-css(color, @color-blue);
+                &:before {
+                    .lib-css(background, @color-sky-blue);
+                }
+                &:before,
+                &:after {
+                    .lib-css(border-color, @color-sky-blue);
+                }
+            }
+        }
+        &._complete {
+            > span {
+                .lib-css(color, @color-icons);
+                font-weight: 600;
+            }
+        }
+    }
+
+
 }
 
 //
@@ -478,32 +506,6 @@
             }
         }
 
-
-        .opc-progress-bar-item{
-            &._active {
-
-                &:before {
-                    .lib-css(background, @color-sky-blue);
-                    .lib-css(border-color, @color-sky-blue);
-                }
-                > span {
-                    .lib-css(color, @color-blue);
-                    &:before {
-                        .lib-css(background, @color-sky-blue);
-                    }
-                    &:before,
-                    &:after {
-                        .lib-css(border-color, @color-sky-blue);
-                    }
-                }
-            }
-            &._complete {
-                > span {
-                    .lib-css(color, @color-icons);
-                    font-weight: 600;
-                }
-            }
-        }
     }
 
 
