@@ -5,6 +5,7 @@ namespace SomethingDigital\StockInfo\ViewModel;
 use Magento\Framework\Registry as CoreRegistry;
 
 use SomethingDigital\StockInfo\Model\Product\Attribute\Source\SxInventoryStatus;
+use \Magento\CatalogInventory\Model\Stock\Item;
 
 class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -18,12 +19,19 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
      */
     private $sxInventoryStatusSource;
 
+    /**
+     * @var StockItem
+     */
+    protected $stockItem;
+
     public function __construct(
         CoreRegistry $coreRegistry,
-        SxInventoryStatus $sxInventoryStatusSource
+        SxInventoryStatus $sxInventoryStatusSource,
+        Item $stockItem
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->sxInventoryStatusSource = $sxInventoryStatusSource;
+        $this->stockItem = $stockItem;
     }
 
     /**
@@ -45,7 +53,7 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
     {
         $product = $this->getProduct();
         $sxInventoryStatus = $product->getData('sx_inventory_status');
-        $stockItem = $product->getExtensionAttributes()->getStockItem();
+        $stockItem = $this->stockItem->load($product->getId(), 'product_id');
         $statusLabel = '';
         if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR) {
             if ($stockItem->getQty() > 5) {
