@@ -234,7 +234,7 @@ class PickupOrder
     {
         $storeId = $order->getStoreId();
         
-        if($_COOKIE['is_pickup'] === 'false'){
+        if(isset($_COOKIE['is_pickup']) && $_COOKIE['is_pickup'] === 'false'){
             $address = $order->getShippingAddress();
     
             return $this->config->isModuleEnabled($storeId)
