@@ -1,10 +1,10 @@
 <?php
 
-namespace Ziffity\PickupCheckout\Model;
+namespace Ziffity\PickupCheckout\Plugin;
 
-class Quote
+class AbstractType
 {
-
+    
     /**
      *
      * @var \Magento\Framework\App\Request\Http
@@ -17,21 +17,24 @@ class Quote
     ) {
         $this->httpRequest  = $request;
     }
-
-    public function afterIsVirtual(\Magento\Quote\Model\Quote $subject, $result)
+    
+    public function afterIsVirtual(\Magento\Catalog\Model\Product\Type\AbstractType $subject, $result)
     {
 
         $allowAction = !in_array($this->httpRequest->getActionName(), $this->isAllow());
-
+        
         if (isset($_COOKIE["is_pickup"]) && $_COOKIE["is_pickup"] == "true" && $allowAction) {
             $result = true;
             return $result;
-        }
-
+        } else {
+            $result = false;
+            return $result;            
+        }   
     }
-
+    
     protected function isAllow()
     {
         return ['couponPost'];
-    }
+    }    
+    
 }

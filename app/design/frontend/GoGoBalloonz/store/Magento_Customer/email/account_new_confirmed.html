@@ -12,8 +12,8 @@
 } @-->
 {{template config_path="design/email/header_template"}}
 
-<p class="greeting" style="margin-top: 0; margin-bottom: 10px;"><strong>{{trans "%name," name=$customer.name}}</strong></p>
-<p style="margin-top: 0; margin-bottom: 10px;">{{trans "Thank you for confirming your %store_name account." store_name=$store.getFrontendName()}}</p>
+<p class="greeting" style="margin-top: 0; margin-bottom: 10px;"><strong>Dear {{trans "%name," name=$customer.name}}</strong></p>
+<p style="margin-top: 0; margin-bottom: 10px;">{{trans "Thank you for registering with the %store_name website. We look forward to helping elevate all of your events to a higher level." store_name=$store.getFrontendName()}}</p>
 <p style="margin-top: 0; margin-bottom: 10px;">
     {{trans
         'To sign in to our site, use these credentials during checkout or on the <a href="%customer_url">My Account</a> page:'
@@ -22,12 +22,20 @@
     |raw}}
 </p>
 <ul>
-    <li><strong>{{trans "Email:"}}</strong> {{var customer.email}}</li>
+    <li><strong>{{trans "Your registered email address is: "}}</strong> {{var customer.email}}</li>
     <li><strong>{{trans "Password:"}}</strong> <em>{{trans "Password you set when creating account"}}</em></li>
 </ul>
+    <table class="inner-wrapper" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+            <td align="center">
+                <a href="{{var this.getUrl($store,'',[_query:[id:$customer.id,key:$customer.confirmation,back_url:$back_url],_nosid:1])}}" target="_blank" style="display: block; padding: 15px 30px; border-radius: 5px; background: #001842 !important; color: #ffffff !important; text-decoration: none !important;">{{trans "Shop Now"}}</a>
+            </td>
+        </tr>
+    </table>
+<br>
 <p style="margin-top: 0; margin-bottom: 10px;">
     {{trans
-        'Forgot your account password? Click <a href="%reset_url">here</a> to reset it.'
+        'For a lost password, you may reset it by clicking here: <a href="%reset_url">here</a> to reset it.'
 
         reset_url="$this.getUrl($store,'customer/account/createPassword/',[_query:[id:$customer.id,token:$customer.rp_token],_nosid:1])"
     |raw}}
@@ -39,5 +47,16 @@
     <li>{{trans "View past orders"}}</li>
     <li>{{trans "Store alternative addresses (for shipping to multiple family members and friends)"}}</li>
 </ul>
+<p style="margin-top: 0; margin-bottom: 10px;">
+    {{trans 
+        'If you ever have any questions please use our <a href="%contact_us">Contact us</a> page,'
+        contact_us="$this.getUrl($store,'contact')"
+    |raw }} {{trans 'or contact our store locations at <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}
+
+</p>
+<p style="margin-top: 0; margin-bottom: 10px;">
+    {{trans "Thanks"}}<br>
+    {{trans "%store_name" store_name=$store.getFrontendName()}}
+</p>
 
 {{template config_path="design/email/footer_template"}}
