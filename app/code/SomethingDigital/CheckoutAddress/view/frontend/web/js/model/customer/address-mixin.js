@@ -12,6 +12,8 @@ define(['mage/utils/wrapper'], function (wrapper) {
                         return 'customer-shipping-address';
                     else
                         return 'customer-address';
+                } else {
+                    return false;
                 }
             }
             obj.canUseForBilling = function () {
@@ -20,6 +22,8 @@ define(['mage/utils/wrapper'], function (wrapper) {
                         return false;
                     else
                         return true;
+                } else {
+                    return false;
                 }
             }
             return obj;
