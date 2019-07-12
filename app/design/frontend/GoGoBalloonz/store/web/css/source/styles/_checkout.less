@@ -513,6 +513,13 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .opc-wrapper {
+        .authentication-wrapper {
+             float: none;
+             margin-top: 0;
+             max-width: none;
+        }
+    }
     .checkout-payment-method {
         .payment-method-title {
             .action-help {
@@ -521,6 +528,9 @@
         }
     }
 }
+
+
+
 
 //
 //  Desktop
