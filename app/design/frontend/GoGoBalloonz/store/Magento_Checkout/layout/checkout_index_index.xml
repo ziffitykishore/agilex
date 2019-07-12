@@ -138,7 +138,7 @@
                                                             <item name="sortOrder" xsi:type="string">40</item>
                                                             <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/summary/grand-total</item>
                                                             <item name="config" xsi:type="array">
-                                                                <item name="exclTaxLabel" xsi:type="string" translate="true">Order Total Excl. Tax</item>
+                                                                <item name="exclTaxLabel" xsi:type="string" translate="true">Order Total Pre Tax</item>
                                                                 <item name="basicCurrencyMessage" xsi:type="string" translate="true">You will be charged for</item>
                                                                 <item name="title" xsi:type="string" translate="true">Order Total</item>
                                                             </item>
@@ -164,7 +164,7 @@
                                                         <item name="grand-total-include-tax" xsi:type="array">
                                                             <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/summary/grand-total</item>
                                                             <item name="config" xsi:type="array">
-                                                                <item name="inclTaxLabel" xsi:type="string" translate="true">Order Total Incl. Tax</item>
+                                                                <item name="inclTaxLabel" xsi:type="string" translate="true">Order Total</item>
                                                                 <item name="basicCurrencyMessage" xsi:type="string" translate="true">You will be charged for</item>
                                                                 <item name="title" xsi:type="string" translate="true">Order Total</item>
                                                             </item>
