@@ -28,7 +28,5 @@ class AddOrderCommentToOrder implements ObserverInterface
             OrderComment::COMMENT_FIELD_NAME,
             $quote->getData(OrderComment::COMMENT_FIELD_NAME)
         );
-        clog('test',$quote->getData(OrderComment::COMMENT_FIELD_NAME));
-        clog('test',$order->getData(OrderComment::COMMENT_FIELD_NAME));
     }
 }
