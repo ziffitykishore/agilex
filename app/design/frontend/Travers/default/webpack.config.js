@@ -10,6 +10,7 @@ process.chdir(__dirname);
 const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
+const util = require('gulp-util');
 const RequireJsLoaderPlugin = require('@sdinteractive/requirejs-loader').RequireJsLoaderPlugin;
 const RequireJsResolverPlugin = require('@sdinteractive/requirejs-resolver');
 const RequireJsExportPlugin = require('@sdinteractive/requirejs-export-plugin');
@@ -57,6 +58,8 @@ if (!fs.existsSync(settings.magentoLocation + REQUIREJS_CHOSEN_CONFIG)) {
 }
 
 module.exports = {
+  mode: util.env.prod ? 'production' : 'development',
+
   devtool: 'cheap-source-map',
 
   entry: {
@@ -74,7 +77,6 @@ module.exports = {
 
   output: {
     filename: '[name].js',
-    chunkFilename: '[chunkhash:8].[id].chunk.js',
     path: path.resolve(settings.magentoLocation, PUBLIC_STATIC_DIR, 'js/dist'),
     publicPath: PUBLIC_STATIC_DIR + '/js/dist',
   },
@@ -118,11 +120,17 @@ module.exports = {
     ],
   },
 
-  plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'common-partial',
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
       minChunks: Infinity,
-    }),
+      minSize: 1024,
+      name: (module, chunks, key) => 'common-partial',
+    },
+    namedChunks: true,
+  },
+
+  plugins: [
     new RequireJsExportPlugin(),
     new RequireJsLoaderPlugin(),
 
@@ -135,19 +143,6 @@ module.exports = {
         process.stderr.cursorTo(0);
         process.stderr.write(percent + '% ' + message);
       }
-    }),
-
-    // Since we have sourcemaps enabled, we can Uglify
-    // with abandon
-    new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false,
-        },
-        output: {
-            comments: false,
-            semicolons: true,
-        },
-        sourceMap: true,
     }),
   ],
 
