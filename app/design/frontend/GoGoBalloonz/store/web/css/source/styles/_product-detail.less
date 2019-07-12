@@ -34,6 +34,14 @@
     .catalog-product-view,
     .weltpixel_quickview-catalog_product-view{
         .product {
+
+            .gallery-placeholder {
+                .loading-mask {
+                    z-index: 9;
+                }
+            }
+
+
             &.media {
                 display: block;
 
@@ -44,6 +52,7 @@
                     }
 
                     .fotorama__stage__frame {
+                        padding: 10px;
                         .fotorama__img {
                             width: 100%;
                         }
@@ -359,9 +368,25 @@
                             top: 0;
                         }
 
+
+                        &:before {
+                            background: url('@{baseDir}images/sharethis-logo.png') no-repeat center center;
+                            width: 16px;
+                            height: 16px;
+                            content: '';
+                            display: block;
+                            background-size: 100%;
+                            opacity: 0.5;
+                        }
+                        img {
+                            display: none;
+                        }
+
+
                         > svg {
                             top: 0;
                             fill: @color-icons;
+                            display: none;
                         }
                     }
                 }
