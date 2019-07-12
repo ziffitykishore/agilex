@@ -12,6 +12,33 @@
 
 
     .checkout-index-index {
+        
+        .opc-progress-bar-item{
+            &._active {
+
+                &:before {
+                    .lib-css(background, @color-sky-blue);
+                    .lib-css(border-color, @color-sky-blue);
+                }
+                > span {
+                    .lib-css(color, @color-blue);
+                    &:before {
+                        .lib-css(background, @color-sky-blue);
+                    }
+                    &:before,
+                    &:after {
+                        .lib-css(border-color, @color-sky-blue);
+                    }
+                }
+            }
+            &._complete {
+                > span {
+                    .lib-css(color, @color-icons);
+                    font-weight: 600;
+                }
+            }
+        }
+        
         .paypal-button.paypal-button-context-iframe {
             display: block !important;
         }
@@ -307,6 +334,13 @@
                 }
             }
         }
+        
+        
+        .payment-option {
+            .payment-option-title {
+                .lib-css(color, @color-blue);
+            }
+        }
 
 
         .checkout-payment-method {
@@ -419,35 +453,6 @@
             z-index: 899 !important;
         }
     }
-
-
-    .opc-progress-bar-item{
-        &._active {
-
-            &:before {
-                .lib-css(background, @color-sky-blue);
-                .lib-css(border-color, @color-sky-blue);
-            }
-            > span {
-                .lib-css(color, @color-blue);
-                &:before {
-                    .lib-css(background, @color-sky-blue);
-                }
-                &:before,
-                &:after {
-                    .lib-css(border-color, @color-sky-blue);
-                }
-            }
-        }
-        &._complete {
-            > span {
-                .lib-css(color, @color-icons);
-                font-weight: 600;
-            }
-        }
-    }
-
-
 }
 
 //

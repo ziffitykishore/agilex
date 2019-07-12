@@ -65,6 +65,12 @@
                         {{/if}}
                     </td>
                     {{/depend}}
+                    {{depend order.getUmOrderComment()}}
+                    <td class="method-info" style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding: 10px 10px 10px 0; width: 50%;">
+                        <h3 style="font-weight: 600; line-height: 1.1; font-size: 18px; margin-bottom: 10px; margin-top: 0;">{{trans "Special Instructions"}}</h3>
+                        <p style="margin-top: 0; margin-bottom: 10px;">{{var order.getUmOrderComment()}}</p>
+                    </td>
+                    {{/depend}}
                 </tr>
             </table>
             {{layout handle="sales_email_order_items_admin" order=$order area="frontend"}}
