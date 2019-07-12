@@ -2,7 +2,6 @@
 
 const argv = require('minimist')(process.argv.slice(2));
 const gulp = require('gulp');
-const gulpSequence = require('gulp-sequence');
 const concat = require('gulp-concat');
 const notify = require('gulp-notify');
 const cheerio = require('gulp-cheerio');
@@ -55,7 +54,7 @@ let sassMapFiles = [
 
 function handleErrors(args) {
   if (util.env.ci) {
-    process.stderr.write(args.error);
+    process.stderr.write(args ? (args.error || args) : '(Unknown error)');
     process.exit(1);
   }
 
@@ -79,12 +78,7 @@ function handleErrors(args) {
 process.chdir(paths.snowdog);
 const snowdog = require(`${paths.snowdog}/node_modules/gulp`);
 require(`${paths.snowdog}/gulpfile.js`);
-
-/**
- * Adds unprefaced snowdog tasks to current gulp tasks
- * to maintain compatability with older setups.
- */
-gulp.tasks = snowdog.tasks;
+process.chdir(paths.theme);
 
 /**
  * Steal the Snowdog tasks so we can run them via argument.
@@ -94,7 +88,8 @@ gulp.tasks = snowdog.tasks;
  * each task with "snowdog:" - effectively namespacing them.
  */
 for (let k of Object.keys(snowdog.tasks)) {
-  gulp.tasks['snowdog:' + k] = snowdog.tasks[k];
+  gulp.task(k, snowdog.tasks[k].fn);
+  gulp.task('snowdog:' + k, snowdog.tasks[k].fn);
   snowdog.tasks[k].name = `snowdog:${snowdog.tasks[k].name}`;
 }
 
@@ -157,7 +152,7 @@ gulp.task('webpack', () => {
  * Run webpack and concatenate resulting script
  * partials
  */
-gulp.task('scripts:partials', ['webpack'], () => {
+gulp.task('scripts:partials', gulp.series('webpack', function combineCommonJs() {
   let pipeline = gulp.src([
     `${paths.publicStatic}/js/dist/common-partial.js`,
     `${paths.publicStatic}/js/dist/global.js`,
@@ -173,14 +168,14 @@ gulp.task('scripts:partials', ['webpack'], () => {
   });
 
   return pipeline;
-});
+}));
 
-gulp.task('scripts', ['scripts:partials'], () => {
+gulp.task('scripts', gulp.series('scripts:partials', function generateMinJs() {
   // Copy to .min suffixes as well.
-  let pipeline = gulp.src(`${paths.publicStatic}/js/dist/*.js`)
+  let pipeline = gulp.src(`${paths.publicStatic}/js/dist/\*.js`)
     .pipe(rename(path => {
-      if (path.basename.substr(-4) !== ".min") {
-        path.basename += ".min";
+      if (path.basename.substr(-4) !== '.min') {
+        path.basename += '.min';
       }
   }));
 
@@ -191,7 +186,7 @@ gulp.task('scripts', ['scripts:partials'], () => {
   });
 
   return pipeline;
-});
+}));
 
 function generateSassMap(mapping) {
   return Promise.resolve(null).then(() => {
@@ -258,11 +253,9 @@ gulp.task('styles:prep', (done) => {
   });
 });
 
-gulp.task("styles", done => {
-  gulpSequence("styles:prep", "snowdog:styles")(done);
-});
+gulp.task('styles', gulp.series('styles:prep', 'snowdog:styles'));
 
-gulp.task('watch', ['snowdog:browser-sync'], () => {
+gulp.task('watch', gulp.series('snowdog:browser-sync', function watch() {
   if (enabled.styleguide) {
     gulp.watch(`${paths.theme}/**/*.scss`, ['styles', 'styleguide']);
   } else {
@@ -270,40 +263,18 @@ gulp.task('watch', ['snowdog:browser-sync'], () => {
   }
   gulp.watch(`${paths.theme}/**/*.svg`, ['svg']);
   gulp.watch(`${paths.theme}/js/**/*.js`, ['scripts']);
-});
+}));
 
 /**
  * Execute all the build tasks
  */
-gulp.task('build', ['styles', 'styleguide', 'svg', 'scripts']);
+const build = gulp.parallel('styles', 'styleguide', 'svg', 'scripts');
+gulp.task('build', build);
+gulp.task('default', build);
 
-gulp.task('default', ['build']);
-
-
- /**
-  * Production deployment task
-  *
-  * USAGE :: gulp production --prod --ci
-  */
-
-// Ensure tasks are run sequentially since gulp v3 does not
-let tasksLength = 0;
-let tasksCounter = 0;
-
-function runSequential(tasks) {
-  if (!tasks || tasks.length <= 0) return;
-
-  tasksCounter++;
-
-  if (tasksLength == 0) {
-    tasksLength = tasks.length;
-  }
-
-  const task = tasks[0];
-  gulp.start(task, () => {
-    console.log(`✅  ${task} finished.  (Progress: ${tasksCounter}/${tasksLength})`);
-    runSequential(tasks.slice(1)); // drop current task (has an index of 0)
-  });
-}
-
-gulp.task('production', () => runSequential(['svg', 'styleguide', 'styles', 'scripts', 'deploy']));
+/**
+ * Production deployment task
+ *
+ * USAGE :: gulp production --prod --ci
+ */
+gulp.task('production', build);
