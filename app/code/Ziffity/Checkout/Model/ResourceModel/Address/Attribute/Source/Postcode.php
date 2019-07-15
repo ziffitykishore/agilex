@@ -5,14 +5,12 @@ namespace Ziffity\Checkout\Model\ResourceModel\Address\Attribute\Source;
 use Magento\Framework\App\ObjectManager;
 use Magento\Store\Model\StoreManagerInterface;
 
-const DEFAULT_LOCATION = "Texas";
-
 class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
 {
 
     protected $_countriesFactory;
 
-    private $storeManager;
+    protected $storeManager;
 
     protected $coreSession;
     
@@ -42,14 +40,14 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
     public function getAllOptions($withEmpty = true, $defaultValues = false)
     {
 
-        $selectedLocation = $_COOKIE["storeLocation"];
-
-        $regionData = $this->regionModel->addFieldToFilter('default_name',$selectedLocation)->load()->getFirstItem();
-        $regionId = $regionData->getRegionId();
-
+        $selectedLocation = json_decode($_COOKIE["storeLocation"],true);
+        $source = clone $this->sourceCollection;
         
-        $sourceListArr = $this->sourceCollection->addFieldToFilter('enabled', 1)->addFieldToFilter('region_id',$regionId)->load();
-        
+        $state = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$selectedLocation["code"])->load()->getFirstItem();
+        $regionId = $state->getRegionId();
+
+        $sourceListArr = $source->addFieldToFilter('enabled', 1)->addFieldToFilter('region_id',$regionId)->load();
+
         foreach ($sourceListArr as $sourceItemName) {
             if($sourceItemName->getRegionId()){
                 array_push(
@@ -58,7 +56,8 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
                 );
             }
         }
-        $this->_options = $this->sourceList;
+
+        $this->_options = array_values(array_unique($this->sourceList, SORT_REGULAR));
         
         return $this->_options;
     }

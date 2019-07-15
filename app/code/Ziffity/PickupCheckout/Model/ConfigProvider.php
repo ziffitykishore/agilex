@@ -15,17 +15,37 @@ class ConfigProvider implements ConfigProviderInterface
 {
     /** @var LayoutInterface  */
     protected $_layout;
+    
+    protected $sourceCollection;
+    
+    protected $regionModel;
 
-    public function __construct(LayoutInterface $layout)
-    {
+    public function __construct(
+        LayoutInterface $layout,
+        \Magento\Inventory\Model\ResourceModel\Source\Collection $source,
+        \Magento\Directory\Model\Region $region
+    ) {
         $this->_layout = $layout;
+        $this->sourceCollection = $source;
+        $this->regionModel = $region;
     }
 
     public function getConfig()
     {
-        $myBlockId = "store_address"; // CMS Block Identifier
+        $currentStore = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE['storeLocation'],true) : null;
+        if(isset($currentStore)) {
+            $selectedLocation = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$currentStore["code"])->load()->getFirstItem();
+            $region = $this->regionModel->load($selectedLocation->getRegionId());
+        }
+
         return [
-            'my_block_content' => $this->_layout->createBlock('Magento\Cms\Block\Block')->setBlockId($myBlockId)->toHtml()
+          'pickup_store' => [
+              'street' => $selectedLocation->getStreet(),
+              'city' => $selectedLocation->getCity(),
+              'region_name' => $region->getName(),
+              'country_id' => $selectedLocation->getCountryId(),
+              'postcode' => $selectedLocation->getPostcode()
+          ]
         ];
     }
 }

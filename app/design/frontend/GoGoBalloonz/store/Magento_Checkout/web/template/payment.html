@@ -16,7 +16,12 @@
             <!--/ko-->
         <!--/ko-->
         <!-- ko if: (quoteIsVirtual) -->
-        <div data-bind="html: window.checkoutConfig.my_block_content"></div>
+            <h2>Pickup Address</h2>
+            <p data-bind="html: window.checkoutConfig.pickup_store['street']"></p>
+            <p data-bind="text: window.checkoutConfig.pickup_store['city']"></p>
+            <p data-bind="text: window.checkoutConfig.pickup_store['region_name']"></p>
+            <p data-bind="text: window.checkoutConfig.pickup_store['country_id']"></p>
+            <p data-bind="text: window.checkoutConfig.pickup_store['postcode']"></p>
         <!--/ko-->
         <form id="co-payment-form" class="form payments" novalidate="novalidate">
             <input data-bind='attr: {value: getFormKey()}' type="hidden" name="form_key"/>
