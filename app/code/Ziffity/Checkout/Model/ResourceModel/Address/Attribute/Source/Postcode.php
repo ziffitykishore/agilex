@@ -18,6 +18,9 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
     
     protected $regionModel;
     
+    protected $zipcodeCollection;
+
+
     protected $sourceList = [];
     
 
@@ -27,12 +30,14 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
         \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $countriesFactory,
         \Magento\Framework\Session\SessionManagerInterface $coreSession,
         \Magento\Inventory\Model\ResourceModel\Source\Collection $sourceCollection,
-        \Magento\Directory\Model\ResourceModel\Region\Collection $region
+        \Magento\Directory\Model\ResourceModel\Region\Collection $region,
+        \Ziffity\Zipcode\Model\ResourceModel\Data\Collection $zipcodeCollection
     ) {
         $this->_countriesFactory = $countriesFactory;
         $this->coreSession = $coreSession;
         $this->sourceCollection  = $sourceCollection;
         $this->regionModel = $region;
+        $this->zipcodeCollection = $zipcodeCollection;
         parent::__construct($attrOptionCollectionFactory, $attrOptionFactory);
     }
 
@@ -40,21 +45,27 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
     public function getAllOptions($withEmpty = true, $defaultValues = false)
     {
 
-        $selectedLocation = json_decode($_COOKIE["storeLocation"],true);
-        $source = clone $this->sourceCollection;
+        $selectedLocation = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE["storeLocation"],true) : null;
+
+        if(isset($selectedLocation['code'])) {
+            $allowedZipcode = $this->zipcodeCollection->addFieldToFilter('is_active', 1)->addFieldToFilter('source_code', $selectedLocation["code"])->load()->getFirstItem();
+        }
         
-        $state = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$selectedLocation["code"])->load()->getFirstItem();
-        $regionId = $state->getRegionId();
+        if($allowedZipcode->getAllowedZipcodeList()) {
+           $zipcodeList = explode(",", $allowedZipcode->getAllowedZipcodeList());
+        }
 
-        $sourceListArr = $source->addFieldToFilter('enabled', 1)->addFieldToFilter('region_id',$regionId)->load();
+        if(!isset($zipcodeList)){
+            $zipcodeList = [];
+            $location = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$selectedLocation["code"])->load()->getFirstItem();
+            array_push($zipcodeList, $location->getPostcode());
+        }
 
-        foreach ($sourceListArr as $sourceItemName) {
-            if($sourceItemName->getRegionId()){
-                array_push(
-                    $this->sourceList,
-                    ["value" => $sourceItemName->getPostcode(), "label" => $sourceItemName->getPostcode()]
-                );
-            }
+        foreach ($zipcodeList as $item) {
+            array_push(
+                $this->sourceList,
+                ["value" => $item, "label" => $item]
+            );
         }
 
         $this->_options = array_values(array_unique($this->sourceList, SORT_REGULAR));

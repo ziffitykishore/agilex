@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ziffity\Zipcode\Api\DataRepositoryInterface" type="Ziffity\Zipcode\Model\DataRepository" />
+    <preference for="Ziffity\Zipcode\Api\Data\DataInterface" type="Ziffity\Zipcode\Model\Data" />
+    <virtualType name="ZipcodeDataGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ZipcodeDataGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Ziffity\Zipcode\Model\Resource\Data\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">ZipcodeDataGridFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Ziffity\Zipcode\Model\ResourceModel\Data\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ziffity_zipcode_data</argument>
+            <argument name="resourceModel" xsi:type="string">Ziffity\Zipcode\Model\ResourceModel\Data</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="zipcode_data_grid_data_source" xsi:type="string">Ziffity\Zipcode\Model\ResourceModel\Data\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Ziffity\Zipcode\Controller\Adminhtml\Data\MassDelete">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 record(s) have been deleted.</argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while deleting record(s).</argument>
+        </arguments>
+    </type>
+    <type name="Ziffity\Zipcode\Controller\Adminhtml\Data\MassDisable">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 data have been disabled.</argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while disabling selected data.</argument>
+        </arguments>
+    </type>
+    <type name="Ziffity\Zipcode\Controller\Adminhtml\Data\MassEnable">
+        <arguments>
+            <argument name="successMessage" xsi:type="string" translate="true">A total of %1 data have been enabled.</argument>
+            <argument name="errorMessage" xsi:type="string" translate="true">An error occurred while enabling data.</argument>
+        </arguments>
+    </type>
+</config>
