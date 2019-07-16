@@ -2,9 +2,9 @@
 
 namespace Ziffity\Inventory\Block;
 
-use Magento\Catalog\Block\Product\View;
+use Magento\Framework\View\Element\Template;
 
-class SourceStock extends View 
+class SourceStock  extends Template
 {
     /**
      *
