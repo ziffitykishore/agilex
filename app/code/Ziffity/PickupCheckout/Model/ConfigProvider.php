@@ -56,7 +56,7 @@ class ConfigProvider implements ConfigProviderInterface
             ];
         } else {
             return [
-                'allowed_zipcode' => $zipcodeList
+                'allowed_zipcode' => isset($zipcodeList) ? $zipcodeList : []
             ];
         }
     }
