@@ -1,4 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Checkout\Block\Checkout\LayoutProcessor" type="Ziffity\Checkout\Block\Checkout\LayoutProcessor"/>
+    <preference for="Ziffity\Checkout\Api\Data\OrderInfoInterface"
+             	type="Ziffity\Checkout\Model\Data\OrderInfo" />
+    <preference for="Ziffity\Checkout\Api\OrderInfoManagementInterface"
+            	type="Ziffity\Checkout\Model\OrderInfoManagement" />
+    <preference for="Ziffity\Checkout\Api\GuestOrderInfoManagementInterface"
+             	type="Ziffity\Checkout\Model\GuestOrderInfoManagement" />    
 </config>

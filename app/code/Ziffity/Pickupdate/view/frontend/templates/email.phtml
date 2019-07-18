@@ -1,8 +1,21 @@
-<?php /** @var $block \Ziffity\Pickupdate\Block\Sales\Order\Email\Pickupdate */ ?>
-<?php /** @var $list array */ ?>
+<?php 
+/** @var $block \Ziffity\Pickupdate\Block\Sales\Order\Info\Pickupdate */ 
+/** @var $list array */ 
+$address = $block->getOrder()->getStoreAddress();
+?>
 <?php if (!empty($list)) : ?>
     <table class="order-details">
         <thead>
+        <?php if($address) : ?>
+        <tr>
+            <td class="address-details">
+                <h3><?php /* @noEscape */ echo __('Pickup Address') . ':'; ?></h3>
+            </td>
+        </tr>
+        <tr>
+            <td><?= $block->getData('address') ?></td>
+        </tr>
+        <?php endif; ?>
         <tr>
             <td class="address-details">
                 <h3><?php /* @noEscape */ echo __('Pickup Date Info') . ':'; ?></h3>
@@ -10,12 +23,12 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($list as $fieldCode => $field) : ?>
+            <?php foreach ($list as $fieldCode => $field) : ?>
             <tr>
                 <td><label><?php /* @noEscape */ echo $field['label']; ?></label></td>
                 <td><?php echo $block->escapeHtml($field['value']); ?></td>
             </tr>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
     <br /><br />

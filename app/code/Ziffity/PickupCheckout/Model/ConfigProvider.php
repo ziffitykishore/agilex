@@ -51,7 +51,8 @@ class ConfigProvider implements ConfigProviderInterface
                   'city' => $selectedLocation->getCity(),
                   'region_name' => $region->getName(),
                   'country_id' => $selectedLocation->getCountryId(),
-                  'postcode' => $selectedLocation->getPostcode()
+                  'postcode' => $selectedLocation->getPostcode(),
+                  'phone' => $selectedLocation->getPhone()
               ]
             ];
         } else {

@@ -21,6 +21,7 @@ class Email
      */
     private $logger;
 
+
     /**
      * Email constructor.
      *
@@ -60,7 +61,6 @@ class Email
             } elseif ($subject instanceof \Magento\Sales\Block\Order\Email\Items) {
                 $pickupDateFields = $this->pickupHelper->whatShow('order_email', 'include');
             }
-
             if ($pickupDateFields) {
                 try {
                     $addToResult = $subject->getLayout()
@@ -70,7 +70,8 @@ class Email
                             [
                                 'data' => [
                                     'order_id' => $subject->getOrder()->getId(),
-                                    'fields'   => $pickupDateFields
+                                    'fields'   => $pickupDateFields,
+                                    'address'  => $subject->getOrder()->getStoreAddress()
                                 ]
                             ]
                         )
