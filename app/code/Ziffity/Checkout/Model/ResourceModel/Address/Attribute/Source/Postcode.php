@@ -51,7 +51,7 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
             $allowedZipcode = $this->zipcodeCollection->addFieldToFilter('is_active', 1)->addFieldToFilter('source_code', $selectedLocation["code"])->load()->getFirstItem();
         }
         
-        if($allowedZipcode->getAllowedZipcodeList()) {
+        if(isset($allowedZipcode) && $allowedZipcode->getAllowedZipcodeList()) {
            $zipcodeList = explode(",", $allowedZipcode->getAllowedZipcodeList());
         }
 

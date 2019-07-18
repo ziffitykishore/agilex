@@ -40,7 +40,7 @@ class ConfigProvider implements ConfigProviderInterface
             $allowedZipcode = $this->zipcodeCollection->addFieldToFilter('is_active', 1)->addFieldToFilter('source_code', $currentStore["code"])->load()->getFirstItem();
         }
 
-        if($allowedZipcode->getAllowedZipcodeList()) {
+        if(isset($allowedZipcode) && $allowedZipcode->getAllowedZipcodeList()) {
            $zipcodeList = explode(",", $allowedZipcode->getAllowedZipcodeList());
         }
 
