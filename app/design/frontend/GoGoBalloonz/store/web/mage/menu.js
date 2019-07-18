@@ -102,7 +102,7 @@ define([
                 parentLi.removeClass('active-slide');
             }
 
-            if (html.hasClass('nav-open')) {
+            /*if (html.hasClass('nav-open')) {
                 html.removeClass('nav-open');
                 setTimeout(function () {
                     html.removeClass('nav-before-open');
@@ -112,7 +112,7 @@ define([
                 setTimeout(function () {
                     html.addClass('nav-open');
                 }, this.options.showDelay);
-            }
+            }*/
         },
 
         /**
@@ -589,12 +589,12 @@ define([
 
             categoryParent.remove();
 
-            if (html.hasClass('nav-open')) {
+            /*if (html.hasClass('nav-open')) {
                 html.removeClass('nav-open');
                 setTimeout(function () {
                     html.removeClass('nav-before-open');
                 }, this.options.hideDelay);
-            }
+            }*/
         },
 
         /**
