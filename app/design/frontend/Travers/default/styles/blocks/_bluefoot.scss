@@ -268,7 +268,7 @@ $home-sidebar-width: 20.5%;
 .slick-arrow {
     background-color: transparent !important; // override slick
     color: $c-royal;
-    z-index: 1;
+    z-index: 1 !important; // override slick
 
     @include max-screen($screen__m) {
         display: none !important; // override slick
