@@ -5,14 +5,12 @@ namespace Ziffity\Checkout\Model\ResourceModel\Address\Attribute\Source;
 use Magento\Framework\App\ObjectManager;
 use Magento\Store\Model\StoreManagerInterface;
 
-const DEFAULT_LOCATION = "Texas";
-
 class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
 {
 
     protected $_countriesFactory;
 
-    private $storeManager;
+    protected $storeManager;
 
     protected $coreSession;
     
@@ -20,6 +18,9 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
     
     protected $regionModel;
     
+    protected $zipcodeCollection;
+
+
     protected $sourceList = [];
     
 
@@ -29,12 +30,14 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
         \Magento\Directory\Model\ResourceModel\Country\CollectionFactory $countriesFactory,
         \Magento\Framework\Session\SessionManagerInterface $coreSession,
         \Magento\Inventory\Model\ResourceModel\Source\Collection $sourceCollection,
-        \Magento\Directory\Model\ResourceModel\Region\Collection $region
+        \Magento\Directory\Model\ResourceModel\Region\Collection $region,
+        \Ziffity\Zipcode\Model\ResourceModel\Data\Collection $zipcodeCollection
     ) {
         $this->_countriesFactory = $countriesFactory;
         $this->coreSession = $coreSession;
         $this->sourceCollection  = $sourceCollection;
         $this->regionModel = $region;
+        $this->zipcodeCollection = $zipcodeCollection;
         parent::__construct($attrOptionCollectionFactory, $attrOptionFactory);
     }
 
@@ -42,23 +45,30 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
     public function getAllOptions($withEmpty = true, $defaultValues = false)
     {
 
-        $selectedLocation = $_COOKIE["storeLocation"];
+        $selectedLocation = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE["storeLocation"],true) : null;
 
-        $regionData = $this->regionModel->addFieldToFilter('default_name',$selectedLocation)->load()->getFirstItem();
-        $regionId = $regionData->getRegionId();
-
-        
-        $sourceListArr = $this->sourceCollection->addFieldToFilter('enabled', 1)->addFieldToFilter('region_id',$regionId)->load();
-        
-        foreach ($sourceListArr as $sourceItemName) {
-            if($sourceItemName->getRegionId()){
-                array_push(
-                    $this->sourceList,
-                    ["value" => $sourceItemName->getPostcode(), "label" => $sourceItemName->getPostcode()]
-                );
-            }
+        if(isset($selectedLocation['code'])) {
+            $allowedZipcode = $this->zipcodeCollection->addFieldToFilter('is_active', 1)->addFieldToFilter('source_code', $selectedLocation["code"])->load()->getFirstItem();
         }
-        $this->_options = $this->sourceList;
+        
+        if(isset($allowedZipcode) && $allowedZipcode->getAllowedZipcodeList()) {
+           $zipcodeList = explode(",", $allowedZipcode->getAllowedZipcodeList());
+        }
+
+        if(!isset($zipcodeList)){
+            $zipcodeList = [];
+            $location = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$selectedLocation["code"])->load()->getFirstItem();
+            array_push($zipcodeList, $location->getPostcode());
+        }
+
+        foreach ($zipcodeList as $item) {
+            array_push(
+                $this->sourceList,
+                ["value" => $item, "label" => $item]
+            );
+        }
+
+        $this->_options = array_values(array_unique($this->sourceList, SORT_REGULAR));
         
         return $this->_options;
     }

@@ -35,13 +35,20 @@ class Index extends \Magento\Framework\App\Action\Action
             if($sourceItemName->getRegionId()){
                 array_push(
                     $this->sourceList,
-                    $this->regionModel->load($sourceItemName->getRegionId())->getName()
+                    [
+                        "code" => $sourceItemName->getSourceCode(),
+                        "name" => $sourceItemName->getName()
+                    ]
                 );
             }
         }
-        
+        $pickupStores = array_filter($this->sourceList, function($item){
+            return (strpos($item["code"], '_ps') !== false );
+        });
+        $pickupStores = array_values($pickupStores);
+
         $resultJson = $this->resultJsonFactory->create();
-        $resultJson->setData(array_unique($this->sourceList));
+        $resultJson->setData($pickupStores);
 
         return $resultJson;
     }    

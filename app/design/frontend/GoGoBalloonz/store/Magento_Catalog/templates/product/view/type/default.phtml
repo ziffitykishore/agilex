@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php 
+$_product = $block->getProduct();
+$productInventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceStock')->getSourceInventory($_product->getSku());
+$currentLocation = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE['storeLocation'],true) : null ;  
+?>
+
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+        <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+            <span><?= /* @escapeNotVerified */ __('In stock') ?></span>
+            <?php if(isset($currentLocation) && isset($productInventory[$currentLocation['code']])): ?>
+            <span> - <?= $productInventory[$currentLocation['code']] ?></span>
+            <?php endif; ?>            
+        </div>
+    <?php else: ?>
+        <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
+            <span><?= /* @escapeNotVerified */ __('Out of stock') ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

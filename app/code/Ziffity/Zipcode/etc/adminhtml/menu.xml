@@ -1,0 +1,13 @@
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add 
+            id="Ziffity_Zipcode::data" 
+            title="Zipcode Mapping" 
+            module="Ziffity_Zipcode" 
+            sortOrder="75" 
+            resource="Ziffity_Zipcode::data"
+            parent="Magento_InventoryAdminUi::inventory"
+            action="zipcode/data/index"/>
+    </menu>
+</config>
