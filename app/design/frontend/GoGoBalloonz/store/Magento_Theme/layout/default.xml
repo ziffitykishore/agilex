@@ -8,6 +8,9 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
     <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Framework\View\Element\Template" name="loader.content" template="Magento_Theme::html/loader.phtml" before="page.wrapper"/>
+        </referenceContainer>
         <referenceBlock name="header.panel" remove="true" />
         <referenceBlock name="wish-list-link" remove="true"/>
         <referenceBlock name="catalog.compare.link" remove="true"/>
