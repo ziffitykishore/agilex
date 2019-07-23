@@ -5,9 +5,9 @@
        ko-style="data.link.style"
        css="data.link.css">
         <div class="pagebuilder-slide-wrapper"
-             css="data.wrapper.css"
              attr="data.wrapper.attributes"
-             ko-style="data.wrapper.style">
+             ko-style="data.wrapper.style"
+             css="data.wrapper.css">
             <div class="pagebuilder-overlay"
                  attr="data.overlay.attributes"
                  ko-style="data.overlay.style"
@@ -18,6 +18,7 @@
                          css="data.content.css"
                          html="data.content.html">
                     </div>
+                    <render args="masterTemplate"/>
                     <button if="data.main.attributes()['data-show-button'] !== 'never'"
                             type="button"
                             class="pagebuilder-slide-button"
@@ -31,12 +32,12 @@
         </div>
     </a>
     <div ifnot="data.link.attributes().href" attr="data.empty_link.attributes"
-       ko-style="data.empty_link.style"
-       css="data.empty_link.css">
+         ko-style="data.empty_link.style"
+         css="data.empty_link.css">
         <div class="pagebuilder-slide-wrapper"
-             css="data.wrapper.css"
              attr="data.wrapper.attributes"
-             ko-style="data.wrapper.style">
+             ko-style="data.wrapper.style"
+             css="data.wrapper.css">
             <div class="pagebuilder-overlay"
                  attr="data.overlay.attributes"
                  ko-style="data.overlay.style"
@@ -47,6 +48,7 @@
                          css="data.content.css"
                          html="data.content.html">
                     </div>
+                    <render args="masterTemplate"/>
                     <button if="data.main.attributes()['data-show-button'] !== 'never'"
                             type="button"
                             class="pagebuilder-slide-button"

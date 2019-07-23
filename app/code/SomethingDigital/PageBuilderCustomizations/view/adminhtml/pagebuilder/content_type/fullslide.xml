@@ -74,6 +74,11 @@
                             </filter>
                         </css>
                     </element>
+                    <element name="container">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
+                    </element>
                 </elements>
                 <converters>
                     <converter name="background_images" component="Magento_PageBuilder/js/mass-converter/background-images">
@@ -138,6 +143,11 @@
                             </filter>
                         </css>
                     </element>
+                    <element name="container">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
+                    </element>
                 </elements>
                 <converters>
                     <converter name="background_images" component="Magento_PageBuilder/js/mass-converter/background-images">
@@ -201,6 +211,11 @@
                                 <class source="pagebuilder-slide-button"/>
                             </filter>
                         </css>
+                    </element>
+                    <element name="container">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
                     </element>
                 </elements>
                 <converters>
@@ -267,6 +282,11 @@
                                 <class source="pagebuilder-slide-button"/>
                             </filter>
                         </css>
+                    </element>
+                    <element name="container">
+                        <style name="justify_content" source="justify_content"/>
+                        <static_style source="display" value="flex"/>
+                        <static_style source="flex_direction" value="column"/>
                     </element>
                 </elements>
                 <converters>
