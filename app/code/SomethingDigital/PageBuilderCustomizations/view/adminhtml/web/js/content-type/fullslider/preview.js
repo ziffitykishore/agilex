@@ -570,6 +570,12 @@ define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/events",
       }
     };
 
+    Object.defineProperty(_proto, 'childTemplate', {
+        get: function get() {
+            return "SomethingDigital_PageBuilderCustomizations/content-type/slide-preview-collection";
+        }
+    });
+
     return Preview;
   }(_previewCollection);
 
