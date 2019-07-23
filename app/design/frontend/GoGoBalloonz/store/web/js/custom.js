@@ -42,15 +42,18 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             var $animatingElements = $('.banner-item[data-slick-index="' + nextSlide + '"]').find('[data-animation]');
             doAnimations($animatingElements);
         });
-        $('.home-slider').slick({
-            dots: true,
-            infinite: true,
-            autoplaySpeed: 6000,
-            speed: 3000,
-            fade: true,
-            cssEase: 'linear',
-            arrows: false,
-            autoplay: true
+
+        $(window).on("load", function () {
+            $('.home-slider').slick({
+                dots: true,
+                infinite: true,
+                autoplaySpeed: 6000,
+                speed: 3000,
+                fade: true,
+                cssEase: 'linear',
+                arrows: false,
+                autoplay: true
+            });
         });
 
         function doAnimations(elements) {
