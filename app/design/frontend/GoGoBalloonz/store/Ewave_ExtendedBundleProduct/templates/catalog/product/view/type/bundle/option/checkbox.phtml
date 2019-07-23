@@ -54,6 +54,8 @@
         $opt_arr = json_decode($colors);
         $heights = $product->getCustomProductHeight();
         $height_options = json_decode($heights);
+        $pattern = $product->getCustomProductPattern();
+        $pattern_options = json_decode($pattern);
     ?>
     <?php if(!empty($opt_arr)) : ?>
         <label class="label">
@@ -80,6 +82,18 @@
             </select>
         </div>
     <?php endif; ?>
+    <?php if(!empty($pattern_options)) : ?>
+        <label class="label">
+            <span><?= __('Pattern') ?></span>
+        </label>
+        <div class="custom-bundle-option">
+            <select class="option">
+                <?php foreach($pattern_options as $option): ?>
+                    <option value="<?= $block->getProducturl($option->sku); ?>"><?= $option->pattern; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    <?php endif; ?>    
 <?php endif; ?>
 </div>
 <script>

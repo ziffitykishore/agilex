@@ -23,9 +23,20 @@
     <tr class="email-intro">
         <td style="font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; vertical-align: top; padding-bottom: 20px;">
             <p class="greeting" style="margin-top: 0; margin-bottom: 10px;"><strong>{{trans "%name," name=$order.getBillingAddress().getName()}}</strong></p>
+            {{if order.getIsNotVirtual()}}
+                <p style="margin-top: 0; margin-bottom: 10px;">
+                    {{trans "Thank you for your order from %store_name.com" store_name=$store.getFrontendName()}}
+                    {{trans 'Your order number is <span class="no-link">#%increment_id</span>.  If there are any questions on your order our store staff will contact you at the information below.' increment_id=$order.increment_id |raw}}
+                    {{trans 'When your order is ready for delivery our personnel will contact you and verify all delivery specifics.'}}
+                </p>
+            {{else}}
+                <p style="margin-top: 0; margin-bottom: 10px;">
+                    {{trans "Thank you for your order from %store_name.com" store_name=$store.getFrontendName()}}
+                    {{trans 'Your order number is <span class="no-link">#%increment_id</span>.  If there are any questions on your order our store staff will contact you at the information below.' increment_id=$order.increment_id |raw}}
+                    {{trans 'Your order will be ready for pick-up at the time and date chosen.  If there are conflicts or issues with this time you will be contacted by store personnel.'}}
+                </p>
+            {{/if}}
             <p style="margin-top: 0; margin-bottom: 10px;">
-                {{trans "Thank you for your order from %store_name." store_name=$store.getFrontendName()}}
-                {{trans "Once your package ships we will send an email with a link to track your order."}}
                 {{trans 'If you have questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}{{depend store_phone}} {{trans 'or call us at <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}{{/depend}}.
                 {{depend store_hours}}
                     {{trans 'Our hours are <span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}

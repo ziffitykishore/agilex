@@ -29,12 +29,12 @@ define(
                 }
                 var address = '';
                 if(window.checkoutConfig.pickup_store) {
-                    address += "<p>" +  window.checkoutConfig.pickup_store['street'] + "</p>";
-                    address += "<p>" +  window.checkoutConfig.pickup_store['city'] + "</p>";
-                    address += "<p>" +  window.checkoutConfig.pickup_store['region_name'] + "</p>";
-                    address += "<p>" +  window.checkoutConfig.pickup_store['country_id'] + "</p>";
-                    address += "<p>" +  window.checkoutConfig.pickup_store['postcode'] + "</p>";
-                    address += "<p>" +  window.checkoutConfig.pickup_store['phone'] + "</p>";
+                    address += "<span>" +  window.checkoutConfig.pickup_store['street'] + "</span><br/>";
+                    address += "<span>" +  window.checkoutConfig.pickup_store['city'] + "</span><br/>";
+                    address += "<span>" +  window.checkoutConfig.pickup_store['region_name'] + "</span><br/>";
+                    address += "<span>" +  window.checkoutConfig.pickup_store['country_id'] + "</span><br/>";
+                    address += "<span>" +  window.checkoutConfig.pickup_store['postcode'] + "</span><br/>";
+                    address += "<span>" +  window.checkoutConfig.pickup_store['phone'] + "</span>";
                 }
                 var location = '';
                 if($.cookie('storeLocation')) {
