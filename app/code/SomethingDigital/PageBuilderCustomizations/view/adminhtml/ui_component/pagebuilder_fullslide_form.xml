@@ -311,10 +311,10 @@
                             <item name="left" xsi:type="number">0</item>
                         </item>
                         <item name="padding" xsi:type="array">
-                            <item name="top" xsi:type="number">40</item>
-                            <item name="right" xsi:type="number">40</item>
-                            <item name="bottom" xsi:type="number">40</item>
-                            <item name="left" xsi:type="number">40</item>
+                            <item name="top" xsi:type="number">30</item>
+                            <item name="right" xsi:type="number">30</item>
+                            <item name="bottom" xsi:type="number">30</item>
+                            <item name="left" xsi:type="number">30</item>
                         </item>
                     </item>
                 </item>

@@ -112,7 +112,7 @@
 //  Default appearance styles rendered through Block only
 //  _____________________________________________________
 
-[data-content-type='slide'] {
+[data-content-type='fullslide'] {
     min-height: inherit;
 
     > [data-element='link'],
@@ -143,4 +143,19 @@
             word-break: break-word;
         }
     }
+
+    .element-children {
+        width: 100%;
+        height: 100%;
+
+        .pagebuilder-content-type-wrapper {
+            min-height: auto;
+        }
+    }
+}
+
+
+[data-content-type='fullslider'] .slick-list > div .pagebuilder-content-type-wrapper,
+.pagebuilder-content-type.pagebuilder-slider .slick-slide > div .pagebuilder-content-type-wrapper {
+    min-height: auto;
 }
