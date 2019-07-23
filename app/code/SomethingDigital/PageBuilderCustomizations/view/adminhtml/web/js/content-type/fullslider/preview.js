@@ -279,10 +279,9 @@ define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/events",
 
     _proto.addSlide = function addSlide() {
       var _this3 = this;
-
-      (0, _contentTypeFactory)(_config.getConfig("content_types").slide, this.contentType, this.contentType.stageId).then(function (slide) {
+      (0, _contentTypeFactory)(_config.getConfig("content_types").fullslide, this.contentType, this.contentType.stageId).then(function (fullslide) {
         _events.on("fullslide:mountAfter", function (args) {
-          if (args.id === slide.id) {
+          if (args.id === fullslide.id) {
             _underscore.defer(function () {
               // Wait until slick is initialized before trying to navigate
               (0, _delayUntil)(function () {
@@ -292,11 +291,11 @@ define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/events",
               }, 10);
             });
 
-            _events.off("slide:" + slide.id + ":mountAfter");
+            _events.off("fullslide:" + fullslide.id + ":mountAfter");
           }
-        }, "fullslide:" + slide.id + ":mountAfter");
+        }, "fullslide:" + fullslide.id + ":mountAfter");
 
-        _this3.contentType.addChild(slide, _this3.contentType.children().length);
+        _this3.contentType.addChild(fullslide, _this3.contentType.children().length);
       });
     }
     /**
@@ -307,7 +306,7 @@ define(["jquery", "knockout", "mage/translate", "Magento_PageBuilder/js/events",
     ;
 
     _proto.isContainer = function isContainer() {
-      return false;
+      return true;
     }
     /**
      * Slider navigation click handler.
