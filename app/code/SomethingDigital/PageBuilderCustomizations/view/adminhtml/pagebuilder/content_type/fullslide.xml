@@ -8,8 +8,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/content_type.xsd">
     <type name="fullslide"
           label="Full Slide"
-          component="Magento_PageBuilder/js/content-type"
+          component="Magento_PageBuilder/js/content-type-collection"
           preview_component="SomethingDigital_PageBuilderCustomizations/js/content-type/fullslide/preview"
+          master_component="Magento_PageBuilder/js/content-type/master-collection"
           form="pagebuilder_fullslide_form"
           menu_section="media"
           icon="icon-pagebuilder-slider"
@@ -17,7 +18,7 @@
         <parents default_policy="deny">
             <parent name="fullslider" policy="allow"/>
         </parents>
-        <children default_policy="deny"/>
+        <children default_policy="allow"/>
         <appearances>
             <appearance name="collage-left"
                         preview_template="SomethingDigital_PageBuilderCustomizations/content-type/fullslide/collage-left/preview"
