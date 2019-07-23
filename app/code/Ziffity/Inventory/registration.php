@@ -5,5 +5,3 @@
     'Ziffity_Inventory',
     __DIR__
 );
-
-

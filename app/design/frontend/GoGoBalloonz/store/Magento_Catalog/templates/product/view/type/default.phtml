@@ -10,17 +10,13 @@
 <?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
 <?php 
 $_product = $block->getProduct();
-$productInventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceStock')->getSourceInventory($_product->getSku());
-$currentLocation = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE['storeLocation'],true) : null ;  
+$inventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceStock')->getSourceInventory($_product->getSku(), $_product->getId(), $_product->getTypeId());
 ?>
 
 <?php if ($block->displayProductStockStatus()): ?>
-    <?php if ($_product->isAvailable()): ?>
+    <?php if ($_product->isAvailable() && $inventory): ?>
         <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
             <span><?= /* @escapeNotVerified */ __('In stock') ?></span>
-            <?php if(isset($currentLocation) && isset($productInventory[$currentLocation['code']])): ?>
-            <span> - <?= $productInventory[$currentLocation['code']] ?></span>
-            <?php endif; ?>            
         </div>
     <?php else: ?>
         <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
