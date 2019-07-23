@@ -1,10 +1,3 @@
-<!--
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
-
 <div class="pagebuilder-content-type pagebuilder-slide"
      attr="data.main.attributes"
      css="data.main.css"
@@ -12,37 +5,10 @@
     <div class="pagebuilder-slide-wrapper"
          ko-style="Object.assign(data.main.style(), data.wrapper.style())"
          css="data.main.css"
-         event="mouseover: onMouseOverWrapper, mouseout: onMouseOutWrapper, mousedown: activateEditor">
-        <scope args="getUploader().getUiComponent()">
-            <render />
-        </scope>
-        <div class="pagebuilder-overlay pagebuilder-collage-overlay wysiwyg-container"
+         event="mouseover: onMouseOverWrapper, mouseout: onMouseOutWrapper">
+        <div class="pagebuilder-overlay pagebuilder-collage-overlay"
              attr="data.overlay.attributes"
-             ko-style="data.overlay.style"
-             event="mousedown: activateEditor">
-            <div class="inline-wysiwyg"
-                 if="isWysiwygSupported()"
-                 attr="data.content.attributes"
-                 ko-style="data.content.style"
-                 css="data.content.css"
-                 event="mousedown: stopEvent, click: activateEditor"
-                 contenteditable="true"
-                 afterRender="afterRenderWysiwyg">
-                <div html="data.content.html"></div>
-            </div>
-            <div if="!data.content.html() && isWysiwygSupported()"
-                 class="pagebuilder-empty-slide"
-                 attr="data.content.attributes"
-                 ko-style="data.content.style"
-                 css="data.content.css"
-                 translate="'Edit Slide Text'">
-            </div>
-            <div ifnot="isWysiwygSupported()">
-                <textarea class="inline-wysiwyg-textarea"
-                          afterRender="initTextarea"
-                          event="keyup: onTextareaKeyUp, focus: onTextareaFocus, blur: onTextareaBlur, mousedown: stopEvent"
-                          data-bind="attr: { placeholder: $t('Edit Slide Text') }" />
-            </div>
+             ko-style="data.overlay.style">
             <a if="data.main.attributes()['data-show-button'] !== 'never'"
                type="button"
                class="pagebuilder-slide-button"
