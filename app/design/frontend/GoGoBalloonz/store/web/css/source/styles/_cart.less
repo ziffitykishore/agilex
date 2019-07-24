@@ -98,10 +98,13 @@
 
                             .product-item-photo {
                                 vertical-align: middle;
+                                margin-bottom: 15px;
                             }
 
                             .product-image-container {
                                 max-width: 65px;
+                                border: 1px solid @color-gray;
+                                padding: 2px;
                             }
 
                             .product-item-details {
@@ -317,7 +320,7 @@
                             border: none;
                             margin-bottom: 0;
                             padding: .2em;
-                            font-weight: normal;
+                            font-weight: bold;
                             font-size: 1.4rem;
                         }
 
@@ -432,36 +435,35 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .checkout-cart-index {
-        .cart.table-wrapper {
-            border: none;
-            overflow-x: visible;
-            overflow-y: visible;
-            .cart {
+        .form-cart {
+            .cart.table-wrapper {
+                border: none;
+                overflow-x: visible;
+                overflow-y: visible;
+                .cart {
 
-                .item-info {
-                    .col.item {
-                        padding: 15px;
-                    }
+                    .item-info {
+                        .col.item {
+                            padding: 15px;
+                        }
 
-                    .product-item-photo {
-                        position: static;
-                    }
+                        .product-item-photo {
+                            position: static;
+                        }
 
+                        td {
+                            float: none;
 
-                    td {
-                        float: none;
+                            .control.qty {
+                                justify-content: flex-start;
+                            }
+                        }
 
+                        .col.qty {
+                            text-align: left;
 
-                        .control.qty {
-                            justify-content: flex-start;
                         }
                     }
-
-
-                     .col.qty {
-                         text-align: left;
-
-                     }
                 }
             }
         }

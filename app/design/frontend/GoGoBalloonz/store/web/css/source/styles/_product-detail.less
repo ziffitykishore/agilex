@@ -54,7 +54,7 @@
                     .fotorama__stage__frame {
                         padding: 10px;
                         .fotorama__img {
-                            width: 100%;
+                            /*width: 100%;*/
                         }
                     }
 
@@ -318,8 +318,6 @@
 
 
             .product-social-links {
-                margin-bottom: 0;
-
                 .product-addto-links {
                     .flex();
                 }
@@ -457,7 +455,7 @@
 
                     .product-item {
 
-                        padding: 0 15px;
+                        padding: 15px;
 
                     }
                     .product-item-info {
@@ -467,6 +465,11 @@
                         width: auto;
                         position: relative;
                         height: 100%;
+                        .transition(all 0.5s ease 0s);
+
+                        &:hover {
+                            .box-shadow(1px 1px 10px 5px rgba(0, 0, 0, 0.05));
+                        }
 
                         .choice {
                             position: absolute;
@@ -576,8 +579,10 @@
                 .container-sm();
 
                 ol, ul {
-                    padding-left: 0;
+                    padding-left: 20px;
+                    padding-right: 20px;
                 }
+
 
                 li, p {
                     font-size: 1.6rem;

@@ -30,6 +30,8 @@
             .flex();
             justify-content: center;
             align-items: center;
+            -webkit-transition:visibility 0s 0.5s, opacity 0.8s ease-in-out;
+            transition:visibility 0s 0.5s, opacity 0.8s ease-in-out;
             .modal-header {
                 background: rgb(119, 220, 255);
                 background: linear-gradient(180deg, rgba(119, 220, 255, 1) 0%, rgba(0, 189, 255, 1) 100%);
@@ -76,6 +78,7 @@
 
             .modal-inner-wrap {
                 .br-radius(10px 10px 0 0);
+                .transition(transform 0.8s ease-in-out 0s);
 
                 a {
                     &:hover {
