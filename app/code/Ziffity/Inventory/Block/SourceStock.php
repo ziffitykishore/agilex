@@ -81,6 +81,7 @@ class SourceStock extends Template
                 if (isset($inventory)) {
                     $inventory = reset($inventory);
                     $inventory['qty'] >= (float)$item->getSelectionQty() ? $inStock = true : $inStock = false;
+                    break;
                 }
             };
         }

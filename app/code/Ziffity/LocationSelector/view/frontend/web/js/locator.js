@@ -26,7 +26,7 @@ define([
         getLocation: function(){
             var obj = this;
             $.ajax({
-                showLoader: true,
+                showLoader: false,
                 url: window.location.origin+'/locator/index/index',
                 type: 'GET',
                 dataType: 'json'
