@@ -5,4 +5,10 @@
     <type name="Magento\Framework\App\Action\AbstractAction">
         <plugin name="abstractaction-context-plugin" type="Ziffity\Common\Plugin\App\Action\Context" sortOrder="15"/>
     </type>
+    <!-- Disabled intentionally to prevent bundle product cart issue -->
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="Ewave_ExtendedBundleProduct::MagentoCatalogModelProduct"
+                type="Ewave\ExtendedBundleProduct\Plugin\Magento\Catalog\Model\ProductPlugin"
+                sortOrder="10" disabled="true"/>
+    </type>
 </config>

@@ -16,7 +16,9 @@
     <div class="control">
         <div class="nested options-list">
             <?php if ($block->showSingle()): ?>
+                <div style="display:none;">
                 <?php /* @escapeNotVerified */ echo $block->getSelectionQtyTitlePrice($_selections[0]) ?>
+                </div>
                 <input type="hidden"
                        class="bundle-option-<?php /* @escapeNotVerified */ echo $_option->getId() ?>  product bundle option"
                        name="bundle_option[<?php /* @escapeNotVerified */ echo $_option->getId() ?>]"
