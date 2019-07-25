@@ -17,6 +17,7 @@
             <div class="field qty">
                 <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
                 <div class="control">
+                    <button type="button" class="decreaseQty" onclick="decrementValue()"><span>-</span></button>
                     <input type="number"
                            name="qty"
                            id="qty"
@@ -24,6 +25,7 @@
                            title="<?= /* @escapeNotVerified */ __('Qty') ?>"
                            class="input-text qty"
                            data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+                    <button  type="button" class="increaseQty"  onclick="incrementValue()"><span>+</span></button>
                 </div>
             </div>
             <?php endif; ?>
@@ -59,4 +61,17 @@
             });
         });        
     });
-</script>    
+
+    var qty = document.getElementById("qty");
+    function decrementValue(){
+        if(!isNaN(qty.value) && qty.value > 1 ) {
+            qty.value--;
+        }
+    }
+
+    function incrementValue(){
+        if(!isNaN(qty.value)) {
+            qty.value++;
+        }
+    }
+</script>

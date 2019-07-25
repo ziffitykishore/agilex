@@ -23,10 +23,11 @@ define([
          */
         _create: function () {
             var self = this,
+                className = this.element.attr('id'),
                 authentication_options = {
                     type: 'popup',
                     clickableOverlay: false,
-                    modalClass: 'popup-modal',
+                    modalClass: className + ' popup-modal',
                     responsive: true,
                     innerScroll: true,
                     title: this.options.popupTitle,

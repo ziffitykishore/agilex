@@ -45,6 +45,8 @@
                     width: 100%;
                     padding-bottom: 0;
                     border: none;
+                    font-size: 18px;
+                    font-weight: bold;
                 }
 
                 .action-close {
@@ -65,6 +67,11 @@
                 }
             }
 
+            .modal-content {
+                .br-radius(0);
+                border: none;
+            }
+
 
 
             .modal-footer {
@@ -79,6 +86,17 @@
             .modal-inner-wrap {
                 .br-radius(10px 10px 0 0);
                 .transition(transform 0.8s ease-in-out 0s);
+
+                &:before {
+                    background: url('@{baseDir}images/login_strip.jpg') repeat-x bottom center;
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    z-index: 1;
+                    height: 5px;
+                }
+
 
                 a {
                     &:hover {
@@ -212,11 +230,13 @@
                             }
 
                             .secondary {
-                                width: 30%;
+                                width: 50%;
+                                margin-bottom: 0;
+                                justify-content: center;
                             }
 
                             div.primary {
-                                width: 70%;
+                                width: 50%;
                             }
                         }
                     }
@@ -340,5 +360,15 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .customer-popup-register {
+        .modal-inner-wrap {
+            max-width: 700px !important;
+        }
+    }
 
+    .customer-popup-forgot {
+        .modal-inner-wrap {
+            max-width: 400px !important;
+        }
+    }
 }
