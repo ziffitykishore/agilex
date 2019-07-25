@@ -13,7 +13,7 @@
     "build:prep": "npm-run-all -p build-prep:bryantpark",
     "build-prep:bryantpark": "gulp styles:prep --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js",
     "build:inheritance": "gulp snowdog:inheritance --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js",
-    "build:bryantpark": "gulp build --gulpfile --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js --theme=sd",
+    "build:bryantpark": "gulp build --gulpfile vendor/somethingdigital/magento2-theme-bryantpark/gulpfile.js --theme=sd",
     "start": "gulp watch"
   },
   "workspaces": [
