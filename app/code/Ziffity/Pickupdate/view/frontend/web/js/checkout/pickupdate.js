@@ -170,6 +170,8 @@ define(
             },
 
             isModuleEnabled: function() {
+                //To enable proceed to checkout button
+                $("button[data-role='proceed-to-checkout']").removeAttr("disabled");
                 return this.pickupdateConfig.moduleEnabled;
             },
 
