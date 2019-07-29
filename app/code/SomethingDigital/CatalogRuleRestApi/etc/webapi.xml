@@ -4,25 +4,25 @@
     <route url="/V1/catalogRules/:ruleId" method="GET">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="get"/>
         <resources>
-            <resource ref="anonymous" />
+            <resource ref="Magento_CatalogRule::promo_catalog"/>
         </resources>
     </route>
     <route url="/V1/catalogRules/:ruleId" method="DELETE">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="deleteById"/>
         <resources>
-            <resource ref="anonymous" />
+            <resource ref="Magento_CatalogRule::promo_catalog"/>
         </resources>
     </route>
     <route url="/V1/catalogRules/:ruleId" method="PUT">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="save"/>
         <resources>
-            <resource ref="anonymous" />
+            <resource ref="Magento_CatalogRule::promo_catalog"/>
         </resources>
     </route>
     <route url="/V1/catalogRules" method="POST">
         <service class="Magento\CatalogRule\Api\CatalogRuleRepositoryInterface" method="save"/>
         <resources>
-            <resource ref="anonymous" />
+            <resource ref="Magento_CatalogRule::promo_catalog"/>
         </resources>
     </route>
 </routes>
