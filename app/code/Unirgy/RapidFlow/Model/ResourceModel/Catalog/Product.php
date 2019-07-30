@@ -199,8 +199,12 @@ class Product
         } else {
             $columns = [];
             $i = 1;
+            $entIdFields = ['product.entity_id'];
+            if ($entId!='entity_id') {
+                $entIdFields[] = ['product.'.$entId];
+            }
             foreach ($this->_attributesByCode as $k => $a) {
-                if ($k === 'product.entity_id') {
+                if (in_array($k, $entIdFields)) {
                     continue;
                 }
                 $columns[$i - 1] = array('field' => $k, 'title' => $k, 'alias' => $k, 'default' => '');
@@ -352,7 +356,9 @@ class Product
                         $a = $this->_fieldAttributes[$attr];
                         $value = isset($p[$storeId][$a]) ? $p[$storeId][$a] : (isset($p[0][$a]) ? $p[0][$a] : null);
                     } else {
-                        $value = isset($p[$storeId][$attr]) ? $p[$storeId][$attr] : (isset($p[0][$attr]) ? $p[0][$attr] : null);
+                        $value = array_key_exists($storeId, $p) && array_key_exists($attr, $p[$storeId])
+                            ? $p[$storeId][$attr]
+                            : (array_key_exists($attr, $p[0]) ? $p[0][$attr] : null);
                     }
 
                     if (($value === null || $value === '') && !empty($c['default'])) {
@@ -400,6 +406,14 @@ class Product
                         case 'url_key':
                             if (!empty($f['format']) && $f['format'] === 'url') {
                                 $value = $baseUrl . $value;
+                                $urlSuffix = $this->_scopeConfig->getValue(
+                                    'catalog/seo/product_url_suffix',
+                                    \Magento\Store\Model\ScopeInterface::SCOPE_STORE,
+                                    $profile->getStoreId()
+                                );
+                                if ($urlSuffix) {
+                                    $value .= $urlSuffix;
+                                }
                             }
                             break;
 
@@ -1776,7 +1790,7 @@ class Product
         $this->_fetchAttributeValues($storeId, false, $productIds);
 
         foreach ($productIds as $sku => $productId) {
-            $urlKey = $urlPath = $name = null;
+            $visibility = $urlKey = $urlPath = $name = null;
             if(isset($this->_products[$productId][$storeId]['url_key'])){
                 $urlKey = $this->_products[$productId][$storeId]['url_key'];
             } else if (isset($this->_products[$productId][0]['url_key'])) {
@@ -1792,12 +1806,18 @@ class Product
             } else if (isset($this->_products[$productId][0]['name'])) {
                 $name = $this->_products[$productId][0]['name'];
             }
+            if(isset($this->_products[$productId][$storeId]['visibility'])){
+                $visibility = $this->_products[$productId][$storeId]['visibility'];
+            } else if (isset($this->_products[$productId][0]['visibility'])) {
+                $visibility = $this->_products[$productId][0]['visibility'];
+            }
             $data = [
                 'sku' => $sku,
                 'store_id' => $storeId,
                 'url_key' => $urlKey,
                 'url_path' => $urlPath,
                 'name' => $name,
+                'visibility' => $visibility
             ];
 
             if ($this->_rapidFlowHelper->hasMageFeature(self::ROW_ID) && isset($this->_skuSeq[$sku])) {

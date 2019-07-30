@@ -75,6 +75,11 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
     const TABLE_CATALOG_PRODUCT_SUPER_LINK                        = 'catalog_product_super_link';
     const TABLE_CATALOG_PRODUCT_WEBSITE                           = 'catalog_product_website';
     const TABLE_CATALOGINVENTORY_STOCK_ITEM                       = 'cataloginventory_stock_item';
+    const TABLE_INVENTORY_SOURCE                                  = 'inventory_source';
+    const TABLE_INVENTORY_STOCK                                   = 'inventory_stock';
+    const TABLE_INVENTORY_SOURCE_ITEM                             = 'inventory_source_item';
+    const TABLE_INVENTORY_SOURCE_STOCK_LINK                       = 'inventory_source_stock_link';
+    const TABLE_INVENTORY_STOCK_SALES_CHANNEL                     = 'inventory_stock_sales_channel';
     const TABLE_CATEGORY_SEQUENCE                                 = 'sequence_catalog_category';
     const TABLE_CUSTOMER_GROUP                                    = 'customer_group';
     const TABLE_DOWNLOADABLE_LINK                                 = 'downloadable_link';
@@ -646,8 +651,8 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
         if ($this->_rapidFlowHelper->hasMageFeature(self::ROW_ID)) {
             $this->_entityIdField = self::ROW_ID;
             if(isset($this->_fieldAttributes)){
-                $this->_fieldAttributes['product.entity_id'] = self::ROW_ID;
-                $this->_fieldAttributes['category.entity_id'] = self::ROW_ID;
+                $this->_fieldAttributes[self::ROW_ID] = self::ROW_ID;
+                $this->_fieldAttributes[self::ROW_ID] = self::ROW_ID;
             }
 
             $this->versionManager = \Magento\Framework\App\ObjectManager::getInstance()->get(VersionManager::class);
@@ -880,6 +885,11 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
         }
 
         $basename = basename($filename);
+        /*
+        if ($remote) {
+            $basename = basename(parse_url($filename, PHP_URL_PATH));
+        }
+        */
 
         $fromDir = rtrim($fromDir, '/\\');
         $toDir = rtrim($toDir, '/\\');
@@ -917,6 +927,10 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                 } else {
                     $filename = $basename;
                 }
+                $filename = str_replace(
+                    [' ', '%', '?', '/'],
+                    '-',
+                    urldecode($filename));
             }
         } else {
             $slashPos = strpos($filename, $ds);
@@ -937,6 +951,15 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             return true;
         }
 
+        $warning = '';
+        //error_log('4', 3, '/var/www/html/var/log/unirgy.log');
+        $origBasename = basename($filename);
+        $cleanBasename = \Magento\Framework\File\Uploader::getCorrectFileName($origBasename);
+        if ($origBasename!=$cleanBasename) {
+            $filename = str_replace($origBasename, $cleanBasename, $filename);
+            $warning .= __(' Corrected image name: %1.', $filename);
+        }
+        //$cleanFilename = $filename;
         $toFilename = $toDir . $ds . ltrim($filename, $ds);
         if ($import) {
             if ($slashPos === false) {
@@ -960,7 +983,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
 
         if ($import && $toExists && $this->_existingImageAction) {
             $this->_profile->addValue('num_warnings');
-            $warning = __('Imported image file already exists.');
+            $warning .= __('Imported image file already exists.');
             if ($filename === $oldValue) {
                 // new file name is same as current value
                 $warning .= $this->__(' %1 is same as current value, %2.', $filename, $oldValue);
@@ -1090,6 +1113,11 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             if (!empty($fp)) {
                 fclose($fp);
             }
+            if (!$this->_isValidImageFile($toFilename)) {
+                @unlink($toFilename);
+                unset($this->_remoteImagesCache[$fromFilename]);
+                $error = __('Remote file is not an image: %1', $fromFilename);
+            }
 
             if (!empty($error)) {
                 $this->_profile->addValue('num_warnings');
@@ -1135,6 +1163,12 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
         $this->_eventManager->dispatch('urapidflow_copy_image_file_success', $eventVars);
 
         return true;
+    }
+
+    protected function _isValidImageFile($filename)
+    {
+        $validator = new \Zend\Validator\File\MimeType('image/png,image/jpeg,image/pjpeg,image/gif');
+        return $validator->isValid($filename);
     }
 
     protected function _importProcessRemoteImageBatch()

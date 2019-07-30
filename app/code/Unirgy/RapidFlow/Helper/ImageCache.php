@@ -17,13 +17,15 @@ class ImageCache
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
     protected $_productRepository;
+    protected $_rfHlp;
     public function __construct(
         \Unirgy\RapidFlow\Model\Product\ImageCacheFactory $imageCacheFactory,
-        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
-    )
-    {
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
+        \Unirgy\RapidFlow\Helper\Data $rapidflowHelper
+    ) {
         $this->_imageCacheFactory = $imageCacheFactory;
         $this->_productRepository = $productRepository;
+        $this->_rfHlp = $rapidflowHelper;
     }
 
     public function addProductIdForFlushCache($productId, $productData = [])
@@ -33,6 +35,13 @@ class ImageCache
     public function flushProductsImageCache(Profile $profile)
     {
         try {
+            $reflImage = new \ReflectionClass('\Magento\Catalog\Model\Product\Image');
+            foreach ($reflImage->getProperties() as $__rip) {
+                if ($__rip->getName()=='imageAsset') {
+                    $__rip->setAccessible(true);
+                    \Unirgy\RapidFlow\Model\Product\Image::$myImageAsset = $__rip;
+                }
+            }
             foreach ($this->_productsToUpdate as $productId => $productData) {
                 try {
                     /** @var Product $product */
@@ -45,6 +54,11 @@ class ImageCache
                 $imageCache = $this->_imageCacheFactory->create();
                 $imageCache->flushProduct($product);
 
+                if ($this->_rfHlp->compareMageVer('2.2.8')
+                    && $profile->getData('options/import/import_image_generate')
+                ) {
+                    $imageCache->resizeProduct($product);
+                }
             }
         } catch (\Exception $e) {
             $profile->getLogger()->warning($e->getMessage());

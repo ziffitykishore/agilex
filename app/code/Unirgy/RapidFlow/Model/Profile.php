@@ -826,7 +826,7 @@ class Profile extends AbstractModel
             'catalog_category_flat' => __('Category Flat Data'),
             'catalogsearch_fulltext' => __('Catalog Search Index'),
             'cataloginventory_stock' => __('Stock status'),
-            'catalog_rules' => __('Catalog Rules'),
+            'catalogrule_rule' => __('Catalog Rule Product'),
         ];
     }
 
@@ -854,12 +854,12 @@ class Profile extends AbstractModel
 //            $processes = $indexMgr->getProcessesCollectionByCodes(array_keys($processes));
             $this->_eventManager->dispatch('urf_reindex_init_process');
             foreach ($processes as $process => $sortOrder) {
-                /** @var \Magento\Indexer\Model\Indexer $indexer */
-                $indexer = $indexerRegistry->get($process);
-                if ($indexer->isWorking()) {
-                    continue;
-                }
                 try {
+                    /** @var \Magento\Indexer\Model\Indexer $indexer */
+                    $indexer = $indexerRegistry->get($process);
+                    if ($indexer->isWorking()) {
+                        continue;
+                    }
                     if ($this->getData('options/import/reindex_type') === 'manual') {
                         $indexer->getState()->setStatus(StateInterface::STATUS_INVALID);
                     } else {

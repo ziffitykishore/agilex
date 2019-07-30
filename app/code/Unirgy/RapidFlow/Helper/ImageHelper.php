@@ -16,10 +16,10 @@ class ImageHelper extends BaseImageHelper
         /** @var \Unirgy\RapidFlow\Model\Product\Image $model */
         $model = $this->_getModel();
         if (!$model->isBaseFilePlaceholder()
-            && $model->getNewFile() !== true
+            && $model->urfGetFilepath() !== true
             && $model->isCached()
         ) {
-            $model->urfRemoveFile($model->getNewFile());
+            $model->urfRemoveFile($model->urfGetFilepath());
         }
     }
 }

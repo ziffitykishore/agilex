@@ -137,7 +137,7 @@ class Columns
         ];
         if ($this->getProfile()->getProfileType() === 'import') {
             $removeFields = array_merge($removeFields,
-                                        ['product.entity_id', 'price.final', 'price.minimal', 'price.maximum']);
+                                        ['product.entity_id','product.row_id', 'price.final', 'price.minimal', 'price.maximum']);
         }
 
         foreach ($attrs as $f => $a) {
