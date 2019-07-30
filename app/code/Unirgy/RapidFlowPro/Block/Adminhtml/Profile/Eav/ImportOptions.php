@@ -57,6 +57,14 @@ class ImportOptions
             'value' => $profile->getData('options/duplicate_option_values'),
         ]);
 
+        $fieldset->addField('system_attributes', 'select', [
+            'label' => __('Allow Update System Attributes'),
+            'name' => 'options[system_attributes]',
+            'required' => false,
+            'values' => $source->setPath('yesno')->toOptionArray(),
+            'value' => $profile->getData('options/system_attributes'),
+        ]);
+
         $fieldset->addField('import_reindex_type', 'select', [
             'label' => __('Reindex type'),
             'name' => 'options[import][reindex_type]',
