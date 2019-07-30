@@ -6,6 +6,10 @@ $viewModel = $block->getViewModel();
 <div id="react-plp"></div>
 
 <script type="text/javascript">
-	const props = <?php echo $viewModel->getJsProps() ?>;
-	renderReactPLP(document.getElementById('react-plp'), props);
+    require(['jquery'], function ($) {
+    $(function () {
+        const props = <?php echo $viewModel->getJsProps() ?>;
+        renderReactPLP(document.getElementById('react-plp'), props);
+    });
+});
 </script>
