@@ -7,6 +7,7 @@ use Magento\Framework\HTTP\ClientFactory;
 use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 
 abstract class Adapter
 {
@@ -46,12 +47,14 @@ abstract class Adapter
         ClientFactory $curlFactory,
         LoggerInterface $logger,
         ScopeConfigInterface $config,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        TestMode $testMode
     ) {
         $this->curlFactory = $curlFactory;
         $this->logger = $logger;
         $this->config = $config;
         $this->storeManager = $storeManager;
+        $this->testMode = $testMode;
     }
     
     protected function getRequest()
@@ -79,14 +82,18 @@ abstract class Adapter
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
         $curl->setTimeout(20);
-        $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
-        $curl->addHeader('Cache-Control', 'no-cache');
+        if ($this->isTestMode()) {
+            $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
+            $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
+        } else {
+            $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
+            $curl->addHeader('Cache-Control', 'no-cache');
+        }
         $curl->addHeader('Content-Type', 'application/x-www-form-urlencoded');
         if (empty($this->requestBody)) {
             throw new ApiRequestException(__('Empty SX API request'));
         }
         try {
-            $curl->post($this->getRequestUrl(), $this->requestBody);
             return [
                 'status' => $curl->getStatus(),
                 'body' => \Zend_Json::decode($curl->getBody()),
@@ -98,6 +105,16 @@ abstract class Adapter
             $this->logger->critical($e);
             throw new ApiRequestException(__('Internal error during request to SX API'));
         }
+    }
+
+    /**
+     * Check whether SX API mock is enabled
+     *
+     * @return bool
+     */
+    protected function isTestMode()
+    {
+        return $this->testMode->isEnabled();
     }
 
     /**
@@ -118,7 +135,11 @@ abstract class Adapter
 
     protected function getApiBaseUrl()
     {
-        return $this->getConfig(static::XML_PATH_API_URL) . '/';
+        if (!$this->isTestMode()) {
+            return $this->getConfig(static::XML_PATH_API_URL) . '/';
+        } else {
+            return $this->storeManager->getStore()->getBaseUrl();
+        }
     }
 
     /**

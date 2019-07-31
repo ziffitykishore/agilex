@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
+use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 
 class SpotPricingApi extends Adapter
 {
@@ -20,13 +21,15 @@ class SpotPricingApi extends Adapter
         LoggerInterface $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
-        Session $session
+        Session $session,
+        TestMode $testMode
     ) {
         parent::__construct(
             $curlFactory,
             $logger,
             $config,
-            $storeManager
+            $storeManager,
+            $testMode
         );
         $this->session = $session;
     }
