@@ -571,4 +571,12 @@ class Fixed
     {
         return $this->_rapidFlowConfig->getRowTypeColumns($rowType);
     }
+
+    protected function _initEmptySelect()
+    {
+        $productTable = $this->_t(self::TABLE_CATALOG_PRODUCT_ENTITY);
+        $this->_select = $this->_read->select()
+            ->from(['main' => $productTable], ['sku'])
+            ->where('false');
+    }
 }

@@ -335,7 +335,10 @@ class Data extends AbstractHelper
                     $flag = $this->isEnterpriseEdition() && $this->compareMageVer('2.2.0');
                     break;
                 case RfProduct::SUPER_ATTR_ROW_ID:
-                    $flag = $this->isEnterpriseEdition() && $this->compareMageVer('2.2.5');
+                    $flag21 = $this->compareMageVer('2.1.10')
+                        && $this->compareMageVer('2.2.0', '<');
+                    $flag22 = $this->compareMageVer('2.2.5');
+                    $flag = $this->isEnterpriseEdition() && ($flag21 || $flag22);
                     break;
                 case RfProduct::BUNDLE_PARENT:
                     $flag = $this->compareMageVer('2.2.0');
@@ -494,6 +497,7 @@ class Data extends AbstractHelper
     {
         $category = $this->categoryFactory->create()->load($categoryId);
         $category->setStoreId($store_id);
+        $category->setData('save_rewrites_history', true);
         $urlRewrites = array_merge(
             $this->categoryUrlRewriteGenerator()->generate($category, 1),
             $this->urlRewriteHandler()->generateProductUrlRewrites($category)

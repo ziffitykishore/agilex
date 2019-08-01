@@ -1,3 +1,24 @@
+===== 2019-07-16 3.0.51 =====
+  * Fixed EAO export can export non-dropdown attribute options if they exists in options table
+
+===== 2019-06-03 3.0.50 =====
+  * Fixed CPSI export in EE
+
+===== 2019-05-17 3.0.49 =====
+  * Fixed categories import with prepend root categories doesn't work when root categories have url_key/url_path and export file from installation with root categories without url_key/url_path
+
+===== 2019-04-17 3.0.48 =====
+  * Fixed import/export 'Allow System Attributes' doesn't work
+
+===== 2019-03-05 3.0.47 =====
+  * Added percentage_value in CPPT
+
+===== 2019-02-11 3.0.46 =====
+  * Added Multi Source Inventory import/export data type
+
+===== 2018-11-20 3.0.45 =====
+  * Fixed export related, upsell, cross-sell in EE
+
 ===== 2018-10-18 3.0.44 =====
   * Fixed -CCP rows in EE
 

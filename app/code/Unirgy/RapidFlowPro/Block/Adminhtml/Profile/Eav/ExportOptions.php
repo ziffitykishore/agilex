@@ -70,7 +70,7 @@ class ExportOptions
             'name' => 'options[system_attributes]',
             'required' => false,
             'values' => $source->setPath('yesno')->toOptionArray(),
-            'value' => $profile->getData('options/export/system_attributes'),
+            'value' => $profile->getData('options/system_attributes'),
         ]);
 
         return parent::_prepareForm();
