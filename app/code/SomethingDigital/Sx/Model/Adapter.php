@@ -64,6 +64,13 @@ abstract class Adapter
         $curl->setTimeout(40);
         $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
         $curl->addHeader('cache-control', 'no-cache');
+        if ($this->isTestMode()) {
+            $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
+            $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
+        } else {
+            $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
+            $curl->addHeader('Cache-Control', 'no-cache');
+        }
         try {
             $curl->get($this->getRequestUrl());
             return [

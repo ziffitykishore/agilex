@@ -39,14 +39,23 @@ class SpotPricingApi extends Adapter
      * @return array
      * @throws LocalizedException
      */
-    public function getSpotPrice($productSku)
+    public function getSpotPrice($productSku, $suffix = '')
     {
         $customerAccountId = $this->getCustomerAccountId();
 
         if ($customerAccountId) {
-            $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
-                'customerId' => $customerAccountId
-            ]);
+            if (!$this->isTestMode()) {
+                $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
+                    'customerId' => $customerAccountId,
+                    'suffix' => $suffix
+                ]);
+            } else {
+                $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
+                    'customerId' => $customerAccountId,
+                    'sku' => $productSku,
+                    'suffix' => $suffix
+                ]);
+            }
 
             return $this->getRequest();
         } else {
