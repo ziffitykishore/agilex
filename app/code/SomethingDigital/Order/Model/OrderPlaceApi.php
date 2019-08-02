@@ -159,7 +159,7 @@ class OrderPlaceApi extends Adapter
             "PostalCode" => $address->getPostcode(),
             "CountryCode" => $address->getCountryId(),
             "Phone" => $address->getTelephone()
-        ]
+        ];
     }
 
 }
