@@ -10,9 +10,8 @@
 
 <?php
 $_product = $block->getProduct();
-$inventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceStock')->getSourceInventory($_product->getSku(), $_product->getId(), $_product->getTypeId());
 ?>
-<?php if ($_product->isAvailable() && $inventory && $block->hasOptions()): ?>
+<?php if ($_product->isAvailable() && $block->hasOptions()): ?>
 <div id="bundleSummary"
      class="block-bundle-summary"
      data-mage-init='{"sticky":{"container": ".product-add-form"}}'>

@@ -6,7 +6,6 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-
     <body>
         <referenceContainer name="after.body.start">
             <block class="Magento\Framework\View\Element\Template" name="loader.content" template="Magento_Theme::html/loader.phtml" before="page.wrapper"/>
@@ -30,11 +29,10 @@
             </referenceContainer>
             <container name="nav-right-sec" label="Search Location" htmlTag="div"  htmlClass="nav-right-sec d-flex justify-content-between align-items-center"/>
         </referenceContainer>
-        <move element="location" destination="header-wrapper" after="top.search" />
         <move element="nav-right-sec" destination="header-wrapper" after="navigation.sections" />
-        <move element="account-links" destination="nav-right-sec" after="-" />
-        <move element="top.search" destination="nav-right-sec" after="-" />
-        <move element="location" destination="nav-right-sec" after="top.search" />
+        <move element="account-links" destination="nav-right-sec" after="-"/>
+        <move element="store_language" destination="nav-right-sec" before="account-links"/>
+        <move element="top.search" destination="nav-right-sec" before="top.search"/>
         <referenceContainer name="footer">
             <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>
             <container name="footermiddle" label="Footer Middle" htmlTag="div"  htmlClass="footer-middle"/>

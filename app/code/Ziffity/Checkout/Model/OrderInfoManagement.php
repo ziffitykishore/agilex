@@ -47,11 +47,9 @@ class OrderInfoManagement implements OrderInfoManagementInterface
               );
         }
         
-        $location = $orderInfo->getStoreLocation();
         $address = $orderInfo->getStoreAddress();
 
-        try {
-             $quote->setData(OrderInfo::STORE_LOCATION, strip_tags($location));
+        try {     
              $quote->setData(OrderInfo::STORE_ADDRESS, $address);
              $this->quoteRepository->save($quote);
         } catch (\Exception $e) {

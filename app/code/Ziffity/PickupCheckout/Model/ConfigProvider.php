@@ -15,29 +15,51 @@ class ConfigProvider implements ConfigProviderInterface
     protected $regionModel;
 
     protected $zipcodeCollection;
+    
+    private $_storeManager;
+    
+    protected $_helperCore;
 
+    protected $_modelStock;
+    
+    protected $_modelPos;
+    
     public function __construct(
         LayoutInterface $layout,
-        \Magento\Inventory\Model\ResourceModel\Source\Collection $source,
         \Magento\Directory\Model\Region $region,
-        \Ziffity\Zipcode\Model\ResourceModel\Data\Collection $zipcodeCollection
+        \Ziffity\Zipcode\Model\ResourceModel\Data\Collection $zipcodeCollection,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Wyomind\Core\Helper\Data $helperCore,
+        \Wyomind\AdvancedInventory\Model\Stock $modelStock,
+        \Wyomind\PointOfSale\Model\PointOfSale $modelPos
     ) {
         $this->_layout = $layout;
-        $this->sourceCollection = $source;
         $this->regionModel = $region;
         $this->zipcodeCollection = $zipcodeCollection;
+        $this->_storeManager = $storeManager;
+        $this->_helperCore = $helperCore;
+        $this->_modelStock = $modelStock;
+        $this->_modelPos = $modelPos;
     }
 
     public function getConfig()
-    {
-        $currentStore = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE['storeLocation'],true) : null;
-        if(isset($currentStore)) {
-            $selectedLocation = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$currentStore["code"])->load()->getFirstItem();
-            $region = $this->regionModel->load($selectedLocation->getRegionId());
+    {        
+        $storeId = $this->_storeManager->getStore()->getStoreId();
+        $storeName = $this->_storeManager->getStore()->getStoreId();
+        $pos = $this->_modelPos->getPlacesByStoreId($storeId, true);
+        $pickupStore = [];
+
+        foreach ($pos as $place) {
+            $pickupStore['street'] = $place->getAddressLine1();
+            $pickupStore['city'] = $place->getCity();
+            $pickupStore['region'] = $place->getState();
+            $pickupStore['country'] = $place->getCountryCode();
+            $pickupStore['postcode'] = $place->getCountryCode();
+            $pickupStore['phone'] = $place->getMainPhone();
         }
 
-        if(isset($currentStore['code'])) {
-            $allowedZipcode = $this->zipcodeCollection->addFieldToFilter('is_active', 1)->addFieldToFilter('source_code', $currentStore["code"])->load()->getFirstItem();
+        if(isset($storeName)) {
+            $allowedZipcode = $this->zipcodeCollection->addFieldToFilter('is_active', 1)->addFieldToFilter('source_code', $storeName)->load()->getFirstItem();
         }
 
         if(isset($allowedZipcode) && $allowedZipcode->getAllowedZipcodeList()) {
@@ -47,12 +69,12 @@ class ConfigProvider implements ConfigProviderInterface
         if(isset($_COOKIE['is_pickup']) && $_COOKIE['is_pickup'] == 'true') {
             return [
               'pickup_store' => [
-                  'street' => $selectedLocation->getStreet(),
-                  'city' => $selectedLocation->getCity(),
-                  'region_name' => $region->getName(),
-                  'country_id' => $selectedLocation->getCountryId(),
-                  'postcode' => $selectedLocation->getPostcode(),
-                  'phone' => $selectedLocation->getPhone()
+                  'street' => $pickupStore['street'],
+                  'city' => $pickupStore['city'],
+                  'region_name' => $pickupStore['region'],
+                  'country_id' => $pickupStore['country'],
+                  'postcode' => $pickupStore['postcode'],
+                  'phone' => $pickupStore['phone']
               ]
             ];
         } else {

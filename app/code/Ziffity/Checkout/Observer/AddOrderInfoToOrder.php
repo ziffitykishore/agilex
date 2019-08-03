@@ -21,11 +21,6 @@ class AddOrderInfoToOrder implements ObserverInterface
         /** @var $quote \Magento\Quote\Model\Quote **/
 
         $order->setData(
-            OrderInfo::STORE_LOCATION,
-            $quote->getData(OrderInfo::STORE_LOCATION)
-        );
-
-        $order->setData(
             OrderInfo::STORE_ADDRESS,
             $quote->getData(OrderInfo::STORE_ADDRESS)
         );

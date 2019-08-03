@@ -8,18 +8,6 @@ namespace Ziffity\Checkout\Api\Data;
  */
 interface OrderInfoInterface
 {
-
-    /**
-     * @return string|null
-     */
-    public function getStoreLocation();
-
-    /**
-     * @param string $comment
-     * @return null
-     */
-    public function setStoreLocation($location);
-
     /**
      * @return string|null
      */

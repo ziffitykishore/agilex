@@ -17,32 +17,33 @@ class OrderPlaceAfter implements ObserverInterface
     protected $storeManager;
     
     protected $sourceCollection;
-
+    
+    protected $_modelPos;
 
     public function __construct(
         LoggerInterface $logger,
         \Magento\Framework\App\Request\Http $request,
         \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Inventory\Model\ResourceModel\Source\Collection $source
+        \Wyomind\PointOfSale\Model\PointOfSale $modelPos
     ) {
         $this->logger = $logger;
         $this->request = $request;
         $this->transportBuilder = $transportBuilder;
         $this->storeManager = $storeManager;
-        $this->sourceCollection = $source;
+        $this->_modelPos = $modelPos;
     }
  
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $selectedLocation = isset($_COOKIE['storeLocation']) ? json_decode($_COOKIE['storeLocation'],true) : null;
-
-        if($selectedLocation) {
-            $selectedLocation = $this->sourceCollection->addFieldToFilter('enabled',1)->addFieldToFilter('source_code',$selectedLocation["code"])->load()->getFirstItem();
-            $adminEmail = $selectedLocation->getEmail();
-            $adminName = $selectedLocation->getContactName();
+        $storeId = $this->storeManager->getStore()->getStoreId();
+        if(isset($storeId)) {
+            $pos = $this->_modelPos->getPlacesByStoreId($storeId, true);
+            foreach ($pos as $place) {
+                $adminEmail = $place->getEmail();
+                $adminName = $place->getName();
+            }
         }
-
         $order = $observer->getData('transportObject');
         $store = $this->storeManager->getStore()->getId();
         $transport = $this->transportBuilder->setTemplateIdentifier('new_order_admin')
@@ -52,6 +53,6 @@ class OrderPlaceAfter implements ObserverInterface
             ->addTo($adminEmail, $adminName)
             ->getTransport();
         $transport->sendMessage();
-        return $this;        
+        return $this;
     }
 }

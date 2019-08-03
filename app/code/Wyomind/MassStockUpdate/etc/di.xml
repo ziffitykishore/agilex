@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+
+
+
+    <!-- PROGRESS BAR CONFIGURATION STARTS -->
+    <virtualType name="Wyomind\MassStockUpdate\Block\Adminhtml\Progress\Status"
+                 type="Wyomind\Core\Block\Adminhtml\Progress\Status">
+        <arguments>
+            <argument name="module" xsi:type="string">MassStockUpdate</argument>
+            <argument name="field" xsi:type="string">cron_settings</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wyomind\MassStockUpdate\Helper\Progress"
+                 type="Wyomind\Core\Helper\Progress">
+        <arguments>
+            <argument name="module" xsi:type="string">MassStockUpdate</argument>
+            <argument name="tempDirectory" xsi:type="string">/var/tmp/MassStockUpdate/</argument>
+            <argument name="filePrefix" xsi:type="string">profile_</argument>
+        </arguments>
+    </virtualType>
+    <!-- PROGRESS BAR CONFIGURATION ENDS -->
+
+
+    <!-- LOGGER CONFIGURATION STARTS -->
+    <virtualType name="Wyomind\MassStockUpdate\Logger\Logger" type="\Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">MassStockUpdate</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="MassStockUpdate" xsi:type="object">Wyomind\MassStockUpdate\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wyomind\MassStockUpdate\Logger\Handler" type="\Wyomind\Core\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/Wyomind_MassStockUpdate.log</argument>
+            <argument name="filePath" xsi:type="string"></argument>
+        </arguments>
+    </virtualType>
+
+    <!-- LOGGER CONFIGURATION ENDS -->
+
+    <!-- LOGGERCRON CONFIGURATION STARTS -->
+    <virtualType name="Wyomind\MassStockUpdate\Logger\LoggerCron" type="\Monolog\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">MassStockUpdateCron</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="MassStockUpdate" xsi:type="object">Wyomind\MassStockUpdate\Logger\HandlerCron</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Wyomind\MassStockUpdate\Logger\HandlerCron" type="\Wyomind\Core\Logger\Handler\Base">
+        <arguments>
+            <argument name="fileName" xsi:type="string">/var/log/Wyomind_MassStockUpdateCron.log</argument>
+            <argument name="filePath" xsi:type="string"></argument>
+        </arguments>
+    </virtualType>
+    <!-- LOGGERCRON CONFIGURATION ENDS -->
+    
+    <!-- COMMAND LINE -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="wyomind_massstockupdate_run" xsi:type="object">Wyomind\MassStockUpdate\Console\Command\Run</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="wyomind_massstockupdate_sql" xsi:type="object">Wyomind\MassStockUpdate\Console\Command\Sql</item>
+            </argument>
+        </arguments>
+    </type>
+    
+</config>

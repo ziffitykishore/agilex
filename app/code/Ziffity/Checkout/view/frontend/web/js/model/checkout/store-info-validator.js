@@ -36,22 +36,16 @@ define(
                     address += "<span>" +  window.checkoutConfig.pickup_store['postcode'] + "</span><br/>";
                     address += "<span>" +  window.checkoutConfig.pickup_store['phone'] + "</span>";
                 }
-                var location = '';
-                if($.cookie('storeLocation')) {
-                    location = JSON.parse($.cookie('storeLocation')).name;
-                }
-                console.log(location);
-                console.log(address);
+                
                 var payload = {
                     cartId: quoteId,
                     orderInfo : {
-                        storeAddress: address,
-                        storeLocation : location
+                        storeAddress: address
                     }
                     
                 };
 
-                if (!payload.orderInfo.storeAddress && !payload.orderInfo.storeAddress) {
+                if (!payload.orderInfo.storeAddress) {
                     return true;
                 }
 

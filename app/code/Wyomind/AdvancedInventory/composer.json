@@ -1,0 +1,31 @@
+{
+    "name": "wyomind/advancedinventory",
+    "version": "7.1.0.1",
+    "version_normalized": "7.1.0.1",
+    "dist": {
+        "type": "zip",
+        "url": "https://www.wyomind.com/wyomind-advancedinventory-7.1.0.1.zip",
+        "reference": null
+    },
+    "require": {
+        "magento/framework": ">=100.0.0",
+        "php": "~5.5.0|~5.6.0|>=7.0.0",
+        "wyomind/core": ">=1.0.0",
+        "wyomind/pointofsale": ">=7.0.0,<=7.0.0.6",
+        "wyomind/massstockupdate": ">=6.0.0,<=9.3.1"
+    },
+    "type": "magento2-module",
+    "extra": [],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Wyomind\\AdvancedInventory\\": ""
+        }
+    },
+    "license": [
+        "Commercial License - Copyright 2016  - WYOMIND  - Purchasing any product (Software) from the  wyomind.com web-site means buyer agree to the following statements (see LICENSE.TXT)"
+    ],
+    "description": "Manage your stocks in several warehouses and across all your POS. Automatically assign each order to one or several inventories. Create different stock levels for each store view. Give store managers the permissions to manage stocks of the POS/warehouses. "
+}

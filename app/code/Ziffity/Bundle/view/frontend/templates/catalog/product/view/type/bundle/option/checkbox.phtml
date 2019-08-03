@@ -11,7 +11,6 @@
 <?php /* @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Checkbox */ ?>
 <?php
 $imageHelper = $this->helper('\Magento\Catalog\Helper\Image');
-$inventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceStock');
 ?>
 <?php $_option = $block->getOption() ?>
 <?php $_selections = $_option->getSelections() ?>
@@ -31,9 +30,7 @@ $inventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceSt
                 <?php foreach($_selections as $_selection): ?>
                 <?php
                 $image_url = $imageHelper->init($_selection, 'product_page_image_small')->setImageFile($_selection->getFile())->resize(200, 200)->getUrl();
-                $checkStockStatus = $inventory->getSourceInventory($_selection->getSku(), $_selection->getId(), $_selection->getTypeId());
                 ?>
-                <?php if($checkStockStatus): ?>
                     <div class="product-item col-12 col-md-4 col-lg-3">
 
                         <div class="product-item-info">
@@ -54,7 +51,6 @@ $inventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceSt
                             </div>
                         </div>
                     </div>
-                <?php endif; ?>
                 <?php endforeach; ?>
                 <!--<div id="bundle-option-<?php /* @escapeNotVerified */ //$_option->getId() ?>-container"></div> -->
                 <!-- commented for no use -->

@@ -10,11 +10,10 @@
 ?>
 <?php
 $_product = $block->getProduct();
-$inventory = $block->getLayout()->createBlock('\Ziffity\Inventory\Block\SourceStock')->getSourceInventory($_product->getSku(), $_product->getId(), $_product->getTypeId());
 ?>
 <div class="product-info-stock-sku">
 <?php if ($block->displayProductStockStatus()): ?>
-    <?php if ($_product->isAvailable() && $inventory): ?>
+    <?php if ($_product->isAvailable()): ?>
         <div class="stock available" title="<?= /* @escapeNotVerified */ __('Availability:') ?>">
             <span><?= /* @escapeNotVerified */ __('In stock') ?></span>
         </div>
