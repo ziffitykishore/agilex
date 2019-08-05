@@ -9,4 +9,9 @@
         <link src="Wyomind_AdvancedInventory::css/stocks.css"/>
         <link src="Wyomind_AdvancedInventory::js/stocks.js"/>
     </head>
+    <body>
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="wyomind.stock.status" template="product/view/stock.phtml" after="product.price.tier"/>
+        </referenceContainer>
+    </body>
 </page>
