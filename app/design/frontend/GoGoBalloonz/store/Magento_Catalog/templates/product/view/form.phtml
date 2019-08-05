@@ -14,9 +14,6 @@
 ?>
 <?php $_helper = $this->helper('Magento\Catalog\Helper\Output'); ?>
 <?php $_product = $block->getProduct(); ?>
-<!-- Added intentionally to check Wyomind_AdvanceInventory module -->
-<?php echo $this->getLayout()->createBlock('\Wyomind\AdvancedInventory\Block\Catalog\Product\Stock')->output($_product); ?>
-<!-- Added intentionally to check Wyomind_AdvanceInventory module -->
 <div class="product-add-form">
     <form data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>"
           action="<?= /* @NoEscape */ $block->getSubmitUrl($_product) ?>" method="post"

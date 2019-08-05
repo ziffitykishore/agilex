@@ -1,0 +1,7 @@
+<?php /* @var $block \Magento\Catalog\Block\Product\View */?>
+<?php 
+$_product = $block->getProduct();
+?>
+<!-- Added intentionally to check Wyomind_AdvanceInventory module -->
+<?php echo $this->getLayout()->createBlock('\Wyomind\AdvancedInventory\Block\Catalog\Product\Stock')->output($_product); ?>
+<!-- Added intentionally to check Wyomind_AdvanceInventory module -->
