@@ -42,5 +42,15 @@ define([
                     });
                 }
         }, element);
+
+        //mobile tabs behavior
+        $(".custom-tab").click(function(e) {
+            e.preventDefault();
+            var d_activeTab = $(this).attr("aria-controls");
+
+            $(".custom-tab").removeClass("active");
+            $(this).addClass("active");
+            $("ul.tabs-navigation li[aria-controls='"+d_activeTab+"'] a").click();
+        });
     };
 });
