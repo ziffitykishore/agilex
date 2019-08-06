@@ -8,9 +8,18 @@
 
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
-<?php $_product = $block->getProduct(); ?>
+<?php
+$_product = $block->getProduct();
+if ($_product->getTypeId() == \Magento\Bundle\Model\Product\Type::TYPE_CODE) {
+    $wyomind_stock = $this->getLayout()->createBlock('Wyomind\AdvancedInventory\Block\Catalog\Product\Stock');
+    $isInStock = json_decode($wyomind_stock->output($_product, "json"));
+    $isSaleable = $isInStock->stock;
+} else {
+    $isSaleable = $_product->isSaleable();
+}
+?>
 <?php $buttonTitle = __('Add to Cart'); ?>
-<?php if ($_product->isSaleable()): ?>
+<?php if ($isSaleable): ?>
 <div class="box-tocart">
     <div class="fieldset">
         <?php if ($block->shouldRenderQuantity()): ?>

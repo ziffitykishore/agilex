@@ -87,7 +87,6 @@ class Stock extends WyomindStock
 
             $stocks = $this->_modelStock->getStockSettings($this->_product->getId(), false, $placeIds);
 
-
             $newPlaces = [];
             if (!empty($posPlaces)) {
                 $tmpPosStores = json_decode($posPlaces, true);
@@ -147,6 +146,42 @@ class Stock extends WyomindStock
                         $msg .= " <span class='qty' style='display:none;'>(<span class='units'></span> " . __("unit") . "<span class='plurial'>s</span>)</span>";
 
                         $msg .= "</span>";
+                    } elseif ($this->_product->getTypeId() == \Magento\Bundle\Model\Product\Type::TYPE_CODE){
+                        $optionsCollection = $this->_product->getTypeInstance(true)->getOptionsCollection($this->_product);
+                        foreach ($optionsCollection as $options) {
+                            if ($options->getRequired()) {
+                                $opionId = $options->getOptionId();
+                                break;
+                            }
+                        }
+
+                        $selectionCollection = $this->_product->getTypeInstance(true)->getSelectionsCollection($this->_product->getTypeInstance(true)->getOptionsIds($this->_product),$this->_product);
+
+                        $qty = "quantity_" . $place->getId() . "";
+                        $manageStock = "manage_stock_" . $place->getId() . "";
+                        $backorders = "backorders_" . $place->getId() . "";
+                        $isInStock = "is_in_stock_" . $place->getId() . "";
+                        $backorderAllowed = "backorder_allowed_" . $place->getId() . "";
+
+                        $msgInStock = $place->getStockStatusMessage();
+                        $msgBackorder = $place->getStockStatusMessageBackorder();
+                        $msgOutOfStock = $place->getStockStatusMessageOutOfStock();
+
+                        foreach ($selectionCollection as $selection) {
+                            if ($selection->getOptionId() == $opionId) {
+                                $stocks = $this->_modelStock->getStockSettings($selection->getProductId(), false, $placeIds);
+                                if ($stocks[$isInStock] != "0" && $stocks[$qty] > 0) {
+                                    $msg = "<span id='pos_" . $place->getId() . "'>";
+                                    $msg .= "<span class='status in_stock'>" . ($msgInStock != "" ? $msgInStock : __("In stock")) . "</span>";
+                                    $msg .= "</span>";
+                                } else {
+                                    $msg = "<span id='pos_" . $place->getId() . "'>";
+                                    $msg .= "<span class='status out_of_stock'>" . ($msgOutOfStock != "" ? $msgOutOfStock : __("Out of stock")) . "</span>";
+                                    $msg .= "</span>";
+                                    break;
+                                }
+                            }
+                        }
                     } else {
 
                         $qty = "quantity_" . $place->getId() . "";
@@ -154,6 +189,7 @@ class Stock extends WyomindStock
                         $backorders = "backorders_" . $place->getId() . "";
                         $isInStock = "is_in_stock_" . $place->getId() . "";
                         $backorderAllowed = "backorder_allowed_" . $place->getId() . "";
+
                         if ($place->getManageInventory() == 2) {
                             $warehouses = explode(',', $place->getWarehouses());
                             $stocksWarehouses = $this->_modelStock->getStockSettings($this->_product->getId(), false, $warehouses);
@@ -263,5 +299,143 @@ class Stock extends WyomindStock
 
         }
         return;
-    }    
+    }
+
+    public function getDataJson()
+    {
+        if ($this->_helperCore->getStoreConfig("advancedinventory/settings/enabled")) {
+            $places = $this->_modelPos->getPlacesByStoreId($this->_storeId, true);
+            $placeIds = [];
+            foreach ($places as $place) {
+                $placeIds[] = $place->getPlaceId();
+            }
+            $stocks = $this->_modelStock->getStockSettings($this->_product->getId(), false, $placeIds);
+
+            if ($this->_product->getTypeId() == \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+                $attributes = [];
+                $attributesTmp = $this->_product->getTypeInstance(true)->getConfigurableAttributes($this->_product);
+                foreach ($attributesTmp as $_attribute) {
+                    $attributes[] = $this->_modelEavConfig->getAttribute('catalog_product', $_attribute->getAttributeId());
+                }
+
+                $associatedProduct = $this->_product->getTypeInstance()->getUsedProducts($this->_product);
+                $children = [];
+                $i = 0;
+                $placeIds = [];
+                $places = $this->_modelPos->getPlaces();
+                foreach ($places as $place) {
+                    $placeIds[] = $place->getPlaceId();
+                }
+
+                foreach ($associatedProduct as $child) {
+                    $stocks = $this->_modelStock->getStockSettings($child->getId(), false, $placeIds);
+                    foreach ($attributes as $attr) {
+                        $children[$i]["attribute" . $attr->getAttributeId()] = $child->getData($attr->getAttributeCode());
+                    }
+
+                    foreach ($places as $place) {
+                        $inCustomerGroups = in_array($this->_customerId, explode(',', $place->getCustomerGroup()));
+                        $inStoreviews = in_array($this->_storeId, explode(',', $place->getStoreId()));
+                        if ($place->getStatus() != 1 || !$inStoreviews || !$inCustomerGroups) {
+                            continue;
+                        }
+
+                        $qty = "quantity_" . $place->getId() . "";
+                        $manageStock = "manage_stock_" . $place->getId() . "";
+                        $backorders = "backorders_" . $place->getId() . "";
+                        $backorderAllowed = "backorder_allowed_" . $place->getId() . "";
+                        $isInStock = "is_in_stock_" . $place->getId() . "";
+
+
+                        if ($place->getManageInventory() == 2) {
+                            $warehouses = explode(',', $place->getWarehouses());
+                            $stocksWarehouses = $this->_modelStock->getStockSettings($child->getId(), false, $warehouses);
+                            $stocks[$isInStock] = 0;
+                            $stocks[$qty] = 0;
+                            $stocks[$backorderAllowed] = 0;
+                            $stocks[$backorders] = false;
+                            foreach ($warehouses as $warehouse) {
+                                $stocks[$qty] += $stocksWarehouses['quantity_' . $warehouse];
+                                $stocks[$isInStock] |= $stocksWarehouses['is_in_stock_' . $warehouse];
+                                //$stocks[$manageStock] |= $stocksWarehouses['manage_stock_' . $warehouse];
+                                $stocks[$backorderAllowed] = max($stocks[$backorders], $stocksWarehouses['backorder_allowed_' . $warehouse]);
+                                $stocks[$backorders] |= $stocksWarehouses['backorders_' . $warehouse];
+                            }
+                        }
+
+
+                        $msgInStock = $place->getStockStatusMessage();
+                        $msgBackorder = $place->getStockStatusMessageBackorder();
+                        $msgOutOfStock = $place->getStockStatusMessageOutOfStock();
+
+
+                        $msg = "";
+                        if ($stocks[$isInStock] != "0" && $stocks[$qty] > 0) {
+                            $status = "in_stock";
+                            $msg = $msgInStock;
+                            if (!isset($children[$i]["message"])) {
+                                $children[$i]["message"] = $place->getStockStatusMessage();
+                            }
+                        } else {
+                            if ($stocks[$backorders]) {
+                                if ($stocks[$backorderAllowed] > 1) {
+                                    $status = "backorder";
+                                    $msg = $msgBackorder;
+                                } else {
+                                    $status = "in_stock";
+                                    $msg = $msgBackorder;
+                                }
+                                if (isset($children[$i]["message"])) {
+                                    $children[$i]["message"] = $place->getStockStatusMessage();
+                                }
+                            } else {
+                                $status = "out_of_stock";
+                                $msg = $msgOutOfStock;
+                            }
+                        }
+
+                        $children[$i]['stock'][] = ["store" => $place->getPlaceId(), "qty" => ((int)$stocks[$qty] - (int)$stocks['min_qty']), "status" => $status, "message" => $msg];
+                    }
+
+                    $i++;
+                }
+                return $this->_jsonHelperData->jsonEncode($children);
+            } elseif ($this->_product->getTypeId() == \Magento\Bundle\Model\Product\Type::TYPE_CODE) {
+                $optionsCollection = $this->_product->getTypeInstance(true)->getOptionsCollection($this->_product);
+                foreach ($optionsCollection as $options) {
+                    if ($options->getRequired()) {
+                        $opionId = $options->getOptionId();
+                        break;
+                    }
+                }
+
+                $selectionCollection = $this->_product->getTypeInstance(true)->getSelectionsCollection($this->_product->getTypeInstance(true)->getOptionsIds($this->_product),$this->_product);
+
+                $qty = "quantity_" . $place->getId() . "";
+                $manageStock = "manage_stock_" . $place->getId() . "";
+                $backorders = "backorders_" . $place->getId() . "";
+                $isInStock = "is_in_stock_" . $place->getId() . "";
+                $backorderAllowed = "backorder_allowed_" . $place->getId() . "";
+
+                $msgInStock = $place->getStockStatusMessage();
+                $msgBackorder = $place->getStockStatusMessageBackorder();
+                $msgOutOfStock = $place->getStockStatusMessageOutOfStock();
+                $stockStatus = [];
+                foreach ($selectionCollection as $selection) {
+                    if ($selection->getOptionId() == $opionId) {
+                        $stocks = $this->_modelStock->getStockSettings($selection->getProductId(), false, $placeIds);
+                        if ($stocks[$isInStock] != "0" && $stocks[$qty] > 0) {
+                            $stockStatus['stock'] = true;
+                        } else {
+                            $stockStatus['stock'] = false;
+                            break;
+                        }
+                    }
+                }
+                return $this->_jsonHelperData->jsonEncode($stockStatus);
+            }
+            return "";
+        }
+        return "";
+    }
 }
