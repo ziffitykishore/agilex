@@ -25,21 +25,29 @@ define([
                 /**
                  * Adjust the margin bottom of the navigation to correctly display the active tab
                  */
-                function () {
+                function (event, ui) {
                     var borderWidth = parseInt($element.find('.tabs-content').css('borderWidth').toString(), 10);
 
                     $element.find('.tabs-navigation').css('marginBottom', -borderWidth);
                     $element.find('.tabs-navigation li:not(:first-child)').css('marginLeft', -borderWidth);
+
+                    var d_activeTab = $(ui.tab[0]).attr("aria-controls");
+                    $(".custom-tab").removeClass("active");
+                    $(".custom-tab[aria-controls='"+ d_activeTab +"']").addClass('active');
                 },
             activate:
 
                 /**
                  * Trigger redraw event since new content is being displayed
                  */
-                function () {
+                function (event, ui) {
                     events.trigger('contentType:redrawAfter', {
                         element: element
                     });
+
+                    var d_activeTab = $(ui.newTab[0]).attr('aria-controls')
+                    $(".custom-tab").removeClass("active");
+                    $(".custom-tab[aria-controls='"+ d_activeTab +"']").addClass('active');
                 }
         }, element);
 
@@ -50,7 +58,7 @@ define([
 
             $(".custom-tab").removeClass("active");
             $(this).addClass("active");
-            $("ul.tabs-navigation li[aria-controls='"+d_activeTab+"'] a").click();
+            $("ul.tabs-navigation li[aria-controls='"+ d_activeTab +"'] a").click();
         });
     };
 });
