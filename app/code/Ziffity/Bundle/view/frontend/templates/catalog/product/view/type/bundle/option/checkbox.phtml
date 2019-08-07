@@ -33,7 +33,7 @@ $wyomind_stock = $this->getLayout()->createBlock('Ziffity\AdvancedInventory\Plug
                 $image_url = $imageHelper->init($_selection, 'product_page_image_small')->setImageFile($_selection->getFile())->resize(200, 200)->getUrl();
                 ?>
                     <?php $isInStock = json_decode($wyomind_stock->output($_selection, "json")); ?>
-                    <?php if ($isInStock->stock): ?>
+                    <?php if (isset($isInStock->stock) && $isInStock->stock): ?>
                     <div class="product-item col-12 col-md-4 col-lg-3">
 
                         <div class="product-item-info">

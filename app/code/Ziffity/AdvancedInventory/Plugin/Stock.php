@@ -433,9 +433,59 @@ class Stock extends WyomindStock
                     }
                 }
                 return $this->_jsonHelperData->jsonEncode($stockStatus);
+            } else {
+                $qty = "quantity_" . $place->getId() . "";
+                $manageStock = "manage_stock_" . $place->getId() . "";
+                $backorders = "backorders_" . $place->getId() . "";
+                $isInStock = "is_in_stock_" . $place->getId() . "";
+                $backorderAllowed = "backorder_allowed_" . $place->getId() . "";
+
+                if ($place->getManageInventory() == 2) {
+                    $warehouses = explode(',', $place->getWarehouses());
+                    $stocksWarehouses = $this->_modelStock->getStockSettings($this->_product->getId(), false, $warehouses);
+                    $stocks[$qty] = 0;
+                    $stocks[$isInStock] = false;
+                    foreach ($warehouses as $warehouse) {
+                        $stocks[$qty] += $stocksWarehouses['quantity_' . $warehouse];
+                        $stocks[$isInStock] |= $stocksWarehouses['is_in_stock_' . $warehouse];
+                        $stocks[$manageStock] |= $stocksWarehouses['manage_stock_' . $warehouse];
+                        $stocks[$backorderAllowed] = max($stocks[$backorders], $stocksWarehouses['backorder_allowed_' . $warehouse]);
+                        $stocks[$backorders] |= $stocksWarehouses['backorders_' . $warehouse];
+                    }
+                }
+
+                $msgInStock = $place->getStockStatusMessage();
+                $msgBackorder = $place->getStockStatusMessageBackorder();
+                $msgOutOfStock = $place->getStockStatusMessageOutOfStock();
+
+                if ($stocks[$isInStock] != "0" && $stocks[$qty] > 0) {
+                    $stockStatus['stock'] = true;
+                } else {
+                    $stockStatus['stock'] = false;
+                }
+                return $this->_jsonHelperData->jsonEncode($stockStatus);
             }
             return "";
         }
         return "";
+    }
+
+    public function output($_product, $type = 'grid', $includeJson = true, $ajax = false)
+    {
+        $this->_product = $_product;
+        if ($type == "json") {
+            return $this->getDataJson();
+        }
+        $html = "";
+        if ($includeJson) {
+            $html .= $this->getJson();
+        }
+        if ($type == "grid") {
+            $html .= $this->getGrid($ajax);
+        }
+        if ($type == "message") {
+            $html .= $this->getMessage();
+        }
+        return $html;
     }
 }
