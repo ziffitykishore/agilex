@@ -6,6 +6,7 @@
              title="Image Uploader"
              module="Ziffity_Banners"
              sortOrder="75" resource="Ziffity_Banners::image"
+             parent="Magento_Integration::system_extensions"
              action="banners/image/index"/>
     </menu>
 </config>

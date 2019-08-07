@@ -170,7 +170,7 @@ class Stock extends WyomindStock
                         foreach ($selectionCollection as $selection) {
                             if ($selection->getOptionId() == $opionId) {
                                 $stocks = $this->_modelStock->getStockSettings($selection->getProductId(), false, $placeIds);
-                                if ($stocks[$isInStock] != "0" && $stocks[$qty] > (int)$selection->getSelectionQty()) {
+                                if ($stocks[$isInStock] != "0" && $stocks[$qty] >= (int)$selection->getSelectionQty()) {
                                     $msg = "<span id='pos_" . $place->getId() . "'>";
                                     $msg .= "<span class='status in_stock'>" . ($msgInStock != "" ? $msgInStock : __("In stock")) . "</span>";
                                     $msg .= "</span>";
@@ -424,7 +424,7 @@ class Stock extends WyomindStock
                 foreach ($selectionCollection as $selection) {
                     if ($selection->getOptionId() == $opionId) {
                         $stocks = $this->_modelStock->getStockSettings($selection->getProductId(), false, $placeIds);
-                        if ($stocks[$isInStock] != "0" && $stocks[$qty] > (int)$selection->getSelectionQty()) {
+                        if ($stocks[$isInStock] != "0" && $stocks[$qty] >= (int)$selection->getSelectionQty()) {
                             $stockStatus['stock'] = true;
                         } else {
                             $stockStatus['stock'] = false;
