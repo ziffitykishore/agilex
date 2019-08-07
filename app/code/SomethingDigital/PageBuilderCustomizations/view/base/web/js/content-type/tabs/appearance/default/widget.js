@@ -32,7 +32,7 @@ define([
                     $element.find('.tabs-navigation li:not(:first-child)').css('marginLeft', -borderWidth);
 
                     var d_activeTab = $(ui.tab[0]).attr("aria-controls");
-                    $(".custom-tab").removeClass("active");
+                    $(event.target).find(".custom-tab").removeClass("active");
                     $(".custom-tab[aria-controls='"+ d_activeTab +"']").addClass('active');
                 },
             activate:
@@ -45,8 +45,8 @@ define([
                         element: element
                     });
 
-                    var d_activeTab = $(ui.newTab[0]).attr('aria-controls')
-                    $(".custom-tab").removeClass("active");
+                    var d_activeTab = $(ui.newTab[0]).attr('aria-controls');
+                    $(event.target).find(".custom-tab").removeClass("active");
                     $(".custom-tab[aria-controls='"+ d_activeTab +"']").addClass('active');
                 }
         }, element);
@@ -55,9 +55,6 @@ define([
         $(".custom-tab").click(function(e) {
             e.preventDefault();
             var d_activeTab = $(this).attr("aria-controls");
-
-            $(".custom-tab").removeClass("active");
-            $(this).addClass("active");
             $("ul.tabs-navigation li[aria-controls='"+ d_activeTab +"'] a").click();
         });
     };
