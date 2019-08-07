@@ -1,0 +1,13 @@
+<div attr="data.main.attributes"
+     ko-style="data.main.style"
+     css="data.main.css">
+    <a href="#no-tab" class="custom-tab tab-title" data-bind="attr: {href: '#' + contentType.id, 'aria-controls': contentType.id}">
+        <span text="getData().tab_name"></span>
+    </a>
+    <div class="pagebuilder-banner-wrapper"
+         attr="Object.assign({}, data.wrapper.attributes(), { id: contentType.id })"
+         ko-style="Object.assign(data.container.style(), data.wrapper.style())"
+         css="data.wrapper.css">
+        <render args="masterTemplate" />
+    </div>
+</div>
