@@ -65,7 +65,7 @@ class AddRules
     public function afterApplyRules(RulesApplier $subject, $result)
     {
         $freeGiftSkus = $this->freeGiftSku->skus;
-        $skuSuffix = [];
+        $skuSuffix = '';
         foreach ($result as $ruleId) {
             $rule = $this->ruleModel->load($ruleId);
             $giftSku = $rule->getFreeGiftSku();
@@ -73,14 +73,16 @@ class AddRules
                 $freeGiftSkus[] = $giftSku;
             }
 
-            if (!empty($rule->getSkuSuffix()) && !in_array($rule->getSkuSuffix(), $skuSuffix)) {
-                $skuSuffix[] = $rule->getSkuSuffix();
+            if (!empty($rule->getSkuSuffix())) {
+                $skuSuffix = $rule->getSkuSuffix();
             }
 
         }
         $this->freeGiftSku->skus = $freeGiftSkus;
 
-        $this->session->setSkuSuffix($skuSuffix);
+        if ($skuSuffix) {
+            $this->session->setSkuSuffix($skuSuffix);
+        }
 
         return $result;
     }
