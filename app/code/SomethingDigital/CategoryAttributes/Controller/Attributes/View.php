@@ -1,7 +1,16 @@
 <?php
+
 namespace SomethingDigital\CategoryAttributes\Controller\Attributes;
- 
+
+use Magento\Catalog\Model\CategoryRepository;
+use Magento\Catalog\Model\Product\Attribute\Repository as ProductAttributeRepository;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\NotFoundException;
+use Magento\Framework\Json\EncoderInterface;
+use \Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\UrlFactory;
+use Magento\Store\Model\StoreManagerInterface;
  
 class View extends \Magento\Framework\App\Action\Action
 {
@@ -22,12 +31,12 @@ class View extends \Magento\Framework\App\Action\Action
      */
     
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\Json\EncoderInterface $encoder,
-        \Magento\Framework\View\Result\PageFactory $pageFactory,
-        \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Catalog\Model\CategoryRepository $categoryRepository,
-        \Magento\Catalog\Model\Product\Attribute\Repository $productAttributeRepository
+        Context $context,
+        EncoderInterface $encoder,
+        PageFactory $pageFactory,
+        StoreManagerInterface $storeManager,
+        CategoryRepository $categoryRepository,
+        ProductAttributeRepository $productAttributeRepository
     ) {
         $this->context = $context;
         $this->pageFactory = $pageFactory;
@@ -70,8 +79,8 @@ class View extends \Magento\Framework\App\Action\Action
             ];
 
             $this->getResponse()->representJson($this->jsonEncoder->encode($data))->setHeader('Cache-Control', 'max-age=86400, public');
-        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-            throw new \Magento\Framework\Exception\NotFoundException(__('Category does not exists.')); 
+        } catch (NoSuchEntityException $e) {
+            throw new NotFoundException(__('Category does not exist.'));
         }
     }
 }
