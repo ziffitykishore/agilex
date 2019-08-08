@@ -372,8 +372,16 @@
 
                 .switcher {
                     border: none;
+                    order: inherit;
+                    margin-left: 20px;
+                    margin-right: 0;
+                    float: none;
                     strong {
                         font-weight: 700;
+
+                        &:after {
+                            display: none;
+                        }
                     }
 
                     &:before {
@@ -620,7 +628,8 @@
         }
 
         .switcher {
-            .view-mckinney_store_view {
+            .view-mckinney_store_view,
+            .view-default {
                 display: none;
             }
         }
@@ -716,6 +725,12 @@
                 }
             }
         }
+        .header {
+            .switcher {
+                margin-left: 8px;
+            }
+        }
+
         .switcher,
         .location-track{
             margin-left: 8px;
@@ -995,6 +1010,7 @@
                     bottom: 20px;
                     left: 0;
                     right: 0;
+                    border: none;
                     &:before{
                         position: static;
                     }
@@ -1008,14 +1024,8 @@
                 }
 
                 .switcher {
-                    .action.toggle {
-                        &:after {
-                            display: none !important;
-                        }
-                    }
-
                     .view-mckinney_store_view {
-                        display: block;
+                        display: inline-block;
 
                         &:after {
                             top:2px;
