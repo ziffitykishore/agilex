@@ -19,13 +19,11 @@
 </a>
 
 <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */ $storeName ?>">
-    <picture>
-        <source srcset="<?php echo $block->getViewFileUrl('images/mobile-logo.png'); ?>" media="(max-width: 768px)">
-        <img src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
+        <img class="logo-mobile" src="<?php echo $block->getViewFileUrl('images/mobile-logo.png'); ?>"/>
+        <img class="logo-desktop" src="<?= /* @escapeNotVerified */ $block->getLogoSrc() ?>"
              title="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
              alt="<?= $block->escapeHtmlAttr($block->getLogoAlt()) ?>"
             <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
             <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
         />
-    </picture>
 </a>

@@ -378,9 +378,17 @@
                     float: none;
                     strong {
                         font-weight: 700;
+                        display: inline-block;
 
                         &:after {
                             display: none;
+                        }
+                    }
+
+
+                    .options {
+                        .action.toggle:after {
+                            line-height: 24px;
                         }
                     }
 
@@ -779,6 +787,9 @@
 
 
         .logo {
+            .logo-desktop {
+                display: none;
+            }
             img {
                 width: 50px;
             }
@@ -1457,6 +1468,13 @@
                 justify-content: space-between;
                 padding-top: 0px;
             }
+
+
+        .logo {
+            .logo-mobile {
+                display: none;
+            }
+        }
 
     }
 
