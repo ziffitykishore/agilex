@@ -75,8 +75,16 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $position : '' ?>>
                                 <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $position : '' ?>>
                                     <?= $block->getProductDetailsHtml($_product) ?>
-
-                                    <?php if ($_product->isSaleable()): ?>
+                                    <?php
+                                        if ($_product->getTypeId() == \Magento\Bundle\Model\Product\Type::TYPE_CODE) {
+                                            $wyomind_stock = $this->getLayout()->createBlock('Wyomind\AdvancedInventory\Block\Catalog\Product\Stock');
+                                            $isInStock = json_decode($wyomind_stock->output($_product, "json"));
+                                            $isSaleable = $isInStock->stock;
+                                        } else {
+                                            $isSaleable = $_product->isSaleable();
+                                        }
+                                    ?>
+                                    <?php if ($isSaleable): ?>
                                         <?php if($_product->getTypeId() == 'simple'): ?>
                                             <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                             <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
@@ -95,7 +103,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                             </a>
                                         <?php endif; ?>
                                     <?php else: ?>
-                                        <?php if ($_product->isSaleable()): ?>
+                                        <?php if ($isSaleable): ?>
                                             <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
                                         <?php else: ?>
                                             <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>

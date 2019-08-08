@@ -7,7 +7,6 @@ use Magento\Framework\View\LayoutInterface;
 
 class ConfigProvider implements ConfigProviderInterface
 {
-    /** @var LayoutInterface  */
     protected $_layout;
     
     protected $sourceCollection;
@@ -16,7 +15,7 @@ class ConfigProvider implements ConfigProviderInterface
 
     protected $zipcodeCollection;
     
-    private $_storeManager;
+    protected $_storeManager;
     
     protected $_helperCore;
 
@@ -26,7 +25,7 @@ class ConfigProvider implements ConfigProviderInterface
     
     public function __construct(
         LayoutInterface $layout,
-        \Magento\Directory\Model\Region $region,
+        \Magento\Directory\Model\ResourceModel\Region\Collection $region,
         \Ziffity\Zipcode\Model\ResourceModel\Data\Collection $zipcodeCollection,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Wyomind\Core\Helper\Data $helperCore,
@@ -45,16 +44,18 @@ class ConfigProvider implements ConfigProviderInterface
     public function getConfig()
     {        
         $storeId = $this->_storeManager->getStore()->getStoreId();
-        $storeName = $this->_storeManager->getStore()->getStoreId();
+        $storeName = $this->_storeManager->getStore()->getName();
         $pos = $this->_modelPos->getPlacesByStoreId($storeId, true);
-        $pickupStore = [];
 
+        $pickupStore = [];
         foreach ($pos as $place) {
-            $pickupStore['street'] = $place->getAddressLine1();
+            $regionData =  $this->regionModel->addFieldToFilter('code', ['eq' => $place->getState()])->getFirstItem();
+            $pickupStore['street_line_1'] = $place->getAddressLine1();
+            $pickupStore['street_line_2'] = $place->getAddressLine2();
             $pickupStore['city'] = $place->getCity();
-            $pickupStore['region'] = $place->getState();
+            $pickupStore['region'] = $regionData->getDefaultName();
             $pickupStore['country'] = $place->getCountryCode();
-            $pickupStore['postcode'] = $place->getCountryCode();
+            $pickupStore['postcode'] = $place->getPostalCode();
             $pickupStore['phone'] = $place->getMainPhone();
         }
 
@@ -69,7 +70,8 @@ class ConfigProvider implements ConfigProviderInterface
         if(isset($_COOKIE['is_pickup']) && $_COOKIE['is_pickup'] == 'true') {
             return [
               'pickup_store' => [
-                  'street' => $pickupStore['street'],
+                  'street_line_1' => $pickupStore['street_line_1'],
+                  'street_line_2' => $pickupStore['street_line_2'],
                   'city' => $pickupStore['city'],
                   'region_name' => $pickupStore['region'],
                   'country_id' => $pickupStore['country'],

@@ -2,9 +2,6 @@
 
 namespace Ziffity\Checkout\Model\ResourceModel\Address\Attribute\Source;
 
-use Magento\Framework\App\ObjectManager;
-use Magento\Store\Model\StoreManagerInterface;
-
 class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
 {
 
@@ -66,14 +63,4 @@ class Postcode extends \Magento\Eav\Model\Entity\Attribute\Source\Table
         
         return $this->_options;
     }
-
-    private function getStoreManager()
-    {
-        if (!$this->storeManager) {
-            $this->storeManager = ObjectManager::getInstance()->get(StoreManagerInterface::class);
-        }
-
-        return $this->storeManager;
-    }
 }
-
