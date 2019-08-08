@@ -1,0 +1,7 @@
+<?php $catalogPage = $block->getViewModel()->getCatalogPage() ?>
+<?php if ($catalogPage): ?>
+<div class="master-catalog-listing">
+    <div class="header">Master Catalog Listing</div>
+    <a title="" href="<?php echo $catalogPage['catalog_link'] ?>">View Page <?php echo $catalogPage['catalog_page_number'] ?></a>
+</div>
+<?php endif; ?>
