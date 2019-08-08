@@ -3,4 +3,7 @@
     <type name="Magento\CatalogSearch\Controller\Result\Index">
         <plugin name="SomethingDigital_SearchCustomization" type="SomethingDigital\SearchCustomization\Plugin\Suffix" />
     </type>
+    <type name="Magento\AdvancedCheckout\Model\Cart">
+        <plugin name="SomethingDigital_SearchCustomization_AddSufixToQuote" type="SomethingDigital\SearchCustomization\Plugin\AddSuffixToQuote" />
+    </type>
 </config>
