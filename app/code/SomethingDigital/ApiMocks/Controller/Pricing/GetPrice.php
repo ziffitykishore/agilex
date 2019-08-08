@@ -70,10 +70,12 @@ class GetPrice extends \Magento\Framework\App\Action\Action
             "UnitsPerStockingText" => ""
         ];
 
-        if ($params['suffix'] == 'SUF1') {
-            $result['Price'] = 19.99;
-        } elseif ($params['suffix'] == 'SUF2') {
-            $result['Price'] = 15.99;
+        if (isset($params['suffix'])) {
+            if ($params['suffix'] == 'SUF1') {
+                $result['Price'] = 19.99;
+            } elseif ($params['suffix'] == 'SUF2') {
+                $result['Price'] = 15.99;
+            }
         }
 
         return $result;
