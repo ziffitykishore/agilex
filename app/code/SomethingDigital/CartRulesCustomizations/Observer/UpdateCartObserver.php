@@ -10,6 +10,7 @@ use Magento\Checkout\Model\Cart;
 use Magento\Quote\Model\Quote\TotalsCollector;
 use Magento\Framework\Session\SessionManagerInterface;
 use Psr\Log\LoggerInterface;
+use SomethingDigital\CustomerSpecificPricing\Model\Quote;
 
 class UpdateCartObserver implements ObserverInterface
 {
@@ -23,7 +24,8 @@ class UpdateCartObserver implements ObserverInterface
         Cart $cart,
         TotalsCollector $collector,
         SessionManagerInterface $session,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        Quote $quote
     ) {
         $this->freeGiftSku = $freeGiftSku;
         $this->productRepository = $productRepository;
@@ -31,6 +33,7 @@ class UpdateCartObserver implements ObserverInterface
         $this->collector = $collector;
         $this->session = $session;
         $this->logger = $logger;
+        $this->quote = $quote;
     }
 
     /**
@@ -78,5 +81,7 @@ class UpdateCartObserver implements ObserverInterface
         if ($addedGift) {
             $this->collector->collect($quote);
         }
+
+        $this->quote->repriceCustomerQuote();
     }
 }
