@@ -38,17 +38,29 @@ class CatalogPageNumber implements \Magento\Framework\View\Element\Block\Argumen
      *
      * @return string
      */
-    public function getCatalogPageNumber()
+    public function getCatalogPage()
     {
         $product = $this->getProduct();
         $catalogPageNumber = $product->getData('catalog_page_number');
+
+        if (!$catalogPageNumber) {
+            return false;
+        }
+        
         $storeScope = ScopeInterface::SCOPE_STORES;
 
         $offset = $this->scopeConfig->getValue("catalog/frontend/catalog_page_number_offset", $storeScope);
+        $link = $this->scopeConfig->getValue("catalog/frontend/catalog_link", $storeScope);
 
         if (!empty($offset)) {
             $catalogPageNumber = $catalogPageNumber+$offset;
         }
-        return $catalogPageNumber;
+
+        return [
+            'catalog_page_number' => $catalogPageNumber,
+            'catalog_link' => $link.'/'.$catalogPageNumber
+        ];
     }
+
+
 }
