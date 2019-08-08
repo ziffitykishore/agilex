@@ -4,10 +4,10 @@ namespace SomethingDigital\Coupon\Plugin;
 
 use SomethingDigital\Coupon\Helper\ApplyCoupon;
 
-protected $applyCoupon;
-
 class Cart
 {
+    protected $applyCoupon;
+    
     public function __construct(
         ApplyCoupon $applyCoupon
     )
