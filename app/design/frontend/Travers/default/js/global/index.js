@@ -8,6 +8,7 @@ import './backToTop';
 import './fullbleed';
 import './stickyNav';
 import './theme';
+import './coupon';
 
 require('lazysizes');
 require('jquery-smooth-scroll');
