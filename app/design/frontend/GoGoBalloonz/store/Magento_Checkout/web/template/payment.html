@@ -17,7 +17,8 @@
         <!--/ko-->
         <!-- ko if: (quoteIsVirtual) -->
             <h2>Pickup Address</h2>
-            <span data-bind="html: window.checkoutConfig.pickup_store['street']"></span><br/>
+            <span data-bind="html: window.checkoutConfig.pickup_store['street_line_1']"></span><br/>
+            <span data-bind="html: window.checkoutConfig.pickup_store['street_line_2']"></span><br/>
             <span data-bind="text: window.checkoutConfig.pickup_store['city']"></span><br/>
             <span data-bind="text: window.checkoutConfig.pickup_store['region_name']"></span><br/>
             <span data-bind="text: window.checkoutConfig.pickup_store['country_id']"></span><br/>
