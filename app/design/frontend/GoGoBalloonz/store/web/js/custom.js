@@ -198,14 +198,13 @@ define(['jquery', 'slick', 'scroller'], function ($) {
             if (($(window).width()) <= 768 && responsiveflag == false)
             {
                 accordionFooter('enable');
-
-                $('.location-track').appendTo('.nav-sections');
+                $('#switcher-language').appendTo('.nav-sections');
                 responsiveflag = true;
             }
             else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
-                $('.location-track').insertBefore('.account-links');
+                $('#switcher-language').insertBefore('.account-links');
                 responsiveflag = false;
             }
 

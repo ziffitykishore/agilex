@@ -368,7 +368,32 @@
                 margin-bottom: 0;
             }
 
-            .location-track{
+            .header {
+
+                .switcher {
+                    border: none;
+                    strong {
+                        font-weight: 700;
+                    }
+
+                    &:before {
+                        content: '\e907';
+                        font-family: 'gogo';
+                        display: inline-block;
+                        vertical-align: middle;
+                        font-size: 16px;
+                        font-weight: normal;
+                        margin-right: 2px;
+                    }
+
+                    & + .switcher {
+                        display: none;
+                    }
+                }
+            }
+
+            .location-track,
+            .switcher{
                 margin-left: 20px;
                 .lib-css(color, @color-blue);
                 font-size: 14px;
@@ -547,6 +572,7 @@
         .nav-right-sec {
             .block-search .block-title,
             .location-track,
+            .switcher,
             .account-links > .links a,
             .account-links > .links .customer-name{
                 font-size: 12px;
@@ -593,6 +619,12 @@
             }
         }
 
+        .switcher {
+            .view-mckinney_store_view {
+                display: none;
+            }
+        }
+
         .location-track {
             .single, .multiple {
                 span, select {
@@ -629,7 +661,7 @@
 //  Tablet
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l + 1) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
 
     .page-header {
 
@@ -684,7 +716,7 @@
                 }
             }
         }
-
+        .switcher,
         .location-track{
             margin-left: 8px;
             select {
@@ -952,7 +984,7 @@
                     margin-top: 0;
                     height: ~"calc(100% - 80px)";
                 }
-
+                .switcher,
                 .location-track {
                     margin-left: 0;
                     background: @color-aliceblue;
@@ -974,6 +1006,31 @@
                         }
 
                 }
+
+                .switcher {
+                    .action.toggle {
+                        &:after {
+                            display: none !important;
+                        }
+                    }
+
+                    .view-mckinney_store_view {
+                        display: block;
+
+                        &:after {
+                            top:2px;
+                        }
+                    }
+
+                    .options ul.dropdown {
+                        left: 0;
+                        right: auto;
+                        bottom: 100%;
+                        top: auto;
+                        overflow-y: auto;
+                        max-height: 120px;
+                    }
+                }
             }
 
             .block-search {
@@ -989,7 +1046,8 @@
     }
     
     .nav-right-sec {
-        .location-track {
+        .location-track,
+        .switcher {
             display: none;
         }
     }
@@ -1166,7 +1224,7 @@
         width: 100%;
         max-width: none;
         top: 70px;
-        height: ~"calc(100% - 175px)";
+        height: ~"calc(100% - 310px)";
         .transform(translate3d(-100%, 0, 0));
         .transition(all 0.5s ease 0s);
         z-index: 99;

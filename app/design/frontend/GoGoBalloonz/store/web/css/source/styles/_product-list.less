@@ -632,6 +632,10 @@
                 display: block !important;
             }
 
+            .wp-ln-actions {
+                display:none;
+            }
+
             &.active {
                 .filter-options-title:after {
                     content: '\e622';
@@ -645,7 +649,7 @@
                 .item {
                     a {
                         &:before {
-                            border-radius: 100%;
+                            .br-radius(100%);
                         }
                     }
 
@@ -664,6 +668,9 @@
             }
 
             .item {
+                display: block !important;
+
+
                 a {
 
                     &:hover {
@@ -679,6 +686,7 @@
                         border: 1px solid @color-icons;
                         line-height: 15px;
                         font-size: 12px;
+                        .br-radius(3px);
                     }
                 }
 
