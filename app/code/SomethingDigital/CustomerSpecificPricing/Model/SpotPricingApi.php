@@ -9,6 +9,8 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
+use Magento\Framework\Session\SessionManagerInterface;
+use Magento\Checkout\Model\Cart;
 
 class SpotPricingApi extends Adapter
 {
@@ -22,7 +24,9 @@ class SpotPricingApi extends Adapter
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
         Session $session,
-        TestMode $testMode
+        TestMode $testMode,
+        SessionManagerInterface $sessionManager,
+        Cart $cart
     ) {
         parent::__construct(
             $curlFactory,
@@ -32,6 +36,8 @@ class SpotPricingApi extends Adapter
             $testMode
         );
         $this->session = $session;
+        $this->sessionManager = $sessionManager;
+        $this->cart = $cart;
     }
 
     /**
@@ -39,9 +45,14 @@ class SpotPricingApi extends Adapter
      * @return array
      * @throws LocalizedException
      */
-    public function getSpotPrice($productSku, $suffix = '')
+    public function getSpotPrice($productSku)
     {
         $customerAccountId = $this->getCustomerAccountId();
+
+        $suffix = $this->sessionManager->getSkuSuffix();
+        if (empty($suffix)) {
+            $suffix = $this->cart->getQuote()->getSuffix();
+        }
 
         if ($customerAccountId) {
             if (!$this->isTestMode()) {
