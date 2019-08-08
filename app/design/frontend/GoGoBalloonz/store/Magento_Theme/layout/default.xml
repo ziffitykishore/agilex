@@ -31,8 +31,8 @@
         </referenceContainer>
         <move element="nav-right-sec" destination="header-wrapper" after="navigation.sections" />
         <move element="account-links" destination="nav-right-sec" after="-"/>
-        <move element="store_language" destination="nav-right-sec" before="account-links"/>
-        <move element="top.search" destination="nav-right-sec" before="top.search"/>
+        <move element="top.search" destination="nav-right-sec" before="-"/>
+        <move element="store_language" destination="nav-right-sec" after="top.search"/>
         <referenceContainer name="footer">
             <container name="footertop" label="Footer Top" htmlTag="div"  htmlClass="footer-top"/>
             <container name="footermiddle" label="Footer Middle" htmlTag="div"  htmlClass="footer-middle"/>
