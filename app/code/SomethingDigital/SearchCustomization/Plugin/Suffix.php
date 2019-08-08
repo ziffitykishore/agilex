@@ -30,7 +30,7 @@ class Suffix
         $queryText = $this->request->getParam('q');
 
         $minSkuLength = $this->config->getValue('catalog/search/min_sku_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        $maxSuffixLength = $this->config->getValue('max_suffix_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        $maxSuffixLength = $this->config->getValue('catalog/search/max_suffix_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $suffixMatch = substr($queryText, 0, max($minSkuLength, strlen($queryText) - $maxSuffixLength));
 
         $productcollection = $this->productCollection
@@ -39,7 +39,6 @@ class Suffix
 
         foreach ($productcollection as $key => $product) {
             $sku = $product->getSku();
-            
             if ($queryText == $sku) {
                 $subject->getResponse()->setRedirect($product->getProductUrl());
             }
