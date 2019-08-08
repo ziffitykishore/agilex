@@ -6,8 +6,8 @@
                 <field id="catalog_page_number_offset" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Offset for Catalog Page Number</label>
                 </field>
-                <field id="catalog_page_number_placeholder" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Placeholder for Catalog Page Number</label>
+                <field id="catalog_link" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Link to Catalog</label>
                 </field>
             </group>
         </section>
