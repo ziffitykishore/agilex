@@ -9,6 +9,7 @@ use Magento\Bundle\Helper\Catalog\Product\Configuration;
 use Psr\Log\LoggerInterface;
 use Magento\Checkout\Model\Cart;
 use Magento\Framework\Stdlib\ArrayManager;
+use SomethingDigital\Coupon\Helper\ApplyCoupon;
 
 class UpdateCustomerQuote
 {
@@ -32,18 +33,25 @@ class UpdateCustomerQuote
      */
     private $arrayManager;
 
+    /**
+     * @var $applyCoupon
+     */
+    private $applyCoupon;
+
     public function __construct(
         SpotPricingApi $spotPricingApi,
         Session $customerSession,
         LoggerInterface $logger,
         Cart $cart,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        ApplyCoupon $applyCoupon
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->customerSession = $customerSession;
         $this->logger = $logger;
         $this->cart = $cart;
         $this->arrayManager = $arrayManager;
+        $this->applyCoupon = $applyCoupon;
     }
 
     public function afterLoadCustomerQuote(\Magento\Checkout\Model\Session $subject, $result)
@@ -68,6 +76,8 @@ class UpdateCustomerQuote
                     $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
                 }
             }
+            //apply coupon after cart is merged
+            $this->applyCoupon->apply();
         }
 
         return $result;
