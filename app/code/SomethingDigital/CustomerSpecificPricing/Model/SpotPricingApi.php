@@ -17,6 +17,8 @@ class SpotPricingApi extends Adapter
 
     protected $path = 'api/Pricing';
     protected $session;
+    protected $sessionManager;
+    protected $cart;
 
     public function __construct(
         ClientFactory $curlFactory,

@@ -12,6 +12,8 @@ class Suffix
 {
 
     protected $request;
+    protected $session;
+    protected $productCollection;
     protected $config;
     private $quote;
 
