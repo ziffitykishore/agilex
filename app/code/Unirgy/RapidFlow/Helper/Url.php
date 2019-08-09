@@ -32,6 +32,7 @@ class Url extends AbstractHelper
         'url_path',
         'name',
         'store_id',
+        'visibility'
     ];
 
     /**
@@ -121,6 +122,7 @@ class Url extends AbstractHelper
 //            $field = RfProduct::ROW_ID;
 //        }
         $product->setId($productId);
+        $product->setData('save_rewrites_history', true);
         foreach ($this->vitalForGenerationFields as $field) {
             if (isset($productData[$field])) {
                 $product->setData($field, $productData[$field]);

@@ -52,7 +52,7 @@ class SessionData extends \Magento\Framework\App\Action\Action
             if($dataAddress != null && array_key_exists("street", $dataAddress)){
                 if (strpos($dataAddress['street'], "\n") !== FALSE) {
                     $Street = str_replace("\n", " ", $dataAddress['street']);
-                }
+                }else $Street = $dataAddress['street'];
             }else $Street = "";
 
             $ch = curl_init($this->_paymentMethod->getConfigData('url')."?app=genericcontroller&action=siteVerify");
@@ -77,9 +77,12 @@ class SessionData extends \Magento\Framework\App\Action\Action
             $ResponseSave = curl_exec($ch);
 
             $error = curl_error($ch);
-            curl_close ($ch);
+            curl_close($ch);
             if(!empty($error))  {
-                throw new Exception($error);
+                echo "outError";
+                print_r($error);
+                die();
+                throw new \Exception($error);
             }
         
             $ResponseSave = json_decode($ResponseSave);

@@ -657,6 +657,7 @@
                     <qty><col>3</col><key>1</key></qty>
                     <price><col>4</col></price>
                     <website><col>5</col></website>
+                    <percentage_value><col>6</col></percentage_value>
                 </columns>
             </CPPT>
             <!--<CPPG>

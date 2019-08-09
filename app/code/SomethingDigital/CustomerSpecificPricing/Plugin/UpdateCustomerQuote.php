@@ -17,6 +17,11 @@ class UpdateCustomerQuote
      */
     private $quote;
 
+    /**
+     * @var $applyCoupon
+     */
+    private $applyCoupon;
+
     public function __construct(
         Session $customerSession,
         Quote $quote

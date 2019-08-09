@@ -236,6 +236,15 @@ class Import extends Generic
             'note' => __('Select what to do when imported image has same name as existing image.'),
         ]);
 
+        if ($this->_rapidFlowHelper->compareMageVer('2.2.8')) {
+            $fieldset->addField('import_image_generate', 'select', [
+                'label' => __('Generate resized images'),
+                'name' => 'options[import][import_image_generate]',
+                'values' => $source->setPath('yesno')->toOptionArray(),
+                'value' => $profile->getData('options/import/import_image_generate'),
+            ]);
+        }
+
         $fieldset->addField('import_image_source_dir', 'text', [
             'label' => __('Local Source Folder'),
             'name' => 'options[dir][images]',

@@ -110,8 +110,8 @@ class Reindex extends Template
             }
 
             $reindexFields[] = array(
-                'label' => __('Catalog Rules'),
-                'value' => 'catalog_rules',
+                'label' => __('Catalog Rule Product'),
+                'value' => 'catalog_rule',
             );
             $this->_reindexFields = $reindexFields;
         }
