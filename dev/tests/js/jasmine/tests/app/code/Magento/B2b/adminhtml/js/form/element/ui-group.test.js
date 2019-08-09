@@ -77,15 +77,15 @@ define([
             it('check cache options', function () {
                 var _options = _.clone(options);
 
-                expect(select.cacheOptionsGroup).toEqual(_options);
+                expect(JSON.parse(JSON.stringify(select.cacheOptionsGroup))).toEqual(_options);
             });
 
             it('check selected options', function () {
-                expect(select.selected()).toEqual(['1']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1']);
             });
 
             it('check cache options value', function () {
-                expect(select.cacheOptionsValue).toEqual(['1', '2']);
+                expect(JSON.parse(JSON.stringify(select.cacheOptionsValue))).toEqual(['1', '2']);
             });
 
             it('check if renderSelectedOptions has been called', function () {
@@ -112,14 +112,14 @@ define([
         describe('selectAll method', function () {
             it('check if all options are selected', function () {
                 select.selectAll();
-                expect(select.selected()).toEqual(['1', '2']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1', '2']);
             });
         });
 
         describe('deselectAll method', function () {
             it('check if all options are deselected', function () {
                 select.deselectAll();
-                expect(select.selected()).toEqual([]);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual([]);
             });
         });
 
@@ -176,7 +176,7 @@ define([
 
         describe('getFilteredOptionsValues method', function () {
             it('check while filtered options is empty', function () {
-                expect(select.getFilteredOptionsValues()).toEqual([]);
+                expect(JSON.parse(JSON.stringify(select.getFilteredOptionsValues()))).toEqual([]);
             });
 
             it('check after are filtered option set', function () {
@@ -185,7 +185,7 @@ define([
                 };
 
                 select.filteredOptions().push(option);
-                expect(select.getFilteredOptionsValues()).toEqual([1]);
+                expect(JSON.parse(JSON.stringify(select.getFilteredOptionsValues()))).toEqual([1]);
             });
         });
 
@@ -241,9 +241,9 @@ define([
         describe('cancelChange method', function () {
             it('check after reset changes', function () {
                 select.selected(['1','2']);
-                expect(select.selected()).toEqual(['1','2']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1','2']);
                 select.cancelChange();
-                expect(select.selected()).toEqual(['1']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1']);
             });
         });
 
@@ -262,7 +262,7 @@ define([
         describe('setValue method', function () {
             it('check after set value', function () {
                 select.setValue(['2']);
-                expect(select.value()).toEqual(['2']);
+                expect(JSON.parse(JSON.stringify(select.value()))).toEqual(['2']);
             });
 
             it('check if renderSelectedOptions has been called', function () {
@@ -297,7 +297,7 @@ define([
         describe('setSelected method', function () {
             it('check after selected is set', function () {
                 select.setSelected('2');
-                expect(select.selected()).toEqual(['1','2']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1','2']);
             });
         });
 
@@ -305,7 +305,7 @@ define([
             it('check after remove selected', function () {
                 select.setSelected('2');
                 select.removeSelected('2', false, event);
-                expect(select.selected()).toEqual(['1']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1']);
             });
         });
 
@@ -400,7 +400,7 @@ define([
                 select.isResult(true);
                 select.resetOptions();
                 expect(select.filterInputValue()).toBe('');
-                expect(select.filteredOptions()).toEqual([]);
+                expect(JSON.parse(JSON.stringify(select.filteredOptions()))).toEqual([]);
                 expect(select.temporaryValue).toBeFalsy();
                 expect(select.direction).toBe(-1);
                 expect(select.isSearchActive()).toBeFalsy();
@@ -551,7 +551,7 @@ define([
 
             it('check selected after space handler', function () {
                 select.spaceKeyHandler(false, event);
-                expect(select.selected()).toEqual(['1', '2']);
+                expect(JSON.parse(JSON.stringify(select.selected()))).toEqual(['1', '2']);
             });
         });
     });

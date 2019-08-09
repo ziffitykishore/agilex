@@ -3,6 +3,7 @@
 namespace SomethingDigital\ApiMocks\Controller\Order;
 
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Webapi\Exception;
  
 class PlaceOrder
 {

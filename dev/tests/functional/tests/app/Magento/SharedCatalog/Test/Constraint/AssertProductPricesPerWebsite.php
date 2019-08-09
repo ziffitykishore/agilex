@@ -110,7 +110,7 @@ class AssertProductPricesPerWebsite extends AbstractConstraint
         $columnTitle,
         $websiteName
     ) {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             mb_strpos(
                 $sharedCatalogConfigure->getPricingGrid()->getColumnValue($product->getId(), $columnTitle),
                 $currencySymbol

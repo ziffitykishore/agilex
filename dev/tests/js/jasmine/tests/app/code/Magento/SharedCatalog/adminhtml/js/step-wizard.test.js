@@ -27,6 +27,13 @@ define([
             });
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('initialize method', function () {
             it('Check for defined ', function () {
                 expect(stepWizard.hasOwnProperty('initialize')).toBeDefined();

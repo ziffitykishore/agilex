@@ -34,7 +34,7 @@ class AssertSortingProductsInGrid extends AbstractConstraint
         $productIds = $catalogProductIndex->getProductGrid()->getAllIds();
         $sortedProductIds = $this->retrieveSortedProductIds($productIds);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $productIds,
             $sortedProductIds,
             'Sort order is not correct.'

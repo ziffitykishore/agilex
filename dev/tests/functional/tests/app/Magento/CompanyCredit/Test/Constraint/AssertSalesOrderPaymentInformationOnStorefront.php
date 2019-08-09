@@ -34,13 +34,13 @@ class AssertSalesOrderPaymentInformationOnStorefront extends AbstractConstraint
     ) {
         $orderHistory->open();
         $orderHistory->getOrderHistoryBlock()->openOrderById($orderId);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $paymentMethod,
             $customerOrderView->getPaymentInformation()->getPaymentMethod(),
             'Payment method is incorrect.'
         );
         if (!empty($poNumber)) {
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $poNumber,
                 $customerOrderView->getPaymentInformation()->getPurchaseOrderNumber(),
                 'Purchase order number is incorrect.'

@@ -34,7 +34,7 @@ class AssertCustomerGroupIsDisabled extends AbstractConstraint
             ];
             $customerIndex->open();
             $customerIndex->getCustomerGridBlock()->searchAndOpen($filter);
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $customerIndexEdit->getCustomerView()->getCustomerGroup()->isDisabled(),
                 'Customer group is not disabled.'
             );

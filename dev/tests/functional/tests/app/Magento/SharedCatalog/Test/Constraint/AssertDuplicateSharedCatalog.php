@@ -43,7 +43,7 @@ class AssertDuplicateSharedCatalog extends AbstractConstraint
         $sharedCatalogIndex->getGrid()->search(['name' => $dubbedNameSharedCatalog]);
         $sharedCatalogId = $sharedCatalogIndex->getGrid()->getFirstItemId();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $sharedCatalogIndex->getGrid()->isRowVisible(['name' => $dubbedNameSharedCatalog]),
             'Shared catalog \'' . $dubbedNameSharedCatalog . '\' isn\'t present in pages grid.'
         );
@@ -51,7 +51,7 @@ class AssertDuplicateSharedCatalog extends AbstractConstraint
         $sharedCatalogIndex->getGrid()->openCompanies($sharedCatalogId);
         $sharedCatalogCompany->getCompanyGrid()->search(['is_current' => 'Yes']);
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             empty($sharedCatalogCompany->getCompanyGrid()->getAllIds()),
             'Shared catalog \'' . $dubbedNameSharedCatalog . '\' Companies is not empty.'
         );
@@ -62,7 +62,7 @@ class AssertDuplicateSharedCatalog extends AbstractConstraint
         $categoriesTree = $sharedCatalogConfigure->getStructureJstree();
         $categoriesTree->setTreeType('structure')->expandAll();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             strpos(
                 $categoriesTree->getProductCount($category->getName()),
                 count($products) . ' of ' . count($products) . ' included'
@@ -72,7 +72,7 @@ class AssertDuplicateSharedCatalog extends AbstractConstraint
         );
 
         foreach ($products as $product) {
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $sharedCatalogConfigure->getStructureGrid()->isSelectedItem(['sku' => $product->getSku()]),
                 'Product ' . $product->getSku() . ' is not assigned.'
             );

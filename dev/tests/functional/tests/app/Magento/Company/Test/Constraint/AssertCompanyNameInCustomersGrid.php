@@ -83,7 +83,7 @@ class AssertCompanyNameInCustomersGrid extends AbstractConstraint
         $companyName = $this->customerIndex->getCompanyCustomerGrid()
             ->getColumnValue($itemId, $this->columnHeaderLabel);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedCompanyName,
             $companyName,
             'Company name is incorrect.'
@@ -97,7 +97,7 @@ class AssertCompanyNameInCustomersGrid extends AbstractConstraint
      */
     private function isColumnVisible()
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $this->customerIndex->getCompanyCustomerGrid()->isColumnVisible($this->columnHeaderLabel),
             'The column' . $this->columnHeaderLabel . ' is not visible in grid.'
         );
@@ -110,7 +110,7 @@ class AssertCompanyNameInCustomersGrid extends AbstractConstraint
      */
     private function isCompanyFilterVisible()
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $this->customerIndex->getCompanyCustomerGrid()->isCompanyFilterVisible(),
             'Company filter is not visible in grid.'
         );
@@ -132,7 +132,7 @@ class AssertCompanyNameInCustomersGrid extends AbstractConstraint
             $companyName = $this->customerIndex->getCompanyCustomerGrid()
                 ->getColumnValue($itemId, $this->columnHeaderLabel);
 
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $expectedCompanyName,
                 $companyName,
                 'Company name is incorrect.'

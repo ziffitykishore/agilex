@@ -3,8 +3,11 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\SalesRule\Model\Rule\Action\Discount;
 
+use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Product;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Quote\Api\Data\CartItemInterface;
@@ -53,7 +56,7 @@ class CartFixedTest extends \PHPUnit\Framework\TestCase
      * @magentoDataFixture Magento/SalesRule/_files/coupon_cart_fixed_discount.php
      * @dataProvider applyFixedDiscountDataProvider
      */
-    public function testApplyFixedDiscount(array $productPrices)
+    public function testApplyFixedDiscount(array $productPrices): void
     {
         $expectedDiscount = '-15.00';
         $couponCode =  'CART_FIXED_DISCOUNT_15';
@@ -82,7 +85,7 @@ class CartFixedTest extends \PHPUnit\Framework\TestCase
     /**
      * @return array
      */
-    public function applyFixedDiscountDataProvider()
+    public function applyFixedDiscountDataProvider(): array
     {
         return [
             'prices when discount had wrong value 15.01' => [[22, 14, 43, 7.50, 0.00]],
@@ -91,18 +94,48 @@ class CartFixedTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
+     * Tests that coupon with wildcard symbols in code can be successfully applied.
+     *
+     * @magentoDataFixture Magento/SalesRule/_files/coupon_code_with_wildcard.php
+     */
+    public function testCouponCodeWithWildcard()
+    {
+        $expectedDiscount = '-5.00';
+        $couponCode =  '2?ds5!2d';
+        $cartId = $this->cartManagement->createEmptyCart();
+        $productPrice = 10;
+
+        $product = $this->createProduct($productPrice);
+
+        /** @var CartItemInterface $quoteItem */
+        $quoteItem = Bootstrap::getObjectManager()->create(CartItemInterface::class);
+        $quoteItem->setQuoteId($cartId);
+        $quoteItem->setProduct($product);
+        $quoteItem->setQty(1);
+        $this->cartItemRepository->save($quoteItem);
+
+        $this->couponManagement->set($cartId, $couponCode);
+
+        /** @var GuestCartTotalRepositoryInterface $cartTotalRepository */
+        $cartTotalRepository = Bootstrap::getObjectManager()->get(GuestCartTotalRepositoryInterface::class);
+        $total = $cartTotalRepository->get($cartId);
+
+        $this->assertEquals($expectedDiscount, $total->getBaseDiscountAmount());
+    }
+
+    /**
      * Returns simple product with given price.
      *
      * @param float $price
-     * @return \Magento\Catalog\Api\Data\ProductInterface
+     * @return ProductInterface
      */
-    private function createProduct($price)
+    private function createProduct(float $price): ProductInterface
     {
         $name = 'simple-' . $price;
         $productRepository = Bootstrap::getObjectManager()->get(ProductRepository::class);
         $product = Bootstrap::getObjectManager()->create(Product::class);
         $product->setTypeId('simple')
-            ->setAttributeSetId(4)
+            ->setAttributeSetId($product->getDefaultAttributeSetId())
             ->setWebsiteIds([1])
             ->setName($name)
             ->setSku(uniqid($name))

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Add new widget for catalog category listing -->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="categories_list" class="SomethingDigital\CategoryWidget\Block\Category\CategoriesList" is_email_compatible="true"
+            placeholder_image="SomethingDigital_CategoryWidget::images/categories_list.png" ttl="86400"> <!-- TODO: placeholder_image is copied, need to check -->
+        <label translate="true">Catalog Categories List</label>
+        <description translate="true">List of Categories</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="false" visible="true">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="categories_count" xsi:type="text" required="false" visible="true">
+                <label translate="true">Number of Categories to Display</label>
+                <value>10</value>
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>
+                    <option name="default" value="SomethingDigital_CategoryWidget::category/widget/content/list.phtml" selected="true">
+                        <label translate="true">Categories List Template</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="cache_lifetime" xsi:type="text" visible="true">
+                <label translate="true">Cache Lifetime (Seconds)</label>
+                <description translate="true">
+                    <![CDATA[Time in seconds between the widget updates.
+                    <br/>If not set, equals to 86400 seconds (24 hours). To update widget instantly, go to Cache Management and clear Blocks HTML Output cache.
+                    <br/>Widget will not show categories that begin to match the specified conditions until cache is refreshed.]]>
+                </description>
+            </parameter>
+            <parameter name="parent_category_id" xsi:type="text" required="true" visible="true">
+                <label translate="true">Entity ID of the Parent Category</label>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="content">
+                <template name="list" value="default" />
+            </container>
+            <container name="content.top">
+                <template name="list" value="default" />
+            </container>
+            <container name="content.bottom">
+                <template name="list" value="default" />
+            </container>
+        </containers>
+    </widget>
+</widgets>

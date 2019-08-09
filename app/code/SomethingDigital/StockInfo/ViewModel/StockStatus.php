@@ -5,6 +5,7 @@ namespace SomethingDigital\StockInfo\ViewModel;
 use Magento\Framework\Registry as CoreRegistry;
 
 use SomethingDigital\StockInfo\Model\Product\Attribute\Source\SxInventoryStatus;
+use \Magento\CatalogInventory\Model\Stock\Item;
 
 class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -18,12 +19,19 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
      */
     private $sxInventoryStatusSource;
 
+    /**
+     * @var StockItem
+     */
+    protected $stockItem;
+
     public function __construct(
         CoreRegistry $coreRegistry,
-        SxInventoryStatus $sxInventoryStatusSource
+        SxInventoryStatus $sxInventoryStatusSource,
+        Item $stockItem
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->sxInventoryStatusSource = $sxInventoryStatusSource;
+        $this->stockItem = $stockItem;
     }
 
     /**
@@ -45,21 +53,27 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
     {
         $product = $this->getProduct();
         $sxInventoryStatus = $product->getData('sx_inventory_status');
-        $stockItem = $product->getData('stock_data');
+        $stockItem = $this->stockItem->load($product->getId(), 'product_id');
         $statusLabel = '';
         if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR) {
-            if ($stockItem->getQty > 0) {
-                $statusLabel = __('DNR');
+            if ($stockItem->getQty() > 5) {
+                $statusLabel = __('In Stock');
+            } elseif ($stockItem->getQty() == 0) {
+                $statusLabel = __('%1 is no longer available for purchase. For additional information, please contact one of our customer service representatives at 1-800-221-0270.', $product->getName());
             } else {
-                $statusLabel = __('No longer available');
+                $statusLabel = __('Limited Supplies');
             }
         } elseif ($sxInventoryStatus == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
-            $statusLabel = __('Order as needed');
-        } else {
-            if ($product->isAvailable()) {
+            if ($stockItem->getQty() > 0) {
                 $statusLabel = __('In Stock');
             } else {
-                $statusLabel = __('Out of stock');
+                $statusLabel = __('Ships from Mfr.');
+            }
+        } else {
+            if ($stockItem->getQty() > 0) {
+                $statusLabel = __('In Stock');
+            } else {
+                $statusLabel = __('On Temporary Backorder');
             }
         }
         return $statusLabel;

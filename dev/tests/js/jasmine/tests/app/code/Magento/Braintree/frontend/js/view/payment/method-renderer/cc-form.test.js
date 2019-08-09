@@ -15,11 +15,28 @@ define([
     describe('Magento_Braintree/js/view/payment/method-renderer/cc-form', function () {
         var injector = new Squire(),
             mocks = {
+                'Magento_Checkout/js/model/checkout-data-resolver': {
+
+                    /** Stub */
+                    applyBillingAddress: function () {
+                        return true;
+                    },
+
+                    /** Stub */
+                    resolveBillingAddress: function () {
+                        return true;
+                    }
+                },
                 'Magento_Checkout/js/model/quote': {
                     billingAddress: ko.observable(),
                     shippingAddress: ko.observable(),
                     paymentMethod: ko.observable(),
-                    totals: ko.observable({})
+                    totals: ko.observable({}),
+
+                    /** Stub */
+                    isVirtual: function () {
+                        return false;
+                    }
                 },
                 'Magento_Braintree/js/view/payment/validator-handler': jasmine.createSpyObj(
                     'validator-handler',
@@ -54,6 +71,13 @@ define([
 
                 done();
             });
+        });
+
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
         });
 
         it('Check if payment code and message container are restored after onActiveChange call.', function () {

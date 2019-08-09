@@ -44,7 +44,7 @@ class AssertCompanyCreditHistoryInformationInAdmin extends AbstractConstraint
                 }
                 $fieldValue = $companyEdit->getCreditHistoryGrid()->getFirstRowGridValue($operationDataItem['label']);
 
-                \PHPUnit_Framework_Assert::assertEquals(
+                \PHPUnit\Framework\Assert::assertEquals(
                     $expectedFieldValue,
                     $fieldValue,
                     sprintf('%s field value is incorrect.', $operationDataItem['label'])

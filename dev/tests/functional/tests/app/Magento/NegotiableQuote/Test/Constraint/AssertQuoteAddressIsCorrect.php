@@ -34,7 +34,7 @@ class AssertQuoteAddressIsCorrect extends AbstractConstraint
         );
         $pattern = $this->makeAddressPattern($shippingAddress);
         $dataDiff = $this->verifyAddressMatch($pattern, $selectedAddress);
-        \PHPUnit_Framework_Assert::assertEmpty(
+        \PHPUnit\Framework\Assert::assertEmpty(
             $dataDiff,
             'Shipping addresses don\'t match.'
             . "\nLog:\n" . implode(";\n", $dataDiff)

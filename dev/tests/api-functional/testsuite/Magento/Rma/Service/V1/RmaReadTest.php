@@ -33,12 +33,12 @@ class RmaReadTest extends WebapiAbstract
     private $rmaItems = [
         [
             'is_qty_decimal'     => "0",
-            'qty_requested'      => "2.0000",
-            'qty_authorized'     => "2.0000",
-            'qty_approved'       => "2.0000",
+            'qty_requested'      => "2",
+            'qty_authorized'     => "2",
+            'qty_approved'       => "2",
             'status'             => "processing",
             'product_name'       => "Simple Product",
-            'qty_returned'       => "2.0000",
+            'qty_returned'       => "2",
             'product_sku'        => "simple",
             'product_admin_name' => null,
             'product_admin_sku'  => null,
@@ -210,7 +210,7 @@ class RmaReadTest extends WebapiAbstract
             $rmaItemData = $rmaItems[$key];
             $fieldsToCompare = array_intersect_key($resultItem, $rmaItemData);
             foreach ($fieldsToCompare as $fieldName => $fieldValue) {
-                if ((string)$rmaItemData[$fieldName] != (string)$fieldValue) {
+                if ((string)$rmaItemData[$fieldName] !== (string)$fieldValue) {
                     $result = false;
                     break;
                 }

@@ -45,7 +45,7 @@ class AssertPaymentMethodsAreCorrectOnStorefront extends \Magento\Mtf\Constraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $isValid,
             'Payment method list in company profile page is incorrect.'
         );

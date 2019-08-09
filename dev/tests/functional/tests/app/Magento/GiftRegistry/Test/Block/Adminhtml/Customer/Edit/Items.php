@@ -52,6 +52,7 @@ class Items extends Grid
     public function searchAndUpdate(array $productsProperties)
     {
         foreach ($productsProperties as $productProperties) {
+            $this->_rootElement->find('..', Locator::SELECTOR_XPATH)->hover();
             $row = $this->_rootElement->find(
                 sprintf($this->rowSelector, $productProperties['name']),
                 Locator::SELECTOR_XPATH

@@ -30,12 +30,12 @@ class AssertTotalsWithCustomDisplayCurrencyOnStorefront extends AbstractConstrai
         $negotiableQuoteGrid->open();
         $negotiableQuoteGrid->getQuoteGrid()->openFirstItem();
         $totals = $negotiableQuoteView->getQuoteDetails()->getTotals();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedTotals['total'],
             $totals['grand_total'],
             'Price in display currency is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedTotals['to_be_charged'],
             $totals['base_grand_total'],
             'Price in base currency is incorrect.'

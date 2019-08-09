@@ -48,7 +48,7 @@ class AssertOrderCorrectInAdmin extends AbstractConstraint
     ) {
         $totals = $salesOrderView->getNegotiableSectionTotalsBlock()->getTotals();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $orderPrices,
             array_filter($totals),
             'Prices on order view page should be equal to defined in dataset.'

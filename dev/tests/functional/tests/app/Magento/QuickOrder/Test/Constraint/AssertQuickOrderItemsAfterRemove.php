@@ -32,7 +32,7 @@ class AssertQuickOrderItemsAfterRemove extends AbstractConstraint
             $sku = $firstProduct->getData('sku');
         }
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quickOrderPage->getItems()->getFirstSku(),
             $sku,
             'Quick order form first item is not correct.'

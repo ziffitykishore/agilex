@@ -3,11 +3,13 @@
 Something Digital's standard Magento 2 setup. Makes use of Gulp, [Hologram](https://trulia.github.io/hologram/), SCSS and [Webpack](https://webpack.github.io/).
 
 ## Setup Instructions
-  
+
 ### New Build
-  
-See [CHECKLIST.md](CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
-  
+
+See [CHECKLIST.md](docs/CHECKLIST.md) for the steps to take when creating a new build based on the Accelerator Package.
+
+Track your CMS content additions/updates (static blocks, pages, custom BlueFoot blocks)  in [static-content-log.md](docs/static-content-log.md). 
+
 ### How to Update to Latest Accelerator
 
 If you need to update the Magento 2 build to latest version of accelerator, run the following commands:
@@ -24,29 +26,11 @@ git merge {version tag} --no-ff
   - The generated commit message will be something like "Merge tag 'v1.2.1' into develop". Append "from accelerator" to it so that's it's clear.
   - If you run into a 500 Internal Server Error, please run `sudo a2enmod version` in your VM. Then restart apache. For existing boxes, this is caused by new versions of Magento using IfVersion in .htaccess. 
 
-### Docker
+### Vagrant
 
-run `docker-sync-stack start`
+Instructions on getting the Something Digital Magento 2 Vagrant box up and running can be found in the [Operations-Development](https://github.com/sdinteractive/Operations-Development/tree/master/boxes/Magento-BaseBuild2) repo.
 
-run `docker-compose -f docker-compose-traefik.yml up`
-
-Now we need to connect dockers network to traefik:
-
-1) use `docker network ls` to get the travers network gateway id (it's the left most column)
-
-2) use `docker ps` to get the traefik container id (again, left most column)
-
-3) run `docker network connect [travers net] [traefik container id]`
-
-    Example:
-
-    > `docker network connect ffb637ba7de7 7ee3843067e7`
-
-run `docker-compose exec app bash`
-
-At this point you'll be within the docker container
-
-run `ansible-playbook provision.yml -t build`
+Vagrant is Something Digital's preferred environment in which to develop Magento 2. If an alternative is needed, one can use the official [Magento 2 Docker DevBox](http://devdocs.magento.com/guides/v2.1/install-gde/docker/docker-over.html).
 
 ## Development
 
@@ -133,3 +117,4 @@ Accessibility is becoming more important. When possible, utilize WCAG 2.0 AA sta
 It is HIGHLY recommended that you first read over the official documentation about Magento 2 development. [Frontend Developer Guide](http://devdocs.magento.com/guides/v2.1/frontend-dev-guide/bk-frontend-dev-guide.html) and/or [Backend (PHP) Developer Guide](http://devdocs.magento.com/guides/v2.1/extension-dev-guide/bk-extension-dev-guide.html).
 
 We've also got a growing list of [Magento 2 guides](https://github.com/sdinteractive/SomethingDigital-Guides/tree/master/Workflows/Magento2) at the SD Guides repo on Github.
+

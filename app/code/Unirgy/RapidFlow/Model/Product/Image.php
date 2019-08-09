@@ -13,4 +13,13 @@ class Image extends BaseImage
             $this->_mediaDirectory->delete($filename);
         }
     }
+    public function urfGetFilepath()
+    {
+        if (isset(self::$myImageAsset)) {
+            return self::$myImageAsset->getValue($this)->getPath();
+        } else {
+            return $this->getNewFile();
+        }
+    }
+    public static $myImageAsset;
 }

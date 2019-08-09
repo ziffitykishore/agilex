@@ -48,7 +48,7 @@ class AssertFieldsInColumnsPanel extends AbstractConstraint
         $fieldsSharedCatalogPage = $sharedCatalogConfigure->getStructureGrid()->getFieldsFromColumnsPanel();
         $missingFieldsInColumnsPanel = explode(', ', $missingFieldsInColumnsPanel);
         $diff = array_diff($fieldsCatalogPage, $fieldsSharedCatalogPage + $missingFieldsInColumnsPanel);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             empty($diff),
             'List of fields in "Columns" panel on Catalog Product Grid page is equal 
              to list on Shared Catalog Product Grid page: ' . implode(',', $diff)
@@ -57,7 +57,7 @@ class AssertFieldsInColumnsPanel extends AbstractConstraint
         foreach ($checkedFieldsInColumnsPanel as $checkedField) {
             $field = $sharedCatalogConfigure->getStructureGrid()->retrieveField(trim($checkedField));
             $checkbox = $field->find('[type="checkbox"]');
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $checkbox->isSelected(),
                 trim($checkedField) . ' field in "Columns" panel is not checked.'
             );
@@ -66,14 +66,14 @@ class AssertFieldsInColumnsPanel extends AbstractConstraint
         foreach ($uncheckedFieldsInColumnsPanel as $uncheckedField) {
             $field = $sharedCatalogConfigure->getStructureGrid()->retrieveField(trim($uncheckedField));
             $checkbox = $field->find('[type="checkbox"]');
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $checkbox->isSelected(),
                 trim($uncheckedField) . ' field in "Columns" panel is checked.'
             );
         }
         foreach ($missingFieldsInColumnsPanel as $missingField) {
             $field = $sharedCatalogConfigure->getStructureGrid()->retrieveField(trim($missingField));
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $field->isPresent(),
                 trim($missingField) . ' should not be present in "Columns" Panel.'
             );

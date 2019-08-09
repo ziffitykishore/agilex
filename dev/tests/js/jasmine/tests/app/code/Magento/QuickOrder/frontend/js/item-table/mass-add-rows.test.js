@@ -25,6 +25,13 @@ define([
             tplElement.trigger = jasmine.createSpy().and.returnValue(true);
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"_add" method', function () {
             it('Check for defined', function () {
                 expect(obj.addNewRows).toBeDefined();

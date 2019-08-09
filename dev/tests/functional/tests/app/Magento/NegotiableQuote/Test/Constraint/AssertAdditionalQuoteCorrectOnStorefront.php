@@ -72,7 +72,7 @@ class AssertAdditionalQuoteCorrectOnStorefront extends AbstractConstraint
         if (0.001 < ($uiPrice - ($subtotal + $subtotal * $tax / 100))) {
             $result = false;
         }
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Grand total is not correct.'
         );
@@ -88,7 +88,7 @@ class AssertAdditionalQuoteCorrectOnStorefront extends AbstractConstraint
         $notificationMessage = 'The discount for this quote has been removed because you have already used ' .
             'your discount on previous orders. Please re-submit the quote to the Seller for further negotiation.';
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $notificationMessage,
             $negotiableQuoteView->getQuoteDetails()->getNotificationMessage(),
             'Quote lock is not correct.'

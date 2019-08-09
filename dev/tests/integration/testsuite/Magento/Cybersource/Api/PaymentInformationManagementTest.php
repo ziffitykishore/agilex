@@ -1,8 +1,10 @@
-<?php declare(strict_types=1);
+<?php
 /**
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
+
 namespace Magento\Cybersource\Api;
 
 use Magento\Checkout\Api\PaymentInformationManagementInterface;
@@ -21,6 +23,8 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit_Framework_MockObject_MockObject as MockObject;
 
 /**
+ * Tests Magento\Checkout\Model\PaymentInformationManagement.
+ *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class PaymentInformationManagementTest extends TestCase
@@ -71,6 +75,7 @@ class PaymentInformationManagementTest extends TestCase
      * @magentoDataFixture Magento/Checkout/_files/quote_with_shipping_method.php
      * @magentoConfigFixture current_store payment/cybersource/active 1
      * @magentoConfigFixture current_store payment/cybersource/payment_action authorize_capture
+     * @return void
      */
     public function testSavePaymentInformationAndPlaceOrder()
     {
@@ -88,7 +93,7 @@ class PaymentInformationManagementTest extends TestCase
             'req_card_expiry_date' => '12-2021',
             'req_card_number' => 'xxxxxxxxxxxx1111',
             'req_card_type' => '001',
-            'transaction_id' => '5185290602696187304103'
+            'transaction_id' => '5185290602696187304103',
         ];
         $this->httpClient->method('placeRequest')
             ->willReturn($response);
@@ -97,7 +102,7 @@ class PaymentInformationManagementTest extends TestCase
         self::assertNotEmpty($orderId);
 
         $transactions = $this->getPaymentTransactionList((int) $orderId);
-        self::assertEquals(1, sizeof($transactions), 'Only one transaction should be present.');
+        self::assertCount(1, $transactions, 'Only one transaction should be present.');
 
         /** @var TransactionInterface $transaction */
         $transaction = array_pop($transactions);

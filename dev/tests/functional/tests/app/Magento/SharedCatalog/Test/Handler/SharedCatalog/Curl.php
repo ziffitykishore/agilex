@@ -51,7 +51,7 @@ class Curl extends AbstractCurl implements SharedCatalogInterface
         $curl->write($url, ['catalog_details' => $data]);
         $response = $curl->read();
         $curl->close();
-        if (strpos($response, 'Something went wrong while saving the shared catalog.')) {
+        if (strpos($response, 'Something went wrong while saving the shared catalog.') !== false) {
             throw new \Exception("Shared catalog creating by curl handler was not successful! Response: $response");
         }
 

@@ -9,7 +9,7 @@
         {"packagist.org": false}
     ],
     "type": "magento2-module",
-    "version": "2.0.8",
+    "version": "2.0.9",
     "license": [
         "proprietary"
     ],

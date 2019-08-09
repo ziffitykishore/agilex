@@ -27,7 +27,7 @@ class AssertNoSelectedWarning extends AbstractConstraint
      */
     public function processAssert(SharedCatalogIndex $sharedCatalogIndex, SharedCatalog $sharedCatalog)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             'You haven\'t selected any items!',
             $sharedCatalogIndex->getModalBlock()->getText(),
             'Modal message should be created.'

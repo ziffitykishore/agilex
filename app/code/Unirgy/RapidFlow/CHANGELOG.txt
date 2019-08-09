@@ -1,3 +1,48 @@
+===== 2019-07-05 3.0.75 =====
+  * Added 'Generate resized images' option for magento >2.2.8
+
+===== 2019-06-07 3.0.74 =====
+  * Fixed catalog_rules indexer does not exist.
+
+===== 2019-06-05 3.0.73 =====
+  * Fixed product.configurable_parent_sku export in EE
+  * Fixed product.row_id export in EE
+
+===== 2019-05-23 3.0.71 =====
+  * Added 'save_rewrites_history' paremeter during generate url rewrites
+  * Fixed mixing of attribute custom source model and presence of options in eav_attribute_option table lead to unexpected results
+
+===== 2019-05-08 3.0.70 =====
+  * Added export entity_id/row_id
+
+===== 2019-05-06 3.0.69 =====
+  * Fixed realtime product flat indexer run even if disabled
+
+===== 2019-04-30 3.0.68 =====
+  * Fixed 'indexer does not exist' error break whole reindex process
+
+===== 2019-04-25 3.0.67 =====
+  * Fixed call to a member function refreshProductRewrite() on null
+    in ResourceModel/Catalog/Product/AbstractProduct.php
+
+===== 2019-02-21 3.0.66 =====
+  * Fixed catch of wrong exception in ProductUrlUpdateObserver
+
+===== 2019-02-11 3.0.65 =====
+  * Added MSI tables references
+
+===== 2019-01-30 3.0.64 =====
+  * Fixed visibility not considered during products url rewrites generate
+
+===== 2018-12-10 3.0.63 =====
+  * Fixed null attribute values in storeview level not exported
+
+===== 2018-11-26 3.0.62 =====
+  * Fixed url_key/url_path exported without suffix when column format=URL
+
+===== 2018-11-26 3.0.61 =====
+  * Fixed remote images import when url contain query string with slash char in it
+
 ===== 2018-09-04 3.0.60 =====
   * Added safeguard to not save url rewrite with empty request path
 

@@ -37,10 +37,10 @@ class AssertCustomerDisabled extends AbstractConstraint
         ];
         $customerIndex->open();
         $customerIndex->getCustomerGridBlock()->search($filter);
-        $elements = $browser->find('//*[text()[contains(.,\'Inactive\')]]', Locator::SELECTOR_XPATH);
+        $element = $browser->find('//*[text()[contains(.,\'Inactive\')]]', Locator::SELECTOR_XPATH);
 
-        \PHPUnit_Framework_Assert::assertTrue(
-            (bool)count($elements),
+        \PHPUnit\Framework\Assert::assertTrue(
+            $element->isPresent(),
             'Customer is not disabled'
         );
     }

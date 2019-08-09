@@ -53,7 +53,7 @@ class AssertCompanyCreditComment extends AbstractConstraint
             $companyIndex->getGrid()->searchAndOpen(['company_name' => $companies[$i]->getCompanyName()]);
             $companyEdit->getCompanyForm()->openSection('company_credit');
             $companyEdit->getCreditHistoryGrid()->resetFilter();
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 strpos($companyEdit->getCreditHistoryGrid()->getFirstRowGridValue('Comment'), $message) !== false,
                 'Credit conversion comment message is incorrect.'
             );

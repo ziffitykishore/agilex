@@ -18,7 +18,7 @@
             <data name="permissionsToUnCheck/0" xsi:type="string">All/Sales/Checkout (place order)</data>
             <data name="permissionsToUnCheck/1" xsi:type="string">All/Quotes/View/Checkout with quote</data>
             <data name="configData" xsi:type="string">company_enable, negotiable_quote_enable</data>
-            <data name="tag" xsi:type="string">stable:no</data>
+            <data name="tag" xsi:type="string">test_type:acceptance_test</data>
             <constraint name="Magento\NegotiableQuote\Test\Constraint\AssertCheckoutLinkNotVisibleInQuote" />
             <constraint name="Magento\Company\Test\Constraint\AssertCheckoutLinksAreNotVisible" />
         </variation>

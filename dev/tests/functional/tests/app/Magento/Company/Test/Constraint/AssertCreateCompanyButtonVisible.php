@@ -24,12 +24,12 @@ class AssertCreateCompanyButtonVisible extends AbstractConstraint
     public function processAssert(CompanyPage $companyPage, $isButtonVisible)
     {
         if ($isButtonVisible) {
-            \PHPUnit_Framework_Assert::assertTrue(
+            \PHPUnit\Framework\Assert::assertTrue(
                 $companyPage->getManageCompany()->isButtonVisible(),
                 'Button is not visible.'
             );
         } else {
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $companyPage->getManageCompany()->isButtonVisible(),
                 'Button is visible.'
             );

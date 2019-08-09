@@ -32,7 +32,7 @@ class AssertQuickOrderItems extends AbstractConstraint
             $itemBlock->waitResultVisible();
 
             if ($itemBlock->getError()) {
-                \PHPUnit_Framework_Assert::assertContains(
+                \PHPUnit\Framework\Assert::assertContains(
                     $itemBlock->getSku(),
                     $invalidProductSkus,
                     'Invalid product in quick order list'
@@ -42,7 +42,7 @@ class AssertQuickOrderItems extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             count($itemsBlocks),
             count($validProducts) + count($invalidProductSkus),
             'Invalid products in quick order list'
@@ -62,7 +62,7 @@ class AssertQuickOrderItems extends AbstractConstraint
         });
         $product = current($products);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $product->getName(),
             $itemBlock->getPreviewProductName(),
             'Invalid product name in quick order list'

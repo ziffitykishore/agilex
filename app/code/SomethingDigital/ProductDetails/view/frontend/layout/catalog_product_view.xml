@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="product.detail.blocks" htmlTag="div" htmlClass="detail-blocks" before="-">
+                <container name="product.detail.attributes.wrap" htmlTag="div" htmlClass="detail-block-attributes"></container>
+                <container name="product.detail.description.wrap" htmlTag="div" htmlClass="detail-block-description">
+                    <block name="product.manuals" template="SomethingDigital_ProductDetails::manuals.phtml" after="product.info.description">
+                        <arguments>
+                            <argument name="view_model" xsi:type="object">SomethingDigital\ProductDetails\ViewModel\Manuals</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="product.info.description" >
+            <arguments>
+                <argument name="at_label" xsi:type="string">Details</argument>
+            </arguments>
+        </referenceBlock>
+
+        <move element="product.attributes" destination="product.detail.attributes.wrap"/>
+        <move element="product.info.description" destination="product.detail.description.wrap" before="-"/>
+    </body>
+</page>

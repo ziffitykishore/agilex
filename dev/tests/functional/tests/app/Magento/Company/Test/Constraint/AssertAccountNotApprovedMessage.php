@@ -23,7 +23,7 @@ class AssertAccountNotApprovedMessage extends AbstractConstraint
     public function processAssert(CustomerAccountLogin $customerAccountLogin)
     {
         $message = 'Your account is not yet approved. If you have questions, please contact the seller.';
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $customerAccountLogin->getMessages()->getErrorMessage(),
             'Error message is not correct.'

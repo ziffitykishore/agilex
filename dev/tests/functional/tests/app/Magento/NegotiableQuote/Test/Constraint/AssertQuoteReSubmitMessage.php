@@ -24,7 +24,7 @@ class AssertQuoteReSubmitMessage extends AbstractConstraint
         $message = 'You have added or changed the shipping address on this quote.' .
             ' Please re-submit the quote to Seller.';
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $negotiableQuoteView->getMessagesBlock()->getNoticeMessage(),
             'Quote re-submit message is not correct.'

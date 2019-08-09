@@ -35,7 +35,7 @@ class AssertCorrectSimpleProductInQuote extends AbstractConstraint
         $negotiableQuoteGrid->getGrid()->searchAndOpen($filter);
         $result = in_array($simpleProduct->getData('sku'), $negotiableQuoteView->getQuoteDetails()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Simple product is not correct.'
         );

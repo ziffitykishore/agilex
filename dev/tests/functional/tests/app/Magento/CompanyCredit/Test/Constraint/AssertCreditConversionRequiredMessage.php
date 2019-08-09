@@ -41,7 +41,7 @@ class AssertCreditConversionRequiredMessage extends AbstractConstraint
             $company->getCurrencyCode()
         );
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $systemConfig->getMessagesBlock()->getWarningMessage(),
             'Credit update required warning message is incorrect.'

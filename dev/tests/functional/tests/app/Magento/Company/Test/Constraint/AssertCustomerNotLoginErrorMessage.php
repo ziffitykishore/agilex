@@ -28,7 +28,7 @@ class AssertCustomerNotLoginErrorMessage extends AbstractConstraint
         $customerAccountLogin->getLoginBlock()->fill($customer);
         $customerAccountLogin->getLoginBlock()->submit();
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $customerAccountLogin->getMessages()->assertErrorMessage(),
             'Error message is not displayed.'
         );

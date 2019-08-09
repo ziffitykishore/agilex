@@ -12,15 +12,9 @@ define([
                 return attr.attribute_code === "is_billing";
             });
             if (isBillingExists.length < 1) {
-                addressData['custom_attributes'].push({
-                    'attribute_code' : 'is_billing',
-                    'value' : true
-                });
+                addressData['custom_attributes']['is_billing'] = true;
             }
-            addressData['custom_attributes'].push({
-                'attribute_code' : 'is_read_only',
-                'value' : false
-            })
+            addressData['custom_attributes']['is_read_only'] = false;
             return originalAction(addressData);
         });
     };

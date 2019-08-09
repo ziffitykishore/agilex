@@ -53,7 +53,7 @@ class AssertQuoteShippingInfoOnStorefront extends AbstractConstraint
         $proposedShippingPrice = $quoteFrontendEdit->getQuoteDetails()->getProposedShippingPrice();
         $expectedProposedShippingPrice = '$' .$expectedProposedShippingPrice .'.00';
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedProposedShippingPrice,
             $proposedShippingPrice,
             'Proposed shipping price value is not correct'

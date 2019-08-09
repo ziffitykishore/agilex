@@ -1,18 +1,17 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
-        "targets": {
-          "browsers": [ "last 2 versions", "ie 11", "safari 9" ],
-          "uglify": true
-        },
-        "useBuiltIns": true
+        "targets": [ "last 2 versions", "ie 11", "safari 9" ],
+        "useBuiltIns": "entry",
+        "corejs": 3,
+        "forceAllTransforms": true
       }
     ]
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "transform-class-properties"
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

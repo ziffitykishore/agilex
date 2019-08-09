@@ -35,7 +35,7 @@ class AssertProductsInCart extends AbstractConstraint
 
         $result = array_diff($nameArr, $cartNameArr);
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Cart products are not correct.'
         );

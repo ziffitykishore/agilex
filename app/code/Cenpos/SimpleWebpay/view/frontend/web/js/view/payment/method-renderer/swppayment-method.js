@@ -16,6 +16,8 @@ define(
         'Magento_Checkout/js/action/redirect-on-success',
         'Magento_Checkout/js/model/full-screen-loader',
         'Magento_Checkout/js/model/error-processor',
+      //  'Magento_Checkout/js/action/get-payment-information',
+     //   'Magento_Checkout/js/action/select-payment-method',
         'mage/url'
     ],
     function ($, porthole, simplewebpay,viewprocess,
@@ -25,6 +27,8 @@ define(
         redirectOnSuccessAction,
         fullScreenLoader,
         errorProcessor,
+    //    getPaymentInformationAction,
+    //    selectPaymentMethodAction,
         urlBuilder
     ) {
         'use strict';
@@ -48,25 +52,34 @@ define(
             },
 
             getSimpleForm: function () {
-                $("#NewCenposPlugin").html("<div></div>");
+                var self = this;
+                self.webpayinit = false;
+                self.createWebpay();
+               return window.checkoutConfig.payment.swppayment.dataConfig;
+            },
+
+            createWebpay:function(){
                 $('.payment-method-result-webpay').html("");
                 $("#NewCenposPlugin").show();
+                $("#SubmitWebpay").show();
+                $("#SubmitWebpaySend").hide();
+                $("#NewCenposPlugin").html("<div></div>");
                 var isToken = window.checkoutConfig.payment.swppayment.usetoken == "true";
-
+                var self = this;
                 try{
-                    debugger;
                     $.ajax({
                         type: "POST",
                         url: window.checkoutConfig.payment.swppayment.urlsession,
-                        data: msg,
                         beforeSend: function () {
                             $(".payment-method-result-webpay").append("<div id='loadersavecard' style='background-color: rgba(255,255,255,0.5);width:100%;position: relative;z-index: 100;top: 0;height: 130px;margin-top: -120px;'><img style='display: block;margin: 28px 0 0 71px;float: left;' src='" + window.checkoutConfig.payment.swppayment.urlimage + "' /></div>");
                         },
-                        success: function (msg) {
-                            msg = $.parseJSON(msg);
-                            if (msg.Result === 0) {
+                        success: function (msg2) {
+                            msg2 = $.parseJSON(msg2);
+                            self.wascreate = false;
+                            $("#loadersavecard").remove();
+                            if (msg2.Result == 0) {
                                 var params = "";
-                                params += "verifyingpost=" + encodeURIComponent(msg.Data);
+                                params += "verifyingpost=" + encodeURIComponent(msg2.Data);
                                 //        params += "&address=9048";
                                 //       params += "&zipcode=33189";
                                 params += "&isemail=true";
@@ -96,7 +109,7 @@ define(
                                                     if (indice.toLowerCase() === "recurringsaletokenid") {
                                                         if (msg[indice].indexOf("CRYPTO") < 0  && isToken) isToken = false;
                                                     }
-                                                    if (indice.toLowerCase() === "cardtype") {
+                                                    if (indice.toLowerCase() === "cardtype" && (window.checkoutConfig.payment.swppayment.istoken19 !== "true")) {
                                                         $(".payment-method-result-webpay").append("<strong>Card Type: </strong>" + msg[indice] + "<br />");
                                                     }
                                                     if (indice.toLowerCase() === "protectedcardnumber") {
@@ -122,49 +135,71 @@ define(
                                                             success: function (msg) {
                                                                 $("#loadersavecard").remove();
                                                                 msg = $.parseJSON(msg);
-                                                                if (msg.Result === 0) {
+                                                                if (msg.Result == 0) {
                                                                     $("#SendTokenClick").hide();
                                                                 } else {
-                                                                    alert(msg.Message);
+                                                                    var custommsg = {};
+                                                                    custommsg.responseText = JSON.stringify({message: msg.Message});
+                                                                    errorProcessor.process(custommsg);
                                                                 }
                                                             }
                                                         });
                                                     });
                                                 }
+                                                $(".payment-method-result-webpay").append("<a id='ChangeCard' style='display:block; cursor: pointer'>Select Another Card</a>");
+                                                $("#ChangeCard").click(function(){self.createWebpay();});
+                                                self.wascreate = true;
                                                 $("#SubmitWebpay").hide();
                                                 $("#SubmitWebpaySend").show();
                                             }
                                         },
                                         cancel: function (msg) {
-                                            alert(msg.Message);
+                                            var custommsg = {};
+                                            custommsg.responseText = JSON.stringify({message: msg.Message});
+                                            errorProcessor.process(custommsg);
                                         }
                                 });
                                 
-                               
-                
-                                $("#SubmitWebpay").on('click', function () {
-                                    // if ($("input[name=termnconditions]").prop('checked')) {
-                                    //$("#NewCenposPlugin > div").sendAction("selectedget"); 
-                                    //$("#NewCenposPlugin > div").sendAction("submitadd");
-                                    $("#NewCenposPlugin > div").submitAction();
-                                    // }else alert("Please agree to our terms of use and privacy policy")
-                                });
-                
+                                $(".methods-shipping .continue").hide();
+                                $("#ChangeShippingContinue").show();
+                                if(!self.webpayinit){
+                                        $(".methods-shipping .continue").parent().append("<button type='button' id='ChangeShippingContinue' />");
+                                        $("#ChangeShippingContinue").attr("class", $(".methods-shipping .continue").attr("class")).removeClass("continue");
+                                        $("#ChangeShippingContinue").html($(".methods-shipping .continue").html());
+                                        $("#ChangeShippingContinue").click(function(){
+                                            $(".methods-shipping .continue").show();
+                                            $(".methods-shipping .continue").trigger("click");
+                                            $("#ChangeShippingContinue").hide();
+                                            if(self.webpayinit) self.createWebpay();
+                                        });
+                                        $("#SubmitWebpay").on('click', function () {
+                                            // if ($("input[name=termnconditions]").prop('checked')) {
+                                            //$("#NewCenposPlugin > div").sendAction("selectedget"); 
+                                            //$("#NewCenposPlugin > div").sendAction("submitadd");
+                                            $("#NewCenposPlugin > div").submitAction();
+                                            // }else alert("Please agree to our terms of use and privacy policy")
+                                        });
+                                }
+                                self.webpayinit = true;
+
                                 $("#cenposPayIFrameId").attr("style", "border: none !important;margin-top: 0px;");
                             } else {
-                                alert(msg.Message);
+                                var custommsg = {};
+                                custommsg.responseText = JSON.stringify({message: msg2.Message});
+                                errorProcessor.process(custommsg);
+                                $(".payment-method-result-webpay").append("<a id='ReloadPayment' style='display:block; cursor: pointer'>Reload Payment/a>");
+                                $("#ReloadPayment").click(function(){self.createWebpay();});
                             }
                         }
                     });
                 }catch(error)
                 {
-                     trace(error.message);
-                     alert(error.message);
+                    $("#loadersavecard").remove();
+                    fullScreenLoader.stopLoader();
+                    var custommsg = {};
+                    custommsg.responseText = JSON.stringify(error);
+                    errorProcessor.process(custommsg);
                 }
-
-                
-
-               return window.checkoutConfig.payment.swppayment.dataConfig;
             },
 
             getCode: function () {
@@ -176,6 +211,10 @@ define(
                     additional_data[$(this).attr("name")] = $(this).val();
                 });
 
+                // if(this.webpayinit && !this.wascreate){
+                //     this.createWebpay();
+                // }
+
                 return {
                     'method': this.item.method,
                     'additional_data': additional_data
@@ -185,6 +224,7 @@ define(
                 return quote.guestEmail;
             },
             afterPlaceOrder: function (data, event) {
+                
             },
             placeOrder: function (data, event) {
                 var self = this;
@@ -201,7 +241,7 @@ define(
                         $("#Form3dSecure").hide();
                         if (resposems.Result !== 0) {
                             self.isPlaceOrderActionAllowed(true);
-                            eventtemp.responseText = msgtemp.Message;
+                            eventtemp.responseText = JSON.stringify({message: msgtemp.Message});
                             errorProcessor.process(eventtemp);
                             fullScreenLoader.stopLoader();
                         } else {
@@ -220,12 +260,13 @@ define(
                                        // var url = urlBuilder.build("customer/account");
                                        // window.location.href = url;
                                     } else {
-                                            $("#SubmitWebpaySend").trigger("click");
+                                           // $("#SubmitWebpaySend").trigger("click");
                                             self.isPlaceOrderActionAllowed(true);
                                             fullScreenLoader.stopLoader();
-                                            msg.message = msg.Message;
-                                            event.responseText = JSON.stringify(msg);
-                                            errorProcessor.process(event);
+                                            var custommsg = {};
+                                            custommsg.responseText = JSON.stringify({message: msg.Message});
+                                            errorProcessor.process(custommsg);
+                                            self.createWebpay();
                                     }
                                 }
                             });
@@ -241,55 +282,63 @@ define(
                             }
                         ).done(
                             function (msg, message, event) {
-                                msgtemp = msg;
-                                eventtemp = event;
-                                if (Number.isInteger(Number.parseInt(msg))) {
-                                    msg = { Result: 0, Message: "Approval" }
-                                } else{
-                                    if(msg.indexOf("{") == 0){
-                                        var msgsplit = msg.split("}");
-                                        var msgcompu = "";
-                                        for(var n in msgsplit){
-                                            if(msgsplit[n].indexOf("View3D") > 0 || n==0 ){
-                                                msgcompu = msgsplit[n] + "}";
-                                                break;
+                                try{
+                                    msgtemp = msg;
+                                    eventtemp = event;
+                                    if (Number.isInteger(Number.parseInt(msg))) {
+                                        msg = { Result: 0, Message: "Approval" }
+                                    } else{
+                                        if(msg.indexOf("{") == 0){
+                                            var msgsplit = msg.split("}");
+                                            var msgcompu = "";
+                                            for(var n in msgsplit){
+                                                if(msgsplit[n].indexOf("View3D") > 0 || n==0 ){
+                                                    msgcompu = msgsplit[n] + "}";
+                                                    break;
+                                                }
                                             }
+                                            try{
+                                                msg = $.parseJSON(msgcompu);
+                                            }catch(error)
+                                            {
+                                                msg =  msg.slice(0,msg.indexOf("['returnCardinalMag'](messageEvent.data)}});")+"['returnCardinalMag'](messageEvent.data)}}); </script>'a}".length);
+                                                msg = $.parseJSON(msg);
+                                            }
+                                        }else{
+                                            var  resp = {};
+                                            resp.Message = msg;
+                                            resp.Result = -1;
+                                            msg = resp;
                                         }
-                                        try{
-                                            msg = $.parseJSON(msgcompu);
-                                        }catch(error)
-                                        {
-                                            msg =  msg.slice(0,msg.indexOf("['returnCardinalMag'](messageEvent.data)}});")+"['returnCardinalMag'](messageEvent.data)}}); </script>'a}".length);
-                                            msg = $.parseJSON(msg);
+                                    } 
+                                    if (msg.Result === 0) {
+                                        self.afterPlaceOrder();
+                                        if (self.redirectAfterPlaceOrder) {
+                                            redirectOnSuccessAction.execute();
                                         }
-                                    }else{
-                                        var  resp = {};
-                                        resp.Message = msg;
-                                        resp.Result = -1;
-                                        msg = resp;
+                                    } else if (msg.Result === 21) {
+                                        fullScreenLoader.stopLoader();
+                                    // msg.View3D = msg.View3D.replace("<script>", " < script > ");
+                                        //  msg.View3D = msg.View3D.replace("function(messageEvent){","function(messageEvent){ var respose = JSON.parse(messageEvent.data); ");
+                                        msg.View3D = msg.View3D.replace("function(messageEvent){", "function(messageEvent){ document.getElementById('CardinalResponse').value = messageEvent.data; document.getElementById('CardinalResponse').dispatchEvent(new Event('change')); ");
+                                        msg.View3D = msg.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
+                                        msg.View3D = msg.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
+                                        $("#Form3dSecure").show();
+                                        $("#Form3dSecure").html("<div>" + msg.View3D + "</div>");
+                                    } else {
+                                        self.isPlaceOrderActionAllowed(true);
+                                        msg.message = msg.Message;
+                                        event.responseText = JSON.stringify(msg);
+                                        errorProcessor.process(event);
+                                        fullScreenLoader.stopLoader();
+                                        self.createWebpay();
                                     }
-                                } 
-                                if (msg.Result === 0) {
-                                    self.afterPlaceOrder();
-                                    if (self.redirectAfterPlaceOrder) {
-                                        redirectOnSuccessAction.execute();
-                                    }
-                                } else if (msg.Result === 21) {
-                                    fullScreenLoader.stopLoader();
-                                   // msg.View3D = msg.View3D.replace("<script>", " < script > ");
-                                    //  msg.View3D = msg.View3D.replace("function(messageEvent){","function(messageEvent){ var respose = JSON.parse(messageEvent.data); ");
-                                    msg.View3D = msg.View3D.replace("function(messageEvent){", "function(messageEvent){ document.getElementById('CardinalResponse').value = messageEvent.data; document.getElementById('CardinalResponse').dispatchEvent(new Event('change')); ");
-                                    msg.View3D = msg.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
-                                    msg.View3D = msg.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
-                                    $("#Form3dSecure").show();
-                                    $("#Form3dSecure").html("<div>" + msg.View3D + "</div>");
-                                } else {
+                                }catch(err){
                                     self.isPlaceOrderActionAllowed(true);
-                                    msg.message = msg.Message;
-                                    event.responseText = JSON.stringify(msg);
-                                    errorProcessor.process(event);
                                     fullScreenLoader.stopLoader();
-                                    //alert(msg.Message);
+                                    event.responseText = JSON.stringify(err);
+                                    errorProcessor.process(event);
+                                    self.createWebpay();
                                 }
                             }
                         );
@@ -298,8 +347,14 @@ define(
                 }
 
                 return false;
-            }
-
+            },
+            reloadPayment: function() {
+                var self = this;
+    
+                fullScreenLoader.startLoader();
+                debugger;
+               return true;
+            } 
         });
     }
 );

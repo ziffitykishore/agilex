@@ -132,7 +132,7 @@ class AssertCustomersSortOrder extends AbstractConstraint
      */
     private function verifyCompanyNamesSortOrder(array $expectedNamesList, array $namesList)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expectedNamesList,
             $namesList,
             'Sort order is not correct.'

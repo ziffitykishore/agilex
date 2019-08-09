@@ -54,6 +54,8 @@ class CreateSessionCard extends \Magento\Framework\App\Action\Action {
             if($dataAddress != null && array_key_exists("street", $dataAddress)){
                 if (strpos($dataAddress['street'], "\n") !== FALSE) {
                     $Street = str_replace("\n", " ", $dataAddress['street']);
+                } else {
+                    $Street = $dataAddress['street'];
                 }
             }else $Street = "";
 

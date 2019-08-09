@@ -6,7 +6,6 @@
 
 namespace Magento\Setup\Fixtures;
 
-use \Magento\SharedCatalog\Setup\InstallSchema as SharedCatalogInstallSchema;
 use \Magento\Rule\Model\Condition\Sql\Expression;
 
 /**
@@ -22,6 +21,13 @@ class SharedCatalogsFixture extends Fixture
      * @var int
      */
     const SHARED_CATALOG_UNREGISTERED_USER_ROLE_ID = 0;
+
+    /**
+     * Shared Catalog Product Item table name.
+     *
+     * @var string
+     */
+    const SHARED_CATALOG_PRODUCT_ITEM_TABLE_NAME = 'shared_catalog_product_item';
 
     /**
      * Default tax class id
@@ -156,13 +162,11 @@ class SharedCatalogsFixture extends Fixture
      */
     private function updateExistsSharedCatalog()
     {
-        $scTable = $this->getTable(SharedCatalogInstallSchema::SHARED_CATALOG_TABLE_NAME);
+        $scTable = $this->getTable('shared_catalog');
         $scProductItemTable = $this->getTable(
-            SharedCatalogInstallSchema::SHARED_CATALOG_PRODUCT_ITEM_TABLE_NAME
+            'shared_catalog_product_item'
         );
-        $scPermissionsTable = $this->getTable(
-            SharedCatalogInstallSchema::SHARED_CATALOG_PERMISSIONS_TABLE_NAME
-        );
+        $scPermissionsTable = $this->getTable('sharedcatalog_category_permissions');
 
         $select = $this->getDbConnection()->select()
             ->from(['sc' => $scTable], [])
@@ -238,7 +242,7 @@ class SharedCatalogsFixture extends Fixture
             ->lastInsertId($this->getTable('customer_group'));
 
         $this->getDbConnection()->insert(
-            $this->getTable(SharedCatalogInstallSchema::SHARED_CATALOG_TABLE_NAME),
+            $this->getTable('shared_catalog'),
             [
                 'name' => 'Shared catalog ' . $index . ' ' . uniqid(),
                 'description' => 'Shared catalog description ' . $index,
@@ -292,7 +296,7 @@ class SharedCatalogsFixture extends Fixture
         $insert = $this->getDbConnection()
             ->insertFromSelect(
                 $generalSelect,
-                $this->getTable(SharedCatalogInstallSchema::SHARED_CATALOG_PRODUCT_ITEM_TABLE_NAME),
+                $this->getTable('shared_catalog_product_item'),
                 ['sku', 'customer_group_id']
             );
 
@@ -367,6 +371,7 @@ class SharedCatalogsFixture extends Fixture
      *
      * @param array $customerGroupId
      * @return void
+     * @throws \Exception
      */
     private function setSharedCatalogPrices(array $customerGroupId)
     {
@@ -381,6 +386,9 @@ class SharedCatalogsFixture extends Fixture
                     'expression' => 0
                 ]),
                 'customer_group_id' => 'product_item.customer_group_id',
+                'qty' => $this->expressionFactory->create([
+                    'expression' => 1
+                ]),
                 'percentage_value' => $this->expressionFactory->create([
                     'expression' => 'FLOOR(75 + RAND() * 25)'
                 ]),
@@ -392,7 +400,7 @@ class SharedCatalogsFixture extends Fixture
                 ->from(
                     [
                         'product_item' => $this->getTable(
-                            SharedCatalogInstallSchema::SHARED_CATALOG_PRODUCT_ITEM_TABLE_NAME
+                            self::SHARED_CATALOG_PRODUCT_ITEM_TABLE_NAME
                         )
                     ],
                     []
@@ -424,7 +432,7 @@ class SharedCatalogsFixture extends Fixture
             ->select()
             ->distinct(true)
             ->from(
-                ['sc' => $this->getTable(SharedCatalogInstallSchema::SHARED_CATALOG_TABLE_NAME)],
+                ['sc' => $this->getTable('shared_catalog')],
                 ['customer_group_id']
             );
 
@@ -449,7 +457,7 @@ class SharedCatalogsFixture extends Fixture
                 ->columns($columns)
                 ->joinLeft(
                     ['perm' => $this->getTable(
-                        SharedCatalogInstallSchema::SHARED_CATALOG_PERMISSIONS_TABLE_NAME
+                        'sharedcatalog_category_permissions'
                     )],
                     'perm.category_id = category.entity_id AND perm.customer_group_id = '.$customerGroupId,
                     []
@@ -458,7 +466,7 @@ class SharedCatalogsFixture extends Fixture
 
             $connection->query(
                 $select->insertFromSelect(
-                    $this->getTable(SharedCatalogInstallSchema::SHARED_CATALOG_PERMISSIONS_TABLE_NAME),
+                    $this->getTable('sharedcatalog_category_permissions'),
                     array_keys($columns)
                 )
             );
@@ -485,7 +493,7 @@ class SharedCatalogsFixture extends Fixture
             ->from(
                 [
                     'shared_catalog' => $this->getTable(
-                        SharedCatalogInstallSchema::SHARED_CATALOG_PERMISSIONS_TABLE_NAME
+                        'sharedcatalog_category_permissions'
                     )
                 ],
                 []

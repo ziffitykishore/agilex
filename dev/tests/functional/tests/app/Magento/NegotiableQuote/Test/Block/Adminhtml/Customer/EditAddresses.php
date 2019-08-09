@@ -21,11 +21,32 @@ class EditAddresses extends Block
     protected $deleteAddressLinkSelector = '.action-delete';
 
     /**
+     * Customer addresses list grid.
+     *
+     * @var string
+     */
+    private $customerAddressesGrid = '.customer_form_areas_address_address_customer_address_listing';
+
+    /**
      * Delete default address
      */
     public function deleteDefaultAddress()
     {
-        $this->waitForElementVisible($this->deleteAddressLinkSelector);
-        $this->_rootElement->find($this->deleteAddressLinkSelector)->click();
+        $addressesGrid = $this->getCustomerAddressesGrid();
+        $firstAddressRow = $addressesGrid->getFirstRow();
+        $addressesGrid->deleteRowItemAddress($firstAddressRow);
+    }
+
+    /**
+     * Get New Category Modal Form.
+     *
+     * @return \Magento\Customer\Test\Block\Adminhtml\Edit\Tab\Addresses\AddressesGrid
+     */
+    private function getCustomerAddressesGrid()
+    {
+        return $this->blockFactory->create(
+            \Magento\Customer\Test\Block\Adminhtml\Edit\Tab\Addresses\AddressesGrid::class,
+            ['element' => $this->browser->find($this->customerAddressesGrid)]
+        );
     }
 }

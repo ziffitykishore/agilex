@@ -23,7 +23,7 @@ class AssertSystemConfigBtobSectionSharedCatalogItemComment extends AbstractCons
      */
     public function processAssert(SystemConfigBtob $systemConfigBtob, $sharedCatalogItemComment)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $sharedCatalogItemComment,
             $systemConfigBtob->getBtobFeatures()->getSharedCatalogItemComment(),
             'System configuration B2B section shared catalog item comment is incorrect.'

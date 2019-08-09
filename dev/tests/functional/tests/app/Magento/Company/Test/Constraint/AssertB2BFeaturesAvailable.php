@@ -36,7 +36,7 @@ class AssertB2BFeaturesAvailable extends AbstractConstraint
      */
     protected function verifyMyQuotesLink(CmsIndex $cmsIndex)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $cmsIndex->getLinksBlock()->isLinkVisible('My Quotes'),
             '"My Quotes" link is not visible.'
         );
@@ -49,7 +49,7 @@ class AssertB2BFeaturesAvailable extends AbstractConstraint
      */
     protected function verifyRequisitionListLink(CmsIndex $cmsIndex)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $cmsIndex->getLinksBlock()->isLinkVisible('Requisition Lists'),
             '"Requisition Lists" link is not visible.'
         );
@@ -62,7 +62,7 @@ class AssertB2BFeaturesAvailable extends AbstractConstraint
      */
     protected function verifyCompanyLink(CmsIndex $cmsIndex)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $cmsIndex->getLinksBlock()->isLinkVisible('Company Structure'),
             '"My Company" link is not visible.'
         );
@@ -75,7 +75,7 @@ class AssertB2BFeaturesAvailable extends AbstractConstraint
      */
     protected function verifyQuickOrderLink(CmsIndex $cmsIndex)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $cmsIndex->getLinksBlock()->isLinkVisible('Quick Order'),
             '"Quick Order" link is not visible.'
         );

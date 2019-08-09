@@ -1,0 +1,12 @@
+diff --git a/vendor/magento/module-customer/Setup/RecurringData.php b/vendor/magento/module-customer/Setup/RecurringData.php
+index fbef4c0..77356e4 100644
+--- a/vendor/magento/module-customer/Setup/RecurringData.php
++++ b/vendor/magento/module-customer/Setup/RecurringData.php
+@@ -38,6 +38,6 @@ class RecurringData implements InstallDataInterface
+     public function install(ModuleDataSetupInterface $setup, ModuleContextInterface $context)
+     {
+         $indexer = $this->indexerRegistry->get(Customer::CUSTOMER_GRID_INDEXER_ID);
+-        $indexer->reindexAll();
++        $indexer->invalidate();
+     }
+ }

@@ -28,7 +28,7 @@ class AssertCategoriesAvailability extends AbstractConstraint
         $cmsIndex->open();
         $cmsIndex->getLinksBlock()->waitWelcomeMessage();
         foreach ($categoriesAvailability as $data) {
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $data['available'],
                 $cmsIndex->getNavigationMenu()->isCategoryPresentInMenu($data['category']->getName()),
                 sprintf(

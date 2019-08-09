@@ -29,14 +29,11 @@ class AssertCustomerGroupCustomerTaxClass extends AbstractConstraint
         $customerTaxClass
     ) {
         $customerGroupIndex->open();
-        $filter = ['code' => $sharedCatalog->getName()];
+        $filter = ['code' => $sharedCatalog->getName(), 'tax_class_id' => $customerTaxClass];
         $customerGroupIndex->getCustomerGroupGrid()->search($filter);
-        $rowData = $customerGroupIndex->getCustomerGroupGrid()->getRowsData(['class_name']);
-        $customerTaxClassValue = (isset($rowData[0]['class_name'])) ? $rowData[0]['class_name'] : null;
 
-        \PHPUnit_Framework_Assert::assertEquals(
-            $customerTaxClass,
-            $customerTaxClassValue,
+        \PHPUnit\Framework\Assert::assertTrue(
+            $customerGroupIndex->getCustomerGroupGrid()->isRowVisible($filter),
             'Shared catalog has wrong Customer Tax Class value.'
         );
     }

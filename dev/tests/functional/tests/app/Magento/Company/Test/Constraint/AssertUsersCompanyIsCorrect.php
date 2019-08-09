@@ -37,7 +37,7 @@ class AssertUsersCompanyIsCorrect extends AbstractConstraint
             $customerGrid->open();
             $customerGrid->getCustomerGridBlock()->searchAndOpen($filter);
 
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $companyName,
                 $customerView->getCustomerView()->getCompanyName(),
                 'User is assigned to an incorrect company.'

@@ -7,6 +7,7 @@
 namespace Magento\NegotiableQuote\Test\TestCase;
 
 use Magento\Customer\Test\Fixture\Customer;
+use Magento\Company\Test\Fixture\CompanyAttributes;
 use Magento\Mtf\ObjectManager;
 use Magento\Tax\Test\Fixture\TaxRule;
 use Magento\CatalogRule\Controller\Adminhtml\Promo\Catalog;
@@ -114,7 +115,7 @@ class ViewRemovedUserQuoteTest extends AbstractQuoteNegotiationTest
         $this->quote = $quote;
         $this->products = $this->createProducts($productsList);
 
-        $this->performAdminActions($subUser);
+        $this->performAdminActions($subUser, $this->company->getId());
         $this->performSubUserActions();
         $this->deleteCustomer();
         $this->deleteCompany();
@@ -132,18 +133,28 @@ class ViewRemovedUserQuoteTest extends AbstractQuoteNegotiationTest
      * Perform company admin actions.
      *
      * @param \Magento\Mtf\Fixture\FixtureInterface $subUser
+     * @param string $companyId Current company ID.
      *
      * @return void
      */
-    private function performAdminActions(\Magento\Mtf\Fixture\FixtureInterface $subUser)
+    private function performAdminActions(\Magento\Mtf\Fixture\FixtureInterface $subUser, string $companyId)
     {
         $this->loginCustomer($this->companyAdmin);
         $this->companyPage->open();
-        $this->companyPage->getTreeControl()->clickAddCustomer();
-        $this->companyPage->getCustomerPopup()->fill($subUser);
-        $this->companyPage->getCustomerPopup()->setJobTitle($subUser->getJobTitle());
-        $this->companyPage->getCustomerPopup()->setTelephone($subUser->getTelephone());
-        $this->companyPage->getCustomerPopup()->submit();
+        /** @var CompanyAttributes $attributes */
+        $attributes = $this->fixtureFactory->createByCode(
+            'company_attributes',
+            [
+                'data' => [
+                    'job_title' => $subUser->getJobTitle(),
+                    'telephone' => $subUser->getTelephone(),
+                    'customer_id' => $this->subUser->getId(),
+                    'status' => 1,
+                    'company_id' => $companyId
+                ]
+            ]
+        );
+        $attributes->persist();
         $this->addToCart($this->products);
         $quote = $this->quote;
         $quote['quote-name'] .= time();

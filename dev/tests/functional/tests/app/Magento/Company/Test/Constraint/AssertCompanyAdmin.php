@@ -34,7 +34,7 @@ class AssertCompanyAdmin extends AbstractConstraint
     ) {
         $companyIndex->open();
         $companyIndex->getGrid()->searchAndOpen(['company_name' => $company->getCompanyName()]);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $customer->getEmail(),
             $companyEdit->getCompanyForm()->getAdminEmail(),
             'Company admin is different from \'' . $customer->getEmail() . '\''

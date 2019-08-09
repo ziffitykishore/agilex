@@ -31,7 +31,7 @@ class AssertQuoteStatusIsDeclined extends AbstractConstraint
         $filter = ['quote_name' => $quote['quote-name']];
         $quoteGrid->getGrid()->searchAndOpen($filter);
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             'Declined',
             $quoteView->getQuoteDetails()->getQuoteStatus(),
             'Quote status is not correct.'

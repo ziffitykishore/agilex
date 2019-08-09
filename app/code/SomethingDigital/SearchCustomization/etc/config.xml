@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <search>
+                <min_sku_length>4</min_sku_length>
+                <max_suffix_length>4</max_suffix_length>
+            </search>
+        </catalog>
+    </default>
+</config>

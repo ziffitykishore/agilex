@@ -44,12 +44,12 @@ class AssertCreditCurrencyAfterCancelCurrencyConvertInAdmin extends AbstractCons
         $companyEdit->getCurrencyRatePopup()->setCurrencyRate($currencyRate);
         $companyEdit->getCurrencyRatePopup()->cancel();
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $creditCurrencyCode,
             $companyEdit->getCompanyCreditForm()->getCreditCurrencyValue(),
             'Credit currency is incorrect.'
         );
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $currencySymbol,
             $companyEdit->getCompanyCreditForm()->getCreditCurrencySymbol(),
             'Credit limit currency symbol is incorrect.'

@@ -3,6 +3,7 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+declare(strict_types=1);
 
 namespace Magento\SharedCatalog\Test\Constraint;
 
@@ -34,7 +35,7 @@ class AssertProductAbsentInGrid extends AbstractConstraint
         $sharedCatalogConfigure->getNavigation()->nextStep();
         
         foreach ((array)$product as $item) {
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $sharedCatalogConfigure->getPricingGrid()->isRowVisible($item),
                 'Deleted product is displayed in shared catalog grid.'
             );

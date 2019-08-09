@@ -54,6 +54,13 @@ define([
             };
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (ex) {}
+        });
+
         describe('"onChangePrice" method', function () {
             it('Check for defined', function () {
                 expect(obj.onChangePrice).toBeDefined();

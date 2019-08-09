@@ -27,7 +27,7 @@ class AssertCategoryExist extends AbstractConstraint
         CatalogProductSimple $catalogProduct
     ) {
         $categoryName = $catalogProduct->getCategoryIds()[0];
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $sharedCatalogConfigure->getPricingJstree()->findTreeNode($categoryName)->isVisible(),
             'No category was shown on pricing configuration step.'
         );

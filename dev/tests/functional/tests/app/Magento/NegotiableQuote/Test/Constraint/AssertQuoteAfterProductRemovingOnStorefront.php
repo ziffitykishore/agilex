@@ -38,7 +38,7 @@ class AssertQuoteAfterProductRemovingOnStorefront extends \Magento\Mtf\Constrain
 
         $result = array_intersect($quoteProductSkus, $deletedProductSkus);
         // check are there deleted products in quote products list on quote page
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             0 === count($result),
             'Deleted products are present in quote.'
         );

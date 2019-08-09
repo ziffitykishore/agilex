@@ -37,7 +37,7 @@ class AssertProductPriceInShoppingCart extends AbstractConstraint
 
         $checkoutCart->open();
         $cartItem = $checkoutCart->getCartBlock()->getCartItem($product);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $cartItem->getPrice(),
             number_format($product->getPrice() * (100 - $discount) / 100, 2),
             'Product price in the shopping cart doesn\'t equal to expected price value.'

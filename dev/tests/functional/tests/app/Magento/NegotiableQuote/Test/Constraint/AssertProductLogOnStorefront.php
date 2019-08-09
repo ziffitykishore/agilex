@@ -61,7 +61,7 @@ class AssertProductLogOnStorefront extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'History log is not correct'
         );

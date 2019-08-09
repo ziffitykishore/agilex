@@ -32,7 +32,7 @@ class AssertCompanyCreditBalanceHistoryMissingOperations extends AbstractConstra
         $companyEdit->open(['id' => $company->getId()]);
         $companyEdit->getCompanyForm()->openSection('company_credit');
         foreach ($missingOperations as $operation) {
-            \PHPUnit_Framework_Assert::assertFalse(
+            \PHPUnit\Framework\Assert::assertFalse(
                 $companyEdit->getCreditHistoryGrid()->isCreditBalanceHistoryRowVisible($operation),
                 sprintf('Operation \'%s\' is present in credit balance history.', $operation)
             );

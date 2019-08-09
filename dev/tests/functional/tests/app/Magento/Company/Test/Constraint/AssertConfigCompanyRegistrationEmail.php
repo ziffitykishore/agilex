@@ -25,7 +25,7 @@ class AssertConfigCompanyRegistrationEmail extends AbstractConstraint
         $templateCode
     ) {
         $configCompanySetup->open();
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $configCompanySetup->getFormEmailOptions()->issetTemplate($templateCode),
             'Custom template is not disabled.'
         );

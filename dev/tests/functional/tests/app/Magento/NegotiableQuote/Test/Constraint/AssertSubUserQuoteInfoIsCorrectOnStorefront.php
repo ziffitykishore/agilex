@@ -47,7 +47,7 @@ class AssertSubUserQuoteInfoIsCorrectOnStorefront extends AbstractConstraint
         $createdByText = $negotiableQuoteView->getQuoteDetails()->getCreatedBy();
         $result = strpos($createdByText, $subUser->getFirstname()) && strpos($createdByText, $subUser->getLastname());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Created By name is not correct.'
         );
@@ -61,7 +61,7 @@ class AssertSubUserQuoteInfoIsCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkName(array $quote, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quote['quote-name'],
             $negotiableQuoteView->getQuoteDetails()->getQuoteName(),
             'Quote name is not correct.'
@@ -76,7 +76,7 @@ class AssertSubUserQuoteInfoIsCorrectOnStorefront extends AbstractConstraint
     protected function checkDisabledButtons(NegotiableQuoteView $negotiableQuoteView)
     {
         $disabledButtonsFront = ['checkout', 'delete', 'send'];
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuoteView->getQuoteDetails()->areButtonsDisabled($disabledButtonsFront),
             'Disabled buttons are not correct.'
         );
@@ -90,7 +90,7 @@ class AssertSubUserQuoteInfoIsCorrectOnStorefront extends AbstractConstraint
     protected function checkMessage(NegotiableQuoteView $negotiableQuoteView)
     {
         $message = 'You are not an owner of this quote. You cannot edit it or take any actions on it.';
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $negotiableQuoteView->getMessagesBlock()->getNoticeMessage(),
             'Decline message is not correct.'

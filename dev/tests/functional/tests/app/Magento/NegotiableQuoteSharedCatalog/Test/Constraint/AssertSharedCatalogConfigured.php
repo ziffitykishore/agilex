@@ -29,7 +29,7 @@ class AssertSharedCatalogConfigured extends AbstractConstraint
     public function processAssert(SharedCatalogIndex $sharedCatalogIndex)
     {
         $actualMessage = $sharedCatalogIndex->getMessages()->getSuccessMessage();
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             self::SUCCESS_MESSAGE,
             $actualMessage,
             'Wrong success message is displayed.'

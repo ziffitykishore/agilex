@@ -32,7 +32,7 @@ class AssertCaptureNotVisibleOnCreateInvoicePage extends AbstractConstraint
         $salesOrder->open();
         $salesOrder->getSalesOrderGrid()->searchAndOpen(['id' => $orderId]);
         $salesOrderView->getPageActions()->invoice();
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $orderInvoiceNew->getTotalsBlock()->captureIsVisible(),
             'Capture amount is visible.'
         );

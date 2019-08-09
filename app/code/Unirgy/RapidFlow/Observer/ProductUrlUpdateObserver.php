@@ -30,7 +30,7 @@ class ProductUrlUpdateObserver implements ObserverInterface
         $profile = $observer->getData('profile');
         try {
             $this->helper->updateProductsUrlRewrites($profile->getStoreId());
-        } catch (\Magento\Framework\Exception\AlreadyExistsException $e) {
+        } catch (\Magento\UrlRewrite\Model\Exception\UrlAlreadyExistsException $e) {
             $profile->getLogger()->error($e->getLogMessage());
         }
     }

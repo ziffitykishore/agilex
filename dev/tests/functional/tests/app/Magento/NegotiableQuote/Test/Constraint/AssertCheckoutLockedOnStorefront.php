@@ -42,7 +42,7 @@ class AssertCheckoutLockedOnStorefront extends AbstractConstraint
         $notificationMessage = 'The shipping address specified on the quote was deleted from your Address Book.' .
             ' To proceed with the checkout, go back to the quote and update the shipping address.';
 
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $notificationMessage,
             $checkoutPage->getShippingAddressBlock()->getMessage(),
             'Notification message is not correct.'

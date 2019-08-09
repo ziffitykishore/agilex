@@ -63,7 +63,7 @@ class AssertRequisitionListPrintCorrect extends AbstractConstraint
         }
         $result = array_diff($skuArr, $requisitionListPrintView->getPrintContent()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Requisition list products are not correct.'
         );
@@ -74,7 +74,7 @@ class AssertRequisitionListPrintCorrect extends AbstractConstraint
      */
     public function checkLogo(RequisitionListPrintView $requisitionListPrintView)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $requisitionListPrintView->getPrintContent()->isLogoVisible(),
             'Logo is not visible.'
         );
@@ -86,7 +86,7 @@ class AssertRequisitionListPrintCorrect extends AbstractConstraint
      */
     public function checkRequisitionListName($name, RequisitionListPrintView $requisitionListPrintView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $requisitionListPrintView->getPrintContent()->getRequisitionListName(),
             $name,
             'Requisition list name is wrong.'

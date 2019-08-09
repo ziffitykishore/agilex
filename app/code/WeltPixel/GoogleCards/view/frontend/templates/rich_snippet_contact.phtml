@@ -26,15 +26,15 @@ endif;
 
 <?php if ($phone && $contactType) : ?>
     <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "Organization",
-            "url": "<?= /* @escapeNotVerified */
+    {
+      "@context": "http://schema.org",
+      "@type": "Organization",
+      "url": "<?= /* @escapeNotVerified */
         $block->getBaseUrl() ?>",
-            "logo": "<?= /* @escapeNotVerified */
+      "logo": "<?= /* @escapeNotVerified */
         $logoUrl; ?>",
-            "contactPoint": [<?php echo json_encode($contactPoint, JSON_FORCE_OBJECT)?>]
-        }
+      "contactPoint": [<?php echo json_encode($contactPoint, JSON_FORCE_OBJECT)?>]
+    }
 
     </script>
 <?php endif; ?>

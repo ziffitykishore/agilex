@@ -24,7 +24,7 @@ class AssertCatalogCreated extends AbstractConstraint
      */
     public function processAssert(SharedCatalogIndex $sharedCatalogIndex, SharedCatalog $sharedCatalog)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $sharedCatalogIndex->getGrid()->isRowVisible(['name' => $sharedCatalog->getName()]),
             'Shared catalog \'' . $sharedCatalog->getName() . '\' isn\'t present in pages grid.'
         );

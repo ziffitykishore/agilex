@@ -41,7 +41,7 @@ class AssertCorrectGroupedProductInQuote extends AbstractConstraint
 
         $result = array_diff($skuArr, $negotiableQuoteView->getQuoteDetails()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Grouped product is not correct.'
         );

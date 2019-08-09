@@ -23,7 +23,7 @@ class AssertAccountLockedMessage extends AbstractConstraint
     public function processAssert(CustomerAccountLogin $customerAccountLogin)
     {
         $message = 'This account is locked.';
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $customerAccountLogin->getMessages()->getErrorMessage(),
             'Error message is not correct.'

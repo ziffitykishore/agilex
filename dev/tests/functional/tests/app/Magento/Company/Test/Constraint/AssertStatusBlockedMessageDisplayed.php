@@ -24,12 +24,12 @@ class AssertStatusBlockedMessageDisplayed extends AbstractConstraint
         $message = 'Your company account is blocked and you cannot place orders. '
             . 'If you have questions, please contact your company administrator.';
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $browser->find('.message.company-warning')->isVisible(),
             'Status blocked message is not visible.'
         );
         if ($browser->find('.message.company-warning')->isVisible()) {
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $message,
                 $browser->find('.message.company-warning')->getText(),
                 'Status blocked message is not visible or incorrect.'

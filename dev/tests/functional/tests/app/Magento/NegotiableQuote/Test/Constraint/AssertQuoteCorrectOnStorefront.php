@@ -104,7 +104,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Customer message is not correct'
         );
@@ -209,7 +209,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Totals are not correct'
         );
@@ -223,7 +223,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkShippingMethod($method, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuoteView->getQuoteDetails()->isMethodCorrect($method),
             'Method is not correct.'
         );
@@ -237,7 +237,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkDisabledButtons(array $disabledButtons, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $negotiableQuoteView->getQuoteDetails()->areButtonsDisabled($disabledButtons),
             'Disabled buttons are not correct.'
         );
@@ -249,7 +249,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkLock($frontLock, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $frontLock,
             $negotiableQuoteView->getQuoteDetails()->isLock(),
             'Quote lock is not correct.'
@@ -262,7 +262,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkStatus($frontStatus, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $frontStatus,
             $negotiableQuoteView->getQuoteDetails()->getStatus(),
             'Quote status is not correct.'
@@ -275,7 +275,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkName(array $quote, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $quote['quote-name'],
             $negotiableQuoteView->getQuoteDetails()->getQuoteName(),
             'Quote name is not correct.'
@@ -288,7 +288,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
      */
     protected function checkExpirationDate(\DateTime $expirationDate, NegotiableQuoteView $negotiableQuoteView)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $expirationDate->format('F j, Y'),
             $negotiableQuoteView->getQuoteDetails()->getExpirationDate(),
             'Quote expiration date is not correct.'
@@ -303,7 +303,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
     {
         $result = array_diff($qtys, $negotiableQuoteView->getQuoteDetails()->getQtyList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Quote product qtys are not correct.'
         );
@@ -322,7 +322,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
 
         $result = array_diff($skuArr, $negotiableQuoteView->getQuoteDetails()->getSkuList());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             count($result) == 0,
             'Quote products are not correct.'
         );
@@ -352,7 +352,7 @@ class AssertQuoteCorrectOnStorefront extends AbstractConstraint
             }
         }
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Customer log is not correct'
         );

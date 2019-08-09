@@ -23,7 +23,7 @@ class AssertMessageCannotDeleteCompanyAdmin extends AbstractConstraint
     public function processAssert(CustomerIndexEdit $customerIndexEdit)
     {
         $message = 'Sorry! You cannot delete this user: The user is the company admin.';
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $message,
             $customerIndexEdit->getCompanyModalBlock()->getAlertText(),
             'Error message is not correct.'

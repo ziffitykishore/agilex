@@ -9,12 +9,16 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
+use Magento\Framework\Session\SessionManagerInterface;
+use Magento\Checkout\Model\Cart;
 
 class SpotPricingApi extends Adapter
 {
 
     protected $path = 'api/Pricing';
     protected $session;
+    protected $sessionManager;
+    protected $cart;
 
     public function __construct(
         ClientFactory $curlFactory,
@@ -22,7 +26,9 @@ class SpotPricingApi extends Adapter
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
         Session $session,
-        TestMode $testMode
+        TestMode $testMode,
+        SessionManagerInterface $sessionManager,
+        Cart $cart
     ) {
         parent::__construct(
             $curlFactory,
@@ -32,6 +38,8 @@ class SpotPricingApi extends Adapter
             $testMode
         );
         $this->session = $session;
+        $this->sessionManager = $sessionManager;
+        $this->cart = $cart;
     }
 
     /**
@@ -43,10 +51,24 @@ class SpotPricingApi extends Adapter
     {
         $customerAccountId = $this->getCustomerAccountId();
 
+        $suffix = $this->sessionManager->getSkuSuffix();
+        if (empty($suffix)) {
+            $suffix = $this->cart->getQuote()->getSuffix();
+        }
+
         if ($customerAccountId) {
-            $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
-                'customerId' => $customerAccountId
-            ]);
+            if (!$this->isTestMode()) {
+                $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
+                    'customerId' => $customerAccountId,
+                    'suffix' => $suffix
+                ]);
+            } else {
+                $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
+                    'customerId' => $customerAccountId,
+                    'sku' => $productSku,
+                    'suffix' => $suffix
+                ]);
+            }
 
             return $this->getRequest();
         } else {

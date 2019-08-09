@@ -59,7 +59,7 @@ class AssertRemovedUserContentCorrectInAdmin extends \Magento\Mtf\Constraint\Abs
      */
     public function checkStatusIsCorrect(NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             'Closed',
             $negotiableQuoteEdit->getQuoteDetails()->getQuoteStatus(),
             'Quote status is not correct.'
@@ -76,7 +76,7 @@ class AssertRemovedUserContentCorrectInAdmin extends \Magento\Mtf\Constraint\Abs
     {
         $result = (bool)strpos($negotiableQuoteEdit->getQuoteDetails()->getCreatedBy(), $user->getLastname());
 
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             $result,
             'Created by user name is not correct.'
         );
@@ -90,7 +90,7 @@ class AssertRemovedUserContentCorrectInAdmin extends \Magento\Mtf\Constraint\Abs
      */
     public function checkCompanyNameIsCorrect(Company $company, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $company->getCompanyName(),
             $negotiableQuoteEdit->getQuoteDetails()->getCompanyName(),
             'Quote company name is not correct.'
@@ -105,7 +105,7 @@ class AssertRemovedUserContentCorrectInAdmin extends \Magento\Mtf\Constraint\Abs
      */
     public function checkCompanyEmailIsCorrect(Customer $companyAdmin, NegotiableQuoteEdit $negotiableQuoteEdit)
     {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $companyAdmin->getEmail(),
             $negotiableQuoteEdit->getQuoteDetails()->getCompanyAdminEmail(),
             'Quote company email is not correct.'

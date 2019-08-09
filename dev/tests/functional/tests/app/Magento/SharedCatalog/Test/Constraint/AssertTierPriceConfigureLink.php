@@ -28,7 +28,7 @@ class AssertTierPriceConfigureLink extends AbstractConstraint
     ) {
         foreach ($products as $product) {
             $sharedCatalogConfigure->getPricingGrid()->search(['sku' => $product->getSku()]);
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $product->getIsTierPriceAllowed(),
                 $sharedCatalogConfigure->getPricingGrid()->canConfigurePrice(),
                 'Tier price configuration not allowed for product ' . $product->getSku()

@@ -15,6 +15,7 @@
             <data name="quote/quote-name" xsi:type="string">name</data>
             <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
             <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
             <data name="steps" xsi:type="array">
                 <item name="0" xsi:type="string">admin_send</item>
                 <item name="1" xsi:type="string">front_place_order_without_address</item>

@@ -19,16 +19,14 @@ class AssertDiscountPrice extends AbstractConstraint
      * Assert discount pricing is calculated right.
      *
      * @param SharedCatalogConfigure $sharedCatalogConfigure
-     * @param CatalogProductSimple $catalogProduct
      * @param array $data
      * @return void
      */
     public function processAssert(
         SharedCatalogConfigure $sharedCatalogConfigure,
-        CatalogProductSimple $catalogProduct,
         array $data = []
     ) {
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             number_format($data['discount']),
             $sharedCatalogConfigure->getPricingGrid()->retrieveInputValue(),
             'Discount pricing is calculated wrong.'

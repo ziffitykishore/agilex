@@ -19,7 +19,7 @@ class SharedCatalogProductGrid extends Grid
      *
      * @var string
      */
-    protected $actionButton = '.row-gutter .action-select';
+    protected $actionButton = 'button.action-select';
 
     /**
      * Xpath selector for field from "Columns" panel.

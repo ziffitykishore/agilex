@@ -27,7 +27,7 @@ class AssertSuccessMessageAppeared extends AbstractConstraint
     ) {
         $successMessage =  $orderView->getRequisitionListMessages()->getSuccessMessage();
         $expectedMessage = sprintf('1 item(s) were added to the "%s"', $name);
-        \PHPUnit_Framework_Assert::assertTrue(
+        \PHPUnit\Framework\Assert::assertTrue(
             false !== strpos($successMessage, $expectedMessage),
             'Success message ' . $successMessage . ' is not equals to expected "'
             . $expectedMessage . ' " or is absent'

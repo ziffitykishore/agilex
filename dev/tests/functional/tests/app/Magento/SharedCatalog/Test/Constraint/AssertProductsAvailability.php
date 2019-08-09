@@ -42,7 +42,7 @@ class AssertProductsAvailability extends AbstractConstraint
                 . $data['product']->getUrlKey() . '.html'
             );
             $title = $productView->getTitleBlock()->getTitle();
-            \PHPUnit_Framework_Assert::assertEquals(
+            \PHPUnit\Framework\Assert::assertEquals(
                 $data['available'],
                 strpos($title, $data['product']->getName()) !== false,
                 sprintf(

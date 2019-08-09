@@ -8,6 +8,7 @@ use Magento\Framework\App\Area;
 use Magento\Catalog\Helper\Image as ImageHelper;
 use Magento\Theme\Model\ResourceModel\Theme\Collection as ThemeCollection;
 use Magento\Framework\View\ConfigInterface;
+use Magento\Framework\App\ObjectManager;
 
 class ImageCache extends BaseImageCache
 {
@@ -46,6 +47,31 @@ class ImageCache extends BaseImageCache
                             );
                             $this->flushProductImageData($product, $__extraData, $image->getFile());
                         }
+                    }
+                }
+            }
+        }
+        return $this;
+    }
+    public function resizeProduct(Product $product)
+    {
+        $galleryImages = $product->getMediaGalleryImages();
+        if ($galleryImages) {
+            $urfExtraData = $this->getUrfExtraData();
+            $urfExtraDataIds = [];
+            foreach ($urfExtraData as $__edIdx=>$__edData) {
+                $urfExtraDataIds[$__edData['id']] = $__edIdx;
+            }
+            $allData = [
+                $this->getData(),
+                $this->getAdminData()
+            ];
+            foreach ($galleryImages as $image) {
+                foreach ($allData as $currentData) {
+                    foreach ($currentData as $imageData) {
+                        $__image = $this->makeImage($image->getFile(), $imageData);
+                        $__image->resize();
+                        $__image->saveFile();
                     }
                 }
             }
@@ -113,5 +139,56 @@ class ImageCache extends BaseImageCache
             }
         }
         return $this->adminData;
+    }
+
+    /**
+     * @return \Magento\Catalog\Model\Product\Media\ConfigInterface
+     */
+    protected function imageConfig()
+    {
+        return ObjectManager::getInstance()->get('Magento\Catalog\Model\Product\Media\ConfigInterface');
+    }
+    /**
+     * @return \Magento\Framework\Filesystem\Directory\WriteInterface
+     */
+    protected function mediaDirectory()
+    {
+        return ObjectManager::getInstance()->get('Magento\Framework\Filesystem')->getDirectoryWrite(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+    }
+    protected function productImageFactory()
+    {
+        return ObjectManager::getInstance()->get('Unirgy\RapidFlow\Model\Product\ImageFactory');
+    }
+    protected function makeImage(string $originalImagePath, array $imageParams): Image
+    {
+        /** @var \Magento\Catalog\Model\Product\Image $image */
+        $image = $this->productImageFactory()->create();
+
+        if (isset($imageParams['height'])) {
+            $image->setHeight($imageParams['height']);
+        }
+        if (isset($imageParams['width'])) {
+            $image->setWidth($imageParams['width']);
+        }
+        if (isset($imageParams['aspect_ratio'])) {
+            $image->setKeepAspectRatio($imageParams['aspect_ratio']);
+        }
+        if (isset($imageParams['frame'])) {
+            $image->setKeepFrame($imageParams['frame']);
+        }
+        if (isset($imageParams['transparency'])) {
+            $image->setKeepTransparency($imageParams['transparency']);
+        }
+        if (isset($imageParams['constrain'])) {
+            $image->setConstrainOnly($imageParams['constrain']);
+        }
+        if (isset($imageParams['background'])) {
+            $image->setBackgroundColor($imageParams['background']);
+        }
+
+        $image->setDestinationSubdir($imageParams['type']);
+        $image->setBaseFile($originalImagePath);
+
+        return $image;
     }
 }

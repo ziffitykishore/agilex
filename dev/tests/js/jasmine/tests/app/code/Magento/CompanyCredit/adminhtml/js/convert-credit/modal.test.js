@@ -51,6 +51,13 @@ define([
             };
         });
 
+        afterEach(function () {
+            try {
+                injector.clean();
+                injector.remove();
+            } catch (e) {}
+        });
+
         describe('"openModal" method', function () {
             it('Check for defined', function () {
                 expect(obj.openModal).toBeDefined();

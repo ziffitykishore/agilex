@@ -41,7 +41,7 @@ class AssertOrdersGridSortOrder extends AbstractConstraint
         $ordersTitles = $this->getOrderTitleList();
         $this->orderIndex->getSalesOrderGrid()->sortByColumn($this->companyNameColumnHeaderLabel);
         $sortedOrdersTitles = $this->retrieveSortedTitlesList($ordersTitles);
-        \PHPUnit_Framework_Assert::assertEquals(
+        \PHPUnit\Framework\Assert::assertEquals(
             $ordersTitles,
             $sortedOrdersTitles,
             'Sort order is not correct.'

@@ -38,6 +38,11 @@ class ChangeSharedCatalogTypeTest extends Injectable
     /* end tags */
 
     /**
+     * SharedCatalog::CATALOG_PUBLIC
+     */
+    const CATALOG_PUBLIC = 'Public';
+
+    /**
      * @var SharedCatalogIndex $sharedCatalogIndex
      */
     protected $sharedCatalogIndex;
@@ -72,7 +77,7 @@ class ChangeSharedCatalogTypeTest extends Injectable
     {
         $sharedCatalog->persist();
         $this->sharedCatalogIndex->open();
-        $this->sharedCatalogIndex->getGrid()->search(['type' => SharedCatalogEntity::CATALOG_PUBLIC]);
+        $this->sharedCatalogIndex->getGrid()->search(['type' => self::CATALOG_PUBLIC]);
         $publicName = $this->sharedCatalogIndex->getGrid()->getColumnValue(
             $this->sharedCatalogIndex->getGrid()->getFirstItemId(),
             'Name'

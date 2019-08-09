@@ -113,8 +113,6 @@ class ManageStatusOfParentUserTest extends AbstractCompanyTest
             ['configData' => $configData]
         )->run();
         $companyAdmin->persist();
-        $parentCompanyUser->persist();
-        $companyUser->persist();
         $company = $this->createCompany($companyAdmin);
         $company->persist();
         $parentCompanyUserCustomer = $this->createCustomer($parentCompanyUser);
@@ -193,7 +191,7 @@ class ManageStatusOfParentUserTest extends AbstractCompanyTest
     }
 
     /**
-     * Create customer.
+     * Merge customer and company customer fixtures.
      *
      * @param Customer $customer
      * @return FixtureInterface

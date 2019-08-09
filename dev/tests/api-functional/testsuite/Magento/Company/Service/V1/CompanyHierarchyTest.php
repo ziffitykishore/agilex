@@ -141,7 +141,7 @@ class CompanyHierarchyTest extends WebapiAbstract
      * @magentoApiDataFixture Magento/NegotiableQuote/_files/company_with_customer_for_quote.php
      * @magentoApiDataFixture Magento/Customer/_files/customer_with_website.php
      */
-    public function testCustomerMove()
+    public function testCustomerMove(): void
     {
         $customerAdmin = $this->customerRepository->get('email@companyquote.com');
         $company = $this->companyManagement->getByCustomerId($customerAdmin->getId());
@@ -196,9 +196,9 @@ class CompanyHierarchyTest extends WebapiAbstract
         ];
 
         $response = $this->_webApiCall($serviceInfo, $requestData);
-        $this->assertTrue(empty($response));
+        $this->assertEmpty($response);
 
-        $updatedStructureCustomer = $structureManagement->getStructureByCustomerId($customer->getId());
-        $this->assertEquals($structureTeam->getId(), $updatedStructureCustomer->getParentId());
+        $updatedStructure = $structureManagement->getStructureByCustomerId($customer->getId());
+        $this->assertEquals($structureTeam->getId(), $updatedStructure->getParentId());
     }
 }

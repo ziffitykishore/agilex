@@ -10,14 +10,16 @@
         "[data-role=swatch-options]": {
             "SomethingDigital_CustomerSpecificPricing/js/swatch-renderer": {
                 "jsonConfig": <?= /* @noEscape */ $swatchOptions = $block->getJsonConfig() ?>,
-                "jsonSwatchConfig": <?php /* @noEscape */ echo $block->getJsonSwatchConfig(); ?>,
+                "jsonSwatchConfig": <?php /* @escapeNotVerified */
+                    echo $swatchOptions = $block->getJsonSwatchConfig(); ?>,
                 "mediaCallback": <?= /* @escapeNotVerified */ json_encode($block->getMediaCallback()) ?>,
                 "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
-                    'Magento_ConfigurableProduct') ?: 'replace'; ?>"
-            },
-            "Magento_Swatches/js/configurable-customer-data": {
-                    "swatchOptions": <?php /* @noEscape */ echo $swatchOptions ?>
+                    'Magento_ConfigurableProduct') ?: 'replace'; ?>",
+                "jsonSwatchImageSizeConfig": <?php /* @noEscape */ echo $block->getJsonSwatchSizeConfig() ?>
             }
+        },
+        "*" : {
+            "Magento_Swatches/js/catalog-add-to-cart": {}
         }
     }
 </script>

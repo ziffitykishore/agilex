@@ -84,7 +84,6 @@ class CheckCustomerTypeTest extends Injectable
         )->run();
         $customer->persist();
         $companyAdmin->persist();
-        $companyUser->persist();
         $company = $this->fixtureFactory->createByCode(
             'company',
             [
@@ -101,6 +100,8 @@ class CheckCustomerTypeTest extends Injectable
                 'dataset' => 'company_customer_1',
                 'data' => [
                     'email' => $companyUser->getEmail(),
+                    'firstname' => $companyUser->getFirstname(),
+                    'lastname' => $companyUser->getLastname()
                 ],
             ]
         );

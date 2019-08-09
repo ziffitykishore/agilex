@@ -24,7 +24,7 @@ class AssertSharedCatalogDisabledMessageIsNotDisplaying extends AbstractConstrai
     {
         $sharedCatalogIndex->open();
 
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $sharedCatalogIndex->getMessages()->isVisibleMessage('warning'),
             'Shared Catalog feature disabled message is displaying.'
         );

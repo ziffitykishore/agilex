@@ -25,7 +25,7 @@ class AssertCompanyNotInGrid extends AbstractConstraint
     public function processAssert(CompanyIndex $companyIndex, Company $company)
     {
         $filter = ['company_name' => $company->getCompanyName()];
-        \PHPUnit_Framework_Assert::assertFalse(
+        \PHPUnit\Framework\Assert::assertFalse(
             $companyIndex->getGrid()->isRowVisible($filter),
             'Company \'' . $company->getCompanyName() . '\' is present in pages grid.'
         );
