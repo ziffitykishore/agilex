@@ -15,6 +15,14 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\Link" name="my-account-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">My Profile</argument>
+                    <argument name="sortOrder" xsi:type="number">110</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
         <referenceBlock name="header" remove="true"/>
         <move element="top.links" destination="customer"/>
         <move element="authorization-link" destination="top.links" after="-"/>
