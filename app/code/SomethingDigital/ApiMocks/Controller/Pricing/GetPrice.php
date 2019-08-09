@@ -74,7 +74,7 @@ class GetPrice extends \Magento\Framework\App\Action\Action
             if ($params['suffix'] == 'SUF1') {
                 $result['Price'] = 19.99;
             } elseif ($params['suffix'] == 'SUF2') {
-                $result['Price'] = 15.99;
+                $result['Price'] = 21;
             }
         }
 
