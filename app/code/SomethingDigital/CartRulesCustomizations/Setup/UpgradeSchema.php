@@ -31,6 +31,24 @@ class UpgradeSchema implements UpgradeSchemaInterface
             );
         }
 
+        if (version_compare($context->getVersion(), '0.0.3', '<')) {
+
+            $tableName = 'salesrule';
+
+            $connection = $setup->getConnection();
+
+            $connection->addColumn(
+                $setup->getTable($tableName),
+                'sku_suffix',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'length' => '255',
+                    'nullable' => true,
+                    'comment' => 'SKU Suffix'
+                ]
+            );
+        }
+
         $setup->endSetup();
     }
 }
