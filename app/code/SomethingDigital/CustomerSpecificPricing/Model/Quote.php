@@ -21,6 +21,11 @@ class Quote
     private $logger;
 
     /**
+     * @var Cart
+     */
+    private $cart;
+
+    /**
      * @var ArrayManager
      */
     private $arrayManager;

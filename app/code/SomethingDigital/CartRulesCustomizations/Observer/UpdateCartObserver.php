@@ -17,6 +17,10 @@ class UpdateCartObserver implements ObserverInterface
     protected $freeGiftSku;
     protected $productRepository;
     protected $cart;
+    protected $collector;
+    protected $session;
+    protected $logger;
+    protected $quote;
 
     public function __construct(
         FreeGiftSku $freeGiftSku,
