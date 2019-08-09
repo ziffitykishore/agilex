@@ -35,6 +35,9 @@ abstract class Adapter
     /** @var string */
     protected $path;
 
+    /** @var TestMode */
+    protected $testMode;
+
     /**
      * Adapter constructor.
      * @param \Magento\Framework\HTTP\ClientFactory $curlFactory

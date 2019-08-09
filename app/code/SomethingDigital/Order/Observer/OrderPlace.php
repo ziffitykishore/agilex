@@ -14,7 +14,7 @@ class OrderPlace implements ObserverInterface
     protected $orderPlaceApi;
 
     /**
-     * @param DateTime $dateTime
+     * @param \DateTime $dateTime
      * @param \Psr\Log\LoggerInterface $logger
      */
     public function __construct(

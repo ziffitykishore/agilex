@@ -43,7 +43,7 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
             if ($customerApi['body']['Address']['PostalCode'] == $accountZipCode) {
                 return true;
             }
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->alert($e);
         }
         return false;

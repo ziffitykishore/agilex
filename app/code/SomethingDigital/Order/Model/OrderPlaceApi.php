@@ -16,6 +16,7 @@ class OrderPlaceApi extends Adapter
 {
     protected $session;
     protected $addressRepository;
+    protected $orderItemRepository;
 
     public function __construct(
         ClientFactory $curlFactory,
