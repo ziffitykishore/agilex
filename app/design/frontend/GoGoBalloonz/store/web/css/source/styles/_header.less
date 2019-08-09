@@ -383,12 +383,12 @@
                         }
                     }
 
-
                     .options {
                         .action.toggle:after {
-                            line-height: 24px;
+                            line-height: 20px;
                         }
                     }
+
 
                     &:before {
                         content: '\e907';
@@ -624,7 +624,14 @@
                     }
                 }
             }
+            .welcome,
+            .username {
+                display: none;
+            }
         }
+
+
+
         .block-search {
             .block-title {
                 strong {
@@ -1049,14 +1056,22 @@
                         }
                     }
 
-                    .options ul.dropdown {
-                        left: 0;
-                        right: auto;
-                        bottom: 100%;
-                        top: auto;
-                        overflow-y: auto;
-                        max-height: 120px;
+                    .options {
+
+                        ul.dropdown {
+                            left: 0;
+                            right: auto;
+                            bottom: 100%;
+                            top: auto;
+                            overflow-y: auto;
+                            max-height: 120px;
+                        }
+                        .action.toggle:after {
+                            vertical-align: middle;
+                        }
                     }
+
+
                 }
             }
 
