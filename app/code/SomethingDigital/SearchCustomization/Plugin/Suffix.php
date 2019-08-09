@@ -6,23 +6,27 @@ use Magento\Framework\App\Request\Http;
 use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use SomethingDigital\CustomerSpecificPricing\Model\Quote;
 
 class Suffix
 {
 
     protected $request;
     protected $config;
+    private $quote;
 
     public function __construct(
         Http $request,
         SessionManagerInterface $session,
         Collection $productCollection,
-        ScopeConfigInterface $config
+        ScopeConfigInterface $config,
+        Quote $quote
     ) {
         $this->request = $request;
         $this->session = $session;
         $this->productCollection = $productCollection;
         $this->config = $config;
+        $this->quote = $quote;
     }
 
     public function beforeExecute(\Magento\CatalogSearch\Controller\Result\Index $subject)
@@ -46,6 +50,7 @@ class Suffix
             if (strpos($queryText, $sku) !== false) {
                 $skuSuffix = substr($queryText, strlen($sku));
                 $this->session->setSkuSuffix($skuSuffix);
+                $this->quote->repriceCustomerQuote();
                 $subject->getResponse()->setRedirect($product->getProductUrl());
             }
         }
