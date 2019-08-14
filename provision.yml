@@ -82,13 +82,25 @@
         owner: "{{ magento_user }}"
         group: "{{ magento_group }}"
         mode: u=rwX,g=rwX,o=rX
-        path: "{{ playbook_dir }}"
+        path: "{{ item }}"
+      become: yes
+      loop:
+        - "{{ playbook_dir }}"
+        - "{{ home_path }}/.ssh/"
+    - name: make sure gitconfig have correct user:group
+      file:
+        state: file
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+        mode: u=rwX,g=rwX,o=rX
+        path: "{{ home_path }}/.gitconfig"
       become: yes
   tags:
     - owner
     - build
     - sync
     - install
+    - database
 
 - name: template play
   hosts: localhost
@@ -114,23 +126,6 @@
     - build
     - sync
     - template
-
-- name: database provision
-  hosts: localhost
-  connection: local
-  become: yes
-  tasks:
-    - name: coping local ssh key to env
-      copy:
-        remote_src: yes
-        src: files/ssh/id_rsa
-        dest: "/home/magento/.ssh/id_rsa"
-        owner: magento
-        group: magento
-        mode: 0600
-  tags:
-    - database
-    - sync
 
 - name: Updating database url
   hosts: localhost
