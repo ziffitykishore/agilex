@@ -75,13 +75,6 @@
   hosts: localhost
   connection: local
   tasks:
-    - name: set default owner:group to magento:nginx
-      command: "{{ item[0] }} {{ item[1] }}"
-      become: yes
-      loop:
-      with_nested:
-        - [ "setfacl -R -m d:u:{{ magento_user}}:rwX", "setfacl -R -m d:g:{{ magento_group }}:rwX" ]
-        - [ "{{ site_root }}", "{{ home_path }}/.ssh/" ]
     - name: make sure paths have correct user:group
       file:
         state: directory
