@@ -29,10 +29,10 @@ define([
                         return this;
                 },
                 preserveFormData: function() {
-                    if(localStorage.getItem('selectedDeliveryDate')){
+                    if(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryDate')){
                         setTimeout(function(){
-                            $("input[name=amdeliverydate_date]").val(localStorage.getItem('selectedDeliveryDate')).trigger('change');
-                            localStorage.setItem("saveDeliveryFormData",true);
+                            $("input[name=amdeliverydate_date]").val(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryDate')).trigger('change');
+                            localStorage.setItem(window.checkoutConfig.storeCode+"_saveDeliveryFormData",true);
                         }, 1000);
                     }
                 },

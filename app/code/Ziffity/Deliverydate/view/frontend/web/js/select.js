@@ -25,7 +25,7 @@ define([
             },
             onUpdate: function (val) {
                 if(val){
-                    localStorage.setItem("selectedDeliveryTime",val);
+                    localStorage.setItem(window.checkoutConfig.storeCode+"_selectedDeliveryTime",val);
                 }
                 this.bubble('update', this.hasChanged());
             },
@@ -53,13 +53,17 @@ define([
                  }).done(function (data) {
                     currentObj.options(data);
                     if(data[0].value){
-                        localStorage.setItem('deliverySlots', JSON.stringify(data));
+                        localStorage.setItem(window.checkoutConfig.storeCode+'_deliverySlots', JSON.stringify(data));
                     }
-                    if(localStorage.getItem('saveDeliveryFormData') === 'true'){
-                        localStorage.setItem("saveDeliveryFormData",false);
+                    if(localStorage.getItem(window.checkoutConfig.storeCode+'_saveDeliveryFormData') === 'true'){
+                        localStorage.setItem(window.checkoutConfig.storeCode+"_saveDeliveryFormData",false);
                         setTimeout(function(){
-                            $("select[name=amdeliverydate_time]").val(localStorage.getItem('selectedDeliveryTime')).trigger('change');
-                            $("textarea[name=amdeliverydate_comment]").val(localStorage.getItem('selectedDeliveryComment')).trigger('change');
+                            $('select[name=amdeliverydate_time] option').each(function(){
+                                if ($(this).val() == localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryTime') && $(this).prop('disabled') == false) {
+                                    $("select[name=amdeliverydate_time]").val(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryTime')).trigger('change');
+                                }
+                            });
+                            $("textarea[name=amdeliverydate_comment]").val(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryComment')).trigger('change');
                         }, 1000);
                     }
                  });

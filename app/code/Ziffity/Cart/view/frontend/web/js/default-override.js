@@ -93,9 +93,9 @@ define(
                     }
                 }
                 if(deliveryDate === '' || deliveryDate === undefined) {
-                    deliveryDate = localStorage.getItem("selectedDeliveryDate");
-                    deliveryTime = localStorage.getItem("selectedDeliveryTime");
-                    deliveryComment = localStorage.getItem("selectedDeliverycomment");
+                    deliveryDate = localStorage.getItem(window.checkoutConfig.storeCode+"_selectedDeliveryDate");
+                    deliveryTime = localStorage.getItem(window.checkoutConfig.storeCode+"_selectedDeliveryTime");
+                    deliveryComment = localStorage.getItem(window.checkoutConfig.storeCode+"_selectedDeliverycomment");
                 }
                 var data = {
                     amdeliverydate_date: deliveryDate,

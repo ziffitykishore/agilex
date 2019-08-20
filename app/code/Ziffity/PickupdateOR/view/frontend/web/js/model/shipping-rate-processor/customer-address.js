@@ -40,9 +40,9 @@ define([
                 }
             }
             if(pickupDate === '' || pickupDate === undefined) {
-                    pickupDate = localStorage.getItem("selectedPickupDate");
-                    pickupTime = localStorage.getItem("selectedPickupTime");
-                    pickupComment = localStorage.getItem("selectedPickupComment");
+                    pickupDate = localStorage.getItem(window.checkoutConfig.storeCode+"_selectedPickupDate");
+                    pickupTime = localStorage.getItem(window.checkoutConfig.storeCode+"_selectedPickupTime");
+                    pickupComment = localStorage.getItem(window.checkoutConfig.storeCode+"_selectedPickupComment");
             }
             cache = rateRegistry.get(address.getKey());
 

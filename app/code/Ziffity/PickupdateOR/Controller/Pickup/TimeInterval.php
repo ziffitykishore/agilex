@@ -53,7 +53,7 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
             $pickupList = $pickupCollection->getPickupByDate($pickupDate);
             $pickupSlots = [];
             foreach ($pickupList as $pickup) {
-                $pickupSlots[] = $pickup->getTime();
+                $pickupSlots[] = $pickup->getTime().'_'.$pickup->getTintervalId();
             }
             $pickupSlotsCount = array_count_values($pickupSlots);
             $quota = $this->configProvider->getTimeQuota($this->getRequest()->getParam('date'));
@@ -62,11 +62,11 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
             foreach ($timeIntervals as $timeSlot) {
                 $timeSlot['disabled'] = false;
 
-                if (isset($currentTime) && strtotime($currentTime) > strtotime(substr($timeSlot['label'], 0, 5))){
+                if (isset($currentTime) && strtotime($currentTime) > strtotime(substr($timeSlot['label'].'_'.$timeSlot['value'], 0, 5))){
                     $timeSlot['disabled'] = true;
                 }
 
-                if( isset($pickupSlotsCount[$timeSlot['label']]) && $pickupSlotsCount[$timeSlot['label']] >= $quota ){
+                if( isset($pickupSlotsCount[$timeSlot['label'].'_'.$timeSlot['value']]) && $pickupSlotsCount[$timeSlot['label'].'_'.$timeSlot['value']] >= $quota ){
                     $timeSlot['disabled'] = true;
                 }
                 

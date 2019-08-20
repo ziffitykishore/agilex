@@ -25,7 +25,7 @@ define([
             },
             onUpdate: function (val) {
                 if(val){
-                    localStorage.setItem("selectedPickupTime",val);
+                    localStorage.setItem(window.checkoutConfig.storeCode+"_selectedPickupTime",val);
                 }
                 this.bubble('update', this.hasChanged());
             },
@@ -53,13 +53,17 @@ define([
                  }).done(function (data) {
                     select.options(data);
                     if(data[0].value){
-                        localStorage.setItem('pickupSlots', JSON.stringify(data));
+                        localStorage.setItem(window.checkoutConfig.storeCode+'_pickupSlots', JSON.stringify(data));
                     }
-                    if(localStorage.getItem('savePickupFormData') === 'true'){
-                        localStorage.setItem("savePickupFormData",false);
+                    if(localStorage.getItem(window.checkoutConfig.storeCode+'_savePickupFormData') === 'true'){
+                        localStorage.setItem(window.checkoutConfig.storeCode+"_savePickupFormData",false);
                         setTimeout(function(){
-                            $("select[name=pickupdate_time]").val(localStorage.getItem('selectedPickupTime')).trigger('change');
-                            $("textarea[name=pickupdate_comment]").val(localStorage.getItem('selectedPickupComment')).trigger('change');
+                            $('select[name=pickupdate_time] option').each(function(){
+                                if ($(this).val() == localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupTime') && $(this).prop('disabled') == false) {
+                                    $("select[name=pickupdate_time]").val(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupTime')).trigger('change');
+                                }
+                            });
+                            $("textarea[name=pickupdate_comment]").val(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupComment')).trigger('change');
                         }, 1000);
                     }
                  });

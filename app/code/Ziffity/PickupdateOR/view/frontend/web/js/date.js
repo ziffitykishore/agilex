@@ -29,10 +29,10 @@ define([
                         return this;
                 },
                 preserveFormData: function() {
-                    if(localStorage.getItem('selectedPickupDate')){
+                    if(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupDate')){
                         setTimeout(function(){
-                            $("input[name=pickupdate_date]").val(localStorage.getItem('selectedPickupDate')).trigger('change');
-                            localStorage.setItem("savePickupFormData",true);
+                            $("input[name=pickupdate_date]").val(localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupDate')).trigger('change');
+                            localStorage.setItem(window.checkoutConfig.storeCode+"_savePickupFormData",true);
                         }, 1000);
                     }
                 },

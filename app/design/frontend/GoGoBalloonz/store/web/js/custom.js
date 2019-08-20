@@ -170,13 +170,13 @@ define(['jquery', 'slick', 'scroller'], function ($) {
         //To preserve delivery comment
         $(document).on("blur", "textarea[name=amdeliverydate_comment]" , function() {
             $("textarea[name=amdeliverydate_comment]").on('blur',function(){
-                localStorage.setItem('selectedDeliveryComment', $("textarea[name=amdeliverydate_comment]").val());
+                localStorage.setItem(window.checkoutConfig.storeCode+'_selectedDeliveryComment', $("textarea[name=amdeliverydate_comment]").val());
             });
         });
         //To preserve pickup comment
         $(document).on("blur", "textarea[name=pickupdate_comment]" , function() {
             $("textarea[name=pickupdate_comment]").on('blur',function(){
-                localStorage.setItem('selectedPickupComment', $("textarea[name=pickupdate_comment]").val());
+                localStorage.setItem(window.checkoutConfig.storeCode+'_selectedPickupComment', $("textarea[name=pickupdate_comment]").val());
             });
         });
 

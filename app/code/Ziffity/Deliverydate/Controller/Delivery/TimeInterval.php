@@ -4,6 +4,7 @@ namespace Ziffity\Deliverydate\Controller\Delivery;
 
 class TimeInterval extends \Magento\Framework\App\Action\Action
 {
+    const ORDER_STATUS_CANCELLED = 'canceled';
 
     protected $resultJsonFactory;
 
@@ -15,13 +16,16 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
 
     protected $dateProvider;
 
+    protected $orderRepository;
+
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
         \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
         \Amasty\Deliverydate\Model\ResourceModel\Tinterval\Collection $timeIntervalCollection,
         \Amasty\Deliverydate\Model\ResourceModel\Deliverydate\CollectionFactory $deliverydateCollection,
         \Ziffity\Deliverydate\Model\DeliverydateConfigProvider $config,
-        \Magento\Framework\Stdlib\DateTime\DateTime $date
+        \Magento\Framework\Stdlib\DateTime\DateTime $date,
+        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
     ) {
         parent::__construct($context);
         $this->resultJsonFactory = $jsonFactory;
@@ -29,6 +33,7 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
         $this->deliverydateCollection = $deliverydateCollection;
         $this->configProvider = $config;
         $this->dateProvider = $date;
+        $this->orderRepository = $orderRepository;
     }
 
     public function execute()
@@ -53,7 +58,9 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
             $deliveryList = $deliveryCollection->getDeliveryByDate($deliveryDate);
             $deliverySlots = [];
             foreach ($deliveryList as $delivery) {
-                $deliverySlots[] = $delivery->getTime();
+                if ($this->getOrderStatus($delivery->getOrderId()) != self::ORDER_STATUS_CANCELLED) {
+                    $deliverySlots[] = $delivery->getTime().'_'.$delivery->getTintervalId();
+                }
             }
             $deliverySlotsCount = array_count_values($deliverySlots);
             $quota = $this->configProvider->getTimeQuota($this->getRequest()->getParam('date'));
@@ -62,11 +69,11 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
             foreach ($timeIntervals as $timeSlot) {
                 $timeSlot['disabled'] = false;
 
-                if (isset($currentTime) && strtotime($currentTime) > strtotime(substr($timeSlot['label'], 0, 5))){
+                if (isset($currentTime) && strtotime($currentTime) > strtotime(substr($timeSlot['label'].'_'.$timeSlot['value'], 0, 5))){
                     $timeSlot['disabled'] = true;
                 }
 
-                if( isset($deliverySlotsCount[$timeSlot['label']]) && $deliverySlotsCount[$timeSlot['label']] >= $quota ){
+                if( isset($deliverySlotsCount[$timeSlot['label'].'_'.$timeSlot['value']]) && $deliverySlotsCount[$timeSlot['label'].'_'.$timeSlot['value']] >= $quota ){
                     $timeSlot['disabled'] = true;
                 }
                 
@@ -90,5 +97,12 @@ class TimeInterval extends \Magento\Framework\App\Action\Action
     public function sortTimeSlot($data1, $data2)
     {
         return $data1['value'] > $data2['value'];
+    }
+
+    public function getOrderStatus($orderId)
+    {
+        $order = $this->orderRepository->get($orderId);
+        $state = $order->getState();
+        return $state;
     }
 }

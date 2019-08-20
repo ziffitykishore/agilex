@@ -128,7 +128,7 @@ class Pickupdate extends ZiffityPickupDate
                 }
                 break;
             case 'time_slot':
-                if ($this->getDate() && !$this->dateValidator->validateTimeSlot($data['time'], $this->getDate(), $this->getTimeWithInterval())) {
+                if ($this->getDate() && !$this->dateValidator->validateTimeSlot($data['time'].'_'.$data['tinterval_id'], $this->getDate(), $this->getTimeWithInterval())) {
                     $this->throwValidatorException(__('Pickup Time Slot is invalid, please choose another Time Slot'));
                 }
                 break;

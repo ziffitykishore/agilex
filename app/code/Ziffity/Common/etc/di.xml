@@ -2,6 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="WeltPixel\LayeredNavigation\Block\Navigation\State" type="Ziffity\Common\Block\Navigation\State" />
     <preference for="WebShopApps\MatrixRate\Model\Carrier\Matrixrate" type="Ziffity\Common\Model\Carrier\Matrixrate" />
+    <preference for="Magento\Checkout\Block\Onepage\Success" type="Ziffity\Common\Plugin\Success" />
     <type name="Magento\Framework\App\Action\AbstractAction">
         <plugin name="abstractaction-context-plugin" type="Ziffity\Common\Plugin\App\Action\Context" sortOrder="15"/>
     </type>

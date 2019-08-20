@@ -41,9 +41,9 @@ define(
                     var shippingData = mageCacheToJson['checkout-data']['shippingAddressFromData'];
                     var billingData = mageCacheToJson['checkout-data']['billingAddressFromData'];
                     if (shippingData !== null) {
-                        localStorage.setItem("selectedDeliveryDate", shippingData['amdeliverydate_date']);
+                        localStorage.setItem(window.checkoutConfig.storeCode+"_selectedDeliveryDate", shippingData['amdeliverydate_date']);
                     } else {
-                        localStorage.setItem("selectedDeliveryDate", billingData['amdeliverydate_date']);
+                        localStorage.setItem(window.checkoutConfig.storeCode+"_selectedDeliveryDate", billingData['amdeliverydate_date']);
                     }
                 }
                 if (this.deliverydateConfig.moduleEnabled) {

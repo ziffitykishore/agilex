@@ -36,14 +36,14 @@ define(
                    return date['pickupdate_date'];
                 }
               }else{
-                  return localStorage.getItem('selectedPickupDate');
+                  return localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupDate');
               }
                 return '';
             },
 
             getPickupTime: function() {
               var time = this.getLocalStorageData();
-              var timeSlot = JSON.parse(localStorage.getItem('pickupSlots'));
+              var timeSlot = JSON.parse(localStorage.getItem(window.checkoutConfig.storeCode+'_pickupSlots'));
               if (time !== null) {
                 if (time['pickupdate_time'] !== null) {
                     var selectedTimeSlot = timeSlot.filter(function(obj) {
@@ -53,7 +53,7 @@ define(
                 }
               }else{
                    var selectedTimeSlot = timeSlot.filter(function(obj) {
-                       return obj.value === localStorage.getItem('selectedPickupTime');
+                       return obj.value === localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupTime');
                    });
                    return selectedTimeSlot[0].label;
               }
@@ -67,7 +67,7 @@ define(
                    return comment['pickupdate_comment'];
                 }
               }else{
-                  return localStorage.getItem('selectedPickupComment');
+                  return localStorage.getItem(window.checkoutConfig.storeCode+'_selectedPickupComment');
               }
                 return '';
             },

@@ -37,14 +37,14 @@ define(
                    return date['amdeliverydate_date'];
                 }
               }else{
-                   return localStorage.getItem('selectedDeliveryDate');
+                   return localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryDate');
               }
               return '';
             },
 
             getDeliveryTime: function() {
               var time = this.getLocalStorageData();
-              var timeSlot = JSON.parse(localStorage.getItem('deliverySlots'));
+              var timeSlot = JSON.parse(localStorage.getItem(window.checkoutConfig.storeCode+'_deliverySlots'));
               if (time !== null) {
                 if (time['amdeliverydate_time'] !== null) {
                     var selectedTimeSlot = timeSlot.filter(function(obj) {
@@ -54,7 +54,7 @@ define(
                 }
              }else{
                     var selectedTimeSlot = timeSlot.filter(function(obj) {
-                        return obj.value === localStorage.getItem('selectedDeliveryTime');
+                        return obj.value === localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryTime');
                     });
                     return selectedTimeSlot[0].label;
              }
@@ -66,7 +66,7 @@ define(
                 if (comment['amdeliverydate_comment'] !== null) {
                    return comment['amdeliverydate_comment'];
                 }else{
-                   return localStorage.getItem('selectedDeliveryComment');
+                   return localStorage.getItem(window.checkoutConfig.storeCode+'_selectedDeliveryComment');
                 }
               }
                 return '';

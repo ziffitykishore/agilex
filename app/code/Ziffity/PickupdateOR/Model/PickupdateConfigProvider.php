@@ -128,7 +128,7 @@ class PickupdateConfigProvider extends PickupConfigProvider
             if ($collection->getSize() > 0) {
                 $dates = [];
                 foreach ($collection as $pickup) {
-                    $dates[] = $pickup->getDate().'-'.$pickup->getTime();
+                    $dates[] = $pickup->getDate().'-'.$pickup->getTime().'_'.$pickup->getTintervalId();
                 }
 
                 $deliveries = array_count_values($dates);
@@ -165,7 +165,7 @@ class PickupdateConfigProvider extends PickupConfigProvider
                 }
                 break;
             case 'time_slot':
-                $quota = $this->helper->getWebsiteScopeValue('quota/per_time_slot');
+                $quota = $this->helper->getStoreScopeValue('quota/per_time_slot');
                 break;
         }
 

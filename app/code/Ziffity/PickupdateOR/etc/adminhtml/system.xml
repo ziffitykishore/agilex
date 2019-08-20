@@ -4,9 +4,9 @@
         <section id="pickupdate" translate="label" type="text" sortOrder="40504" showInDefault="1" showInWebsite="1" showInStore="1">
             <tab>ziffity_lazyloader</tab>
             <resource>Ziffity_Pickupdate::ziffity_pickupdate</resource>
-            <group id="quota" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+            <group id="quota" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Quota</label>
-                <field id="quota_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="quota_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota Type</label>
                     <options>
                         <option label="Unlimited">0</option>
@@ -15,63 +15,63 @@
                         <option label="Per Day of the Week">week_day</option>
                     </options>
                 </field>
-                <field id="per_day" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per_day" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota Per Day</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">day</field>
                     </depends>
                 </field>
-                <field id="per_time_slot" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per_time_slot" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota Per Time Slot</label>
                     <comment><![CDATA[Maximum number of deliveries per time slot.]]></comment>
                     <depends>
                         <field id="quota_type">time_slot</field>
                     </depends>
                 </field>                
-                <field id="per1" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per1" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Monday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">week_day</field>
                     </depends>
                 </field>
-                <field id="per2" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per2" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Tuesday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">week_day</field>
                     </depends>
                 </field>
-                <field id="per3" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per3" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Wednesday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">week_day</field>
                     </depends>
                 </field>
-                <field id="per4" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per4" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Thursday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">week_day</field>
                     </depends>
                 </field>
-                <field id="per5" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per5" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Friday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">week_day</field>
                     </depends>
                 </field>
-                <field id="per6" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per6" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Saturday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
                         <field id="quota_type">week_day</field>
                     </depends>
                 </field>
-                <field id="per7" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="per7" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Quota per Sunday</label>
                     <comment><![CDATA[Maximum number of deliveries per day. Set 0 to unlimited.]]></comment>
                     <depends>
