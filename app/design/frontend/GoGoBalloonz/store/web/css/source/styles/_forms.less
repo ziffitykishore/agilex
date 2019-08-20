@@ -18,31 +18,32 @@
 
     }
 
-    input[type="text"],
-    input[type="password"],
-    input[type="url"],
-    input[type="tel"],
-    input[type="search"],
-    input[type="number"],
-    input[type="datetime"],
-    input[type="email"],
-    select,
-    textarea {
-        .lib-css(border-color, @color-gray);
-        font-size: @font-size__s;
-        .br-radius(3px);
+    .page-wrapper {
 
-        &:not([disabled]):focus,
-        &:focus {
-            .box-shadow(inset 0px 0px 0px 1px @color-black);
-
-        }
-
-
-        &.mage-error {
+        input[type="text"],
+        input[type="password"],
+        input[type="url"],
+        input[type="tel"],
+        input[type="search"],
+        input[type="number"],
+        input[type="datetime"],
+        input[type="email"],
+        select,
+        textarea {
+            .lib-css(border-color, @color-gray);
+            font-size: @font-size__s;
+            .br-radius(3px);
+            &:not([disabled]):focus,
             &:focus {
-                .box-shadow(none);
+                .box-shadow(inset 0px 0px 0px 1px @color-black);
 
+            }
+
+            &.mage-error {
+                &:focus {
+                    .box-shadow(none);
+
+                }
             }
         }
     }
