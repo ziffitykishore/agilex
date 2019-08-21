@@ -3,4 +3,7 @@
     <event name="email_order_set_template_vars_before">
         <observer name="place_order_after" instance="Ziffity\Common\Observer\OrderPlaceAfter" />
     </event>
+    <event name="order_cancel_after">
+        <observer name="timeslot_release" instance="Ziffity\Common\Observer\OrderCancelAfter" />
+    </event>
 </config>

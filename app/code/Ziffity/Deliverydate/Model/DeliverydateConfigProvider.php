@@ -16,8 +16,6 @@ class DeliverydateConfigProvider extends DeliveryConfigProvider
     
     const OUTPUT_DATE_FORMAT = 'MM/dd/yyyy';
 
-    const ORDER_STATUS_CANCELLED = 'canceled';
-
     static private $quotaTime = [];
 
     private $dayExceptions;
@@ -72,8 +70,6 @@ class DeliverydateConfigProvider extends DeliveryConfigProvider
      */
     private $storeManager;
 
-    protected $orderRepository;
-
     /**
      * DeliverydateConfigProvider constructor.
      *
@@ -97,8 +93,7 @@ class DeliverydateConfigProvider extends DeliveryConfigProvider
         HolidaysCollectionFactory $holidaysCollectionFactory,
         \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
-        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
-        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
+        \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
     ) {
         parent::__construct($helper, $date, $tintervalFactory, $dateFactory, $deliverydateCollectionFactory, $dintervalCollectionFactory, $holidaysCollectionFactory, $checkoutSession, $storeManager, $productCollectionFactory);
         $this->helper = $helper;
@@ -111,7 +106,6 @@ class DeliverydateConfigProvider extends DeliveryConfigProvider
         $this->checkoutSession = $checkoutSession;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->storeManager = $storeManager;
-        $this->orderRepository = $orderRepository;
     }
     
     
@@ -133,7 +127,7 @@ class DeliverydateConfigProvider extends DeliveryConfigProvider
             if ($collection->getSize() > 0) {
                 $dates = [];
                 foreach ($collection as $delivery) {
-                    if ($this->getOrderStatus($delivery->getOrderId()) != self::ORDER_STATUS_CANCELLED) {
+                    if ($delivery->getActive()) {
                         $dates[] = $delivery->getDate().'-'.$delivery->getTime().'_'.$delivery->getTintervalId();
                     }
                 }
@@ -185,12 +179,5 @@ class DeliverydateConfigProvider extends DeliveryConfigProvider
         $timeOffsetInHour = $timeOffsetInMin / 60;
 
         return (int) $timeOffsetInHour;
-    }
-
-    public function getOrderStatus($orderId)
-    {
-        $order = $this->orderRepository->get($orderId);
-        $state = $order->getState();
-        return $state;
     }
 }

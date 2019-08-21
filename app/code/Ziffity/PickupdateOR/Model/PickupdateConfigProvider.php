@@ -128,7 +128,9 @@ class PickupdateConfigProvider extends PickupConfigProvider
             if ($collection->getSize() > 0) {
                 $dates = [];
                 foreach ($collection as $pickup) {
-                    $dates[] = $pickup->getDate().'-'.$pickup->getTime().'_'.$pickup->getTintervalId();
+                    if ($pickup->getActive()) {
+                        $dates[] = $pickup->getDate().'-'.$pickup->getTime().'_'.$pickup->getTintervalId();
+                    }
                 }
 
                 $deliveries = array_count_values($dates);
