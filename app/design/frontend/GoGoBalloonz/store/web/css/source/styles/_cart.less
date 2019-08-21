@@ -97,7 +97,7 @@
                             }
 
                             .product-item-photo {
-                                vertical-align: middle;
+                                vertical-align: top;
                                 margin-bottom: 15px;
                             }
 
@@ -113,7 +113,7 @@
                             .product-item-name {
                                 font-size: 14px;
                                 font-weight: bold;
-                                max-width: 300px;
+                                max-width: 215px;
                             }
 
                             .cart-price {
@@ -169,15 +169,18 @@
                         &.continue {
                             display: block;
                             position: relative;
-/*                            padding-left: 35px;*/
+                            padding-left: 35px;
                             font-weight: 600;
-/*                            &:before {
+                            &:before {
                                 content: '\2190';
+                                display: inline-block;
+                                vertical-align: middle;
+                                font-size: 40px;
                                 position: absolute;
-                                left: 0;
-                                font-size: 35px;
-                                top: -16px;
-                            }*/
+                                left: -8px;
+                                top: -20px;
+                                line-height: normal;
+                            }
                         }
                     }
 
@@ -435,6 +438,13 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .checkout-cart-index {
+        .page-wrapper {
+            .cart-empty,
+            .cart-container {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
         .form-cart {
             .cart.table-wrapper {
                 border: none;

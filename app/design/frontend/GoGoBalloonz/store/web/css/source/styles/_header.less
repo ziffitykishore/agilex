@@ -388,51 +388,56 @@
                             display: none !important;
                         }
                     }
+                    .action.switch {
+                        display: none;
+                    }
+                    .dropdown {
+                        .action.toggle {
 
-                    .action.toggle {
-
-                        &.active {
-                            .action.switch {
-                                &:after {
-                                    content: '\e621';
+                            &.active {
+                                .action.switch {
+                                    &:after {
+                                        content: '\e621';
+                                    }
                                 }
                             }
-                        }
 
-                        .action.switch {
-                            .lib-css(color, @color-blue);
-                            background-image: none;
-                            background: none;
-                            -moz-box-sizing: content-box;
-                            border: 0;
-                            box-shadow: none;
-                            line-height: inherit;
-                            margin: 0;
-                            padding: 0;
-                            text-decoration: none;
-                            text-shadow: none;
-                            font-weight: 400;
-
-                            > span {
-                                .lib-visually-hidden();
-                            }
-                            &:after {
-                                -webkit-font-smoothing: antialiased;
-                                -moz-osx-font-smoothing: grayscale;
-                                font-size: 10px;
-                                line-height: 22px;
-                                color: inherit;
-                                content: '\e622';
-                                font-family: 'luma-icons';
-                                margin: 0;
-                                vertical-align: top;
+                            .action.switch {
+                                .lib-css(color, @color-blue);
                                 display: inline-block;
-                                font-weight: normal;
-                                overflow: hidden;
-                                speak: none;
-                                text-align: center;
-                            }
+                                background-image: none;
+                                background: none;
+                                -moz-box-sizing: content-box;
+                                border: 0;
+                                box-shadow: none;
+                                line-height: inherit;
+                                margin: 0;
+                                padding: 0;
+                                text-decoration: none;
+                                text-shadow: none;
+                                font-weight: 400;
 
+                                > span {
+                                    .lib-visually-hidden();
+                                }
+                                &:after {
+                                    -webkit-font-smoothing: antialiased;
+                                    -moz-osx-font-smoothing: grayscale;
+                                    font-size: 10px;
+                                    line-height: 22px;
+                                    color: inherit;
+                                    content: '\e622';
+                                    font-family: 'luma-icons';
+                                    margin: 0;
+                                    vertical-align: top;
+                                    display: inline-block;
+                                    font-weight: normal;
+                                    overflow: hidden;
+                                    speak: none;
+                                    text-align: center;
+                                }
+
+                            }
                         }
                     }
 
@@ -740,14 +745,6 @@
 
 @media screen and (max-width: 1024px) {
 
-    .cart-open {
-        .page-wrapper {
-            .minicart-wrapper {
-                top: 22px;
-            }
-        }
-    }
-
     .page-header {
         padding: 8px 0; 
 
@@ -973,6 +970,15 @@
                                 text-align: center;
                             }
 
+                        }
+
+
+                        &.active {
+                            .action.switch{
+                                &:after {
+                                    content: '\e621';
+                                }
+                            }
                         }
                     }
                 }
@@ -1472,6 +1478,14 @@
     .breadcrumbs {
         display: block;
         margin-bottom: 0;
+    }
+
+    .cart-open {
+        .page-wrapper {
+            .minicart-wrapper {
+                top: 22px;
+            }
+        }
     }
 
 }

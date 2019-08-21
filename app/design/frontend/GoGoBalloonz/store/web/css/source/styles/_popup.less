@@ -228,12 +228,29 @@
                             flex-direction: row-reverse;
                             .action {
                                 margin-top: 0;
+
+                                &.signin-link {
+                                    display: block;
+                                    position: relative;
+                                    padding-left: 35px;
+                                    font-weight: 600;
+                                    &:before {
+                                        content: '\2190';
+                                        display: inline-block;
+                                        vertical-align: middle;
+                                        font-size: 40px;
+                                        position: absolute;
+                                        left: -8px;
+                                        top: -20px;
+                                        line-height: normal;
+                                    }
+                                }
                             }
 
                             .secondary {
                                 width: 50%;
                                 margin-bottom: 0;
-                                justify-content: center;
+                                justify-content: left;
                             }
 
                             div.primary {
