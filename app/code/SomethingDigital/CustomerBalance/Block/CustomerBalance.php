@@ -23,7 +23,7 @@ class CustomerBalance extends \Magento\Framework\View\Element\Template
     /**
      * @var CustomerBalanceApi
      */
-    private $customerBalanceApi
+    private $customerBalanceApi;
     
 
     public function __construct(
