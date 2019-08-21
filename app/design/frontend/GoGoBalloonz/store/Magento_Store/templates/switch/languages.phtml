@@ -22,12 +22,14 @@ $multi_store = count($block->getStores()) > 1;
             <strong class="view-<?= $block->escapeHtml($block->getCurrentStoreCode()) ?>">
                 <span><?= $block->escapeHtml($block->getStoreName()) ?></span>
             </strong>
+            <?php if ($multi_store): ?>
             <button type="button"
                     class="action switch"
                     tabindex="-1"
                     data-action="customer-menu-toggle">
                 <span><?= $block->escapeHtml(__('Change')) ?></span>
             </button>
+            <?php endif; ?>
         </div>
         
 <?php if ($multi_store): ?>
