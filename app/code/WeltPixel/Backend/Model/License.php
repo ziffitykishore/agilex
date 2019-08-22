@@ -14,7 +14,8 @@ class License extends \Magento\Framework\Model\AbstractModel
     const MODULE_INFO_PREFIX = "\x77\x70\x2f\x69\x6e\x66\x6f\x2f";
     const LICENSE_INFO_PREFIX = "\x77\x70\x2f\x66\x6c\x61\x67\x2f\x69\x6e\x66\x6f";
     const LICENSE_VERSION = "\x31\x2e\x37\x2e\x30";
-    const LICENSE_ENDPOINT = "\x68\x74\x74\x70\x3a\x2f\x2f\x6c\x69\x63\x65\x6e\x73\x65\x2e\x77\x65\x6c\x74\x70\x69\x78\x65\x6c\x2e\x63\x6f\x6d";
+    const LICENSE_ENDPOINT = "\x68\x74\x74\x70\x73\x3a\x2f\x2f\x6c\x69\x63\x65\x6e\x73\x65\x2e\x77\x65\x6c\x74\x70\x69\x78\x65\x6c\x2e\x63\x6f\x6d";
+
 
 
     /**
@@ -768,6 +769,8 @@ class License extends \Magento\Framework\Model\AbstractModel
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data_string);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array(
                     'Content-Type: application/json',
                     'Content-Length: ' . strlen($data_string))
