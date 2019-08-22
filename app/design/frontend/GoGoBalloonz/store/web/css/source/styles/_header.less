@@ -391,8 +391,8 @@
                     .action.switch {
                         display: none;
                     }
-                    .dropdown {
-                        .action.toggle {
+
+                        .action.multiple {
 
                             &.active {
                                 .action.switch {
@@ -439,7 +439,7 @@
 
                             }
                         }
-                    }
+
 
                     & + .switcher {
                         display: none;
@@ -468,9 +468,10 @@
                     }
                 }
 
-                > .multiple {
+                 .multiple {
                     display: inline-block;
                     position: relative;
+                    cursor: pointer;
                     &:before {
                     }
                     select {
@@ -682,9 +683,10 @@
         }
 
         .switcher {
-            .view-mckinney_store_view,
-            .view-default {
-                display: none;
+            .action {
+                > strong {
+                    display: none;
+                }
             }
         }
 
@@ -798,7 +800,7 @@
 }
 
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1023px) and (orientation: landscape) {
     .cart-open {
         .page-wrapper {
             .minicart-wrapper {

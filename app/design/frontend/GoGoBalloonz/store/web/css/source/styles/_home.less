@@ -394,11 +394,17 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
-
-
-
-
+    .cms-index-index {
+        .delivery-sec {
+            .promo-banner-sec {
+                .promo-content {
+                    font-size: 12px;
+                    margin-bottom: 10px;
+                    .flex-width(100%);
+                }
+            }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
