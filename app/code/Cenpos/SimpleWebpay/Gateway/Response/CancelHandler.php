@@ -40,7 +40,6 @@ class CancelHandler implements HandlerInterface
           /** @var PaymentDataObjectInterface $paymentDO */
           $order = $paymentDO->getOrder();
           $ResponseSave = new \stdClass();
-       // $this->config->getValue('payment_action');
         $thisss = $payment->getMethodInstance(self::CODE);
         try{
             $ip = $_SERVER["REMOTE_ADDR"];
@@ -124,7 +123,6 @@ class CancelHandler implements HandlerInterface
                 }
             }
             $payment->setTransactionAdditionalInfo(\Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS, $newData);
-     //     $payment->setTransactionId($payment->getAdditionalInformation("ReferenceNumber"));
             $payment->setIsTransactionClosed(true);
             $payment->setShouldCloseParentTransaction(true);
         }else {

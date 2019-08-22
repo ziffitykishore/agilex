@@ -27,8 +27,7 @@ class AfterPlaceOrderObserver implements ObserverInterface
         $id = ($order != null) ? $order[0] : null;
 
         $codecurrent= $this->state->getAreaCode();
-        $adminis = true;// ($codecurrent == \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE);
-        if($id != null && $adminis){
+        if($id != null){
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                 $order =  $objectManager->create('\Magento\Sales\Model\Order')->load($id);
                 $orderState = Order::STATE_PENDING_PAYMENT;
