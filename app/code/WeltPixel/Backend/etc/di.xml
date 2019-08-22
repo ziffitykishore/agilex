@@ -8,5 +8,4 @@
             <argument name="resourceModel" xsi:type="string">Magento\Framework\DataObject </argument>
         </arguments>
     </type>
-    <preference for="Psr\Log\LoggerInterface" type="WeltPixel\Backend\Model\Logger" />
 </config>
