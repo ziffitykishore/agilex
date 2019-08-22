@@ -25,7 +25,6 @@ class ManageToken extends \Magento\Framework\View\Element\Template
 
     public function getcardmanager()
     {
-        // will return 'bar'
         $ResponseSave = new \stdClass();
         $ResponseSave->Result = -1;
         $ResponseSave->Message = "Incomplete";
@@ -48,10 +47,13 @@ class ManageToken extends \Magento\Framework\View\Element\Template
             if($dataAddress != null && array_key_exists("street", $dataAddress)){
                 if (strpos($dataAddress['street'], "\n") !== FALSE) {
                     $Street = str_replace("\n", " ", $dataAddress['street']);
-                } else {
-                    $Street = $dataAddress['street'];
                 }
-            }else $Street = "";
+                else{
+                    $Street = $dataAddress['street'];
+                } 
+            }else {
+                $Street = "";
+            } 
 
             $this->_coreRegistry->register('urloption', $this->_paymentMethod->getConfigData('url'));
             $ch = curl_init($this->_paymentMethod->getConfigData('url')."/?app=genericcontroller&action=siteVerify");
@@ -62,6 +64,7 @@ class ManageToken extends \Magento\Framework\View\Element\Template
             
             $postSend = "secretkey=".$this->_paymentMethod->getConfigData('secretkey');
             $postSend .= "&merchant=".$this->_paymentMethod->getConfigData('merchantid');
+
             if($customer){
                 if($customer->getData()["email"]) $postSend .= "&email=".$customer->getData()["email"];
                 if($customer->getData()["entity_id"]) $postSend .= "&customercode=".$customer->getData()["entity_id"];
@@ -96,15 +99,11 @@ class ManageToken extends \Magento\Framework\View\Element\Template
 
     public function geturlsession()
     {
-        // will return 'bar'
-
         return  $this->_urlsession->getUrl("simplewebpay/customer/createsessioncard");
     }
 
     public function geturlprocess()
     {
-        // will return 'bar'
-
         return  $this->_paymentMethod->getConfigData('url_view');
     }
 }

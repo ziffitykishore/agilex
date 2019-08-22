@@ -57,7 +57,6 @@ class CaptureHandler implements HandlerInterface
         $idTransaction = -1;
         $ResponseSave = new \stdClass();
         $ResponseSave->Result = -1;
-       // $this->config->getValue('payment_action');
         $thisss = $payment->getMethodInstance(self::CODE);
         
         $isForce = false;
@@ -71,9 +70,6 @@ class CaptureHandler implements HandlerInterface
         
         if ($isForce) {
             try{
-
-             //   $idTransaction = $order->getOrderId();
-
 
                 $ip = $_SERVER["REMOTE_ADDR"];
                 if($thisss->getConfigData('url') == null || $thisss->getConfigData('url') == "" ){
@@ -149,7 +145,6 @@ class CaptureHandler implements HandlerInterface
                     "Message","RecurringTokenId","InvoiceNumber","OriginalAmount");
                 foreach ($ResponseSave as $key => $value) {
                     if(in_array($key, $inarray) && $key !="extension_attributes") {
-                     //   array_push($newData, $value)
                         $payment->setAdditionalInformation("Force".$key, $value);
                     }
                 }
@@ -254,7 +249,6 @@ class CaptureHandler implements HandlerInterface
                         "Message","RecurringTokenId","InvoiceNumber","OriginalAmount");
                     foreach ($ResponseSave as $key => $value) {
                         if(in_array($key, $inarray) && $key !="extension_attributes") {
-                        //   array_push($newData, $value)
                             $payment->setAdditionalInformation($key, $value);
                         }
                     }
@@ -268,16 +262,8 @@ class CaptureHandler implements HandlerInterface
         }
 
         if($ResponseSave->Result === 0){
-        //    $payment->setTransactionAdditionalInfo(\Magento\Sales\Model\Order\Payment\Transaction::RAW_DETAILS, $newData);
             $payment->setTransactionId($payment->getAdditionalInformation("ReferenceNumber"));
             $payment->setIsTransactionClosed(true);
-        }else{
-           // $comment = $ResponseSave->Message;
-          //  $this->orderi  = $this->orderi->get($idTransaction); // Load your order
-          //  $this->orderi ->addStatusHistoryComment($comment)
-           //     ->setIsCustomerNotified(false)
-            //    ->setEntityName('order')
-             //   ->save();
         }
         
     }

@@ -46,11 +46,8 @@ class Process extends \Magento\Framework\App\Action\Action
     {
         $ResponseSave = new \stdClass();
         try{
-            
-             $quote = $this->_checkoutSession->getQuote();
-          //  $payment = $order->getPayment();
-          //  
             error_reporting(0);
+            $quote = $this->_checkoutSession->getQuote();
             $ResponseSave = (object) $_POST;
             $quote->reserveOrderId();
             $payment = $quote->getPayment();
@@ -67,17 +64,9 @@ class Process extends \Magento\Framework\App\Action\Action
                 $payment->save();
                 $quote->save();
                 $order = $this->_quoteManagement->submit($quote);
-             //   $order->save();
-               //  $this->_messageManager->addSuccess($quote->getReservedOrderId());
-                // $url = $this->urlBuilder->getUrl("customer/account");
-               //  $this->response->setRedirect($url);
+           
             }
             
-             
-//            $cartObj->setState(\Magento\Sales\Model\Order::STATE_COMPLETE, true);
-//            $cartObj->setStatus(\Magento\Sales\Model\Order::STATE_COMPLETE);
-//            $cartObj->addStatusToHistory($order->getStatus(), 'Order processed successfully with reference');
-//            $order->save();
             if($ResponseSave->Result != "0") {
                 throw new \Exception($ResponseSave->Message);
             }
@@ -88,6 +77,5 @@ class Process extends \Magento\Framework\App\Action\Action
         }
         
         echo json_encode($ResponseSave);
-        //return json_encode($ResponseSave);
     }
 }
