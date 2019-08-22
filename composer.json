@@ -93,7 +93,8 @@
         "yotpo/module-review": "^2.4",
         "mageworx/module-sitemapsuitemeta": "^2.3",
         "mageworx/module-xmlsitemap": "^2.4",
-        "magento/module-page-builder-data-migration": "^1.0"
+        "magento/module-page-builder-data-migration": "^1.0",
+        "shipperhq/module-shipper": "^20.29"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.5.0",
