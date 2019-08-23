@@ -16,8 +16,6 @@ define(
         'Magento_Checkout/js/action/redirect-on-success',
         'Magento_Checkout/js/model/full-screen-loader',
         'Magento_Checkout/js/model/error-processor',
-      //  'Magento_Checkout/js/action/get-payment-information',
-     //   'Magento_Checkout/js/action/select-payment-method',
         'mage/url'
     ],
     function ($, porthole, simplewebpay,viewprocess,
@@ -27,8 +25,6 @@ define(
         redirectOnSuccessAction,
         fullScreenLoader,
         errorProcessor,
-    //    getPaymentInformationAction,
-    //    selectPaymentMethodAction,
         urlBuilder
     ) {
         'use strict';
@@ -80,8 +76,6 @@ define(
                             if (msg2.Result == 0) {
                                 var params = "";
                                 params += "verifyingpost=" + encodeURIComponent(msg2.Data);
-                                //        params += "&address=9048";
-                                //       params += "&zipcode=33189";
                                 params += "&isemail=true";
                                 params += "&iscvv="+window.checkoutConfig.payment.swppayment.iscvv;
                                 if(window.checkoutConfig.payment.swppayment.istoken19 === "true") params += "&type=createtoken19";
@@ -173,11 +167,7 @@ define(
                                             if(self.webpayinit) self.createWebpay();
                                         });
                                         $("#SubmitWebpay").on('click', function () {
-                                            // if ($("input[name=termnconditions]").prop('checked')) {
-                                            //$("#NewCenposPlugin > div").sendAction("selectedget"); 
-                                            //$("#NewCenposPlugin > div").sendAction("submitadd");
                                             $("#NewCenposPlugin > div").submitAction();
-                                            // }else alert("Please agree to our terms of use and privacy policy")
                                         });
                                 }
                                 self.webpayinit = true;
@@ -210,10 +200,6 @@ define(
                 $("#FormWebpay").children().each(function () {
                     additional_data[$(this).attr("name")] = $(this).val();
                 });
-
-                // if(this.webpayinit && !this.wascreate){
-                //     this.createWebpay();
-                // }
 
                 return {
                     'method': this.item.method,
@@ -257,10 +243,7 @@ define(
                                     msg = $.parseJSON(msg);
                                     if (msg.Result === "0") {
                                         $("#SubmitWebpaySend").trigger("click");
-                                       // var url = urlBuilder.build("customer/account");
-                                       // window.location.href = url;
                                     } else {
-                                           // $("#SubmitWebpaySend").trigger("click");
                                             self.isPlaceOrderActionAllowed(true);
                                             fullScreenLoader.stopLoader();
                                             var custommsg = {};
@@ -318,8 +301,6 @@ define(
                                         }
                                     } else if (msg.Result === 21) {
                                         fullScreenLoader.stopLoader();
-                                    // msg.View3D = msg.View3D.replace("<script>", " < script > ");
-                                        //  msg.View3D = msg.View3D.replace("function(messageEvent){","function(messageEvent){ var respose = JSON.parse(messageEvent.data); ");
                                         msg.View3D = msg.View3D.replace("function(messageEvent){", "function(messageEvent){ document.getElementById('CardinalResponse').value = messageEvent.data; document.getElementById('CardinalResponse').dispatchEvent(new Event('change')); ");
                                         msg.View3D = msg.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
                                         msg.View3D = msg.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
@@ -350,9 +331,7 @@ define(
             },
             reloadPayment: function() {
                 var self = this;
-    
                 fullScreenLoader.startLoader();
-                debugger;
                return true;
             } 
         });

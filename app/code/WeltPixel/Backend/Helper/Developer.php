@@ -60,6 +60,15 @@ class Developer extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * @return string
      */
+    public function getCurrentServerUserGroup()
+    {
+        $groups = explode(' ', shell_exec('groups'));
+        return $groups[0];
+    }
+
+    /**
+     * @return string
+     */
     public function getMagentoEdition()
     {
         return $this->productMetaData->getEdition() . ' ( ' . $this->productMetaData->getVersion() . ' )';
