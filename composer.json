@@ -94,6 +94,7 @@
         "mageworx/module-sitemapsuitemeta": "^2.3",
         "mageworx/module-xmlsitemap": "^2.4",
         "magento/module-page-builder-data-migration": "^1.0",
+        "shipperhq/module-shipper": "^20.29",
         "taxjar/module-taxjar": "^1.4"
     },
     "require-dev": {
