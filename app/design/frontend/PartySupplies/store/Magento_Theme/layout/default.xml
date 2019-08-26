@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name='header.panel'>
+            <container name="header.nav-image.panel" label="Page Banner Panel" htmlTag="div" htmlClass="panel nav-image" before='-'>
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="nav-logo">
+                    <arguments>
+                        <argument name="logo_img_width" xsi:type="number">120</argument>
+                        <argument name="logo_img_height" xsi:type="number">60</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+                
+        <move element="header-wrapper" destination="header.container" before="-"/>
+        <move element="catalog.topnav"  destination="header.panel" after="header.nav-image.panel"/>
+        <move element="top.links"  destination="header.panel" after='top.search'/>        
+        <move element="top.search"  destination="header.panel" before='top.links'/>
+        <move element="minicart" destination="page.wrapper" before="header.container" />
+
+        <referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="my-account-link" remove="true" />
+        <referenceBlock name="advanced-search-link" remove="true" />
+
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="before.body.script" template="Magento_Theme::before_body.phtml" after="-" />
+        </referenceContainer>
+
+        <referenceContainer name="footer" remove="true"/>
+
+        <referenceContainer name='top.links'>
+            <block class="Magento\Framework\View\Element\Html\Link" name="ves-top-link" before="authorization-link">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
+                    <argument name="path" xsi:type="string" translate="true">contact</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

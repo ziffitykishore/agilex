@@ -1,0 +1,60 @@
+//
+//  Custom Useful Classes
+//  _____________________________________________
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .f-lite{
+        font-weight: 300;
+    }
+
+    .f-reg{
+        font-weight: 400;
+    }
+
+    .f-md{
+        font-weight: 500;
+    }
+
+    .f-sb{
+        font-weight: 600;
+    }
+
+    .f-b{
+        font-weight: 700;
+    }
+
+    .h1{
+        margin: 0 0 100px 0;
+        font-size: 52px;
+        text-transform: uppercase;
+    }
+
+    .h2{
+        margin: 0 0 45px 0;
+        text-transform: uppercase;
+    }
+
+}
+
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+
+    .h2{
+        margin: 0 0 20px 0;
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  
+    .h2{
+        margin: 0 0 35px 0;
+    }
+
+}

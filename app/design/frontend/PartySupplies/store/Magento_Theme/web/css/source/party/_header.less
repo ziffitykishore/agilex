@@ -1,0 +1,234 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    /*  ====================
+         Home Page Header
+        ==================== */
+    
+        .page-header{
+            /* Logo */
+            .header.content{
+                padding: 25px 0;
+                display: flex;
+                background-color: @c-bg-color;
+                .logo{
+                    margin: auto;
+                    max-width: 100%;
+                }
+            }
+
+            .wrapper{
+                .panel.header{
+                    background-color: @c-primary_color;
+                    display: flex;
+                    justify-content: space-between;
+                }
+            }
+        }
+
+
+        
+
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .nav-toggle{
+        height: 18px;
+        width: 25px;
+        top: 38px;
+        left: 25px;
+        &:before{
+            content: "";
+        }
+        .bar {
+            width: 100%;
+            margin: 0 auto;
+            height: 2px;
+            background: #001842;
+            clip: auto;
+            display: block;
+            // -webkit-transition: all .5s ease 0s;
+            // -moz-transition: all .5s ease 0s;
+            // -ms-transition: all .5s ease 0s;
+            // -o-transition: all .5s ease 0s;
+            // transition: all .5s ease 0s;
+        }
+        .bar-1 {
+            top: 8px;
+        }
+        .bar-2 {
+            transform: translateY(0px);
+            // transition-timing-function: ease;
+            // transition-duration: .15s;
+            // transition-property: transform;
+        }
+        .bar-3 {
+            transform: translateY(16px);
+            // transition-timing-function: ease;
+            // transition-duration: .15s;
+            // transition-property: transform;
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-lg) {
+
+    .block.block-search{
+        input{
+            width: 770px;
+        }
+    }
+
+    .page-header{
+        .wrapper{
+            .panel.header{
+                display: block;
+            }
+        }
+    }
+
+    .fix-header{
+        .page-header{
+            .wrapper{
+                .panel.header{
+                    display: flex;
+                }
+            }
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+    .block.block-search{
+        input{
+            width: 550px;
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .block.block-search{
+        .control{
+            padding: 21px 0;
+        }
+        input{
+            padding: 10px 20px;
+            width: 470px;
+        }
+        .actions{
+            button{
+                top: 20px;
+                bottom: 21px;
+            }
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .block.block-search{
+        width: auto;
+        padding: 0;
+        display: inline-block;
+        float: none;
+        .control{
+            padding: 9px 0;
+        }
+        input{
+            padding: 7px 15px;
+            border-radius: 25px;
+            border: 0;
+            width: 400px;
+            height: auto;
+        }
+        .actions{
+            button{
+                padding: 7px;
+                top: 8px;
+                bottom: 9px;
+                right: 0;
+                background-color: #f1003e;
+                border-top-right-radius: 25px;
+                border-bottom-right-radius: 25px;
+                opacity: 1  !important;
+                &::before{
+                    color: #fff;
+                    font-size: 34px;
+                    line-height: 26px;
+                }
+            }
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+
+    .page-header{
+        position: relative;
+        .wrapper{
+            position: absolute;
+            top: 10%;
+            right: 0;
+            left: 0;
+            .panel.header{
+                background-color: transparent;
+                display: block;
+                padding: 0 5px;
+            }
+        }
+    }
+
+    .block-search{
+        .control{
+            border: 0;
+            margin: 0;
+            padding: 14px 0;
+            input{
+                background: transparent;
+                margin: 0;
+                padding: 25px 20px;
+                width: 100%;
+                border-radius: 0;
+                border: 0;
+                right: 0;
+                -webkit-transition: .7s ease;
+                transition: .7s ease;
+                background: #f9f9f9;
+                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.17);
+                border-radius: 5px;
+            }
+        }
+        .actions{
+            button{
+                padding: 3px;
+                top: 14px;
+                bottom: 13px;
+            }
+        }
+
+    }
+
+    
+
+
+
+
+}
