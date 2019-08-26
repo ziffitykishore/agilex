@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="SomethingDigital\CheckoutShippingInfo\Api\Data\CustomFieldsInterface" type="SomethingDigital\CheckoutShippingInfo\Model\Data\CustomFields" />
+    <preference for="SomethingDigital\CheckoutShippingInfo\Api\CustomFieldsRepositoryInterface" type="SomethingDigital\CheckoutShippingInfo\Model\CustomFieldsRepository" />
+    <preference for="SomethingDigital\CheckoutShippingInfo\Api\CustomFieldsGuestRepositoryInterface" type="SomethingDigital\CheckoutShippingInfo\Model\CustomFieldsGuestRepository" />
+</config>
