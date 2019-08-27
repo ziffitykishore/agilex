@@ -810,12 +810,6 @@ $requisition-print__font-size-m: 1.4rem !default;
                     display: block;
                 }
 
-                &.qty {
-                    .input-text {
-                        margin-top: $indent__xs;
-                    }
-                }
-
                 &.price,
                 &.stock,
                 &.qty,
@@ -842,7 +836,7 @@ $requisition-print__font-size-m: 1.4rem !default;
                 }
 
                 &.col-checkbox {
-                    max-width: .2rem;
+                    max-width: 50px;
 
                     input[type='checkbox'] {
                         margin: 0;
