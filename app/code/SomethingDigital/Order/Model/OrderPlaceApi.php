@@ -153,7 +153,7 @@ class OrderPlaceApi extends Adapter
 
         return [
             "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
-            "ToName" => $address->getFirstname() . ' ' . $address->getLirstname(),
+            "ToName" => $address->getFirstname() . ' ' . $address->getLastname(),
             "Line1" => $address->getStreet(),
             "City" => $address->getCity(),
             "State" => $address->getRegionId(),

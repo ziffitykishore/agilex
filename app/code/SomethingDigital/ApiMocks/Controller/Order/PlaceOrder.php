@@ -4,8 +4,9 @@ namespace SomethingDigital\ApiMocks\Controller\Order;
 
 use Magento\Framework\Controller\Result\JsonFactory;
 use Magento\Framework\Webapi\Exception;
+use Magento\Framework\App\Action\Context;
  
-class PlaceOrder
+class PlaceOrder extends \Magento\Framework\App\Action\Action
 {
     /** @var JsonFactory */
     protected $jsonFactory;
@@ -15,8 +16,10 @@ class PlaceOrder
      * @param JsonFactory $jsonFactory
      */
     public function __construct(
+        Context $context,
         JsonFactory $jsonFactory
     ) {
+        parent::__construct($context);
         $this->jsonFactory = $jsonFactory;
     }
 
