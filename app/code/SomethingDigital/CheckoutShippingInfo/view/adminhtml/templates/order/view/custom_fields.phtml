@@ -1,0 +1,47 @@
+<?php
+/** @var SomethingDigital\CheckoutShippingInfo\Model\Data\CustomFields $customFields */
+$customFields = $block->getOrderCustomFields();
+?>
+<?php if($customFields): ?>
+    <section class="admin__page-section">
+        <div class="admin__page-section-title">
+            <span class="title"><?php /* @escapeNotVerified */ echo __('Other information') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="order-information">
+            	<?php if ($customFields->getCheckoutPonumber()): ?>
+	                <div class="box">
+	                    <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('PO Number:') ?></span></strong>
+	                    <div class="box-content">
+	                        <?php echo $this->escapeHtml($customFields->getCheckoutPonumber()); ?>
+	                    </div>
+	                </div>
+	            <?php endif; ?>
+	            <?php if ($customFields->getCheckoutShiptopo()): ?>
+                <div class="box">
+                    <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Shipto PO:') ?></span></strong>
+                    <div class="box-content">
+                        <?php echo $this->escapeHtml($customFields->getCheckoutShiptopo()); ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+	            <?php if ($customFields->getCheckoutDeliverypoint()): ?>
+                <div class="box">
+                    <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Delivery Point:') ?></span></strong>
+                    <div class="box-content">
+                        <?php echo $this->escapeHtml($customFields->getCheckoutDeliverypoint()); ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+	            <?php if ($customFields->getCheckoutOrdernotes()): ?>
+                <div class="box">
+                    <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Order Notes:') ?></span></strong>
+                    <div class="box-content">
+                        <?php echo $this->escapeHtml($customFields->getCheckoutOrdernotes()); ?>
+                    </div>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
