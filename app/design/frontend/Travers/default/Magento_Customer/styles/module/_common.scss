@@ -568,6 +568,16 @@ $_password-very-strong: #81b562 !default;
     margin-bottom: $indent__s;
 }
 
+.block-dashboard-balance .balance-section {
+    &:first-of-type {
+        margin-bottom: $indent__xl;
+    }
+
+    .block-content {
+        margin-top: $indent__xs;
+    }
+}
+
 //
 //  Mobile
 //  _____________________________________________
