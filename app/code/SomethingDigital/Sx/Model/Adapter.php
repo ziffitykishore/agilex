@@ -81,7 +81,7 @@ abstract class Adapter
         } catch (\Exception $e) {
             $this->logger->alert('Request to ' . $this->getRequestUrl() . ' has failed with exception: ' . $e->getMessage());
             $this->logger->alert($e);
-            throw new ApiRequestException(__('Internal error during request to SX API'));
+            return [];
         }
     }
 
@@ -93,6 +93,7 @@ abstract class Adapter
         if ($this->isTestMode()) {
             $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
             $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
+            $curl->addHeader('X-Requested-With', 'XMLHttpRequest');
         } else {
             $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
             $curl->addHeader('Cache-Control', 'no-cache');
@@ -102,6 +103,9 @@ abstract class Adapter
             throw new ApiRequestException(__('Empty SX API request'));
         }
         try {
+
+            $curl->post($this->getRequestUrl(), $this->requestBody);
+
             return [
                 'status' => $curl->getStatus(),
                 'body' => \Zend_Json::decode($curl->getBody()),
