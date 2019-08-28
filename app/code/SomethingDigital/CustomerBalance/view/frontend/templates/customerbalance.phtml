@@ -6,21 +6,14 @@
             <h3><?= __('Account Summary') ?></h3>
         </div>
         <div class="block-content">
-            <?php if (isset($balance['Total1Text']) && isset($balance['Total1Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Total1Text']) ?> <?= $block->escapeHtml($balance['Total1Balance']) ?></p>
+            <?php if (isset($balance['FutureBalance'])): ?>
+                <p><?= __('Future Balance: ') ?><?= $block->escapeHtml($balance['FutureBalance']) ?></p>
             <?php endif; ?>
-            <?php if (isset($balance['Total2Text']) && isset($balance['Total2Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Total2Text']) ?> <?= $block->escapeHtml($balance['Total2Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Total3Text']) && isset($balance['Total3Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Total3Text']) ?> <?= $block->escapeHtml($balance['Total3Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Total4Text']) && isset($balance['Total4Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Total4Text']) ?> <?= $block->escapeHtml($balance['Total4Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Total5Text']) && isset($balance['Total5Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Total5Text']) ?> <?= $block->escapeHtml($balance['Total5Balance']) ?></p>
-            <?php endif; ?>
+            <?php for( $i = 1; $i <= 5; $i++ ): ?>
+                <?php if (isset($balance['Total' . $i . 'Text']) && isset($balance['Total' . $i . 'Balance'])): ?>
+                    <p><?= $block->escapeHtml($balance['Total' . $i . 'Text']) ?> <?= $block->escapeHtml($balance['Total' . $i . 'Balance']) ?></p>
+                <?php endif; ?>
+            <?php endfor; ?>
         </div>
     </div>
     <div class="balance-section">
@@ -31,21 +24,11 @@
             <?php if (isset($balance['FutureBalance'])): ?>
                 <p><?= __('Future Balance: ') ?><?= $block->escapeHtml($balance['FutureBalance']) ?></p>
             <?php endif; ?>
-            <?php if (isset($balance['Period1Date']) && isset($balance['Period1Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Period1Date']) ?> <?= $block->escapeHtml($balance['Period1Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Period2Date']) && isset($balance['Period2Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Period2Date']) ?> <?= $block->escapeHtml($balance['Period2Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Period3Date']) && isset($balance['Period3Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Period3Date']) ?> <?= $block->escapeHtml($balance['Period3Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Period4Date']) && isset($balance['Period4Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Period4Date']) ?> <?= $block->escapeHtml($balance['Period4Balance']) ?></p>
-            <?php endif; ?>
-            <?php if (isset($balance['Period5Date']) && isset($balance['Period5Balance'])): ?>
-                <p><?= $block->escapeHtml($balance['Period5Date']) ?> <?= $block->escapeHtml($balance['Period5Balance']) ?></p>
-            <?php endif; ?>
+            <?php for( $i = 1; $i <= 5; $i++ ): ?>
+                <?php if (isset($balance['Period' . $i . 'Date']) && isset($balance['Period' . $i . 'Balance'])): ?>
+                    <p><?= $block->escapeHtml($balance['Period' . $i . 'Date']) ?> <?= $block->escapeHtml($balance['Period' . $i . 'Balance']) ?></p>
+                <?php endif; ?>
+            <?php endfor; ?>
         </div>
     </div>
 </div>
