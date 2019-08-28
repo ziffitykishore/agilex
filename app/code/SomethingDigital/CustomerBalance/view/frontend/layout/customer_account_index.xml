@@ -4,5 +4,6 @@
         <referenceContainer name="content">
             <block class="SomethingDigital\CustomerBalance\Block\CustomerBalance" name="customer_account_dashboard_balance" template="SomethingDigital_CustomerBalance::customerbalance.phtml"/>
         </referenceContainer>
+        <move element="customer_account_dashboard_balance" destination="content" before="-"/>
     </body>
 </page>

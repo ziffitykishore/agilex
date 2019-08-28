@@ -1,44 +1,34 @@
 <?php $balance = $block->getCustomerBalance(); 
 ?>
 <div class="block block-dashboard-balance">
-    <div class="block-title balance">
-        <strong><?= /* @escapeNotVerified */ __('Customer Balance') ?></strong>
-            </div>
-    <div class="block-content">
-    	<h4><?= /* @escapeNotVerified */ __('Periods') ?></h4>
-    	<?php if (isset($balance['FutureBalance'])): ?>
-        	<?= /* @escapeNotVerified */ __('Future Balance: ') ?><?= /* @escapeNotVerified */ $block->escapeHtml($balance['FutureBalance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Period1Date']) && isset($balance['Period1Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period1Date']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period1Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Period2Date']) && isset($balance['Period2Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period2Date']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period2Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Period3Date']) && isset($balance['Period3Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period3Date']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period3Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Period4Date']) && isset($balance['Period4Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period4Date']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period4Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Period5Date']) && isset($balance['Period5Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period5Date']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Period5Balance']) ?><br />
-        <?php endif; ?>
-        <h4><?= /* @escapeNotVerified */ __('Totals') ?></h4>
-        <?php if (isset($balance['Total1Text']) && isset($balance['Total1Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total1Text']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total1Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Total2Text']) && isset($balance['Total2Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total2Text']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total2Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Total3Text']) && isset($balance['Total3Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total3Text']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total3Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Total4Text']) && isset($balance['Total4Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total4Text']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total4Balance']) ?><br />
-        <?php endif; ?>
-        <?php if (isset($balance['Total5Text']) && isset($balance['Total5Balance'])): ?>
-        	<?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total5Text']) ?> <?= /* @escapeNotVerified */ $block->escapeHtml($balance['Total5Balance']) ?><br />
-        <?php endif; ?>
+    <div class="balance-section">
+        <div class="block-title">
+            <h3><?= __('Account Summary') ?></h3>
+        </div>
+        <div class="block-content">
+            <?php if (isset($balance['FutureBalance'])): ?>
+                <p><?= __('Future Balance: ') ?><?= $block->escapeHtml($balance['FutureBalance']) ?></p>
+            <?php endif; ?>
+            <?php for( $i = 1; $i <= 5; $i++ ): ?>
+                <?php if (isset($balance['Total' . $i . 'Text']) && isset($balance['Total' . $i . 'Balance'])): ?>
+                    <p><?= $block->escapeHtml($balance['Total' . $i . 'Text']) ?> <?= $block->escapeHtml($balance['Total' . $i . 'Balance']) ?></p>
+                <?php endif; ?>
+            <?php endfor; ?>
+        </div>
+    </div>
+    <div class="balance-section">
+        <div class="block-title">
+            <h3><?= __('Period Balance') ?></h3>
+        </div>
+        <div class="block-content">
+            <?php if (isset($balance['FutureBalance'])): ?>
+                <p><?= __('Future Balance: ') ?><?= $block->escapeHtml($balance['FutureBalance']) ?></p>
+            <?php endif; ?>
+            <?php for( $i = 1; $i <= 5; $i++ ): ?>
+                <?php if (isset($balance['Period' . $i . 'Date']) && isset($balance['Period' . $i . 'Balance'])): ?>
+                    <p><?= $block->escapeHtml($balance['Period' . $i . 'Date']) ?> <?= $block->escapeHtml($balance['Period' . $i . 'Balance']) ?></p>
+                <?php endif; ?>
+            <?php endfor; ?>
+        </div>
     </div>
 </div>
