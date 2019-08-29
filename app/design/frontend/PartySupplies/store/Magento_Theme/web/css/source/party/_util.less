@@ -8,6 +8,52 @@
 
 & when (@media-common = true) {
 
+     .choice{
+        input[type="checkbox"]{
+            display: none;
+            & +label{
+                cursor: pointer;
+                &:before{
+                    content: '';
+                    border: 1px solid #d8dde7;
+                    display: inline-block;
+                    height: 14px;
+                    width: 14px;
+                    vertical-align: middle;
+                    margin-right: 8px;
+                    -webkit-transition: .4s ease;
+                    transition: .4s ease;
+                    border-radius: 3px;
+                }
+            }
+            &:checked{
+                &+label{
+                    &:before{
+                        background: #3391cf;
+                        border: 3px solid #d8dde7;
+                    }
+                }
+            }
+        }
+        label{
+            display: inline;
+            color: #000;
+            font-weight: normal;
+            font-size: 14px;
+            position: relative;
+        }
+    }
+
+    ._keyfocus *,
+    input:not([disabled]),
+    textarea:not([disabled]),
+    select:not([disabled]) {
+        &:focus {
+            box-shadow: none;
+            border: 1px solid @c-primary_color;
+        }
+    }
+
     .f-lite{
         font-weight: 300;
     }
