@@ -8,18 +8,44 @@ require(['jquery', 'slick'], function ($) {
         Footer Links
         ================= */
 
-    $('.mb-foot h5').on('click', function () {
-        var _this = $(this);
-        $('.mb-foot h5').not(_this).removeClass('active');
-        $('.mb-foot h5').not(_this).next('ul').slideUp('slow');
-        if (!_this.hasClass('active')) {
-            _this.addClass('active');
-            _this.next('ul').slideDown('slow');
-        } else {
-            _this.removeClass('active');
-            _this.next('ul').slideUp('slow');
+            //global variables
+        var responsiveflag = false;
+
+        responsiveResize();
+
+        $(window).resize(responsiveResize);
+
+        function responsiveResize() {
+
+            if (($(window).width()) <= 768 && responsiveflag == false)
+            {
+                accordionFooter('enable');
+                responsiveflag = true;
+            }
+            else if (($(window).width()) >= 769)
+            {
+                accordionFooter('disable');
+                responsiveflag = false;
+            }
+
         }
-    });
+
+
+        function accordionFooter(status) {
+            if(status == 'enable')
+            {
+                $('.mb-foot h5').on('click', function(e){
+                    $(this).toggleClass('active').parent().find('ul').stop().slideToggle('medium');
+                    e.preventDefault();
+                })
+                $('.mb-foot').addClass('accordion').find('ul').slideUp('fast');
+            }
+            else
+            {
+                $('.mb-foot h5').removeClass('active').off().parent().find('ul').removeAttr('style').slideDown('fast');
+                $('.mb-foot').removeClass('accordion');
+            }
+        }
 
     /*  =================
         Sticky Navbar

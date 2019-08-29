@@ -33,17 +33,16 @@
 
 
     .logo-header {
-        max-width: 1760px;
-        margin: auto;
-        padding-left: 40px;
-        padding-right: 40px;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        min-height: 80px;
-        .flex();
-        align-items: center;
-        text-align: center;
-
+        background: @c-whitesmoke;
+        .logo-container {
+            .container-lg();
+            padding-top: 15px;
+            padding-bottom: 15px;
+            min-height: 80px;
+            .flex();
+            align-items: center;
+            text-align: center;
+        }
         .logo {
             margin: 0 auto;
             max-width: 100%;
@@ -80,7 +79,6 @@
                     li {
 
                         a {
-                            border: 2px solid @color-white;
                             .lib-css(color, @color-white);
                         }
                     }
@@ -105,11 +103,14 @@
                         }
                     }
 
+                    .block-search {
+                        max-width: 480px;
+                    }
+
                     .links {
                         li {
 
                             a {
-                                border: 2px solid @color-black;
                                 .lib-css(color, @color-black);
                             }
                         }
@@ -140,10 +141,7 @@
             background-color: @c-whitesmoke;
             .header{
                 &.content {
-                    max-width: 1760px;
-                    margin: auto;
-                    padding-left: 40px;
-                    padding-right: 40px;
+                    .container-lg();
                     padding-top: 10px;
                     padding-bottom: 10px;
                     .flex();
@@ -159,6 +157,29 @@
                 }
             }
 
+            .block-search {
+                max-width: 600px;
+                width: 100%;
+                .minisearch {
+                    .control {
+                        position: relative;
+                        .categories {
+                            position: absolute;
+                            top:0;
+                            right: 60px;
+                            min-height: 55px;
+                            border: none;
+                            max-width: 150px;
+                            .lib-css(color, @color-black);
+
+                            &:focus {
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+            }
+
 
             .nav-sections{
                 margin-bottom: 0;
@@ -169,7 +190,12 @@
                         padding: 0;
                         a {
                             color: @color-black;
+                            font-size: 18px;
                         }
+                    }
+
+                    .level0 > .level-top {
+                        padding: 23px 12px;
                     }
                 }
             }
@@ -185,16 +211,16 @@
                     margin-bottom: 0;
 
                     & + li {
-                        margin-left: 15px;
+                        margin-left: 20px;
                     }
 
                     a {
-                        border: 2px solid @color-black;
-                        padding: 10px 20px;
                         .br-radius(50px);
                         text-transform: uppercase;
                         .lib-css(color, @color-black);
                         font-weight: bold;
+                        font-family: 'Mukta Malar', 'sans-serif';
+                        font-size: 18px;
                     }
                 }
             }
@@ -260,44 +286,13 @@
         .links {
             li {
               a {
-                font-size: 22px;
+                font-size: 20px;
               }
             }
         }
     }
 }
 
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-lg) {
-
-    .block.block-search{
-        input{
-            width: 770px;
-        }
-    }
-}
-
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-
-    .block.block-search{
-        input{
-            width: 550px;
-        }
-    }
-
-}
-
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-
-    .block.block-search{
-        input{
-            width: 470px;
-        }
-    }
-
-}
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
@@ -323,11 +318,10 @@
                 padding-bottom: 0;
 
                 input{
-                    padding: 7px 75px 7px 15px;
+                    padding: 7px 220px 7px 15px;
                     min-height: 55px;
                     .br-radius(25px);
                     border: 0;
-                    width: 400px;
                     height: auto;
 
                     &:focus {

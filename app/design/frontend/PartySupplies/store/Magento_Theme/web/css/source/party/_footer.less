@@ -11,16 +11,15 @@
     .footer.wrapper{
         background-color: @c-text_color;
         .custom-container{
-            width: 100%;
-            max-width: 1760px;
-            margin: auto;
-            overflow: auto;
-            padding-left: 40px;
-            padding-right: 40px;
+            .container-lg();
             padding-top: 60px;
             padding-bottom: 60px;
+            .lib-clearfix();
         }
         .foot-left{
+            > .row {
+                width: 100%;
+            }
             .footer-parts{
                 h5{
                     color: @c-text_sec_color;
@@ -105,7 +104,6 @@
                 }
                 .pay{
                     float: right;
-                    background-color: #030303;
                 }
             }
         }
@@ -113,18 +111,26 @@
 
 }
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+@media screen and (min-width: 1300px){
 
     .footer.wrapper{
 
+        > .custom-container {
+            .flex();
+        }
+
         .foot-left{
-            float: left;
-            width: 65%;                         
+            .flex-width(80%);
+            .footer-parts {
+                .flex-width(25%);
+                padding-left: 15px;
+                padding-right: 15px;
+            }
         }
         .foot-right{
-            float: right;
-            width: 17%;
             padding-top: 0;
+            .flex-width(20%);
+
         }
     }
 
@@ -135,20 +141,12 @@
     .footer.wrapper{
         .foot-left{
             .footer-parts{
-                padding: 0;
-                width: auto;
-                float: none;
                 p{
                     .blk{
                         display: block;
                     }
                 }
             }
-        }
-        .foot-right{
-            float: none;
-            width: 50%;
-            padding-top: 5%;
         }
     }
 
@@ -164,10 +162,6 @@
             flex-wrap: wrap;
             justify-content: space-between;
             .footer-parts{
-                float: left;
-                padding-right: 0;
-                width: 41%;
-                padding-bottom: 5%;
                 p{
                     .blk{
                         display: inline;

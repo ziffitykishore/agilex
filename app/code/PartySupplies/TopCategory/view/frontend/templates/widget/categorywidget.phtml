@@ -4,10 +4,12 @@ $catalogData = $data['catalogData'];
 $mediaBaseUrl = $data['mediaBaseUrl'];
 if (isset($catalogData) && count($catalogData) > 0) {
     ?>
+    <div class="widget block block-static-block">
+    <section class="sec-catagory">
     <h2 class="text-center text-normal">
         <?= $block->escapeHtml($block->getTitle()); ?>
     </h2>
-    <div class="home-cat">
+    <div class="home-cat cat-pro-cont">
         <?php
         foreach ($catalogData as $key => $cat) {
             ?>
@@ -25,6 +27,8 @@ if (isset($catalogData) && count($catalogData) > 0) {
             </div>
             <?php
         } ?>
+    </div>
+    </section>
     </div>
     <?php
 }
