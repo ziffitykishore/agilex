@@ -1,19 +1,8 @@
 require(['jquery', 'slick'], function ($) {
     $(document).ready(function ($) {
 
-    /*  =================
-        Home Page Banner Slider Starts
-        ================= */
 
-    $(document).ready(function(){
-        $(".home-slider").slick({
-            dots:true,
-            prevArrow: false,
-            nextArrow: false,
-            autoplay: false,
-            autoplaySpeed: 2000,
-        });
-    });
+
 
     /*  =================
         Footer Links
@@ -36,12 +25,21 @@ require(['jquery', 'slick'], function ($) {
         Sticky Navbar
         ================= */
 
-        var scroll = $(window).scrollTop();
-        var $window = $(window);
-        $window.scroll(function () {
-            scroll = $(window).scrollTop();
-            (scroll > 570) ? $('.page-wrapper').addClass('fix-header') : $('.page-wrapper').removeClass('fix-header');
-        });
+        /* function call stick  */
+        function stickyBar(elm) {
+            var elment = $(elm);
+            if (elment.length) {
+                var stickyOffset = elment.offset().top;
+                $(window).scroll(function() {
+                    var sticky = elment,
+                        scroll = $(window).scrollTop();
+                    if (scroll >= stickyOffset) sticky.addClass("fixed");
+                    else sticky.removeClass("fixed");
+                });
+            }
+        }
+        stickyBar(".page-header");
+
 
     /*  =================
         Home Page Why Us Slider
@@ -73,14 +71,14 @@ require(['jquery', 'slick'], function ($) {
         MM-Menu
         ================= */
 
-        var ua = window.navigator.userAgent;
+        /*var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
         if ( !isIE ) {
             new Mmenu( document.querySelector( '#menu' ) );
         } else {
             $('body').addClass('ie')
-        }
+        }*/
 
     });
 });

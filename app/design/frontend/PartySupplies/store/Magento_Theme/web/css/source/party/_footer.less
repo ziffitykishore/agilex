@@ -12,9 +12,13 @@
         background-color: @c-text_color;
         .custom-container{
             width: 100%;
-            max-width: 1920px;
+            max-width: 1760px;
             margin: auto;
             overflow: auto;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 60px;
+            padding-bottom: 60px;
         }
         .foot-left{
             .footer-parts{
@@ -69,8 +73,7 @@
                 input[type="email"]{
                     border: 0;
                     background-color: #1f1f1f;
-                    padding: 10px 20px;
-                    height: 54px;
+                    min-height: 54px;
                     color: @c-white_color;
                     &:focus{
                         box-shadow: none;
@@ -92,7 +95,8 @@
             border-top: 1px solid #252525;
             padding: 38px 0 30px 0;
             .custom-container{
-                padding: 0 120px;
+                padding-top: 0;
+                padding-bottom: 0;
                 .copy{
                     color: @c-white_color;
                     p{
@@ -112,9 +116,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
 
     .footer.wrapper{
-        .custom-container{
-            padding: 75px 120px 50px;
-        }
+
         .foot-left{
             float: left;
             width: 65%;                         
@@ -124,11 +126,6 @@
             width: 17%;
             padding-top: 0;
         }
-        .foot-bor{
-            .custom-container{
-                padding: 0 120px;
-            }
-        }
     }
 
 }
@@ -136,9 +133,6 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
 
     .footer.wrapper{
-        .custom-container{
-            padding: 60px;
-        }
         .foot-left{
             .footer-parts{
                 padding: 0;
@@ -156,11 +150,6 @@
             width: 50%;
             padding-top: 5%;
         }
-        .foot-bor{
-            .custom-container{
-                padding: 0 60px;
-            }
-        }
     }
 
 }
@@ -168,9 +157,6 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
     .footer.wrapper{
-        .custom-container{
-            padding: 40px;
-        }
         .foot-left{
             float: none;
             display: flex;
@@ -194,11 +180,6 @@
             width: 50%;
             display: block;
             padding-top: 0;
-        }
-        .foot-bor{
-            .custom-container{
-                padding: 0 40px;
-            }
         }
     }
     

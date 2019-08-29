@@ -8,7 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
 
-        <referenceContainer name='header.panel'>
+       <!-- <referenceContainer name='header.panel'>
             <container name="header.nav-image.panel" label="Page Banner Panel" htmlTag="div" htmlClass="panel nav-image" before='-'>
                 <block class="Magento\Theme\Block\Html\Header\Logo" name="nav-logo">
                     <arguments>
@@ -17,17 +17,29 @@
                     </arguments>
                 </block>
             </container>
-        </referenceContainer>
+        </referenceContainer>-->
                 
-        <move element="header-wrapper" destination="header.container" before="-"/>
+        <!--<move element="header-wrapper" destination="header.container" before="-"/>
         <move element="catalog.topnav"  destination="header.panel" after="header.nav-image.panel"/>
         <move element="top.links"  destination="header.panel" after='top.search'/>        
-        <move element="top.search"  destination="header.panel" before='top.links'/>
-        <move element="minicart" destination="page.wrapper" before="header.container" />
+        <move element="top.search"  destination="header.panel" before='top.links'/>-->
+        <!--<move element="minicart" destination="page.wrapper" before="header.container" />-->
 
+        <!--<referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="my-account-link" remove="true" />-->
+
+        <referenceContainer name="header.container">
+            <container name="header_wrapper"  htmlTag="div" htmlClass="header-wrapper"/>
+        </referenceContainer>
+        <move element="header-wrapper" destination="header_wrapper" />
+        <move element="navigation.sections" destination="header-wrapper" after="logo"/>
+        <move element="top.links"  destination="header-wrapper" after='top.search'/>
+        <move element="minicart" destination="header.container" before="header_wrapper" />
+
+        <referenceBlock name="my-account-link" remove="true" />
         <referenceBlock name="register-link" remove="true" />
         <referenceBlock name="wish-list-link" remove="true" />
-        <referenceBlock name="my-account-link" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true" />
 
         <referenceContainer name="before.body.end">
@@ -36,14 +48,15 @@
 
         <referenceContainer name="footer" remove="true"/>
 
-        <referenceContainer name='top.links'>
-            <block class="Magento\Framework\View\Element\Html\Link" name="ves-top-link" before="authorization-link">
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" name="contact_top_link">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Contact Us</argument>
                     <argument name="path" xsi:type="string" translate="true">contact</argument>
+                    <argument name="sortOrder" xsi:type="number">10</argument>
                 </arguments>
             </block>
-        </referenceContainer>
+        </referenceBlock>
 
     </body>
 </page>

@@ -13,8 +13,12 @@ if ($block->isLoggedIn()) {
     $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
 }
 ?>
+
+<?php if (!$block->isLoggedIn()) { ?>
 <li class="authorization-link" data-label="<?= $block->escapeHtml(__('or')) ?>">
     <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
-        <?= $block->escapeHtml('LOGIN / SIGNUP') ?>
+        <?= $block->escapeHtml('Login / Signup') ?>
     </a>
 </li>
+
+<?php }?>
