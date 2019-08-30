@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<li class="my-accounts">
+    <?php if ($block->isLoggedIn()) : ?>
+        My Account
+        <ul>
+            <?= $block->getChildHtml(); ?>
+        </ul>
+    <?php else : ?>
+        <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
+            <?= $block->escapeHtml(__('signIn')); ?>
+        </a>
+    <?php endif; ?>
+</li>

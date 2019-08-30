@@ -1,0 +1,125 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Fonts
+
+@font-face {
+    font-family: 'PS';
+    src:  url('@{baseDir}fonts/PS.eot?n8d5po');
+    src:  url('@{baseDir}fonts/PS.eot?n8d5po#iefix') format('embedded-opentype'),
+    url('@{baseDir}fonts/PS.ttf?n8d5po') format('truetype'),
+    url('@{baseDir}fonts/PS.woff?n8d5po') format('woff'),
+    url('@{baseDir}fonts/PS.svg?n8d5po#PS') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'PS' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@icons__font-name_ps: 'PS';
+
+//
+//  Layout
+//  ---------------------------------------------
+
+@layout-indent__width: 15px;
+@layout__max-width: 1920px;
+
+//
+//  Sizes
+//  ---------------------------------------------
+
+@font-family-name__base: 'Questrial', 'sans-serif';
+@font-size-ratio__base: 1.6;
+
+//
+//  Colors
+//  ---------------------------------------------
+
+@text__color: @c-text_color;
+
+//
+//  Headings
+//  ---------------------------------------------
+
+@heading__font-family__base: 'Mukta Malar', 'sans-serif';
+@h1__font-size: 5.2rem;
+@h2__font-size: 3.8rem;
+@h3__font-size: 2.8rem;
+@h4__font-size: 2rem;
+@h5__font-size: 1.8rem;
+
+//
+//  Buttons
+//  ---------------------------------------------
+
+@button__border: none;
+@button__padding: 15px 33px;
+@button__font-size: 1.375rem;
+@button__color: @c-white_color;
+@button-primary__background: @c-primary_color;
+@button-primary__border: false;
+@button-primary__hover__background: @c-hover_color;
+@button-primary__hover__border: flase;
+@button-primary__font-weight: 700;
+
+//
+//  Links
+//  ---------------------------------------------
+
+@link__color: @c-text_color;
+@link__text-decoration: none;
+
+@link__visited__color: false;
+@link__visited__text-decoration: none;
+
+@link__hover__color: @c-hover_color;
+@link__hover__text-decoration: none;
+
+@link__active__color: @c-hover_color;
+@link__active__text-decoration: none;
+
+//
+//  Navigation variables
+//  ---------------------------------------------
+
+@navigation__background: @c-primary_color;
+@navigation-desktop-level0-item__line-height: false;
+@navigation-desktop-level0-item__color: @c-white_color;
+@navigation-desktop-level0-item__hover__color: @c-hover_color;
+@navigation-desktop-level0-item__active__border-width: 0;
+
+@submenu-desktop-item__hover__background: false;
+@submenu-desktop-item__active__border-width: false;
+@submenu-desktop-item__active__border-style: false;
+@submenu-desktop-item__active__border-color: false;
