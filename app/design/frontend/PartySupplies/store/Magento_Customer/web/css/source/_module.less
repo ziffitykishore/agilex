@@ -268,9 +268,7 @@
 
     .field.password {
         .control {
-            .lib-vendor-prefix-display();
-            .lib-vendor-prefix-flex-direction();
-
+    
             .mage-error {
                 .lib-vendor-prefix-order(2);
             }
@@ -358,6 +356,7 @@
         border-radius: 5px;
         padding: 40px;
         box-sizing: border-box;
+        background-color: #fff;
     }
 
     .customer-account-login,
@@ -383,6 +382,7 @@
                         display: block;
                         float: none;
                         margin-top: 20px;
+                        color: @c-text_sec_color;
                         a{
                             margin-top: 0;
                             line-height: 1;
@@ -393,6 +393,45 @@
         }
     }
 
+    .acc-head{
+        text-align: center;
+        font-weight: 600;
+        padding: 90px 0 60px;
+        margin: 0;
+    }
+
+    .field .control{
+        position: relative;
+    }
+
+    .input-text.mage-error + .mage-error{
+        &:before{
+            position: absolute;
+            content: '';
+            color: #fff;
+            width: 40px;
+            height: 44px;
+            background: @c-hover_color;
+            right: 0;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: 0;
+        }
+    }
+
+    .customer-account-create{
+        .page-main{
+            padding: 0;
+            .column.main{
+                background-image: url(../images/account/bg_login_left.png);
+                background-size: contain;
+                background-repeat: no-repeat;
+                min-height: 1060px;
+            }
+        }
+    }
 
 }
 
@@ -400,32 +439,27 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
 
     /*==========================
         Custom
     ============================ */
 
-    .form.password.reset,
-    .form.send.confirmation,
-    .form.password.forget,
-    .form.create.account,
-    .form.form-orders-search {
-        box-shadow: none;
-        border-radius: 5px;
-        padding: 30px 0;
-    }
-    
-}
-
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
-    .account {
-        .column.main,
-        .sidebar-additional {
-            margin: 0;
+    .customer-account-create{
+        .page-main{
+            .column.main{
+                background-size: cover;
+                min-height: 950px;
+            }
         }
     }
+
+    .acc-head{
+        padding: 60px 0 30PX;
+    }
+
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
@@ -459,6 +493,69 @@
             position: relative;
         }
     }
+
+    /*==========================
+        Custom
+    ============================ */
+
+    .acc-head{
+        padding: 40px 0;
+        font-size: 32px;
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .account {
+        .column.main,
+        .sidebar-additional {
+            margin: 0;
+        }
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+
+    /*==========================
+        Custom
+    ============================ */
+
+    .form.password.reset,
+    .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account,
+    .form.form-orders-search {
+        box-shadow: none;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 0 15px;
+        max-width: 100%;
+    }
+
+    .acc-head{
+        padding: 20px 0;
+        font-size: 28px;
+    }
+
+    .form.create.account{
+        .actions-toolbar{
+            .secondary{
+                a{
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .customer-account-create{
+        .page-main{
+            .column.main{
+                min-height: auto;
+            }
+        }
+    }
+    
 }
 
 //
@@ -591,4 +688,5 @@
             margin: 0 @indent__s @indent__s 0;
         }
     }
+
 }

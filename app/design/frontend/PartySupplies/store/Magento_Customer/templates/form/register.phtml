@@ -10,6 +10,7 @@
 ?>
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
+<h2 class="acc-head"><?= $block->escapeHtmlAttr(__('User Registration')) ?></h2>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
@@ -162,9 +163,9 @@
     </fieldset>
 
     <div class="field choice">
-        <div class="control">
+        <div class="control-check">
             <input type="checkbox" name="company-contact" id="company-contact">
-            <label for="company-contact">Primary Company Contact</label>
+            <label for="company-contact"><?= $block->escapeHtmlAttr(__('Primary Company Contact')) ?></label>
         </div>
     </div>
 
@@ -173,8 +174,8 @@
             <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Register')) ?>"><span><?= $block->escapeHtml(__('Register')) ?></span></button>
         </div>
         <div class="secondary">
-            <span>Already have an account?</span>
-            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Click here to Sign in')) ?></span></a>
+            <span><?= $block->escapeHtmlAttr(__('Already have an account? Click here to ')) ?></span>
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Sign in')) ?></span></a>
         </div>
     </div>
 </form>
