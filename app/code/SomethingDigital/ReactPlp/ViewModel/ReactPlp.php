@@ -208,6 +208,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             $attr[] = [
                 'id' => $item->getAttributeCode(),
                 'searchable' => $item->getSearchableInLayeredNav(),
+                'label' => $item->getStoreLabel(),
                 'displayType' => $this->getDisplayType($item),
                 'description' => $item->getLayeredNavDescription()
             ];
