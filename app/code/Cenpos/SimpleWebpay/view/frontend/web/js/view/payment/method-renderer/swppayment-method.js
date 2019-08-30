@@ -169,6 +169,7 @@ define(
                                         $("#SubmitWebpay").on('click', function () {
                                             $("#NewCenposPlugin > div").submitAction();
                                         });
+                                        $("<style type='text/css'> .dpnoneimpo{ display:none !important} </style>").appendTo("head");
                                 }
                                 self.webpayinit = true;
 
@@ -261,6 +262,26 @@ define(
                     this.getPlaceOrderDeferredObject()
                         .fail(
                             function (msg, data, data2) {
+                                try{
+                                    if(msg.responseJSON){
+                                        var result = JSON.parse(msg.responseJSON.message);
+                                        $(".payment-method-content .messages").removeClass("dpnoneimpo");
+                                        if (result.Result === 21) {
+                                            $(".payment-method-content .messages").addClass("dpnoneimpo");
+                                            fullScreenLoader.stopLoader();
+                                            result.View3D = result.View3D.replace("function(messageEvent){", "function(messageEvent){ document.getElementById('CardinalResponse').value = messageEvent.data; document.getElementById('CardinalResponse').dispatchEvent(new Event('change')); ");
+                                            result.View3D = msg.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
+                                            result.View3D = result.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
+                                            $("#Form3dSecure").show();
+                                            $("#Form3dSecure").html("<div>" + result.View3D + "</div>");
+                                        }else {
+                                            self.createWebpay();
+                                           // $(".payment-method-content .messages").addClass("dpnoneimpo");
+                                        }
+                                    }
+                                }catch(e){
+                                    self.createWebpay();
+                                }
                                 self.isPlaceOrderActionAllowed(true);
                             }
                         ).done(
@@ -299,13 +320,6 @@ define(
                                         if (self.redirectAfterPlaceOrder) {
                                             redirectOnSuccessAction.execute();
                                         }
-                                    } else if (msg.Result === 21) {
-                                        fullScreenLoader.stopLoader();
-                                        msg.View3D = msg.View3D.replace("function(messageEvent){", "function(messageEvent){ document.getElementById('CardinalResponse').value = messageEvent.data; document.getElementById('CardinalResponse').dispatchEvent(new Event('change')); ");
-                                        msg.View3D = msg.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
-                                        msg.View3D = msg.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
-                                        $("#Form3dSecure").show();
-                                        $("#Form3dSecure").html("<div>" + msg.View3D + "</div>");
                                     } else {
                                         self.isPlaceOrderActionAllowed(true);
                                         msg.message = msg.Message;

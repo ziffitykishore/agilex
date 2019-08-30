@@ -254,9 +254,10 @@ class CaptureHandler implements HandlerInterface
                     }
                 }
 
-                if($ResponseSave->Result === -1 || $ResponseSave->Result === 21){
-                    echo json_encode($ResponseSave);
-                    die();
+                if($ResponseSave->Result === -1){
+                    throw new \Magento\Framework\Exception\LocalizedException(__($ResponseSave->Message));
+                }else if ($ResponseSave->Result === 21){
+                    throw new \Magento\Framework\Exception\LocalizedException(__(json_encode($ResponseSave)));
                 }
             }
         }
