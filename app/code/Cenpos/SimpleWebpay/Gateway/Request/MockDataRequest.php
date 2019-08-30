@@ -183,8 +183,11 @@ class MockDataRequest extends CommonRequest
                 if($isEdit){
                     throw new \InvalidArgumentException($ResponseSave->Message);
                 }else{
-                    echo json_encode($ResponseSave);
-                    die();
+                    if($ResponseSave->Result === -1){
+                        throw new \Magento\Framework\Exception\LocalizedException(__($ResponseSave->Message));
+                    }else if ($ResponseSave->Result === 21){
+                        throw new \Magento\Framework\Exception\LocalizedException(__(json_encode($ResponseSave)));
+                    }
                 }
             }
                      
