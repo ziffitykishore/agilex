@@ -21,7 +21,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 ?>
 <?php if (!$_productCollection->count()): ?>
     <?= $block->getSearchFilter() ?>
-    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('noProductFound') ?></div></div>
 <?php else: ?>
     <?= $block->getToolbarHtml() ?>
         <?= $block->getAdditionalHtml() ?>
@@ -84,16 +84,16 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                             <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
                                             <?= $block->getBlockHtml('formkey') ?>
                                             <button type="submit"
-                                                    title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                                                    title="<?= $block->escapeHtml(__('addToCart')) ?>"
                                                     class="action tocart primary">
-                                                <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                                <span><?= /* @escapeNotVerified */ __('addToCart') ?></span>
                                             </button>
                                         </form>
                                     <?php else: ?>
                                         <?php if ($_product->isAvailable()): ?>
-                                            <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
+                                            <div class="stock available"><span><?= /* @escapeNotVerified */ __('inStock') ?></span></div>
                                         <?php else: ?>
-                                            <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
+                                            <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('outOfStock') ?></span></div>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 </div>
@@ -107,7 +107,7 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                 <div class="product description product-item-description">
                                     <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                                     <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" title="<?= /* @escapeNotVerified */ $_productNameStripped ?>"
-                                       class="action more"><?= /* @escapeNotVerified */ __('Learn More') ?></a>
+                                       class="action more"><?= /* @escapeNotVerified */ __('learnMore') ?></a>
                                 </div>
                             <?php endif; ?>
                         </div>
