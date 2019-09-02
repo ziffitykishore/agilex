@@ -6,7 +6,7 @@ use Magento\Company\Controller\Customer\Create;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Company\Api\CompanyManagementInterface;
 
-class AssignTraversAccountId
+class AssignCustomAttributes
 {
     private $customerRepository;
     private $companyRepository;
@@ -32,6 +32,11 @@ class AssignTraversAccountId
             $traversAccountId = $parentCustomer->getCustomAttribute('travers_account_id')->getValue();
             if ($traversAccountId != '') {
                 $customer->setCustomAttribute('travers_account_id', $traversAccountId);
+                $this->customerRepository->save($customer);
+            }
+            $shippingRateGroup = $parentCustomer->getCustomAttribute('shipping_rate_group')->getValue();
+            if ($shippingRateGroup != '') {
+                $customer->setCustomAttribute('shipping_rate_group', $shippingRateGroup);
                 $this->customerRepository->save($customer);
             }
         }
