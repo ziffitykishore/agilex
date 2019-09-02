@@ -6,4 +6,6 @@
     <type name="ShipperHQ\WS\Client\WebServiceClient">
         <plugin name="SomethingDigital_ShipperResult" type="SomethingDigital\ShipperHqCustomizations\Plugin\SaveDates" />
     </type>
+    <preference for="Magento\Quote\Model\Cart\Totals\Item"
+            type="SomethingDigital\ShipperHqCustomizations\Model\Cart\Totals\Item"/>
 </config>
