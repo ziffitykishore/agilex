@@ -3,4 +3,7 @@
     <type name="ShipperHQ\Shipper\Model\Carrier\Processor\ShipperMapper">
         <plugin name="SomethingDigital_ShipperMapper" type="SomethingDigital\ShipperHqCustomizations\Plugin\CustomerGroup" />
     </type>
+    <type name="ShipperHQ\WS\Client\WebServiceClient">
+        <plugin name="SomethingDigital_ShipperResult" type="SomethingDigital\ShipperHqCustomizations\Plugin\SaveDates" />
+    </type>
 </config>
