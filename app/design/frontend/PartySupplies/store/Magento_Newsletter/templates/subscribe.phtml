@@ -10,7 +10,7 @@
 
 ?>
 <div class="block newsletter">
-    <div class="title"><strong><?= $block->escapeHtml(__('Newsletter')) ?></strong></div>
+    <div class="title"><strong><?= $block->escapeHtml(__('newsletter')) ?></strong></div>
     <div class="content">
         <form class="form subscribe"
             novalidate
@@ -19,17 +19,17 @@
             data-mage-init='{"validation": {"errorClass": "mage-error"}}'
             id="newsletter-validate-detail">
             <div class="field newsletter">
-                <label class="label" for="newsletter"><span><?= $block->escapeHtml(__('Sign Up for Our Newsletter:')) ?></span></label>
+                <label class="label" for="newsletter"><span><?= $block->escapeHtml(__('newsletterSignUp')) ?></span></label>
                 <div class="control">
                     <input name="email" type="email" id="newsletter"
-                           placeholder="<?= $block->escapeHtml(__('Your Email')) ?>"
+                           placeholder="<?= $block->escapeHtml(__('yourEmail')) ?>"
                            data-mage-init='{"mage/trim-input":{}}'
                            data-validate="{required:true, 'validate-email':true}"/>
                 </div>
             </div>
             <div class="actions">
-                <button class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>" type="submit">
-                    <span><?= $block->escapeHtml(__('Subscribe')) ?></span>
+                <button class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('subscribe')) ?>" type="submit">
+                    <span><?= $block->escapeHtml(__('subscribe')) ?></span>
                 </button>
             </div>
         </form>

@@ -7,25 +7,18 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-
-
-
-
-
-
-            <container name="logo-header" htmlTag="div" htmlClass="logo-header">
-                <container name="logo-header-wrap" htmlTag="div" htmlClass="logo-container">
-                    <block class="Magento\Theme\Block\Html\Header\Logo" name="nav-logo">
-                        <arguments>
-                            <argument name="logo_img_width" xsi:type="number">120</argument>
-                            <argument name="logo_img_height" xsi:type="number">60</argument>
-                        </arguments>
-                    </block>
-                </container>
+        <container name="logo-header" htmlTag="div" htmlClass="logo-header">
+            <container name="logo-header-wrap" htmlTag="div" htmlClass="logo-container">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="nav-logo">
+                    <arguments>
+                        <argument name="logo_img_width" xsi:type="number">120</argument>
+                        <argument name="logo_img_height" xsi:type="number">60</argument>
+                    </arguments>
+                </block>
             </container>
+        </container>
 
         <move element="logo-header" destination="page.wrapper" before="-" />
         <move element="bannerslider.cms.page.content.top" destination="page.wrapper" before="header.container"/>
-
     </body>
 </page>
