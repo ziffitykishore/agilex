@@ -1093,6 +1093,17 @@ $icon-gripper: '\e900' !default;
 }
 
 .checkout-shipping-address {
+    .field-tooltip {
+        .label {
+            display: none;
+        }
+
+        &-action::before {
+            color: $c-steel;
+            margin-top: 7px;
+        }
+    }
+
     .message {
         &.notice {
             .link-back {
