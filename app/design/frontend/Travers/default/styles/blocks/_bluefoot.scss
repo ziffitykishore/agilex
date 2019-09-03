@@ -906,7 +906,7 @@ footer.page-footer {
 
                 [data-content-type="column"] {
                     @include max-screen($screen__m) {
-                        width: 45% !important;
+                        width: 45% !important; // override PageBuilder
                         box-sizing: border-box;
 
                         &:first-of-type {
