@@ -37,6 +37,10 @@
 
     tbody tr {
       border-bottom: 1px solid $c-smoke;
+
+      @include hover {
+        cursor: pointer;
+      }
     }
 
     .selected-row {
