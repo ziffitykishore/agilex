@@ -900,7 +900,20 @@ footer.page-footer {
             margin-bottom: $indent__l;
 
             .footer-links {
-                width: 70%;
+                @include min-screen($screen__m) {
+                    width: 70%;
+                }
+
+                [data-content-type="column"] {
+                    @include max-screen($screen__m) {
+                        width: 45% !important;
+                        box-sizing: border-box;
+
+                        &:first-of-type {
+                            order: -1;
+                        }
+                    }
+                }
 
                 &-heading {
                     margin-top: 15px;
