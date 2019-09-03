@@ -7,6 +7,6 @@
         <plugin name="SomethingDigital_Customer_Validation_Plugin" type="SomethingDigital\CustomerValidation\Plugin\ValidateCompany"/>
     </type>
     <type name="Magento\Company\Controller\Customer\Create">
-        <plugin name="SomethingDigital_Customer_Assign_Travers_Account_Id" type="SomethingDigital\CustomerValidation\Plugin\AssignTraversAccountId"/>
+        <plugin name="SomethingDigital_Customer_Assign_Travers_Account_Id" type="SomethingDigital\CustomerValidation\Plugin\AssignCustomAttributes"/>
     </type>
 </config>
