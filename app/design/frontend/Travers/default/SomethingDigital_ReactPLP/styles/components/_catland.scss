@@ -109,9 +109,10 @@
 
     .Collapsible__trigger {
       box-sizing: border-box;
-      padding: $indent__m 90% $indent__s 0;
+      padding: $indent__m 80% $indent__s 0;
       z-index: 3;
       opacity: 0;
+      cursor: pointer;
     }
   }
 
