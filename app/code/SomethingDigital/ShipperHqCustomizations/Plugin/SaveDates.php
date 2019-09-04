@@ -3,6 +3,7 @@
 namespace SomethingDigital\ShipperHqCustomizations\Plugin;
 
 use Magento\Framework\Session\SessionManagerInterface;
+use ShipperHQ\WS\Client\WebServiceClient;
 
 class SaveDates
 {
@@ -14,7 +15,7 @@ class SaveDates
         $this->session = $coreSession;
     }
 
-    public function afterSendAndReceive(\ShipperHQ\WS\Client\WebServiceClient $subject, $result, $requestObj, $webServiceURL, $timeout)
+    public function afterSendAndReceive(WebServiceClient $subject, $result, $requestObj, $webServiceURL, $timeout)
     {
         $items = [];
         foreach ($result['result']->carrierGroups as $carrierGroup) {
