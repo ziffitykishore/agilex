@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="ShipperHQ\Shipper\Model\Carrier\Processor\ShipperMapper">
+        <plugin name="SomethingDigital_ShipperMapper" type="SomethingDigital\ShipperHqCustomizations\Plugin\CustomerGroup" />
+    </type>
+    <type name="ShipperHQ\WS\Client\WebServiceClient">
+        <plugin name="SomethingDigital_ShipperResult" type="SomethingDigital\ShipperHqCustomizations\Plugin\SaveDates" />
+    </type>
+    <preference for="Magento\Quote\Model\Cart\Totals\Item"
+            type="SomethingDigital\ShipperHqCustomizations\Model\Cart\Totals\Item"/>
+</config>
