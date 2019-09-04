@@ -84,6 +84,10 @@ $_password-very-strong: #81b562 !default;
 }
 
 .block-addresses-list {
+    .block-title {
+        margin-bottom: 8px;
+    }
+
     .items.addresses {
         & > .item {
             margin-bottom: $indent__base;

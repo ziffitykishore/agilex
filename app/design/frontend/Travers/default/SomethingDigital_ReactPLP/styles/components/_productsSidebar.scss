@@ -200,6 +200,10 @@
       }
 
       @include hover {
+        a {
+          color: $c-cobalt;
+        }
+
         &::after {
           border-width: 0;
         }
@@ -211,7 +215,6 @@
 
         @include hover {
           text-decoration: none;
-          color: $c-cobalt;
         }
       }
     }
@@ -266,10 +269,35 @@
     }
   }
 
+  .accordion {
+    @include hover {
+      cursor: pointer;
+
+      .Collapsible__trigger {
+        color: $c-cobalt;
+      }
+    }
+  }
+
   .Collapsible {
     border-top: 1px solid $c-grey;
-    padding-top: $indent__s;
-    padding-bottom: $indent__s;
+
+    @include hover {
+      &__trigger.is-closed {
+        color: $primary__color;
+      }
+    }
+
+    &__trigger {
+      display: block;
+      width: 90%;
+      height: 100%;
+      padding-top: $indent__s;
+
+      &.is-closed {
+        padding-bottom: $indent__s;
+      }
+    }
 
     &__opened {
       position: relative;
@@ -320,6 +348,10 @@
     &__contentOuter {
       padding-left: $indent__m;
       padding-right: $indent__s;
+    }
+
+    &__contentInner {
+      padding-bottom: $indent__s;
     }
   }
 }

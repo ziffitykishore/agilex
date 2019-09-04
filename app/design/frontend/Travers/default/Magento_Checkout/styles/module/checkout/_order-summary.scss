@@ -133,6 +133,11 @@ $checkout-summary-items__padding   : 15px !default;
             display: table;
             margin: 0 0 $indent__s;
             width: 100%;
+
+            .delivery-info {
+                font-style: italic;
+                color: $primary__color;
+            }
         }
 
         .product-item-name-block {
