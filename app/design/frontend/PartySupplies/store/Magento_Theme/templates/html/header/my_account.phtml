@@ -8,15 +8,28 @@ if ($block->isLoggedIn()) {
     $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
 }
 ?>
-<li class="my-accounts">
+<li class="customer-welcome dropdown">
     <?php if ($block->isLoggedIn()) : ?>
-        My Account
-        <ul>
+        <span class="customer-name dropdown-toggle"
+              role="link"
+              tabindex="0"
+              data-mage-init='{"dropdown":{}}'
+              data-toggle="dropdown"
+              data-trigger-keypress-button="true">
+            <span>My Account</span>
+            <button type="button"
+                    class="action switch"
+                    tabindex="-1"
+                    data-action="customer-menu-toggle">
+                <span><?= $block->escapeHtml(__('Change')) ?></span>
+            </button>
+        </span>
+        <ul class="customer-menu dropdown-content" data-target="dropdown">
             <?= $block->getChildHtml(); ?>
         </ul>
     <?php else : ?>
         <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
-            <?= $block->escapeHtml(__('signIn')); ?>
+            <?= $block->escapeHtml(__('Login / Sign Up')); ?>
         </a>
     <?php endif; ?>
 </li>

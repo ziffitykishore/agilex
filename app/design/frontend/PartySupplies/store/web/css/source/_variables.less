@@ -41,7 +41,7 @@
 @c-hover_color: #f1003e;
 @c-bg-color: #f9f9f9;
 @c-white_color: #fff;
-@c-whitesmoke: #f4f4f4;
+@c-whitesmoke: #f2f5f8;
 
 @c-tab: 992px;
 @c-desk: 1200px;
@@ -148,6 +148,34 @@
 
 
 .container-lg() {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+
+
+    @media screen and (min-width: 1600px) {
+        padding-right: 60px;
+        padding-left: 60px;
+    }
+
+
+    @media screen and (max-width: 1300px) {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+
+}
+
+.container-lg {
+    .container-lg();
+}
+
+
+.container-md() {
     max-width: 1610px;
     margin-left: auto;
     margin-right: auto;
@@ -156,8 +184,8 @@
     padding-left: 20px;
 }
 
-.container-lg {
-    .container-lg();
+.container-md {
+    .container-md();
 }
 
 .container-sm() {

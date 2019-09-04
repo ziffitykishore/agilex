@@ -27,23 +27,22 @@
     }
 
     .sec-catagory{
-        margin-top: 62px;
+        margin-top: 45px;
         h2{
             text-align: center;
             text-transform: uppercase;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
         .cat-pro-cont{
-            margin-bottom: 15px;
             .flex();
-            margin-left: -15px;
-            margin-right: -15px;
+            margin-left: -20px;
+            margin-right: -20px;
         }
 
         .catalog-category {
-            padding-left: 15px;
-            padding-right: 15px;
+            padding-left: 20px;
+            padding-right: 20px;
             text-align: center;
             &:nth-child(-n+3) {
                 .flex-width(percentage(1/3));
@@ -84,7 +83,7 @@
             strong {
                 font-size: 25px;
                 text-transform: uppercase;
-                margin: 25px 0;
+                margin: 25px 0 35px;
                 display: block;
             }
             
@@ -115,6 +114,27 @@
 
                 .slides > li {
                     margin-bottom: 0;
+                }
+
+
+                .flex-caption {
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    top: 50%;
+                    .transform(translateY(-50%));
+                    z-index: 9999;
+                    .slider-content {
+                        .container-md();
+                        .slider-header {
+                            text-transform: uppercase;
+                            font-size: 50px;
+                            span {
+                                display: block;
+                                font-weight: bold;
+                            }
+                        }
+                    }
                 }
 
                 .flex-control-paging {
@@ -150,8 +170,9 @@
             padding-left: 0;
             padding-right: 0;
             .block-static-block {
+                margin-bottom: 0;
                 > section {
-                    .container-lg();
+                    .container-md();
                 }
             }
         }
@@ -160,7 +181,7 @@
     /* Home Page Sections Why US */
 
     .sec-why{
-        padding: 30px 45px 0;
+        padding: 0 45px 0;
         h1{
             text-align: center;
             margin-bottom: 40px;
@@ -169,8 +190,27 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin: 0;
+            margin-left: -20px;
+            margin-right: -20px;
             .why-parts{
+                padding: 20px;
+                .inner-sec {
+                    background: @c-whitesmoke;
+                    padding:25px;
+                    height: 100%;
+                    .br-radius(5px);
+                    .transition(all 0.5s ease 0s);
+                    overflow: hidden;
+                }
+
+                &:hover {
+                    .inner-sec {
+                        .transform(scale(1.05));
+                        background: @color-white;
+                        .box-shadow(1px 1px 5px 0px rgba(0,0,0,0.2));
+                    }
+                }
+
                 img{
                     display: block;
                     margin: auto;
@@ -184,8 +224,7 @@
                 }
                 p{
                     text-align: center;
-                    width: 80%;
-                    margin: 0 auto 20px auto;
+                    margin: 0 auto;
                     line-height: 1.3;
                 }
             }
@@ -195,7 +234,8 @@
     /* Home Page Sections About US */
 
     .sec-about{
-        margin-top: 50px;
+        margin-top: 40px;
+        margin-bottom: 45px;
         padding: 0 45px;
         .abt-img-cont{
             h1{
@@ -214,6 +254,7 @@
                     img{
                         -webkit-transition: .5s ease;
                         transition: .5s ease;
+                        display: block;
                     }
                 }
             }
@@ -265,27 +306,25 @@
                 }
             }
         }
+
+        .cat-pro-cont {
+            margin-left: -32px;
+            margin-right: -32px;
+        }
+
+        .catalog-category {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
     }
     .sec-why{
-        h1{
-            margin-bottom: 80px;
-        }
         .why-row{
             .why-parts{
                 width: 20%;
-                padding-top: 20px;
-                transition: .5s ease;
-                &:hover{
-                    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-                    transform: scale(1.1);
-                    cursor: pointer;
-                }
             }
         }
     }
     .sec-about{
-        margin-top: 80px;
-
         .abt-row {
             align-items: center;
         }
@@ -327,13 +366,12 @@
 
     .sec-why{
         h1{
-            margin-bottom: 40px;
+            margin-bottom: 5px;
         }
         .why-row{
-            justify-content: flex-start;
+            justify-content: space-between;
             .why-parts{
                 width: 33%;
-                padding-bottom: 2%;
             }
         }
     }
