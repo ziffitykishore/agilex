@@ -37,10 +37,6 @@ $helper = $this->helper(\PartySupplies\Search\Helper\Data::class);
                            aria-autocomplete="both"
                            autocomplete="off"/>
                     <div id="search_autocomplete" class="search-autocomplete"></div>
-                    <select id="categories" class="categories">
-                        <option value="<?= /* @escapeNotVerified */ $helper->getResultUrl() ?>">Categories</option>
-                        <?= /* @escapeNotVerified */ $helper->getCategoriesOption() ?>
-                    </select>
                 </div>
             </div>
             <div class="actions">
