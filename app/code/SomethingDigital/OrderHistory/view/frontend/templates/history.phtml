@@ -17,15 +17,15 @@
         <div class="order-search">
             <div>
                 <label for="order-number"><?= __('Order Number') ?></label>
-                <input value="<?php echo $block->getRequest()->getParam('sxOrderNumber') ?>" type="text" id="order-number" name="sxOrderNumber" />
+                <input value="<?= /* @escapeNotVerified */ $block->escapeHtml($block->getRequest()->getParam('sxOrderNumber')) ?>" type="text" id="order-number" name="sxOrderNumber" />
             </div>
             <div>
                 <label for="customer-po-number"><?= __('PO Number') ?></label>
-                <input value="<?php echo $block->getRequest()->getParam('poNumber') ?>" type="text" id="customer-po-number" name="poNumber" />
+                <input value="<?= /* @escapeNotVerified */ $block->escapeHtml($block->getRequest()->getParam('poNumber')) ?>" type="text" id="customer-po-number" name="poNumber" />
             </div>
             <div>
                 <label for="item-number"><?= __('Item Number') ?></label>
-                <input value="<?php echo $block->getRequest()->getParam('productSku') ?>" type="text" id="item-number" name="productSku" />
+                <input value="<?= /* @escapeNotVerified */ $block->escapeHtml($block->getRequest()->getParam('productSku')) ?>" type="text" id="item-number" name="productSku" />
             </div>
             <button type="submit"><?= __('Search') ?></button>
         </div>
