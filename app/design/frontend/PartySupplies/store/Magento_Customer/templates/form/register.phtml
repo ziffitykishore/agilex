@@ -10,11 +10,11 @@
 ?>
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
-<h2 class="acc-head"><?= $block->escapeHtmlAttr(__('User Registration')) ?></h2>
+<h2 class="acc-head-alt"><?= $block->escapeHtmlAttr(__('User Registration')) ?></h2>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
-    <fieldset class="fieldset create info">
+    <div class="fieldset create info">
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
@@ -32,7 +32,7 @@
         <?php if ($_gender->isEnabled()): ?>
             <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
         <?php endif ?>
-    </fieldset>
+    </div>
     <?php if ($block->getShowAddressFields()): ?>
         <fieldset class="fieldset address">
             <legend class="legend"><span><?= $block->escapeHtml(__('Address Information')) ?></span></legend><br/>
@@ -117,11 +117,11 @@
         </fieldset>
 
     <?php endif; ?>
-    <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+    <div class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
         <div class="field required">
-            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
+            <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
             <div class="control">
-                <input type="email" name="email" autocomplete="email" id="email_address" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email Address')) ?>" class="input-text" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
+                <input type="email" name="email" autocomplete="email" id="email_address" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" class="input-text" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true, 'validate-email':true}">
             </div>
         </div>
         <div class="field password required">
@@ -160,24 +160,31 @@
             </div>
         </div>
 
-    </fieldset>
+        <div class="field choice">
+            <div class="control-check">
+                <input type="checkbox" name="company-contact" id="company-contact">
+                <label for="company-contact"><?= $block->escapeHtmlAttr(__('Primary Company Contact')) ?></label>
+            </div>
+        </div>
 
-    <div class="field choice">
-        <div class="control-check">
-            <input type="checkbox" name="company-contact" id="company-contact">
-            <label for="company-contact"><?= $block->escapeHtmlAttr(__('Primary Company Contact')) ?></label>
+    </div>
+    
+    <div class="fieldset">
+        <div class="actions-toolbar field">
+            <div class="primary">
+                <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Login')) ?>"><span><?= $block->escapeHtml(__('Login')) ?></span></button>
+            </div>
         </div>
     </div>
 
     <div class="actions-toolbar">
-        <div class="primary">
-            <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Register')) ?>"><span><?= $block->escapeHtml(__('Register')) ?></span></button>
-        </div>
         <div class="secondary">
-            <span><?= $block->escapeHtmlAttr(__('Already have an account? Click here to ')) ?></span>
-            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Sign in')) ?></span></a>
+            <span><?= $block->escapeHtmlAttr(__("Don't have an account yet?")) ?></span>
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Sign up here')) ?></span></a>
         </div>
     </div>
+
+
 </form>
 <script>
 require([
