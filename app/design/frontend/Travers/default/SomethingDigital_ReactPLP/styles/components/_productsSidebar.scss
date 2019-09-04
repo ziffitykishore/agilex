@@ -452,12 +452,10 @@
       background-color: $color-white;
 
       .Collapsible {
-        border-top: 1px solid $c-grey;
-
         &__trigger {
-          padding: $indent__s;
-          padding-right: 85%;
+          display: block;
           cursor: pointer;
+          transform: translateX(-$indent__s);
 
           &::before {
             vertical-align: sub;
@@ -468,10 +466,9 @@
           padding-left: 0;
           padding-right: 0;
           border: 1px solid $c-border;
+          border-top: 0;
 
           .Collapsible__trigger {
-            padding-right: 80%;
-
             &::before {
               vertical-align: baseline;
             }

@@ -701,15 +701,14 @@ $home-sidebar-width: 20.5%;
         width: 30%;
         text-align: center;
         padding: 0 $indent__xs;
+        box-sizing: border-box;
 
         &:not(:nth-of-type(3)) {
             border-right: 1px solid $color-white !important; // override PageBuilder
         }
 
         @include max-screen($screen__m) {
-            &:not(:nth-of-type(3)) {
-                width: 45%;
-            }
+            width: 50%;
 
             &:nth-of-type(2) {
                 border-right: 0 !important; // override PageBuilder
@@ -905,11 +904,12 @@ footer.page-footer {
                 }
 
                 [data-content-type="column"] {
+                    box-sizing: border-box;
+
                     @include max-screen($screen__m) {
                         width: 45% !important; // override PageBuilder
-                        box-sizing: border-box;
 
-                        &:first-of-type {
+                        &:last-of-type {
                             order: -1;
                         }
                     }
