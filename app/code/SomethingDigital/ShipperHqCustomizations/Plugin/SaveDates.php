@@ -21,7 +21,7 @@ class SaveDates
             foreach ($carrierGroup->carrierRates as $carrierRate) {
                 foreach ($carrierRate->shipments as $shipment) {
                     foreach ($shipment->boxedItems as $item) {
-                        $items [$item->sku] = $carrierRate->deliveryDateMessage;
+                        $items[$item->sku] = $carrierRate->deliveryDateMessage;
                     }
                 }
             }
