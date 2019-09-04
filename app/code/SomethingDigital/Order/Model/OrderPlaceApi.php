@@ -86,8 +86,10 @@ class OrderPlaceApi extends Adapter
 
         if ($shippingAddressObj) {
             $shippingAddressArray = $shippingAddressObj->getData();
-            $address = $this->addressRepository->getById($shippingAddressArray['customer_address_id']);
-            $shipto = $this->assignAddressInformation($address);
+            if ($shippingAddressArray['customer_address_id'] != null) {
+                $address = $this->addressRepository->getById($shippingAddressArray['customer_address_id']);
+                $shipto = $this->assignAddressInformation($address);
+            }
         }
 
         return $shipto;
@@ -111,8 +113,11 @@ class OrderPlaceApi extends Adapter
 
         if ($billingAddressObj) {
             $billingAddressArray = $billingAddressObj->getData();
-            $address = $this->addressRepository->getById($billingAddressArray['customer_address_id']);
-            $customerInfo["Address"] = $this->assignAddressInformation($address);
+
+            if ($billingAddressArray['customer_address_id'] != null) {
+                $address = $this->addressRepository->getById($billingAddressArray['customer_address_id']);
+                $customerInfo["Address"] = $this->assignAddressInformation($address);
+            }
             $customerInfo["Fax"] = $billingAddressArray['fax'];
             $customerInfo["Phone"] = $billingAddressArray['telephone'];
         }
