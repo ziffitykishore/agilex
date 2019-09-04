@@ -19,7 +19,7 @@
                     $('.product-item-details[data-sku="'+sku+'"] .deliveryInfo').html(response.data.deliverydates[sku]);
                 }
             }).fail(function (jqXHR, textStatus, errorThrown) {
-                
+                console.log("Request failed: " + textStatus + ' : ' + errorThrown);
             });
 
             return originalAction();
