@@ -134,10 +134,9 @@ $checkout-summary-items__padding   : 15px !default;
             margin: 0 0 $indent__s;
             width: 100%;
 
-            .deliveryInfo {
-                font-size: 12px;
-                font-weight: $font-weight__semibold;
+            .delivery-info {
                 font-style: italic;
+                color: $primary__color;
             }
         }
 
