@@ -136,7 +136,7 @@ $checkout-summary-items__padding   : 15px !default;
 
             .delivery-info {
                 font-style: italic;
-                color: $primary__color;
+                color: $c-cobalt;
             }
         }
 
@@ -144,6 +144,18 @@ $checkout-summary-items__padding   : 15px !default;
             display: table-cell;
             padding-right: $indent__xs;
             text-align: left;
+
+            .product-item-name {
+                margin-bottom: 7px;
+            }
+        }
+
+        .details-qty {
+            margin-top: $indent__xs;
+
+            span {
+                font-size: 12px;
+            }
         }
 
         .subtotal {
