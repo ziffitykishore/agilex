@@ -16,7 +16,7 @@
 
             deliveryInfo.done(function (response, textStatus) {
                 for (var sku in response.data.deliverydates) {
-                    $('.product-item-details[data-sku="'+sku+'"] .deliveryInfo').html(response.data.deliverydates[sku]);
+                    $('.product-item-details[data-sku="'+sku+'"] .delivery-info').html(response.data.deliverydates[sku]);
                 }
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 console.log("Request failed: " + textStatus + ' : ' + errorThrown);
