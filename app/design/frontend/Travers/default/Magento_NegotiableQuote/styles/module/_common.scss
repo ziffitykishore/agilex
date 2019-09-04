@@ -149,8 +149,25 @@ $icon-gripper: '\e900' !default;
 }
 
 .quote-grid-filters-wrap {
+    margin-bottom: $indent__xl;
+
     .action {
         @include lib-action-button-as-link;
+    }
+
+    .admin__form-field {
+        margin-bottom: $indent__s;
+    }
+
+    legend {
+        span {
+            font-weight: $font-weight__semibold;
+            font-family: $font-family__sans-serif;
+        }
+
+        &:not(:first-of-type) {
+            margin-top: $indent__l;
+        }
     }
 }
 
@@ -1093,6 +1110,17 @@ $icon-gripper: '\e900' !default;
 }
 
 .checkout-shipping-address {
+    .field-tooltip {
+        .label {
+            display: none;
+        }
+
+        &-action::before {
+            color: $c-steel;
+            margin-top: 7px;
+        }
+    }
+
     .message {
         &.notice {
             .link-back {

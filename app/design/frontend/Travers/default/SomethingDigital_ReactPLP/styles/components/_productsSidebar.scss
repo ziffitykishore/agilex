@@ -484,11 +484,10 @@
       background-color: $color-white;
 
       .Collapsible {
-        border-top: 1px solid $c-grey;
-
         &__trigger {
-          padding: $indent__s;
-          padding-right: 100%;
+          display: block;
+          cursor: pointer;
+          transform: translateX(-$indent__s);
 
           &::before {
             vertical-align: sub;
@@ -498,10 +497,10 @@
         &__contentOuter {
           padding-left: 0;
           padding-right: 0;
+          border: 1px solid $c-border;
+          border-top: 0;
 
           .Collapsible__trigger {
-            padding-right: 15px;
-
             &::before {
               vertical-align: baseline;
             }
@@ -510,7 +509,11 @@
 
         &__contentInner {
           background-color: $c-smoke;
-          margin-top: 15px;
+          margin-top: 11px;
+
+          .Collapsible__contentOuter {
+            border: none;
+          }
         }
       }
     }
