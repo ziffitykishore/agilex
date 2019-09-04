@@ -42,10 +42,10 @@ class OrdersApi extends Adapter
         $customerAccountId = $this->getCustomerAccountId();
 
         if ($customerAccountId) {
-            $this->requestPath = 'api/Customer/' . $customerAccountId . '/' . 'Orders';
+            $this->requestPath = 'api/Order?customerId=' . $customerAccountId;
 
             if (!empty($params)) {
-                $this->requestPath .= '?' . http_build_query($params);
+                $this->requestPath .= '&' . http_build_query($params);
             }
 
             return $this->getRequest();

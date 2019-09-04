@@ -93,11 +93,13 @@ class Recent extends RecentOrders
 
         $orders = $this->arrayManager->get('body', $orders, []);
 
-        foreach ($orders as $key => $item) {
-            if ($key < $limit) {
-                $varienObject = new \Magento\Framework\DataObject();
-                $varienObject->setData($item);
-                $collection->addItem($varienObject);
+        if (is_array($orders)) {
+            foreach ($orders as $key => $item) {
+                if ($key < $limit) {
+                    $varienObject = new \Magento\Framework\DataObject();
+                    $varienObject->setData($item);
+                    $collection->addItem($varienObject);
+                }
             }
         }
 

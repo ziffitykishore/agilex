@@ -11,24 +11,26 @@
 ?>
 <?php $_orders = $block->getOrders(); ?>
 <?= $block->getChildHtml('info') ?>
-<?php if ($_orders && count($_orders)): ?>
-    <div class="table-wrapper orders-history">
-        <h3 class="orders-history-header"><?= __('Search By') ?></h3>
+<div class="table-wrapper orders-history">
+    <h3 class="orders-history-header"><?= __('Search By') ?></h3>
+    <form action="<?php echo $block->getRequest()->getUriString(); ?>">
         <div class="order-search">
             <div>
                 <label for="order-number"><?= __('Order Number') ?></label>
-                <input type="text" id="order-number" name="order_number" />
+                <input value="<?= /* @escapeNotVerified */ $block->escapeHtmlAttr($block->getRequest()->getParam('sxOrderNumber')) ?>" type="text" id="order-number" name="sxOrderNumber" />
             </div>
             <div>
                 <label for="customer-po-number"><?= __('PO Number') ?></label>
-                <input type="text" id="customer-po-number" name="customer_po_number" />
+                <input value="<?= /* @escapeNotVerified */ $block->escapeHtmlAttr($block->getRequest()->getParam('poNumber')) ?>" type="text" id="customer-po-number" name="poNumber" />
             </div>
             <div>
                 <label for="item-number"><?= __('Item Number') ?></label>
-                <input type="text" id="item-number" name="product" />
+                <input value="<?= /* @escapeNotVerified */ $block->escapeHtmlAttr($block->getRequest()->getParam('productSku')) ?>" type="text" id="item-number" name="productSku" />
             </div>
             <button type="submit"><?= __('Search') ?></button>
         </div>
+    </form>
+    <?php if ($_orders && count($_orders)): ?>
         <table class="data table table-order-items history" id="my-orders-table">
             <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
             <thead>
@@ -58,10 +60,10 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-    <?php if ($block->getPagerHtml()): ?>
-        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php else: ?>
+        <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
     <?php endif ?>
-<?php else: ?>
-    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
+</div>
+<?php if ($block->getPagerHtml()): ?>
+    <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
 <?php endif ?>

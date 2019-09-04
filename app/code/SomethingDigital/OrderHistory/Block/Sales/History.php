@@ -82,8 +82,13 @@ class History extends SalesHistory
     public function getOrders()
     {
         $orders = [];
+        $params = [
+            'poNumber' => $this->getRequest()->getParam('poNumber'),
+            'sxOrderNumber' => $this->getRequest()->getParam('sxOrderNumber'),
+            'productSku' => $this->getRequest()->getParam('productSku')
+        ];
         try {
-            $orders = $this->ordersApi->getOrders();
+            $orders = $this->ordersApi->getOrders($params);
         } catch (LocalizedException $e) {
             $this->logger->critical('Get Orders API Request has failed with exception: ' . $e->getMessage());
         }
@@ -94,11 +99,13 @@ class History extends SalesHistory
 
         $collection = $this->collectionFactory->create();
 
-        $orders = array_slice($orders, $offset, $limit);
-        foreach ($orders as $key => $item) {
-            $varienObject = new \Magento\Framework\DataObject();
-            $varienObject->setData($item);
-            $collection->addItem($varienObject);
+        if (is_array($orders)) {
+            $orders = array_slice($orders, $offset, $limit);
+            foreach ($orders as $key => $item) {
+                $varienObject = new \Magento\Framework\DataObject();
+                $varienObject->setData($item);
+                $collection->addItem($varienObject);
+            }
         }
 
         return $collection;
