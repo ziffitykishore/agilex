@@ -85,7 +85,7 @@
             }
 
             .block-search {
-                max-width: 600px;
+                max-width: 400px;
                 width: 100%;
                 .minisearch {
                     .control {
@@ -120,9 +120,6 @@
                 .navigation {
                     > ul {
                         padding: 0;
-                        a {
-                            font-size: 16px;
-                        }
                     }
 
                     .level0 > .level-top {
@@ -150,7 +147,6 @@
                         text-transform: uppercase;
                         font-weight: bold;
                         font-family: @font-family-name__base;
-                        font-size: 16px;
                     }
                 }
                 .dropdown {
@@ -364,12 +360,11 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-    .header-wrapper {
-        .links {
-            li {
-              a {
-                font-size: 20px;
-              }
+    .page-header {
+        .header-wrapper {
+            .block-search {
+                max-width: 600px;
+                width: 100%;
             }
         }
     }
@@ -550,9 +545,9 @@
 
             > .submenu {
                 position: absolute;
-                top: 100% !important;
+                top: 78px !important;
                 min-width: 320px;
-                left: -110px !important;
+                left: 0px !important;
                 margin-top: 25px;
                 -ms-transform: translateY(17px);
                 transform: translateY(17px);

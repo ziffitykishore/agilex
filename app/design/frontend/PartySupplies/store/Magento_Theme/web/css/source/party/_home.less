@@ -125,7 +125,7 @@
                     .transform(translateY(-50%));
                     z-index: 9999;
                     .slider-content {
-                        .container-md();
+                        .container-sm();
                         .slider-header {
                             text-transform: uppercase;
                             font-size: 50px;
@@ -187,9 +187,6 @@
             margin-bottom: 40px;
         }
         .why-row{
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
             margin-left: -20px;
             margin-right: -20px;
             .why-parts{
@@ -284,6 +281,18 @@
                 text-transform: uppercase;
                 font-weight: 600;
                 display: inline-block;
+                position: relative;
+                &:after {
+                    content: '';
+                    background: url('@{baseDir}images/icon_arrow.png') no-repeat right center;
+                    width: 24px;
+                    height: 14px;
+                    display: inline-block;
+                    margin: 0 10px;
+                    vertical-align: middle;
+
+                }
+
                 &:hover +.hover-arrow img{
                     display: inline-block;
                     visibility: visible;
@@ -296,7 +305,36 @@
 
 }
 
+
+
+@media screen and (min-width: 1340px) {
+    .sec-why{
+        .why-row{
+            justify-content: space-between;
+            .why-parts{
+                .flex-width(20%);
+            }
+        }
+    }
+
+
+}
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+    .cms-index-index {
+        .magestore-bannerslider {
+            .flexslider {
+                .flex-caption {
+                    .slider-content{
+                        > div {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
   
     .sec-catagory{
         .cat-pro-cont{
@@ -317,13 +355,7 @@
             padding-right: 32px;
         }
     }
-    .sec-why{
-        .why-row{
-            .why-parts{
-                width: 20%;
-            }
-        }
-    }
+
     .sec-about{
         .abt-row {
             align-items: center;
@@ -367,12 +399,6 @@
     .sec-why{
         h1{
             margin-bottom: 5px;
-        }
-        .why-row{
-            justify-content: space-between;
-            .why-parts{
-                width: 33%;
-            }
         }
     }
     .sec-about{
