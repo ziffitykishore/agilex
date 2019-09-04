@@ -68,7 +68,7 @@
             background-color: @color-white;
             .header{
                 &.content {
-                    .container-lg();
+                    .container-md();
                     padding-top: 10px;
                     padding-bottom: 10px;
                     .flex();
@@ -149,7 +149,7 @@
                         .br-radius(50px);
                         text-transform: uppercase;
                         font-weight: bold;
-                        font-family: 'Mukta Malar', 'sans-serif';
+                        font-family: @font-family-name__base;
                         font-size: 16px;
                     }
                 }
@@ -195,10 +195,10 @@
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
                     font-size: 35px;
-                    line-height: 22px;
+                    line-height: 18px;
                     color: inherit;
                     content: '\e622';
-                    color: @color-white;
+                    color: @color-black;
                     font-family: 'icons-blank-theme';
                     margin: 0;
                     vertical-align: top;
@@ -234,7 +234,7 @@
                    a {
                        color: @color-black;
                        display: block;
-                       padding: 5px;
+                       padding: 8px 16px;
 
                        &:hover {
                            color: @c-hover_color;
@@ -290,13 +290,28 @@
             .header-wrapper {
                 .header.content {
                     .container-md();
+
+                    .dropdown {
+                        .action{
+                            &:after {
+                                .lib-css(color, @color-white);
+                            }
+                        }
+                    }
                 }
             }
 
             &.fixed {
                 .header-wrapper {
                     .header.content {
-                        .container-lg();
+                        .container-md();
+                        .dropdown {
+                            .action{
+                                &:after {
+                                    .lib-css(color, @color-black);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -421,8 +436,8 @@
 .page-header{
     .header-wrapper {
         .links {
-            li {
-                a {
+            > li {
+                > a {
                     .lib-css(color, @color-black);
                 }
             }
@@ -473,6 +488,7 @@
             .level-top {
                 color: @color-black;
                 > .ui-menu-icon {
+                    display: none;
                     &:after {
                         color: @color-black;
                     }
@@ -521,7 +537,6 @@
                     .ui-menu-icon {
                         position: absolute;
                         left: 50%;
-                        display: inline-block;
                         text-decoration: none;
                         transform: translateX(-50%);
                         bottom: 0;
