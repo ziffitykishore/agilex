@@ -19,6 +19,9 @@
 
 <nav class="navigation d-mobile" data-action="navigation">
     <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <li class='level0 nav-1 category-item level-top'>
+            <?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('bulk_order')->toHtml(); ?>
+        </li>
         <?= /* @escapeNotVerified */ $_menu ?>
         <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
     </ul>
@@ -26,6 +29,10 @@
 
 <nav class="navigation d-desktop" id="menu">
     <ul >
+        <li class='level0 nav-1 category-item level-top'>
+        <?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('bulk_order')->toHtml(); ?>
+        </li>
         <?= /* @escapeNotVerified */ $_menu ?>
         <?= /* @escapeNotVerified */ $block->getChildHtml() ?>
+    </ul>
 </nav>
