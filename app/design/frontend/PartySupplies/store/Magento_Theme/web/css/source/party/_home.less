@@ -80,11 +80,12 @@
 
             }
 
-            strong {
-                font-size: 25px;
+            .cat-name {
                 text-transform: uppercase;
                 margin: 25px 0 35px;
                 display: block;
+                font-weight: 600;
+                font-size: 24px;
             }
             
 
@@ -123,6 +124,7 @@
                     left: 0;
                     top: 50%;
                     .transform(translateY(-50%));
+                    pointer-events: none;
                     z-index: 9999;
                     .slider-content {
                         .container-sm();
@@ -130,6 +132,7 @@
                             text-transform: uppercase;
                             font-size: 50px;
                             line-height: normal;
+                            margin-bottom: 30px;
                             span {
                                 display: block;
                                 font-weight: bold;
@@ -265,6 +268,10 @@
                 }
             }
         }
+
+        .abt-row {
+            align-items: center;
+        }
         .abt-cont{
             padding-left: 30px;
             h1{
@@ -279,19 +286,15 @@
                 transform: translateX(-50px);
             }
             .read{
-                text-transform: uppercase;
                 font-weight: 600;
                 display: inline-block;
                 position: relative;
                 &:after {
-                    content: '';
-                    background: url('@{baseDir}images/icon_arrow.png') no-repeat right center;
-                    width: 24px;
-                    height: 14px;
+                    content: '\e904';
+                    font-family: @icons__font-name_ps;
                     display: inline-block;
-                    margin: 0 10px;
+                    margin: 0 0 0 10px;
                     vertical-align: middle;
-
                 }
 
                 &:hover +.hover-arrow img{
@@ -358,9 +361,7 @@
     }
 
     .sec-about{
-        .abt-row {
-            align-items: center;
-        }
+
         .abt-cont{
             padding-left: 40px;
 

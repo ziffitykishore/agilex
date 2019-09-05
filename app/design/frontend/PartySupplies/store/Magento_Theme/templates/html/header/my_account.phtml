@@ -28,8 +28,6 @@ if ($block->isLoggedIn()) {
             <?= $block->getChildHtml(); ?>
         </ul>
     <?php else : ?>
-        <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>>
-            <?= $block->escapeHtml(__('Login / Sign Up')); ?>
-        </a>
+        <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>><?= $block->escapeHtml(__('Login / Sign Up')); ?></a>
     <?php endif; ?>
 </li>
