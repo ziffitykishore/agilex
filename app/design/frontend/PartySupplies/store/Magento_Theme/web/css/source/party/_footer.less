@@ -16,13 +16,6 @@
             padding-bottom: 60px;
             .lib-clearfix();
         }
-        .foot-left{
-            > .row {
-                width: 100%;
-            }
-
-                            
-        }
 
         .footer-parts{
             h5{
@@ -38,10 +31,9 @@
             }
             a{
                 color: @c-white_color;
-                display: block;
+                transition: .5s ease;
                 &:hover{
-                    color:@c-hover_color;
-                    transition: .5s ease;
+                    color:@c-primary_color;
                 }
                 &.mail{
                     margin-top: 25px;
