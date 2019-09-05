@@ -38,7 +38,7 @@ $requisition-print__font-size-m: 1.4rem !default;
     @include lib-dropdown-split(
         $_options-selector: unquote('.items'),
         $_dropdown-split-button-border-radius-fix: true,
-        $_dropdown-split-list-item-padding: .5rem .5rem .5rem 2.3rem,
+        $_dropdown-split-list-item-padding: .5rem .5rem .5rem 2rem,
         $_dropdown-split-toggle-icon-content: $icon-down,
         $_dropdown-split-toggle-active-icon-content: $icon-up,
         $_dropdown-split-toggle-actions-padding: false,
@@ -55,7 +55,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 
     .items {
         top: 100%;
-        max-width: 200px;
+        min-width: 250px;
         text-align: left;
 
         .list-items {
@@ -539,6 +539,30 @@ $requisition-print__font-size-m: 1.4rem !default;
 .requisition-toolbar-actions {
     .change {
         @include button--inline-link;
+    }
+}
+.requisition_list-requisition-view {
+    .requisition-list-action {
+        vertical-align: text-top;
+
+        > .action.toggle::after {
+            border: 0;
+            line-height: 1;
+        }
+    }
+
+    .link-button .requisition-list-button.toggle {
+        @include hover {
+            text-decoration: none;
+
+            span {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .action.print {
+        display: none;
     }
 }
 
