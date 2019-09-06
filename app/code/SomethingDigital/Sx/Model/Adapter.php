@@ -8,11 +8,17 @@ use Psr\Log\LoggerInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
+use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\Encryption\EncryptorInterface;
 
 abstract class Adapter
 {
     const XML_PATH_API_URL = 'sx/general/url';
     const XML_PATH_API_TOKEN = 'sx/general/token';
+    const XML_PATH_API_TOKEN_EXPIRES = 'sx/general/token_expires';
+    const XML_PATH_API_USERNAME = 'sx/general/username';
+    const XML_PATH_API_PASSWORD = 'sx/general/password';
 
     /** @var \Magento\Framework\HTTP\ClientFactory */
     protected $curlFactory;
@@ -38,6 +44,10 @@ abstract class Adapter
     /** @var TestMode */
     protected $testMode;
 
+    protected $configWriter;
+    protected $cacheTypeList;
+    protected $encryptor;
+
     /**
      * Adapter constructor.
      * @param \Magento\Framework\HTTP\ClientFactory $curlFactory
@@ -51,17 +61,29 @@ abstract class Adapter
         LoggerInterface $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
-        TestMode $testMode
+        TestMode $testMode,
+        WriterInterface $configWriter,
+        TypeListInterface $cacheTypeList,
+        EncryptorInterface $encryptor
     ) {
         $this->curlFactory = $curlFactory;
         $this->logger = $logger;
         $this->config = $config;
         $this->storeManager = $storeManager;
         $this->testMode = $testMode;
+        $this->configWriter = $configWriter;
+        $this->cacheTypeList = $cacheTypeList;
+        $this->encryptor = $encryptor;
     }
     
     protected function getRequest()
     {
+        $token = $this->getToken();
+
+        if (!$this->isTokenValid()) {
+            $token = $this->refreshToken();
+        }
+
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
         $curl->setTimeout(40);
@@ -69,7 +91,7 @@ abstract class Adapter
             $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
             $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
         } else {
-            $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
+            $curl->addHeader('Authorization', 'Bearer ' . $token);
             $curl->addHeader('Cache-Control', 'no-cache');
         }
         try {
@@ -87,6 +109,11 @@ abstract class Adapter
 
     protected function postRequest()
     {
+        $token = $this->getToken();
+        if (!$this->isTokenValid()) {
+            $token = $this->refreshToken();
+        }
+
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
         $curl->setTimeout(20);
@@ -95,7 +122,7 @@ abstract class Adapter
             $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
             $curl->addHeader('X-Requested-With', 'XMLHttpRequest');
         } else {
-            $curl->addHeader('Authorization', 'Bearer ' . $this->getToken());
+            $curl->addHeader('Authorization', 'Bearer ' . $token);
             $curl->addHeader('Cache-Control', 'no-cache');
         }
         $curl->addHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -160,6 +187,59 @@ abstract class Adapter
     protected function getToken()
     {
         return $this->getConfig(static::XML_PATH_API_TOKEN);
+    }
+
+    /**
+     * @return string
+     */
+    protected function refreshToken()
+    {
+        $this->requestPath = 'Token';
+        $this->requestBody = [
+            'grant_type' => 'password',
+            'username' => $this->getConfig(static::XML_PATH_API_USERNAME),
+            'password' => $this->getConfig(static::XML_PATH_API_PASSWORD)
+        ];
+
+        /** @var \Magento\Framework\HTTP\Client\Curl $curl */
+        $curl = $this->curlFactory->create();
+        $curl->setTimeout(40);
+        $curl->addHeader('Cache-Control', 'no-cache');
+        $curl->addHeader('Content-Type', 'application/x-www-form-urlencoded');
+        if (empty($this->requestBody)) {
+            throw new ApiRequestException(__('Empty SX API request'));
+        }
+        try {
+            $curl->post($this->getRequestUrl(), $this->requestBody);
+            if ($curl->getStatus() == 200) {
+                $body = \Zend_Json::decode($curl->getBody());
+
+                $this->configWriter->save(static::XML_PATH_API_TOKEN,  $this->encryptor->encrypt($body['access_token']), $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
+                $this->configWriter->save(static::XML_PATH_API_TOKEN_EXPIRES,  $body['.expires'], $scope = ScopeConfigInterface::SCOPE_TYPE_DEFAULT, $scopeId = 0);
+
+                $this->cacheTypeList->cleanType('config');
+
+                return $body['access_token'];
+            }
+        } catch (\Exception $e) {
+            $this->logger->critical(
+                sprintf('Request to %s has failed with exception: %s; request data: %s; response: %s', $this->getRequestUrl(), $e->getMessage(), json_encode($this->requestBody), $curl->getBody())
+            );
+            $this->logger->critical($e);
+            throw new ApiRequestException(__('Internal error during request to SX API'));
+        }
+    }
+
+    /**
+     * @return boolean
+     */
+    protected function isTokenValid()
+    {
+        if (time() > strtotime($this->getConfig(static::XML_PATH_API_TOKEN_EXPIRES))) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**

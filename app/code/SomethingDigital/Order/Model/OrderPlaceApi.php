@@ -11,6 +11,9 @@ use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Sales\Model\Order\ItemRepository;
+use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\Encryption\EncryptorInterface;
 
 class OrderPlaceApi extends Adapter
 {
@@ -26,14 +29,20 @@ class OrderPlaceApi extends Adapter
         Session $session,
         TestMode $testMode,
         AddressRepositoryInterface $addressRepository,
-        ItemRepository $orderItemRepository
+        ItemRepository $orderItemRepository,
+        WriterInterface $configWriter,
+        TypeListInterface $cacheTypeList,
+        EncryptorInterface $encryptor
     ) {
         parent::__construct(
             $curlFactory,
             $logger,
             $config,
             $storeManager,
-            $testMode
+            $testMode,
+            $configWriter,
+            $cacheTypeList,
+            $encryptor
         );
         $this->session = $session;
         $this->addressRepository = $addressRepository;

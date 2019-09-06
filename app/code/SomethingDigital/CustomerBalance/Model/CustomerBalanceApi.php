@@ -9,6 +9,9 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
+use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\Encryption\EncryptorInterface;
 
 class CustomerBalanceApi extends Adapter
 {
@@ -20,14 +23,20 @@ class CustomerBalanceApi extends Adapter
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
         Session $session,
-        TestMode $testMode
+        TestMode $testMode,
+        WriterInterface $configWriter,
+        TypeListInterface $cacheTypeList,
+        EncryptorInterface $encryptor
     ) {
         parent::__construct(
             $curlFactory,
             $logger,
             $config,
             $storeManager,
-            $testMode
+            $testMode,
+            $configWriter,
+            $cacheTypeList,
+            $encryptor
         );
         $this->session = $session;
     }
