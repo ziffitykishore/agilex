@@ -9,5 +9,4 @@ domready(() => {
     $('.contact-link').first().clone().appendTo('.navigation ul:first');
     $('.about-link').first().clone().appendTo('.navigation ul:first');
     $('.phone-number.only-on-mobile').first().clone().prependTo('.page-header');
-    $('.level-top.first').click(() => $('.all-category a').text('All Products'))
 });
