@@ -11,6 +11,9 @@ use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Checkout\Model\Cart;
+use Magento\Framework\App\Config\Storage\WriterInterface;
+use Magento\Framework\App\Cache\TypeListInterface;
+use Magento\Framework\Encryption\EncryptorInterface;
 
 class SpotPricingApi extends Adapter
 {
@@ -28,14 +31,20 @@ class SpotPricingApi extends Adapter
         Session $session,
         TestMode $testMode,
         SessionManagerInterface $sessionManager,
-        Cart $cart
+        Cart $cart,
+        WriterInterface $configWriter,
+        TypeListInterface $cacheTypeList,
+        EncryptorInterface $encryptor
     ) {
         parent::__construct(
             $curlFactory,
             $logger,
             $config,
             $storeManager,
-            $testMode
+            $testMode,
+            $configWriter,
+            $cacheTypeList,
+            $encryptor
         );
         $this->session = $session;
         $this->sessionManager = $sessionManager;
