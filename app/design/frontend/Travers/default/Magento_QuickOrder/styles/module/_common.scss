@@ -57,11 +57,12 @@ $order-product-bg__color: $color-gray94;
 
                             @include min-screen($screen__m) {
                                 label {
-                                    transform: translateX(-$indent__s);
+                                    transform: translateX(-12px);
                                 }
                             }
 
-                            .control {
+                            .control,
+                            .control input {
                                 margin-top: 0;
                             }
                         }
