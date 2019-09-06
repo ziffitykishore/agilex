@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee89739c475af071f05a6450d4f65f82",
+    "content-hash": "17b892cf7d238e38b4e9fe87f02d7473",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -64,16 +64,16 @@
         },
         {
             "name": "algolia/algoliasearch-magento-2",
-            "version": "dev-develop",
+            "version": "1.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-magento-2.git",
-                "reference": "5d88ad8d7da9931c294885042444b9802a71d31b"
+                "reference": "19d2026828d5cb9403fc4998ea299b89baf457e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/5d88ad8d7da9931c294885042444b9802a71d31b",
-                "reference": "5d88ad8d7da9931c294885042444b9802a71d31b",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/19d2026828d5cb9403fc4998ea299b89baf457e7",
+                "reference": "19d2026828d5cb9403fc4998ea299b89baf457e7",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "MIT"
             ],
             "description": "Algolia Search integration for Magento 2",
-            "time": "2019-07-03T15:52:07+00:00"
+            "time": "2019-07-04T10:59:48+00:00"
         },
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -25738,7 +25738,6 @@
     "stability-flags": {
         "composer/composer": 15,
         "somethingdigital/magento2-migration": 20,
-        "algolia/algoliasearch-magento-2": 20,
         "phpmd/phpmd": 0
     },
     "prefer-stable": true,
