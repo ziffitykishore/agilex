@@ -8,6 +8,42 @@
 
 & when (@media-common = true) {
 
+     .choice {
+         input[type="checkbox"] {
+             display: none;
+             & + label {
+                 cursor: pointer;
+                 &:before {
+                     content: '';
+                     border: 1px solid #d8dde7;
+                     display: inline-block;
+                     height: 14px;
+                     width: 14px;
+                     vertical-align: middle;
+                     margin-right: 8px;
+                     -webkit-transition: .4s ease;
+                     transition: .4s ease;
+                     border-radius: 3px;
+                 }
+             }
+             &:checked {
+                 & + label {
+                     &:before {
+                         background: #3391cf;
+                         border: 3px solid #d8dde7;
+                     }
+                 }
+             }
+         }
+         label {
+             display: inline;
+             color: #000;
+             font-weight: normal;
+             font-size: 14px;
+             position: relative;
+         }
+     }
+
     body {
         overflow-x: hidden;
     }
@@ -16,31 +52,23 @@
         font-weight: 300;
     }
 
-    .f-reg{
-        font-weight: 400;
+    ._keyfocus *,
+    input:not([disabled]),
+    textarea:not([disabled]),
+    select:not([disabled]) {
+        &:focus {
+            box-shadow: none;
+        }
     }
 
-    .f-md{
-        font-weight: 500;
-    }
-
-    .f-sb{
-        font-weight: 600;
-    }
-
-    .f-b{
-        font-weight: 700;
-    }
-
-    .h1{
-        margin: 0 0 100px 0;
-        font-size: 52px;
+    .heading {
         text-transform: uppercase;
     }
 
-    .h2{
-        margin: 0 0 45px 0;
-        text-transform: uppercase;
+    .page-title-wrapper {
+        .page-title {
+            font-weight: 600;
+        }
     }
 
 }
@@ -56,8 +84,21 @@
         .transition(all 0.5s ease-in-out 0s);
 
         &:hover {
-            .lib-css(background, @c-hover_color);
+            .lib-css(background, @c-primary_color);
         }
+    }
+}
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, 38px);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
     }
 }
 
@@ -69,19 +110,3 @@
 }
 
 
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
-
-    .h2{
-        margin: 0 0 20px 0;
-    }
-
-}
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-  
-    .h2{
-        margin: 0 0 35px 0;
-    }
-
-}
