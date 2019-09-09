@@ -69,11 +69,11 @@
                                                                                         <item name="sortOrder" xsi:type="string">3</item>
                                                                                     </item>
                                                                                     <item name="checkout_ordernotes" xsi:type="array">
-                                                                                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/abstract</item>
+                                                                                        <item name="component" xsi:type="string">Magento_Ui/js/form/element/textarea</item>
                                                                                         <item name="config" xsi:type="array">
                                                                                             <item name="customScope" xsi:type="string">customCheckoutForm</item>
                                                                                             <item name="template" xsi:type="string">ui/form/field</item>
-                                                                                            <item name="elementTmpl" xsi:type="string">ui/form/element/input</item>
+                                                                                            <item name="elementTmpl" xsi:type="string">ui/form/element/textarea</item>
                                                                                         </item>
                                                                                         <item name="provider" xsi:type="string">checkoutProvider</item>
                                                                                         <item name="dataScope" xsi:type="string">customCheckoutForm.checkout_ordernotes</item>
