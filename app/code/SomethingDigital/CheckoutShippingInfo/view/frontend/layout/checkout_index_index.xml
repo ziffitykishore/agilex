@@ -54,7 +54,7 @@
                                                                                         <item name="provider" xsi:type="string">checkoutProvider</item>
                                                                                         <item name="dataScope" xsi:type="string">customCheckoutForm.checkout_shiptopo</item>
                                                                                         <item name="label" xsi:type="string">Ship to PO</item>
-                                                                                        <item name="sortOrder" xsi:type="string">1</item>
+                                                                                        <item name="sortOrder" xsi:type="string">2</item>
                                                                                     </item>
                                                                                     <item name="checkout_deliverypoint" xsi:type="array">
                                                                                         <item name="component" xsi:type="string">Magento_Ui/js/form/element/abstract</item>
@@ -66,7 +66,7 @@
                                                                                         <item name="provider" xsi:type="string">checkoutProvider</item>
                                                                                         <item name="dataScope" xsi:type="string">customCheckoutForm.checkout_deliverypoint</item>
                                                                                         <item name="label" xsi:type="string">Delivery Point</item>
-                                                                                        <item name="sortOrder" xsi:type="string">1</item>
+                                                                                        <item name="sortOrder" xsi:type="string">3</item>
                                                                                     </item>
                                                                                     <item name="checkout_ordernotes" xsi:type="array">
                                                                                         <item name="component" xsi:type="string">Magento_Ui/js/form/element/abstract</item>
@@ -78,7 +78,7 @@
                                                                                         <item name="provider" xsi:type="string">checkoutProvider</item>
                                                                                         <item name="dataScope" xsi:type="string">customCheckoutForm.checkout_ordernotes</item>
                                                                                         <item name="label" xsi:type="string">Order Notes</item>
-                                                                                        <item name="sortOrder" xsi:type="string">1</item>
+                                                                                        <item name="sortOrder" xsi:type="string">4</item>
                                                                                     </item>
                                                                                 </item>
                                                                             </item>
