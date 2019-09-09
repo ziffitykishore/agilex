@@ -60,7 +60,7 @@ class Index extends Action
             $sxInventory = $product->getData('sx_inventory_status');
             $stockItem = $this->stockItem->load($product->getId(), 'product_id');
 
-            if ($sxInventory == SxInventoryStatus::STATUS_STOCK) {
+            if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_DNR) {
                 if (isset($quoteItems[$product->getId()])) {
                     if (($stockItem->getQty() - $quoteItems[$product->getId()] < 0)
                         && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
