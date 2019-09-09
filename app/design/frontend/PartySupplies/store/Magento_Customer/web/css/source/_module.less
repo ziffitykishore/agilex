@@ -33,6 +33,9 @@
     .login-container {
         box-shadow: 4px 10px 13px 0px #00000045;
         border-radius: 5px;
+        min-height: 420px;
+        max-width: 840px;
+        width: 100%;
         padding: 40px;
         box-sizing: border-box;
         background-color: #fff;
@@ -247,7 +250,7 @@
             &.current {
                 a,
                 strong {
-                    .lib-css(border-color, @account-nav-current-border-color);
+                    .lib-css(border-color, @c-primary_color);
                     .lib-css(color, @account-nav-current-color);
                     .lib-css(font-weight, @account-nav-current-font-weight);
                 }
@@ -322,6 +325,7 @@
         padding: @form-element-input__padding;
         position: relative;
         z-index: 1;
+        display: none;
 
         &:before {
             content: '';
@@ -330,6 +334,7 @@
             position: absolute;
             top: 0;
             z-index: -1;
+            .transition(all 0.5s ease 0s);
         }
 
         .password-none & {
@@ -385,7 +390,6 @@
     .form.password.forget,
     .form.create.account,
     .form.form-orders-search {
-        max-width: 420px;
         margin: auto;
         box-shadow: 4px 10px 13px 0px #00000045;
         border-radius: 5px;
@@ -399,6 +403,22 @@
     .customer-account-createpassword,
     .customer-account-create,
     .customer-account-confirmation{
+
+
+        .page-header {
+            margin-bottom: 0;
+        }
+
+        .page-title-wrapper{
+            .page-title {
+                text-align: center;
+                font-weight: 600;
+                padding: 30px 0 30px;
+                margin: 0;
+                font-size: 3rem;
+            }
+        }
+
         .page-main{
            .columns{  
                 .actions-toolbar{
@@ -429,13 +449,7 @@
         }
     }
 
-    .acc-head-alt{
-        text-align: center;
-        font-weight: 600;
-        padding: 30px 0 30px;
-        margin: 0;
-        font-size: 3rem;
-    }
+
 
     .field .control{
         position: relative;
@@ -444,7 +458,8 @@
     .input-text.mage-error + .mage-error{
         &:before{
             position: absolute;
-            content: '';
+            content: '!';
+            font-size: 25px;
             color: #fff;
             width: 40px;
             height: 44px;
@@ -458,6 +473,8 @@
         }
     }
 
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-create,
     .customer-account-forgotpassword,
     .customer-account-login{
@@ -466,13 +483,23 @@
             .column.main{
                 background-image: url(../images/account/bg_login_right.png);
                 background-repeat: no-repeat;
-                background-position: right;
-                padding: 0;
+                background-position: center right;
+                background-size: cover;
+                padding: 40px 20px;
+                .flex();
+                align-items: center;
+                justify-content: center;
             }
         }
     }
 
+    form.send.confirmation,
+    .form.password.reset,
     .form.password.forget{
+        max-width: 380px;
+        width: 100%;
+        min-height: 365px;
+        margin: 0 auto;
         .field.note{
             margin-bottom: 15px;
         }
@@ -546,18 +573,18 @@
     ============================ */
 
     .login-container{
-        max-width: 420px;
         margin: auto;
         padding: 30px;
     }
 
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-create,
     .customer-account-forgotpassword,
     .customer-account-login{
         .page-main{
             .column.main{
                 min-height: auto;
-                background-size: cover;
                 padding-bottom: 100px;
             }
         }
@@ -590,8 +617,7 @@
     .login-container {
         box-shadow: none;
         border-radius: 5px;
-        padding: 15px;
-        margin: 0 15px;
+        padding: 30px 15px;
         max-width: 100%;
     }
 
@@ -610,6 +636,9 @@
         }
     }
 
+
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-create,
     .customer-account-forgotpassword,
     .customer-account-login{
@@ -637,6 +666,9 @@
         padding: 200px 0 40px 0;
     }
 
+
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-forgotpassword,
     .customer-account-login,
     .customer-account-create{
@@ -660,12 +692,16 @@
         padding: 100px 0 40px;
     }
 
+
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-forgotpassword,
     .customer-account-login,
     .customer-account-create{
         .page-main{
             .column.main{
-                padding-bottom: 200px;
+                padding: 0;
+                min-height: 790px;
             }
         }
     }
@@ -678,10 +714,6 @@
         Custom
     ============================ */
 
-    .login-container {
-        max-width: 840px;
-    }
-
     .form.create.account{
         max-width: 790px;
     }
@@ -693,7 +725,6 @@
 
     .login-container {
         &:extend(.abs-add-clearfix-desktop all);
-        max-width: 700px;
         margin: auto;
         display: flex;
         justify-content: center;
@@ -786,6 +817,26 @@
     }
 
     .account {
+
+        .page-main {
+            padding-left: 0;
+            padding-right: 0;
+
+            .page-title-wrapper {
+                .lib-css(background, @c-whitesmoke);
+                padding-top: 20px;
+                padding-bottom: 20px;
+                margin-bottom: 40px;
+                .page-title {
+                    .container-md();
+                    display: block;
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .columns {
+            .container-md();
+        }
         .column.main {
             .block:not(.widget) {
                 .block-content {
@@ -853,13 +904,17 @@
         }
     }
 
+
+
     .customer-account-create,
     .customer-account-forgotpassword,
     .customer-account-login{
         .page-main{
+            .columns {
+
+            }
             .column.main{
                 min-height: auto;
-                padding-bottom: 120px;
                 background-size: contain;
             }
         }
@@ -883,12 +938,10 @@
         }
         .form-create-account{
             .fieldset{
-                display: flex;
-                flex-wrap: wrap;
+                .flex();
                 margin: 0;
                 .field{
-                    flex: 0 0 50%;
-                    max-width: 50%;
+                    .flex-width(50%);
                     padding-left: 15px;
                     padding-right: 15px;
                 }

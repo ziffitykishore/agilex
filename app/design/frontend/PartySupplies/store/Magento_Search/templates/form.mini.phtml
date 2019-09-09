@@ -28,14 +28,16 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            }'
                            type="text"
                            name="<?= /* @escapeNotVerified */ $helper->getQueryParamName() ?>"
-                           value="<?= /* @escapeNotVerified */ $helper->getEscapedQueryText() ?>"
-                           placeholder="<?= /* @escapeNotVerified */ __('Search...') ?>"
+                           value="<?= /* @escapeNotVerified */ __('Search') ?>"
+                           placeholder="<?= /* @escapeNotVerified */ __('Search') ?>"
                            class="input-text"
                            maxlength="<?= /* @escapeNotVerified */ $helper->getMaxQueryLength() ?>"
                            role="combobox"
                            aria-haspopup="false"
                            aria-autocomplete="both"
-                           autocomplete="off"/>
+                           autocomplete="off"
+                           onblur="if(this.value == '') { this.value='<?= /* @escapeNotVerified */ __('Search') ?>'}" onfocus="if (this.value == '<?= /* @escapeNotVerified */ __('Search') ?>') {this.value=''}"
+                    />
                     <div id="search_autocomplete" class="search-autocomplete"></div>
                     <?= $block->getChildHtml() ?>
                 </div>

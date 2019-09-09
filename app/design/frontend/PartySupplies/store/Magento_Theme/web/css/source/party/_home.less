@@ -5,11 +5,6 @@
 /* Home Page Sections Category */
 
 & when (@media-common = true) {
-
-    .page-title-wrapper{
-        display: none;
-    }
-
     .greet.welcome{
         display: none !important;
     }
@@ -186,9 +181,12 @@
 
     .sec-why{
         padding: 0 45px 0;
-        h1{
+        .heading{
             text-align: center;
             margin-bottom: 40px;
+            span {
+                font-weight: 600;
+            }
         }
         .why-row{
             margin-left: -20px;
@@ -238,8 +236,13 @@
         margin-top: 40px;
         margin-bottom: 45px;
         padding: 0 45px;
+        .heading {
+            span {
+                font-weight: 600;
+            }
+        }
         .abt-img-cont{
-            h1{
+            .heading{
                 display: none;
                 text-align: center;
                 margin-bottom: 30px; 
@@ -274,7 +277,7 @@
         }
         .abt-cont{
             padding-left: 30px;
-            h1{
+            .heading{
                 margin-bottom: 20px;
                 margin-top: 0;
             }

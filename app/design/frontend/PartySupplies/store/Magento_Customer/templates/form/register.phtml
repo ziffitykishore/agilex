@@ -10,7 +10,6 @@
 ?>
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
-<h2 class="acc-head-alt"><?= $block->escapeHtmlAttr(__('User Registration')) ?></h2>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
@@ -172,15 +171,15 @@
     <div class="fieldset">
         <div class="actions-toolbar field">
             <div class="primary">
-                <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Login')) ?>"><span><?= $block->escapeHtml(__('Login')) ?></span></button>
+                <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
             </div>
         </div>
     </div>
 
     <div class="actions-toolbar">
         <div class="secondary">
-            <span><?= $block->escapeHtmlAttr(__("Don't have an account yet?")) ?></span>
-            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Sign up here')) ?></span></a>
+            <span><?= $block->escapeHtmlAttr(__("Already have an account?")) ?></span>
+            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('Sign In')) ?></span></a>
         </div>
     </div>
 
