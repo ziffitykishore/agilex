@@ -62,7 +62,7 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
                     'There is already an account with this account number.'
                 );
             }
-        } elseif (!$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
+        } elseif (!empty($traversAccountId) && !$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
             $message = __(
                 'Zip Code doesn\'t match customer number.'
             );
