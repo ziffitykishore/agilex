@@ -22,7 +22,7 @@ if (isset($catalogData) && count($catalogData) > 0) {
                         $categoryImageURL = $mediaBaseUrl.'catalog/category/'.strtolower(str_replace('--', '-', $CategoryNameSplChar)).'.jpg'; ?>
                         <img src="<?= $block->escapeUrl($categoryImageURL); ?>?format=A_68" alt="<?= $block->escapeHtml($cat->getName()); ?>" />
                     </div>
-                    <strong class="cat-name"><?= $block->escapeHtml($cat->getName()); ?></strong>
+                    <h3 class="cat-name"><?= $block->escapeHtml($cat->getName()); ?></h3>
                 </a>
             </div>
             <?php
