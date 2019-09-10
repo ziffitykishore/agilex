@@ -1,0 +1,35 @@
+<?php
+$data = $block->getCatalogData();
+$catalogData = $data['catalogData'];
+$mediaBaseUrl = $data['mediaBaseUrl'];
+if (isset($catalogData) && count($catalogData) > 0) {
+    ?>
+    <div class="widget block block-static-block">
+    <section class="sec-catagory">
+    <h2 class="text-center text-normal">
+        <?= $block->escapeHtml($block->getTitle()); ?>
+    </h2>
+    <div class="home-cat cat-pro-cont">
+        <?php
+        foreach ($catalogData as $key => $cat) {
+            ?>
+            <div class="catalog-category">
+                <a href="<?= $block->escapeUrl($cat->getUrl()); ?>">
+                    <div class="img-border">
+                        <?php
+                        $categoryName = str_replace(' ', '-', $cat->getName());
+                        $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
+                        $categoryImageURL = $mediaBaseUrl.'catalog/category/'.strtolower(str_replace('--', '-', $CategoryNameSplChar)).'.jpg'; ?>
+                        <img src="<?= $block->escapeUrl($categoryImageURL); ?>?format=A_68" alt="<?= $block->escapeHtml($cat->getName()); ?>" />
+                    </div>
+                    <h3 class="cat-name"><?= $block->escapeHtml($cat->getName()); ?></h3>
+                </a>
+            </div>
+            <?php
+        } ?>
+    </div>
+    </section>
+    </div>
+    <?php
+}
+?>

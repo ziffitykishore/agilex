@@ -1,0 +1,242 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme variables
+//  _____________________________________________
+
+//
+//  Typography
+//  ---------------------------------------------
+
+//  Fonts
+@font-family-name__base: 'Open Sans';
+@font-family__base: @font-family-name__base, @font-family__sans-serif;
+
+//
+//  Sections variables
+//  _____________________________________________
+
+//
+//  Tabs
+//  ---------------------------------------------
+@tab-content__border-top-status: true;
+
+//
+//  Sidebar
+//  ---------------------------------------------
+
+@sidebar__background-color: @color-white-smoke; // Used in cart sidebar, Checkout sidebar, Tier Prices, My account navigation, Rating block background
+
+//
+//  New Variables
+//  ---------------------------------------------
+
+@c-primary_color: #0091d4;
+@c-sec_color: #0079bc;
+@c-text_color: #0d0d0d;
+@c-text_sec_color: #8c8c8c;
+@c-hover_color: #f1003e;
+@c-bg-color: #f9f9f9;
+@c-white_color: #fff;
+@c-whitesmoke: #f2f5f8;
+
+@c-tab: 992px;
+@c-desk: 1200px;
+@c-desk-md: 1300px;
+@c-desk-lg: 1700px;
+@c-mob: 576px;
+
+
+
+/* Mixin style */
+
+
+.flex() {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.flex-width(@width) {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 @width;
+    flex: 0 0 @width;
+    max-width: @width;
+}
+
+.box-shadow (@string) {
+    -webkit-box-shadow: @string;
+    -moz-box-shadow: @string;
+    box-shadow: @string;
+}
+
+.drop-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+    -webkit-box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    box-shadow:	@x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.inner-shadow (@x: 0, @y: 1px, @blur: 2px, @spread: 0, @alpha: 0.25) {
+    -webkit-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    -moz-box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+    box-shadow: inset @x @y @blur @spread rgba(0, 0, 0, @alpha);
+}
+
+.br-radius (@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.transition (@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+.transform(@string){
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+    transform: @string;
+}
+.scale (@factor) {
+    -webkit-transform: scale(@factor);
+    -moz-transform: scale(@factor);
+    -ms-transform: scale(@factor);
+    -o-transform: scale(@factor);
+    transform: scale(@factor);
+}
+.rotate (@deg) {
+    -webkit-transform: rotate(@deg);
+    -moz-transform: rotate(@deg);
+    -ms-transform: rotate(@deg);
+    -o-transform: rotate(@deg);
+    transform: rotate(@deg);
+}
+.skew (@deg, @deg2) {
+    -webkit-transform: skew(@deg, @deg2);
+    -moz-transform: skew(@deg, @deg2);
+    -ms-transform: skew(@deg, @deg2);
+    -o-transform: skew(@deg, @deg2);
+    transform: skew(@deg, @deg2);
+}
+.translate (@x, @y:0) {
+    -webkit-transform: translate(@x, @y);
+    -moz-transform: translate(@x, @y);
+    -ms-transform: translate(@x, @y);
+    -o-transform: translate(@x, @y);
+    transform: translate(@x, @y);
+}
+.translate3d (@x, @y: 0, @z: 0) {
+    -webkit-transform: translate3d(@x, @y, @z);
+    -moz-transform: translate3d(@x, @y, @z);
+    -ms-transform: translate3d(@x, @y, @z);
+    -o-transform: translate3d(@x, @y, @z);
+    transform: translate3d(@x, @y, @z);
+}
+
+.d-none {
+    display: none !important;
+}
+
+
+.container-lg() {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+
+
+    @media screen and (min-width: 1600px) {
+        padding-right: 60px;
+        padding-left: 60px;
+    }
+
+
+    @media screen and (max-width: 1300px) {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+
+}
+
+.container-lg {
+    .container-lg();
+}
+
+
+.container-md() {
+    max-width: 1610px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.container-md {
+    .container-md();
+}
+
+.container-sm() {
+    max-width: 1210px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+}
+
+.container-sm {
+    .container-sm();
+}
+
+
+// Mixin itself
+.clearfix() {
+    &::after {
+        display: block;
+        content: "";
+        clear: both;
+    }
+}
+
+
+/*.lib-link( @_link-color: @color-blue, @_link-text-decoration: @link__text-decoration, @_link-color-visited: @link__visited__color, @_link-text-decoration-visited: @link__visited__text-decoration, @_link-color-hover: @link__hover__color, @_link-text-decoration-hover: @link__hover__text-decoration, @_link-color-active: @link__active__color, @_link-text-decoration-active: none) {
+    .lib-css(color, @color-blue);
+    .lib-css(text-decoration, @_link-text-decoration);
+    &:visited {
+        .lib-css(color, @color-blue);
+        .lib-css(text-decoration, @_link-text-decoration-visited);
+    }
+    &:hover {
+        .lib-css(color, @color-blue);
+        .lib-css(text-decoration, @_link-text-decoration-hover);
+    }
+    &:active {
+        .lib-css(color, @color-blue);
+        .lib-css(text-decoration, @_link-text-decoration-active);
+    }
+}*/
+
+@keyframes bounce {
+    0% {
+        transform: translate(0,0);
+    }
+    20% {
+        transform: translate(0,10px);
+    }
+    40% {
+        transform: translate(0,0);
+    }
+}
