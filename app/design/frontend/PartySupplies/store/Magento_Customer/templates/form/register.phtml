@@ -150,7 +150,7 @@
                 <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Verify Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
             </div>
         </div>
-        <?= $block->getChildHtml('form_additional_info') ?>
+
 
         <div class="field confirmation required">
             <label for="customer-id" class="label"><span><?= $block->escapeHtml(__('NAV Customer ID (Secret Number)')) ?></span></label>
@@ -165,6 +165,8 @@
                 <label for="company-contact"><?= $block->escapeHtmlAttr(__('Primary Company Contact')) ?></label>
             </div>
         </div>
+
+        <?= $block->getChildHtml('form_additional_info') ?>
 
     </div>
     
