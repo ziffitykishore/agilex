@@ -1,0 +1,105 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_QuickOrder
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+// @codingStandardsIgnoreFile
+$helperSearchQod = $this->helper(\Mageplaza\QuickOrder\Helper\Search::class);
+/** @var \Magento\Search\Helper\Data $searchHelper */
+$searchHelper = $this->helper(\Magento\Search\Helper\Data::class);
+$allowdisplayImage = $helperSearchQod->getAllowDisplayImageConfig();
+?>
+<script src="<?= $helperSearchQod->getJsFileUrl(); ?>"></script>
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Magento_Catalog/js/price-utils',
+        'Mageplaza_QuickOrder/js/model/qod_item',
+        'mpDevbridgeAutocomplete'
+    ], function ($, priceUtils, qodItem) {
+        "use strict";
+
+        var baseUrl = '<?= trim($block->getBaseUrl(), '/') . '/' ?>',
+            baseImageUrl = '<?= $helperSearchQod->getMediaHelper()->getSearchMediaUrl() ?>',
+            priceFormat = <?= $helperSearchQod->getPriceFormat() ?>,
+            allowdisplayImage = <?= $helperSearchQod->getAllowDisplayImageConfig() ?>;
+
+        var displayInfo = allowdisplayImage ? ["price", "image", "sku"] : ['price', 'sku'];
+
+        var searchInput = $('#quickod-instansearch');
+
+        searchInput.devbridgeAutocomplete({
+            lookup: mageplazaSearchProducts,
+            lookupLimit: <?php  echo (int)$helperSearchQod->getMaxResultAllowShow() ?: 6; ?>,
+            maxHeight: 2000,
+            minChars: <?= (int)$helperSearchQod->getMinCharacterToQuery() ?>,
+            lookupFilter: function (suggestion, query, queryLowerCase) {
+                if (suggestion.s.toLowerCase().indexOf(queryLowerCase) !== -1) {
+                    return suggestion.s.toLowerCase().indexOf(queryLowerCase) !== -1;
+                } else {
+                    return suggestion.value.toLowerCase().indexOf(queryLowerCase) !== -1;
+                }
+            },
+            onSelect: function (e) {
+                var instant_search = $("#quickod-instansearch"),
+                    skuSelected = e.s;
+
+                qodItem.getDataItemsFromSearch(skuSelected);
+                instant_search.val('');
+                instant_search.focus().select()
+
+            },
+            formatResult: function (suggestion, currentValue) {
+                var html = '<div href="#">';
+
+                if ($.inArray('image', displayInfo) !== -1) {
+                    html += '<div class="suggestion-left"><img class="img-responsive" src="' + correctProductUrl(suggestion.i, true) + '" alt="" /></div>';
+                }
+
+                html += '<div class="suggestion-right">';
+                html += '<div class="product-line product-name"><a href="' + correctProductUrl(suggestion.u) + '" target="_blank">' + suggestion.value + '</a></div>';
+
+                if ($.inArray('price', displayInfo) !== -1) {
+                    if (suggestion.t == "bundle") {
+                        html += '<div class="product-line product-price"><?= __('Price: ') ?>' + priceUtils.formatPrice(suggestion.minP, priceFormat) + '-' + priceUtils.formatPrice(suggestion.maxP, priceFormat) + '</div>';
+                    } else {
+                        html += '<div class="product-line product-price"><?= __('Price: ') ?>' + priceUtils.formatPrice(suggestion.p, priceFormat) + '</div>';
+                    }
+                }
+                if ($.inArray('sku', displayInfo) !== -1) {
+                    html += '<div class="product-des"><p class="short-des" id=' + suggestion.s + '><?= __('Sku: ') ?>' + suggestion.s + '</p></div>';
+                }
+                html += '</div></div>';
+
+                return html;
+            }
+        });
+
+        function correctProductUrl(urlKey, isImage) {
+            if (urlKey.search('http') !== -1) {
+                return urlKey;
+            }
+
+            return ((typeof isImage !== 'undefined') ? baseImageUrl : baseUrl) + urlKey;
+        }
+
+        $('.logo').click(function () {
+            window.location.href = baseUrl;
+        });
+    });
+</script>
