@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="partysupplies" translate="label" sortOrder="450">
+            <label>PartySupplies</label>
+        </tab>
+        <section id="reseller_certification" translate="label" type="text" sortOrder="301" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Reseller Certification</label>
+            <tab>partysupplies</tab>
+            <resource>PartySupplies_Customer::config_resellercertificate</resource>
+            <group id="general" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" >
+                <label>General</label>
+                <field id="upload_form" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="6" showInDefault="1" showInWebsite="1" >
+                    <label>Upload Form</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\File</backend_model>
+                    <upload_dir config="system" scope_info="1">reseller_certificate</upload_dir>
+                </field>
+                <field id="download_form" translate="label" type="button" sortOrder="6" showInDefault="1" showInWebsite="1" >
+                    <frontend_model>PartySupplies\Customer\Block\System\Config\Button</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+

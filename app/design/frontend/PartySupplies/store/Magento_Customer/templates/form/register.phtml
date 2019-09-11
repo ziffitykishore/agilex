@@ -150,21 +150,22 @@
                 <input type="password" name="password_confirmation" title="<?= $block->escapeHtmlAttr(__('Verify Password')) ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
             </div>
         </div>
-        <?= $block->getChildHtml('form_additional_info') ?>
 
         <div class="field confirmation required">
             <label for="customer-id" class="label"><span><?= $block->escapeHtml(__('NAV Customer ID (Secret Number)')) ?></span></label>
             <div class="control">
-                <input type="text" name="customer-id" id="customer-id" class="input-text" title="<?= $block->escapeHtmlAttr(__('NAV Customer ID (Secret Number)')) ?>" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+                <input type="text" name="nav_customer_id" id="nav_customer_id" class="input-text" title="<?= $block->escapeHtmlAttr(__('NAV Customer ID (Secret Number)')) ?>" data-validate="{required:true}" autocomplete="off">
             </div>
         </div>
-
+        
         <div class="field choice">
             <div class="control-check">
                 <input type="checkbox" name="company-contact" id="company-contact">
                 <label for="company-contact"><?= $block->escapeHtmlAttr(__('Primary Company Contact')) ?></label>
             </div>
         </div>
+        
+        <?= $block->getChildHtml('form_additional_info') ?>
 
     </div>
     
