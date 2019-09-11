@@ -1254,12 +1254,12 @@
     <virtualType name="productAttributesDataProcessor" type="Creatuity\Nav\Model\Data\Processor\AttributesDataProcessor">
         <arguments>
             <argument name="attributes" xsi:type="array">
-                <item name="bsiItemAttribute" xsi:type="string">bsi_item</item>
-                <item name="vendorNoAttribute" xsi:type="string">vendor_no</item>
-                <item name="vendorItemNoAttribute" xsi:type="string">vendor_item_no</item>
-                <item name="costAttribute" xsi:type="string">cost</item>
+<!--                <item name="bsiItemAttribute" xsi:type="string">bsi_item</item>-->
+<!--                <item name="vendorNoAttribute" xsi:type="string">vendor_no</item>-->
+<!--                <item name="vendorItemNoAttribute" xsi:type="string">vendor_item_no</item>-->
+<!--                <item name="costAttribute" xsi:type="string">cost</item>-->
                 <item name="priceAttribute" xsi:type="string">price</item>
-                <item name="clearanceAttribute" xsi:type="string">clearance</item>
+<!--                <item name="clearanceAttribute" xsi:type="string">clearance</item>-->
             </argument>
         </arguments>
     </virtualType>
@@ -1274,7 +1274,7 @@
         <arguments>
             <argument name="dataProcessors" xsi:type="array">
                 <item name="productAttributesDataProcessor" xsi:type="object">productAttributesDataProcessor</item>
-                <item name="productClearanceDataProcessor" xsi:type="object">productClearanceDataProcessor</item>
+<!--                <item name="productClearanceDataProcessor" xsi:type="object">productClearanceDataProcessor</item>-->
                 <item name="productInventoryDataProcessor" xsi:type="object">Creatuity\Nav\Model\Data\Processor\InventoryDataProcessor</item>
             </argument>
         </arguments>

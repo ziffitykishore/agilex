@@ -74,17 +74,20 @@ class ProductUpdateTask implements TaskInterface
 
             $failedCount = 0;
             $updatedCount = 0;
-
+            $startTime = microtime(true);
             foreach ($navProducts as $navProductData) {
+                $startTimeET = microtime(true);
                 $updateResult = $this->updateProduct($navProductData);
-
+                $endTimeET = microtime(true);
+                $this->logger->info($endTimeET-$startTimeET.','.count($navProducts).',Each');
                 if ($updateResult) {
                     ++$updatedCount;
                 } else {
                     ++$failedCount;
                 }
             }
-
+            $endTime = microtime(true);
+            $this->logger->info($endTime-$startTime.','.count($navProducts).',Bulk');
             ++$iterCount;
 
             $this->logger->debug(
