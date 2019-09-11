@@ -106,5 +106,16 @@ require(['jquery', 'slick'], function ($) {
             $('body').addClass('ie')
         }*/
 
+
+
+    /* =====================
+                PLP
+        ==================== */
+
+        $(".plp-filter .filter-options-title").click(function () {
+            var _this = $(this);
+            $(this).next('.filter-options-content').toggleClass("active");
+        });
+
     });
 });
