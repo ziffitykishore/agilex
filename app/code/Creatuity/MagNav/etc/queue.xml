@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
+    <publisher name="queue_manager" connection="amqp" exchange="magnav" />
+    <topic publisher="queue_manager" name="creatuity.magnav.priority" schema="Creatuity\MagNav\Api\Data\MessageInterface" />
+    <topic publisher="queue_manager" name="creatuity.magnav.lazy" schema="Creatuity\MagNav\Api\Data\MessageInterface" />
+    <consumer name="priorityConsumer" queue="magnav_priority_queue" connection="amqp" class="Creatuity\MagNav\Model\ConnectionManager" method="consumeMessage" />
+    <consumer name="lazyConsumer" queue="magnav_lazy_queue" connection ="amqp" class="Creatuity\MagNav\Model\ConnectionManager" method="consumeMessage" />
+    <bind queue="magnav_priority_queue" exchange="magnav" topic="creatuity.magnav.priority" />
+    <bind queue="magnav_lazy_queue" exchange="magnav" topic="creatuity.magnav.lazy" />
+</config>

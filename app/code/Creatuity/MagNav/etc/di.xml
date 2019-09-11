@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd" >
+
+    <preference for="Creatuity\MagNav\Api\Data\MessageInterface" type="Creatuity\MagNav\Model\RabbitMessage" />
+
+    <type name="Creatuity\MagNav\Model\ConnectionManager">
+        <arguments>
+            <argument name="connections" xsi:type="array">
+                <item name="UPDATE_MAGENTO_PRODUCTS" xsi:type="object">Creatuity\MagNav\Model\Connections\UpdateMagentoProducts</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Creatuity\MagNav\Model\MessageFactory">
+        <arguments>
+            <argument name="messageClass" xsi:type="string">Creatuity\MagNav\Model\RabbitMessage</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList" >
+        <arguments>
+            <argument name="commands" xsi:type="array" >
+                <item name="topology-install" xsi:type="object">Creatuity\MagNav\Console\Command\TopologyInstall</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

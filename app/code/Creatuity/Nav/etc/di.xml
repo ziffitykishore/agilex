@@ -1,0 +1,2225 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="lowerCaseDataTransform" type="Creatuity\Nav\Model\Data\Transform\Nav\LowerCaseDataTransform" />
+    <virtualType name="titleCaseDataTransform" type="Creatuity\Nav\Model\Data\Transform\Nav\TitleCaseDataTransform" />
+    <virtualType name="stringCastDataTransform" type="Creatuity\Nav\Model\Data\Transform\Nav\TypeCastDataTransform">
+        <arguments>
+            <argument name="type" xsi:type="string">string</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="floatCastDataTransform" type="Creatuity\Nav\Model\Data\Transform\Nav\TypeCastDataTransform">
+        <arguments>
+            <argument name="type" xsi:type="string">float</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="intCastDataTransform" type="Creatuity\Nav\Model\Data\Transform\Nav\TypeCastDataTransform">
+        <arguments>
+            <argument name="type" xsi:type="string">int</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="isStringClearanceDataTransform" type="Creatuity\Nav\Model\Data\Transform\Nav\IsIdenticalDataTransform">
+        <arguments>
+            <argument name="value" xsi:type="string">Clearance</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="skuFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">No</argument>
+            <argument name="to" xsi:type="string">sku</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="bsiItemFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">BSI_Item</argument>
+            <argument name="to" xsi:type="string">bsi_item</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="vendorNoFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Vendor_No</argument>
+            <argument name="to" xsi:type="string">vendor_no</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="vendorItemNoFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Vendor_Item_No</argument>
+            <argument name="to" xsi:type="string">vendor_item_no</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="costFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Unit_Cost</argument>
+            <argument name="to" xsi:type="string">cost</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="priceFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">WebPrice</argument>
+            <argument name="to" xsi:type="string">price</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="clearanceFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Item_Status</argument>
+            <argument name="to" xsi:type="string">clearance</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="qtyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">WebInventory</argument>
+            <argument name="to" xsi:type="string">qty</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="isInStockFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">WebInventory</argument>
+            <argument name="to" xsi:type="string">is_in_stock</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="skuDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">skuFieldMapping</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="bsiItemDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">bsiItemFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="stringCastDataTransform" xsi:type="object">stringCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="vendorNoDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">vendorNoFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="stringCastDataTransform" xsi:type="object">stringCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="vendorItemNoDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">vendorItemNoFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="stringCastDataTransform" xsi:type="object">stringCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="costDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">costFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="floatCastDataTransform" xsi:type="object">floatCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="priceDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">priceFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="floatCastDataTransform" xsi:type="object">floatCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="clearanceDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">clearanceFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="isStringClearanceDataTransform" xsi:type="object">isStringClearanceDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="qtyDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">qtyFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="floatCastDataTransform" xsi:type="object">floatCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="isInStockDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">isInStockFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="isPositiveDataTransform" xsi:type="object">Creatuity\Nav\Model\Data\Transform\Nav\IsPositiveDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="shipmentTrackCarrierCodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Shipping_Agent_Code</argument>
+            <argument name="to" xsi:type="const">Magento\Sales\Api\Data\ShipmentTrackInterface::CARRIER_CODE</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentTrackTitleFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Shipping_Agent_Service</argument>
+            <argument name="to" xsi:type="const">Magento\Sales\Api\Data\ShipmentTrackInterface::TITLE</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentTrackNumberFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">External_Tracking_No</argument>
+            <argument name="to" xsi:type="string">number</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentTrackTrackNumberFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">External_Tracking_No</argument>
+            <argument name="to" xsi:type="const">Magento\Sales\Api\Data\ShipmentTrackInterface::TRACK_NUMBER</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentPackageIdFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">No</argument>
+            <argument name="to" xsi:type="string">package_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shipmentTrackCarrierCodeDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">shipmentTrackCarrierCodeFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="lowerCaseDataTransform" xsi:type="object">lowerCaseDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentTrackTitleDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">shipmentTrackTitleFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="lowerCaseDataTransform" xsi:type="object">lowerCaseDataTransform</item>
+                <item name="titleCaseDataTransform" xsi:type="object">titleCaseDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentTrackTrackNumberDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">shipmentTrackTrackNumberFieldMapping</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentTrackNumberDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">shipmentTrackNumberFieldMapping</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentPackageIdDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">shipmentPackageIdFieldMapping</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="shipmentItemQtyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">Quantity</argument>
+            <argument name="to" xsi:type="string">qty</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shipmentItemQtyDataMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\DataMapping">
+        <arguments>
+            <argument name="fieldMapping" xsi:type="object">shipmentItemQtyFieldMapping</argument>
+            <argument name="dataTransforms" xsi:type="array">
+                <item name="floatCastDataTransform" xsi:type="object">floatCastDataTransform</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shipmentUpdateDataProcessorManager" type="Creatuity\Nav\Model\Data\Processor\Manager\DataProcessorManager">
+        <arguments>
+            <argument name="dataProcessors" xsi:type="array">
+                <item name="shipmentDataProcessor" xsi:type="object">Creatuity\Nav\Model\Data\Processor\ShipmentDataProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+    <virtualType name="customerNameFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Name</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerEmailFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">E_Mail</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineFirstFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Address</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineSecondFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Address_2</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerCityFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">City</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerRegionCodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">County</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPostcodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Post_Code</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="customerNameOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerName</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerEmailOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerEmail</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineFirstOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerStreetFirst</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineSecondOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerStreetSecond</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerCityOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerCity</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerRegionCodeOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerRegionCode</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPostcodeOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerPostcode</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="customerNameOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerNameFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerNameOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerEmailOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerEmailFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerEmailOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineFirstOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerStreetLineFirstFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerStreetLineFirstOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineSecondOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerStreetLineSecondFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerStreetLineSecondOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerCityOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerCityFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerCityOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerRegionCodeOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerRegionCodeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerRegionCodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPostcodeOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerPostcodeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerPostcodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+
+
+    <virtualType name="findCustomerOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="customerEmailOrderDataExtractorMapping" xsi:type="object">customerEmailOrderDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="createCustomerOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="customerNameOrderDataExtractorMapping" xsi:type="object">customerNameOrderDataExtractorMapping</item>
+                <item name="customerEmailOrderDataExtractorMapping" xsi:type="object">customerEmailOrderDataExtractorMapping</item>
+                <item name="customerStreetLineFirstOrderDataExtractorMapping" xsi:type="object">customerStreetLineFirstOrderDataExtractorMapping</item>
+                <item name="customerStreetLineSecondOrderDataExtractorMapping" xsi:type="object">customerStreetLineSecondOrderDataExtractorMapping</item>
+                <item name="customerCityOrderDataExtractorMapping" xsi:type="object">customerCityOrderDataExtractorMapping</item>
+                <item name="customerRegionCodeOrderDataExtractorMapping" xsi:type="object">customerRegionCodeOrderDataExtractorMapping</item>
+                <item name="customerPostcodeOrderDataExtractorMapping" xsi:type="object">customerPostcodeOrderDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="updateCustomerOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="customerNameOrderDataExtractorMapping" xsi:type="object">customerNameOrderDataExtractorMapping</item>
+                <item name="customerEmailOrderDataExtractorMapping" xsi:type="object">customerEmailOrderDataExtractorMapping</item>
+                <item name="customerStreetLineFirstOrderDataExtractorMapping" xsi:type="object">customerStreetLineFirstOrderDataExtractorMapping</item>
+                <item name="customerStreetLineSecondOrderDataExtractorMapping" xsi:type="object">customerStreetLineSecondOrderDataExtractorMapping</item>
+                <item name="customerCityOrderDataExtractorMapping" xsi:type="object">customerCityOrderDataExtractorMapping</item>
+                <item name="customerRegionCodeOrderDataExtractorMapping" xsi:type="object">customerRegionCodeOrderDataExtractorMapping</item>
+                <item name="customerPostcodeOrderDataExtractorMapping" xsi:type="object">customerPostcodeOrderDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+
+    <virtualType name="incrementIdFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">External_Document_No</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerOrderIdFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Customer_Order_No</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="grandTotalFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Total_Sales</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="taxAmountFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Unit_Price</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="baseDiscountAmountFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Unit_Price</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="baseShippingAmountFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Unit_Price</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="incrementIdOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getIncrementId</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="grandTotalOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getGrandTotal</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="taxAmountOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getTaxAmount</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="baseDiscountAmountOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getBaseDiscountAmount</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="baseShippingAmountOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getBaseShippingAmount</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="incrementIdOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">incrementIdFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">incrementIdOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerOrderIdOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerOrderIdFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">incrementIdOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="grandTotalOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">grandTotalFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">grandTotalOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="taxAmountOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">taxAmountFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">taxAmountOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="baseDiscountAmountOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">baseDiscountAmountFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">baseDiscountAmountOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="baseShippingAmountOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">baseShippingAmountFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">baseShippingAmountOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+    <virtualType name="paymentMethodCodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">ShortcutDimCode3</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="authorizeNetPayMethodCodeMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">authorizenet</argument>
+            <argument name="to" xsi:type="string">CC</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="authorizeNetDirectPostPayMethodCodeMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="const">Magento\Authorizenet\Model\Directpost::METHOD_CODE</argument>
+            <argument name="to" xsi:type="string" />
+        </arguments>
+    </virtualType>
+    <virtualType name="checkMoPayMethodCodeMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="const">Magento\OfflinePayments\Model\Checkmo::PAYMENT_METHOD_CHECKMO_CODE</argument>
+            <argument name="to" xsi:type="string" />
+        </arguments>
+    </virtualType>
+    <virtualType name="paypalExpressMethodCodeMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="const">Magento\Paypal\Model\AbstractConfig::METHOD_WPP_EXPRESS</argument>
+            <argument name="to" xsi:type="string" />
+        </arguments>
+    </virtualType>
+    <virtualType name="amazonMethodCodeMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
+        <arguments>
+            <argument name="from" xsi:type="string">amazonpayment</argument>
+            <argument name="to" xsi:type="string" />
+        </arguments>
+    </virtualType>
+
+    <virtualType name="paymentMethodCodeOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\PaymentMethodCodeOrderDataExtractor">
+        <arguments>
+            <argument name="paymentMethodCodeMap" xsi:type="array">
+                <item name="authorizeNetPayMethodCodeMapping" xsi:type="object">authorizeNetPayMethodCodeMapping</item>
+                <item name="authorizeNetDirectPostPayMethodCodeMapping" xsi:type="object">authorizeNetDirectPostPayMethodCodeMapping</item>
+                <item name="checkMoPayMethodCodeMapping" xsi:type="object">checkMoPayMethodCodeMapping</item>
+                <item name="paypalExpressMethodCodeMapping" xsi:type="object">paypalExpressMethodCodeMapping</item>
+                <item name="amazonMethodCodeMapping" xsi:type="object">amazonMethodCodeMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="paymentMethodCodeOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">paymentMethodCodeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">paymentMethodCodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+    <virtualType name="shippingMethodDescriptionFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">E_Ship_Agent_Service</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Creatuity\Nav\Model\Data\Extractor\Magento\Formatter\Mapping\AmazonMatrixRatesShippingMethodDescriptionMapper">
+        <arguments>
+            <argument name="mappingsConfigPath" xsi:type="string">nav/order_update/amazon_shipping_method_mappings</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="shippingMethodDescriptionOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\ShippingMethodDescriptionOrderDataExtractor">
+        <arguments>
+            <argument name="carrierCodeFormatterFactoryMappings" xsi:type="array">
+                <item name="matrixrate" xsi:type="object">Creatuity\Nav\Model\Data\Extractor\Magento\Formatter\MatrixRateShippingMethodDescriptionDataExtractorFormatterFactory</item>
+                <item name="amazonshipping" xsi:type="object">Creatuity\Nav\Model\Data\Extractor\Magento\Formatter\AmazonShippingMethodDescriptionDataExtractorFormatterFactory</item>
+            </argument>
+            <argument name="defaultShippingMethodDescription" xsi:type="string">Ground</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shippingMethodDescriptionOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingMethodDescriptionFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingMethodDescriptionOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+    <virtualType name="orderItemQtyOrderedFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Quantity</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemBasePriceFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Unit_Price</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemBaseRowTotalFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Line_Amount</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemSkuFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">No</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderItemQtyOrderedOrderItemFieldOrderItemDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderItemFieldOrderItemDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getQtyOrdered</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemBasePriceOrderItemFieldOrderItemDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderItemFieldOrderItemDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getBasePrice</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemBaseRowTotalOrderItemFieldOrderItemDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderItemFieldOrderItemDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getBaseRowTotal</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemSkuOrderItemFieldOrderItemDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderItemFieldOrderItemDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getSku</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderItemQtyOrderedOrderItemDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderItemDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemQtyOrderedFieldMapping</argument>
+            <argument name="orderItemDataExtractor" xsi:type="object">orderItemQtyOrderedOrderItemFieldOrderItemDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemBasePriceOrderItemDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderItemDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemBasePriceFieldMapping</argument>
+            <argument name="orderItemDataExtractor" xsi:type="object">orderItemBasePriceOrderItemFieldOrderItemDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemBaseRowTotalOrderItemDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderItemDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemBaseRowTotalFieldMapping</argument>
+            <argument name="orderItemDataExtractor" xsi:type="object">orderItemBaseRowTotalOrderItemFieldOrderItemDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderItemSkuOrderItemDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderItemDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemSkuFieldMapping</argument>
+            <argument name="orderItemDataExtractor" xsi:type="object">orderItemSkuOrderItemFieldOrderItemDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+    <virtualType name="billingAddressNameFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Bill_to_Name</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressStreetLineFirstFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Bill_to_Address</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressStreetLineSecondFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Bill_to_Address_2</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressCityFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Bill_to_City</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressRegionFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Bill_to_County</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressPostcodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Bill_to_Post_Code</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="sellAddressStreetLineFirstFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_Address</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressStreetLineSecondFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_Address_2</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressCityFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_City</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressRegionFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_County</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressPostcodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_Post_Code</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="billingAddressNameOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_BILLING</argument>
+            <argument name="accessorMethod" xsi:type="string">getName</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressCityOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_BILLING</argument>
+            <argument name="accessorMethod" xsi:type="string">getCity</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressStreetLineFirstOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressStreetLineOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_BILLING</argument>
+            <argument name="lineNumber" xsi:type="number">1</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressStreetLineSecondOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressStreetLineOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_BILLING</argument>
+            <argument name="lineNumber" xsi:type="number">2</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressRegionOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_BILLING</argument>
+            <argument name="accessorMethod" xsi:type="string">getRegionCode</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressPostcodeOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_BILLING</argument>
+            <argument name="accessorMethod" xsi:type="string">getPostcode</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="billingAddressNameOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">billingAddressNameFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressNameOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressStreetLineFirstOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">billingAddressStreetLineFirstFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressStreetLineFirstOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressStreetLineSecondOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">billingAddressStreetLineSecondFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressStreetLineSecondOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressCityOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">billingAddressCityFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressCityOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressRegionOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">billingAddressRegionFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressRegionOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="billingAddressPostcodeOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">billingAddressPostcodeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressPostcodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="sellAddressStreetLineFirstOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">sellAddressStreetLineFirstFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressStreetLineFirstOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressStreetLineSecondOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">sellAddressStreetLineSecondFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressStreetLineSecondOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressCityOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">sellAddressCityFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressCityOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressRegionOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">sellAddressRegionFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressRegionOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="sellAddressPostcodeOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">sellAddressPostcodeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">billingAddressPostcodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+    <virtualType name="shippingAddressNameFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_Name</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressStreetLineFirstFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_Address</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressStreetLineSecondFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_Address_2</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressCityFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_City</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressRegionFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_County</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressRegionTaxFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">ShortcutDimCode4</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressPostcodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_Post_Code</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shippingAddressNameOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="accessorMethod" xsi:type="string">getName</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressCityOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="accessorMethod" xsi:type="string">getCity</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressStreetLineFirstOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressStreetLineOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="lineNumber" xsi:type="number">1</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressStreetLineSecondOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressStreetLineOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="lineNumber" xsi:type="number">2</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressRegionOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="accessorMethod" xsi:type="string">getRegionCode</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressRegionVerboseOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="accessorMethod" xsi:type="string">getRegion</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressPostcodeOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\AddressFieldOrderDataExtractor">
+        <arguments>
+            <argument name="addressType" xsi:type="const">Magento\Sales\Model\Order\Address::TYPE_SHIPPING</argument>
+            <argument name="accessorMethod" xsi:type="string">getPostcode</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shippingAddressRegionTaxFallbackOrderDataExtractorValueResolver" type="Creatuity\Nav\Model\Data\Mapping\Magento\Resolver\FallbackOrderDataExtractorValueResolver">
+        <arguments>
+            <argument name="primaryOrderDataExtractor" xsi:type="object">shippingAddressRegionVerboseOrderDataExtractor</argument>
+            <argument name="secondaryOrderDataExtractor" xsi:type="object">shippingAddressRegionOrderDataExtractor</argument>
+            <argument name="valueFilter" xsi:type="array">
+                <item name="valueTexas" xsi:type="string">Texas</item>
+                <item name="valueOklahoma" xsi:type="string">Oklahoma</item>
+            </argument>
+            <argument name="fallbackValue" xsi:type="string"/>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shippingAddressNameOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressNameFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingAddressNameOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressStreetLineFirstOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressStreetLineFirstFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingAddressStreetLineFirstOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressStreetLineSecondOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressStreetLineSecondFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingAddressStreetLineSecondOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressCityOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressCityFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingAddressCityOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressRegionTaxOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\ValueResolvingOrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressRegionTaxFieldMapping</argument>
+            <argument name="orderDataExtractorValueResolver" xsi:type="object">shippingAddressRegionTaxFallbackOrderDataExtractorValueResolver</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressRegionOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressRegionFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingAddressRegionOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingAddressPostcodeOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingAddressPostcodeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingAddressPostcodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+
+
+    <virtualType name="paymentTypeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Payment_Method_Code</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="locationCodeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Location_Code</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="locationCodeShortcutDimensionFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Shortcut_Dimension_1_Code</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="freeFreightFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Free_Freight</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingCarrierFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Shipping_Agent_Code</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="paymentTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">ECOM PAY</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="locationCodeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">09</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="freeFreightStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingCarrierStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="const">Magento\Ups\Model\Carrier::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="paymentTypeStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">paymentTypeFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">paymentTypeStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="locationCodeStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">locationCodeFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">locationCodeStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="locationCodeShortcutDimensionStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">locationCodeShortcutDimensionFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">locationCodeStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="freeFreightStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">freeFreightFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">freeFreightStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingCarrierStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingCarrierFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">shippingCarrierStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+    <virtualType name="orderItemTypeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Type</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderItemTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">Item</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderItemTypeStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemTypeFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">orderItemTypeStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <virtualType name="finalLineItemQtyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Quantity</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="finalLineItemIsShippingChargeFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Shipping_Charge</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="finalLineItemQtyStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="number">1.0</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="finalLineItemTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">G_L_Account</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="finalLineItemIsShippingChargeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="boolean">true</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="finalLineItemQtyStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">finalLineItemQtyFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">finalLineItemQtyStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="finalLineItemTypeStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemTypeFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">finalLineItemTypeStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="finalLineItemIsShippingChargeStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">finalLineItemIsShippingChargeFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">finalLineItemIsShippingChargeStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+    <virtualType name="taxLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">2100000</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="discountLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">4900000</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string">4560009</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="taxLineSkuStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemSkuFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">taxLineSkuStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="discountLineSkuStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemSkuFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">discountLineSkuStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingLineSkuStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderItemSkuFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">shippingLineSkuStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+    <virtualType name="taxLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="taxAmountOrderDataExtractorMapping" xsi:type="object">taxAmountOrderDataExtractorMapping</item>
+                <item name="shippingAddressRegionTaxOrderDataExtractorMapping" xsi:type="object">shippingAddressRegionTaxOrderDataExtractorMapping</item>
+            </argument>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="taxLineSkuStaticDataExtractorMapping" xsi:type="object">taxLineSkuStaticDataExtractorMapping</item>
+                <item name="finalLineItemQtyStaticDataExtractorMapping" xsi:type="object">finalLineItemQtyStaticDataExtractorMapping</item>
+                <item name="finalLineItemTypeStaticDataExtractorMapping" xsi:type="object">finalLineItemTypeStaticDataExtractorMapping</item>
+                <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="discountLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="baseDiscountAmountOrderDataExtractorMapping" xsi:type="object">baseDiscountAmountOrderDataExtractorMapping</item>
+            </argument>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="discountLineSkuStaticDataExtractorMapping" xsi:type="object">discountLineSkuStaticDataExtractorMapping</item>
+                <item name="finalLineItemIsShippingChargeStaticDataExtractorMapping" xsi:type="object">finalLineItemIsShippingChargeStaticDataExtractorMapping</item>
+                <item name="finalLineItemQtyStaticDataExtractorMapping" xsi:type="object">finalLineItemQtyStaticDataExtractorMapping</item>
+                <item name="finalLineItemTypeStaticDataExtractorMapping" xsi:type="object">finalLineItemTypeStaticDataExtractorMapping</item>
+                <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shippingLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="baseShippingAmountOrderDataExtractorMapping" xsi:type="object">baseShippingAmountOrderDataExtractorMapping</item>
+            </argument>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="shippingLineSkuStaticDataExtractorMapping" xsi:type="object">shippingLineSkuStaticDataExtractorMapping</item>
+                <item name="finalLineItemIsShippingChargeStaticDataExtractorMapping" xsi:type="object">finalLineItemIsShippingChargeStaticDataExtractorMapping</item>
+                <item name="finalLineItemQtyStaticDataExtractorMapping" xsi:type="object">finalLineItemQtyStaticDataExtractorMapping</item>
+                <item name="finalLineItemTypeStaticDataExtractorMapping" xsi:type="object">finalLineItemTypeStaticDataExtractorMapping</item>
+                <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+    <virtualType name="productAttributesDataProcessor" type="Creatuity\Nav\Model\Data\Processor\AttributesDataProcessor">
+        <arguments>
+            <argument name="attributes" xsi:type="array">
+<!--                <item name="bsiItemAttribute" xsi:type="string">bsi_item</item>-->
+<!--                <item name="vendorNoAttribute" xsi:type="string">vendor_no</item>-->
+<!--                <item name="vendorItemNoAttribute" xsi:type="string">vendor_item_no</item>-->
+<!--                <item name="costAttribute" xsi:type="string">cost</item>-->
+                <item name="priceAttribute" xsi:type="string">price</item>
+<!--                <item name="clearanceAttribute" xsi:type="string">clearance</item>-->
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="productClearanceDataProcessor" type="Creatuity\Nav\Model\Data\Processor\ClearanceDataProcessor">
+        <arguments>
+            <argument name="clearanceCategoryIdConfigPath" xsi:type="string">nav/product_update/clearance_category_id</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="productUpdateDataProcessorManager" type="Creatuity\Nav\Model\Data\Processor\Manager\DataProcessorManager">
+        <arguments>
+            <argument name="dataProcessors" xsi:type="array">
+                <item name="productAttributesDataProcessor" xsi:type="object">productAttributesDataProcessor</item>
+<!--                <item name="productClearanceDataProcessor" xsi:type="object">productClearanceDataProcessor</item>-->
+                <item name="productInventoryDataProcessor" xsi:type="object">Creatuity\Nav\Model\Data\Processor\InventoryDataProcessor</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <type name="Creatuity\Nav\Model\Factory\GenericFactory">
+        <arguments>
+            <argument name="objects" xsi:type="array">
+                <item name="productCollectionFactory" xsi:type="object">Magento\Catalog\Model\ResourceModel\Product\CollectionFactory</item>
+                <item name="orderCollectionFactory" xsi:type="object">Magento\Sales\Model\ResourceModel\Order\CollectionFactory</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="productTypeAttributeFilter" type="Creatuity\Nav\Model\Map\Filter\AttributeFilter">
+        <arguments>
+            <argument name="attribute" xsi:type="const">Magento\Catalog\Api\Data\ProductInterface::TYPE_ID</argument>
+            <argument name="condition" xsi:type="const">Magento\Catalog\Model\Product\Type::TYPE_SIMPLE</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="productStatusAttributeFilter" type="Creatuity\Nav\Model\Map\Filter\AttributeFilter">
+        <arguments>
+            <argument name="attribute" xsi:type="const">Magento\Catalog\Api\Data\ProductInterface::STATUS</argument>
+            <argument name="condition" xsi:type="const">Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="productDynamicCollectionProvider" type="Creatuity\Nav\Model\Map\Provider\DynamicCollectionProvider">
+        <arguments>
+            <argument name="collectionFactoryKey" xsi:type="string">productCollectionFactory</argument>
+            <argument name="attributeFilters" xsi:type="array">
+                <item name="productTypeAttributeFilter" xsi:type="object">productTypeAttributeFilter</item>
+                <item name="productStatusAttributeFilter" xsi:type="object">productStatusAttributeFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="productCollectionMap" type="Creatuity\Nav\Model\Map\CollectionMap">
+        <arguments>
+            <argument name="keyField" xsi:type="const">Magento\Catalog\Api\Data\ProductInterface::SKU</argument>
+            <argument name="pageSize" xsi:type="number">100</argument>
+            <argument name="collectionProvider" xsi:type="object">productDynamicCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <virtualType name="orderStateAttributeFilter" type="Creatuity\Nav\Model\Map\Filter\AttributeFilter">
+        <arguments>
+            <argument name="attribute" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::STATUS</argument>
+            <argument name="condition" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderStatusAttributeFilter" type="Creatuity\Nav\Model\Map\Filter\AttributeFilter">
+        <arguments>
+            <argument name="attribute" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::STATUS</argument>
+            <argument name="condition" xsi:type="string">pending_nav</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shipmentUpdateOrderDynamicCollectionProvider" type="Creatuity\Nav\Model\Map\Provider\DynamicCollectionProvider">
+        <arguments>
+            <argument name="collectionFactoryKey" xsi:type="string">orderCollectionFactory</argument>
+            <argument name="attributeFilters" xsi:type="array">
+                <item name="orderStateAttributeFilter" xsi:type="object">orderStateAttributeFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderUpdateOrderDynamicCollectionProvider" type="Creatuity\Nav\Model\Map\Provider\DynamicCollectionProvider">
+        <arguments>
+            <argument name="collectionFactoryKey" xsi:type="string">orderCollectionFactory</argument>
+            <argument name="attributeFilters" xsi:type="array">
+                <item name="orderStatusAttributeFilter" xsi:type="object">orderStatusAttributeFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shipmentUpdateOrderCollectionMap" type="Creatuity\Nav\Model\Map\CollectionMap">
+        <arguments>
+            <argument name="keyField" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::INCREMENT_ID</argument>
+            <argument name="pageSize" xsi:type="number">100</argument>
+            <argument name="collectionProvider" xsi:type="object">shipmentUpdateOrderDynamicCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderUpdateOrderCollectionMap" type="Creatuity\Nav\Model\Map\CollectionMap">
+        <arguments>
+            <argument name="keyField" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::INCREMENT_ID</argument>
+            <argument name="pageSize" xsi:type="number">100</argument>
+            <argument name="collectionProvider" xsi:type="object">orderUpdateOrderDynamicCollectionProvider</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="productUpdateNavDataManager" type="Creatuity\Nav\Model\Data\Manager\Nav\DataManager">
+        <arguments>
+            <argument name="dataMappings" xsi:type="array">
+                <item name="skuDataMapping" xsi:type="object">skuDataMapping</item>
+                <item name="bsiItemDataMapping" xsi:type="object">bsiItemDataMapping</item>
+                <item name="vendorNoDataMapping" xsi:type="object">vendorNoDataMapping</item>
+                <item name="vendorItemNoDataMapping" xsi:type="object">vendorItemNoDataMapping</item>
+                <item name="costDataMapping" xsi:type="object">costDataMapping</item>
+                <item name="priceDataMapping" xsi:type="object">priceDataMapping</item>
+                <item name="clearanceDataMapping" xsi:type="object">clearanceDataMapping</item>
+                <item name="qtyDataMapping" xsi:type="object">qtyDataMapping</item>
+                <item name="isInStockDataMapping" xsi:type="object">isInStockDataMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="shipmentUpdateTrackNavDataManager" type="Creatuity\Nav\Model\Data\Manager\Nav\DataManager">
+        <arguments>
+            <argument name="dataMappings" xsi:type="array">
+                <item name="shipmentTrackCarrierCodeDataMapping" xsi:type="object">shipmentTrackCarrierCodeDataMapping</item>
+                <item name="shipmentTrackTitleDataMapping" xsi:type="object">shipmentTrackTitleDataMapping</item>
+                <item name="shipmentTrackTrackNumberDataMapping" xsi:type="object">shipmentTrackTrackNumberDataMapping</item>
+                <item name="shipmentTrackNumberDataMapping" xsi:type="object">shipmentTrackNumberDataMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentUpdatePackageNavDataManager" type="Creatuity\Nav\Model\Data\Manager\Nav\DataManager">
+        <arguments>
+            <argument name="dataMappings" xsi:type="array">
+                <item name="shipmentPackageIdDataMapping" xsi:type="object">shipmentPackageIdDataMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shipmentItemUpdateNavDataManager" type="Creatuity\Nav\Model\Data\Manager\Nav\DataManager">
+        <arguments>
+            <argument name="dataMappings" xsi:type="array">
+                <item name="skuDataMapping" xsi:type="object">skuDataMapping</item>
+                <item name="shipmentItemQtyDataMapping" xsi:type="object">shipmentItemQtyDataMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <type name="Creatuity\Nav\Model\Soap\WsdlFactory">
+        <arguments>
+            <argument name="baseFilePathCode" xsi:type="const">Magento\Framework\App\Filesystem\DirectoryList::VAR_DIR</argument>
+        </arguments>
+    </type>
+
+    <type name="Creatuity\Nav\Model\Connection\ConnectionFactory">
+        <arguments>
+            <argument name="usernameConfigPath" xsi:type="string">nav/connection/username</argument>
+            <argument name="passwordConfigPath" xsi:type="string">nav/connection/password</argument>
+            <argument name="hostConfigPath" xsi:type="string">nav/connection/host</argument>
+            <argument name="portConfigPath" xsi:type="string">nav/connection/port</argument>
+            <argument name="serverInstanceConfigPath" xsi:type="string">nav/connection/server_instance</argument>
+            <argument name="clientConfigPath" xsi:type="string">nav/connection/client</argument>
+            <argument name="companyNameConfigPath" xsi:type="string">nav/connection/company_name</argument>
+        </arguments>
+    </type>
+
+
+    <virtualType name="customerServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
+        <arguments>
+            <argument name="name" xsi:type="string">Customers</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="itemServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
+        <arguments>
+            <argument name="name" xsi:type="string">Item</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLineServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
+        <arguments>
+            <argument name="name" xsi:type="string">OrderLine</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
+        <arguments>
+            <argument name="name" xsi:type="string">Order</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="postedPackageServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
+        <arguments>
+            <argument name="name" xsi:type="string">PostedPackage</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="itemService" type="Creatuity\Nav\Model\Service\Service">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">itemServiceObject</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="postedPackageService" type="Creatuity\Nav\Model\Service\Service">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">postedPackageServiceObject</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerService" type="Creatuity\Nav\Model\Service\Service">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">customerServiceObject</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderService" type="Creatuity\Nav\Model\Service\Service">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">orderServiceObject</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLineService" type="Creatuity\Nav\Model\Service\Service">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">orderLineServiceObject</argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <type name="Creatuity\Nav\Model\Config\Source\CategoryList">
+        <arguments>
+            <argument name="rootCategoryId" xsi:type="number">2</argument>
+        </arguments>
+    </type>
+
+
+
+
+
+
+    <virtualType name="Creatuity\Nav\Cron\Config\ProductUpdateCronScheduleUpdater" type="Creatuity\Nav\Cron\Config\CronScheduleUpdater">
+        <arguments>
+            <argument name="cronExpression" xsi:type="string">0 3 * * 1,2,3,4,5</argument>
+            <argument name="cronJobConfig" xsi:type="object">Creatuity\Nav\Cron\Config\ProductUpdateCronJobConfig</argument>
+            <argument name="cronSchedule" xsi:type="object">Creatuity\Nav\Model\Config\Backend\ProductUpdateCronSchedule</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\Config\OrderUpdateCronScheduleUpdater" type="Creatuity\Nav\Cron\Config\CronScheduleUpdater">
+        <arguments>
+            <argument name="cronExpression" xsi:type="string">0,15,30,45 3-17 * * 1,2,3,4,5</argument>
+            <argument name="cronJobConfig" xsi:type="object">Creatuity\Nav\Cron\Config\OrderUpdateCronJobConfig</argument>
+            <argument name="cronSchedule" xsi:type="object">Creatuity\Nav\Model\Config\Backend\OrderUpdateCronSchedule</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\Config\ShipmentUpdateCronScheduleUpdater" type="Creatuity\Nav\Cron\Config\CronScheduleUpdater">
+        <arguments>
+            <argument name="cronExpression" xsi:type="string">0,30 3-17 * * 1,2,3,4,5</argument>
+            <argument name="cronJobConfig" xsi:type="object">Creatuity\Nav\Cron\Config\ShipmentUpdateCronJobConfig</argument>
+            <argument name="cronSchedule" xsi:type="object">Creatuity\Nav\Model\Config\Backend\ShipmentUpdateCronSchedule</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="pendingNavOrderStatusAssigner" type="Creatuity\Nav\Setup\OrderStatus\OrderStatusAssigner">
+        <arguments>
+            <argument name="statusCode" xsi:type="string">pending_nav</argument>
+            <argument name="statusLabel" xsi:type="string">Pending Fulfillment</argument>
+            <argument name="assignedState" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Creatuity\Nav\Setup\Task\InvalidSkuRepairTask">
+        <arguments>
+            <argument name="itemService" xsi:type="object">itemService</argument>
+            <argument name="skuRenameMap" xsi:type="array">
+                <item name="plus-size-bloody-beautiful" xsi:type="string">888368053131</item>
+                <item name="Super Bowl LII Oval Platter" xsi:type="string">039938432515</item>
+                <item name="Pink Folded Note Cards G 8ct" xsi:type="string">764943004326</item>
+            </argument>
+            <argument name="skuDisableMap" xsi:type="array">
+                <item name="0" xsi:type="string">Thor Gladiator Boys Costume -Boys Small</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Creatuity\Nav\Setup\Task\InvalidOrderSkuRepairTask">
+        <arguments>
+            <argument name="orderIncrementIds" xsi:type="array">
+                <item name="0" xsi:type="string">1100103344</item>
+                <item name="1" xsi:type="string">1100103353</item>
+            </argument>
+            <argument name="skuFind" xsi:type="string">889070349130</argument>
+            <argument name="skuReplace" xsi:type="string">889070349680</argument>
+        </arguments>
+    </type>
+
+    <type name="Creatuity\Nav\Setup\UpgradeData">
+        <arguments>
+            <argument name="cronConfigUpdaters" xsi:type="array">
+                <item name="productUpdateCronScheduleUpdater" xsi:type="object">Creatuity\Nav\Cron\Config\ProductUpdateCronScheduleUpdater</item>
+                <item name="orderUpdateCronScheduleUpdater" xsi:type="object">Creatuity\Nav\Cron\Config\OrderUpdateCronScheduleUpdater</item>
+                <item name="shipmentUpdateCronScheduleUpdater" xsi:type="object">Creatuity\Nav\Cron\Config\ShipmentUpdateCronScheduleUpdater</item>
+            </argument>
+            <argument name="orderStatusAssigner" xsi:type="object">pendingNavOrderStatusAssigner</argument>
+            <argument name="orderCollectionMap" xsi:type="object">orderUpdateOrderCollectionMap</argument>
+            <argument name="skuFind" xsi:type="string">01305176154</argument>
+            <argument name="skuReplace" xsi:type="string">013051761547</argument>
+            <argument name="shipmentRepairTask" xsi:type="object">Creatuity\Nav\Setup\Task\ShipmentRepairTask</argument>
+            <argument name="invalidSkuRepairTask" xsi:type="object">Creatuity\Nav\Setup\Task\InvalidSkuRepairTask</argument>
+            <argument name="invalidOrderSkuRepairTask" xsi:type="object">Creatuity\Nav\Setup\Task\InvalidOrderSkuRepairTask</argument>
+        </arguments>
+    </type>
+
+
+
+
+
+
+    <virtualType name="customerEntityParametersFactory" type="Creatuity\Nav\Model\Service\Request\Parameters\EntityParametersFactory">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">customerServiceObject</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderEntityParametersFactory" type="Creatuity\Nav\Model\Service\Request\Parameters\EntityParametersFactory">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">orderServiceObject</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLineEntityParametersFactory" type="Creatuity\Nav\Model\Service\Request\Parameters\EntityParametersFactory">
+        <arguments>
+            <argument name="serviceObject" xsi:type="object">orderLineServiceObject</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="createOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="incrementIdOrderDataExtractorMapping" xsi:type="object">incrementIdOrderDataExtractorMapping</item>
+                <item name="customerOrderIdOrderDataExtractorMapping" xsi:type="object">customerOrderIdOrderDataExtractorMapping</item>
+                <item name="grandTotalOrderDataExtractorMapping" xsi:type="object">grandTotalOrderDataExtractorMapping</item>
+
+                <item name="shippingMethodDescriptionOrderDataExtractorMapping" xsi:type="object">shippingMethodDescriptionOrderDataExtractorMapping</item>
+                <item name="paymentMethodCodeOrderDataExtractorMapping" xsi:type="object">paymentMethodCodeOrderDataExtractorMapping</item>
+
+                <item name="billingAddressNameOrderDataExtractorMapping" xsi:type="object">billingAddressNameOrderDataExtractorMapping</item>
+                <item name="billingAddressStreetLineFirstOrderDataExtractorMapping" xsi:type="object">billingAddressStreetLineFirstOrderDataExtractorMapping</item>
+                <item name="billingAddressStreetLineSecondOrderDataExtractorMapping" xsi:type="object">billingAddressStreetLineSecondOrderDataExtractorMapping</item>
+                <item name="billingAddressCityOrderDataExtractorMapping" xsi:type="object">billingAddressCityOrderDataExtractorMapping</item>
+                <item name="billingAddressRegionOrderDataExtractorMapping" xsi:type="object">billingAddressRegionOrderDataExtractorMapping</item>
+                <item name="billingAddressPostcodeOrderDataExtractorMapping" xsi:type="object">billingAddressPostcodeOrderDataExtractorMapping</item>
+
+                <item name="shippingAddressNameOrderDataExtractorMapping" xsi:type="object">shippingAddressNameOrderDataExtractorMapping</item>
+                <item name="shippingAddressStreetLineFirstOrderDataExtractorMapping" xsi:type="object">shippingAddressStreetLineFirstOrderDataExtractorMapping</item>
+                <item name="shippingAddressStreetLineSecondOrderDataExtractorMapping" xsi:type="object">shippingAddressStreetLineSecondOrderDataExtractorMapping</item>
+                <item name="shippingAddressCityOrderDataExtractorMapping" xsi:type="object">shippingAddressCityOrderDataExtractorMapping</item>
+                <item name="shippingAddressRegionOrderDataExtractorMapping" xsi:type="object">shippingAddressRegionOrderDataExtractorMapping</item>
+                <item name="shippingAddressPostcodeOrderDataExtractorMapping" xsi:type="object">shippingAddressPostcodeOrderDataExtractorMapping</item>
+
+                <item name="sellAddressStreetLineFirstOrderDataExtractorMapping" xsi:type="object">sellAddressStreetLineFirstOrderDataExtractorMapping</item>
+                <item name="sellAddressStreetLineSecondOrderDataExtractorMapping" xsi:type="object">sellAddressStreetLineSecondOrderDataExtractorMapping</item>
+                <item name="sellAddressCityOrderDataExtractorMapping" xsi:type="object">sellAddressCityOrderDataExtractorMapping</item>
+                <item name="sellAddressRegionOrderDataExtractorMapping" xsi:type="object">sellAddressRegionOrderDataExtractorMapping</item>
+                <item name="sellAddressPostcodeOrderDataExtractorMapping" xsi:type="object">sellAddressPostcodeOrderDataExtractorMapping</item>
+            </argument>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="paymentTypeStaticDataExtractorMapping" xsi:type="object">paymentTypeStaticDataExtractorMapping</item>
+                <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
+                <item name="locationCodeShortcutDimensionStaticDataExtractorMapping" xsi:type="object">locationCodeShortcutDimensionStaticDataExtractorMapping</item>
+                <item name="freeFreightStaticDataExtractorMapping" xsi:type="object">freeFreightStaticDataExtractorMapping</item>
+                <item name="shippingCarrierStaticDataExtractorMapping" xsi:type="object">shippingCarrierStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+    <virtualType name="parentIdIsNotNullOrderItemFilter" type="Creatuity\Nav\Model\Data\Manager\Magento\Filter\CompareFieldValueOrderItemFilter">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getParentItemId</argument>
+            <argument name="comparisonOperator" xsi:type="string">not-equal</argument>
+            <argument name="comparisonValue" xsi:type="null" />
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="customerPrimaryKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">No</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerHashKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Key</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderCustomerPrimaryKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_Customer_No</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="customerPrimaryKeyFieldDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Nav\FieldDataExtractor">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerPrimaryKeyFieldMapping</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerHashKeyFieldDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Nav\FieldDataExtractor">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerHashKeyFieldMapping</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="customerPrimaryKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerPrimaryKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">customerPrimaryKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerHashKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerHashKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">customerHashKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderCustomerPrimaryKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderCustomerPrimaryKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">customerPrimaryKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="entityConflictResolver" type="Creatuity\Nav\Model\Task\ConflictResolver\CreatedLastEntityConflictResolver" />
+
+    <virtualType name="orderCustomerProvider" type="Creatuity\Nav\Model\Provider\Nav\CustomerProvider">
+        <arguments>
+            <argument name="customerService" xsi:type="object">customerService</argument>
+            <argument name="findCustomerOrderDataManager" xsi:type="object">findCustomerOrderDataManager</argument>
+            <argument name="createCustomerOrderDataManager" xsi:type="object">createCustomerOrderDataManager</argument>
+            <argument name="entityParametersFactory" xsi:type="object">customerEntityParametersFactory</argument>
+            <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
+            <argument name="fieldDataExtractorMappings" xsi:type="array">
+                <item name="customerPrimaryKeyFieldDataExtractorMapping" xsi:type="object">customerPrimaryKeyFieldDataExtractorMapping</item>
+                <item name="customerHashKeyFieldDataExtractorMapping" xsi:type="object">customerHashKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+    <virtualType name="findOrderOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="incrementIdOrderDataExtractorMapping" xsi:type="object">incrementIdOrderDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderPrimaryKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">No</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderHashKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Key</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderPrimaryKeyFieldDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Nav\FieldDataExtractor">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderPrimaryKeyFieldMapping</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderHashKeyFieldDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Nav\FieldDataExtractor">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderHashKeyFieldMapping</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderPrimaryKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderPrimaryKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">orderPrimaryKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderHashKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderHashKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">orderHashKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderSingleFieldParametersFactory" type="Creatuity\Nav\Model\Service\Request\Parameters\SingleFieldParametersFactory">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderHashKeyFieldMapping</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderProvider" type="Creatuity\Nav\Model\Provider\Nav\OrderProvider">
+        <arguments>
+            <argument name="orderService" xsi:type="object">orderService</argument>
+            <argument name="findOrderOrderDataManager" xsi:type="object">findOrderOrderDataManager</argument>
+            <argument name="createOrderDataManager" xsi:type="object">createOrderDataManager</argument>
+            <argument name="entityParametersFactory" xsi:type="object">orderEntityParametersFactory</argument>
+            <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
+            <argument name="orderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderPrimaryKeyFieldDataExtractorMapping</item>
+                <item name="orderHashKeyFieldDataExtractorMapping" xsi:type="object">orderHashKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="customerFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderCustomerPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderCustomerPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+
+
+    <virtualType name="findOrderLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="orderLineOrderPrimaryKeyMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Document_No</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLineHashKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Key</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderLineHashKeyFieldDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Nav\FieldDataExtractor">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderLineHashKeyFieldMapping</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLinePrimaryKeyFieldDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Nav\FieldDataExtractor">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderLineOrderPrimaryKeyMapping</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderLineOrderPrimaryKeyMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">orderPrimaryKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderLineOrderPrimaryKeyMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">orderLinePrimaryKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLineHashKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderLineHashKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">orderLineHashKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="findOrderLineOrderItemDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderItemDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="orderItemSkuOrderItemDataExtractorMapping" xsi:type="object">orderItemSkuOrderItemDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="updateOrderLineOrderItemDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderItemDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="orderItemQtyOrderedOrderItemDataExtractorMapping" xsi:type="object">orderItemQtyOrderedOrderItemDataExtractorMapping</item>
+                <item name="orderItemBasePriceOrderItemDataExtractorMapping" xsi:type="object">orderItemBasePriceOrderItemDataExtractorMapping</item>
+                <item name="orderItemBaseRowTotalOrderItemDataExtractorMapping" xsi:type="object">orderItemBaseRowTotalOrderItemDataExtractorMapping</item>
+                <item name="orderItemSkuOrderItemDataExtractorMapping" xsi:type="object">orderItemSkuOrderItemDataExtractorMapping</item>
+            </argument>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
+                <item name="orderItemTypeStaticDataExtractorMapping" xsi:type="object">orderItemTypeStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+
+
+
+
+
+    <virtualType name="orderLineProvider" type="Creatuity\Nav\Model\Provider\Nav\OrderLineProvider">
+        <arguments>
+            <argument name="orderLineService" xsi:type="object">orderLineService</argument>
+            <argument name="entityParametersFactory" xsi:type="object">orderLineEntityParametersFactory</argument>
+            <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
+            <argument name="findOrderLineOrderItemDataManager" xsi:type="object">findOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderItemDataManager" xsi:type="object">updateOrderLineOrderItemDataManager</argument>
+            <argument name="findOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="createOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="updateOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineHashKeyFieldDataExtractorMapping" xsi:type="object">orderLineHashKeyFieldDataExtractorMapping</item>
+                <item name="updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="findTaxLineOrderLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="taxLineSkuStaticDataExtractorMapping" xsi:type="object">taxLineSkuStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="taxLineOrderLineProvider" type="Creatuity\Nav\Model\Provider\Nav\FinalOrderLineProvider">
+        <arguments>
+            <argument name="orderLineService" xsi:type="object">orderLineService</argument>
+            <argument name="entityParametersFactory" xsi:type="object">orderLineEntityParametersFactory</argument>
+            <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
+            <argument name="findOrderLineOrderItemDataManager" xsi:type="object">findOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderItemDataManager" xsi:type="object">updateOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderDataManager" xsi:type="object">taxLineOrderDataManager</argument>
+            <argument name="findOrderLineOrderDataManager" xsi:type="object">findTaxLineOrderLineOrderDataManager</argument>
+            <argument name="findOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="createOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="updateOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineHashKeyFieldDataExtractorMapping" xsi:type="object">orderLineHashKeyFieldDataExtractorMapping</item>
+                <item name="updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="findDiscountLineOrderLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="taxLineSkuStaticDataExtractorMapping" xsi:type="object">discountLineSkuStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="discountLineOrderLineProvider" type="Creatuity\Nav\Model\Provider\Nav\FinalOrderLineProvider">
+        <arguments>
+            <argument name="orderLineService" xsi:type="object">orderLineService</argument>
+            <argument name="entityParametersFactory" xsi:type="object">orderLineEntityParametersFactory</argument>
+            <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
+            <argument name="findOrderLineOrderItemDataManager" xsi:type="object">findOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderItemDataManager" xsi:type="object">updateOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderDataManager" xsi:type="object">discountLineOrderDataManager</argument>
+            <argument name="findOrderLineOrderDataManager" xsi:type="object">findDiscountLineOrderLineOrderDataManager</argument>
+            <argument name="findOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="createOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="updateOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineHashKeyFieldDataExtractorMapping" xsi:type="object">orderLineHashKeyFieldDataExtractorMapping</item>
+                <item name="updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="findShippingLineOrderLineOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="staticDataExtractorMappings" xsi:type="array">
+                <item name="taxLineSkuStaticDataExtractorMapping" xsi:type="object">shippingLineSkuStaticDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="shippingLineOrderLineProvider" type="Creatuity\Nav\Model\Provider\Nav\FinalOrderLineProvider">
+        <arguments>
+            <argument name="orderLineService" xsi:type="object">orderLineService</argument>
+            <argument name="entityParametersFactory" xsi:type="object">orderLineEntityParametersFactory</argument>
+            <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
+            <argument name="findOrderLineOrderItemDataManager" xsi:type="object">findOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderItemDataManager" xsi:type="object">updateOrderLineOrderItemDataManager</argument>
+            <argument name="updateOrderLineOrderDataManager" xsi:type="object">shippingLineOrderDataManager</argument>
+            <argument name="findOrderLineOrderDataManager" xsi:type="object">findShippingLineOrderLineOrderDataManager</argument>
+            <argument name="findOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="createOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">orderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+            <argument name="updateOrderFieldDataExtractorMappings" xsi:type="array">
+                <item name="orderLineHashKeyFieldDataExtractorMapping" xsi:type="object">orderLineHashKeyFieldDataExtractorMapping</item>
+                <item name="updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping" xsi:type="object">updateOrderLineOrderPrimaryKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+    <virtualType name="parametersFactory" type="Creatuity\Nav\Model\Service\Request\Parameters\ParametersFactory" />
+
+    <virtualType name="releaseOrderHashKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">salesHeader</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="releaseOrderHashKeyFieldDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Nav\FieldDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">releaseOrderHashKeyFieldMapping</argument>
+            <argument name="fieldDataExtractor" xsi:type="object">orderHashKeyFieldDataExtractor</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderReleaseManager" type="Creatuity\Nav\Model\Task\Manager\NavEntityOperationManager">
+        <arguments>
+            <argument name="service" xsi:type="object">orderService</argument>
+            <argument name="operation" xsi:type="object">Creatuity\Nav\Model\Service\Request\Operation\ReleaseOperation</argument>
+            <argument name="parametersFactory" xsi:type="object">parametersFactory</argument>
+            <argument name="fieldDataExtractorMappings" xsi:type="array">
+                <item name="releaseOrderHashKeyFieldDataExtractorMapping" xsi:type="object">releaseOrderHashKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderDeleteManager" type="Creatuity\Nav\Model\Task\Manager\NavEntityOperationManager">
+        <arguments>
+            <argument name="service" xsi:type="object">orderService</argument>
+            <argument name="operation" xsi:type="object">Creatuity\Nav\Model\Service\Request\Operation\DeleteOperation</argument>
+            <argument name="parametersFactory" xsi:type="object">parametersFactory</argument>
+            <argument name="fieldDataExtractorMappings" xsi:type="array">
+                <item name="orderHashKeyFieldDataExtractorMapping" xsi:type="object">orderHashKeyFieldDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+    <virtualType name="orderProcessedOrderStatusDataProcessor" type="Creatuity\Nav\Model\Data\Processor\OrderStatusDataProcessor">
+        <arguments>
+            <argument name="state" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
+            <argument name="status" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="orderLineLineNumberFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Line_No</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderLineEntityIncrementer" type="Creatuity\Nav\Model\Task\EntityIncrementer\EntityIncrementer">
+        <arguments>
+            <argument name="incrementScale" xsi:type="number">10000</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="orderLineLineNumberDataGenerator" type="Creatuity\Nav\Model\Task\Data\Generator\LineNumberDataGenerator" shared="false">
+        <arguments>
+            <argument name="mapping" xsi:type="object">orderLineLineNumberFieldMapping</argument>
+            <argument name="entityIncrementer" xsi:type="object">orderLineEntityIncrementer</argument>
+        </arguments>
+    </virtualType>
+
+
+
+
+
+    <virtualType name="Creatuity\Nav\Model\Config\Backend\ProductUpdateCronSchedule" type="Creatuity\Nav\Model\Config\Backend\CronSchedule">
+        <arguments>
+            <argument name="groupName" xsi:type="string">default</argument>
+            <argument name="jobName" xsi:type="string">nav_product_update</argument>
+            <argument name="defaultExpression" xsi:type="string">0 0 1 1 *</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Creatuity\Nav\Model\Config\Backend\OrderUpdateCronSchedule" type="Creatuity\Nav\Model\Config\Backend\CronSchedule">
+        <arguments>
+            <argument name="groupName" xsi:type="string">default</argument>
+            <argument name="jobName" xsi:type="string">nav_order_update</argument>
+            <argument name="defaultExpression" xsi:type="string">0 0 1 1 *</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Creatuity\Nav\Model\Config\Backend\ShipmentUpdateCronSchedule" type="Creatuity\Nav\Model\Config\Backend\CronSchedule">
+        <arguments>
+            <argument name="groupName" xsi:type="string">default</argument>
+            <argument name="jobName" xsi:type="string">nav_shipment_update</argument>
+            <argument name="defaultExpression" xsi:type="string">0 0 1 1 *</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="Creatuity\Nav\Model\Logger\Handler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filePath" xsi:type="string">var/log/creatuity_nav.log</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="creatuityNavLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers"  xsi:type="array">
+                <item name="bugsnag" xsi:type="object">Creatuity\Nav\Model\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <type name="Creatuity\Nav\Model\Task\ProductUpdateTask">
+        <arguments>
+            <argument name="logger" xsi:type="object">creatuityNavLogger</argument>
+            <argument name="navFilterField" xsi:type="string">No</argument>
+            <argument name="itemService" xsi:type="object">itemService</argument>
+            <argument name="collectionMap" xsi:type="object">productCollectionMap</argument>
+            <argument name="navProductDataManager" xsi:type="object">productUpdateNavDataManager</argument>
+            <argument name="dataProcessorManager" xsi:type="object">productUpdateDataProcessorManager</argument>
+        </arguments>
+    </type>
+    <type name="Creatuity\Nav\Model\Task\ShipmentUpdateTask">
+        <arguments>
+            <argument name="logger" xsi:type="object">creatuityNavLogger</argument>
+            <argument name="navFilterField" xsi:type="string">External_Document_No</argument>
+            <argument name="postedPackageService" xsi:type="object">postedPackageService</argument>
+            <argument name="orderCollectionMap" xsi:type="object">shipmentUpdateOrderCollectionMap</argument>
+            <argument name="navShipmentTrackDataManager" xsi:type="object">shipmentUpdateTrackNavDataManager</argument>
+            <argument name="navShipmentItemDataManager" xsi:type="object">shipmentItemUpdateNavDataManager</argument>
+            <argument name="navShipmentPackageDataManager" xsi:type="object">shipmentUpdatePackageNavDataManager</argument>
+            <argument name="dataProcessorManager" xsi:type="object">shipmentUpdateDataProcessorManager</argument>
+        </arguments>
+    </type>
+    <type name="Creatuity\Nav\Model\Task\OrderUpdateTask">
+        <arguments>
+            <argument name="logger" xsi:type="object">creatuityNavLogger</argument>
+            <argument name="orderCollectionMap" xsi:type="object">orderUpdateOrderCollectionMap</argument>
+            <argument name="orderCustomerProvider" xsi:type="object">orderCustomerProvider</argument>
+            <argument name="orderProvider" xsi:type="object">orderProvider</argument>
+            <argument name="orderLineProvider" xsi:type="object">orderLineProvider</argument>
+            <argument name="taxFinalOrderLineProvider" xsi:type="object">taxLineOrderLineProvider</argument>
+            <argument name="discountFinalOrderLineProvider" xsi:type="object">discountLineOrderLineProvider</argument>
+            <argument name="shippingFinalOrderLineProvider" xsi:type="object">shippingLineOrderLineProvider</argument>
+            <argument name="orderReleaseManager" xsi:type="object">orderReleaseManager</argument>
+            <argument name="orderDeleteManager" xsi:type="object">orderDeleteManager</argument>
+            <argument name="orderStatusDataProcessor" xsi:type="object">orderProcessedOrderStatusDataProcessor</argument>
+            <argument name="lineNumberDataGenerator" xsi:type="object">orderLineLineNumberDataGenerator</argument>
+            <argument name="orderPrimaryKeyFieldDataExtractor" xsi:type="object">orderPrimaryKeyFieldDataExtractor</argument>
+            <argument name="orderItemFilters" xsi:type="array">
+                <item name="parentIdIsNotNullOrderItemFilter" xsi:type="object">parentIdIsNotNullOrderItemFilter</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="globalCronJobConfig" type="Creatuity\Nav\Cron\Config\CronJobConfig">
+        <arguments>
+            <argument name="configBasePath" xsi:type="string">nav/general</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\Config\ProductUpdateCronJobConfig" type="Creatuity\Nav\Cron\Config\CronJobConfig">
+        <arguments>
+            <argument name="configBasePath" xsi:type="string">nav/product_update</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\Config\OrderUpdateCronJobConfig" type="Creatuity\Nav\Cron\Config\CronJobConfig">
+        <arguments>
+            <argument name="configBasePath" xsi:type="string">nav/order_update</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\Config\ShipmentUpdateCronJobConfig" type="Creatuity\Nav\Cron\Config\CronJobConfig">
+        <arguments>
+            <argument name="configBasePath" xsi:type="string">nav/shipment_update</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Creatuity\Nav\Cron\ProductUpdateCronJob" type="Creatuity\Nav\Cron\CronJob">
+        <arguments>
+            <argument name="globalConfig" xsi:type="object">globalCronJobConfig</argument>
+            <argument name="config" xsi:type="object">Creatuity\Nav\Cron\Config\ProductUpdateCronJobConfig</argument>
+            <argument name="task" xsi:type="object">Creatuity\Nav\Model\Task\ProductUpdateTask</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\OrderUpdateCronJob" type="Creatuity\Nav\Cron\CronJob">
+        <arguments>
+            <argument name="globalConfig" xsi:type="object">globalCronJobConfig</argument>
+            <argument name="config" xsi:type="object">Creatuity\Nav\Cron\Config\OrderUpdateCronJobConfig</argument>
+            <argument name="task" xsi:type="object">Creatuity\Nav\Model\Task\OrderUpdateTask</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Cron\ShipmentUpdateCronJob" type="Creatuity\Nav\Cron\CronJob">
+        <arguments>
+            <argument name="globalConfig" xsi:type="object">globalCronJobConfig</argument>
+            <argument name="config" xsi:type="object">Creatuity\Nav\Cron\Config\ShipmentUpdateCronJobConfig</argument>
+            <argument name="task" xsi:type="object">Creatuity\Nav\Model\Task\ShipmentUpdateTask</argument>
+        </arguments>
+    </virtualType>
+
+
+    <virtualType name="Creatuity\Nav\Console\Command\ProductUpdateCommand" type="Creatuity\Nav\Console\Command\Command">
+        <arguments>
+            <argument name="name" xsi:type="string">nav:product-update</argument>
+            <argument name="description" xsi:type="string">Update Magento products using latest data from NAV</argument>
+            <argument name="task" xsi:type="object">Creatuity\Nav\Model\Task\ProductUpdateTask</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Console\Command\OrderUpdateCommand" type="Creatuity\Nav\Console\Command\Command">
+        <arguments>
+            <argument name="name" xsi:type="string">nav:order-update</argument>
+            <argument name="description" xsi:type="string">Update NAV orders using latest data from Magento</argument>
+            <argument name="task" xsi:type="object">Creatuity\Nav\Model\Task\OrderUpdateTask</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Creatuity\Nav\Console\Command\ShipmentUpdateCommand" type="Creatuity\Nav\Console\Command\Command">
+        <arguments>
+            <argument name="name" xsi:type="string">nav:shipment-update</argument>
+            <argument name="description" xsi:type="string">Update Magento shipments using latest data from NAV</argument>
+            <argument name="task" xsi:type="object">Creatuity\Nav\Model\Task\ShipmentUpdateTask</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="productUpdateCommand" xsi:type="object">Creatuity\Nav\Console\Command\ProductUpdateCommand</item>
+                <item name="orderUpdateCommand" xsi:type="object">Creatuity\Nav\Console\Command\OrderUpdateCommand</item>
+                <item name="shipmentUpdateCommand" xsi:type="object">Creatuity\Nav\Console\Command\ShipmentUpdateCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
