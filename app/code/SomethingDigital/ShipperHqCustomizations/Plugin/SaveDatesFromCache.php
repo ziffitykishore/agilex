@@ -31,11 +31,6 @@ class SaveDatesFromCache
             $this->session->setItemsDeliveryDates($items);
         }
 
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info(json_encode('test3'));
-
         return $result;
     }
 }
