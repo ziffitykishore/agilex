@@ -275,12 +275,14 @@
     input[type="email"] {
         width: 100%;
         padding: 0 13px;
-        border-radius: 4px;
+        .br-radius(3px);
         border: 1px solid #e0e0e0;
         height: 44px;
         -webkit-transition : .5s ease;
         transition: .5s ease;
+        font-family: @font-family-name__base;
     }
+
 
     input[type="number"] {
         .lib-form-element-number-reset();
@@ -292,6 +294,12 @@
 
     select {
         .lib-form-element-input(@_type: select);
+        width: 100%;
+        padding: 0 13px;
+        .br-radius(3px);
+        border: 1px solid #e0e0e0;
+        height: 44px;
+
     }
 
     select[multiple] {

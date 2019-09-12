@@ -73,9 +73,11 @@ require(['jquery', 'slick'], function ($) {
 
         settings_slider = {
             dots: false,
-            arrows: true,
+            arrows: false,
             autoplay:true,
-            autoplaySpeed:2000
+            autoplaySpeed:2000,
+            centerMode: true,
+            centerPadding:"40"
           }
           slick_on_mobile( $('.why-row'), settings_slider);
         

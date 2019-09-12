@@ -12,13 +12,15 @@
         </referenceBlock>
         <referenceContainer name="content">
             <container name="customer.inner.container" htmlClass="inner-container" htmlTag="div">
-            <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml">
-                <arguments>
-                    <argument name="attribute_data" xsi:type="object">Magento\Customer\Block\DataProviders\AddressAttributeData</argument>
-                </arguments>
-                <container name="form.additional.info" as="form_additional_info"/>
-                <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
-            </block>
+                <container name="customer.form.wrapper" label="Customer Form Container" htmlTag="div" htmlClass="form-wrapper">
+                    <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml">
+                        <arguments>
+                            <argument name="attribute_data" xsi:type="object">Magento\Customer\Block\DataProviders\AddressAttributeData</argument>
+                        </arguments>
+                        <container name="form.additional.info" as="form_additional_info"/>
+                        <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+                    </block>
+                </container>
             </container>
             <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
                 <arguments>
@@ -32,7 +34,7 @@
             <block class="Magento\Framework\View\Element\Template" name="form_additional_info_customer" template="Magento_Customer::additionalinfocustomer.phtml"/>
         </referenceContainer>
 
-        <move element="page.main.title" destination="customer.inner.container" before="customer_form_register"/>
+        <move element="page.main.title" destination="customer.inner.container" before="-"/>
 
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">

@@ -42,6 +42,8 @@
 @c-bg-color: #f9f9f9;
 @c-white_color: #fff;
 @c-whitesmoke: #f2f5f8;
+@c-aliceblue: #f1f8ff;
+@c-lavander: #e9edf0;
 
 @c-tab: 992px;
 @c-desk: 1200px;
@@ -66,6 +68,12 @@
     -ms-flex: 0 0 @width;
     flex: 0 0 @width;
     max-width: @width;
+}
+
+.order(@order) {
+    -webkit-box-ordinal-group: @order + 1;
+    -ms-flex-order: @order;
+    order: @order;
 }
 
 .box-shadow (@string) {
@@ -152,22 +160,14 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 
 
     @media screen and (min-width: 1600px) {
         padding-right: 60px;
         padding-left: 60px;
     }
-
-
-    @media screen and (max-width: 1300px) {
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
-
 }
 
 .container-lg {
