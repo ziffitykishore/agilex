@@ -18,7 +18,7 @@
 <?php if ($block->canShowBlock()): ?>
     <div class="block filter">
         <div class="block-title filter-title">
-            <strong><?= /* @escapeNotVerified */ __('Shop By') ?></strong>
+            <strong><?= /* @escapeNotVerified */ __('Filter') ?></strong>
         </div>
 
         <div class="block-content filter-content">
@@ -32,7 +32,7 @@
             <?php $wrapOptions = false; ?>
             <?php foreach ($block->getFilters() as $filter): ?>
                 <?php if (!$wrapOptions): ?>
-                    <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong>
+                    <!-- <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Shopping Options') ?></strong> -->
                     <div class="filter-options" id="narrow-by-list">
                 <?php $wrapOptions = true; endif; ?>
                     <?php if ($filter->getItemsCount()): ?>
