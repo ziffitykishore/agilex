@@ -56,6 +56,20 @@ class AddFacets implements ObserverInterface
 
         $indexSettings['attributesForFaceting'] = array_values(array_unique($attrForFaceting));
 
+        $searchableAttributes = [];
+        foreach ($indexSettings['searchableAttributes'] as $value) {
+            $searchableAttributes[] = $value;
+        }
+
+        $collection = $this->collectionFactory->create();
+        $collection->addFieldToFilter('is_searchable', true);
+        $collection->setOrder('position','ASC');
+
+        foreach ($collection as $item) {
+            $searchableAttributes[] = 'unordered('.$item->getAttributeCode().')';
+        }
+        $indexSettings['searchableAttributes'] = array_values(array_unique($searchableAttributes));
+
         $transport->setData($indexSettings);
     }
 }
