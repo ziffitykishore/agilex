@@ -68,3 +68,6 @@ yarn build:production
 # Also: that we create pub/robots.txt means Magento's OOB generated robots.txt doesn't work anymore.  We may want to remove this now.
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
+
+gpgconf --kill gpg-agent || true
+killall gpg-agent || true
