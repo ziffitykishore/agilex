@@ -1,5 +1,7 @@
-<a href="<?= $block->esacpeHtml($block->getAjaxUrl()) ?>" download>
-<?= $block->getButtonHtml() ?>
+<?php if ($block->isFormUploaded()) :?>
+<a href="<?= $block->escapeUrl($block->getAjaxUrl()) ?>" download>
+    <?= $block->getButtonHtml() ?>
 </a>
+<?php endif; ?>
 
 

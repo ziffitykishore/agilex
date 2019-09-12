@@ -31,6 +31,12 @@ class Button extends \Magento\Config\Block\System\Config\Form\Field
         return $this->getBaseUrl().'pub/media/reseller_certificate/'.
             $this->_scopeConfig->getValue('reseller_certification/general/upload_form');
     }
+    public function isFormUploaded()
+    {
+        $value = $this->_scopeConfig->getValue('reseller_certification/general/upload_form');
+        return isset($value) && !empty($value);
+    }
+    
     public function getButtonHtml()
     {
         $button = $this->getLayout()->createBlock(

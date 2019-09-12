@@ -33,6 +33,8 @@ use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Data\Form\FormKey\Validator;
 use Magento\Framework\Math\Random;
 use Magento\Newsletter\Model\SubscriberFactory;
+use PartySupplies\Customer\ViewModel\Register;
+use Magento\MediaStorage\Model\File\UploaderFactory;
 
 class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
 {
@@ -72,6 +74,16 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
     private $isCompanyAccount;
     
     /**
+     * @var Register
+     */
+    private $register_viewModel;
+    
+    /**
+     * @var UploaderFactory
+     */
+    private $uploaderFactory;
+    
+    /**
      *
      * @param Context $context
      * @param Session $customerSession
@@ -92,6 +104,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
      * @param DataObjectHelper $dataObjectHelper
      * @param AccountRedirect $accountRedirect
      * @param Random $mathRandom
+     * @param Register $register_viewModel
+     * @param UploaderFactory $uploader
      * @param Validator $formKeyValidator
      */
     public function __construct(
@@ -114,6 +128,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         DataObjectHelper $dataObjectHelper,
         AccountRedirect $accountRedirect,
         Random $mathRandom,
+        Register $register_viewModel,
+        UploaderFactory $uploaderFactory,
         Validator $formKeyValidator = null
     ) {
         parent::__construct(
@@ -138,6 +154,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
             $formKeyValidator
         );
         $this->mathRandom = $mathRandom;
+        $this->register_viewModel = $register_viewModel;
+        $this->uploaderFactory = $uploaderFactory;
         $this->accountRedirect = $accountRedirect;
         $this->formKeyValidator = $formKeyValidator ?: ObjectManager::getInstance()->get(Validator::class);
     }
@@ -181,122 +199,125 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         
         $this->isCompanyAccount = isset($company) && !empty($company);
         $this->isCustomerAccount = isset($nav_customer_id) && !empty($nav_customer_id);
-                
-        /* account creation code */
+        
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        if ($this->session->isLoggedIn() || !$this->registration->isAllowed()) {
-            $resultRedirect->setPath('*/*/');
-            return $resultRedirect;
-        }
-
-        if (!$this->getRequest()->isPost()
-            || !$this->formKeyValidator->validate($this->getRequest())
-        ) {
-            $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
-            return $this->resultRedirectFactory->create()
-                ->setUrl($this->_redirect->error($url));
-        }
-
-        $this->session->regenerateId();
         
-        if ($this->isCustomerAccount) {
-            $this->getRequest()->setParam('account_type', 'customer');
-        } elseif ($this->isCompanyAccount) {
-            $this->getRequest()->setParam('account_type', 'company');
-        }
+        if (!$this->isCompanyAccount && !$this->isCustomerAccount) {
+            $this->messageManager->addError(__('storeRegisterationFailed_KindlyTryAgain'));
+        } elseif ($this->isCustomerAccount || ($this->isCompanyAccount &&
+            $this->validateResellerCertificate('reseller_certificate'))) {
+            
+            /* account creation code */
+            
+            if ($this->session->isLoggedIn() || !$this->registration->isAllowed()) {
+                $resultRedirect->setPath('*/*/');
+                return $resultRedirect;
+            }
 
-        try {
-            $address = $this->extractAddress();
-            $addresses = $address === null ? [] : [$address];
+            if (!$this->getRequest()->isPost()
+                || !$this->formKeyValidator->validate($this->getRequest())
+            ) {
+                $url = $this->urlModel->getUrl('*/*/create', ['_secure' => true]);
+                return $this->resultRedirectFactory->create()
+                    ->setUrl($this->_redirect->error($url));
+            }
 
-            $customer = $this->customerExtractor->extract('customer_account_create', $this->_request);
-            $customer->setAddresses($addresses);
+            $this->session->regenerateId();
 
             if ($this->isCustomerAccount) {
-                $password = $this->getRequest()->getParam('password');
-                $confirmation = $this->getRequest()->getParam('password_confirmation');
-
-                $this->checkPasswordConfirmation($password, $confirmation);
+                $this->getRequest()->setParam('account_type', 'customer');
             } elseif ($this->isCompanyAccount) {
-                $password = $this->randomPassword();
-            }
-            
-            $redirectUrl = $this->session->getBeforeAuthUrl();
-
-            $customer = $this->accountManagement
-                ->createAccount($customer, $password, $redirectUrl);
-
-            if ($this->getRequest()->getParam('is_subscribed', false)) {
-                $this->subscriberFactory->create()->subscribeCustomerById($customer->getId());
+                $this->getRequest()->setParam('account_type', 'company');
             }
 
-            $this->_eventManager->dispatch(
-                'customer_register_success',
-                ['account_controller' => $this, 'customer' => $customer]
-            );
+            try {
+                $address = $this->extractAddress();
+                $addresses = $address === null ? [] : [$address];
 
-            $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
-            if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
-                $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
-                // @codingStandardsIgnoreStart
-                $this->messageManager->addSuccess(
-                    __(
-                        'You must confirm your account. Please check your email for the confirmation link or <a href="%1">click here</a> for a new link.',
-                        $email
-                    )
-                );
-                // @codingStandardsIgnoreEnd
-                $url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
-                $resultRedirect->setUrl($this->_redirect->success($url));
-            } else {
-                    $this->messageManager->addSuccess($this->getSuccessMessage());
-                    
+                $customer = $this->customerExtractor->extract('customer_account_create', $this->_request);
+                $customer->setAddresses($addresses);
+
                 if ($this->isCustomerAccount) {
-                    $this->session->setCustomerDataAsLoggedIn($customer);
-                    $requestedRedirect = $this->accountRedirect->getRedirectCookie();
-                    if (!$this->scopeConfig->getValue('customer/startup/redirect_dashboard') && $requestedRedirect) {
-                        $resultRedirect->setUrl($this->_redirect->success($requestedRedirect));
-                        $this->accountRedirect->clearRedirectCookie();
-                        return $resultRedirect;
-                    }
-                    $resultRedirect = $this->accountRedirect->getRedirect();
-                } elseif ($this->isCompanyAccount) {
-                    $url = $this->urlModel->getUrl('/', ['_secure' => true]);
-                    $resultRedirect->setUrl($this->_redirect->success($url));
-                }
-            }
-            
-            if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
-                $metadata = $this->getCookieMetadataFactory()->createCookieMetadata();
-                $metadata->setPath('/');
-                $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
-            }
+                    $password = $this->getRequest()->getParam('password');
+                    $confirmation = $this->getRequest()->getParam('password_confirmation');
 
-            return $resultRedirect;
-        } catch (StateException $e) {
-            $url = $this->urlModel->getUrl('customer/account/forgotpassword');
-            // @codingStandardsIgnoreStart
-            $message = __(
-                'There is already an account with this email address. If you are sure that it is your email address, <a href="%1">click here</a> to get your password and access your account.',
-                $url
-            );
-            // @codingStandardsIgnoreEnd
-            $this->messageManager->addError($message);
-        } catch (InputException $e) {
-            $this->messageManager->addError($this->escaper->escapeHtml($e->getMessage()));
-            foreach ($e->getErrors() as $error) {
-                $this->messageManager->addError($this->escaper->escapeHtml($error->getMessage()));
+                    $this->checkPasswordConfirmation($password, $confirmation);
+                } elseif ($this->isCompanyAccount) {
+                    $password = $this->randomPassword();
+                }
+
+                $redirectUrl = $this->session->getBeforeAuthUrl();
+
+                $customer = $this->accountManagement
+                    ->createAccount($customer, $password, $redirectUrl);
+
+                if ($this->getRequest()->getParam('is_subscribed', false)) {
+                    $this->subscriberFactory->create()->subscribeCustomerById($customer->getId());
+                }
+
+                $this->_eventManager->dispatch(
+                    'customer_register_success',
+                    ['account_controller' => $this, 'customer' => $customer]
+                );
+
+                $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
+                if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
+                    $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
+                    // @codingStandardsIgnoreStart
+                    $this->messageManager->addSuccess(
+                        __('confirmationEmailMessage',$email)
+                    );
+                    // @codingStandardsIgnoreEnd
+                    $url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
+                    $resultRedirect->setUrl($this->_redirect->success($url));
+                } else {
+                        $this->messageManager->addSuccess($this->getSuccessMessage());
+
+                    if ($this->isCustomerAccount) {
+                        $this->session->setCustomerDataAsLoggedIn($customer);
+                        $requestedRedirect = $this->accountRedirect->getRedirectCookie();
+                        if (!$this->scopeConfig->getValue('customer/startup/redirect_dashboard') &&
+                            $requestedRedirect) {
+                            $resultRedirect->setUrl($this->_redirect->success($requestedRedirect));
+                            $this->accountRedirect->clearRedirectCookie();
+                            return $resultRedirect;
+                        }
+                        $resultRedirect = $this->accountRedirect->getRedirect();
+                    } elseif ($this->isCompanyAccount) {
+                        $url = $this->urlModel->getUrl('/', ['_secure' => true]);
+                        $resultRedirect->setUrl($this->_redirect->success($url));
+                    }
+                }
+
+                if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
+                    $metadata = $this->getCookieMetadataFactory()->createCookieMetadata();
+                    $metadata->setPath('/');
+                    $this->getCookieManager()->deleteCookie('mage-cache-sessid', $metadata);
+                }
+
+                return $resultRedirect;
+            } catch (StateException $e) {
+                $url = $this->urlModel->getUrl('customer/account/forgotpassword');
+                // @codingStandardsIgnoreStart
+                $message = __('confirmationEmailAlreadySendMessage',$url);
+                // @codingStandardsIgnoreEnd
+                $this->messageManager->addError($message);
+            } catch (InputException $e) {
+                $this->messageManager->addError($this->escaper->escapeHtml($e->getMessage()));
+                foreach ($e->getErrors() as $error) {
+                    $this->messageManager->addError($this->escaper->escapeHtml($error->getMessage()));
+                }
+            } catch (LocalizedException $e) {
+                $this->messageManager->addError($this->escaper->escapeHtml($e->getMessage()));
+            } catch (\Exception $e) {
+                if ($this->isCustomerAccount) {
+                    $this->messageManager->addException($e, __('We can\'t save the customer.'));
+                } elseif ($this->isCompanyAccount) {
+                    $this->messageManager->addException($e, __('We can\'t save the company.'));
+                }
+
             }
-        } catch (LocalizedException $e) {
-            $this->messageManager->addError($this->escaper->escapeHtml($e->getMessage()));
-        } catch (\Exception $e) {
-            if ($this->isCustomerAccount) {
-                $this->messageManager->addException($e, __('We can\'t save the customer.'));
-            } elseif ($this->isCompanyAccount) {
-                $this->messageManager->addException($e, __('We can\'t save the company.'));
-            }
-            
         }
         
         $this->session->setCustomerFormData($this->getRequest()->getPostValue());
@@ -307,7 +328,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
     /**
      * Generate random password
      *
-     * @param type $length
+     * @param int $length
      * @return string
      */
     public function randomPassword($length = 10)
@@ -315,5 +336,45 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         $chars = Random::CHARS_LOWERS . Random::CHARS_UPPERS . Random::CHARS_DIGITS;
 
         return $this->mathRandom->getRandomString($length, $chars);
+    }
+    
+    /**
+     * File validation
+     *
+     * @param string $fieldName
+     * @return string
+     */
+    public function validateResellerCertificate($fieldName)
+    {
+        $validationStatus = false;
+        
+        $allowedFileType = $this->register_viewModel
+            ->getScopeConfigValue('reseller_certification/general/supported_file');
+        $allowedMaxFileSize = $this->register_viewModel
+            ->getScopeConfigValue('reseller_certification/general/max_filesize_limit');
+        
+        try {
+            $uploader = $this->uploaderFactory->create(['fileId'=>$fieldName]);
+            $uploader->setAllowedExtensions(array_map('trim', explode(',', $allowedFileType)));
+            
+            if ($uploader->getFileSize() > $this->register_viewModel->convertMBtoBytes($allowedMaxFileSize)) {
+                $validationStatus = false;
+                $this->messageManager->addErrorMessage(__("uploadFileTooLarge", $allowedMaxFileSize));
+            } else {
+                $validationStatus = true;
+            }
+
+            if ($uploader->checkAllowedExtension($uploader->getFileExtension())) {
+                $validationStatus = true;
+            } else {
+                $validationStatus = false;
+                $this->messageManager->addErrorMessage(__("uploadFileExtensionInvalid", strtoupper($allowedFileType)));
+            }
+        } catch (\Exception $ex) {
+            $validationStatus = false;
+            $this->messageManager->addErrorMessage(__("uploadFileOtherError", $allowedMaxFileSize, strtoupper($allowedFileType)));
+        }
+        
+        return $validationStatus;
     }
 }

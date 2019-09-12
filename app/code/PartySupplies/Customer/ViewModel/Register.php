@@ -53,4 +53,18 @@ class Register implements ArgumentInterface
     {
         return $this->urlBuilder->getUrl(Constant::ACCOUNT_CREATE_POST_URL);
     }
+    
+    /**
+     * @param string $path
+     * @return string|mixed
+     */
+    public function getScopeConfigValue($path)
+    {
+        return $this->scopeConfig->getValue($path);
+    }
+        
+    public function convertMBtoBytes($bytes)
+    {
+        return $bytes*1000000;
+    }
 }

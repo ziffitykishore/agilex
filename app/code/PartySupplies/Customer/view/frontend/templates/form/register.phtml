@@ -14,7 +14,6 @@ $register = $block->getData('register_viewModel');
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
-<h1>Testing</h1>
 <div class="com-reg">
 <div>
     <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('business_account_benefits')->toHtml();?>
@@ -39,14 +38,14 @@ $register = $block->getData('register_viewModel');
             <?php $_streetValidationClass = $this->helper('Magento\Customer\Helper\Address')->getAttributeValidationClass('street'); ?>
 
             <div class="field street required">
-                <label for="street_1" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?></span></label>
+                <label for="street_1" class="label"><span><?= $block->escapeHtml(__('street1')) ?></span></label>
                 <div class="control">
                     <input type="text" name="street[]" value="<?= $block->escapeHtmlAttr($block->getFormData()->getStreet(0)) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?>" id="street_1" class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>">
                 </div>
             </div>
             
             <div class="field street">
-                <label for="street_2" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?></span></label>
+                <label for="street_2" class="label"><span><?= $block->escapeHtml(__('street2')) ?></span></label>
                 <div class="control">
                     <input type="text" name="street[]" value="<?= $block->escapeHtmlAttr($block->getFormData()->getStreet(1)) ?>" title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?>" id="street_2" class="input-text <?= $block->escapeHtmlAttr($_streetValidationClass) ?>">
                 </div>
@@ -162,4 +161,14 @@ $register = $block->getData('register_viewModel');
         }
     }
 </script>
-<script src="https://www.google.com/recaptcha/api.js" sync defer>
+<script src="https://www.google.com/recaptcha/api.js" sync defer></script>
+<script>
+    var uploadField = document.getElementById("reseller_certificate");
+    <?php $allowedFileSize = $register->getScopeConfigValue('reseller_certification/general/max_filesize_limit'); ?>
+    uploadField.onchange = function() {
+        if(this.files[0].size > <?= $register->convertMBtoBytes($allowedFileSize) ?>){
+           alert("<?= $block->escapeHtml(__("uploadFileTooLarge",$allowedFileSize)) ?>");
+           this.value = "";
+        };
+    };
+</script>
