@@ -67,7 +67,7 @@
         }
 
         .secondary{
-            margin-top: 5px;
+            margin-top: 10px;
             font-size: 1.4rem;
             a{
                 color: @c-text_sec_color;
@@ -460,8 +460,6 @@
                         display: block;
                         float:none;
                         width:100%;
-                        -webkit-transition : .5s ease;
-                        transition: .5s ease;
                         height: 54px;
                         font-family: @heading__font-family__base;
                     }   
@@ -958,7 +956,7 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab + 1) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
 
     /*==========================
         Custom
