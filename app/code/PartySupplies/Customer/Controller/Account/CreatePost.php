@@ -246,9 +246,9 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
                 } elseif ($this->isCompanyAccount) {
                     $password = $this->randomPassword();
                 }
-
+                
                 $redirectUrl = $this->session->getBeforeAuthUrl();
-
+                
                 $customer = $this->accountManagement
                     ->createAccount($customer, $password, $redirectUrl);
 
@@ -328,14 +328,15 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
     /**
      * Generate random password
      *
-     * @param int $length
      * @return string
      */
-    public function randomPassword($length = 10)
+    public function randomPassword()
     {
-        $chars = Random::CHARS_LOWERS . Random::CHARS_UPPERS . Random::CHARS_DIGITS;
+        $chars = $this->mathRandom->getRandomString(5,Random::CHARS_LOWERS) . 
+            $this->mathRandom->getRandomString(5,Random::CHARS_UPPERS) .
+            $this->mathRandom->getRandomString(5,Random::CHARS_DIGITS);
 
-        return $this->mathRandom->getRandomString($length, $chars);
+        return str_shuffle($chars);
     }
     
     /**
