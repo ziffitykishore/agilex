@@ -283,9 +283,47 @@
 
     }
 
+
+    .page-wrapper {
+        .breadcrumbs {
+            .lib-css(background, @c-whitesmoke);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            max-width: none;
+
+            .item {
+                a {
+                    text-decoration: none;
+                }
+                &:after {
+                    .lib-css(color, @color-black);
+                    font-size: 25px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .logo-header {
+        display: none;
+    }
+
+    .d-desktop {
+        display: none !important;
+    }
+
+    .page-header {
+        .header.content {
+            .logo {
+                margin: 0 auto;
+            }
+        }
+    }
 
     .nav-toggle{
         height: 18px;

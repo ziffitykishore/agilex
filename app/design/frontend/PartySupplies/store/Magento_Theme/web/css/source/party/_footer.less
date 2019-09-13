@@ -22,6 +22,7 @@
                 color: @c-text_sec_color;
                 text-transform: uppercase;
                 margin-top: 0;
+                font-size: 16px;
             }
             p{
                 color: @c-white_color;
@@ -187,14 +188,63 @@
             .footer-parts{
                 .flex-width(100%);
 
+                &.newsletter-wrap {
+                    text-align: center;
+                    margin-bottom: 30px;
+                }
+
+                &.con-ad {
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+
                 ul {
                     display: none;
+                    padding-left: 15px;
+                    padding-right: 15px;
                 }
                 p{
                     .blk{
                         display: inline;
                     }
                 }
+            }
+
+            .mb-foot{
+                h5{
+                    padding: 10px;
+                    border: 2px solid #8c8c8c;
+                    position: relative;
+
+                    &:before,
+                    &:after{
+                        background: #8c8c8c;
+                        content: '';
+                        height: 3px;
+                        position: absolute;
+                        top: 17px;
+                        width: 21px;
+                        transition: transform 500ms ease;
+                        right: 7px;
+                    }
+                    &:after {
+                        transform-origin: center;
+                        transform: rotate(90deg);
+                    }
+
+                    &.active {
+
+                            &:before {
+                                transform: rotate(180deg);
+                            }
+                            &:after {
+                                transform: none;
+                            }
+
+                    }
+                }
+
+
             }
         }
         .foot-right{
@@ -206,17 +256,25 @@
         }
         .foot-bor{
             .custom-container{
+
+                .foot-copy,
+                .foot-pay {
+                    .flex-width(percentage(1));
+                }
+
                 .foot-copy{
+                    .order(2);
                     p{
                         text-align: center;
                     }
                 }
                 .foot-pay{
+                    .order(1);
                     .pay{
                         float: none;
                         display: block;
                         text-align: center;
-                        margin-top: 20px;
+                        margin-bottom: 25px;
                     }
                 }
             }
@@ -255,41 +313,7 @@
                     margin-top: 0;
                 }
             }
-            .mb-foot{
-                h5{
-                    padding: 10px;
-                    border: 2px solid #8c8c8c;
-                    position: relative;
-                }
-                .plus {
-                    &:before,
-                    &:after{
-                        background: #8c8c8c;
-                        content: '';
-                        height: 3px;
-                        position: absolute;
-                        top: 17px;
-                        width: 21px;
-                        transition: transform 500ms ease;
-                        right: 7px;
-                    }
-                    &:after {
-                        transform-origin: center;
-                        transform: rotate(90deg);
-                    }
-                    
-                }
-                .active {
-                    .plus{
-                        &:before {
-                            transform: rotate(180deg);
-                        }
-                        &:after {
-                            transform: none;
-                        }
-                    }
-                }
-            }
+
         }
         .foot-right{
             float: none;
@@ -302,7 +326,6 @@
         }               
         .foot-bor{
             .custom-container{
-                padding: 0 15px;
                 .foot-copy{
                     display: flex;
                     order: 2;
@@ -313,15 +336,7 @@
                         }
                     }
                 }
-                .foot-pay{
-                    display: flex;
-                    order: 1;
-                    .pay{
-                        float: none;
-                        margin: auto;
-                        margin-bottom: 25px;
-                    }
-                }
+
             }
         }
     }

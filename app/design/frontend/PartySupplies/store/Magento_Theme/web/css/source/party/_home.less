@@ -5,6 +5,14 @@
 /* Home Page Sections Category */
 
 & when (@media-common = true) {
+
+
+    .cms-index-index {
+        .page-title-wrapper {
+            display: none;
+        }
+    }
+
     .greet.welcome{
         display: none !important;
     }
@@ -435,12 +443,19 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .slider-content {
+        display: none;
+    }
   
     .sec-catagory{
         padding: 40px 25px 0;
         .cat-pro-cont{
-            padding-right: 15px;
+            padding-right: 0;
             margin-bottom: 20px;
+            .catalog-category {
+                .flex-width(100%);
+            }
             .cat-pro{
                 position: relative;
                 .cat-pro-head{

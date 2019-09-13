@@ -68,6 +68,12 @@
     max-width: @width;
 }
 
+.order(@order) {
+    -webkit-box-ordinal-group: @order + 1;
+    -ms-flex-order: @order;
+    order: @order;
+}
+
 .box-shadow (@string) {
     -webkit-box-shadow: @string;
     -moz-box-shadow: @string;
@@ -152,22 +158,14 @@
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 
 
     @media screen and (min-width: 1600px) {
         padding-right: 60px;
         padding-left: 60px;
     }
-
-
-    @media screen and (max-width: 1300px) {
-        padding-right: 20px;
-        padding-left: 20px;
-    }
-
-
 }
 
 .container-lg {
