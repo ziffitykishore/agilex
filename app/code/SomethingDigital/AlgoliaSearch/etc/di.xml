@@ -4,4 +4,7 @@
         <plugin name="SomethingDigital_AlgoliaSearch" type="SomethingDigital\AlgoliaSearch\Plugin\AddProductAttributes" />
         <plugin name="SomethingDigital_AlgoliaSearch_category" type="SomethingDigital\AlgoliaSearch\Plugin\AddCategoryAttributes" />
     </type>
+    <type name="Magento\Catalog\Model\ResourceModel\Eav\Attribute">
+        <plugin name="SomethingDigital_Algolia_Save_Configuration" type="SomethingDigital\AlgoliaSearch\Plugin\SaveConfigurationToAlgolia"/>
+    </type>
 </config>
