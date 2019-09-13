@@ -115,12 +115,16 @@ $register = $block->getData('register_viewModel');
                  <div class="field field-file required">
                     <label for="reseller_certificate" class="label"><span><?= $block->escapeHtml(__('resellerCertificate')) ?></span></label>
                     <div class="control">
-                        <input type="file" name="reseller_certificate" id="reseller_certificate" value="<?= $block->escapeHtmlAttr($block->getFormData()->getResellerCertificate()) ?>" title="<?= $block->escapeHtmlAttr(__('resellerCertificate')) ?>" class="input-file" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}">
+                        <input type="text" class="input-text" readonly data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}">
+
+
+      <input type="file" name="reseller_certificate" id="reseller_certificate" value="<?= $block->escapeHtmlAttr($block->getFormData()->getResellerCertificate()) ?>" title="<?= $block->escapeHtmlAttr(__('resellerCertificate')) ?>" class="input-file upload up">
                         <span class="file-custom">
-                            <span class="btn"><?= $block->escapeHtml(__('Upload')) ?></span>
-                        </span>
+      <span class="btn" id="upload"><?= $block->escapeHtml(__('Upload')) ?></span>
+    </span>
                     </div>
                 </div>
+
 
                 <div class="g-recaptcha field required" data-sitekey="<?= $block->getConfig("msp_securitysuite_recaptcha/general/public_key"); ?>"></div>
                 <div style="display:none" id="error-msg">
