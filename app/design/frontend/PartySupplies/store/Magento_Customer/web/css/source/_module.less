@@ -67,7 +67,7 @@
         }
 
         .secondary{
-            margin-top: 5px;
+            margin-top: 10px;
             font-size: 1.4rem;
             a{
                 color: @c-text_sec_color;
@@ -460,9 +460,8 @@
                         display: block;
                         float:none;
                         width:100%;
-                        -webkit-transition : .5s ease;
-                        transition: .5s ease;
                         height: 54px;
+                        line-height: 24px;
                         font-family: @heading__font-family__base;
                     }   
                     .secondary{
@@ -604,16 +603,18 @@
                 width: 100%;
                 margin: 0;
                 cursor: pointer;
+                position: absolute;
+                top: 0;
+                opacity: 0;
 
                 & + .file-custom {
                     position: absolute;
                     pointer-events: none;
                     top: 0;
                     right: 0;
-                    left: 0;
                     z-index: 5;
-                    display: block;
-                    height: 100%;
+                    display: inline-block;
+                    height: 44px;
                     line-height: 24px;
                     font-size: 14px;
                     color: #555;
@@ -628,9 +629,6 @@
                     span {
                         .lib-css(background, @c-lavander);
                         .lib-css(color, @color-black);
-                        position: absolute;
-                        right:0;
-                        top:0;
                         font-weight:normal;
                         display: inline-block;
                         max-width: 120px;
@@ -638,6 +636,9 @@
                         text-align: center;
                         .br-radius(0 3px 3px 0);
                         height: 100%;
+                        &:before {
+                            display: none;
+                        }
                     }
                 }
             }
@@ -958,7 +959,7 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab + 1) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
 
     /*==========================
         Custom

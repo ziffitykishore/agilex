@@ -22,7 +22,7 @@ $register = $block->getData('register_viewModel');
         <div class="benifits-list-wrap">
             <div class="benifits-list">
                 <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('business_account_benefits')->toHtml(); ?>
-                <h3 class="download-title">Lorem ipsum dolor sit amet</h3>
+                <h3 class="download-title"><?= $block->escapeHtml(__('Business Accounts Benefits')) ?></h3>
             </div>
             <a class="btn btn-black" href="pub/media/reseller-certificate/form.pdf" download="">Download</a>
         </div>
@@ -108,10 +108,13 @@ $register = $block->getData('register_viewModel');
                 <div class="field field-file required">
                     <label for="reseller_certificate" class="label"><span><?= $block->escapeHtml(__('resellerCertificate')) ?></span></label>
                     <div class="control">
-                        <input type="file" name="reseller_certificate" id="reseller_certificate" value="<?= $block->escapeHtmlAttr($block->getFormData()->getResellerCertificate()) ?>" title="<?= $block->escapeHtmlAttr(__('resellerCertificate')) ?>" class="input-file" data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}">
+                        <input type="text" class="input-text" readonly data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}">
+
+
+      <input type="file" name="reseller_certificate" id="reseller_certificate" value="<?= $block->escapeHtmlAttr($block->getFormData()->getResellerCertificate()) ?>" title="<?= $block->escapeHtmlAttr(__('resellerCertificate')) ?>" class="input-file upload up">
                         <span class="file-custom">
-                            <span class="btn"><?= $block->escapeHtml(__('Upload')) ?></span>
-                        </span>
+      <span class="btn" id="upload"><?= $block->escapeHtml(__('Upload')) ?></span>
+    </span>
                     </div>
                 </div>
 
