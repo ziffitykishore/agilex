@@ -112,19 +112,6 @@ require(['jquery', 'slick'], function ($) {
                 PLP
         ==================== */
 
-        $(".plp-filter .filter-options-title").click(function () {
-            var _this = $(this);
-            $(this).next('.filter-options-content').slideToggle();
-
-            if ($('.plp-filter .filter-options-content').hasClass('active')) {
-               $(this).removeClass('active');
-            }
-            else{
-                $(this).addClass('active');
-            }
-
-        });
-
         $(".filter-title").click(function () {
             $(".block.filter").toggleClass('active');
             $("body").toggleClass('filter-active');

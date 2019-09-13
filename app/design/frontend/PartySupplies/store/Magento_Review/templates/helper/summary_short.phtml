@@ -1,0 +1,25 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Review\Block\Product\ReviewRenderer $block */
+
+$url = $block->getReviewsUrl() . '#reviews';
+$urlForm = $block->getReviewsUrl() . '#review-form';
+?>
+<?php if ($block->isReviewEnabled() && $block->getReviewsCount()): ?>
+<?php $rating = $block->getRatingSummary(); ?>
+
+<?php elseif ($block->isReviewEnabled() && $block->getDisplayIfEmpty()): ?>
+<div class="product-reviews-summary short empty">
+    <div class="reviews-actions">
+        <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>">
+            <?= $block->escapeHtml(__('Be the first to review this product')) ?>
+        </a>
+    </div>
+</div>
+<?php endif; ?>

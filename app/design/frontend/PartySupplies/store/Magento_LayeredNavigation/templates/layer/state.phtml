@@ -17,14 +17,10 @@
 <?php $_filters = $block->getActiveFilters() ?>
 <?php if (!empty($_filters)): ?>
 <div class="filter-current">
-    <!-- <strong class="block-subtitle filter-current-subtitle"
-            role="heading"
-            aria-level="2"
-            data-count="<?= count($_filters) ?>"><?= /* @escapeNotVerified */ __('Now Shopping by') ?></strong> -->
+   
     <ol class="items">
         <?php foreach ($_filters as $_filter): ?>
             <li class="item">
-                <!-- <span class="filter-label"><?= $block->escapeHtml(__($_filter->getName())) ?></span> -->
                 <span class="filter-value"><?= /* @escapeNotVerified */ $block->stripTags($_filter->getLabel()) ?></span>
                 <?php
                 $clearLinkUrl = $_filter->getClearLinkUrl();

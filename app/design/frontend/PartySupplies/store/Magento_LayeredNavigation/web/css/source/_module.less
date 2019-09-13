@@ -130,12 +130,13 @@
 
         .filter-options-title {
             .lib-heading(h4);
-            margin: 0 0 2rem;
+            margin: 0 0 1rem;
             word-break: break-all;
             font-family: @font-family-name__base;
             font-size: 1.6rem;
             font-weight: 600;
             position: relative;
+            padding: 0.5rem 0;
             cursor: pointer;
             &::after{
                 position: absolute;
@@ -146,19 +147,12 @@
             }
         }
 
-        .filter-options-title.active{
-            &::after{
-                position: absolute;
-                right: 0;
-                top: 0;
-                content: "\2212";
-                font-size: 20px;
-            }
+        .active>.filter-options-title:after{
+            content: "\2212";
         }
 
         .filter-options-content {
             margin: 0 0 20px;
-            display: none;
 
             .item {
                 margin: .5rem 0 .5rem 1rem;
@@ -168,14 +162,27 @@
                 &:last-child{
                     margin: 0 0 0 1rem;
                 }
+                a{
+                    &::before{
+                        width: 15px;
+                        height: 15px;
+                        content: '';
+                        display: inline-block;
+                        vertical-align: middle;
+                        border: 1px solid #8a92a5;
+                        line-height: 15px;
+                        font-size: 12px;
+                        -webkit-border-radius: 3px;
+                        -moz-border-radius: 3px;
+                        border-radius: 3px;
+                    }
+                }
             }
-
-            
 
             &.active{
                 display: block;
             }
-        }
+        }  
 
         .count {
             .lib-css(color, @text__color__muted);
