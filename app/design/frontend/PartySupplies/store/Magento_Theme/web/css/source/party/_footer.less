@@ -150,145 +150,145 @@
             padding-top: 0;
         }
     }
-    
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-mob + 1) {
 
-    .footer{
-        .custom-container{
-            .foot-left{
-                .footer-parts{
-                    h5{
-                        &+ul{
-                            display: block !important;
-                            height: auto !important;
-                        }   
+.footer{
+    .custom-container{
+        .foot-left{
+            .footer-parts{
+                h5{
+                    &+ul{
+                        display: block !important;
+                        height: auto !important;
                     }
                 }
             }
         }
     }
+}
 
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) { //768
 
-    .footer.wrapper{
-        .custom-container{
-            padding-top: 30px;
-            padding-bottom: 30px;
-        }
-        .foot-left{
-            float: none;
-            display: flex;
-            width: 100%;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            .footer-parts{
-                .flex-width(100%);
+.footer.wrapper{
+    .custom-container{
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .foot-left{
+        float: none;
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .footer-parts{
+            .flex-width(100%);
 
-                &.newsletter-wrap {
-                    text-align: center;
-                    margin-bottom: 30px;
-                }
-
-                &.con-ad {
-                    margin-bottom: 30px;
-                    text-align: center;
-                }
-
-                ul {
-                    display: none;
-                    padding-left: 15px;
-                    padding-right: 15px;
-                }
-                p{
-                    .blk{
-                        display: inline;
-                    }
-                }
+            &.newsletter-wrap {
+                text-align: center;
+                margin-bottom: 30px;
             }
 
-            .mb-foot{
-                h5{
-                    padding: 10px;
-                    border: 2px solid #8c8c8c;
-                    position: relative;
+            &.con-ad {
+                text-align: center;
+                padding-bottom: 0;
+            }
 
-                    &:before,
-                    &:after{
-                        background: #8c8c8c;
-                        content: '';
-                        height: 3px;
-                        position: absolute;
-                        top: 17px;
-                        width: 21px;
-                        transition: transform 500ms ease;
-                        right: 7px;
+            ul {
+                display: none;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            p{
+                .blk{
+                    display: inline;
+                }
+            }
+        }
+
+        .mb-foot{
+            h5{
+                padding: 10px;
+                border: 2px solid #8c8c8c;
+                position: relative;
+
+                &:before,
+                &:after{
+                    background: #8c8c8c;
+                    content: '';
+                    height: 3px;
+                    position: absolute;
+                    top: 17px;
+                    width: 21px;
+                    transition: transform 500ms ease;
+                    right: 7px;
+                }
+                &:after {
+                    transform-origin: center;
+                    transform: rotate(90deg);
+                }
+
+                &.active {
+
+                    &:before {
+                        transform: rotate(180deg);
                     }
                     &:after {
-                        transform-origin: center;
-                        transform: rotate(90deg);
+                        transform: none;
                     }
 
-                    &.active {
-
-                            &:before {
-                                transform: rotate(180deg);
-                            }
-                            &:after {
-                                transform: none;
-                            }
-
-                    }
                 }
-
-
             }
-        }
-        .foot-right{
-            float: none;
-            display: block;
-            width: 100%;
-            clear: both;
-            padding: 0;
-        }
-        .foot-bor{
-            .custom-container{
 
-                .foot-copy,
-                .foot-pay {
-                    .flex-width(percentage(1));
-                }
 
-                .foot-copy{
-                    .order(2);
-                    p{
-                        text-align: center;
-                    }
+        }
+    }
+    .foot-right{
+        float: none;
+        display: block;
+        width: 100%;
+        clear: both;
+        padding: 0;
+    }
+    .foot-bor{
+        .custom-container{
+
+            .foot-copy,
+            .foot-pay {
+                .flex-width(percentage(1));
+            }
+
+            .foot-copy{
+                .order(2);
+                p{
+                    text-align: center;
                 }
-                .foot-pay{
-                    .order(1);
-                    .pay{
-                        float: none;
-                        display: block;
-                        text-align: center;
-                        margin-bottom: 25px;
-                    }
+            }
+            .foot-pay{
+                .order(1);
+                .pay{
+                    float: none;
+                    display: block;
+                    text-align: center;
+                    margin-bottom: 25px;
                 }
             }
         }
     }
-        
+}
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-mob) {
 
     .footer.wrapper {
-        .custom-container{
-            padding-top: 25px;
-            padding-bottom: 25px;
+        .foot-bor {
+            padding-top: 30px;
+            padding-bottom: 30px;
         }
         .foot-left{
             .footer-parts{
@@ -307,7 +307,7 @@
                 }
             }
             .con-ad{
-                padding-bottom: 25px; 
+                padding-bottom: 25px;
                 text-align: center;
                 a.mail{
                     margin-top: 0;
@@ -323,7 +323,7 @@
             .footer-parts{
                 text-align: center;
             }
-        }               
+        }
         .foot-bor{
             .custom-container{
                 .foot-copy{

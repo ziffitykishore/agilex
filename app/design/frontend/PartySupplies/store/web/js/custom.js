@@ -4,11 +4,11 @@ require(['jquery', 'slick'], function ($) {
 
 
 
-    /*  =================
-        Footer Links
-        ================= */
+        /*  =================
+            Footer Links
+            ================= */
 
-            //global variables
+        //global variables
         var responsiveflag = false;
 
         responsiveResize();
@@ -47,9 +47,9 @@ require(['jquery', 'slick'], function ($) {
             }
         }
 
-    /*  =================
-        Sticky Navbar
-        ================= */
+        /*  =================
+            Sticky Navbar
+            ================= */
 
         /* function call stick  */
         function stickyBar(elm) {
@@ -64,38 +64,56 @@ require(['jquery', 'slick'], function ($) {
                 });
             }
         }
-        stickyBar(".page-header");
+        stickyBar("header.page-header");
 
 
-    /*  =================
-        Home Page Why Us Slider
-        ================= */
+        /*  =================
+            Home Page Why Us Slider
+            ================= */
 
-        settings_slider = {
-            dots: false,
-            arrows: true,
-            autoplay:true,
-            autoplaySpeed:2000
-          }
-          slick_on_mobile( $('.why-row'), settings_slider);
-        
-          function slick_on_mobile(slider, settings){
+
+        slick_on_mobile( $('.why-row'));
+
+        function slick_on_mobile(slider, settings){
             $(window).on('load resize', function() {
-              if ($(window).width() > 767) {
-                if (slider.hasClass('slick-initialized')) {
-                  slider.slick('unslick');
+                if ($(window).width() > 767) {
+                    if (slider.hasClass('slick-initialized')) {
+                        slider.slick('unslick');
+                    }
+                    return
                 }
-                return
-              }
-              if (!slider.hasClass('slick-initialized')) {
-                return slider.slick(settings);
-              }
+                if (!slider.hasClass('slick-initialized')) {
+                    return slider.slick({
+                        dots: false,
+                        arrows: false,
+                        autoplay:true,
+                        autoplaySpeed:2000,
+                        centerMode: true,
+                        centerPadding:"40"
+                    });
+                }
             });
-          };
+        };
 
-    /*  =================
-        MM-Menu
-        ================= */
+        $(document).on('change','.up', function(){
+            var names = [];
+            var length = $(this).get(0).files.length;
+            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                names.push($(this).get(0).files[i].name);
+            }
+            // $("input[name=file]").val(names);
+            if(length>2){
+                var fileName = names.join(', ');
+                $(this).closest('.field').find('.input-text').attr("value",length+" files selected");
+            }
+            else{
+                $(this).closest('.field').find('.input-text').attr("value",names);
+            }
+        });
+
+        /*  =================
+            MM-Menu
+            ================= */
 
         /*var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
