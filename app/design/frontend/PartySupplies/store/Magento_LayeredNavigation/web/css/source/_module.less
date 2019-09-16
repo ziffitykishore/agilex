@@ -253,6 +253,11 @@
 
     .filter-content{
         padding: 0;
+        .filter-actions{
+            a{
+                display: none;
+            }
+        }
     }
 
     .filter-options{
@@ -300,13 +305,10 @@
             z-index: 10;
             padding: 2rem;
         }
-        .filter-current .item {
-            margin-bottom: 11px;
-            background: #dfe4ec;
-            padding: 5px 10px;
-            border-radius: 3px;
-            display: inline-block;
-        }
+    }
+
+    .filter-current .item {
+        display: none;
     }
 
     body.filter-active .page-wrapper {
