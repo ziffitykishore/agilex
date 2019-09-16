@@ -332,9 +332,9 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
      */
     public function randomPassword()
     {
-        $chars = $this->mathRandom->getRandomString(5,Random::CHARS_LOWERS) . 
-            $this->mathRandom->getRandomString(5,Random::CHARS_UPPERS) .
-            $this->mathRandom->getRandomString(5,Random::CHARS_DIGITS);
+        $chars = $this->mathRandom->getRandomString(5, Random::CHARS_LOWERS) .
+            $this->mathRandom->getRandomString(5, Random::CHARS_UPPERS) .
+            $this->mathRandom->getRandomString(5, Random::CHARS_DIGITS);
 
         return str_shuffle($chars);
     }
