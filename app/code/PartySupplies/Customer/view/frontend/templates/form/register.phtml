@@ -24,7 +24,7 @@ $register = $block->getData('register_viewModel');
                 <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('business_account_benefits')->toHtml(); ?>
                 <h3 class="download-title"><?= $block->escapeHtml(__('Business Accounts Benefits')) ?></h3>
             </div>
-            <a class="btn btn-black" href="pub/media/reseller-certificate/form.pdf" download="">Download</a>
+            <a class="btn btn-black" href="<?= $block->escapeUrl($block->getUrl('pub/media/reseller_certificate/'). $register->getScopeConfigValue('reseller_certification/general/upload_form')) ?>" download="">Download</a>
         </div>
     </div>
 
