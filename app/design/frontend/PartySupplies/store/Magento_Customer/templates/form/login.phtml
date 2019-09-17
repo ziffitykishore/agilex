@@ -17,7 +17,7 @@
               id="login-form"
               data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
-            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+            <div class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
                     <div class="control">
@@ -36,7 +36,7 @@
                     <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Login')) ?></span></button></div>
 
                 </div>
-            </fieldset>
+            </div>
         </form>
     </div>
 </div>

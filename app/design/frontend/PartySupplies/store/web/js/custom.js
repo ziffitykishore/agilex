@@ -1,12 +1,50 @@
 require(['jquery', 'slick'], function ($) {
     $(document).ready(function ($) {
 
+        $('.showcart').on('click', function(){
+            $("body").removeClass("search-opened");
+        });
+
+        var   openCtrl = $(".block-search .block-title"),
+            closeCtrl = $(".search-close"),
+            searchContainer = $(".block-search"),
+            inputSearch = searchContainer.find("#search");
+
+        initEvents();
+        searchContainer.on("click", function(e) {
+            e.stopPropagation()
+            $("body").removeClass("cart-opened");
+        });
+
+        function initEvents() {
+            openCtrl.on("click", openSearch);
+            closeCtrl.on("click", closeSearch);
+            $(document).on("keyup", function(ev) {
+                if (ev.keyCode == 27) {
+                    closeSearch()
+                }
+            });
+        }
+
+        function openSearch(e) {
+            $("body").toggleClass("search-opened");
+            setTimeout(function() {
+                inputSearch.focus()
+            }, 600);
+        }
+        function closeSearch() {
+            $("body").removeClass("search-opened");
+            inputSearch.blur();
+            inputSearch.value = ""
+        }
+
+        $(document).click(function() {
+            $("body").removeClass("search-opened");
+            inputSearch.blur();
+            inputSearch.value = ""
+        });
 
 
-
-        /*  =================
-            Footer Links
-            ================= */
 
         //global variables
         var responsiveflag = false;
@@ -21,11 +59,13 @@ require(['jquery', 'slick'], function ($) {
             {
                 accordionFooter('enable');
                 responsiveflag = true;
+                $('header.page-header').addClass("fixed");
             }
             else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
                 responsiveflag = false;
+                stickyBar();
             }
 
         }
@@ -52,19 +92,18 @@ require(['jquery', 'slick'], function ($) {
             ================= */
 
         /* function call stick  */
-        function stickyBar(elm) {
-            var elment = $(elm);
+        function stickyBar() {
+            var elment = $('.page-main');
             if (elment.length) {
-                var stickyOffset = elment.offset().top + 100;
+                var stickyOffset = elment.offset().top;
                 $(window).scroll(function() {
                     var sticky = elment,
                         scroll = $(window).scrollTop();
-                    if (scroll >= stickyOffset) sticky.addClass("fixed");
-                    else sticky.removeClass("fixed");
+                    if (scroll >= stickyOffset) $('header.page-header').addClass("fixed");
+                    else $('header.page-header').removeClass("fixed");
                 });
             }
         }
-        stickyBar("header.page-header");
 
 
         /*  =================
@@ -74,7 +113,7 @@ require(['jquery', 'slick'], function ($) {
 
         slick_on_mobile( $('.why-row'));
 
-        function slick_on_mobile(slider, settings){
+        function slick_on_mobile(slider){
             $(window).on('load resize', function() {
                 if ($(window).width() > 767) {
                     if (slider.hasClass('slick-initialized')) {
@@ -110,6 +149,8 @@ require(['jquery', 'slick'], function ($) {
                 $(this).closest('.field').find('.input-text').attr("value",names);
             }
         });
+
+
 
         /*  =================
             MM-Menu

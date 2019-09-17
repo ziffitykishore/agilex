@@ -509,7 +509,6 @@
             .columns {
                 .actions-toolbar {
                     margin-top: 0;
-
                     .secondary {
                         margin-top: 0;
                     }
@@ -724,20 +723,20 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
-.company-account-create {
-    .inner-container {
-        padding-left: 0;
-        padding-right: 0;
+    .company-account-create {
+        .inner-container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .benefits-wrapper {
+            margin-bottom: 30px;
+        }
     }
 
-    .benefits-wrapper {
-        margin-bottom: 30px;
+    .form-wrapper {
+        padding: 40px 20px;
     }
-}
-
-.form-wrapper {
-    padding: 40px 20px;
-}
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
@@ -992,14 +991,14 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
-.company-account-create {
-    .form-wrapper {
-        .flex-width(60%);
+    .company-account-create {
+        .form-wrapper {
+            .flex-width(60%);
+        }
+        .benefits-wrapper {
+            .flex-width(40%);
+        }
     }
-    .benefits-wrapper {
-        .flex-width(40%);
-    }
-}
 }
 
 
@@ -1202,7 +1201,6 @@
             margin: 0;
         }
     }
-
 
     .customer-account-create{
         .page-main{

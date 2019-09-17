@@ -109,11 +109,14 @@
                 max-width: 400px;
                 width: 100%;
                 .minisearch {
+                    width: 100%;
                     .control {
                         position: relative;
+                        border: none;
                         .input-text {
                             border: 1px solid #d7d7d7;
                             border-right: none;
+                            min-height: 51px;
                         }
                         .categories {
                             position: absolute;
@@ -254,9 +257,6 @@
                 top: 0;
                 width: 100%;
                 z-index: 99;
-                webkit-animation: slide-down .7s;
-                -moz-animation: slide-down .7s;
-                animation: slide-down .7s;
                 .box-shadow(0px 0px 10px 5px rgba(0,0,0,0.05));
             }
         }
@@ -327,6 +327,13 @@
         }
     }
 
+
+    .page-title-wrapper {
+        .page-title {
+            font-size: 2rem;
+        }
+    }
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
@@ -339,27 +346,34 @@
     }
 
     header.page-header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 20;
         .header-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 99;
+            .box-shadow(0px 0px 10px 5px rgba(0,0,0,0.05));
             .header.content{
                 height: 60px;
             }
 
         }
 
-        & + .page-main,
-        & + .breadcrumbs {
+        & ~ .page-main,
+        & ~ .breadcrumbs {
             margin-top: 60px;
         }
     }
 
     .cms-index-index {
         .page-wrapper {
-            > .magestore-bannerslider {
-                margin-top: 60px;
+            .logo-header {
+                & + .magestore-bannerslider {
+                    margin-top: 60px;
+                }
+            }
+
+            .page-main {
+                margin-top: 0;
             }
         }
     }
@@ -600,28 +614,33 @@
     .page-wrapper {
         & + .mm-wrapper__blocker {
             z-index: 99;
-            a {
+            }
+        }
 
-                .lib-icon-font(
-                    @_icon-font-content: @icon_delete,
-                    @_icon-font-size: 35px,
-                    @_icon-font-line-height: 33px,
-                    @_icon-font-color: @color-black,
-                    @_icon-font-color-hover: @header-icons-color-hover,
-                    @_icon-font-color-active: @header-icons-color-hover,
-                    @_icon-font-text-hide: true
-                );
-                &:before {
-                    font-family: @icons__font-name_ps;
-
-                }
-
+    .mm-menu {
+        .menu-close {
+            position: absolute;
+            padding: 0;
+            right: 20px;
+            top: 8px;
+            z-index: 9;
+            width: 30px;
+            text-align: center;
+            .lib-icon-font(
+                @_icon-font-content: @icon_delete,
+                @_icon-font-size: 35px,
+                @_icon-font-line-height: 33px,
+                @_icon-font-color: @color-black,
+                @_icon-font-color-hover: @header-icons-color-hover,
+                @_icon-font-color-active: @header-icons-color-hover,
+                @_icon-font-text-hide: true
+            );
+            &:before {
+                font-family: @icons__font-name_ps;
 
             }
         }
     }
-
-
 
 
 
@@ -774,18 +793,39 @@
 
 
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .page-title-wrapper {
+        .page-title {
+            font-size: 3rem;
+        }
+    }
+}
+
+
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .page-header {
         .header-wrapper {
             .block-search {
-                max-width: 600px;
+                max-width: 690px;
                 width: 100%;
+            }
+        }
+
+        &.fixed {
+            .header-wrapper {
+                .block-search {
+                    max-width: 500px;
+                }
             }
         }
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1){
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+
     .d-desktop {
         display: none !important;
     }
@@ -796,12 +836,17 @@
             overflow: auto;
         }
     }
-}
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
-
 
     .page-header {
+
+        &.fixed {
+            .header-wrapper{
+                webkit-animation: slide-down .7s;
+                -moz-animation: slide-down .7s;
+                animation: slide-down .7s;
+            }
+        }
+
         .header-wrapper {
             .header {
                 &.content {
@@ -1225,24 +1270,31 @@
 
 
     .block-search{
-        .control{
-            border: 0;
-            margin: 0;
-            input{
-                background: transparent;
-                margin: 0;
-                padding: 25px 20px;
-                width: 100%;
-                border-radius: 0;
-                border: 0;
-                right: 0;
-                -webkit-transition: .7s ease;
-                transition: .7s ease;
-                background: #f9f9f9;
-                box-shadow: 0 4px 30px rgba(0, 0, 0, 0.17);
-                border-radius: 5px;
-            }
+        .block-content {
+            z-index: 105;
+            position: fixed;
+            width: 0;
+            right: 0;
+            top: 60px;
+            visibility: hidden;
+            opacity: 0;
+            backface-visibility: hidden;
+            .transition(all .5s ease 0s);
+            background: @color-white;
+            .flex();
+            align-items: center;
+            justify-content: center;
         }
 
+    }
+
+    .search-opened {
+        .block-search {
+            .block-content {
+                visibility: visible;
+                opacity: 1;
+                width: 100%;
+            }
+        }
     }
 }

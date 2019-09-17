@@ -12,10 +12,8 @@
 $helper = $this->helper(\Magento\Search\Helper\Data::class);
 ?>
 <div class="block block-search">
-    <div class="block block-title"
-         data-mage-init='{"dropdown":{}}'
-         data-toggle="dropdown"><strong class="action switch" data-action="search-toggle"><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
-    <div class="block block-content" data-target="dropdown">
+    <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
+    <div class="block block-content">
         <form class="form minisearch" id="search_mini_form" action="<?= /* @escapeNotVerified */ $helper->getResultUrl() ?>" method="get">
             <div class="field search">
                 <label class="label" for="search">

@@ -1319,7 +1319,7 @@
     <virtualType name="productCollectionMap" type="Creatuity\Nav\Model\Map\CollectionMap">
         <arguments>
             <argument name="keyField" xsi:type="const">Magento\Catalog\Api\Data\ProductInterface::SKU</argument>
-            <argument name="pageSize" xsi:type="number">100</argument>
+            <argument name="pageSize" xsi:type="string">nav/product_update/product_count_per_request</argument>
             <argument name="collectionProvider" xsi:type="object">productDynamicCollectionProvider</argument>
         </arguments>
     </virtualType>
