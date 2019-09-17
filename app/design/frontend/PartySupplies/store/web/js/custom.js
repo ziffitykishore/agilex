@@ -115,14 +115,14 @@ require(['jquery', 'slick'], function ($) {
             MM-Menu
             ================= */
 
-        /*var ua = window.navigator.userAgent;
+        var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
         if ( !isIE ) {
             new Mmenu( document.querySelector( '#menu' ) );
         } else {
             $('body').addClass('ie')
-        }*/
+        }
 
     });
 });
