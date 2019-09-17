@@ -7,6 +7,9 @@
 // @codingStandardsIgnoreFile
 
 /** @var \Magento\Customer\Block\Form\Login\Info $block */
+
+/** @var \PartySupplies\CompanyRegistration\ViewModel\Register $register */
+$register = $block->getData('register_viewModel');
 ?>
 <?php if ($block->getRegistration()->isAllowed()): ?>
 <div class="block block-new-customer">
@@ -18,7 +21,7 @@
             </div>
             <p><?= $block->escapeHtml(__('or')) ?></p>
             <div class="primary">
-                <a href="<?= $block->escapeUrl($block->getCreateAccountUrl()) ?>" class="action create primary"><span><?= $block->escapeHtml(__('Register Company')) ?></span></a>
+                <a href="<?= $block->escapeUrl($register->getRegisterUrl()) ?>" class="action create primary"><span><?= $block->escapeHtml(__('Register Company')) ?></span></a>
             </div>
         </div>
     </div>

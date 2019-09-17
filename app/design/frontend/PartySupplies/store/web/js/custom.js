@@ -64,7 +64,7 @@ require(['jquery', 'slick'], function ($) {
                 });
             }
         }
-        stickyBar(".page-header");
+        stickyBar("header.page-header");
 
 
     /*  =================
@@ -73,9 +73,11 @@ require(['jquery', 'slick'], function ($) {
 
         settings_slider = {
             dots: false,
-            arrows: true,
+            arrows: false,
             autoplay:true,
-            autoplaySpeed:2000
+            autoplaySpeed:2000,
+            centerMode: true,
+            centerPadding:"40"
           }
           slick_on_mobile( $('.why-row'), settings_slider);
         
@@ -92,6 +94,22 @@ require(['jquery', 'slick'], function ($) {
               }
             });
           };
+
+        $(document).on('change','.up', function(){
+            var names = [];
+            var length = $(this).get(0).files.length;
+            for (var i = 0; i < $(this).get(0).files.length; ++i) {
+                names.push($(this).get(0).files[i].name);
+            }
+            // $("input[name=file]").val(names);
+            if(length>2){
+                var fileName = names.join(', ');
+                $(this).closest('.field').find('.input-text').attr("value",length+" files selected");
+            }
+            else{
+                $(this).closest('.field').find('.input-text').attr("value",names);
+            }
+        });
 
     /*  =================
         MM-Menu
