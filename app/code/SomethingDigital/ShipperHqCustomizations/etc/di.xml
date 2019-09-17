@@ -6,6 +6,12 @@
     <type name="ShipperHQ\WS\Client\WebServiceClient">
         <plugin name="SomethingDigital_ShipperResult" type="SomethingDigital\ShipperHqCustomizations\Plugin\SaveDates" />
     </type>
+    <type name="ShipperHQ\Shipper\Helper\CarrierCache">
+        <plugin name="SomethingDigital_ShipperResult" type="SomethingDigital\ShipperHqCustomizations\Plugin\SaveDatesFromCache" />
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="checkout-summary-product-deliveryinfo" type="SomethingDigital\ShipperHqCustomizations\Plugin\Checkout\Model\DefaultConfigProviderPlugin" />
+    </type>
     <preference for="Magento\Quote\Model\Cart\Totals\Item"
             type="SomethingDigital\ShipperHqCustomizations\Model\Cart\Totals\Item"/>
 </config>
