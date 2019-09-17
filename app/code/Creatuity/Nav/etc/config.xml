@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <nav>
+            <general>
+                <enabled>0</enabled>
+            </general>
+            <connection>
+                <port>7047</port>
+                <server_instance>DynamicsNAV</server_instance>
+                <client>WS</client>
+            </connection>
+            <order_update>
+                <amazon_shipping_method_mappings>Amazon Standard, Ground
+Amazon Expedited, 3 Day Select
+Amazon SecondDay, 2nd Day Air
+Amazon NextDay, Next Day Air</amazon_shipping_method_mappings>
+            </order_update>
+        </nav>
+    </default>
+</config>
