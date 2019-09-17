@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="creatuity.magnav.priority" request="Creatuity\MagNav\Api\Data\MessageInterface">
+        <handler name="creatuity.magnav.priority.handler" type="Creatuity\MagNav\Model\ConnectionManager" method="consumeMessage" />
+    </topic>
+    <topic name="creatuity.magnav.lazy" request="Creatuity\MagNav\Api\Data\MessageInterface" >
+        <handler name="creatuity.magnav.lazy.handler" type="Creatuity\MagNav\Model\ConnectionManager" method="consumeMessage" />
+    </topic>
+</config>

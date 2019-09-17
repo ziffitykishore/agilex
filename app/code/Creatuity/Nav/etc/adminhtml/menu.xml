@@ -1,0 +1,12 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Creatuity_Nav::configuration_menu_shortcut"
+             title="NAV"
+             module="Creatuity_Nav"
+             sortOrder="100"
+             resource="Magento_Backend::system"
+             parent="Magento_Integration::system_extensions"
+             action="adminhtml/system_config/edit/section/nav"
+        />
+    </menu>
+</config>
