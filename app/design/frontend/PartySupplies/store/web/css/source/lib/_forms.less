@@ -58,33 +58,33 @@
     box-sizing: border-box;
 
     ._lib-form-element-focus(
-        @_background,
-        @_focus-background,
-        @_border,
-        @_focus-border,
-        @_color,
-        @_focus-color,
-        @_font-style,
-        @_focus-font-style
+            @_background,
+            @_focus-background,
+            @_border,
+            @_focus-border,
+            @_color,
+            @_focus-color,
+            @_font-style,
+            @_focus-font-style
     );
 
     ._lib-form-element-disabled(
-        @_background,
-        @_disabled-background,
-        @_border,
-        @_disabled-border,
-        @_color,
-        @_disabled-color,
-        @_font-style,
-        @_disabled-font-style,
-        @_disabled-opacity
+            @_background,
+            @_disabled-background,
+            @_border,
+            @_disabled-border,
+            @_color,
+            @_disabled-color,
+            @_font-style,
+            @_disabled-font-style,
+            @_disabled-opacity
     );
 
     ._lib-form-element-placeholder(
-        @_type,
-        @_placeholder-color,
-        @_font-style,
-        @_placeholder-font-style
+            @_type,
+            @_placeholder-color,
+            @_font-style,
+            @_placeholder-font-style
     );
 }
 
@@ -105,8 +105,8 @@
 .lib-form-element-number-reset() {
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
+        -webkit-appearance: none;
+        margin: 0;
     }
 
     -moz-appearance: textfield;
@@ -224,18 +224,18 @@
         @_font-style: @_note-font-style
     );
     ._lib-form-validation-icon(
-        @_note-icon-use,
-        @_note-icon-font-content,
-        @_note-icon-font,
-        @_note-icon-font-size,
-        @_note-icon-font-line-height,
-        @_note-icon-font-color,
-        @_note-icon-font-color-hover,
-        @_note-icon-font-color-active,
-        @_note-icon-font-margin,
-        @_note-icon-font-vertical-align,
-        @_note-icon-font-position,
-        @_note-icon-font-text-hide
+            @_note-icon-use,
+            @_note-icon-font-content,
+            @_note-icon-font,
+            @_note-icon-font-size,
+            @_note-icon-font-line-height,
+            @_note-icon-font-color,
+            @_note-icon-font-color-hover,
+            @_note-icon-font-color-active,
+            @_note-icon-font-margin,
+            @_note-icon-font-vertical-align,
+            @_note-icon-font-position,
+            @_note-icon-font-text-hide
     );
 }
 
@@ -275,12 +275,14 @@
     input[type="email"] {
         width: 100%;
         padding: 0 13px;
-        border-radius: 4px;
+        .br-radius(3px);
         border: 1px solid #e0e0e0;
         height: 44px;
         -webkit-transition : .5s ease;
         transition: .5s ease;
+        font-family: @font-family-name__base;
     }
+
 
     input[type="number"] {
         .lib-form-element-number-reset();
@@ -292,6 +294,12 @@
 
     select {
         .lib-form-element-input(@_type: select);
+        width: 100%;
+        padding: 0 13px;
+        .br-radius(3px);
+        border: 1px solid #e0e0e0;
+        height: 44px;
+
     }
 
     select[multiple] {
@@ -562,18 +570,18 @@
     .lib-css(border, @_border);
 
     .lib-form-field-type(
-        @_type,
-        @_type-inline-margin,
-        @_type-inline-label-margin,
-        @_type-inline-label-padding,
-        @_type-inline-label-align,
-        @_type-inline-label-width,
-        @_type-inline-control-width,
-        @_vertical-indent,
-        @_type-block-margin,
-        @_type-block-label-margin,
-        @_type-block-label-padding,
-        @_type-block-label-align
+            @_type,
+            @_type-inline-margin,
+            @_type-inline-label-margin,
+            @_type-inline-label-padding,
+            @_type-inline-label-align,
+            @_type-inline-label-width,
+            @_type-inline-control-width,
+            @_vertical-indent,
+            @_type-block-margin,
+            @_type-block-label-margin,
+            @_type-block-label-padding,
+            @_type-block-label-align
     );
 
     &:last-child {
@@ -581,9 +589,9 @@
     }
 
     .lib-form-field-column(
-        @_column,
-        @_column-padding,
-        @_column-number
+            @_column,
+            @_column-padding,
+            @_column-number
     );
 
     > .label {
@@ -670,36 +678,36 @@
     }
 
     ._lib-form-field-required(
-        @_label-asterisk-color,
-        @_label-asterisk-font-size,
-        @_label-asterisk-font-family,
-        @_label-asterisk-font-weight,
-        @_label-asterisk-font-style,
-        @_label-asterisk-line-height,
-        @_label-asterisk-margin
+            @_label-asterisk-color,
+            @_label-asterisk-font-size,
+            @_label-asterisk-font-family,
+            @_label-asterisk-font-weight,
+            @_label-asterisk-font-style,
+            @_label-asterisk-line-height,
+            @_label-asterisk-margin
     );
 
     ._lib-form-field-note(
-        @_note-font-size,
-        @_note-color,
-        @_note-font-family,
-        @_note-font-weight,
-        @_note-line-height,
-        @_note-font-style,
-        @_note-margin,
-        @_note-padding,
+            @_note-font-size,
+            @_note-color,
+            @_note-font-family,
+            @_note-font-weight,
+            @_note-line-height,
+            @_note-font-style,
+            @_note-margin,
+            @_note-padding,
 
-        @_note-icon-font-content,
-        @_note-icon-font,
-        @_note-icon-font-size,
-        @_note-icon-font-line-height,
-        @_note-icon-font-color,
-        @_note-icon-font-color-hover,
-        @_note-icon-font-color-active,
-        @_note-icon-font-margin,
-        @_note-icon-font-vertical-align,
-        @_note-icon-font-position,
-        @_note-icon-font-text-hide
+            @_note-icon-font-content,
+            @_note-icon-font,
+            @_note-icon-font-size,
+            @_note-icon-font-line-height,
+            @_note-icon-font-color,
+            @_note-icon-font-color-hover,
+            @_note-icon-font-color-active,
+            @_note-icon-font-margin,
+            @_note-icon-font-vertical-align,
+            @_note-icon-font-position,
+            @_note-icon-font-text-hide
     );
 }
 
@@ -718,13 +726,13 @@
     @_type-block-label-align: @form-field-type-label-block__align
 ) when (@_type = inline) {
     ._lib-form-field-type-inline(
-        @_type-inline-margin,
-        @_type-inline-label-margin,
-        @_type-inline-label-padding,
-        @_type-inline-label-width,
-        @_type-inline-control-width,
-        @_type-inline-label-align,
-        @_vertical-indent
+            @_type-inline-margin,
+            @_type-inline-label-margin,
+            @_type-inline-label-padding,
+            @_type-inline-label-width,
+            @_type-inline-control-width,
+            @_type-inline-label-align,
+            @_vertical-indent
     );
 }
 
@@ -743,10 +751,10 @@
     @_type-block-label-align: @form-field-type-label-block__align
 ) when (@_type = block) {
     ._lib-form-field-type-block(
-        @_type-block-margin,
-        @_type-block-label-margin,
-        @_type-block-label-padding,
-        @_type-block-label-align
+            @_type-block-margin,
+            @_type-block-label-margin,
+            @_type-block-label-padding,
+            @_type-block-label-align
     );
 }
 
@@ -819,12 +827,12 @@
         &:after {
             content: '*';
             .lib-typography(
-            @_font-size: @_font-size,
-            @_color: @_color,
-            @_font-family: @_font-family,
-            @_font-weight: @_font-weight,
-            @_line-height: @_line-height,
-            @_font-style: @_font-style
+                @_font-size: @_font-size,
+                @_color: @_color,
+                @_font-family: @_font-family,
+                @_font-weight: @_font-weight,
+                @_line-height: @_line-height,
+                @_font-style: @_font-style
             );
             .lib-css(margin, @_margin);
         }
@@ -903,11 +911,11 @@
             width: auto;
 
             ._lib-revert-type-block-label-align(
-                @_type-block-label-align
+                    @_type-block-label-align
             );
 
             ._lib-revert-type-block-label-padding(
-                @_type-block-label-padding
+                    @_type-block-label-padding
             );
         }
 
@@ -918,10 +926,10 @@
     }
 
     ._lib-form-field-type-block(
-        @_type-block-margin,
-        @_type-block-label-margin,
-        @_type-block-label-padding,
-        @_type-block-label-align
+            @_type-block-margin,
+            @_type-block-label-margin,
+            @_type-block-label-padding,
+            @_type-block-label-align
     );
 
     &.choice,
@@ -948,17 +956,17 @@
 ) when (@_type = inline) and not (@_type = false) {
     > .label {
         ._lib-revert-type-inline-label-margin(
-            @_type-inline-label-margin
+                @_type-inline-label-margin
         );
     }
     ._lib-form-field-type-inline(
-        @_type-inline-margin,
-        @_type-inline-label-margin,
-        @_type-inline-label-padding,
-        @_type-inline-label-width,
-        @_type-inline-control-width,
-        @_type-inline-label-align,
-        @_vertical-indent
+            @_type-inline-margin,
+            @_type-inline-label-margin,
+            @_type-inline-label-padding,
+            @_type-inline-label-width,
+            @_type-inline-control-width,
+            @_type-inline-label-align,
+            @_vertical-indent
     );
 }
 
@@ -1014,16 +1022,16 @@
     @_padding: @form-hasrequired__padding
 ) {
     ._lib-form-hasrequired-position(
-        @_position,
-        @_border,
-        @_margin,
-        @_padding,
-        @_font-size,
-        @_color,
-        @_font-family,
-        @_font-weight,
-        @_line-height,
-        @_font-style
+            @_position,
+            @_border,
+            @_margin,
+            @_padding,
+            @_font-size,
+            @_color,
+            @_font-family,
+            @_font-weight,
+            @_line-height,
+            @_font-style
     );
 }
 
@@ -1041,15 +1049,15 @@
 ) when (@_position = top) {
     &:before {
         ._lib-form-hasrequired-position-any(
-            @_border,
-            @_margin,
-            @_padding,
-            @_font-size,
-            @_color,
-            @_font-family,
-            @_font-weight,
-            @_line-height,
-            @_font-style
+                @_border,
+                @_margin,
+                @_padding,
+                @_font-size,
+                @_color,
+                @_font-family,
+                @_font-weight,
+                @_line-height,
+                @_font-style
         );
     }
 }
@@ -1068,15 +1076,15 @@
 ) when (@_position = bottom) {
     &:after {
         ._lib-form-hasrequired-position-any(
-            @_border,
-            @_margin,
-            @_padding,
-            @_font-size,
-            @_color,
-            @_font-family,
-            @_font-weight,
-            @_line-height,
-            @_font-style
+                @_border,
+                @_margin,
+                @_padding,
+                @_font-size,
+                @_color,
+                @_font-family,
+                @_font-weight,
+                @_line-height,
+                @_font-style
         );
     }
 }

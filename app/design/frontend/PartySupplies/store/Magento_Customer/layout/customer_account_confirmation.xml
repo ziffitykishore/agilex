@@ -17,6 +17,6 @@
         </referenceContainer>
 
 
-        <move element="page.main.title" destination="customer.inner.container" before="accountConfirmation"/>
+        <move element="page.main.title" destination="customer.inner.container" before="-"/>
     </body>
 </page>

@@ -151,31 +151,28 @@
             </div>
         </div>
 
-
         <div class="field confirmation required">
             <label for="customer-id" class="label"><span><?= $block->escapeHtml(__('NAV Customer ID (Secret Number)')) ?></span></label>
             <div class="control">
-                <input type="text" name="customer-id" id="customer-id" class="input-text" title="<?= $block->escapeHtmlAttr(__('NAV Customer ID (Secret Number)')) ?>" data-validate="{required:true, equalTo:'#password'}" autocomplete="off">
+                <input type="text" name="nav_customer_id" id="nav_customer_id" class="input-text" title="<?= $block->escapeHtmlAttr(__('NAV Customer ID (Secret Number)')) ?>" data-validate="{required:true}" autocomplete="off">
             </div>
         </div>
-
+        
         <div class="field choice">
             <div class="control-check">
                 <input type="checkbox" name="company-contact" id="company-contact">
                 <label for="company-contact"><?= $block->escapeHtmlAttr(__('Primary Company Contact')) ?></label>
             </div>
         </div>
-
+        
         <?= $block->getChildHtml('form_additional_info') ?>
 
-    </div>
-    
-    <div class="fieldset">
         <div class="actions-toolbar field">
             <div class="primary">
                 <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
             </div>
         </div>
+
     </div>
 
     <div class="actions-toolbar">

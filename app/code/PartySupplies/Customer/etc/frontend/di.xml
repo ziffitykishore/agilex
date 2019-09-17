@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Customer\Controller\Account\CreatePost" type="PartySupplies\Customer\Controller\Account\CreatePost" />
+    <preference for="Magento\Customer\Model\EmailNotificationInterface" type="PartySupplies\Customer\Model\EmailNotification" />
+    
+    <type name="Magento\Customer\Controller\Account\ForgotPasswordPost">
+      <plugin name="company_password_reset_excluder" type="PartySupplies\Customer\Plugin\Account\ForgotPasswordPost" sortOrder="1" />
+    </type>
+    
+     <!--Create User--> 
+    <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\CreateCompany" type="MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\SimpleUrlProvider">
+        <arguments>
+            <argument name="urlPath" xsi:type="string">company/account/create</argument>
+            <argument name="urlParams" xsi:type="array">
+                <item name="_secure" xsi:type="boolean">true</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\CreateCompanyObserver" type="MSP\ReCaptcha\Model\Provider\Failure\ObserverRedirectFailure">
+        <arguments>
+            <argument name="redirectUrlProvider" xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\CreateCompany</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MSP\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\CreateCompany" type="MSP\ReCaptcha\Model\IsCheckRequired">
+        <arguments>
+            <argument name="enableConfigFlag" xsi:type="string">msp_securitysuite_recaptcha/frontend/enabled_create</argument>
+            <argument name="area" xsi:type="string">frontend</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="MSP\ReCaptcha\Observer\Frontend\CreateCompanyObserver" type="MSP\ReCaptcha\Observer\ReCaptchaObserver">
+        <arguments>
+            <argument name="isCheckRequired" xsi:type="object">MSP\ReCaptcha\Model\Provider\IsCheckRequired\Frontend\CreateCompany</argument>
+            <argument name="failureProvider" xsi:type="object">MSP\ReCaptcha\Model\Provider\Failure\CreateCompanyObserver</argument>
+        </arguments>
+    </virtualType>
+</config>
