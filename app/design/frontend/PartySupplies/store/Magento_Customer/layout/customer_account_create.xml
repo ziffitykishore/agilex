@@ -38,7 +38,7 @@
 
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">User Registeration</argument>
+                <argument translate="true" name="title" xsi:type="string">User Registration</argument>
             </action>
         </referenceBlock>
     </body>
