@@ -31,6 +31,14 @@
         .media-width('max', (@c-tab));
     }
 
+    @media only screen and (max-width: @c-desk) {
+        .media-width('max', (@c-desk));
+    }
+
+    @media only screen and (max-width: @screen__l) {
+        .media-width('max', (@screen__l - 1));
+    }
+
     @media only screen and (max-width: @screen__m) {
         .media-width('max', (@screen__m + 1));
     }

@@ -24,7 +24,7 @@
             position: fixed;
             top: 120px;
             right: 0%;
-            z-index: 31;
+            z-index: 100;
             .transition(all 0.5s ease 0s);
 
             .action.showcart {
@@ -361,9 +361,35 @@
     }
 }
 
+
+
+@media screen and (max-width: 1023px) and (orientation: landscape) {
+    .cart-opened {
+        .page-wrapper {
+            .minicart-wrapper {
+                top: 22px;
+            }
+        }
+    }
+}
+
+
+
+
 //
 //  Mobile
 //  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1)  {
+    .page-wrapper {
+        .minicart-wrapper {
+            .action.showcart,
+            .block-minicart {
+                right: 22px;
+            }
+        }
+    }
+}
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
     .minicart-wrapper .block-minicart {
