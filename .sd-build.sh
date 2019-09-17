@@ -28,13 +28,17 @@ reportStats() {
 trap reportStats 0
 
 # Prevent vim from griping on every exit, set some other settings.
-echo 'set viminfo=' >> ~/.vimrc
-echo 'syntax on' >> ~/.vimrc
-echo 'set smartindent' >> ~/.vimrc
-echo 'set expandtab' >> ~/.vimrc
-echo 'set shiftwidth=4' >> ~/.vimrc
-echo 'set tabstop=4' >> ~/.vimrc
-echo 'set hlsearch' >> ~/.vimrc
+cat << EOF >> ~/.vimrc
+set viminfo=
+set nocp ek ru sc vb bs=2
+set smartindent expandtab shiftwidth=4 tabstop=4
+set hlsearch
+try
+  syntax on
+catch
+  " Integration/Starter
+endtry
+EOF
 
 # Yarn refuses to install unless a profile exists.
 touch ~/.profile
