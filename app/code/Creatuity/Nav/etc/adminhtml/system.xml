@@ -61,6 +61,10 @@
                     <backend_model>Creatuity\Nav\Model\Config\Backend\ProductUpdateCronSchedule</backend_model>
                 </field>
 
+                <field id="product_count_per_request" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Count Per Request</label>
+                </field>
+
                 <field id="clearance_category_id" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Clearance Category</label>
                     <source_model>Creatuity\Nav\Model\Config\Source\CategoryList</source_model>
