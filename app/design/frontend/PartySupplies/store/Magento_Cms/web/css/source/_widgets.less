@@ -1,0 +1,152 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@widgets-indent__bottom: @indent__base;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .block-static-block,
+    .block-cms-link {
+        &.widget {
+            .lib-css(margin-bottom, @widgets-indent__bottom);
+            .links & {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .block-cms-link-inline {
+        &.widget {
+            margin: 0;
+        }
+    }
+
+
+
+    .cms-page-view{
+        .page-main{
+            padding: 0;
+        }
+        .terms{
+            position: relative;
+            &::after{
+                border-bottom: 2px solid #dee2e6;
+                content: "";
+                position: absolute;
+                width: 100%;
+                top: 51px;
+                z-index: -1;
+            }
+        }
+        .nav-tabs{
+            border: 0;
+            .container-sm();
+            .nav-item{
+                .flex-width(25%);
+                margin: 0;
+            }
+            .nav-link{
+                border: 0;
+                font-size: 2.2rem;
+                padding: 1rem 0;
+                font-weight: 600;
+                &.active{
+                    color: @c-primary_color;
+                    border: 0;
+                    border-bottom: 2px solid @c-primary_color;
+                }
+            }
+        }
+        .tab-content{
+            .container-sm();
+        }
+        .tab-con{
+            margin-top: 4rem;
+            h3{
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 2.5rem;
+            }
+            h4{
+                font-size: 1.8rem;
+            }
+            p{
+                margin-bottom: 2.5rem;
+            }
+            ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                li{
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+
+    .cms-page-view{
+        .nav-tabs{
+            .nav-link{
+                font-size: 1.6rem;
+            }
+        }
+        .terms{
+            &::after{
+                top: 42px;
+            }
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .cms-page-view{
+        .page-main{
+            margin: 0 !important;
+        }
+        .card-soup{
+            padding: 0 2rem;
+            .card{
+                margin: .5rem 0;
+            }
+            .card-title{
+                margin: 0;
+                padding: .5rem 0;
+                a{
+                    padding: 0;
+                    font-size: 1.6rem;
+                }
+            }
+            .fade:not(.show) {
+                opacity: 1;
+            }
+        }
+        .tab-con{
+            margin-top: 0;
+        }
+        .terms{
+            display: none;
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .cms-page-view{
+        .d-none {
+            display: flex !important;
+        }
+    }
+
+}
