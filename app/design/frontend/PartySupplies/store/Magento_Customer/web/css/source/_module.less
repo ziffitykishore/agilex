@@ -646,21 +646,24 @@
     }
 
 
-    .input-text.mage-error + .mage-error{
-        &:before{
-            position: absolute;
-            content: '!';
-            font-size: 25px;
-            color: #fff;
-            width: 40px;
-            height: 44px;
-            background: @c-hover_color;
-            right: 0;
-            border-radius: 0 5px 5px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            top: 0;
+    .input-text.mage-error {
+        padding-right: 50px;
+        & + .mage-error {
+            &:before {
+                position: absolute;
+                content: '!';
+                font-size: 25px;
+                color: #fff;
+                width: 40px;
+                height: 44px;
+                background: @c-hover_color;
+                right: 0;
+                border-radius: 0 5px 5px 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: 0;
+            }
         }
     }
 
@@ -695,24 +698,30 @@
     }
 
     .customer-account-forgotpassword{
-        .actions-toolbar{
-            .secondary{
-                position: relative;
-            }
-            .action.back{
-                padding-left: 20px;
-                &:before{
-                    content: '\2190';
-                    display: inline-block;
-                    vertical-align: middle;
-                    font-size: 20px;
-                    position: absolute;
-                    left: 0;
-                    bottom: -1px;
-                    line-height: normal;
+        .page-main {
+            .columns {
+                .actions-toolbar{
+                    margin-top: 10px;
+                    .secondary{
+                        position: relative;
+                    }
+                    .action.back{
+                        padding-left: 20px;
+                        &:before{
+                            content: '\2190';
+                            display: inline-block;
+                            vertical-align: middle;
+                            font-size: 20px;
+                            position: absolute;
+                            left: 0;
+                            bottom: -1px;
+                            line-height: normal;
+                        }
+                    }
                 }
             }
         }
+
     }
 
 }
@@ -840,9 +849,6 @@
         max-width: 100%;
     }
 
-    .acc-head-alt{
-        padding: 25px 0;
-    }
 
     .form.create.account{
         .actions-toolbar{
