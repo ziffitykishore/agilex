@@ -12,8 +12,6 @@ class CustomerSaveAfter
 {
     const XML_COMPANY_APPROVED_TEMPLATE = "customer/create_account/company_approved_email_template";
     
-    const XML_COMPANY_DECLINED_TEMPLATE = "customer/create_account/company_declined_email_template";
-    
     /**
      * @var ScopeConfigInterface
      */
@@ -42,8 +40,15 @@ class CustomerSaveAfter
     public function afterExecute(Save $subject, $result)
     {
         $customerData = $subject->getRequest()->getPostValue();
+        $isApprovedTemplate = $this->scopeConfig->getValue(CustomerSaveAfter::XML_COMPANY_APPROVED_TEMPLATE);
+    
+        if($isApprovedTemplate) {
+            $templateId = "customer_create_account_company_approved_email_template";
+        } else {
+            $templateId = "customer_create_account_company_declined_email_template";
+        }
         
-        $templateId = $this->scopeConfig->getValue(CustomerSaveAfter::XML_COMPANY_DECLINED_TEMPLATE);
+        
         $storeId = $customerData['customer']['store_id'];
         $email = $customerData['customer']['email'];
 
