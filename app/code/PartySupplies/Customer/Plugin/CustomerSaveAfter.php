@@ -42,12 +42,11 @@ class CustomerSaveAfter
         $customerData = $subject->getRequest()->getPostValue();
         $isApprovedTemplate = $this->scopeConfig->getValue(CustomerSaveAfter::XML_COMPANY_APPROVED_TEMPLATE);
     
+        $templateId = "customer_create_account_company_declined_email_template";
+        
         if($isApprovedTemplate) {
             $templateId = "customer_create_account_company_approved_email_template";
-        } else {
-            $templateId = "customer_create_account_company_declined_email_template";
-        }
-        
+        }        
         
         $storeId = $customerData['customer']['store_id'];
         $email = $customerData['customer']['email'];
