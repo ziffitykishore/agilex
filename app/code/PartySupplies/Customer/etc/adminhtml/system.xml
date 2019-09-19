@@ -37,6 +37,10 @@
                     <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
+                <field id="company_approved_email_template" translate="label comment" type="select" sortOrder="71" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Company Approved Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
     </system>

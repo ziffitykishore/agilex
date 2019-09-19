@@ -271,7 +271,7 @@
     position: relative;
     overflow: hidden;
     .transition(all 0.75s ease-in-out 0s);
-    &:before{
+    &:after{
         content: '';
         position: absolute;
         top: 0;
@@ -286,7 +286,7 @@
     }
 
     &:hover {
-        &:before {
+        &:after {
             -webkit-animation: shine .75s;
             animation: shine .75s;
         }
