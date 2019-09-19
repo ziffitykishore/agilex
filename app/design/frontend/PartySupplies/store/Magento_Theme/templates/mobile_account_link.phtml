@@ -1,0 +1,17 @@
+<?php
+
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<li class="customer-welcome dropdown mobile">
+    <?php if ($block->isLoggedIn()) : ?>
+        <a href="#">My Account</a>
+        <ul class="customer-menu dropdown-content" data-target="dropdown">
+            <?= $block->getChildHtml(); ?>
+        </ul>
+    <?php else : ?>
+        <a <?= /* @noEscape */ $block->getLinkAttributes() ?><?= /* @noEscape */ $dataPostParam ?>><?= $block->escapeHtml(__('signIn')); ?></a>
+    <?php endif; ?>
+</li>
