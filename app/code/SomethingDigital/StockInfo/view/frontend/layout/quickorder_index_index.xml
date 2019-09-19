@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="checkout.customer.sku">
+            <block class="Magento\Framework\View\Element\Template" name="quickorder.product.stock.info.modal" template="SomethingDigital_StockInfo::quickorder-stock-info-modal.phtml"></block>
+        </referenceContainer>
+    </body>
+</page>
