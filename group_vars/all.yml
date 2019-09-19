@@ -17,6 +17,8 @@ site_domains:
 # Sets the default site_root for the project
 site_root: "/var/www/vhosts/{{ site_domain }}"
 
+home_path: "{{ lookup('env', 'HOME') }}"
+
 # Used for stating what major version available.
 # Options are: elastisearch5|elasticsearch
 elasticsearch_name: "elasticsearch5"
