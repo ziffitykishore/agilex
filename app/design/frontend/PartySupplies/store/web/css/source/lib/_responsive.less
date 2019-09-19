@@ -104,6 +104,12 @@
         .media-width('min', @c-tab);
     }
 
+    @media all and (min-width: @c-desk-md),
+    print {
+        .media-width('min', @c-desk-md);
+    }
+
+
     @media all and (min-width: @screen__l),
     print {
         .media-width('min', @screen__l);

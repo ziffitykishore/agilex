@@ -31,11 +31,7 @@
 
 & when (@media-common = true) {
 
-    .g-recaptcha {
-        .transform(scale(0.8));
-        transform-origin:0 0;
-        position: relative;
-    }
+
 
     .login-container {
         min-height: 420px;
@@ -875,20 +871,21 @@
 
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+
+    .g-recaptcha {
+        .transform(scale(0.8));
+        transform-origin: 0 0;
+        position: relative;
+    }
+}
+
 //
 //  Desktop
 //  _____________________________________________
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-
-    /*==========================
-        Custom
-    ============================ */
-
-    .acc-head-alt{
-        padding: 200px 0 40px 0;
-    }
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
 
     .company-account-create,
     .customer-account-confirmation,
@@ -900,38 +897,16 @@
             .column.main{
                 padding: 0;
                 min-height: 990px;
+                background-size: contain;
+            }
+
+            .inner-container {
+                margin-top: -100px;
             }
         }
     }
 
 }
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-
-    /*==========================
-        Custom
-    ============================ */
-
-    .acc-head-alt{
-        padding: 100px 0 40px;
-    }
-
-    .company-account-create,
-    .customer-account-confirmation,
-    .customer-account-createpassword,
-    .customer-account-forgotpassword,
-    .customer-account-login,
-    .customer-account-create{
-        .page-main{
-            .column.main{
-                padding: 0;
-                min-height: 790px;
-            }
-        }
-    }
-
-}
-
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
@@ -973,25 +948,6 @@
     .form.create.account{
         max-width: 710px;
     }
-
-    .company-account-create,
-    .customer-account-confirmation,
-    .customer-account-createpassword,
-    .customer-account-create,
-    .customer-account-forgotpassword,
-    .customer-account-login {
-        .page-main {
-            .columns {
-
-            }
-            .column.main {
-                min-height: auto;
-                background-size: contain;
-            }
-        }
-    }
-
-
 }
 
 
@@ -1002,6 +958,19 @@
         }
         .benefits-wrapper {
             .flex-width(40%);
+        }
+    }
+
+    .company-account-create,
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-forgotpassword,
+    .customer-account-login,
+    .customer-account-create {
+        .page-title-wrapper {
+            .page-title {
+                padding-top: 0;
+            }
         }
     }
 }
