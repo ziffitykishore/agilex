@@ -79,12 +79,30 @@
                 margin-bottom: 2.5rem;
             }
             ul{
-                list-style-type: none;
+                list-style-position: inside;
                 margin: 0;
                 padding: 0;
+                list-style-type: none;
                 li{
                     margin: 0;
                 }
+                &.alpha{
+                    list-style-type: lower-alpha;
+                }
+                &.dots{
+                    list-style-type: disc;
+                }
+            }
+            ol{
+                margin: 0;
+                padding: 0;
+                list-style-position: inside;
+                li{
+                    margin: 0;
+                }
+            }
+            .bold{
+                font-weight: 600;
             }
         }
     }
@@ -103,6 +121,16 @@
             &::after{
                 top: 42px;
             }
+        }
+        a.accordion-toggle.nav-link::after {
+            content: '\e900';
+            font-family: 'PS';
+            transform: rotate(-90deg);
+            position: absolute;
+            right: 20px;
+        }
+        a.accordion-toggle.nav-link.collapsed::after {
+            transform: rotate(90deg);
         }
     }
 
