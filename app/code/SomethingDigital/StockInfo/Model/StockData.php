@@ -6,6 +6,7 @@ use Magento\Framework\Registry as CoreRegistry;
 use Magento\Catalog\Helper\Product as ProductHelper;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
+use Psr\Log\LoggerInterface;
 
 class StockData
 {
@@ -30,26 +31,42 @@ class StockData
      */
     private $searchCriteriaBuilder;
 
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
     public function __construct(
         CoreRegistry $coreRegistry,
         ProductHelper $productHelper,
         ProductRepositoryInterface $productRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        LoggerInterface $logger
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->productHelper = $productHelper;
         $this->productRepository = $productRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->logger = $logger;
     }
 
     /**
      * Retrieve current product model
      *
+     * @param string $sku
      * @return \Magento\Catalog\Model\Product
      */
-    public function getProduct()
+    public function getProduct($sku = null)
     {
-        return $this->coreRegistry->registry('product');
+        if ($sku) {
+            try {
+                return $this->productRepository->get($sku);
+            } catch (Exception $e) {
+                $this->logger->error("SomethingDigital_StockInfo - QuickOrder: " . $e->getMessage());
+            }
+        } else {
+            return $this->coreRegistry->registry('product');
+        }
     }
 
     /**
@@ -67,11 +84,12 @@ class StockData
      *
      * Provide data for different product types
      *
+     * @param string $sku
      * @return []
      */
-    public function getStockData()
+    public function getStockData($sku = null)
     {
-        $product = $this->getProduct();
+        $product = $this->getProduct($sku);
         if (!$product) {
             return [];
         }
@@ -100,7 +118,7 @@ class StockData
                 $products[] = $simpleProduct;
             }
         } else {
-            $products = [$this->getProduct()];
+            $products = [$this->getProduct($sku)];
         }
         return $this->prepareProductsStockData($products);
     }
