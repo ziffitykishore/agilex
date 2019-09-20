@@ -72,7 +72,7 @@
     </virtualType>
     <virtualType name="isInStockFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
         <arguments>
-            <argument name="from" xsi:type="string">WebInventory</argument>
+            <argument name="from" xsi:type="string">Inventory</argument>
             <argument name="to" xsi:type="string">is_in_stock</argument>
         </arguments>
     </virtualType>
