@@ -7,4 +7,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
     <template id="customer_create_account_company_email_template" label="New Company Account" file="account_new_confirmation.html" type="html" module="PartySupplies_Customer" area="frontend"/>
+    <template id="customer_create_account_company_approved_email_template" label="Company Account Approved" file="company_account_approved.html" type="html" module="PartySupplies_Customer" area="adminhtml"/>
+    <template id="customer_create_account_company_declined_email_template" label="Company Account Declined" file="company_account_declined.html" type="html" module="PartySupplies_Customer" area="adminhtml"/>
 </config>

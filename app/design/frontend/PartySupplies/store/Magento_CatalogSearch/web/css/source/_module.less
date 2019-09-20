@@ -25,20 +25,26 @@
             &-title {
                 display: inline-block;
                 position: absolute;
-                right: 0;
+                right: 20px;
+                top: 14px;
                 cursor: pointer;
                 margin-bottom: 0;
 
                 .lib-icon-font(
                     @_icon-font: @icons__font-name_ps,
                     @_icon-font-content: @icon-search,
-                    @_icon-font-size: 35px,
                     @_icon-font-line-height: 33px,
                     @_icon-font-color: @header-icons-color,
                     @_icon-font-color-hover: @header-icons-color-hover,
                     @_icon-font-color-active: @header-icons-color-hover,
-                    @_icon-font-text-hide: true
+                    @_icon-font-text-hide: true,
+                    @_icon-font-size: 35px
+
                 );
+
+                &:before {
+                    font-size: 20px;
+                }
 
                 strong {
                     .lib-visually-hidden();
@@ -221,9 +227,6 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
     .block-search {
-        position: absolute;
-        right: 20px;
-        top: 0;
         &.active {
             .block-content {
                 display: block;

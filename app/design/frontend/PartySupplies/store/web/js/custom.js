@@ -95,7 +95,7 @@ require(['jquery', 'slick'], function ($) {
         function stickyBar() {
             var elment = $('.page-main');
             if (elment.length) {
-                var stickyOffset = elment.offset().top;
+                var stickyOffset = elment.offset().top + 100;
                 $(window).scroll(function() {
                     var sticky = elment,
                         scroll = $(window).scrollTop();

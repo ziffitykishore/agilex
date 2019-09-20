@@ -10,6 +10,7 @@
         <customer>
             <create_account>
                 <company_email_template>customer_create_account_company_email_template</company_email_template>
+                <company_approved_email_template>1</company_approved_email_template>
             </create_account>
         </customer>
     </default>
