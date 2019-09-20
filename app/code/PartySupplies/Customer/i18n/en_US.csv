@@ -5,6 +5,6 @@
 "confirmationEmailAlreadySendMessage","There is already an account with this email address. If you are sure that it is your email address, <a href='%1'>click here</a> to get your password and access your account."
 "street1","Street Address 1"
 "street2","Street Address 2"
-"uploadFileTooLarge","This file is more than %1MB. Sorry, it has to be less than or equal to %1MB"
-"uploadFileExtensionInvalid","This file extension is not allowed. The supported extensions are %1"
+"uploadFileTooLarge","The certificate file-size has to be less than or equal to %1MB"
+"uploadFileExtensionInvalid","The certificate file-extension has to be one of the following [%1]"
 "uploadFileOtherError","File upload failed, please validate file size is less than or equal to %1MB and of file extension %2"
