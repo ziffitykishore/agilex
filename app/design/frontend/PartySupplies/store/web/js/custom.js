@@ -65,7 +65,9 @@ require(['jquery', 'slick'], function ($) {
             {
                 accordionFooter('disable');
                 responsiveflag = false;
-                stickyBar();
+                $(window).on('load', function(){
+                    stickyBar();
+                })
             }
 
         }
@@ -95,7 +97,7 @@ require(['jquery', 'slick'], function ($) {
         function stickyBar() {
             var elment = $('.page-main');
             if (elment.length) {
-                var stickyOffset = elment.offset().top + 100;
+                var stickyOffset = elment.offset().top;
                 $(window).scroll(function() {
                     var sticky = elment,
                         scroll = $(window).scrollTop();
@@ -127,8 +129,7 @@ require(['jquery', 'slick'], function ($) {
                         arrows: false,
                         autoplay:true,
                         autoplaySpeed:2000,
-                        centerMode: true,
-                        centerPadding:"40"
+                        centerMode: true
                     });
                 }
             });
@@ -160,7 +161,9 @@ require(['jquery', 'slick'], function ($) {
         var isIE = /MSIE|Trident/.test(ua);
 
         if ( !isIE ) {
-            new Mmenu( document.querySelector( '#menu' ) );
+            if($('#menu').length) {
+                new Mmenu(document.querySelector('#menu'));
+            }
         } else {
             $('body').addClass('ie')
         }
