@@ -168,5 +168,17 @@ require(['jquery', 'slick'], function ($) {
             $('body').addClass('ie')
         }
 
+
+
+    /* =====================
+                PLP
+        ==================== */
+
+        $(".filter-title").click(function () {
+            $(".block.filter").toggleClass('active');
+            $("body").toggleClass('filter-active');
+        });
+
+
     });
 });

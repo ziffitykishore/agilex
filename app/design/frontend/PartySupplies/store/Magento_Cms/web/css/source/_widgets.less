@@ -1,0 +1,239 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@widgets-indent__bottom: @indent__base;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .block-static-block,
+    .block-cms-link {
+        &.widget {
+            .lib-css(margin-bottom, @widgets-indent__bottom);
+            .links & {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .block-cms-link-inline {
+        &.widget {
+            margin: 0;
+        }
+    }
+
+
+
+    .cms-page-view{
+        .page-main{
+            padding: 0;
+            margin-top: 2rem;
+        }
+        .terms{
+            position: relative;
+            &::after{
+                content: "";
+                position: absolute;
+                width: 100%;
+                z-index: -1;
+                background: #dee2e6;
+                height: 3px;
+            }
+        }
+        .nav-tabs{
+            border: 0;
+            .container-sm();
+            .nav-item{
+                .flex-width(25%);
+                margin: 0;
+            }
+            .nav-link{
+                border: 0;
+                padding: 1rem 0;
+                line-height: 1;
+                font-weight: 600;
+                display: inline-block;
+                font-family: @heading__font-family__base;
+                &.active{
+                    color: @c-primary_color;
+                    background: transparent;
+                    position: relative;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        bottom: -3px;
+                        width: 100%;
+                        height: 3px;
+                        left: 0;
+                        background: @c-primary_color;
+                    }
+                }
+            }
+        }
+        .tab-content{
+            .container-sm();
+        }
+        .tab-con{
+            margin-top: 4.5rem;
+            h3{
+                font-size: 2rem;
+                font-weight: 600;
+                margin: 0 0 2rem;
+            }
+            h4{
+                font-size: 1.6rem;
+                margin: 0 0 2rem;
+            }
+            p{
+                margin: 0 0 2rem;
+            }
+            ul{
+                list-style-position: inside;
+                margin: 0;
+                padding: 0;
+                list-style-type: none;
+                li{
+                    margin: 0;
+                }
+                &.alpha{
+                    list-style-type: lower-alpha;
+                }
+                &.dots{
+                    list-style-type: disc;
+                }
+            }
+            ol{
+                margin: 0;
+                padding: 0;
+                list-style-position: inside;
+                li{
+                    margin: 0;
+                }
+            }
+            .bold{
+                font-weight: 600;
+            }
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+
+    .cms-page-view{
+        .nav-tabs{
+            .nav-link{
+                font-size: 2.4rem;
+            }
+        }
+        .terms{
+            &::after{
+                top: 44px;
+            }
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+
+    .cms-page-view{
+        .nav-tabs{
+            .nav-link{
+                font-size: 2rem;
+            }
+        }
+        .terms{
+            &::after{
+                top: 40px;
+            }
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+
+    .cms-page-view{
+        .nav-tabs{
+            .nav-link{
+                font-size: 1.5rem;
+            }
+        }
+        .terms{
+            &::after{
+                top: 35px;
+            }
+        }
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .cms-page-view{
+        .card-soup{
+            padding: 0 2rem;
+            .card{
+                margin: .5rem 0;
+                border-radius: 0;
+            }
+            .card-title{
+                margin: 0;
+                padding: .5rem 0;
+                a{
+                    padding: 0;
+                    font-size: 1.6rem;
+                }
+            }
+            .fade:not(.show) {
+                opacity: 1;
+            }
+        }
+        .tab-con{
+            margin-top: 2rem;
+        }
+        .terms{
+            display: none;
+        }
+        .card-header{
+            border: 0;
+            background-color: @c-whitesmoke;
+        }
+        .nav-link{
+            position: relative;
+            &::after {
+                content: '\e900';
+                font-family: 'PS';
+                transform: rotate(-90deg);
+                position: absolute;
+                right: 5px;
+                font-size:20px;
+            }
+            &.collapsed{
+                color: @c-text_color;
+                &::after {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+       
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .cms-page-view{
+        .d-none {
+            display: flex !important;
+        }
+    }
+
+}
