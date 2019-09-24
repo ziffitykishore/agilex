@@ -19,12 +19,16 @@ use Creatuity\Nav\Model\Service\Request\Parameters\Filter\FilterGroup;
 use Creatuity\Nav\Model\Service\Request\Parameters\FilterParameters;
 use Creatuity\Nav\Model\Service\Service;
 use Creatuity\Nav\Model\Service\Request\Parameters\Filter\SingleValueFilter;
+use Creatuity\Nav\Api\Data\DataInterfaceFactory;
+use Creatuity\Nav\Api\DataRepositoryInterface;
 
 /**
  * CustomerApproval
  */
 class CustomerApproval
 {
+    const CUSTOMER_APPROVAL = 'customer_approval';
+
     /**
      * @var LoggerInterface
      */
@@ -54,15 +58,27 @@ class CustomerApproval
      * @var CustomerDataManager
      */
     protected $findCustomerDataManager;
+    
+    /**
+     * @var DataInterfaceFactory
+     */
+    protected $navisionLoggerFactory;
+    
+    /**
+     * @var DataInterfaceFactory
+     */
+    protected $navisionLoggerRepository;
 
     /**
-     * 
-     * @param LoggerInterface         $logger 
-     * @param Service                 $customerService 
-     * @param CustomerDataManager     $createCustomerDataManager 
-     * @param CustomerDataManager     $updateCustomerDataManager 
-     * @param CustomerDataManager     $findCustomerDataManager 
-     * @param EntityParametersFactory $entityParametersFactory 
+     *
+     * @param LoggerInterface         $logger
+     * @param Service                 $customerService
+     * @param CustomerDataManager     $createCustomerDataManager
+     * @param CustomerDataManager     $updateCustomerDataManager
+     * @param CustomerDataManager     $findCustomerDataManager
+     * @param EntityParametersFactory $entityParametersFactory
+     * @param DataInterfaceFactory    $navisionLoggerFactory
+     * @param DataRepositoryInterface $navisionLoggerRepository
      */
     public function __construct(
         LoggerInterface $logger,
@@ -70,7 +86,9 @@ class CustomerApproval
         CustomerDataManager $createCustomerDataManager,
         CustomerDataManager $updateCustomerDataManager,
         CustomerDataManager $findCustomerDataManager,
-        EntityParametersFactory $entityParametersFactory
+        EntityParametersFactory $entityParametersFactory,
+        DataInterfaceFactory $navisionLoggerFactory,
+        DataRepositoryInterface $navisionLoggerRepository
     ) {
         $this->logger = $logger;
         $this->customerService = $customerService;
@@ -78,16 +96,19 @@ class CustomerApproval
         $this->updateCustomerDataManager = $updateCustomerDataManager;
         $this->findCustomerDataManager   = $findCustomerDataManager;
         $this->entityParametersFactory = $entityParametersFactory;
-    }    
+        $this->navisionLoggerFactory = $navisionLoggerFactory;
+        $this->navisionLoggerRepository = $navisionLoggerRepository;
+    }
     
     /**
-     * 
-     * @param array $customerData 
-     * 
-     * @return array 
+     * Create Customer
+     *
+     * @param array $customerData
+     *
+     * @return array
      */
     public function createCustomer(array $customerData)
-    {   
+    {
         try {
             $result = $this->customerService->process(
                 new ServiceRequest(
@@ -98,20 +119,33 @@ class CustomerApproval
                     )
                 )
             );
+            $this->saveNavisionStatus(
+                self::CUSTOMER_APPROVAL,
+                true,
+                'Company account created sucessfully '
+                . 'in Navision. Nav Id = '.$result['No']
+            );
             $this->logger->info('Company Account Created Sucessfully');
             $this->logger->info('NAVISION Customer ID = '.$result['No']);
             return $result;
             
         } catch (Exception $ex) {
+            $this->saveNavisionStatus(
+                self::CUSTOMER_APPROVAL,
+                false,
+                $ex->getMessage()
+            );
             $this->logger->error($ex);
+            return false;
         }
     }
     
     /**
-     * 
-     * @param array $customerData 
-     * 
-     * @return array 
+     * Get Existing Customer
+     *
+     * @param array $customerData
+     *
+     * @return array
      */
     public function getExistingCustomer(array $customerData)
     {
@@ -139,17 +173,19 @@ class CustomerApproval
             
         } catch (Exception $ex) {
             $this->logger->error($ex);
+            return false;
         }
     }
     
     /**
-     * 
-     * @param array $customerData 
-     * 
-     * @return array 
+     * Update Customer
+     *
+     * @param array $customerData
+     *
+     * @return array
      */
     public function updateCustomer(array $customerData)
-    {   
+    {
         try {
             $result = $this->customerService->process(
                 new ServiceRequest(
@@ -160,12 +196,42 @@ class CustomerApproval
                     )
                 )
             );
+            $this->saveNavisionStatus(
+                self::CUSTOMER_APPROVAL,
+                true,
+                'Company account address updated '
+                . 'sucessfully in Navision. Nav Id = '.$result['No']
+            );
             $this->logger->info('Customer Address Updated Successfully');
             
             return $result;
             
         } catch (Exception $ex) {
+            $this->saveNavisionStatus(
+                self::CUSTOMER_APPROVAL,
+                false,
+                $ex->getMessage()
+            );
             $this->logger->error($ex);
+            return false;
         }
+    }
+    
+    /**
+     * To save navision log status
+     *
+     * @param string $logType
+     * @param boolean $logStatus
+     * @param string $description
+     */
+    protected function saveNavisionStatus($logType, $logStatus, $description)
+    {
+        $navisionData = $this->navisionLoggerFactory->create();
+        $navisionData->setLogType($logType);
+        $navisionData->setLogStatus($logStatus);
+        $navisionData->setDescription(
+            $description
+        );
+        $this->navisionLoggerRepository->save($navisionData);
     }
 }

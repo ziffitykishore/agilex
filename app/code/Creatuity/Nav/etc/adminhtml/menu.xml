@@ -8,5 +8,13 @@
              parent="Magento_Integration::system_extensions"
              action="adminhtml/system_config/edit/section/nav"
         />
+        <add id="Creatuity_Nav::navision_log"
+             title="Navision Log"
+             translate="title"
+             module="Creatuity_Nav"
+             sortOrder="30"
+             parent="Magento_AsynchronousOperations::system_magento_logging"
+             action="nav/data/index"
+             resource="Magento_Backend::system"/>
     </menu>
 </config>

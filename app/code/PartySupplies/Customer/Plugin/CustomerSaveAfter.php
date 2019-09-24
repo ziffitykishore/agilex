@@ -105,19 +105,26 @@ class CustomerSaveAfter
             && !$customerData['customer']['nav_customer_id']
         ) {
             $navCustomerId = $this->customerApproval->createCustomer($customerData);
-            $customerUpdated = $this->saveNavCustomerId(
-                $customerData['customer']['entity_id'],
-                $navCustomerId['No']
-            );
 
-            if ($customerUpdated) {
-                $navCustomer = $this->customerApproval->getExistingCustomer(
-                    $navCustomerId
+            if ($navCustomerId) {
+                $customerUpdated = $this->saveNavCustomerId(
+                    $customerData['customer']['entity_id'],
+                    $navCustomerId['No']
                 );
-                $customerData['Key'] = $navCustomer[0]['Key'];
-            }
 
-            $this->customerApproval->updateCustomer($customerData);
+                if ($customerUpdated) {
+                    $navCustomer = $this->customerApproval->getExistingCustomer(
+                        $navCustomerId
+                    );
+                    $customerData['Key'] = $navCustomer[0]['Key'];
+                }
+
+                $this->customerApproval->updateCustomer($customerData);
+            } else {
+                $this->messageManager->addError(
+                    __('Something went wrong while creating company in NAV.')
+                );
+            }
         }
         
         if ($customerData['customer']['is_certificate_approved']) {
