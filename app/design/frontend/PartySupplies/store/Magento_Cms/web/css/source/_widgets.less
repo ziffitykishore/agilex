@@ -31,16 +31,17 @@
     .cms-page-view{
         .page-main{
             padding: 0;
+            margin-top: 2rem;
         }
         .terms{
             position: relative;
             &::after{
-                border-bottom: 2px solid #dee2e6;
                 content: "";
                 position: absolute;
                 width: 100%;
-                top: 51px;
                 z-index: -1;
+                background: #dee2e6;
+                height: 3px;
             }
         }
         .nav-tabs{
@@ -52,13 +53,24 @@
             }
             .nav-link{
                 border: 0;
-                font-size: 2.2rem;
                 padding: 1rem 0;
+                line-height: 1;
                 font-weight: 600;
+                display: inline-block;
+                font-family: @heading__font-family__base;
                 &.active{
                     color: @c-primary_color;
-                    border: 0;
-                    border-bottom: 2px solid @c-primary_color;
+                    background: transparent;
+                    position: relative;
+                    &::after{
+                        content: "";
+                        position: absolute;
+                        bottom: -3px;
+                        width: 100%;
+                        height: 3px;
+                        left: 0;
+                        background: @c-primary_color;
+                    }
                 }
             }
         }
@@ -66,17 +78,18 @@
             .container-sm();
         }
         .tab-con{
-            margin-top: 4rem;
+            margin-top: 4.5rem;
             h3{
                 font-size: 2rem;
                 font-weight: 600;
-                margin-bottom: 2.5rem;
+                margin: 0 0 2rem;
             }
             h4{
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin: 0 0 2rem;
             }
             p{
-                margin-bottom: 2.5rem;
+                margin: 0 0 2rem;
             }
             ul{
                 list-style-position: inside;
@@ -109,28 +122,54 @@
 
 }
 
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+
+    .cms-page-view{
+        .nav-tabs{
+            .nav-link{
+                font-size: 2.4rem;
+            }
+        }
+        .terms{
+            &::after{
+                top: 44px;
+            }
+        }
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+
+    .cms-page-view{
+        .nav-tabs{
+            .nav-link{
+                font-size: 2rem;
+            }
+        }
+        .terms{
+            &::after{
+                top: 40px;
+            }
+        }
+    }
+
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
 
     .cms-page-view{
         .nav-tabs{
             .nav-link{
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
         }
         .terms{
             &::after{
-                top: 42px;
+                top: 35px;
             }
-        }
-        a.accordion-toggle.nav-link::after {
-            content: '\e900';
-            font-family: 'PS';
-            transform: rotate(-90deg);
-            position: absolute;
-            right: 20px;
-        }
-        a.accordion-toggle.nav-link.collapsed::after {
-            transform: rotate(90deg);
         }
     }
 
@@ -139,13 +178,11 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
     .cms-page-view{
-        .page-main{
-            margin: 0 !important;
-        }
         .card-soup{
             padding: 0 2rem;
             .card{
                 margin: .5rem 0;
+                border-radius: 0;
             }
             .card-title{
                 margin: 0;
@@ -160,11 +197,33 @@
             }
         }
         .tab-con{
-            margin-top: 0;
+            margin-top: 2rem;
         }
         .terms{
             display: none;
         }
+        .card-header{
+            border: 0;
+            background-color: @c-whitesmoke;
+        }
+        .nav-link{
+            position: relative;
+            &::after {
+                content: '\e900';
+                font-family: 'PS';
+                transform: rotate(-90deg);
+                position: absolute;
+                right: 5px;
+                font-size:20px;
+            }
+            &.collapsed{
+                color: @c-text_color;
+                &::after {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+       
     }
 
 }

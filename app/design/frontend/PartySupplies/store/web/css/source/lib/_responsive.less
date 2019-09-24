@@ -27,6 +27,10 @@
 
 & when (@media-target = 'mobile'), (@media-target = 'all') {
 
+
+    @media only screen and (max-width: (@screen__xl)) {
+        .media-width('max', @screen__xl);
+    }
     @media only screen and (max-width: @c-tab) {
         .media-width('max', (@c-tab));
     }
@@ -67,9 +71,6 @@
         .media-width('min', @screen__s);
     }
 
-    @media only screen and (max-width: (@screen__xl)) {
-        .media-width('max', @screen__xl);
-    }
 
 }
 
@@ -103,6 +104,12 @@
     print {
         .media-width('min', @c-tab);
     }
+
+    @media all and (min-width: @c-desk-md),
+    print {
+        .media-width('min', @c-desk-md);
+    }
+
 
     @media all and (min-width: @screen__l),
     print {

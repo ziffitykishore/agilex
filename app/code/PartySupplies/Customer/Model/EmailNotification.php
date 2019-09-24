@@ -120,7 +120,7 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
         return $defaultStoreId;
     }
     
-      /**
+    /**
        * Send email with new account related information
        *
        * @param CustomerInterface $customer
@@ -140,7 +140,8 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
     ) {
         $isCompanyAccount = $customer->getCustomAttribute('account_type')->getValue() === "company";
         
-        if ($isCompanyAccount && $type == self::NEW_ACCOUNT_EMAIL_REGISTERED) {
+        if ($isCompanyAccount && 
+            ($type == self::NEW_ACCOUNT_EMAIL_REGISTERED || $type == self::NEW_ACCOUNT_EMAIL_REGISTERED_NO_PASSWORD)) {
             $type = self::NEW_COMPANYACCOUNT_EMAIL_REGISTERED;
         }
         

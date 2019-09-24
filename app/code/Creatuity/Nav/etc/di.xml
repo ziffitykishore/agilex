@@ -72,7 +72,7 @@
     </virtualType>
     <virtualType name="isInStockFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\BinaryMapping">
         <arguments>
-            <argument name="from" xsi:type="string">WebInventory</argument>
+            <argument name="from" xsi:type="string">Inventory</argument>
             <argument name="to" xsi:type="string">is_in_stock</argument>
         </arguments>
     </virtualType>
@@ -241,14 +241,35 @@
         </arguments>
     </virtualType>
 
-
-
-
-
-
+    <!-- NAVISON field mapping -->
+    <virtualType name="companyNameFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Name</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerKeyFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Key</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerContactFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Contact</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPhoneNoFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Phone_No</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="customerNameFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
         <arguments>
             <argument name="key" xsi:type="string">Name</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNavIdFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">No</argument>
         </arguments>
     </virtualType>
     <virtualType name="customerEmailFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
@@ -281,6 +302,70 @@
             <argument name="key" xsi:type="string">Post_Code</argument>
         </arguments>
     </virtualType>
+    <!-- NAVISON field mapping -->
+
+    <!-- Customer data extractor from Magento -->
+    <virtualType name="companyNameDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCompanyName</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerKeyDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerKey</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNameDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerName</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerContactDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerContact</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPhoneNoDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerPhoneNo</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNavIdDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerNavId</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerEmailDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerEmail</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineFirstDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerStreetFirst</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineSecondDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerStreetSecond</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerCityDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerCity</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerRegionCodeDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerRegionCode</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPostcodeDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCustomerPostcode</argument>
+        </arguments>
+    </virtualType>
+    <!-- Customer data extractor from Magento -->
 
     <virtualType name="customerNameOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
         <arguments>
@@ -317,6 +402,81 @@
             <argument name="accessorMethod" xsi:type="string">getCustomerPostcode</argument>
         </arguments>
     </virtualType>
+
+    <!-- Mapping of Magento and NAVISON field -->
+    <virtualType name="companyNameDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">companyNameFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">companyNameDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerKeyDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerKeyFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerKeyDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerContactDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerContactFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerContactDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPhoneNoDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerPhoneNoFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerPhoneNoDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNameDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerNameFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerNameDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNavIdDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerNavIdFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerNavIdDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerEmailDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerEmailFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerEmailDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineFirstDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerStreetLineFirstFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerStreetLineFirstDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerStreetLineSecondDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerStreetLineSecondFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerStreetLineSecondDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerCityDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerCityFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerCityDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerRegionCodeDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerRegionCodeFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerRegionCodeDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerPostcodeDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerPostcodeFieldMapping</argument>
+            <argument name="customerDataExtractor" xsi:type="object">customerPostcodeDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <!-- Mapping of Magento and NAVISON field -->
 
     <virtualType name="customerNameOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
         <arguments>
@@ -390,6 +550,41 @@
             </argument>
         </arguments>
     </virtualType>
+
+    <!-- Magento customer data provider -->
+    <virtualType name="createCustomerDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\CustomerDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="companyNameDataExtractorMapping" xsi:type="object">companyNameDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="updateCustomerDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\CustomerDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="customerNameDataExtractorMapping" xsi:type="object">customerNameDataExtractorMapping</item>
+                <item name="customerKeyDataExtractorMapping" xsi:type="object">customerKeyDataExtractorMapping</item>
+                <item name="customerContactDataExtractorMapping" xsi:type="object">customerContactDataExtractorMapping</item>
+                <item name="customerPhoneNoDataExtractorMapping" xsi:type="object">customerPhoneNoDataExtractorMapping</item>
+                <item name="customerEmailDataExtractorMapping" xsi:type="object">customerEmailDataExtractorMapping</item>
+                <item name="customerStreetLineFirstDataExtractorMapping" xsi:type="object">customerStreetLineFirstDataExtractorMapping</item>
+                <item name="customerStreetLineSecondDataExtractorMapping" xsi:type="object">customerStreetLineSecondDataExtractorMapping</item>
+                <item name="customerCityDataExtractorMapping" xsi:type="object">customerCityDataExtractorMapping</item>
+                <item name="customerRegionCodeDataExtractorMapping" xsi:type="object">customerRegionCodeDataExtractorMapping</item>
+                <item name="customerPostcodeDataExtractorMapping" xsi:type="object">customerPostcodeDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="findCustomerDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\CustomerDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="customerNavIdDataExtractorMapping" xsi:type="object">customerNavIdDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Magento customer data provider -->
+
+
     <virtualType name="updateCustomerOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
         <arguments>
             <argument name="dataExtractorMappings" xsi:type="array">
@@ -1438,12 +1633,12 @@
         </arguments>
     </type>
 
-
     <virtualType name="customerServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
         <arguments>
-            <argument name="name" xsi:type="string">Customers</argument>
+            <argument name="name" xsi:type="string">MOQbuy_Customers</argument>
         </arguments>
     </virtualType>
+
     <virtualType name="itemServiceObject" type="Creatuity\Nav\Model\Service\Object\ServiceObject">
         <arguments>
             <argument name="name" xsi:type="string">Item</argument>
@@ -2103,6 +2298,20 @@
         </arguments>
     </virtualType>
 
+    <virtualType name="customerHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/customer_approval.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">Customer Approval Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">customerHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
 
     <type name="Creatuity\Nav\Model\Task\ProductUpdateTask">
         <arguments>
@@ -2146,6 +2355,19 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- Customer Approval -->
+    <type name="Creatuity\Nav\Model\Provider\Nav\CustomerApproval">
+        <arguments>
+            <argument name="logger" xsi:type="object">customerLogger</argument>
+            <argument name="customerService" xsi:type="object">customerService</argument>
+            <argument name="createCustomerDataManager" xsi:type="object">createCustomerDataManager</argument>
+            <argument name="updateCustomerDataManager" xsi:type="object">updateCustomerDataManager</argument>
+            <argument name="findCustomerDataManager" xsi:type="object">findCustomerDataManager</argument>
+            <argument name="entityParametersFactory" xsi:type="object">customerEntityParametersFactory</argument>
+        </arguments>
+    </type>
+    <!-- Customer Approval -->
 
     <virtualType name="globalCronJobConfig" type="Creatuity\Nav\Cron\Config\CronJobConfig">
         <arguments>

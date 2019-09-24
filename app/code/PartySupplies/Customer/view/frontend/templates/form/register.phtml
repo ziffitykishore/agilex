@@ -111,7 +111,7 @@ $register = $block->getData('register_viewModel');
                         <input type="text" class="input-text" readonly data-mage-init='{"mage/trim-input":{}}' data-validate="{required:true}">
 
 
-      <input type="file" name="reseller_certificate" id="reseller_certificate" value="<?= $block->escapeHtmlAttr($block->getFormData()->getResellerCertificate()) ?>" title="<?= $block->escapeHtmlAttr(__('resellerCertificate')) ?>" class="input-file upload up">
+      <input type="file" name="reseller_certificate" id="reseller_certificate" value="<?= $block->escapeHtmlAttr($block->getFormData()->getResellerCertificate()) ?>" title="<?= $block->escapeHtmlAttr(__('resellerCertificate')) ?>" class="input-file upload up" data-validate="{'validate-filesize':true, 'validate-fileextensions':true}">
                         <span class="file-custom">
       <span class="btn" id="upload"><?= $block->escapeHtml(__('Upload')) ?></span>
     </span>
@@ -133,7 +133,7 @@ $register = $block->getData('register_viewModel');
 
                 <div class="actions-toolbar field">
                     <div class="primary">
-                        <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Create an Account')) ?></span></button>
+                        <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Register')) ?>"><span><?= $block->escapeHtml(__('Register')) ?></span></button>
                     </div>
                 </div>
 
@@ -176,13 +176,18 @@ $register = $block->getData('register_viewModel');
         }
     }
 </script>
-<script>
-    var uploadField = document.getElementById("reseller_certificate");
-    <?php $allowedFileSize = $register->getScopeConfigValue('reseller_certification/general/max_filesize_limit'); ?>
-    uploadField.onchange = function() {
-        if (this.files[0].size > <?= $register->convertMBtoBytes($allowedFileSize) ?>) {
-            alert("<?= $block->escapeHtml(__("uploadFileTooLarge", $allowedFileSize)) ?>");
-            this.value = "";
-        };
-    };
+
+<?php $allowedFileSize = $register->getScopeConfigValue('reseller_certification/general/max_filesize_limit') ?>
+<?php $allowedFileType = $register->getScopeConfigValue('reseller_certification/general/supported_file'); ?>
+<script type="text/x-magento-init">
+    {
+        "*" : {
+            "PartySupplies_Customer/js/file_validation" :{
+                "allowedFileSize":<?= json_encode([$allowedFileSize,
+                    $block->escapeHtml(__("uploadFileTooLarge", $allowedFileSize))]) ?>,
+                "allowedFileExtension": <?= json_encode([array_map('trim', explode(',', $allowedFileType)),
+                    $block->escapeHtml(__("uploadFileExtensionInvalid", strtoupper($allowedFileType)))]); ?>
+            }
+        }
+    }
 </script>
