@@ -121,16 +121,16 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
     }
     
     /**
-       * Send email with new account related information
-       *
-       * @param CustomerInterface $customer
-       * @param string $type
-       * @param string $backUrl
-       * @param string $storeId
-       * @param string $sendemailStoreId
-       * @return void
-       * @throws LocalizedException
-       */
+     * Send email with new account related information
+     *
+     * @param CustomerInterface $customer
+     * @param string $type
+     * @param string $backUrl
+     * @param string $storeId
+     * @param string $sendemailStoreId
+     * @return void
+     * @throws LocalizedException
+     */
     public function newAccount(
         CustomerInterface $customer,
         $type = self::NEW_ACCOUNT_EMAIL_REGISTERED,
@@ -140,8 +140,7 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
     ) {
         $isCompanyAccount = $customer->getCustomAttribute('account_type')->getValue() === "company";
         
-        if ($isCompanyAccount && 
-            ($type == self::NEW_ACCOUNT_EMAIL_REGISTERED || $type == self::NEW_ACCOUNT_EMAIL_REGISTERED_NO_PASSWORD)) {
+        if ($isCompanyAccount && isset(self::TEMPLATE_TYPES[$type])) {
             $type = self::NEW_COMPANYACCOUNT_EMAIL_REGISTERED;
         }
         

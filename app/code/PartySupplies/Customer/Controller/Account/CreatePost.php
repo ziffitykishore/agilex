@@ -261,20 +261,20 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
                     ['account_controller' => $this, 'customer' => $customer]
                 );
 
-                $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
-                if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
-                    $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
-                    // @codingStandardsIgnoreStart
-                    $this->messageManager->addSuccess(
-                        __('confirmationEmailMessage',$email)
-                    );
-                    // @codingStandardsIgnoreEnd
-                    $url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
-                    $resultRedirect->setUrl($this->_redirect->success($url));
-                } else {
+                if ($this->isCustomerAccount) {
+                    $confirmationStatus = $this->accountManagement->getConfirmationStatus($customer->getId());
+                    if ($confirmationStatus === AccountManagementInterface::ACCOUNT_CONFIRMATION_REQUIRED) {
+                        $email = $this->customerUrl->getEmailConfirmationUrl($customer->getEmail());
+                        // @codingStandardsIgnoreStart
+                        $this->messageManager->addSuccess(
+                            __('confirmationEmailMessage',$email)
+                        );
+                        // @codingStandardsIgnoreEnd
+                        $url = $this->urlModel->getUrl('*/*/index', ['_secure' => true]);
+                        $resultRedirect->setUrl($this->_redirect->success($url));
+                    } else {
                         $this->messageManager->addSuccess($this->getSuccessMessage());
 
-                    if ($this->isCustomerAccount) {
                         $this->session->setCustomerDataAsLoggedIn($customer);
                         $requestedRedirect = $this->accountRedirect->getRedirectCookie();
                         if (!$this->scopeConfig->getValue('customer/startup/redirect_dashboard') &&
@@ -284,10 +284,11 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
                             return $resultRedirect;
                         }
                         $resultRedirect = $this->accountRedirect->getRedirect();
-                    } elseif ($this->isCompanyAccount) {
+                    }
+                } elseif ($this->isCompanyAccount) {
+                        $this->messageManager->addSuccess($this->getSuccessMessage());
                         $url = $this->urlModel->getUrl('/', ['_secure' => true]);
                         $resultRedirect->setUrl($this->_redirect->success($url));
-                    }
                 }
 
                 if ($this->getCookieManager()->getCookie('mage-cache-sessid')) {
