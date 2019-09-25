@@ -8,42 +8,13 @@
 /** @var \Magento\Contact\Block\ContactForm $block */
 ?>
 
-<div class="contact-wrapper">
-
-    <div class="contact-inner-container">
-
-        <div class="contact-content">
-            <?php
-            echo $this->getLayout()
-            ->createBlock('Magento\Cms\Block\Block')
-            ->setBlockId('contact-us')
-            ->toHtml();
-            ?>
-        </div>
-
-        <div class="contact-content">
-            <h4>Our Office</h4>
-            <address>Party Club of America LLC.<br>
-            Attention:Deanna Larrick<br> 
-            P.O.Box 1419<br> 
-            Ennis,Texas 75120</address>
-        </div>
-
-        <div class="contact-content">
-            <h4>Phone</h4>
-            <a href="#">800-324-7474</a> <br/>
-            <a href="#">info@PartyClubofAmerica.com</a>
-        </div>
-        
-    </div>
-
-    <div class="form-container">
-        <form class="form contact"
-            action="<?= $block->escapeUrl($block->getFormAction()) ?>"
-            id="contact-form"
-            method="post"
-            data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
-            data-mage-init='{"validation":{}}'>
+<div class="form-container">
+    <form class="form contact"
+          action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+          id="contact-form"
+          method="post"
+          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+          data-mage-init='{"validation":{}}'>
             <fieldset class="fieldset">
                 <div class="field name required">
                     <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
@@ -79,21 +50,5 @@
                     </button>
                 </div>
             </div>
-        </form>
-    </div>
-
-    <?php
-    echo $this->getLayout()
-    ->createBlock('Magento\Cms\Block\Block')
-    ->setBlockId('social-links')
-    ->toHtml();
-    ?>
-
-</div>
-
-
-<div class="map">
-
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13482.730780759026!2d-96.646186!3d32.3472269!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x76b2774fcf39af40!2sParty%20Club%20of%20America!5e0!3m2!1sen!2sin!4v1568901749475!5m2!1sen!2sin" width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-
+    </form>
 </div>

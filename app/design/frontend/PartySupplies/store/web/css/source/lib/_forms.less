@@ -276,7 +276,7 @@
         width: 100%;
         padding: 0 13px;
         .br-radius(3px);
-        border: 1px solid #e0e0e0;
+        border: 1px solid @c-graylight;
         height: 44px;
         font-size: @font-size__base;
         -webkit-transition : .5s ease;
@@ -298,7 +298,7 @@
         width: 100%;
         padding: 0 13px;
         .br-radius(3px);
-        border: 1px solid #e0e0e0;
+        border: 1px solid @c-graylight;
         height: 44px;
 
     }
@@ -311,6 +311,7 @@
     textarea {
         .lib-form-element-input(@_type: textarea);
         .lib-form-element-textarea-resize();
+         border: 1px solid @c-graylight;
     }
 
     input[type="checkbox"] {
@@ -331,6 +332,7 @@
 
     div.mage-error[generated] {
         .lib-form-validation-note();
+        line-height: normal;
     }
 
     input[type="button"],
