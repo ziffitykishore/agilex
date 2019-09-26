@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <update id="Magento_Customer::customer_manage" title="All Users" translate="title" module="Magento_Customer" sortOrder="15" parent="Magento_Customer::customer" action="customer/index/index/account_type/customer" resource="Magento_Customer::manage"/>
+        <update id="Magento_Customer::company_manage" title="All Companies" translate="title" module="Magento_Customer" sortOrder="10" parent="Magento_Customer::customer" action="customer/index/index/account_type/company" resource="Magento_Customer::manage"/>
+    </menu>
+</config>
+

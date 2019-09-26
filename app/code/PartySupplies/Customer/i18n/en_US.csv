@@ -8,3 +8,4 @@
 "uploadFileTooLarge","The certificate file-size has to be less than or equal to %1MB"
 "uploadFileExtensionInvalid","The certificate file-extension has to be one of the following [%1]"
 "uploadFileOtherError","File upload failed, please validate file size is less than or equal to %1MB and of file extension %2"
+"addNewCompanyUser","Add New Company (or) User"

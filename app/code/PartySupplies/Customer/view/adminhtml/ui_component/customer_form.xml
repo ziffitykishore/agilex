@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="associated" class="Magento\Customer\Ui\Component\Form\AddressFieldset">
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">Associated Users</label>
+            <componentType>fieldset</componentType>
+            <additionalClasses>
+                <class name="customer-associated-form">true</class>
+            </additionalClasses>
+        </settings>
+        <insertListing name="customer_associated_listing" component="Magento_Customer/js/form/components/insert-listing">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <renderUrl path="mui/index/render/"/>
+                <externalProvider>customer_listing.customer_listing_data_source</externalProvider>
+                <selectionsProvider>customer_listing.customer_listing.customer_listing_columns.ids</selectionsProvider>
+                <autoRender>true</autoRender>
+                <dataScope>customer_listing</dataScope>
+                <ns>customer_listing</ns>
+                <exports>
+                    <link name="nav_customer_id">${ $.externalProvider }:params.nav_customer_id</link>
+                    <link name="account_type">${ $.externalProvider }:params.account_type</link>
+                </exports>
+                <imports>
+                    <link name="nav_customer_id">${ $.provider }:data.customer.nav_customer_id</link>
+                    <link name="account_type">${ $.provider }:data.customer.account_type</link>
+                    <link name="onAction">ns = ${ $.ns }, index = actions:action</link>
+                    <link name="onMassAction">ns = ${ $.ns }, index = listing_massaction:massaction</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+</form>
+
