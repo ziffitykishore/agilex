@@ -35,7 +35,7 @@ class CustomerSaveAfter
     protected $customer;
 
     /**
-     * @var CustomerFactory 
+     * @var CustomerFactory
      */
     protected $customerFactory;
     
@@ -55,20 +55,19 @@ class CustomerSaveAfter
     private $transportBuilder;
     
     /**
-     * @var ManagerInterface; 
+     * @var ManagerInterface;
      */
     protected $messageManager;
 
-
     /**
-     * 
-     * @param ScopeConfigInterface    $scopeConfig 
-     * @param SenderResolverInterface $senderResolver 
-     * @param TransportBuilder        $transportBuilder 
-     * @param CustomerApproval        $customerApproval 
-     * @param Customer                $customer 
-     * @param CustomerFactory         $customerFactory 
-     * @param ManagerInterface        $messageManager 
+     *
+     * @param ScopeConfigInterface    $scopeConfig
+     * @param SenderResolverInterface $senderResolver
+     * @param TransportBuilder        $transportBuilder
+     * @param CustomerApproval        $customerApproval
+     * @param Customer                $customer
+     * @param CustomerFactory         $customerFactory
+     * @param ManagerInterface        $messageManager
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
@@ -89,18 +88,18 @@ class CustomerSaveAfter
     }
     
     /**
-     * 
-     * @param Save        $subject 
-     * @param PageFactory $result 
-     * 
-     * @return PageFactory $result 
+     *
+     * @param Save        $subject
+     * @param PageFactory $result
+     *
+     * @return PageFactory $result
      */
     public function afterExecute(Save $subject, $result)
     {
         $customerData = $subject->getRequest()->getPostValue();
+        $returnToEdit = (bool)$subject->getRequest()->getParam('back', false);
 
-        if (
-            $customerData['customer']['account_type'] === Constant::COMPANY
+        if ($customerData['customer']['account_type'] === Constant::COMPANY
             && $customerData['customer']['is_certificate_approved']
             && !$customerData['customer']['nav_customer_id']
         ) {
@@ -120,26 +119,34 @@ class CustomerSaveAfter
             $this->customerApproval->updateCustomer($customerData);
         }
         
-        if ($customerData['customer']['is_certificate_approved']) {
+        if ($customerData['customer']['account_type'] == Constant::COMPANY
+            && $customerData['customer']['is_certificate_approved']
+        ) {
             $mailConfig = $this->setMailConfig(
                 $customerData,
                 $customerData['customer']['is_certificate_approved']
             );
             $this->sendEmail($mailConfig);
-        } else {
+        } elseif ($customerData['customer']['account_type'] == Constant::COMPANY
+            && isset($customerData['customer']['store_id'])
+        ) {
             $mailConfig = $this->setMailConfig($customerData);
             $this->sendEmail($mailConfig);
-        }        
+        }
+
+        if (!$returnToEdit) {
+            $result->setPath('customer/index/index/account_type/'.$customerData['customer']['account_type']);
+        }
 
         return $result;
     }
 
     /**
-     * 
-     * @param string $customerId 
-     * @param string $navCustomerId 
-     * 
-     * @return boolean 
+     *
+     * @param string $customerId
+     * @param string $navCustomerId
+     *
+     * @return boolean
      */
     protected function saveNavCustomerId(string $customerId, string $navCustomerId)
     {
@@ -154,11 +161,11 @@ class CustomerSaveAfter
     }
 
     /**
-     * 
-     * @param string $path 
-     * @param string $scopeType 
-     * @param int    $scopeCode 
-     * 
+     *
+     * @param string $path
+     * @param string $scopeType
+     * @param int    $scopeCode
+     *
      * @return string
      */
     protected function getScopeConfigValue($path, $scopeType, $scopeCode)
@@ -167,11 +174,11 @@ class CustomerSaveAfter
     }
 
     /**
-     * 
-     * @param array $mailConfig 
-     * 
-     * @throws \Magento\Framework\Exception\MailException 
-     * 
+     *
+     * @param array $mailConfig
+     *
+     * @throws \Magento\Framework\Exception\MailException
+     *
      * @return NULL
      */
     protected function sendEmail(array $mailConfig)
@@ -193,14 +200,13 @@ class CustomerSaveAfter
                 __('Something went wrong while sending mail to the customer.')
             );
         }
-
     }
 
     /**
-     * 
-     * @param array   $customerData 
-     * @param boolean $customerUpdated 
-     * 
+     *
+     * @param array   $customerData
+     * @param boolean $customerUpdated
+     *
      * @return array
      */
     protected function setMailConfig($customerData, $customerUpdated = false)
