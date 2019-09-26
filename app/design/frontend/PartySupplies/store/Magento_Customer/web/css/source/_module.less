@@ -662,6 +662,15 @@
             }
         }
     }
+    
+    textarea.input-text {
+        & + .mage-error {
+            &:before {
+                visibility: hidden;
+                opacity:0;
+            }
+        }
+    }
 
     .company-account-create,
     .customer-account-confirmation,
