@@ -1,0 +1,252 @@
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+*/
+
+& when (@media-common = true) {
+    .contact-index-index {
+        .page-main{
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .page-title-wrapper{
+            h1{
+                text-align: center;
+                width: 100%;
+                padding: 4.5rem 0;
+                margin: 0;
+            }
+        }
+
+        .column.main{
+            padding: 0;
+        }
+
+        .contact-wrapper{
+            .container-sm();
+            .flex();
+            align-items: center;
+            justify-content: space-between;
+            .contact-content{
+                margin: 0 0 4rem 0;
+                h4,p{
+                    margin: 0 0 1rem 0;
+                }
+                span{
+                    display: block;
+                }
+            }
+        }
+
+        .form.contact{
+            .box-shadow (4px 10px 13px 0px rgba(0, 0, 0, 0.27058823529411763));
+            .br-radius (@radius: 5px);
+            background-color: @c-white_color;
+            z-index: 1;
+            padding: 4.5rem;
+            .actions-toolbar{
+                margin: 0;
+            }
+            .primary{
+                width: 100%;
+            }
+            textarea{
+                resize: none;
+            }
+        }
+
+        .social-container{
+            .flex-width(100%);
+            background-color: @c-primary_color;
+            position: relative;
+            width: 100%;
+            padding: 4.5rem 10rem;
+            margin-top: -50px;
+            margin-bottom: -100px;
+            z-index: 2;
+            .br-radius (@radius: 5px);
+            .social-links{
+                .flex();
+                align-items: center;
+                h5{
+                    color: @c-white_color;
+                    display: inline-block;
+                    margin: 0;
+                }
+                span{
+                    padding: 0 1rem;
+                    a{
+                        display: inline-block;
+                        font-size: 0;
+                        width: 50px;
+                        height: 50px;
+                        position: relative;
+                        border-radius: 50%;
+                        line-height: 50px;
+                        transition: all 0.5s ease 0s;
+                        text-align: center;
+
+                        &:before {
+                            font-family: 'PS';
+                            color: @c-white_color;
+                            font-size: 20px;
+                            font-weight: 600;
+                            position: relative;
+                            z-index: 1;
+                        }
+
+                        &:after {
+                            content: '';
+                            width: 100%;
+                            height: 100%;
+                            top: 0;
+                            position: absolute;
+                            display: block;
+                            border-radius: 50%;
+                            transition: all 0.5s ease 0s;
+                            .transform(scale(0));
+                        }
+
+                        &:hover {
+                            .box-shadow(0 0 5px 7px #0081bf);
+
+                            &:after {
+                                .transform(scale(1.1));
+                                background: lighte(20%, @c-primary_color);
+                            }
+                        }
+
+                    }
+                }
+                .fb{
+                    &::before{
+                        content: '\e90f';
+                    }
+                }
+                .insta{
+                    &::before{
+                        content: '\e90e';
+                    }
+                }
+            }
+        }
+
+        .map-wrap {
+            iframe {
+                display: block;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk ) {
+
+    .contact-index-index{
+
+        .contact-info-wrap{
+            .flex-width(52%);
+            padding: 0 5.5rem 0 9.5rem;
+        }
+
+        .form-container{
+            .flex-width(48%);
+            padding: 0 9.5rem;
+        }
+
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .contact-index-index{
+
+        .contact-info-wrap{
+            .flex-width(50%);
+            padding: 0 2rem 0 4rem;
+        }
+
+        .form-container{
+            .flex-width(50%);
+            padding: 0 4rem 0 2rem;
+            z-index: 3;
+        }
+
+    }
+
+}
+
+//  Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .contact-index-index {
+
+        .column:not(.sidebar-main) {
+            .form.contact {
+                float: none;
+                width: 100%;
+            }
+        }
+
+        .column:not(.sidebar-additional) {
+            .form.contact {
+                float: none;
+                width: 100%;
+                padding: 4rem 2rem;
+            }
+        }
+
+        .contact-wrapper{
+            width: 100%;
+            .contact-content{
+                margin: 0 0 2rem 0;
+                &:last-child{
+                    margin: 0 0 1rem 0;
+                }
+            }
+        }
+
+        .contact-info-wrap,
+        .form-container{
+            .flex-width(100%);
+            padding: 0 0 2rem 0;
+        }
+
+        .social-container{
+            position: static;
+            z-index: 0;
+            margin: 0 0 2rem 0;
+            padding: 3rem;
+        }
+
+        .map{
+            position: static;
+            z-index: 0;
+            margin: 0 0 -8px 0;
+        }
+
+        .page-title-wrapper{
+            h1{
+                padding: 3rem 0;
+            }
+        }
+        
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+
+    .contact-index-index{
+        .social-container{
+            .social-links{
+                justify-content: space-evenly;
+                span {
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+}

@@ -876,6 +876,30 @@
         }
     }
 
+
+    body:not(.cms-index-index, .checkout-index-index) {
+        .page-header {
+            .header-wrapper {
+                position: fixed;
+                width: 100%;
+                z-index: 9;
+            }
+
+            & ~ .breadcrumbs,
+            & ~ .page-main {
+                margin-top: 80px;
+            }
+
+            & ~ .breadcrumbs {
+                & ~ .page-main {
+                    margin-top: 0;
+                }
+            }
+
+        }
+    }
+
+
     .page-header {
 
         &.fixed {
@@ -1300,7 +1324,7 @@
         }
         .navigation li,
         .links > li {
-            a {
+            a, strong {
                 font-size: 1.2rem;
             }
         }
