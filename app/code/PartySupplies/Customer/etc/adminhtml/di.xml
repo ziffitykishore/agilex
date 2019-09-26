@@ -9,4 +9,7 @@
     <type name="Magento\Customer\Controller\Adminhtml\Index\Save">
         <plugin name="customer-save-after-plugin" type="PartySupplies\Customer\Plugin\CustomerSaveAfter" sortOrder="1" />
     </type>
+    <type name="Magento\Customer\Controller\Adminhtml\Index\Index">
+        <plugin name="customer-index-render-plugin" type="PartySupplies\Customer\Plugin\CustomerGrid" sortOrder="1" />
+    </type>
 </config>
