@@ -2,9 +2,6 @@
 
 namespace PartySupplies\Customer\Setup;
 
-//use Magento\Eav\Model\Entity\Attribute\Set as AttributeSet;
-
-
 use Magento\Customer\Model\Customer;
 use Magento\Customer\Setup\CustomerSetup;
 use Magento\Customer\Setup\CustomerSetupFactory;
@@ -36,8 +33,7 @@ class InstallData implements InstallDataInterface
     }
 
     /**
-     * @param ModuleDataSetupInterface $setup
-     * @param ModuleContextInterface $context
+     * {@inheritdoc}
      */
     public function install(
         ModuleDataSetupInterface $setup,
@@ -55,100 +51,72 @@ class InstallData implements InstallDataInterface
         $attributeSet = $this->attributeSetFactory->create();
         $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
 
+        /**
+         * Field keys
+         */
+        $type = 'type';
+        $label = 'label';
+        $input = 'input';
+        $required = 'required';
+        $visible = 'visible';
+        $userDefined = 'user_defined';
+        $sortOrder = 'sort_order';
+        $position = 'position';
+        $system = 'system';
+
         $customerSetup->addAttribute(Customer::ENTITY, 'account_type', [
-            'type' => 'varchar',
-            'label' => 'Account Type',
-            'input' => 'select',
-            'source' => AccountType::class,
-            'required' => false,
-            'default' => 'customer',
-            'visible' => true,
-            'user_defined' => true,
-            'sort_order' => 1000,
-            'position' => 1000,
-            'system' => 0,
+            $type => 'varchar',$label => 'Account Type',$input => 'select',
+            'source' => AccountType::class,$required => false,'default' => 'customer',
+            $visible => true,$userDefined => true,$sortOrder => 1000,$position => 1000,$system => 0,
         ]);
 
         $customerSetup->addAttribute(Customer::ENTITY, 'reseller_certificate', [
-            'type' => 'varchar',
-            'label' => 'Reseller Certificate',
-            'input' => 'file',
-            'required' => false,
-            'visible' => true,
-            'user_defined' => true,
-            'sort_order' => 1100,
-            'position' => 1100,
-            'system' => 0,
+            $type => 'varchar',$label => 'Reseller Certificate',$input => 'file',$required => false,
+            $visible => true,$userDefined => true,$sortOrder => 1100,$position => 1100,$system => 0,
         ]);
 
         $customerSetup->addAttribute(Customer::ENTITY, 'is_certificate_approved', [
-            'type' => 'int',
-            'label' => 'Certificate Approved',
-            'input' => 'boolean',
-            'required' => false,
-            'default' => '0',
-            'visible' => true,
-            'user_defined' => true,
-            'sort_order' => 1101,
-            'position' => 1101,
-            'system' => 0,
+            $type => 'int',$label => 'Certificate Approved',$input => 'boolean',$required => false,
+            'default' => '0',$visible => true,$userDefined => true,$sortOrder => 1101,$position => 1101,
+            $system => 0,
         ]);
 
         $customerSetup->addAttribute(Customer::ENTITY, 'nav_customer_id', [
-            'type' => 'varchar',
-            'label' => 'NAV Customer-ID',
-            'input' => 'text',
-            'required' => false,
-            'default' => null,
-            'visible' => true,
-            'user_defined' => true,
-            'sort_order' => 81,
-            'position' => 81,
-            'system' => 0,
+            $type => 'varchar',$label => 'NAV Customer-ID',$input => 'text',$required => false,'default' => null,
+            $visible => true,$userDefined => true,$sortOrder => 81,$position => 81,$system => 0,
         ]);
 
-        $account_type = $customerSetup->getEavConfig()->getAttribute(
+        $data = [
+            'attribute_set_id' => $attributeSetId,
+            'attribute_group_id' => $attributeGroupId,
+            'used_in_forms' => ['adminhtml_customer', 'customer_account_create', 'customer_account_edit'],
+        ];
+        $accountType = $customerSetup->getEavConfig()->getAttribute(
             Customer::ENTITY,
             'account_type'
-        )->addData([
-            'attribute_set_id' => $attributeSetId,
-            'attribute_group_id' => $attributeGroupId,
-            'used_in_forms' => ['adminhtml_customer', 'customer_account_create', 'customer_account_edit'],
-        ]);
+        )->addData($data);
 
-        $account_type->save();
+        $accountType->save();
 
-        $reseller_certificate = $customerSetup->getEavConfig()->getAttribute(
+        $resellerCertificate = $customerSetup->getEavConfig()->getAttribute(
             Customer::ENTITY,
             'reseller_certificate'
-        )->addData([
-            'attribute_set_id' => $attributeSetId,
-            'attribute_group_id' => $attributeGroupId,
-            'used_in_forms' => ['adminhtml_customer', 'customer_account_create', 'customer_account_edit'],
-        ]);
+        )->addData($data);
 
-        $reseller_certificate->save();
+        $resellerCertificate->save();
 
-        $is_certificate_approved = $customerSetup->getEavConfig()->getAttribute(
+        $isCertificated = $customerSetup->getEavConfig()->getAttribute(
             Customer::ENTITY,
             'is_certificate_approved'
-        )->addData([
-            'attribute_set_id' => $attributeSetId,
-            'attribute_group_id' => $attributeGroupId,
-            'used_in_forms' => ['adminhtml_customer', 'customer_account_create', 'customer_account_edit'],
-        ]);
+        )->addData($data);
 
-        $is_certificate_approved->save();
+        $isCertificated->save();
 
-        $nav_customer_id = $customerSetup->getEavConfig()->getAttribute(
+        $navCustomerId = $customerSetup->getEavConfig()->getAttribute(
             Customer::ENTITY,
             'nav_customer_id'
-        )->addData([
-            'attribute_set_id' => $attributeSetId,
-            'attribute_group_id' => $attributeGroupId,
-            'used_in_forms' => ['adminhtml_customer', 'customer_account_create', 'customer_account_edit'],
-        ]);
+        )->addData($data);
 
-        $nav_customer_id->save();
+        $navCustomerId->save();
     }
 }

@@ -12,7 +12,12 @@ use Magento\Customer\Api\Data\CustomerInterface;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Customer\Model\CustomerRegistry;
+use Magento\Store\Model\ScopeInterface;
 
+/**
+ * {@inheritdoc}
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class EmailNotification extends \Magento\Customer\Model\EmailNotification
 {
     
@@ -121,16 +126,16 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
     }
     
     /**
-       * Send email with new account related information
-       *
-       * @param CustomerInterface $customer
-       * @param string $type
-       * @param string $backUrl
-       * @param string $storeId
-       * @param string $sendemailStoreId
-       * @return void
-       * @throws LocalizedException
-       */
+     * Send email with new account related information
+     *
+     * @param CustomerInterface $customer
+     * @param string $type
+     * @param string $backUrl
+     * @param string $storeId
+     * @param string $sendemailStoreId
+     * @return void
+     * @throws LocalizedException
+     */
     public function newAccount(
         CustomerInterface $customer,
         $type = self::NEW_ACCOUNT_EMAIL_REGISTERED,
@@ -140,7 +145,7 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
     ) {
         $isCompanyAccount = $customer->getCustomAttribute('account_type')->getValue() === "company";
         
-        if ($isCompanyAccount && 
+        if ($isCompanyAccount &&
             ($type == self::NEW_ACCOUNT_EMAIL_REGISTERED || $type == self::NEW_ACCOUNT_EMAIL_REGISTERED_NO_PASSWORD)) {
             $type = self::NEW_COMPANYACCOUNT_EMAIL_REGISTERED;
         }
@@ -164,7 +169,7 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
             $customer,
             $types[$type],
             self::XML_PATH_REGISTER_EMAIL_IDENTITY,
-            ['customer' => $customerEmailData, 'back_url' => $backUrl, 'store' => $store],
+            ['customer' => $customerEmailData, 'back_url' => $backUrl, ScopeInterface::SCOPE_STORE => $store],
             $storeId
         );
     }
@@ -189,19 +194,19 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
         $storeId = null,
         $email = null
     ) {
-        $templateId = $this->scopeConfig->getValue($template, 'store', $storeId);
+        $templateId = $this->scopeConfig->getValue($template, ScopeInterface::SCOPE_STORE, $storeId);
         if ($email === null) {
             $email = $customer->getEmail();
         }
 
         /** @var array $from */
         $from = $this->senderResolver->resolve(
-            $this->scopeConfig->getValue($sender, 'store', $storeId),
+            $this->scopeConfig->getValue($sender, ScopeInterface::SCOPE_STORE, $storeId),
             $storeId
         );
 
         $transport = $this->transportBuilder->setTemplateIdentifier($templateId)
-            ->setTemplateOptions(['area' => 'frontend', 'store' => $storeId])
+            ->setTemplateOptions(['area' => 'frontend', ScopeInterface::SCOPE_STORE => $storeId])
             ->setTemplateVars($templateParams)
             ->setFrom($from)
             ->addTo($email, $this->customerViewHelper->getCustomerName($customer))

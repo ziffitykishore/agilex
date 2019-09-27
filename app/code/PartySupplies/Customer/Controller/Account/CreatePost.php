@@ -36,6 +36,9 @@ use Magento\Newsletter\Model\SubscriberFactory;
 use PartySupplies\Customer\ViewModel\Register;
 use Magento\MediaStorage\Model\File\UploaderFactory;
 
+/**
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ */
 class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
 {
     /**
@@ -76,7 +79,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
     /**
      * @var Register
      */
-    private $register_viewModel;
+    private $registerViewModel;
     
     /**
      * @var UploaderFactory
@@ -104,9 +107,11 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
      * @param DataObjectHelper $dataObjectHelper
      * @param AccountRedirect $accountRedirect
      * @param Random $mathRandom
-     * @param Register $register_viewModel
+     * @param Register $registerViewModel
      * @param UploaderFactory $uploader
      * @param Validator $formKeyValidator
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         Context $context,
@@ -128,7 +133,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         DataObjectHelper $dataObjectHelper,
         AccountRedirect $accountRedirect,
         Random $mathRandom,
-        Register $register_viewModel,
+        Register $registerViewModel,
         UploaderFactory $uploaderFactory,
         Validator $formKeyValidator = null
     ) {
@@ -154,7 +159,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
             $formKeyValidator
         );
         $this->mathRandom = $mathRandom;
-        $this->register_viewModel = $register_viewModel;
+        $this->registerViewModel = $registerViewModel;
         $this->uploaderFactory = $uploaderFactory;
         $this->accountRedirect = $accountRedirect;
         $this->formKeyValidator = $formKeyValidator ?: ObjectManager::getInstance()->get(Validator::class);
@@ -192,13 +197,20 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         return $this->cookieMetadataFactory;
     }
     
+    /**
+     * @return Redirect
+     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+     */
     public function execute()
     {
         $company = $this->getRequest()->getParam('company');
-        $nav_customer_id = $this->getRequest()->getParam('nav_customer_id');
+        $navCustomerId = $this->getRequest()->getParam('nav_customer_id');
         
         $this->isCompanyAccount = isset($company) && !empty($company);
-        $this->isCustomerAccount = isset($nav_customer_id) && !empty($nav_customer_id);
+        $this->isCustomerAccount = isset($navCustomerId) && !empty($navCustomerId);
         
         /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -347,27 +359,23 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
      */
     public function validateResellerCertificate($fieldName)
     {
-        $validationStatus = false;
+        $validationStatus = true;
         
-        $allowedFileType = $this->register_viewModel
+        $allowedFileType = $this->registerViewModel
             ->getScopeConfigValue('reseller_certification/general/supported_file');
-        $allowedMaxFileSize = $this->register_viewModel
+        $allowedMaxFileSize = $this->registerViewModel
             ->getScopeConfigValue('reseller_certification/general/max_filesize_limit');
         
         try {
             $uploader = $this->uploaderFactory->create(['fileId'=>$fieldName]);
             $uploader->setAllowedExtensions(array_map('trim', explode(',', $allowedFileType)));
             
-            if ($uploader->getFileSize() > $this->register_viewModel->convertMBtoBytes($allowedMaxFileSize)) {
+            if ($uploader->getFileSize() > $this->registerViewModel->convertMBtoBytes($allowedMaxFileSize)) {
                 $validationStatus = false;
                 $this->messageManager->addErrorMessage(__("uploadFileTooLarge", $allowedMaxFileSize));
-            } else {
-                $validationStatus = true;
             }
 
-            if ($uploader->checkAllowedExtension($uploader->getFileExtension())) {
-                $validationStatus = true;
-            } else {
+            if (!$uploader->checkAllowedExtension($uploader->getFileExtension())) {
                 $validationStatus = false;
                 $this->messageManager->addErrorMessage(__("uploadFileExtensionInvalid", strtoupper($allowedFileType)));
             }
