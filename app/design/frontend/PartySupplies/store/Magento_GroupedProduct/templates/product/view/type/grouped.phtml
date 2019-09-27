@@ -26,6 +26,11 @@
         <thead>
         <tr>
             <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
+            
+            <?php if ($block->getCanShowProductPrice($_product)): ?>
+                <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
+            <?php endif; ?>
+
             <?php if ($_product->isSaleable()): ?>
                 <th class="col qty" scope="col"><?= /* @escapeNotVerified */ __('Qty') ?></th>
             <?php endif; ?>
@@ -38,12 +43,16 @@
             <tr>
                 <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col item">
                     <strong class="product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
-                    <?php if ($block->getCanShowProductPrice($_product)): ?>
+                </td>
+                
+                <?php if ($block->getCanShowProductPrice($_product)): ?>
+                    <td data-th="<?= $block->escapeHtml(__('CasePrice')) ?>" class="col item">
                         <?php if ($block->getCanShowProductPrice($_item)): ?>
                             <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
                         <?php endif; ?>
-                     <?php endif; ?>
-                </td>
+                    </td>
+                <?php endif; ?>
+
                 <?php if ($_product->isSaleable()): ?>
                 <td data-th="<?= $block->escapeHtml(__('Qty')) ?>" class="col qty">
                 <?php if ($_item->isSaleable()) : ?>

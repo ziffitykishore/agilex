@@ -46,6 +46,7 @@
 @c-lavander: #e9edf0;
 @c-lightgray: #8d92a3;
 @c-shuttle-gray: #595e63;
+@c-black:#000;
 
 @c-tab: 992px;
 @c-desk: 1200px;
@@ -277,7 +278,8 @@
 .btn,
 .action{
     &.update,
-    &.primary {
+    &.primary,
+    &.towishlist {
         position: relative;
         overflow: hidden;
         .transition(all 0.75s ease-in-out 0s);
@@ -303,4 +305,41 @@
             }
         }
     }
+}
+
+
+
+.control.qty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.decreaseQty,
+.increaseQty{
+    background: transparent;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    color: @c-text_sec_color;
+    border: 1px solid @c-lavander;
+    font-size: 20px;
+}
+
+.decreaseQty{
+    .br-radius (@radius: 3px 0 0 3px);
+}
+
+.increaseQty{
+    .br-radius (@radius: 0 3px 3px 0);
+}
+
+.input-text.qty {
+    margin-top: 0;
+    .br-radius (@radius: 0);
+    width: 52px;
+    height: 40px;
+    padding: 0;
+    border-left: 0;
+    border-right: 0;
 }
