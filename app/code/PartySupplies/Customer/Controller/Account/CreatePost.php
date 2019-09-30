@@ -35,6 +35,8 @@ use Magento\Framework\Math\Random;
 use Magento\Newsletter\Model\SubscriberFactory;
 use PartySupplies\Customer\ViewModel\Register;
 use Magento\MediaStorage\Model\File\UploaderFactory;
+use Magento\Framework\Phrase;
+use Magento\Customer\Model\CustomerFactory;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -85,7 +87,13 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
      * @var UploaderFactory
      */
     private $uploaderFactory;
-    
+
+    /**
+     * @var CustomerFactory
+     */
+    protected $customerFactory;
+
+
     /**
      *
      * @param Context $context
@@ -135,7 +143,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         Random $mathRandom,
         Register $registerViewModel,
         UploaderFactory $uploaderFactory,
-        Validator $formKeyValidator = null
+        Validator $formKeyValidator = null,
+        CustomerFactory $customerFactory
     ) {
         parent::__construct(
             $context,
@@ -163,6 +172,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         $this->uploaderFactory = $uploaderFactory;
         $this->accountRedirect = $accountRedirect;
         $this->formKeyValidator = $formKeyValidator ?: ObjectManager::getInstance()->get(Validator::class);
+        $this->customerFactory = $customerFactory;
     }
     
     /**
@@ -251,6 +261,7 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
                 $customer->setAddresses($addresses);
 
                 if ($this->isCustomerAccount) {
+                    $this->validateNavisionId($navCustomerId);
                     $password = $this->getRequest()->getParam('password');
                     $confirmation = $this->getRequest()->getParam('password_confirmation');
 
@@ -386,5 +397,29 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         }
         
         return $validationStatus;
+    }
+
+    /**
+     *
+     * @param string $navId
+     * @return boolean
+     * @throws LocalizedException
+     */
+    public function validateNavisionId($navId)
+    {
+        $customer = $this->customerFactory->create()
+            ->getCollection()
+            ->addFieldToFilter('nav_customer_id', $navId)
+            ->addFieldToFilter('account_type','company')
+            ->addFieldToFilter('is_certificate_approved','1');
+        $companyAccountData = $customer->getData();
+
+        if (!isset($companyAccountData[0]['nav_customer_id'])) {
+
+            throw new LocalizedException(
+                new Phrase("noCompanyAssociatedWithNavId = '%1'", [$navId])
+            );
+        }
+        return true;
     }
 }

@@ -11,3 +11,4 @@
 "addNewCompanyUser","Add New Company (or) User"
 "noAccountFound","No account associated with %1 found"
 "resetCompanyPasswordNotAllowed","Cannot reset password for a company account type"
+"noCompanyAssociatedWithNavId = '%1'","There is no company associated with Nav ID = '%1'"
