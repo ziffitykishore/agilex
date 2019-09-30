@@ -170,6 +170,7 @@
     .product.info.detailed {
         clear: both;
         margin-bottom: 30px;
+        border-top: 2px solid @c-whitesmoke;
 
         .additional-attributes {
             width: auto;
@@ -565,11 +566,14 @@
             justify-content: space-between;
             margin-top: 2rem;
             .sec-right{
-                .price-head{
-                    color: @c-primary_color;
-                }
+                // .price-head{
+                //     color: @c-primary_color;
+                // }
                 .get-info{
                     color: @c-black;
+                }
+                .colr{
+                    color: @c-primary_color;
                 }
             }
             .price-head{
@@ -579,9 +583,7 @@
                 margin-bottom: 1rem;
                 font-weight: 600;
             }
-            .caps{
-                text-transform: uppercase;
-            }
+            
         }
 
 
@@ -653,6 +655,58 @@
                 }
             }
         }
+
+        .product.description,
+        .additional-attributes-wrapper,
+        .block.related,
+        .block.review-add{
+            .container-sm();
+        }
+
+        .product.attribute.description{
+            strong{
+                margin: 7rem 0 2rem 0;
+                display: block;
+                font-size: 2.4rem;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+
+        .additional-attributes-wrapper{
+            padding-top: 5rem;
+            .data.table{
+                width: 75%;
+                margin: auto;
+            }
+            thead{
+                background-color: @c-primary_color;
+                th{
+                    color: @c-white_color;
+                }
+            }
+            th,td{
+                width: auto;
+                border: 1px solid @c-lavander !important;
+                padding: 1.5rem 5rem !important;
+            }
+            tr:nth-child(even){
+                background-color: @c-border-strip;
+            }
+        }
+
+        .block.related{
+            .block-title{
+                margin: 5rem 0 3rem 0;
+                strong{
+                    display: block;
+                    font-size: 2.4rem;
+                    text-transform: uppercase;
+                    text-align: center;
+                }
+            }
+        }
+        
 
     }
 

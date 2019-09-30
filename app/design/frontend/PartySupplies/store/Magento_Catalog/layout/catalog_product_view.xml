@@ -29,7 +29,7 @@
             <block class="Magento\Catalog\Block\Product\ProductList\Related" name="catalog.product.related" template="Magento_Catalog::product/list/items.phtml" group="detailed_info">
                 <arguments>
                     <argument name="type" xsi:type="string">related</argument>
-                    <argument name="sort_order" xsi:type="string">15</argument>
+                    <argument name="sort_order" xsi:type="string">25</argument>
                 </arguments>
                 <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="related.product.addto" as="addto">
                     <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
@@ -43,5 +43,12 @@
                  <argument name="at_label" xsi:type="string">Description</argument>
              </arguments>
          </referenceBlock>
+
+         <referenceBlock name="product.info.description">
+             <arguments>
+                 <argument name="at_label" xsi:type="string">Product Details</argument>
+             </arguments>
+         </referenceBlock>
+
     </body>
 </page>
