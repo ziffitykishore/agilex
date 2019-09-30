@@ -181,4 +181,3 @@ var fakewaffle = ( function ( $, fakewaffle ) {
 	return fakewaffle;
 }( window.jQuery, fakewaffle || { } ) );
 
-fakewaffle.responsiveTabs();
