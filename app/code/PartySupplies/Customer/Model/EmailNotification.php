@@ -144,9 +144,8 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
         $sendemailStoreId = null
     ) {
         $isCompanyAccount = $customer->getCustomAttribute('account_type')->getValue() === "company";
-        
-        if ($isCompanyAccount &&
-            ($type == self::NEW_ACCOUNT_EMAIL_REGISTERED || $type == self::NEW_ACCOUNT_EMAIL_REGISTERED_NO_PASSWORD)) {
+       
+        if ($isCompanyAccount && isset(self::TEMPLATE_TYPES[$type])) {
             $type = self::NEW_COMPANYACCOUNT_EMAIL_REGISTERED;
         }
         
