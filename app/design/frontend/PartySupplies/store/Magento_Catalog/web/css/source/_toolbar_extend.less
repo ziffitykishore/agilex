@@ -1,0 +1,163 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+
+
+//
+//  Common
+//  ________________________ _____________________
+
+& when (@media-common = true) {
+    .toolbar {
+
+        .products.wrapper ~ & {
+            display: none;
+        }
+
+        .flex();
+        flex-direction: row-reverse;
+        &-products {
+            padding: 0;
+            text-align: initial;
+        }
+
+        .modes {
+            float:  none;
+            margin-right: 0;
+
+            &-mode {
+                padding: 0;
+                width: 60px;
+                height: 60px;
+                line-height: 60px;
+
+                &:before {
+                    font-size: 25px;
+                    line-height: normal;
+                }
+
+                &.active {
+                    &:before {
+                        .lib-css(color, @c-primary_color);
+                    }
+                }
+
+                &:not(.active):hover {
+                    background: transparent;
+                    .lib-css(color, @c-primary_color);
+                }
+            }
+        }
+
+        &-amount {
+            display: none;
+        }
+
+        .sorter {
+            border: 1px solid @c-graylight;
+            margin-left: -1px;
+            margin-right: -1px;
+            padding: 0;
+            position: relative;
+            &-label {
+                font-weight: bold;
+                padding-left: 10px;
+            }
+
+            &-options {
+                height: 58px;
+                display: inline-block;
+                vertical-align: middle;
+                line-height: 58px;
+                margin-left: 0;
+                border: none;
+                float: none;
+            }
+
+            .nice-select {
+                position: static;
+                .list {
+                    right: 0;
+                    margin-top: 1px;
+                }
+            }
+        }
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+    .toolbar {
+        justify-content: flex-end;
+    }
+}
+
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+    .toolbar {
+        position: absolute;
+        top:1px;
+        right: 0px;
+        z-index: 9;
+        max-width: 250px;
+        width: 100%;
+        .sorter {
+            padding: 0;
+            width: 100%;
+            &-label {
+                display: none;
+            }
+            &-options {
+                background: transparent;
+                padding: 0 2px;
+            }
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-md) {
+    .toolbar {
+        .sorter {
+            &-label {
+                padding-left: 30px;
+            }
+
+            &-options {
+              padding-right: 60px;
+
+                &:after {
+                    right: 40px;
+                }
+            }
+        }
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+
+    .page-with-filter {
+        .main {
+            position: relative;
+        }
+
+        .toolbar {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+}

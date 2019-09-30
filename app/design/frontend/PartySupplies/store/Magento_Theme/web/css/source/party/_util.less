@@ -71,6 +71,22 @@
         }
     }
 
+    div.nice-select {
+        position: static;
+        .list {
+            right: 0;
+            margin-top: 1px;
+            .br-radius(0 0 3px 3px);
+
+            li {
+                &:hover {
+                    .lib-css(color, @c-primary_color);
+                    .lib-css(background, @c-aliceblue);
+                }
+            }
+        }
+    }
+
 }
 
 

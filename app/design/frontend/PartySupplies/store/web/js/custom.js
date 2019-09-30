@@ -1,5 +1,9 @@
-require(['jquery', 'slick'], function ($) {
+require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
     $(document).ready(function ($) {
+
+        fakewaffle.responsiveTabs();
+
+        $('select').niceSelect();
 
         $('.showcart').on('click', function(){
             $("body").removeClass("search-opened");
@@ -65,6 +69,7 @@ require(['jquery', 'slick'], function ($) {
             {
                 accordionFooter('disable');
                 responsiveflag = false;
+                $('header.page-header').removeClass("fixed");
                 $(window).on('load', function(){
                     stickyBar();
                 })
@@ -106,7 +111,6 @@ require(['jquery', 'slick'], function ($) {
                 });
             }
         }
-
 
         /*  =================
             Home Page Why Us Slider
