@@ -37,12 +37,10 @@ define([
                     if (!v) {
                         return true;
                     }
-                    with (elm) {
-                        var ext = value.substring(value.lastIndexOf('.') + 1);
-                        for (i = 0; i < extensions.length; i++) {
-                            if (ext == extensions[i]) {
-                                return true;
-                            }
+                    var ext = elm.value.substring(elm.value.lastIndexOf('.') + 1);
+                    for (var i = 0; i < extensions.length; i++) {
+                        if (ext == extensions[i]) {
+                            return true;
                         }
                     }
                     return false;

@@ -121,9 +121,9 @@
         .media-width('min', @c-desk);
     }
 
-    @media all and (min-width: @screen__xl),
+    @media all and (min-width: (@screen__xl + 1)),
     print {
-        .media-width('min', @screen__xl);
+        .media-width('min', (@screen__xl + 1));
     }
 
     @media all and (min-width: @c-desk-lg),

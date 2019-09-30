@@ -254,7 +254,7 @@
 
         &.fixed {
             .header-wrapper {
-                position: fixed;
+                position: fixed !important;
                 top: 0;
                 width: 100%;
                 z-index: 99;
@@ -288,6 +288,7 @@
                     text-transform: uppercase;
                     font-weight: bold;
                     font-family: @heading__font-family__base;
+                    .lib-css(color, @c-text_color);
                     &:hover {
                         .lib-css(color, @c-primary_color);
                     }
@@ -877,7 +878,17 @@
     }
 
 
-    body:not(.cms-index-index, .checkout-index-index) {
+    .cms-index-index, .checkout-index-index {
+        .page-header {
+            .header-wrapper {
+                position: relative;
+            }
+            & ~ .page-main {
+                margin-top: 0px;
+            }
+        }
+    }
+
         .page-header {
             .header-wrapper {
                 position: fixed;
@@ -897,7 +908,7 @@
             }
 
         }
-    }
+
 
 
     .page-header {

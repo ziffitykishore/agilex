@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    WeltPixel
+ * @package     WeltPixel_LayeredNavigation
+ * @copyright   Copyright (c) 2018 Weltpixel
+ * @author      Weltpixel TEAM
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="PartySupplies_Customer::parent" title="PartySupplies" sortOrder="90">
+                                <resource id="PartySupplies_Customer::config_resellercertificate" sortOrder="10" title="Reseller Certificate"/>
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

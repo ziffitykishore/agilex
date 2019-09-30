@@ -20,6 +20,7 @@ use PartySupplies\Customer\Helper\Constant;
 
 /**
  * CustomerSaveAfter
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class CustomerSaveAfter
 {
@@ -88,7 +89,8 @@ class CustomerSaveAfter
     }
     
     /**
-     *
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     * @SuppressWarnings(PHPMD.ElseExpression)
      * @param Save        $subject
      * @param PageFactory $result
      *

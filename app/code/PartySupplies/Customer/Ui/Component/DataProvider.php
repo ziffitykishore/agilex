@@ -22,19 +22,21 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
      * @param string                $primaryFieldName
      * @param string                $requestFieldName
      * @param Reporting             $reporting
-     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param SearchCriteriaBuilder $criteriaBuilder
      * @param RequestInterface      $request
      * @param FilterBuilder         $filterBuilder
      * @param AttributeRepository   $attributeRepository
      * @param array                 $meta
      * @param array                 $data
+     *
+     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      */
     public function __construct(
         $name,
         $primaryFieldName,
         $requestFieldName,
         Reporting $reporting,
-        SearchCriteriaBuilder $searchCriteriaBuilder,
+        SearchCriteriaBuilder $criteriaBuilder,
         RequestInterface $request,
         FilterBuilder $filterBuilder,
         AttributeRepository $attributeRepository,
@@ -47,7 +49,7 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
             $primaryFieldName,
             $requestFieldName,
             $reporting,
-            $searchCriteriaBuilder,
+            $criteriaBuilder,
             $request,
             $filterBuilder,
             $meta,
@@ -56,7 +58,7 @@ class DataProvider extends \Magento\Framework\View\Element\UiComponent\DataProvi
     }
 
     /**
-     * 
+     *
      * @return void
      */
     protected function prepareUpdateUrl()

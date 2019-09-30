@@ -33,7 +33,7 @@ class ForgotPasswordPost
     /**
      * @var \Magento\Framework\Controller\Result\RedirectFactory
      */
-    protected $resultRedirectFactory;
+    protected $resRedirectFactory;
 
     /**
      * @param CustomerRepositoryInterface $customerRepository
@@ -51,15 +51,18 @@ class ForgotPasswordPost
         $this->storeManager = $storeManager;
         $this->context = $context;
         $this->escaper = $escaper;
-        $this->resultRedirectFactory = $context->getResultRedirectFactory();
+        $this->resRedirectFactory = $context->getResultRedirectFactory();
     }
 
+    /**
+     * @SuppressWarnings("unused")
+     */
     public function aroundExecute(\Magento\Customer\Controller\Account\ForgotPasswordPost $subject, \Closure $proceed)
     {
         $messageManager = $this->context->getMessageManager();
         try {
             /** @var \Magento\Framework\Controller\Result\Redirect $resultRedirect */
-            $resultRedirect = $this->resultRedirectFactory->create();
+            $resultRedirect = $this->resRedirectFactory->create();
             $email = (string)$this->context->getRequest()->getPost('email');
 
             $websiteId = $this->storeManager->getStore()->getWebsiteId();
@@ -68,29 +71,29 @@ class ForgotPasswordPost
             $customer = $this->customerRepository->get($email, $websiteId);
 
             if ($customer->getCustomAttribute('account_type')->getValue() == "company") {
-                $messageManager->addErrorMessage("Cannot reset password for a company account type");
+                $messageManager->addErrorMessage(__("resetCompanyPasswordNotAllowed"));
                 return $resultRedirect->setPath('*/*/forgotpassword');
-            } else {
-                return $proceed();
             }
+            
+            $proceed();
         } catch (NoSuchEntityException $exception) {
-            // Do nothing, we don't want anyone to use this action to determine which email accounts are registered.
+            $messageManager->addErrorMessage($this->getErrorMessage($email));
+            return $resultRedirect->setPath('*/*/forgotpassword');
         }
-        $messageManager->addSuccessMessage($this->getSuccessMessage($email));
         return $resultRedirect->setPath('*/*/');
     }
-
+    
     /**
-     * Retrieve success message
+     * Retrieve error message
      *
      * @param string $email
      * @return \Magento\Framework\Phrase
      */
-    protected function getSuccessMessage($email)
+    protected function getErrorMessage($email)
     {
         // Redefined the menthod, As unable to use the protected method
         return __(
-            'If there is an account associated with %1 you will receive an email with a link to reset your password.',
+            'noAccountFound',
             $this->escaper->escapeHtml($email)
         );
     }

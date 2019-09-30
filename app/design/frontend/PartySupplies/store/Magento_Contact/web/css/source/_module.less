@@ -54,6 +54,20 @@
             textarea{
                 resize: none;
             }
+
+            .field-recaptcha {
+                .transform(scale(0.85));
+                transform-origin: 0 0;
+            }
+        }
+
+        .contact-info-blk {
+            a {
+                .lib-css(color, @c-text_color);
+                &:hover {
+                    .lib-css(color, @c-primary_color);
+                }
+            }
         }
 
         .social-container{
