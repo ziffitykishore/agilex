@@ -81,7 +81,7 @@ HTML;
                                 chooser  = $(chooser).down('div.chooser');
                                 entities = chooser.up('div.chooser_container')
                                                   .down('input[type="text"].entities').value;
-                                postParameters = {selected: entities};
+                                postParameters = {selected: entities,is_anchor_only: 1};
                                 url = '{$chooserUrl}';
 
                                 if (chooser && url) {
