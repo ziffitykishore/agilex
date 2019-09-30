@@ -80,7 +80,7 @@
     font-weight: 600;
     display: inline-block;
     &.btn-black {
-        .lib-css(background, @color-black);
+        .lib-css(background, @text__color);
         .lib-css(color, @color-white);
         .transition(all 0.5s ease-in-out 0s);
 
@@ -88,6 +88,11 @@
             .lib-css(background, @c-primary_color);
         }
     }
+}
+
+
+.table {
+    color: @text__color;
 }
 
 
