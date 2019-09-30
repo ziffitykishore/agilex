@@ -1,11 +1,22 @@
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$stockData = $block->getData('register_viewModel');
+$minQty = $stockData->getMinQty($_product);
+$casePrice = $stockData->getCasePrice($_product);
+
+$skuValue = $_helper->productAttribute($_product, $_product->getSku(), 'sku');
+$itemNoValue = $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no');
+?>
+
 <div class="pdp-product-price">
     <div class="sec-left">
-        <p class="price-head">case pack : <span class="get-info case-value">100</span></p>
-        <p class="price-head caps">msrp : <span class="get-info msrp-value">$ 1.99</span></p>
-        <p class="price-head">each price : <span class="get-info each-value">$ 0.13</span></p>
+        <p class="price-head">case pack : <span class="get-info case-value"><?= $minQty ?></span></p>
+        <?= $block->getChildHtml('product.price.final') ?>
     </div>
     <div class="sec-right">
-        <p class="price-head caps">sku : <span class="get-info sku-value">764943043066</span></p>
-        <p class="price-head caps">item : <span class="get-info item-value">#E581-017</span></p>
+        <p class="price-head caps">case price : <span class="get-info sku-value"><?= $casePrice ?></span></p>
+        <p class="price-head caps">sku : <span class="get-info sku-value"><?= $skuValue ?></span></p>
+        <p class="price-head caps">item : <span class="get-info item-value"><?= $itemNoValue ?></span></p>
     </div>
 </div>
