@@ -67,8 +67,10 @@
   }
 
   .cms-footer-border {
-    transform: translateX(-50px);
-    width: 100%;
+    @include min-screen($screen__m) {
+      transform: translateX(-50px);
+      width: 100%;
+    }
   }
 }
 
@@ -174,7 +176,9 @@
     }
 
     .description__desktop {
-      max-width: 90%;
+      @include min-screen($screen__m) {
+        max-width: 90%;
+      }
     }
 
     .ais-Hits-item {
