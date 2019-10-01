@@ -116,7 +116,7 @@ abstract class Adapter
 
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
-        $curl->setTimeout(20);
+        $curl->setTimeout(200);
         if ($this->isTestMode()) {
             $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
             $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
@@ -125,13 +125,13 @@ abstract class Adapter
             $curl->addHeader('Authorization', 'Bearer ' . $token);
             $curl->addHeader('Cache-Control', 'no-cache');
         }
-        $curl->addHeader('Content-Type', 'application/x-www-form-urlencoded');
+        $curl->addHeader('Content-Type', 'application/json');
         if (empty($this->requestBody)) {
             throw new ApiRequestException(__('Empty SX API request'));
         }
         try {
 
-            $curl->post($this->getRequestUrl(), $this->requestBody);
+            $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
 
             return [
                 'status' => $curl->getStatus(),
