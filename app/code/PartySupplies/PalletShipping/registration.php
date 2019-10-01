@@ -2,6 +2,6 @@
 
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'PartySupplies_PalletShippping',
+    'PartySupplies_PalletShipping',
     __DIR__
 );
