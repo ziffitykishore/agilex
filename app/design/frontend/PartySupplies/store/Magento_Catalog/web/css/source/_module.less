@@ -560,17 +560,23 @@
             padding: 0 !important;
         }
 
+        .product-info-main{
+            .stock.available{
+                span{
+                    color: @c-stock;
+                }
+            }
+        }
+
         .pdp-product-price{
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
             margin-top: 2rem;
             .sec-right{
-                // .price-head{
-                //     color: @c-primary_color;
-                // }
                 .get-info{
                     color: @c-black;
+                    text-transform: none;
                 }
                 .colr{
                     color: @c-primary_color;
@@ -579,11 +585,10 @@
             .price-head{
                 font-size: 1.5rem;
                 margin: 0;
-                text-transform: capitalize;
+                text-transform: uppercase;
                 margin-bottom: 1rem;
                 font-weight: 600;
             }
-            
         }
 
 
@@ -658,8 +663,8 @@
 
         .product.description,
         .additional-attributes-wrapper,
-        .block.related,
-        .block.review-add{
+        .block.related        
+        {
             .container-sm();
         }
 
@@ -705,6 +710,14 @@
                     text-align: center;
                 }
             }
+        }
+
+        .block.review-list,
+        .block.review-add{
+            max-width: 910px;
+            width: 100%;
+            margin: auto;
+            padding: 0 2rem;
         }
         
 
@@ -773,14 +786,14 @@
     .product-info-main,
     .product-options-bottom {
         .box-tocart {
-            display: block;//
+            display: block;
 
             .field.qty {
                 display: table-cell;
             }
 
             .actions {
-                display: inline-block;//
+                display: inline-block;
                 padding-top: @indent__m;
                 text-align: center;
                 vertical-align: bottom;
