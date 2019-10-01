@@ -12,8 +12,8 @@
  */
 $currentDirection = $block->getCurrentDirection();
 ?>
-<div class="toolbar-sorter sorter">
-    <label class="sorter-label" for="sorter"><?= /* @escapeNotVerified */ __('Sort By') ?></label>
+<div class="toolbar-sorter sorter" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "sort-active", "element": "body" } }}'>
+    <label class="sorter-label" for="sorter" data-role="title"><?= /* @escapeNotVerified */ __('Sort By') ?></label>
     <select id="sorter" data-role="sorter" class="sorter-options">
         <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
             <option value="<?= /* @escapeNotVerified */ $_key ?>&asc"

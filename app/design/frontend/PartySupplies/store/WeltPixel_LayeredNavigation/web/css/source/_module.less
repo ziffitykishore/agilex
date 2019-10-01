@@ -1,3 +1,29 @@
+
+
+//
+//  Common
+//  ________________________ _____________________
+
+& when (@media-common = true) {
+  #layered-filter-block {
+    .wp-ln-selected {
+      a{
+        position: relative;
+        &:before {
+          border: 1px solid @c-primary_color;
+          content: @icon-check;
+          font-family: @icons__font-name_ps;
+          font-size: 12px;
+          top: 0;
+          left: 0;
+          background: @c-primary_color;
+          color: @color-white;
+        }
+      }
+    }
+  }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
   .wp-ln-actions {
@@ -136,23 +162,7 @@
     }
   }
 
-  #layered-filter-block {
-    .wp-ln-selected {
-      a{
-        position: relative;
-        &:before {
-          border: 1px solid @c-primary_color;
-          content: @icon-check;
-          font-family: @icons__font-name_ps;
-          font-size: 12px;
-          top: 0;
-          left: 0;
-          background: @c-primary_color;
-          color: @color-white;
-        }
-      }
-    }
-  }
+
 
   #layered-filter-block {
     .wp-ln-selected {

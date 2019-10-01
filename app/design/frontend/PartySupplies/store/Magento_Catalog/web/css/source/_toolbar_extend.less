@@ -55,12 +55,17 @@
             display: none;
         }
 
-        .sorter {
+
+        &-sorter {
             border: 1px solid @c-graylight;
             margin-left: -1px;
             margin-right: -1px;
             padding: 0;
             position: relative;
+        }
+
+        .sorter {
+
             &-label {
                 font-weight: bold;
                 padding-left: 10px;
@@ -107,17 +112,121 @@
         top:1px;
         right: 0px;
         z-index: 9;
-        max-width: 250px;
-        width: 100%;
-        .sorter {
+
+        &-sorter.sorter {
             padding: 0;
-            width: 100%;
+            border: none;
+        }
+
+        .sorter {
             &-label {
-                display: none;
+                padding: 0 10px;
+                &:before {
+                    content: @icon-sort;
+                    font-family: @icons__font-name_ps;
+                    font-size: 20px;
+                    vertical-align: middle;
+                    margin-right: 5px;
+                }
+
+                &:after {
+                    font-family: @icons__font-name_ps;
+                    content: @icon_delete;
+                    font-size: 20px;
+                    display: none;
+                }
             }
+
             &-options {
                 background: transparent;
                 padding: 0 2px;
+
+                &:after {
+                    display: none;
+                }
+
+                .current {
+                    display: none;
+                }
+
+                &.nice-select {
+                    .list {
+                        padding: 20px 0;
+                        margin-top: -1px;
+                        position: fixed;
+                        top: 50px;
+                        bottom: 0;
+                        width: 100%;
+                        opacity: 1;
+                        visibility: visible;
+                        display: none;
+                        .transform(scale(1));
+                        margin-bottom: 0;
+                        pointer-events: auto;
+                        .transition(none);
+                    }
+
+                    .option {
+                        position: relative;
+                        &:before {
+                            width: 15px;
+                            height: 15px;
+                            content: '';
+                            display: inline-block;
+                            vertical-align: middle;
+                            border: 1px solid @c-lightgray;
+                            line-height: 15px;
+                            margin-right: 8px;
+                            .br-radius(3px);
+                        }
+
+                        &.selected {
+                            &:before {
+                                border: 1px solid @c-primary_color;
+                                content: @icon-check;
+                                font-family: @icons__font-name_ps;
+                                font-size: 12px;
+                                top: 0;
+                                left: 0;
+                                background: @c-primary_color;
+                                color: @color-white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .sort-active {
+        .columns {
+            z-index: auto;
+        }
+        .toolbar {
+            z-index: 999;
+            .sorter {
+                &-label {
+                    display: block;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    background: @color-white;
+                    padding: 10px;
+                    height: 50px;
+                    &:after {
+                        float: right;
+                        font-size: 16px;
+                        display: inline-block;
+                    }
+                }
+
+                .nice-select {
+                    .list {
+                        display: block;
+                    }
+                }
+
             }
         }
     }

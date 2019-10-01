@@ -29,13 +29,7 @@
                 </block>
             </container>
 
-            <container name="contact.us.googlemap.wrapper" htmlClass="map-wrap" htmlTag="div" after="contact.us.form.address">
-                <block class="Magento\Cms\Block\Block" name="contact-map">
-                    <arguments>
-                        <argument name="block_id" xsi:type="string">contact-map</argument>
-                    </arguments>
-                </block>
-            </container>
+            <block class="Magento\Framework\View\Element\Template" name="contact.us.googlemap" template="Magento_Contact::map.phtml"/>
 
 
         </referenceContainer>
