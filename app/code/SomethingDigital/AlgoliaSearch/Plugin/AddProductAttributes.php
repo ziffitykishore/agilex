@@ -45,6 +45,24 @@ class AddProductAttributes
             'order' => 'unordered',
             'retrievable' => 1
         ];
+        $result[] = [
+            'attribute' => 'exact_unit_price',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'manufacturer_exact_unit_price',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'special_exact_unit_price',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
         $customerGroups = $this->customerGroupRepository->getList($this->searchCriteriaBuilder->create())->getItems();
         foreach ($customerGroups as $customerGroup) {
             $result[] = [
