@@ -26,7 +26,7 @@ class InstallData implements InstallDataInterface
             \Magento\Catalog\Model\Product::ENTITY,
             'exact_unit_price',
             [
-                'type' => 'text',
+                'type' => 'decimal',
                 'label' => 'Exact Unit Price',
                 'input' => 'text',
                 'visible' => true,
@@ -50,7 +50,7 @@ class InstallData implements InstallDataInterface
             \Magento\Catalog\Model\Product::ENTITY,
             'manufacturer_exact_unit_price',
             [
-                'type' => 'text',
+                'type' => 'decimal',
                 'label' => 'Manufacturer Exact Unit Price',
                 'input' => 'text',
                 'visible' => true,
@@ -74,7 +74,7 @@ class InstallData implements InstallDataInterface
             \Magento\Catalog\Model\Product::ENTITY,
             'special_exact_unit_price',
             [
-                'type' => 'text',
+                'type' => 'decimal',
                 'label' => 'Special Exact Unit Price',
                 'input' => 'text',
                 'visible' => true,
