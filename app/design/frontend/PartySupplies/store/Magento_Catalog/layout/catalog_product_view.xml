@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="product.info.social" destination="product.info.addtocart" before="-"/> 
+        <move element="product.info.overview" destination="product.info.main" after="product.info.price"/>
+        <move element="product.info.extrahint.qtyincrements" destination="product.info.main" after="product.info.overview"/>
+        <move element="product.price.final" destination="product.info.attributes"/>
+
+        <referenceBlock name="product.info.review" remove="true" />
+        <referenceBlock name="product.info.mailto" remove="true"/>
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <referenceBlock name="product.info.sku" remove="true"/>
+
+        <referenceContainer name="product.info.stock.sku">
+            <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.attributes" template="Magento_Catalog::product/view/product_detail.phtml" after="product.info.type">
+                <arguments>
+                    <argument name="register_viewModel" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\ProductList\Related" name="catalog.product.related" template="Magento_Catalog::product/list/items.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="type" xsi:type="string">related</argument>
+                    <argument name="sort_order" xsi:type="string">25</argument>
+                </arguments>
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="related.product.addto" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="related.product.addto.compare" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="product.info.overview">
+             <arguments>
+                 <argument name="at_label" xsi:type="string">Description</argument>
+             </arguments>
+         </referenceBlock>
+
+         <referenceBlock name="product.info.description">
+             <arguments>
+                 <argument name="at_label" xsi:type="string">Product Details</argument>
+             </arguments>
+         </referenceBlock>
+
+    </body>
+</page>
