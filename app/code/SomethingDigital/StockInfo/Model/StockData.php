@@ -61,7 +61,7 @@ class StockData
         if ($sku) {
             try {
                 return $this->productRepository->get($sku);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $this->logger->error("SomethingDigital_StockInfo - QuickOrder: " . $e->getMessage());
             }
         } else {
