@@ -88,11 +88,9 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                                             </button>
                                         </form>
                                     <?php else: ?>
-                                        <?php if ($_product->isAvailable()): ?>
-                                            <div class="stock available"><span><?= /* @escapeNotVerified */ __('In stock') ?></span></div>
-                                        <?php else: ?>
-                                            <div class="stock unavailable"><span><?= /* @escapeNotVerified */ __('Out of stock') ?></span></div>
-                                        <?php endif; ?>
+                                        <!--if customer is not logged in-->
+                                            <a href=" <?php echo $block->getBaseUrl(); ?>/customer/account/login/" class="btn btn-black action-black" title="<?= $block->escapeHtml(__('Login to View')) ?>"><?= /* @escapeNotVerified */ __('Login to View') ?></a>
+                                        <!--if customer is not logged in-->
                                     <?php endif; ?>
                                 </div>
                                 <div data-role="add-to-links" class="actions-secondary"<?= strpos($pos, $viewMode . '-secondary') ? $position : '' ?>>
