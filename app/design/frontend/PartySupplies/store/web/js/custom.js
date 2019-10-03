@@ -102,7 +102,7 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
         function stickyBar() {
             var elment = $('.page-main');
             if (elment.length) {
-                var stickyOffset = elment.offset().top + 50;
+                var stickyOffset = elment.offset().top;
                 $(window).scroll(function() {
                     var sticky = elment,
                         scroll = $(window).scrollTop();
