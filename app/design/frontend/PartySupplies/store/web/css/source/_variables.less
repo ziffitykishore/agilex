@@ -40,13 +40,15 @@
 @c-text_sec_color: #8c8c8c;
 @c-hover_color: #f1003e;
 @c-bg-color: #f9f9f9;
-@c-white_color: #fff;
 @c-whitesmoke: #f2f5f8;
 @c-aliceblue: #f1f8ff;
 @c-lavander: #e9edf0;
 @c-lightgray: #8d92a3;
 @c-shuttle-gray: #595e63;
 @c-graylight:#e0e0e0;
+@c-border-strip:#f4f4f4;
+@c-stock: #1a810e;
+
 
 @c-tab: 992px;
 @c-desk: 1200px;
@@ -310,9 +312,11 @@
     .btn();
 }
 
+.btn,
 .action{
     &.update,
-    &.primary {
+    &.primary,
+    &.towishlist  {
         .btn();
     }
 }
