@@ -3,4 +3,7 @@
     <type name="Magento\CatalogInventory\Model\Spi\StockStateProviderInterface">
         <plugin name="SomethingDigital_StockInfo" type="SomethingDigital\StockInfo\Plugin\UpdateStockMessage" sortOrder="0" />
     </type>
+    <type name="Magento\QuickOrder\Model\Cart">
+        <plugin name="SomethingDigital_StockInfoQuickOrder" type="SomethingDigital\StockInfo\Plugin\UpdateAjaxResponse" sortOrder="0" />
+    </type>
 </config>

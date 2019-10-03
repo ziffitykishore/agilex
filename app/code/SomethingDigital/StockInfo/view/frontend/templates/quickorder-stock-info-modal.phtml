@@ -1,0 +1,22 @@
+<div id="stock-info-modal" data-bind="scope: 'quickOrderStockInfoModal'" style="display: none;">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+<script type="text/x-magento-init">
+    {
+        "#stock-info-modal": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "quickOrderStockInfoModal": {
+                        "component": "SomethingDigital_StockInfo/js/quickorder-stock-info-modal",
+                        "config": {
+                            "template": "SomethingDigital_StockInfo/stock-info-modal",
+                            "popupSelector": "#stock-info-modal-popup",
+                            "popupOpenerSelector": ".stock-info-popup-trigger",
+                            "swatchSelector": ".swatch-opt"
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
