@@ -14,7 +14,10 @@
  */
 ?>
 <?php $block->setPreconfiguredValue(); ?>
-<?php $_product = $block->getProduct(); ?>
+<?php
+$_product = $block->getProduct();
+$viewModel = $block->getData('productViewModel');
+?>
 <?php $_associatedProducts = $block->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
 
@@ -47,8 +50,11 @@
                 
                 <?php if ($block->getCanShowProductPrice($_product)): ?>
                     <td data-th="<?= $block->escapeHtml(__('CasePrice')) ?>" class="col item">
-                        <?php if ($block->getCanShowProductPrice($_item)): ?>
+                        <?php $casePrice = $viewModel->getCasePrice($_item); ?>
+                        <?php if ($block->getCanShowProductPrice($_item) && !$viewModel->getCustomerId()): ?>
                             <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+                        <?php else: ?>
+                            <?= $casePrice ?>
                         <?php endif; ?>
                     </td>
                 <?php endif; ?>
