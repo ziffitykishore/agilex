@@ -1,0 +1,19 @@
+<?php
+/**
+ * @var $block \Magento\CatalogInventory\Block\Qtyincrements
+ */
+$product = $block->getProduct();
+$viewModel = $block->getData('productViewModel');
+?>
+<?php if ($block->getProductQtyIncrements()) : ?>
+    <?php if($product->getTypeId() == 'grouped'): ?>
+        <div class="product pricing">
+            <?= /* @escapeNotVerified */ __('%1 is available to buy in increments of %2', $block->getProductName(), $viewModel->getMinQty($product)) ?>
+        </div>
+    <?php else: ?>
+        <div class="product pricing">
+            <?= /* @escapeNotVerified */ __('%1 is available to buy in increments of %2', $block->getProductName(), $block->getProductQtyIncrements()) ?>
+        </div>
+    <?php endif; ?>
+<?php endif ?>
+

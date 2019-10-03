@@ -1,22 +1,42 @@
 <?php
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_product = $block->getProduct();
-$stockData = $block->getData('register_viewModel');
-$minQty = $stockData->getMinQty($_product);
-$casePrice = $stockData->getCasePrice($_product);
-
-$skuValue = $_helper->productAttribute($_product, $_product->getSku(), 'sku');
-$itemNoValue = $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no');
+$viewModel = $block->getData('register_viewModel');
 ?>
 
 <div class="pdp-product-price">
     <div class="sec-left">
-        <p class="price-head">case pack : <span class="get-info case-value"><?= $minQty ?></span></p>
-        <?= $block->getChildHtml('product.price.final') ?>
+        <p class="price-head">
+            <?= __('case pack : ') ?>
+            <span class="get-info case-value"><?= $viewModel->getMinQty($_product) ?></span>
+        </p>
+        <?php if($viewModel->getCustomerId() && $_product->getTypeId() == 'grouped'): ?>
+            <p class="price-head caps">
+                <?= __('msrp : ') ?>
+                <span class="get-info msrp-value"><?= $viewModel->getMsrpPrice($_product); ?></span>
+            </p>
+            <p class="price-head caps">
+                <?= __('each price : ') ?>
+                <span class="get-info each-value"><?= $viewModel->getEachPrice($_product); ?></span>
+            </p>
+        <?php else: ?>
+            <?= $block->getChildHtml('product.price.final') ?>
+        <?php endif; ?>
     </div>
     <div class="sec-right">
-        <p class="price-head colr">case price : <span class="get-info sku-value"><?= $casePrice ?></span></p>
-        <p class="price-head">sku : <span class="get-info sku-value"><?= $skuValue ?></span></p>
-        <p class="price-head">item : <span class="get-info item-value"><?= $itemNoValue ?></span></p>
+        <?php if($viewModel->getCustomerId() && $_product->getTypeId() != 'grouped'): ?>
+            <p class="price-head colr">
+                <?= __('case price : ') ?>
+                <span class="get-info sku-value"><?= $viewModel->getCasePrice($_product) ?></span>
+            </p>
+        <?php endif; ?>
+        <p class="price-head">
+            <?= __('sku : ') ?>
+            <span class="get-info sku-value"><?= $_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></span>
+        </p>
+        <p class="price-head">
+            <?= __('item : ') ?>
+            <span class="get-info item-value"><?= $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no') ?></span>
+        </p>
     </div>
 </div>
