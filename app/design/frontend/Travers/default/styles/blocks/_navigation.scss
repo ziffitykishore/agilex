@@ -360,7 +360,7 @@ $nav-section-title__height: 60px;
     .nav-open {
         .nav-sections {
             transform: none;
-            z-index: 99;
+            z-index: 101; // cover quick order fields
         }
 
         .header.content {
