@@ -4,6 +4,7 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
         fakewaffle.responsiveTabs();
 
         $('select').niceSelect();
+        $('#region_id').niceSelect('destroy');
 
         $('.showcart').on('click', function(){
             $("body").removeClass("search-opened");
