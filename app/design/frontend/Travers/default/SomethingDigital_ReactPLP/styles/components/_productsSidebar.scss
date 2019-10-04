@@ -521,26 +521,5 @@
     .sidebar-description-icon {
       width: auto;
     }
-
-    .filter-heading {
-      @include lib-button-reset();
-      position: absolute;
-      width: 100%;
-      padding: $indent__s $indent__l;
-      color: $text__color;
-      font-size: 16px;
-      border: 2px solid $c-grey;
-      text-align: left;
-      box-sizing: border-box;
-      pointer-events: none;
-      cursor: pointer;
-      z-index: 2;
-      font-weight: $font-weight__semibold;
-
-      @include hover {
-        border: 2px solid $c-grey;
-        color: $c-cobalt;
-      }
-    }
   }
 }
