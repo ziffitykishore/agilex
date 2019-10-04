@@ -9,7 +9,7 @@
 
 $order-dropdown-item__color: $color-gray20;
 $order-icon__color: $color-gray56;
-$order-input-border__color: $color-gray76;
+$order-input-border__color: $c-border;
 $order-product-bg__color: $color-gray94;
 
 //
@@ -139,22 +139,41 @@ $order-product-bg__color: $color-gray94;
         &:not(:empty) {
             border: 1px solid $order-input-border__color;
             border-top: none;
+            padding: $indent__s $indent__xs;
         }
 
-        .product-image {
-            border: 1px solid $order-input-border__color;
-            float: left;
-            margin: 1.5rem;
+        .product-info {
+            transform: translateY(0);
+            max-width: none;
 
-            img {
-                display: block;
-                max-width: 5rem;
+            @include min-screen($screen__m) {
+                flex-direction: row;
+            }
+
+            .product-image {
+                border: 1px solid $order-input-border__color;
+                float: left;
+                margin: $indent__s auto;
+
+                @include min-screen($screen__m) {
+                    margin: 1.5rem;
+                }
+
+                img {
+                    margin-top: 0;
+                    margin-right: 0;
+                    display: block;
+
+                    @include min-screen($screen__m) {
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
             }
         }
 
         .product-name {
             overflow: hidden;
-            padding: 1.5rem;
 
             .name {
                 display: inline-block;
@@ -244,7 +263,6 @@ $order-product-bg__color: $color-gray94;
             .block-addbysku {
                 .fieldset {
                     .fields {
-                        border-bottom: 1px solid $order-input-border__color;
                         margin-bottom: 1.5rem;
                         padding-bottom: .2rem;
                         position: relative;
