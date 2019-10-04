@@ -37,18 +37,12 @@
                     display: block;
                 }
             }
-
-            & + div {
-                iframe {
-                    display: block;
-                }
-            }
         }
 
         .form.contact{
             .box-shadow (4px 10px 13px 0px rgba(0, 0, 0, 0.27058823529411763));
             .br-radius (@radius: 5px);
-            background-color: @color-white;
+            background-color: @c-white_color;
             z-index: 1;
             padding: 4.5rem;
             .actions-toolbar{
@@ -90,7 +84,7 @@
                 .flex();
                 align-items: center;
                 h5{
-                    color: @color-white;
+                    color: @c-white_color;
                     display: inline-block;
                     margin: 0;
                 }
@@ -109,7 +103,7 @@
 
                         &:before {
                             font-family: 'PS';
-                            color: @color-white;
+                            color: @c-white_color;
                             font-size: 20px;
                             font-weight: 600;
                             position: relative;
