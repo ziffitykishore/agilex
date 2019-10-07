@@ -52,7 +52,6 @@ class Index extends Action
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
 
                 $spotPrice = $this->arrayManager->get('body/Price', $prices, 0);
-                //check if customer price lower than regular price
                 $product = $this->productRepository->get($sku);
 
                 if ($spotPrice < $product->getFinalPrice()) {
