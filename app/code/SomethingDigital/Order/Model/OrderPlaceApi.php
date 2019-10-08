@@ -14,12 +14,14 @@ use Magento\Sales\Model\Order\ItemRepository;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Customer\Api\CustomerRepositoryInterface;
 
 class OrderPlaceApi extends Adapter
 {
     protected $session;
     protected $addressRepository;
     protected $orderItemRepository;
+    protected $customerRepositoryInterface;
 
     public function __construct(
         ClientFactory $curlFactory,
@@ -32,7 +34,8 @@ class OrderPlaceApi extends Adapter
         ItemRepository $orderItemRepository,
         WriterInterface $configWriter,
         TypeListInterface $cacheTypeList,
-        EncryptorInterface $encryptor
+        EncryptorInterface $encryptor,
+        CustomerRepositoryInterface $customerRepository
     ) {
         parent::__construct(
             $curlFactory,
@@ -47,6 +50,7 @@ class OrderPlaceApi extends Adapter
         $this->session = $session;
         $this->addressRepository = $addressRepository;
         $this->orderItemRepository = $orderItemRepository;
+        $this->customerRepository = $customerRepository;
     }
 
     public function sendOrder($order)
@@ -74,7 +78,10 @@ class OrderPlaceApi extends Adapter
             'Payment' => $this->getPaymentInfo($order)
         ];
 
-        
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info(json_encode($this->requestBody));
 
         return $this->postRequest();
     }
@@ -109,6 +116,14 @@ class OrderPlaceApi extends Adapter
 
     protected function getCustomerInfo($order)
     {
+        $customer = $this->customerRepository->getById($order->getCustomerId()); 
+
+        if ($customer->getCustomAttribute('customer_freight_account')) {
+            $customerFreightAccount = $customer->getCustomAttribute('customer_freight_account')->getValue();
+        } else {
+            $customerFreightAccount = '';
+        }
+
         $customerInfo = [
             "Id" => $this->getCustomerAccountId(),
             "Name" => $order->getCustomerFirstname() . ' ' . $order->getCustomerLastname(),
@@ -118,7 +133,8 @@ class OrderPlaceApi extends Adapter
             "Fax" => '',
             "NotesIndicator" => '',
             "Phone" => '',
-            "StatusType" => ''
+            "StatusType" => '',
+            "FreightAccountNumber" => $customerFreightAccount
         ];
 
         $billingAddressObj = $order->getBillingAddress();
@@ -184,6 +200,7 @@ class OrderPlaceApi extends Adapter
     {
         $additionalInformation = $order->getPayment()->getAdditionalInformation();
 
+        return [$additionalInformation];
     }
 
 }
