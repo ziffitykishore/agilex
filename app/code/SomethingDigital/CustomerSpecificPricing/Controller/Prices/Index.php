@@ -8,6 +8,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Stdlib\ArrayManager;
 use Psr\Log\LoggerInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 class Index extends Action
 {
@@ -24,15 +25,19 @@ class Index extends Action
     /** @var \Psr\Log\LoggerInterface */
     protected $logger;
 
+    protected $productRepository;
+
     public function __construct(
         Context $context,
         SpotPricingApi $spotPricingApi,
         ArrayManager $arrayManager,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        ProductRepositoryInterface $productRepository
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->arrayManager = $arrayManager;
         $this->logger = $logger;
+        $this->productRepository = $productRepository;
         parent::__construct($context);
     }
 
@@ -45,7 +50,20 @@ class Index extends Action
         try {
             foreach ($params as $id => $sku) {
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
-                $data[$sku] = $this->arrayManager->get('body/Price', $prices, 0);
+
+                $spotPrice = $this->arrayManager->get('body/Price', $prices, 0);
+                $product = $this->productRepository->get($sku);
+
+                if ($spotPrice < $product->getFinalPrice()) {
+                    $data[$sku] = $spotPrice;
+                }
+                if ($product->getExactUnitPrice() && $spotPrice != 0) {
+                    $data[$sku] = $spotPrice * 100;
+                } elseif ($product->getExactUnitPrice() && $spotPrice == 0) {
+                    $data[$sku] = $product->getExactUnitPrice() * 100;
+                }
+
+                $data[$sku] = round($data[$sku], 2);
             }
         } catch (LocalizedException $e) {
             $this->logger->critical('Request has failed with exception: ' . $e->getMessage());
