@@ -78,11 +78,6 @@ class OrderPlaceApi extends Adapter
             'Payment' => $this->getPaymentInfo($order)
         ];
 
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info(json_encode($this->requestBody));
-
         return $this->postRequest();
     }
 
