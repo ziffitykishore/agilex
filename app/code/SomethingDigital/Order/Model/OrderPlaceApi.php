@@ -70,8 +70,11 @@ class OrderPlaceApi extends Adapter
             'ShipTo' => $this->getShipto($order),
             'Customer' => $this->getCustomerInfo($order),
             'LineItems' => $this->getItems($order),
-            'externalIds' => ''
+            'externalIds' => '',
+            'Payment' => $this->getPaymentInfo($order)
         ];
+
+        
 
         return $this->postRequest();
     }
@@ -168,13 +171,19 @@ class OrderPlaceApi extends Adapter
         return [
             "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
             "ToName" => $address->getFirstname() . ' ' . $address->getLastname(),
-            "Line1" => $address->getStreet(),
+            "Line1" => $address->getStreet()[0],
             "City" => $address->getCity(),
             "State" => $address->getRegionId(),
             "PostalCode" => $address->getPostcode(),
             "CountryCode" => $address->getCountryId(),
             "Phone" => $address->getTelephone()
         ];
+    }
+
+    public function getPaymentInfo($order)
+    {
+        $additionalInformation = $order->getPayment()->getAdditionalInformation();
+
     }
 
 }
