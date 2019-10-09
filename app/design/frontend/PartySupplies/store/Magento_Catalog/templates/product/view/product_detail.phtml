@@ -35,8 +35,12 @@ $viewModel = $block->getData('register_viewModel');
             <span class="get-info sku-value"><?= $_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></span>
         </p>
         <p class="price-head">
+            <?php $itemNo = $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no');
+            if(isset($itemNo) && !empty($itemNo)):
+            ?>
             <?= __('item : ') ?>
-            <span class="get-info item-value"><?= $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no') ?></span>
+            <span class="get-info item-value"><?= $itemNo ?></span>
+            <?php endif; ?>
         </p>
     </div>
 </div>

@@ -8,6 +8,7 @@ use Magento\Framework\Pricing\Helper\Data;
 use Amasty\Groupcat\Model\CustomerIdHolder;
 use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Catalog\Model\ProductRepository;
 use Magento\Msrp\Pricing\MsrpPriceCalculatorInterface;
 
 class Product implements ArgumentInterface
@@ -33,6 +34,11 @@ class Product implements ArgumentInterface
     protected $productModel;
 
     /**
+     * @var ProductRepository
+     */
+    protected $productRepository;
+
+    /**
      * @var MsrpPriceCalculatorInterface
      */
     protected $msrpPriceCalculator;
@@ -43,6 +49,7 @@ class Product implements ArgumentInterface
      * @param Data                         $priceHelper
      * @param CustomerIdHolder             $customer
      * @param ProductModel                 $product
+     * @param ProductRepository            $productRepository
      * @param MsrpPriceCalculatorInterface $msrpPriceCalculator
      */
     public function __construct(
@@ -50,12 +57,14 @@ class Product implements ArgumentInterface
         Data $priceHelper,
         CustomerIdHolder $customer,
         ProductModel $product,
+        ProductRepository $productRepository,
         MsrpPriceCalculatorInterface $msrpPriceCalculator
     ) {
         $this->stockRegistry = $stockRegistry;
         $this->priceHelper = $priceHelper;
         $this->customerSession = $customer;
         $this->productModel = $product;
+        $this->productRepository = $productRepository;
         $this->msrpPriceCalculator = $msrpPriceCalculator;
     }
 
@@ -135,6 +144,17 @@ class Product implements ArgumentInterface
         }
 
         return $this->priceHelper->currency($price, true, false);
+    }
+
+    /**
+     * @param string $productSku
+     * @param string $attribute
+     * @return string
+     */
+    public function getCustomAttribute($productSku, $attribute)
+    {
+        $value = $this->productRepository->get($productSku)->getAttributeText($attribute);
+        return ($value || $value === "0") ? $value : null;
     }
 
     /**

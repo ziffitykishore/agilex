@@ -4,8 +4,8 @@
         <referenceBlock name="product.info.grouped">
             <arguments>
                 <argument name="productViewModel" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
+                <argument name="qtyData" xsi:type="object">PartySupplies\Common\ViewModel\QuantityData</argument>
             </arguments>            
         </referenceBlock>
     </body>
 </page>
-
