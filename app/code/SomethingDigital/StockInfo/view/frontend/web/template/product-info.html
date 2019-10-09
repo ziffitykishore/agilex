@@ -9,7 +9,9 @@
         </p>
         <p class="price"><%- data.price %></p>
     </div>
+    <% if (data.stockData != '') { %>
     <span class="stock-info-popup-trigger" href="">Check Locations</span>
+    <% } %>
 </div>
 <% } %>
 <% if (data.result) { %>
