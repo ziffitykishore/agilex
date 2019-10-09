@@ -108,8 +108,9 @@ class CustomerSaveAfter
             $navCustomerId = $this->customerApproval->createCustomer($customerData);
 
             if ($navCustomerId) {
-                $customerUpdated = $this->saveNavCustomerId(
+                $customerUpdated = $this->saveCustomerData(
                     $customerData['customer']['entity_id'],
+                    'nav_customer_id',
                     $navCustomerId['No']
                 );
 
@@ -120,23 +121,38 @@ class CustomerSaveAfter
                     $customerData['Key'] = $navCustomer[0]['Key'];
                 }
 
-                $this->customerApproval->updateCustomer($customerData);
+                $navResponse = $this->customerApproval->updateCustomer($customerData);
+
+                if ($navResponse['No']) {
+                    $mailConfig = $this->setMailConfig(
+                        $customerData,
+                        $customerData['customer']['is_certificate_approved']
+                    );
+                    $this->sendEmail($mailConfig);
+                } else {
+                    $this->messageManager->addError(
+                        __('Something went wrong while updating address for company account in NAV.')
+                    );
+                    $this->saveCustomerData(
+                        $customerData['customer']['entity_id'],
+                        'is_certificate_approved',
+                        false
+                    );
+                }
             } else {
                 $this->messageManager->addError(
-                    __('Something went wrong while creating company in NAV.')
+                    __('Something went wrong while creating company account in NAV.')
+                );
+                $this->saveCustomerData(
+                    $customerData['customer']['entity_id'],
+                    'is_certificate_approved',
+                    false
                 );
             }
         }
         
         if ($customerData['customer']['account_type'] == Constant::COMPANY
-            && $customerData['customer']['is_certificate_approved']
-        ) {
-            $mailConfig = $this->setMailConfig(
-                $customerData,
-                $customerData['customer']['is_certificate_approved']
-            );
-            $this->sendEmail($mailConfig);
-        } elseif ($customerData['customer']['account_type'] == Constant::COMPANY
+            && !$customerData['customer']['is_certificate_approved']
             && isset($customerData['customer']['store_id'])
         ) {
             $mailConfig = $this->setMailConfig($customerData);
@@ -157,14 +173,14 @@ class CustomerSaveAfter
      *
      * @return boolean
      */
-    protected function saveNavCustomerId(string $customerId, string $navCustomerId)
+    protected function saveCustomerData($customerId, $attribute, $navCustomerId)
     {
         $customer = $this->customer->load($customerId);
         $customerData = $customer->getDataModel();
-        $customerData->setCustomAttribute('nav_customer_id', $navCustomerId);
+        $customerData->setCustomAttribute($attribute, $navCustomerId);
         $customer->updateData($customerData);
         $customerResource = $this->customerFactory->create();
-        $customerResource->saveAttribute($customer, 'nav_customer_id');
+        $customerResource->saveAttribute($customer, $attribute);
 
         return true;
     }
