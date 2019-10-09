@@ -142,12 +142,17 @@ $order-product-bg__color: $color-gray94;
             padding: $indent__s $indent__xs;
         }
 
-        .product-info {
+        .quickorder-product-info {
             transform: translateY(0);
             max-width: none;
 
             @include min-screen($screen__m) {
                 flex-direction: row;
+            }
+
+            .product-name {
+                padding: 0 $indent__xs;
+                font-weight: $font-weight__bold;
             }
 
             .product-image {
@@ -156,7 +161,7 @@ $order-product-bg__color: $color-gray94;
                 margin: $indent__s auto;
 
                 @include min-screen($screen__m) {
-                    margin: 1.5rem;
+                    margin: $indent__s;
                 }
 
                 img {
@@ -250,6 +255,27 @@ $order-product-bg__color: $color-gray94;
         left: 0;
         position: absolute;
         top: 0;
+    }
+
+    .stock-info-popup-trigger {
+        display: block;
+        font-weight: $font-weight__bold;
+        margin-top: $indent__s;
+        font-size: $font-size__base;
+        cursor: pointer;
+        color: $link__color;
+        width: 100%;
+        float: left;
+
+        @include hover {
+            color: $primary__color;
+        }
+
+        @include min-screen($screen__m) {
+            margin-left: $indent__s;
+            margin-top: 0;
+            font-size: $font-size__base--desktop;
+        }
     }
 }
 
