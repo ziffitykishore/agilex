@@ -169,18 +169,19 @@ class CustomerSaveAfter
     /**
      *
      * @param string $customerId
-     * @param string $navCustomerId
+     * @param string $attributeCode
+     * @param mixed $value
      *
      * @return boolean
      */
-    protected function saveCustomerData($customerId, $attribute, $navCustomerId)
+    protected function saveCustomerData($customerId, $attributeCode, $value)
     {
         $customer = $this->customer->load($customerId);
         $customerData = $customer->getDataModel();
-        $customerData->setCustomAttribute($attribute, $navCustomerId);
+        $customerData->setCustomAttribute($attributeCode, $value);
         $customer->updateData($customerData);
         $customerResource = $this->customerFactory->create();
-        $customerResource->saveAttribute($customer, $attribute);
+        $customerResource->saveAttribute($customer, $attributeCode);
 
         return true;
     }
