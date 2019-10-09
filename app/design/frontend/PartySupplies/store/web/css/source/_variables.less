@@ -47,6 +47,9 @@
 @c-lightgray: #8d92a3;
 @c-shuttle-gray: #595e63;
 @c-graylight:#e0e0e0;
+@c-border-strip:#f4f4f4;
+@c-stock: #1a810e;
+
 
 @c-tab: 992px;
 @c-desk: 1200px;
@@ -312,7 +315,11 @@
 
 .action{
     &.update,
-    &.primary {
+    &.primary,
+    &.share,
+    &.tocart,
+    &.viewcart {
         .btn();
+        .lib-button-primary();
     }
 }

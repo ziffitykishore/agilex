@@ -8,11 +8,6 @@
 
 & when (@media-common = true) {
 
-    .page {
-        &.messages {
-            margin: 10px 0;
-        }
-    }
 
     .choice {
         input[type="checkbox"] {
@@ -83,7 +78,6 @@
             right: 0;
             margin-top: 1px;
             .br-radius(0 0 3px 3px);
-            max-height: 300px;
             overflow-y: auto;
 
             li {
@@ -117,6 +111,65 @@
 
 .table {
     color: @text__color;
+}
+
+
+
+/* Arrows */
+
+
+
+.slick-arrow {
+    position: absolute;
+    display: block;
+    height: 50px;
+    width: 50px;
+    line-height: 0px;
+    font-size: 0px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid @c-graylight;
+    color: transparent;
+    top: 50%;
+    .transform(translate(0, -50%));
+    padding: 0;
+    outline: none;
+    &:hover, &:focus {
+        outline: none;
+        background: transparent;
+        color: transparent;
+    }
+
+    &:before{
+        font-family: @icons__font-name_ps;
+        font-size: 20px;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        .lib-css(color, @c-graylight);
+    }
+}
+
+.slick-prev {
+    left: -50px;
+    [dir="rtl"] & {
+        left: auto;
+        right: -25px;
+    }
+    &:before {
+        content: @icon-chevron-thin-left;
+    }
+}
+
+.slick-next {
+    right: -50px;
+    [dir="rtl"] & {
+        left: -25px;
+        right: auto;
+    }
+    &:before {
+        content: @icon-chevron-thin-right;
+    }
 }
 
 
