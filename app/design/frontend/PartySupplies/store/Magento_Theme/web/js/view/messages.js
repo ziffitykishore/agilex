@@ -39,7 +39,7 @@ define([
 
             $.cookieStorage.set('mage-messages', '');
             setTimeout(function() {
-                $(".messages").hide('blind', {}, 5000)
+                $(".messages").hide();
             }, 10000);
         }
     });
