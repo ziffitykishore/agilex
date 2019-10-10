@@ -111,7 +111,11 @@ class CustomerFieldDataExtractor
      */
     protected function getCustomerStreetSecond(array $customerData)
     {
-        return $customerData['default_billing_address']['street'][1];
+        if (isset($customerData['default_billing_address']['street'][1])) {
+            return $customerData['default_billing_address']['street'][1];
+        } else {
+            return '';
+        }
     }
     
     /**
