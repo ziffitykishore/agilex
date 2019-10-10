@@ -14,12 +14,12 @@ define([
 
                     if(filterElem.length) {
                         filterElem.addClass('wp-ln-selected');
-                        $('select').niceSelect();
+                        $('#sorter').niceSelect();
                     }
 
                     if(filterSwatchElem.length) {
                         filterSwatchElem.addClass('wp-ln-selected');
-                        $('select').niceSelect();
+                        $('#sorter').niceSelect();
                     }
                 }
             });
