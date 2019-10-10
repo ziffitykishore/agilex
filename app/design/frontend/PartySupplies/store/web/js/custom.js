@@ -1,8 +1,6 @@
 require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
     $(document).ready(function ($) {
 
-        fakewaffle.responsiveTabs();
-
         $('#sorter').niceSelect();
 
         $('.showcart').on('click', function(){
@@ -220,6 +218,7 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
             slick.$slides.css('height', slick.$slideTrack.height() + 'px');
         });
 
+        fakewaffle.responsiveTabs();
 
     });
 });
