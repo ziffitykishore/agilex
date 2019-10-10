@@ -7,11 +7,7 @@
     </argument>
     <settings>
         <buttons>
-            <button name="add">
-                <url path="*/*/new"/>
-                <class>primary</class>
-                <label translate="true">addNewCompanyUser</label>
-            </button>
+            <button name="add" class="PartySupplies\Customer\Ui\Component\Grid\Button" />
         </buttons>
         <spinner>customer_columns</spinner>
         <deps>

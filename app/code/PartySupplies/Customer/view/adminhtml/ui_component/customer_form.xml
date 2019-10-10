@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
-    <fieldset name="associated" class="Magento\Customer\Ui\Component\Form\AddressFieldset">
+    <fieldset name="associated" class="PartySupplies\Customer\Ui\Component\Form\AssociatedUsersFieldset">
         <settings>
             <collapsible>false</collapsible>
             <label translate="true">Associated Users</label>
