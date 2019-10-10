@@ -1,6 +1,6 @@
 <?php
-
 namespace SomethingDigital\PriceRounding\Ui\DataProvider\Product\Modifier;
+
 use Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\AbstractModifier;
 use Magento\Catalog\Api\Data\ProductAttributeInterface;
 use Magento\Catalog\Model\Locator\LocatorInterface;
