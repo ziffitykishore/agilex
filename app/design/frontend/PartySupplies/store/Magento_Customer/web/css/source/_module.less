@@ -216,6 +216,9 @@
         .title {
             &:extend(.abs-visually-hidden all);
         }
+        .nav {
+            display: block;
+        } 
 
         .content {
             .lib-css(background, @account-nav-background);
@@ -235,14 +238,18 @@
                 border-left: 3px solid transparent;
                 display: block;
                 padding: @indent__xs 18px @indent__xs 15px;
+
             }
 
             a {
                 text-decoration: none;
-
+                .lib-css(color, @color-black);
                 &:hover {
                     .lib-css(background, @account-nav-item-hover);
+                    .lib-css(border-color, @c-primary_color);
+                    .lib-css(color, @c-primary_color);
                 }
+
             }
 
             &.current {

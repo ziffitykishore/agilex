@@ -49,6 +49,10 @@
     }
 
     .product-items {
+
+        .product-image-container {
+            padding: 15px;
+        }
          .product-item-info {
              .tocompare {
 
@@ -66,6 +70,16 @@
                 .flex();
                 margin-left: -20px;
                 margin-right: -20px;
+
+                .product-image-container {
+                    padding: 0 0 15px;
+                }
+
+                .product-item-info {
+                    padding: 15px;
+
+
+                }
             }
         }
 
@@ -82,6 +96,8 @@
                 position: relative;
                 .transition(all 0.5s ease 0s);
                 .box-shadow(none);
+                height: 100%;
+                width: 100%;
 
                 &:hover {
                     .box-shadow(0 0 8px 8px rgba(0,0,0,0.02));
@@ -101,12 +117,6 @@
             }
         }
 
-        &-image-container {
-            padding: 15px;
-        }
-
-
-
 
 
     }
@@ -123,6 +133,7 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk-md) {
+    .wishlist-index-index,
     .page-products {
         &.page-layout-2columns-left {
 
@@ -139,6 +150,7 @@
 
 
 @media screen and (max-width: @c-desk) {
+    .wishlist-index-index,
     .page-products {
         &.page-layout-2columns-left {
             .column.main {
@@ -150,6 +162,10 @@
 
             .product {
                 &s-grid {
+                    .product-items {
+                        margin-left: -15px;
+                        margin-right: -15px;
+                    }
                     .product-item {
                         .flex-width(percentage(1/2));
                         padding: 15px;
@@ -166,7 +182,7 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
-
+    .wishlist-index-index,
     .page-products {
         &.page-layout-2columns-left {
             .product {
@@ -197,7 +213,7 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
+    .wishlist-index-index,
     .page-with-filter {
         &.page-products {
             .products-grid {
@@ -219,6 +235,7 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-md) {
+    .wishlist-index-index,
     .page-products {
         &.page-layout-2columns-left {
 
@@ -236,13 +253,17 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
-
+    .wishlist-index-index,
     .page-with-filter {
         &.page-products {
             .page-main {
                 > .page-title-wrapper {
                     display: none;
                 }
+            }
+
+            .products {
+                margin-top: 80px;
             }
             .products-grid {
                 /*.product-item {
@@ -306,17 +327,8 @@
             }
 
             .product-item-info {
-
-
-                .product-image-container {
-                    padding: 20px;
-                }
-
-
-                .product-item-details {
-                    padding: 20px;
-                }
-
+                padding: 20px;
+                overflow: hidden;
                 .product-item-actions {
                     text-align: center;
                 }
@@ -335,6 +347,7 @@
                         text-align: center;
                         .transition(all .5s ease 0s);
                         .transform(translateY(100%));
+                        z-index: 2;
                     }
 
 

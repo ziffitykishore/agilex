@@ -304,6 +304,10 @@
                 &-content {
                     top: 55px;
                 }
+
+                .counter {
+                    display: none;
+                }
             }
         }
 
@@ -326,8 +330,12 @@
                 }
                 &:after {
                     .lib-css(color, @color-black);
-                    font-size: 25px;
+                    font-size: 30px;
                     line-height: 20px;
+                }
+
+                strong {
+                    .lib-css(color, @c-primary_color);
                 }
             }
         }
@@ -941,6 +949,12 @@
             > a, .customer-name, strong {
                padding-right: 12px;
                 padding-left: 12px;
+            }
+
+            .customer-name {
+                &:after {
+                    display: none;
+                }
             }
 
             & + li {

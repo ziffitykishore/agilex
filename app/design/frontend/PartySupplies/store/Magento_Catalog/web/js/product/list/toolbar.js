@@ -39,7 +39,7 @@ define([
             this._bind($(this.options.directionControl), this.options.direction, this.options.directionDefault);
             this._bind($(this.options.orderControl), this.options.order, this.options.orderDefault);
             this._bind($(this.options.limitControl), this.options.limit, this.options.limitDefault);
-            $('select').niceSelect();
+            $('#sorter').niceSelect();
         },
 
         /** @inheritdoc */
