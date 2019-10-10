@@ -22,14 +22,6 @@ $urlForm = $block->getReviewsUrl() . '#review-form';
          </div>
      </div>
     <?php endif;?>
-    <div class="reviews-actions">
-        <a class="action view"
-           href="<?= $block->escapeUrl($url) ?>">
-            <span itemprop="reviewCount"><?= $block->escapeHtml($block->getReviewsCount()) ?></span>&nbsp;
-            <span><?= ($block->getReviewsCount() == 1) ? $block->escapeHtml(__('Review')) : $block->escapeHtml(__('Reviews')) ?></span>
-        </a>
-        <a class="action add" href="<?= $block->escapeUrl($urlForm) ?>"><?= $block->escapeHtml(__('Add Your Review')) ?></a>
-    </div>
 </div>
 <?php elseif ($block->isReviewEnabled() && $block->getDisplayIfEmpty()): ?>
 <div class="product-reviews-summary empty">

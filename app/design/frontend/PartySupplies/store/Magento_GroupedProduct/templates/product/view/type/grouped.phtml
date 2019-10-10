@@ -73,7 +73,7 @@ $attributeCode = strtolower($attributeText);
                                class="input-text qty"
                                data-validate="{'validate-grouped-qty':'#super-product-table'}"
                                data-errors-message-box="#validation-message-box"
-                               data-advanced-inventory = "<?= $block->escapeHtml($block->getData('qtyData')->getQuantityValidators($_item->getId(), $_item->getStore()->getWebsiteId())) ?>"
+                               data-advanced-inventory = "<?= $block->escapeHtml($viewModel->getQuantityValidators($_item->getId(), $_item->getStore()->getWebsiteId())) ?>"
                                />
                         <button type="button" class="increaseQty"><span>+</span></button>
                     </div>
