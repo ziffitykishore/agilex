@@ -12,7 +12,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
     /**
      * @var string
      */
-    protected $code = 'palletshipping';
+    protected $_code = 'palletshipping';
 
     /**
      * @var \Magento\Shipping\Model\Rate\ResultFactory
@@ -59,7 +59,7 @@ class Shipping extends AbstractCarrier implements CarrierInterface
      */
     public function getAllowedMethods()
     {
-        return [$this->code => $this->getConfigData('name')];
+        return [$this->_code => $this->getConfigData('name')];
     }
 
     /**
@@ -96,10 +96,10 @@ class Shipping extends AbstractCarrier implements CarrierInterface
 
         $method = $this->rateMethodFactory->create();
 
-        $method->setCarrier($this->code);
+        $method->setCarrier($this->_code);
         $method->setCarrierTitle($this->getConfigData('title'));
 
-        $method->setMethod($this->code);
+        $method->setMethod($this->_code);
         $method->setMethodTitle($this->getConfigData('name'));
 
         $amount = $this->getShippingPrice();

@@ -182,6 +182,10 @@
                         margin-right: 8px;
                         .br-radius(3px);
                     }
+
+                    &:hover {
+                        .lib-css(color, @c-primary_color);
+                    }
                 }
             }
 
@@ -192,6 +196,7 @@
 
         .count {
             .lib-css(color, @text__color__muted);
+            display: none;
 
             &:before {
                 content: '(';

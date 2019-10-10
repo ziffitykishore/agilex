@@ -27,19 +27,19 @@ $viewModel = $block->getData('register_viewModel');
         <?php if($viewModel->getCustomerId() && $_product->getTypeId() != 'grouped'): ?>
             <p class="price-head colr">
                 <?= __('case price : ') ?>
-                <span class="get-info sku-value"><?= $viewModel->getCasePrice($_product) ?></span>
+                <span id="case-price" data-role="case_price"><span class="get-info case-price"><?= $viewModel->getCasePrice($_product) ?></span></span>
             </p>
         <?php endif; ?>
         <p class="price-head">
             <?= __('sku : ') ?>
-            <span class="get-info sku-value"><?= $_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></span>
+            <span class="get-info sku-value" data-role="sku"><?= $_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></span>
         </p>
         <p class="price-head">
             <?php $itemNo = $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no');
             if(isset($itemNo) && !empty($itemNo)):
             ?>
             <?= __('item : ') ?>
-            <span class="get-info item-value"><?= $itemNo ?></span>
+            <span class="get-info item-value" data-role="item_no"><?= $itemNo ?></span>
             <?php endif; ?>
         </p>
     </div>
