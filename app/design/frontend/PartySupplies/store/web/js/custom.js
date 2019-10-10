@@ -1,4 +1,4 @@
-require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
+require(['jquery', 'slick','nice-select'], function ($) {
     $(document).ready(function ($) {
 
         $('#sorter').niceSelect();
@@ -218,7 +218,7 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
             slick.$slides.css('height', slick.$slideTrack.height() + 'px');
         });
 
-        fakewaffle.responsiveTabs();
+        //fakewaffle.responsiveTabs();
 
     });
 });
