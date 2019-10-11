@@ -6,6 +6,12 @@
         <!-- Store credit -->
         <!-- <referenceBlock name="customer-account-navigation-customer-balance-link" remove="true"/> -->
 
+        <!-- Company credit -->
+        <referenceBlock name="customer-account-navigation-company-credit-history-link" remove="true"/>
+
+        <!-- Roles and Permissions -->
+        <referenceBlock name="customer-account-navigation-company-roles-link" remove="true"/>
+
         <!-- Downloadable product link -->
         <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true"/>
 
