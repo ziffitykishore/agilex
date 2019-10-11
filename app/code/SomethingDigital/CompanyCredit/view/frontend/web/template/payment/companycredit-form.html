@@ -6,14 +6,6 @@
 -->
 <div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}, afterRender: setConfig">
     <div class="payment-method-title field choice">
-        <div class="available-credit">
-            <strong><!-- ko i18n: 'Available Credit '--><!-- /ko --></strong>
-            <span data-bind="text: getAvailableCredit()"></span>
-            <!-- ko if: areCurrenciesDifferent() && getRate() -->
-            <span data-bind="text: getCurrencyQuote() + '/' + getCurrencyCredit() "></span>
-            <span data-bind="text: getRate() "></span>
-            <!-- /ko -->
-        </div>
         <input type="radio"
                name="payment[method]"
                class="radio"
