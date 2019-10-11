@@ -31,7 +31,7 @@ $viewModel = $block->getData('productViewModel');
             <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
             
             <?php if ($block->getCanShowProductPrice($_product)): ?>
-                <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
+                <th class="col price" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
             <?php endif; ?>
 
             <?php if ($_product->isSaleable()): ?>
@@ -49,7 +49,7 @@ $viewModel = $block->getData('productViewModel');
                 </td>
                 
                 <?php if ($block->getCanShowProductPrice($_product)): ?>
-                    <td data-th="<?= $block->escapeHtml(__('CasePrice')) ?>" class="col item">
+                    <td data-th="<?= $block->escapeHtml(__('CasePrice')) ?>" class="col price">
                         <?php $casePrice = $viewModel->getCasePrice($_item); ?>
                         <?php if ($block->getCanShowProductPrice($_item) && !$viewModel->getCustomerId()): ?>
                             <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
