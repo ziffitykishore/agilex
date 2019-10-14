@@ -25,7 +25,9 @@
                        title="<?= /* @escapeNotVerified */ __('Qty') ?>"
                        class="input-text qty"
                        data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       <?php if($block->getData('qtyData')): ?>
                        data-advanced-inventory = "<?= $block->escapeHtml($block->getData('qtyData')->getQuantityValidators($_product->getId(), $_product->getStore()->getWebsiteId())) ?>"
+                       <?php endif; ?>
                        />
                 <button type="button" id="inc" class="increaseQty"><span>+</span></button>
             </div>
