@@ -13,7 +13,6 @@
         <move element="product.info.extrahint.qtyincrements" destination="product.info.main" after="product.info.overview"/>
         <move element="product.price.final" destination="product.info.attributes"/>
 
-        <referenceBlock name="product.info.review" remove="true" />
         <referenceBlock name="product.info.mailto" remove="true"/>
         <referenceBlock name="view.addto.compare" remove="true"/>
         <referenceBlock name="product.info.sku" remove="true"/>
@@ -50,5 +49,15 @@
              </arguments>
          </referenceBlock>
 
+         <referenceBlock name="product.info.addtocart">
+             <arguments>
+                 <argument name="qtyData" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
+             </arguments>
+         </referenceBlock>
+         <referenceBlock name="product.info.addtocart.additional">
+             <arguments>
+                 <argument name="qtyData" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
+             </arguments>
+         </referenceBlock>
     </body>
 </page>

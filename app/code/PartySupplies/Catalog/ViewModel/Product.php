@@ -8,6 +8,7 @@ use Magento\Framework\Pricing\Helper\Data;
 use Amasty\Groupcat\Model\CustomerIdHolder;
 use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Catalog\Model\ProductRepository;
 use Magento\Msrp\Pricing\MsrpPriceCalculatorInterface;
 
 class Product implements ArgumentInterface
@@ -33,6 +34,11 @@ class Product implements ArgumentInterface
     protected $productModel;
 
     /**
+     * @var ProductRepository
+     */
+    protected $productRepository;
+
+    /**
      * @var MsrpPriceCalculatorInterface
      */
     protected $msrpPriceCalculator;
@@ -43,6 +49,7 @@ class Product implements ArgumentInterface
      * @param Data                         $priceHelper
      * @param CustomerIdHolder             $customer
      * @param ProductModel                 $product
+     * @param ProductRepository            $productRepository
      * @param MsrpPriceCalculatorInterface $msrpPriceCalculator
      */
     public function __construct(
@@ -50,12 +57,14 @@ class Product implements ArgumentInterface
         Data $priceHelper,
         CustomerIdHolder $customer,
         ProductModel $product,
+        ProductRepository $productRepository,
         MsrpPriceCalculatorInterface $msrpPriceCalculator
     ) {
         $this->stockRegistry = $stockRegistry;
         $this->priceHelper = $priceHelper;
         $this->customerSession = $customer;
         $this->productModel = $product;
+        $this->productRepository = $productRepository;
         $this->msrpPriceCalculator = $msrpPriceCalculator;
     }
 
@@ -138,6 +147,17 @@ class Product implements ArgumentInterface
     }
 
     /**
+     * @param string $productSku
+     * @param string $attribute
+     * @return string
+     */
+    public function getCustomAttribute($productSku, $attribute)
+    {
+        $value = $this->productRepository->get($productSku)->getAttributeText($attribute);
+        return ($value || $value === "0") ? $value : null;
+    }
+
+    /**
      *
      * @param \Magento\Catalog\Model\Product $product
      * @return string
@@ -194,5 +214,28 @@ class Product implements ArgumentInterface
         $minQtyIndex = array_search($minPrice, array_column($children, 'price'), true);
 
         return $children[$minQtyIndex]['msrp'];
+    }
+
+    /**
+     * @param type $productId
+     * @param type $websiteId
+     * @param array $validators
+     * @return JSON
+     */
+    public function getQuantityValidators($productId, $websiteId, array $validators = [])
+    {
+        $stockItem = $this->stockRegistry->getStockItem($productId, $websiteId);
+
+        $params = [];
+        $params['minAllowed']  = (float)$stockItem->getMinSaleQty();
+        if ($stockItem->getMaxSaleQty()) {
+            $params['maxAllowed'] = (float)$stockItem->getMaxSaleQty();
+        }
+        if ($stockItem->getQtyIncrements() > 0) {
+            $params['qtyIncrements'] = (float)$stockItem->getQtyIncrements();
+        }
+        $validators['validate-item-quantity'] = $params;
+
+        return json_encode($validators);
     }
 }
