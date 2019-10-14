@@ -69,7 +69,12 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             </a>
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
-                        <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+                        <p class="price-head"><?= __('CasePrice') ?> :<span class="get-info each-value">
+                            <span class="price-container price-final_price tax weee">
+                            <span class="price-wrapper "><span class="price"><?= /* @escapeNotVerified */ $block->getData('viewModel')->getCasePrice($_product) ?></span></span>
+                            </span>
+                            </span>
+                        </p>
                         <?= $block->getProductDetailsHtml($_product) ?>
 
                         <div class="product-item-inner">
