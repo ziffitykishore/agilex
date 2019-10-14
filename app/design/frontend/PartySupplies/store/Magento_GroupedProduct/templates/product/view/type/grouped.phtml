@@ -17,6 +17,8 @@
 <?php
 $_product = $block->getProduct();
 $viewModel = $block->getData('productViewModel');
+$attributeText = $_product->getAttributeText('grouped_product_type');
+$attributeCode = strtolower($attributeText);
 ?>
 <?php $_associatedProducts = $block->getAssociatedProducts(); ?>
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
@@ -28,8 +30,7 @@ $viewModel = $block->getData('productViewModel');
         <caption class="table-caption"><?= /* @escapeNotVerified */ __('Grouped product items') ?></caption>
         <thead>
         <tr>
-            <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('Product Name') ?></th>
-            
+            <th class="col item" scope="col"><?= $attributeText ?></th>
             <?php if ($block->getCanShowProductPrice($_product)): ?>
                 <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
             <?php endif; ?>
@@ -45,7 +46,7 @@ $viewModel = $block->getData('productViewModel');
         <?php foreach ($_associatedProducts as $_item): ?>
             <tr>
                 <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col item">
-                    <strong class="product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
+                    <strong class="product-item-name"><?= $block->escapeHtml($viewModel->getCustomAttribute($_item->getSku(), $attributeCode) ?? $_item->getName()) ?></strong>
                 </td>
                 
                 <?php if ($block->getCanShowProductPrice($_product)): ?>
@@ -63,7 +64,7 @@ $viewModel = $block->getData('productViewModel');
                 <td data-th="<?= $block->escapeHtml(__('Qty')) ?>" class="col qty">
                 <?php if ($_item->isSaleable()) : ?>
                     <div class="control qty">
-                            <button type="button" id="dec" class="decreaseQty"><span>-</span></button>
+                        <button type="button" class="decreaseQty"><span>-</span></button>
                         <input type="number"
                                name="super_group[<?= /* @escapeNotVerified */ $_item->getId() ?>]"
                                data-selector="super_group[<?= /* @escapeNotVerified */ $_item->getId() ?>]"
@@ -71,8 +72,10 @@ $viewModel = $block->getData('productViewModel');
                                title="<?= /* @escapeNotVerified */ __('Qty') ?>"
                                class="input-text qty"
                                data-validate="{'validate-grouped-qty':'#super-product-table'}"
-                               data-errors-message-box="#validation-message-box"/>
-                        <button type="button" id="inc" class="increaseQty"><span>+</span></button>
+                               data-errors-message-box="#validation-message-box"
+                               data-advanced-inventory = "<?= $block->escapeHtml($viewModel->getQuantityValidators($_item->getId(), $_item->getStore()->getWebsiteId())) ?>"
+                               />
+                        <button type="button" class="increaseQty"><span>+</span></button>
                     </div>
                 <?php else: ?>
                     <div class="stock unavailable" title="<?= /* @escapeNotVerified */ __('Availability') ?>">
@@ -112,3 +115,10 @@ $viewModel = $block->getData('productViewModel');
     </table>
 </div>
 <div id="validation-message-box"></div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Theme/js/action": {}
+        }
+    }
+</script>
