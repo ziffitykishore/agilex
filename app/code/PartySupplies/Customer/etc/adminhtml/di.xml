@@ -12,4 +12,28 @@
     <type name="Magento\Customer\Controller\Adminhtml\Index\Index">
         <plugin name="customer-index-render-plugin" type="PartySupplies\Customer\Plugin\CustomerGrid" sortOrder="1" />
     </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\BackButton">
+        <plugin name="back-button-url-plugin" type="PartySupplies\Customer\Plugin\Grid\BackButton" sortOrder="1"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\DeleteButton">
+        <plugin name="delete-button-plugin"  type="PartySupplies\Customer\Plugin\Grid\DeleteButton" sortOrder="1"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\OrderButton">
+        <plugin name="order-button-plugin"  type="PartySupplies\Customer\Plugin\Grid\OrderButton" sortOrder="1"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\ResetPasswordButton">
+        <plugin name="reset-password-button-plugin"  type="PartySupplies\Customer\Plugin\Grid\ResetPasswordButton" sortOrder="1"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\InvalidateTokenButton">
+        <plugin name="invalidate-token-button-plugin"  type="PartySupplies\Customer\Plugin\Grid\InvalidateTokenButton" sortOrder="1"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\SaveButton">
+        <plugin name="save-button-plugin"  type="PartySupplies\Customer\Plugin\Grid\SaveButton" sortOrder="1"/>
+    </type>
+
+    <preference for="Magento\Customer\Controller\Adminhtml\Index\MassDelete" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassDelete" />
+    <preference for="Magento\Customer\Controller\Adminhtml\Index\MassSubscribe" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassSubscribe" />
+    <preference for="Magento\Customer\Controller\Adminhtml\Index\MassUnsubscribe" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassUnsubscribe" />
+    <preference for="Magento\Customer\Controller\Adminhtml\Index\MassAssignGroup" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassAssignGroup" />
+    <preference for="Magento\Customer\Controller\Adminhtml\Index\Edit" type="PartySupplies\Customer\Controller\Adminhtml\Index\Edit" />
 </config>
