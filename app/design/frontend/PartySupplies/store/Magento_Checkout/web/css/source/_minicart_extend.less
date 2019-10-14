@@ -250,6 +250,7 @@
                 }
 
                 .product-item-details {
+                    padding-left: 58px;
                     .product-item-name {
                         a {
                             .lib-css(color, @color-black);
@@ -284,6 +285,11 @@
                             margin-right: 10px;
                         }
 
+                        .cart-item-qty {
+                            font-size: 1.2rem;
+                            width: 40px;
+                        }
+
                         /*button,
                         .item-qty{
                             float: left;
@@ -308,8 +314,8 @@
 
                         .update-cart-item {
                             &:before {
-                                /*font-family: @icon-gogo;*/
-                                content: '\f021';
+                                font-family: @icons__font-name_ps;
+                                content: '\e912';
                                 /*color: @color-textcolor;*/
                             }
                             span {
@@ -322,17 +328,29 @@
 
                 .actions {
                     position: absolute;
-                    left: 25px;
+                    left: 0px;
                     margin-top: -30px;
-                    bottom: 0;
+                    bottom: 20px;
+                }
+
+                .action {
+                    &.edit {
+                        &:before {
+                            content: @icon_edit;
+                            font-family: @icons__font-name_ps;
+                            font-size: 15px;
+                        }
+                    }
+
+                    &.delete {
+                        &:before {
+                            font-size: 30px;
+                        }
+                    }
                 }
 
                 .action.edit,
                 .action.delete{
-
-                    &:before {
-                        /*.lib-css(color, @color-icons);*/
-                    }
                 }
 
             }
@@ -388,10 +406,12 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1)  {
     .page-wrapper {
-        .minicart-wrapper {
-            .action.showcart,
-            .block-minicart {
-                right: 22px;
+        .page-header {
+            .minicart-wrapper {
+                .action.showcart,
+                .block-minicart {
+                    right: 22px;
+                }
             }
         }
     }

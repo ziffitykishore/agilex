@@ -331,7 +331,16 @@ button{
         .btn();
         .lib-button-primary();
     }
+
+    &.edit {
+        &:before {
+            content: @icon_edit;
+            font-family: @icons__font-name_ps;
+        }
+    }
 }
+
+
 
 
 .qty() {
@@ -352,7 +361,8 @@ button{
     .increment-cart-item,
     .decrement-cart-item,
     .decreaseQty,
-    .increaseQty {
+    .increaseQty,
+    .update-cart-item {
         background: transparent;
         width: 40px;
         height: 40px;
@@ -371,4 +381,14 @@ button{
     .increment-cart-item{
         .br-radius(0 3px 3px 0);
     }
+
+    .update-cart-item {
+        margin-left: -1px;
+        &:before {
+            font-family: @icons__font-name_ps;
+            content: '\e912';
+            font-size: @font-size__s;
+        }
+    }
+
 }
