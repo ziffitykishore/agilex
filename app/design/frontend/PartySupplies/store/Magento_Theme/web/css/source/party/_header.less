@@ -118,6 +118,11 @@
                             border: 1px solid #d7d7d7;
                             border-right: none;
                             min-height: 50px;
+
+
+                            @supports (-webkit-overflow-scrolling: touch) {
+                                font-size: 18px;
+                            }
                         }
                         .categories {
                             position: absolute;
