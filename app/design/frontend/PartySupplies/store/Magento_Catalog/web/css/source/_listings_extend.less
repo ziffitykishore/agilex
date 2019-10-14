@@ -11,7 +11,7 @@
 
 & when (@media-common = true) {
 
-
+    .page-products,
     .page-with-filter{
         .page-main{
             .container-md();
@@ -28,7 +28,7 @@
     }
 
     .ias-trigger {
-        &-prev
+        &-prev,
         &-next {
             a {
                 .btn();
@@ -52,6 +52,7 @@
 
         .product-image-container {
             padding: 15px;
+            display: block;
         }
          .product-item-info {
              .tocompare {
@@ -77,8 +78,55 @@
 
                 .product-item-info {
                     padding: 15px;
+                }
 
+                .product-item-name {
+                    min-height: 50px;
+                }
 
+                .price-head {
+                    & + .price-head {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        &s-list {
+
+            .product {
+
+                &-item,
+                &-item:last-child {
+                    border: none;
+                }
+
+                &-item {
+                    margin-top: -1px;
+                }
+
+                &-item-info {
+                    display: block;
+                }
+
+                &-item-photo {
+                    vertical-align: middle;
+                    border-right: 1px solid @c-graylight;
+                }
+
+                &-item-name {
+                    margin-bottom: 20px;
+                }
+
+                &-item-description {
+                    margin-bottom: 0;
+                }
+            }
+
+            .action {
+                &.more {
+                    display: block;
+                    margin-top: 10px;
                 }
             }
         }
@@ -185,17 +233,21 @@
     .wishlist-index-index,
     .page-products {
         &.page-layout-2columns-left {
-            .product {
-                &-items {
-                    margin-left: 0;
-                    margin-right: 0;
-                }
-                &s-grid {
-                    .product-items {
-                        .product-item {
-                            padding: 0;
-                            margin-left: -1px;
-                            margin-top: -1px;
+            .page-main {
+                .product {
+                    &-items {
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
+                    &s-grid {
+                        .product-items {
+                            margin-left: 0;
+                            margin-right: 0;
+                            .product-item {
+                                padding: 0;
+                                margin-left: -1px;
+                                margin-top: -1px;
+                            }
                         }
                     }
                 }
@@ -262,8 +314,17 @@
                 }
             }
 
-            .products {
+            .products.wrapper {
                 margin-top: 80px;
+                margin-bottom: 0;
+
+                .products {
+                    margin: 0;
+                }
+
+                & ~ .products.wrapper {
+                    margin-top: 0; 
+                }
             }
             .products-grid {
                 /*.product-item {

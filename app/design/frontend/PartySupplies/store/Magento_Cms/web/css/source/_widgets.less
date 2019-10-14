@@ -34,18 +34,24 @@
             margin-top: 2rem;
         }
         .terms{
-            position: relative;
-            &::after{
-                content: "";
-                position: absolute;
-                width: 100%;
-                z-index: -1;
-                background: #dee2e6;
-                height: 3px;
-            }
+
         }
         .nav-tabs{
-            border: 0;
+            position: relative;
+            border: none;
+            &::before{
+                content: "";
+                position: absolute;
+                width: 1000em;
+                z-index: -1;
+                background: @c-graylight;
+                height: 3px;
+                left: -1000rem;
+                right: -50px;
+                display: block;
+                top: 50px;
+            }
+
             .container-sm();
             .nav-item{
                 .flex-width(25%);
@@ -53,10 +59,12 @@
             }
             .nav-link{
                 border: 0;
-                padding: 1rem 0;
+                padding: 1.5rem 0;
+                font-size: 2rem;
                 line-height: 1;
                 font-weight: 600;
                 display: inline-block;
+                color: @color-black;
                 font-family: @heading__font-family__base;
                 &.active{
                     color: @c-primary_color;
@@ -78,7 +86,9 @@
             .container-sm();
         }
         .tab-con{
-            margin-top: 4.5rem;
+            & ~ .tab-con {
+                margin-top: 4.5rem;
+            }
             h3{
                 font-size: 2rem;
                 font-weight: 600;
@@ -199,59 +209,41 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
 
-    .cms-page-view{
-        .nav-tabs{
-            .nav-link{
-                font-size: 2.4rem;
-            }
-        }
-        .terms{
-            &::after{
-                top: 44px;
-            }
-        }
-    }
-
-}
-
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
 
     .cms-page-view{
         .nav-tabs{
             .nav-link{
                 font-size: 2rem;
             }
-        }
-        .terms{
-            &::after{
-                top: 40px;
+
+            &:before {
+                top: 50px;
             }
         }
+
     }
 
 }
+
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
 
     .cms-page-view{
-        .nav-tabs{
-            .nav-link{
-                font-size: 1.5rem;
+        .nav.nav-tabs{
+            a.nav-link{
+                font-size: 1.2rem;
             }
-        }
-        .terms{
-            &::after{
-                top: 35px;
+            &:before {
+                top: 43px;
             }
         }
     }
 
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
 
     .cms-page-view{
         .card-soup{
@@ -281,7 +273,37 @@
         .card-header{
             border: 0;
             background-color: @c-whitesmoke;
+            padding: 0;
+
+            a {
+                padding: 2rem;
+                display: block;
+                position: relative;
+
+                &:before {
+                    position: absolute;
+                    content: @icon-chevron-thin-up;
+                    font-family: @icons__font-name_ps;
+                    right: 20px;
+                    top: 20px;
+                    color: @c-primary_color;
+                }
+
+                &.collapsed {
+                    &:before {
+                        content: @icon-chevron-thin-down;
+                    }
+                }
+            }
+            h5 {
+                margin-top: 0;
+            }
         }
+
+        .nav-tabs {
+            display: none;
+        }
+
         .nav-link{
             position: relative;
             &::after {
@@ -297,6 +319,16 @@
                 &::after {
                     transform: rotate(90deg);
                 }
+            }
+        }
+
+        .tab-content {
+            .card {
+                margin-top: 20px;
+            }
+            .tab-pane {
+                display: block !important;
+                opacity: 1;
             }
         }
        

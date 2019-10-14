@@ -32,7 +32,7 @@ $attributeCode = strtolower($attributeText);
         <tr>
             <th class="col item" scope="col"><?= $attributeText ?></th>
             <?php if ($block->getCanShowProductPrice($_product)): ?>
-                <th class="col item" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
+                <th class="col price" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
             <?php endif; ?>
 
             <?php if ($_product->isSaleable()): ?>
@@ -50,7 +50,7 @@ $attributeCode = strtolower($attributeText);
                 </td>
                 
                 <?php if ($block->getCanShowProductPrice($_product)): ?>
-                    <td data-th="<?= $block->escapeHtml(__('CasePrice')) ?>" class="col item">
+                    <td data-th="<?= $block->escapeHtml(__('CasePrice')) ?>" class="col price">
                         <?php $casePrice = $viewModel->getCasePrice($_item); ?>
                         <?php if ($block->getCanShowProductPrice($_item) && !$viewModel->getCustomerId()): ?>
                             <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>

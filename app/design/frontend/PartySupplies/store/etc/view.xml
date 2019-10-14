@@ -49,8 +49,8 @@
                 <height>100</height>
             </image>
             <image id="mini_cart_product_thumbnail" type="thumbnail">
-                <width>78</width>
-                <height>78</height>
+                <width>50</width>
+                <height>50</height>
             </image>
             <image id="new_products_content_widget_grid" type="small_image">
                 <width>240</width>
@@ -232,7 +232,7 @@
         <var name="breakpoints">
             <var name="mobile">
                 <var name="conditions">
-                    <var name="max-width">768px</var>
+                    <var name="max-width">769px</var>
                 </var>
                 <var name="options">
                     <var name="options">

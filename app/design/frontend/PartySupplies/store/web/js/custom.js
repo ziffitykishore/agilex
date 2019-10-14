@@ -1,4 +1,4 @@
-require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
+require(['jquery', 'slick','nice-select'], function ($) {
     $(document).ready(function ($) {
 
         $('#sorter').niceSelect();
@@ -69,7 +69,8 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
                 responsiveflag = false;
                 $('header.page-header').removeClass("fixed");
                 $(window).on('load', function(){
-                    stickyBar();
+                    stickyBar('.cms-index-index .page-main');
+                    stickyBar(':not(.cms-index-index) header.page-header');
                 })
             }
 
@@ -97,15 +98,23 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
             ================= */
 
         /* function call stick  */
-        function stickyBar() {
-            var elment = $('.page-main');
+        function stickyBar(elm) {
+            var elment = $(elm);
             if (elment.length) {
                 var stickyOffset = elment.offset().top;
                 $(window).scroll(function() {
                     var sticky = elment,
                         scroll = $(window).scrollTop();
-                    if (scroll >= stickyOffset) $('header.page-header').addClass("fixed");
-                    else $('header.page-header').removeClass("fixed");
+                    if (scroll >= stickyOffset) {
+                        $('header.page-header').addClass("fixed");
+                    } else {
+                        $('header.page-header').removeClass("fixed");
+                    }
+
+                    if(scroll <= 0) {
+                        //$('header.page-header').removeClass("fixed");
+                    }
+
                 });
             }
         }
@@ -218,6 +227,16 @@ require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
             slick.$slides.css('height', slick.$slideTrack.height() + 'px');
         });
 
+        $(".footer-parts a").on("shown.bs.tab", function (e) {
+            e.target // newly activated tab
+            e.relatedTarget // previous active tab
+
+
+            var href = $(this).attr("href");
+            $("html, body").animate({
+                    scrollTop: $(href).offset().top
+                }, "slow");
+        });
 
     });
 });

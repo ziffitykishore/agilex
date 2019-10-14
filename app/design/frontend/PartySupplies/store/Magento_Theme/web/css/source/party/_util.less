@@ -8,6 +8,22 @@
 
 & when (@media-common = true) {
 
+    .nav-tabs {
+        display: none;
+        border: none;
+    }
+
+    .tab-content {
+        .card {
+            border: none;
+            margin-top: 30px;
+            &-body {
+                -ms-flex: 1 1 auto;
+                flex: 1 1 auto;
+                padding: 1.25rem;
+            }
+        }
+    }
 
     .choice {
         input[type="checkbox"] {
@@ -178,16 +194,27 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
     h1 {
         .lib-css(font-size, 38px);
         .lib-css(margin-bottom, @h1__margin-bottom__desktop);
     }
+    .card {
+        .card-header {
+            display: none;
+        }
+        .collapse {
+            display: block;
+        }
+    }
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
     body {
         font-size: 1.4rem;
     }
 }
+
+
+
