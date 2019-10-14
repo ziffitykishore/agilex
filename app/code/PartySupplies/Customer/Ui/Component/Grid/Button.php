@@ -35,11 +35,11 @@ class Button implements ButtonProviderInterface
      */
     public function getButtonData()
     {
-        if ($this->request->getParam('account_type') === Constant::CUSTOMER) {
-            $label = __('Add New User');
-        } else {
+        $label = __('Add New User');
+        if ($this->request->getParam('account_type') === Constant::COMPANY) {
             $label = __('Add New Company');
         }
+
         return [
             'label' => $label,
             'on_click' => sprintf("location.href = '%s';", $this->getUrl('*/*/new')),

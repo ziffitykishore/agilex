@@ -45,17 +45,16 @@ class BackButton
         if ($subject->getCustomerId() !== null) {
             $customer = $this->customerRegistry->retrieve($subject->getCustomerId());
 
+            $backUrl = $subject->getBackUrl().'account_type/customer';
+
             if ($customer->getAccountType() === Constant::COMPANY) {
                 $backUrl = $subject->getBackUrl().'account_type/company';
-            } else {
-                $backUrl = $subject->getBackUrl().'account_type/customer';
             }
         } else {
-            $backUrl = $this->redirect->getRefererUrl();
-            if (strpos($backUrl, 'account_type/company') !== false) {
+            $backUrl = $subject->getBackUrl().'account_type/customer';
+
+            if (strpos($this->redirect->getRefererUrl(), 'account_type/company') !== false) {
                 $backUrl = $subject->getBackUrl().'account_type/company';
-            } else {
-                $backUrl = $subject->getBackUrl().'account_type/customer';
             }
         }
 

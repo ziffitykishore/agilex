@@ -49,14 +49,14 @@ class Edit extends GridEdit
         $resultPage->setActiveMenu('Magento_Customer::customer_manage');
         $this->prepareDefaultCustomerTitle($resultPage);
         $resultPage->setActiveMenu('Magento_Customer::customer');
+
+        $resultPage->getConfig()->getTitle()->prepend(__('New User'));
+
+        if (strpos($this->_redirect->getRefererUrl(), 'account_type/company')) {
+            $resultPage->getConfig()->getTitle()->prepend(__('New Company'));
+        }
         if ($isExistingCustomer) {
             $resultPage->getConfig()->getTitle()->prepend($this->_viewHelper->getCustomerName($customer));
-        } else {
-            if (strpos($this->_redirect->getRefererUrl(), 'account_type/company')) {
-                $resultPage->getConfig()->getTitle()->prepend(__('New Company'));
-            } else {
-                $resultPage->getConfig()->getTitle()->prepend(__('New User'));
-            }
         }
         return $resultPage;
     }    

@@ -35,13 +35,12 @@ class DeleteButton
         if ($subject->getCustomerId() !== null) {
             $customer = $this->customerRegistry->retrieve($subject->getCustomerId());
 
+            $result = [
+                'label' => __('Deleter User')
+            ];
             if ($customer->getAccountType() === Constant::COMPANY) {
                 $result = [
                     'label' => __('Deleter Company')
-                ];
-            } else {
-                $result = [
-                    'label' => __('Deleter User')
                 ];
             }
         }

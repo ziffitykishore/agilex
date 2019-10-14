@@ -44,27 +44,24 @@ class SaveButton
         if ($subject->getCustomerId() !== null) {
             $customer = $this->customerRegistry->retrieve($subject->getCustomerId());
 
+            $result = [
+                'label' => __('Save User'),
+                'class' => 'save primary'
+            ];
             if ($customer->getAccountType() === Constant::COMPANY) {
                 $result = [
                     'label' => __('Save Company'),
                     'class' => 'save primary'
                 ];
-            } else {
-                $result = [
-                    'label' => __('Save User'),
-                    'class' => 'save primary'
-                ];
             }
         } else {
-            $url = $this->redirect->getRefererUrl();
-            if (strpos($url, 'account_type/company') !== false) {
+            $result = [
+                'label' => __('Save User'),
+                'class' => 'save primary'
+            ];
+            if (strpos($this->redirect->getRefererUrl(), 'account_type/company') !== false) {
                 $result = [
                     'label' => __('Save Company'),
-                    'class' => 'save primary'
-                ];
-            } else {
-                $result = [
-                    'label' => __('Save User'),
                     'class' => 'save primary'
                 ];
             }
