@@ -93,7 +93,6 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
      */
     protected $customerFactory;
 
-
     /**
      *
      * @param Context $context
@@ -410,8 +409,8 @@ class CreatePost extends \Magento\Customer\Controller\Account\CreatePost
         $customer = $this->customerFactory->create()
             ->getCollection()
             ->addFieldToFilter('nav_customer_id', $navId)
-            ->addFieldToFilter('account_type','company')
-            ->addFieldToFilter('is_certificate_approved','1');
+            ->addFieldToFilter('account_type', 'company')
+            ->addFieldToFilter('is_certificate_approved', '1');
         $companyAccountData = $customer->getData();
 
         if (!isset($companyAccountData[0]['nav_customer_id'])) {

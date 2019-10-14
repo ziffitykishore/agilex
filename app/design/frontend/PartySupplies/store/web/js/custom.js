@@ -1,8 +1,6 @@
 require(['jquery', 'slick', 'tabcollapse', 'nice-select'], function ($) {
     $(document).ready(function ($) {
 
-        fakewaffle.responsiveTabs();
-
         $('#sorter').niceSelect();
 
         $('.showcart').on('click', function(){
