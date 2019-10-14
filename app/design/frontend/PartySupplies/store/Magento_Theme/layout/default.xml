@@ -83,6 +83,10 @@
 
         <referenceBlock name="register-link" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true" />
+        <referenceBlock name="quickorder.after.customer.welcome" remove="true" />
+        <referenceBlock name="quickorder.top.links" remove="true" />
+        <referenceBlock name="quickorder.top.search" remove="true" />
+        <referenceBlock name="quickorder.footer.link" remove="true" />
         <referenceContainer name="footer" remove="true"/>
                 
     </body>
