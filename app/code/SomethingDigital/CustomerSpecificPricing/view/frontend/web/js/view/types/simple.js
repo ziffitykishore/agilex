@@ -13,7 +13,7 @@ define([
                 let tiersHtml = renderTierPriceTable(data, sku);
                 $('.product-add-form').before(tiersHtml);
                 let prices = [data[sku]['QtyPrice1'], data[sku]['QtyPrice2'], data[sku]['QtyPrice3']];
-                $lowestPrice = Math.min.apply(null, prices.filter(Boolean));
+                let lowestPrice = Math.min.apply(null, prices.filter(Boolean));
                 $('.as-low-as .price-wrapper ').text(currencySymbol + $lowestPrice);
             }
         }
