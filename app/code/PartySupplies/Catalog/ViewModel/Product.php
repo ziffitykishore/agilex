@@ -125,6 +125,14 @@ class Product implements ArgumentInterface
      */
     public function getCasePrice($product)
     {
+        if ($product->getTypeId() === Grouped::TYPE_CODE) {
+            return $this->priceHelper->currency(
+                $this->getChildProductData($product, 'minPrice') * $this->getChildProductData($product, 'minQty'),
+                true,
+                false
+            );
+        }
+        
         return $this->priceHelper->currency(
             $product->getPriceInfo()->getPrice('final_price')->getValue() * $this->getMinQty($product),
             true,
