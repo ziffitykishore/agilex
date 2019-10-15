@@ -736,6 +736,43 @@
 
     }
 
+
+    .account {
+        .column.main {
+            .block {
+                &-title {
+                    font-size: 1.6rem;
+                    margin-bottom: 20px;
+                }
+                &.block-dashboard-info,
+                &.block-dashboard-addresses {
+                    .box {
+                        &-title {
+                            > span {
+                                font-size: 1.4rem;
+                            }
+                        }
+                    }
+                    .action {
+                        .lib-css(color, @color-black);
+                        & + .action {
+                            margin-left: 15px;
+                        }
+                        &:hover {
+                            .lib-css(color, @c-primary_color);
+                        }
+                        &.edit {
+
+                            &:before {
+                                content: '';
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 //

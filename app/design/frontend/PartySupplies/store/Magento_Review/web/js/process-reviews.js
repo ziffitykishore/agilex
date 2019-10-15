@@ -45,17 +45,15 @@ define([
         $(function () {
             $('.product-info-main .reviews-actions a').click(function (event) {
                 var anchor;
+                var header = $('.header-wrapper');
+                var headerHeight = header.height() + 20;
 
                 event.preventDefault();
                 anchor = $(this).attr('href').replace(/^.*?(#|$)/, '');
-                $('.product.data.items [data-role="content"]').each(function (index) { //eslint-disable-line
-                    if (this.id == 'reviews') { //eslint-disable-line eqeqeq
-                        $('.product.data.items').tabs('activate', index);
-                        $('html, body').animate({
-                            scrollTop: $('#' + anchor).offset().top - 50
-                        }, 300);
-                    }
-                });
+                $('html, body').animate({
+                    scrollTop: $('#' + anchor).offset().top - headerHeight
+                }, 300);
+
             });
         });
     };

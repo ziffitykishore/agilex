@@ -90,13 +90,41 @@
 
     div.nice-select {
         width: 100%;
+        &:after{
+            content: @icon_caret_dropdown;
+            font-family: @icons__font-name_ps;
+            border:none;
+            transform: none;
+            width: auto;
+            height: auto;
+            font-size: 5px;
+            margin-top: 0;
+            top: 1px;
+            color: @c-lightgray;
+            position: static;
+            display: inline-block;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        &.open {
+            &:after {
+                .transform(none);
+            }
+        }
+
         .list {
             right: 0;
             margin-top: 1px;
             .br-radius(0 0 3px 3px);
             overflow-y: auto;
 
+
+
             li {
+                margin-bottom: 0;
+                min-height: 50px;
+                line-height: 50px;
                 &:hover {
                     .lib-css(color, @c-primary_color);
                     .lib-css(background, @c-aliceblue);
@@ -150,10 +178,16 @@
     .transform(translate(0, -50%));
     padding: 0;
     outline: none;
+    .transition(all 0.5s ease 0s);
     &:hover, &:focus {
         outline: none;
         background: transparent;
         color: transparent;
+        border: 1px solid @c-graylight;
+        background: @c-graylight;
+        &:before {
+            .lib-css(color, @color-white);
+        }
     }
 
     &:before{
@@ -163,6 +197,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         .lib-css(color, @c-graylight);
+        .transition(all 0.5s ease 0s);
     }
 }
 
@@ -210,11 +245,61 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk-md) {
     body {
         font-size: 1.4rem;
     }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.4rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    h4 {
+        font-size: 1.6rem;
+    }
+
+    h5 {
+        font-size: 1.4rem;
+    }
 }
+
+
+@media screen and (max-width: @c-desk) {
+
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    h4 {
+        font-size: 1.4rem;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+    }
+}
+
+
+
 
 
 

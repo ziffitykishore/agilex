@@ -140,6 +140,12 @@
     .filter-options {
         margin: 0;
 
+        &-item {
+            & + .filter-options-item {
+                margin-top: 20px;
+            }
+        }
+
         .filter-options-title {
             .lib-heading(h4);
             margin: 0 0 1rem;
@@ -154,20 +160,22 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                content: "\002B";
+                content: "+";
                 font-size: 20px;
             }
         }
 
         .active>.filter-options-title:after{
-            content: "\2212";
+            content: "-";
         }
 
         .filter-options-content {
-            margin: 0 0 20px;
+
 
             .item {
-                margin: .5rem 0 .5rem;
+                & + .item {
+                    margin-top: 5px;
+                }
                 a{
                     text-transform: capitalize;
                     .lib-css(color, @c-text_color);
@@ -251,7 +259,7 @@
     .filter {
         &-options {
             &-content {
-                display: block !important;
+                /*display: block !important;*/
             }
 
 
@@ -259,19 +267,19 @@
             &-item {
                 &.active {
                     .filter-options-content {
-                        display: none !important;
+                        /*display: none !important;*/
                     }
 
                     .filter-options-title {
                         &:after {
-                            content:'+';
+                            content:'-';
                         }
                     }
                 }
 
                 .filter-options-title {
                     &:after {
-                        content:'-';
+                        content:'+';
                     }
                 }
             }

@@ -175,24 +175,22 @@
 
                 .subtotal {
                     position: absolute;
-                    bottom: 48px;
+                    bottom: 49px;
                     left: 0;
                     right: 0;
                     .flex();
                     justify-content: flex-end;
                     align-items: center;
-                    /*background: @color-aliceblue;*/
                     margin: 0;
-                    padding: 15px 40px;
+                    padding: 20px 40px;
                     font-weight: bold;
 
                     .amount {
                         margin-left: 10px;
                     }
-
+                    .label,
                     .price-wrapper .price {
-                        /*color: @color-blue;*/
-                        font-size: 1.4rem;
+                        font-size: 1.6rem;
 
                     }
 
@@ -219,7 +217,6 @@
                             /*.button();*/
                             display: block;
                             font-size: 14px;
-                            padding: 14px 17px;
                             .br-radius(0);
                         }
                     }
@@ -229,10 +226,11 @@
             }
 
             .minicart-items-wrapper {
-                margin: 0;
+                margin: 10px 0 0;
                 overflow-y: auto;
                 overflow-x: hidden;
-                height: ~"calc(100% - 97px)" !important;
+                height: ~"calc(100% - 120px)" !important;
+                border-top: none;
 
                 li {
                     position: relative;
@@ -245,7 +243,7 @@
                     transition: opacity 0s .2s, transform 0s .2s, -webkit-transform 0s .2s;
 
                     &:not(:first-child) {
-                        /*border-top-color: @color-gray;*/
+                        border-top-color: @c-graylight;
                     }
                 }
 
@@ -328,12 +326,22 @@
 
                 .actions {
                     position: absolute;
-                    left: 0px;
+                    right: 0px;
                     margin-top: -30px;
                     bottom: 20px;
                 }
 
                 .action {
+
+                    &:before {
+                        color: @icon-color;
+                    }
+
+                    &:hover {
+                        &:before {
+                            color: @color-black;
+                        }
+                    }
                     &.edit {
                         &:before {
                             content: @icon_edit;
