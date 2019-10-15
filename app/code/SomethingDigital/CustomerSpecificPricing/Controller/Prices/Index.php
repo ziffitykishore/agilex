@@ -51,7 +51,7 @@ class Index extends Action
             foreach ($params as $id => $sku) {
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
 
-                $spotPrice = $this->arrayManager->get('body/Price', $prices, 0);
+                $spotPrice = $this->arrayManager->get('body/DiscountPrice', $prices, 0);
                 $product = $this->productRepository->get($sku);
 
                 if ($spotPrice < $product->getFinalPrice()) {
@@ -63,7 +63,15 @@ class Index extends Action
                     $data[$sku] = $product->getExactUnitPrice() * 100;
                 }
 
-                $data[$sku] = round($data[$sku], 2);
+                $data[$sku] = [
+                    'price' => round($data[$sku], 2),
+                    'QtyPrice1' => $this->arrayManager->get('body/QtyPrice1', $prices, 0),
+                    'QtyPrice2' => $this->arrayManager->get('body/QtyPrice2', $prices, 0),
+                    'QtyPrice3' => $this->arrayManager->get('body/QtyPrice3', $prices, 0),
+                    'QtyBreak1' => $this->arrayManager->get('body/QtyBreak1', $prices, 0),
+                    'QtyBreak2' => $this->arrayManager->get('body/QtyBreak2', $prices, 0),
+                    'QtyBreak3' => $this->arrayManager->get('body/QtyBreak3', $prices, 0)
+                ];
             }
         } catch (LocalizedException $e) {
             $this->logger->critical('Request has failed with exception: ' . $e->getMessage());
