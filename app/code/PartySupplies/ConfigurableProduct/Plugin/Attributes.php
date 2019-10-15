@@ -19,33 +19,36 @@ class Attributes
     ) {
         if (empty($result)) {
             $product = $subject->getProduct();
-            $attributes = $product->getAttributes();
-            foreach ($attributes as $attribute) {
-                if ($this->isVisibleOnFrontend($attribute, [])) {
-                    $value = $attribute->getFrontend()->getValue($product);
 
-                    if ($value instanceof Phrase) {
-                        $value = (string)$value;
-                    } elseif ($attribute->getFrontendInput() == 'price' && is_string($value)) {
-                        $value = $this->priceCurrency->convertAndFormat($value);
-                    }
+            if($product->getTypeId() === \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+                $attributes = $product->getAttributes();
+                foreach ($attributes as $attribute) {
+                    if ($this->isVisibleOnFrontend($attribute, [])) {
+                        $value = $attribute->getFrontend()->getValue($product);
 
-                    if (is_string($value) && strlen($value)) {
-                        $data[$attribute->getAttributeCode()] = [
-                            'label' => __($attribute->getStoreLabel()),
-                            'value' => $value,
-                            'code' => $attribute->getAttributeCode(),
-                        ];
-                    } else {
-                        $data[$attribute->getAttributeCode()] = [
-                            'label' => __($attribute->getStoreLabel()),
-                            'value' => __('notAvailable'),
-                            'code' => $attribute->getAttributeCode(),
-                        ];
+                        if ($value instanceof Phrase) {
+                            $value = (string)$value;
+                        } elseif ($attribute->getFrontendInput() == 'price' && is_string($value)) {
+                            $value = $this->priceCurrency->convertAndFormat($value);
+                        }
+
+                        if (is_string($value) && strlen($value)) {
+                            $data[$attribute->getAttributeCode()] = [
+                                'label' => __($attribute->getStoreLabel()),
+                                'value' => $value,
+                                'code' => $attribute->getAttributeCode(),
+                            ];
+                        } else {
+                            $data[$attribute->getAttributeCode()] = [
+                                'label' => __($attribute->getStoreLabel()),
+                                'value' => __('notAvailable'),
+                                'code' => $attribute->getAttributeCode(),
+                            ];
+                        }
                     }
                 }
+                $result = $data;
             }
-            $result = $data;
         }
         return $result;
     }

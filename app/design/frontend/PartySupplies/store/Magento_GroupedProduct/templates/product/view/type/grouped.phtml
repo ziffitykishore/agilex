@@ -30,7 +30,7 @@ $attributeCode = strtolower($attributeText);
         <caption class="table-caption"><?= /* @escapeNotVerified */ __('Grouped product items') ?></caption>
         <thead>
         <tr>
-            <th class="col item" scope="col"><?= $attributeText ?></th>
+            <th class="col item" scope="col"><?= $attributeText ? $attributeText : __('Product Name') ?></th>
             <?php if ($block->getCanShowProductPrice($_product)): ?>
                 <th class="col price" scope="col"><?= /* @escapeNotVerified */ __('CasePrice') ?></th>
             <?php endif; ?>
@@ -46,7 +46,7 @@ $attributeCode = strtolower($attributeText);
         <?php foreach ($_associatedProducts as $_item): ?>
             <tr>
                 <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col item">
-                    <strong class="product-item-name"><?= $block->escapeHtml($viewModel->getCustomAttribute($_item->getSku(), $attributeCode) ?? $_item->getName()) ?></strong>
+                    <strong class="product-item-name"><?= $block->escapeHtml($attributeText ? $viewModel->getCustomAttribute($_item->getSku(), $attributeCode) ?? $_item->getName() : $_item->getName()) ?></strong>
                 </td>
                 
                 <?php if ($block->getCanShowProductPrice($_product)): ?>
