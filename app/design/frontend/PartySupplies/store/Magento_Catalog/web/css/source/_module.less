@@ -69,6 +69,7 @@
 
         .decreaseQty {
             .br-radius(@radius: 3px 0 0 3px);
+
         }
 
         .increaseQty {
@@ -391,12 +392,21 @@
 
             .field.qty {
                 padding-right: .75 * @indent__base;
+                margin-bottom: 20px;
+                .flex();
+                align-items: center;
+
+                label {
+                    font-weight: bold;
+                    margin-right: 20px;
+                }
             }
+
+
 
             .input-text.qty {
                 @tocart-input-size: @button__line-height__l + 28px;
                 text-align: center;
-                width: @tocart-input-size + 2px;
             }
 
             .actions {
@@ -607,6 +617,7 @@
         }
 
         .product-info-main{
+
             .stock.available{
                 span{
                     color: @c-stock;
@@ -621,7 +632,6 @@
             margin-top: 2rem;
             .sec-right{
                 .get-info{
-                    color: @color-black;
                     text-transform: none;
                 }
                 .colr{
@@ -698,6 +708,7 @@
                     .btn();
                     .lib-button-primary();
                     line-height: normal;
+                    text-transform: uppercase;
                 }
             }
         }
@@ -726,6 +737,15 @@
                 .product-items {
                     display: block;
                     margin: 0;
+
+                    .product-item {
+                        padding: 0;
+                    }
+                }
+                .field {
+                    &.related {
+                        display: none;
+                    }
                 }
             }
         }
@@ -926,6 +946,11 @@
                     display: block;
                     width: 100%;
                 }
+
+                &.towishlist {
+                    .btn();
+                    background: @c-graylight;
+                }
             }
         }
 
@@ -981,11 +1006,6 @@
     .product-options-bottom {
         .box-tocart {
             display: block;
-
-            .field.qty {
-                display: table-cell;
-            }
-
             .actions {
                 display: inline-block;
                 padding-top: @indent__m;
@@ -995,13 +1015,6 @@
         }
     }
 
-    .product-info-main {
-        .page-title-wrapper {
-            .page-title {
-                margin-top: -13px;
-            }
-        }
-    }
 
     .sidebar {
         .product-items {

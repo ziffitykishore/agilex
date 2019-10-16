@@ -62,12 +62,16 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 accordionFooter('enable');
                 responsiveflag = true;
                 $('header.page-header').addClass("fixed");
+                $('.breadcrumbs-inner .toolbar').prependTo('#layer-product-list');
+
+
             }
             else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
                 responsiveflag = false;
                 $('header.page-header').removeClass("fixed");
+                $('#layer-product-list .toolbar:first-child').appendTo('.breadcrumbs-inner');
                 $(window).on('load', function(){
                     stickyBar('.cms-index-index .page-main');
                     stickyBar(':not(.cms-index-index) header.page-header');

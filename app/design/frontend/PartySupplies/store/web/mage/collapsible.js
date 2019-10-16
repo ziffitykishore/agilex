@@ -1,0 +1,1 @@
+/var/www/html/magento/psmagece231/lib/web/mage/collapsible.js

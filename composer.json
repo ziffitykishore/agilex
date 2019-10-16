@@ -11,7 +11,8 @@
         "sort-packages": true
     },
     "require": {
-        "magento/product-community-edition": "2.3.1"
+        "magento/product-community-edition": "2.3.1",
+        "mageworx/module-searchsuiteautocompletemeta": "^2.1"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.13.0",
