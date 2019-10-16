@@ -30,10 +30,23 @@
     <type name="Magento\Customer\Block\Adminhtml\Edit\SaveButton">
         <plugin name="save-button-plugin"  type="PartySupplies\Customer\Plugin\Grid\SaveButton" sortOrder="1"/>
     </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\Tab\Newsletter">
+        <plugin name="newsletter-tab-plugin"  type="PartySupplies\Customer\Plugin\Grid\Newsletter" sortOrder="1"/>
+    </type>
+    <type name="Magento\Review\Block\Adminhtml\ReviewTab">
+        <plugin name="review-tab-plugin"  type="PartySupplies\Customer\Plugin\Grid\ReviewTab" sortOrder="1"/>
+    </type>
+    <type name="Magento\Wishlist\Block\Adminhtml\WishlistTab">
+        <plugin name="wishlist-tab-plugin"  type="PartySupplies\Customer\Plugin\Grid\WishlistTab" sortOrder="1"/>
+    </type>
+    <type name="Magento\Customer\Block\Adminhtml\Edit\Tab\View">
+        <plugin name="view-tab-plugin"  type="PartySupplies\Customer\Plugin\Grid\View" sortOrder="1"/>
+    </type>
 
     <preference for="Magento\Customer\Controller\Adminhtml\Index\MassDelete" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassDelete" />
     <preference for="Magento\Customer\Controller\Adminhtml\Index\MassSubscribe" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassSubscribe" />
     <preference for="Magento\Customer\Controller\Adminhtml\Index\MassUnsubscribe" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassUnsubscribe" />
     <preference for="Magento\Customer\Controller\Adminhtml\Index\MassAssignGroup" type="PartySupplies\Customer\Controller\Adminhtml\Index\MassAssignGroup" />
     <preference for="Magento\Customer\Controller\Adminhtml\Index\Edit" type="PartySupplies\Customer\Controller\Adminhtml\Index\Edit" />
+
 </config>

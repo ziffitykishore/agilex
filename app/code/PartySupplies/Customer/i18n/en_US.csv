@@ -12,3 +12,8 @@
 "noAccountFound","No account associated with %1 found"
 "resetCompanyPasswordNotAllowed","Cannot reset password for a company account type"
 "noCompanyAssociatedWithNavId = '%1'","There is no company associated with Nav ID = '%1'"
+"companyView","Company View"
+"customerView","Customer View"
+"accountDetails","Account Details"
+"deleteUser","Delete User"
+"deleteCompany","Delete Company"
