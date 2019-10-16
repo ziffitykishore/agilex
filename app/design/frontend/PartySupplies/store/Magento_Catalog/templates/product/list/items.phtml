@@ -42,7 +42,7 @@ switch ($type = $block->getType()) {
             $items = $block->getItems();
             $limit = 0;
             $shuffle = 0;
-            $canItemsAddToCart = $block->canItemsAddToCart();
+            $canItemsAddToCart = false;
 
             $showAddTo = true;
             $showCart = false;
@@ -196,7 +196,7 @@ switch ($type = $block->getType()) {
                             <?= $block->escapeHtml($_item->getName()) ?></a>
                         </strong>
 
-                        <?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?>
+                        <?= /* @escapeNotVerified */ $block->getViewModel() ? __('CasePrice')." : ".$block->getViewModel()->getCasePrice($_item): $block->getProductPrice($_item) ?>
 
                             <?php if ($templateType): ?>
                                 <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
@@ -257,4 +257,14 @@ switch ($type = $block->getType()) {
         </div>
     </div>
 </div>
+<?php endif;?>
+
+<?php if ($type == 'related'): ?>
+<script type="text/x-magento-init">
+{
+    "*":{
+        "Magento_Catalog/js/product/list/related-product" :{}
+    }
+}
+</script>
 <?php endif;?>
