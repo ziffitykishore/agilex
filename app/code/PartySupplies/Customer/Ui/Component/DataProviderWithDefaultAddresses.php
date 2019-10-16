@@ -11,6 +11,7 @@ use Magento\Eav\Model\Entity\Type;
 use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Customer\Model\FileUploaderDataResolver;
 use Magento\Customer\Model\AttributeMetadataResolver;
+use Magento\Framework\App\Response\RedirectInterface;
 
 /**
  * Refactored version of Magento\Customer\Model\Customer\DataProvider with eliminated usage of addresses collection.
@@ -61,6 +62,11 @@ class DataProviderWithDefaultAddresses extends \Magento\Ui\DataProvider\Abstract
     private $attributeMetadataResolver;
 
     /**
+     * @var RedirectInterface
+     */
+    protected $redirect;
+
+    /**
      * @param string $name
      * @param string $primaryFieldName
      * @param string $requestFieldName
@@ -86,6 +92,7 @@ class DataProviderWithDefaultAddresses extends \Magento\Ui\DataProvider\Abstract
         SessionManagerInterface $session,
         FileUploaderDataResolver $fileUploaderDataResolver,
         AttributeMetadataResolver $attributeMetadataResolver,
+        RedirectInterface $redirect,
         $allowToShowHiddenAttributes = true,
         array $meta = [],
         array $data = []
@@ -98,6 +105,7 @@ class DataProviderWithDefaultAddresses extends \Magento\Ui\DataProvider\Abstract
         $this->countryFactory = $countryFactory;
         $this->fileUploaderDataResolver = $fileUploaderDataResolver;
         $this->attributeMetadataResolver = $attributeMetadataResolver;
+        $this->redirect = $redirect;
         $this->meta['customer']['children'] = $this->getAttributesMeta(
             $eavConfig->getEntityType('customer')
         );
@@ -191,6 +199,21 @@ class DataProviderWithDefaultAddresses extends \Magento\Ui\DataProvider\Abstract
         }
         $this->attributeMetadataResolver->processWebsiteMeta($meta);
 
+        return $meta;
+    }
+
+    /**
+     * Get meta data for customer admin form
+     *
+     * @return array
+     */
+    public function getMeta()
+    {
+        $meta = parent::getMeta();
+        if (strpos($this->redirect->getRefererUrl(), 'account_type/customer')) {
+            $meta['customer']['children']['reseller_certificate']['arguments']['data']['config']['visible'] = 0;
+            $meta['customer']['children']['is_certificate_approved']['arguments']['data']['config']['visible'] = 0;
+        }
         return $meta;
     }
 }
