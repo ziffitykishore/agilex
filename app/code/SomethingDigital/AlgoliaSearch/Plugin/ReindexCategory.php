@@ -16,12 +16,17 @@ class ReindexCategory
     /** @var ConfigHelper */
     private $configHelper;
 
+    private $linkManagement;
+
     /**
      * @param IndexerRegistry $indexerRegistry
      * @param ConfigHelper $configHelper
      */
-    public function __construct(IndexerRegistry $indexerRegistry, ConfigHelper $configHelper,CategoryLinkManagementInterface $linkManagement = null)
-    {
+    public function __construct(
+        IndexerRegistry $indexerRegistry,
+        ConfigHelper $configHelper,
+        CategoryLinkManagementInterface $linkManagement = null
+    ) {
         $this->indexer = $indexerRegistry->get('algolia_categories');
         $this->configHelper = $configHelper;
         $this->linkManagement = $linkManagement ?: \Magento\Framework\App\ObjectManager::getInstance()
