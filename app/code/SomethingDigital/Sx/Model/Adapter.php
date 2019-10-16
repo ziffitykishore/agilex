@@ -116,7 +116,11 @@ abstract class Adapter
 
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
-        $curl->setTimeout(200);
+        if (strpos($this->getApiBaseUrl(), 'test') !== false) {
+            $curl->setTimeout(90);
+        } else {
+            $curl->setTimeout(20);
+        }
         if ($this->isTestMode()) {
             $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
             $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
