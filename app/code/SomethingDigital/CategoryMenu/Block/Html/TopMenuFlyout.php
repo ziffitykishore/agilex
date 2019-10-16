@@ -9,6 +9,8 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\Data\TreeFactory;
 use Magento\Framework\Data\Tree\Node;
 use Magento\Framework\Data\Tree\NodeFactory;
+use Magento\Cms\Api\BlockRepositoryInterface;
+use Magento\Cms\Model\Template\FilterProvider;
 
 class TopMenuFlyout extends Topmenu
 {
@@ -24,25 +26,31 @@ class TopMenuFlyout extends Topmenu
     private $treeFactory;
 
     protected $categoryRepositoryInterface;
+    protected $blockRepository;
+    protected $filterProvider;
 
     public function __construct(
         Template\Context $context,
         NodeFactory $nodeFactory,
         TreeFactory $treeFactory,
         array $data = [],
-        CategoryRepositoryInterface $categoryRepositoryInterface
+        CategoryRepositoryInterface $categoryRepositoryInterface,
+        BlockRepositoryInterface $blockRepository,
+        FilterProvider $filterProvider
     ) {
         parent::__construct($context, $nodeFactory, $treeFactory, $data);
         $this->nodeFactory = $nodeFactory;
         $this->treeFactory = $treeFactory;
         $this->categoryRepositoryInterface = $categoryRepositoryInterface;
+        $this->blockRepository = $blockRepository;
+        $this->filterProvider = $filterProvider;
     }
 
     protected function _addSubMenu($child, $childLevel, $childrenWrapClass, $limit)
     {
         $html = '';
-        $menuStaticBlock = '';
-        $mobileMenuStaticBlock = '';
+        $menuStaticBlockHtml = '';
+        $mobileMenuStaticBlockHtml = '';
         $node = $child->getId();
         $categoryId = preg_replace('/[^0-9]/', '', $node);
 
@@ -50,10 +58,12 @@ class TopMenuFlyout extends Topmenu
             $categoryInfo = $this->categoryRepositoryInterface->get($categoryId);
             $categoryData = $categoryInfo->getData();
             if (isset($categoryData["menu_static_block"])) {
-                $menuStaticBlock = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($categoryData["menu_static_block"])->toHtml();
+                $menuStaticBlock = $this->blockRepository->getById($categoryData["menu_static_block"]);
+                $menuStaticBlockHtml = $this->filterProvider->getPageFilter()->filter($menuStaticBlock->getContent());
             }
             if (isset($categoryData["mobile_menu_static_block"])) {
-                $mobileMenuStaticBlock = $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($categoryData["mobile_menu_static_block"])->toHtml();
+                $mobileMenuStaticBlock = $this->blockRepository->getById($categoryData["mobile_menu_static_block"]);
+                $mobileMenuStaticBlockHtml = $this->filterProvider->getPageFilter()->filter($mobileMenuStaticBlock->getContent());
             }
         }
 
@@ -62,18 +72,18 @@ class TopMenuFlyout extends Topmenu
             $colStops = $this->_columnBrake($child->getChildren(), $limit);
         }
 
-        if (!empty($menuStaticBlock)) {
+        if (!empty($menuStaticBlockHtml)) {
             $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . '">';
-            $html .= $menuStaticBlock;
+            $html .= $menuStaticBlockHtml;
             $html .= '</div>';
         }
-        if (!empty($mobileMenuStaticBlock)) {
+        if (!empty($mobileMenuStaticBlockHtml)) {
             $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' mobileSubMenu">';
-            $html .= $mobileMenuStaticBlock;
+            $html .= $mobileMenuStaticBlockHtml;
             $html .= '</div>';
         }
 
-        if (empty($menuStaticBlock) && empty($mobileMenuStaticBlock)) {
+        if (empty($menuStaticBlockHtml) && empty($mobileMenuStaticBlockHtml)) {
             $colStops = [];
             if ($childLevel == 0 && $limit) {
                 $colStops = $this->_columnBrake($child->getChildren(), $limit);
