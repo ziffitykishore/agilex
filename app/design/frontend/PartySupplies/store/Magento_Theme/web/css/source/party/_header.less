@@ -79,7 +79,7 @@
 
 
 
-    
+
     .page-header{
         /* Logo */
 
@@ -289,7 +289,6 @@
                 strong,
                 a,
                 .customer-name {
-                    .br-radius(50px);
                     text-transform: uppercase;
                     font-weight: bold;
                     font-family: @heading__font-family__base;
@@ -297,6 +296,10 @@
                     &:hover {
                         .lib-css(color, @c-primary_color);
                     }
+                }
+
+                .customer-name {
+                    display: block;
                 }
 
                 &.current {
@@ -322,13 +325,22 @@
     .page-wrapper {
         .breadcrumbs {
             .lib-css(background, @c-whitesmoke);
-            padding-top: 20px;
-            padding-bottom: 20px;
             padding-left: 0;
             padding-right: 0;
             margin-bottom: 40px;
             max-width: none;
+            &-inner {
+                position: relative;
+            }
 
+            .toolbar {
+                right: 20px;
+            }
+
+            .items {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
             .item {
                 a {
                     text-decoration: none;
@@ -819,7 +831,7 @@
 
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-md) {
 
     .page-title-wrapper {
         .page-title {
@@ -911,7 +923,7 @@
 
             & ~ .breadcrumbs,
             & ~ .page-main {
-                margin-top: 80px;
+                margin-top: 82px;
             }
 
             & ~ .breadcrumbs {
@@ -1168,8 +1180,14 @@
                 .submenu {
                     li.parent {
                         > a {
-                            > .ui-menu-icon:after{
-                                .lib-css(color, @color-black);
+                            > .ui-menu-icon{
+                                right: 0;
+                                &:after{
+                                    .lib-css(color, @color-black);
+                                    content: @icon-chevron-thin-right;
+                                    font-family: @icons__font-name_ps;
+                                    font-size: 15px;
+                                }
                             }
                         }
                     }
@@ -1179,11 +1197,17 @@
             li {
                 position: relative;
 
+                &.level0 {
+                     > .submenu {
+                         margin-left: -70px !important;
+                     }
+                }
+
                 > .submenu {
                     position: absolute;
-                    top: 82px !important;
+                    top: 94px !important;
                     min-width: 275px;
-                    left: 0px !important;
+                    left: 0% !important;
                     margin-top: 25px;
                     -ms-transform: translateY(17px);
                     transform: translateY(17px);
@@ -1191,28 +1215,34 @@
                     visibility: hidden;
                     display: block !important;
                     will-change: transform,opacity;
-                    .br-radius(4px);
+                    .br-radius(0 0 3px 3px);
                     .box-shadow(0px 0px 20px 5px rgba(0, 0, 0, 0.05));
-                    transition: transform .3s linear,opacity .3s linear,visibility .3s linear;
+                    transition: transform .2s linear,opacity .3s linear,visibility .3s linear;
                     border: none;
+
+                    .submenu {
+                        &:before {
+                            display: none;
+                        }
+                    }
 
                     &:before {
                         content: '';
-                        border-left: 5px solid transparent;
-                        border-right: 5px solid transparent;
-                        border-bottom: 5px solid @color-white;
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-bottom: 10px solid @color-white;
                         width: 5px;
                         position: absolute;
                         margin: auto;
                         left: 0;
                         right: 0;
-                        display: none;
+                        top: -10px;
                     }
 
                     > li {
                         & + li {
                             > a {
-                                border-top: 1px solid @color-black;
+                                border-top: 1px solid @c-graylight;
                             }
                         }
                     }
@@ -1241,6 +1271,7 @@
                             .ui-menu-icon {
                                 &:after {
                                     .lib-css(color, @color-black);
+                                    .transition(all 0.5s ease 0s);
                                 }
                             }
                         }
@@ -1254,6 +1285,12 @@
                                     opacity: 1;
                                     height: 100%;
                                 }
+
+                                .ui-menu-icon {
+                                    &:after {
+                                        .lib-css(color, @c-primary_color);
+                                    }
+                                }
                             }
                         }
                     }
@@ -1262,11 +1299,15 @@
 
 
                 &:hover {
-                    > .submenu {
-                        opacity: 1;
-                        visibility: visible;
-                        -ms-transform: translateY(0);
-                        transform: translateY(0);
+
+                    .ui-state-focus,
+                    .ui-state-active {
+                       & + .submenu {
+                            opacity: 1;
+                            visibility: visible;
+                            -ms-transform: translateY(0);
+                            transform: translateY(0);
+                        }
                     }
                 }
             }
@@ -1282,6 +1323,86 @@
                 padding-top: 30px;
                 padding-bottom: 30px;
             }
+
+            &.customer-welcome {
+                .customer-menu {
+                    min-width: 220px;
+                    .transform(translateY(50px));
+                    opacity: 0;
+                    top: 78px;
+                    visibility: hidden;
+                    display: block !important;
+                    will-change: transform,opacity;
+                    .br-radius(0 0 3px 3px);
+                    .box-shadow(0px 0px 20px 5px rgba(0, 0, 0, 0.05));
+                    transition: transform .2s linear,opacity .3s linear,visibility .3s linear;
+                    border: none;
+
+                    &:before {
+                        content: '';
+                        border-left: 10px solid transparent;
+                        border-right: 10px solid transparent;
+                        border-bottom: 10px solid @color-white;
+                        width: 5px;
+                        position: absolute;
+                        margin: auto;
+                        right: 50px;
+                        top: -10px;
+                    }
+
+                    li {
+                        padding: 0px 30px;
+
+                        a {
+                            padding: 22px 0;
+                            position: relative;
+
+                            &:before {
+                                content: '';
+                                position: absolute;
+                                height: 0;
+                                width: 2px;
+                                background: @c-primary_color;
+                                top: 0;
+                                left: -30px;
+                                opacity: 0;
+                                .transition(all 0.5s ease 0s);
+
+                            }
+                        }
+
+                        &:hover {
+                            a {
+                                &:before {
+                                    opacity: 1;
+                                    height: 100%;
+                                }
+                            }
+                        }
+
+                        & + li > a {
+                            border-top: 1px solid @c-graylight;
+                        }
+                    }
+                }
+
+                &:hover {
+                    .action{
+                        &.switch {
+                            &:after {
+                                content: '\e621';
+                            }
+                        }
+                    }
+                    .customer-menu {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateY(12px);
+                    }
+                }
+            }
+
+
         }
     }
 

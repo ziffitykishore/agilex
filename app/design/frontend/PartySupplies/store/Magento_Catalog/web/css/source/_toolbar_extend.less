@@ -12,15 +12,10 @@
 & when (@media-common = true) {
     .toolbar {
 
+
+
         .products.wrapper ~ & {
             display: none;
-        }
-
-
-        & + .ias-trigger,
-        & + .ias-spinner {
-            position: relative;
-            top: 60px;
         }
 
         .flex();
@@ -39,6 +34,10 @@
             float:  none;
             margin-right: 0;
 
+            &-label {
+                display: none;
+            }
+
             &-mode {
                 padding: 0;
                 width: 60px;
@@ -46,8 +45,17 @@
                 line-height: 60px;
 
                 &:before {
-                    font-size: 25px;
-                    line-height: normal;
+                    font-size: 15px;
+                    line-height: 20px;
+                    font-family: @icons__font-name_ps;
+                    color: @icon-color;
+                }
+
+                &.mode-list:before {
+                    content: @icon_list;
+                }
+                &.mode-grid:before {
+                    content: @icon_grid;
                 }
 
                 &.active {
@@ -58,7 +66,9 @@
 
                 &:not(.active):hover {
                     background: transparent;
-                    .lib-css(color, @c-primary_color);
+                    &:before {
+                        color: @c-primary_color;
+                    }
                 }
             }
         }
@@ -74,13 +84,15 @@
             margin-right: -1px;
             padding: 0;
             position: relative;
+            background: @color-white;
         }
 
         .sorter {
-
+            padding: 0 15px;
             &-label {
                 font-weight: bold;
-                padding-left: 10px;
+                text-transform: uppercase;
+                font-size: 14px;
             }
 
             &-options {
@@ -96,6 +108,11 @@
             .nice-select {
                 position: static;
                 width: auto;
+                padding-right: 0;
+                padding-left: 12px;
+                &:after {
+                    margin-left: 10px;
+                }
                 .list {
                     right: 0;
                     margin-top: 1px;
@@ -109,6 +126,10 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
     .toolbar {
         justify-content: flex-end;
+
+        .modes {
+            display: none;
+        }
     }
 }
 
@@ -132,6 +153,7 @@
         }
 
         .sorter {
+            background: transparent;
             &-label {
                 padding: 0 10px;
                 &:before {
@@ -254,8 +276,8 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-md) {
     .toolbar {
         .sorter {
+            padding: 0 32px;
             &-label {
-                padding-left: 25px;
             }
 
             &-options {
@@ -271,16 +293,35 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
-
+    .page-products,
     .page-with-filter {
         .main {
             position: relative;
         }
+    }
+}
 
-        .toolbar {
-            position: absolute;
-            right: 0;
-            top: 0;
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+
+    .breadcrumbs {
+        &-inner {
+            .flex();
+            justify-content: space-between;
         }
     }
+
+    .toolbar {
+        margin-bottom: 0;
+        #layer-product-list &{
+            display: none;
+        }
+
+        & + .ias-trigger,
+        & + .ias-spinner {
+            position: relative;
+            top: 60px;
+        }
+    }
+
 }

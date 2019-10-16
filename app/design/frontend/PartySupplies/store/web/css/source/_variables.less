@@ -50,6 +50,8 @@
 @c-border-strip:#f4f4f4;
 @c-stock: #1a810e;
 @active__color: @c-primary_color;
+@icon-color: #8991a6;
+
 
 
 @c-tab: 992px;
@@ -316,6 +318,11 @@ button{
             animation: shine .75s;
         }
     }
+
+    @media screen and (max-width: @c-desk-md) {
+        font-size: 1.4rem;
+    }
+
 }
 
 .btn {
@@ -370,16 +377,72 @@ button{
         color: @c-text_sec_color;
         border: 1px solid  @c-graylight;
         font-size: 20px;
+        position: relative;
+        span {
+            position: relative;
+        }
     }
 
     .decreaseQty,
     .decrement-cart-item {
         .br-radius(3px 0 0 3px);
+        span {
+            color: transparent;
+            display: block;
+            max-width: 20px;
+            margin: 0 auto;
+            width: 100%;
+
+            &:before {
+                background: @c-graylight;
+                width: 15px;
+                height: 1px;
+                content: '';
+                position: absolute;
+                display: block;
+                top: 14px;
+                left: 2px;
+                margin: 0 auto;
+            }
+        }
     }
 
     .increaseQty,
     .increment-cart-item{
         .br-radius(0 3px 3px 0);
+        span {
+            color: transparent;
+            display: block;
+            max-width: 20px;
+            margin: 0 auto;
+            width: 100%;
+
+            &:after,
+            &:before {
+                background: @c-graylight;
+                content: '';
+                position: absolute;
+                display: block;
+            }
+
+            &:after {
+                width: 1px;
+                height: 15px;
+                top: 7px;
+                left: 9px;
+                margin: 0 auto;
+            }
+
+            &:before {
+                width: 15px;
+                height: 1px;
+                top: 14px;
+                left: 2px;
+                margin: 0 auto;
+            }
+
+
+        }
     }
 
     .update-cart-item {
