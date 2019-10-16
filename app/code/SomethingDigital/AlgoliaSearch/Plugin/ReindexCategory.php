@@ -10,12 +10,8 @@ use Magento\Catalog\Api\CategoryLinkManagementInterface;
 
 class ReindexCategory
 {
-    /** @var Product */
-    private $indexer;
-
-    /** @var ConfigHelper */
+    private $indexerRegistry;
     private $configHelper;
-
     private $linkManagement;
 
     /**
