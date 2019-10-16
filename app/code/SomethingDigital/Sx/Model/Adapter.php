@@ -116,7 +116,11 @@ abstract class Adapter
 
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
-        $curl->setTimeout(20);
+        if ($this->isSandboxUrl()) {
+            $curl->setTimeout(90);
+        } else {
+            $curl->setTimeout(20);
+        }
         if ($this->isTestMode()) {
             $curl->setOption(CURLOPT_SSL_VERIFYHOST, 0);
             $curl->setOption(CURLOPT_SSL_VERIFYPEER, 0);
@@ -125,13 +129,13 @@ abstract class Adapter
             $curl->addHeader('Authorization', 'Bearer ' . $token);
             $curl->addHeader('Cache-Control', 'no-cache');
         }
-        $curl->addHeader('Content-Type', 'application/x-www-form-urlencoded');
+        $curl->addHeader('Content-Type', 'application/json');
         if (empty($this->requestBody)) {
             throw new ApiRequestException(__('Empty SX API request'));
         }
         try {
 
-            $curl->post($this->getRequestUrl(), $this->requestBody);
+            $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
 
             return [
                 'status' => $curl->getStatus(),
@@ -144,6 +148,19 @@ abstract class Adapter
             $this->logger->critical($e);
             throw new ApiRequestException(__('Internal error during request to SX API'));
         }
+    }
+
+    /**
+     * Check if it's sandbox url
+     *
+     * @return bool
+     */
+    protected function isSandboxUrl()
+    {
+        if (strpos($this->getApiBaseUrl(), 'test') !== false) {
+            return true;
+        }
+        return false;
     }
 
     /**
