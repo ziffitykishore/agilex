@@ -78,7 +78,7 @@ class TopMenuFlyout extends Topmenu
             $html .= '</div>';
         }
         if (!empty($mobileMenuStaticBlockHtml)) {
-            $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' mobileSubMenu">';
+            $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' mobile-sub-menu">';
             $html .= $mobileMenuStaticBlockHtml;
             $html .= '</div>';
         }
