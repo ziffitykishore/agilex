@@ -9,4 +9,5 @@
     <preference for="Magento\Customer\Controller\Account\CreatePost" type="PartySupplies\Customer\Controller\Account\CreatePost" />
     <preference for="Magento\Customer\Model\EmailNotificationInterface" type="PartySupplies\Customer\Model\EmailNotification" />
     <preference for="Magento\Customer\Ui\Component\DataProvider" type="PartySupplies\Customer\Ui\Component\DataProvider" />
+    <preference for="Magento\Customer\Model\Customer\DataProviderWithDefaultAddresses" type="PartySupplies\Customer\Ui\Component\DataProviderWithDefaultAddresses" />
 </config>
