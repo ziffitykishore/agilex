@@ -116,7 +116,7 @@ abstract class Adapter
 
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
-        if (strpos($this->getApiBaseUrl(), 'test') !== false) {
+        if ($this->isSandboxUrl()) {
             $curl->setTimeout(90);
         } else {
             $curl->setTimeout(20);
@@ -148,6 +148,19 @@ abstract class Adapter
             $this->logger->critical($e);
             throw new ApiRequestException(__('Internal error during request to SX API'));
         }
+    }
+
+    /**
+     * Check if it's sandbox url
+     *
+     * @return bool
+     */
+    protected function isSandboxUrl()
+    {
+        if (strpos($this->getApiBaseUrl(), 'test') !== false) {
+            return true;
+        }
+        return false;
     }
 
     /**
