@@ -136,6 +136,45 @@
 }
 
 
+
+.page.messages {
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+    .messages .message {
+        box-shadow: 0px -6px 12px -4px rgba(0,0,0,.1);
+        background: #fff;
+        color: #000;
+        font-size: 1.6rem;
+        padding: 2rem;
+        margin-bottom: 0;
+        visibility: visible;
+        opacity: 1;
+        > *:first-child:before {
+            position: static;
+            text-align: center;
+            border: 1px solid;
+            border-radius: 50%;
+            height: 35px;
+            width: 35px;
+            line-height: 35px;
+            margin: 0;
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        &.success a {
+            color: @c-primary_color;
+        }
+
+    }
+}
+
+
+
+
 .btn{
     padding: 15px 20px;
     .br-radius(3px);

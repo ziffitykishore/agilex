@@ -1,7 +1,9 @@
 require(['jquery', 'slick','nice-select'], function ($) {
     $(document).ready(function ($) {
 
-        $('#sorter').niceSelect();
+        if($('#sorter').length) {
+            $('#sorter').niceSelect();
+        }
 
         $('.showcart').on('click', function(){
             $("body").removeClass("search-opened");
@@ -183,20 +185,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
             $('body').addClass('ie')
         }
 
-
-
-    /* =====================
-                PLP
-        ==================== */
-
-        $(".filter-title").click(function () {
-            $(".block.filter").toggleClass('active');
-            $("body").toggleClass('filter-active');
-        });
-
-
-
-        /* =====================
+       /* =====================
                        Related Products
                ==================== */
 
