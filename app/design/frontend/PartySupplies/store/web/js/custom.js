@@ -1,7 +1,9 @@
 require(['jquery', 'slick','nice-select'], function ($) {
     $(document).ready(function ($) {
 
-        $('#sorter').niceSelect();
+        if($('#sorter').length) {
+            $('#sorter').niceSelect();
+        }
 
         $('.showcart').on('click', function(){
             $("body").removeClass("search-opened");
@@ -184,22 +186,9 @@ require(['jquery', 'slick','nice-select'], function ($) {
         }
 
 
-
-    /* =====================
-                PLP
-        ==================== */
-
-        $(".filter-title").click(function () {
-            $(".block.filter").toggleClass('active');
-            $("body").toggleClass('filter-active');
-        });
-
-
         $(".footer-parts a").on("shown.bs.tab", function (e) {
             e.target // newly activated tab
             e.relatedTarget // previous active tab
-
-
             var href = $(this).attr("href");
             $("html, body").animate({
                     scrollTop: $(href).offset().top

@@ -194,11 +194,11 @@
                 &:after {
                     -webkit-font-smoothing: antialiased;
                     -moz-osx-font-smoothing: grayscale;
-                    font-size: 35px;
+                    font-size: 16px;
                     line-height: 18px;
                     color: inherit;
-                    content: '\e622';
-                    font-family: 'icons-blank-theme';
+                    content: @icon-chevron-thin-down;
+                    font-family: @icons__font-name_ps;
                     margin: 0;
                     vertical-align: top;
                     display: inline-block;
@@ -207,7 +207,7 @@
                     speak: none;
                     text-align: center;
                     top: 0;
-                    right: -5px;
+                    right: 0;
                     position: absolute;
                 }
             }
@@ -245,7 +245,7 @@
             &.active {
                 .action.switch {
                     &:after {
-                        content: '\e621';
+                        content: @icon-chevron-thin-up;
                     }
                 }
                 .dropdown-content {
@@ -1390,7 +1390,7 @@
                     .action{
                         &.switch {
                             &:after {
-                                content: '\e621';
+                                content: @icon-chevron-thin-up;
                             }
                         }
                     }

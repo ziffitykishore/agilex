@@ -12,6 +12,7 @@
         <move element="product.info.overview" destination="product.info.main" after="product.info.price"/>
         <move element="product.info.extrahint.qtyincrements" destination="product.info.main" after="product.info.overview"/>
         <move element="product.price.final" destination="product.info.attributes"/>
+        <move element="product.info.review" destination="product.info.stock.sku" before="product.info.attributes"/>
 
         <referenceBlock name="product.info.mailto" remove="true"/>
         <referenceBlock name="view.addto.compare" remove="true"/>

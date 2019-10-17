@@ -601,7 +601,22 @@
         .fotorama__stage{
 
             /*border: 2px solid @c-lavander;*/
+
+            &.fotorama__shadows--left:before,
+            &.fotorama__shadows--left:before {
+                background: none;
+            }
+            &.fotorama__shadows--right:after,
+            &.fotorama__shadows--right:after {
+                background:none
+            }
         }
+
+        .fotorama__thumb-border {
+            border: 1px solid @c-primary_color;
+        }
+
+
 
         .fotorama__arr--prev,
         .fotorama__arr--next{
@@ -620,7 +635,7 @@
 
             .stock.available{
                 span{
-                    color: @c-stock;
+                    color: @c-success;
                 }
             }
         }
@@ -705,10 +720,17 @@
             .action {
                 &.tocart,
                 &.towishlist {
-                    .btn();
                     .lib-button-primary();
+                    .btn();
+                    padding: 16px 30px;
                     line-height: normal;
                     text-transform: uppercase;
+                    font-size: 1.7rem;
+                }
+
+                &.towishlist {
+                    background: @c-graylight;
+                    color: @color-black;
                 }
             }
         }
