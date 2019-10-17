@@ -9,16 +9,16 @@
     <media>
         <images module="Magento_Catalog">
             <image id="bundled_product_customization_page" type="thumbnail">
-                <width>200</width>
-                <height>200</height>
+                <width>140</width>
+                <height>140</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
                 <width>200</width>
                 <height>200</height>
             </image>
             <image id="cart_page_product_thumbnail" type="small_image">
-                <width>200</width>
-                <height>200</height>
+                <width>140</width>
+                <height>140</height>
             </image>
             <image id="category_page_grid" type="small_image">
                 <width>200</width>
@@ -69,8 +69,8 @@
                 <height>450</height>
             </image>
             <image id="product_comparison_list" type="small_image">
-                <width>200</width>
-                <height>200</height>
+                <width>140</width>
+                <height>140</height>
             </image>
             <image id="product_page_image_large" type="image"/>
             <image id="product_page_image_medium" type="image">
@@ -147,8 +147,8 @@
                 <height>270</height>
             </image>
             <image id="related_products_list" type="small_image">
-                <width>200</width>
-                <height>200</height>
+                <width>140</width>
+                <height>140</height>
             </image>
             <image id="review_page_product_image" type="small_image">
                 <width>285</width>
@@ -171,8 +171,8 @@
                 <height>90</height>
             </image>
             <image id="upsell_products_list" type="small_image">
-                <width>200</width>
-                <height>200</height>
+                <width>140</width>
+                <height>140</height>
             </image>
             <image id="wishlist_sidebar_block" type="thumbnail">
                 <width>75</width>
@@ -232,7 +232,7 @@
         <var name="breakpoints">
             <var name="mobile">
                 <var name="conditions">
-                    <var name="max-width">769px</var>
+                    <var name="max-width">992px</var>
                 </var>
                 <var name="options">
                     <var name="options">
