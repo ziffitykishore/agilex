@@ -344,15 +344,22 @@
             .item {
                 a {
                     text-decoration: none;
+                    .lib-css(color, @color-black);
                 }
                 &:after {
                     .lib-css(color, @color-black);
                     font-size: 30px;
                     line-height: 20px;
                 }
+                a,
+                strong {
+                    .lib-font-size(@font-size__s);
+                    font-weight: @font-weight__regular;
+                }
 
                 strong {
                     .lib-css(color, @c-primary_color);
+
                 }
             }
         }
@@ -918,7 +925,7 @@
             .header-wrapper {
                 position: fixed;
                 width: 100%;
-                z-index: 9;
+                z-index: 101;
             }
 
             & ~ .breadcrumbs,
@@ -1199,13 +1206,39 @@
 
                 &.level0 {
                      > .submenu {
-                         margin-left: -70px !important;
+                         left: -70px !important;
+                         margin-top: 10px !important;
+                         &:after {
+                             width: 100%;
+                             height: 10px;
+                             content: '';
+                             top: -10px;
+                             left: 0;
+                             right: 0;
+                             margin: auto;
+                             background: transparent;
+                             position: absolute;
+                         }
+                         &:before {
+                             content: '';
+                             border-left: 10px solid transparent;
+                             border-right: 10px solid transparent;
+                             border-bottom: 10px solid @color-white;
+                             width: 5px;
+                             position: absolute;
+                             margin: auto;
+                             left: 0;
+                             right: 0;
+                             top: -10px;
+                             z-index: 1;
+                         }
                      }
                 }
 
                 > .submenu {
                     position: absolute;
-                    top: 94px !important;
+                    top: 100% !important;
+                    margin: 0 !important;
                     min-width: 275px;
                     left: 0% !important;
                     margin-top: 25px;
@@ -1226,18 +1259,7 @@
                         }
                     }
 
-                    &:before {
-                        content: '';
-                        border-left: 10px solid transparent;
-                        border-right: 10px solid transparent;
-                        border-bottom: 10px solid @color-white;
-                        width: 5px;
-                        position: absolute;
-                        margin: auto;
-                        left: 0;
-                        right: 0;
-                        top: -10px;
-                    }
+
 
                     > li {
                         & + li {
@@ -1298,18 +1320,23 @@
                 }
 
 
-                &:hover {
 
-                    .ui-state-focus,
-                    .ui-state-active {
-                       & + .submenu {
-                            opacity: 1;
-                            visibility: visible;
-                            -ms-transform: translateY(0);
-                            transform: translateY(0);
+                &.parent {
+                    &:hover {
+                        .ui-state-focus,
+                        .ui-state-active {
+                            & + .submenu {
+                                opacity: 1;
+                                visibility: visible;
+                                -ms-transform: translateY(0);
+                                transform: translateY(0);
+                            }
                         }
                     }
                 }
+
+
+
             }
         }
     }
@@ -1337,6 +1364,18 @@
                     .box-shadow(0px 0px 20px 5px rgba(0, 0, 0, 0.05));
                     transition: transform .2s linear,opacity .3s linear,visibility .3s linear;
                     border: none;
+
+                    &:after {
+                        width: 100%;
+                        height: 10px;
+                        content: '';
+                        top: -10px;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        background: transparent;
+                        position: absolute;
+                    }
 
                     &:before {
                         content: '';

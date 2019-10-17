@@ -22,7 +22,8 @@ $idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
 $schema = ($block->getZone() == 'item_view') ? true : false;
 ?>
 <?php if ($block->hasSpecialPrice()): ?>
-    <p class="price-head"><?= /* @escapeNotVerified */ __('each price :') ?>
+    <p class="price-head">
+        <span class="label"><?= /* @escapeNotVerified */ __('Each Price') ?></span>
         <span class="get-info each-value">
             <?php /* @escapeNotVerified */ echo $block->renderAmount($finalPriceModel->getAmount(), [
                 'price_id'          => $block->getPriceId('product-price-' . $idSuffix),
@@ -33,7 +34,8 @@ $schema = ($block->getZone() == 'item_view') ? true : false;
         </span>
     </p>
 <?php else: ?>
-    <p class="price-head"><?= /* @escapeNotVerified */ __('each price :') ?>
+    <p class="price-head">
+        <span class="label"><?= /* @escapeNotVerified */ __('Each Price') ?></span>
         <span class="get-info each-value">    
             <?php /* @escapeNotVerified */ echo $block->renderAmount($finalPriceModel->getAmount(), [
                 'price_id'          => $block->getPriceId('product-price-' . $idSuffix),

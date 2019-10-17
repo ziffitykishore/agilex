@@ -17,9 +17,9 @@ $urlForm = $block->getReviewsUrl() . '#review-form';
     <?php if ($rating):?>
     <div class="rating-summary">
          <span class="label"><span><?= $block->escapeHtml(__('Rating')) ?>:</span></span>
-         <div>
+         <span>
              <?= 5*($block->escapeHtmlAttr($rating)/100); ?>
-         </div>
+         </span>
      </div>
     <?php endif;?>
 </div>

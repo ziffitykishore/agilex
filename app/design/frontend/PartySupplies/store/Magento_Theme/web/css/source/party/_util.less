@@ -8,6 +8,31 @@
 
 & when (@media-common = true) {
 
+
+
+    .modal-popup {
+        .modal-header {
+            .action-close {
+                &:before {
+                    line-height: normal;
+                    font-size: 30px;
+                    color: @icon-color;
+                }
+            }
+        }
+        .modal-footer {
+            button {
+                &:focus {
+                    background: @color-black;
+                }
+
+                &:hover {
+                    background: @c-primary_color;
+                }
+            }
+        }
+    }
+
     .nav-tabs {
         display: none;
         border: none;
@@ -294,7 +319,7 @@
 
 
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk-md) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
     body {
         font-size: 1.4rem;
     }

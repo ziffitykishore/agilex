@@ -6,17 +6,17 @@ $viewModel = $block->getData('register_viewModel');
 
 <div class="pdp-product-price">
     <div class="sec-left">
-        <p class="price-head">
-            <?= __('case pack : ') ?>
+        <p class="price-head case-pack">
+            <span class="label"><?= __('Case Pack') ?></span>
             <span class="get-info case-value"><?= $viewModel->getMinQty($_product) ?></span>
         </p>
         <?php if($viewModel->getCustomerId() && $_product->getTypeId() == 'grouped'): ?>
-            <p class="price-head caps">
-                <?= __('msrp : ') ?>
+            <p class="price-head caps msrp">
+                <span class="label"><?= __('msrp') ?></span>
                 <span class="get-info msrp-value"><?= $viewModel->getMsrpPrice($_product); ?></span>
             </p>
-            <p class="price-head caps">
-                <?= __('each price : ') ?>
+            <p class="price-head caps each-price">
+                <span class="label"><?= __('Each Price') ?></span>
                 <span class="get-info each-value"><?= $viewModel->getEachPrice($_product); ?></span>
             </p>
         <?php else: ?>
@@ -25,20 +25,20 @@ $viewModel = $block->getData('register_viewModel');
     </div>
     <div class="sec-right">
         <?php if($viewModel->getCustomerId() && $_product->getTypeId() != 'grouped'): ?>
-            <p class="price-head colr">
-                <?= __('case price : ') ?>
+            <p class="price-head colr case-price">
+                <span class="label"><?= __('Case Price') ?></span>
                 <span id="case-price" data-role="case_price"><span class="get-info case-price"><?= $viewModel->getCasePrice($_product) ?></span></span>
             </p>
         <?php endif; ?>
-        <p class="price-head">
-            <?= __('sku : ') ?>
+        <p class="price-head sku">
+            <span class="label"><?= __('SKU') ?></span>
             <span class="get-info sku-value" data-role="sku"><?= $_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></span>
         </p>
-        <p class="price-head">
+        <p class="price-head item-no">
             <?php $itemNo = $_helper->productAttribute($_product, $_product->getItemNo(), 'item_no');
             if(isset($itemNo) && !empty($itemNo)):
             ?>
-            <?= __('item : ') ?>
+            <span class="label"><?= __('Item') ?></span>
             <span class="get-info item-value" data-role="item_no"><?= $itemNo ?></span>
             <?php endif; ?>
         </p>

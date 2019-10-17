@@ -335,7 +335,9 @@ button{
     &.primary,
     &.share,
     &.tocart,
-    &.viewcart {
+    &.viewcart,
+    &-primary,
+    &-dismiss {
         .btn();
         .lib-button-primary();
     }
@@ -364,6 +366,12 @@ button{
         padding: 0;
         border-left: 0;
         border-right: 0;
+        .lib-css(color, @c-lightgray);
+        font-weight: @font-weight__heavier;
+    }
+
+    .label {
+        font-weight: 600;
     }
 
     .increment-cart-item,

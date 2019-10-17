@@ -35,6 +35,8 @@ $priceElementIdPrefix = $block->getPriceElementIdPrefix() ? $block->getPriceElem
 ?>
 
 <?php if ($amount): ?>
-        <p class="price-head caps"><?= __('msrp : ') ?><span class="get-info msrp-value"><?= $msrpPrice ?></span></p>
+        <p class="price-head caps msrp">
+            <span class="label"><?= __('msrp') ?></span>
+            <span class="get-info msrp-value"><?= $msrpPrice ?></span></p>
         <?= $block->getRealPriceHtml() ?>
 <?php endif; ?>
