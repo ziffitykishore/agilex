@@ -334,7 +334,7 @@ define([
                 baseUrl = urlPaths[0],
                 urlParams = urlPaths[1] ? urlPaths[1].split('&') : [],
                 paramData = this.getParams(urlParams, paramName, paramValue, defaultValue);
-            if(paramName == 'product_list_order' ) {// paramName == 'product_list_mode' - adavancedsorting by ajax
+            if(paramName == 'product_list_order' || paramName == 'product_list_mode') {
                 location.href = baseUrl + (paramData.length ? '?' + paramData : '');
             } else {
                 this.makeAjaxCall(baseUrl, paramData);
