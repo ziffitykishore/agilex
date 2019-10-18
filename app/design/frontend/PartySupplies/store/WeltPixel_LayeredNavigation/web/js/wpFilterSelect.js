@@ -23,6 +23,25 @@ define([
                     }
                 }
             });
+
+            var responsiveflag = false;
+            responsiveResize();
+            $(window).resize(responsiveResize);
+
+            function responsiveResize() {
+
+                if (($(window).width()) <= 768 && responsiveflag == false)
+                {
+                    responsiveflag = true;
+                    $('.breadcrumbs-inner .toolbar').prependTo('#layer-product-list');
+                }
+                else if (($(window).width()) >= 769)
+                {
+                    responsiveflag = false;
+                    $('#layer-product-list .toolbar:first-child').appendTo('.breadcrumbs-inner');
+                }
+
+            }
         }
     }
 });

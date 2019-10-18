@@ -101,6 +101,7 @@
             top: 15px;
             right: 15px;
             margin: 0;
+            font-size: @font-size__s;
             span{
                 color: @c-hover_color;
                 &::after{
@@ -113,20 +114,13 @@
                     background: @c-hover_color;
                     padding: 2px 4px;
                     margin-left: 3px;
+                    margin-top: -1px;
                     border-radius: 2px;
-                    vertical-align: text-bottom;
+                    vertical-align: middle;
                 }
             }
             a{
                 text-transform: capitalize;
-                &:hover{
-                    span{
-                        color: @c-primary_color;
-                        &::after{
-                            background: @c-primary_color;
-                        }
-                    }
-                }
             }
         }
     }
@@ -179,6 +173,7 @@
                 a{
                     text-transform: capitalize;
                     .lib-css(color, @c-text_color);
+                    font-size: @font-size__s;
                     &:before{
                         width: 15px;
                         height: 15px;

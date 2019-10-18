@@ -51,7 +51,7 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
                     </p>
                     <p class="review-date">
                         <span class="review-details-label"><?= $block->escapeHtml(__('/ (Posted on')) ?></span>
-                        <time class="review-details-value" itemprop="datePublished" datetime="<?= $block->escapeHtmlAttr($block->formatDate($_review->getCreatedAt(), $format)) ?>"><?= $block->escapeHtml($block->formatDate($_review->getCreatedAt(), $format)) ?></time>
+                        <time class="review-details-value" itemprop="datePublished" datetime="<?= $block->escapeHtmlAttr($block->formatDate($_review->getCreatedAt(), $format)) ?>"><?= $block->escapeHtml($block->formatDate($_review->getCreatedAt(), $format)) ?>)</time>
                     </p>
                 </div>
                 </div>

@@ -278,7 +278,7 @@
         .br-radius(3px);
         border: 1px solid @c-graylight;
         height: 44px;
-        font-size: @font-size__base;
+        font-size: @font-size__s;
         -webkit-transition : .5s ease;
         transition: .5s ease;
         font-family: @font-family-name__base;
@@ -312,6 +312,7 @@
         .lib-form-element-input(@_type: textarea);
         .lib-form-element-textarea-resize();
          border: 1px solid @c-graylight;
+        .lib-font-size(@font-size__s) !important;
     }
 
     input[type="checkbox"] {

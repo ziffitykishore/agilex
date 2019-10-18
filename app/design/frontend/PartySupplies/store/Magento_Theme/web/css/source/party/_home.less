@@ -206,6 +206,7 @@
         .heading{
             text-align: center;
             margin-bottom: 40px;
+            font-weight: @font-weight__heavier;
             span {
                 font-weight: 600;
             }
@@ -235,13 +236,14 @@
                 img{
                     display: block;
                     margin: auto;
+                    width: auto;
                 }
                 h4{
                     text-align: center;
                     text-transform: uppercase;
                     color: @c-sec_color;
                     margin: 25px 0 20px 0;
-                    font-weight: 400;
+                    font-weight: @font-weight__heavier;
                     font-size: 100%;
 
                     span {
@@ -264,6 +266,7 @@
         margin-bottom: 45px;
         padding: 0 45px;
         .heading {
+            font-weight: @font-weight__heavier;
             span {
                 font-weight: 600;
             }
@@ -307,6 +310,7 @@
             .heading{
                 margin-bottom: 20px;
                 margin-top: 0;
+                font-weight: @font-weight__heavier;
             }
             .hover-arrow img{
                 -webkit-transition: all .5s ease;
@@ -315,11 +319,16 @@
                 vertical-align: text-top;
                 transform: translateX(-50px);
             }
+            p{
+                line-height: 30px;
+            }
             .read{
                 font-weight: 600;
                 display: inline-block;
                 position: relative;
                 padding-right: 40px;
+                text-transform: none;
+                font-size: @font-size__s;
                 &:before {
                     position: absolute;
                     right: 15px;
@@ -484,6 +493,7 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
     .sec-about {
         margin-bottom: 0;
+        margin-top: 0;
         .abt-row {
             .abt-cont {
                 padding-bottom: 0;
@@ -534,6 +544,9 @@
         }
     }
     .sec-why{
+        .heading {
+            margin: 30px 0 20px;
+        }
         .why-row.slick-slider {
             .slick-prev{
                 position: absolute;
@@ -549,7 +562,7 @@
             }
             .slick-track {
                 .why-parts{
-                    padding-bottom: 0;
+                    padding: 15px 10px 0;
                     img{
                         max-width: 100%;
                         width: auto;

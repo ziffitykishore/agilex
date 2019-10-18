@@ -65,13 +65,13 @@
 
 
     .product {
-
         &s-grid {
             .product-items {
                 .flex();
                 margin-left: -20px;
                 margin-right: -20px;
                 margin-top: -20px;
+                margin-bottom: 0;
 
                 .product-image-container {
                     padding: 0 0 15px;
@@ -156,6 +156,7 @@
 
                 .call-price {
                     display: none;
+
                 }
 
                 .action {
@@ -166,9 +167,6 @@
                 }
             }
         }
-
-
-
     }
 }
 
@@ -225,6 +223,24 @@
                         }
                     }
                 }
+
+                &s ~ .products {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: @c-desk) {
+    .wishlist-index-index,
+    .page-products {
+        &.page-layout-2columns-left {
+            .product {
+                &s ~ .products {
+                    margin-top: 20px;
+                }
             }
         }
     }
@@ -244,11 +260,13 @@
                     &-items {
                         margin-left: 0;
                         margin-right: 0;
+
                     }
                     &s-grid {
                         .product-items {
                             margin-left: 0;
                             margin-right: 0;
+                            margin-top: 0;
                             .product-item {
                                 padding: 0;
                                 margin-left: -1px;
@@ -278,12 +296,27 @@
                 .product-item {
                     .product-item-name {
                         min-height: auto;
-
                     }
                 }
             }
         }
     }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.wishlist-index-index,
+.page-with-filter {
+    &.page-products {
+        .products-grid {
+            .product-item {
+                .product-item-name {
+                    font-size: 1rem;
+                }
+                font-size: 1rem;
+            }
+        }
+    }
+}
 }
 
 
@@ -324,11 +357,6 @@
             .products.wrapper {
                 margin-bottom: 0;
                 margin-top: 0;
-
-
-                & ~ .products.wrapper {
-                    margin-top: 0; 
-                }
             }
             .products-grid {
                 /*.product-item {

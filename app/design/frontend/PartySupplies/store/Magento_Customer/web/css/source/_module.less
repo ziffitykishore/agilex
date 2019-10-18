@@ -1051,7 +1051,7 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
     .company-account-create,
     .customer-account-confirmation,
     .customer-account-createpassword,
@@ -1063,6 +1063,19 @@
                 .flex();
                 align-items: center;
                 justify-content: center;
+            }
+        }
+
+
+        &.ie {
+            .page-main {
+                .column.main {
+                    display: table;
+                    .inner-container {
+                        display: table-cell;
+                        vertical-align: middle;
+                    }
+                }
             }
         }
     }
@@ -1105,6 +1118,7 @@
 
         .block-customer-login{
             padding-right: 40px;
+            width: percentage(1/2);
             &::after{
                 height: 100%;
                 border-right: 1px solid #e2e2e2;
@@ -1117,6 +1131,7 @@
 
         .block-new-customer{
             padding-left: 40px;
+            width: percentage(1/2);
             p{
                 margin: 10px 0;
             }

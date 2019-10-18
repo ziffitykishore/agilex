@@ -90,8 +90,7 @@
         .sorter {
             padding: 0 15px;
             &-label {
-                font-weight: bold;
-                text-transform: uppercase;
+                font-weight: 600;
                 font-size: 14px;
             }
 
@@ -148,20 +147,22 @@
         z-index: 9;
 
         &-sorter.sorter {
-            padding: 0;
+            padding: 0 !important;
             border: none;
         }
 
         .sorter {
             background: transparent;
             &-label {
-                padding: 0 10px;
+                font-weight: normal;
+                text-transform: none;
                 &:before {
                     content: @icon-sort;
                     font-family: @icons__font-name_ps;
                     font-size: 20px;
                     vertical-align: middle;
                     margin-right: 5px;
+                    font-weight: 300;
                 }
 
                 &:after {
@@ -253,6 +254,7 @@
                         float: right;
                         font-size: 16px;
                         display: inline-block;
+                        color: @icon-color;
                     }
                 }
 
@@ -315,6 +317,12 @@
         margin-bottom: 0;
         #layer-product-list &{
             display: none;
+        }
+
+        .sorter {
+            &-label {
+                text-transform: uppercase;
+            }
         }
 
         & + .ias-trigger,
