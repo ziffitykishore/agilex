@@ -2,10 +2,25 @@
 
 namespace PartySupplies\ConfigurableProduct\Plugin;
 
+use Magento\Catalog\Model\ProductRepository;
 use Magento\Framework\Phrase;
 
 class Attributes
 {
+
+    /**
+     * @var ProductRepository
+     */
+    protected $productRepository;
+
+    /**
+     * @param ProductRepository $productRepository
+     */
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     /**
      * To set default value for custom attributes.
      *
@@ -19,6 +34,14 @@ class Attributes
     ) {
         if (empty($result)) {
             $product = $subject->getProduct();
+            $parentProduct = $this->productRepository->get($product->getSku());
+            $firstChildProduct = $parentProduct->getTypeInstance()
+                ->getUsedProductCollection($parentProduct)
+                ->addAttributeToSort('price', 'ASC')
+                ->addAttributeToSort('entity_id', 'ASC')
+                ->getFirstItem();
+
+            $firstChildProduct = $this->productRepository->get($firstChildProduct->getSku());
 
             if($product->getTypeId() === \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
                 $attributes = $product->getAttributes();
@@ -41,7 +64,7 @@ class Attributes
                         } else {
                             $data[$attribute->getAttributeCode()] = [
                                 'label' => __($attribute->getStoreLabel()),
-                                'value' => __('notAvailable'),
+                                'value' => $this->getAttributeValue($firstChildProduct, $attribute->getName()),
                                 'code' => $attribute->getAttributeCode(),
                             ];
                         }
@@ -52,7 +75,21 @@ class Attributes
         }
         return $result;
     }
- 
+
+    /**
+     * To get custom attribute value
+     *
+     * @param ProductRepository $product
+     * @param string $attributeName
+     * @return string
+     */
+    protected function getAttributeValue($product, $attributeName)
+    {
+        if ($product->getCustomAttribute($attributeName)) {
+            return $product->getCustomAttribute($attributeName)->getValue();
+        }
+    }
+
     /**
      * To check whether visible on front-end property is enabled or not.
      *
