@@ -59,6 +59,7 @@ define([
 
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 // In this case we don't want to update the prices
+                console.log("Request failed: " + textStatus + ' : ' + errorThrown);
             });
         },
         getPrices: function(sku){

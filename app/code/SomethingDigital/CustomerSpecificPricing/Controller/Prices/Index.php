@@ -13,25 +13,11 @@ use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 class Index extends Action
 {
-    /**
-     * @var SpotPricingApi
-     */
     private $spotPricingApi;
-
-    /**
-     * @var ArrayManager
-     */
     private $arrayManager;
-
-    /** @var \Psr\Log\LoggerInterface */
-    protected $logger;
-
-    protected $productRepository;
-
-    /**
-     * @var Currency
-     */
     private $currency;
+    protected $logger;
+    protected $productRepository;
 
     public function __construct(
         Context $context,

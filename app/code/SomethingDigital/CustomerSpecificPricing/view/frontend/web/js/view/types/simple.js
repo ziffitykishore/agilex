@@ -1,7 +1,6 @@
 define([
-    'jquery',
-    'mage/translate'
-], function ($,$t) {
+    'jquery'
+], function ($) {
     return function (data, currencySymbol) {
         var sku = $('[itemprop=sku]').text();
         var price = data[sku]['price'];
