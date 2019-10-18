@@ -41,9 +41,6 @@ class GetPrice extends \Magento\Framework\App\Action\Action
         if (empty($params['sku'])) {
             $errors['sku'] = 'Sku is empty';
         }
-        if (empty($params['customerId'])) {
-            $errors['customerId'] = 'CustomerId is empty';
-        }
     	return $errors;
     }
 
@@ -68,7 +65,7 @@ class GetPrice extends \Magento\Framework\App\Action\Action
             "UnitConversion" => 1,
             "UnitsPerStocking" => 1,
             "UnitsPerStockingText" => "",
-            "QtyPrice1" => 19.9,
+            "QtyPrice1" => 19.9456,
             "QtyPrice2" => "",
             "QtyPrice3" => "",
             "QtyBreak1" => 12,
