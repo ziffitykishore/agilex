@@ -11,7 +11,6 @@
 <?php if ($detailedInfoGroup = $block->getGroupSortedChildNames('detailed_info', 'getChildHtml')):?>
     <div class="product info detailed">
         <?php $layout = $block->getLayout(); ?>
-        <div>
             <?php foreach ($detailedInfoGroup as $name):?>
                 <?php
                     $html = $layout->renderElement($name);
@@ -25,6 +24,5 @@
                     <?= /* @escapeNotVerified */ $html ?>
                 </div>
             <?php endforeach;?>
-        </div>
     </div>
 <?php endif; ?>

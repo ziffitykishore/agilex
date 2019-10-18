@@ -18,7 +18,9 @@ define([
     return Component.extend({
         defaults: {
             cookieMessages: [],
-            messages: []
+            messages: [],
+            isHidden: false,
+            selector: '.page.messages .messages'
         },
 
         /**
@@ -38,9 +40,21 @@ define([
             }
 
             $.cookieStorage.set('mage-messages', '');
-            setTimeout(function() {
-                $(".messages").hide();
-            }, 10000);
+        },
+
+        removeAll: function () {
+            $(self.selector).hide();
+        },
+
+        onHiddenChange: function (isHidden) {
+            var self = this;
+
+            // Hide message block if needed
+            if (isHidden) {
+                setTimeout(function () {
+                    $(self.selector).hide();
+                }, 5000);
+            }
         }
     });
 });

@@ -234,9 +234,11 @@
 
 .slick-slider {
     .slick-track {
-        .flex();
-        .slick-slide {
-            height: auto;
+        @media screen and (max-width: 767px) {
+            .flex();
+            .slick-slide {
+                height: auto;
+            }
         }
     }
 }
@@ -301,7 +303,9 @@
     }
 }
 
-
+p {
+    line-height: 28px;
+}
 
 //
 //  Desktop
