@@ -1,0 +1,22 @@
+<table class="prices-tier items">
+	<tbody data-bind="foreach: getTierPrices()">
+		<tr>
+			<th>Quantity</th>
+			<th data-bind="text: QtyBreak1"></th>
+			<th data-bind="text: QtyBreak2"></th>
+			<th data-bind="text: QtyBreak3"></th>
+		</tr>
+		<tr>
+			<td class="item row-index">Price (ea.):</td>
+			<td class="item" data-bind="text: QtyPrice1"></td>
+			<td class="item" data-bind="text: QtyPrice2"></td>
+			<td class="item" data-bind="text: QtyPrice3"></td>
+		</tr>
+		<tr>
+			<td class="item row-index">You Save:</td>
+			<td class="item" data-bind="text: saveBreak1"></td>
+			<td class="item" data-bind="text: saveBreak2"></td>
+			<td class="item" data-bind="text: saveBreak3"></td>
+		</tr>
+	</tbody>
+</table>
