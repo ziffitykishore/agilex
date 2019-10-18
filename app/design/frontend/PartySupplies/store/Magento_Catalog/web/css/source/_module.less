@@ -671,10 +671,6 @@
                 display: none !important;
             }
 
-            .fotorama__nav__shaft {
-                top: 90px;
-            }
-
             .fotorama__nav__frame {
                 //border: 2px solid @c-lavander !important;
             }
@@ -685,6 +681,15 @@
             .stock.available{
                 span{
                     color: @c-success;
+                }
+            }
+
+            .call-price {
+                a {
+                    .lib-css(color, @color-black);
+                    &:hover {
+                        .lib-css(color, @c-primary_color);
+                    }
                 }
             }
         }
@@ -774,6 +779,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    .lib-font-size(@font-size__s);
                 }
             }
         }
@@ -802,6 +808,8 @@
                         display: inline-block;
                         vertical-align: middle;
                         margin-right: 10px;
+                        font-weight: @font-weight__regular;
+                        font-size: 2rem;
                     }
                 }
 
@@ -844,10 +852,6 @@
                 .product-items {
                     display: block;
                     margin: 0;
-
-                    .product-item {
-                        padding: 0;
-                    }
                 }
                 .field {
                     &.related {
@@ -899,6 +903,13 @@
                     text-transform: uppercase;
                     text-align: center;
                 }
+            }
+        }
+
+
+        #product-review-container {
+            & + .block.review-add {
+                margin-top: 30px;
             }
         }
 
@@ -1260,6 +1271,16 @@
 //  Category page layout
 //  ---------------------------------------------
 
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+    .page-layout-1column {
+        .product-info-main {
+            width: 45%;//
+        }
+
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
     .product-info-main {
         float: right;
@@ -1272,7 +1293,7 @@
 
     .page-layout-1column {
         .product-info-main {
-            width: 45%;//
+            width: 48%;//
         }
         .product.media {
             width: 50%;//
