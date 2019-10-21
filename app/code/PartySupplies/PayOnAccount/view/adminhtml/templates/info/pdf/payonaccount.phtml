@@ -1,0 +1,11 @@
+<?php
+
+/**
+ * @var $block \PartySupplies\PayOnAccount\Block\Info\Payonaccount
+ */
+?>
+<?= $block->escapeHtml($block->getMethod()->getTitle()) ?>
+    {{pdf_row_separator}}
+<?php if ($block->getInfo()->getAdditionalInformation()) : ?>
+    {{pdf_row_separator}}
+<?php endif; ?>

@@ -1,0 +1,13 @@
+<?php
+/**
+ * @var $block \PartySupplies\PayOnAccount\Block\Form\Payonaccount
+ */
+?>
+<?php if ($block->getMethod()->getTitle()) : ?>
+    <dl class="items check payable" id="payment_form_<?= $block->escapeHtml($block->getMethodCode()) ?>" style="display:none;">
+        <?php if ($block->getMethod()->getTitle()) : ?>
+            <dt class="title"><?= $block->escapeHtml(__('Selected Payment Method:')) ?></dt>
+            <dd class="content"><?= $block->escapeHtml($block->getMethod()->getTitle()) ?></dd>
+        <?php endif; ?>
+    </dl>
+<?php endif; ?>

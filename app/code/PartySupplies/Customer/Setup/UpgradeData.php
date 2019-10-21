@@ -89,5 +89,44 @@ class UpgradeData implements UpgradeDataInterface
 
             $navCustomerId->save();
         }
+
+        if (version_compare($context->getVersion(), '1.0.2', '<')) {
+
+            $customerSetup = $this->customerSetupFactory->create(['setup' => $setup]);
+            $customerEntity = $customerSetup
+                ->getEavConfig()
+                ->getEntityType(Customer::ENTITY);
+            $attributeSetId = $customerEntity->getDefaultAttributeSetId();
+            $attributeSet = $this->attributeSetFactory->create();
+            $attributeGroupId = $attributeSet->getDefaultGroupId($attributeSetId);
+
+            $customerSetup->addAttribute(Customer::ENTITY, 'pay_on_account_approval', [
+                'type' => 'int',
+                'label' => 'Approve Pay On Account',
+                'input' => 'boolean',
+                'required' => false,
+                'default' => false,
+                'visible' => true,
+                'user_defined' => true,
+                'system' => 0,
+                'is_used_in_grid' => 1,
+                'is_visible_in_grid' => 1,
+                'is_filterable_in_grid' => 1,
+                'is_searchable_in_grid' => 1
+            ]);
+
+            $data = [
+                'attribute_set_id' => $attributeSetId,
+                'attribute_group_id' => $attributeGroupId,
+                'used_in_forms' => ['adminhtml_customer', 'customer_account_edit']
+            ];
+
+            $payOnAccount = $customerSetup->getEavConfig()->getAttribute(
+                Customer::ENTITY,
+                'pay_on_account_approval'
+            )->addData($data);
+
+            $payOnAccount->save();
+        }
     }
 }

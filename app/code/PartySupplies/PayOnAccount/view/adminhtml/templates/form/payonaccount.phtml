@@ -1,0 +1,10 @@
+<?php
+/**
+ * @var $block \PartySupplies\PayOnAccount\Block\Form\Payonaccount
+ */
+?>
+<fieldset class="admin__fieldset payment-method" id="payment_form_<?= $block->escapeHtml($block->getMethodCode()) ?>" style="display:none">
+    <?php if ($block->getMethodCode()) : ?>
+        <label class="label"><span><?= $block->escapeHtml(__('Selected Payment Method:')) ?></span></label> <?= $block->escapeHtml($block->getMethod()->getTitle()) ?>
+    <?php endif; ?>
+</fieldset>
