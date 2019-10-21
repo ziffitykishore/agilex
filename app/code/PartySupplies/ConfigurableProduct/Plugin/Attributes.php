@@ -35,15 +35,16 @@ class Attributes
         if (empty($result)) {
             $product = $subject->getProduct();
             $parentProduct = $this->productRepository->get($product->getSku());
-            $firstChildProduct = $parentProduct->getTypeInstance()
+            
+            if ($product->getTypeId() === \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+                $firstChildProduct = $parentProduct->getTypeInstance()
                 ->getUsedProductCollection($parentProduct)
                 ->addAttributeToSort('price', 'ASC')
                 ->addAttributeToSort('entity_id', 'ASC')
                 ->getFirstItem();
 
-            $firstChildProduct = $this->productRepository->get($firstChildProduct->getSku());
-
-            if($product->getTypeId() === \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE) {
+                $firstChildProduct = $this->productRepository->get($firstChildProduct->getSku());
+            
                 $attributes = $product->getAttributes();
                 foreach ($attributes as $attribute) {
                     if ($this->isVisibleOnFrontend($attribute, [])) {
