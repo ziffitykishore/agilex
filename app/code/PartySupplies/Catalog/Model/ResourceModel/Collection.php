@@ -215,14 +215,6 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
 
         return $this;
     }
-
-    /**
-     * @return int|void
-     */
-    public function getSize()
-    {
-        return sizeof($this->getAllIds());
-    }
     
     /**
      * @return \Magento\Search\Api\SearchInterface|mixed
