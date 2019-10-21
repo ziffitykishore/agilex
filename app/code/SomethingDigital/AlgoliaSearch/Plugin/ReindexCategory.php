@@ -19,6 +19,8 @@ class ReindexCategory
     /** @var LinkManagement */
     private $linkManagement;
 
+    private $productModel;
+
     /**
      * @param IndexerRegistry $indexerRegistry
      * @param ConfigHelper $configHelper
@@ -26,17 +28,22 @@ class ReindexCategory
     public function __construct(
         IndexerRegistry $indexerRegistry,
         ConfigHelper $configHelper,
-        CategoryLinkManagementInterface $linkManagement = null
+        CategoryLinkManagementInterface $linkManagement = null,
+        ProductModel $productModel
     ) {
         $this->indexer = $indexerRegistry->get('algolia_categories');
         $this->configHelper = $configHelper;
         $this->linkManagement = $linkManagement ?: \Magento\Framework\App\ObjectManager::getInstance()
             ->get(CategoryLinkManagementInterface::class);
+        $this->productModel = $productModel;
     }
 
     public function beforeSave(ProductResource $productResource, ProductModel $product)
     {
-        $productResource->addCommitCallback(function () use ($product) {
+        $productBeforeSave = $this->productModel->load($product->getId());
+        $categoriesToReindex = array_merge($productBeforeSave->getCategoryIds(), $product->getCategoryIds());
+
+        $productResource->addCommitCallback(function () use ($product, $categoriesToReindex) {
             if (!$this->indexer->isScheduled() || $this->configHelper->isQueueActive()) {
 
                 $this->linkManagement->assignProductToCategories(
@@ -44,7 +51,7 @@ class ReindexCategory
                     $product->getCategoryIds()
                 );
 
-                $this->indexer->reindexAll();
+                $this->indexer->reindexList($categoriesToReindex);
             }
         });
 
