@@ -3,4 +3,6 @@
     <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
         <plugin name="price-sorting-plugin" type="PartySupplies\Catalog\Plugin\Product\Collection"/>
     </type>
+
+    <preference for="WeltPixel\LayeredNavigation\Model\ResourceModel\Fulltext\Collection" type="PartySupplies\Catalog\Model\ResourceModel\Collection"/>
 </config>
