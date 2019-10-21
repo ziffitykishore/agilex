@@ -36,7 +36,6 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
                            aria-haspopup="false"
                            aria-autocomplete="both"
                            autocomplete="off"
-                           onblur="if(this.value == '') { this.value='<?= /* @escapeNotVerified */ __('Search') ?>'}" onfocus="if (this.value == '<?= /* @escapeNotVerified */ __('Search') ?>') {this.value=''}"
                     />
                     <div id="search_autocomplete" class="search-autocomplete"></div>
                     <?= $block->getChildHtml() ?>

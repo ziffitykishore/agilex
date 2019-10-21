@@ -9,7 +9,7 @@
 /** @var \Magento\Review\Block\Form $block */
 ?>
 <div class="block review-add">
-    <div><button id="btnWriteReview" class="writeReview"><?= $block->escapeHtml(__('Write Your Own Review')) ?></button></div>
+    <div class="action-toolbar"><button id="btnWriteReview" class="writeReview action primary"><?= $block->escapeHtml(__('Be the first to review this product')) ?></button></div>
     <div class="block-content block-writeReview" style="display:none">
 <?php if ($block->getAllowWriteReviewFlag()): ?>
 <form action="<?= $block->escapeUrl($block->getAction()) ?>" class="review-form" method="post" id="review-form" data-role="product-review-form" data-bind="scope: 'review-form'">
@@ -75,9 +75,9 @@
     </fieldset>
     <div class="actions-toolbar review-form-actions">
         <div class="primary actions-primary">
-            <button type="submit" class="action submit primary"><span><?= $block->escapeHtml(__('Submit Review')) ?></span></button>
+            <button type="submit" class="action submit primary"><span><?= $block->escapeHtml(__('Submit')) ?></span></button>
         </div>
-        <button type=button id="btnCancelWriteReview" class="writeReview"><span><?= $block->escapeHtml(__('Cancel')) ?></span></button>
+        <button type=button id="btnCancelWriteReview" class="writeReview action action-dismiss"><span><?= $block->escapeHtml(__('Cancel')) ?></span></button>
     </div>
 </form>
 <script type="text/x-magento-init">

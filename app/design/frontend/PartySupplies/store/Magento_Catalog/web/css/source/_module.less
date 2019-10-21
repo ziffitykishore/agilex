@@ -852,6 +852,11 @@
                 .product-items {
                     display: block;
                     margin: 0;
+
+                    .slick-track {
+                        margin-left: 0;
+                        margin-right: 0;
+                    }
                 }
                 .field {
                     &.related {
@@ -919,6 +924,10 @@
             width: 100%;
             margin: auto;
             padding: 0 2rem;
+
+            .action-toolbar {
+                text-align: center;
+            }
         }
 
 
@@ -1055,6 +1064,22 @@
             }
 
         }
+
+        .block.related {
+            .products-grid {
+                .product-items {
+                    margin-left: -20px;
+                    margin-right: -20px;
+                    .product-item {
+                        padding: 15px 0;
+                    }
+                }
+                .action.select {
+                    display: block;
+                    margin: @indent__xs 0;
+                }
+            }
+        }
     }
 
     .product-info-main .box-tocart {
@@ -1065,12 +1090,7 @@
         }
     }
 
-    .block.related {
-        .action.select {
-            display: block;
-            margin: @indent__xs 0;
-        }
-    }
+
 
     .compare,
     .product-addto-links .action.tocompare,

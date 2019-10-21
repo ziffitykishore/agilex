@@ -12,15 +12,23 @@ require(["jquery","jquery/jquery-migrate","slick"],function($) {
                     }
                 },
                 {
-                    breakpoint: 600,
+                    breakpoint: 769,
                     settings: {
-                        slidesToShow: 2
+                        slidesToShow: 2,
+                        dots: false,
+                        arrows: false,
+                        autoplay:true,
+                        centerMode: true
                     }
                 },
                 {
                     breakpoint: 480,
                     settings: {
-                        slidesToShow: 1
+                        slidesToShow: 1,
+                        dots: false,
+                        arrows: false,
+                        autoplay:true,
+                        centerMode: true
                     }
                 }]
         });

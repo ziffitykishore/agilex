@@ -87,6 +87,7 @@
 
                 .price-head {
                     margin-bottom: 0;
+                    font-weight: 500;
                     & + .price-head {
                         margin-bottom: 0;
                     }
@@ -150,7 +151,7 @@
                 width: 100%;
 
                 &:hover {
-                    .box-shadow(0 0 8px 8px rgba(0,0,0,0.02));
+                    .box-shadow(0 0 8px 8px rgba(0,0,0,0.08));
                     border-color: @color-white;
                 }
 
@@ -263,9 +264,10 @@
 
                     }
                     &s-grid {
+                        margin: 0 !important;
                         .product-items {
-                            margin-left: 0;
-                            margin-right: 0;
+                            margin-left: -20px;
+                            margin-right: -20px;
                             margin-top: 0;
                             .product-item {
                                 padding: 0;

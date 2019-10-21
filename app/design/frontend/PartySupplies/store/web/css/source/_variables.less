@@ -192,6 +192,11 @@
     width: 98%;
     padding-right: 20px;
     padding-left: 20px;
+
+    @media screen and (max-width: 768px) {
+        width: 100%;
+    }
+
 }
 
 .container-md {
@@ -368,6 +373,21 @@ button{
         border-right: 0;
         .lib-css(color, @c-lightgray);
         font-weight: @font-weight__heavier;
+        border-color: @c-lightgray;
+
+        &.mage-error{
+            border-color: @c-lightgray;
+            + .mage-error {
+                position: absolute;
+                left: 0;
+                bottom: -20px;
+                min-width: 500px;
+                &:before {
+                    display: none;
+                }
+
+            }
+        }
     }
 
     .label {
@@ -384,7 +404,7 @@ button{
         height: 40px;
         padding: 0;
         color: @c-text_sec_color;
-        border: 1px solid  @c-graylight;
+        border: 1px solid  @c-lightgray;
         font-size: 20px;
         position: relative;
         span {
@@ -403,7 +423,7 @@ button{
             width: 100%;
 
             &:before {
-                background: @c-graylight;
+                background: @c-lightgray;
                 width: 15px;
                 height: 1px;
                 content: '';
@@ -428,7 +448,7 @@ button{
 
             &:after,
             &:before {
-                background: @c-graylight;
+                background: @c-lightgray;
                 content: '';
                 position: absolute;
                 display: block;
