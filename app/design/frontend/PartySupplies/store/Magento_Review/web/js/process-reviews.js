@@ -43,17 +43,8 @@ define([
         processReviews(config.productReviewUrl);
 
         $(function () {
-            $('.product-info-main .reviews-actions a').click(function (event) {
-                var anchor;
-                var header = $('.header-wrapper');
-                var headerHeight = header.height() + 20;
-
-                event.preventDefault();
-                anchor = $(this).attr('href').replace(/^.*?(#|$)/, '');
-                $('html, body').animate({
-                    scrollTop: $('#' + anchor).offset().top - headerHeight
-                }, 300);
-
+            $('.product-info-main .reviews-actions').click(function (event) {
+                $('#btnWriteReview').click();
             });
         });
     };

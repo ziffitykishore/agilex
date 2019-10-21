@@ -58,9 +58,43 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
             </li>
         <?php endforeach; ?>
         </ol>
+        <button class="load-more-review action primary">Load More</button>
         <div class="toolbar review-toolbar">
             <?= $block->getChildHtml('toolbar') ?>
         </div>
     </div>
 </div>
 <?php endif;?>
+
+<script>
+        require(['jquery'],function($){
+            $(document).on('click','.load-more-review',function(){
+               self = $(this);
+               self.addClass('disabled');
+
+               $.ajax({
+                    url: $('.review-toolbar .action.next').attr('href'),
+                    cache: true,
+                    dataType: 'html',
+                    showLoader: false,
+                    loaderContext: $('.product.data.items')
+               }).done(function (data) {
+                    if($('.review-items').length) {
+                        $('.review-items').append($(data).find('ol.review-items').html());
+                    } else {
+                        $('#product-review-container').html(data);
+                    }
+
+                    nextUrl = $(data).find('.review-toolbar .action.next').attr('href');
+                    if(nextUrl !== undefined) {
+                       $('.review-toolbar .action.next').attr('href',nextUrl);
+                    } else {
+                       self.hide();
+                    }
+
+               }).complete(function() {
+                   self.removeClass('disabled');
+               });
+        });
+    });
+</script>
