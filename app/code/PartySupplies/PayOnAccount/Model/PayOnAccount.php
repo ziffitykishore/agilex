@@ -8,7 +8,7 @@ use Creatuity\Nav\Model\Provider\Nav\CustomerApproval;
  *
  * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
-class Payonaccount extends \Magento\Payment\Model\Method\AbstractMethod
+class PayOnAccount extends \Magento\Payment\Model\Method\AbstractMethod
 {
 
     /**
@@ -24,12 +24,12 @@ class Payonaccount extends \Magento\Payment\Model\Method\AbstractMethod
     /**
      * @var string
      */
-    protected $_formBlockType = \PartySupplies\PayOnAccount\Block\Form\Payonaccount::class;
+    protected $_formBlockType = \PartySupplies\PayOnAccount\Block\Form\PayOnAccount::class;
 
     /**
      * @var string
      */
-    protected $_infoBlockType = \PartySupplies\PayOnAccount\Block\Info\Payonaccount::class;
+    protected $_infoBlockType = \PartySupplies\PayOnAccount\Block\Info\PayOnAccount::class;
     
     /**
      * @var boolean

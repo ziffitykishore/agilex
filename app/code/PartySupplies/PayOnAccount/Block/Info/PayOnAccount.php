@@ -6,7 +6,7 @@ namespace PartySupplies\PayOnAccount\Block\Info;
  *
  * @SuppressWarnings(PHPMD.CamelCasePropertyName)
  */
-class Payonaccount extends \Magento\Payment\Block\Info
+class PayOnAccount extends \Magento\Payment\Block\Info
 {
     /**
      * @var string

@@ -10,7 +10,7 @@
         <payment>
             <payonaccount>
                 <active>1</active>
-                <model>PartySupplies\PayOnAccount\Model\Payonaccount</model>
+                <model>PartySupplies\PayOnAccount\Model\PayOnAccount</model>
                 <order_status>pending</order_status>
                 <title>Pay On Account</title>
                 <allowspecific>0</allowspecific>
