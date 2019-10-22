@@ -36,7 +36,7 @@ define([
                 return false;
             }
 
-            return stepNavigator.isProcessed('shipping');
+            return true;
         }
     });
 });
