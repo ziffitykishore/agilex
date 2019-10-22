@@ -10,4 +10,7 @@
     <type name="Magento\Catalog\Model\ResourceModel\Product">
         <plugin name="algoliaProducts" type="SomethingDigital\AlgoliaSearch\Plugin\ReindexCategory"/>
     </type>
+    <type name="Algolia\AlgoliaSearch\Helper\Entity\ProductHelper">
+        <plugin name="SomethingDigital_AppendAttr" type="SomethingDigital\AlgoliaSearch\Plugin\AppendAdditionalAttributes" />
+    </type>
 </config>
