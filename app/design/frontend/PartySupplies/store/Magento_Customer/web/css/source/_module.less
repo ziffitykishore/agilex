@@ -244,6 +244,7 @@
             a {
                 text-decoration: none;
                 .lib-css(color, @color-black);
+                .lib-font-size(@font-size__s);
                 &:hover {
                     .lib-css(background, @account-nav-item-hover);
                     .lib-css(border-color, @c-primary_color);
@@ -739,7 +740,7 @@
 
     .account {
         .column.main {
-
+            .lib-font-size(@font-size__s);
             .fieldset {
                 .legend{
                     margin-left: 0;
@@ -749,6 +750,8 @@
             .actions-toolbar {
                 margin-left: 0;
             }
+
+
 
 
             .block {

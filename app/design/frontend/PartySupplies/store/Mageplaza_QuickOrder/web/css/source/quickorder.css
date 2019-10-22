@@ -500,7 +500,7 @@ p.short-des {
 
 /*button matterial design*/
 
-.quickod-wrapper button {
+/* .quickod-wrapper button {
     position: relative;
     display: inline-block;
     box-sizing: border-box;
@@ -593,7 +593,7 @@ p.short-des {
 
 .quickod-wrapper button:disabled::after {
     opacity: 0;
-}
+}*/
 
 #upcsvfile {
     margin-bottom: 10px;
@@ -601,16 +601,16 @@ p.short-des {
 
 /*button matterial design*/
 
-#instantsearch-area input {
+/*#instantsearch-area input {
     text-align: center;
-}
+}*/
 
 .logo {
     cursor: pointer;
 }
 
 /* input type text,password */
-#instantsearch-area input[type="text"] {
+/*#instantsearch-area input[type="text"] {
     display: block;
     width: 100%;
     color: #555;
@@ -661,7 +661,7 @@ p.short-des {
 
 .add-multiple textarea {
     box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-}
+}*/
 
 #downloadcsvfile a {
     text-decoration: none;
@@ -714,7 +714,7 @@ p.short-des {
 }
 
 /* input type file */
-.add-multiple textarea {
+/*.add-multiple textarea {
     display: block;
     width: 80%;
     color: #555;
@@ -756,7 +756,7 @@ p.short-des {
     -webkit-transition-duration: 0.3s;
     -o-transition-duration: 0.3s;
     transition-duration: 0.3s;
-}
+}*/
 
 /*add more style*/
 #file-message, #file-error, #checkout-message {

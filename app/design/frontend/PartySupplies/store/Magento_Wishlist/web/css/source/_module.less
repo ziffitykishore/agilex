@@ -172,9 +172,39 @@
                     }
                 }
 
+                &-inner {
+                    > .product-item-actions {
+                        .action {
+                            .lib-css(color, @icon-color);
+                            display: inline-block;
+                            vertical-align: middle;
+                            &:hover {
+                                .lib-css(color, @color-black);
+                            }
+                            span {
+                                .lib-visually-hidden();
+                            }
+                            &.delete:before {
+                                content: '\e604';
+                                font-family: @icons__font-name;
+                                font-size: 30px;
+                                line-height: 25px;
+                                display: inline-block;
+                                vertical-align: middle;
+                            }
+                        }
+                    }
+                }
+
+
+
                 .box-tocart {
+                    label {
+                        font-weight: @font-weight__semibold;
+                    }
                     input.qty {
-                        height: 32px;
+                        height: 40px;
+                        border: 1px solid @c-graylight;
                         &:extend(.abs-input-qty all);
                     }
                 }
@@ -221,6 +251,8 @@
         & + .actions-toolbar {
             margin-top: 30px;
         }
+
+
 
         /*margin-bottom: @indent__l;
         margin-right: 0;
@@ -347,7 +379,12 @@
 
                 .box-tocart {
                     .actions-primary {
-                        margin: 0;
+                        margin: 0 -20px;
+                        position: static;
+                        visibility: visible;
+                        opacity: 1;
+                        .transform(none);
+
                     }
 
                     .stock {

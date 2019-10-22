@@ -65,18 +65,20 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 responsiveflag = true;
                 $('header.page-header').addClass("fixed");
                 $('.breadcrumbs-inner .toolbar').prependTo('#layer-product-list');
-
+                slick_on_mobile( $('.why-row'));
 
             }
             else if (($(window).width()) >= 769)
             {
                 accordionFooter('disable');
                 responsiveflag = false;
-                $('header.page-header').removeClass("fixed");
+                //$('header.page-header').removeClass("fixed");
                 $('#layer-product-list .toolbar:first-child').appendTo('.breadcrumbs-inner');
+                if ($('.why-row').hasClass('slick-initialized')) {
+                    $('.why-row').slick('unslick');
+                }
                 $(window).on('load', function(){
-                    stickyBar('.cms-index-index .page-main');
-                    stickyBar(':not(.cms-index-index) header.page-header');
+                    stickyBar('header.page-header');
                 })
             }
 
@@ -130,43 +132,35 @@ require(['jquery', 'slick','nice-select'], function ($) {
             ================= */
 
 
-        slick_on_mobile( $('.why-row'));
+
 
         function slick_on_mobile(slider){
-            $(window).on('load resize', function() {
-                if ($(window).width() >= 767) {
-                    if (slider.hasClass('slick-initialized')) {
-                        slider.slick('unslick');
-                    }
-                    return
-                }
-                if (!slider.hasClass('slick-initialized')) {
-                    return slider.slick({
-                        dots: false,
-                        arrows: false,
-                        autoplay:true,
-                        autoplaySpeed:2000,
-                        centerMode: true,
-                        responsive: [
-                            {
-                                breakpoint: 767,
-                                settings: {
-                                    slidesToShow: 2,
-                                    slidesToScroll: 2
-                                }
-                            },
-                            {
-                                breakpoint: 640,
-                                settings: {
-                                    slidesToShow: 1,
-                                    slidesToScroll: 1
-                                }
+            if (!slider.hasClass('slick-initialized')) {
+                return slider.slick({
+                    dots: false,
+                    arrows: false,
+                    autoplay:true,
+                    autoplaySpeed:2000,
+                    centerMode: true,
+                    responsive: [
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
                             }
+                        },
+                        {
+                            breakpoint: 640,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
 
-                        ]
-                    });
-                }
-            });
+                    ]
+                });
+            }
         }
 
         $(document).on('change','.up', function(){
