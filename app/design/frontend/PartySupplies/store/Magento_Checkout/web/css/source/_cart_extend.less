@@ -66,6 +66,7 @@
                             .col {
                                 padding: 15px 25px;
                                 border-top: none;
+                                display: table-cell;
                             }
                             .item-options {
                                 color:#616b75;
@@ -119,7 +120,7 @@
                                     }
                                     &:hover{
                                         &:before {
-                                            color: @c-primary_color;
+                                            color: @color-black;
                                         }
                                     }
                                     span{
@@ -171,7 +172,6 @@
                                     height: 40px;
                                     padding: 0;
                                     color: #8893a5;
-                                    border: 1px solid #d9dde8;
                                     cursor: pointer;
                                     font-size: 20px;
                                     border-radius: 0;
@@ -412,19 +412,13 @@
 
             select,
             .input-text{
-                height: 44px;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                -ms-appearance: none;
-                appearance: none;
                 &:focus{
                     box-shadow: none;
                 }
             }
 
             select{
-                background: #fff url(../images/down_arrow.svg) no-repeat 98%;
-                background-size: 8px;
+                font-size: @font-size__s;
             }
 
             input[type="radio"]{
@@ -525,6 +519,27 @@
     }
 
 }
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk-lg) {
+    .checkout-cart-index {
+        .form-cart {
+            .cart.table-wrapper {
+                .cart.items {
+                    thead,
+                    .item-info {
+                        .col {
+                            padding: 15px 12px;
+                            &.item {
+                                width: 40%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl + 1) {
 
@@ -642,7 +657,7 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
     .checkout-cart-index {
         .cart-summary {
@@ -674,7 +689,25 @@
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
+@media screen and (min-width: @screen__m) and (max-width: @c-desk) {
+
+    .checkout-cart-index {
+        .form-cart {
+            .cart.table-wrapper {
+                .cart.items {
+                    thead,
+                    .item-info{
+                        .col.item {
+                            width: 38%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .checkout-cart-index {
         .page-wrapper {
             .cart-empty,
@@ -688,11 +721,14 @@
                 border: none;
                 overflow-x: visible;
                 overflow-y: visible;
-                .cart {
+                .cart.items {
 
                     .item-info {
-                        .col.item {
+                        .col {
+                            display: block;
+                            .item {
                             padding: 15px;
+                            }
                         }
 
                         .product-item-photo {
@@ -736,10 +772,9 @@
                         &.item-actions{
                             vertical-align: top;
                             min-width: auto;
-                            padding-left: 0;
-                            padding-right: 0;
-                            .actions-toolbar{
-                                text-align: right;
+                            text-align: left;
+                            .actions-toolbar {
+                                text-align: inherit;
                             }
                         }
                     }

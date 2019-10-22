@@ -293,14 +293,27 @@
         .lib-form-element-search-reset();
     }
 
-    select {
-        .lib-form-element-input(@_type: select);
-        width: 100%;
-        padding: 0 13px;
-        .br-radius(3px);
-        border: 1px solid @c-graylight;
-        height: 44px;
+    .page-wrapper {
 
+        select {
+            .lib-form-element-input(@_type: select);
+            width: 100%;
+            padding: 0 13px;
+            .br-radius(3px);
+            border: 1px solid @c-graylight;
+            height: 44px;
+            background: #fff url(../images/down_arrow.svg) no-repeat 98%;
+            background-size: 8px;
+            padding-right: 30px;
+            font-size: @font-size__s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            &::-ms-expand {
+                display: none;
+            }
+        }
     }
 
     select[multiple] {

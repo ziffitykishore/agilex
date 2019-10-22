@@ -373,10 +373,10 @@ button{
         border-right: 0;
         .lib-css(color, @c-lightgray);
         font-weight: @font-weight__heavier;
-        border-color: @c-lightgray;
+        border-color: @c-graylight;
 
         &.mage-error{
-            border-color: @c-lightgray;
+            border-color: @c-graylight;
             + .mage-error {
                 position: absolute;
                 left: 0;
@@ -404,7 +404,7 @@ button{
         height: 40px;
         padding: 0;
         color: @c-text_sec_color;
-        border: 1px solid  @c-lightgray;
+        border: 1px solid  @c-graylight;
         font-size: 20px;
         position: relative;
         span {
@@ -423,7 +423,7 @@ button{
             width: 100%;
 
             &:before {
-                background: @c-lightgray;
+                .lib-css(background-color, @c-lightgray);
                 width: 15px;
                 height: 1px;
                 content: '';
@@ -448,7 +448,7 @@ button{
 
             &:after,
             &:before {
-                background: @c-lightgray;
+                .lib-css(background-color, @c-lightgray);
                 content: '';
                 position: absolute;
                 display: block;
