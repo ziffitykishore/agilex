@@ -503,7 +503,7 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
 
 
     .sec-why {
@@ -561,8 +561,12 @@
                 z-index: 1;
             }
             .slick-track {
+                display: table;
+                height: 100%;
                 .why-parts{
                     padding: 10px;
+                    display: table-cell;
+
                     img{
                         max-width: 100%;
                         width: auto;

@@ -716,6 +716,7 @@
                 padding-right: 15px;
             }
         }
+        .cart-container {
         .form-cart {
             .cart.table-wrapper {
                 border: none;
@@ -727,7 +728,7 @@
                         .col {
                             display: block;
                             .item {
-                            padding: 15px;
+                                padding: 15px;
                             }
                         }
 
@@ -769,7 +770,7 @@
                         &.msrp {
                             text-align: left;
                         }
-                        &.item-actions{
+                        &.item-actions {
                             vertical-align: top;
                             min-width: auto;
                             text-align: left;
@@ -781,7 +782,16 @@
 
                 }
             }
+            .cart.actions {
+                display: block;
+                .action {
+                    &.update {
+                        width: 100%;
+                    }
+                }
+            }
         }
+    }
         .cart-summary {
             .block.shipping,
             .cart-totals,
@@ -790,6 +800,9 @@
                 padding: 2rem 1.5rem 0;
             }
         }
+
+
+
     }
 }
 

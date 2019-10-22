@@ -65,7 +65,30 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 responsiveflag = true;
                 $('header.page-header').addClass("fixed");
                 $('.breadcrumbs-inner .toolbar').prependTo('#layer-product-list');
-                slick_on_mobile( $('.why-row'));
+                $('.why-row').slick({
+                    dots: false,
+                    arrows: false,
+                    autoplay:true,
+                    autoplaySpeed:2000,
+                    centerMode: true,
+                    responsive: [
+                        {
+                            breakpoint: 769,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        },
+                        {
+                            breakpoint: 640,
+                            settings: {
+                                slidesToShow: 1,
+                                slidesToScroll: 1
+                            }
+                        }
+
+                    ]
+                });
 
             }
             else if (($(window).width()) >= 769)
@@ -76,6 +99,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 $('#layer-product-list .toolbar:first-child').appendTo('.breadcrumbs-inner');
                 if ($('.why-row').hasClass('slick-initialized')) {
                     $('.why-row').slick('unslick');
+                    console.log('asd');
                 }
                 $(window).on('load', function(){
                     stickyBar('header.page-header');
@@ -134,7 +158,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
 
 
 
-        function slick_on_mobile(slider){
+        /*function slick_on_mobile(slider){
             if (!slider.hasClass('slick-initialized')) {
                 return slider.slick({
                     dots: false,
@@ -144,7 +168,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                     centerMode: true,
                     responsive: [
                         {
-                            breakpoint: 767,
+                            breakpoint: 769,
                             settings: {
                                 slidesToShow: 2,
                                 slidesToScroll: 2
@@ -161,7 +185,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                     ]
                 });
             }
-        }
+        }*/
 
         $(document).on('change','.up', function(){
             var names = [];
