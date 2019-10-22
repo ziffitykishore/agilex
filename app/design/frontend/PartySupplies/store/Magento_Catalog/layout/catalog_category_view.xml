@@ -11,6 +11,7 @@
             <arguments>
                  <argument name="viewModel" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
              </arguments>
-        </referenceBlock>        
+        </referenceBlock>
+        <referenceBlock name="sidebar.additional" remove="true"/>
     </body>
 </page>
