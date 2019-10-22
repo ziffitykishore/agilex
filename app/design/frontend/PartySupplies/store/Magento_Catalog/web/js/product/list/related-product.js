@@ -6,9 +6,13 @@ require(["jquery","jquery/jquery-migrate","slick"],function($) {
             slidesToScroll: 1,
             responsive: [
                 {
-                    breakpoint: 1024,
+                    breakpoint: 1200,
                     settings: {
-                        slidesToShow: 3
+                        slidesToShow: 3,
+                        dots: false,
+                        arrows: false,
+                        autoplay:true,
+                        centerMode: true
                     }
                 },
                 {
