@@ -944,11 +944,14 @@ body.catalog-product-compare-index {
 
 // PDP Details Blocks
 .detail-blocks {
-    .additional-attributes-wrapper {
+    .additional-attributes-wrapper,
+    .detail-block-description {
         border: 1px solid $c-grey;
         max-width: 800px;
         width: 100%;
+    }
 
+    .additional-attributes-wrapper {
         .header {
             @include bryant-park-headings-h3;
             font-weight: $font-weight__bold;
@@ -971,7 +974,7 @@ body.catalog-product-compare-index {
                 padding: $indent__xs 0;
 
                 &.label {
-                    font-weight: $font-weight__bold;
+                    font-weight: $font-weight__extrabold;
                     padding-left: $indent__base;
                     padding-right: 15px;
 
@@ -980,6 +983,41 @@ body.catalog-product-compare-index {
                     }
                 }
             }
+        }
+    }
+
+    .detail-block-description {
+        padding: $indent__base;
+        box-sizing: border-box;
+
+        .description .type {
+            @include bryant-park-headings-h3;
+            font-size: 18px;
+            line-height: 1.4;
+            font-weight: $font-weight__extrabold;
+        }
+
+        .value {
+            margin-top: $indent__s;
+        }
+
+        h4,
+        .header {
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: 1.4;
+            margin-bottom: 3px;
+            font-weight: $font-weight__extrabold;
+            font-family: $font-family__base;
+            text-transform: uppercase;
+        }
+
+        .header {
+            margin-top: $indent__base;
+        }
+
+        strong {
+            font-weight: $font-weight__extrabold;
         }
     }
 }
