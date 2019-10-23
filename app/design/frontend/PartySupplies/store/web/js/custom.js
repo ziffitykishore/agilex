@@ -65,7 +65,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 responsiveflag = true;
                 $('header.page-header').addClass("fixed");
                 $('.breadcrumbs-inner .toolbar').prependTo('#layer-product-list');
-                slick_on_mobile( $('.why-row'));
+
 
             }
             else if (($(window).width()) >= 769)
@@ -74,9 +74,6 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 responsiveflag = false;
                 //$('header.page-header').removeClass("fixed");
                 $('#layer-product-list .toolbar:first-child').appendTo('.breadcrumbs-inner');
-                if ($('.why-row').hasClass('slick-initialized')) {
-                    $('.why-row').slick('unslick');
-                }
                 $(window).on('load', function(){
                     stickyBar('header.page-header');
                 })
@@ -132,7 +129,13 @@ require(['jquery', 'slick','nice-select'], function ($) {
             ================= */
 
 
-
+        $(window).on('load resize', function(){
+            if($(window).width() <= 768) {
+                slick_on_mobile( $('.why-row'));
+            } else {
+                $('.why-row').slick('unslick');
+            }
+        });
 
         function slick_on_mobile(slider){
             if (!slider.hasClass('slick-initialized')) {
@@ -144,7 +147,11 @@ require(['jquery', 'slick','nice-select'], function ($) {
                     centerMode: true,
                     responsive: [
                         {
-                            breakpoint: 767,
+                            breakpoint: 9999,
+                            settings: "unslick"
+                        },
+                        {
+                            breakpoint: 769,
                             settings: {
                                 slidesToShow: 2,
                                 slidesToScroll: 2

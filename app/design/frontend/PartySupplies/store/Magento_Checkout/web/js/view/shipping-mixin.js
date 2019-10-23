@@ -1,13 +1,19 @@
 define([
-
-], function () {
+    'Magento_Checkout/js/model/cart/estimate-service'
+], function (estimateService) {
     'use strict';
 
-    return function (Component) {
-        return Component.extend({
-            warehouseAddress: function () {
-                return window.checkoutConfig.warehouse;
-            }
-        });
+    var mixin = {
+        initialize: function () {
+            this._super();
+        },
+
+        warehouseAddress: function () {
+            return window.checkoutConfig.warehouse;
+        }
+    };
+
+    return function (target) {
+        return target.extend(mixin);
     };
 });
