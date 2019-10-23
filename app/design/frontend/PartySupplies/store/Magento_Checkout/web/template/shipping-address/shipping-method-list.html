@@ -5,19 +5,22 @@
  */
 -->
 <div id="checkout-shipping-method-load">
-    <table class="table-checkout-shipping-method">
-        <thead>
-        <tr class="row">
-            <th class="col col-method" translate="'Select Method'"></th>
-            <th class="col col-price" translate="'Price'"></th>
-            <th class="col col-method" translate="'Method Title'"></th>
-            <th class="col col-carrier" translate="'Carrier Title'"></th>
-        </tr>
-        </thead>
-        <tbody>
-            <!-- ko foreach: { data: rates(), as: 'method'} -->
-                <!--ko template: { name: element.shippingMethodItemTemplate} --><!-- /ko -->
-            <!-- /ko -->
-        </tbody>
-    </table>    
+    <!-- ko foreach: { data: rates(), as: 'method'} -->
+        <!--ko template: { name: element.shippingMethodItemTemplate} --><!-- /ko -->
+    <!-- /ko -->
+
+    <div>
+        <span>Ship your products from our warehouse</span>
+        <div>
+        <span data-bind="text: warehouseAddress().branch_name"></span>
+        <span data-bind="text: warehouseAddress().street1"></span>
+        <span data-bind="text: warehouseAddress().street2"></span>
+        <span data-bind="text: warehouseAddress().city"></span>
+        <span data-bind="text: warehouseAddress().state"></span>
+        <span data-bind="text: warehouseAddress().country"></span>
+        <span data-bind="text: warehouseAddress().zip_code"></span>
+        <span data-bind="text: warehouseAddress().phone"></span>
+        </div>
+    </div>
+
 </div>
