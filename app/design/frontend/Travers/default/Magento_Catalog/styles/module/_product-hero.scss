@@ -8,6 +8,7 @@
 
 $product-inventory-table--header__font-size: 24px;
 $product-inventory-table--header__font-size--desktop: 16px;
+$product-hero__button-and-catalog__width: 240px;
 
 .product-hero {
     display: flex;
@@ -182,7 +183,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
 
     .product-add-form .tocart {
         @include min-screen($screen__m) {
-            max-width: 240px;
+            max-width: $product-hero__button-and-catalog__width;
             width: 100%;
         }
     }
@@ -210,7 +211,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
     box-sizing: border-box;
 
     @include min-screen($screen__xs) {
-        max-width: 240px;
+        max-width: $product-hero__button-and-catalog__width;
     }
 
     .header {
