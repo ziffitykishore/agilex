@@ -3,20 +3,16 @@
 namespace SomethingDigital\CustomerSpecificTierPrices\ViewModel;
 
 use Magento\Catalog\Block\Product\Context;
-use Magento\Framework\Registry;
+use Magento\Catalog\Helper\Data;
 
 class ProductData implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
-   /**
-    * @var Registry
-    */
-    private $coreRegistry;
+    private $helper;
 
     public function __construct(
-        Registry $registry
+        Data $helper
     ) {
-        $this->coreRegistry = $registry;
-        
+        $this->helper = $helper;
     }
     
     /**
@@ -26,7 +22,7 @@ class ProductData implements \Magento\Framework\View\Element\Block\ArgumentInter
      */
     public function getProduct()
     {
-        return $this->coreRegistry->registry('product');
+        return $this->helper->getProduct();
     }
 
     public function getProductType()
