@@ -81,6 +81,9 @@ $theme-web-path: '../web' !default;
 // React PLP
 @import '../SomethingDigital_ReactPLP/styles/reactPLP';
 
+// Algolia
+@import '../Algolia_AlgoliaSearch/search-dropdown';
+
 // Modules
 @import '../Magento_AdvancedCheckout/styles/module';
 @import '../Magento_AdvancedSearch/styles/module';
