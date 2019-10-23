@@ -199,40 +199,40 @@ $product-inventory-table--header__font-size--desktop: 16px;
     .fotorama__thumb-border {
         border: 2px solid $c-royal;
     }
+}
 
-    .master-catalog-listing {
-        border: 1px solid $c-grey;
-        max-width: 460px;
-        width: 100%;
-        margin: $indent__m 0;
-        padding: 12px;
-        box-sizing: border-box;
+.master-catalog-listing {
+    border: 1px solid $c-grey;
+    max-width: 460px;
+    width: 100%;
+    margin: $indent__m 0;
+    padding: 12px;
+    box-sizing: border-box;
 
-        @include min-screen($screen__xs) {
-            max-width: 240px;
-        }
+    @include min-screen($screen__xs) {
+        max-width: 240px;
+    }
 
-        .header {
-            @include bryant-park-headings-h3;
-            font-weight: $font-weight__semibold;
-            margin: 0;
-            margin-bottom: $indent__s;
-        }
+    .header {
+        @include bryant-park-headings-h3;
+        font-weight: $font-weight__semibold;
+        margin: 0;
+        margin-bottom: $indent__s;
+    }
 
-        a {
-            @include icon-svg(
-                $icon       : catalog,
-                $fill       : $primary__color,
-                $width      : 20px,
-                $height     : auto,
-                $pseudo     : before
-            );
-            font-size: 16px;
+    a {
+        @include icon-svg(
+            $icon       : catalog,
+            $fill       : $primary__color,
+            $width      : 20px,
+            $height     : auto,
+            $pseudo     : before
+        );
+        font-size: 16px;
 
-            &::before {
-                padding-right: 7px;
-                margin-bottom: 2px;
-            }
+        &::before {
+            padding-right: 7px;
+            margin-bottom: 2px;
         }
     }
 }
