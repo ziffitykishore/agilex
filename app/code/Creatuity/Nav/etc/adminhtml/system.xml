@@ -84,6 +84,10 @@
                     <backend_model>Creatuity\Nav\Model\Config\Backend\OrderUpdateCronSchedule</backend_model>
                 </field>
 
+                <field id="order_count_per_request" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Count Per Request</label>
+                </field>
+
                 <field id="amazon_shipping_method_mappings" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Aamzon Shipping Method Mappings</label>
                     <comment>List of mappings in format: AMAZON_SHIPPING_METHOD, MATRIXRATE_SHIPPING_METHOD</comment>
