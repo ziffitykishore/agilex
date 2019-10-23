@@ -16,43 +16,32 @@ define([
             }
             var sku = $('[itemprop=sku]').text();
 
+            var self = this;
             this.getPrices(sku).done(function (response, textStatus) {
 
                 var prices = response.data[sku];
+
+                if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
+                    return;
+                }
 
                 prices['saveBreak1'] = '';
                 prices['saveBreak2'] = '';
                 prices['saveBreak3'] = '';
 
-                if (prices['QtyPrice1'] != 0 || prices['QtyPrice2'] != 0 || prices['QtyPrice3'] != 0) {
-                    let tierPricesArray = [prices['QtyPrice1'], prices['QtyPrice2'], prices['QtyPrice3']];
-                    let lowestPrice = Math.min.apply(null, tierPricesArray.filter(Boolean));
-                    $('.as-low-as .price-wrapper ').text(prices['currencySymbol'] + lowestPrice);
-                }
+                $('.product-info-main > table.prices-tier').hide();
 
-                if (prices['QtyPrice1']) {
-                    prices['saveBreak1'] =(Math.round(100 - ((100 / prices['unitPrice']) * prices['QtyPrice1']))).toFixed()+'%';
-                    prices['QtyPrice1'] = prices['currencySymbol'] + prices['QtyPrice1'];
-                }
-                if (prices['QtyPrice2']) {
-                    prices['saveBreak2'] = (Math.round(100 - ((100 / prices['unitPrice']) * prices['QtyPrice2']))).toFixed()+'%';
-                    prices['QtyPrice2'] = prices['currencySymbol'] + prices['QtyPrice2'];
-                }
-                if (prices['QtyPrice3']) {
-                    prices['saveBreak3'] = (Math.round(100 - ((100 / prices['unitPrice']) * prices['QtyPrice3']))).toFixed()+'%';
-                    prices['QtyPrice3'] = prices['currencySymbol'] + prices['QtyPrice3'];
-                }
+                let tierPricesArray = [prices['QtyPrice1'], prices['QtyPrice2'], prices['QtyPrice3']];
+                let lowestPrice = Math.min.apply(null, tierPricesArray.filter(Boolean));
+                $('.as-low-as .price-wrapper ').text(prices['currencySymbol'] + lowestPrice);
+
+                prices = self.calculateSavings(prices);
+
                 if (!prices['QtyPrice2'] && !prices['QtyPrice3']) {
                     prices['QtyBreak1'] = prices['QtyBreak1'] + '+';
                 }
                 if (prices['QtyBreak2'] && !prices['QtyPrice3']) {
                     prices['QtyBreak2'] = prices['QtyBreak2'] + '+';
-                }
-
-                if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
-                    return;
-                } else {
-                    $('.product-info-main > table.prices-tier').hide();
                 }
 
                 tierPrices.push(prices);
@@ -62,7 +51,19 @@ define([
                 console.log("Request failed: " + textStatus + ' : ' + errorThrown);
             });
         },
-        getPrices: function(sku){
+        calculateSavings: function(prices) {
+            for (let i = 1; i <= 3; i++) {
+                if (prices['QtyPrice'+i]) {
+                    prices['saveBreak'+i] = this.getSaveBreak(prices['unitPrice'], prices['QtyPrice'+i]);
+                    prices['QtyPrice'+i] = prices['currencySymbol'] + prices['QtyPrice'+i];
+                }
+            }
+            return prices;
+        },
+        getSaveBreak: function(unitPrice, qtyPrice) {
+            return (Math.round(100 - ((100 / unitPrice) * qtyPrice))).toFixed()+'%';
+        },
+        getPrices: function(sku) {
             var settings = {
                 method: 'POST',
                 dataType: 'json',
