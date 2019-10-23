@@ -941,3 +941,45 @@ body.catalog-product-compare-index {
     transition-delay: (50ms * $i);
   }
 }
+
+// PDP Details Blocks
+.detail-blocks {
+    .additional-attributes-wrapper {
+        border: 1px solid $c-grey;
+        max-width: 800px;
+        width: 100%;
+
+        .header {
+            @include bryant-park-headings-h3;
+            font-weight: $font-weight__bold;
+            border-bottom: 2px solid $primary__color;
+            margin: 0;
+            padding: $indent__s 0 $indent__s $indent__base;
+        }
+
+        .additional-attributes {
+            width: 100%;
+            margin: 0;
+        }
+
+        tr {
+            &:not(:last-of-type) {
+                border-bottom: 1px solid $c-grey;
+            }
+
+            .col {
+                padding: $indent__xs 0;
+
+                &.label {
+                    font-weight: $font-weight__bold;
+                    padding-left: $indent__base;
+                    padding-right: 15px;
+
+                    @include min-screen($screen__m) {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+}
