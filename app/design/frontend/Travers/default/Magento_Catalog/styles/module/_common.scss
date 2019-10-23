@@ -952,6 +952,8 @@ body.catalog-product-compare-index {
     }
 
     .additional-attributes-wrapper {
+        margin-top: $indent__base;
+
         .header {
             @include bryant-park-headings-h3;
             font-weight: $font-weight__bold;
@@ -989,6 +991,7 @@ body.catalog-product-compare-index {
     .detail-block-description {
         padding: $indent__base;
         box-sizing: border-box;
+        margin-top: $indent__l;
 
         .description .type {
             @include bryant-park-headings-h3;
