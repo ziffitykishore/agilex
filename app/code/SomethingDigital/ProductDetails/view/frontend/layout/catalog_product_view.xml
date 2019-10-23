@@ -21,5 +21,6 @@
 
         <move element="product.attributes" destination="product.detail.attributes.wrap"/>
         <move element="product.info.description" destination="product.detail.description.wrap" before="-"/>
+        <move element="reviews.tab" destination="product.detail.blocks" after="-" />
     </body>
 </page>
