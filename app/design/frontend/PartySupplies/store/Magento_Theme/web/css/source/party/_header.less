@@ -413,6 +413,7 @@
         & ~ .page-main,
         & ~ .breadcrumbs {
             margin-top: 80px;
+            margin-bottom: 0;
 
             & ~ .page-main {
                 margin-top: 0;
@@ -1596,15 +1597,23 @@
     }
 
     .page-header {
-        .header {
-            .block-search {
-                max-width: ~"calc(100% - 560px)";
+        .header-wrapper {
+            .header {
+                .block-search {
+                    max-width: ~"calc(100% - 450px)";
+                }
+            }
+        }
+
+        &.fixed {
+            .header-wrapper {
+                .block-search {
+                    max-width: ~"calc(100% - 450px)";
+                }
             }
         }
     }
 }
-
-
 
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
