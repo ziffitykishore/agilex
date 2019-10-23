@@ -94,7 +94,53 @@
                 </field>
             </group>
 
-            <group id="shipment_update" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="order_sync_data_provider" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Sync Static Data Provider</label>
+
+                <field id="location_code" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Location Code</label>
+                </field>
+                <field id="shipping_line_no" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping Line No</label>
+                </field>
+                <field id="shipping_line_type" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping Line Type</label>
+                </field>
+                <field id="product_line_type" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Line Type</label>
+                </field>
+                <field id="payment_method_code" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Method Code</label>
+                </field>
+            </group>
+
+            <group id="order_sync_shipping_data_provider" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Sync Shipping Data Provider</label>
+
+                <field id="ups_shipping_agent_code" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping Agent Code - UPS</label>
+                </field>
+                <field id="ups1_shipment_method_code" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - UPS Overnight</label>
+                </field>
+                <field id="ups2_shipment_method_code" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - UPS 2-day</label>
+                </field>
+                <field id="ups3_shipment_method_code" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - UPS 3-day</label>
+                </field>
+                <field id="upsf_shipment_method_code" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - UPS Freight</label>
+                </field>
+                <field id="upsgrnd_shipment_method_code" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - UPS Ground</label>
+                </field>
+                <field id="gts_shipment_method_code" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - GTS</label>
+                </field>
+            </group>
+
+            <group id="shipment_update" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Shipment Update</label>
 
                 <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">

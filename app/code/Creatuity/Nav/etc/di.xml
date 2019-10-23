@@ -1321,27 +1321,32 @@
 
     <virtualType name="paymentTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">ECOM PAY</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/payment_method_code</argument>
         </arguments>
     </virtualType>
     <virtualType name="locationCodeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">04</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/location_code</argument>
         </arguments>
     </virtualType>
     <virtualType name="freeFreightStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
             <argument name="value" xsi:type="boolean">true</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
     <virtualType name="shippingCarrierStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="const">Magento\Ups\Model\Carrier::CODE</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_shipping_data_provider/ups_shipping_agent_code</argument>
         </arguments>
     </virtualType>
     <virtualType name="shippingMethodStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">UPSGRND</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_shipping_data_provider/upsgrnd_shipment_method_code</argument>
         </arguments>
     </virtualType>
 
@@ -1395,7 +1400,8 @@
 
     <virtualType name="orderItemTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">Item</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/product_line_type</argument>
         </arguments>
     </virtualType>
 
@@ -1434,16 +1440,19 @@
     <virtualType name="finalLineItemQtyStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
             <argument name="value" xsi:type="number">1.0</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
     <virtualType name="finalLineItemTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">G_L_Account</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_type</argument>
         </arguments>
     </virtualType>
     <virtualType name="finalLineItemIsShippingChargeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
             <argument name="value" xsi:type="boolean">true</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
 
@@ -1472,17 +1481,20 @@
 
     <virtualType name="taxLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">45600</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_no</argument>
         </arguments>
     </virtualType>
     <virtualType name="discountLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">4900000</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_no</argument>
         </arguments>
     </virtualType>
     <virtualType name="shippingLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">45600</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_no</argument>
         </arguments>
     </virtualType>
 

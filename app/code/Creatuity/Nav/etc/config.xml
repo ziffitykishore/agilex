@@ -16,6 +16,22 @@ Amazon Expedited, 3 Day Select
 Amazon SecondDay, 2nd Day Air
 Amazon NextDay, Next Day Air</amazon_shipping_method_mappings>
             </order_update>
+            <order_sync_data_provider>
+                <location_code>04</location_code>
+                <shipping_line_no>45600</shipping_line_no>
+                <shipping_line_type>G_L_Account</shipping_line_type>
+                <product_line_type>Item</product_line_type>
+                <payment_method_code>ECOM PAY</payment_method_code>
+            </order_sync_data_provider>
+            <order_sync_shipping_data_provider>
+                <ups_shipping_agent_code>UPS</ups_shipping_agent_code>
+                <ups1_shipment_method_code>UPS1</ups1_shipment_method_code>
+                <ups2_shipment_method_code>UPS2</ups2_shipment_method_code>
+                <ups3_shipment_method_code>UPS3</ups3_shipment_method_code>
+                <upsf_shipment_method_code>UPSF</upsf_shipment_method_code>
+                <upsgrnd_shipment_method_code>UPSGRND</upsgrnd_shipment_method_code>
+                <gts_shipment_method_code>GTS</gts_shipment_method_code>
+            </order_sync_shipping_data_provider>
         </nav>
     </default>
 </config>
