@@ -210,6 +210,11 @@ class DataProviderWithDefaultAddresses extends \Magento\Ui\DataProvider\Abstract
     public function getMeta()
     {
         $meta = parent::getMeta();
+
+        if(strpos($this->redirect->getRefererUrl(), 'account_type/company')) {
+            $meta['customer']['children']['pay_on_account_approval']['arguments']['data']['config']['visible'] = 0;
+        }
+
         if (strpos($this->redirect->getRefererUrl(), 'account_type/customer')) {
             $meta['customer']['children']['reseller_certificate']['arguments']['data']['config']['visible'] = 0;
             $meta['customer']['children']['is_certificate_approved']['arguments']['data']['config']['visible'] = 0;
