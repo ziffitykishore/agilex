@@ -182,7 +182,7 @@ $product-inventory-table--header__font-size--desktop: 16px;
 
     .product-add-form .tocart {
         @include min-screen($screen__m) {
-            max-width: 220px;
+            max-width: 240px;
             width: 100%;
         }
     }
