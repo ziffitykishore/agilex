@@ -301,6 +301,21 @@
             <argument name="key" xsi:type="string">No</argument>
         </arguments>
     </virtualType>
+    <virtualType name="customerShipToAddressFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Ship_to_Address</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerSellToCustomerNoFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_Customer_No</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerSellToCustomerNameFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Sell_to_Customer_Name</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="customerEmailFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
         <arguments>
             <argument name="key" xsi:type="string">E_Mail</argument>
@@ -396,6 +411,7 @@
     </virtualType>
     <!-- Customer data extractor from Magento -->
 
+    <!-- Get customer detail from Magento order data - START -->
     <virtualType name="customerNameOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
         <arguments>
             <argument name="accessorMethod" xsi:type="string">getCustomerName</argument>
@@ -404,6 +420,21 @@
     <virtualType name="customerEmailOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
         <arguments>
             <argument name="accessorMethod" xsi:type="string">getCustomerEmail</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNavisionIdOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getNavisionId</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="companyNameOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getCompanyName</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="ExternalDocumentNoOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getIncrementId</argument>
         </arguments>
     </virtualType>
     <virtualType name="customerStreetLineFirstOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\CustomerFieldOrderDataExtractor">
@@ -431,6 +462,7 @@
             <argument name="accessorMethod" xsi:type="string">getCustomerPostcode</argument>
         </arguments>
     </virtualType>
+    <!-- Get customer detail from magento order data - END -->
 
     <!-- Mapping of Magento and NAVISON field -->
     <virtualType name="companyNameDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\CustomerDataExtractorMapping">
@@ -507,10 +539,35 @@
     </virtualType>
     <!-- Mapping of Magento and NAVISON field -->
 
+    <!-- Mapping of customer field from Magento order data - START -->
     <virtualType name="customerNameOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
         <arguments>
             <argument name="mapping" xsi:type="object">customerNameFieldMapping</argument>
             <argument name="orderDataExtractor" xsi:type="object">customerNameOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerNavisionIdOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerNavIdFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerNavisionIdOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerSellToCustomerNoOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerSellToCustomerNoFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">customerNavisionIdOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerSellToCustomerNameOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">customerSellToCustomerNameFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">companyNameOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="customerExternalDocumentNoOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">incrementIdFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">ExternalDocumentNoOrderDataExtractor</argument>
         </arguments>
     </virtualType>
     <virtualType name="customerEmailOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
@@ -549,7 +606,7 @@
             <argument name="orderDataExtractor" xsi:type="object">customerPostcodeOrderDataExtractor</argument>
         </arguments>
     </virtualType>
-
+    <!-- Mapping of customer field from Magento order data - END -->
 
 
 
@@ -562,7 +619,7 @@
     <virtualType name="findCustomerOrderDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
         <arguments>
             <argument name="dataExtractorMappings" xsi:type="array">
-                <item name="customerEmailOrderDataExtractorMapping" xsi:type="object">customerEmailOrderDataExtractorMapping</item>
+                <item name="customerNavisionIdOrderDataExtractorMapping" xsi:type="object">customerNavisionIdOrderDataExtractorMapping</item>
             </argument>
         </arguments>
     </virtualType>
@@ -579,6 +636,18 @@
             </argument>
         </arguments>
     </virtualType>
+
+    <!-- Magento Order Data Provider - START -->
+    <virtualType name="updateOrderWithMinimalInfo" type="Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager">
+        <arguments>
+            <argument name="dataExtractorMappings" xsi:type="array">
+                <item name="customerSellToCustomerNoOrderDataExtractorMapping" xsi:type="object">customerSellToCustomerNoOrderDataExtractorMapping</item>
+                <item name="customerSellToCustomerNameOrderDataExtractorMapping" xsi:type="object">customerSellToCustomerNameOrderDataExtractorMapping</item>
+                <item name="customerExternalDocumentNoOrderDataExtractorMapping" xsi:type="object">customerExternalDocumentNoOrderDataExtractorMapping</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Magento Order Data Provider -->
 
     <!-- Magento customer data provider -->
     <virtualType name="createCustomerDataManager" type="Creatuity\Nav\Model\Data\Manager\Magento\CustomerDataManager">
@@ -1241,28 +1310,43 @@
             <argument name="key" xsi:type="string">Shipping_Agent_Code</argument>
         </arguments>
     </virtualType>
+    <virtualType name="shippingMethodFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
+        <arguments>
+            <argument name="key" xsi:type="string">Shipment_Method_Code</argument>
+        </arguments>
+    </virtualType>
 
 
 
 
     <virtualType name="paymentTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">ECOM PAY</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/payment_method_code</argument>
         </arguments>
     </virtualType>
     <virtualType name="locationCodeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">09</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/location_code</argument>
         </arguments>
     </virtualType>
     <virtualType name="freeFreightStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
             <argument name="value" xsi:type="boolean">true</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
     <virtualType name="shippingCarrierStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="const">Magento\Ups\Model\Carrier::CODE</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_shipping_data_provider/ups_shipping_agent_code</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingMethodStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
+        <arguments>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_shipping_data_provider/upsgrnd_shipment_method_code</argument>
         </arguments>
     </virtualType>
 
@@ -1296,6 +1380,12 @@
             <argument name="staticDataExtractor" xsi:type="object">shippingCarrierStaticDataExtractor</argument>
         </arguments>
     </virtualType>
+    <virtualType name="shippingMethodStaticDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\StaticDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingMethodFieldMapping</argument>
+            <argument name="staticDataExtractor" xsi:type="object">shippingMethodStaticDataExtractor</argument>
+        </arguments>
+    </virtualType>
 
 
 
@@ -1310,7 +1400,8 @@
 
     <virtualType name="orderItemTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">Item</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/product_line_type</argument>
         </arguments>
     </virtualType>
 
@@ -1349,16 +1440,19 @@
     <virtualType name="finalLineItemQtyStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
             <argument name="value" xsi:type="number">1.0</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
     <virtualType name="finalLineItemTypeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">G_L_Account</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_type</argument>
         </arguments>
     </virtualType>
     <virtualType name="finalLineItemIsShippingChargeStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
             <argument name="value" xsi:type="boolean">true</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
 
@@ -1387,17 +1481,20 @@
 
     <virtualType name="taxLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">2100000</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_no</argument>
         </arguments>
     </virtualType>
     <virtualType name="discountLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">4900000</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_no</argument>
         </arguments>
     </virtualType>
     <virtualType name="shippingLineSkuStaticDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\StaticDataExtractor">
         <arguments>
-            <argument name="value" xsi:type="string">4560009</argument>
+            <argument name="value" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_sync_data_provider/shipping_line_no</argument>
         </arguments>
     </virtualType>
 
@@ -1559,7 +1656,7 @@
     <virtualType name="orderStatusAttributeFilter" type="Creatuity\Nav\Model\Map\Filter\AttributeFilter">
         <arguments>
             <argument name="attribute" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::STATUS</argument>
-            <argument name="condition" xsi:type="string">pending_nav</argument>
+            <argument name="condition" xsi:type="string">pending</argument>
         </arguments>
     </virtualType>
 
@@ -1590,7 +1687,7 @@
     <virtualType name="orderUpdateOrderCollectionMap" type="Creatuity\Nav\Model\Map\CollectionMap">
         <arguments>
             <argument name="keyField" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::INCREMENT_ID</argument>
-            <argument name="pageSize" xsi:type="number">100</argument>
+            <argument name="pageSize" xsi:type="string">nav/order_update/order_count_per_request</argument>
             <argument name="collectionProvider" xsi:type="object">orderUpdateOrderDynamicCollectionProvider</argument>
         </arguments>
     </virtualType>
@@ -1829,10 +1926,10 @@
                 <item name="incrementIdOrderDataExtractorMapping" xsi:type="object">incrementIdOrderDataExtractorMapping</item>
                 <item name="customerOrderIdOrderDataExtractorMapping" xsi:type="object">customerOrderIdOrderDataExtractorMapping</item>
                 <item name="grandTotalOrderDataExtractorMapping" xsi:type="object">grandTotalOrderDataExtractorMapping</item>
-
+                <!-- Commented due to NO USE
                 <item name="shippingMethodDescriptionOrderDataExtractorMapping" xsi:type="object">shippingMethodDescriptionOrderDataExtractorMapping</item>
                 <item name="paymentMethodCodeOrderDataExtractorMapping" xsi:type="object">paymentMethodCodeOrderDataExtractorMapping</item>
-
+                 Commented due to NO USE -->
                 <item name="billingAddressNameOrderDataExtractorMapping" xsi:type="object">billingAddressNameOrderDataExtractorMapping</item>
                 <item name="billingAddressStreetLineFirstOrderDataExtractorMapping" xsi:type="object">billingAddressStreetLineFirstOrderDataExtractorMapping</item>
                 <item name="billingAddressStreetLineSecondOrderDataExtractorMapping" xsi:type="object">billingAddressStreetLineSecondOrderDataExtractorMapping</item>
@@ -1846,19 +1943,23 @@
                 <item name="shippingAddressCityOrderDataExtractorMapping" xsi:type="object">shippingAddressCityOrderDataExtractorMapping</item>
                 <item name="shippingAddressRegionOrderDataExtractorMapping" xsi:type="object">shippingAddressRegionOrderDataExtractorMapping</item>
                 <item name="shippingAddressPostcodeOrderDataExtractorMapping" xsi:type="object">shippingAddressPostcodeOrderDataExtractorMapping</item>
-
+                <!-- Commented due to NO USE
                 <item name="sellAddressStreetLineFirstOrderDataExtractorMapping" xsi:type="object">sellAddressStreetLineFirstOrderDataExtractorMapping</item>
                 <item name="sellAddressStreetLineSecondOrderDataExtractorMapping" xsi:type="object">sellAddressStreetLineSecondOrderDataExtractorMapping</item>
                 <item name="sellAddressCityOrderDataExtractorMapping" xsi:type="object">sellAddressCityOrderDataExtractorMapping</item>
                 <item name="sellAddressRegionOrderDataExtractorMapping" xsi:type="object">sellAddressRegionOrderDataExtractorMapping</item>
                 <item name="sellAddressPostcodeOrderDataExtractorMapping" xsi:type="object">sellAddressPostcodeOrderDataExtractorMapping</item>
+                 Commented due to NO USE -->
             </argument>
             <argument name="staticDataExtractorMappings" xsi:type="array">
                 <item name="paymentTypeStaticDataExtractorMapping" xsi:type="object">paymentTypeStaticDataExtractorMapping</item>
                 <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
+                <!-- Commented due to NO USE
                 <item name="locationCodeShortcutDimensionStaticDataExtractorMapping" xsi:type="object">locationCodeShortcutDimensionStaticDataExtractorMapping</item>
                 <item name="freeFreightStaticDataExtractorMapping" xsi:type="object">freeFreightStaticDataExtractorMapping</item>
+                 Commented due to NO USE -->
                 <item name="shippingCarrierStaticDataExtractorMapping" xsi:type="object">shippingCarrierStaticDataExtractorMapping</item>
+                <item name="shippingMethodStaticDataExtractorMapping" xsi:type="object">shippingMethodStaticDataExtractorMapping</item>
             </argument>
         </arguments>
     </virtualType>
@@ -1996,6 +2097,7 @@
             <argument name="orderService" xsi:type="object">orderService</argument>
             <argument name="findOrderOrderDataManager" xsi:type="object">findOrderOrderDataManager</argument>
             <argument name="createOrderDataManager" xsi:type="object">createOrderDataManager</argument>
+            <argument name="updateOrderWithMinimalInfo" xsi:type="object">updateOrderWithMinimalInfo</argument>
             <argument name="entityParametersFactory" xsi:type="object">orderEntityParametersFactory</argument>
             <argument name="entityConflictResolver" xsi:type="object">entityConflictResolver</argument>
             <argument name="orderFieldDataExtractorMappings" xsi:type="array">

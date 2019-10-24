@@ -11,6 +11,7 @@ use Creatuity\Nav\Model\Service\Request\Parameters\EntityParametersFactory;
 use Creatuity\Nav\Model\Service\Request\Dimension\MultipleDimension;
 use Creatuity\Nav\Model\Service\Request\Operation\ReadOperation;
 use Creatuity\Nav\Model\Service\Request\Parameters\Filter\EmailFilter;
+use Creatuity\Nav\Model\Service\Request\Parameters\Filter\SingleValueFilter;
 use Creatuity\Nav\Model\Service\Request\Parameters\Filter\FilterGroup;
 use Creatuity\Nav\Model\Service\Request\Parameters\FilterParameters;
 use Creatuity\Nav\Model\Service\Request\ServiceRequest;
@@ -19,13 +20,45 @@ use Creatuity\Nav\Model\Data\Manager\Magento\OrderDataManager;
 
 class CustomerProvider
 {
+    /**
+     * @var Service
+     */
     protected $customerService;
+
+    /**
+     * @var OrderDataManager
+     */
     protected $findCustomerOrderDataManager;
+
+    /**
+     * @var OrderDataManager
+     */
     protected $createCustomerOrderDataManager;
+
+    /**
+     * @var EntityParametersFactory
+     */
     protected $entityParametersFactory;
+
+    /**
+     * @var EntityConflictResolverInterface
+     */
     protected $entityConflictResolver;
+
+    /**
+     * @var array
+     */
     protected $fieldDataExtractorMappings;
 
+    /**
+     *
+     * @param Service $customerService
+     * @param OrderDataManager $findCustomerOrderDataManager
+     * @param OrderDataManager $createCustomerOrderDataManager
+     * @param EntityParametersFactory $entityParametersFactory
+     * @param EntityConflictResolverInterface $entityConflictResolver
+     * @param array $fieldDataExtractorMappings
+     */
     public function __construct(
         Service $customerService,
         OrderDataManager $findCustomerOrderDataManager,
@@ -42,6 +75,12 @@ class CustomerProvider
         $this->fieldDataExtractorMappings = $fieldDataExtractorMappings;
     }
 
+    /**
+     * To Read, Create, Update customer in NAV
+     *
+     * @param OrderInterface $order
+     * @return array
+     */
     public function get(OrderInterface $order)
     {
         $customers = $this->getExistingCustomers($order);
@@ -56,6 +95,13 @@ class CustomerProvider
         );
     }
 
+    /**
+     * To Read existing customer in NAV
+     *
+     * @param OrderInterface $order
+     * @return array
+     * @throws \Exception
+     */
     protected function getExistingCustomers(OrderInterface $order)
     {
         $findCustomerQueryData = $this->findCustomerOrderDataManager->process($order);
@@ -65,7 +111,7 @@ class CustomerProvider
 
         $filters = [];
         foreach ($findCustomerQueryData as $field => $value) {
-            $filters[] = new EmailFilter($field, $value);
+            $filters[] = new SingleValueFilter($field, $value);
         }
 
         return $this->customerService->process(
@@ -79,6 +125,12 @@ class CustomerProvider
         );
     }
 
+    /**
+     * To Create new customer in NAV
+     *
+     * @param OrderInterface $order
+     * @return array
+     */
     protected function createCustomer(OrderInterface $order)
     {
         return $this->customerService->process(
@@ -92,6 +144,13 @@ class CustomerProvider
         );
     }
 
+    /**
+     * To Update customer in NAV
+     *
+     * @param OrderInterface $order
+     * @param array $customer
+     * @return array
+     */
     protected function updateCustomer(OrderInterface $order, array $customer)
     {
         $data = [];

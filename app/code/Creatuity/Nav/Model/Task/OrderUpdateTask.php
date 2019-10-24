@@ -16,25 +16,109 @@ use Creatuity\Nav\Model\Provider\Nav\OrderLineProvider;
 use Creatuity\Nav\Model\Provider\Nav\OrderProvider;
 use Creatuity\Nav\Model\Task\Data\Generator\LineNumberDataGenerator;
 use Creatuity\Nav\Model\Task\Manager\NavEntityOperationManager;
+use Magento\Sales\Api\OrderRepositoryInterface;
 
 class OrderUpdateTask implements TaskInterface
 {
+    /**
+     * @var DataObjectFactory
+     */
     protected $dataObjectFactory;
+
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
+
+    /**
+     * @var CollectionMap
+     */
     protected $orderCollectionMap;
+
+    /**
+     * @var CustomerProvider
+     */
     protected $orderCustomerProvider;
+
+    /**
+     * @var OrderProvider
+     */
     protected $orderProvider;
+
+    /**
+     * @var OrderLineProvider
+     */
     protected $orderLineProvider;
+
+    /**
+     * @var FinalOrderLineProvider
+     */
     protected $taxFinalOrderLineProvider;
+
+    /**
+     * @var FinalOrderLineProvider
+     */
     protected $discountFinalOrderLineProvider;
+
+    /**
+     * @var FinalOrderLineProvider
+     */
     protected $shippingFinalOrderLineProvider;
+
+    /**
+     * @var NavEntityOperationManager
+     */
     protected $orderReleaseManager;
+
+    /**
+     * @var NavEntityOperationManager
+     */
     protected $orderDeleteManager;
+
+    /**
+     * @var OrderStatusDataProcessor
+     */
     protected $orderStatusDataProcessor;
+
+    /**
+     * @var LineNumberDataGenerator
+     */
     protected $lineNumberDataGenerator;
+
+    /**
+     * @var FieldDataExtractor
+     */
     protected $orderPrimaryKeyFieldDataExtractor;
+
+    /**
+     * @var array
+     */
     protected $orderItemFilters;
 
+    /**
+     * @var OrderRepositoryInterface
+     */
+    protected $orderRepository;
+
+    /**
+     *
+     * @param DataObjectFactory $dataObjectFactory
+     * @param LoggerInterface $logger
+     * @param CollectionMap $orderCollectionMap
+     * @param CustomerProvider $orderCustomerProvider
+     * @param OrderProvider $orderProvider
+     * @param OrderLineProvider $orderLineProvider
+     * @param FinalOrderLineProvider $taxFinalOrderLineProvider
+     * @param FinalOrderLineProvider $discountFinalOrderLineProvider
+     * @param FinalOrderLineProvider $shippingFinalOrderLineProvider
+     * @param NavEntityOperationManager $orderReleaseManager
+     * @param NavEntityOperationManager $orderDeleteManager
+     * @param OrderStatusDataProcessor $orderStatusDataProcessor
+     * @param LineNumberDataGenerator $lineNumberDataGenerator
+     * @param FieldDataExtractor $orderPrimaryKeyFieldDataExtractor
+     * @param array $orderItemFilters
+     * @param OrderRepositoryInterface $orderRepository
+     */
     public function __construct(
         DataObjectFactory $dataObjectFactory,
         LoggerInterface $logger,
@@ -50,7 +134,8 @@ class OrderUpdateTask implements TaskInterface
         OrderStatusDataProcessor $orderStatusDataProcessor,
         LineNumberDataGenerator $lineNumberDataGenerator,
         FieldDataExtractor $orderPrimaryKeyFieldDataExtractor,
-        array $orderItemFilters = []
+        array $orderItemFilters = [],
+        OrderRepositoryInterface $orderRepository
     ) {
         $this->dataObjectFactory = $dataObjectFactory;
         $this->logger = $logger;
@@ -67,19 +152,29 @@ class OrderUpdateTask implements TaskInterface
         $this->lineNumberDataGenerator = $lineNumberDataGenerator;
         $this->orderPrimaryKeyFieldDataExtractor = $orderPrimaryKeyFieldDataExtractor;
         $this->orderItemFilters = $orderItemFilters;
+        $this->orderRepository = $orderRepository;
     }
 
+    /**
+     * Execute method
+     *
+     * @return void
+     */
     public function execute()
     {
         foreach ($this->orderCollectionMap->getPageIndices() as $pageIndex) {
             $this->orderCollectionMap->setPage($pageIndex);
-
             foreach ($this->orderCollectionMap->getKeys() as $orderIncrementId) {
                 $this->updateOrder($this->orderCollectionMap->get($orderIncrementId));
             }
         }
     }
 
+    /**
+     * To Update order to NAV.
+     *
+     * @param OrderInterface $order
+     */
     protected function updateOrder(OrderInterface $order)
     {
         $customerData = [];
@@ -87,9 +182,7 @@ class OrderUpdateTask implements TaskInterface
 
         try {
             $customerData = $this->orderCustomerProvider->get($order);
-
-            $orderData = $this->orderProvider->get($order, $customerData);
-
+            $orderData = $this->orderProvider->get($order, $customerData, 'order_update_minimal_info');
             foreach ($order->getAllItems() as $orderItem) {
                 if ($this->isOrderItemFiltered($orderItem)) {
                     continue;
@@ -97,12 +190,23 @@ class OrderUpdateTask implements TaskInterface
 
                 $this->orderLineProvider->get($orderItem, $orderData, $this->lineNumberDataGenerator->generate());
             }
+            $orderData = $this->orderProvider->get($order, $customerData, 'order_update_full_info');
 
+            /* Commented due to NO USE
             $this->taxFinalOrderLineProvider->get($order, $orderData, $this->lineNumberDataGenerator->generate());
             $this->discountFinalOrderLineProvider->get($order, $orderData, $this->lineNumberDataGenerator->generate());
+             Commented due to NO USE */
             $this->shippingFinalOrderLineProvider->get($order, $orderData, $this->lineNumberDataGenerator->generate());
 
-            $this->orderReleaseManager->process($this->orderProvider->get($order, $customerData));
+            $orderData = $this->orderProvider->get($order, $customerData, 'release_order');
+            $this->orderReleaseManager->process($orderData);
+
+            #To store Nav Order Id to Magento.
+            if ($orderData !== null && $orderData['No']) {
+                $currentOrder = $this->orderRepository->get($order->getEntityId());
+                $currentOrder->setNavOrderId($orderData['No']);
+                $currentOrder->save();
+            }
 
             $this->orderStatusDataProcessor->process(
                 $order,
@@ -125,6 +229,12 @@ class OrderUpdateTask implements TaskInterface
         }
     }
 
+    /**
+     * To filter OrderItem
+     *
+     * @param OrderItemInterface $orderItem
+     * @return boolean
+     */
     protected function isOrderItemFiltered(OrderItemInterface $orderItem)
     {
         foreach ($this->orderItemFilters as $filter) {
