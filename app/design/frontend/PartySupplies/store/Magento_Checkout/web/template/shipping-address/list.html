@@ -1,0 +1,33 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="field addresses">
+    <div class="control" data-bind="mageInit: {
+        'Magento_Ui/js/modal/modal':{
+            'type': 'popup',
+            'title': 'Address Book',
+            'trigger': '[data-trigger=address_book_trigger]',
+            'responsive': true,
+            'buttons': [{
+                text: 'Close',
+                class: 'action'
+            }]
+        }}">
+        <div class="shipping-address-items">
+            <!-- ko foreach: { data: elems, as: 'element' } -->
+            <!-- ko template: element.getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+    <!-- ko if: (visible)-->
+    <div class="shipping-address-items">
+        <!-- ko foreach: { data: elems, as: 'element' } -->
+        <!-- ko template: element.selected_address --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+</div>
