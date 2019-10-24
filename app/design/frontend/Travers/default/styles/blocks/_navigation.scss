@@ -53,6 +53,10 @@ $nav-section-title__height: 60px;
         a {
             font-weight: $font-weight__regular;
         }
+
+        &.static-block-submenu.show-submenu {
+            display: block !important;
+        }
     }
 
     .first .all-text {
