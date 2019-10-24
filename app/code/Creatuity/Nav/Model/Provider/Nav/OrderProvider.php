@@ -109,15 +109,16 @@ class OrderProvider
 
         $orderData = (empty($orders)) ? $this->createOrder($order) : $this->entityConflictResolver->resolve($orders);
 
-        if ($updateOrderFlag == 'release_order') {
-            return $orderData;
-        }
-        if ($updateOrderFlag == 'order_update_minimal_info') {
-            return $this->updateOrderWithMinimalInfo($order,$orderData);
-        }
+        switch ($updateOrderFlag) {
 
-        if ($updateOrderFlag == 'order_update_full_info') {
-            return $this->updateOrder($order, $orderData, $customerData);
+            case "release_order":
+                return $orderData;
+
+            case "order_update_minimal_info":
+                return $this->updateOrderWithMinimalInfo($order, $orderData);
+
+            case "order_update_full_info":
+                return $this->updateOrder($order, $orderData, $customerData);
         }
     }
 
