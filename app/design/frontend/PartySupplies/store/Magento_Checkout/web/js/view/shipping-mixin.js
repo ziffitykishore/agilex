@@ -6,6 +6,10 @@ define([
     var mixin = {
         initialize: function () {
             this._super();
+        },
+
+        warehouseAddress: function () {
+            return window.checkoutConfig.warehouse;
         }
     };
 
