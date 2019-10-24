@@ -3,10 +3,11 @@ import domready from 'domready';
 
 const showStaticBlockSubmenu = () => {
   const $levelTop = $('.level-top.parent');
+
+  // Desktop
   const showSubmenuClassDesktop = 'desktop-show-submenu';
   const showSubmenuSpeed = 300;
 
-  // Desktop
   $levelTop.mouseenter(function() {
     const staticBlockSubmenu = $(this).find('.static-block-submenu');
 
@@ -30,7 +31,7 @@ const showStaticBlockSubmenu = () => {
       }
 
       staticBlockSubmenu.toggleClass('mobile-show-submenu');
-      $(this).find('a[role="menuitem"]').toggleClass('ui-state-active');
+      $(this).find('a[role="menuitem"]').toggleClass('ui-state-active'); // takes care of the +/-
     }
   });
 }
