@@ -9,6 +9,7 @@ import './fullbleed';
 import './stickyNav';
 import './theme';
 import './coupon';
+import './navStaticBlocks';
 
 require('lazysizes');
 require('jquery-smooth-scroll');
