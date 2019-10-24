@@ -24,8 +24,11 @@ const showStaticBlockSubmenu = () => {
     const staticBlockSubmenu = $(this).find('.static-block-submenu');
 
     if (staticBlockSubmenu.length == 1) {
-      e.preventDefault();
-      e.stopPropagation();
+      if (e.target == e.currentTarget) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
       staticBlockSubmenu.toggleClass('mobile-show-submenu');
       $(this).find('a[role="menuitem"]').toggleClass('ui-state-active');
     }
