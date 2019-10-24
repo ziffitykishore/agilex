@@ -11,7 +11,7 @@ const showStaticBlockSubmenu = () => {
   $levelTop.mouseenter(function() {
     const staticBlockSubmenu = $(this).find('.static-block-submenu');
 
-    if (staticBlockSubmenu.length == 1) {
+    if (staticBlockSubmenu.length === 1) {
       setTimeout(() => staticBlockSubmenu.addClass(showSubmenuClassDesktop), showSubmenuSpeed);
     }
   });
@@ -24,8 +24,8 @@ const showStaticBlockSubmenu = () => {
   $levelTop.click(function(e) {
     const staticBlockSubmenu = $(this).find('.static-block-submenu');
 
-    if (staticBlockSubmenu.length == 1) {
-      if (e.target == e.currentTarget) {
+    if (staticBlockSubmenu.length === 1) {
+      if (e.target === e.currentTarget) {
         e.preventDefault();
         e.stopPropagation();
       }
