@@ -138,6 +138,18 @@
                 <field id="gts_shipment_method_code" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Shipment Method Code - GTS</label>
                 </field>
+                <field id="pallet_shipping_agent_code" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping Agent Code - Pallet Shipping</label>
+                </field>
+                <field id="pallet_shipment_method_code" translate="label" type="text" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - Pallet Shipping</label>
+                </field>
+                <field id="own_shipping_agent_code" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping Agent Code - Own Shipping</label>
+                </field>
+                <field id="own_shipment_method_code" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipment Method Code - Own Shipping</label>
+                </field>
             </group>
 
             <group id="shipment_update" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">

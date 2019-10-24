@@ -14,7 +14,8 @@ class LogType implements OptionSourceInterface
     public function toOptionArray()
     {
         return [
-            ['value' => 'customer_approval', 'label' => __('Customer Approval')]
+            ['value' => 'customer_approval', 'label' => __('Customer Approval')],
+            ['value' => 'order_sync', 'label' => __('Order Sync')]
         ];
     }
 }
