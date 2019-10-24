@@ -56,6 +56,7 @@ $nav-section-title__height: 60px;
 
         &.static-block-submenu.show-submenu {
             display: block !important;
+            min-width: 350px;
         }
     }
 
@@ -495,7 +496,11 @@ $nav-section-title__height: 60px;
             }
 
             &.parent {
-                position: static;
+                position: relative;
+
+                &.first {
+                    position: static;
+                }
             }
         }
 
