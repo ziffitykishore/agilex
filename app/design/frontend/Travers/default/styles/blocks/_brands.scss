@@ -1,3 +1,5 @@
+// !importants override PageBuilder
+
 .cms-brands {
     .column.main {
         padding: $indent__s;
@@ -10,6 +12,14 @@
 
             @include min-screen($screen__m) {
                 border: 0 !important;
+            }
+
+            [data-element="inner"],
+            .pagebuilder-column {
+                @include max-screen($screen__m) {
+                    padding: 0 !important;
+                    margin: 0 !important;
+                }
             }
         }
     }
@@ -42,7 +52,7 @@
             padding-left: 0 !important;
 
             h6:first-child {
-                margin-top: 0 !important;
+                margin-top: 0;
             }
         }
     }
@@ -54,7 +64,7 @@
 
         @include min-screen($screen__m) {
             max-width: 1000px !important;
-            margin: $indent__xl auto !important;
+            margin: $indent__xl auto  0 auto !important;
             padding: $indent__s !important;
         }
     }
@@ -66,6 +76,42 @@
 
         @include min-screen($screen__l) {
             column-count: 4;
+        }
+    }
+
+    .coll-header {
+        @include bryant-park-headings-h2;
+        margin: 0;
+        padding: $indent__s !important;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            right: $indent__l;
+            transform: scale(2);
+        }
+
+        &[aria-expanded="false"] {
+            &::after {
+                content: "+";
+            }
+        }
+
+        &[aria-expanded="true"] {
+            &::after {
+                content: "-";
+                top: $indent__xs;
+            }
+        }
+
+        @include min-screen($screen__m) {
+            padding: 0 !important;
+            margin-bottom: $indent__m !important;
+            outline: 0;
+
+            &::after {
+                display: none;
+            }
         }
     }
 }
