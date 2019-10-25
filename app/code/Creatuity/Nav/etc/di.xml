@@ -741,6 +741,16 @@
             <argument name="accessorMethod" xsi:type="string">getIncrementId</argument>
         </arguments>
     </virtualType>
+    <virtualType name="shippingCarrierOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getShippingCarrier</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingMethodOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getShippingMethod</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="grandTotalOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
         <arguments>
             <argument name="accessorMethod" xsi:type="string">getGrandTotal</argument>
@@ -1273,6 +1283,18 @@
         <arguments>
             <argument name="mapping" xsi:type="object">shippingAddressPostcodeFieldMapping</argument>
             <argument name="orderDataExtractor" xsi:type="object">shippingAddressPostcodeOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingCarrierOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingCarrierFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingCarrierOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="shippingMethodOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">shippingMethodFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">shippingMethodOrderDataExtractor</argument>
         </arguments>
     </virtualType>
 
@@ -1926,6 +1948,8 @@
                 <item name="incrementIdOrderDataExtractorMapping" xsi:type="object">incrementIdOrderDataExtractorMapping</item>
                 <item name="customerOrderIdOrderDataExtractorMapping" xsi:type="object">customerOrderIdOrderDataExtractorMapping</item>
                 <item name="grandTotalOrderDataExtractorMapping" xsi:type="object">grandTotalOrderDataExtractorMapping</item>
+                <item name="shippingCarrierOrderDataExtractorMapping" xsi:type="object">shippingCarrierOrderDataExtractorMapping</item>
+                <item name="shippingMethodOrderDataExtractorMapping" xsi:type="object">shippingMethodOrderDataExtractorMapping</item>
                 <!-- Commented due to NO USE
                 <item name="shippingMethodDescriptionOrderDataExtractorMapping" xsi:type="object">shippingMethodDescriptionOrderDataExtractorMapping</item>
                 <item name="paymentMethodCodeOrderDataExtractorMapping" xsi:type="object">paymentMethodCodeOrderDataExtractorMapping</item>
@@ -1957,9 +1981,9 @@
                 <!-- Commented due to NO USE
                 <item name="locationCodeShortcutDimensionStaticDataExtractorMapping" xsi:type="object">locationCodeShortcutDimensionStaticDataExtractorMapping</item>
                 <item name="freeFreightStaticDataExtractorMapping" xsi:type="object">freeFreightStaticDataExtractorMapping</item>
-                 Commented due to NO USE -->
                 <item name="shippingCarrierStaticDataExtractorMapping" xsi:type="object">shippingCarrierStaticDataExtractorMapping</item>
                 <item name="shippingMethodStaticDataExtractorMapping" xsi:type="object">shippingMethodStaticDataExtractorMapping</item>
+                Commented due to NO USE -->
             </argument>
         </arguments>
     </virtualType>
@@ -2444,6 +2468,21 @@
         </arguments>
     </virtualType>
 
+    <virtualType name="orderHandler" type="Magento\Framework\Logger\Handler\Base">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+            <argument name="fileName" xsi:type="string">/var/log/order_sync.log</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="orderLogger" type="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="name" xsi:type="string">Order Sync Logger</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">orderHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
     <type name="Creatuity\Nav\Model\Task\ProductUpdateTask">
         <arguments>
             <argument name="logger" xsi:type="object">creatuityNavLogger</argument>
@@ -2468,7 +2507,7 @@
     </type>
     <type name="Creatuity\Nav\Model\Task\OrderUpdateTask">
         <arguments>
-            <argument name="logger" xsi:type="object">creatuityNavLogger</argument>
+            <argument name="logger" xsi:type="object">orderLogger</argument>
             <argument name="orderCollectionMap" xsi:type="object">orderUpdateOrderCollectionMap</argument>
             <argument name="orderCustomerProvider" xsi:type="object">orderCustomerProvider</argument>
             <argument name="orderProvider" xsi:type="object">orderProvider</argument>
