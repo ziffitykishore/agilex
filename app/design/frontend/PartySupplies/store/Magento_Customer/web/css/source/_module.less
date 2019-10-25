@@ -31,7 +31,55 @@
 
 & when (@media-common = true) {
 
+    .customer-account-logoutsuccess {
+        .page-main {
+            .container-md();
+        }
+    }
 
+    .company-account-create {
+        .inner-container {
+                .inner-wrapper {
+                    max-width: 1210px;
+                    margin: 0 auto;
+                    width: 100%;
+                }
+        }
+    }
+
+    .customer-account-create {
+        .inner-container {
+            .form-wrapper {
+                max-width: 790px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+    }
+
+    .customer-account-forgotpassword,
+    .customer-account-confirmation,
+    .customer-account-createpassword
+    .inner-container {
+        .form-wrapper {
+            max-width: 460px;
+            width: 100%;
+        }
+    }
+
+
+    .company-account-create,
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-forgotpassword,
+    .customer-account-login,
+    .customer-account-create {
+        .page-main {
+            .column.main {
+                min-height: 990px;
+            }
+        }
+    }
 
     .login-container {
         min-height: 420px;
@@ -150,6 +198,12 @@
     //  ---------------------------------------------
 
     .account {
+
+        .page-title-wrapper {
+            .page-title {
+                font-size: 2.4rem;
+            }
+        }
         .column.main {
             h2 {
                 margin-top: 0;
@@ -249,7 +303,6 @@
             a {
                 text-decoration: none;
                 .lib-css(color, @color-black);
-                .lib-font-size(@font-size__s);
                 &:hover {
                     .lib-css(background, @account-nav-item-hover);
                     .lib-css(border-color, @c-primary_color);
@@ -469,7 +522,6 @@
                         display: block;
                         float:none;
                         width:100%;
-                        font-family: @heading__font-family__base;
                     }
                     .secondary{
                         float: none;
@@ -724,16 +776,15 @@
                         position: relative;
                     }
                     .action.back{
-                        padding-left: 20px;
                         &:before{
-                            content: '\2190';
+                            content: @right-arrow;
+                            font-family: @icons__font-name_ps;
                             display: inline-block;
                             vertical-align: middle;
                             font-size: 20px;
-                            position: absolute;
-                            left: 0;
-                            bottom: -1px;
+                            margin-right: 5px;
                             line-height: normal;
+                            .transform(rotate(180deg));
                         }
                     }
                 }
@@ -757,7 +808,6 @@
         }
 
         .column.main {
-            .lib-font-size(@font-size__s);
             .fieldset {
                 .legend{
                     margin-left: 0;
@@ -995,8 +1045,23 @@
 
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s)
-{
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
+    .company-account-create,
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-create,
+    .customer-account-forgotpassword,
+    .customer-account-login{
+        .page-main{
+            .column.main{
+                min-height: 650px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .account {
         .column.main,
         .sidebar-additional {
@@ -1088,7 +1153,6 @@
         .page-main{
             .column.main{
                 padding: 0;
-                min-height: 990px;
                 background-size: contain;
             }
 
@@ -1207,9 +1271,11 @@
     .customer-account-create {
         .page-main {
             .column.main {
-                .flex();
-                align-items: center;
-                justify-content: center;
+                display: table;
+                .inner-container {
+                    display: table-cell;
+                    vertical-align: middle;
+                }
             }
         }
 

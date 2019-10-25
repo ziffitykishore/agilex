@@ -5,9 +5,12 @@
  */
 -->
 <div id="checkout-shipping-method-load">
+    <div class="shipping-list">
     <!-- ko foreach: { data: rates(), as: 'method'} -->
         <!--ko template: { name: element.shippingMethodItemTemplate} --><!-- /ko -->
     <!-- /ko -->
+
+    </div>
 
     <div>
         <span>Ship your products from our warehouse</span>

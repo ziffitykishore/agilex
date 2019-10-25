@@ -399,6 +399,7 @@
                     margin: 20px 0 0 0;
                     .field{
                         margin: 0 0 15px;
+                        font-size: @font-size__base;
 
                         &:last-child{
                             margin: 0;
@@ -415,10 +416,6 @@
                 &:focus{
                     box-shadow: none;
                 }
-            }
-
-            select{
-                font-size: @font-size__s;
             }
 
             input[type="radio"]{
@@ -450,7 +447,7 @@
                             width: 5px;
                             height: 5px;
                             left: 6px;
-                            top: 6px;
+                            top: 6px !important;
                             .br-radius(50%);
                         }
                     }

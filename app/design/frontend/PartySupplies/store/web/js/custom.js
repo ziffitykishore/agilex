@@ -128,14 +128,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
             Home Page Why Us Slider
             ================= */
 
-
-        $(window).on('load resize', function(){
-            if($(window).width() <= 768) {
-                slick_on_mobile( $('.why-row'));
-            } else {
-                $('.why-row').slick('unslick');
-            }
-        });
+        slick_on_mobile( $('.why-row'));
 
         function slick_on_mobile(slider){
             if (!slider.hasClass('slick-initialized')) {
@@ -144,11 +137,15 @@ require(['jquery', 'slick','nice-select'], function ($) {
                     arrows: false,
                     autoplay:true,
                     autoplaySpeed:2000,
-                    centerMode: true,
+                    slidesToShow: 5,
                     responsive: [
                         {
-                            breakpoint: 9999,
-                            settings: "unslick"
+                            breakpoint: 1350,
+                            settings: {
+                                slidesToShow: 4,
+                                slidesToScroll: 1,
+                                arrows: true
+                            }
                         },
                         {
                             breakpoint: 769,

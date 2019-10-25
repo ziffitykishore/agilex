@@ -45,6 +45,18 @@
 
         input {
             padding: 10px 75px 10px 20px;
+
+            &::-webkit-input-placeholder { /* Edge */
+                color: @color-black;
+            }
+
+            &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+                color: @color-black;
+            }
+
+            &::placeholder {
+                color: @color-black;
+            }
         }
 
         .title {
@@ -61,8 +73,7 @@
         }
 
         .action.subscribe {
-            border-bottom-left-radius: 0;
-            border-top-left-radius: 0;
+            .br-radius(0 3px 3px 0);
             margin-left: -1px;
 
             &:before {
