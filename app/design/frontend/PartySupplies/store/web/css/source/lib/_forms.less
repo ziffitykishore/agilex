@@ -278,7 +278,6 @@
         .br-radius(3px);
         border: 1px solid @c-graylight;
         height: 44px;
-        font-size: @font-size__s;
         -webkit-transition : .5s ease;
         transition: .5s ease;
         font-family: @font-family-name__base;
@@ -293,7 +292,8 @@
         .lib-form-element-search-reset();
     }
 
-    .page-wrapper {
+    .page-wrapper,
+    .modal-popup {
 
         select {
             .lib-form-element-input(@_type: select);
@@ -305,7 +305,6 @@
             background: #fff url(../images/down_arrow.svg) no-repeat 98%;
             background-size: 8px;
             padding-right: 30px;
-            font-size: @font-size__s;
             -webkit-appearance: none;
             -moz-appearance: none;
             -ms-appearance: none;

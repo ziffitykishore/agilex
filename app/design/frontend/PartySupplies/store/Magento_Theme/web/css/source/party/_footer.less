@@ -34,7 +34,7 @@
     }
 
     .footer.wrapper{
-        background-color: @c-text_color;
+        background-color: @c-whitesmoke;
         .custom-container{
             .container-md();
             padding-top:70px;
@@ -44,14 +44,13 @@
 
         .footer-parts{
             h5{
-                color: @c-text_sec_color;
+                color: @color-black;
                 text-transform: uppercase;
                 margin-top: 0;
                 font-weight: @font-weight__semibold;
             }
             p{
-                color: @c-white_color;
-                .lib-font-size(@font-size__s);
+                color: @color-black;
                 line-height: normal;
                 font-weight: @font-weight__heavier;
                 .blk{
@@ -59,13 +58,9 @@
                 }
             }
             a{
-                color: @c-white_color;
                 transition: .5s ease;
-                .lib-font-size(@font-size__s);
                 font-weight: @font-weight__heavier;
-                &:hover{
-                    color:@c-primary_color;
-                }
+
                 &.mail{
                     margin-top: 25px;
                     display: inline-block;
@@ -79,7 +74,7 @@
                 list-style-type: none;
                 li{
                     color: @c-white_color;
-                    margin-bottom: 20px;
+                    margin-bottom: 10px;
                 }
             }
         }
@@ -87,16 +82,11 @@
             h5{
                 text-transform: uppercase;
                 margin-top: 0;
-                color: @c-white_color;
-            }
-            p{
-                color: @c-white_color;
             }
             form{
                 position: relative;
                 input[type="email"]{
                     border: 0;
-                    background-color: #1f1f1f;
                     min-height: 54px;
                     color: @c-white_color;
                     &:focus{
@@ -116,16 +106,13 @@
             }
         }
         .foot-bor{
-            border-top: 1px solid #252525;
+            border-top: 1px solid #e0e0e0;
             padding: 38px 0 30px 0;
             .custom-container{
                 padding-top: 0;
                 padding-bottom: 0;
                 .copy{
-                    color: @c-white_color;
                     p{
-                        color: @c-text_sec_color;
-                        .lib-font-size(@font-size__s - 2);
                         font-weight: @font-weight__heavier;
                     }
                 }
@@ -222,6 +209,7 @@
         justify-content: space-between;
         .footer-parts{
             .flex-width(100%);
+            margin-bottom: 15px;
 
             &.newsletter-wrap {
                 text-align: center;
@@ -239,6 +227,7 @@
                 display: none;
                 padding-left: 15px;
                 padding-right: 15px;
+                margin-top: 15px;
             }
             p{
                 .blk{
@@ -250,29 +239,30 @@
         .mb-foot{
             h5{
                 padding: 10px;
-                border: 2px solid #8c8c8c;
+                border: 1px solid @c-graylight;
                 position: relative;
+                margin-bottom: 0;
 
                 &:before,
                 &:after{
-                    background: #8c8c8c;
+                    background: @color-black;
                     content: '';
                     height: 3px;
                     position: absolute;
                     top: 17px;
                     width: 21px;
-                    transition: transform 500ms ease;
+                    .transition(transform 500ms ease);
                     right: 7px;
                 }
                 &:after {
                     transform-origin: center;
-                    transform: rotate(90deg);
+                    .transform(rotate(90deg));
                 }
 
                 &.active {
 
                     &:before {
-                        transform: rotate(180deg);
+                        .transform(rotate(180deg));
                     }
                     &:after {
                         transform: none;

@@ -5,7 +5,9 @@
  */
 -->
 <li id="shipping" class="checkout-shipping-address" data-bind="fadeVisible: visible()">
+    <div class="heading-group">
     <div class="step-title" translate="'Shipping Address'" data-role="title" />
+        <div class="button-group">
     <button type="button" class="action" data-trigger="address_book_trigger">
 	    <span data-bind="i18n: 'Address Book'"></span>
 	</button>
@@ -22,6 +24,9 @@
 		 visible="isFormPopUpVisible()"
 		 render="shippingFormTemplate" />
 	</if>
+        </div>
+    </div>
+
 
     <div id="checkout-step-shipping"
          class="step-content"

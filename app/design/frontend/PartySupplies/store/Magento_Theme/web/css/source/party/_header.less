@@ -46,7 +46,6 @@
 
     .navigation {
         a {
-            font-family: @heading__font-family__base;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -302,7 +301,6 @@
                 .customer-name {
                     text-transform: uppercase;
                     font-weight: bold;
-                    font-family: @heading__font-family__base;
                     .lib-css(color, @c-text_color);
                     &:hover {
                         .lib-css(color, @c-primary_color);
@@ -364,7 +362,7 @@
                 }
                 a,
                 strong {
-                    .lib-font-size(@font-size__s);
+                    .lib-font-size(@font-size__base);
                     font-weight: @font-weight__regular;
                 }
 
@@ -373,13 +371,6 @@
 
                 }
             }
-        }
-    }
-
-
-    .page-title-wrapper {
-        .page-title {
-            font-size: 2rem;
         }
     }
 
@@ -854,7 +845,7 @@
 
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk-md) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk-md) {
 
     .page-title-wrapper {
         .page-title {
