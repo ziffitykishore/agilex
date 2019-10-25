@@ -1,0 +1,71 @@
+.cms-brands {
+    .column.main {
+        padding: $indent__s;
+
+        [data-content-type="row"] {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            border: 2px solid $c-border !important;
+            border-top: 0 !important;
+
+            @include min-screen($screen__m) {
+                border: 0 !important;
+            }
+        }
+    }
+
+    .brands-nav[data-element="inner"] {
+        margin-bottom: $indent__m;
+        display: none !important;
+
+        @include min-screen($screen__m) {
+            display: flex !important;
+            max-width: 1000px;
+            margin: 0 auto !important;
+        }
+
+        [data-element="main"] {
+            display: flex;
+            justify-content: space-around;
+
+            a {
+                font-size: 18px;
+                padding: 0 $indent__s;
+            }
+        }
+    }
+
+    [data-content-type="text"] {
+        padding-left: $indent__s !important;
+
+        @include min-screen($screen__m) {
+            padding-left: 0 !important;
+
+            h6:first-child {
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    .pagebuilder-collapsible {
+        width: 100% !important;
+        flex-wrap: wrap;
+        padding: 0 !important;
+
+        @include min-screen($screen__m) {
+            max-width: 1000px !important;
+            margin: $indent__xl auto !important;
+            padding: $indent__s !important;
+        }
+    }
+
+    .tabs-content {
+        @include min-screen($screen__m) {
+            column-count: 2;
+        }
+
+        @include min-screen($screen__l) {
+            column-count: 4;
+        }
+    }
+}
