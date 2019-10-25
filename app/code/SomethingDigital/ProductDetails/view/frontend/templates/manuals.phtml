@@ -1,5 +1,7 @@
 <?php $manuals = $block->getViewModel()->getManuals() ?>
 <?php if (!empty($manuals)): ?>
-<div class="header">Technical Documents & Manuals</div>
-<?php echo $manuals; ?>
+<div class="manual-wrapper">
+  <h4 class="header">Technical Documents & Manuals</h4>
+  <div class="manuals"><?php echo $manuals; ?><div>
+</div>
 <?php endif; ?>

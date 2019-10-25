@@ -1024,4 +1024,24 @@ body.catalog-product-compare-index {
             font-weight: $font-weight__extrabold;
         }
     }
+
+    .manual-wrapper {
+        .manuals {
+            margin-top: $indent__s;
+            color: $link__color;
+
+            &::before {
+                margin-right: $indent__s;
+                transform: translateY(-2px);
+            }
+
+            @include icon-svg(
+                $icon       : document,
+                $fill       : $primary__color,
+                $width      : 15px,
+                $height     : 20px,
+                $pseudo     : before
+            );
+        }
+    }
 }
