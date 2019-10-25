@@ -31,6 +31,10 @@ Amazon NextDay, Next Day Air</amazon_shipping_method_mappings>
                 <upsf_shipment_method_code>UPSF</upsf_shipment_method_code>
                 <upsgrnd_shipment_method_code>UPSGRND</upsgrnd_shipment_method_code>
                 <gts_shipment_method_code>GTS</gts_shipment_method_code>
+                <pallet_shipping_agent_code>PALLET</pallet_shipping_agent_code>
+                <pallet_shipment_method_code>PALLET</pallet_shipment_method_code>
+                <own_shipping_agent_code>OWNSHPN</own_shipping_agent_code>
+                <own_shipment_method_code>OWNSHPN</own_shipment_method_code>
             </order_sync_shipping_data_provider>
         </nav>
     </default>
