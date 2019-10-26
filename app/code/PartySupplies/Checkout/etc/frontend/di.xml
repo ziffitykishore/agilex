@@ -11,4 +11,6 @@
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
         <plugin name="checkout_default_value" type="PartySupplies\Checkout\Plugin\LayoutProcessor"/>
     </type>
+
+    <preference for="Magento\Checkout\CustomerData\DefaultItem" type="PartySupplies\Checkout\CustomerData\DefaultItem"/>
 </config>
