@@ -5,6 +5,7 @@ namespace PartySupplies\Checkout\CustomerData;
 use Magento\Checkout\CustomerData\DefaultItem as Item;
 use Magento\Framework\App\ObjectManager;
 use Magento\Catalog\Model\Product\Configuration\Item\ItemResolverInterface;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
 
 class DefaultItem extends Item
 {
@@ -17,6 +18,11 @@ class DefaultItem extends Item
      * @var ItemResolverInterface
      */
     private $itemResolver;
+
+    /**
+     * @var StockRegistryInterface
+     */
+    protected $stockRegistry;
     
     /**
      *
@@ -35,7 +41,8 @@ class DefaultItem extends Item
         \Magento\Catalog\Helper\Product\ConfigurationPool $configurationPool,
         \Magento\Checkout\Helper\Data $checkoutHelper,
         \Magento\Framework\Escaper $escaper = null,
-        \Magento\Catalog\Model\Product\Configuration\Item\ItemResolverInterface $itemResolver = null
+        \Magento\Catalog\Model\Product\Configuration\Item\ItemResolverInterface $itemResolver = null,
+        StockRegistryInterface $stockRegistry
     ) {
         parent::__construct(
             $imageHelper,
@@ -48,16 +55,29 @@ class DefaultItem extends Item
         );
         $this->escaper = $escaper ?: ObjectManager::getInstance()->get(\Magento\Framework\Escaper::class);
         $this->itemResolver = $itemResolver ?: ObjectManager::getInstance()->get(ItemResolverInterface::class);
+        $this->stockRegistry = $stockRegistry;
     }
 
+    /**
+     * To get product data in minicart
+     *
+     * @return array
+     */
     protected function doGetItemData()
     {
         $imageHelper = $this->imageHelper->init($this->getProductForThumbnail(), 'mini_cart_product_thumbnail');
         $productName = $this->escaper->escapeHtml($this->item->getProduct()->getName());
+        $stockItem = $this->stockRegistry->getStockItem(
+            $this->item->getProduct()->getId(),
+            $this->item->getProduct()->getStore()->getWebsiteId()
+        );
 
         return [
             'options' => $this->getOptionList(),
             'qty' => $this->item->getQty() * 1,
+            'minAllowed' => $stockItem->getMinSaleQty(),
+            'maxAllowed' => $stockItem->getMaxSaleQty(),
+            'qtyIncrements' => $stockItem->getQtyIncrements(),
             'item_id' => $this->item->getId(),
             'configure_url' => $this->getConfigureUrl(),
             'is_visible_in_site_visibility' => $this->item->getProduct()->isVisibleInSiteVisibility(),

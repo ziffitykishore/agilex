@@ -13,13 +13,13 @@ define([
         
         increaseQty: function() {
             $(".increaseQty").unbind().click(function(){
-                var data = JSON.parse($(this).prev().attr('data-advanced-inventory'));
+                var data = JSON.parse($(this).siblings('input').attr('data-advanced-inventory'));
                 var qty = 1;
                 if (data["validate-item-quantity"]["qtyIncrements"]) {
                     qty = data["validate-item-quantity"]["qtyIncrements"];
                 }
-                $(this).prev().val(
-                    parseInt($(this).prev().val()) + qty
+                $(this).siblings('input').val(
+                    parseInt($(this).siblings('input').val()) + qty
                 );
             });
         },

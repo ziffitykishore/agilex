@@ -8,7 +8,10 @@
 
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
-<?php $_product = $block->getProduct(); ?>
+<?php
+$_product = $block->getProduct();
+$inventory = $block->getData('qtyData');
+?>
 <?php $buttonTitle = __('Update Cart'); ?>
 <?php if ($_product->isSaleable()): ?>
     <div class="box-tocart update">
@@ -17,13 +20,17 @@
             <div class="field qty">
                 <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
                 <div class="control">
+                    <button type="button" id="dec" class="decreaseQty"><span>-</span></button>
                     <input type="number"
                            name="qty"
                            id="qty"
                            value=""
                            title="<?= /* @escapeNotVerified */ __('Qty') ?>"
                            class="input-text qty"
-                           data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"/>
+                           data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                           data-advanced-inventory = <?= $inventory->getQuantityValidators($_product->getId(), $_product->getStore()->getWebsiteId()) ?>
+                           />
+                    <button type="button" id="inc" class="increaseQty"><span>+</span></button>
                 </div>
             </div>
             <?php endif; ?>
@@ -45,7 +52,8 @@
                 "addToCart": {
                     "cartButtonId": "#product-updatecart-button",
                     "cartForm": "#product_addtocart_form"
-                }
+                },
+                "Magento_Theme/js/action": {}
             }
         }
     </script>

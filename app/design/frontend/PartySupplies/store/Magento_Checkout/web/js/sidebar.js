@@ -126,9 +126,28 @@ define([
             };
 
             /**
+             * Event Listener for Increment Button
+             */
+
+            events['click' + this.options.item.buttonInc] = function (event) {
+                    event.stopPropagation();
+                    self._incrementItemQty($(event.currentTarget));
+            };
+
+            /**
+             * Event Listener for Decrement Button
+             */
+
+            events['click' + this.options.item.buttonDec] = function (event) {
+                    event.stopPropagation();
+                    self._decrementItemQty($(event.currentTarget));
+            };
+
+            /**
              * @param {jQuery.Event} event
              */
             events['focusout ' + this.options.item.qty] = function (event) {
+                self._roundOffQty($(event.currentTarget));
                 self._validateQty($(event.currentTarget));
             };
 
@@ -216,6 +235,73 @@ define([
                 'item_id': itemId,
                 'item_qty': $('#cart-item-' + itemId + '-qty').val()
             }, elem, this._updateItemQtyAfter);
+        },
+
+        /**
+         * @param {HTMLElement} elem
+         * @private
+         */
+        _incrementItemQty: function (elem) {
+            var itemId = elem.data('cart-item');
+            var qtyField = $('#cart-item-' + itemId + '-qty');
+            var qtyIncrement = elem.data('qty-increments') ? elem.data('qty-increments') : elem.data('min-qty');
+
+            qtyField.attr(
+                'data-item-qty',
+                qtyField.val(
+                    parseInt(qtyField.val()) + parseInt(qtyIncrement)
+                )
+            );
+            $('#update-cart-item-' + itemId).show('fade', 300);
+        },
+
+        /**
+         * @param {HTMLElement} elem
+         * @private
+         */
+        _decrementItemQty: function (elem) {
+            var itemId = elem.data('cart-item');
+            var qtyField = $('#cart-item-' + itemId + '-qty');
+            var qtyDecrement = elem.data('qty-decrements') ? elem.data('qty-decrements') : elem.data('min-qty');
+
+            if (qtyField.val()<= elem.data('min-qty')) {
+                qtyField.attr(
+                    'data-item-qty',
+                    qtyField.val(elem.data('min-qty'))
+                );
+            } else {
+                qtyField.attr(
+                    'data-item-qty',
+                    qtyField.val(
+                        parseInt(qtyField.val()) - parseInt(qtyDecrement)
+                    )
+                );
+            }
+            $('#update-cart-item-' + itemId).show('fade', 300);
+        },
+
+        /**
+         * @param {HTMLElement} elem
+         * @private
+         */
+        _roundOffQty: function (elem) {
+            var itemId = elem.data('cart-item');
+            var qtyField = $('#cart-item-' + itemId + '-qty');
+            var qtyDecrement = elem.data('qty-decrements') ? elem.data('qty-decrements') : elem.data('min-qty');
+
+            if (qtyField.val()<= 0) {
+                qtyField.attr(
+                    'data-item-qty',
+                    qtyField.val(elem.data('min-qty'))
+                );
+            } else {
+                qtyField.attr(
+                    'data-item-qty',
+                    qtyField.val(
+                        Math.round(qtyField.val() / qtyDecrement) * qtyDecrement
+                    )
+                );
+            }
         },
 
         /**
