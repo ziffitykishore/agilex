@@ -80,6 +80,7 @@
         <move element="my-account-link"  destination="my.accounts.links"/>
         <move element="wish-list-link"  destination="my.accounts.links" after='my-account-link'/>
         <move element="authorization-link"  destination="my.accounts.links" after='wish-list-link'/>
+        <move element="magepal_gtm_iframe" destination="after.body.start" before="-"/>
 
         <referenceBlock name="register-link" remove="true" />
         <referenceBlock name="advanced-search-link" remove="true" />
