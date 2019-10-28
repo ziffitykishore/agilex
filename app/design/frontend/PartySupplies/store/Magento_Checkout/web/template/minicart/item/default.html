@@ -52,20 +52,25 @@
                 <div class="details-qty qty">
                     <label class="label" data-bind="i18n: 'Qty', attr: {
                            for: 'cart-item-'+item_id+'-qty'}"></label>
-            <!-- Button for Decrement -->
-
+                        <!-- Button for Decrement -->
                         <button data-bind="attr: {
-                                        id:'decrement-cart-item-'+item_id,
-                                        'data-cart-item' : item_id,
-                                        title: $t('Decrement')
-                                    }"
+                                    id:'decrement-cart-item-'+item_id,
+                                    'data-cart-item' : item_id,
+                                    'data-qty-decrements': qtyIncrements,
+                                    'data-min-qty': minAllowed,
+                                    'data-max-qty': maxAllowed,
+                                    title: $t('Decrement')
+                                }"
                                 class="decrement-cart-item">
                                 <span>-</span>
                         </button>
-                <!-- Button for Decrement -->
+                        <!-- Button for Decrement -->
                         <input data-bind="attr: {
                                id: 'cart-item-'+item_id+'-qty',
                                'data-cart-item': item_id,
+                                'data-qty-decrements': qtyIncrements,
+                                'data-min-qty': minAllowed,
+                                'data-max-qty': maxAllowed,
                                'data-item-qty': qty,
                                'data-cart-item-id': product_sku
                                }, value: qty"
@@ -76,6 +81,9 @@
                         <button data-bind="attr: {
                                     id:'increment-cart-item-'+item_id,
                                     'data-cart-item' : item_id,
+                                    'data-qty-increments': qtyIncrements,
+                                    'data-min-qty': minAllowed,
+                                    'data-max-qty': maxAllowed,
                                     title: $t('Increment')
                                 }"
                                 class="increment-cart-item">
