@@ -3,7 +3,7 @@ import $ from 'jquery';
 const assignIdsToColumnTitles = () => {
   $('.pagebuilder-collapsible').each(function () {
     const collapsibleTitle = $(this).find('[data-role="title"]');
-    $(collapsibleTitle).attr('id', collapsibleTitle.text().toLowerCase());
+    collapsibleTitle.attr('id', collapsibleTitle.text().toLowerCase());
   });
 }
 
@@ -13,12 +13,14 @@ const wrapNavItemsInAnchorTag = () => {
   });
 }
 
-if ($('body').find('.brands-nav')) {
+const $brandsNav = $('.brands-nav');
+
+if ($brandsNav.length) {
   $(document).on('click', '.brands-nav [data-content-type="text"] a', function (e) {
     e.preventDefault();
 
     $('html, body').animate({
-      scrollTop: $($.attr(this, 'href')).offset().top - 70
+      scrollTop: $($(this).attr('href')).offset().top - 70
     }, 500);
   });
 }

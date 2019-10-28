@@ -1,55 +1,32 @@
-// !importants override PageBuilder
-
 .cms-brands {
     .column.main {
         padding: $indent__s;
 
         [data-content-type="row"] {
-            margin: 0 auto !important;
-            padding: 0 !important;
-            border: 2px solid $c-border !important;
-            border-top: 0 !important;
+            margin: 0 auto !important; // Overrides PageBuilder
+            padding: 0 !important; // Overrides PageBuilder
+            border: 2px solid $c-border !important; // Overrides PageBuilder
+            border-top: 0 !important; // Overrides PageBuilder
 
             @include min-screen($screen__m) {
-                border: 0 !important;
+                border: 0 !important; // Overrides PageBuilder
             }
 
             [data-element="inner"],
             .pagebuilder-column {
                 @include max-screen($screen__m) {
-                    padding: 0 !important;
-                    margin: 0 !important;
+                    padding: 0 !important; // Overrides PageBuilder
+                    margin: 0 !important; // Overrides PageBuilder
                 }
             }
         }
     }
 
-    .brands-nav[data-element="inner"] {
-        margin-bottom: $indent__m;
-        display: none !important;
-
-        @include min-screen($screen__m) {
-            display: flex !important;
-            max-width: 1000px;
-            margin: 0 auto !important;
-        }
-
-        [data-element="main"] {
-            display: flex;
-            justify-content: space-around;
-
-            a {
-                font-size: 18px;
-                padding: 0 $indent__s;
-            }
-        }
-    }
-
     [data-content-type="text"] {
-        padding-left: $indent__s !important;
+        padding-left: $indent__s !important; // Overrides PageBuilder
 
         @include min-screen($screen__m) {
-            padding-left: 0 !important;
+            padding-left: 0 !important; // Overrides PageBuilder
 
             h6:first-child {
                 margin-top: 0;
@@ -58,14 +35,14 @@
     }
 
     .pagebuilder-collapsible {
-        width: 100% !important;
+        width: 100% !important; // Overrides PageBuilder
         flex-wrap: wrap;
-        padding: 0 !important;
+        padding: 0 !important; // Overrides PageBuilder
 
         @include min-screen($screen__m) {
-            max-width: 1000px !important;
-            margin: $indent__xl auto  0 auto !important;
-            padding: $indent__s !important;
+            max-width: 1000px !important; // Overrides PageBuilder
+            margin: $indent__xl auto 0 auto !important; // Overrides PageBuilder
+            padding: $indent__s !important; // Overrides PageBuilder
         }
     }
 
@@ -82,36 +59,50 @@
     .coll-header {
         @include bryant-park-headings-h2;
         margin: 0;
-        padding: $indent__s !important;
+        padding: $indent__s !important; // Overrides PageBuilder
         position: relative;
 
         &::after {
+            content: "+";
             position: absolute;
             right: $indent__l;
             transform: scale(2);
-        }
 
-        &[aria-expanded="false"] {
-            &::after {
-                content: "+";
-            }
-        }
-
-        &[aria-expanded="true"] {
-            &::after {
-                content: "-";
-                top: $indent__xs;
+            @include min-screen($screen__m) {
+                display: none;
             }
         }
 
         @include min-screen($screen__m) {
-            padding: 0 !important;
-            margin-bottom: $indent__m !important;
+            padding: 0 !important; // Overrides PageBuilder
+            margin-bottom: $indent__m !important; // Overrides PageBuilder
             outline: 0;
+        }
 
-            &::after {
-                display: none;
-            }
+        &[aria-expanded="true"]::after {
+            content: "-";
+            top: $indent__xs;
+        }
+    }
+}
+
+.brands-nav[data-element="inner"] {
+    margin-bottom: $indent__m;
+    display: none !important; // Overrides PageBuilder
+
+    @include min-screen($screen__m) {
+        display: flex !important; // Overrides PageBuilder
+        max-width: 1000px;
+        margin: 0 auto !important; // Overrides PageBuilder
+    }
+
+    [data-element="main"] {
+        display: flex;
+        justify-content: space-around;
+
+        a {
+            font-size: 18px;
+            padding: 0 $indent__s;
         }
     }
 }
