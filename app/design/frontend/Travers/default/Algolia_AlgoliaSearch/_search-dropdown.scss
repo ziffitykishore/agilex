@@ -25,6 +25,7 @@ $search-dropdown-footer__height: 50px;
 
     .aa-dropdown-menu {
         border: 1px solid $c-grey !important;
+        overflow-y: hidden;
     }
 
     .aa-dataset-products {
@@ -80,8 +81,14 @@ $search-dropdown-footer__height: 50px;
         background-color: $page__background-color;
         margin: 0 !important;
         padding: $indent__base;
+        padding-top: $indent__xs;
 
-        @include min-screen($mobile-nav__breakpoint) {
+        @include min-screen($screen__l) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            max-width: 250px;
+            width: 100%;
             height: calc(100% + #{$search-dropdown-footer__height});
         }
 
@@ -97,8 +104,7 @@ $search-dropdown-footer__height: 50px;
 
     .tier_value,
     .tier_price {
-        color: $text__color !important;
-        font-size: $font-size__base !important;
+        display: none;
     }
 
     .category {
