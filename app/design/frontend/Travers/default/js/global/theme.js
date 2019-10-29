@@ -10,4 +10,5 @@ domready(() => {
   $('.about-link').first().clone().appendTo('.navigation ul:first');
   $('.phone-number.only-on-mobile').first().clone().prependTo('.page-header');
   $('#algolia-autocomplete-container .col9').prepend(`<span class="category">Products</span>`);
+  $('#algolia-autocomplete-container .other-sections').prepend(`<span class="category">Keywords</span>`);
 });
