@@ -200,8 +200,35 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 				options.numericFilters = 'visibility_search=1';
 				options.ruleContexts = ['magento_filters', '']; // Empty context to keep BC for already create rules in dashboard
 
+				var hitsSource = $.fn.autocomplete.sources.hits(algolia_client.initIndex(algoliaConfig.indexName + "_" + section.name), options);
+
 				source =  {
-					source: $.fn.autocomplete.sources.hits(algolia_client.initIndex(algoliaConfig.indexName + "_" + section.name), options),
+					source: function(query, callback) {
+						var minSkuLength = 4;
+        				var maxSuffixLength = 4;
+        				var suffixMatch = query.substr(0,Math.max(minSkuLength, query.length - maxSuffixLength));
+
+						hitsSource(suffixMatch, function(suggestions, payload) {
+							let newSuggestions = [];
+							for (index = 0; index < suggestions.length; ++index) {
+							    if (suggestions[index]['sku'] == query) {
+							    	newSuggestions.push(suggestions[index]);
+							    	continue;
+							    }
+							    if (query.indexOf(suggestions[index]['sku']) == 0) {
+							    	newSuggestions.push(suggestions[index]);
+							    	let skuSuffix = query.substr(suggestions[index]['sku'].length);
+							    	newSuggestions[index]['url'] = newSuggestions[index]['url']+'?coupon='+skuSuffix;
+							    }
+							}
+							if (newSuggestions.length) {
+								callback(newSuggestions,payload);
+							} else {
+								callback(suggestions,payload);
+							}
+						});
+					},
+					// source: hitsSource,
 					name: section.name,
 					templates: {
 						empty: function (query) {
@@ -228,7 +255,6 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 						},
 						suggestion: function (hit, payload) {
 							hit = transformHit(hit, algoliaConfig.priceKey);
-
 							hit.displayKey = hit.displayKey || hit.name;
 
 							hit.__queryID = payload.queryID;
