@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17b892cf7d238e38b4e9fe87f02d7473",
+    "content-hash": "42c6764cbb2166e39bcdda1eb6a977db",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -64,16 +64,16 @@
         },
         {
             "name": "algolia/algoliasearch-magento-2",
-            "version": "1.11.3",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/algolia/algoliasearch-magento-2.git",
-                "reference": "19d2026828d5cb9403fc4998ea299b89baf457e7"
+                "reference": "2cfb5a97677d636e64fe3af596dc145f7fcdaf61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/19d2026828d5cb9403fc4998ea299b89baf457e7",
-                "reference": "19d2026828d5cb9403fc4998ea299b89baf457e7",
+                "url": "https://api.github.com/repos/algolia/algoliasearch-magento-2/zipball/2cfb5a97677d636e64fe3af596dc145f7fcdaf61",
+                "reference": "2cfb5a97677d636e64fe3af596dc145f7fcdaf61",
                 "shasum": ""
             },
             "require": {
@@ -84,6 +84,9 @@
                 "ext-pdo": "*",
                 "magento/framework": "~100.1|~101.0|~102.0",
                 "php": "~5.6.5|~7.0|~7.1|~7.2|~7.3"
+            },
+            "require-dev": {
+                "phpcompatibility/php-compatibility": "^9.2"
             },
             "type": "magento2-module",
             "autoload": {
@@ -99,7 +102,7 @@
                 "MIT"
             ],
             "description": "Algolia Search integration for Magento 2",
-            "time": "2019-07-04T10:59:48+00:00"
+            "time": "2019-10-04T08:25:37+00:00"
         },
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
