@@ -1,0 +1,146 @@
+$category-title__color: #424242;
+$search-dropdown-footer__height: 50px;
+
+// All !importants are to override Algolia
+#algolia-autocomplete-container {
+    width: 93% !important;
+
+    @include min-screen($screen__m) {
+        width: 95% !important;
+    }
+
+    @include min-screen($mobile-nav__breakpoint) {
+        width: 100% !important;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .autocomplete-wrapper {
+        background-color: $c-smoke;
+        padding-bottom: 0 !important;
+        overflow-y: hidden;
+    }
+
+    .aa-dropdown-menu {
+        border: 1px solid $c-grey !important;
+    }
+
+    .aa-dataset-products {
+        background-color: $c-smoke;
+        height: 100%;
+
+        img {
+            width: 90px !important;
+            height: 90px !important;
+            margin-right: $indent__s;
+        }
+    }
+
+    .algoliasearch-autocomplete-category,
+    .details {
+        display: none !important;
+    }
+
+    .algoliasearch-autocomplete-hit,
+    .col9 .category {
+        padding-left: $indent__base !important;
+    }
+
+    #autocomplete-products-footer {
+        background-color: $c-smoke;
+        text-align: left;
+        padding-left: $indent__base;
+        height: $search-dropdown-footer__height;
+
+        a {
+            font-weight: $font-weight__regular;
+        }
+
+        @include min-screen($plp_breakpoint) {
+            padding-left: calc(30% + #{$indent__base});
+        }
+    }
+
+    .info {
+        p,
+        span {
+            color: $text__color !important;
+            font-size: 13px !important;
+            font-weight: $font-weight__regular !important;
+        }
+
+        @include hover {
+            color: $c-cobalt;
+        }
+    }
+
+    .other-sections {
+        background-color: $page__background-color;
+        margin: 0 !important;
+        padding: $indent__base;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            height: calc(100% + #{$search-dropdown-footer__height});
+        }
+
+        .thumb {
+            display: none;
+        }
+
+        .algoliasearch-autocomplete-hit,
+        .aa-no-results {
+            padding-left: $indent__xs !important;
+        }
+    }
+
+    .tier_value,
+    .tier_price {
+        color: $text__color !important;
+        font-size: $font-size__base !important;
+    }
+
+    .category {
+        font-weight: $font-weight__extrabold !important;
+        font-size: $font-size__base !important;
+        color: $category-title__color !important;
+        padding-top: $indent__base !important;
+        margin-bottom: $indent__s;
+        clear: both;
+    }
+
+    .info-without-thumb,
+    .aa-no-results {
+        font-size: $font-size__base--desktop !important;
+        font-weight: $font-weight__regular !important;
+        clear: both !important;
+        display: block !important;
+    }
+
+    .col9,
+    .col3 {
+        width: 100% !important;
+        min-width: 100% !important;
+    }
+
+    .col3 {
+        order: -1 !important;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            width: 30% !important;
+            min-width: 30% !important;
+            order: 0 !important;
+        }
+    }
+
+    .col9 {
+        display: flex;
+        flex-direction: column;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            width: 70% !important;
+            min-width: 70% !important;
+        }
+    }
+}
