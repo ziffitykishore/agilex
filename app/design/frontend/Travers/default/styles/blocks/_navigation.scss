@@ -54,41 +54,36 @@ $nav-section-title__height: 60px;
             font-weight: $font-weight__regular;
         }
 
-        &.static-block-submenu {
-            display: none;
+        &.static-block-submenu[aria-expanded="true"] {
+            min-width: 350px;
 
-            &.mobile-show-submenu,
-            &.mobile-show-submenu ul {
-                @include max-screen($mobile-nav__breakpoint) {
+            @include min-screen($mobile-nav__breakpoint) {
+                display: block !important;
+
+                [data-content-type="heading"] {
+                    margin-bottom: 0;
+                }
+
+                ul {
                     display: block !important;
+                    padding-left: 0;
+                    margin-top: $indent__s;
 
-                    [data-content-type="heading"] {
-                        padding-left: 15px;
-                        margin-bottom: $indent__s;
+                    a {
+                        padding-left: 0;
                     }
                 }
             }
+        }
 
-            &.desktop-show-submenu {
-                min-width: 350px;
+        @include max-screen($mobile-nav__breakpoint) {
+            [data-content-type="heading"] {
+                padding-left: 15px;
+                margin-bottom: $indent__s;
+            }
 
-                @include min-screen($mobile-nav__breakpoint) {
-                    display: block !important;
-
-                    [data-content-type="heading"] {
-                        margin-bottom: 0;
-                    }
-
-                    ul {
-                        display: block !important;
-                        padding-left: 0;
-                        margin-top: $indent__s;
-
-                        a {
-                            padding-left: 0;
-                        }
-                    }
-                }
+            ul {
+                display: block !important;
             }
         }
     }
@@ -159,12 +154,10 @@ $nav-section-title__height: 60px;
 
 .nav-toggle {
     @include lib-icon-text-hide();
-    @include icon-svg(
-        $icon       : menu,
-        $fill       : $header-icons-color,
+    @include icon-svg($icon : menu,
+        $fill : $header-icons-color,
         $fill-hover : $header-icons-color-hover,
-        $width      : 28px
-    );
+        $width : 28px);
     display: flex;
     align-items: center;
     min-height: 53px;
@@ -205,14 +198,12 @@ $nav-section-title__height: 60px;
 
         .parent {
             .level-top {
-                @include icon-svg(
-                    $icon     : expand,
-                    $fill     : $navigation-level0-item__color,
-                    $width    : 15px,
-                    $height   : auto,
+                @include icon-svg($icon : expand,
+                    $fill : $navigation-level0-item__color,
+                    $width : 15px,
+                    $height : auto,
                     $hideLabel: false,
-                    $pseudo   : after
-                );
+                    $pseudo : after);
                 position: relative;
 
                 &::after {
@@ -221,12 +212,10 @@ $nav-section-title__height: 60px;
                 }
 
                 &.ui-state-active {
-                    @include icon-svg(
-                        $icon     : collapse,
-                        $fill     : $navigation-level0-item__color,
+                    @include icon-svg($icon : collapse,
+                        $fill : $navigation-level0-item__color,
                         $hideLabel: false,
-                        $pseudo   : after
-                    );
+                        $pseudo : after);
                 }
 
             }
@@ -297,12 +286,10 @@ $nav-section-title__height: 60px;
         .switcher-trigger {
             strong {
                 position: relative;
-                @include lib-icon-font(
-                    $_icon-font-content : $icon-down,
-                    $_icon-font-size    : 42px,
+                @include lib-icon-font($_icon-font-content : $icon-down,
+                    $_icon-font-size : 42px,
                     $_icon-font-position: after,
-                    $_icon-font-display : block
-                );
+                    $_icon-font-display : block);
 
                 &:after {
                     position: absolute;
@@ -312,10 +299,8 @@ $nav-section-title__height: 60px;
             }
 
             &.active strong {
-                @include lib-icon-font-symbol(
-                    $_icon-font-content : $icon-up,
-                    $_icon-font-position: after
-                );
+                @include lib-icon-font-symbol($_icon-font-content : $icon-up,
+                    $_icon-font-position: after);
             }
         }
 
@@ -363,7 +348,7 @@ $nav-section-title__height: 60px;
             }
 
             .greet.welcome,
-            li > a {
+            li>a {
                 padding: 14px $indent__xl 14px 15px;
                 font-weight: 700;
                 border-top: 1px solid $color-gray82;
@@ -473,19 +458,17 @@ $nav-section-title__height: 60px;
 
     }
 
-    @include lib-main-navigation(
-      $_nav-background-color: $flyout-active-color,
+    @include lib-main-navigation($_nav-background-color: $flyout-active-color,
 
-      $_nav-level0-text-transform: none,
-      $_nav-level0-item-padding: 9px $indent__xl 9px 15px,
-      $_nav__indent-side: 17px,
-      $_nav-level0-item__active__border-width: 0 0 0 2px,
-      $_nav-level0-item__active__border-color: $c-cobalt,
+        $_nav-level0-text-transform: none,
+        $_nav-level0-item-padding: 9px $indent__xl 9px 15px,
+        $_nav__indent-side: 17px,
+        $_nav-level0-item__active__border-width: 0 0 0 2px,
+        $_nav-level0-item__active__border-color: $c-cobalt,
 
-      $_submenu-item__active__border-width: 0 0 0 2px,
-      $_submenu-item__active__border: 2px,
-      $_submenu-item__active__border-color: $c-cobalt
-    );
+        $_submenu-item__active__border-width: 0 0 0 2px,
+        $_submenu-item__active__border: 2px,
+        $_submenu-item__active__border-color: $c-cobalt);
 }
 
 //
@@ -494,7 +477,7 @@ $nav-section-title__height: 60px;
 
 @include min-screen($mobile-nav__breakpoint) {
     .navigation {
-        .level0.active > a.level-top {
+        .level0.active>a.level-top {
             border-bottom: 0;
         }
 
@@ -569,18 +552,17 @@ $nav-section-title__height: 60px;
         display: block !important;
     }
 
-    .nav-sections-item-content > * {
+    .nav-sections-item-content>* {
         display: none;
     }
 
     .nav-sections-item-content {
-        > .navigation {
+        >.navigation {
             display: block;
         }
     }
 
-    @include lib-main-navigation-desktop(
-        $_nav-background-color: transparent,
+    @include lib-main-navigation-desktop($_nav-background-color: transparent,
         $_nav-font-size: 16px,
         $_nav-font-weight: $font-weight__regular,
 
@@ -596,8 +578,7 @@ $nav-section-title__height: 60px;
         $_submenu-box-shadow: none,
         $_submenu-item-color: $c-nickel,
         $_submenu-item__hover__background-color: transparent,
-        $_submenu-font-size: $font-size__base
-    );
+        $_submenu-font-size: $font-size__base);
 
     .navigation ul {
         margin-top: $indent__m;
@@ -628,7 +609,7 @@ $nav-section-title__height: 60px;
             }
 
             &.has-active {
-                & > .level-top {
+                &>.level-top {
                     border-bottom: 0;
                 }
             }
