@@ -128,7 +128,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
             Home Page Why Us Slider
             ================= */
 
-        slick_on_mobile( $('.why-row'));
+        slick_on_mobile( $('.slick-why-parts'));
 
         function slick_on_mobile(slider){
             if (!slider.hasClass('slick-initialized')) {
