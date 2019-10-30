@@ -9,7 +9,6 @@ domready(() => {
   $('.contact-link').first().clone().appendTo('.navigation ul:first');
   $('.about-link').first().clone().appendTo('.navigation ul:first');
   $('.phone-number.only-on-mobile').first().clone().prependTo('.page-header');
-  $('#algolia-autocomplete-container .col9').prepend(`<span class="category">Products</span>`);
 
   $('.level-top.level0').each(function() {
     if ($(this).find('.mobile-submenu').length > 0) {

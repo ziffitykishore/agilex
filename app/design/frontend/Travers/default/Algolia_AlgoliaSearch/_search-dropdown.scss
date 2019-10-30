@@ -15,6 +15,10 @@ $search-dropdown-footer__height: 50px;
 
     * {
         box-sizing: border-box;
+
+        em {
+            font-weight: $font-weight__regular !important;
+        }
     }
 
     .autocomplete-wrapper {
@@ -64,24 +68,29 @@ $search-dropdown-footer__height: 50px;
         }
     }
 
-    .info {
-        p,
-        span {
-            color: $text__color !important;
-            font-size: 13px !important;
-            font-weight: $font-weight__regular !important;
-        }
+    .category-tag,
+    .text-muted,
+    .info p,
+    .info span {
+        color: $text__color !important;
+        font-size: 13px !important;
+        font-weight: $font-weight__regular !important;  
+    }
 
+    .info {
         @include hover {
-            color: $c-cobalt;
+            color: $c-cobalt !important;
         }
+    }
+
+    .algolia-glass-suggestion {
+        display: none;
     }
 
     .other-sections {
         background-color: $page__background-color;
         margin: 0 !important;
         padding: $indent__base;
-        padding-top: $indent__xs;
 
         @include min-screen($screen__l) {
             position: absolute;
