@@ -77,7 +77,7 @@
         <div class="primary actions-primary">
             <button type="submit" class="action submit primary"><span><?= $block->escapeHtml(__('Submit')) ?></span></button>
         </div>
-        <button type=button id="btnCancelWriteReview" class="writeReview action action-dismiss"><span><?= $block->escapeHtml(__('Cancel')) ?></span></button>
+        <button type=button id="btnCancelWriteReview" class="closeWriteReview action action-dismiss"><span><?= $block->escapeHtml(__('Cancel')) ?></span></button>
     </div>
 </form>
 <script type="text/x-magento-init">
@@ -104,8 +104,12 @@
 <script>
     require(['jquery'],function($){
        $(document).on('click','.writeReview',function(){
-            $('.block-writeReview').toggle();
-            $('#btnWriteReview').toggle();
+            $('.block-writeReview').show();
+            $('#btnWriteReview').hide();
+       });
+       $(document).on('click','.closeWriteReview',function(){
+            $('.block-writeReview').hide();
+            $('#btnWriteReview').show();
        });
     });
 </script>

@@ -44,7 +44,11 @@ define([
 
         $(function () {
             $('.product-info-main .reviews-actions').click(function (event) {
+                event.preventDefault();
                 $('#btnWriteReview').click();
+                $('html, body').animate({
+                    scrollTop: $("#reviews").offset().top
+                }, 300);
             });
         });
     };
