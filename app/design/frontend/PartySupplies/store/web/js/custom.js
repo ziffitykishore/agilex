@@ -124,6 +124,24 @@ require(['jquery', 'slick','nice-select'], function ($) {
             }
         }
 
+
+        if($('.tab-wrapper').length) {
+            var stickyOffset = $('.tab-wrapper').offset().top;
+            $(window).scroll(function () {
+                var sticky = $('.tab-wrapper'),
+                    scroll = $(window).scrollTop();
+
+                if (scroll >= stickyOffset) {
+                    sticky.addClass('fixed');
+                } else {
+                    sticky.removeClass('fixed');
+                }
+
+            });
+        }
+
+
+
         /*  =================
             Home Page Why Us Slider
             ================= */

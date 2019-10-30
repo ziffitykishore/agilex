@@ -296,7 +296,7 @@
                 .lib-css(color, @account-nav-color);
                 border-left: 3px solid transparent;
                 display: block;
-                padding: @indent__xs 18px @indent__xs 15px;
+                padding: @indent__s 18px @indent__s 15px;
 
             }
 
@@ -878,6 +878,35 @@
                     padding-bottom: 15px;
                 }
             }
+        }
+    }
+
+
+
+    .page-print {
+        .logo {
+            padding: 10px 0;
+            display: block;
+            text-align: center;
+            margin: 0 auto;
+            img {
+                margin: 0 auto;
+            }
+        }
+
+        .page-title-wrapper {
+            .order-status,
+            .order-date {
+                display: block;
+                .container-md();
+                margin-top: 10px;
+                margin-bottom: 0;
+            }
+        }
+
+        .copyright {
+            .container-md();
+            display: block;
         }
     }
 
