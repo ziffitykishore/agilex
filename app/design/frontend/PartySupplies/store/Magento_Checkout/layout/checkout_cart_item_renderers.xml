@@ -27,5 +27,10 @@
                 <argument name="qtyData" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
             </arguments>
         </referenceBlock>
+        <referenceBlock name="checkout.cart.item.renderers.grouped">
+            <arguments>
+                <argument name="qtyData" xsi:type="object">PartySupplies\Catalog\ViewModel\Product</argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>
