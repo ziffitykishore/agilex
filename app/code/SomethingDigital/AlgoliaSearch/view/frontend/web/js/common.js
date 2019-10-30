@@ -218,7 +218,7 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 							    if (query.indexOf(suggestions[index]['sku']) == 0) {
 							    	newSuggestions.push(suggestions[index]);
 							    	let skuSuffix = query.substr(suggestions[index]['sku'].length);
-							    	newSuggestions[index]['url'] = newSuggestions[index]['url']+'?coupon='+skuSuffix;
+							    	newSuggestions[index]['url'] = newSuggestions[index]['url']+'#coupon='+skuSuffix;
 							    }
 							}
 							if (newSuggestions.length) {
