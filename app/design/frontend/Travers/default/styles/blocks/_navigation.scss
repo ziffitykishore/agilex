@@ -61,7 +61,11 @@ $nav-section-title__height: 60px;
                 min-width: 350px;
 
                 @include min-screen($mobile-nav__breakpoint) {
-                    display: block !important;
+                    display: block !important; // override JS
+
+                    &.mobile-submenu {
+                        display: none !important; // override JS
+                    }
 
                     [data-content-type="heading"] {
                         margin-bottom: 0;
@@ -92,6 +96,19 @@ $nav-section-title__height: 60px;
                 ul {
                     display: block !important;
                 }
+            }
+        }
+    }
+
+    .has-mobile-submenu {
+        @include max-screen($mobile-nav__breakpoint) {
+            .desktop-submenu {
+                display: none !important; // override JS
+            }
+
+            .mobile-submenu.show {
+                display: block !important; // override JS
+                left: 0 !important; // override JS
             }
         }
     }

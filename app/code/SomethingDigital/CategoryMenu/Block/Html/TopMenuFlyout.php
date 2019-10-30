@@ -72,12 +72,12 @@ class TopMenuFlyout extends Topmenu
             $colStops = $this->_columnBrake($child->getChildren(), $limit);
         }
         if (!empty($menuStaticBlockHtml)) {
-            $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' static-block-submenu ui-menu ui-widget ui-widget-content ui-corner-all">';
+            $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' desktop-submenu static-block-submenu ui-menu ui-widget ui-widget-content ui-corner-all">';
             $html .= $menuStaticBlockHtml;
             $html .= '</div>';
         }
         if (!empty($mobileMenuStaticBlockHtml)) {
-            $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' mobile-sub-menu static-block-submenu ui-menu ui-widget ui-widget-content ui-corner-all">';
+            $html .= '<div class="level' . $childLevel . ' ' . $childrenWrapClass . ' mobile-submenu static-block-submenu ui-menu ui-widget ui-widget-content ui-corner-all">';
             $html .= $mobileMenuStaticBlockHtml;
             $html .= '</div>';
         }

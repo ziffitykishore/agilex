@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 use SomethingDigital\CustomerSpecificPricing\Helper\Data as ProductHelper;
 use SomethingDigital\CustomerSpecificPricing\Model\SpotPricingApi;
 use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Checkout\Model\Cart;
 
 class QuoteItemProcessor
 {
@@ -53,6 +54,8 @@ class QuoteItemProcessor
      */
     private $arrayManager;
 
+    private $cart;
+
     public function __construct (
         CustomerRepositoryInterface $customerRepo,
         ProductRepositoryInterface $productRepo,
@@ -60,7 +63,8 @@ class QuoteItemProcessor
         LoggerInterface $logger, 
         ProductHelper $productHelper,
         SpotPricingApi $spotPricingApi,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        Cart $cart
     ) {
         $this->customerRepo = $customerRepo;
         $this->productRepo = $productRepo;
@@ -69,6 +73,7 @@ class QuoteItemProcessor
         $this->productHelper = $productHelper;
         $this->spotPricingApi = $spotPricingApi;
         $this->arrayManager = $arrayManager;
+        $this->cart = $cart;
     }
 
     public function beforePrepare(
@@ -89,6 +94,14 @@ class QuoteItemProcessor
         /** @var int $qty */
         $qty = $candidate->getCartQty();
 
+        $items = $this->cart->getQuote()->getAllItems();
+
+        $totalItemQty = $qty;
+        foreach ( $items as $item) {
+            if ($item->getProductId() == $id) {
+                $totalItemQty +=  $item->getQty();
+            }
+        }
 
         try {
             /** @var \Magento\Customer\Api\Data\CustomerInterface $customerData */
@@ -99,9 +112,14 @@ class QuoteItemProcessor
         if ($this->session->isLoggedIn()) {
             try { 
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
-                $price = $this->arrayManager->get('body/Price', $prices);
+                $price = $this->arrayManager->get('body/DiscountPrice', $prices);
+
                 if ($price && $price < $product->getPrice()) {
                     $request->setCustomPrice($price);
+                }
+                $tierPrice = $this->productHelper->getTierPrice($prices, $totalItemQty);
+                if ($tierPrice) {
+                    $request->setCustomPrice($tierPrice);
                 }
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());

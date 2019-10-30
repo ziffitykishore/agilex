@@ -50,7 +50,7 @@ class BundleItemConfiguration
         if ($this->customerSession->isLoggedIn()) {
             try {
                 $prices = $this->spotPricingApi->getSpotPrice($selectionProduct->getSku());
-                $price = $this->arrayManager->get('body/Price', $prices);
+                $price = $this->arrayManager->get('body/DiscountPrice', $prices);
                 if ($price && $price < $result) {
                     return $price;
                 }

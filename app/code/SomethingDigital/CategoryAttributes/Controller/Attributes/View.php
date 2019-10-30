@@ -52,24 +52,33 @@ class View extends \Magento\Framework\App\Action\Action
         $cid = $this->getRequest()->getParam('id');
         try {
             $category = $this->categoryRepository->get($cid, $this->storeManager->getStore()->getId());
+            $tableAttributes = '';
+            $filterAttributes = '';
+            $listAttributes = '';
 
-            $filterAttributes = preg_split('/\s+/', $category->getFilterAttributes());
-            foreach ($filterAttributes as $key => $attrCode) {
-                $attr = $this->productAttributeRepository->get($attrCode);
-                if (!$attr || !$attr->getIsFilterable())
-                    unset($filterAttributes[$key]);
+            if ($category->getFilterAttributes()) {
+                $filterAttributes = preg_split('/\s+/', $category->getFilterAttributes());
+                foreach ($filterAttributes as $key => $attrCode) {
+                    $attr = $this->productAttributeRepository->get($attrCode);
+                    if (!$attr || !$attr->getIsFilterable())
+                        unset($filterAttributes[$key]);
+                }
             }
-            $tableAttributes = preg_split('/\s+/', $category->getTableAttributes());
-            foreach ($tableAttributes as $key => $attrCode) {
-                $attr = $this->productAttributeRepository->get($attrCode);
-                if (!$attr || !$attr->getIncludeInTable())
-                    unset($tableAttributes[$key]);
+            if ($category->getTableAttributes()) {
+                $tableAttributes = preg_split('/\s+/', $category->getTableAttributes());
+                foreach ($tableAttributes as $key => $attrCode) {
+                    $attr = $this->productAttributeRepository->get($attrCode);
+                    if (!$attr || !$attr->getIncludeInTable())
+                        unset($tableAttributes[$key]);
+                }
             }
-            $listAttributes = preg_split('/\s+/', $category->getListAttributes());
-            foreach ($listAttributes as $key => $attrCode) {
-                $attr = $this->productAttributeRepository->get($attrCode);
-                if (!$attr || !$attr->getIncludeInList())
-                    unset($listAttributes[$key]);
+            if ($category->getListAttributes()) {
+                $listAttributes = preg_split('/\s+/', $category->getListAttributes());
+                foreach ($listAttributes as $key => $attrCode) {
+                    $attr = $this->productAttributeRepository->get($attrCode);
+                    if (!$attr || !$attr->getIncludeInList())
+                        unset($listAttributes[$key]);
+                }
             }
 
             $data = [

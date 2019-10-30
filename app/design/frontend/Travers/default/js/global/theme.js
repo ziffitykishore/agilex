@@ -9,4 +9,15 @@ domready(() => {
   $('.contact-link').first().clone().appendTo('.navigation ul:first');
   $('.about-link').first().clone().appendTo('.navigation ul:first');
   $('.phone-number.only-on-mobile').first().clone().prependTo('.page-header');
+
+  $('.level-top.level0').each(function() {
+    if ($(this).find('.mobile-submenu').length > 0) {
+      $(this).addClass('has-mobile-submenu');
+    }
+  });
+
+  $('.level-top.level0').on('click', function() {
+    $(this).find('.mobile-submenu').toggleClass('show');
+  })
 });
+
