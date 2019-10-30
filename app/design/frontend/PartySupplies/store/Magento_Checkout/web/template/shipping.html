@@ -8,9 +8,10 @@
     <div class="heading-group">
     <div class="step-title" translate="'Shipping Address'" data-role="title" />
         <div class="button-group">
-    <button type="button" class="action" data-trigger="address_book_trigger">
-	    <span data-bind="i18n: 'Address Book'"></span>
-	</button>
+
+        <button type="button" class="action" data-trigger="address_book_trigger" visible="canShowAddressBook()">
+            <span data-bind="i18n: 'Address Book'"></span>
+        </button>
 	<!-- Address form pop up -->
 	<if args="!isFormInline">
 	    <button type="button"
