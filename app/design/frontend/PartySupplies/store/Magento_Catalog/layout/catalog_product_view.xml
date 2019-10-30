@@ -17,6 +17,7 @@
         <referenceBlock name="product.info.mailto" remove="true"/>
         <referenceBlock name="view.addto.compare" remove="true"/>
         <referenceBlock name="product.info.sku" remove="true"/>
+        <referenceBlock name="product.info.upsell" remove="true"/>
 
         <referenceContainer name="product.info.stock.sku">
             <block class="Magento\Catalog\Block\Product\View\Description" name="product.info.attributes" template="Magento_Catalog::product/view/product_detail.phtml" after="product.info.type">
