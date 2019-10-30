@@ -18,6 +18,7 @@ use Magento\Framework\App\Action\Action;
 <?php
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
+$viewModel = $block->getData('viewModel');
 ?>
 <?php if (!$_productCollection->count()): ?>
     <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
@@ -69,12 +70,16 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
                             </a>
                         </strong>
                         <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
-                        <p class="price-head"><?= __('CasePrice') ?> :<span class="get-info each-value">
-                            <span class="price-container price-final_price tax weee">
-                            <span class="price-wrapper "><span class="price"><?= /* @escapeNotVerified */ $block->getData('viewModel')->getCasePrice($_product) ?></span></span>
-                            </span>
-                            </span>
-                        </p>
+                        <?php if($viewModel->getCustomerId()): ?>
+                            <p class="price-head"><?= __('CasePrice') ?> :<span class="get-info each-value">
+                                <span class="price-container price-final_price tax weee">
+                                <span class="price-wrapper "><span class="price"><?= /* @escapeNotVerified */ $viewModel->getCasePrice($_product) ?></span></span>
+                                </span>
+                                </span>
+                            </p>
+                        <?php else: ?>
+                            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+                        <?php endif; ?>
                         <?= $block->getProductDetailsHtml($_product) ?>
 
                         <div class="product-item-inner">

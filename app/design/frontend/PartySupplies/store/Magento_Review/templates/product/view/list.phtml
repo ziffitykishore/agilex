@@ -58,9 +58,11 @@ $format = $block->getDateFormat() ?: \IntlDateFormatter::SHORT;
             </li>
         <?php endforeach; ?>
         </ol>
-        <div class="action-toolbar">
-            <button class="load-more-review action primary"><?= $block->escapeHtml(__('Load More')) ?></button>
-        </div>
+        <?php if(strpos($block->getChildHtml('toolbar'), 'next')!==false): ?>
+            <div class="action-toolbar">
+                <button class="load-more-review action primary"><?= $block->escapeHtml(__('Load More')) ?></button>
+            </div>
+        <?php endif; ?>
         <div class="toolbar review-toolbar">
             <?= $block->getChildHtml('toolbar') ?>
         </div>
