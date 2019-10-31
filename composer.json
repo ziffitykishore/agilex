@@ -46,10 +46,6 @@
         {
             "type": "composer",
             "url": "https://packages.mageworx.com/"
-        },
-        {
-            "type": "composer",
-            "url": "https://packages.shipperhq.com"
         }
     ],
     "require": {
@@ -93,14 +89,13 @@
         "magento/module-gift-registry-sample-data": "100.3.*",
         "magento/module-target-rule-sample-data": "100.3.*",
         "magento/module-multiple-wishlist-sample-data": "100.3.*",
-        "algolia/algoliasearch-magento-2": "1.12.0",
+        "algolia/algoliasearch-magento-2": "1.12.1",
         "yotpo/module-review": "^2.4",
         "mageworx/module-sitemapsuitemeta": "^2.3",
         "mageworx/module-xmlsitemap": "^2.4",
         "magento/module-page-builder-data-migration": "^1.0",
         "shipperhq/module-shipper": "^20.29",
-        "taxjar/module-taxjar": "^1.4",
-        "shipperhq/module-option": "^20.4"
+        "taxjar/module-taxjar": "^1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.5.0",
