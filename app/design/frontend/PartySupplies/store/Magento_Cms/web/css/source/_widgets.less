@@ -33,12 +33,24 @@
             padding: 0;
             margin-top: 2rem;
         }
-        .terms{
 
+
+        .tab-wrapper {
+            &.fixed {
+                position: fixed;
+                width: 100%;
+                top: 80px;
+                z-index: 99;
+                background: @color-white;
+                border-top: 1px solid @c-graylight;
+            }
         }
+
         .nav-tabs{
             position: relative;
             border: none;
+            .transition(all 0.5s ease 0s);
+
             &::before{
                 content: "";
                 position: absolute;

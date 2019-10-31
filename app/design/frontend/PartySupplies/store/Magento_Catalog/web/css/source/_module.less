@@ -754,34 +754,37 @@
             }
         }
 
-        .table-wrapper.grouped{
-            tr{
-                display:flex;
-            }
-            thead{
-                background-color: @c-whitesmoke;
-                border: 1px solid @c-whitesmoke;
-                text-transform: uppercase;
-                th{
-                    padding: 1.4rem;
-                    text-align: center;
-                    border: 0 !important;
-                }
-            }
-            tbody{
-                display:block;
-                height:280px;
-                overflow-y: scroll;
-                overflow-x: hidden;
-                border: 1px solid @c-graylight;
-                border-top: none;
-                td{
-                    padding: 1.5rem;
-                    text-align: center;
+        .table-wrapper {
+            &.grouped {
+                margin-top: 20px;
+                tr {
                     display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    .lib-font-size(@font-size__s);
+                }
+                thead {
+                    background-color: @c-whitesmoke;
+                    border: 1px solid @c-whitesmoke;
+                    text-transform: uppercase;
+                    th {
+                        padding: 1.4rem;
+                        text-align: center;
+                        border: 0 !important;
+                    }
+                }
+                tbody {
+                    display: block;
+                    height: 280px;
+                    overflow-y: scroll;
+                    overflow-x: hidden;
+                    border: 1px solid @c-graylight;
+                    border-top: none;
+                    td {
+                        padding: 1.5rem;
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .lib-font-size(@font-size__s);
+                    }
                 }
             }
         }
@@ -846,6 +849,10 @@
         .additional-attributes-wrapper,
         .block.related{
             .container-sm();
+        }
+
+        .reviews {
+            margin-top: 30px;
         }
 
 
@@ -993,6 +1000,10 @@
                     margin-right: -40px;
                     .product-item {
                         padding: 15px 0;
+
+                        &-info {
+                            border-left: none;
+                        }
                     }
                 }
                 .action.select {
@@ -1015,6 +1026,7 @@
 
         .product.media {
             .lib-vendor-prefix-order(-1);
+            margin-top: 30px;
              .fotorama__wrap {
                  .fotorama__stage {
                      border: 1px solid @c-graylight;
@@ -1036,7 +1048,13 @@
             .product-info-main {
                 width: 100%;
                 margin-top: 30px;
-                .table-wrapper.grouped table {
+
+            }
+        }
+
+        .table-wrapper {
+            &.grouped {
+                table {
                     th, td {
                         font-size: 1.2rem;
                         padding: 1rem;

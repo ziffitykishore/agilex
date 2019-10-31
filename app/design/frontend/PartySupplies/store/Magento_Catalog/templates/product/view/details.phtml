@@ -20,7 +20,7 @@
                     $alias = $layout->getElementAlias($name);
                     $label = $block->getChildData($alias, 'title');
                 ?>
-                <div id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content">
+                <div id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content" class="<?= /* @escapeNotVerified */ $alias ?>">
                     <?= /* @escapeNotVerified */ $html ?>
                 </div>
             <?php endforeach;?>

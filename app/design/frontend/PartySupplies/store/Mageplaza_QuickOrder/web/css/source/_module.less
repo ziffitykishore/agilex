@@ -63,8 +63,131 @@
   .container-md();
   .lib-clearfix();
 
+
+  .product-name {
+    font-weight: 400;
+    .lib-css(color, @color-black);
+
+    &:hover {
+      .lib-css(color, @c-primary_color);
+    }
+  }
+
   button {
     .btn();
     .lib-button-primary();
+  }
+
+
+  .addmultiple-title {
+    h2 {
+      background: @c-primary_color;
+      border: 1px solid lighten(@c-primary_color, 20%);
+      .box-shadow(none);
+      transition: all .5s ease 0s;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+  }
+
+
+  #item-qty {
+    #action-qty {
+      height: auto;
+      #display-qty {
+        margin-left: -6px;
+        display: inline-block;
+        #orderedQty {
+          margin-top: 0;
+          margin-right: 0;
+          .br-radius(@radius: 0);
+          width: 40px;
+          height: 40px;
+          padding: 0;
+          border-left: 0;
+          border-right: 0;
+          .lib-css(color, @c-lightgray);
+          font-weight: @font-weight__heavier;
+          border-color: @c-graylight;
+        }
+      }
+      #sub-qty,
+      #plus-qty {
+        background: transparent;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        color: @c-text_sec_color;
+        border: 1px solid  @c-graylight;
+        font-size: 20px;
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        line-height: 40px;
+        margin-left: 0;
+      }
+      #plus-qty {
+        margin-left: -6px;
+      }
+    }
+  }
+
+
+  .quickod-productlist {
+    .headlist-title {
+      background: @c-primary_color;
+      border: 1px solid lighten(@c-primary_color, 20%);
+      .box-shadow(none);
+      transition: all .5s ease 0s;
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .item{
+
+      &-outstock {
+        color: @c-hover_color;
+        font-size: 1.2rem !important;
+        font-weight: @font-weight__semibold;
+
+      }
+
+      &-instock {
+        color: @c-success;
+        font-size: 1.2rem !important;
+        font-weight: @font-weight__semibold;
+      }
+    }
+
+
+    #delete-item {
+      background: transparent;
+      font-size: 0;
+      &:before {
+        content: '\e90b';
+        font-size: 12px;
+        font-family: @icons__font-name_ps;
+        color: @icon-color;
+      }
+
+      &:hover {
+        &:before {
+          color: @color-black;
+        }
+      }
+
+    }
+
+    .qod-product-item {
+      border: 1px solid @c-graylight;
+      .transition(all 0.5s ease 0s);
+      &:hover {
+        .box-shadow(0px 0px 5px 3px rgba(216, 221, 231, 0.5));
+        background: @color-white;
+        .product-image-container{
+          .box-shadow(0 0 0 2px #019cdf);
+        }
+      }
+    }
   }
 }
