@@ -10,6 +10,10 @@
 
             @include min-screen($screen__m) {
                 border: 0 !important; // Overrides PageBuilder
+
+                &:nth-of-type(even) {
+                    background-color: $c-smoke;
+                }
             }
 
             [data-element="inner"],
