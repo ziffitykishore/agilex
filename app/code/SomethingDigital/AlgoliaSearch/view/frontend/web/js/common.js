@@ -228,7 +228,6 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
                             }
                         });
                     },
-                    // source: hitsSource,
                     name: section.name,
                     templates: {
                         empty: function (query) {
