@@ -10,10 +10,6 @@
 
             @include min-screen($screen__m) {
                 border: 0 !important; // Overrides PageBuilder
-
-                &:nth-of-type(even) {
-                    background-color: $c-smoke;
-                }
             }
 
             [data-element="inner"],
@@ -47,6 +43,10 @@
             max-width: 1000px !important; // Overrides PageBuilder
             margin: $indent__xl auto 0 auto !important; // Overrides PageBuilder
             padding: $indent__s !important; // Overrides PageBuilder
+
+            &:nth-of-type(even) {
+                background-color: $c-smoke;
+            }
         }
     }
 
@@ -102,11 +102,23 @@
 
     [data-element="main"] {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
 
         a {
-            font-size: 18px;
-            padding: 0 $indent__s;
+            max-width: 50px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid $c-border;
+            color: $text__color;
+
+            &:not(:last-of-type) {
+                border-right: 0;
+            }
+
+            @include hover {
+                background-color: $primary__color;
+                color: $color-white;
+            }
         }
     }
 }
