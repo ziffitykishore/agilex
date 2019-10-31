@@ -50,6 +50,7 @@ $order-product-bg__color: $color-gray94;
 
                     .field.required {
                         margin-top: 0;
+                        z-index: 0;
 
                         &.qty {
                             display: flex;
@@ -253,7 +254,6 @@ $order-product-bg__color: $color-gray94;
     .ui-autocomplete {
         cursor: default;
         left: 0;
-        position: absolute;
         top: 0;
     }
 
