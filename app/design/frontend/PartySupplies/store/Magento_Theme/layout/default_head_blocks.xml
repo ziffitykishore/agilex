@@ -12,5 +12,6 @@
         <css src="css/mmenu.css"/>
         <script src="js/mmenu.js"/>
         <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" src_type="url" />
+        <link rel="stylesheet" type="text/css" src="https://fonts.googleapis.com/css?family=Oswald:600,700"  src_type="url" />
     </head>
 </page>
