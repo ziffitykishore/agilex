@@ -109,29 +109,61 @@
     }
 }
 
-.brands-nav[data-element="inner"] {
+.brands-nav {
     margin-bottom: $indent__m;
-    display: none !important; // Overrides PageBuilder
 
-    @include min-screen($screen__m) {
-        display: flex !important; // Overrides PageBuilder
-        margin: 0 auto !important; // Overrides PageBuilder
+    .coll-header {
+        flex-basis: 100%;
+
+        @include min-screen($screen__m) {
+            display: none;
+        }
     }
 
     [data-element="main"] {
         display: flex;
-        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+
+        [data-content-type="collapsible-item"] {
+            padding: 0 $indent__s;
+        }
+
+        [data-content-type="text"] {
+            padding: 0 !important;
+            box-sizing: border-box;
+        }
+
+        @include min-screen($screen__m) {
+            flex-wrap: nowrap;
+        }
+
+        .tabs-content {
+            margin: $indent__m auto;
+            width: 100%;
+            justify-content: center;
+
+            @include min-screen($screen__m) {
+                column-count: 1;
+                width: 100% !important;
+            }
+        }
 
         a {
-            max-width: 40px;
+            max-width: 45px;
             width: 100%;
             text-align: center;
             border: 1px solid $c-border;
             color: $text__color;
 
-            &:not(:last-of-type) {
-                border-right: 0;
+            @include min-screen($screen__m) {
+                max-width: 40px;
+
+                &:not(:last-of-type) {
+                    border-right: 0;
+                }
             }
+
 
             @include hover {
                 background-color: $primary__color;
