@@ -16,13 +16,10 @@ if (isset($catalogData) && count($catalogData) > 0) {
             <div class="catalog-category">
                 <a href="<?= $block->escapeUrl($cat->getUrl()); ?>">
                     <div class="img-border">
-                        <?php
-                        $categoryName = str_replace(' ', '-', $cat->getName());
-                        $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
-                        $categoryImageURL = $mediaBaseUrl.'catalog/category/'.strtolower(str_replace('--', '-', $CategoryNameSplChar)).'.jpg'; ?>
-                        <img src="<?= $block->escapeUrl($categoryImageURL); ?>?format=A_68" alt="<?= $block->escapeHtml($cat->getName()); ?>" />
+                        <img src="<?= $block->escapeUrl($cat->getImageUrl()); ?>?format=A_68" alt="<?= $block->escapeHtml($cat->getName()); ?>" />
                     </div>
                     <h3 class="cat-name"><?= $block->escapeHtml($cat->getName()); ?></h3>
+                    <span><?= $block->escapeHtml(__('Shop now')) ?></span>
                 </a>
             </div>
             <?php

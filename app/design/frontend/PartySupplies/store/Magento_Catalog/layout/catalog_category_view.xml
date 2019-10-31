@@ -13,5 +13,6 @@
              </arguments>
         </referenceBlock>
         <referenceBlock name="sidebar.additional" remove="true"/>
+        <referenceBlock name="category.image" remove="true"/>
     </body>
 </page>

@@ -19,7 +19,7 @@
         </container>
 
         <move element="logo-header" destination="page.wrapper" before="-" />
-        <move element="bannerslider.cms.page.content.top" destination="page.wrapper" before="header.container"/>
+        <move element="bannerslider.cms.page.content.top" destination="page.wrapper" after="header.container"/>
 
         <referenceBlock name="page.main.title" remove="true"/>
     </body>
