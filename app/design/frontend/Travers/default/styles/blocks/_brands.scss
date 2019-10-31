@@ -1,15 +1,23 @@
 .cms-brands {
     .column.main {
-        padding: $indent__s;
-
         [data-content-type="row"] {
-            margin: 0 auto !important; // Overrides PageBuilder
+            margin: 0 !important; // Overrides PageBuilder
             padding: 0 !important; // Overrides PageBuilder
             border: 2px solid $c-border !important; // Overrides PageBuilder
             border-top: 0 !important; // Overrides PageBuilder
+            max-width: none;
 
             @include min-screen($screen__m) {
                 border: 0 !important; // Overrides PageBuilder
+
+                &:nth-of-type(even) {
+                    background-color: $c-smoke;
+                    margin-top: $indent__xl;
+                }
+
+                &:nth-of-type(2) {
+                    background-color: transparent !important;
+                }
             }
 
             [data-element="inner"],
@@ -19,6 +27,14 @@
                     margin: 0 !important; // Overrides PageBuilder
                 }
             }
+        }
+    }
+
+    .page-main {
+        @include min-screen($screen__m) {
+            margin: 0;
+            padding: 0;
+            max-width: none;
         }
     }
 
@@ -38,15 +54,10 @@
         width: 100% !important; // Overrides PageBuilder
         flex-wrap: wrap;
         padding: 0 !important; // Overrides PageBuilder
+        box-sizing: border-box;
 
         @include min-screen($screen__m) {
-            max-width: 1000px !important; // Overrides PageBuilder
-            margin: $indent__xl auto 0 auto !important; // Overrides PageBuilder
-            padding: $indent__s !important; // Overrides PageBuilder
-
-            &:nth-of-type(even) {
-                background-color: $c-smoke;
-            }
+            padding: $indent__base 0 !important; // Overrides PageBuilder
         }
     }
 
@@ -57,6 +68,14 @@
 
         @include min-screen($screen__l) {
             column-count: 4;
+        }
+    }
+
+    .tabs-content,
+    .coll-header {
+        @include min-screen($screen__m) {
+            max-width: 80%;
+            margin: 0 auto !important;
         }
     }
 
@@ -96,7 +115,6 @@
 
     @include min-screen($screen__m) {
         display: flex !important; // Overrides PageBuilder
-        max-width: 1000px;
         margin: 0 auto !important; // Overrides PageBuilder
     }
 
@@ -105,7 +123,7 @@
         justify-content: center;
 
         a {
-            max-width: 50px;
+            max-width: 40px;
             width: 100%;
             text-align: center;
             border: 1px solid $c-border;

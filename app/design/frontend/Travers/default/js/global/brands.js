@@ -31,7 +31,7 @@ if ($brandsNav.length) {
     history.replaceState({page: 'brands'}, `Brand ${$(this).attr('href')}`, `${$(this).attr('href')}`);
 
     $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top - 70
+      scrollTop: $($(this).attr('href')).offset().top - 80
     }, 500);
   });
 }
