@@ -165,6 +165,10 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 }
 
+.field.street .control label {
+    display: none;
+}
+
 .modal-content .form-shipping-address .field-tooltip {
     top: $indent__s;
     right: $indent__s;
