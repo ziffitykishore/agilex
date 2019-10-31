@@ -34,7 +34,7 @@ if ($brandsNav.length) {
       scrollTop: $($(this).attr('href')).offset().top - 80
     }, 500);
   });
-}
 
-assignIdsToColumnTitles();
-wrapNavItemsInAnchorTag();
+  assignIdsToColumnTitles();
+  wrapNavItemsInAnchorTag();
+}
