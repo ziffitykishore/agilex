@@ -20,6 +20,15 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Creatuity\Nav\Api\Data\DataInterfaceFactory;
 use Creatuity\Nav\Api\DataRepositoryInterface;
 
+/**
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodList)
+ * @SuppressWarnings(PHPMD.TooManyFields)
+ */
 class OrderUpdateTask implements TaskInterface
 {
 
@@ -89,6 +98,11 @@ class OrderUpdateTask implements TaskInterface
     protected $orderStatusDataProcessor;
 
     /**
+     * @var OrderStatusDataProcessor
+     */
+    protected $orderFailedStatusProcessor;
+
+    /**
      * @var LineNumberDataGenerator
      */
     protected $lineNumberDataGenerator;
@@ -132,6 +146,7 @@ class OrderUpdateTask implements TaskInterface
      * @param NavEntityOperationManager $orderReleaseManager
      * @param NavEntityOperationManager $orderDeleteManager
      * @param OrderStatusDataProcessor $orderStatusDataProcessor
+     * @param OrderStatusDataProcessor $orderFailedStatusProcessor
      * @param LineNumberDataGenerator $lineNumberDataGenerator
      * @param FieldDataExtractor $orderPrimaryKeyFieldDataExtractor
      * @param array $orderItemFilters
@@ -150,6 +165,7 @@ class OrderUpdateTask implements TaskInterface
         NavEntityOperationManager $orderReleaseManager,
         NavEntityOperationManager $orderDeleteManager,
         OrderStatusDataProcessor $orderStatusDataProcessor,
+        OrderStatusDataProcessor $orderFailedStatusProcessor,
         LineNumberDataGenerator $lineNumberDataGenerator,
         FieldDataExtractor $orderPrimaryKeyFieldDataExtractor,
         array $orderItemFilters = [],
@@ -169,6 +185,7 @@ class OrderUpdateTask implements TaskInterface
         $this->orderReleaseManager = $orderReleaseManager;
         $this->orderDeleteManager = $orderDeleteManager;
         $this->orderStatusDataProcessor = $orderStatusDataProcessor;
+        $this->orderFailedStatusProcessor = $orderFailedStatusProcessor;
         $this->lineNumberDataGenerator = $lineNumberDataGenerator;
         $this->orderPrimaryKeyFieldDataExtractor = $orderPrimaryKeyFieldDataExtractor;
         $this->orderItemFilters = $orderItemFilters;
@@ -196,6 +213,7 @@ class OrderUpdateTask implements TaskInterface
      * To Update order to NAV.
      *
      * @param OrderInterface $order
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     protected function updateOrder(OrderInterface $order)
     {
@@ -270,6 +288,12 @@ class OrderUpdateTask implements TaskInterface
                 false,
                 'MAGENTO_ORDER_ID = '
                 .$order->getIncrementId().' ERROR: '.$e->getMessage()
+            );
+            $this->orderFailedStatusProcessor->process(
+                $order,
+                $this->dataObjectFactory->create([
+                    'increment_id' => $order->getIncrementId(),
+                ])
             );
             $error = true;
         }

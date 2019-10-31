@@ -11,6 +11,11 @@
                 <client>WS</client>
             </connection>
             <order_update>
+                <order_status_filter>processing</order_status_filter>
+                <order_sync_success_state>complete</order_sync_success_state>
+                <order_sync_success_status>complete</order_sync_success_status>
+                <order_sync_failure_state>processing</order_sync_failure_state>
+                <order_sync_failure_status>nav_order_sync_failed</order_sync_failure_status>
                 <amazon_shipping_method_mappings>Amazon Standard, Ground
 Amazon Expedited, 3 Day Select
 Amazon SecondDay, 2nd Day Air
