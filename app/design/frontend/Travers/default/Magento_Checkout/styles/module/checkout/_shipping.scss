@@ -198,6 +198,10 @@ $checkout-shipping-method__padding             : $indent__base !default;
 }
 
 .table-checkout-shipping-method {
+    .shq-method-carrier-logo {
+        display: none;
+    }
+
     thead th {
         display: none;
     }
