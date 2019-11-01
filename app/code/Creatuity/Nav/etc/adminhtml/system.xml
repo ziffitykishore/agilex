@@ -104,7 +104,18 @@
                     <label>Order Sync Failure Status</label>
                 </field>
 
-                <field id="order_count_per_request" translate="label" type="text" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="order_sync_failure_mail_to" translate="label" type="text" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Order Sync Failed Email To</label>
+                    <comment>Comma-separated</comment>
+                </field>
+
+                <field id="order_sync_failed_email_template" translate="label comment" type="select" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Order Sync Failed Email</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="order_count_per_request" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Order Count Per Request</label>
                 </field>
 
