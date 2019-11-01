@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- Disable paypal_shortcuts event to remove PayPal buttons from PDP -->
+    <event name="shortcut_buttons_container">
+        <observer name="paypal_shortcuts" disabled="true"/>
+    </event>
+</config>
