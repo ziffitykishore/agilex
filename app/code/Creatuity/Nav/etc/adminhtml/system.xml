@@ -84,7 +84,38 @@
                     <backend_model>Creatuity\Nav\Model\Config\Backend\OrderUpdateCronSchedule</backend_model>
                 </field>
 
-                <field id="order_count_per_request" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="order_status_filter" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Status Filter</label>
+                </field>
+
+                <field id="order_sync_success_state" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Sync Success State</label>
+                </field>
+
+                <field id="order_sync_success_status" translate="label" type="text" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Sycn Success Status</label>
+                </field>
+
+                <field id="order_sync_failure_state" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Sync Failure State</label>
+                </field>
+
+                <field id="order_sync_failure_status" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Sync Failure Status</label>
+                </field>
+
+                <field id="order_sync_failure_mail_to" translate="label" type="text" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Order Sync Failed Email To</label>
+                    <comment>Comma-separated</comment>
+                </field>
+
+                <field id="order_sync_failed_email_template" translate="label comment" type="select" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Order Sync Failed Email</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="order_count_per_request" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Order Count Per Request</label>
                 </field>
 
