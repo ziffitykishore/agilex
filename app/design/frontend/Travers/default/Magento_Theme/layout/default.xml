@@ -40,7 +40,7 @@
     <move element="quick_order_link" destination="quick.order.container" before='-' />
     <move element="footer.connect" destination="footer" after="-" />
     <move element="copyright" destination="before.body.end" after="-"/>
-    <move element="product.info.extrahint.qtyincrements" destination="product.info.options.wrapper.bottom" before='-' />
+    <move element="product.info.extrahint.qtyincrements" destination="product.info.form.content" before='-' />
     <move element="yotpo_bottomline" destination="product.info.stock.sku" after="-"/>
     <move element="navigation.sections" destination="header-wrapper"/>
 </page>

@@ -181,10 +181,39 @@ $product-hero__button-and-catalog__width: 240px;
         }
     }
 
-    .product-add-form .tocart {
-        @include min-screen($screen__m) {
-            max-width: $product-hero__button-and-catalog__width;
-            width: 100%;
+    .product-add-form {
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+
+            .box-tocart {
+                order: -2;
+                margin: 0;
+
+                .fieldset::before {
+                    display: none;
+                }
+            }
+
+            .pricing {
+                flex-basis: 70%;
+                order: -1;
+                margin-left: $indent__xs;
+                font-size: $font-size__base;
+            }
+
+            .actions {
+                flex-basis: 100%;
+                margin-top: $indent__base;
+            }
+        }
+
+        .tocart {
+            @include min-screen($screen__m) {
+                max-width: $product-hero__button-and-catalog__width;
+                width: 100%;
+            }
         }
     }
 
