@@ -25,6 +25,7 @@
             .modal-title {
                 border-bottom: none;
                 padding-bottom: 0;
+                font-weight: 600;
             }
         }
 
@@ -99,38 +100,43 @@
                 }
             }
         }
-        input[type=radio] {
-            opacity: 0;
-            visibility: hidden;
-            & + label {
-                position: relative;
-                &:before {
-                    content: '';
-                    position: absolute;
-                    width: 12px;
-                    height: 12px;
-                    .br-radius(50%);
-                    border: 2px solid @c-shuttle-gray;
-                    left: 0px;
-                    top: 4px;
+
+        &:not(.review-field-rating) {
+
+            input[type=radio] {
+                opacity: 0;
+                visibility: hidden;
+                & + label {
+                    position: relative;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        width: 12px;
+                        height: 12px;
+                        .br-radius(50%);
+                        border: 2px solid @c-shuttle-gray;
+                        left: 0px;
+                        top: 4px;
+                    }
+                    &:after {
+                        top: 8px !important;
+                        margin: 0 !important;
+                    }
                 }
-                &:after {
-                    top: 8px !important;
-                    margin: 0 !important;
-                }
-            }
-            &:checked ~ label {
-                &:after {
-                    content: '';
-                    position: absolute;
-                    background: @c-shuttle-gray;
-                    width: 4px;
-                    height: 4px;
-                    left: 4px;
-                    .br-radius(50%);
+                &:checked ~ label {
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        background: @c-shuttle-gray;
+                        width: 4px;
+                        height: 4px;
+                        left: 4px;
+                        .br-radius(50%);
+                    }
                 }
             }
         }
+
         label {
             display: inline;
             color: #000;
@@ -305,11 +311,11 @@
 
 .slick-slider {
     .slick-track {
-        display: table;
+        .flex();
         height: 100%;
 
         .slick-slide {
-            display: table-cell;
+            height: inherit !important;
         }
     }
 }

@@ -136,8 +136,8 @@
             overflow: hidden;
             position: absolute;
             z-index: 3;
-            width: ~"calc(100% - 50px)";
-            border-top: none;
+            width: 100%;
+            border: none;
 
             ul {
                 .lib-list-reset-styles();
@@ -262,10 +262,8 @@
             }
         }
         .block-content {
-            position: absolute;
             right: 0;
             margin-bottom: 0;
-            display: none;
 
             .input-text {
                 min-height: 51px;
@@ -284,7 +282,7 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .block-search {
         float: right;
         padding-left: 15px;
