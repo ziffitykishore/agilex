@@ -19,5 +19,19 @@ domready(() => {
   $('.level-top.level0').on('click', function() {
     $(this).find('.mobile-submenu').toggleClass('show');
   })
+
+  $(window).on('refined', function() {
+    const maxGroupCount = 3;
+
+    for (let i = 1; i <= maxGroupCount; i++) {
+      $(`.group--level-${i}`).each(function () {
+        if ($(this).find('.list-item').length === 0) {
+          $(this).hide();
+        } else {
+          $(this).show();
+        }
+      });
+    }
+  });
 });
 
