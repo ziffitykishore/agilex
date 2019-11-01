@@ -10,6 +10,7 @@
 ?>
 <?php $_product = $block->getProduct(); ?>
 <?php $buttonTitle = __('Add to Cart'); ?>
+<?php $viewModel = $block->getData('qtyData'); ?>
 <?php if ($_product->isSaleable()): ?>
 <div class="box-tocart">
     <div class="fieldset">
@@ -25,8 +26,8 @@
                        title="<?= /* @escapeNotVerified */ __('Qty') ?>"
                        class="input-text qty"
                        data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                       <?php if($block->getData('qtyData')): ?>
-                       data-advanced-inventory = "<?= $block->escapeHtml($block->getData('qtyData')->getQuantityValidators($_product->getId(), $_product->getStore()->getWebsiteId())) ?>"
+                       <?php if($viewModel): ?>
+                       data-advanced-inventory = "<?= $block->escapeHtml($viewModel->getQuantityValidators($_product->getId(), $_product->getStore()->getWebsiteId())) ?>"
                        <?php endif; ?>
                        />
                 <button type="button" id="inc" class="increaseQty"><span>+</span></button>
@@ -34,12 +35,20 @@
         </div>
         <?php endif; ?>
         <div class="actions">
-            <button type="submit"
-                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
-                    class="action primary tocart"
-                    id="product-addtocart-button">
-                <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
-            </button>
+            <?php if ($viewModel->isCallForPrice($_product)): ?>
+              <button type="submit"
+                      title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                      class="action primary tocart"
+                      id="product-addtocart-button">
+                  <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+              </button>
+            <?php else: ?>
+              <button type="button"
+                      title="<?= $block->escapeHtml(__('Call For Price')) ?>"
+                      class="action primary">
+                  <span><?= $block->escapeHtml(__('Call For Price')) ?></span>
+              </button>
+            <?php endif; ?>
         </div>
         <?= $block->getChildHtml('', true) ?>
     </div>
