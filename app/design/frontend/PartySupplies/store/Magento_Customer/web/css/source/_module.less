@@ -31,7 +31,8 @@
 
 & when (@media-common = true) {
 
-    .customer-account-logoutsuccess {
+    .customer-account-logoutsuccess,
+    .paypal-express-review {
         .page-main {
             .container-md();
         }
@@ -229,6 +230,25 @@
 
         .sidebar-additional {
             margin-top: 40px;
+
+            .block {
+
+                &-title {
+                    strong {
+                        font-weight: @font-weight__bold;
+                    }
+                }
+                &-reorder {
+                    .product-items {
+                        display: block;
+                    }
+                    a {
+                        &:hover {
+                            color: @c-primary_color;
+                        }
+                    }
+                }
+            }
         }
 
         .table-wrapper {
@@ -303,10 +323,26 @@
             a {
                 text-decoration: none;
                 .lib-css(color, @color-black);
+                position: relative;
+
+                &:before {
+                    height: 0;
+                    width: 3px;
+                    background: @c-primary_color;
+                    content: '';
+                    position: absolute;
+                    left: -3px;
+                    .transition(all 0.5s ease 0s);
+                    top: 0;
+                }
+
                 &:hover {
                     .lib-css(background, @account-nav-item-hover);
-                    .lib-css(border-color, @c-primary_color);
                     .lib-css(color, @c-primary_color);
+
+                    &:before {
+                        height: 100%;
+                    }
                 }
 
             }
@@ -855,6 +891,7 @@
             }
         }
 
+        &.sales-order-print,
         &.sales-order-view {
             .page-main {
                 .container-md();
@@ -901,12 +938,14 @@
                 .container-md();
                 margin-top: 10px;
                 margin-bottom: 0;
+                .container-reset();
             }
         }
 
         .copyright {
             .container-md();
             display: block;
+            .container-reset();
         }
     }
 

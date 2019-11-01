@@ -74,9 +74,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 responsiveflag = false;
                 //$('header.page-header').removeClass("fixed");
                 $('#layer-product-list .toolbar:first-child').appendTo('.breadcrumbs-inner');
-                $(window).on('load', function(){
-                    stickyBar('header.page-header');
-                })
+                stickyBar('header.page-header');
             }
 
         }
