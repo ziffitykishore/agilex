@@ -24,8 +24,16 @@ domready(() => {
     const maxGroupCount = 3;
 
     for (let i = 1; i <= maxGroupCount; i++) {
-      $(`.group--level-${i}`).each(function () {
+      $(`.list-and-flyout .group--level-${i}`).each(function () {
         if ($(this).find('.list-item').length === 0) {
+          $(this).hide();
+        } else {
+          $(this).show();
+        }
+      });
+
+      $(`.table-and-flyout .group--level-${i}`).each(function () {
+        if ($(this).find('.react-bootstrap-table').length === 0) {
           $(this).hide();
         } else {
           $(this).show();
