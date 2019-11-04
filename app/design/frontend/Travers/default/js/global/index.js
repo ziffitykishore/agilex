@@ -5,6 +5,7 @@ import customInputs from './inputs';
 import promobar from './promobar';
 import collapsible from './collapsible';
 import './backToTop';
+import './brands';
 import './fullbleed';
 import './stickyNav';
 import './theme';

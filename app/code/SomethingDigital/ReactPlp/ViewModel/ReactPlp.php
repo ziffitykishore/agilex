@@ -114,14 +114,18 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 'pricing' => [
                     'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/pricing/view/products',
                     'params' => []
+                ],
+                'attributes' => [
+                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/attributes/view/id',
+                    'params' => []
                 ]
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
-            'listAttributes' => $this->getListAttributes(),
+            'defaultListAttributes' => $this->getListAttributes(),
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
-            'tableAttributes' => $this->getTableAttributes(),
+            'defaultTableAttributes' => $this->getTableAttributes(),
             'hasSpotPricing' => $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH),
-            'filterAttributesInfo' => $this->getFilterAttributes(),
+            'defaultFilterAttributesInfo' => $this->getFilterAttributes(),
             'swatchImages' => $this->getSwatchImages(),
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),

@@ -51,6 +51,7 @@ $theme-web-path: '../web' !default;
 @import 'blocks/tooltips';
 @import 'blocks/contact-us';
 @import 'blocks/algolia';
+@import 'blocks/brands';
 
 // BryantPark Blocks
 @import 'blocks/collapsible-navigation';
@@ -80,6 +81,9 @@ $theme-web-path: '../web' !default;
 
 // React PLP
 @import '../SomethingDigital_ReactPLP/styles/reactPLP';
+
+// Algolia
+@import '../Algolia_AlgoliaSearch/search-dropdown';
 
 // Modules
 @import '../Magento_AdvancedCheckout/styles/module';

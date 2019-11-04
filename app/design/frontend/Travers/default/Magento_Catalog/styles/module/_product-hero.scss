@@ -8,6 +8,7 @@
 
 $product-inventory-table--header__font-size: 24px;
 $product-inventory-table--header__font-size--desktop: 16px;
+$product-hero__button-and-catalog__width: 240px;
 
 .product-hero {
     display: flex;
@@ -180,10 +181,39 @@ $product-inventory-table--header__font-size--desktop: 16px;
         }
     }
 
-    .product-add-form .tocart {
-        @include min-screen($screen__m) {
-            max-width: 220px;
-            width: 100%;
+    .product-add-form {
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+
+            .box-tocart {
+                order: -2;
+                margin: 0;
+
+                .fieldset::before {
+                    display: none;
+                }
+            }
+
+            .pricing {
+                flex-basis: 70%;
+                order: -1;
+                margin-left: $indent__xs;
+                font-size: $font-size__base;
+            }
+
+            .actions {
+                flex-basis: 100%;
+                margin-top: $indent__base;
+            }
+        }
+
+        .tocart {
+            @include min-screen($screen__m) {
+                max-width: $product-hero__button-and-catalog__width;
+                width: 100%;
+            }
         }
     }
 
@@ -201,9 +231,45 @@ $product-inventory-table--header__font-size--desktop: 16px;
     }
 }
 
+.master-catalog-listing {
+    border: 1px solid $c-grey;
+    max-width: 460px;
+    width: 100%;
+    margin: $indent__m 0;
+    padding: 12px;
+    box-sizing: border-box;
+
+    @include min-screen($screen__xs) {
+        max-width: $product-hero__button-and-catalog__width;
+    }
+
+    .header {
+        @include bryant-park-headings-h3;
+        font-weight: $font-weight__semibold;
+        margin: 0;
+        margin-bottom: $indent__s;
+    }
+
+    a {
+        @include icon-svg(
+            $icon       : catalog,
+            $fill       : $primary__color,
+            $width      : 20px,
+            $height     : auto,
+            $pseudo     : before
+        );
+        font-size: 16px;
+
+        &::before {
+            padding-right: 7px;
+            margin-bottom: 2px;
+        }
+    }
+}
+
 .product-inventory-table {
     .no-inventory {
-       text-align: center;
+        text-align: center;
     }
 
     h2 {

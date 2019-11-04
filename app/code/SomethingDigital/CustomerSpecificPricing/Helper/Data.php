@@ -11,6 +11,7 @@ use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Eav\Api\AttributeRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\Stdlib\ArrayManager;
 
 class Data
 {
@@ -39,13 +40,19 @@ class Data
      */
     private $groupBuilder;
 
+    /**
+     * @var ArrayManager
+     */
+    private $arrayManager;
+
     public function __construct(
         SearchCriteriaBuilder $searchCriteriaBuilder,
         ProductRepositoryInterface $productRepository,
         FilterBuilder $filterBuilder,
         AttributeRepositoryInterface $attributeRepo,
         FilterGroupBuilder $groupBuilder,
-        ProductFactory $productFactory
+        ProductFactory $productFactory,
+        ArrayManager $arrayManager
     ) {
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->productRepository = $productRepository;
@@ -53,6 +60,7 @@ class Data
         $this->attributeRepo = $attributeRepo;
         $this->groupBuilder = $groupBuilder;
         $this->productFactory = $productFactory;
+        $this->arrayManager = $arrayManager;
     }
 
     /**
@@ -133,6 +141,28 @@ class Data
                 $product
             );
         return $selectionCollection;
+    }
+
+    /**
+     * Get customer specific tier price
+     *
+     * @param array customerSpecificPrices
+     * @param int $totalItemQty
+     * @return string|null
+     */
+    public function getTierPrice($customerSpecificPrices, $totalItemQty) {
+        $prices = $this->arrayManager->get('body', $customerSpecificPrices);
+        $tierPrice = null;
+        if ($prices['QtyBreak1'] && $totalItemQty >= $prices['QtyBreak1']) {
+            $tierPrice = $prices['QtyPrice1'];
+        }
+        if ($prices['QtyBreak2'] && $totalItemQty >= $prices['QtyBreak2']) {
+            $tierPrice = $prices['QtyPrice2'];
+        }
+        if ($prices['QtyBreak3'] && $totalItemQty >= $prices['QtyBreak3']) {
+            $tierPrice = $prices['QtyPrice3'];
+        }
+        return $tierPrice;
     }
 }
 

@@ -65,24 +65,20 @@ class SpotPricingApi extends Adapter
             $suffix = $this->cart->getQuote()->getSuffix();
         }
 
-        if ($customerAccountId) {
-            if (!$this->isTestMode()) {
-                $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
-                    'customerId' => $customerAccountId,
-                    'suffix' => $suffix
-                ]);
-            } else {
-                $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
-                    'customerId' => $customerAccountId,
-                    'sku' => $productSku,
-                    'suffix' => $suffix
-                ]);
-            }
-
-            return $this->getRequest();
+        if (!$this->isTestMode()) {
+            $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
+                'customerId' => $customerAccountId,
+                'suffix' => $suffix
+            ]);
         } else {
-            return [];
+            $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
+                'customerId' => $customerAccountId,
+                'sku' => $productSku,
+                'suffix' => $suffix
+            ]);
         }
+
+        return $this->getRequest();
     }
 
     /**

@@ -621,6 +621,7 @@
         .column.main {
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
 
         .product.media {
@@ -940,4 +941,107 @@ body.catalog-product-compare-index {
   .products.list .item:nth-child(#{$i}) .product-image-photo.ls-animate {
     transition-delay: (50ms * $i);
   }
+}
+
+// PDP Details Blocks
+.detail-blocks {
+    .additional-attributes-wrapper,
+    .detail-block-description {
+        border: 1px solid $c-grey;
+        max-width: 800px;
+        width: 100%;
+    }
+
+    .additional-attributes-wrapper {
+        margin-top: $indent__base;
+
+        .header {
+            @include bryant-park-headings-h3;
+            font-weight: $font-weight__bold;
+            border-bottom: 2px solid $primary__color;
+            margin: 0;
+            padding: $indent__s 0 $indent__s $indent__base;
+        }
+
+        .additional-attributes {
+            width: 100%;
+            margin: 0;
+        }
+
+        tr {
+            &:not(:last-of-type) {
+                border-bottom: 1px solid $c-grey;
+            }
+
+            .col {
+                padding: $indent__xs 0;
+
+                &.label {
+                    font-weight: $font-weight__extrabold;
+                    padding-left: $indent__base;
+                    padding-right: 15px;
+
+                    @include min-screen($screen__m) {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .detail-block-description {
+        padding: $indent__base;
+        box-sizing: border-box;
+        margin-top: $indent__l;
+
+        .description .type {
+            @include bryant-park-headings-h3;
+            font-size: 18px;
+            line-height: 1.4;
+            font-weight: $font-weight__extrabold;
+        }
+
+        .value {
+            margin-top: $indent__s;
+        }
+
+        h4,
+        .header {
+            font-size: 14px;
+            letter-spacing: 0;
+            line-height: 1.4;
+            margin-bottom: 3px;
+            font-weight: $font-weight__extrabold;
+            font-family: $font-family__base;
+            text-transform: uppercase;
+        }
+
+        .header {
+            margin-top: $indent__base;
+        }
+
+        strong {
+            font-weight: $font-weight__extrabold;
+        }
+    }
+
+    .manual-wrapper {
+        .manuals {
+            margin-top: $indent__s;
+            color: $link__color;
+
+            &::before {
+                margin-right: $indent__s;
+                transform: translateY(-2px);
+            }
+
+            @include icon-svg(
+                $icon       : document,
+                $fill       : $primary__color,
+                $width      : 15px,
+                $height     : 20px,
+                $pseudo     : before
+            );
+        }
+    }
 }

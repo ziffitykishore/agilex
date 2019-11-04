@@ -41,9 +41,6 @@ class GetPrice extends \Magento\Framework\App\Action\Action
         if (empty($params['sku'])) {
             $errors['sku'] = 'Sku is empty';
         }
-        if (empty($params['customerId'])) {
-            $errors['customerId'] = 'CustomerId is empty';
-        }
     	return $errors;
     }
 
@@ -56,7 +53,7 @@ class GetPrice extends \Magento\Framework\App\Action\Action
             "ExtendedAmount" => 23.99,
             "ExtendedDiscountAmount" => 2.666,
             "NetAvailable" => 2,
-            "Price" => 26.66,
+            "DiscountPrice" => 26.66,
             "PriceCostPer" => "",
             "PriceOriginCode" => "4",
             "PricingRecordNumber" => 6379745,
@@ -67,14 +64,20 @@ class GetPrice extends \Magento\Framework\App\Action\Action
             "StockingQuantityOrdered" => 1,
             "UnitConversion" => 1,
             "UnitsPerStocking" => 1,
-            "UnitsPerStockingText" => ""
+            "UnitsPerStockingText" => "",
+            "QtyPrice1" => 19.9456,
+            "QtyPrice2" => "",
+            "QtyPrice3" => "",
+            "QtyBreak1" => 12,
+            "QtyBreak2" => "",
+            "QtyBreak3" => ""
         ];
 
         if (isset($params['suffix'])) {
             if ($params['suffix'] == 'SUF1') {
-                $result['Price'] = 19.99;
+                $result['DiscountPrice'] = 19.99;
             } elseif ($params['suffix'] == 'SUF2') {
-                $result['Price'] = 21;
+                $result['DiscountPrice'] = 21;
             }
         }
 

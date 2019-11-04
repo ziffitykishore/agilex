@@ -1,0 +1,22 @@
+<?php $productType = $block->getViewModel()->getProductType() ?>
+<div data-bind="scope: 'tierprices'">
+<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+ 
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "tierprices": {
+                            "component": "SomethingDigital_CustomerSpecificTierPrices/js/tierprices",
+                            "template" : "SomethingDigital_CustomerSpecificTierPrices/prices-table",
+                            "config": {
+                                "productType": "<?= $productType ?>"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+</script>

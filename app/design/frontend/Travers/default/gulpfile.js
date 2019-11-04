@@ -34,7 +34,6 @@ const settings = {
 */
 let paths = {
   theme: process.cwd(),
-  publicStatic: `${settings.magentoLocation}/pub/static/frontend/${settings.themeName}/${settings.themeLanguage[0]}`,
   snowdog: `${settings.magentoLocation}/vendor/snowdog/frontools`,
 };
 
@@ -66,6 +65,10 @@ function handleErrors(args) {
 
   // Keep gulp from hanging on this task
   this.emit('end');
+}
+
+function makePubStatic(lang) {
+  return `${settings.magentoLocation}/pub/static/frontend/${settings.themeName}/${lang}`;
 }
 
 /*
@@ -110,7 +113,7 @@ gulp.task('styleguide', () => {
 
 gulp.task('svg', () => {
   console.log('Combining svgs... 🎏');
-  return gulp.src(`${paths.theme}/web/svg/**/*.svg`)
+  let pipeline = gulp.src(`${paths.theme}/web/svg/**/*.svg`)
   .pipe(svgstore({ inlineSvg: true }))
   .pipe(cheerio(function($) {
       $('[fill]').removeAttr('fill');
@@ -124,8 +127,15 @@ gulp.task('svg', () => {
           $('symbol').attr('preserveAspectRatio', 'xMidYMid meet');
       }
   }))
-  .pipe(rename('symbols.svg'))
-  .pipe(gulp.dest(`${paths.publicStatic}/svg/`));
+  .pipe(rename('symbols.svg'));
+
+  settings.themeLanguage.forEach(lang => {
+    pipeline = pipeline.pipe(gulp.dest(
+      `${makePubStatic(lang)}/svg`
+    ));
+  });
+
+  return pipeline;
 });
 
 /**
@@ -141,7 +151,7 @@ gulp.task('webpack', () => {
 
   settings.themeLanguage.forEach(lang => {
     pipeline = pipeline.pipe(gulp.dest(
-      `${settings.magentoLocation}/pub/static/frontend/${settings.themeName}/${lang}/js/dist`
+      `${makePubStatic(lang)}/js/dist`
     ));
   });
 
@@ -153,9 +163,10 @@ gulp.task('webpack', () => {
  * partials
  */
 gulp.task('scripts:partials', gulp.series('webpack', function combineCommonJs() {
+  const sourceLang = makePubStatic(settings.themeLanguage[0]);
   let pipeline = gulp.src([
-    `${paths.publicStatic}/js/dist/common-partial.js`,
-    `${paths.publicStatic}/js/dist/global.js`,
+    `${sourceLang}/js/dist/common-partial.js`,
+    `${sourceLang}/js/dist/global.js`,
   ])
     .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(concat('common.js'))
@@ -163,7 +174,7 @@ gulp.task('scripts:partials', gulp.series('webpack', function combineCommonJs() 
 
   settings.themeLanguage.forEach(lang => {
     pipeline = pipeline.pipe(gulp.dest(
-      `${settings.magentoLocation}/pub/static/frontend/${settings.themeName}/${lang}/js/dist`
+      `${makePubStatic(lang)}/js/dist`
     ));
   });
 
@@ -172,7 +183,8 @@ gulp.task('scripts:partials', gulp.series('webpack', function combineCommonJs() 
 
 gulp.task('scripts', gulp.series('scripts:partials', function generateMinJs() {
   // Copy to .min suffixes as well.
-  let pipeline = gulp.src(`${paths.publicStatic}/js/dist/\*.js`)
+  const sourceLang = makePubStatic(settings.themeLanguage[0]);
+  let pipeline = gulp.src(`${sourceLang}/js/dist/\*.js`)
     .pipe(rename(path => {
       if (path.basename.substr(-4) !== '.min') {
         path.basename += '.min';
@@ -181,7 +193,7 @@ gulp.task('scripts', gulp.series('scripts:partials', function generateMinJs() {
 
   settings.themeLanguage.forEach(lang => {
     pipeline = pipeline.pipe(gulp.dest(
-      `${settings.magentoLocation}/pub/static/frontend/${settings.themeName}/${lang}/js/dist`
+      `${makePubStatic(lang)}/js/dist`
     ));
   });
 
@@ -243,7 +255,8 @@ function generateCompactSassMap(mapJson) {
 }
 
 gulp.task('styles:prep', (done) => {
-  const mapJsonFile = `${paths.publicStatic}/map.json`;
+  const sourceLang = makePubStatic(settings.themeLanguage[0]);
+  const mapJsonFile = `${sourceLang}/map.json`;
   fs.access(mapJsonFile, (err) => {
     if (err) {
       generateDefaultSassMap().then(done, done);
@@ -255,14 +268,16 @@ gulp.task('styles:prep', (done) => {
 
 gulp.task('styles', gulp.series('styles:prep', 'snowdog:styles'));
 
-gulp.task('watch', gulp.series('snowdog:browser-sync', function watch() {
+gulp.task('watch', gulp.parallel('snowdog:browser-sync', function watch() {
+  let styles;
   if (enabled.styleguide) {
-    gulp.watch(`${paths.theme}/**/*.scss`, ['styles', 'styleguide']);
+    styles = gulp.parallel('styles', 'styleguide');
   } else {
-    gulp.watch(`${paths.theme}/**/*.scss`, ['styles']);
+    styles = gulp.parallel('styles');
   }
-  gulp.watch(`${paths.theme}/**/*.svg`, ['svg']);
-  gulp.watch(`${paths.theme}/js/**/*.js`, ['scripts']);
+  gulp.watch([`${paths.theme}/**/*.scss`, `!${paths.theme}/styles/_map-paths.scss`], styles);
+  gulp.watch(`${paths.theme}/**/*.svg`, gulp.parallel('svg'));
+  gulp.watch(`${paths.theme}/js/**/*.js`, gulp.parallel('scripts'));
 }));
 
 /**

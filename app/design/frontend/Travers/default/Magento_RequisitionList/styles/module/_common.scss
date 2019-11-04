@@ -230,6 +230,7 @@ $requisition-print__font-size-m: 1.4rem !default;
 
         &.col-checkbox {
             float: left;
+            margin-top: $indent__xs;
 
             @include screen($screen__s, $screen__l) {
                 margin-right: $indent__l;
@@ -240,6 +241,7 @@ $requisition-print__font-size-m: 1.4rem !default;
     .product-item-name {
         @extend .abs-product-link;
         font-weight: $font-weight__semibold;
+        margin-top: 0;
     }
 
     .product-item-description {

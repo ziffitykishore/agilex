@@ -347,17 +347,9 @@ $sidebar__max-width: 240px;
     width: auto;
     vertical-align: baseline;
 
-    &:not(:first-of-type) {
-      padding-left: $indent__xs;
-    }
-
     @include min-screen($screen__m) {
       vertical-align: middle;
     }
-  }
-
-  span {
-    padding-left: $indent__xs;
   }
 
   button {
@@ -366,6 +358,7 @@ $sidebar__max-width: 240px;
     &::after {
       content: "/";
       padding-left: $indent__xs;
+      padding-right: $indent__xs;
       color: $text__color;
     }
 

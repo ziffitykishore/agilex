@@ -137,7 +137,10 @@ class StockData
         }
         $stockData = [];
         foreach ($products as $product) {
-            $stockData[$product->getId()] = $this->retrieveProductStockData($product);
+            $productStockData = $this->retrieveProductStockData($product);
+            if ($productStockData) {
+                $stockData[$product->getId()] = $productStockData;
+            }
         }
         return $stockData;
     }

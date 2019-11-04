@@ -48,11 +48,17 @@ class View extends \Magento\Framework\App\Action\Action
 
                 foreach ($productsSkusArray as $sku) {
                     $prices = $this->spotPricingApi->getSpotPrice($sku);
-                    if ($this->arrayManager->get('body/Price', $prices)) {
+                    if ($this->arrayManager->get('body/DiscountPrice', $prices)) {
                         $data[] = [
                             "sku" => $sku,
-                            "price" => $this->arrayManager->get('body/Price', $prices),
-                            "price_formatted" => $this->priceCurrency->format($this->arrayManager->get('body/Price', $prices),false,2)
+                            "price" => $this->arrayManager->get('body/DiscountPrice', $prices),
+                            "price_formatted" => $this->priceCurrency->format($this->arrayManager->get('body/DiscountPrice', $prices),false,2),
+                            "QtyPrice1" => $this->arrayManager->get('body/QtyPrice1', $prices, 0),
+                            "QtyPrice2" => $this->arrayManager->get('body/QtyPrice2', $prices, 0),
+                            "QtyPrice3" => $this->arrayManager->get('body/QtyPrice3', $prices, 0),
+                            "QtyBreak1" => $this->arrayManager->get('body/QtyBreak1', $prices, 0),
+                            "QtyBreak2" => $this->arrayManager->get('body/QtyBreak2', $prices, 0),
+                            "QtyBreak3" => $this->arrayManager->get('body/QtyBreak3', $prices, 0)
                         ];
                     }
                 }

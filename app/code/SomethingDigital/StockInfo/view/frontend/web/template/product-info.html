@@ -1,15 +1,19 @@
 <% if (data.name) { %>
-<div data-stock='<%= JSON.stringify(data.stockData) %>' class="product-info">
-    <div class="product-image">
-        <img src="<%- data.thumbnailUrl %>">
+<div data-stock='<%= JSON.stringify(data.stockData) %>' class="quickorder-product-info-wrapper">
+    <div class="quickorder-product-info">
+        <div class="product-image">
+            <img src="<%- data.thumbnailUrl %>">
+        </div>
+        <div class="product-name">
+            <p class="name">
+                <a href="<%- data.url %>"><%- data.name %></a>
+            </p>
+            <p class="price"><%- data.price %></p>
+        </div>
     </div>
-    <div class="product-name">
-        <p class="name">
-            <a href="<%- data.url %>"><%- data.name %></a>
-        </p>
-        <p class="price"><%- data.price %></p>
-    </div>
+    <% if (data.stockData != '') { %>
     <span class="stock-info-popup-trigger" href="">Check Locations</span>
+    <% } %>
 </div>
 <% } %>
 <% if (data.result) { %>
