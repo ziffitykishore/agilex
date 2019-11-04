@@ -120,8 +120,6 @@
         .control {
             border-top: 1px solid @border-color__base;
             clear: both;
-            margin: 0 -@layout__width-xs-indent -1px;
-            padding: 0 @layout__width-xs-indent;
         }
 
         .nested {
@@ -131,13 +129,22 @@
         .searchsuite-autocomplete,
         .search-autocomplete {
             &:extend(.abs-add-box-sizing all);
+            border-top: none;
+            left: -100px;
             margin-top: 0px;
-            left: 0;
+            max-height: 550px;
             overflow: hidden;
+            overflow-y: auto;
             position: absolute;
+            width: ~"calc(100% + 100px)";
             z-index: 3;
-            width: 100%;
-            border: none;
+          
+            @media screen and (max-width: 768px) {
+                left: 0;
+                max-height: calc(100% - 130px);
+                position: fixed;
+                width: 100%;
+            }
 
             ul {
                 .lib-list-reset-styles();
