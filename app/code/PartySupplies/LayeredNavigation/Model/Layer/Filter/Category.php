@@ -29,6 +29,21 @@ class Category extends AbstractFilter
     private $dataProvider;
 
     /**
+     * @var \Magento\Catalog\Model\CategoryRepository
+     */
+    protected $categoryRepository;
+
+    /**
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $storeManager;
+
+    /**
+     * @var \Magento\Catalog\Model\ResourceModel\Category\Collection
+     */
+    protected $categoryCollection;
+
+    /**
      * Category constructor.
      * @param \Magento\Catalog\Model\Layer\Filter\ItemFactory $filterItemFactory
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
@@ -38,6 +53,8 @@ class Category extends AbstractFilter
      * @param \Magento\Catalog\Model\Layer\Filter\DataProvider\CategoryFactory $categoryDataProviderFactory
      * @param LayerHelper $moduleHelper
      * @param LayerFilter $layerFilter
+     * @param \Magento\Catalog\Model\CategoryRepository $categoryRepository
+     * @param \Magento\Catalog\Model\ResourceModel\Category\Collection $collection
      * @param array $data
      */
     public function __construct(
@@ -49,9 +66,10 @@ class Category extends AbstractFilter
         \Magento\Catalog\Model\Layer\Filter\DataProvider\CategoryFactory $categoryDataProviderFactory,
         LayerHelper $moduleHelper,
         LayerFilter $layerFilter,
+        \Magento\Catalog\Model\CategoryRepository $categoryRepository,
+        \Magento\Catalog\Model\ResourceModel\Category\Collection $collection,
         array $data = []
-    )
-    {
+    ) {
         parent::__construct(
             $filterItemFactory,
             $storeManager,
@@ -65,6 +83,9 @@ class Category extends AbstractFilter
         $this->_moduleHelper = $moduleHelper;
         $this->_layerFilter  = $layerFilter;
         $this->dataProvider  = $categoryDataProviderFactory->create(['layer' => $this->getLayer()]);
+        $this->categoryRepository = $categoryRepository;
+        $this->storeManager = $storeManager;
+        $this->categoryCollection = $collection;
     }
 
     /**
@@ -125,15 +146,18 @@ class Category extends AbstractFilter
 
         $optionsFacetedData = $productCollection->getFacetedData('category');
         $category           = $this->dataProvider->getCategory();
-        $categories         = $category->getChildrenCategories();
+
+        $categories = $this->categoryCollection->addAttributeToSelect('*')
+                        ->addFieldToFilter('include_in_menu', 1)
+                        ->addFieldToFilter('entity_id', ['neq' => $this->getRootCategoryId()]);
 
         $collectionSize = $productCollection->getSize();
 
         if ($category->getIsActive()) {
             foreach ($categories as $category) {
-                $count = isset($optionsFacetedData[$category->getId()]) ? $optionsFacetedData[$category->getId()]['count'] : 0;
+                $count = isset($optionsFacetedData[$category->getId()]) ?
+                    $optionsFacetedData[$category->getId()]['count'] : 0;
                 if ($category->getIsActive()
-                    && $this->_layerFilter->isOptionReducesResults($this, $count, $collectionSize)
                 ) {
                     $this->itemDataBuilder->addItemData(
                         $this->escaper->escapeHtml($category->getName()),
@@ -145,5 +169,25 @@ class Category extends AbstractFilter
         }
 
         return $this->itemDataBuilder->build();
+    }
+
+    /**
+     * To return root category id
+     *
+     * @return int
+     */
+    protected function getRootCategoryId()
+    {
+        $rootCategory = $this->categoryRepository->get(
+            $this->storeManager->getStore()->getRootCategoryId(),
+            $this->storeManager->getStore()->getId()
+        );
+        $children = $rootCategory->getChildrenCategories();
+
+        foreach ($children as $category) {
+            if ($category !== null) {
+                return $category->getId();
+            }
+        }
     }
 }

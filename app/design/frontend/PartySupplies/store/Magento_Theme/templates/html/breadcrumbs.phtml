@@ -5,7 +5,7 @@
  */
 
 // @codingStandardsIgnoreFile
-
+$category = $block->getData('categoryViewModel');
 ?>
 <?php if ($crumbs && is_array($crumbs)) : ?>
 <div class="breadcrumbs">
@@ -16,7 +16,7 @@
                 <?php if ($crumbInfo['link']) : ?>
                     <a href="<?= /* @escapeNotVerified */ $crumbInfo['link'] ?>" title="<?= $block->escapeHtml($crumbInfo['title']) ?>"><?= $block->escapeHtml($crumbInfo['label']) ?></a>
                 <?php elseif ($crumbInfo['last']) : ?>
-                    <strong><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
+                    <strong class="category-url" data-category-url="<?= $category->getCurrentUrl(str_replace('category', '' ,$crumbName)) ?>"><?= $block->escapeHtml($crumbInfo['label']) ?></strong>
                 <?php else: ?>
                     <?= $block->escapeHtml($crumbInfo['label']) ?>
                 <?php endif; ?>

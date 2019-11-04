@@ -1,5 +1,5 @@
 <?php
-// @codingStandardsIgnoreFile
+$category = $block->getData('categoryViewModel');
 ?>
 
 <?php $attributeId = $block->getAttributeId()?>
@@ -11,8 +11,8 @@
     <?php $filterItemVal = is_array($filterItem->getValue()) ? implode('-', $filterItem->getValue()) : $filterItem->getValue()?>
     <?php $dataOptPath = ($requestVar != 'cat') ? $filterItem->getFilter()->getAttributeModel()->getAttributeCode() . '='. $filterItemVal : 'cat='.$filterItemVal;?>
         <li class="item"  style="display: none" id="wp_ln_attr_<?= $attributeId ?>_<?= /* @escapeNotVerified */ is_array($filterItem->getValue()) ? implode('-', $filterItem->getValue()) : $filterItem->getValue() ?>">
-            <?php if ($filterItem->getCount() > 0): $filter = $filterItem->getFilter();?>
-                <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>"
+            <?php if ($filterItemVal): ?>
+                <a href="<?= $category->getFilterBaseUrl() ?>?cat=<?= $filterItemVal ?>"
                    data-opt-path="<?= /* @escapeNotVerified */ $dataOptPath ?>"
                     data-is-multi="<?= $isMulti?>">
                     <?= /* @escapeNotVerified */ $filterItem->getLabel() ?>

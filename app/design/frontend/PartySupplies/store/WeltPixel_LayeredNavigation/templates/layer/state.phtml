@@ -34,13 +34,13 @@
                        title="<?= /* @escapeNotVerified */ __('Previous') ?>">
                         <span><?= /* @escapeNotVerified */ __('Previous') ?></span>
                     </a>
-                    <a class="action remove"
+                    <a class="action remove filter-url"
                        title="<?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
                        href="<?= /* @escapeNotVerified */ $clearLinkUrl ?>">
                         <span><?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></span>
                     </a>
                 <?php else: ?>
-                    <a class="action remove" href="<?= /* @escapeNotVerified */ $_filter->getRemoveUrl() ?>"
+                    <a class="action remove filter-url" href="<?= /* @escapeNotVerified */ $_filter->getRemoveUrl() ?>"
                        title="<?= /* @escapeNotVerified */ $block->escapeHtml(__('Remove')) . " " . $currentFilterName ?>">
                         <span><?= /* @escapeNotVerified */ __('Remove This Item') ?></span>
                     </a>

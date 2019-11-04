@@ -15,6 +15,7 @@ define([
                     if(filterElem.length) {
                         filterElem.addClass('wp-ln-selected');
                         $('#sorter').niceSelect();
+                        $('.filter-url').attr('href', $('.category-url').data('category-url'));
                     }
 
                     if(filterSwatchElem.length) {

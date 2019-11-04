@@ -34,7 +34,7 @@ $jsClass = ($isAjaxMode) ? 'WeltPixel_LayeredNavigation/js/product/list/toolbar'
             <?php if ($block->getLayer()->getState()->getFilters()): ?>
                 <div class="block-actions filter-actions">
                     <a href="<?= /* @escapeNotVerified */
-                    $block->getClearUrl() ?>" class="action clear filter-clear"><span><?= /* @escapeNotVerified */
+                    $block->getClearUrl() ?>" class="action clear filter-clear filter-url"><span><?= /* @escapeNotVerified */
                             __('Clear All') ?></span></a>
                 </div>
             <?php endif; ?>
