@@ -23,7 +23,7 @@
     <ul class="qod_list_item" data-bind="foreach:getItems()">
         <li class="qod_item" data-bind="attr: { 'pid': item_id }">
             <div class="qod-product-item">
-                <div class="item-product">
+                <div class="item-product" data-th="Product Item">
                     <div class="image-product"><img data-bind="attr: { 'src': imageUrl }"/></div>
                     <div class="name-option">
                         <a data-bind="attr: { 'href': porudct_url}" target="_blank"><p class="product-name"
@@ -54,8 +54,8 @@
                     </div>
                     <!-- ko template: $parent.getProductTemplate() --><!-- /ko -->
                 </div>
-                <div class="item-sku" data-bind="text:sku"></div>
-                <div id="item-qty">
+                <div class="item-sku" data-th="SKU" data-bind="text:sku"></div>
+                <div id="item-qty" data-th="QTY">
                     <div id="action-qty"
                          data-bind="style: { display: !$parent.checkGroup(type_id)  ? 'block' : 'none' }">
                         <span id="sub-qty" data-bind="click: $parent.minusQty.bind($data,item_id)">-</span>
@@ -77,7 +77,7 @@
                     <!-- /ko -->
                 </div>
                 <!--<div class="item-subtotal" data-bind="text:$parent.getFormattedPrice(total)"></div>-->
-                <div class="item-subtotal">
+                <div class="item-subtotal" data-th="Subtotal">
                     <p data-bind="text: $parent.getFormattedPrice(total)"></p>
                     <!-- ko if: $parent.checkTierPriceGroup(tier_price)-->
                     <!-- ko if: $parent.checkBundle(type_id) -->

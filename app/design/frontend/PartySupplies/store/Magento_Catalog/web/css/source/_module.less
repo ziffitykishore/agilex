@@ -46,7 +46,6 @@
 
     }
 
-
     .catalog-product-view,
     .checkout-cart-index {
 
@@ -238,6 +237,7 @@
             .page-title {
                 line-height: @line-height__base;
                 margin-bottom: @indent__s;
+                .lib-font-size(2.4rem);
             }
         }
 
@@ -257,6 +257,7 @@
                 display: inline-block;
                 font-weight: @font-weight__semibold;
                 margin-right: @indent__base;
+                margin-bottom: 0;
                 text-transform: uppercase;
                 vertical-align: top;
                 .lib-font-size(@font-size__s);
@@ -711,13 +712,21 @@
                     color: @c-primary_color;
                 }
             }
-            .price-head{
+            .price-head,
+            .price-from,
+            .price-to {
                 font-size: 1.4rem;
                 margin: 0;
                 text-transform: uppercase;
                 margin-bottom: 1rem;
                 font-weight: normal;
 
+                .price-label,
+                .price{
+                    font-size: 1.4rem;;
+                }
+
+                .price-label,
                 .label {
                     min-width: 120px;
                     display: inline-block;
@@ -977,10 +986,19 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
     .catalog-product-view {
+
         .product-info-main {
             .pdp-product-price {
-                .price-head {
+                .price-head,
+                .price-from,
+                .price-to,
+                .price,
+                .price-label {
                     .lib-font-size(@font-size__s - 2);
+                    .label,
+                    .price-label{
+                        min-width: 80px;
+                    }
                 }
             }
 
@@ -988,7 +1006,7 @@
                 &.tocart,
                 &.towishlist {
                     min-width: auto;
-                    .lib-font-size(@font-size__s - 2);
+                    .lib-font-size(@font-size__s);
                 }
             }
         }
@@ -1016,8 +1034,21 @@
 }
 
 
-
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+    .catalog-product-view {
+        .additional-attributes-wrapper {
+            padding-left: 0;
+            padding-right: 0;
+            width: 100%;
+            .data.table {
+                width: 100%;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 800px) {
     .catalog-product-view {
         .column.main {
             .lib-vendor-prefix-display(flex);
@@ -1072,6 +1103,8 @@
         }
 
 
+
+
         .additional-attributes-wrapper th,
         .additional-attributes-wrapper td {
             padding: 2rem !important
@@ -1096,6 +1129,22 @@
                 display: block;
             }
 
+        }
+
+        .product-info-main {
+            .pdp-product-price {
+                .price-head,
+                .price-from,
+                .price-to,
+                .price,
+                .price-label {
+                    .lib-font-size(@font-size__s);
+                    .label,
+                    .price-label {
+                        min-width: 80px;
+                    }
+                }
+            }
         }
 
         .block.related {
@@ -1327,7 +1376,7 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .product-info-main {
         float: right;
     }
@@ -1355,6 +1404,40 @@
 
         .product.media {
             width: 50%;
+        }
+    }
+}
+
+
+
+@media screen and (min-width: @c-tab-m) and (max-width: @c-desk) {
+    .product-info-main {
+        float: right;
+    }
+
+    .product.media {
+        float: left;
+        margin-bottom: @indent__m;
+    }
+
+    .page-layout-1column {
+        .product-info-main {
+            width: 52%;//
+        }
+        .product.media {
+            width: 46%;//
+        }
+    }
+
+    .page-layout-2columns-left,
+    .page-layout-2columns-right,
+    .page-layout-3columns {
+        .product-info-main {
+            width: 52%;
+        }
+
+        .product.media {
+            width: 46%;
         }
     }
 }

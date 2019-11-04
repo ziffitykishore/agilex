@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template
+        id="nav_order_update_order_sync_failed_email_template"
+        label="Order Sync Failure"
+        file="order_sync_failure.html"
+        type="html"
+        module="PartySupplies_Order"
+        area="adminhtml"/>
+</config>

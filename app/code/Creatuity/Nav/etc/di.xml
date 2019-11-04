@@ -1639,6 +1639,7 @@
         <arguments>
             <argument name="attribute" xsi:type="const">Magento\Catalog\Api\Data\ProductInterface::TYPE_ID</argument>
             <argument name="condition" xsi:type="const">Magento\Catalog\Model\Product\Type::TYPE_SIMPLE</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
 
@@ -1646,6 +1647,7 @@
         <arguments>
             <argument name="attribute" xsi:type="const">Magento\Catalog\Api\Data\ProductInterface::STATUS</argument>
             <argument name="condition" xsi:type="const">Magento\Catalog\Model\Product\Attribute\Source\Status::STATUS_ENABLED</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
 
@@ -1673,12 +1675,14 @@
         <arguments>
             <argument name="attribute" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::STATUS</argument>
             <argument name="condition" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
+            <argument name="path" xsi:type="string"></argument>
         </arguments>
     </virtualType>
     <virtualType name="orderStatusAttributeFilter" type="Creatuity\Nav\Model\Map\Filter\AttributeFilter">
         <arguments>
             <argument name="attribute" xsi:type="const">Magento\Sales\Api\Data\OrderInterface::STATUS</argument>
-            <argument name="condition" xsi:type="string">pending</argument>
+            <argument name="condition" xsi:type="string"></argument>
+            <argument name="path" xsi:type="string">nav/order_update/order_status_filter</argument>
         </arguments>
     </virtualType>
 
@@ -2382,13 +2386,21 @@
 
 
 
-
+    <!-- START - Magento Order Status Processor -->
     <virtualType name="orderProcessedOrderStatusDataProcessor" type="Creatuity\Nav\Model\Data\Processor\OrderStatusDataProcessor">
         <arguments>
-            <argument name="state" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
-            <argument name="status" xsi:type="const">Magento\Sales\Model\Order::STATE_PROCESSING</argument>
+            <argument name="state" xsi:type="string">nav/order_update/order_sync_success_state</argument>
+            <argument name="status" xsi:type="string">nav/order_update/order_sync_success_status</argument>
         </arguments>
     </virtualType>
+
+    <virtualType name="orderFailedStatusProcessor" type="Creatuity\Nav\Model\Data\Processor\OrderStatusDataProcessor">
+        <arguments>
+            <argument name="state" xsi:type="string">nav/order_update/order_sync_failure_state</argument>
+            <argument name="status" xsi:type="string">nav/order_update/order_sync_failure_status</argument>
+        </arguments>
+    </virtualType>
+    <!-- END - Magento Order Status Processor -->
 
 
     <virtualType name="orderLineLineNumberFieldMapping" type="Creatuity\Nav\Model\Data\Mapping\UnaryMapping">
@@ -2518,6 +2530,7 @@
             <argument name="orderReleaseManager" xsi:type="object">orderReleaseManager</argument>
             <argument name="orderDeleteManager" xsi:type="object">orderDeleteManager</argument>
             <argument name="orderStatusDataProcessor" xsi:type="object">orderProcessedOrderStatusDataProcessor</argument>
+            <argument name="orderFailedStatusProcessor" xsi:type="object">orderFailedStatusProcessor</argument>
             <argument name="lineNumberDataGenerator" xsi:type="object">orderLineLineNumberDataGenerator</argument>
             <argument name="orderPrimaryKeyFieldDataExtractor" xsi:type="object">orderPrimaryKeyFieldDataExtractor</argument>
             <argument name="orderItemFilters" xsi:type="array">

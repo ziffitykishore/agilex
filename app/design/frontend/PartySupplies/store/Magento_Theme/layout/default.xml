@@ -30,6 +30,7 @@
 
         <referenceContainer name="header.container">
             <container name="header_wrapper"  htmlTag="div" htmlClass="header-wrapper"/>
+            <container name="links-search" htmlTag="div" htmlClass="links-search"/>
         </referenceContainer>
 
         <referenceContainer name="before.body.end">
@@ -75,12 +76,14 @@
 
         <move element="header-wrapper" destination="header_wrapper" />
         <move element="navigation.sections" destination="header-wrapper" before="-"/>
-        <move element="top.links"  destination="header-wrapper" after='logo'/>
+        <move element="top.links"  destination="links-search" before="-"/>
         <move element="minicart" destination="header.container" before="header_wrapper" />
         <move element="my-account-link"  destination="my.accounts.links"/>
         <move element="wish-list-link"  destination="my.accounts.links" after='my-account-link'/>
         <move element="authorization-link"  destination="my.accounts.links" after='wish-list-link'/>
         <move element="magepal_gtm_iframe" destination="after.body.start" before="-"/>
+        <move element="links-search" destination="header-wrapper" after="-"/>
+        <move element="top.search" destination="links-search" after="-"/>
 
         <referenceBlock name="contact_top_link" remove="true" />
         <referenceContainer name="logo-header" remove="true" />
@@ -91,6 +94,7 @@
         <referenceBlock name="quickorder.top.search" remove="true" />
         <referenceBlock name="quickorder.footer.link" remove="true" />
         <referenceContainer name="footer" remove="true"/>
+        <referenceBlock name="mp.quickorder.design" remove="true"/>
                 
     </body>
 </page>

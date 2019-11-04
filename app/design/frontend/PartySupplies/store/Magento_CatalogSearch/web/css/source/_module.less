@@ -138,7 +138,7 @@
             position: absolute;
             width: ~"calc(100% + 100px)";
             z-index: 3;
-
+          
             @media screen and (max-width: 768px) {
                 left: 0;
                 max-height: calc(100% - 130px);
@@ -269,10 +269,8 @@
             }
         }
         .block-content {
-            position: absolute;
             right: 0;
             margin-bottom: 0;
-            display: none;
 
             .input-text {
                 min-height: 51px;
@@ -291,7 +289,7 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m + 1) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .block-search {
         float: right;
         padding-left: 15px;

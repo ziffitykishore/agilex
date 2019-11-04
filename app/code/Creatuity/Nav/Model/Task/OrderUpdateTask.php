@@ -19,7 +19,21 @@ use Creatuity\Nav\Model\Task\Manager\NavEntityOperationManager;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Creatuity\Nav\Api\Data\DataInterfaceFactory;
 use Creatuity\Nav\Api\DataRepositoryInterface;
+use Magento\Framework\Mail\Template\TransportBuilder;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\Mail\Template\SenderResolverInterface;
+use Magento\Customer\Model\EmailNotification;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
+/**
+ *
+ * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+ * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
+ * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+ * @SuppressWarnings(PHPMD.ExcessiveMethodList)
+ * @SuppressWarnings(PHPMD.TooManyFields)
+ */
 class OrderUpdateTask implements TaskInterface
 {
 
@@ -89,6 +103,11 @@ class OrderUpdateTask implements TaskInterface
     protected $orderStatusDataProcessor;
 
     /**
+     * @var OrderStatusDataProcessor
+     */
+    protected $orderFailedStatusProcessor;
+
+    /**
      * @var LineNumberDataGenerator
      */
     protected $lineNumberDataGenerator;
@@ -119,6 +138,21 @@ class OrderUpdateTask implements TaskInterface
     protected $navisionLoggerRepository;
 
     /**
+     * @var TransportBuilder
+     */
+    protected $transportBuilder;
+
+    /**
+     * @var SenderResolverInterface
+     */
+    protected $senderResolver;
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    /**
      *
      * @param DataObjectFactory $dataObjectFactory
      * @param LoggerInterface $logger
@@ -132,6 +166,7 @@ class OrderUpdateTask implements TaskInterface
      * @param NavEntityOperationManager $orderReleaseManager
      * @param NavEntityOperationManager $orderDeleteManager
      * @param OrderStatusDataProcessor $orderStatusDataProcessor
+     * @param OrderStatusDataProcessor $orderFailedStatusProcessor
      * @param LineNumberDataGenerator $lineNumberDataGenerator
      * @param FieldDataExtractor $orderPrimaryKeyFieldDataExtractor
      * @param array $orderItemFilters
@@ -150,12 +185,16 @@ class OrderUpdateTask implements TaskInterface
         NavEntityOperationManager $orderReleaseManager,
         NavEntityOperationManager $orderDeleteManager,
         OrderStatusDataProcessor $orderStatusDataProcessor,
+        OrderStatusDataProcessor $orderFailedStatusProcessor,
         LineNumberDataGenerator $lineNumberDataGenerator,
         FieldDataExtractor $orderPrimaryKeyFieldDataExtractor,
         array $orderItemFilters = [],
         OrderRepositoryInterface $orderRepository,
         DataInterfaceFactory $navisionLoggerFactory,
-        DataRepositoryInterface $navisionLoggerRepository
+        DataRepositoryInterface $navisionLoggerRepository,
+        TransportBuilder $transportBuilder,
+        SenderResolverInterface $senderResolver,
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->dataObjectFactory = $dataObjectFactory;
         $this->logger = $logger;
@@ -169,12 +208,16 @@ class OrderUpdateTask implements TaskInterface
         $this->orderReleaseManager = $orderReleaseManager;
         $this->orderDeleteManager = $orderDeleteManager;
         $this->orderStatusDataProcessor = $orderStatusDataProcessor;
+        $this->orderFailedStatusProcessor = $orderFailedStatusProcessor;
         $this->lineNumberDataGenerator = $lineNumberDataGenerator;
         $this->orderPrimaryKeyFieldDataExtractor = $orderPrimaryKeyFieldDataExtractor;
         $this->orderItemFilters = $orderItemFilters;
         $this->orderRepository = $orderRepository;
         $this->navisionLoggerFactory = $navisionLoggerFactory;
         $this->navisionLoggerRepository = $navisionLoggerRepository;
+        $this->transportBuilder = $transportBuilder;
+        $this->senderResolver = $senderResolver;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
@@ -196,6 +239,7 @@ class OrderUpdateTask implements TaskInterface
      * To Update order to NAV.
      *
      * @param OrderInterface $order
+     * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
      */
     protected function updateOrder(OrderInterface $order)
     {
@@ -271,6 +315,14 @@ class OrderUpdateTask implements TaskInterface
                 'MAGENTO_ORDER_ID = '
                 .$order->getIncrementId().' ERROR: '.$e->getMessage()
             );
+            $this->orderFailedStatusProcessor->process(
+                $order,
+                $this->dataObjectFactory->create([
+                    'increment_id' => $order->getIncrementId(),
+                ])
+            );
+            $mailConfig = $this->setMailConfig($order);
+            $this->sendEmail($mailConfig);
             $error = true;
         }
 
@@ -331,5 +383,85 @@ class OrderUpdateTask implements TaskInterface
             $description
         );
         $this->navisionLoggerRepository->save($navisionData);
+    }
+
+    /**
+     * To Send Transactional Email
+     *
+     * @param array $mailConfig
+     *
+     * @throws \Magento\Framework\Exception\MailException
+     *
+     * @return NULL
+     */
+    protected function sendEmail(array $mailConfig)
+    {
+        try {
+            $transport = $this->transportBuilder->setTemplateIdentifier($mailConfig['template_id'])
+                ->setTemplateOptions(['area' => 'adminhtml', 'store' => $mailConfig['store_id']])
+                ->setTemplateVars($mailConfig['template_variable'])
+                ->setFrom($mailConfig['from_email_address'])
+                ->addTo($mailConfig['to_email_address'], "NAVISION")
+                ->getTransport();
+            $transport->sendMessage();
+            $this->logger->info('Mail Sent Successfully to Admin.');
+        } catch (\Magento\Framework\Exception\MailException $ex) {
+            $this->logger->info('Somthing Went Wrong. Mail Could not be Sent.');
+        }
+    }
+
+    /**
+     * To set Mail Configuration
+     *
+     * @param OrderInterface $order
+     *
+     * @return array
+     */
+    protected function setMailConfig($order)
+    {
+        $mailConfig = [];
+
+        $mailConfig['template_id'] = $this->getScopeConfigValue(
+            'nav/order_update/order_sync_failed_email_template',
+            ScopeInterface::SCOPE_STORE,
+            $order->getStoreId()
+        );
+
+        $mailConfig['from_email_address'] = $this->senderResolver->resolve(
+            $this->getScopeConfigValue(
+                EmailNotification::XML_PATH_REGISTER_EMAIL_IDENTITY,
+                ScopeInterface::SCOPE_STORE,
+                $order->getStoreId()
+            ),
+            $order->getStoreId()
+        );
+
+        $recipients = explode(
+            ',',
+            $this->getScopeConfigValue(
+                'nav/order_update/order_sync_failure_mail_to',
+                ScopeInterface::SCOPE_STORE,
+                $order->getStoreId()
+            )
+        );
+
+        $mailConfig['to_email_address'] = $recipients;
+        $mailConfig['store_id'] = $order->getStoreId();
+        $mailConfig['template_variable'] = ['increment_id' => $order->getIncrementId()];
+
+        return $mailConfig;
+    }
+
+    /**
+     *
+     * @param string $path
+     * @param string $scopeType
+     * @param int    $scopeCode
+     *
+     * @return string
+     */
+    protected function getScopeConfigValue($path, $scopeType, $scopeCode)
+    {
+        return $this->scopeConfig->getValue($path, $scopeType, $scopeCode);
     }
 }

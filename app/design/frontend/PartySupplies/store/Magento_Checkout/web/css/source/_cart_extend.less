@@ -4,6 +4,12 @@
 
 & when (@media-common = true) {
 
+    .cart-empty {
+        a {
+            color: @c-primary_color;
+        }
+    }
+
     .checkout-cart-index{
         .page-wrapper {
             .page-main {
@@ -626,6 +632,7 @@
 @media screen and (max-width: 1200px) {
     .checkout-cart-index {
         .cart-container {
+            .flex();
             .cart-summary,
             .form-cart {
                 width: 100%;
@@ -636,6 +643,8 @@
             .cart-summary {
                 position: static;
                 padding-left: 0;
+                .order(2);
+                margin-top: 30px;
 
                 .cart-totals,
                 .discount,
@@ -715,6 +724,7 @@
             }
         }
         .cart-container {
+            margin-top: 30px;
         .form-cart {
             .cart.table-wrapper {
                 border: none;
@@ -725,8 +735,19 @@
                     .item-info {
                         .col {
                             display: block;
-                            .item {
+                            &[data-th]:before {
+                                display: inline-block;
+                                margin-right: 10px;
+                            }
+
+                            > span,
+                            > div {
+                                display: inline-block;
+                            }
+
+                            &.item {
                                 padding: 15px;
+                                width: 100%;
                             }
                         }
 
@@ -803,6 +824,8 @@
 
     }
 }
+
+
 
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {

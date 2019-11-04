@@ -246,4 +246,19 @@ class Product implements ArgumentInterface
 
         return json_encode($validators);
     }
+
+    /**
+     * @param \Magento\Catalog\Model\Product $product
+     * @return boolean
+     */
+    public function isCallForPrice($product)
+    {
+        switch ($product->getTypeId()) {
+            case \Magento\GroupedProduct\Model\Product\Type\Grouped::TYPE_CODE:
+            case \Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE:
+                return $this->getChildProductData($product, 'minPrice')>0;
+            default:
+                return $product->getPrice()>0;
+        }
+    }
 }
