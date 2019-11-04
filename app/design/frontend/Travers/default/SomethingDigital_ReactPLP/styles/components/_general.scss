@@ -484,6 +484,11 @@ $sidebar__max-width: 240px;
     box-sizing: border-box;
     font-weight: $font-weight__semibold;
 
+    @include hover {
+      border: 2px solid $c-grey;
+      color: $c-cobalt;
+    }
+
     &::before {
       margin-right: $indent__s;
       transform: translateY(-3px);
@@ -510,11 +515,6 @@ $sidebar__max-width: 240px;
         $height     : auto,
         $pseudo     : before
       );
-    }
-
-    @include hover {
-      border: 2px solid $c-grey;
-      color: $c-cobalt;
     }
   }
 }
