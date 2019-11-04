@@ -228,6 +228,7 @@
     float: left;
     line-height: 50px;
     text-align: center;
+    font-weight: bold;
 }
 
 .qod-product-item #item-action {
