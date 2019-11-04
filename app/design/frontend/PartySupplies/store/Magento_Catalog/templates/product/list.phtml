@@ -91,7 +91,6 @@ $viewModel = $block->getData('viewModel');
                                             <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?= /* @NoEscape */ $postParams['action'] ?>" method="post">
                                                 <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $postParams['data']['product'] ?>">
                                                 <input type="hidden" name="<?= /* @escapeNotVerified */ Action::PARAM_NAME_URL_ENCODED ?>" value="<?= /* @escapeNotVerified */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
-                                                <?php clog('test.log',get_class_methods($_product)); ?>
                                                 <?= $block->getBlockHtml('formkey') ?>
                                                 <button type="submit"
                                                         title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
