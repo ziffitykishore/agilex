@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cfaf107360906d35312ba06e0396ee92",
+    "content-hash": "f0afd3cbfcf3475c41444667458d6a11",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -17447,11 +17447,11 @@
         },
         {
             "name": "somethingdigital/magento2-theme-bryantpark",
-            "version": "4.0.0",
+            "version": "4.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/SomethingDigital-Magento2-Theme-BryantPark.git",
-                "reference": "e072fa283c57ac27ee7f7ce2b86c6d9459522a77"
+                "reference": "744bda54e9d116b42ebfa3b0fa5697acd386a531"
             },
             "require": {
                 "magento/magento-composer-installer": "*",
@@ -17467,7 +17467,7 @@
                 "proprietary"
             ],
             "description": "Bryant Park base theme for Magento 2 by Something Digital",
-            "time": "2019-06-20T14:39:49+00:00"
+            "time": "2019-08-07T21:59:19+00:00"
         },
         {
             "name": "somethingdigital/module-admin-notify",
