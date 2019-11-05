@@ -40,9 +40,16 @@ $nav-section-title__height: 60px;
         }
     }
 
-    .level-top {
-        font-weight: $font-weight__semibold;
+    .level-top span {
         color: $text__color;
+
+        @include hover {
+            color: $text__color-alt;
+        }
+    }
+
+    .level-top > span {
+        font-weight: $font-weight__semibold;
     }
 
     .submenu {
