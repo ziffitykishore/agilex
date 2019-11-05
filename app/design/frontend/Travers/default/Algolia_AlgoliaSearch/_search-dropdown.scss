@@ -133,6 +133,14 @@ $search-dropdown-footer__height: 50px;
         display: block !important;
     }
 
+    .algoliasearch-autocomplete-hit,
+    .info-without-thumb {
+        @include hover {
+            background-color: transparent !important;
+            color: $c-cobalt;
+        }
+    }
+
     .col9,
     .col3 {
         width: 100% !important;
