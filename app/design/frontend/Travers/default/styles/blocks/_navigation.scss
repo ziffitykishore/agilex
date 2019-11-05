@@ -197,10 +197,21 @@ $nav-section-title__height: 60px;
 .nav-sections-item-title[aria-controls="close.menu"] {
     text-align: right;
     position: relative;
-    background-color: $color-white;
+    background-color: $primary__color;
 
     a {
-        @include button--close();
+        @include icon-svg(
+            $icon       : remove,
+            $fill       : $color-white,
+            $fill-hover : $color-white,
+            $width      : $toggling-icon-width,
+            $pseudo     : after
+        );
+
+        &::after {
+            @include vertically-center($position: absolute);
+        }
+
         font-size: 0; // hiding actual text
         position: absolute;
         left: 0;
