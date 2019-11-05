@@ -406,8 +406,11 @@ $nav-section-title__height: 60px;
                     text-decoration: $navigation-level0-item__text-decoration;
                     display: block;
                 }
-            }
 
+                &.phone-number {
+                    display: none;
+                }
+            }
         }
     }
 
