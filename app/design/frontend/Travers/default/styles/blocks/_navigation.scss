@@ -276,9 +276,7 @@ $nav-section-title__height: 60px;
             }
         }
 
-        .parent .level-top,
-        .contact-link a,
-        .about-link a {
+        .parent .level-top {
             text-transform: uppercase;
             letter-spacing: .5px;
             text-decoration: none;
@@ -293,6 +291,17 @@ $nav-section-title__height: 60px;
             @include hover {
                 color: $c-cobalt;
             }
+        }
+
+        .contact-link a,
+        .about-link a {
+            border: 1px solid $c-border;
+            font-family: $font-family__base;
+            font-size: $font-size__base--desktop;
+        }
+
+        .about-link a {
+            border-top: 0;
         }
     }
 
