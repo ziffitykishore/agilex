@@ -59,8 +59,6 @@ define([
 
             //Fix for inline editor not allowing space
             $(_this5.element).find(".coll-header span.coll-title").on('keydown', function (e) {
-                console.log(e.keyCode);
-                console.log(e.keyCode === 32);
                 if(e.keyCode === 32) {
                     e.stopPropagation();
                 }
