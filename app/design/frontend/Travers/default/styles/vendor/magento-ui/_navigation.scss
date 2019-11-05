@@ -330,9 +330,6 @@
             &.has-active {
                 & > .level-top {
                     background: $_nav-level0-item-background-color-active;
-                    border-color: $_nav-level0-item__active__border-color;
-                    border-style: $_nav-level0-item__active__border-style;
-                    border-width: $_nav-level0-item__active__border-width;
                     color: $_nav-level0-item-color-active;
                     text-decoration: $_nav-level0-item-text-decoration-active;
                     display: inline-block;
