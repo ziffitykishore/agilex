@@ -80,7 +80,7 @@ abstract class Adapter
     {
         $token = $this->getToken();
 
-        if (!$this->isTokenValid()) {
+        if (!$this->isTokenValid() && !$this->isTestMode()) {
             $token = $this->refreshToken();
         }
 
@@ -110,7 +110,7 @@ abstract class Adapter
     protected function postRequest()
     {
         $token = $this->getToken();
-        if (!$this->isTokenValid()) {
+        if (!$this->isTokenValid() && !$this->isTestMode()) {
             $token = $this->refreshToken();
         }
 
