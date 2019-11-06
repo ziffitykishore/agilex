@@ -803,6 +803,7 @@ $home-sidebar-width: 240px;
         align-items: center;
         padding: $indent__s;
         padding-left: 70px;
+        padding-bottom: 0;
         margin-bottom: $indent__xl;
 
         .footer-promo-text {
@@ -831,7 +832,7 @@ $home-sidebar-width: 240px;
         }
 
         .catalog-image {
-            transform: translateY($indent__m);
+            transform: translateY($indent__s);
             margin-left: 0;
             max-width: 100px;
         }
@@ -847,7 +848,11 @@ $home-sidebar-width: 240px;
         padding-right: 0;
 
         figure { // The image's container
-            margin: 0;
+            margin: 0 !important; // override PageBuilder
+
+            img {
+                max-height: 80px;
+            }
         }
     }
 
