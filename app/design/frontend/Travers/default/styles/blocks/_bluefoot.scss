@@ -899,14 +899,14 @@ footer.page-footer {
             margin-bottom: $indent__l;
 
             .footer-links {
-                @include min-screen($screen__m) {
+                @include min-screen($screen__l) {
                     width: 70%;
                 }
 
                 [data-content-type="column"] {
                     box-sizing: border-box;
 
-                    @include max-screen($screen__m) {
+                    @include max-screen($screen__l) {
                         width: 45% !important; // override PageBuilder
 
                         &:last-of-type {
@@ -958,7 +958,7 @@ footer.page-footer {
                 padding-left: $indent__s;
             }
 
-             @include min-screen($screen__m) {
+             @include min-screen($screen__l) {
                 flex-direction: row;
 
                  .footer-links {
@@ -979,7 +979,7 @@ footer.page-footer {
         &__connect {
             width: 100%;
 
-            @include max-screen($screen__m) {
+            @include max-screen($screen__l) {
                 order: -1;
                 margin-top: $indent__m;
 
