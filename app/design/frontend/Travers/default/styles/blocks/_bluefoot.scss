@@ -2,7 +2,7 @@ $bp-medium: $screen__m; // pre-set _catland breakpoint
 $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
-$home-sidebar-width: 20.5%;
+$home-sidebar-width: 240px;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -809,6 +809,7 @@ $home-sidebar-width: 20.5%;
         align-items: center;
         padding: $indent__s;
         padding-left: 70px;
+        padding-bottom: 0;
         margin-bottom: $indent__xl;
 
         .footer-promo-text {
@@ -827,13 +828,17 @@ $home-sidebar-width: 20.5%;
             }
         }
 
+        .pagebuilder-button-secondary {
+            white-space: nowrap;
+        }
+
         .footer-promo-header {
             margin-top: 0;
             font-size: 22px;
         }
 
         .catalog-image {
-            transform: translateY(22px);
+            transform: translateY($indent__s);
             margin-left: 0;
             max-width: 100px;
         }
@@ -911,14 +916,14 @@ footer.page-footer {
             margin-bottom: $indent__l;
 
             .footer-links {
-                @include min-screen($screen__m) {
+                @include min-screen($screen__l) {
                     width: 70%;
                 }
 
                 [data-content-type="column"] {
                     box-sizing: border-box;
 
-                    @include max-screen($screen__m) {
+                    @include max-screen($screen__l) {
                         width: 45% !important; // override PageBuilder
 
                         &:last-of-type {
@@ -970,7 +975,7 @@ footer.page-footer {
                 padding-left: $indent__s;
             }
 
-             @include min-screen($screen__m) {
+             @include min-screen($screen__l) {
                 flex-direction: row;
 
                  .footer-links {
@@ -991,7 +996,7 @@ footer.page-footer {
         &__connect {
             width: 100%;
 
-            @include max-screen($screen__m) {
+            @include max-screen($screen__l) {
                 order: -1;
                 margin-top: $indent__m;
 
@@ -1180,7 +1185,7 @@ footer.page-footer {
         display: none !important;
 
         @include min-screen($screen__l) {
-            width: $home-sidebar-width;
+            width: $home-sidebar-width !important;
             display: flex !important;
             flex-direction: column;
             background-color: $c-smoke !important;
@@ -1190,8 +1195,8 @@ footer.page-footer {
 }
 
 .bluefoot__categories {
-    padding: 15px;
-    padding-left: 50px;
+    padding-left: $indent__l;
+    padding-right: $indent__base;
     list-style-type: none;
     margin: 0 15px;
 
@@ -1200,7 +1205,7 @@ footer.page-footer {
         margin-bottom: $indent__s;
 
         a {
-            color: $c-nickel;
+            color: $text__color;
             text-decoration: none;
             font-size: $font-size__base--desktop;
             line-height: 1.3;

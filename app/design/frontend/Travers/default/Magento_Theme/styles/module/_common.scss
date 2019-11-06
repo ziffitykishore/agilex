@@ -509,6 +509,27 @@ body {
 
     .switcher-store {
         margin: 0 0 30px;
+
+        .switcher-trigger strong span,
+        .options ul.dropdown.switcher-dropdown a {
+            font-size: 13px;
+            font-weight: $font-weight__regular;
+        }
+
+        .switcher-option {
+            background-color: $c-smoke;
+        }
+
+        .options ul.dropdown.switcher-dropdown {
+            border: 0;
+            box-shadow: none;
+            min-width: 100px;
+
+            &::before,
+            &::after {
+                display: none;
+            }
+        }
     }
 
     .copyright,
