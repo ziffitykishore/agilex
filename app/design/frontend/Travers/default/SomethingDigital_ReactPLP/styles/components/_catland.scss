@@ -82,6 +82,11 @@
     flex-direction: row;
   }
 
+  .filter-heading {
+    font-size: $font-size__base--desktop;
+    min-height: 50px;
+  }
+
   .catland-subcategories {
     width: 100%;
 
@@ -188,7 +193,7 @@
     .ais-Hits-item button {
       width: 100%;
       padding-bottom: 0;
-      font-size: $font-size__base;
+      font-size: $font-size__base--desktop;
       line-height: 1.5;
       text-align: left;
     }
