@@ -10,6 +10,9 @@ domready(() => {
   $('.about-link').first().clone().appendTo('.navigation ul:first');
   $('.phone-number.only-on-mobile').first().clone().prependTo('.page-header');
 
+  const switcherTextWithoutPrefix = $('.switcher-option a').text().replace('Country - ', '');
+  $('.switcher-option a').text(switcherTextWithoutPrefix);
+
   $('.level-top.level0').each(function() {
     if ($(this).find('.mobile-submenu').length > 0) {
       $(this).addClass('has-mobile-submenu');

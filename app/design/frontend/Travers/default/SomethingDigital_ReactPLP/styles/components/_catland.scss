@@ -60,6 +60,7 @@
       display: flex;
       width: 80%;
       padding-right: 50px;
+      margin-top: 50px;
 
       div:not(:last-of-type) {
         margin-right: $indent__m;
@@ -69,8 +70,10 @@
 
   .cms-footer-border {
     @include min-screen($screen__m) {
-      transform: translateX(-50px);
+      position: absolute;
+      left: 0;
       width: 100%;
+      z-index: -1;
     }
   }
 }
@@ -81,6 +84,11 @@
 
   @include min-screen($screen__m) {
     flex-direction: row;
+  }
+
+  .filter-heading {
+    font-size: $font-size__base--desktop;
+    min-height: 50px;
   }
 
   .catland-subcategories {
@@ -183,13 +191,13 @@
   .catland-sibling-categories .sibling-buttons {
     .ais-Hits-list {
       padding-left: $indent__s;
-      padding-right: $indent__xs;
+      padding-right: 0;
     }
 
     .ais-Hits-item button {
       width: 100%;
       padding-bottom: 0;
-      font-size: $font-size__base;
+      font-size: $font-size__base--desktop;
       line-height: 1.5;
       text-align: left;
     }
@@ -207,12 +215,13 @@
 
       .ais-Hits-item button {
         font-size: $font-size__base--desktop;
-        font-weight: $font-weight__semibold;
+        font-weight: $font-weight__regular;
       }
 
       .active {
         color: $c-cobalt;
         border-right: 3px solid $c-cobalt;
+        border-radius: 0;
       }
     }
   }

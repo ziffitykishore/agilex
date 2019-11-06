@@ -2,7 +2,7 @@ $bp-medium: $screen__m; // pre-set _catland breakpoint
 $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
-$home-sidebar-width: 20.5%;
+$home-sidebar-width: 240px;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -477,7 +477,7 @@ $home-sidebar-width: 20.5%;
 
             @include hover {
                 .pagebuilder-banner-button {
-                    text-decoration: underline;
+                    color: $text__color;
                 }
             }
 
@@ -593,7 +593,7 @@ $home-sidebar-width: 20.5%;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    padding: $indent__m $indent__s 0 $indent__s;
+    padding: $indent__m 15px 0 15px;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
 
@@ -603,12 +603,17 @@ $home-sidebar-width: 20.5%;
     }
 
     .pagebuilder-column-group {
-        @include min-screen($screen__m) {
+        max-width: 580px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+
+        @include min-screen($screen__l) {
+            margin: 0;
+            max-width: none;
             display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
-            margin: 0;
         }
     }
 
@@ -640,7 +645,7 @@ $home-sidebar-width: 20.5%;
         background-color: $c-midnight;
         color: $color-white;
         float: left;
-        width: 100%;
+        width: 100% !important;
 
         @include max-screen($screen__m) {
             padding: 0 !important; // override BF columns
@@ -681,6 +686,7 @@ $home-sidebar-width: 20.5%;
         }
 
         @include min-screen($screen__l) {
+            width: 50% !important;
             max-width: 650px;
             transform: translateX(5%);
             padding: $indent__xl;
@@ -756,11 +762,11 @@ $home-sidebar-width: 20.5%;
     .video-tout {
         position: relative;
         padding: 0 !important; // override PageBuilder
-        width: 100%;
+        width: 100% !important;
 
         @include min-screen($screen__l) {
             transform: translateY(125px) translateX(-5%);
-            max-width: 50%;
+            width: 50% !important;
         }
 
         @include min-screen($screen__xl) {
@@ -799,6 +805,7 @@ $home-sidebar-width: 20.5%;
         align-items: center;
         padding: $indent__s;
         padding-left: 70px;
+        padding-bottom: 0;
         margin-bottom: $indent__xl;
 
         .footer-promo-text {
@@ -817,13 +824,17 @@ $home-sidebar-width: 20.5%;
             }
         }
 
+        .pagebuilder-button-secondary {
+            white-space: nowrap;
+        }
+
         .footer-promo-header {
             margin-top: 0;
             font-size: 22px;
         }
 
         .catalog-image {
-            transform: translateY($indent__m);
+            transform: translateY($indent__s);
             margin-left: 0;
             max-width: 100px;
         }
@@ -835,11 +846,17 @@ $home-sidebar-width: 20.5%;
         box-shadow: $indent__xs 0 $indent__s -2px $c-silver;
         margin-left: 20px;
         margin-right: $indent__s;
-        padding-left: 0;
-        padding-right: 0;
+        padding-left: 0 !important; // override PageBuilder
+        padding-right: 0 !important; // override PageBuilder
+        height: fit-content;
 
         figure { // The image's container
-            margin: 0;
+            margin: 0 !important; // override PageBuilder
+
+            img {
+                height: 100% !important; // override PageBuilder
+                max-height: 80px;
+            }
         }
     }
 
@@ -895,14 +912,14 @@ footer.page-footer {
             margin-bottom: $indent__l;
 
             .footer-links {
-                @include min-screen($screen__m) {
+                @include min-screen($screen__l) {
                     width: 70%;
                 }
 
                 [data-content-type="column"] {
                     box-sizing: border-box;
 
-                    @include max-screen($screen__m) {
+                    @include max-screen($screen__l) {
                         width: 45% !important; // override PageBuilder
 
                         &:last-of-type {
@@ -954,7 +971,7 @@ footer.page-footer {
                 padding-left: $indent__s;
             }
 
-             @include min-screen($screen__m) {
+             @include min-screen($screen__l) {
                 flex-direction: row;
 
                  .footer-links {
@@ -975,7 +992,7 @@ footer.page-footer {
         &__connect {
             width: 100%;
 
-            @include max-screen($screen__m) {
+            @include max-screen($screen__l) {
                 order: -1;
                 margin-top: $indent__m;
 
@@ -1020,6 +1037,14 @@ footer.page-footer {
     }
 
     .homepage-tout {
+        max-width: 580px !important;
+        margin: $indent__base auto !important;
+        padding: 0 15px !important;
+
+        figure {
+            margin-bottom: 0 !important;
+        }
+
         .pagebuilder-button-secondary {
             @include button--type(primary);
             margin-bottom: 0;
@@ -1059,25 +1084,14 @@ footer.page-footer {
 .testimonials {
     margin-bottom: 80px;
 
-    &.row-full-width-inner {
-        @include min-screen($screen__m) {
-            margin: $indent__m auto $indent__s auto;
-            max-width: 90%;
-        }
-
-        @include min-screen($screen__l) {
-            margin-bottom: 0;
-        }
+    .pagebuilder-slider {
+        max-width: 90%;
+        margin: 0 auto !important; // overrride PageBuilder
     }
 
-    @include max-screen($screen__m) {
-        &-carousel,
-        .bluefoot-advanced-slide-content {
-            margin-bottom: 0 !important; // override Slick
-        }
-
-        .bluefoot-advanced-slide-content {
-            margin-top: 0 !important; // override Slick
+    .slick-track {
+        @include min-screen($screen__m) {
+            padding-left: 100px !important; // overrride PageBuilder
         }
     }
 
@@ -1096,16 +1110,21 @@ footer.page-footer {
         margin-left: -7px;
     }
 
+    .slick-slide,
+    [data-content-type="fullslide"] {
+        max-width: 350px !important; // override PageBuilder
+
+        .pagebuilder-poster-overlay {
+            padding: $indent__m !important; // override PageBuilder
+        }
+    }
+
     .testimonial {
         &-title {
             @include bryant-park-headings-h5;
             font-size: 15px;
             margin: 0;
             letter-spacing: 0;
-        }
-
-        &-details {
-            padding-bottom: 0 !important; // override Slick
         }
 
         &-giver {
@@ -1116,46 +1135,14 @@ footer.page-footer {
             margin-bottom: 0 !important; // override Slick
         }
 
+        &-star {
+            color: $primary__color;
+        }
+
         &-details,
         &-giver,
         &-title {
-            font-size: $font-size__base--desktop;
             color: $text__color;
-
-            @include min-screen($screen__m) {
-                font-size: 16px;
-            }
-        }
-    }
-
-    .bluefoot-advanced-slide-content {
-        text-align: left !important; //override Slick
-
-        .slick-dots {
-            margin-top: 0;
-        }
-
-        @include min-screen($screen__m) {
-            width: 70% !important; // override Slick
-            margin: 30px auto 50px auto !important; // override Slick;
-        }
-
-        @include min-screen($screen__l) {
-            border: 0;
-            width: 100% !important; //override Slick
-            padding: 0 !important; //override Slick
-
-            .bluefoot-full-width {
-                padding-bottom: 0;
-            }
-
-            .slick-dots {
-                display: none;
-            }
-        }
-
-        .bluefoot-full-width {
-            padding-bottom: 15px;
         }
     }
 }
@@ -1194,7 +1181,7 @@ footer.page-footer {
         display: none !important;
 
         @include min-screen($screen__l) {
-            width: $home-sidebar-width;
+            width: $home-sidebar-width !important;
             display: flex !important;
             flex-direction: column;
             background-color: $c-smoke !important;
@@ -1204,8 +1191,8 @@ footer.page-footer {
 }
 
 .bluefoot__categories {
-    padding: $indent__xs;
-    padding-left: 50px;
+    padding-left: $indent__l;
+    padding-right: $indent__base;
     list-style-type: none;
     margin: 0 15px;
 
@@ -1214,7 +1201,7 @@ footer.page-footer {
         margin-bottom: $indent__s;
 
         a {
-            color: $c-nickel;
+            color: $text__color;
             text-decoration: none;
             font-size: $font-size__base--desktop;
             line-height: 1.3;
