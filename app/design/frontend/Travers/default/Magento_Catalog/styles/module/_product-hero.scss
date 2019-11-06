@@ -72,9 +72,15 @@ $product-hero__button-and-catalog__width: 240px;
         }
 
         .stock-info-popup-trigger {
-            color: $c-cobalt;
-            text-transform: none;
+            text-transform: uppercase;
             cursor: pointer;
+            font-weight: $font-weight__semibold;
+            font-family: $font-family__sans-serif;
+            color: $link__color;
+
+            @include hover {
+                color: $c-royal;
+            }
         }
     }
 
@@ -154,8 +160,8 @@ $product-hero__button-and-catalog__width: 240px;
 
         span:not(.stock-info-popup-trigger) {
             margin-right: $indent__xs;
-            color: $c-nickel;
             font-size: $font-size__base;
+            font-weight: $font-weight__semibold;
 
             @include min-screen($screen__m) {
                 font-size: $font-size__base--desktop;
