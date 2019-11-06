@@ -40,9 +40,16 @@ $nav-section-title__height: 60px;
         }
     }
 
-    .level-top {
-        font-weight: $font-weight__semibold;
+    .level-top span {
         color: $text__color;
+
+        @include hover {
+            color: $text__color-alt;
+        }
+    }
+
+    .level-top > span {
+        font-weight: $font-weight__semibold;
     }
 
     .submenu {
@@ -52,6 +59,10 @@ $nav-section-title__height: 60px;
 
         a {
             font-weight: $font-weight__regular;
+        }
+
+        &.level1 {
+            display: none !important; // override menu.js
         }
 
         &.static-block-submenu {
@@ -541,10 +552,6 @@ $nav-section-title__height: 60px;
 
 @include min-screen($mobile-nav__breakpoint) {
     .navigation {
-        .level0.active > a.level-top {
-            border-bottom: 0;
-        }
-
         .level-top {
             font-size: 16px;
 
@@ -662,7 +669,7 @@ $nav-section-title__height: 60px;
         .level-top.category-item {
             @include min-screen($mobile-nav__breakpoint) {
                 .submenu {
-                    top: 50px !important; // overrides megamenu JS
+                    top: 53px !important; // overrides megamenu JS
                 }
 
                 &.first {
