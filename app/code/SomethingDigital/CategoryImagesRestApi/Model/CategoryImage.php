@@ -13,18 +13,18 @@ class CategoryImage implements CategoryImageInterface
   protected $request;
   protected $file;
   protected $directoryList;
-  protected $category;
+  protected $categoryRepository;
 
   public function __construct(
       Request $request,
       File $file,
       DirectoryList $directoryList,
-      CategoryRepositoryInterface $category
+      CategoryRepositoryInterface $categoryRepository
   ) {
       $this->request = $request;
       $this->file = $file;
       $this->directoryList = $directoryList;
-      $this->category = $category;
+      $this->categoryRepository = $categoryRepository;
   }
 
   public function setCategoryImage($categoryId) {
@@ -42,9 +42,12 @@ class CategoryImage implements CategoryImageInterface
         
         $this->file->filePutContents($mediaDirectory . '/catalog/category/' . $imageName, base64_decode($base64_encoded_data));
 
-        $categoryobj = $this->category->get($categoryId);
+        $categoryobj = $this->categoryRepository->get($categoryId);
         $categoryobj->setStoreId(0);
-        $categoryobj->setImage($imageName)->save();
+        $categoryobj->setImage($imageName);
+
+        $this->categoryRepository->save($categoryobj);
+
         return true;
       } catch (\Exception $e) {
         return false;
