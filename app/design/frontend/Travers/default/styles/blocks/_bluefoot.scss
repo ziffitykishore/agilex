@@ -1208,9 +1208,10 @@ footer.page-footer {
 }
 
 .bluefoot__categories {
+    padding: 15px;
     padding-left: 50px;
-    padding-right: $indent__base;
     list-style-type: none;
+    margin: 0 15px;
 
     li {
         margin-top: $indent__s;
