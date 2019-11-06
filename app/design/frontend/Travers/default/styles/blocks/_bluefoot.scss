@@ -477,7 +477,7 @@ $home-sidebar-width: 20.5%;
 
             @include hover {
                 .pagebuilder-banner-button {
-                    text-decoration: underline;
+                    color: $text__color;
                 }
             }
 
