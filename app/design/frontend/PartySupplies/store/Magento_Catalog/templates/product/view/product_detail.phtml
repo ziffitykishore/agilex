@@ -6,10 +6,12 @@ $viewModel = $block->getData('register_viewModel');
 
 <div class="pdp-product-price">
     <div class="sec-left">
-        <p class="price-head case-pack">
-            <span class="label"><?= __('Case Pack') ?></span>
-            <span class="get-info case-value"><?= $viewModel->getMinQty($_product) ?></span>
-        </p>
+        <?php if($viewModel->getCustomerId() && $_product->getTypeId() != 'grouped'): ?>
+            <p class="price-head colr case-price">
+                <span class="label"><?= __('Case Price') ?></span>
+                <span id="case-price" data-role="case_price"><span class="get-info case-price"><?= $viewModel->getCasePrice($_product) ?></span></span>
+            </p>
+        <?php endif; ?>
         <?php if($viewModel->getCustomerId() && $_product->getTypeId() == 'grouped'): ?>
             <p class="price-head caps msrp">
                 <span class="label"><?= __('msrp') ?></span>
@@ -24,12 +26,10 @@ $viewModel = $block->getData('register_viewModel');
         <?php endif; ?>
     </div>
     <div class="sec-right">
-        <?php if($viewModel->getCustomerId() && $_product->getTypeId() != 'grouped'): ?>
-            <p class="price-head colr case-price">
-                <span class="label"><?= __('Case Price') ?></span>
-                <span id="case-price" data-role="case_price"><span class="get-info case-price"><?= $viewModel->getCasePrice($_product) ?></span></span>
-            </p>
-        <?php endif; ?>
+        <p class="price-head case-pack">
+            <span class="label"><?= __('Case Pack') ?></span>
+            <span class="get-info case-value"><?= $viewModel->getMinQty($_product) ?></span>
+        </p>
         <p class="price-head sku">
             <span class="label"><?= __('SKU') ?></span>
             <span class="get-info sku-value" data-role="sku"><?= $_helper->productAttribute($_product, $_product->getSku(), 'sku') ?></span>
