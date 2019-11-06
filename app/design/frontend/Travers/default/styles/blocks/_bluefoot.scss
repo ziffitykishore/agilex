@@ -1031,7 +1031,11 @@ footer.page-footer {
 
     .homepage-tout {
         max-width: 580px !important;
-        margin: 0 auto !important;
+        margin: $indent__base auto !important;
+
+        figure {
+            margin-bottom: 0 !important;
+        }
 
         .pagebuilder-button-secondary {
             @include button--type(primary);
