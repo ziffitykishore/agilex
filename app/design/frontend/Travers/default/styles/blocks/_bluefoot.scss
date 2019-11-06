@@ -2,7 +2,7 @@ $bp-medium: $screen__m; // pre-set _catland breakpoint
 $bp-large: $screen__l; // pre-set _catland breakpoint
 $max-content-width: $layout__max-width - $layout-indent__width; // probably 1260px
 $loading-background-color: $secondary__color;
-$home-sidebar-width: 20.5%;
+$home-sidebar-width: 240px;
 
 :root .bluefoot-driver a {
     width: 100%; // auto by default and IE 11 stretches iamges past parent width bounds
@@ -1198,7 +1198,7 @@ footer.page-footer {
         display: none !important;
 
         @include min-screen($screen__l) {
-            width: $home-sidebar-width;
+            width: $home-sidebar-width !important;
             display: flex !important;
             flex-direction: column;
             background-color: $c-smoke !important;
@@ -1208,7 +1208,7 @@ footer.page-footer {
 }
 
 .bluefoot__categories {
-    padding-left: 50px;
+    padding-left: $indent__l;
     padding-right: $indent__base;
     list-style-type: none;
 
@@ -1217,7 +1217,7 @@ footer.page-footer {
         margin-bottom: $indent__s;
 
         a {
-            color: $c-nickel;
+            color: $text__color;
             text-decoration: none;
             font-size: $font-size__base--desktop;
             line-height: 1.3;
