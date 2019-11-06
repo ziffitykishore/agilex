@@ -607,12 +607,17 @@ $home-sidebar-width: 20.5%;
     }
 
     .pagebuilder-column-group {
-        @include min-screen($screen__m) {
+        max-width: 580px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+
+        @include min-screen($screen__l) {
+            margin: 0;
+            max-width: none;
             display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
-            margin: 0;
         }
     }
 
@@ -644,7 +649,7 @@ $home-sidebar-width: 20.5%;
         background-color: $c-midnight;
         color: $color-white;
         float: left;
-        width: 100%;
+        width: 100% !important;
 
         @include max-screen($screen__m) {
             padding: 0 !important; // override BF columns
@@ -685,6 +690,7 @@ $home-sidebar-width: 20.5%;
         }
 
         @include min-screen($screen__l) {
+            width: 50% !important;
             max-width: 650px;
             transform: translateX(5%);
             padding: $indent__xl;
@@ -760,11 +766,11 @@ $home-sidebar-width: 20.5%;
     .video-tout {
         position: relative;
         padding: 0 !important; // override PageBuilder
-        width: 100%;
+        width: 100% !important;
 
         @include min-screen($screen__l) {
             transform: translateY(125px) translateX(-5%);
-            max-width: 50%;
+            width: 50% !important;
         }
 
         @include min-screen($screen__xl) {
@@ -1024,6 +1030,9 @@ footer.page-footer {
     }
 
     .homepage-tout {
+        max-width: 580px !important;
+        margin: 0 auto !important;
+
         .pagebuilder-button-secondary {
             @include button--type(primary);
             margin-bottom: 0;
