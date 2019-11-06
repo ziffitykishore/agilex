@@ -123,8 +123,11 @@ $list-image__margin--desktop: $indent__m;
 
     .list-inner {
       display: flex;
-      align-items: center;
       flex-basis: 55%;
+
+      @include min-screen($screen__m) {
+        align-items: center;
+      }
     }
 
     .list-image {
