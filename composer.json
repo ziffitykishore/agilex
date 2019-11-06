@@ -53,7 +53,7 @@
         "magento/magento-cloud-metapackage": "2.3.2",
         "composer/composer": "@alpha",
         "snowdog/frontools": "1.4.6",
-        "somethingdigital/magento2-theme-bryantpark": "4.2.2",
+        "somethingdigital/magento2-theme-bryantpark": "4.2.3",
         "somethingdigital/magento2-migration": "dev-nobluefoot",
         "jamescowie/composer-patcher": "1.0.3",
         "somethingdigital/module-admin-notify": "^1.0",

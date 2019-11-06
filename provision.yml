@@ -71,34 +71,10 @@
     - image
 
 
-- name: database provision
-  hosts: localhost
-  connection: local
-  tasks:
-    - name: run magento install
-      shell: |
-        OLDDOMAIN='{{ item | replace("test", "com") }}'
-        mysql \
-              -u root \
-              -proot_password \
-              -h database \
-              {{ mysql_database | default("magento_database") }} \
-              -e "UPDATE core_config_data set value = replace(value, '${OLDDOMAIN}', '{{ item.domain | default(item) }}');"
-      loop: "{{ site_domains }}"
-  tags:
-    - database
-    - sync
-
 - name: owner play
   hosts: localhost
   connection: local
   tasks:
-    - name: set default owner:group to magento:nginx
-      command: "{{ item }} {{ site_root }}"
-      become: yes
-      loop:
-        - "setfacl -R -m d:u:{{ magento_user}}:rwX"
-        - "setfacl -R -m d:g:{{ magento_group }}:rwX"
     - name: make sure paths have correct user:group
       file:
         state: directory
@@ -106,13 +82,25 @@
         owner: "{{ magento_user }}"
         group: "{{ magento_group }}"
         mode: u=rwX,g=rwX,o=rX
-        path: "{{ playbook_dir }}"
+        path: "{{ item }}"
+      become: yes
+      loop:
+        - "{{ playbook_dir }}"
+        - "{{ home_path }}/.ssh/"
+    - name: make sure gitconfig have correct user:group
+      file:
+        state: file
+        owner: "{{ magento_user }}"
+        group: "{{ magento_group }}"
+        mode: u=rwX,g=rwX,o=rX
+        path: "{{ home_path }}/.gitconfig"
       become: yes
   tags:
     - owner
     - build
     - sync
     - install
+    - database
 
 - name: template play
   hosts: localhost
@@ -139,6 +127,17 @@
     - sync
     - template
 
+- name: Updating database url
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: run magento install
+      shell: |
+        php {{ playbook_dir }}/bin/magento setup:store-config:set --base-url=https://{{ item }}
+        php {{ playbook_dir }}/bin/magento setup:store-config:set --base-url-secure=https://{{ item }}
+      loop: "{{ site_domains }}"
+  tags:
+    - database
 
 - name: build provision
   hosts: localhost
@@ -188,14 +187,14 @@
       loop:
         - "app:config:import"
         - "cache:clean"
-        - "setup:upgrade -n"
-        - "deploy:mode:set {{ magento_mode }} --skip-compilation"
+        - "setup:upgrade"
+        - "deploy:mode:set --skip-compilation developer"
         - "setup:di:compile"
     - name: setup static content of theme
       shell: "php {{ playbook_dir }}/bin/magento {{ item }}"
       loop:
-        - "sd:dev:static {{ client_theme }}"
-        - "sd:dev:static  --area=adminhtml {{ magento_theme }}"
+        - "sd:dev:static '{{ client_theme }}'"
+        - "sd:dev:static  --area=adminhtml '{{ magento_theme }}'"
     - name: run yarn build (for develop)
       shell: "yarn build"
   tags:
@@ -252,4 +251,3 @@
         src: "{{ tmp_download_path }}/app/code/Unirgy"
         dest: "{{ magento_root }}/app/code/Unirgy"
         remote_src: yes
-
