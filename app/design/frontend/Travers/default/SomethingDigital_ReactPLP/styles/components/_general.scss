@@ -472,13 +472,13 @@ $sidebar__max-width: 240px;
     padding: $indent__s $indent__l;
     color: $text__color;
     font-size: 16px;
-    border: 2px solid $c-grey;
+    border: 1px solid $c-grey;
     text-align: left;
     box-sizing: border-box;
     font-weight: $font-weight__semibold;
 
     @include hover {
-      border: 2px solid $c-grey;
+      border: 1px solid $c-grey;
       color: $c-cobalt;
     }
 

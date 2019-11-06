@@ -477,7 +477,7 @@ $home-sidebar-width: 20.5%;
 
             @include hover {
                 .pagebuilder-banner-button {
-                    text-decoration: underline;
+                    color: $text__color;
                 }
             }
 
@@ -597,7 +597,7 @@ $home-sidebar-width: 20.5%;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    padding: $indent__m $indent__s 0 $indent__s;
+    padding: $indent__m 15px 0 15px;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
 
@@ -607,12 +607,17 @@ $home-sidebar-width: 20.5%;
     }
 
     .pagebuilder-column-group {
-        @include min-screen($screen__m) {
+        max-width: 580px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+
+        @include min-screen($screen__l) {
+            margin: 0;
+            max-width: none;
             display: flex !important; // override PageBuilder override
             flex-wrap: wrap;
             justify-content: center;
             padding-top: $indent__s;
-            margin: 0;
         }
     }
 
@@ -644,7 +649,7 @@ $home-sidebar-width: 20.5%;
         background-color: $c-midnight;
         color: $color-white;
         float: left;
-        width: 100%;
+        width: 100% !important;
 
         @include max-screen($screen__m) {
             padding: 0 !important; // override BF columns
@@ -685,6 +690,7 @@ $home-sidebar-width: 20.5%;
         }
 
         @include min-screen($screen__l) {
+            width: 50% !important;
             max-width: 650px;
             transform: translateX(5%);
             padding: $indent__xl;
@@ -760,11 +766,11 @@ $home-sidebar-width: 20.5%;
     .video-tout {
         position: relative;
         padding: 0 !important; // override PageBuilder
-        width: 100%;
+        width: 100% !important;
 
         @include min-screen($screen__l) {
             transform: translateY(125px) translateX(-5%);
-            max-width: 50%;
+            width: 50% !important;
         }
 
         @include min-screen($screen__xl) {
@@ -1030,6 +1036,14 @@ footer.page-footer {
     }
 
     .homepage-tout {
+        max-width: 580px !important;
+        margin: $indent__base auto !important;
+        padding: 0 15px !important;
+
+        figure {
+            margin-bottom: 0 !important;
+        }
+
         .pagebuilder-button-secondary {
             @include button--type(primary);
             margin-bottom: 0;
