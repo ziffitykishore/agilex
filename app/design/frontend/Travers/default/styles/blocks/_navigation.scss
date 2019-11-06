@@ -147,7 +147,7 @@ $nav-section-title__height: 60px;
     margin-bottom: 15px;
     text-align: center;
     background-color: $c-smoke;
-    padding: $indent__s 0 8px 0;
+    padding: 7px 0;
 
     &-link {
         flex-basis: 50% !important; // override PageBuilder
@@ -166,6 +166,10 @@ $nav-section-title__height: 60px;
         div {
             margin-bottom: $indent__xs;
         }
+    }
+
+    [data-element="main"] {
+        margin-bottom: 0 !important;
     }
 
     @include min-screen($screen__m) {
