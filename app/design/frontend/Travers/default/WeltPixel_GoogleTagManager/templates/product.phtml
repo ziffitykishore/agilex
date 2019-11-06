@@ -17,6 +17,17 @@
         endif;
         $productDetail['category'] = $helper->getGtmCategoryFromCategoryIds($product->getCategoryIds());
 
+        if (!empty($product->getPrimaryCategory())) {
+            $productDetail['primary_category'] = $product->getPrimaryCategory();
+        }
+
+        if (!empty($product->getManufacturer())) {
+            $attributeId = $product->getResource()->getAttribute('manufacturer');
+            if ($attributeId->usesSource()) {
+                $productDetail['manufacturer'] = $attributeId->getSource()->getOptionText($product->getData('manufacturer'));
+            }
+        }
+
         /** Set the custom dimensions */
         $customDimensions = $this->getProductDimensions($product, $helper);
         foreach ($customDimensions as $name => $value) :
