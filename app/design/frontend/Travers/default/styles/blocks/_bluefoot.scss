@@ -1208,7 +1208,7 @@ footer.page-footer {
 }
 
 .bluefoot__categories {
-    padding: 15px;
+    padding: $indent__xs;
     padding-left: 50px;
     list-style-type: none;
     margin: 0 15px;
@@ -1241,20 +1241,19 @@ footer.page-footer {
     }
 
     &__trigger {
-        border: 1px solid $c-grey !important;
+        border: 1px solid $c-border !important;
         margin: 0 15px;
-        padding-left: 15px;
 
         button {
             position: relative;
             width: 100%;
-            padding: 15px $indent__m 15px 50px;
+            padding: 15px $indent__m 15px $indent__xl;
             font-size: 16px;
             letter-spacing: 0;
 
             &::before {
                 position: absolute;
-                left: $indent__m;
+                left: $indent__base;
                 font-size: 28px;
             }
 
@@ -1276,6 +1275,7 @@ footer.page-footer {
         margin-top: 0;
         padding-left: $indent__base;
         background-color: $c-smoke;
-        border: 1px solid $c-grey;
+        border: 1px solid $c-border !important;
+        border-top: 0 !important;
     }
 }
