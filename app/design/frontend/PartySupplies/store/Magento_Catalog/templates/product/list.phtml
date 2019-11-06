@@ -49,6 +49,15 @@ $viewModel = $block->getData('viewModel');
             <li class="item product product-item">
                 <div class="product-item-info" data-container="product-<?= /* @escapeNotVerified */ $viewMode ?>">
                     <?php
+                    $addToCartLabel = $block->escapeHtml(__('Add to Cart'));
+                        
+                    $ProductHasOptions = $_product->getTypeInstance()->hasOptions($_product);
+                    $isGroupedProduct = $_product->getTypeInstance()->getAssociatedProducts($_product);
+                    
+                    if( $ProductHasOptions == 1 || $isGroupedProduct) { 
+                        $addToCartLabel = $block->escapeHtml(__('View Details'));
+                    }
+
                     $productImage = $block->getImage($_product, $imageDisplayArea);
                     if ($pos != null) {
                         $position = ' style="left:' . $productImage->getWidth() . 'px;'
@@ -95,7 +104,7 @@ $viewModel = $block->getData('viewModel');
                                                 <button type="submit"
                                                         title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
                                                         class="action tocart primary">
-                                                    <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+                                                    <span><?= /* @escapeNotVerified */ $addToCartLabel ?></span>
                                                 </button>
                                             </form>
                                         <?php else: ?>
