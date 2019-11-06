@@ -597,7 +597,7 @@ $home-sidebar-width: 20.5%;
 .overlapping-touts {
     position: relative;
     margin: 0;
-    padding: $indent__m $indent__s 0 $indent__s;
+    padding: $indent__m 15px 0 15px;
     background: linear-gradient(to bottom, lighten($c-grey, 5%) 0%, $c-smoke 10%, $color-white 20%);
     z-index: 12; // cover sidebar
 
@@ -1032,6 +1032,7 @@ footer.page-footer {
     .homepage-tout {
         max-width: 580px !important;
         margin: $indent__base auto !important;
+        padding: 0 15px !important;
 
         figure {
             margin-bottom: 0 !important;
