@@ -191,7 +191,7 @@ $product-hero__button-and-catalog__width: 240px;
         form {
             display: flex;
             flex-wrap: wrap;
-            align-items: flex-end;
+            align-items: center;
 
             .box-tocart {
                 order: -2;
@@ -206,7 +206,9 @@ $product-hero__button-and-catalog__width: 240px;
                 flex-basis: 70%;
                 order: -1;
                 margin-left: $indent__xs;
-                font-size: $font-size__base;
+                margin-top: $indent__base;
+                font-size: $font-size__base--desktop;
+                font-weight: $font-weight__semibold;
             }
 
             .actions {
