@@ -47,7 +47,7 @@ const stickyHandler = () => {
   const $transitionElement = getTransitionElement();
 
   if (!$stickyElement.hasClass(className)) {
-    transitionOffset = $transitionElement.offset().top;
+    transitionOffset = $transitionElement.offset().top + 40;
     paddingTop = getStickyElementHeight();
   }
 

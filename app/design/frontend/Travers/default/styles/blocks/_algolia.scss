@@ -12,7 +12,7 @@
     }
 
     .magnifying-glass {
-        top: 11px !important;
+        top: $indent__s !important;
     }
 
     @include max-screen($screen__l) {
@@ -25,12 +25,6 @@
         .search-button {
             min-height: 40px;
             padding: $indent__s $indent__base;
-        }
-    }
-
-    @include min-screen($screen__m) {
-        .magnifying-glass {
-            top: 20px !important;
         }
     }
 }

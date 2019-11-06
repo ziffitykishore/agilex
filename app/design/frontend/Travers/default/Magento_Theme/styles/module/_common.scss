@@ -1,3 +1,6 @@
+$page-header--sticky__height: 60px;
+$page-header--sticky__height--mobile: 55px;
+
 //
 //  Common
 //  _____________________________________________
@@ -89,15 +92,19 @@ body {
 
     &--sticky {
         position: fixed;
-        top: 0;
+        top: -$page-header--sticky__height--mobile;
         width: 100%;
-        min-height: 40px;
+        min-height: $page-header--sticky__height--mobile;
         z-index: 15;
         background-color: $color-white;
         box-shadow: 2px 3px 7px 0 rgba(0, 0, 0, 0.1);
+        transform: translateY($page-header--sticky__height--mobile);
+        transition: transform .7s;
 
         @include min-screen($mobile-nav__breakpoint) {
-            min-height: 60px;
+            top: -$page-header--sticky__height;
+            min-height: $page-header--sticky__height;
+            transform: translateY($page-header--sticky__height);
         }
 
         .panel.wrapper,
