@@ -253,77 +253,6 @@
         & + .actions-toolbar {
             margin-top: 30px;
         }
-
-
-
-        /*margin-bottom: @indent__l;
-        margin-right: 0;
-        .product {
-            &-item {
-                padding: @indent__base 0 @indent__base 0;
-                position: relative;
-
-                &-photo {
-                    float: left;
-                    margin-right: @indent__base;
-                }
-
-                &-name {
-                    .lib-font-size(16);
-                }
-
-                &-actions {
-                    display: block;
-                    float: left;
-
-                    .action {
-                        margin-right: 15px;
-
-                        &:last-child {
-                            margin-right: 0;
-                        }
-
-                        &.edit {
-                            float: left;
-                        }
-
-                        &.delete {
-                            float: right;
-                        }
-
-                        &.edit,
-                        &.delete {
-                            margin-top: 7px;
-                        }
-                    }
-                }
-
-                &-name,
-                &-description,
-                .price-box,
-                &-tooltip {
-                    margin-left: 95px;
-                }
-
-                .box-tocart {
-                    float: left;
-                    margin-right: @indent__base;
-
-                    .stock {
-                        margin-top: 7px;
-                    }
-                }
-
-                .giftregisty-dropdown,
-                .field.qty {
-                    display: none;
-                }
-            }
-
-            &-image-container {
-                max-width: 80px;
-            }
-        }*/
     }
 
     //
@@ -373,9 +302,16 @@
                         margin-bottom: @indent__s;
                         padding-right: @indent__s;
 
+                        & + .product-item-actions {
+                            margin-top: 0;
+                        }
+
                         .label {
                             width: auto;
                         }
+                    }
+                    .product-item-actions {
+                        margin-top: 80px;
                     }
                 }
 
