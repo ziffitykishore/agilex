@@ -22,6 +22,7 @@ $promobar__padding-bottom: 7px !default;
 
     @include min-screen($mobile-nav__breakpoint) {
         text-align: center;
+        display: none !important; // override JS
     }
 
     /**
