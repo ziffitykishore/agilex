@@ -375,7 +375,7 @@
 .ais-ClearRefinements {
   margin-bottom: $indent__s;
 
-  button {
+  .ais-ClearRefinements-button {
     background-color: transparent;
     color: $c-cobalt;
     font-weight: $font-weight__semibold;
@@ -388,6 +388,10 @@
 
     @include hover {
       color: $text__color;
+    }
+
+    &--disabled {
+      display: none;
     }
   }
 }

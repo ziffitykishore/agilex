@@ -109,6 +109,10 @@ $list-image__margin--desktop: $indent__m;
     padding-top: $indent__s;
     border-bottom: 1px solid $c-grey;
 
+    &:first-of-type {
+        border-top: 1px solid $c-grey;
+    }
+
     @include min-screen($screen__l) {
       display: flex;
       align-items: center;
