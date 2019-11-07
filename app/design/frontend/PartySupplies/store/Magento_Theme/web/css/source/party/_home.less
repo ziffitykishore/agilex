@@ -226,6 +226,7 @@
                         text-transform: uppercase;
 
                         span {
+                            color: #f1003e;
                             letter-spacing: 0;
                             display: block;
                             text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
@@ -287,7 +288,7 @@
     }
 
     .sec-catagory{
-        margin-top: 110px;
+        margin-top: 100px;
 
         h2{
             display: none;
@@ -643,7 +644,18 @@
             
         }
     }
-
+    //IE fixes
+    .ie.cms-index-index {
+        .magestore-bannerslider-standard {
+            .banner-text {
+                .banner-anim {
+                    h2 {
+                        span {background:none}
+                    }
+                }
+            }
+        }
+    }
 }
 
 

@@ -840,6 +840,10 @@
 
             .column.main {
                 width: 75%;
+
+                @media screen and (max-width: 992px) {
+                    float: none;
+                }
             }
         }
 
@@ -1339,7 +1343,10 @@
     .customer-account-create {
         .page-main {
             .column.main {
-                display: table;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
                 .inner-container {
                     display: table-cell;
                     vertical-align: middle;

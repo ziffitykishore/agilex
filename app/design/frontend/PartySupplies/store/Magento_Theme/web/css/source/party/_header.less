@@ -118,6 +118,9 @@
             }
 
             .block-search {
+                    @media screen and (max-width: 1349px) {
+                        padding-top: 7px;
+                    }
                 .minisearch {
                     width: 100%;
                     .control {
@@ -174,12 +177,6 @@
                 .navigation {
                     > ul {
                         padding: 0;
-
-                        > li {
-                            >a {
-
-                            }
-                        }
                     }
 
                 }
@@ -189,6 +186,7 @@
 
         .dropdown {
             position: relative;
+
             &-toggle {
                 cursor: pointer;
             }
@@ -387,7 +385,6 @@
             }
         }
     }
-
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m + 1) {
@@ -590,9 +587,6 @@
             }
         }
 
-
-
-
         .mm-listitem__btn {
             border: none;
             width: 60px;
@@ -606,12 +600,6 @@
                 display: none;
             }
         }
-
-
-
-
-
-
 
         .mm-btn_next:after,
         .mm-btn_prev:before {
@@ -651,9 +639,6 @@
                 }
             }
             .has-active {
-                .mm-listitem__text {
-                   // border-left-color: ;
-                }
                 .mm-btn {
                     border: none;
                 }
@@ -756,16 +741,12 @@
                     .mm-btn {
                         padding:0;
                         border: none;
-                        &:after, &:before {
-
-                        }
                     }
 
 
                     &:last-child {
                         border-bottom: 1px solid @c-aliceblue !important;
                     }
-
 
                     &.parent > a {
                         position: relative;
@@ -837,11 +818,6 @@
         }
 
         .parent {
-
-            > a {
-
-            }
-
             > .icon {
                 width: 40px;
                 height: 40px;
@@ -972,7 +948,7 @@
 
         &.fixed {
             .header-wrapper{
-                webkit-animation: slide-down .7s;
+                -webkit-animation: slide-down .7s;
                 -moz-animation: slide-down .7s;
                 animation: slide-down .7s;
             }
