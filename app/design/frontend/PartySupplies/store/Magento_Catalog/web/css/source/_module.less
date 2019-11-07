@@ -322,7 +322,7 @@
                     font-size: @font-size__s + 6;
                     vertical-align: middle;
                     display: inline-block;
-                    line-height: 20px;
+                    line-height: 16px;
                     font-style: normal;
                     font-weight: normal;
                     speak: none;
@@ -800,6 +800,12 @@
                         .lib-font-size(@font-size__s);
                     }
                 }
+                .control.qty {
+                    input {
+                        color: #000;
+                        font-weight: @font-weight__bold;
+                    }
+                }
             }
         }
 
@@ -955,7 +961,16 @@
 
 
     }
-
+    //IE fix 
+    .ie {
+        &.catalog-product-view {
+            .table-wrapper.grouped {
+                tbody {
+                    display: table-row-group;
+                }
+            }
+        }
+    }
 }
 
 
