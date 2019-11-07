@@ -72,9 +72,6 @@
                         <span id="plus-qty"
                               data-bind="click: !$parent.checkBundle(type_id) ? $parent.plusQty.bind($data,item_id)  : $parent.plusBundleQty.bind($data,item_id)">+</span>
                     </div>
-                    <!-- ko if: $parent.checkTypeShowQty(type_id)-->
-                    <p class="item-instock"><span>Qty in stock: </span><span data-bind="text: qtystock"></span></p>
-                    <!-- /ko -->
                 </div>
                 <!--<div class="item-subtotal" data-bind="text:$parent.getFormattedPrice(total)"></div>-->
                 <div class="item-subtotal" data-th="Subtotal">
