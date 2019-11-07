@@ -783,7 +783,6 @@ $home-sidebar-width: 240px;
     margin-right: 0;
     max-width: none;
     overflow: hidden;
-    border-top: 1px solid $c-silver;
 
     .pagebuilder-column-group div:last-of-type {
         align-self: center !important; // override PageBuilder
@@ -884,7 +883,7 @@ $home-sidebar-width: 240px;
 }
 
 footer.page-footer {
-    border-top: 0;
+    border-top: 1px solid $c-border;
     margin-top: 0;
     padding: 0;
     flex-wrap: wrap;
