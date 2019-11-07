@@ -985,6 +985,11 @@ body.catalog-product-compare-index {
                         padding-right: 0;
                     }
                 }
+
+                &[data-th="Manufacturer Price"] {
+                    pointer-events: none;
+                    color: $text__color;
+                }
             }
         }
     }
