@@ -315,10 +315,8 @@
         }
     }
 
-    &-form {
-        .action.submit.primary {
-            @include lib-button-revert-secondary-color();
-        }
+    &-form .action.submit.primary {
+        @include button--type(secondary);
     }
 
     .fieldset &-legend.legend {
