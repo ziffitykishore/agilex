@@ -813,8 +813,8 @@ $home-sidebar-width: 240px;
             margin-right: $indent__m;
             margin-bottom: 0;
 
-            .bluefoot-textarea {
-                margin-bottom: 0;
+            [data-content-type="text"] {
+                margin-bottom: $indent__xs !important;
 
                 p {
                     font-size: 16px;
@@ -836,6 +836,10 @@ $home-sidebar-width: 240px;
             transform: translateY($indent__s);
             margin-left: 0;
             max-width: 100px;
+        }
+
+        .pagebuilder-column-group {
+            align-items: center;
         }
     }
 
