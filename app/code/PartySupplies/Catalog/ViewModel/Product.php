@@ -7,7 +7,7 @@ use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Framework\Pricing\Helper\Data;
 use Amasty\Groupcat\Model\CustomerIdHolder;
 use Magento\GroupedProduct\Model\Product\Type\Grouped;
-use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Msrp\Pricing\MsrpPriceCalculatorInterface;
 
@@ -48,7 +48,7 @@ class Product implements ArgumentInterface
      * @param StockRegistryInterface       $stockRegistry
      * @param Data                         $priceHelper
      * @param CustomerIdHolder             $customer
-     * @param ProductModel                 $product
+     * @param ProductFactory               $product
      * @param ProductRepository            $productRepository
      * @param MsrpPriceCalculatorInterface $msrpPriceCalculator
      */
@@ -56,7 +56,7 @@ class Product implements ArgumentInterface
         StockRegistryInterface $stockRegistry,
         Data $priceHelper,
         CustomerIdHolder $customer,
-        ProductModel $product,
+        ProductFactory $product,
         ProductRepository $productRepository,
         MsrpPriceCalculatorInterface $msrpPriceCalculator
     ) {
@@ -96,11 +96,11 @@ class Product implements ArgumentInterface
         $children = $product->getTypeInstance()->getChildrenIds($product->getId());
         $children = array_shift($children);
         foreach ($children as $child) {
-            $product = $this->productModel->load($child);
+            $product = $this->productModel->create()->load($child);
             array_push(
                 $childrenData,
                 [
-                    'id' => $this->productModel->load($child)->getId(),
+                    'id' => $product->getId(),
                     'price' =>(float)$product->getPriceInfo()->getPrice('final_price')->getValue(),
                     'minQty' => (int)$this->stockRegistry->getStockItem(
                         $product->getId(),
