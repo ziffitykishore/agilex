@@ -1,0 +1,124 @@
+<?php declare(strict_types=1);
+
+/**
+ * Items dispaly template
+ *
+ * @author  karthikeyan Indran <kindran@ztech.io>
+ * @package app/code/Canon/SuccessPage
+ */
+
+use Magento\Sales\Block\Order\Items;
+
+/** @var Items $block */
+?>
+
+<?php
+$order = $block->getItems();
+$items = $order->getAllItems();
+?>
+<?php 
+    $shippingAddress = $order->getShippingAddress(); 
+    $billingAddress = $order->getBillingAddress(); 
+?>
+<div class="order-confirmation ship-cnf">
+    
+    <table>
+        <th><?= $block->escapeHtml(__("Shipping Info")); ?></th>
+        <th><?= $block->escapeHtml(__("Billing Info")); ?></th>
+        <tr>
+            <td><span class="address">
+                <?= /* @noEscape */ $shippingAddress->getName() ?><br />
+                <?= /* @noEscape */ $shippingAddress->getData('street') ?><br />
+                <?= /* @noEscape */ $shippingAddress->getCity() ?>
+                <?= /* @noEscape */ $shippingAddress->getPostcode();  ?>
+                <?= /* @noEscape */ $shippingAddress->getCountryId();  ?>
+                </span>
+            </td>
+            
+            <td><span class="address">
+                <?= /* @noEscape */ $billingAddress->getName() ?><br />
+                <?= /* @noEscape */ $billingAddress->getData('street') ?><br />
+                <?= /* @noEscape */ $billingAddress->getCity() ?>
+                <?= /* @noEscape */ $billingAddress->getPostcode();  ?>
+                <?= /* @noEscape */ $billingAddress->getCountryId();  ?>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td><?= $block->escapeHtml(__("Email Address")); ?>:</td>
+            <td><span class="email"><?= /* @noEscape */ $shippingAddress->getEmail(); ?></span></td>
+        </tr>
+        
+    </table>
+</div>
+
+<?php
+/* @noEscape */ $payment = $order->getPayment();
+/* @noEscape */ $method = $payment->getMethodInstance();
+?>
+<div class="order-confirmation payment-cnf">
+    
+    <table>
+        <th><?= $block->escapeHtml(__("Payment Method")); ?></th>
+        <th><?= $block->escapeHtml(__("Shipping Method")); ?>:</th>
+        <tr>
+            <td><?= /* @noEscape */ $method->getTitle(); ?></td>
+            <td><span class="ship-method"><?= /* @noEscape */ $order->getShippingDescription()?></span></td>
+        </tr>
+    </table>
+</div>
+
+<div class="order-confirmation-items">
+    <h2>Your Item<?= /* @noEscape */ $order->getTotalItemCount() > 1 ? 's' : '' ?> 
+    (<?= /* @noEscape */ $order->getTotalItemCount() ?>)
+    </h2>
+    <?php
+        $order = $block->getItems();
+        $items = $order->getAllItems(); foreach ($items as $item) :
+        ?>
+        <?php if ($item->getProductId() != null) { ?>
+        <div class="item-container">
+            <span class="img-container">
+            <img src="<?= /* @noEscape */ $block->getImageUrl($item->getProduct()); ?>" />
+            </span>
+            <div class="item-info">
+                <h3><?= /* @noEscape */ $item->getName(); ?></h3>
+                <span class="sku"><?= $block->escapeHtml(__("SKU")); ?>: <?= /* @noEscape */ $item->getSku(); ?></span>
+                <div class="color-qty-cp">
+                    <span><?= $block->escapeHtml(__("QTY")); ?>: <span><?= /* @noEscape */ (int)$item->getQtyOrdered(); ?></span></span>
+                </div>
+            </div>
+            <span class="price"><?php $subtotal = (int)$item->getBasePrice() * (int)$item->getQtyOrdered(); ?>
+                <?= /* @noEscape */ $block->formatPricing($subtotal); ?></span>
+        </div>
+        <?php }
+        endforeach; ?>
+</div>
+
+<table class="totalinfo">
+        <tr>
+            <td><strong><?= $block->escapeHtml(__("Subtotal")); ?></strong><br />
+            (<?= /* @noEscape */ $order->getTotalItemCount() ?> item
+            <?= /* @noEscape */ $order->getTotalItemCount() > 1 ? 's' : '' ?>)
+            </td>
+            <td><?= /* @noEscape */ $block->formatPricing($order->getData('subtotal')); ?></td>
+        </tr>
+        <tr>
+        <?php $basetaxamount = !empty($order->getData('base_tax_amount')) ?>
+            <td><?= $block->escapeHtml(__("Shipping")); ?><br />
+            <?php if ($basetaxamount) { ?>
+                <?= $block->escapeHtml(__("Tax & fees")); ?>
+            <?php } ?>
+        </td>
+            <td><?= /* @noEscape */ $block->formatPricing($order->getShippingAmount()); ?>
+            <br />
+            <?php if ($basetaxamount) { ?>
+                <?= /* @noEscape */ $block->formatPricing($order->getData('base_tax_amount')); ?>
+            <?php } ?></td>
+        </tr>
+        <tr class="total">
+            <td><strong><?= $block->escapeHtml(__("Total")); ?></strong></td>
+            <td><?= /* @noEscape */ $block->formatPricing($order->getData('base_total_due')); ?></td>
+         </tr>
+    </table>
+    

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * Override the Onepage success page
+ *
+ * PHP version 7.1
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Success Page</title>
+    </head>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Your order has been received!</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="checkout.success">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">PartySupplies_OrderSuccess::success.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="order.success.additional.info">
+            <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.items" as="additional.info" template="PartySupplies_OrderSuccess::items.phtml" cacheable="false" />
+        </referenceContainer>
+        <referenceBlock name="checkout.success.print.button" remove="true" />
+        <referenceBlock name="checkout.registration" remove="true" />
+    </body>
+</page>
