@@ -307,8 +307,13 @@ $sidebar__max-width: 240px;
     letter-spacing: 0;
   }
 
+  h3,
+  h4 {
+    margin-bottom: $indent__xs;
+  }
+
   h2 {
-    margin-top: $indent__m;
+    margin-top: $indent__l;
     font-size: 30px;
   }
 

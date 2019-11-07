@@ -261,7 +261,7 @@ $home-sidebar-width: 240px;
 
     @include min-screen($screen__m) {
         position: absolute;
-        bottom: -$indent__l;
+        bottom: 15px;
     }
 }
 
@@ -528,10 +528,6 @@ $home-sidebar-width: 240px;
                 padding: 0;
                 margin-top: $indent__m;
                 width: 47%;
-
-                &-details {
-                    text-align: center;
-                }
             }
         }
 
@@ -1236,20 +1232,19 @@ footer.page-footer {
     }
 
     &__trigger {
-        border: 1px solid $c-grey !important;
+        border: 1px solid $c-border !important;
         margin: 0 15px;
-        padding-left: 15px;
 
         button {
             position: relative;
             width: 100%;
-            padding: 15px $indent__m 15px 50px;
+            padding: 15px $indent__m 15px $indent__xl;
             font-size: 16px;
             letter-spacing: 0;
 
             &::before {
                 position: absolute;
-                left: $indent__m;
+                left: $indent__base;
                 font-size: 28px;
             }
 
@@ -1271,6 +1266,7 @@ footer.page-footer {
         margin-top: 0;
         padding-left: $indent__base;
         background-color: $c-smoke;
-        border: 1px solid $c-grey;
+        border: 1px solid $c-border !important;
+        border-top: 0 !important;
     }
 }
