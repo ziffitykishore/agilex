@@ -8,10 +8,21 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Customer\Controller\Account\CreatePost" type="PartySupplies\Customer\Controller\Account\CreatePost" />
+
+    <preference for="Magento\Customer\Block\Account\Link" type="PartySupplies\Customer\Block\Account\Link" />
     
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="customer-action-dispatchController-context-plugin" type="PartySupplies\Customer\Plugin\App\Action\Context" sortOrder="15"/>
+    </type>
+
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="cache-key-plugin" type="PartySupplies\Customer\Plugin\Html\Topmenu" />
+    </type>
+
     <type name="Magento\Customer\Controller\Account\ForgotPasswordPost">
       <plugin name="company_password_reset_excluder" type="PartySupplies\Customer\Plugin\Account\ForgotPasswordPost" sortOrder="1" />
     </type>
+
     
      <!--Create User--> 
     <virtualType name="MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\CreateCompany" type="MSP\ReCaptcha\Model\Provider\Failure\RedirectUrl\SimpleUrlProvider">

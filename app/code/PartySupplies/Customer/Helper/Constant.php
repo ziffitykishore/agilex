@@ -33,4 +33,9 @@ class Constant
      * Customer keyword
      */
     const CUSTOMER = 'customer';
+
+    /**
+     * Customer context
+     */
+     const CONTEXT_CUSTOMER_ID = 'customer_id';
 }
