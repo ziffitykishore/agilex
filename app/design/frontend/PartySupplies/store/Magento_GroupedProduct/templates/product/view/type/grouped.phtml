@@ -46,6 +46,7 @@ $attributeCode = strtolower($attributeText);
         <?php foreach ($_associatedProducts as $_item): ?>
             <tr>
                 <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col item">
+                    <img src="<?= $viewModel->getImageUrl($_item) ?>" />
                     <strong class="product-item-name"><?= $block->escapeHtml($attributeText ? $viewModel->getCustomAttribute($_item->getSku(), $attributeCode) ?? $_item->getName() : $_item->getName()) ?></strong>
                 </td>
                 

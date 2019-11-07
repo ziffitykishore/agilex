@@ -10,6 +10,7 @@ use Magento\GroupedProduct\Model\Product\Type\Grouped;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Msrp\Pricing\MsrpPriceCalculatorInterface;
+use Magento\Catalog\Helper\Image;
 
 class Product implements ArgumentInterface
 {
@@ -44,6 +45,11 @@ class Product implements ArgumentInterface
     protected $msrpPriceCalculator;
 
     /**
+     * @var Image
+     */
+    protected $imageHelper;
+
+    /**
      *
      * @param StockRegistryInterface       $stockRegistry
      * @param Data                         $priceHelper
@@ -51,6 +57,7 @@ class Product implements ArgumentInterface
      * @param ProductFactory               $product
      * @param ProductRepository            $productRepository
      * @param MsrpPriceCalculatorInterface $msrpPriceCalculator
+     * @param Image                        $imageHelper
      */
     public function __construct(
         StockRegistryInterface $stockRegistry,
@@ -58,7 +65,8 @@ class Product implements ArgumentInterface
         CustomerIdHolder $customer,
         ProductFactory $product,
         ProductRepository $productRepository,
-        MsrpPriceCalculatorInterface $msrpPriceCalculator
+        MsrpPriceCalculatorInterface $msrpPriceCalculator,
+        Image $imageHelper
     ) {
         $this->stockRegistry = $stockRegistry;
         $this->priceHelper = $priceHelper;
@@ -66,6 +74,7 @@ class Product implements ArgumentInterface
         $this->productModel = $product;
         $this->productRepository = $productRepository;
         $this->msrpPriceCalculator = $msrpPriceCalculator;
+        $this->imageHelper = $imageHelper;
     }
 
     /**
@@ -260,5 +269,20 @@ class Product implements ArgumentInterface
             default:
                 return $product->getPrice()>0;
         }
+    }
+
+    /**
+     * To return product image url
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @return string
+     */
+    public function getImageUrl($product)
+    {
+        $product = $this->productRepository->get($product->getSku());
+        return $this->imageHelper->init(
+            $product,
+            'product_page_image_small'
+        )->setImageFile($product->getSmallImage())->getUrl();
     }
 }
