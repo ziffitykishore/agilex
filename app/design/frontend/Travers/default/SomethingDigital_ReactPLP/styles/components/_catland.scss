@@ -81,9 +81,11 @@
 .catland-content {
   display: flex;
   flex-direction: column;
+  margin-top: 15px;
 
   @include min-screen($screen__m) {
     flex-direction: row;
+    margin-top: 0;
   }
 
   .filter-heading {

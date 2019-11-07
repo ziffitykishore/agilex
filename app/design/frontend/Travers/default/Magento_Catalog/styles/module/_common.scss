@@ -203,7 +203,6 @@
         &.unavailable {
             display: inline-block;
             margin-right: $indent__base;
-            text-transform: uppercase;
             vertical-align: top;
         }
     }
@@ -213,7 +212,6 @@
             &.sku {
                 display: inline-block;
                 vertical-align: top;
-                color: $c-nickel;
                 font-size: $font-size__base;
 
                 > .value {

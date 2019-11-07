@@ -261,7 +261,7 @@ $home-sidebar-width: 240px;
 
     @include min-screen($screen__m) {
         position: absolute;
-        bottom: -$indent__l;
+        bottom: 15px;
     }
 }
 
