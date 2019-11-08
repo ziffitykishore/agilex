@@ -1061,6 +1061,7 @@ footer.page-footer {
         .tout-header {
             font-weight: $font-weight__bold;
             margin-bottom: $indent__s;
+            margin-top: $indent__s;
             font-size: 20px;
 
             @include min-screen($screen__m) {
