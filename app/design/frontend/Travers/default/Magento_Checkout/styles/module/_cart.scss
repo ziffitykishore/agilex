@@ -59,6 +59,10 @@ $cart-image-mobile-width: 60px !default;
         width: 40%;
     }
 
+    @include screen($screen__m, $mobile-nav__breakpoint) {
+        width: 35%;
+    }
+
     @include min-screen($screen__l) {
         width: 28%;
     }
@@ -359,6 +363,8 @@ $cart-image-mobile-width: 60px !default;
 
         span {
             font-weight: $font-weight__semibold;
+            font-size: $font-size__base--desktop;
+            white-space: nowrap;
         }
     }
 
@@ -399,6 +405,10 @@ $cart-image-mobile-width: 60px !default;
 
         @include min-screen($screen__m) {
             @extend .abs-shopping-cart-items-desktop;
+        }
+
+        @include screen($screen__m, $mobile-nav__breakpoint) {
+            width: 60%;
         }
     }
 
