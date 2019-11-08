@@ -952,7 +952,29 @@
             .container-reset();
         }
     }
-
+    .account {
+        .block-content,
+        .block-title {
+            a {
+                font-size: 14px;
+                text-decoration: underline;
+            }
+        }
+        @media screen and (min-width: 769px) {
+            .form-edit-account {
+                fieldset.fieldset.info {
+                    width: 60%;
+                }
+            }
+            .box {
+                display: inline-block;
+                width: ~"calc(50% - 20px)";
+                &:first-child {
+                    margin-right: 35px;
+                }
+            }
+        }
+    }
 }
 
 

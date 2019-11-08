@@ -1,15 +1,15 @@
-require(['jquery', 'slick','nice-select'], function ($) {
-    $(document).ready(function ($) {
-
-        if($('#sorter').length) {
+require(['jquery', 'slick', 'nice-select'], function($) {
+    $(document).ready(function($) {
+        var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+        if (!isSafari && $('#sorter').length) {
             $('#sorter').niceSelect();
         }
 
-        $('.showcart').on('click', function(){
+        $('.showcart').on('click', function() {
             $("body").removeClass("search-opened");
         });
 
-        var   openCtrl = $(".block-search .block-title"),
+        var openCtrl = $(".block-search .block-title"),
             closeCtrl = $(".search-close"),
             searchContainer = $(".block-search"),
             inputSearch = searchContainer.find("#search");
@@ -36,6 +36,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                 inputSearch.focus()
             }, 600);
         }
+
         function closeSearch() {
             $("body").removeClass("search-opened");
             inputSearch.blur();
@@ -59,17 +60,14 @@ require(['jquery', 'slick','nice-select'], function ($) {
 
         function responsiveResize() {
 
-            if (($(window).width()) <= 768 && responsiveflag == false)
-            {
+            if (($(window).width()) <= 768 && responsiveflag == false) {
                 accordionFooter('enable');
                 responsiveflag = true;
                 $('header.page-header').addClass("fixed");
                 $('.breadcrumbs-inner .toolbar').prependTo('#layer-product-list');
 
 
-            }
-            else if (($(window).width()) >= 769)
-            {
+            } else if (($(window).width()) >= 769) {
                 accordionFooter('disable');
                 responsiveflag = false;
                 //$('header.page-header').removeClass("fixed");
@@ -81,16 +79,13 @@ require(['jquery', 'slick','nice-select'], function ($) {
 
 
         function accordionFooter(status) {
-            if(status == 'enable')
-            {
-                $('.mb-foot h5').on('click', function(e){
+            if (status == 'enable') {
+                $('.mb-foot h5').on('click', function(e) {
                     $(this).toggleClass('active').parent().find('ul').stop().slideToggle('medium');
                     e.preventDefault();
                 })
                 $('.mb-foot').addClass('accordion').find('ul').slideUp('fast');
-            }
-            else
-            {
+            } else {
                 $('.mb-foot h5').removeClass('active').off().parent().find('ul').removeAttr('style').slideDown('fast');
                 $('.mb-foot').removeClass('accordion');
             }
@@ -114,7 +109,7 @@ require(['jquery', 'slick','nice-select'], function ($) {
                         $('header.page-header').removeClass("fixed");
                     }
 
-                    if(scroll <= 0) {
+                    if (scroll <= 0) {
                         $(':not(.cms-index-index) header.page-header').removeClass("fixed");
                     }
 
@@ -123,9 +118,9 @@ require(['jquery', 'slick','nice-select'], function ($) {
         }
 
 
-        if($('.tab-wrapper').length) {
+        if ($('.tab-wrapper').length) {
             var stickyOffset = $('.tab-wrapper').offset().top;
-            $(window).scroll(function () {
+            $(window).scroll(function() {
                 var sticky = $('.tab-wrapper'),
                     scroll = $(window).scrollTop();
 
@@ -144,18 +139,17 @@ require(['jquery', 'slick','nice-select'], function ($) {
             Home Page Why Us Slider
             ================= */
 
-        slick_on_mobile( $('.slick-why-parts'));
+        slick_on_mobile($('.slick-why-parts'));
 
-        function slick_on_mobile(slider){
+        function slick_on_mobile(slider) {
             if (!slider.hasClass('slick-initialized')) {
                 return slider.slick({
                     dots: false,
                     arrows: false,
-                    autoplay:true,
-                    autoplaySpeed:2000,
+                    autoplay: true,
+                    autoplaySpeed: 2000,
                     slidesToShow: 5,
-                    responsive: [
-                        {
+                    responsive: [{
                             breakpoint: 1350,
                             settings: {
                                 slidesToShow: 4,
@@ -183,19 +177,18 @@ require(['jquery', 'slick','nice-select'], function ($) {
             }
         }
 
-        $(document).on('change','.up', function(){
+        $(document).on('change', '.up', function() {
             var names = [];
             var length = $(this).get(0).files.length;
             for (var i = 0; i < $(this).get(0).files.length; ++i) {
                 names.push($(this).get(0).files[i].name);
             }
             // $("input[name=file]").val(names);
-            if(length>2){
+            if (length > 2) {
                 var fileName = names.join(', ');
-                $(this).closest('.field').find('.input-text').attr("value",length+" files selected");
-            }
-            else{
-                $(this).closest('.field').find('.input-text').attr("value",names);
+                $(this).closest('.field').find('.input-text').attr("value", length + " files selected");
+            } else {
+                $(this).closest('.field').find('.input-text').attr("value", names);
             }
         });
 
@@ -208,8 +201,8 @@ require(['jquery', 'slick','nice-select'], function ($) {
         var ua = window.navigator.userAgent;
         var isIE = /MSIE|Trident/.test(ua);
 
-        if ( !isIE ) {
-            if($('#menu').length) {
+        if (!isIE) {
+            if ($('#menu').length) {
                 new Mmenu(document.querySelector('#menu'));
             }
         } else {
@@ -217,13 +210,13 @@ require(['jquery', 'slick','nice-select'], function ($) {
         }
 
 
-        $(".footer-parts a").on("shown.bs.tab", function (e) {
+        $(".footer-parts a").on("shown.bs.tab", function(e) {
             e.target // newly activated tab
             e.relatedTarget // previous active tab
             var href = $(this).attr("href");
             $("html, body").animate({
-                    scrollTop: $(href).offset().top
-                }, "slow");
+                scrollTop: $(href).offset().top
+            }, "slow");
         });
 
     });
