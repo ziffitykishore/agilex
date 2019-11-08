@@ -947,8 +947,8 @@ footer.page-footer {
 
                     a {
                         color: $c-steel;
-                        font-weight: $font-weight__semibold;
-                        font-size: $font-size__base;
+                        font-weight: $font-weight__regular;
+                        font-size: 13px;
                         letter-spacing: 0;
 
                         @include hover {
