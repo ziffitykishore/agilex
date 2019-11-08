@@ -1,14 +1,5 @@
-.cart-summary .block.giftcard .secondary {
-    width: 100%;
-    text-align: center;
-
-    .action.check {
-        @include button--type(tertiary);
-
-        @include hover {
-            color: $c-steel;
-        }
-    }
+.cart-summary .block.giftcard {
+    display: none;
 }
 
 .page-product-giftcard {
