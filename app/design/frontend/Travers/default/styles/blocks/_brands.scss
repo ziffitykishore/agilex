@@ -26,10 +26,10 @@
         }
 
         .brands-nav[data-element="inner"] {
-            margin: 15px $indent__s !important;
+            margin: 15px $indent__s !important; // Overrides PageBuilder
 
             @include min-screen($screen__m) {
-                margin-bottom: 0 !important;
+                margin-bottom: 0 !important; // Overrides PageBuilder
             }
 
             .coll-header {
@@ -67,12 +67,12 @@
                 @include max-screen($screen__m) {
                     border: 1px solid $c-border;
                     border-bottom: 0;
-                    margin-bottom: 0 !important;
+                    margin-bottom: 0 !important; // Overrides PageBuilder
 
                     .tabs-content {
                         padding-bottom: $indent__s;
                         border-bottom: 1px solid $c-border;
-                        margin-bottom: 0 !important;
+                        margin-bottom: 0 !important; // Overrides PageBuilder
                     }
                 }
             }
@@ -223,10 +223,10 @@
 
     .brands-header {
         width: 80%;
-        padding-left: $indent__s !important;
+        padding-left: $indent__s !important; // Overrides PageBuilder
 
         @include min-screen($screen__m) {
-            margin: $indent__s auto !important;
+            margin: $indent__s auto !important; // Overrides PageBuilder
         }
     }
 }
