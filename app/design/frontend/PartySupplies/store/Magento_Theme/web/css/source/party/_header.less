@@ -17,6 +17,16 @@
         }
     }
 
+    .header-wrapper {
+        .customer-welcome {
+            &:hover {
+                a,
+                span {
+                    color: @c-primary_color !important;
+                }
+            }
+        }
+    }
     /*  ====================
          Home Page Header
         ==================== */
@@ -1072,8 +1082,7 @@
                         &.has-active,
                         &:hover {
                             > a {
-                                color: @color-black;
-
+                                color: @c-primary_color;
                             }
                         }
                     }
@@ -1528,6 +1537,7 @@
                     img {
                         width: 90%;
                         margin: 0 auto;
+                        max-width: 190px;
                     }
                 }
             }

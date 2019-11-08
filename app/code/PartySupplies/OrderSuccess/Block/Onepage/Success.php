@@ -32,9 +32,11 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
         \Magento\Framework\Pricing\Helper\Data $pricingHelper,
         \Magento\Sales\Model\Order\Config $orderConfig,
         \Magento\Framework\App\Http\Context $httpContext,
+        \Magento\Directory\Model\CountryFactory $countryFactory,
         array $data = []
     ) {
         $this->pricingHelper = $pricingHelper;
+        $this->_countryFactory = $countryFactory;
         $this->orderFactory = $orderFactory;
         parent::__construct(
             $context,
@@ -67,4 +69,9 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
         return $this->pricingHelper->currency((float)$price, true, false);
     }
 
+    public function getCountryname($countryCode){    
+        $country = $this->_countryFactory->create()->loadByCode($countryCode);
+        return $country->getName();
+    }
+    
 }

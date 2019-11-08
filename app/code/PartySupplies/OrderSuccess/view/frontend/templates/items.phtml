@@ -1,11 +1,5 @@
 <?php declare(strict_types=1);
 
-/**
- * Items dispaly template
- *
- * @author  karthikeyan Indran <kindran@ztech.io>
- * @package app/code/Canon/SuccessPage
- */
 
 use Magento\Sales\Block\Order\Items;
 
@@ -29,24 +23,24 @@ $items = $order->getAllItems();
             <td><span class="address">
                 <?= /* @noEscape */ $shippingAddress->getName() ?><br />
                 <?= /* @noEscape */ $shippingAddress->getData('street') ?><br />
-                <?= /* @noEscape */ $shippingAddress->getCity() ?>
-                <?= /* @noEscape */ $shippingAddress->getPostcode();  ?>
-                <?= /* @noEscape */ $shippingAddress->getCountryId();  ?>
+                <?= /* @noEscape */ $shippingAddress->getCity() ?>,
+                <?= /* @noEscape */ $shippingAddress->getPostcode();  ?><br />
+                <?= /* @noEscape */ $block->getCountryname($shippingAddress->getCountryId());  ?>
                 </span>
             </td>
             
             <td><span class="address">
                 <?= /* @noEscape */ $billingAddress->getName() ?><br />
                 <?= /* @noEscape */ $billingAddress->getData('street') ?><br />
-                <?= /* @noEscape */ $billingAddress->getCity() ?>
-                <?= /* @noEscape */ $billingAddress->getPostcode();  ?>
-                <?= /* @noEscape */ $billingAddress->getCountryId();  ?>
+                <?= /* @noEscape */ $billingAddress->getCity() ?>,
+                <?= /* @noEscape */ $billingAddress->getPostcode();  ?><br />
+                <?= /* @noEscape */ $block->getCountryname($billingAddress->getCountryId());  ?>
                 </span>
             </td>
         </tr>
         <tr>
-            <td><?= $block->escapeHtml(__("Email Address")); ?>:</td>
-            <td><span class="email"><?= /* @noEscape */ $shippingAddress->getEmail(); ?></span></td>
+            <td><strong><?= $block->escapeHtml(__("Email Address")); ?>:</strong>
+            <br /><span class="email"><?= /* @noEscape */ $shippingAddress->getEmail(); ?></span></td>
         </tr>
         
     </table>
@@ -77,16 +71,16 @@ $items = $order->getAllItems();
                 <tbody>
                     <tr>
                         <th>
-                            <span>Item</span>
+                            <span><?= $block->escapeHtml(__("Item")); ?></span>
                         </th>
                         <th>
-                            <span>Sku</span>
+                            <span><?= $block->escapeHtml(__("Sku")); ?></span>
                         </th>
                         <th>
-                            <span>Qty</span>
+                            <span><?= $block->escapeHtml(__("Qty")); ?></span>
                         </th>
                         <th>
-                            <span>Price</span>
+                            <span><?= $block->escapeHtml(__("Price")); ?></span>
                         </th>
                     </tr>
                     <?php
@@ -96,9 +90,9 @@ $items = $order->getAllItems();
                     <?php if ($item->getProductId() != null) { ?>
                     <tr>
                         <td><p><?= /* @noEscape */ $item->getName(); ?></p></td>
-                        <td><span class="sku"><?= $block->escapeHtml(__("SKU")); ?>: <?= /* @noEscape */ $item->getSku(); ?></span></td>
+                        <td><?= /* @noEscape */ $item->getSku(); ?></span></td>
                         <td><div class="color-qty-cp">
-                    <span><?= $block->escapeHtml(__("QTY")); ?>: <span><?= /* @noEscape */ (int)$item->getQtyOrdered(); ?></span></span>
+                    <span><span><?= /* @noEscape */ (int)$item->getQtyOrdered(); ?></span></span>
                 </div></td>
                         <td><span class="price"><?php $subtotal = (int)$item->getBasePrice() * (int)$item->getQtyOrdered(); ?>
                 <?= /* @noEscape */ $block->formatPricing($subtotal); ?></span></td>

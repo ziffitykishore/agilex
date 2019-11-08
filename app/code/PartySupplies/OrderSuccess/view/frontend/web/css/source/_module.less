@@ -4,19 +4,21 @@
 */
 
 & when (@media-common = true) {
-
-
-    .page-header .header-wrapper .header.content .logo img {
-        max-width: 190px;
-    }
-
-
-
-
-
-
-
     .checkout-onepage-success {
+        .item-info {
+            tr {
+                &:first-child {
+                    border-bottom: 1px solid #d1d1d1;
+                    border-top: 1px solid #d1d1d1;
+                }
+                &:nth-child(2n+3) {
+                    background: #f1f1f1
+                }
+            }
+            p {
+                margin-bottom: 0;
+            }
+        }
         h2 {
             font-weight: bold;
         }
@@ -63,14 +65,11 @@
             }
         }
         .order-confirmation-items {
-            border-bottom: 1px solid #d1d1d1;
             margin-bottom: 20px;
             padding-bottom: 15px;
             
             h2 {
-                border-bottom: 1px solid #d1d1d1;
                 font-weight: bold;
-                padding-bottom: 15px;
             }
         }
     }

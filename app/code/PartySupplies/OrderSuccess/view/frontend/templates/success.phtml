@@ -21,7 +21,7 @@
         <?php endif;?>
         <?php if ($block->getCanViewOrder() && $block->getCanPrintOrder()) :?>
             <p>
-                <?php echo sprintf('Click <a href="%s" onclick="this.target=\'_blank\'">here to print</a> a copy of your order confirmation.', $block->getPrintUrl()) ?>
+                <?php echo sprintf('Click <a href="%s" onclick="this.target=\'_blank\'">here</a> to print a copy of your order confirmation.', $block->getPrintUrl()) ?>
             </p>
         <?php endif;?>
     
