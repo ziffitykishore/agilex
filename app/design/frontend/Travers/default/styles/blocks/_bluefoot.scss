@@ -814,7 +814,7 @@ $home-sidebar-width: 240px;
             margin-bottom: 0;
 
             [data-content-type="text"] {
-                margin-bottom: $indent__xs !important;
+                margin-bottom: $indent__xs !important; // override PageBuilder
 
                 p {
                     font-size: 16px;
