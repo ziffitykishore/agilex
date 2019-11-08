@@ -596,6 +596,11 @@ p.short-des {
 
 #upcsvfile {
     margin-bottom: 10px;
+    background: #000;
+}
+
+#add-to-list {
+    background: #000;
 }
 
 /*button matterial design*/
@@ -704,7 +709,7 @@ p.short-des {
     display: block;
     width: 50%;
     color: #555;
-    height: 28px;
+    height: auto;
     padding: 7px 0;
     font-size: 13px;
     line-height: 1.42857143;
