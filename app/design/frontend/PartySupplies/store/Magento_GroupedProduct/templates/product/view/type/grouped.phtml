@@ -44,9 +44,10 @@ $attributeCode = strtolower($attributeText);
         <?php if ($_hasAssociatedProducts): ?>
         <tbody>
         <?php foreach ($_associatedProducts as $_item): ?>
+            <?php $mainImageCollection[$_item->getId()] = $viewModel->getImageUrl($_item,true); ?>
             <tr>
                 <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col item">
-                    <img src="<?= $viewModel->getImageUrl($_item) ?>" title="<?= $block->escapeHtml($attributeText ? $viewModel->getCustomAttribute($_item->getSku(), $attributeCode) ?? $_item->getName() : $_item->getName()) ?>"/>
+                    <img data-id="<?= $_item->getId() ?>" class ="associated-item" src="<?= $viewModel->getImageUrl($_item) ?>" title="<?= $block->escapeHtml($attributeText ? $viewModel->getCustomAttribute($_item->getSku(), $attributeCode) ?? $_item->getName() : $_item->getName()) ?>"/>
                 </td>
                 
                 <?php if ($block->getCanShowProductPrice($_product)): ?>
@@ -121,4 +122,16 @@ $attributeCode = strtolower($attributeText);
             "Magento_Theme/js/action": {}
         }
     }
+</script>
+<script>
+    require(["jquery"],function($){
+        $(document).ready(function(){
+            var images = JSON.parse('<?php echo json_encode($mainImageCollection) ?>');
+            $('.associated-item').on("click", function(){
+                var itemId = $(this).attr('data-id');
+                $('.fotorama__img, .fotorama__img--full, .fotorama__stage__frame').attr('src', images[itemId]);
+                $('.fotorama__stage__frame').attr('href', images[itemId]);
+            });
+        });
+    });
 </script>
