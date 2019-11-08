@@ -459,6 +459,10 @@ $nav-section-title__height: 60px;
             z-index: 101; // cover quick order fields
         }
 
+        .links-container-title {
+            display: none;
+        }
+
         .header.content {
             padding-left: 0;
         }
