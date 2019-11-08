@@ -72,27 +72,42 @@ $items = $order->getAllItems();
     <h2>Your Item<?= /* @noEscape */ $order->getTotalItemCount() > 1 ? 's' : '' ?> 
     (<?= /* @noEscape */ $order->getTotalItemCount() ?>)
     </h2>
-    <?php
-        $order = $block->getItems();
-        $items = $order->getAllItems(); foreach ($items as $item) :
-        ?>
-        <?php if ($item->getProductId() != null) { ?>
         <div class="item-container">
-            <span class="img-container">
-            <img src="<?= /* @noEscape */ $block->getImageUrl($item->getProduct()); ?>" />
-            </span>
-            <div class="item-info">
-                <h3><?= /* @noEscape */ $item->getName(); ?></h3>
-                <span class="sku"><?= $block->escapeHtml(__("SKU")); ?>: <?= /* @noEscape */ $item->getSku(); ?></span>
-                <div class="color-qty-cp">
+            <table class="item-info">
+                <tbody>
+                    <tr>
+                        <th>
+                            <span>Item</span>
+                        </th>
+                        <th>
+                            <span>Sku</span>
+                        </th>
+                        <th>
+                            <span>Qty</span>
+                        </th>
+                        <th>
+                            <span>Price</span>
+                        </th>
+                    </tr>
+                    <?php
+                    $order = $block->getItems();
+                    $items = $order->getAllItems(); foreach ($items as $item) :
+                    ?>
+                    <?php if ($item->getProductId() != null) { ?>
+                    <tr>
+                        <td><p><?= /* @noEscape */ $item->getName(); ?></p></td>
+                        <td><span class="sku"><?= $block->escapeHtml(__("SKU")); ?>: <?= /* @noEscape */ $item->getSku(); ?></span></td>
+                        <td><div class="color-qty-cp">
                     <span><?= $block->escapeHtml(__("QTY")); ?>: <span><?= /* @noEscape */ (int)$item->getQtyOrdered(); ?></span></span>
-                </div>
-            </div>
-            <span class="price"><?php $subtotal = (int)$item->getBasePrice() * (int)$item->getQtyOrdered(); ?>
-                <?= /* @noEscape */ $block->formatPricing($subtotal); ?></span>
+                </div></td>
+                        <td><span class="price"><?php $subtotal = (int)$item->getBasePrice() * (int)$item->getQtyOrdered(); ?>
+                <?= /* @noEscape */ $block->formatPricing($subtotal); ?></span></td>
+                    </tr>
+                    <?php }
+                    endforeach; ?>
+                </tbody>
+            </table>
         </div>
-        <?php }
-        endforeach; ?>
 </div>
 
 <table class="totalinfo">

@@ -1,0 +1,79 @@
+/* Order  Success page styling
+*  @author karthikeyan Indran <kindran@ztech.io>
+*  @package OrderSuccess
+*/
+
+& when (@media-common = true) {
+
+
+    .page-header .header-wrapper .header.content .logo img {
+        max-width: 190px;
+    }
+
+
+
+
+
+
+
+    .checkout-onepage-success {
+        h2 {
+            font-weight: bold;
+        }
+        a {
+            text-decoration: underline;
+        }
+        .order-confirmation {
+            max-width: 600px;
+
+            table > tbody > tr > {
+                th,
+                td {
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+        .totalinfo {
+            margin-bottom: 20px;
+            max-width: 600px;
+            padding-bottom: 15px;
+
+            > tbody > tr > {
+                th,
+                td {
+                    &:first-child {
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+        .item-container {
+            h3 {
+                font-weight: bold;
+                font-size: 18px;
+            }
+        }
+        .img-container {
+            img {
+                &:empty {
+                    display: none;
+                }
+            }
+        }
+        .order-confirmation-items {
+            border-bottom: 1px solid #d1d1d1;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            
+            h2 {
+                border-bottom: 1px solid #d1d1d1;
+                font-weight: bold;
+                padding-bottom: 15px;
+            }
+        }
+    }
+
+
+}
