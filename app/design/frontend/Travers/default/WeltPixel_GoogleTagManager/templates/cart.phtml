@@ -7,7 +7,7 @@
         $crosselProductsCollection = $this->getCrosselProductCollection();
         $productImpressions = [];
 
-        if (count($crosselProductsCollection)) :
+        if (isset($crosselProductsCollection) && count($crosselProductsCollection) > 0) :
             $i = 1;
             foreach($crosselProductsCollection as $_product) :
                 $crosselProduct = array();
