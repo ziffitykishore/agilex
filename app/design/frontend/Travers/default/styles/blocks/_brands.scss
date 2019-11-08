@@ -107,6 +107,15 @@
             }
         }
     }
+
+    .brands-header {
+        width: 80%;
+        padding-left: $indent__s !important;
+
+        @include min-screen($screen__m) {
+            margin: $indent__s auto !important;
+        }
+    }
 }
 
 .brands-nav {
@@ -202,6 +211,7 @@
             @include hover {
                 background-color: $primary__color;
                 color: $color-white;
+                text-decoration: none;
             }
         }
     }
