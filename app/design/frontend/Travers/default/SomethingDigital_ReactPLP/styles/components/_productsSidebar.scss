@@ -54,6 +54,11 @@
     @include hover {
       color: $text__color;
     }
+
+    .filter-heading {
+      font-size: 22px;
+      letter-spacing: 0;
+    }
   }
 }
 
@@ -450,11 +455,6 @@
 .ais-ClearRefinements,
 .filter-heading {
   padding-left: $indent__m;
-}
-
-.filter-heading {
-  font-size: 22px;
-  letter-spacing: 0;
 }
 
 @include max-screen($screen__m) {
