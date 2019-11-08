@@ -968,6 +968,12 @@ body.catalog-product-compare-index {
         .additional-attributes {
             width: 100%;
             margin: 0;
+
+            tr,
+            th {
+                -webkit-text-stroke: .5px;
+                font-weight: $font-weight__semibold;
+            }
         }
 
         tr {
@@ -979,7 +985,6 @@ body.catalog-product-compare-index {
                 padding: $indent__xs 0;
 
                 &.label {
-                    font-weight: $font-weight__extrabold;
                     padding-left: $indent__base;
                     padding-right: 15px;
 
