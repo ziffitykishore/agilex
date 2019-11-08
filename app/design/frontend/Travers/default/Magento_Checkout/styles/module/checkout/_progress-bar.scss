@@ -7,6 +7,7 @@
     margin: 0 0 $checkout-progress-bar__margin;
     counter-reset: i;
     font-size: 0;
+    display: flex;
 }
 
 .opc-progress-bar-item {
