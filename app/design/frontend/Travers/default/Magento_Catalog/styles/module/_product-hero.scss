@@ -61,6 +61,8 @@ $product-hero__button-and-catalog__width: 240px;
 
     .product-info-main {
         order: 2;
+        display: flex;
+        flex-direction: column;
 
         @include max-screen($screen__m) {
             margin-bottom: $indent__m;
@@ -69,6 +71,18 @@ $product-hero__button-and-catalog__width: 240px;
         @include min-screen($screen__m) {
             width: $width__product-info;
             margin-left: $indent__xl;
+        }
+
+        .product.attribute.overview {
+            order: 1;
+        }
+
+        .product-add-form {
+            order: 2;
+        }
+
+        [data-bind="scope: 'tierprices'"] {
+            display: none; // empty version of .prices-tier.items
         }
 
         .stock-info-popup-trigger {

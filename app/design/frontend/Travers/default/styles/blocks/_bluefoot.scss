@@ -783,7 +783,6 @@ $home-sidebar-width: 240px;
     margin-right: 0;
     max-width: none;
     overflow: hidden;
-    border-top: 1px solid $c-silver;
 
     .pagebuilder-column-group div:last-of-type {
         align-self: center !important; // override PageBuilder
@@ -814,8 +813,8 @@ $home-sidebar-width: 240px;
             margin-right: $indent__m;
             margin-bottom: 0;
 
-            .bluefoot-textarea {
-                margin-bottom: 0;
+            [data-content-type="text"] {
+                margin-bottom: $indent__xs !important; // override PageBuilder
 
                 p {
                     font-size: 16px;
@@ -837,6 +836,10 @@ $home-sidebar-width: 240px;
             transform: translateY($indent__s);
             margin-left: 0;
             max-width: 100px;
+        }
+
+        .pagebuilder-column-group {
+            align-items: center;
         }
     }
 
@@ -884,7 +887,7 @@ $home-sidebar-width: 240px;
 }
 
 footer.page-footer {
-    border-top: 0;
+    border-top: 1px solid $c-border;
     margin-top: 0;
     padding: 0;
     flex-wrap: wrap;
@@ -944,8 +947,8 @@ footer.page-footer {
 
                     a {
                         color: $c-steel;
-                        font-weight: $font-weight__semibold;
-                        font-size: $font-size__base;
+                        font-weight: $font-weight__regular;
+                        font-size: 13px;
                         letter-spacing: 0;
 
                         @include hover {
@@ -1058,6 +1061,7 @@ footer.page-footer {
         .tout-header {
             font-weight: $font-weight__bold;
             margin-bottom: $indent__s;
+            margin-top: $indent__s;
             font-size: 20px;
 
             @include min-screen($screen__m) {
