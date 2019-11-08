@@ -319,6 +319,10 @@ $cart-image-mobile-width: 60px !default;
                 color: $c-cobalt;
                 text-decoration: none;
             }
+
+            @include min-screen($screen__m) {
+                font-size: 13px;
+            }
         }
     }
 
