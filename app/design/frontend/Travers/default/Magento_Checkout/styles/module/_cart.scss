@@ -264,6 +264,7 @@ $cart-image-mobile-width: 60px !default;
         &.price {
             .percent-saved {
                 white-space: nowrap;
+                color: $primary__color;
             }
 
             .msrp {
