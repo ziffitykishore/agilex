@@ -314,7 +314,7 @@
 
         .price-wrapper .price {
             font-size: 26px;
-            font-weight: $font-weight__bold;
+            font-weight: $font-weight__extrabold;
         }
 
         .price {
@@ -430,7 +430,7 @@
         }
 
         &:last-of-type {
-            color: $c-cobalt;
+            color: $primary__color;
             border-top: 1px solid $c-grey;
             font-weight: $font-weight__semibold;
         }
@@ -986,6 +986,11 @@ body.catalog-product-compare-index {
                     @include min-screen($screen__m) {
                         padding-right: 0;
                     }
+                }
+
+                &[data-th="Manufacturer Price"] {
+                    pointer-events: none;
+                    color: $text__color;
                 }
             }
         }
