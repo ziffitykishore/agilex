@@ -145,6 +145,10 @@ $_password-very-strong: #81b562 !default;
     }
 }
 
+.box-address-billing .box-actions {
+    display: none;
+}
+
 //
 //  My account
 //  ---------------------------------------------

@@ -1192,6 +1192,14 @@ footer.page-footer {
             z-index: 2;
         }
     }
+
+    .pagebuilder-column:not(.sidebar-menu) {
+        width: 100% !important; // override PageBuilder
+
+        @include min-screen($screen__l) {
+            width: calc(100% - #{$home-sidebar-width}) !important; // override PageBuilder
+        }
+    }
 }
 
 .bluefoot__categories {
