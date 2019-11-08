@@ -100,6 +100,9 @@ $cart-image-mobile-width: 60px !default;
 
     > .title {
         @extend %abs-toggling-title;
+        font-family: $font-family__sans-serif;
+        text-transform: uppercase;
+        letter-spacing: .5px;
 
         @include max-screen($screen__m) {
             padding-left: $mobile-cart-padding;
@@ -110,7 +113,8 @@ $cart-image-mobile-width: 60px !default;
             right: $indent__base;
         }
 
-        strong {
+        strong,
+        span {
             font-weight: $font-weight__semibold;
         }
     }
