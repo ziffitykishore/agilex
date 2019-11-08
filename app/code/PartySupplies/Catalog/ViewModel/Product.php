@@ -277,9 +277,17 @@ class Product implements ArgumentInterface
      * @param \Magento\Catalog\Model\Product $product
      * @return string
      */
-    public function getImageUrl($product)
+    public function getImageUrl($product, $isMainImage = false)
     {
         $product = $this->productRepository->get($product->getSku());
+
+        if($isMainImage) {
+            return $this->imageHelper->init(
+                $product,
+                'product_page_main_image'
+            )->setImageFile($product->getImage())->getUrl();
+        }
+
         return $this->imageHelper->init(
             $product,
             'product_page_image_small'
