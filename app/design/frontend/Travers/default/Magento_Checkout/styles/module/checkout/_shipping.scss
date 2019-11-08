@@ -148,12 +148,13 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 
     .action-select-shipping-item {
-        @include button--type(secondary);
-        float: right;
+        @include button--type(tertiary);
+        float: left;
         margin: $indent__base 0 0;
 
         @include min-screen($screen__s) {
             width: 100%;
+            margin-top: $indent__xs;
         }
     }
 
