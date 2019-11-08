@@ -60,7 +60,9 @@
     }
 
     .tabs-content {
-        display: block !important; // Overrides PageBuilder collapsible
+        [data-element="inner"]:not(.brands-nav) & {
+            display: block !important; // Overrides PageBuilder collapsible
+        }
 
         @include min-screen($screen__m) {
             column-count: 2;
