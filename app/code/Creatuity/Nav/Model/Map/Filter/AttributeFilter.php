@@ -66,10 +66,16 @@ class AttributeFilter
         if ($this->condition) {
             return $this->condition;
         } else {
-            return $this->scopeConfig->getValue(
+            $condition = $this->scopeConfig->getValue(
                 $this->path,
                 ScopeInterface::SCOPE_STORE
             );
+            $multiCondition = explode(',', $condition);
+            if (count($multiCondition) > 1) {
+                return ['in' => $multiCondition];
+            } else {
+                return $condition;
+            }
         }
     }
 }
