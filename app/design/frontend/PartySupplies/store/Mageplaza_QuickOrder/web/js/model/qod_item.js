@@ -217,7 +217,7 @@ define(
                                         if (itemUpdate.qty < stockQtyofItem) {
                                             self.removeItem(itemId);
                                             itemUpdate.qtystock = stockQtyofItem;
-                                            itemUpdate.qty = parseInt(itemUpdate.qty) + 1;
+                                            itemUpdate.qty = parseInt(itemUpdate.qty) + response['minSaleQty'];
                                             itemUpdate.total = self.getTierPrices(itemUpdate.qty, itemUpdate);
                                             if (Array.isArray(itemUpdate.customOptions)) {
                                                 $.each(itemUpdate.customOptions, function (i, customOption) {
@@ -269,7 +269,7 @@ define(
                             if (itemUpdate.type_id === "bundle") {
                                 parentItemId = itemId;
                                 self.removeItem(itemId);
-                                itemUpdate.qty = parseInt(itemUpdate.qty) - 1;
+                                itemUpdate.qty = parseInt(itemUpdate.qty) - itemUpdate.minSaleQty;
                                 $.each(itemUpdate.bundleSelectOption, function (index, value) {
                                     var qty = parseInt(value.selection_qty);
                                     total += self.getTierPrices(qty, value);
@@ -279,7 +279,7 @@ define(
                                 self.addItemFixPosition(i, itemUpdate);
                             } else {
                                 self.removeItem(itemId);
-                                itemUpdate.qty = parseInt(itemUpdate.qty) - 1;
+                                itemUpdate.qty = parseInt(itemUpdate.qty) - itemUpdate.minSaleQty;
                                 if (itemUpdate.tier_price.length > 0) {
                                     itemUpdate.total = itemUpdate.total - itemUpdate.price;
                                     for (var i = 0; i < itemUpdate.tier_price.length; i++) {
@@ -301,7 +301,7 @@ define(
                                         }
                                     }
                                 } else {
-                                    itemUpdate.total = itemUpdate.total - itemUpdate.price;
+                                    itemUpdate.total = itemUpdate.total - (itemUpdate.price * itemUpdate.minSaleQty);
                                 }
                                 self.addItemFixPosition(i, itemUpdate);
                             }
@@ -488,6 +488,10 @@ define(
                                             if (value.item_id === itemId) {
                                                 if (parseInt(valueInput) <= parseInt(stockQtyofItem)) {
                                                     self.removeItem(itemUpdate.item_id);
+
+                                                    //Set RoundOff Qty
+                                                    valueInput = Math.round(valueInput/response['minSaleQty']) * response['minSaleQty'];
+
                                                     value.qty = parseInt(valueInput);
                                                 } else {
                                                     self.removeItem(itemUpdate.item_id);
@@ -508,6 +512,10 @@ define(
                                     } else {
                                         if (parseInt(valueInput) <= parseInt(stockQtyofItem)) {
                                             self.removeItem(itemId);
+
+                                            //set RoundOff Qty
+                                            valueInput = Math.round(valueInput/response['minSaleQty']) * response['minSaleQty'];
+
                                             itemUpdate.qty = parseInt(valueInput);
                                             itemUpdate.total = self.getTierPrices(itemUpdate.qty, itemUpdate);
                                             if (Array.isArray(itemUpdate.customOptions)) {

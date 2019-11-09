@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Mageplaza\QuickOrder\Controller\Items\Preitem">
+      <plugin name="quick-order-min-qty-plugin" type="PartySupplies\QuickOrder\Plugin\PreItem" sortOrder="1" />
+    </type>
+    <type name="Mageplaza\QuickOrder\Controller\Items\Itemqty">
+      <plugin name="quick-order-item-qty-plugin" type="PartySupplies\QuickOrder\Plugin\ItemQty" sortOrder="1" />
+    </type>
+    <type name="Mageplaza\QuickOrder\Helper\Item">
+      <plugin name="quick-order-helper-item-plugin" type="PartySupplies\QuickOrder\Plugin\Item" sortOrder="1" />
+    </type>
+</config>
