@@ -18,6 +18,9 @@
                                                             <item name="component" xsi:type="string">uiComponent</item>
                                                             <item name="displayArea" xsi:type="string">shippingAdditional</item>
                                                             <item name="children" xsi:type="array">
+                                                                <item name="ownShippingTooltip" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">PartySupplies_OwnShipping/js/shipping-tooltip</item>
+                                                                </item>
                                                                 <item name="ownShipping" xsi:type="array">
                                                                     <item name="component" xsi:type="string">PartySupplies_OwnShipping/js/shipping-additional-info</item>
                                                                 </item>
