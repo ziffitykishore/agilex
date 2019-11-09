@@ -16,7 +16,6 @@ define([
             this.selectedMethod = ko.computed(function() {
                 var method = quote.shippingMethod();
                 var selectedMethod = method != null ? method.carrier_code + '_' + method.method_code : null;
-                console.log(selectedMethod);
                 return selectedMethod;
             }, this);
 
