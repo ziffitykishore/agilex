@@ -150,14 +150,6 @@ class CustomerSaveAfter
                 );
             }
         }
-        
-        if ($customerData['customer']['account_type'] == Constant::COMPANY
-            && !$customerData['customer']['is_certificate_approved']
-            && isset($customerData['customer']['store_id'])
-        ) {
-            $mailConfig = $this->setMailConfig($customerData);
-            $this->sendEmail($mailConfig);
-        }
 
         if (!$returnToEdit) {
             $result->setPath('customer/index/index/account_type/'.$customerData['customer']['account_type']);
