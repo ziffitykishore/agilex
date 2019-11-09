@@ -122,9 +122,11 @@ class Carrier extends \Magento\Ups\Model\Carrier
             foreach ($rates as $rate) {
                 $methods = $rate['methods'];
                 foreach ($methods as $method) {
-                    $methodTitle = $method['title']->getText();
-                    if ($methodTitle == $upsTitle) {
-                        $this->_checkoutSession->setShippingRate($method['price']);
+                    if ($method['title'] !== null && $method['price'] !== null) {
+                        $methodTitle = $method['title']->getText();
+                        if ($methodTitle == $upsTitle) {
+                            $this->_checkoutSession->setShippingRate($method['price']);
+                        }
                     }
                 }
             }
