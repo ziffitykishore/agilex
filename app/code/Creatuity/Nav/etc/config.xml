@@ -42,6 +42,11 @@ Amazon NextDay, Next Day Air</amazon_shipping_method_mappings>
                 <own_shipping_agent_code>OWNSHPN</own_shipping_agent_code>
                 <own_shipment_method_code>OWNSHPN</own_shipment_method_code>
             </order_sync_shipping_data_provider>
+            <order_sync_payment_data_provider>
+                <auth_net_payment_method_code>ECOM PAY</auth_net_payment_method_code>
+                <paypal_payment_method_code>PAYPAL</paypal_payment_method_code>
+                <payonaccount_payment_method_code>CREDITLINE</payonaccount_payment_method_code>
+            </order_sync_payment_data_provider>
         </nav>
     </default>
 </config>
