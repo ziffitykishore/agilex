@@ -26,8 +26,7 @@
                 <div class="item-product" data-th="Product Item">
                     <div class="image-product"><img data-bind="attr: { 'src': imageUrl }"/></div>
                     <div class="name-option">
-                        <a data-bind="attr: { 'href': porudct_url}" target="_blank"><p class="product-name"
-                                                                                       data-bind="text:name"></p></a>
+                        <p class="product-name" data-bind="text:name"></p>
                         <!-- ko if: $parent.checkoutofStock(outofstock)-->
                         <p class="item-outstock" data-bind="i18n: 'Item out of stock can not add to cart'"></p>
                         <!-- /ko -->
