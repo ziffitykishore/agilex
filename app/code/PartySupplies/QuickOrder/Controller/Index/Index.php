@@ -46,7 +46,7 @@ class Index extends Action
         $identifier = trim($this->_request->getPathInfo(), '/');
         if ($this->_helperData->checkPermissionAccess() === false
             || in_array($identifier, ['quickorder', 'quickorder/index/index'])) {
-            $this->_redirect('cms/noroute/');
+            $this->_redirect('customer/account/login');
         }
 
         /** @var Page $resultPage */
