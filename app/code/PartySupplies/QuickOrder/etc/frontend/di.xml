@@ -11,4 +11,7 @@
     <type name="Mageplaza\QuickOrder\Helper\Item">
       <plugin name="quick-order-helper-item-plugin" type="PartySupplies\QuickOrder\Plugin\Item" sortOrder="1" />
     </type>
+
+    <preference for="Mageplaza\QuickOrder\Controller\Index\Index" type="PartySupplies\QuickOrder\Controller\Index\Index" />
+
 </config>
