@@ -969,8 +969,7 @@ body.catalog-product-compare-index {
             width: 100%;
             margin: 0;
 
-            tr,
-            th {
+            tr th.label {
                 -webkit-text-stroke: .5px;
                 font-weight: $font-weight__semibold;
             }
