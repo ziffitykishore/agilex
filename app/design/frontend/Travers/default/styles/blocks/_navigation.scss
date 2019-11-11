@@ -130,10 +130,7 @@ $nav-section-title__height: 60px;
     }
 
     .quick-order-container {
-        display: none;
-
         @include min-screen($mobile-nav__breakpoint) {
-            display: block;
             float: right;
             margin-top: 8px;
             padding-right: 70px;
@@ -321,14 +318,19 @@ $nav-section-title__height: 60px;
         }
 
         .contact-link a,
-        .about-link a {
-            border: 1px solid $c-smoke;
+        .about-link a,
+        .quick-order-container a {
+            border: 1px solid $c-grey;
             font-family: $font-family__base;
             font-size: $font-size__base--desktop;
         }
 
         .about-link a {
             border-top: 0;
+        }
+
+        .quick-order-container a {
+            border-bottom: 0;
         }
     }
 
