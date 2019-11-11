@@ -123,6 +123,10 @@ class CustomerSaveAfter
 
                 $navResponse = $this->customerApproval->updateCustomer($customerData);
 
+                $customerData['secret_number'] = $navResponse['No'];
+                $customerData['name'] = $navResponse['Name'];
+                $customerData['company'] = $customerData['default_billing_address']['company'];
+
                 if ($navResponse['No']) {
                     $mailConfig = $this->setMailConfig(
                         $customerData,
