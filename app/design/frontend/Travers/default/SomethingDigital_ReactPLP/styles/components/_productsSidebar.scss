@@ -145,6 +145,8 @@
 
     &.show-accordion {
       display: block;
+      border: 1px solid $c-grey;
+      border-top: 0;
     }
   }
 
@@ -285,8 +287,6 @@
   }
 
   .Collapsible {
-    border-top: 1px solid $c-grey;
-
     @include hover {
       &__trigger.is-closed {
         color: $primary__color;
@@ -494,14 +494,13 @@
           transform: translateX(-$indent__s);
 
           &::before {
-            vertical-align: sub;
+            vertical-align: middle;
           }
         }
 
         &__contentOuter {
           padding-left: 0;
           padding-right: 0;
-          border: 1px solid $c-border;
           border-top: 0;
 
           .Collapsible__trigger {
