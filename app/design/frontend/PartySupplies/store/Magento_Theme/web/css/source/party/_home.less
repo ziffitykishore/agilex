@@ -6,7 +6,13 @@
 
 & when (@media-common = true) {
 
+    .message.info {
+        padding-left: 50px;
 
+        & > *:first-child:before {
+            top: 22px;
+        }
+    }
     .cms-index-index {
         .page-title-wrapper {
             display: none;
