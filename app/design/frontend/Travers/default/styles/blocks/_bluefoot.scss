@@ -1200,6 +1200,11 @@ footer.page-footer {
             width: calc(100% - #{$home-sidebar-width}) !important; // override PageBuilder
         }
     }
+
+    .section-heading-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 .bluefoot__categories {
