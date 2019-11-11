@@ -102,6 +102,7 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
             .action-update {
                 @include button--type(secondary);
                 margin-right: 0;
+                margin-top: $indent__s;
             }
 
             .action-cancel {

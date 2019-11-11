@@ -56,7 +56,7 @@ $checkout-shipping-method__padding             : $indent__base !default;
     .checkout-shipping-address .field-tooltip {
         &-action::before {
             color: $text__color;
-            transform: translateY(7px);
+            margin-top: $indent__xs;
         }
 
         .label {
