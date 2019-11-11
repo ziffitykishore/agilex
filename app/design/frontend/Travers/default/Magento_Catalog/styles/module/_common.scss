@@ -993,8 +993,8 @@ body.catalog-product-compare-index {
                 }
 
                 &[data-th="Manufacturer Price"] {
-                    pointer-events: none;
-                    color: $text__color;
+                    pointer-events: none; // Mobile Safari thinks this is a phone number
+                    color: $text__color !important; // Mobile Safari thinks this is a phone number
                 }
             }
         }
