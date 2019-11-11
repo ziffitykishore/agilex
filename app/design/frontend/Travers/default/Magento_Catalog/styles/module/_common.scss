@@ -252,6 +252,8 @@
 }
 
 .product-options-wrapper {
+    flex-basis: 100%;
+
     .fieldset-product-options-inner {
         .legend {
             font-weight: $font-weight__bold;
