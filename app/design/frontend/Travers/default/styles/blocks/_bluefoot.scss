@@ -1212,6 +1212,13 @@ footer.page-footer {
         margin-top: $indent__s;
         margin-bottom: $indent__s;
 
+        &:first-of-type {
+            @include max-screen($screen__m) {
+                margin-top: 0;
+                padding-top: $indent__s;
+            }
+        }
+
         a {
             color: $text__color;
             text-decoration: none;
