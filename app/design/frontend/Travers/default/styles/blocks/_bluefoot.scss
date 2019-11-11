@@ -531,6 +531,14 @@ $home-sidebar-width: 240px;
             }
         }
 
+        .product-image-wrapper {
+            padding-bottom: 100% !important; // override JS that sets it to 125%
+
+            img {
+                margin-bottom: 0;
+            }
+        }
+
         .product-items {
             display: flex;
             justify-content: center;
