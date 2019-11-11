@@ -81,6 +81,11 @@ $product-hero__button-and-catalog__width: 240px;
             order: 2;
         }
 
+        .product-social-links {
+            order: 3;
+            margin-top: $indent__s;
+        }
+
         [data-bind="scope: 'tierprices'"] {
             display: none; // empty version of .prices-tier.items
         }
