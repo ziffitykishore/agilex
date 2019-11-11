@@ -1,16 +1,3 @@
-.cart-summary .block.giftcard .secondary {
-    width: 100%;
-    text-align: center;
-
-    .action.check {
-        @include button--type(tertiary);
-
-        @include hover {
-            color: $c-steel;
-        }
-    }
-}
-
 .page-product-giftcard {
     .giftcard-amount {
         text-align: left;
