@@ -1088,17 +1088,6 @@ footer.page-footer {
 .testimonials {
     margin-bottom: 80px;
 
-    .pagebuilder-slider {
-        max-width: 90%;
-        margin: 0 auto !important; // overrride PageBuilder
-    }
-
-    .slick-track {
-        @include min-screen($screen__m) {
-            padding-left: 100px !important; // overrride PageBuilder
-        }
-    }
-
     .section-heading {
         margin-top: 0;
         margin-bottom: $indent__s;
@@ -1114,12 +1103,39 @@ footer.page-footer {
         margin-left: -7px;
     }
 
-    .slick-slide,
-    [data-content-type="fullslide"] {
-        max-width: 350px !important; // override PageBuilder
+    .slick-slide {
+        width: 100vw !important; // override PageBuilder/slick
+
+        @include min-screen($screen__m) {
+            width: 50vw !important; // override PageBuilder/slick
+        }
+
+        @include min-screen($screen__l) {
+            width: 25vw !important; // override PageBuilder/slick
+        }
+
+        .pagebuilder-slide-wrapper [data-element="content"] {
+            display: none;
+        }
 
         .pagebuilder-poster-overlay {
-            padding: $indent__m !important; // override PageBuilder
+            align-items: flex-start !important; // override PageBuilder
+            min-height: 250px !important; // override PageBuilder
+            padding-top: $indent__s !important; // override PageBuilder
+
+            @include min-screen($screen__m) {
+                padding-top: $indent__xl !important; // override PageBuilder
+            }
+
+            .pagebuilder-poster-content {
+                border: 1px solid $c-border;
+                padding: $indent__base;
+                min-height: 150px !important; // override PageBuilder
+
+                @include min-screen($screen__m) {
+                    min-height: 200px !important; // override PageBuilder
+                }
+            }
         }
     }
 
@@ -1147,6 +1163,7 @@ footer.page-footer {
         &-giver,
         &-title {
             color: $text__color;
+            max-width: 350px;
         }
     }
 }
