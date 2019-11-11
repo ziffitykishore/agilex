@@ -141,13 +141,30 @@
 
             .col-method {
                 font-weight: @font-weight__semibold;
+                width: 200px;
+                display: inline-block;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
             }
 
             .shipping-chioce {
-                display: inline-block;
+                display: block;
 
                 input[type=radio] {
                     display: none;
+                }
+
+                label {
+                    display: block;
+                    padding-right: 75px;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+
+                    & > span:not(.col-method) {
+                        position: absolute;
+                        right: 0;
+                    }
                 }
             }
         }
@@ -416,7 +433,8 @@
                 &.action-show-popup{
                     margin-left: 15px;
                 }
-                &:active {
+                &:active,
+                &:focus {
                     background: #000;
                 }
             }
@@ -440,6 +458,10 @@
                 button.primary {
                     float: none;
                     width: 100%;
+                    &:active,
+                    &:focus {
+                        background: #000;
+                    }
                 }
             }
 
@@ -540,13 +562,13 @@
             }
 
             .items-in-cart {
-                padding: 20px;
+                padding: 20px 60px 20px 20px;
                 margin-bottom: 0;
             }
 
             .total-wrap {
                 border: 1px solid @c-graylight;
-                padding: 20px;
+                padding: 20px 60px 20px 20px;
             }
 
             .opc-block-shipping-information {
