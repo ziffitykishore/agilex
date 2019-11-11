@@ -46,7 +46,7 @@ class OrderFieldOrderDataExtractor implements OrderDataExtractorInterface
     /**
      * Authorize.net payment code
      */
-    const AUTH_NET = 'authorizenet_directpost';
+    const AUTH_NET = 'authorizenet_acceptjs';
 
     /**
      * PayPal payment code
