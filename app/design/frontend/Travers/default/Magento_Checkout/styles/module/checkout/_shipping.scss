@@ -53,6 +53,10 @@ $checkout-shipping-method__padding             : $indent__base !default;
         display: none;
     }
 
+    .custom-form-body .step-title {
+        margin-bottom: $indent__base;
+    }
+
     .checkout-shipping-address .field-tooltip {
         &-action::before {
             color: $text__color;
