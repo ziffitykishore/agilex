@@ -98,17 +98,18 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
     }
 
     .billing-address-same-as-shipping-block {
-        margin: 0 0 $indent__s;
+        margin: 0 0 $indent__xs;
     }
 
     .payment-method-billing-address {
-        margin: 0 0 $indent__base;
+        margin: 0 0 $indent__s;
 
         .primary {
             .action-update {
                 @include button--type(secondary);
                 margin-right: 0;
                 margin-top: $indent__s;
+                margin-bottom: 0;
             }
 
             .action-cancel {
