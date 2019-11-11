@@ -86,10 +86,6 @@ $product-hero__button-and-catalog__width: 240px;
             margin-top: $indent__s;
         }
 
-        [data-bind="scope: 'tierprices'"] {
-            display: none; // empty version of .prices-tier.items
-        }
-
         .stock-info-popup-trigger {
             text-transform: uppercase;
             cursor: pointer;
