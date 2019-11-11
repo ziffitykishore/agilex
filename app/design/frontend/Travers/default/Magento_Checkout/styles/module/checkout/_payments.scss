@@ -23,6 +23,8 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
 }
 
 .checkout-payment-method {
+    overflow-x: hidden;
+
     .step-title {
         margin-bottom: 0;
     }
@@ -47,6 +49,10 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
     }
 
     .payment-method-content {
+        iframe {
+            width: 100%;
+        }
+
         & > .actions-toolbar {
             & > .primary {
                 .action {
