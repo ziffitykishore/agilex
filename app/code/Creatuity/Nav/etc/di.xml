@@ -751,6 +751,11 @@
             <argument name="accessorMethod" xsi:type="string">getShippingMethod</argument>
         </arguments>
     </virtualType>
+    <virtualType name="paymentMethodOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
+        <arguments>
+            <argument name="accessorMethod" xsi:type="string">getPaymentMethod</argument>
+        </arguments>
+    </virtualType>
     <virtualType name="grandTotalOrderDataExtractor" type="Creatuity\Nav\Model\Data\Extractor\Magento\OrderFieldOrderDataExtractor">
         <arguments>
             <argument name="accessorMethod" xsi:type="string">getGrandTotal</argument>
@@ -1295,6 +1300,12 @@
         <arguments>
             <argument name="mapping" xsi:type="object">shippingMethodFieldMapping</argument>
             <argument name="orderDataExtractor" xsi:type="object">shippingMethodOrderDataExtractor</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="paymentMethodOrderDataExtractorMapping" type="Creatuity\Nav\Model\Data\Mapping\Magento\OrderDataExtractorMapping">
+        <arguments>
+            <argument name="mapping" xsi:type="object">paymentTypeFieldMapping</argument>
+            <argument name="orderDataExtractor" xsi:type="object">paymentMethodOrderDataExtractor</argument>
         </arguments>
     </virtualType>
 
@@ -1953,6 +1964,7 @@
                 <item name="customerOrderIdOrderDataExtractorMapping" xsi:type="object">customerOrderIdOrderDataExtractorMapping</item>
                 <item name="grandTotalOrderDataExtractorMapping" xsi:type="object">grandTotalOrderDataExtractorMapping</item>
                 <item name="shippingCarrierOrderDataExtractorMapping" xsi:type="object">shippingCarrierOrderDataExtractorMapping</item>
+                <item name="paymentMethodOrderDataExtractorMapping" xsi:type="object">paymentMethodOrderDataExtractorMapping</item>
                 <item name="shippingMethodOrderDataExtractorMapping" xsi:type="object">shippingMethodOrderDataExtractorMapping</item>
                 <!-- Commented due to NO USE
                 <item name="shippingMethodDescriptionOrderDataExtractorMapping" xsi:type="object">shippingMethodDescriptionOrderDataExtractorMapping</item>
@@ -1980,9 +1992,9 @@
                  Commented due to NO USE -->
             </argument>
             <argument name="staticDataExtractorMappings" xsi:type="array">
-                <item name="paymentTypeStaticDataExtractorMapping" xsi:type="object">paymentTypeStaticDataExtractorMapping</item>
                 <item name="locationCodeStaticDataExtractorMapping" xsi:type="object">locationCodeStaticDataExtractorMapping</item>
                 <!-- Commented due to NO USE
+                <item name="paymentTypeStaticDataExtractorMapping" xsi:type="object">paymentTypeStaticDataExtractorMapping</item>
                 <item name="locationCodeShortcutDimensionStaticDataExtractorMapping" xsi:type="object">locationCodeShortcutDimensionStaticDataExtractorMapping</item>
                 <item name="freeFreightStaticDataExtractorMapping" xsi:type="object">freeFreightStaticDataExtractorMapping</item>
                 <item name="shippingCarrierStaticDataExtractorMapping" xsi:type="object">shippingCarrierStaticDataExtractorMapping</item>

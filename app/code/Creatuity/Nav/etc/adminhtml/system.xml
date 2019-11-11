@@ -183,6 +183,20 @@
                 </field>
             </group>
 
+            <group id="order_sync_payment_data_provider" translate="label" type="text" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Sync Payment Data Provider</label>
+
+                <field id="auth_net_payment_method_code" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Method Code - Auth.net</label>
+                </field>
+                <field id="paypal_payment_method_code" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Method Code - PayPal</label>
+                </field>
+                <field id="payonaccount_payment_method_code" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Payment Method Code - PayOnAccount</label>
+                </field>
+            </group>
+
             <group id="shipment_update" translate="label" type="text" sortOrder="55" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Shipment Update</label>
 

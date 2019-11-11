@@ -39,6 +39,21 @@ class OrderFieldOrderDataExtractor implements OrderDataExtractorInterface
     const OWN_SHIPPING = 'ownshipping_ownshipping';
 
     /**
+     * PayOnAccount payment code
+     */
+    const PAY_ON_ACCOUNT = 'payonaccount';
+
+    /**
+     * Authorize.net payment code
+     */
+    const AUTH_NET = 'authorizenet_directpost';
+
+    /**
+     * PayPal payment code
+     */
+    const PAYPAL = 'paypal_express';
+
+    /**
      * @var string
      */
     protected $accessorMethod;
@@ -153,6 +168,42 @@ class OrderFieldOrderDataExtractor implements OrderDataExtractorInterface
                 return $order->getShippingMethod();
         }
     }
+
+    /**
+     * To get payment method code
+     *
+     * @param OrderInterface $order
+     * @return string
+     */
+    protected function getPaymentMethod($order)
+    {
+        $paymentMethod = $order->getPayment()->getMethod();
+
+        switch ($paymentMethod) {
+
+            case self::PAYPAL:
+                return $this->scopeConfig->getValue(
+                    'nav/order_sync_payment_data_provider/paypal_payment_method_code',
+                    ScopeInterface::SCOPE_STORE
+                );
+
+            case self::AUTH_NET:
+                return $this->scopeConfig->getValue(
+                    'nav/order_sync_payment_data_provider/auth_net_payment_method_code',
+                    ScopeInterface::SCOPE_STORE
+                );
+
+            case self::PAY_ON_ACCOUNT:
+                return $this->scopeConfig->getValue(
+                    'nav/order_sync_payment_data_provider/payonaccount_payment_method_code',
+                    ScopeInterface::SCOPE_STORE
+                );
+
+            default:
+                return $paymentMethod;
+        }
+    }
+
 
     /**
      * To get increment id from order
