@@ -17,11 +17,12 @@ $register = $block->getData('register_viewModel');
         <p><?= $block->escapeHtml(__('Lorem ipsum dolor sit amet, consectetur adipiscing elit')) ?></p>
         <div class="actions-toolbar">
             <div class="primary">
-                <a href="<?= $block->escapeUrl($block->getCreateAccountUrl()) ?>" class="action create primary"><span><?= $block->escapeHtml(__('Register User')) ?></span></a>
+                <a href="<?= $block->escapeUrl($register->getRegisterUrl()) ?>" class="action create primary"><span><?= $block->escapeHtml(__('Register Company')) ?></span></a>
             </div>
             <p><?= $block->escapeHtml(__('or')) ?></p>
+
             <div class="primary">
-                <a href="<?= $block->escapeUrl($register->getRegisterUrl()) ?>" class="action create primary"><span><?= $block->escapeHtml(__('Register Company')) ?></span></a>
+                <a href="<?= $block->escapeUrl($block->getCreateAccountUrl()) ?>" class="action create primary"><span><?= $block->escapeHtml(__('Register User')) ?></span></a>
             </div>
         </div>
     </div>
