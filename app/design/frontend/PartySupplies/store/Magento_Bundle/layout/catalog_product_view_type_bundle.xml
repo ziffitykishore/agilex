@@ -13,6 +13,7 @@
         <referenceBlock name="customize.button" remove="true"/>
 
         <move element="product.info" destination="product.info.main" after="-"/>
+        <move element="product.info.social" destination="product.info.addtocart.bundle" after="-"/>
         
         <referenceBlock name="product.info.addtocart.bundle">
             <arguments>
