@@ -446,6 +446,14 @@ $sidebar__max-width: 240px;
   padding-left: $indent__l;
 }
 
+.hide-collapsible {
+  display: none;
+}
+
+.show-collapsible {
+  display: block;
+}
+
 @include max-screen($screen__m) {
   .Collapsible {
     width: 100%;

@@ -13,7 +13,7 @@
     $count = count($_orders);
 ?>
     <div class="block-title order">
-        <strong><?= /* @escapeNotVerified */ __('Recent Orders') ?></strong>
+        <h3><?= /* @escapeNotVerified */ __('Recent Orders') ?></h3>
         <?php if ($count > 0): ?>
             <a class="action view" href="<?= /* @escapeNotVerified */ $block->getUrl('sales/order/history') ?>">
                 <span><?= /* @escapeNotVerified */ __('View All') ?></span>

@@ -494,8 +494,17 @@ $cart-image-mobile-width: 60px !default;
     );
     margin-top: 70px;
 
+    .product-items {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .product-item-info {
         width: 200px;
+    }
+
+    .products-grid .product-item {
+        width: 50%;
     }
 
     .actions-secondary {
@@ -627,12 +636,12 @@ $cart-image-mobile-width: 60px !default;
 
     //  Cross sell
     .block.crosssell {
-        @include lib-layout-column(2, 1, 72%);
+        width: 100%;
         padding: 0 4% 0 0;
         box-sizing: border-box;
 
         .products-grid .product-item {
-            width: percentage(1/3);
+            width: 25%;
             box-sizing: border-box;
         }
 
