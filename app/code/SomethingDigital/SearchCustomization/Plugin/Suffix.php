@@ -52,7 +52,7 @@ class Suffix
             if (strpos($queryText, $sku) === 0) {
                 $skuSuffix = substr($queryText, strlen($sku));
                 $this->session->setSkuSuffix($skuSuffix);
-                $this->quote->repriceCustomerQuote();
+                $this->quote->repriceCustomerQuote(true);
                 $subject->getResponse()->setRedirect($product->getProductUrl());
             }
         }
