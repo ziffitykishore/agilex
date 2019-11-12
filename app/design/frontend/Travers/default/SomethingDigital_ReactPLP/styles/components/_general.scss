@@ -24,7 +24,7 @@ $sidebar__max-width: 240px;
       &.productInfo-opened {
         .numHits-view-switcher .number-of-hits {
           position: absolute;
-          right: 330px;
+          right: 240px;
         }
       }
 
@@ -281,6 +281,13 @@ $sidebar__max-width: 240px;
 .list-view {
   @include min-screen($screen__m) {
     padding: 0 $indent__l;
+  }
+}
+
+.productInfo-opened .groups,
+.productInfo-opened .table-view {
+  @include min-screen($screen__m) {
+    padding-right: 0;
   }
 }
 

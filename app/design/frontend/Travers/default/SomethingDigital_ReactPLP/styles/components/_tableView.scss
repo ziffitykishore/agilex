@@ -1,6 +1,10 @@
 .table-view {
   width: 100%;
 
+  .productInfo-opened & {
+    padding-right: 0;
+  }
+
   .products-table {
     font-weight: $font-weight__regular;
     line-height: 1.7;
@@ -37,7 +41,7 @@
     }
 
     tbody tr {
-      border-bottom: 1px solid $c-smoke;
+      border-bottom: 1px solid $c-grey;
 
       @include hover {
         cursor: pointer;
