@@ -35,7 +35,9 @@ class Price extends AbstractModifier
         $productPrice =  $this->locator->getProduct()->getPrice();
         $specialPrice =  $this->locator->getProduct()->getSpecialPrice();
         $data[$productId][self::DATA_SOURCE_DEFAULT]['price'] = number_format((float)$productPrice, 4, '.', ''); 
-        $data[$productId][self::DATA_SOURCE_DEFAULT]['special_price'] = number_format((float)$specialPrice, 4, '.', '');
+        if ($specialPrice) {
+            $data[$productId][self::DATA_SOURCE_DEFAULT]['special_price'] = number_format((float)$specialPrice, 4, '.', '');
+        }
          
         return $data;
     }

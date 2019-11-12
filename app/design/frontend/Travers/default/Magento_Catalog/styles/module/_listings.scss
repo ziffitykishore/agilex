@@ -265,8 +265,11 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
 
 // When product image is hovered, pretend like the product title is hovered
 .product-item-photo:hover + div .product-item-link {
-    text-decoration: $product-name-link__text-decoration__hover;
     color: $product-name-link__color__hover;
+}
+
+.products-crosssell .product-item-link {
+    color: $text__color;
 }
 
 //

@@ -59,6 +59,10 @@ $cart-image-mobile-width: 60px !default;
         width: 40%;
     }
 
+    @include screen($screen__m, $mobile-nav__breakpoint) {
+        width: 35%;
+    }
+
     @include min-screen($screen__l) {
         width: 28%;
     }
@@ -96,6 +100,9 @@ $cart-image-mobile-width: 60px !default;
 
     > .title {
         @extend %abs-toggling-title;
+        font-family: $font-family__sans-serif;
+        text-transform: uppercase;
+        letter-spacing: .5px;
 
         @include max-screen($screen__m) {
             padding-left: $mobile-cart-padding;
@@ -106,7 +113,8 @@ $cart-image-mobile-width: 60px !default;
             right: $indent__base;
         }
 
-        strong {
+        strong,
+        span {
             font-weight: $font-weight__semibold;
         }
     }
@@ -264,6 +272,7 @@ $cart-image-mobile-width: 60px !default;
         &.price {
             .percent-saved {
                 white-space: nowrap;
+                color: $primary__color;
             }
 
             .msrp {
@@ -314,6 +323,10 @@ $cart-image-mobile-width: 60px !default;
                 color: $c-cobalt;
                 text-decoration: none;
             }
+
+            @include min-screen($screen__m) {
+                font-size: 13px;
+            }
         }
     }
 
@@ -358,6 +371,8 @@ $cart-image-mobile-width: 60px !default;
 
         span {
             font-weight: $font-weight__semibold;
+            font-size: $font-size__base--desktop;
+            white-space: nowrap;
         }
     }
 
@@ -398,6 +413,10 @@ $cart-image-mobile-width: 60px !default;
 
         @include min-screen($screen__m) {
             @extend .abs-shopping-cart-items-desktop;
+        }
+
+        @include screen($screen__m, $mobile-nav__breakpoint) {
+            width: 60%;
         }
     }
 

@@ -4,18 +4,22 @@ namespace SomethingDigital\AlgoliaSearch\Plugin;
 
 use Magento\Customer\Api\GroupRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
 
 class AddProductAttributes
 {
     private $customerGroupRepository;
     private $searchCriteriaBuilder;
+    private $collectionFactory;
 
     public function __construct(
         GroupRepositoryInterface $customerGroupRepository,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        CollectionFactory $collectionFactory
     ) {
         $this->customerGroupRepository = $customerGroupRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->collectionFactory = $collectionFactory;
     }
 
     /**
@@ -63,6 +67,7 @@ class AddProductAttributes
             'order' => 'unordered',
             'retrievable' => 1
         ];
+
         $customerGroups = $this->customerGroupRepository->getList($this->searchCriteriaBuilder->create())->getItems();
         foreach ($customerGroups as $customerGroup) {
             $result[] = [
@@ -72,6 +77,19 @@ class AddProductAttributes
                 'retrievable' => 1
             ];
         }
+
+        $collection = $this->collectionFactory->create();
+        $collection->addFieldToFilter('is_searchable', true);
+        $collection->setOrder('position','ASC');
+        foreach ($collection as $item) {
+            $result[] = [
+                "attribute" => $item->getAttributeCode(),
+                "searchable"=> 1,
+                "order"=> "unordered",
+                "retrievable"=> 1
+            ];
+        }
+
         return $result;
     }
 }

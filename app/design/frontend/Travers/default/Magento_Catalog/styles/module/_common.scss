@@ -77,6 +77,10 @@
         }
     }
 
+    .column.main {
+        padding-bottom: 0;
+    }
+
     .page.messages {
         display: none;
     }
@@ -199,7 +203,6 @@
         &.unavailable {
             display: inline-block;
             margin-right: $indent__base;
-            text-transform: uppercase;
             vertical-align: top;
         }
     }
@@ -209,7 +212,6 @@
             &.sku {
                 display: inline-block;
                 vertical-align: top;
-                color: $c-nickel;
                 font-size: $font-size__base;
 
                 > .value {
@@ -312,7 +314,7 @@
 
         .price-wrapper .price {
             font-size: 26px;
-            font-weight: $font-weight__bold;
+            font-weight: $font-weight__extrabold;
         }
 
         .price {
@@ -428,7 +430,7 @@
         }
 
         &:last-of-type {
-            color: $c-cobalt;
+            color: $primary__color;
             border-top: 1px solid $c-grey;
             font-weight: $font-weight__semibold;
         }
@@ -966,6 +968,12 @@ body.catalog-product-compare-index {
         .additional-attributes {
             width: 100%;
             margin: 0;
+
+            tr,
+            th {
+                -webkit-text-stroke: .5px;
+                font-weight: $font-weight__semibold;
+            }
         }
 
         tr {
@@ -977,13 +985,17 @@ body.catalog-product-compare-index {
                 padding: $indent__xs 0;
 
                 &.label {
-                    font-weight: $font-weight__extrabold;
                     padding-left: $indent__base;
                     padding-right: 15px;
 
                     @include min-screen($screen__m) {
                         padding-right: 0;
                     }
+                }
+
+                &[data-th="Manufacturer Price"] {
+                    pointer-events: none;
+                    color: $text__color;
                 }
             }
         }

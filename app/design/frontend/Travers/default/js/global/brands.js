@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import domready from 'domready';
 
 const numbersId = 'numbers';
 
@@ -25,16 +26,18 @@ const wrapNavItemsInAnchorTag = () => {
 
 const $brandsNav = $('.brands-nav');
 
-if ($brandsNav.length) {
-  $(document).on('click', '.brands-nav [data-content-type="text"] a', function (e) {
-    e.preventDefault();
-    history.replaceState({page: 'brands'}, `Brand ${$(this).attr('href')}`, `${$(this).attr('href')}`);
+domready(() => {
+  if ($brandsNav.length) {
+    $(document).on('click', '.brands-nav [data-content-type="text"] a', function (e) {
+      e.preventDefault();
+      history.replaceState({page: 'brands'}, `Brand ${$(this).attr('href')}`, `${$(this).attr('href')}`);
 
-    $('html, body').animate({
-      scrollTop: $($(this).attr('href')).offset().top - 80
-    }, 500);
-  });
+      $('html, body').animate({
+        scrollTop: $($(this).attr('href')).offset().top - 80
+      }, 500);
+    });
 
-  assignIdsToColumnTitles();
-  wrapNavItemsInAnchorTag();
-}
+    assignIdsToColumnTitles();
+    wrapNavItemsInAnchorTag();
+  }
+});

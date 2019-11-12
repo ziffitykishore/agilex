@@ -61,6 +61,8 @@ $product-hero__button-and-catalog__width: 240px;
 
     .product-info-main {
         order: 2;
+        display: flex;
+        flex-direction: column;
 
         @include max-screen($screen__m) {
             margin-bottom: $indent__m;
@@ -71,10 +73,28 @@ $product-hero__button-and-catalog__width: 240px;
             margin-left: $indent__xl;
         }
 
+        .product.attribute.overview {
+            order: 1;
+        }
+
+        .product-add-form {
+            order: 2;
+        }
+
+        [data-bind="scope: 'tierprices'"] {
+            display: none; // empty version of .prices-tier.items
+        }
+
         .stock-info-popup-trigger {
-            color: $c-cobalt;
-            text-transform: none;
+            text-transform: uppercase;
             cursor: pointer;
+            font-weight: $font-weight__semibold;
+            font-family: $font-family__sans-serif;
+            color: $link__color;
+
+            @include hover {
+                color: $c-royal;
+            }
         }
     }
 
@@ -135,7 +155,7 @@ $product-hero__button-and-catalog__width: 240px;
 
     .as-low-as {
         font-size: $font-size__base--desktop;
-        font-weight: $font-weight__semibold;
+        font-weight: $font-weight__extrabold;
         text-transform: uppercase;
 
         .price-wrapper {
@@ -154,8 +174,8 @@ $product-hero__button-and-catalog__width: 240px;
 
         span:not(.stock-info-popup-trigger) {
             margin-right: $indent__xs;
-            color: $c-nickel;
             font-size: $font-size__base;
+            font-weight: $font-weight__semibold;
 
             @include min-screen($screen__m) {
                 font-size: $font-size__base--desktop;
@@ -185,7 +205,7 @@ $product-hero__button-and-catalog__width: 240px;
         form {
             display: flex;
             flex-wrap: wrap;
-            align-items: flex-end;
+            align-items: center;
 
             .box-tocart {
                 order: -2;
@@ -200,7 +220,9 @@ $product-hero__button-and-catalog__width: 240px;
                 flex-basis: 70%;
                 order: -1;
                 margin-left: $indent__xs;
-                font-size: $font-size__base;
+                margin-top: $indent__base;
+                font-size: $font-size__base--desktop;
+                font-weight: $font-weight__semibold;
             }
 
             .actions {

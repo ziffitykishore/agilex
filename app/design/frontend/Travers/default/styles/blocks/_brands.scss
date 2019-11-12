@@ -24,6 +24,117 @@
                 }
             }
         }
+
+        .brands-nav[data-element="inner"] {
+            margin: 15px $indent__s !important; // Overrides PageBuilder
+
+            @include min-screen($screen__m) {
+                margin-bottom: 0 !important; // Overrides PageBuilder
+            }
+
+            .coll-header {
+                flex-basis: 100%;
+                border-bottom: 1px solid $c-border;
+                padding-top: $indent__xs !important; // Overrides PageBuilder
+
+                &::after {
+                    content: "+";
+                    position: absolute;
+                    right: $indent__l;
+                    top: $indent__s;
+                    transform: scale(1.5);
+
+                    @include min-screen($screen__m) {
+                        display: none;
+                    }
+                }
+
+                &[aria-expanded="true"]::after {
+                    content: "-";
+                    top: $indent__xs;
+                }
+
+                @include min-screen($screen__m) {
+                    display: none;
+                }
+
+                .coll-title {
+                    font-size: 20px;
+                }
+            }
+
+            .pagebuilder-collapsible {
+                @include max-screen($screen__m) {
+                    border: 1px solid $c-border;
+                    border-bottom: 0;
+                    margin-bottom: 0 !important; // Overrides PageBuilder
+
+                    .tabs-content {
+                        padding-bottom: $indent__s;
+                        border-bottom: 1px solid $c-border;
+                        margin-bottom: 0 !important; // Overrides PageBuilder
+                    }
+                }
+            }
+
+            [data-element="main"] {
+                display: flex;
+                width: 100%;
+                flex-wrap: wrap;
+
+                [data-content-type="collapsible-item"] {
+                    padding: 0 $indent__s;
+                    box-sizing: border-box;
+
+                    @include min-screen($screen__m) {
+                        padding: 0;
+                    }
+                }
+
+                [data-content-type="text"] {
+                    padding: 0 !important; // Overrides PageBuilder
+                    box-sizing: border-box;
+                }
+
+                @include min-screen($screen__m) {
+                    flex-wrap: nowrap;
+                }
+
+                .tabs-content {
+                    margin: $indent__m auto;
+                    width: 100%;
+                    justify-content: center;
+
+                    @include min-screen($screen__m) {
+                        column-count: 1;
+                        width: 100% !important; // Overrides PageBuilder
+                    }
+                }
+
+                a {
+                    max-width: 45px;
+                    width: 100%;
+                    text-align: center;
+                    border: 1px solid $c-border;
+                    color: $text__color;
+
+                    @include min-screen($screen__m) {
+                        max-width: 40px;
+
+                        &:not(:last-of-type) {
+                            border-right: 0;
+                        }
+                    }
+
+
+                    @include hover {
+                        background-color: $primary__color;
+                        color: $color-white;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
     }
 
     .page-main {
@@ -60,7 +171,9 @@
     }
 
     .tabs-content {
-        display: block !important; // Overrides PageBuilder collapsible
+        [data-element="inner"]:not(.brands-nav) & {
+            display: block !important; // Overrides PageBuilder collapsible
+        }
 
         @include min-screen($screen__m) {
             column-count: 2;
@@ -107,102 +220,13 @@
             }
         }
     }
-}
 
-.brands-nav {
-    margin-bottom: $indent__m;
-
-    @include min-screen($screen__m) {
-        margin-bottom: 0;
-    }
-
-    .coll-header {
-        flex-basis: 100%;
-        border-bottom: 1px solid $c-border;
-        padding-top: $indent__xs !important; // Overrides PageBuilder
-
-        &::after {
-            content: "+";
-            position: absolute;
-            right: $indent__l;
-            top: $indent__s;
-            transform: scale(1.5);
-
-            @include min-screen($screen__m) {
-                display: none;
-            }
-        }
-
-        &[aria-expanded="true"]::after {
-            content: "-";
-            top: $indent__xs;
-        }
+    .brands-header {
+        width: 80%;
+        padding-left: $indent__s !important; // Overrides PageBuilder
 
         @include min-screen($screen__m) {
-            display: none;
-        }
-
-        .coll-title {
-            font-size: 20px;
-        }
-    }
-
-    .pagebuilder-collapsible {
-        @include max-screen($screen__m) {
-            border: 1px solid $c-border;
-        }
-    }
-
-    [data-element="main"] {
-        display: flex;
-        width: 100%;
-        flex-wrap: wrap;
-
-        [data-content-type="collapsible-item"] {
-            padding: 0 $indent__s;
-            box-sizing: border-box;
-        }
-
-        [data-content-type="text"] {
-            padding: 0 !important; // Overrides PageBuilder
-            box-sizing: border-box;
-        }
-
-        @include min-screen($screen__m) {
-            flex-wrap: nowrap;
-        }
-
-        .tabs-content {
-            margin: $indent__m auto;
-            width: 100%;
-            justify-content: center;
-
-            @include min-screen($screen__m) {
-                column-count: 1;
-                width: 100% !important; // Overrides PageBuilder
-            }
-        }
-
-        a {
-            max-width: 45px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid $c-border;
-            color: $text__color;
-
-            @include min-screen($screen__m) {
-                max-width: 40px;
-
-                &:not(:last-of-type) {
-                    border-right: 0;
-                }
-            }
-
-
-            @include hover {
-                background-color: $primary__color;
-                color: $color-white;
-            }
+            margin: $indent__s auto !important; // Overrides PageBuilder
         }
     }
 }
