@@ -1230,6 +1230,20 @@ footer.page-footer {
         margin-left: auto;
         margin-right: auto;
     }
+
+    .pagebuilder-slider {
+        @include min-screen($screen__m) {
+            min-height: 300px !important; // override PageBuilder
+        }
+
+        .pagebuilder-poster-content {
+            @include max-screen($screen__m) {
+                transform: translateY(250px);
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
 }
 
 .bluefoot__categories {
