@@ -17,6 +17,7 @@ const collapsible = () => {
         },
         exit() {
           $('.block-collapsible-nav-title[aria-expanded="true"]').trigger('click');
+          $('.refinement-list li').click(() => $('.filter-heading.collapsible-open').trigger('click'));
         },
       });
     });
