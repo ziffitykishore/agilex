@@ -11,8 +11,14 @@
                     border-bottom: 1px solid #d1d1d1;
                     border-top: 1px solid #d1d1d1;
                 }
+
                 &:nth-child(2n+3) {
                     background: #f1f1f1
+                }
+
+                th:last-child,
+                td:last-child {
+                    text-align: right;
                 }
             }
             p {
@@ -38,8 +44,9 @@
             }
         }
         .totalinfo {
+            float: right;
             margin-bottom: 20px;
-            max-width: 600px;
+            max-width: 290px;
             padding-bottom: 15px;
 
             > tbody > tr > {
@@ -48,6 +55,13 @@
                     &:first-child {
                         padding-left: 0;
                     }
+                }
+            }
+
+            tr {
+                th:last-child,
+                td:last-child {
+                    text-align: right;
                 }
             }
         }
@@ -70,6 +84,13 @@
             
             h2 {
                 font-weight: bold;
+            }
+        }
+        .checkout-success {
+            .actions-toolbar {
+                &:before {
+                    clear: both;
+                }
             }
         }
     }
