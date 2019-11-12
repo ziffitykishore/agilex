@@ -7,4 +7,12 @@
         type="html"
         module="PartySupplies_Order"
         area="adminhtml"/>
+
+    <template
+        id="nav_order_update_order_sync_success_email_template"
+        label="Order Sync Success"
+        file="order_sync_success.html"
+        type="html"
+        module="PartySupplies_Order"
+        area="adminhtml"/>
 </config>

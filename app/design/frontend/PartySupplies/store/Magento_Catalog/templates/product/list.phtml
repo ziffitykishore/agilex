@@ -118,7 +118,7 @@ $viewModel = $block->getData('viewModel');
                                         <?php endif; ?>
                                     <?php else: ?>
                                         <!--if customer is not logged in-->
-                                            <a href=" <?php echo $block->getBaseUrl(); ?>/customer/account/login/" class="btn btn-black action-black" title="<?= $block->escapeHtml(__('Login to View')) ?>"><?= /* @escapeNotVerified */ __('Login to View') ?></a>
+                                            <a href=" <?php echo $block->getBaseUrl(); ?>customer/account/login/" class="btn btn-black action-black" title="<?= $block->escapeHtml(__('Login to View')) ?>"><?= /* @escapeNotVerified */ __('Login to View') ?></a>
                                         <!--if customer is not logged in-->
                                     <?php endif; ?>
                                 </div>
