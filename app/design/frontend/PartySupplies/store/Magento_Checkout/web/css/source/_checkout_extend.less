@@ -219,7 +219,7 @@
         }
 
         #checkout-shipping-method-load {
-            width: 60%;
+            width: 100%;
         }
 
         .ship-warehouse {
@@ -493,15 +493,33 @@
             & > * {
                 display: inline-block;
                 vertical-align: bottom;
+                margin-bottom: 10px;
+            }
+
+            #onepage-checkout-shipping-method-additional-load {
+                width: 50%;
+
+                @media screen and (max-width: 768px) {
+                    min-width: 100%;
+                }
             }
 
             .actions-toolbar {
                 text-align: right;
-                width: 38%;
+                width: ~"calc(50% - 4px)";
+
+                @media screen and (max-width: 768px) {
+                    min-width: 100%;
+                }
 
                 div.primary {
                     float: none;
                     width: 95%;
+
+                    @media screen and (max-width: 768px) {
+                        min-width: 100%;
+                    }
+
                 }
 
                 button.primary {
