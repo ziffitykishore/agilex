@@ -43,6 +43,26 @@ class OrderUpdateTask implements TaskInterface
     const ORDER_SYNC = 'order_sync';
 
     /**
+     * UPS GROUND Shipping code
+     */
+    const UPS_GROUND = 'ups_03';
+
+    /**
+     * UPS NEXT DAY Shipping code
+     */
+    const UPS_NEXT_DAY = 'ups_01';
+
+    /**
+     * UPS SECOND DAY Shipping code
+     */
+    const UPS_SECOND_DAY = 'ups_02';
+
+    /**
+     * UPS THREE DAY Shipping code
+     */
+    const UPS_THREE_DAY = 'ups_12';
+
+    /**
      * @var DataObjectFactory
      */
     protected $dataObjectFactory;
@@ -152,6 +172,12 @@ class OrderUpdateTask implements TaskInterface
      */
     protected $scopeConfig;
 
+    protected $pricingHelper;
+
+    protected $product;
+    
+    protected $addressRenderer;
+
     /**
      *
      * @param DataObjectFactory $dataObjectFactory
@@ -194,7 +220,10 @@ class OrderUpdateTask implements TaskInterface
         DataRepositoryInterface $navisionLoggerRepository,
         TransportBuilder $transportBuilder,
         SenderResolverInterface $senderResolver,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        \Magento\Catalog\Model\Product $product,
+        \Magento\Framework\Pricing\Helper\Data $pricingHelper,
+        \Magento\Sales\Model\Order\Address\Renderer $addressRenderer
     ) {
         $this->dataObjectFactory = $dataObjectFactory;
         $this->logger = $logger;
@@ -218,6 +247,9 @@ class OrderUpdateTask implements TaskInterface
         $this->transportBuilder = $transportBuilder;
         $this->senderResolver = $senderResolver;
         $this->scopeConfig = $scopeConfig;
+        $this->pricingHelper = $pricingHelper;
+        $this->product = $product;
+        $this->addressRenderer = $addressRenderer;
     }
 
     /**
@@ -305,6 +337,9 @@ class OrderUpdateTask implements TaskInterface
                     . 'in Magento. MAGENTO_ORDER_ID = '.$orderData['External_Document_No']
                 );
                 $this->logger->info('Order Status Changed Successful. MAGENTO_ORDER_NO = '.$order->getIncrementId());
+                # To send NAV order sync success mail
+                $mailConfig = $this->setMailConfig($order, $orderData, true);
+                $this->sendEmail($mailConfig);
             }
 
         } catch (Exception $e) {
@@ -367,6 +402,38 @@ class OrderUpdateTask implements TaskInterface
         return false;
     }
 
+
+    public function formatPricing($price = null)
+    {
+        return $this->pricingHelper->currency((float)$price, true, false);
+    }
+
+    protected function getAmountSaved($order)
+    {
+        $items = $order->getAllItems();
+
+        $totalAmountSaved =0;
+        foreach ($items as $item) {
+            $product = $this->product->load($item->getProductId());
+            $prices = $product->getTierPrices();
+
+            $pcaPrice = 0;
+            $nonPcaPrice =0;
+            foreach ($prices as $price) {
+
+                $pcaPrice +=  ($price['customer_group_id'] == 4) ? $price->getValue() : 0;
+                $nonPcaPrice += ($price['customer_group_id'] == 5) ? $price->getValue() : 0;
+            }
+
+            $itemAmountSaved = $nonPcaPrice - $pcaPrice;
+
+            $totalAmountSaved += $itemAmountSaved;
+        }
+
+        return $this->formatPricing($totalAmountSaved);
+    }
+
+
     /**
      * To save NAV log status
      *
@@ -414,18 +481,29 @@ class OrderUpdateTask implements TaskInterface
      * To set Mail Configuration
      *
      * @param OrderInterface $order
+     * $param boolean $status
      *
      * @return array
      */
-    protected function setMailConfig($order)
+    protected function setMailConfig($order, $navResponse = null, $status = false)
     {
         $mailConfig = [];
 
-        $mailConfig['template_id'] = $this->getScopeConfigValue(
-            'nav/order_update/order_sync_failed_email_template',
-            ScopeInterface::SCOPE_STORE,
-            $order->getStoreId()
-        );
+        if ($status) {
+
+            $mailConfig['template_id'] = $this->getScopeConfigValue(
+                'nav/order_update/order_sync_success_email_template',
+                ScopeInterface::SCOPE_STORE,
+                $order->getStoreId()
+            );
+        } else {
+
+            $mailConfig['template_id'] = $this->getScopeConfigValue(
+                'nav/order_update/order_sync_failed_email_template',
+                ScopeInterface::SCOPE_STORE,
+                $order->getStoreId()
+            );
+        }
 
         $mailConfig['from_email_address'] = $this->senderResolver->resolve(
             $this->getScopeConfigValue(
@@ -436,23 +514,85 @@ class OrderUpdateTask implements TaskInterface
             $order->getStoreId()
         );
 
-        $recipients = explode(
-            ',',
-            $this->getScopeConfigValue(
-                'nav/order_update/order_sync_failure_mail_to',
-                ScopeInterface::SCOPE_STORE,
-                $order->getStoreId()
-            )
-        );
+        if ($status) {
+
+            $recipients = explode(
+                ',',
+                $this->getScopeConfigValue(
+                    'nav/order_update/order_sync_success_mail_to',
+                    ScopeInterface::SCOPE_STORE,
+                    $order->getStoreId()
+                )
+            );
+            $recipients[] = $order->getCustomerEmail();
+        } else {
+
+            $recipients = explode(
+                ',',
+                $this->getScopeConfigValue(
+                    'nav/order_update/order_sync_failure_mail_to',
+                    ScopeInterface::SCOPE_STORE,
+                    $order->getStoreId()
+                )
+            );
+        }
 
         $mailConfig['to_email_address'] = $recipients;
         $mailConfig['store_id'] = $order->getStoreId();
-        $mailConfig['template_variable'] = ['increment_id' => $order->getIncrementId()];
+
+        $mailConfig['template_variable'] = [
+            'increment_id' => $order->getIncrementId(),
+            'nav_order_id' => isset($navResponse['No']) ? $navResponse['No'] : false,
+            'order' => $order,
+            'is_pca' => $this->isPcaCustomer($order),
+            'is_ups' => $this->isUps($order),
+            'amount_saved' => $this->getAmountSaved($order),
+            'formattedShippingAddress' => $this->getFormattedShippingAddress($order)
+        ];
 
         return $mailConfig;
     }
 
-    /**
+    
+    protected function getFormattedShippingAddress($order)
+    {
+        return $order->getIsVirtual()
+            ? null
+            : $this->addressRenderer->format($order->getShippingAddress(), 'html');
+    }    
+
+    protected function isPcaCustomer($order)
+    {
+        $groupId = $order->getCustomerGroupId();
+
+        $adminGroup = $this->getScopeConfigValue(
+            'nav/customer_group_mapping/customer_group_id_pca',
+            ScopeInterface::SCOPE_STORE,
+            $order->getStoreId()
+        );
+
+        if ($groupId == $adminGroup) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    protected function isUps($order)
+    {
+        $shippingCode = $order->getShippingMethod();
+        if ($shippingCode == self::UPS_GROUND
+            || $shippingCode == self::UPS_NEXT_DAY
+            || $shippingCode == self::UPS_SECOND_DAY
+            || $shippingCode == self::UPS_THREE_DAY
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+        /**
      *
      * @param string $path
      * @param string $scopeType

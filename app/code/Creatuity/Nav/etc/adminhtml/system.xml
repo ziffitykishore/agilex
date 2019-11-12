@@ -115,11 +115,22 @@
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
 
-                <field id="order_count_per_request" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="order_sync_success_mail_to" translate="label" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Order Sync Success Email To</label>
+                    <comment>Comma-separated</comment>
+                </field>
+
+                <field id="order_sync_success_email_template" translate="label comment" type="select" sortOrder="29" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Order Sync Success Email</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+
+                <field id="order_count_per_request" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Order Count Per Request</label>
                 </field>
 
-                <field id="amazon_shipping_method_mappings" translate="label" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="amazon_shipping_method_mappings" translate="label" type="textarea" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Aamzon Shipping Method Mappings</label>
                     <comment>List of mappings in format: AMAZON_SHIPPING_METHOD, MATRIXRATE_SHIPPING_METHOD</comment>
                 </field>
@@ -194,6 +205,19 @@
                 </field>
                 <field id="payonaccount_payment_method_code" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Payment Method Code - PayOnAccount</label>
+                </field>
+            </group>
+
+            <group id="customer_group_mapping" translate="label" type="text" sortOrder="52" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Group Mapping</label>
+
+                <field id="customer_group_id_pca" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group ID Mapping - PCA</label>
+                    <source_model>Creatuity\Nav\Model\System\Config\Customergroups</source_model>
+                </field>
+                <field id="customer_group_id_non_pca" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Customer Group ID Mapping - NON PCA</label>
+                    <source_model>Creatuity\Nav\Model\System\Config\Customergroups</source_model>
                 </field>
             </group>
 
