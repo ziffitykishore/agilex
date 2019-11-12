@@ -41,6 +41,14 @@
     .content-after-sidebar {
       padding: $indent__m $indent__l;
 
+      &.desktop-only {
+        display: none;
+
+        @include min-screen($screen__m) {
+          display: block;
+        }
+      }
+
       img {
         border: 1px solid $c-grey;
       }
@@ -50,6 +58,19 @@
   .bottom-cms-content {
     width: 100%;
     box-sizing: border-box;
+
+    &.mobile-only {
+      max-width: 400px;
+      margin: 0 auto $indent__base auto;
+
+      @include min-screen($screen__m) {
+        display: none;
+      }
+
+      p {
+        margin-left: $indent__s;
+      }
+    }
 
     div {
       margin: 0 auto $indent__l auto;
@@ -191,6 +212,8 @@
   }
 
   .catland-sibling-categories .sibling-buttons {
+    padding-bottom: $indent__s;
+
     .ais-Hits-list {
       padding-left: $indent__s;
       padding-right: 0;

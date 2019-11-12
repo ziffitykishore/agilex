@@ -969,8 +969,7 @@ body.catalog-product-compare-index {
             width: 100%;
             margin: 0;
 
-            tr,
-            th {
+            tr th.label {
                 -webkit-text-stroke: .5px;
                 font-weight: $font-weight__semibold;
             }
@@ -994,8 +993,8 @@ body.catalog-product-compare-index {
                 }
 
                 &[data-th="Manufacturer Price"] {
-                    pointer-events: none;
-                    color: $text__color;
+                    pointer-events: none; // Mobile Safari thinks this is a phone number
+                    color: $text__color !important; // Mobile Safari thinks this is a phone number
                 }
             }
         }
