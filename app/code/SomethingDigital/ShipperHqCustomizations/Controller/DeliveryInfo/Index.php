@@ -68,13 +68,13 @@ class Index extends Action
                         if (($stockItem->getQty() - $quoteItems[$product->getId()] < 0)
                             && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
                         ) {
-                            $deliveryInfo[$sku] = 'Item on backorder';
+                            $deliveryInfo[$sku] = __('Item on backorder');
                         } else {
-                            $deliveryInfo[$sku] = 'Expected Delivery: ' . $deliveryDate;
+                            $deliveryInfo[$sku] = __('Expected Delivery: %1', $deliveryDate);
                         }
                     }
                 } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
-                   $deliveryInfo[$sku] = 'Ships direct from manufacturer';
+                   $deliveryInfo[$sku] = __('Ships direct from manufacturer');
                 }
             }
         }
