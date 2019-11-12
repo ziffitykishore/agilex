@@ -14,6 +14,12 @@
         }
     }
 
+    #onepage-checkout-shipping-method-additional-load {
+        .tooltip {
+            display: none;
+        }
+    }
+    
     .multishipping-checkout-addresses {
         .page-header {
             .header {
@@ -150,6 +156,49 @@
 
             .shipping-chioce {
                 display: block;
+                
+                .tooltip {
+                    position: absolute;
+                    z-index: 9999;
+                    opacity: 1;
+                    padding: 10px;
+                    background: #fff;
+                    border: 1px solid #cccccc;
+                    border-radius: 7px;
+                    display: none;
+
+                    @media screen and (max-width: 768px) {
+                        position: relative;
+                        display: block;
+                    }
+
+                    &:before {
+                        content: '';
+                        width: 0px;
+                        height: 0px;
+                        border-style: solid;
+                        border-width: 10px 10px 10px 0;
+                        border-color: transparent #cecece transparent transparent;  
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-right: 5px;
+                        transform: rotate(90deg);
+                        position: absolute;
+                        top: -15px;
+                        left: 30px;
+                    }
+
+                    p {
+                        font-size: 13px;
+                        line-height: 18px;
+                    }
+                }
+
+                &:hover {
+                    .tooltip {
+                        display: block;
+                    }
+                }
 
                 input[type=radio] {
                     display: none;

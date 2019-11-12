@@ -21,5 +21,20 @@
             text="method.method_title" />
         <span><each args="element.getRegion('price')" render="" /></span>
     </label>
+    
+    <!-- ko if: method.carrier_code == 'ownshipping' -->
+        <div class="tooltip ownshipping" data-bind="visible: element.isVisible()">
+            <p data-bind="text: element.getTooltipMessage()"></p>
+        </div>    
+    <!-- /ko -->    
+    
+    <!-- ko if: method.carrier_code == 'palletshipping' -->
+        <div class="tooltip palletshipping" data-bind="visible: element.isVisible()">
+            <p data-bind="text: element.getPalletMessage()"></p>
+        </div>
+    <!-- /ko -->
+    
+
+
     </div>
 </div>
