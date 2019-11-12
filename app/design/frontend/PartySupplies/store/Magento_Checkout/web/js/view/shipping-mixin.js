@@ -16,6 +16,18 @@ define([
 
         warehouseAddress: function () {
             return window.checkoutConfig.warehouse;
+        },
+        
+        isVisible: function () {
+            return true;
+        },
+        
+        getTooltipMessage: function () {
+            return window.checkoutConfig.ownShipping.tooltip;
+        },
+        
+        getPalletMessage: function () {
+            return window.checkoutConfig.palletShipping.tooltip;
         }
     };
 
