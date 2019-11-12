@@ -10,9 +10,9 @@ define([
         $('.price-box.price-final_price').on('updatePrice', function(e, info) {
             var simpleProductId = info['id'];
             var sku = map[simpleProductId];
-            if (data[sku] != null) {
-                if (data[sku] != 0) {
-                    $('.product-info-main .price').text(currencySymbol + data[sku]);
+            if (data[sku]['price'] != null) {
+                if (data[sku]['price'] != 0) {
+                    $('.product-info-main .price').text(currencySymbol + data[sku]['price']);
                 }
             } else {
                 // if the user deslected a swatch we'll need to fall
@@ -27,11 +27,11 @@ define([
              
             // Skip update if we don't have a nourison sku or customer
             // specific price
-            if (sku == null || data[sku] == null) {
+            if (sku == null || data[sku]['price'] == null) {
                 return;
             }
-            if (data[sku] != 0) {
-                $('.product-info-main .price').text(currencySymbol + data[sku]);
+            if (data[sku]['price'] != 0) {
+                $('.product-info-main .price').text(currencySymbol + data[sku]['price']);
             }
         }
     }
