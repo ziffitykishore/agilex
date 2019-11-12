@@ -90,6 +90,10 @@ $nav-section-title__height: 60px;
                         a {
                             padding-left: 0;
                             color: $text__color;
+
+                            @include hover {
+                                color: $text__color-alt;
+                            }
                         }
                     }
                 }
