@@ -87,15 +87,15 @@ $items = $order->getAllItems();
                     $order = $block->getItems();
                     $items = $order->getAllItems(); foreach ($items as $item) :
                     ?>
-                    <?php if ($item->getProductId() != null) { ?>
+                    <?php if ($item->getProductId() != null && $item->getParentItemId() == null) { ?>
                     <tr>
                         <td><p><?= /* @noEscape */ $item->getName(); ?></p></td>
                         <td><?= /* @noEscape */ $item->getSku(); ?></span></td>
                         <td><div class="color-qty-cp">
-                    <span><span><?= /* @noEscape */ (int)$item->getQtyOrdered(); ?></span></span>
-                </div></td>
-                        <td><span class="price"><?php $subtotal = (int)$item->getBasePrice() * (int)$item->getQtyOrdered(); ?>
-                <?= /* @noEscape */ $block->formatPricing($subtotal); ?></span></td>
+                            <span><span><?= /* @noEscape */ (int)$item->getQtyOrdered(); ?></span></span>
+                        </div></td>
+                        <td><span class="price"><?php $subtotal = $item->getRowTotal() ?>
+                        <?= /* @noEscape */ $block->formatPricing($subtotal); ?></span></td>
                     </tr>
                     <?php }
                     endforeach; ?>
