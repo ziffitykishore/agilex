@@ -1148,6 +1148,18 @@ footer.page-footer {
         }
     }
 
+    .slick-dots {
+        bottom: $indent__l;
+
+        @include min-screen($screen__m) {
+            bottom: -$indent__s;
+        }
+
+        @include min-screen($screen__l) {
+            display: none !important; // override Slick JS
+        }
+    }
+
     .testimonial {
         &-title {
             @include bryant-park-headings-h5;
