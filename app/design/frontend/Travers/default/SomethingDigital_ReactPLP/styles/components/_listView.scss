@@ -34,7 +34,12 @@ $list-image__margin--desktop: $indent__m;
   }
 
   .cart-actions {
-    overflow-x: hidden
+    overflow-x: hidden;
+
+    @include min-screen($screen__l) {
+      position: relative;
+      overflow-x: visible;
+    }
   }
 
   .quantity-and-cart {
@@ -97,7 +102,10 @@ $list-image__margin--desktop: $indent__m;
       }
 
       @include min-screen($screen__l) {
-        flex-basis: 100%;
+        max-width: 300px;
+        position: absolute;
+        right: $indent__m;
+        top: 60px;
         width: 100%;
         text-align: right;
       }
