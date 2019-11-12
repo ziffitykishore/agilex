@@ -331,6 +331,15 @@ $nav-section-title__height: 60px;
 
         .quick-order-container a {
             border-bottom: 0;
+            font-weight: $font-weight__semibold;
+            font-family: $font-family__sans-serif;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-size: 16px;
+
+            @include hover {
+                color: $text__color-alt;
+            }
         }
     }
 
