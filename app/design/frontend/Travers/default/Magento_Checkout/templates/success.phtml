@@ -9,6 +9,7 @@
 ?>
 <?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
 <div class="checkout-success">
+    <h1><?= __('Order confirmed') ?></h1>
     <?php if ($block->getOrderId()):?>
         <?php if ($block->getCanViewOrder()) :?>
             <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', '/sales/order/history/', $block->escapeHtml($block->getOrderId()))) ?></p>
