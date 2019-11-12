@@ -1035,7 +1035,7 @@ footer.page-footer {
 
 
 .triple-tout-row {
-    display: flex;
+    display: block !important; // override PageBuilder
     flex-direction: column;
     margin-top: 30px;
 
@@ -1051,6 +1051,7 @@ footer.page-footer {
         max-width: 580px !important;
         margin: $indent__base auto !important;
         padding: 0 15px !important;
+        display: block !important; // override PageBuilder
 
         figure {
             margin-bottom: 0 !important;
