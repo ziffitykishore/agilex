@@ -56,7 +56,7 @@ class Quote
         $this->productRepo = $productRepo;
     }
 
-    public function repriceCustomerQuote()
+    public function repriceCustomerQuote($saveQuoteItem = false)
     {
         $items = $this->cart->getQuote()->getAllItems();
 
@@ -81,7 +81,9 @@ class Quote
                             $item->setCustomPrice($customPrice);
                             $item->setOriginalCustomPrice($customPrice);
                             $item->getProduct()->setIsSuperMode(true);
-                            $item->save(); 
+                            if ($saveQuoteItem) {
+                                $item->save();
+                            }
                         }
                     }
                 } catch (LocalizedException $e) {
