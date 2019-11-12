@@ -82,27 +82,6 @@ class QuoteItemProcessor
         DataObject $request, 
         Product $candidate
     ) {
-        $id = $candidate->getId();
-        try {
-            /** @var ProductInterface $product */
-            $product = $this->productRepo->getById($id);
-        } catch (LocalizedException $e) {
-            return [$item, $request, $candidate];
-        }
-        
-        $sku = $product->getSku();
-        /** @var int $qty */
-        $qty = $candidate->getCartQty();
-
-        $items = $this->cart->getQuote()->getAllItems();
-
-        $totalItemQty = $qty;
-        foreach ( $items as $item) {
-            if ($item->getProductId() == $id) {
-                $totalItemQty +=  $item->getQty();
-            }
-        }
-
         try {
             /** @var \Magento\Customer\Api\Data\CustomerInterface $customerData */
             $customerData = $this->customerRepo->getById($this->session->getCustomerId());
@@ -110,7 +89,24 @@ class QuoteItemProcessor
             return [$item, $request, $candidate];
         }
         if ($this->session->isLoggedIn()) {
-            try { 
+            try {
+                $id = $candidate->getId();
+                /** @var ProductInterface $product */
+                $product = $this->productRepo->getById($id);
+
+                $sku = $product->getSku();
+                /** @var int $qty */
+                $qty = $candidate->getCartQty();
+
+                $items = $this->cart->getQuote()->getAllVisibleItems();
+
+                $totalItemQty = $qty;
+                foreach ( $items as $quoteItem) {
+                    if ($quoteItem->getProductId() == $id) {
+                        $totalItemQty += $quoteItem->getQty();
+                    }
+                }
+
                 $prices = $this->spotPricingApi->getSpotPrice($sku);
                 $price = $this->arrayManager->get('body/DiscountPrice', $prices);
 
@@ -123,7 +119,6 @@ class QuoteItemProcessor
                 }
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
-                return [$item, $request, $candidate];
             }
         }
         return [$item, $request, $candidate];
