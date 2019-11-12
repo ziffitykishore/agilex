@@ -76,6 +76,10 @@ body {
 
             .logo {
                 padding-left: $indent__l;
+
+                .checkout-index-index & {
+                    padding-left: 0;
+                }
             }
 
             .quick-order-container {
@@ -86,6 +90,10 @@ body {
         @include min-screen($screen__l) {
             .logo {
                 padding-left: 50px;
+
+                .checkout-index-index & {
+                    padding-left: 0;
+                }
             }
         }
     }
@@ -353,10 +361,6 @@ body {
     @include min-screen($screen__l) {
         padding-left: 70px;
         margin-left: 0;
-    }
-
-    .checkout-index-index & {
-        padding-left: 0;
     }
 
     .page-print & {
