@@ -20,7 +20,7 @@ $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::cla
 ?>
 <form class="form-address-edit" action="<?= /* @escapeNotVerified */ $block->getSaveUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Contact Information') ?></span></legend><br>
+        <legend class="legend"><h3><?= /* @escapeNotVerified */ __('Contact Information') ?></h3></legend><br>
         <?= $block->getBlockHtml('formkey') ?>
         <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
         <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
@@ -39,7 +39,7 @@ $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::cla
         <?php endif ?>
     </fieldset>
     <fieldset class="fieldset">
-        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Address') ?></span></legend><br>
+        <legend class="legend"><h3><?= /* @escapeNotVerified */ __('Address') ?></h3></legend><br>
         <?php $_streetValidationClass = $this->helper(\Magento\Customer\Helper\Address::class)->getAttributeValidationClass('street'); ?>
         <div class="field street required">
             <label for="street_1" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?></span></label>
