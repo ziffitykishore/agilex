@@ -249,6 +249,7 @@ $home-sidebar-width: 240px;
         width: 10px !important; //override slick's !important
         height: 10px;
         line-height: 10px;
+        border: 0;
     }
 
     li:not(.slick-active) button {
