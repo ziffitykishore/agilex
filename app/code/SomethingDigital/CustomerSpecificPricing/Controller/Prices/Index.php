@@ -59,15 +59,15 @@ class Index extends Action
                     $price = $price * 100;
                 }
 
-                $qtyPrice1 = round($this->arrayManager->get('body/QtyPrice1', $prices), 2);
-                $qtyPrice2 = round($this->arrayManager->get('body/QtyPrice2', $prices), 2);
-                $qtyPrice3 = round($this->arrayManager->get('body/QtyPrice3', $prices), 2);
-                $qtyBreak1 = round($this->arrayManager->get('body/QtyBreak1', $prices), 2);
-                $qtyBreak2 = round($this->arrayManager->get('body/QtyBreak2', $prices), 2);
-                $qtyBreak3 = round($this->arrayManager->get('body/QtyBreak3', $prices), 2);
+                $qtyPrice1 = number_format($this->arrayManager->get('body/QtyPrice1', $prices), 2);
+                $qtyPrice2 = number_format($this->arrayManager->get('body/QtyPrice2', $prices), 2);
+                $qtyPrice3 = number_format($this->arrayManager->get('body/QtyPrice3', $prices), 2);
+                $qtyBreak1 = number_format($this->arrayManager->get('body/QtyBreak1', $prices), 2);
+                $qtyBreak2 = number_format($this->arrayManager->get('body/QtyBreak2', $prices), 2);
+                $qtyBreak3 = number_format($this->arrayManager->get('body/QtyBreak3', $prices), 2);
 
                 $data[$sku] = [
-                    'price' => round($price, 2),
+                    'price' => number_format($price, 2),
                     'unitPrice' => $unitPrice,
                     'QtyPrice1' => $qtyPrice1 ? $qtyPrice1 : '',
                     'QtyPrice2' => $qtyPrice2 ? $qtyPrice2 : '',
