@@ -23,7 +23,7 @@
             </action>
         </referenceBlock>
         <referenceContainer name="order.success.additional.info">
-            <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.items" as="additional.info" template="PartySupplies_OrderSuccess::items.phtml" cacheable="false" />
+            <block class="Magento\Checkout\Block\Onepage\Success" name="checkout.items" as="additional.info" template="PartySupplies_OrderSuccess::items.phtml"/>
         </referenceContainer>
         <referenceBlock name="checkout.success.print.button" remove="true" />
         <referenceBlock name="checkout.registration" remove="true" />
