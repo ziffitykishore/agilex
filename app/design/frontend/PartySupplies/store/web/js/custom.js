@@ -1,7 +1,6 @@
 require(['jquery', 'slick', 'nice-select'], function($) {
     $(document).ready(function($) {
-        var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
-        if (!isSafari && $('#sorter').length) {
+        if ($('#sorter').length) {
             $('#sorter').niceSelect();
         }
 
