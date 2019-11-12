@@ -96,10 +96,6 @@
                     box-sizing: border-box;
                 }
 
-                @include min-screen($screen__m) {
-                    flex-wrap: nowrap;
-                }
-
                 .tabs-content {
                     margin: $indent__m auto;
                     width: 100%;
@@ -113,24 +109,22 @@
 
                 a {
                     max-width: 45px;
+                    height: 45px;
                     width: 100%;
                     text-align: center;
                     border: 1px solid $c-border;
                     color: $text__color;
-
-                    @include min-screen($screen__m) {
-                        max-width: 40px;
-
-                        &:not(:last-of-type) {
-                            border-right: 0;
-                        }
-                    }
-
+                    box-sizing: border-box;
 
                     @include hover {
                         background-color: $primary__color;
                         color: $color-white;
                         text-decoration: none;
+                    }
+
+                    p {
+                        margin-top: 12px;
+                        font-size: $font-size__base--desktop;
                     }
                 }
             }

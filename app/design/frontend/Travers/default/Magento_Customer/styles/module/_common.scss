@@ -267,12 +267,6 @@ $_password-very-strong: #81b562 !default;
     }
 
     .orders-history {
-        &-header {
-            margin-top: 0;
-            text-transform: none;
-            font-family: $font-family__base;
-        }
-
         .order-search {
             display: flex;
             flex-direction: column;

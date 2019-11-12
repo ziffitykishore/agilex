@@ -13,6 +13,7 @@ const collapsible = () => {
         media: `(min-width: ${breakpoints.screen__m + 1}px)`,
         entry() {
           $('.block-collapsible-nav-title[aria-expanded="false"]').trigger('click');
+          $('.sidebar-filters .Collapsible__trigger').trigger('click');
         },
         exit() {
           $('.block-collapsible-nav-title[aria-expanded="true"]').trigger('click');
