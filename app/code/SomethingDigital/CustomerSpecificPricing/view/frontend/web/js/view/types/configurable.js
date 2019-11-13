@@ -10,10 +10,8 @@ define([
         $('.price-box.price-final_price').on('updatePrice', function(e, info) {
             var simpleProductId = info['id'];
             var sku = map[simpleProductId];
-            if (data[sku]['price'] != null) {
-                if (data[sku]['price'] != 0) {
-                    $('.product-info-main .price').text(currencySymbol + data[sku]['price']);
-                }
+            if (is_array(data[sku]) && isset(data[sku]['price']) && data[sku]['price'] != 0 && data[sku]['price'] != null) {
+                $('.product-info-main .price').text(currencySymbol + data[sku]['price']);
             } else {
                 // if the user deslected a swatch we'll need to fall
                 // back to the configurable product
@@ -30,7 +28,7 @@ define([
             if (sku == null || data[sku]['price'] == null) {
                 return;
             }
-            if (data[sku]['price'] != 0) {
+            if (is_array(data[sku]) && isset(data[sku]['price']) && data[sku]['price'] != 0) {
                 $('.product-info-main .price').text(currencySymbol + data[sku]['price']);
             }
         }
