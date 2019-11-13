@@ -206,12 +206,17 @@
                         float: right;
                         height: 60%;
                         width: 60%;
+
+                        @media screen and (max-width: 768px) {
+                            width: 90%;
+                        }
                     }
 
                     @media screen and (max-width: 768px) {
-                        bottom: -50px;
+                        bottom: -20px;
                         position: absolute;
-                        right: 0;
+                        right: 20px;
+                        width: 50%;
                     }
                 }
             }
@@ -468,9 +473,11 @@
                 }
 
                 img {
-                    width: auto !important;
-                    max-width: unset;
-                    max-height: 350px;
+                    @media screen and (max-width: 768px) {
+                        width: auto !important;
+                        max-width: unset;
+                        max-height: 350px;
+                    }
                 }
 
                 .flex-caption {
