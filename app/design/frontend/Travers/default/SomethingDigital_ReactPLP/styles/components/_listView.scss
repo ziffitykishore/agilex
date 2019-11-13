@@ -140,6 +140,14 @@ $list-image__margin--desktop: $indent__m;
       @include min-screen($screen__m) {
         align-items: center;
       }
+
+      @include min-screen($screen__l) {
+        flex-basis: 65%;
+      }
+
+      @include min-screen($plp_breakpoint) {
+        flex-basis: 75%;
+      }
     }
 
     .list-image {
@@ -153,6 +161,33 @@ $list-image__margin--desktop: $indent__m;
 
       @include min-screen($screen__l) {
         max-width: 130px;
+      }
+    }
+  }
+
+  .list-content {
+    @include min-screen($screen__l) {
+      display: flex;
+      width: 70%;
+    }
+
+    &-left {
+      @include min-screen($screen__l) {
+        width: 290px;
+      }
+
+      @include min-screen($plp_breakpoint) {
+        width: 320px;
+      }
+    }
+
+    &-right {
+      @include min-screen($screen__l) {
+        margin-left: $indent__l;
+      }
+
+      @include min-screen($plp_breakpoint) {
+        margin-left: 75px;
       }
     }
   }
