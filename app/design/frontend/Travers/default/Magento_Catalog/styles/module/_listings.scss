@@ -270,6 +270,10 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
 
 .products-crosssell .product-item-link {
     color: $text__color;
+
+    @include hover {
+        text-decoration: none;
+    }
 }
 
 //

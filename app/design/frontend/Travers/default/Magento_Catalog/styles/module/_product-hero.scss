@@ -107,6 +107,14 @@ $product-hero__button-and-catalog__width: 240px;
             font-weight: $font-weight__semibold;
             color: $c-dusty-grey;
         }
+
+        .price-box .price-from::after {
+            content: '-';
+            font-size: 26px;
+            line-height: 1;
+            font-weight: $font-weight__semibold;
+            margin-left: $indent__xs;
+        }
     }
 
     .product.info.detailed {

@@ -1,0 +1,38 @@
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0;
+    margin-bottom: $indent__base;
+    padding-left: 0;
+
+    li {
+        list-style: none;
+
+        &:not(:last-child) {
+            margin-right: $indent__base;
+        }
+    }
+
+    svg {
+        display: block;
+        width: 25px;
+        height: 25px;
+
+        * {
+            fill: currentColor;
+        }
+    }
+
+    a {
+        display: block;
+        color: $primary__color;
+
+        @include hover {
+            color: $secondary__color;
+        }
+
+        &:visited {
+            color: $primary__color;
+        }
+    }
+}

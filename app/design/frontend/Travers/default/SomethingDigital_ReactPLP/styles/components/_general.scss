@@ -24,7 +24,7 @@ $sidebar__max-width: 240px;
       &.productInfo-opened {
         .numHits-view-switcher .number-of-hits {
           position: absolute;
-          right: 330px;
+          right: 240px;
         }
       }
 
@@ -284,6 +284,13 @@ $sidebar__max-width: 240px;
   }
 }
 
+.productInfo-opened .groups,
+.productInfo-opened .table-view {
+  @include min-screen($screen__m) {
+    padding-right: 0;
+  }
+}
+
 .groups {
   width: 100%;
   box-sizing: border-box;
@@ -521,6 +528,26 @@ $sidebar__max-width: 240px;
         $height     : auto,
         $pseudo     : before
       );
+    }
+  }
+}
+
+.list-and-flyout,
+.table-and-flyout {
+  .view-all {
+    text-align: center;
+    margin-top: $indent__s;
+    margin-bottom: $indent__xs;
+
+    button {
+      font-weight: $font-weight__semibold;
+      background-color: transparent;
+      text-transform: capitalize;
+      font-family: $font-family__base;
+      border: 0;
+      color: $c-cobalt;
+      font-size: $font-size__base--desktop;
+      letter-spacing: 0;
     }
   }
 }
