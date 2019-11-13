@@ -268,11 +268,16 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
     color: $product-name-link__color__hover;
 }
 
-.products-crosssell .product-item-link {
-    color: $text__color;
+.products-crosssell,
+.product-item-details {
+    .product-item-link,
+    .product-item-link:visited {
+        color: $text__color;
 
-    @include hover {
-        text-decoration: none;
+        @include hover {
+            text-decoration: none;
+            color: $text__color-alt;
+        }
     }
 }
 
