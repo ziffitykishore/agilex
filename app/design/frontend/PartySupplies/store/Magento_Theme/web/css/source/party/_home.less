@@ -18,6 +18,14 @@
             display: none;
         }
 
+        .sec-catagory{
+            margin-top: 50px;
+
+            @media screen and (max-width: 768px) {
+                margin-top: 0;
+            }
+        }
+
         @media screen and (max-width: 768px) {
             padding-top: 80px;
         }
@@ -449,6 +457,101 @@
 
 
     .cms-index-index {
+
+        .top-container {
+            padding: 0;
+
+            .container-fluid {
+                position: relative;
+            }
+            .banner-image {
+                img {
+                    @media screen and (max-width: 768px) {
+                        max-height: 350px;
+                        width: auto;
+                        max-width: unset;
+                    }
+                }
+            }
+            .flex-caption {
+                position: absolute;
+                right: 0;
+                left: 0;
+                top: 50%;
+                .transform(translateY(-50%));
+                pointer-events: none;
+                z-index: 9999;
+                .slider-content {
+                    .container-sm();
+                    display: none;
+                    .slider-header {
+                        text-transform: uppercase;
+                        font-size: 50px;
+                        line-height: normal;
+                        margin-bottom: 30px;
+                        span {
+                            display: block;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .banner-text {
+                left: 50%;
+                position: absolute;
+                top: 50%;
+                text-align: center;
+                transform: translate(-50%, -50%);
+                width: 80%;
+
+                h1 {
+                    font-size: 80px;
+                    font-weight: @font-weight__light;
+
+                    @media screen and (max-width: 1400px) {
+                        font-size: 60px;
+                        margin-bottom: 10px;
+                    }
+
+                    @media screen and (max-width: 768px) {
+                        font-size: 30px;
+                        font-weight: 500;
+                    }
+                }
+                .banner-anim {
+                    h2 {
+                        display: inline-block;
+                        font-family: 'Oswald', sans-serif;
+                        letter-spacing: .5em;
+                        margin-top: 10px;
+                        text-transform: uppercase;
+
+                        span {
+                            color: #f1003e;
+                            letter-spacing: 0;
+                            display: block;
+                            text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
+                            background: url(../images/banner-animate-small.png) repeat-y;
+                            -webkit-background-clip: text;
+                            background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            -webkit-animation: aitf 8s linear infinite;
+                            -webkit-transform: translate3d(0, 0, 0);
+                            -webkit-backface-visibility: hidden;
+                            font-weight: @font-weight__bold;
+
+                            @media screen and (min-width: 769px) {
+                                font-size: 40px;
+                            }
+
+                            @media screen and (max-width: 768px) {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         .magestore-bannerslider {
 
             &-standard {
@@ -709,6 +812,13 @@
     }
     //IE fixes
     .ie.cms-index-index {
+        .banner-text {
+            .banner-anim {
+                h2 {
+                    span {background:none}
+                }
+            }
+        }
         .magestore-bannerslider-standard {
             .banner-text {
                 .banner-anim {
