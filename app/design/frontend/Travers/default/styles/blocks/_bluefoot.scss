@@ -1256,6 +1256,8 @@ footer.page-footer {
                 transform: translateY(250px);
                 text-align: center;
                 width: 100%;
+                margin: 0 auto;
+                color: $text__color !important; // override PageBuilder
             }
         }
     }
