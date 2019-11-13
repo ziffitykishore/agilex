@@ -417,6 +417,8 @@ class OrderUpdateTask implements TaskInterface
             $product = $this->product->load($item->getProductId());
             $prices = $product->getTierPrices();
 
+            $qty = (int)$item->getQtyOrdered();
+
             $pcaPrice = 0;
             $nonPcaPrice =0;
             foreach ($prices as $price) {
@@ -427,7 +429,8 @@ class OrderUpdateTask implements TaskInterface
 
             $itemAmountSaved = $nonPcaPrice - $pcaPrice;
 
-            $totalAmountSaved += $itemAmountSaved;
+            $totalAmountSaved += ($itemAmountSaved * $qty);
+
         }
 
         return $this->formatPricing($totalAmountSaved);
