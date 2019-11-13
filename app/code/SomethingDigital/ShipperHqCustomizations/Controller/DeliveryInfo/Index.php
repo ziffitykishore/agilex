@@ -55,23 +55,27 @@ class Index extends Action
         }
 
         $deliveryDates = $this->session->getItemsDeliveryDates();
-        foreach ($deliveryDates as $sku => $deliveryDate) {
-            $product = $this->productRepository->get($sku);
-            $sxInventory = $product->getData('sx_inventory_status');
-            $stockItem = $this->stockItem->load($product->getId(), 'product_id');
+        $deliveryInfo = [];
 
-            if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_DNR) {
-                if (isset($quoteItems[$product->getId()])) {
-                    if (($stockItem->getQty() - $quoteItems[$product->getId()] < 0)
-                        && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
-                    ) {
-                        $deliveryInfo[$sku] = 'Item on backorder';
-                    } else {
-                        $deliveryInfo[$sku] = 'Expected Delivery: ' . $deliveryDate;
+        if (is_array($deliveryDates)) {
+            foreach ($deliveryDates as $sku => $deliveryDate) {
+                $product = $this->productRepository->get($sku);
+                $sxInventory = $product->getData('sx_inventory_status');
+                $stockItem = $this->stockItem->load($product->getId(), 'product_id');
+
+                if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_DNR) {
+                    if (isset($quoteItems[$product->getId()])) {
+                        if (($stockItem->getQty() - $quoteItems[$product->getId()] < 0)
+                            && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
+                        ) {
+                            $deliveryInfo[$sku] = __('Item on backorder');
+                        } else {
+                            $deliveryInfo[$sku] = __('Expected Delivery: %1', $deliveryDate);
+                        }
                     }
+                } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
+                   $deliveryInfo[$sku] = __('Ships direct from manufacturer');
                 }
-            } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
-               $deliveryInfo[$sku] = 'Ships direct from manufacturer';
             }
         }
 
