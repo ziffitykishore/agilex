@@ -115,6 +115,10 @@ $_password-very-strong: #81b562 !default;
     .actions-toolbar .action.primary {
         @include lib-button-l();
     }
+
+    h3 {
+        margin-bottom: $indent__xs;
+    }
 }
 
 .form-edit-account {

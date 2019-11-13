@@ -324,7 +324,7 @@ $nav-section-title__height: 60px;
         .contact-link a,
         .about-link a,
         .quick-order-container a {
-            border: 1px solid $c-grey;
+            border: 1px solid $c-smoke;
             font-family: $font-family__base;
             font-size: $font-size__base--desktop;
         }
@@ -335,6 +335,15 @@ $nav-section-title__height: 60px;
 
         .quick-order-container a {
             border-bottom: 0;
+            font-weight: $font-weight__semibold;
+            font-family: $font-family__sans-serif;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            font-size: 16px;
+
+            @include hover {
+                color: $text__color-alt;
+            }
         }
     }
 

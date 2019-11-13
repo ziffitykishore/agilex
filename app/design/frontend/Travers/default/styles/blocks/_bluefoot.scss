@@ -249,6 +249,7 @@ $home-sidebar-width: 240px;
         width: 10px !important; //override slick's !important
         height: 10px;
         line-height: 10px;
+        border: 0;
     }
 
     li:not(.slick-active) button {
@@ -1146,6 +1147,18 @@ footer.page-footer {
                     min-height: 200px !important; // override PageBuilder
                 }
             }
+        }
+    }
+
+    .slick-dots {
+        bottom: $indent__l;
+
+        @include min-screen($screen__m) {
+            bottom: -$indent__s;
+        }
+
+        @include min-screen($screen__l) {
+            display: none !important; // override Slick JS
         }
     }
 

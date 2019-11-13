@@ -918,11 +918,12 @@ $nav-delimiter__border-color: $color-gray82 !default;
 
     .customer-register,
     .customer-welcome {
-        ul.header.links {
+        [data-target="dropdown"] ul.header.links {
             min-width: 250px;
             right: 0;
             padding: 10px 0;
             background-color: $c-smoke;
+            border: 0;
 
             &::before,
             &::after {

@@ -82,6 +82,10 @@
                 width: 100%;
                 flex-wrap: wrap;
 
+                @include min-screen($screen__m) {
+                    flex-wrap: nowrap;
+                }
+
                 [data-content-type="collapsible-item"] {
                     padding: 0 $indent__s;
                     box-sizing: border-box;
