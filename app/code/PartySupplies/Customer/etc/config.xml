@@ -12,6 +12,7 @@
                 <company_email_template>customer_create_account_company_email_template</company_email_template>
                 <company_approved_email_template>customer_create_account_company_approved_email_template</company_approved_email_template>
                 <company_declined_email_template>customer_create_account_company_declined_email_template</company_declined_email_template>
+                <account_registration_add_cc>registration@partysupplyusa.com</account_registration_add_cc>
             </create_account>
         </customer>
     </default>

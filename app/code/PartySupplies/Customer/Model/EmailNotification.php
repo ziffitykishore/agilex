@@ -48,6 +48,8 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
     
     const XML_PATH_REGISTER_COMPANY_EMAIL_TEMPLATE = 'customer/create_account/company_email_template';
     
+    const XML_PATH_REGISTER_EMAIL_CC = 'customer/create_account/account_registration_add_cc';
+
     const TEMPLATE_TYPES = [
         self::NEW_ACCOUNT_EMAIL_REGISTERED => self::XML_PATH_REGISTER_EMAIL_TEMPLATE,
         self::NEW_COMPANYACCOUNT_EMAIL_REGISTERED => self::XML_PATH_REGISTER_COMPANY_EMAIL_TEMPLATE,
@@ -204,12 +206,23 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
             $storeId
         );
 
-        $transport = $this->transportBuilder->setTemplateIdentifier($templateId)
+        $emailCcTo = explode(
+            ',',
+            $this->scopeConfig->getValue(self::XML_PATH_REGISTER_EMAIL_CC, ScopeInterface::SCOPE_STORE, $storeId)
+        );
+
+        $this->transportBuilder->setTemplateIdentifier($templateId)
             ->setTemplateOptions(['area' => 'frontend', ScopeInterface::SCOPE_STORE => $storeId])
             ->setTemplateVars($templateParams)
             ->setFrom($from)
-            ->addTo($email, $this->customerViewHelper->getCustomerName($customer))
-            ->getTransport();
+            ->addTo($email, $this->customerViewHelper->getCustomerName($customer));
+
+        if (count($emailCcTo) >= 1) {
+            $transport = $this->transportBuilder->addCc($emailCcTo)
+                ->getTransport();
+        } else {
+            $transport = $this->transportBuilder->getTransport();
+        }
 
         $transport->sendMessage();
     }

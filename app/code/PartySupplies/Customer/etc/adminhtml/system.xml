@@ -47,6 +47,9 @@
                     <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
+                <field id="account_registration_add_cc" translate="label" type="text" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Registration Email Copy To</label>
+                </field>
             </group>
         </section>
     </system>
