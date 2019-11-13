@@ -189,6 +189,14 @@ $product-item-name__font-size: 16px;
     }
 }
 
+@media print {
+    // Orders page
+    .order-details-items,
+    .footer-promo-banner {
+        max-width: 800px;
+    }
+}
+
 .order-actions-toolbar {
     margin-bottom: 25px;
 
