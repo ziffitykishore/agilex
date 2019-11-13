@@ -6,9 +6,9 @@ define([
             $('option',$(this)).each(function() {
                 var sku = $(this).data('sku');
                 var title = $(this).data('title');
-                if (sku && data[sku] != 0 && title) {
-                    $(this).text(title + ' +' + currencySymbol + data[sku]);
-                    $(this).attr('data-price', data[sku]);
+                if (sku && data[sku]['price'] != 0 && title) {
+                    $(this).text(title + ' +' + currencySymbol + data[sku]['price']);
+                    $(this).attr('data-price', data[sku]['price']);
                 }
             })
         });
@@ -24,7 +24,7 @@ define([
             });
             $('.price-configured_price span.price').text(currencySymbol+totalPrice.toFixed(2));
         });
-        var pricesArr = Object.keys( data ).map(function ( key ) { return data[key]; });
+        var pricesArr = Object.keys( data ).map(function ( key ) { return data[key]['price']; });
         var minPrice = $('.product-info-main .price-from .price-wrapper').data('price-amount');
         var maxPrice = $('.product-info-main .price-to .price-wrapper').data('price-amount');
         var minSpotPrice = Math.min.apply(null, pricesArr);
