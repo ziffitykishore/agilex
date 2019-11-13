@@ -211,21 +211,17 @@ class EmailNotification extends \Magento\Customer\Model\EmailNotification
             $this->scopeConfig->getValue(self::XML_PATH_REGISTER_EMAIL_CC, ScopeInterface::SCOPE_STORE, $storeId)
         );
 
-        if (count($emailCcTo) > 1) {
-            $transport = $this->transportBuilder->setTemplateIdentifier($templateId)
-                ->setTemplateOptions(['area' => 'frontend', ScopeInterface::SCOPE_STORE => $storeId])
-                ->setTemplateVars($templateParams)
-                ->setFrom($from)
-                ->addTo($email, $this->customerViewHelper->getCustomerName($customer))
-                ->addCc($emailCcTo)
+        $this->transportBuilder->setTemplateIdentifier($templateId)
+            ->setTemplateOptions(['area' => 'frontend', ScopeInterface::SCOPE_STORE => $storeId])
+            ->setTemplateVars($templateParams)
+            ->setFrom($from)
+            ->addTo($email, $this->customerViewHelper->getCustomerName($customer));
+
+        if (count($emailCcTo) >= 1) {
+            $transport = $this->transportBuilder->addCc($emailCcTo)
                 ->getTransport();
         } else {
-            $transport = $this->transportBuilder->setTemplateIdentifier($templateId)
-                ->setTemplateOptions(['area' => 'frontend', ScopeInterface::SCOPE_STORE => $storeId])
-                ->setTemplateVars($templateParams)
-                ->setFrom($from)
-                ->addTo($email, $this->customerViewHelper->getCustomerName($customer))
-                ->getTransport();
+            $transport = $this->transportBuilder->getTransport();
         }
 
         $transport->sendMessage();
