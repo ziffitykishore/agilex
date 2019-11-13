@@ -84,6 +84,10 @@
                     line-height: 18px;
                     opacity: 0;
                     padding: 16px 15px 0;
+
+                    @media screen and (max-width: 768px) {
+                        opacity: 1;
+                    }
                 }
 
                 .why-parts {
@@ -100,6 +104,10 @@
                     text-align: center;
                     margin-top: 50px;
                     transition: margin 0.3s ease;
+
+                    @media screen and (max-width: 768px) {
+                        margin-top: 10px;
+                    }
 
                     h4 {
                         color: #0079bc;
@@ -368,6 +376,10 @@
                     padding: 30px 0 10px;
                     position: relative;
 
+                    @media screen and (max-width: 768px) {
+                        padding: 30px 15px 10px;
+                    }
+
                     img {
                         .transition(all 0.5s ease 0s);
                         max-width: 390px;
@@ -396,6 +408,13 @@
                     text-decoration: underline;
                     text-transform: uppercase;
 
+                    @media screen and (max-width: 768px) {
+                        margin: 10px 0 0;
+                        float: none;
+                        background: rgba(134, 134, 134, 0.2);
+                        padding: 7px;
+                    }
+
                     &.coming-soon {
                         color: red;
                         text-decoration: none;
@@ -412,6 +431,13 @@
                 margin: 25px 0 40px;
                 position: relative;
                 text-transform: uppercase;
+
+                @media screen and (max-width: 768px) {
+                    float: none;
+                    font-size: 14px;
+                    margin: 10px 0;
+                    padding: 0 15px;
+                }
             }
         }
     }
@@ -441,6 +467,11 @@
                     position: relative;
                 }
 
+                img {
+                    width: auto !important;
+                    max-width: unset;
+                    max-height: 350px;
+                }
 
                 .flex-caption {
                     position: absolute;
@@ -864,9 +895,22 @@
             padding-left: 15px;
             padding-right: 15px;
             margin-bottom: 20px;
+            display: block;
+            text-align: center;
             .catalog-category {
-                .flex-width(100%);
+                -webkit-box-flex: unset;
+                -ms-flex: unset;
+                flex: unset;
+                max-width: ~"calc(50% - 15px)";
                 margin-bottom: 0;
+                display: inline-block;
+                width: ~"calc(50% - 15px)";
+                margin: 0;
+                padding: 0;
+
+                &:nth-child(odd) {
+                    margin-right: 15px;
+                }
 
                 & + .catalog-category {
                     margin-top: 20px;
