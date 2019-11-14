@@ -117,7 +117,7 @@ abstract class Adapter
         /** @var \Magento\Framework\HTTP\Client\Curl $curl */
         $curl = $this->curlFactory->create();
         if ($this->isSandboxUrl()) {
-            $curl->setTimeout(90);
+            $curl->setTimeout(200);
         } else {
             $curl->setTimeout(20);
         }
