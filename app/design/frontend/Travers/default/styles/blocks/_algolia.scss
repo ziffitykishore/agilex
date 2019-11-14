@@ -37,6 +37,10 @@
         width: 100%;
     }
 
+    .aa-dataset-suggestions {
+        display: block !important;
+    }
+
     @include min-screen(869px) { // Algolia's breakpoint where it turns into dual menu
         .aa-dropdown-menu {
             width: 90% !important;
