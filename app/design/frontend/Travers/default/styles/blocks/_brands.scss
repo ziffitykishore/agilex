@@ -7,12 +7,10 @@
 
             @include min-screen($screen__m) {
                 &:nth-of-type(even) {
-                    background-color: $c-smoke;
-                    margin-top: $indent__xl;
-                }
-
-                &:nth-of-type(2) {
-                    background-color: transparent;
+                    [data-element="inner"]:not(.brands-nav) {
+                        background-color: $c-smoke;
+                        margin-top: $indent__xl;
+                    }
                 }
             }
 
@@ -119,6 +117,12 @@
                     border: 1px solid $c-border;
                     color: $text__color;
                     box-sizing: border-box;
+
+                    &:not(:last-of-type) {
+                        @include min-screen($screen__m) {
+                            border-right: 0;
+                        }
+                    }
 
                     @include hover {
                         background-color: $primary__color;
