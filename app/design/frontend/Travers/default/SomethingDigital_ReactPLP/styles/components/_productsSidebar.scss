@@ -199,11 +199,18 @@
     .refinement-label {
       min-height: $indent__s;
       margin-bottom: $indent__xs;
+      font-size: 15px;
+      line-height: 0;
 
       &::before,
       &::after {
-        width: 18px;
-        height: 18px;
+        width: 15px;
+        height: 15px;
+      }
+
+      &::after {
+        top: -1px !important; // override VERY nested Bryant Park custom checkbox CSS
+        left: -1px !important; // override VERY nested Bryant Park custom checkbox CSS
       }
 
       @include hover {
@@ -219,6 +226,8 @@
       a {
         vertical-align: middle;
         pointer-events: none;
+        display: inline-block;
+        line-height: 1;
 
         @include hover {
           text-decoration: none;
