@@ -146,7 +146,12 @@
     &.show-accordion {
       display: block;
       border: 1px solid $c-grey;
-      border-top: 0;
+      border-bottom: 0;
+
+      @include min-screen($screen__m) {
+        border: 0;
+        border-top: 1px solid $c-grey;
+      }
     }
   }
 
