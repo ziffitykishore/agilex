@@ -193,7 +193,8 @@ class OrderPlaceApi extends Adapter
         return $customerInfo;
     }
 
-    protected function getCustomerAddress($order) {
+    protected function getCustomerAddress($order)
+    {
         $billingAddressObj = $order->getBillingAddress();
         $shippingAddressObj = $order->getShippingAddress();
 
