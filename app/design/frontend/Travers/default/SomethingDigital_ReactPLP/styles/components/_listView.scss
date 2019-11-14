@@ -72,7 +72,6 @@ $list-image__margin--desktop: $indent__m;
 
     @include min-screen($screen__l) {
       justify-content: flex-end;
-      width: auto;
       max-width: 300px;
       margin-left: 0;
     }
@@ -123,7 +122,7 @@ $list-image__margin--desktop: $indent__m;
 
     @include min-screen($screen__l) {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
     }
 
@@ -131,22 +130,20 @@ $list-image__margin--desktop: $indent__m;
       margin: 0;
       padding: 2px 0;
       color: $c-nickel;
+
+      @include min-screen($screen__l) {
+        &:first-of-type {
+          padding-top: 0;
+        }
+      }
     }
 
     .list-inner {
       display: flex;
       flex-basis: 55%;
 
-      @include min-screen($screen__m) {
-        align-items: center;
-      }
-
       @include min-screen($screen__l) {
         flex-basis: 65%;
-      }
-
-      @include min-screen($plp_breakpoint) {
-        flex-basis: 75%;
       }
     }
 
@@ -184,6 +181,7 @@ $list-image__margin--desktop: $indent__m;
     &-right {
       @include min-screen($screen__l) {
         margin-left: $indent__l;
+        margin-top: 0;
       }
 
       @include min-screen($plp_breakpoint) {
