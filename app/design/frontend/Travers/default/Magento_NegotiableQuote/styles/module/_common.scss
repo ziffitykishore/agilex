@@ -343,7 +343,6 @@ $icon-gripper: '\e900' !default;
     }
 
     .product-item-name {
-        font-size: 1.8rem;
         line-height: 1;
         margin: 0;
 
@@ -843,7 +842,6 @@ $icon-gripper: '\e900' !default;
                 }
 
                 .price {
-                    font-size: $quote-comment__font-size;
                     font-weight: $font-weight__semibold;
                 }
 
@@ -1252,7 +1250,6 @@ $icon-gripper: '\e900' !default;
                 }
 
                 .price {
-                    font-size: $font-size__l;
                     font-weight: $font-weight__bold;
                     line-height: 1;
                 }
