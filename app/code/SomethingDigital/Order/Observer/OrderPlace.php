@@ -61,9 +61,29 @@ class OrderPlace implements ObserverInterface
 
         if ($order->getCustomerId()) {
             $customer = $this->customerRepository->getById($order->getCustomerId());
-            $customer->setCustomAttribute('travers_account_id', $sxCustomerId);
-            $customer->setCustomAttribute('travers_contact_id', $sxContactId);
+            if (!empty($sxCustomerId) && !$this->getTraversAccountId($customer)) {
+                $customer->setCustomAttribute('travers_account_id', $sxCustomerId);
+            }
+            if (!empty($sxContactId) && !$this->getTraversContactId($customer)) {
+                $customer->setCustomAttribute('travers_contact_id', $sxContactId);
+            }
             $this->customerRepository->save($customer);
         }
+    }
+
+    protected function getTraversAccountId($customer)
+    {
+        if ($customer->getCustomAttribute('travers_account_id')) {
+            return $customer->getCustomAttribute('travers_account_id')->getValue();
+        }
+        return '';
+    }
+
+    protected function getTraversContactId($customer)
+    {
+        if ($customer->getCustomAttribute('travers_contact_id')) {
+            return $customer->getCustomAttribute('travers_contact_id')->getValue();
+        }
+        return '';
     }
 }
