@@ -152,10 +152,10 @@ class OrderPlaceApi extends Adapter
                     "Phone" => $company->getTelephone()
                 ];
             } else {
-                $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order));
+                $companyAddress= $this->assignAddressInformation($this->getCustomerBillingAddress($order));
             }
         } else {
-            $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order));
+            $companyAddress= $this->assignAddressInformation($this->getCustomerBillingAddress($order));
         }
 
         $customerInfo = [
@@ -185,8 +185,8 @@ class OrderPlaceApi extends Adapter
             ]
         ];
 
-        if (!empty($this->getCustomerAddress($order))) {
-            $addressArray = $this->getCustomerAddress($order);
+        if (!empty($this->getCustomerBillingAddress($order))) {
+            $addressArray = $this->getCustomerBillingAddress($order);
 
             $customerInfo["Contact"]["Addresses"][] = $this->assignAddressInformation($addressArray);
             $customerInfo["Contact"]["Fax"] = $addressArray['fax'];
@@ -195,15 +195,12 @@ class OrderPlaceApi extends Adapter
         return $customerInfo;
     }
 
-    protected function getCustomerAddress($order)
+    protected function getCustomerBillingAddress($order)
     {
         $billingAddressObj = $order->getBillingAddress();
-        $shippingAddressObj = $order->getShippingAddress();
 
         if ($billingAddressObj) {
             return $billingAddressObj->getData();
-        } elseif ($shippingAddressObj) {
-            return $shippingAddressObj->getData();
         }
         return [];
     }
