@@ -139,16 +139,21 @@ class OrderPlaceApi extends Adapter
             }
 
             $company = $this->getCustomerCompany($order->getCustomerId());
-            $companyAddress = [
-                "id" => $this->getCustomerContactId(),
-                "ToName" => $company->getCompanyName(),
-                "Line1" => $company->getStreet()[0],
-                "City" => $company->getCity(),
-                "State" => $company->getRegion(),
-                "PostalCode" => $company->getPostcode(),
-                "CountryCode" => $company->getCountryId(),
-                "Phone" => $company->getTelephone()
-            ];
+
+            if ($company) {
+                $companyAddress = [
+                    "id" => $this->getCustomerContactId(),
+                    "ToName" => $company->getCompanyName(),
+                    "Line1" => (isset($company->getStreet()[0])) ? $company->getStreet()[0] : '',
+                    "City" => $company->getCity(),
+                    "State" => $company->getRegion(),
+                    "PostalCode" => $company->getPostcode(),
+                    "CountryCode" => $company->getCountryId(),
+                    "Phone" => $company->getTelephone()
+                ];
+            } else {
+                $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order));
+            }
         } else {
             $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order));
         }
