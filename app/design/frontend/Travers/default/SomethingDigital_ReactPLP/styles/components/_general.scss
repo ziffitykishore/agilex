@@ -419,8 +419,18 @@ $sidebar__max-width: 240px;
   .increment-message {
     color: $c-nickel;
     font-weight: $font-weight__semibold;
-    text-align: right;
+    margin-left: $list-image__max-width + $list-image__margin--mobile;
+
+    @include min-screen($screen__m) {
+      margin-left: $list-image__max-width + $list-image__margin--desktop + $list-image__margin--desktop;
+    }
+
+    @include min-screen($screen__l) {
+      margin-left: $list-image__max-width;
+      width: 100%;
+    }
   }
+
 
   @include min-screen($plp_breakpoint) {
     display: flex;
@@ -428,7 +438,6 @@ $sidebar__max-width: 240px;
 
     .increment-message {
       margin: $indent__base $indent__s 0 0;
-      text-align: left;
     }
   }
 }
