@@ -235,10 +235,13 @@ class OrderPlaceApi extends Adapter
     public function assignAddressInformation($addressArray)
     {
         if ($addressArray['customer_address_id'] != null) {
-            $addressObj = $this->addressRepository->getById($addressArray['customer_address_id']);
-            $sxAddressId = $addressObj->getCustomAttribute('sx_address_id');
-        }
+            try {
+                $addressObj = $this->addressRepository->getById($addressArray['customer_address_id']);
+                $sxAddressId = $addressObj->getCustomAttribute('sx_address_id');
+            } catch (NoSuchEntityException $e) {
 
+            }
+        }
         return [
             "id" => (isset($sxAddressId) && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
             "ToName" => $addressArray['firstname'] . ' ' . $addressArray['lastname'],
