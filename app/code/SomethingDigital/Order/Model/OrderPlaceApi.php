@@ -137,9 +137,6 @@ class OrderPlaceApi extends Adapter
             if ($customer->getCustomAttribute('customer_freight_account')) {
                 $customerFreightAccount = $customer->getCustomAttribute('customer_freight_account')->getValue();
             }
-            if ($customer->getCustomAttribute('customer_freight_account')) {
-                $customerFreightAccount = $customer->getCustomAttribute('customer_freight_account')->getValue();
-            }
 
             $company = $this->getCustomerCompany($order->getCustomerId());
             $companyAddress = [
