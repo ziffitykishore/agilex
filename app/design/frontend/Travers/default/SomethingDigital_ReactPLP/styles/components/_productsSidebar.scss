@@ -263,6 +263,8 @@
 
         img {
           border: 2px solid $c-grey;
+          width: 100%;
+          max-width: 70px;
 
           &:hover,
           &:focus,
