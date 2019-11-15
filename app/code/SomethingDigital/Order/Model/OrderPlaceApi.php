@@ -70,9 +70,11 @@ class OrderPlaceApi extends Adapter
             $this->requestPath = 'api-mocks/Order/PlaceOrder';
         }
 
+        $shipto = $this->getCustomerAddress($order, 'shipping');
+
         $this->requestBody = [
             'SxId' => '',
-            'ShipTo' => $this->getShipto($order),
+            'ShipTo' => (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '',
             'Customer' => $this->getCustomerInfo($order),
             'LineItems' => $this->getItems($order),
             'externalIds' => '',
@@ -115,19 +117,6 @@ class OrderPlaceApi extends Adapter
         }
     }
 
-    protected function getShipto($order)
-    {
-        $shipto = [];
-        $shippingAddressObj = $order->getShippingAddress();
-
-        if ($shippingAddressObj) {
-            $shippingAddressArray = $shippingAddressObj->getData();
-            $shipto = $this->assignAddressInformation($shippingAddressArray);
-        }
-
-        return $shipto;
-    }
-
     protected function getCustomerInfo($order)
     {
         $customerFreightAccount = '';
@@ -152,10 +141,10 @@ class OrderPlaceApi extends Adapter
                     "Phone" => $company->getTelephone()
                 ];
             } else {
-                $companyAddress= $this->assignAddressInformation($this->getCustomerBillingAddress($order));
+                $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order, 'billing'));
             }
         } else {
-            $companyAddress= $this->assignAddressInformation($this->getCustomerBillingAddress($order));
+            $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order, 'billing'));
         }
 
         $customerInfo = [
@@ -185,8 +174,8 @@ class OrderPlaceApi extends Adapter
             ]
         ];
 
-        if (!empty($this->getCustomerBillingAddress($order))) {
-            $addressArray = $this->getCustomerBillingAddress($order);
+        if (!empty($this->getCustomerAddress($order, 'billing'))) {
+            $addressArray = $this->getCustomerAddress($order, 'billing');
 
             $customerInfo["Contact"]["Addresses"][] = $this->assignAddressInformation($addressArray);
             $customerInfo["Contact"]["Fax"] = $addressArray['fax'];
@@ -195,13 +184,21 @@ class OrderPlaceApi extends Adapter
         return $customerInfo;
     }
 
-    protected function getCustomerBillingAddress($order)
+    protected function getCustomerAddress($order, $addressType)
     {
-        $billingAddressObj = $order->getBillingAddress();
-
-        if ($billingAddressObj) {
-            return $billingAddressObj->getData();
+        if ($addressType == 'billing') {
+            $billingAddressObj = $order->getBillingAddress();
+            if ($billingAddressObj) {
+                return $billingAddressObj->getData();
+            }
         }
+        if ($addressType == 'shipping') {
+            $shippingAddressObj = $order->getShippingAddress();
+            if ($shippingAddressObj) {
+                return $shippingAddressObj->getData();
+            }
+        }
+
         return [];
     }
 
