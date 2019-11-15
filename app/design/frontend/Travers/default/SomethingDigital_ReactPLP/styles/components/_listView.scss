@@ -39,6 +39,11 @@ $list-image__margin--desktop: $indent__m;
     @include min-screen($screen__l) {
       position: relative;
       overflow-x: visible;
+      flex-direction: column;
+
+      p {
+        order: 1;
+      }
     }
   }
 
