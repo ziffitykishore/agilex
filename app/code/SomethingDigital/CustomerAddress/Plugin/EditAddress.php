@@ -27,7 +27,7 @@ class EditAddress
         $addressId = $subject->getRequest()->getParam('id', false);
         $address = $this->addressRepository->getById($addressId);
         $isReadOnly = $address->getCustomAttribute('is_read_only');
-        if ($isReadOnly->getValue()) {
+        if (!isset($isReadOnly) || !$isReadOnly->getValue()) {
             return $this->resultRedirectFactory->create()->setPath('*/*/index');
         }
 
