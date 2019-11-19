@@ -43,7 +43,7 @@
         <!-- <referenceBlock name="customer-account-navigation-wish-list-link" remove="true"/> -->
 
         <!-- Gift card link -->
-        <!-- <referenceBlock name="customer-account-navigation-gift-card-link" remove="true"/> -->
+        <referenceBlock name="customer-account-navigation-gift-card-link" remove="true"/>
 
         <!-- Order by SKU -->
         <!-- <referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true"/> -->
@@ -53,6 +53,11 @@
 
         <!-- Reward points -->
         <referenceBlock name="customer-account-navigation-reward-link" remove="true"/>
+
+        <move element="customer-account-navigation-company-profile-link" destination="customer_account_navigation" after="customer-account-navigation-requisition-list-link"/>
+        <move element="company-customer-account-navigation-orders-link" destination="customer_account_navigation" after="customer-account-navigation-account-edit-link"/>
+        <move element="customer-account-navigation-quotes-link" destination="customer_account_navigation" after="company-customer-account-navigation-orders-link"/>
+        <move element="customer-account-navigation-swppayment" destination="customer_account_navigation" before="customer-account-navigation-newsletter-subscriptions-link"/>
     </body>
 </page>
 

@@ -56,22 +56,22 @@ class Index extends Action
                 }
                 $unitPrice = $price;
                 if ($product->getExactUnitPrice()) {
-                    $price = $price * 100;
+                    $price = $product->getExactUnitPrice() * 100;
                 }
 
-                $qtyPrice1 = number_format($this->arrayManager->get('body/QtyPrice1', $prices), 2);
-                $qtyPrice2 = number_format($this->arrayManager->get('body/QtyPrice2', $prices), 2);
-                $qtyPrice3 = number_format($this->arrayManager->get('body/QtyPrice3', $prices), 2);
-                $qtyBreak1 = number_format($this->arrayManager->get('body/QtyBreak1', $prices), 2);
-                $qtyBreak2 = number_format($this->arrayManager->get('body/QtyBreak2', $prices), 2);
-                $qtyBreak3 = number_format($this->arrayManager->get('body/QtyBreak3', $prices), 2);
+                $qtyPrice1 = $this->arrayManager->get('body/QtyPrice1', $prices);
+                $qtyPrice2 = $this->arrayManager->get('body/QtyPrice2', $prices);
+                $qtyPrice3 = $this->arrayManager->get('body/QtyPrice3', $prices);
+                $qtyBreak1 = round($this->arrayManager->get('body/QtyBreak1', $prices));
+                $qtyBreak2 = round($this->arrayManager->get('body/QtyBreak2', $prices));
+                $qtyBreak3 = round($this->arrayManager->get('body/QtyBreak3', $prices));
 
                 $data[$sku] = [
                     'price' => number_format($price, 2),
                     'unitPrice' => $unitPrice,
-                    'QtyPrice1' => $qtyPrice1 ? $qtyPrice1 : '',
-                    'QtyPrice2' => $qtyPrice2 ? $qtyPrice2 : '',
-                    'QtyPrice3' => $qtyPrice3 ? $qtyPrice3 : '',
+                    'QtyPrice1' => $qtyPrice1 ? number_format($qtyPrice1, 2) : '',
+                    'QtyPrice2' => $qtyPrice2 ? number_format($qtyPrice2, 2) : '',
+                    'QtyPrice3' => $qtyPrice3 ? number_format($qtyPrice3, 2) : '',
                     'QtyBreak1' => $qtyBreak1 ? $qtyBreak1 : '',
                     'QtyBreak2' => $qtyBreak2 ? $qtyBreak2 : '',
                     'QtyBreak3' => $qtyBreak3 ? $qtyBreak3 : '',
