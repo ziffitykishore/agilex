@@ -15,6 +15,9 @@ use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Company\Api\CompanyManagementInterface;
+use Magento\Company\Api\CompanyRepositoryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class OrderPlaceApi extends Adapter
 {
@@ -22,6 +25,8 @@ class OrderPlaceApi extends Adapter
     protected $addressRepository;
     protected $orderItemRepository;
     protected $customerRepository;
+    protected $companyManagement;
+    protected $companyRepository;
 
     public function __construct(
         ClientFactory $curlFactory,
@@ -35,7 +40,9 @@ class OrderPlaceApi extends Adapter
         WriterInterface $configWriter,
         TypeListInterface $cacheTypeList,
         EncryptorInterface $encryptor,
-        CustomerRepositoryInterface $customerRepository
+        CustomerRepositoryInterface $customerRepository,
+        CompanyManagementInterface $companyManagement,
+        CompanyRepositoryInterface $companyRepository
     ) {
         parent::__construct(
             $curlFactory,
@@ -51,17 +58,26 @@ class OrderPlaceApi extends Adapter
         $this->addressRepository = $addressRepository;
         $this->orderItemRepository = $orderItemRepository;
         $this->customerRepository = $customerRepository;
+        $this->companyManagement = $companyManagement;
+        $this->companyRepository = $companyRepository;
     }
 
     public function sendOrder($order)
     {
         if (!$this->isTestMode()) {
-            $this->requestPath = 'api/Order?customerId='.$this->getCustomerAccountId();
+            $this->requestPath = 'api/Order';
         } else {
             $this->requestPath = 'api-mocks/Order/PlaceOrder';
         }
 
+        $shipto = $this->getCustomerAddress($order, 'shipping');
+
         $this->requestBody = [
+            'SxId' => '',
+            'ShipTo' => (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '',
+            'Customer' => $this->getCustomerInfo($order),
+            'LineItems' => $this->getItems($order),
+            'externalIds' => '',
             'PurchaseOrderId' => '',
             'ShipServiceCode' => $order->getShippingMethod(),
             'Date' => $order->getCreatedAt(),
@@ -69,13 +85,9 @@ class OrderPlaceApi extends Adapter
             'Tax' => $order->getTaxAmount(),
             'ShipFee' => $order->getShippingAmount(),
             'DiscountAmount' => $order->getDiscountAmount(),
+            'CreditTermsMessage' => '',
             'Notes' => '',
-            'SxId' => '',
-            'ShipTo' => $this->getShipto($order),
-            'Customer' => $this->getCustomerInfo($order),
-            'LineItems' => $this->getItems($order),
-            'externalIds' => '',
-            'Payment' => $this->getPaymentInfo($order)
+            'Payments' => $this->getPaymentInfo($order)
         ];
 
         return $this->postRequest();
@@ -93,20 +105,16 @@ class OrderPlaceApi extends Adapter
         }
     }
 
-    protected function getShipto($order)
+    /**
+     * @return string
+     */
+    protected function getCustomerContactId()
     {
-        $shipto = [];
-        $shippingAddressObj = $order->getShippingAddress();
-
-        if ($shippingAddressObj) {
-            $shippingAddressArray = $shippingAddressObj->getData();
-            if ($shippingAddressArray['customer_address_id'] != null) {
-                $address = $this->addressRepository->getById($shippingAddressArray['customer_address_id']);
-                $shipto = $this->assignAddressInformation($address);
-            }
+        if (($contactId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_contact_id'))) {
+            return $contactId->getValue();
+        } else {
+            return '';
         }
-
-        return $shipto;
     }
 
     protected function getCustomerInfo($order)
@@ -118,35 +126,80 @@ class OrderPlaceApi extends Adapter
             if ($customer->getCustomAttribute('customer_freight_account')) {
                 $customerFreightAccount = $customer->getCustomAttribute('customer_freight_account')->getValue();
             }
+
+            $company = $this->getCustomerCompany($order->getCustomerId());
+
+            if ($company) {
+                $companyAddress = [
+                    "id" => $this->getCustomerContactId(),
+                    "ToName" => $company->getCompanyName(),
+                    "Line1" => (isset($company->getStreet()[0])) ? $company->getStreet()[0] : '',
+                    "City" => $company->getCity(),
+                    "State" => $company->getRegion(),
+                    "PostalCode" => $company->getPostcode(),
+                    "CountryCode" => $company->getCountryId(),
+                    "Phone" => $company->getTelephone()
+                ];
+            } else {
+                $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order, 'billing'));
+            }
+        } else {
+            $companyAddress= $this->assignAddressInformation($this->getCustomerAddress($order, 'billing'));
         }
 
         $customerInfo = [
             "Id" => $this->getCustomerAccountId(),
-            "Name" => $order->getCustomerFirstname() . ' ' . $order->getCustomerLastname(),
+            "Name" => $companyAddress['ToName'],
+            "Address" => $companyAddress,
             "Comment" => '',
-            "Address" => '',
             "CustomerProductsFlag" => '',
-            "Fax" => '',
             "NotesIndicator" => '',
-            "Phone" => '',
+            "Phone" => $companyAddress['Phone'],
             "StatusType" => '',
-            "FreightAccountNumber" => $customerFreightAccount
+            "FreightAccountNumber" => $customerFreightAccount,
+            "Contact" => [
+                "Id" => $this->getCustomerContactId(),
+                "ContactType" => "",
+                "TypeDescription" => "",
+                "Email" => $order->getCustomerEmail(),
+                "Fax" => "",
+                "FirstName" => $order->getCustomerFirstname(),
+                "MiddleName" => $order->getCustomerMiddlename(),
+                "LastName" => $order->getCustomerLastname(),
+                "GroupCode" => "",
+                "CustomerId" => $this->getCustomerAccountId(),
+                "Addresses" => [],
+                "MagentoId" => $order->getIncrementId(),
+                "ProspectId" => ""
+            ]
         ];
 
-        $billingAddressObj = $order->getBillingAddress();
+        if (!empty($this->getCustomerAddress($order, 'billing'))) {
+            $addressArray = $this->getCustomerAddress($order, 'billing');
 
-        if ($billingAddressObj) {
-            $billingAddressArray = $billingAddressObj->getData();
-
-            if ($billingAddressArray['customer_address_id'] != null) {
-                $address = $this->addressRepository->getById($billingAddressArray['customer_address_id']);
-                $customerInfo["Address"] = $this->assignAddressInformation($address);
-            }
-            $customerInfo["Fax"] = $billingAddressArray['fax'];
-            $customerInfo["Phone"] = $billingAddressArray['telephone'];
+            $customerInfo["Contact"]["Addresses"][] = $this->assignAddressInformation($addressArray);
+            $customerInfo["Contact"]["Fax"] = $addressArray['fax'];
         }
 
         return $customerInfo;
+    }
+
+    protected function getCustomerAddress($order, $addressType)
+    {
+        if ($addressType == 'billing') {
+            $billingAddressObj = $order->getBillingAddress();
+            if ($billingAddressObj) {
+                return $billingAddressObj->getData();
+            }
+        }
+        if ($addressType == 'shipping') {
+            $shippingAddressObj = $order->getShippingAddress();
+            if ($shippingAddressObj) {
+                return $shippingAddressObj->getData();
+            }
+        }
+
+        return [];
     }
 
     protected function getItems($order)
@@ -176,19 +229,25 @@ class OrderPlaceApi extends Adapter
         return $items;
     }
 
-    public function assignAddressInformation($address) 
+    public function assignAddressInformation($addressArray)
     {
-        $sxAddressId = $address->getCustomAttribute('sx_address_id');
+        if ($addressArray['customer_address_id'] != null) {
+            try {
+                $addressObj = $this->addressRepository->getById($addressArray['customer_address_id']);
+                $sxAddressId = $addressObj->getCustomAttribute('sx_address_id');
+            } catch (NoSuchEntityException $e) {
 
+            }
+        }
         return [
-            "id" => ($sxAddressId && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
-            "ToName" => $address->getFirstname() . ' ' . $address->getLastname(),
-            "Line1" => $address->getStreet()[0],
-            "City" => $address->getCity(),
-            "State" => $address->getRegionId(),
-            "PostalCode" => $address->getPostcode(),
-            "CountryCode" => $address->getCountryId(),
-            "Phone" => $address->getTelephone()
+            "id" => (isset($sxAddressId) && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
+            "ToName" => $addressArray['firstname'] . ' ' . $addressArray['lastname'],
+            "Line1" => $addressArray['street'],
+            "City" => $addressArray['city'],
+            "State" => $addressArray['region'],
+            "PostalCode" => $addressArray['postcode'],
+            "CountryCode" => $addressArray['country_id'],
+            "Phone" => $addressArray['telephone']
         ];
     }
 
@@ -197,6 +256,16 @@ class OrderPlaceApi extends Adapter
         $additionalInformation = $order->getPayment()->getAdditionalInformation();
 
         return [$additionalInformation];
+    }
+
+    public function getCustomerCompany($customerId)
+    {
+        try {
+            $companyId = $this->companyManagement->getByCustomerId($customerId)->getId();
+            return $this->companyRepository->get($companyId);
+        } catch (NoSuchEntityException $noSuchEntityException) {
+            return false;
+        }
     }
 
 }

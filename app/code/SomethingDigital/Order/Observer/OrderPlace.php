@@ -6,12 +6,16 @@ use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
 use SomethingDigital\Order\Model\OrderPlaceApi;
+use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Customer\Api\CustomerRepositoryInterface;
 
 class OrderPlace implements ObserverInterface
 {
 
     protected $logger;
     protected $orderPlaceApi;
+    protected $arrayManager;
+    protected $customerRepository;
 
     /**
      * @param \DateTime $dateTime
@@ -19,10 +23,14 @@ class OrderPlace implements ObserverInterface
      */
     public function __construct(
         LoggerInterface $logger,
-        OrderPlaceApi $orderPlaceApi
+        OrderPlaceApi $orderPlaceApi,
+        ArrayManager $arrayManager,
+        CustomerRepositoryInterface $customerRepository
     ) {
         $this->logger = $logger;
         $this->orderPlaceApi = $orderPlaceApi;
+        $this->arrayManager = $arrayManager;
+        $this->customerRepository = $customerRepository;
     }
 
     /**
@@ -48,6 +56,34 @@ class OrderPlace implements ObserverInterface
      */
     protected function processResponse($order, $response)
     {
-        //TO DO
+        $sxCustomerId = $this->arrayManager->get('body/SxCustomerId', $response);
+        $sxContactId = $this->arrayManager->get('body/SxContactId', $response);
+
+        if ($order->getCustomerId()) {
+            $customer = $this->customerRepository->getById($order->getCustomerId());
+            if (!empty($sxCustomerId) && !$this->getTraversAccountId($customer)) {
+                $customer->setCustomAttribute('travers_account_id', $sxCustomerId);
+            }
+            if (!empty($sxContactId) && !$this->getTraversContactId($customer)) {
+                $customer->setCustomAttribute('travers_contact_id', $sxContactId);
+            }
+            $this->customerRepository->save($customer);
+        }
+    }
+
+    protected function getTraversAccountId($customer)
+    {
+        if ($customer->getCustomAttribute('travers_account_id')) {
+            return $customer->getCustomAttribute('travers_account_id')->getValue();
+        }
+        return '';
+    }
+
+    protected function getTraversContactId($customer)
+    {
+        if ($customer->getCustomAttribute('travers_contact_id')) {
+            return $customer->getCustomAttribute('travers_contact_id')->getValue();
+        }
+        return '';
     }
 }
