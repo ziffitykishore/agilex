@@ -79,7 +79,10 @@ class AddProductAttributes
         }
 
         $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('is_searchable', true);
+        $collection->addFieldToFilter(['is_searchable','is_filterable'], [
+            ['eq' => true],
+            ['eq' => true]
+        ]);
         $collection->setOrder('position','ASC');
         foreach ($collection as $item) {
             $result[] = [
@@ -89,7 +92,6 @@ class AddProductAttributes
                 "retrievable"=> 1
             ];
         }
-
         return $result;
     }
 }
