@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use SomethingDigital\Order\Model\OrderPlaceApi;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Sales\Api\OrderRepositoryInterface;
 
 class OrderPlace implements ObserverInterface
 {
@@ -16,6 +17,7 @@ class OrderPlace implements ObserverInterface
     protected $orderPlaceApi;
     protected $arrayManager;
     protected $customerRepository;
+    protected $orderRepository;
 
     /**
      * @param \DateTime $dateTime
@@ -25,12 +27,14 @@ class OrderPlace implements ObserverInterface
         LoggerInterface $logger,
         OrderPlaceApi $orderPlaceApi,
         ArrayManager $arrayManager,
-        CustomerRepositoryInterface $customerRepository
+        CustomerRepositoryInterface $customerRepository,
+        OrderRepositoryInterface $orderRepository
     ) {
         $this->logger = $logger;
         $this->orderPlaceApi = $orderPlaceApi;
         $this->arrayManager = $arrayManager;
         $this->customerRepository = $customerRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     /**
@@ -58,6 +62,7 @@ class OrderPlace implements ObserverInterface
     {
         $sxCustomerId = $this->arrayManager->get('body/SxCustomerId', $response);
         $sxContactId = $this->arrayManager->get('body/SxContactId', $response);
+        $sxOrderId = $this->arrayManager->get('body/SxOrderId', $response);
 
         if ($order->getCustomerId()) {
             $customer = $this->customerRepository->getById($order->getCustomerId());
@@ -69,6 +74,8 @@ class OrderPlace implements ObserverInterface
             }
             $this->customerRepository->save($customer);
         }
+        $order->setExtOrderId($sxOrderId);
+        $this->orderRepository->save($order);
     }
 
     protected function getTraversAccountId($customer)
