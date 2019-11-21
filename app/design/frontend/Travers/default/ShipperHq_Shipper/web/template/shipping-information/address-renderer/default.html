@@ -22,7 +22,7 @@
 <!-- ko text: address().telephone --><!-- /ko --><br/>
 <!-- ko foreach: { data: address().customAttributes, as: 'element' } -->
 <!-- ko foreach: { data: Object.keys(element), as: 'attribute' } -->
-<!-- ko if: element[attribute].attribute_code != 'destination_type' && element[attribute].attribute_code != 'validation_status' -->
+<!-- ko if: element[attribute].attribute_code != 'destination_type' && element[attribute].attribute_code != 'validation_status' && element[attribute].attribute_code != 'is_read_only' && element[attribute].attribute_code != 'is_billing'-->
 <!-- ko if: element[attribute].value != null -->
 <!-- ko text: element[attribute].value --><!-- /ko --><br/>
 <!-- /ko -->
