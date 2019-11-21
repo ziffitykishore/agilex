@@ -24,6 +24,7 @@ define([
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
                     return;
                 }
+                prices = self.removeIfZero(prices);
 
                 prices['saveBreak1'] = '';
                 prices['saveBreak2'] = '';
@@ -49,6 +50,14 @@ define([
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 // In this case we don't want to update the prices
             });
+        },
+        removeIfZero: function(prices) {
+            for (let i = 1; i <= 3; i++) {
+                if (prices['QtyPrice'+i] == 0) {
+                    prices['QtyPrice'+i] = '';
+                }
+            }
+            return prices;
         },
         calculateSavings: function(prices) {
             for (let i = 1; i <= 3; i++) {
