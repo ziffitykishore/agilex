@@ -290,6 +290,10 @@ $home-sidebar-width: 240px;
 }
 
 .carousel {
+    @include max-screen($screen__m) {
+        height: 400px;
+    }
+
     .pagebuilder-slide-wrapper {
         margin-bottom: 30px !important; //override slick
 
@@ -306,6 +310,18 @@ $home-sidebar-width: 240px;
                 width: 90%;
                 padding: 0;
                 padding-top: 15px;
+            }
+        }
+
+        @include max-screen($screen__m) {
+            min-height: 150px !important; //override slick
+
+            .pagebuilder-overlay {
+                min-height: 150px !important; //override slick
+            }
+
+            div.pagebuilder-poster-content {
+                transform: translateY(180px);
             }
         }
 
@@ -1211,6 +1227,11 @@ footer.page-footer {
     @include max-screen($screen__m) {
         width: 100%;
         margin-top: $indent__base;
+
+        .slick-slider {
+            min-height: 0 !important; // override slick
+            height: 400px;
+        }
     }
 
     .carousel,
