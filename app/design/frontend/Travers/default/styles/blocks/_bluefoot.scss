@@ -1105,6 +1105,12 @@ footer.page-footer {
 .testimonials {
     margin-bottom: 80px;
 
+    @include min-screen($screen__m) {
+        margin: 0 auto 80px;
+        padding: 0 $indent__m;
+        max-width: 90%;
+    }
+
     .section-heading {
         margin-top: 0;
         margin-bottom: $indent__s;
