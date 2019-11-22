@@ -52,6 +52,8 @@ $c-nickel: #636363;
 $c-drill: #363636;
 $c-aluminum: #464646;
 $c-grey: #DCDCDC;
+$c-error: #FCE5E5;
+$c-success: #E4EFE6;
 
 // Standard colors
 $c-pink: #fae5e5;
@@ -98,6 +100,11 @@ $layout-column__sidebar-width: 5;
 
 // Checkout columns width
 $layout-column-checkout__width-left: 3;
+
+// PLP List View
+$list-image__max-width: 100px;
+$list-image__margin--mobile: 15px;
+$list-image__margin--desktop: $indent__m;
 
 //
 //  Typography

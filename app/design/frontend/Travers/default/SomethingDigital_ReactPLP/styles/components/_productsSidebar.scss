@@ -263,6 +263,8 @@
 
         img {
           border: 2px solid $c-grey;
+          width: 100%;
+          max-width: 70px;
 
           &:hover,
           &:focus,
@@ -371,6 +373,10 @@
 
     &__contentInner {
       padding-bottom: $indent__s;
+    }
+
+    &__contentOuter {
+        transition: height 180ms linear 0s !important; // override React library styling
     }
   }
 }
