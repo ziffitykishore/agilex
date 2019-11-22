@@ -1,4 +1,7 @@
-<?php $priceDesc = $block->getViewModel()->getPriceDesc() ?>
-<?php if (!empty($priceDesc)): ?>
-<span class="priceDesc"><?php echo $priceDesc; ?></span>
+<?php $exactPrice = $block->getViewModel()->getExactPrice() ?>
+<?php if (!empty($exactPrice)): ?>
+<div class="priceDesc">
+    <?php echo __('Price Per 100') ?>
+    <span><?php echo __('(%1 per each)', $exactPrice) ?></span>
+</div>
 <?php endif; ?>
