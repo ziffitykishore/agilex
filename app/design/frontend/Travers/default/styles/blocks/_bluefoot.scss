@@ -289,6 +289,10 @@ $home-sidebar-width: 240px;
     }
 }
 
+div[data-content-type='slider'].slick-initialized.slick-dotted {
+    margin-bottom: 15px !important;
+}
+
 .carousel {
     @include max-screen($screen__m) {
         height: auto;
@@ -389,7 +393,7 @@ $home-sidebar-width: 240px;
             margin-bottom: $indent__s !important; // override BlueFoot
 
             @include min-screen($screen__m) {
-                margin-top: $indent__l !important; // override BlueFoot
+                margin-top: $indent__s !important; // override BlueFoot
             }
         }
     }
@@ -483,7 +487,7 @@ $home-sidebar-width: 240px;
         }
 
         .pagebuilder-banner-wrapper {
-            background-position: center center !important; // override PageBuilder
+            background-position: center 30% !important; // override PageBuilder
             background-size: 150px !important; // override PageBuilder
         }
 
@@ -501,7 +505,7 @@ $home-sidebar-width: 240px;
             }
 
             .pagebuilder-poster-content div {
-                min-height: 250px !important; // override PageBuilder
+                min-height: 220px !important; // override PageBuilder
             }
         }
 
