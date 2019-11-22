@@ -1225,6 +1225,18 @@ footer.page-footer {
         .pagebuilder-button-primary {
             @include button--type(primary);
         }
+
+        .pagebuilder-overlay.pagebuilder-poster-overlay {
+            @include min-screen($screen__m) {
+                justify-content: left;
+                margin-left: 35px;
+
+                .pagebuilder-poster-content {
+                    width: 580px;
+                    max-width: 90%;
+                }
+            }
+        }
     }
 
     .sidebar-menu {
