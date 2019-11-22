@@ -1036,6 +1036,11 @@ footer.page-footer {
     }
 }
 
+.product-grid-items {
+    @include min-screen($screen__m) {
+        padding: 0 25px;
+    }
+}
 
 .triple-tout-row {
     display: block !important; // override PageBuilder
