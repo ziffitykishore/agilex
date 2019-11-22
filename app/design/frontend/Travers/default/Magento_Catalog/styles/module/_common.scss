@@ -994,9 +994,12 @@ body.catalog-product-compare-index {
                     }
                 }
 
+                a {
+                    color: $text__color;
+                }
+
                 &[data-th="Manufacturer Price"] {
                     pointer-events: none; // Mobile Safari thinks this is a phone number
-                    color: $text__color !important; // Mobile Safari thinks this is a phone number
                 }
             }
         }
