@@ -291,7 +291,8 @@ $home-sidebar-width: 240px;
 
 .carousel {
     @include max-screen($screen__m) {
-        height: 400px;
+        height: auto;
+        min-height: 400px !important; // override slick
     }
 
     .pagebuilder-slide-wrapper {
@@ -317,7 +318,8 @@ $home-sidebar-width: 240px;
             min-height: 150px !important; //override slick
 
             .pagebuilder-overlay {
-                min-height: 150px !important; //override slick
+                min-height: 0px !important; //override slick
+                max-height: 150px !important; //override slick
             }
 
             div.pagebuilder-poster-content {
