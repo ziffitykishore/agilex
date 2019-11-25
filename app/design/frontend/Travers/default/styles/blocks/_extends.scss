@@ -146,12 +146,20 @@
     }
 
     .block-content {
+        display: flex;
+        flex-wrap: wrap;
+
         p:last-child {
             margin-bottom: 0;
         }
 
         .box {
             margin-bottom: $indent__base;
+            width: 50%;
+
+            @include max-screen($screen__s) {
+                width: 100%;
+            }
         }
     }
 }
