@@ -156,7 +156,11 @@
     },
     "extra": {
         "magento-force": "override",
-        "patches": {}
+        "patches": {
+          "magento/module-negotiable-quote": {
+            "FormData.prototype.delete method unavailable in IE11": "composer-patches/IE11_FormData_delete.composer.patch"
+          }
+        }
     },
      "replace": {
         "dotmailer/dotmailer-magento2-extension": "*",
