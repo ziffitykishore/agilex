@@ -4,6 +4,7 @@ namespace SomethingDigital\PriceRounding\ViewModel;
 use Magento\Framework\Registry as CoreRegistry;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 class PriceDesc implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -12,13 +13,16 @@ class PriceDesc implements \Magento\Framework\View\Element\Block\ArgumentInterfa
      */
     private $coreRegistry;
     protected $scopeConfig;
+    protected $currency;
 
     public function __construct(
         CoreRegistry $coreRegistry,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        PriceCurrencyInterface $currency
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->scopeConfig = $scopeConfig;
+        $this->currency = $currency;
     }
 
     /**
@@ -37,13 +41,13 @@ class PriceDesc implements \Magento\Framework\View\Element\Block\ArgumentInterfa
      * @return string
      */
     
-    public function getPriceDesc()
+    public function getExactPrice()
     {
         $product = $this->getProduct();
         $priceDesc = '';
         
         if ($product->getExactUnitPrice()) {
-            $priceDesc = 'Price Per 100';
+            $priceDesc = $this->currency->getCurrency()->getCurrencySymbol() . $product->getExactUnitPrice();
         }
         
         return $priceDesc;
