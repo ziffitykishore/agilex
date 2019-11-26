@@ -55,6 +55,7 @@ class History extends SalesHistory
      */
     private $request;
 
+    private $ordersApiResponse;
 
     public function __construct(
         Context $context,
@@ -79,7 +80,27 @@ class History extends SalesHistory
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
     }
 
-    public function getOrders()
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+
+        $pager = $this->getLayout()->createBlock(
+            'Magento\Theme\Block\Html\Pager',
+            'custom.history.pager'
+        )->setShowPerPage(true)->setCollection(
+            $this->getApiOrders(true)
+        );
+        $this->setChild('pager', $pager);
+
+        return $this;
+    }
+
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
+    }
+
+    public function getApiOrders($all = false)
     {
         $orders = [];
         $params = [
@@ -88,11 +109,13 @@ class History extends SalesHistory
             'productSku' => $this->getRequest()->getParam('productSku')
         ];
         try {
-            $orders = $this->ordersApi->getOrders($params);
+            if (empty($this->ordersApiResponse)) {
+                $this->ordersApiResponse = $this->ordersApi->getOrders($params);
+            }
         } catch (LocalizedException $e) {
             $this->logger->critical('Get Orders API Request has failed with exception: ' . $e->getMessage());
         }
-        $orders = $this->arrayManager->get('body', $orders, []);
+        $orders = $this->arrayManager->get('body', $this->ordersApiResponse, []);
         $current_page =  $this->request->getParam("p", 1);
         $limit =  $this->request->getParam("limit", 10);
         $offset =  ($current_page * $limit) - $limit;
@@ -100,7 +123,9 @@ class History extends SalesHistory
         $collection = $this->collectionFactory->create();
 
         if (is_array($orders)) {
-            $orders = array_slice($orders, $offset, $limit);
+            if (!$all) {
+                $orders = array_slice($orders, $offset, $limit);
+            }
             foreach ($orders as $key => $item) {
                 $varienObject = new \Magento\Framework\DataObject();
                 $varienObject->setData($item);
