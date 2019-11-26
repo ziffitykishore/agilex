@@ -15,6 +15,7 @@ use SomethingDigital\OrderHistory\Model\OrdersApi;
 use Magento\Framework\Data\CollectionFactory as BaseCollectionFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Theme\Block\Html\Pager;
 
 
 class History extends SalesHistory
@@ -84,10 +85,9 @@ class History extends SalesHistory
     {
         parent::_prepareLayout();
 
-        $pager = $this->getLayout()->createBlock(
-            'Magento\Theme\Block\Html\Pager',
-            'custom.history.pager'
-        )->setShowPerPage(true)->setCollection(
+        /** @var Pager $pager */
+        $pager = $this->getLayout()->createBlock(Pager::class, 'custom.history.pager')
+        $pager->setShowPerPage(true)->setCollection(
             $this->getApiOrders(true)
         );
         $this->setChild('pager', $pager);
@@ -106,7 +106,8 @@ class History extends SalesHistory
         $params = [
             'poNumber' => $this->getRequest()->getParam('poNumber'),
             'sxOrderNumber' => $this->getRequest()->getParam('sxOrderNumber'),
-            'productSku' => $this->getRequest()->getParam('productSku')
+            'productSku' => $this->getRequest()->getParam('productSku'),
+            'recordLimit' => 100
         ];
         try {
             if (empty($this->ordersApiResponse)) {
