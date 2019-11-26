@@ -46,9 +46,12 @@ class OrderPlace implements ObserverInterface
     {
         $order = $observer->getEvent()->getOrder();
         
-        $response = $this->orderPlaceApi->sendOrder($order);
-
-        $this->processResponse($order, $response);
+        try {
+            $response = $this->orderPlaceApi->sendOrder($order);
+            $this->processResponse($order, $response);
+        } catch (\Exception $e) {
+            $this->logger->alert($e);
+        }
     }
 
     /**
