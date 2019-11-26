@@ -21,7 +21,6 @@
   &-content {
     position: sticky;
     top: 120px;
-    height: 100vh;
     padding: 0 $indent__m;
     padding-bottom: $indent__l;
     overflow-y: scroll;
@@ -52,9 +51,7 @@
     }
 
     &--inner {
-      height: 100vh;
       overflow-y: scroll;
-      padding-bottom: 150px;
     }
   }
 
