@@ -29,12 +29,22 @@ class AssignCustomAttributes
         if ($company) {
             $companyOwnerId = $company->getSuperUserId();
             $parentCustomer = $this->customerRepository->getById($companyOwnerId);
-            $traversAccountId = $parentCustomer->getCustomAttribute('travers_account_id')->getValue();
+
+            $traversAccountId = '';
+            $traversAccountIdAttr = $parentCustomer->getCustomAttribute('travers_account_id');
+            if (isset($traversAccountIdAttr)) {
+                $traversAccountId = $traversAccountIdAttr->getValue();
+            }
             if ($traversAccountId != '') {
                 $customer->setCustomAttribute('travers_account_id', $traversAccountId);
                 $this->customerRepository->save($customer);
             }
-            $shippingRateGroup = $parentCustomer->getCustomAttribute('shipping_rate_group')->getValue();
+
+            $shippingRateGroup = '';
+            $shippingRateGroupAttr = $parentCustomer->getCustomAttribute('shipping_rate_group');
+            if (isset($shippingRateGroupAttr)) {
+                $shippingRateGroup = $shippingRateGroupAttr->getValue();
+            }
             if ($shippingRateGroup != '') {
                 $customer->setCustomAttribute('shipping_rate_group', $shippingRateGroup);
                 $this->customerRepository->save($customer);
