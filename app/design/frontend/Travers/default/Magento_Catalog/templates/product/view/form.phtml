@@ -38,6 +38,7 @@
             <?= $block->getChildChildHtml('options_container') ?>
         <?php endif;?>
         <?= $block->getChildHtml('form_bottom') ?>
+        <?php if ($_product->isSaleable()): ?>
         <div class="actions">
             <button type="submit"
                     title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
@@ -46,6 +47,7 @@
                 <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
             </button>
         </div>
+        <?php endif;?>
     </form>
 </div>
 <script>
