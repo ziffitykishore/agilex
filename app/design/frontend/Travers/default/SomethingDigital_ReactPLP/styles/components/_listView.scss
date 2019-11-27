@@ -177,16 +177,17 @@
   .list-content {
     @include min-screen($screen__l) {
       display: flex;
-      width: 70%;
     }
 
     &-left {
+      width: 100%;
+
       @include min-screen($screen__l) {
-        width: 290px;
+        max-width: 170px;
       }
 
       @include min-screen($plp_breakpoint) {
-        width: 320px;
+        max-width: 250px;
       }
     }
 
