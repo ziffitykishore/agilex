@@ -425,24 +425,27 @@ $sidebar__max-width: 240px;
     color: $c-nickel;
     font-weight: $font-weight__semibold;
     margin-left: $list-image__max-width + $list-image__margin--mobile;
+    order: 1;
 
     @include min-screen($screen__m) {
-      margin-left: $list-image__max-width + $list-image__margin--desktop + $list-image__margin--desktop;
+      margin-left: $list-image__max-width + $indent__xl;
+      margin-top: $indent__base;
     }
 
     @include min-screen($screen__l) {
-      margin-left: $list-image__max-width;
+      margin-left: 0;
+      text-align: right;
       width: 100%;
+      order: 0;
     }
   }
-
 
   @include min-screen($plp_breakpoint) {
     display: flex;
     align-items: center;
 
     .increment-message {
-      margin: $indent__base $indent__s 0 0;
+      margin: $indent__base $indent__base 0 0;
     }
   }
 }
