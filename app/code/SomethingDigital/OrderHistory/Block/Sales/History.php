@@ -86,7 +86,7 @@ class History extends SalesHistory
         parent::_prepareLayout();
 
         /** @var Pager $pager */
-        $pager = $this->getLayout()->createBlock(Pager::class, 'custom.history.pager')
+        $pager = $this->getLayout()->createBlock(Pager::class, 'custom.history.pager');
         $pager->setShowPerPage(true)->setCollection(
             $this->getApiOrders(true)
         );
