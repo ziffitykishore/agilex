@@ -114,7 +114,13 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 			
 			$(window).resize(function () {
 				fixAutocompleteCssSticky(menu);
-			});
+      })
+      .scroll(function () {
+        // If autocomplete dropdown is visible, reposition it
+        if ($('.aa-dropdown-menu').is(':visible')) {
+          fixAutocompleteCssSticky(menu);
+        }
+      });
 		});
 		
 		// Hack to handle buggy onclick event on iOS
