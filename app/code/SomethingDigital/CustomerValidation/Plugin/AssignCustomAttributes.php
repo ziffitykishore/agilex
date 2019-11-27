@@ -30,25 +30,17 @@ class AssignCustomAttributes
             $companyOwnerId = $company->getSuperUserId();
             $parentCustomer = $this->customerRepository->getById($companyOwnerId);
 
-            $traversAccountId = '';
-            $traversAccountIdAttr = $parentCustomer->getCustomAttribute('travers_account_id');
-            if (isset($traversAccountIdAttr)) {
-                $traversAccountId = $traversAccountIdAttr->getValue();
-            }
-            if ($traversAccountId != '') {
-                $customer->setCustomAttribute('travers_account_id', $traversAccountId);
-                $this->customerRepository->save($customer);
+            $traversAccountId = $parentCustomer->getCustomAttribute('travers_account_id');
+            if ($traversAccountId) {
+                $customer->setCustomAttribute('travers_account_id', $traversAccountId->getValue());
             }
 
-            $shippingRateGroup = '';
-            $shippingRateGroupAttr = $parentCustomer->getCustomAttribute('shipping_rate_group');
-            if (isset($shippingRateGroupAttr)) {
-                $shippingRateGroup = $shippingRateGroupAttr->getValue();
+            $shippingRateGroup = $parentCustomer->getCustomAttribute('shipping_rate_group');
+            if ($shippingRateGroup) {
+                $customer->setCustomAttribute('shipping_rate_group', $shippingRateGroup->getValue());
             }
-            if ($shippingRateGroup != '') {
-                $customer->setCustomAttribute('shipping_rate_group', $shippingRateGroup);
-                $this->customerRepository->save($customer);
-            }
+
+            $this->customerRepository->save($customer);
         }
 
         return $result;
