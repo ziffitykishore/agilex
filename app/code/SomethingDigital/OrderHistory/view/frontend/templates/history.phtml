@@ -9,7 +9,7 @@
 /** @var SomethingDigital\OrderHistory\Block\Sales\History $block */
 
 ?>
-<?php $_orders = $block->getOrders(); ?>
+<?php $_orders = $block->getApiOrders(); ?>
 <?= $block->getChildHtml('info') ?>
 <div class="table-wrapper orders-history">
     <h3 class="orders-history-header"><?= __('Search By') ?></h3>
