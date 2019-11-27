@@ -38,8 +38,11 @@ domready(() => {
   }
 
   $(window).on('refined', function() {
-    hideGroupHeaders('list', 'list-item');
-    hideGroupHeaders('table', 'react-bootstrap-table');
+    // TODO -> remove setTimeout
+    setTimeout(() => {
+      hideGroupHeaders('list', 'list-item');
+      hideGroupHeaders('table', 'react-bootstrap-table');
+    }, 1);
   });
 });
 
