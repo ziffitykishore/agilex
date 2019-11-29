@@ -7,6 +7,8 @@ use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use SomethingDigital\CustomerSpecificPricing\Model\Quote;
+use Magento\Quote\Api\CartRepositoryInterface;
+use Magento\Checkout\Model\Cart;
 
 class Suffix
 {
@@ -16,19 +18,25 @@ class Suffix
     protected $productCollection;
     protected $config;
     private $quote;
+    protected $cart;
+    protected $quoteRepository;
 
     public function __construct(
         Http $request,
         SessionManagerInterface $session,
         Collection $productCollection,
         ScopeConfigInterface $config,
-        Quote $quote
+        Quote $quote,
+        Cart $cart,
+        CartRepositoryInterface $quoteRepository
     ) {
         $this->request = $request;
         $this->session = $session;
         $this->productCollection = $productCollection;
         $this->config = $config;
         $this->quote = $quote;
+        $this->cart = $cart;
+        $this->quoteRepository = $quoteRepository;
     }
 
     public function beforeExecute(\Magento\CatalogSearch\Controller\Result\Index $subject)
@@ -53,9 +61,16 @@ class Suffix
                 $skuSuffix = substr($queryText, strlen($sku));
                 $this->session->setSkuSuffix($skuSuffix);
                 $this->quote->repriceCustomerQuote(true);
+
+                $currentQuote = $this->cart->getQuote();
+                if ($currentQuote) {
+                    $quote = $this->quoteRepository->get($currentQuote->getId());
+                    $quote->setSuffix($skuSuffix);
+                    $this->quoteRepository->save($quote);
+                }
+
                 $subject->getResponse()->setRedirect($product->getProductUrl());
             }
         }
-
     }
 }

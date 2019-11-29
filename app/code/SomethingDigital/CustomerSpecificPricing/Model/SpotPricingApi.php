@@ -56,11 +56,14 @@ class SpotPricingApi extends Adapter
      * @return array
      * @throws LocalizedException
      */
-    public function getSpotPrice($productSku)
+    public function getSpotPrice($productSku, $suffix = null)
     {
         $customerAccountId = $this->getCustomerAccountId();
 
-        $suffix = $this->sessionManager->getSkuSuffix();
+        if (!$suffix) {
+            $suffix = $this->sessionManager->getSkuSuffix();
+        }
+
         if (empty($suffix)) {
             $suffix = $this->cart->getQuote()->getSuffix();
         }
