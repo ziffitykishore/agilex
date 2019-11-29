@@ -89,9 +89,10 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
 
         .price-box {
             margin: 0;
+            display: flex;
 
             .price {
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: $font-weight__semibold;
                 white-space: nowrap;
             }
@@ -108,7 +109,7 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
         .special-price,
         .minimal-price {
             .price {
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: $font-weight__semibold;
             }
 
@@ -122,9 +123,9 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
         }
 
         .special-price {
-            float: right;
-            margin-left: 5px;
-            color: $c-red;
+            margin-left: $indent__s;
+            color: $c-steel;
+            order: 1;
         }
 
         .old-price {
@@ -273,6 +274,7 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
     .product-item-link,
     .product-item-link:visited {
         color: $text__color;
+        letter-spacing: 0;
 
         @include hover {
             text-decoration: none;

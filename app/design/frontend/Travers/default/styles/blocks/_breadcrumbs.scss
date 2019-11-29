@@ -31,6 +31,7 @@ $font-size__base--desktop: $font-size__base !default;
         $_breadcrumbs-separator-symbol: '/',
         $_breadcrumbs-current-font-weight: $font-weight__regular
     );
+    margin: $indent__xs auto $indent__base auto;
 
     .items {
         line-height: 1.8;
@@ -41,6 +42,10 @@ $font-size__base--desktop: $font-size__base !default;
             a {
                 font-weight: $font-weight__regular;
                 margin: 0 $indent__xs;
+            }
+
+            &.home a {
+                margin-left: 0;
             }
         }
     }
