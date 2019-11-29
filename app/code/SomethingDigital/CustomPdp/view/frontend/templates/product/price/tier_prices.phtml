@@ -14,6 +14,13 @@
 $tierPriceModel = $block->getPrice();
 $tierPrices = $tierPriceModel->getTierPriceList();
 $total = count($tierPrices);
+if ($tmpBlock) { //tmpBlock is only null if it's the parent product
+    $nameInLayout = $tmpBlock->getNameInLayout();
+    if (strpos($nameInLayout, "grouped") || strpos($nameInLayout, "bundled")) {
+        return;
+    }
+}
+
 ?>
 <?php if (count($tierPrices)) : ?>
     <?php
@@ -53,7 +60,7 @@ $total = count($tierPrices);
             <td class="item row-index"><?= __('Price (ea.)'); ?>:</td>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <td class="item">
-                        <?php 
+                        <?php
                             $priceAmountBlock = $block->renderAmount(
                                 $price['price'],
                                 [
