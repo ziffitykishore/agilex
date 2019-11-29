@@ -1062,3 +1062,14 @@ body.catalog-product-compare-index {
         }
     }
 }
+
+.upsell .product-items {
+    display: flex;
+    flex-wrap: wrap;
+
+    .product-item {
+        margin: 0 0 30px;
+        width: 220px;
+        max-width: 50%;
+    }
+}
