@@ -8,6 +8,13 @@
 <layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
     <referenceBlock name="render.product.prices">
         <arguments>
+            <argument name="bundle" xsi:type="array">
+                <item name="prices" xsi:type="array">
+                    <item name="tier_price" xsi:type="array">
+                        <item name="render_template" xsi:type="string">SomethingDigital_CustomPdp::product/bundle/price/tier_prices.phtml</item>
+                    </item>
+                </item>
+            </argument>
             <argument name="default" xsi:type="array">
                 <item name="prices" xsi:type="array">
                     <item name="tier_price" xsi:type="array">
