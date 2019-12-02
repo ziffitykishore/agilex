@@ -1,0 +1,51 @@
+<?php // @codingStandardsIgnoreFile ?>
+<?php
+$_product = $block->getProduct();
+$productName = trim($block->stripTags($_product->getName(), null, true));
+$_productName = rawurlencode($productName);
+$_productUrl = rawurlencode(trim($_product->getProductUrl()));
+$_productImageUrl = $block->getUrl('media/catalog') . 'product' . $_product->getImage();
+$productDesc = $this->helper('Magento\Catalog\Helper\Output')->productAttribute($block->getProduct(), $block->getProduct()->getDescription(), 'description');
+$_productDesc =  rawurlencode(strip_tags(trim($productDesc)));
+?>
+
+<h3 class="visuallyhidden"><?= /* @escapeNotVerified */ __('Share this product:') ?></h3>
+<ul class="link-sharing">
+<?php if ($block->canEmailToFriend()): ?>
+    <li>
+        <a href="<?= /* @escapeNotVerified */ "mailto:?subject=" . rawurlencode(__('Check this out!')) . "&body=" . $this->helper('Magento\Catalog\Helper\Product')->getProductUrl($_product) ?>"
+           class="action mailto friend link-sharing--email">
+           <span class="visuallyhidden "><?= /* @escapeNotVerified */ __('Email') ?></span>
+           <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#email" xlink:href="#email"></use>
+            </svg>
+        </a>
+    </li>
+<?php endif; ?>
+    <li class="link-sharing--social">
+        <?php $fb_queries = "?u={$_productUrl}&picture={$_productImageUrl}&title={$_productName}&description={$_productDesc}"; ?>
+        <a href="<?= 'http://www.facebook.com/sharer/sharer.php' . $fb_queries; ?>" target="_blank" rel="noopener" class="link-sharing--facebook">
+            <span class="visuallyhidden"><?= /* @escapeNotVerified */ __('Facebook') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#facebook-2" xlink:href="#facebook"></use>
+            </svg>
+        </a>
+    </li>
+    <li class="link-sharing--social">
+        <a href="<?= 'http://twitter.com/home?status=' . $_productName . '+' . $_productUrl; ?>" target="_blank" rel="noopener" class="link-sharing--twitter">
+            <span class="visuallyhidden"><?= /* @escapeNotVerified */ __('Twitter') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#twitter-2" xlink:href="#twitter"></use>
+            </svg>
+        </a>
+    </li>
+    <li class="link-sharing--social">
+        <a href="http://pinterest.com/pin/create/button/?url=<?= $_productUrl . '&media=' . $_productImageUrl . '&description=' . $_productName; ?>" target="_blank" rel="noopener" class="link-sharing--pinterest">
+            <span class="visuallyhidden"><?= /* @escapeNotVerified */ __('Pinterest') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#pinterest" xlink:href="#pinterest"></use>
+            </svg>
+        </a>
+    </li>
+
+</ul>

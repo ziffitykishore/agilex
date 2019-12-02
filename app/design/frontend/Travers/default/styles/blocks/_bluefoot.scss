@@ -1149,14 +1149,14 @@ footer.page-footer {
     }
 
     .slick-slide {
-        width: 100vw !important; // override PageBuilder/slick
+        width: calc(100vw - 15px) !important; // override PageBuilder/slick
 
         @include min-screen($screen__m) {
-            width: 50vw !important; // override PageBuilder/slick
+            width: calc(.9 * 50vw - 30px) !important // override PageBuilder/slick
         }
 
         @include min-screen($screen__l) {
-            width: 25vw !important; // override PageBuilder/slick
+            width: calc(.9 * 25vw - 15px) !important; // override PageBuilder/slick
         }
 
         .pagebuilder-slide-wrapper [data-element="content"] {
