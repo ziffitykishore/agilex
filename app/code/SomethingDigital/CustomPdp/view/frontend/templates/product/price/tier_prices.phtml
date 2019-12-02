@@ -14,13 +14,6 @@
 $tierPriceModel = $block->getPrice();
 $tierPrices = $tierPriceModel->getTierPriceList();
 $total = count($tierPrices);
-if ($tmpBlock) { //tmpBlock is only null if it's the parent product
-    $nameInLayout = $tmpBlock->getNameInLayout();
-    if (strpos($nameInLayout, "grouped") || strpos($nameInLayout, "bundled")) {
-        return;
-    }
-}
-
 ?>
 <?php if (count($tierPrices)) : ?>
     <?php
