@@ -53,7 +53,7 @@ $total = count($tierPrices);
             <td class="item row-index"><?= __('Price (ea.)'); ?>:</td>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <td class="item">
-                        <?php 
+                        <?php
                             $priceAmountBlock = $block->renderAmount(
                                 $price['price'],
                                 [
