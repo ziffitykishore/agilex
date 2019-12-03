@@ -5,6 +5,8 @@ define([
 
     var renderedCount = 0;
 
+    var maxRender = 4;
+
     var mixin = {
 
         searchInput: ko.observable(''),
@@ -17,7 +19,7 @@ define([
          * @param data
          */
         renderHandler: function (elements, data) {
-            if (renderedCount < 5 || data.isSelected()) {
+            if (renderedCount < maxRender || data.isSelected()) {
                 data.isVisible(true);
             }
             renderedCount++;
@@ -32,7 +34,7 @@ define([
             }
 
             this.elems().forEach(function (elem) {
-                if (elem.searchableAddress().indexOf(query.toLowerCase()) > -1 && matches < 5) {
+                if (elem.searchableAddress().indexOf(query.toLowerCase()) > -1 && matches <= maxRender) {
                     elem.isVisible(true);
                     matches++;
                 } else {
@@ -45,7 +47,7 @@ define([
             var displayed = 0;
 
             this.elems().forEach(function (elem) {
-                if (displayed < 5 || elem.isSelected()) {
+                if (displayed < maxRender || elem.isSelected()) {
                     elem.isVisible(true);
                     displayed++;
                 } else {
