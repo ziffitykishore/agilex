@@ -32,7 +32,7 @@ define([
             }
 
             this.elems().forEach(function (elem) {
-                if (elem.searchableAddress().indexOf(query.toLowerCase()) > -1 && matches < 10) {
+                if (elem.searchableAddress().indexOf(query.toLowerCase()) > -1 && matches < 5) {
                     elem.isVisible(true);
                     matches++;
                 } else {
