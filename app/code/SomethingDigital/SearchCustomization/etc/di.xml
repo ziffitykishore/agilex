@@ -6,4 +6,10 @@
     <type name="Magento\AdvancedCheckout\Model\Cart">
         <plugin name="SomethingDigital_SearchCustomization_AddSufixToQuote" type="SomethingDigital\SearchCustomization\Plugin\AddSuffixToQuote" />
     </type>
+    <type name="Magento\QuickOrder\Model\Cart">
+        <plugin name="SomethingDigital_SearchCustomization_CheckItemQuickOrder" type="SomethingDigital\SearchCustomization\Plugin\CheckItemQuickOrder" />
+    </type>
+    <type name="Magento\QuickOrder\Controller\Sku\UploadFile">
+        <plugin name="SomethingDigital_SearchCustomization_UploadFileQuickOrder" type="SomethingDigital\SearchCustomization\Plugin\UploadFileQuickOrder" />
+    </type>
 </config>

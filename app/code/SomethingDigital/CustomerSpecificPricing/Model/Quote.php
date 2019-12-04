@@ -56,7 +56,7 @@ class Quote
         $this->productRepo = $productRepo;
     }
 
-    public function repriceCustomerQuote($saveQuoteItem = false)
+    public function repriceCustomerQuote($saveQuoteItem = false, $suffix = null)
     {
         $items = $this->cart->getQuote()->getAllItems();
 
@@ -67,7 +67,7 @@ class Quote
 
                 try {
                     if ($item->getProductType() === \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE) {
-                        $prices = $this->spotPricingApi->getSpotPrice($item->getSku());
+                        $prices = $this->spotPricingApi->getSpotPrice($item->getSku(), $suffix);
                         $spotPrice = $this->arrayManager->get('body/DiscountPrice', $prices);
                         $customPrice = null;
                         if ($spotPrice && $spotPrice < $price) {
@@ -77,13 +77,11 @@ class Quote
                         if ($tierPrice) {
                             $customPrice = $tierPrice;
                         }
-                        if ($customPrice) {
-                            $item->setCustomPrice($customPrice);
-                            $item->setOriginalCustomPrice($customPrice);
-                            $item->getProduct()->setIsSuperMode(true);
-                            if ($saveQuoteItem) {
-                                $item->save();
-                            }
+                        $item->setCustomPrice($customPrice);
+                        $item->setOriginalCustomPrice($customPrice);
+                        $item->getProduct()->setIsSuperMode(true);
+                        if ($saveQuoteItem) {
+                            $item->save();
                         }
                     }
                 } catch (LocalizedException $e) {

@@ -2,7 +2,6 @@
 
 namespace SomethingDigital\SearchCustomization\Plugin;
 
-use Magento\Framework\App\Request\Http;
 use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Catalog\Model\ResourceModel\Product\Collection;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -10,10 +9,8 @@ use SomethingDigital\CustomerSpecificPricing\Model\Quote;
 use Magento\Quote\Api\CartRepositoryInterface;
 use Magento\Checkout\Model\Cart;
 
-class Suffix
+class CheckItemQuickOrder
 {
-
-    protected $request;
     protected $session;
     protected $productCollection;
     protected $config;
@@ -22,7 +19,6 @@ class Suffix
     protected $quoteRepository;
 
     public function __construct(
-        Http $request,
         SessionManagerInterface $session,
         Collection $productCollection,
         ScopeConfigInterface $config,
@@ -30,7 +26,6 @@ class Suffix
         Cart $cart,
         CartRepositoryInterface $quoteRepository
     ) {
-        $this->request = $request;
         $this->session = $session;
         $this->productCollection = $productCollection;
         $this->config = $config;
@@ -39,9 +34,9 @@ class Suffix
         $this->quoteRepository = $quoteRepository;
     }
 
-    public function beforeExecute(\Magento\CatalogSearch\Controller\Result\Index $subject)
+    public function beforeCheckItem(\Magento\QuickOrder\Model\Cart $subject, $sku, $qty, $config)
     {
-        $queryText = $this->request->getParam('q');
+        $queryText = $sku;
 
         $minSkuLength = $this->config->getValue('catalog/search/min_sku_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $maxSuffixLength = $this->config->getValue('catalog/search/max_suffix_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
@@ -53,24 +48,8 @@ class Suffix
 
         foreach ($productcollection as $key => $product) {
             $sku = $product->getSku();
-            if ($queryText == $sku) {
-                $subject->getResponse()->setRedirect($product->getProductUrl());
-            }
-
-            if (strpos($queryText, $sku) === 0) {
-                $skuSuffix = substr($queryText, strlen($sku));
-                $this->session->setSkuSuffix($skuSuffix);
-                $this->quote->repriceCustomerQuote(true);
-
-                $currentQuote = $this->cart->getQuote();
-                if ($currentQuote) {
-                    $quote = $this->quoteRepository->get($currentQuote->getId());
-                    $quote->setSuffix($skuSuffix);
-                    $this->quoteRepository->save($quote);
-                }
-
-                $subject->getResponse()->setRedirect($product->getProductUrl());
-            }
-        }
+        } 
+        return [$sku, $qty, $config];
     }
+
 }
