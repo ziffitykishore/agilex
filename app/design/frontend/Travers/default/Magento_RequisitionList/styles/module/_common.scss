@@ -1029,12 +1029,34 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
     }
 
-    .block-requisition-list:not(:first-of-type) .items {
-        right: 0;
+    .block-requisition-list {
+        &:first-of-type .items {
+            @include max-screen($screen__s) {
+                left: -68px;
+    
+                &::before,
+                &::after {
+                    left: 30%;
+                }
+            }
+        }
 
-        &::before,
-        &::after {
-            left: 90%;
+        &:not(:first-of-type) .items {
+            right: 0;
+    
+            &::before,
+            &::after {
+                left: 90%;
+            }
+    
+            @include max-screen($screen__s) {
+                right: -50px;
+    
+                &::before,
+                &::after {
+                    left: 60%;
+                }
+            }
         }
     }
 
