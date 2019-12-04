@@ -472,6 +472,12 @@
     }
 }
 
+.bundle-info .action.tocart {
+    margin: $indent__m 0 $indent__s;
+    width: $tocart-min-width;
+    max-width: 100%;
+}
+
 .ui-dialog-titlebar-close {
     @include button--inline-link();
 }
@@ -994,9 +1000,12 @@ body.catalog-product-compare-index {
                     }
                 }
 
+                a {
+                    color: $text__color;
+                }
+
                 &[data-th="Manufacturer Price"] {
                     pointer-events: none; // Mobile Safari thinks this is a phone number
-                    color: $text__color !important; // Mobile Safari thinks this is a phone number
                 }
             }
         }
@@ -1043,18 +1052,33 @@ body.catalog-product-compare-index {
             margin-top: $indent__s;
             color: $link__color;
 
-            &::before {
-                margin-right: $indent__s;
-                transform: translateY(-2px);
-            }
+            p {
+                margin-bottom: 15px;
 
-            @include icon-svg(
-                $icon       : document,
-                $fill       : $primary__color,
-                $width      : 15px,
-                $height     : 20px,
-                $pseudo     : before
-            );
+                @include icon-svg(
+                    $icon       : document,
+                    $fill       : $primary__color,
+                    $width      : 15px,
+                    $height     : 20px,
+                    $pseudo     : before
+                );
+
+                &::before {
+                    margin-right: $indent__s;
+                    transform: translateY(-2px);
+                }
+            }
         }
+    }
+}
+
+.upsell .product-items {
+    display: flex;
+    flex-wrap: wrap;
+
+    .product-item {
+        margin: 0 0 30px;
+        width: 220px;
+        max-width: 50%;
     }
 }

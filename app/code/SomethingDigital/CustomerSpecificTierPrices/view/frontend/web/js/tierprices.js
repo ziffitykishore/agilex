@@ -21,10 +21,11 @@ define([
 
                 var prices = response.data[sku];
 
+                prices = self.removeIfZero(prices);
+
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
                     return;
                 }
-                prices = self.removeIfZero(prices);
 
                 prices['saveBreak1'] = '';
                 prices['saveBreak2'] = '';

@@ -1,0 +1,13 @@
+diff --git a/vendor/magento/module-negotiable-quote/view/frontend/web/js/create-negotiable-quote.js b/vendor/magento/module-negotiable-quote/view/frontend/web/js/create-negotiable-quote.js
+index 5891331..9becf4a 100644
+--- a/vendor/magento/module-negotiable-quote/view/frontend/web/js/create-negotiable-quote.js
++++ b/vendor/magento/module-negotiable-quote/view/frontend/web/js/create-negotiable-quote.js
+@@ -210,7 +210,7 @@ define([
+   
+             /* Delete empty file inputs */
+             fileInputs.each(function (i, input) {
+-                if (input.files.length === 0) {
++                if (FormData.prototype.delete && input.files.length === 0) {
+                     formData.delete(input.name);
+                 }
+             });

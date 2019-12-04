@@ -31,14 +31,11 @@
 
   .cart-actions {
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column-reverse;
 
     @include min-screen($screen__l) {
       overflow-x: visible;
-      flex-direction: column;
-
-      p {
-        order: 1;
-      }
     }
   }
 
@@ -87,6 +84,7 @@
       text-align: center;
       font-size: $font-size__base;
       padding: 0;
+      margin-bottom: $indent__xs;
 
       a::before {
         display: none;
@@ -101,6 +99,12 @@
         font-size: $font-size__base--desktop;
         margin-bottom: 0;
         padding: $indent__xs 0;
+        width: 100%;
+        max-width: none;
+        text-align: center;
+        left: 0;
+        position: absolute;
+        bottom: 0;
 
         &.error {
             background-color: $c-error;
@@ -110,21 +114,14 @@
             background-color: $c-success;
         }
       }
-
-      @include min-screen($screen__l) {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        text-align: center;
-        left: 0;
-      }
     }
   }
 
   .list-item {
-    padding-bottom: $indent__s;
     padding-top: $indent__s;
+    padding-bottom: 15px;
     border-bottom: 1px solid $c-grey;
+    position: relative;
 
     &:first-of-type {
         border-top: 1px solid $c-grey;
@@ -134,8 +131,6 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      position: relative;
-      padding-bottom: $indent__m;
     }
 
     ul li {
@@ -177,16 +172,17 @@
   .list-content {
     @include min-screen($screen__l) {
       display: flex;
-      width: 70%;
     }
 
     &-left {
+      width: 100%;
+
       @include min-screen($screen__l) {
-        width: 290px;
+        max-width: 170px;
       }
 
       @include min-screen($plp_breakpoint) {
-        width: 320px;
+        max-width: 250px;
       }
     }
 

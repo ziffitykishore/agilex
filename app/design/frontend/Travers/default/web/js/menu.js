@@ -477,10 +477,18 @@ define([
          * @param {jQuery.Event} event
          */
         'click .ui-menu-item:has(a)': function(event) {
+          var $currentTarget = $(event.currentTarget);
           var target;
 
           event.preventDefault();
-          target = $(event.target).closest('.ui-menu-item');
+
+          if ($currentTarget.hasClass('quick-order-container')) {
+            /* For "Quick Order" link, "a" element is located inside li */
+            target = $currentTarget.find('> li');
+          }
+          else {
+            target = $(event.target).closest('.ui-menu-item');
+          }
 
           if (!target.hasClass('level-top') || !target.has('.ui-menu').length) {
             window.location.href = target.find('> a').attr('href');

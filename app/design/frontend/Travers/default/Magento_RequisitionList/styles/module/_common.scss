@@ -232,12 +232,24 @@ $requisition-print__font-size-m: 1.4rem !default;
             float: left;
             margin-top: $indent__xs;
 
-            @include screen($screen__s, $screen__l) {
+            @include max-screen($screen__l) {
                 margin-right: $indent__l;
             }
         }
     }
 
+    .product-item {
+        &-description {
+            display: inline-block;
+        }
+
+        &-image {
+            display: inline-block;
+            margin-right: $indent__s;
+            float: left;
+        }
+    }
+    
     .product-item-name {
         @extend .abs-product-link;
         font-weight: $font-weight__semibold;
@@ -475,16 +487,10 @@ $requisition-print__font-size-m: 1.4rem !default;
                     .product-item {
                         &-description {
                             margin-left: $indent__m;
-                            display: inline-block;
                         }
 
                         &-name {
                             margin-bottom: $indent__xs;
-                        }
-
-                        &-image {
-                            display: inline-block;
-                            float: left;
                         }
                     }
                 }
@@ -871,11 +877,6 @@ $requisition-print__font-size-m: 1.4rem !default;
             }
         }
 
-        .product-item-image {
-            float: left;
-            margin-right: $indent__s;
-        }
-
         .actions-toolbar {
             position: relative;
 
@@ -1029,12 +1030,34 @@ $requisition-print__font-size-m: 1.4rem !default;
         }
     }
 
-    .block-requisition-list:not(:first-of-type) .items {
-        right: 0;
+    .block-requisition-list {
+        &:first-of-type .items {
+            @include max-screen($screen__s) {
+                left: -68px;
+    
+                &::before,
+                &::after {
+                    left: 30%;
+                }
+            }
+        }
 
-        &::before,
-        &::after {
-            left: 90%;
+        &:not(:first-of-type) .items {
+            right: 0;
+    
+            &::before,
+            &::after {
+                left: 90%;
+            }
+    
+            @include max-screen($screen__s) {
+                right: -50px;
+    
+                &::before,
+                &::after {
+                    left: 60%;
+                }
+            }
         }
     }
 
@@ -1245,6 +1268,13 @@ $requisition-print__font-size-m: 1.4rem !default;
                 }
             }
         }
+    }
+}
+
+@include max-screen($screen__xs) {
+    .requisition-content #form-requisition-list .col.product .product-item-description {
+        width: 100%;
+        margin-left: 0;
     }
 }
 

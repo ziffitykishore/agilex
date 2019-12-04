@@ -21,7 +21,6 @@
   &-content {
     position: sticky;
     top: 120px;
-    height: 100vh;
     padding: 0 $indent__m;
     padding-bottom: $indent__l;
     overflow-y: scroll;
@@ -34,7 +33,7 @@
     .message {
       position: absolute;
       width: 100%;
-      max-width: 250px;
+      max-width: 180px;
       margin-top: $indent__s;
       background-color: transparent;
       font-weight: $font-weight__semibold;
@@ -52,9 +51,7 @@
     }
 
     &--inner {
-      height: 100vh;
       overflow-y: scroll;
-      padding-bottom: 150px;
     }
   }
 

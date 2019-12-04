@@ -15,6 +15,7 @@ use SomethingDigital\OrderHistory\Model\OrdersApi;
 use Magento\Framework\Data\CollectionFactory as BaseCollectionFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Theme\Block\Html\Pager;
 
 
 class History extends SalesHistory
@@ -55,6 +56,7 @@ class History extends SalesHistory
      */
     private $request;
 
+    private $ordersApiResponse;
 
     public function __construct(
         Context $context,
@@ -79,20 +81,42 @@ class History extends SalesHistory
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
     }
 
-    public function getOrders()
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+
+        /** @var Pager $pager */
+        $pager = $this->getLayout()->createBlock(Pager::class, 'custom.history.pager');
+        $pager->setShowPerPage(true)->setCollection(
+            $this->getApiOrders(true)
+        );
+        $this->setChild('pager', $pager);
+
+        return $this;
+    }
+
+    public function getPagerHtml()
+    {
+        return $this->getChildHtml('pager');
+    }
+
+    public function getApiOrders($all = false)
     {
         $orders = [];
         $params = [
             'poNumber' => $this->getRequest()->getParam('poNumber'),
             'sxOrderNumber' => $this->getRequest()->getParam('sxOrderNumber'),
-            'productSku' => $this->getRequest()->getParam('productSku')
+            'productSku' => $this->getRequest()->getParam('productSku'),
+            'recordLimit' => 100
         ];
         try {
-            $orders = $this->ordersApi->getOrders($params);
+            if (empty($this->ordersApiResponse)) {
+                $this->ordersApiResponse = $this->ordersApi->getOrders($params);
+            }
         } catch (LocalizedException $e) {
             $this->logger->critical('Get Orders API Request has failed with exception: ' . $e->getMessage());
         }
-        $orders = $this->arrayManager->get('body', $orders, []);
+        $orders = $this->arrayManager->get('body', $this->ordersApiResponse, []);
         $current_page =  $this->request->getParam("p", 1);
         $limit =  $this->request->getParam("limit", 10);
         $offset =  ($current_page * $limit) - $limit;
@@ -100,7 +124,9 @@ class History extends SalesHistory
         $collection = $this->collectionFactory->create();
 
         if (is_array($orders)) {
-            $orders = array_slice($orders, $offset, $limit);
+            if (!$all) {
+                $orders = array_slice($orders, $offset, $limit);
+            }
             foreach ($orders as $key => $item) {
                 $varienObject = new \Magento\Framework\DataObject();
                 $varienObject->setData($item);

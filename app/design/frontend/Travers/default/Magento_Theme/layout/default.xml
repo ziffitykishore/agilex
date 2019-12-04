@@ -43,5 +43,7 @@
     <move element="product.info.extrahint.qtyincrements" destination="product.info.form.content" before='-' />
     <move element="yotpo_bottomline" destination="product.info.stock.sku" after="-"/>
     <move element="navigation.sections" destination="header-wrapper"/>
+    <move element="algolia.beforecontent" destination="header-wrapper" after="-"/>
+    <move element="algolia.instant.wrapper" destination="header-wrapper" after="-"/>
 </page>
 

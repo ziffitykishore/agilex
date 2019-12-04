@@ -9,6 +9,8 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+
 <?php if ($_product->isSaleable()): ?>
 <div class="box-tocart">
     <div class="fieldset">
@@ -30,6 +32,16 @@
         <?php endif; ?>
     </div>
 </div>
+<?php if ($_product->getTypeId() === 'bundle'): ?>
+    <div class="actions">
+        <button type="submit"
+                title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                class="action primary tocart"
+                id="product-addtocart-button">
+            <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+        </button>
+    </div>
+<?php endif; ?>
 <?php endif; ?>
 <script type="text/x-magento-init">
     {

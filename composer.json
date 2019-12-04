@@ -161,6 +161,9 @@
                 "title": "Fix Page Builder on 2.3.2-p2 when minification enabled",
                 "url": "composer-patches/sd_2.3.2-p2_pagebuilder_min_js.patch",
                 "type": "patch"
+            },
+            "magento/module-negotiable-quote": {
+              "FormData.prototype.delete method unavailable in IE11": "composer-patches/IE11_FormData_delete.composer.patch"
             }
         }
     },
