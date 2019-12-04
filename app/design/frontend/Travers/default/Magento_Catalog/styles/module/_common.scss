@@ -472,6 +472,12 @@
     }
 }
 
+.bundle-info .action.tocart {
+    margin: $indent__m 0 $indent__s;
+    width: $tocart-min-width;
+    max-width: 100%;
+}
+
 .ui-dialog-titlebar-close {
     @include button--inline-link();
 }
