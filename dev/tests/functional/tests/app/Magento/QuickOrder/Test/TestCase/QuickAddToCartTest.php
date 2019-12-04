@@ -8,6 +8,7 @@ namespace Magento\QuickOrder\Test\TestCase;
 
 use Magento\Mtf\TestCase\Injectable;
 use Magento\QuickOrder\Test\Page\QuickOrder as QuickOrderPage;
+use Magento\Mtf\Util\Command\Cli\EnvWhitelist;
 
 /**
  * Test quick add to cart
@@ -39,13 +40,24 @@ class QuickAddToCartTest extends Injectable
     protected $configData;
 
     /**
+     * DomainWhitelist CLI
+     *
+     * @var EnvWhitelist
+     */
+    private $envWhitelist;
+
+    /**
      * Perform needed injections
      *
      * @param QuickOrderPage $quickOrderPage
+     * @param EnvWhitelist $envWhitelist
      */
-    public function __inject(QuickOrderPage $quickOrderPage)
-    {
+    public function __inject(
+        QuickOrderPage $quickOrderPage,
+        EnvWhitelist $envWhitelist
+    ) {
         $this->quickOrderPage = $quickOrderPage;
+        $this->envWhitelist = $envWhitelist;
     }
 
     /**
@@ -57,6 +69,7 @@ class QuickAddToCartTest extends Injectable
      */
     public function test($productsList, $configData = null)
     {
+        $this->envWhitelist->addHost('example.com');
         $this->configData = $configData;
         $this->objectManager->create(
             \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
@@ -92,8 +105,9 @@ class QuickAddToCartTest extends Injectable
      *
      * @return void
      */
-    public function tearDown()
+    protected function tearDown()
     {
+        $this->envWhitelist->removeHost('example.com');
         $this->objectManager->create(
             \Magento\Config\Test\TestStep\SetupConfigurationStep::class,
             ['configData' => $this->configData, 'rollback' => true]

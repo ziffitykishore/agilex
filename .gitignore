@@ -99,3 +99,7 @@ atlassian*
 
 provision.retry
 /.docker-sync
+
+/.docker/
+/bin/docker
+/mutagen.sh
