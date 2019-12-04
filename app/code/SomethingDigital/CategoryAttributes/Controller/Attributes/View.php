@@ -71,6 +71,12 @@ class View extends \Magento\Framework\App\Action\Action
                     if (!$attr || !$attr->getIncludeInTable())
                         unset($tableAttributes[$key]);
                 }
+                if (!in_array('price', $tableAttributes)) {
+                    array_push($tableAttributes, 'price');
+                }
+                if (!in_array('sku', $tableAttributes)) {
+                    array_push($tableAttributes, 'sku');
+                }
             }
             if ($category->getListAttributes()) {
                 $listAttributes = preg_split('/\s+/', $category->getListAttributes());
