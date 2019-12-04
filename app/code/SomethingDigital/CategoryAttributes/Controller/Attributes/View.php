@@ -75,7 +75,7 @@ class View extends \Magento\Framework\App\Action\Action
                     array_push($tableAttributes, 'price');
                 }
                 if (!in_array('sku', $tableAttributes)) {
-                    array_push($tableAttributes, 'sku');
+                    array_unshift($tableAttributes, 'sku');
                 }
             }
             if ($category->getListAttributes()) {
