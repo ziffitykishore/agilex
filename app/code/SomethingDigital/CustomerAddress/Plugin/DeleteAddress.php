@@ -27,7 +27,7 @@ class DeleteAddress
         $addressId = $subject->getRequest()->getParam('id', false);
         $address = $this->addressRepository->getById($addressId);
         $isReadOnly = $address->getCustomAttribute('is_read_only');
-        if ($isReadOnly->getValue()) {
+        if (!isset($isReadOnly) || $isReadOnly->getValue() == "1") {
             return $this->resultRedirectFactory->create()->setPath('*/*/index');
         }
 
