@@ -71,7 +71,7 @@ class SpotPricingApi extends Adapter
         if (!$this->isTestMode()) {
             $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
                 'customerId' => $customerAccountId,
-                'suffix' => $suffix
+                'brochurePrefix' => $suffix
             ]);
         } else {
             $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
