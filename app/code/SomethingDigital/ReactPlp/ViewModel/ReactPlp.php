@@ -121,11 +121,11 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 ]
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
-            'defaultListAttributes' => $this->getListAttributes(),
+            'defaultListAttributes' => [],
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
-            'defaultTableAttributes' => $this->getTableAttributes(),
+            'defaultTableAttributes' => [],
             'hasSpotPricing' => $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH),
-            'defaultFilterAttributesInfo' => $this->getFilterAttributes(),
+            'defaultFilterAttributesInfo' => [],
             'swatchImages' => $this->getSwatchImages(),
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
