@@ -8,7 +8,10 @@
 
 /** @var \Magento\Customer\Block\Address\Book $block */
 ?>
-<?php $viewModel = $block->getViewModel(); ?>
+<?php
+    $viewModel = $block->getViewModel();
+    $formkey = $block->getLayout()->getBlock('formkey')->getFormKey();
+?>
 <div class="block block-addresses-default">
     <div class="block-title"><h3><?= $block->escapeHtml(__('Default Addresses')) ?></h3></div>
     <div class="block-content">
@@ -81,7 +84,9 @@
                         <div class="item actions">
                             <?php if (!$viewModel->isAddressIdReadOnly($_address->getId())): ?>
                                 <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/address/edit', ['id' => $_address->getId()])) ?>"><span><?= $block->escapeHtml(__('Edit Address')) ?></span></a>
-                                <a class="action delete" href="#" role="delete-address" data-address="<?= $block->escapeHtmlAttr($_address->getId()) ?>"><span><?= $block->escapeHtml(__('Delete Address')) ?></span></a>
+                                <a class="action delete" href="<?= $block->escapeUrl($block->getUrl('customer/address/delete', ['id' => $_address->getId()])) ?>?form_key=<?= $formkey ?>">
+                                    <span><?= $block->escapeHtml(__('Delete Address')) ?></span>
+                                </a>
                             <?php endif; ?>
                         </div>
                     </li>
