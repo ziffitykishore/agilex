@@ -390,6 +390,7 @@ return [
         'SomethingDigital_CustomerStoreRedirection' => 1,
         'SomethingDigital_CustomerValidation' => 1,
         'SomethingDigital_ExtendedMiniCart' => 1,
+        'SomethingDigital_HideIndexer' => 1,
         'SomethingDigital_Inventory' => 1,
         'SomethingDigital_Migration' => 1,
         'SomethingDigital_MigrationAccelerator' => 1,
