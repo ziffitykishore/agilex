@@ -11,6 +11,7 @@ class AddProductAttributes
     private $customerGroupRepository;
     private $searchCriteriaBuilder;
     private $resourceConnection;
+    private $additionalAttributes;
 
     public function __construct(
         GroupRepositoryInterface $customerGroupRepository,
@@ -31,6 +32,9 @@ class AddProductAttributes
      */
     public function afterGetProductAdditionalAttributes(\Algolia\AlgoliaSearch\Helper\ConfigHelper $subject, $result, $storeId = null)
     {
+        if ($this->additionalAttributes !== null) {
+            return $this->additionalAttributes;
+        }
         $result[] = [
             'attribute' => 'manufacturer_price',
             'searchable' => 2,
@@ -94,6 +98,7 @@ class AddProductAttributes
             ];
         }
 
+        $this->additionalAttributes = $result;
         return $result;
     }
 }
