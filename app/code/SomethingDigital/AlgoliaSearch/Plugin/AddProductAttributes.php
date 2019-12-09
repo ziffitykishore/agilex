@@ -4,22 +4,22 @@ namespace SomethingDigital\AlgoliaSearch\Plugin;
 
 use Magento\Customer\Api\GroupRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Catalog\Model\ResourceModel\Product\Attribute\CollectionFactory;
+use Magento\Framework\App\ResourceConnection;
 
 class AddProductAttributes
 {
     private $customerGroupRepository;
     private $searchCriteriaBuilder;
-    private $collectionFactory;
+    private $resourceConnection;
 
     public function __construct(
         GroupRepositoryInterface $customerGroupRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
-        CollectionFactory $collectionFactory
+        ResourceConnection $resourceConnection
     ) {
         $this->customerGroupRepository = $customerGroupRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->collectionFactory = $collectionFactory;
+        $this->resourceConnection = $resourceConnection;
     }
 
     /**
@@ -78,20 +78,22 @@ class AddProductAttributes
             ];
         }
 
-        $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter(['is_searchable','is_filterable'], [
-            ['eq' => true],
-            ['eq' => true]
-        ]);
-        $collection->setOrder('position','ASC');
-        foreach ($collection as $item) {
+        $connection = $this->resourceConnection->getConnection();
+        $select = $connection->select()->from(['ea' => $connection->getTableName('eav_attribute')], 'ea.attribute_code')
+            ->join(['cea' => $connection->getTableName('catalog_eav_attribute')], 'ea.attribute_id = cea.attribute_id')
+            ->where('(cea.is_searchable = 1 OR cea.is_filterable = 1)');
+
+        $attrCollection = $connection->fetchAll($select);
+
+        foreach ($attrCollection as $item) {
             $result[] = [
-                "attribute" => $item->getAttributeCode(),
+                "attribute" => $item['attribute_code'],
                 "searchable"=> 1,
                 "order"=> "unordered",
                 "retrievable"=> 1
             ];
         }
+
         return $result;
     }
 }
