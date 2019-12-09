@@ -12,6 +12,7 @@ class AddProductAttributes
     private $searchCriteriaBuilder;
     private $resourceConnection;
     private $additionalAttributes;
+    private $additionalAttributesKey;
 
     public function __construct(
         GroupRepositoryInterface $customerGroupRepository,
@@ -32,7 +33,7 @@ class AddProductAttributes
      */
     public function afterGetProductAdditionalAttributes(\Algolia\AlgoliaSearch\Helper\ConfigHelper $subject, $result, $storeId = null)
     {
-        if ($this->additionalAttributes !== null) {
+        if ($this->additionalAttributes !== null && $this->additionalAttributesKey == $storeId) {
             return $this->additionalAttributes;
         }
         $result[] = [
@@ -99,6 +100,7 @@ class AddProductAttributes
         }
 
         $this->additionalAttributes = $result;
+        $this->additionalAttributesKey = $storeId;
         return $result;
     }
 }
