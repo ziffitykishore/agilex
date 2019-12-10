@@ -13,6 +13,11 @@
             </action>
         </referenceBlock>
         <referenceContainer name="content.top">
+            <block class="Magento\Cms\Block\Block" name="quick-order">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">quick_order</argument>
+                </arguments>
+            </block>
             <block class="Magento\AdvancedCheckout\Block\Customer\Sku" name="checkout.customer.sku"
                    template="Magento_QuickOrder::widget/sku.phtml">
                 <action method="setIsTitleHidden">
