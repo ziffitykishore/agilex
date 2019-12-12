@@ -12,6 +12,10 @@
 
   .product-sku {
     margin-bottom: $indent__s;
+
+    @include min-screen($screen__m) {
+      margin-bottom: 0;
+    }
   }
 
   .pricing {
@@ -119,7 +123,7 @@
 
   .list-item {
     padding-top: $indent__s;
-    padding-bottom: 15px;
+    padding-bottom: $indent__s;
     border-bottom: 1px solid $c-grey;
     position: relative;
 
@@ -135,10 +139,12 @@
 
     ul li {
       margin: 0;
-      padding: 2px 0;
+      padding: 1px 0;
       color: $c-nickel;
 
       @include min-screen($screen__l) {
+        padding: 2px 0;
+
         &:first-of-type {
           padding-top: 0;
         }
@@ -168,33 +174,35 @@
       }
     }
   }
+}
 
-  .list-content {
+.list-content {
     @include min-screen($screen__l) {
-      display: flex;
+        .item-and-attributes {
+            width: 400px;
+        }
+
+        .product-sku {
+            margin-top: $indent__xs;
+        }
+
+        ul {
+            @include min-screen($screen__l) {
+                margin-top: 2px;
+                float: right;
+                transform: translateY(-$indent__base);
+                max-width: 175px;
+                width: 100%;
+            }
+
+            @include min-screen($plp_breakpoint) {
+                max-width: 220px;
+            }
+        }
     }
 
-    &-left {
-      width: 100%;
-
-      @include min-screen($screen__l) {
-        max-width: 170px;
-      }
-
-      @include min-screen($plp_breakpoint) {
-        max-width: 250px;
-      }
+    .attribute-label {
+        font-weight: $font-weight__extrabold;
+        color: $text__color;
     }
-
-    &-right {
-      @include min-screen($screen__l) {
-        margin-left: $indent__l;
-        margin-top: 0;
-      }
-
-      @include min-screen($plp_breakpoint) {
-        margin-left: 75px;
-      }
-    }
-  }
 }
