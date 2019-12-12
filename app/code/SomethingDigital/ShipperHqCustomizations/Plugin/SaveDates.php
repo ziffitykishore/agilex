@@ -18,14 +18,18 @@ class SaveDates
     public function afterSendAndReceive(WebServiceClient $subject, $result, $requestObj, $webServiceURL, $timeout)
     {
         $items = [];
+        $skus = [];
         if (isset($result['result']->carrierGroups)) {
             foreach ($result['result']->carrierGroups as $carrierGroup) {
                 foreach ($carrierGroup->carrierRates as $carrierRate) {
                     if (isset($carrierRate->shipments)) {
                         foreach ($carrierRate->shipments as $shipment) {
                             foreach ($shipment->boxedItems as $item) {
-                                $items[$item->sku] = $carrierRate->deliveryDateMessage;
+                                $skus[] = $item->sku;
                             }
+                        }
+                        foreach ($carrierRate->rates as $key => $rate) {
+                            $items[$item->sku][$rate->code] = $rate->deliveryMessage;
                         }
                     }
                 }
