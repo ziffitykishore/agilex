@@ -5,11 +5,15 @@
  
 define(
     [
-        'uiComponent'
+        'jquery',
+        'uiComponent',
+        'Magento_Checkout/js/model/quote',
+        'ko'
     ],
-    function (Component) {
+    function ($,Component, quote,ko) {
         "use strict";
         var quoteItemData = window.checkoutConfig.quoteItemData;
+        var deliveryInfo= ko.observable('');
         return Component.extend({
             defaults: {
                 template: 'SomethingDigital_ShipperHqCustomizations/summary/item/details'
@@ -18,9 +22,30 @@ define(
             getValue: function(quoteItem) {
                 return quoteItem.name;
             },
+            getDeliverInfoAjax: function() {
+                var settings = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: '/deliverydates/deliveryinfo/index'
+                };
+                return $.ajax(settings);
+            },
             getDeliveryInfo: function(quoteItem) {
+                this.getDeliverInfoAjax().done(function (response, textStatus) {
+                    var data = response.data;
+                    deliveryInfo = data;
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                });
+
                 var item = this.getItem(quoteItem.item_id);
-                return item.deliveryInfo;
+                if (item.sku in deliveryInfo) {
+                    if (quote.shippingMethod() && typeof deliveryInfo[item.sku] != 'string' ) {
+                        return deliveryInfo[item.sku][quote.shippingMethod()['method_code']];
+                    } else if (typeof deliveryInfo[item.sku] == 'string') {
+                        return deliveryInfo[item.sku];
+                    }
+                }
+                return '';
             },
             getItem: function(item_id) {
                 var itemElement = null;
