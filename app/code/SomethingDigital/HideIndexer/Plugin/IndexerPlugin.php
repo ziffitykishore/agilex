@@ -11,8 +11,6 @@ class IndexerPlugin
             $indexerId = $plugin->getIndexerId();
 
             if ($indexerId == "catalogsearch_fulltext") {
-                $indexerName = $plugin->getTitle();
-                print("Skipping " . $indexerName . " (catalogsearch_fulltext)\n");
                 return;
             }
         }
