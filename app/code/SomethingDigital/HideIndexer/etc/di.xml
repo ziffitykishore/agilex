@@ -4,4 +4,7 @@
     <type name="Magento\Framework\Indexer\IndexerInterface">
         <plugin name="ignore_fulltext" type="SomethingDigital\HideIndexer\Plugin\IndexerPlugin"/>
     </type>
+    <type name="Magento\Framework\Mview\View">
+        <plugin name="ignore_cron_fulltext" type="SomethingDigital\HideIndexer\Plugin\IndexerCronPlugin"/>
+    </type>
 </config>
