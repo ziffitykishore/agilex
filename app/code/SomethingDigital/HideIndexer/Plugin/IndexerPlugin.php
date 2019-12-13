@@ -2,13 +2,12 @@
 
 namespace SomethingDigital\HideIndexer\Plugin;
 
-
 class IndexerPlugin
 {
-    public function aroundReindexAll($plugin, callable $proceed) {
-
-        if ($plugin && $plugin->getIndexerId()) {
-            $indexerId = $plugin->getIndexerId();
+    public function aroundReindexAll($subject, callable $proceed)
+    {
+        if ($subject && $subject->getIndexerId()) {
+            $indexerId = $subject->getIndexerId();
 
             if ($indexerId == "catalogsearch_fulltext") {
                 return;
