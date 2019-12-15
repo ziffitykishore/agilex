@@ -23,6 +23,21 @@ function (
                 }
 
                 return this;
+            },
+            hasBilling: function() {
+                var hasBilling = addressList().some(function (addrs) {
+                    if (addrs.customAttributes.hasOwnProperty('is_billing')) {
+                        if (addrs.customAttributes.is_billing.value == 1) {
+                            return true;
+                        }
+                    }
+                });
+                if (hasBilling) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         });
     }
