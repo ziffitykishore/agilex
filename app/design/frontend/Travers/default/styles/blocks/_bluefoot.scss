@@ -1149,7 +1149,7 @@ footer.page-footer {
     }
 
     .slick-slide {
-        width: calc(100vw - 15px) !important; // override PageBuilder/slick
+        width: 100vw !important; // override PageBuilder/slick
 
         @include min-screen($screen__m) {
             width: calc(.9 * 50vw - 30px) !important // override PageBuilder/slick
