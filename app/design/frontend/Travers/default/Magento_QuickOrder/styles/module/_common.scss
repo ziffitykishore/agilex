@@ -19,7 +19,36 @@ $order-product-bg__color: $color-gray94;
 
 .quickorder-index-index {
     .column {
+        &.main {
+            display: flex;
+            flex-direction: column;
+
+            @include min-screen($mobile-nav__breakpoint) {
+                flex-direction: row;
+            }
+        }
+
+        .quick-order-block {
+            width: 100%;
+
+            @include min-screen($mobile-nav__breakpoint) {
+                max-width: 340px;
+            }
+
+            [data-role="text"] p {
+                margin: $indent__base 0;
+            }
+        }
+
         .block-addbysku {
+            order: 1;
+            margin-top: $indent__l;
+
+            @include min-screen($mobile-nav__breakpoint) {
+                margin-top: 0;
+                order: -1;
+            }
+
             .action {
                 &.remove {
                     display: none;
