@@ -1,0 +1,145 @@
+diff --git a/vendor/magento/module-bundle/etc/db_schema.xml b/vendor/magento/module-bundle/etc/db_schema.xml
+index 33738cd252d..ea437bd56f1 100644
+--- a/vendor/magento/module-bundle/etc/db_schema.xml
++++ b/vendor/magento/module-bundle/etc/db_schema.xml
+@@ -203,7 +203,7 @@
+             <column name="website_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_bundle_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_bundle_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Index Price Bundle Tmp">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -265,7 +265,7 @@
+             <column name="selection_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_bundle_sel_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_bundle_sel_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Index Price Bundle Sel Tmp">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -320,7 +320,7 @@
+             <column name="option_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_bundle_opt_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_bundle_opt_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Index Price Bundle Opt Tmp">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+diff --git a/vendor/magento/module-catalog/etc/db_schema.xml b/vendor/magento/module-catalog/etc/db_schema.xml
+index 17e3dddc41c..db6fdd88360 100644
+--- a/vendor/magento/module-catalog/etc/db_schema.xml
++++ b/vendor/magento/module-catalog/etc/db_schema.xml
+@@ -1238,7 +1238,7 @@
+             <column name="website_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_cfg_opt_agr_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_cfg_opt_agr_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Price Indexer Config Option Aggregate Temp Table">
+         <column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Parent ID"/>
+@@ -1279,7 +1279,7 @@
+             <column name="website_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_cfg_opt_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_cfg_opt_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Price Indexer Config Option Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1327,7 +1327,7 @@
+             <column name="website_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_final_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_final_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Price Indexer Final Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1375,7 +1375,7 @@
+             <column name="website_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_opt_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_opt_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Price Indexer Option Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1418,7 +1418,7 @@
+             <column name="option_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_opt_agr_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_opt_agr_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Price Indexer Option Aggregate Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1470,7 +1470,7 @@
+             <column name="value"/>
+         </index>
+     </table>
+-    <table name="catalog_product_index_eav_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_eav_tmp" resource="default" engine="innodb"
+            comment="Catalog Product EAV Indexer Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1528,7 +1528,7 @@
+             <column name="value"/>
+         </index>
+     </table>
+-    <table name="catalog_product_index_eav_decimal_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_eav_decimal_tmp" resource="default" engine="innodb"
+            comment="Catalog Product EAV Decimal Indexer Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1592,7 +1592,7 @@
+             <column name="min_price"/>
+         </index>
+     </table>
+-    <table name="catalog_product_index_price_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_tmp" resource="default" engine="innodb"
+            comment="Catalog Product Price Indexer Temp Table">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+@@ -1627,7 +1627,7 @@
+             <column name="min_price"/>
+         </index>
+     </table>
+-    <table name="catalog_category_product_index_tmp" resource="default" engine="memory"
++    <table name="catalog_category_product_index_tmp" resource="default" engine="innodb"
+            comment="Catalog Category Product Indexer temporary table">
+         <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 default="0" comment="Category ID"/>
+diff --git a/vendor/magento/module-catalog-inventory/etc/db_schema.xml b/vendor/magento/module-catalog-inventory/etc/db_schema.xml
+index 5ac7fedc5aa..31683efe61f 100644
+--- a/vendor/magento/module-catalog-inventory/etc/db_schema.xml
++++ b/vendor/magento/module-catalog-inventory/etc/db_schema.xml
+@@ -142,7 +142,7 @@
+             <column name="website_id"/>
+         </index>
+     </table>
+-    <table name="cataloginventory_stock_status_tmp" resource="default" engine="memory"
++    <table name="cataloginventory_stock_status_tmp" resource="default" engine="innodb"
+            comment="Cataloginventory Stock Status Indexer Tmp">
+         <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Product Id"/>
+diff --git a/vendor/magento/module-downloadable/etc/db_schema.xml b/vendor/magento/module-downloadable/etc/db_schema.xml
+index 89d47644661..2eb9780929c 100644
+--- a/vendor/magento/module-downloadable/etc/db_schema.xml
++++ b/vendor/magento/module-downloadable/etc/db_schema.xml
+@@ -233,7 +233,7 @@
+             <column name="website_id"/>
+         </constraint>
+     </table>
+-    <table name="catalog_product_index_price_downlod_tmp" resource="default" engine="memory"
++    <table name="catalog_product_index_price_downlod_tmp" resource="default" engine="innodb"
+            comment="Temporary Indexer Table for price of downloadable products">
+         <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                 comment="Entity ID"/>
+diff --git a/app/etc/db_schema.xml b/app/etc/db_schema.xml
+old mode 100644
+new mode 100755
