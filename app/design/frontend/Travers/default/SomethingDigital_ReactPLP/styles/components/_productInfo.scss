@@ -99,22 +99,19 @@
     width: 100%;
     table-layout: fixed;
 
-     tr {
-      height: 30px;
+    .tier-labels {
+      border-bottom: 2px solid $c-royal;
+      font-weight: $font-weight__semibold;
 
-      td {
-        padding: $indent__xs;
-      }
-
-      span {
-        display: inline-block;
-        margin-top: $indent__xs;
+      th {
+        padding-left: $indent__s;
+        padding-bottom: 2px;
       }
     }
 
-    .quantity-row {
-      border-bottom: 2px solid $c-royal;
-      font-weight: $font-weight__semibold;
+    .tier-values td {
+      padding-top: $indent__xs;
+      padding-bottom: 0;
     }
   }
 }
