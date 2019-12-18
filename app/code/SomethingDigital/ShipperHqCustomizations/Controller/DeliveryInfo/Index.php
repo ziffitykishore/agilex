@@ -50,7 +50,7 @@ class Index extends Action
         $jsonResult = $this->resultFactory->create('json');
         $deliveryDates = $this->session->getItemsDeliveryDates();
 
-        $deliveryInfo = [];
+        $deliveryInfo = $deliveryDates;
         $quoteItems = [];
         foreach ($this->cart->getQuote()->getAllVisibleItems() as $item) {
             $sku = $item->getSku();
@@ -64,8 +64,6 @@ class Index extends Action
                     && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
                 ) {
                     $deliveryInfo[$sku] = __('Item on backorder');
-                } elseif($deliveryDates) {
-                    $deliveryInfo = $deliveryDates;
                 }
             } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
                $deliveryInfo[$sku] = __('Ships direct from manufacturer');
