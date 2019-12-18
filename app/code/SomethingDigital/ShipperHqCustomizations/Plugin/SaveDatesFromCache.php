@@ -18,18 +18,20 @@ class SaveDatesFromCache
     public function afterGetCachedQuotes(CarrierCache $subject, $result, $requestParams, $carrierCode)
     {
         $items = [];
-        $skus = [];
         if (isset($result['result']->carrierGroups)) {
             foreach ($result['result']->carrierGroups as $carrierGroup) {
                 foreach ($carrierGroup->carrierRates as $carrierRate) {
                     if (isset($carrierRate->shipments)) {
+                        $skus = [];
                         foreach ($carrierRate->shipments as $shipment) {
                             foreach ($shipment->boxedItems as $item) {
                                 $skus[] = $item->sku;
                             }
                         }
                         foreach ($carrierRate->rates as $key => $rate) {
-                            $items[$item->sku][$rate->code] = $rate->deliveryMessage;
+                            foreach ($skus as $sku) {
+                                $items[$sku][$rate->code] = $rate->deliveryMessage;
+                            }
                         }
                     }
                 }
