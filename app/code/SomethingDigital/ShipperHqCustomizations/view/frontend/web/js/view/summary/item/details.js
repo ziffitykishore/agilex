@@ -13,7 +13,7 @@ define(
     function ($,Component, quote,ko) {
         "use strict";
         var quoteItemData = window.checkoutConfig.quoteItemData;
-        var deliveryInfo= ko.observable('');
+        var deliveryInfo = ko.observable('');
         return Component.extend({
             defaults: {
                 template: 'SomethingDigital_ShipperHqCustomizations/summary/item/details'
@@ -40,11 +40,12 @@ define(
                 var item = this.getItem(quoteItem.item_id);
                 if (item.sku in deliveryInfo) {
                     if (quote.shippingMethod() && typeof deliveryInfo[item.sku] != 'string' ) {
-                        return deliveryInfo[item.sku][quote.shippingMethod()['method_code']];
+                        return deliveryInfo[item.sku][quote.shippingMethod().method_code];
                     } else if (typeof deliveryInfo[item.sku] == 'string') {
                         return deliveryInfo[item.sku];
                     }
                 }
+
                 return '';
             },
             getItem: function(item_id) {
