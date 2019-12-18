@@ -13,7 +13,7 @@ define(
     function ($,Component, quote,ko) {
         "use strict";
         var quoteItemData = window.checkoutConfig.quoteItemData;
-        var deliveryInfo = ko.observable('');
+        var deliveryInfo = ko.observable(null);
         return Component.extend({
             defaults: {
                 template: 'SomethingDigital_ShipperHqCustomizations/summary/item/details'
@@ -32,9 +32,9 @@ define(
             },
             getDeliveryInfo: function(quoteItem) {
                 this.getDeliverInfoAjax().done(function (response, textStatus) {
-                    var data = response.data;
-                    deliveryInfo = data;
+                    deliveryInfo = response.data;
                 }).fail(function (jqXHR, textStatus, errorThrown) {
+                    deliveryInfo = null;
                 });
 
                 var item = this.getItem(quoteItem.item_id);
