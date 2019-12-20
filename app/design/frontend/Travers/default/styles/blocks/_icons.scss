@@ -4,3 +4,10 @@
     $font-weight: normal,
     $font-style : normal
 );
+
+@include lib-font-face(
+    $family-name: $icons-magento__font-name,
+    $font-path  : $icons-magento__font-path,
+    $font-weight: normal,
+    $font-style : normal
+);
