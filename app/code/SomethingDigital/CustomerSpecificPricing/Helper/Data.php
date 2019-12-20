@@ -153,13 +153,13 @@ class Data
     public function getTierPrice($customerSpecificPrices, $totalItemQty) {
         $prices = $this->arrayManager->get('body', $customerSpecificPrices);
         $tierPrice = null;
-        if ($prices['QtyBreak1'] && $totalItemQty >= $prices['QtyBreak1']) {
+        if (isset($prices['QtyBreak1']) && $prices['QtyBreak1'] && $totalItemQty >= $prices['QtyBreak1']) {
             $tierPrice = $prices['QtyPrice1'];
         }
-        if ($prices['QtyBreak2'] && $totalItemQty >= $prices['QtyBreak2']) {
+        if (isset($prices['QtyBreak2']) && $prices['QtyBreak2'] && $totalItemQty >= $prices['QtyBreak2']) {
             $tierPrice = $prices['QtyPrice2'];
         }
-        if ($prices['QtyBreak3'] && $totalItemQty >= $prices['QtyBreak3']) {
+        if (isset($prices['QtyBreak3']) && $prices['QtyBreak3'] && $totalItemQty >= $prices['QtyBreak3']) {
             $tierPrice = $prices['QtyPrice3'];
         }
         return $tierPrice;
