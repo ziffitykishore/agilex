@@ -488,14 +488,6 @@ $nav-delimiter__border-color: $color-gray82 !default;
             &._hidden {
                 display: none;
             }
-
-            @include min-screen($screen__m) {
-                span {
-                    display: inline-block;
-                    margin-bottom: $indent__base;
-                    padding-bottom: $indent__s;
-                }
-            }
         }
     }
 }
