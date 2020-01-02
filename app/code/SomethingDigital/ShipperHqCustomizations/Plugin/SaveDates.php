@@ -22,9 +22,15 @@ class SaveDates
             foreach ($result['result']->carrierGroups as $carrierGroup) {
                 foreach ($carrierGroup->carrierRates as $carrierRate) {
                     if (isset($carrierRate->shipments)) {
+                        $skus = [];
                         foreach ($carrierRate->shipments as $shipment) {
                             foreach ($shipment->boxedItems as $item) {
-                                $items[$item->sku] = $carrierRate->deliveryDateMessage;
+                                $skus[] = $item->sku;
+                            }
+                        }
+                        foreach ($carrierRate->rates as $key => $rate) {
+                            foreach ($skus as $sku) {
+                                $items[$sku][$rate->code] = $rate->deliveryMessage;
                             }
                         }
                     }

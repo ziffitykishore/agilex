@@ -48,46 +48,36 @@ class Index extends Action
     public function execute()
     {
         $jsonResult = $this->resultFactory->create('json');
+        $deliveryDates = $this->session->getItemsDeliveryDates();
 
+        $deliveryInfo = $deliveryDates;
         $quoteItems = [];
         foreach ($this->cart->getQuote()->getAllVisibleItems() as $item) {
-           $quoteItems[$item->getProductId()] = $item->getQty();
-        }
+            $sku = $item->getSku();
 
-        $deliveryDates = $this->session->getItemsDeliveryDates();
-        $deliveryInfo = [];
+            $product = $this->productRepository->get($sku);
+            $sxInventory = $product->getData('sx_inventory_status');
+            $stockItem = $this->stockItem->load($product->getId(), 'product_id');
 
-        if (is_array($deliveryDates)) {
-            foreach ($deliveryDates as $sku => $deliveryDate) {
-                $product = $this->productRepository->get($sku);
-                $sxInventory = $product->getData('sx_inventory_status');
-                $stockItem = $this->stockItem->load($product->getId(), 'product_id');
-
-                if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_DNR) {
-                    if (isset($quoteItems[$product->getId()])) {
-                        if (($stockItem->getQty() - $quoteItems[$product->getId()] < 0)
-                            && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
-                        ) {
-                            $deliveryInfo[$sku] = __('Item on backorder');
-                        } else {
-                            $deliveryInfo[$sku] = __('Expected Delivery: %1', $deliveryDate);
-                        }
-                    }
-                } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
-                   $deliveryInfo[$sku] = __('Ships direct from manufacturer');
+            if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_DNR) {
+                if (($stockItem->getQty() - $item->getQty() < 0)
+                    && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
+                ) {
+                    $deliveryInfo[$sku] = __('Item on backorder');
                 }
+            } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
+               $deliveryInfo[$sku] = __('Ships direct from manufacturer');
+            } else {
+                $deliveryInfo[$sku] = '';
             }
-        }
 
-        $data = [
-            'deliverydates' => $deliveryInfo
-        ];
+        }
 
         $jsonResult->setData(
             [
                 'status' => 'success',
                 'code' => 200,
-                'data' => $data
+                'data' => $deliveryInfo
             ]
         );
         return $jsonResult;
