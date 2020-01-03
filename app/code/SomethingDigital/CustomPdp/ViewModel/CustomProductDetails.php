@@ -72,10 +72,13 @@ class CustomProductDetails implements ArgumentInterface
         if (!$attribute) {
             return null;
         }
-        return $this->pricingHelper->currencyByStore(
-            $attribute->getValue(),
-            $this->storeManager->getStore()
-        );
+        if ($attribute->getValue() > $product->getFinalPrice()) {
+            return $this->pricingHelper->currencyByStore(
+                $attribute->getValue(),
+                $this->storeManager->getStore()
+            );
+        }
+        return null;
     }
 
     /**
