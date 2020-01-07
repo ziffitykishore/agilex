@@ -11,9 +11,12 @@
                         </arguments>
                     </block>
                 </container>
+                <container name="product.detail.reviews.wrap" htmlTag="div" htmlClass="detail-block-description">
+                    <block name="product.detail.reviews.header" template="SomethingDigital_ProductDetails::reviews_header.phtml" before="-" />
+                </container>
             </container>
         </referenceContainer>
-        <referenceBlock name="product.info.description" >
+        <referenceBlock name="product.info.description">
             <arguments>
                 <argument name="at_label" xsi:type="string">Details</argument>
             </arguments>
@@ -22,5 +25,6 @@
         <move element="product.attributes" destination="product.detail.attributes.wrap"/>
         <move element="product.info.description" destination="product.detail.description.wrap" before="-"/>
         <move element="reviews.tab" destination="content" after="-" />
+        <move element="yotpo_widget_div" destination="product.detail.reviews.wrap" after="-" />
     </body>
 </page>
