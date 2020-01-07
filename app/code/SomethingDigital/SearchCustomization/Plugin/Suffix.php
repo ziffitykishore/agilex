@@ -63,7 +63,7 @@ class Suffix
                 $this->quote->repriceCustomerQuote(true);
 
                 $currentQuote = $this->cart->getQuote();
-                if ($currentQuote) {
+                if ($currentQuote && $currentQuote->getId()) {
                     $quote = $this->quoteRepository->get($currentQuote->getId());
                     $quote->setSuffix($skuSuffix);
                     $this->quoteRepository->save($quote);
