@@ -31,22 +31,23 @@ define(
                 return $.ajax(settings);
             },
             getDeliveryInfo: function(quoteItem) {
+                var self = this;
                 this.getDeliverInfoAjax().done(function (response, textStatus) {
-                    deliveryInfo = response.data;
+                    var item = self.getItem(quoteItem.item_id);
+                    if (response.data) {
+                        if (item.sku in response.data) {
+                            if (quote.shippingMethod() && typeof response.data[item.sku] != 'string' ) {
+                                deliveryInfo(response.data[item.sku][quote.shippingMethod().method_code]);
+                            } else if (typeof deliveryInfo[item.sku] == 'string') {
+                                deliveryInfo(response.data[item.sku]);
+                            }
+                        }
+                    }
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    deliveryInfo = null;
+                    deliveryInfo(null);
                 });
 
-                var item = this.getItem(quoteItem.item_id);
-                if (item.sku in deliveryInfo) {
-                    if (quote.shippingMethod() && typeof deliveryInfo[item.sku] != 'string' ) {
-                        return deliveryInfo[item.sku][quote.shippingMethod().method_code];
-                    } else if (typeof deliveryInfo[item.sku] == 'string') {
-                        return deliveryInfo[item.sku];
-                    }
-                }
-
-                return '';
+                return deliveryInfo;
             },
             getItem: function(item_id) {
                 var itemElement = null;
