@@ -1,0 +1,57 @@
+diff --git a/vendor/magento/module-product-alert/Controller/Add/Price.php b/vendor/magento/module-product-alert/Controller/Add/Price.php
+index fbaff109f..b7519f0bc 100644
+--- a/vendor/magento/module-product-alert/Controller/Add/Price.php
++++ b/vendor/magento/module-product-alert/Controller/Add/Price.php
+@@ -6,7 +6,7 @@
+ 
+ namespace Magento\ProductAlert\Controller\Add;
+ 
+-use Magento\Framework\App\Action\HttpPostActionInterface;
++use Magento\Framework\App\Action\HttpGetActionInterface;
+ use Magento\ProductAlert\Controller\Add as AddController;
+ use Magento\Framework\App\Action\Context;
+ use Magento\Customer\Model\Session as CustomerSession;
+@@ -20,7 +20,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
+ /**
+  * Controller for notifying about price.
+  */
+-class Price extends AddController implements HttpPostActionInterface
++class Price extends AddController implements HttpGetActionInterface
+ {
+     /**
+      * @var \Magento\Store\Model\StoreManagerInterface
+diff --git a/vendor/magento/module-product-alert/Controller/Add/Stock.php b/vendor/magento/module-product-alert/Controller/Add/Stock.php
+index 24cab39d5..f36fdf5fb 100644
+--- a/vendor/magento/module-product-alert/Controller/Add/Stock.php
++++ b/vendor/magento/module-product-alert/Controller/Add/Stock.php
+@@ -6,7 +6,7 @@
+ 
+ namespace Magento\ProductAlert\Controller\Add;
+ 
+-use Magento\Framework\App\Action\HttpPostActionInterface;
++use Magento\Framework\App\Action\HttpGetActionInterface;
+ use Magento\ProductAlert\Controller\Add as AddController;
+ use Magento\Framework\App\Action\Context;
+ use Magento\Customer\Model\Session as CustomerSession;
+@@ -19,7 +19,7 @@ use Magento\Store\Model\StoreManagerInterface;
+ /**
+  * Controller for notifying about stock.
+  */
+-class Stock extends AddController implements HttpPostActionInterface
++class Stock extends AddController implements HttpGetActionInterface
+ {
+     /**
+      * @var \Magento\Catalog\Api\ProductRepositoryInterface
+diff --git a/vendor/magento/module-product-alert/view/frontend/templates/product/view.phtml b/vendor/magento/module-product-alert/view/frontend/templates/product/view.phtml
+index 5b9553a49..462196d77 100644
+--- a/vendor/magento/module-product-alert/view/frontend/templates/product/view.phtml
++++ b/vendor/magento/module-product-alert/view/frontend/templates/product/view.phtml
+@@ -6,7 +6,7 @@
+ ?>
+ <?php /* @var $block \Magento\ProductAlert\Block\Product\View */?>
+ <div class="product alert <?= $block->getHtmlClass() ?>">
+-    <a href="#" data-post='<?= /* @noEscape */ $block->getPostAction() ?>'
++    <a href="<?= $block->escapeUrl($block->getSignupUrl()) ?>"
+        title="<?= $block->escapeHtml(__($block->getSignupLabel())) ?>" class="action alert">
+         <?= $block->escapeHtml(__($block->getSignupLabel())) ?>
+     </a>

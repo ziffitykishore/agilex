@@ -162,6 +162,11 @@
                 "url": "composer-patches/sd_2.3.2-p2_pagebuilder_min_js.patch",
                 "type": "patch"
             },
+            "sd_productalert_post_to_get_2.3.2.patch": {
+              "title": "Fix sign in redirect for product alert",
+              "url": "composer-patches/sd_productalert_post_to_get_2.3.2.patch",
+              "type": "patch"
+            },
             "magento/module-negotiable-quote": {
               "FormData.prototype.delete method unavailable in IE11": "composer-patches/IE11_FormData_delete.composer.patch"
             }
