@@ -155,6 +155,10 @@
     }
   }
 
+  [class*="css-"] {
+    margin-left: $indent__s;
+  }
+
   .searchable {
     background-color: $color-white;
     padding: 15px;
