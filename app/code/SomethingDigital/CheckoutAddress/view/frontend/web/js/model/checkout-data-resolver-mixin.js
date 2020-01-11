@@ -62,6 +62,14 @@ define([
             });
 
             shippingAddress = quote.shippingAddress();
+
+            if (!isBillingAddressInitialized &&
+                shippingAddress &&
+                shippingAddress.canUseForBilling() &&
+                (shippingAddress.isDefaultShipping() || !quote.isVirtual())
+            ) {
+                selectBillingAddress(quote.shippingAddress());
+            }
         };
 
         return target;
