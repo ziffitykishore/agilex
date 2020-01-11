@@ -119,14 +119,13 @@ class OrderPlaceApi extends Adapter
 
     protected function getCustomerInfo($order)
     {
-        $customerFreightAccount = '';
+        try {
+            $customerFreightAccount = $order->getCustomerCustomerFreightAccount();
+        } catch (\Exception $e) {
+            $customerFreightAccount = '';
+        }
 
         if ($order->getCustomerId()) {
-            $customer = $this->customerRepository->getById($order->getCustomerId());
-            if ($customer->getCustomAttribute('customer_freight_account')) {
-                $customerFreightAccount = $customer->getCustomAttribute('customer_freight_account')->getValue();
-            }
-
             $company = $this->getCustomerCompany($order->getCustomerId());
 
             if ($company) {
