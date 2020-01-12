@@ -22,8 +22,10 @@ define(['mage/utils/wrapper'], function (wrapper) {
                 let customer = window.customerData;
                 let customerHasBillingAddress = false;
                 for (address in customer.addresses) {
-                    if (customer.addresses[address].custom_attributes.is_billing.value == 1) {
-                        customerHasBillingAddress = true;
+                    if (typeof customer.addresses[address].custom_attributes.is_billing != 'undefined') {
+                        if (customer.addresses[address].custom_attributes.is_billing.value == 1) {
+                            customerHasBillingAddress = true;
+                        }
                     }
                 }
                 if (addressData['custom_attributes'].length != 0) {
