@@ -90,6 +90,7 @@ class OrderPlaceApi extends Adapter
             'Payments' => $this->getPaymentInfo($order)
         ];
 
+
         return $this->postRequest();
     }
 
@@ -260,12 +261,17 @@ class OrderPlaceApi extends Adapter
 
     public function getCustomerCompany($customerId)
     {
+        $customerCompany = false;
         try {
-            $companyId = $this->companyManagement->getByCustomerId($customerId)->getId();
-            return $this->companyRepository->get($companyId);
+            $company = $this->companyManagement->getByCustomerId($customerId);
+            if ($company) {
+                $companyId = $company->getId();
+                $customerCompany = $this->companyRepository->get($companyId);
+            }
         } catch (NoSuchEntityException $noSuchEntityException) {
-            return false;
+            //If company is not found - just return false
         }
+        return $customerCompany;
     }
 
 }
