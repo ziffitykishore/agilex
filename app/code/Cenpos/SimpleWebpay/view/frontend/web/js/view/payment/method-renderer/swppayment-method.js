@@ -149,7 +149,11 @@ define(
                                         },
                                         cancel: function (msg) {
                                             var custommsg = {};
+                                            if(window.checkoutConfig.payment.swppayment.istoken19 === "true"){
+                                                msg.Message = "There was an error capturing the card data, please try again";
+                                            }
                                             custommsg.responseText = JSON.stringify({message: msg.Message});
+                                            
                                             errorProcessor.process(custommsg);
                                         }
                                 });
@@ -176,6 +180,7 @@ define(
                                 $("#cenposPayIFrameId").attr("style", "border: none !important;margin-top: 0px;");
                             } else {
                                 var custommsg = {};
+                              
                                 custommsg.responseText = JSON.stringify({message: msg2.Message});
                                 errorProcessor.process(custommsg);
                                 $(".payment-method-result-webpay").append("<a id='ReloadPayment' style='display:block; cursor: pointer'>Reload Payment/a>");
