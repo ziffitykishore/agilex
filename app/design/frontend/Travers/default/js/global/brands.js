@@ -28,6 +28,9 @@ const $brandsNav = $('.brands-nav');
 
 domready(() => {
   if ($brandsNav.length) {
+    assignIdsToColumnTitles();
+    wrapNavItemsInAnchorTag();
+
     $(document).on('click', '.brands-nav [data-content-type="text"] a', function (e) {
       e.preventDefault();
       history.replaceState({page: 'brands'}, `Brand ${$(this).attr('href')}`, `${$(this).attr('href')}`);
@@ -36,8 +39,5 @@ domready(() => {
         scrollTop: $($(this).attr('href')).offset().top - 80
       }, 500);
     });
-
-    assignIdsToColumnTitles();
-    wrapNavItemsInAnchorTag();
   }
 });
