@@ -9,6 +9,7 @@ use SomethingDigital\Order\Model\OrderPlaceApi;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class OrderPlace implements ObserverInterface
 {
@@ -18,6 +19,7 @@ class OrderPlace implements ObserverInterface
     protected $arrayManager;
     protected $customerRepository;
     protected $orderRepository;
+    protected $scopeConfig;
 
     /**
      * @param \DateTime $dateTime
@@ -28,13 +30,15 @@ class OrderPlace implements ObserverInterface
         OrderPlaceApi $orderPlaceApi,
         ArrayManager $arrayManager,
         CustomerRepositoryInterface $customerRepository,
-        OrderRepositoryInterface $orderRepository
+        OrderRepositoryInterface $orderRepository,
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->logger = $logger;
         $this->orderPlaceApi = $orderPlaceApi;
         $this->arrayManager = $arrayManager;
         $this->customerRepository = $customerRepository;
         $this->orderRepository = $orderRepository;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
