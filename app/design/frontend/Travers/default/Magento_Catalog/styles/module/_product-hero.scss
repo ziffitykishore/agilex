@@ -196,7 +196,9 @@ $product-hero__button-and-catalog__width: 240px;
         }
 
         .yotpo-display-wrapper {
-            position: absolute;
+            display: block;
+            margin-top: $indent__xs;
+            margin-bottom: 15px;
         }
 
         .yotpo-icon.yotpo-icon-star {
