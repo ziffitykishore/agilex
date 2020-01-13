@@ -63,6 +63,26 @@ class OrderPlace implements ObserverInterface
      */
     protected function processResponse($order, $response)
     {
+        if ($response['status'] != 100 || !isset($response['body']['SxOrderId'])) {
+            try {
+                new \Zend\Mail('utf-8');
+                $mail->setFrom(
+                    $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE),
+                    $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
+                );
+                $mail->addTo(
+                    $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE),
+                    $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
+                );
+                $mail->setSubject(__('Order %1 has not been sent to API', $order->getIncrementId());
+                $mail->setBodyText(__('Order %1 has not been sent to API. Error Message: %2',$order->getIncrementId(), $response['body']));
+                $mail->send();
+            } catch (\Exception $e) {
+                $this->logger->debug($e->getMessage());
+            }
+            return;
+        }
+
         $sxCustomerId = $this->arrayManager->get('body/SxCustomerId', $response);
         $sxContactId = $this->arrayManager->get('body/SxContactId', $response);
         $sxOrderId = $this->arrayManager->get('body/SxOrderId', $response);
