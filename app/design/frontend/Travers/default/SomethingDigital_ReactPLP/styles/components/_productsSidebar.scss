@@ -246,9 +246,9 @@
       padding: 0;
 
       li {
-        margin: $indent__s;
+        margin: $indent__s 0;
         box-sizing: border-box;
-        max-width: 75px;
+        flex-basis: 50%;
 
         a,
         a:active {
@@ -264,7 +264,8 @@
         img {
           border: 2px solid $c-grey;
           width: 100%;
-          max-width: 65px;
+          max-width: 70px;
+          max-height: 70px;
 
           &:hover,
           &:focus,
