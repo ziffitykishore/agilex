@@ -10,7 +10,7 @@
                     <argument name="view_model" xsi:type="object">SomethingDigital\ReactPlp\ViewModel\ReactPlp</argument>
                 </arguments>
             </block>
-            <referenceBlock name="category.products" display="false" />
+            <referenceBlock name="category.products" remove="true" />
         </referenceContainer>
         <referenceContainer name="catalog.leftnav" remove="true" />
         <referenceBlock name="breadcrumbs" remove="true" />
