@@ -9,6 +9,15 @@
 /** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
 
 $_item = $block->getItem();
+$isFreeGift = false;
+$itemOptions = $_item->getOptions();
+if ($itemOptions) {
+    foreach ($itemOptions as $option) {
+        if ($option->getCode() == 'free_gift') {
+            $isFreeGift = true;
+        }
+    }
+}
 $product = $_item->getProduct();
 $originalPrice = $_item->getProduct()->getPrice();
 $finalPrice = $_item->getProduct()->getFinalPrice();
@@ -18,7 +27,7 @@ $isVisibleProduct = $product->isVisibleInSiteVisibility();
 $helper = $this->helper('Magento\Msrp\Helper\Data');
 $pricing = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
-$showMsrp = ($customMsrp && $customMsrp > $originalPrice && $customMsrp > $finalPrice) ? true : false;
+$showMsrp = (!$isFreeGift && $customMsrp && $customMsrp > $originalPrice && $customMsrp > $finalPrice) ? true : false;
 $showOriginalPrice = ($originalPrice > $finalPrice) ? true : false;
 ?>
 <tbody class="cart item">
