@@ -78,7 +78,7 @@ class OrderPlace implements ObserverInterface
                     $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE),
                     $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
                 );
-                $mail->setSubject(__('Order %1 has not been sent to API', $order->getIncrementId());
+                $mail->setSubject(__('Order %1 has not been sent to API', $order->getIncrementId()));
                 $mail->setBodyText(__('Order %1 has not been sent to API. Status Code: %2, Error Message: %3',$order->getIncrementId(), $response['status'], $response['body'] ?? ''));
                 $mail->send();
             } catch (\Exception $e) {
