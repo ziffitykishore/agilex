@@ -205,7 +205,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             $collection = $this->collectionFactory->create();
             $collection->addFieldToFilter('include_in_table', true);
             $collection->setOrder('table_position','ASC');
-            $attr = [];
+            $tableAttributes = [];
             foreach ($collection as $item) {
                 $tableAttributes[] = [
                     'id' => $item->getAttributeCode(),
@@ -230,9 +230,9 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             $collection = $this->collectionFactory->create();
             $collection->addFieldToFilter('is_filterable', true);
             $collection->setOrder('position','ASC');
-            $attr = [];
+            $filterAttributes = [];
             foreach ($collection as $item) {
-                $attr[] = [
+                $filterAttributes[] = [
                     'id' => $item->getAttributeCode(),
                     'searchable' => $item->getSearchableInLayeredNav(),
                     'label' => $item->getStoreLabel(),
