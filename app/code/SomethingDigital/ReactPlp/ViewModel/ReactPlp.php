@@ -16,9 +16,15 @@ use Magento\Swatches\Helper\Media;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\App\CacheInterface;
+use Magento\Framework\Serialize\SerializerInterface;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
+    const LIST_ATTRIBUTES_CACHE_ID = 'reactListAttributes';
+    const TABLE_ATTRIBUTES_CACHE_ID = 'reactTableAttributes';
+    const FILTER_ATTRIBUTES_CACHE_ID = 'reactFilterAttributes';
+
     private $storeManager;
     private $customerSession;
     private $formKey;
@@ -30,6 +36,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     private $swatchHelperMedia;
     private $request;
     private $httpContext;
+    private $cache;
+    private $serializer;
 
     public function __construct(
         Registry $registry,
@@ -43,8 +51,9 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         Media $swatchHelperMedia,
         Http $request,
         HttpContext $httpContext,
-        DirectoryList $directoryList
-
+        DirectoryList $directoryList,
+        CacheInterface $cache,
+        SerializerInterface $serializer
     ) {
         $this->coreRegistry = $registry;
         $this->jsonEncoder = $jsonEncoder;
@@ -58,6 +67,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->request = $request;
         $this->httpContext = $httpContext;
         $this->directoryList = $directoryList;
+        $this->cache = $cache;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -164,17 +175,22 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
      */
     public function getListAttributes()
     {
-        $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('include_in_list', true);
-        $collection->setOrder('list_position','ASC');
-        $attr = [];
-        foreach ($collection as $item) {
-            $attr[] = [
-                'id' => $item->getAttributeCode(),
-                'label' => $item->getStoreLabel()
-            ];
+        $listAttributes = $this->loadDataFromCache(static::LIST_ATTRIBUTES_CACHE_ID);
+        if (!$listAttributes) {
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToFilter('include_in_list', true);
+            $collection->setOrder('list_position','ASC');
+            $listAttributes = [];
+            foreach ($collection as $item) {
+                $listAttributes[] = [
+                    'id' => $item->getAttributeCode(),
+                    'label' => $item->getStoreLabel()
+                ];
+            }
+            $this->saveDataInsideCache($listAttributes, static::LIST_ATTRIBUTES_CACHE_ID);
         }
-        return $attr;
+
+        return $listAttributes;
     }
 
     /** 
@@ -184,17 +200,22 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
      */
     public function getTableAttributes()
     {
-        $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('include_in_table', true);
-        $collection->setOrder('table_position','ASC');
-        $attr = [];
-        foreach ($collection as $item) {
-            $attr[] = [
-                'id' => $item->getAttributeCode(),
-                'label' => $item->getStoreLabel()
-            ];
+        $tableAttributes = $this->loadDataFromCache(static::TABLE_ATTRIBUTES_CACHE_ID);
+        if (!$tableAttributes) {
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToFilter('include_in_table', true);
+            $collection->setOrder('table_position','ASC');
+            $attr = [];
+            foreach ($collection as $item) {
+                $tableAttributes[] = [
+                    'id' => $item->getAttributeCode(),
+                    'label' => $item->getStoreLabel()
+                ];
+            }
+            $this->saveDataInsideCache($tableAttributes, static::TABLE_ATTRIBUTES_CACHE_ID);
         }
-        return $attr;
+
+        return $tableAttributes;
     }
 
     /** 
@@ -204,20 +225,24 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
      */
     public function getFilterAttributes()
     {
-        $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('is_filterable', true);
-        $collection->setOrder('position','ASC');
-        $attr = [];
-        foreach ($collection as $item) {
-            $attr[] = [
-                'id' => $item->getAttributeCode(),
-                'searchable' => $item->getSearchableInLayeredNav(),
-                'label' => $item->getStoreLabel(),
-                'displayType' => $this->getDisplayType($item),
-                'description' => $item->getLayeredNavDescription()
-            ];
+        $filterAttributes = $this->loadDataFromCache(static::FILTER_ATTRIBUTES_CACHE_ID);
+        if (!$filterAttributes) {
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToFilter('is_filterable', true);
+            $collection->setOrder('position','ASC');
+            $attr = [];
+            foreach ($collection as $item) {
+                $attr[] = [
+                    'id' => $item->getAttributeCode(),
+                    'searchable' => $item->getSearchableInLayeredNav(),
+                    'label' => $item->getStoreLabel(),
+                    'displayType' => $this->getDisplayType($item),
+                    'description' => $item->getLayeredNavDescription()
+                ];
+            }
+            $this->saveDataInsideCache($filterAttributes, static::FILTER_ATTRIBUTES_CACHE_ID);
         }
-        return $attr;
+        return $filterAttributes;
     }
 
     /** 
@@ -278,5 +303,35 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             }
         }
         return $attr;
+    }
+
+    /**
+     * Returns array attributes data
+     *
+     * @param  string $cacheId
+     * @return array|boolean
+     */
+    public function loadDataFromCache($cacheId)
+    {
+        $data = $this->cache->load($cacheId);
+        if (!$data) {
+            return false;
+        }
+
+        $data = $this->serializer->unserialize($data);
+        return $data;
+    }
+
+    /**
+     * Returns array attributes data
+     *
+     * @param  array $data
+     * @param  string $cacheId
+     * @return array|boolean
+     */
+    public function saveDataInsideCache($data, $cacheId)
+    {
+        $data = $this->serializer->serialize($data);
+        $this->cache->save($data, $cacheId);
     }
 }
