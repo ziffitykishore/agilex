@@ -69,7 +69,7 @@ class OrderPlace implements ObserverInterface
     {
         if ($response['status'] != 100 || !isset($response['body']['SxOrderId'])) {
             try {
-                new \Zend\Mail('utf-8');
+                $mail = new \Zend\Mail('utf-8');
                 $mail->setFrom(
                     $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE),
                     $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
@@ -79,7 +79,7 @@ class OrderPlace implements ObserverInterface
                     $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
                 );
                 $mail->setSubject(__('Order %1 has not been sent to API', $order->getIncrementId());
-                $mail->setBodyText(__('Order %1 has not been sent to API. Error Message: %2',$order->getIncrementId(), $response['body']));
+                $mail->setBodyText(__('Order %1 has not been sent to API. Status Code: %2, Error Message: %3',$order->getIncrementId(), $response['status'], $response['body'] ?? ''));
                 $mail->send();
             } catch (\Exception $e) {
                 $this->logger->debug($e->getMessage());
