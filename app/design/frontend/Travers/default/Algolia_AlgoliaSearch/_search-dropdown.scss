@@ -101,10 +101,6 @@ $search-dropdown-footer__height: 50px;
             height: calc(100% + #{$search-dropdown-footer__height});
         }
 
-        .thumb {
-            display: none;
-        }
-
         .algoliasearch-autocomplete-hit,
         .aa-no-results {
             padding-left: $indent__xs !important;

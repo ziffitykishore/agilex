@@ -277,6 +277,10 @@ $cart-image-mobile-width: 60px !default;
 
             .msrp {
                 font-size: $font-size__base;
+
+                .price {
+                    text-decoration: line-through;
+                }
             }
         }
     }
