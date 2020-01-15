@@ -31,7 +31,8 @@ class ApplyCoupon extends \Magento\Framework\App\Helper\AbstractHelper
                 ->collectTotals()
                 ->save();
 
-            setcookie('coupon', '', time() - 3600);
+            $this->cookieManager->deleteCookie('coupon');
+            setcookie('coupon', '', time() - 3600, '/');
 
             if (!$coupon->getCouponCode()) {
                 //if no coupon code is found set coupon code as suffix value

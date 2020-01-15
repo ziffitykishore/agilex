@@ -6,5 +6,5 @@ let result = hash.split('&').reduce(function (result, item) {
 }, {});
 
 if (result['coupon']) {
-  document.cookie = "coupon="+result['coupon'];
+  document.cookie = "coupon="+result['coupon']+"; path=/";
 }

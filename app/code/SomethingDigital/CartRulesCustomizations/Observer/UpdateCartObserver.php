@@ -61,9 +61,15 @@ class UpdateCartObserver implements ObserverInterface
                 }
             }
         }
+
         $addedGift = false;
         foreach ($this->freeGiftSku->skus as $giftSku) {
-            if (!in_array($giftSku, $skusInCart) && !in_array($giftSku, $this->session->getRemovedGifts())) {
+            if (!$this->session->getRemovedGifts()) {
+                $removedGifts = [];
+            } else {
+                $removedGifts = $this->session->getRemovedGifts();
+            }
+            if (!in_array($giftSku, $skusInCart) && !in_array($giftSku, $removedGifts)) {
                 try {
                     $product = $this->productRepository->get($giftSku);
                     $quoteItem = $quote->addProduct($product, 1);
