@@ -23,25 +23,16 @@ define([
 
                 prices = self.removeIfZero(prices);
 
-                var asLowAsPrice = $('.as-low-as > span > span[data-price-amount]').val();
-
-                var isLowerPrice = asLowAsPrice < prices['price'];
-
-                if (isLowerPrice) {
-                  $('.product-info-main > table.prices-tier').hide();
-                  $('.as-low-as').hide();
-                  return;
-                }
+                $('.product-info-main > table.prices-tier').hide(); //Is unhidden later if tierPricing occurs
 
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
-                    return;
+                  $('.as-low-as').hide();
+                  return;
                 }
 
                 prices['saveBreak1'] = '';
                 prices['saveBreak2'] = '';
                 prices['saveBreak3'] = '';
-
-                $('.product-info-main > table.prices-tier').hide();
 
                 let tierPricesArray = [prices['QtyPrice1'], prices['QtyPrice2'], prices['QtyPrice3']];
                 let lowestPrice = Math.min.apply(null, tierPricesArray.filter(Boolean));
