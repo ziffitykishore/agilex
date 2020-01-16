@@ -58,6 +58,11 @@ class History extends SalesHistory
 
     private $ordersApiResponse;
 
+    /**
+     * @var Pager
+     */
+    private $_pager;
+
     public function __construct(
         Context $context,
         CollectionFactory $orderCollectionFactory,
@@ -69,7 +74,8 @@ class History extends SalesHistory
         OrdersApi $ordersApi,
         BaseCollectionFactory $collectionFactory,
         RequestInterface $request,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        \SomethingDigital\OrderHistory\Block\Pager\Pager $pager
     ) {
         $this->customerRepo = $customerRepo;
         $this->messageManager = $messageManager;
@@ -79,6 +85,7 @@ class History extends SalesHistory
         $this->request = $request;
         $this->arrayManager = $arrayManager;
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
+        $this->_pager = $pager;
     }
 
     protected function _prepareLayout()
@@ -87,6 +94,8 @@ class History extends SalesHistory
 
         /** @var Pager $pager */
         $pager = $this->getLayout()->createBlock(Pager::class, 'custom.history.pager');
+        $pager->setTemplate("SomethingDigital_OrderHistory::pager.phtml");
+        $pager->setViewModel($this->_pager);
         $pager->setShowPerPage(true)->setCollection(
             $this->getApiOrders(true)
         );
