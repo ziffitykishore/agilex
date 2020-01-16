@@ -1,0 +1,19 @@
+<!-- Category hit template -->
+<script type="text/template" id="autocomplete_categories_template">
+    <a class="algoliasearch-autocomplete-hit" href="{{url}}">
+        <div>
+            <div>
+                {{#_highlightResult.path}}
+                {{{_highlightResult.path.value}}}
+                {{/_highlightResult.path}}
+                {{^_highlightResult.path}}
+                {{{path}}}
+                {{/_highlightResult.path}}
+
+                {{#product_count}}
+                <small>({{product_count}})</small>
+                {{/product_count}}
+            </div>
+        </div>
+    </a>
+</script>
