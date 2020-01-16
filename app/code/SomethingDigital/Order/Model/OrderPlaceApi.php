@@ -18,6 +18,7 @@ use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Company\Api\CompanyManagementInterface;
 use Magento\Company\Api\CompanyRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Directory\Model\Region;
 
 class OrderPlaceApi extends Adapter
 {
@@ -27,6 +28,7 @@ class OrderPlaceApi extends Adapter
     protected $customerRepository;
     protected $companyManagement;
     protected $companyRepository;
+    protected $region;
 
     public function __construct(
         ClientFactory $curlFactory,
@@ -42,7 +44,8 @@ class OrderPlaceApi extends Adapter
         EncryptorInterface $encryptor,
         CustomerRepositoryInterface $customerRepository,
         CompanyManagementInterface $companyManagement,
-        CompanyRepositoryInterface $companyRepository
+        CompanyRepositoryInterface $companyRepository,
+        Region $region
     ) {
         parent::__construct(
             $curlFactory,
@@ -60,6 +63,7 @@ class OrderPlaceApi extends Adapter
         $this->customerRepository = $customerRepository;
         $this->companyManagement = $companyManagement;
         $this->companyRepository = $companyRepository;
+        $this->region = $region;
     }
 
     public function sendOrder($order)
@@ -134,7 +138,7 @@ class OrderPlaceApi extends Adapter
                     "ToName" => $company->getCompanyName(),
                     "Line1" => (isset($company->getStreet()[0])) ? $company->getStreet()[0] : '',
                     "City" => $company->getCity(),
-                    "State" => $company->getRegion(),
+                    "State" => $this->getRegionCodeById($company->getRegionId()),
                     "PostalCode" => $company->getPostcode(),
                     "CountryCode" => $company->getCountryId(),
                     "Phone" => $company->getTelephone()
@@ -238,12 +242,13 @@ class OrderPlaceApi extends Adapter
 
             }
         }
+
         return [
             "id" => (isset($sxAddressId) && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
             "ToName" => $addressArray['firstname'] . ' ' . $addressArray['lastname'],
             "Line1" => $addressArray['street'],
             "City" => $addressArray['city'],
-            "State" => $addressArray['region'],
+            "State" => $this->getRegionCodeById($addressArray['region_id']),
             "PostalCode" => $addressArray['postcode'],
             "CountryCode" => $addressArray['country_id'],
             "Phone" => $addressArray['telephone']
@@ -272,4 +277,13 @@ class OrderPlaceApi extends Adapter
         return $customerCompany;
     }
 
+    public function getRegionCodeById($id)
+    {
+        try {
+            $region = $this->region->load($id);
+            return $region->getCode();
+        } catch (NoSuchEntityException $noSuchEntityException) {
+            return '';
+        }
+    }
 }
