@@ -16,7 +16,7 @@ class LoginRedirect
     /**
      * @var Session
      */
-    private $customerSession;
+    private $session;
 
     /**
      * @var Validator
