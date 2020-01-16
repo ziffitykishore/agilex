@@ -58,6 +58,11 @@ class History extends SalesHistory
 
     private $ordersApiResponse;
 
+    /**
+     * @var Pager
+     */
+    private $_pager;
+
     public function __construct(
         Context $context,
         CollectionFactory $orderCollectionFactory,
@@ -69,7 +74,8 @@ class History extends SalesHistory
         OrdersApi $ordersApi,
         BaseCollectionFactory $collectionFactory,
         RequestInterface $request,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        \SomethingDigital\OrderHistory\Block\Pager\Pager $pager
     ) {
         $this->customerRepo = $customerRepo;
         $this->messageManager = $messageManager;
@@ -79,6 +85,7 @@ class History extends SalesHistory
         $this->request = $request;
         $this->arrayManager = $arrayManager;
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
+        $this->_pager = $pager;
     }
 
     protected function _prepareLayout()
@@ -87,6 +94,8 @@ class History extends SalesHistory
 
         /** @var Pager $pager */
         $pager = $this->getLayout()->createBlock(Pager::class, 'custom.history.pager');
+        $pager->setTemplate("SomethingDigital_OrderHistory::pager.phtml");
+        $pager->setViewModel($this->_pager);
         $pager->setShowPerPage(true)->setCollection(
             $this->getApiOrders(true)
         );
@@ -120,6 +129,13 @@ class History extends SalesHistory
         $current_page =  $this->request->getParam("p", 1);
         $limit =  $this->request->getParam("limit", 10);
         $offset =  ($current_page * $limit) - $limit;
+
+        while ($offset >= sizeof($orders)) {
+            //If someone is on a later page and increases the limit,
+            //there is a chance the offset will be too large,
+            //which causes 'no orders' to display.
+            $offset -= $limit;
+        }
 
         $collection = $this->collectionFactory->create();
 
