@@ -20,7 +20,7 @@ if ($itemOptions) {
 }
 $product = $_item->getProduct();
 $originalPrice = $_item->getProduct()->getPrice();
-$finalPrice = $_item->getProduct()->getFinalPrice();
+$finalPrice = $_item->getPrice();
 $customMsrp = $_item->getProduct()->getManufacturerPrice();
 $isVisibleProduct = $product->isVisibleInSiteVisibility();
 /** @var \Magento\Msrp\Helper\Data $helper */
@@ -97,7 +97,7 @@ $showOriginalPrice = (!$isFreeGift && $originalPrice > $finalPrice) ? true : fal
                 <?php if ($showMsrp): ?>
                     <span class="msrp"><?= __('MSRP: ') ?><span class="msrp-price"><?= /* @escapeNotVerified */ $pricing->currency(number_format($customMsrp)) ?></span></span>
                 <?php elseif ($showOriginalPrice): ?>
-                    <?= /* @escapeNotVerified */ $pricing->currency(number_format($originalPrice)) ?>
+                    <?= /* @escapeNotVerified */ $pricing->currency($originalPrice) ?>
                 <?php endif; ?>
                 <?= $block->getUnitPriceHtml($_item) ?>
                 <?php if ($showMsrp || $showOriginalPrice): ?>
