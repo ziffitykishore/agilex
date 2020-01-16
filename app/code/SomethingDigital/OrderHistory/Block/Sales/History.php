@@ -130,6 +130,13 @@ class History extends SalesHistory
         $limit =  $this->request->getParam("limit", 10);
         $offset =  ($current_page * $limit) - $limit;
 
+        while ($offset >= sizeof($orders)) {
+            //If someone is on a later page and increases the limit,
+            //there is a chance the offset will be too large,
+            //which causes 'no orders' to display.
+            $offset -= $limit;
+        }
+
         $collection = $this->collectionFactory->create();
 
         if (is_array($orders)) {
