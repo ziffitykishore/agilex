@@ -23,6 +23,16 @@ define([
 
                 prices = self.removeIfZero(prices);
 
+                var asLowAsPrice = $('.as-low-as > span > span[data-price-amount]').val();
+
+                var isLowerPrice = asLowAsPrice < prices['price'];
+
+                if (isLowerPrice) {
+                  $('.product-info-main > table.prices-tier').hide();
+                  $('.as-low-as').hide();
+                  return;
+                }
+
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
                     return;
                 }
