@@ -47,7 +47,9 @@ class CheckItemQuickOrder
                 ->addAttributeToFilter('sku', array('like' => $suffixMatch.'%'));
 
         foreach ($productcollection as $key => $product) {
-            $sku = $product->getSku();
+            if (stripos($queryText, $product->getSku()) === 0) {
+                $sku = $product->getSku();
+            }
         } 
         return [$sku, $qty, $config];
     }
