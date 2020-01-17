@@ -117,6 +117,9 @@ $checkout-step-title-mobile__font-size: 18px !default;
 @include min-screen($screen__m) {
     .opc-sidebar {
         @include lib-layout-column(2, 2, $checkout-sidebar__width);
+        position: sticky;
+        right: $indent__base;
+        top: $indent__l;
     }
 }
 
