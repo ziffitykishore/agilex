@@ -3,10 +3,10 @@
     <system>
         <section id="catalog">
             <group id="frontend">
-                <field id="catalog_page_number_offset" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="catalog_page_number_offset" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="1">
                     <label>Offset for Catalog Page Number</label>
                 </field>
-                <field id="catalog_link" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="catalog_link" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="0" showInStore="1">
                     <label>Link to Catalog</label>
                 </field>
             </group>
