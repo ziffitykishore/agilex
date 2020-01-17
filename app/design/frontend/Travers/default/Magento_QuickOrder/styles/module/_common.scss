@@ -49,6 +49,10 @@ $order-product-bg__color: $color-gray94;
                 order: -1;
             }
 
+            .field.sku.required {
+                max-width: 400px;
+            }
+
             .action {
                 &.remove {
                     display: none;
