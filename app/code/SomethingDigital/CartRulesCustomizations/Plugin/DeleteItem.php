@@ -24,9 +24,11 @@ class DeleteItem
 
         $removedGifts = [];
         $quoteItem = $this->getItemById($id);
-        $removedGifts = $this->session->getRemovedGifts();
-        $removedGifts[] = $quoteItem->getSku();
-        $this->session->setRemovedGifts($removedGifts);
+        if ($quoteItem) {
+            $removedGifts = $this->session->getRemovedGifts();
+            $removedGifts[] = $quoteItem->getSku();
+            $this->session->setRemovedGifts($removedGifts);
+        }
     }
 
     public function getItemById($itemId)
