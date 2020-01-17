@@ -94,7 +94,6 @@ class OrderPlaceApi extends Adapter
             'Payments' => $this->getPaymentInfo($order)
         ];
 
-
         return $this->postRequest();
     }
 
