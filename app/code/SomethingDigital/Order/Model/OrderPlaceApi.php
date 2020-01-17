@@ -82,7 +82,7 @@ class OrderPlaceApi extends Adapter
             'Customer' => $this->getCustomerInfo($order),
             'LineItems' => $this->getItems($order),
             'externalIds' => '',
-            'PurchaseOrderId' => '',
+            'PurchaseOrderId' => $order->getCheckoutPonumber(),
             'ShipServiceCode' => $order->getShippingMethod(),
             'Date' => $order->getCreatedAt(),
             'Total' => $order->getGrandTotal(),
