@@ -15,6 +15,7 @@ use SomethingDigital\OrderHistory\Model\OrdersApi;
 use Magento\Framework\Data\CollectionFactory as BaseCollectionFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 
 class Recent extends RecentOrders
@@ -54,6 +55,11 @@ class Recent extends RecentOrders
      * @var RequestInterface
      */
     private $request;
+
+    /**
+     * @var PriceCurrencyInterface
+     */
+    private $priceCurrency;
     
 
     public function __construct(
@@ -67,7 +73,8 @@ class Recent extends RecentOrders
         OrdersApi $ordersApi,
         BaseCollectionFactory $collectionFactory,
         RequestInterface $request,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        PriceCurrencyInterface $priceCurrency
     ) {
         $this->customerRepo = $customerRepo;
         $this->messageManager = $messageManager;
@@ -76,6 +83,7 @@ class Recent extends RecentOrders
         $this->collectionFactory = $collectionFactory;
         $this->request = $request;
         $this->arrayManager = $arrayManager;
+        $this->priceCurrency = $priceCurrency;
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
     }
 
@@ -114,5 +122,14 @@ class Recent extends RecentOrders
     public function formatTime($time = NULL, $format = \IntlDateFormatter::SHORT, $showDate = false)
     {
         return date("m/d/y", strtotime($time));
+    }
+
+    /**
+     * Get current store currency symbol with price
+     */
+    public function getCurrencyFormat($price)
+    {
+        $price = $this->priceCurrency->format($price,true,2);
+        return $price;
     }
 }
