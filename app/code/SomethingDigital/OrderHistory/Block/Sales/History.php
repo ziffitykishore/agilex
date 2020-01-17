@@ -60,7 +60,7 @@ class History extends SalesHistory
     private $ordersApiResponse;
 
     /**
-     * @var RequestInterface
+     * @var PriceCurrencyInterface
      */
     private $priceCurrency;
 

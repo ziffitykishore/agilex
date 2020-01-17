@@ -57,7 +57,7 @@ class Recent extends RecentOrders
     private $request;
 
     /**
-     * @var RequestInterface
+     * @var PriceCurrencyInterface
      */
     private $priceCurrency;
     
