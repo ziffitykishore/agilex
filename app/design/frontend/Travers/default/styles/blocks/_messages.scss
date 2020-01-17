@@ -27,6 +27,11 @@ $message__color: inherit !default;
 .message {
     animation: fadein $transition-speed $transition-func;
 
+    &.cart.item {
+        margin-top: 35px;
+        z-index: 1;
+    }
+
     a {
         color: $message__color;
         text-decoration: underline;

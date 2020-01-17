@@ -24,10 +24,10 @@ const wrapNavItemsInAnchorTag = () => {
   });
 }
 
-const $brandsNav = $('.brands-nav');
+const $brandsPage = $('.cms-brands');
 
 domready(() => {
-  if ($brandsNav.length) {
+  if ($brandsPage.length) {
     assignIdsToColumnTitles();
     wrapNavItemsInAnchorTag();
 

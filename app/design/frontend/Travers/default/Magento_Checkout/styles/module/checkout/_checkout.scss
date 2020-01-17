@@ -1,0 +1,134 @@
+//
+//  Variables
+//  _____________________________________________
+
+$checkout-wrapper__margin             : $indent__base !default;
+$checkout-wrapper__width              : 59.66666667% !default;
+$checkout-sidebar__width              : 40.3333333% !default;
+
+$checkout-step-title__border          : $border-width__base solid $color-gray80 !default;
+$checkout-step-title__font-size       : 26px !default;
+$checkout-step-title__font-weight     : $font-weight__light !default;
+$checkout-step-title__padding         : $indent__s !default;
+
+$checkout-step-title-mobile__font-size: 18px !default;
+
+//
+//  Common
+//  _____________________________________________
+
+.checkout-index-index,
+.checkout-onepage-success {
+    .page-title-wrapper {
+        @include lib-visually-hidden();
+    }
+}
+
+.payment-method {
+    &-braintree {
+        .field-tooltip {
+            .field-tooltip-content {
+                right: 0;
+                transform: translateX(10px);
+
+                @include max-screen($screen__m) {
+                    top: 45px;
+                    left: auto;
+                }
+
+                &:before,
+                &:after {
+                    @include max-screen($screen__xs) {
+                        @include lib-tooltip(top);
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.checkout-container {
+    @include lib-clearfix();
+    margin: 0 0 $checkout-wrapper__margin;
+}
+
+.opc-wrapper {
+    margin: 0 0 $checkout-wrapper__margin;
+
+    .opc {
+        @extend .abs-reset-list;
+    }
+
+    .step-title {
+        @extend .abs-checkout-title;
+    }
+
+    .step-content {
+        margin: 0 0 $indent__xl;
+    }
+
+    /**
+     * The use of .control on the checkout addresses container is a
+     * misuse of it – it's typically for form fields. We have a max-width
+     * set on the class, and here we're removing it so the addresses aren't
+     * scrunched up.
+     */
+    .addresses > .control {
+        max-width: none;
+    }
+}
+
+.checkout-index-index {
+    .nav-sections,
+    .nav-toggle {
+        display: none;
+    }
+
+    .logo {
+        margin-left: 0;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@include max-screen($screen__s) {
+    .opc-wrapper {
+        .step-title {
+            border-bottom: 0;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .opc-wrapper {
+        @extend .abs-add-box-sizing-desktop-m;
+        @include lib-layout-column(2, 1, $checkout-wrapper__width);
+        padding-right: $indent__l;
+    }
+}
+
+@include min-screen($screen__m) {
+    .opc-sidebar {
+        @include lib-layout-column(2, 2, $checkout-sidebar__width);
+        position: sticky;
+        right: $indent__base;
+        top: $indent__l;
+    }
+}
+
+/*
+    Success page styling
+*/
+.checkout-success {
+    .print {
+        display: inline-block;
+        margin-bottom: $indent__s;
+    }
+}

@@ -37,6 +37,7 @@ $product-hero__button-and-catalog__width: 240px;
         @include min-screen($screen__l) {
             width: $width__product-related;
             order: 2;
+            max-height: 500px;
         }
     }
 

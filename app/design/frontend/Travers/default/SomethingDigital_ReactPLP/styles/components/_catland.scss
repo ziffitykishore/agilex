@@ -72,20 +72,41 @@
       }
     }
 
-    div {
-      margin: 0 auto $indent__l auto;
-      max-width: 400px;
-    }
+    [data-element="main"] {
+        @include min-screen($screen__m) {
+            display: flex;
+        }
 
-    @include min-screen($screen__m) {
-      display: flex;
-      width: 80%;
-      padding-right: 50px;
-      margin-top: 50px;
+        .catland-bottom-content {
+            @include min-screen($screen__m) {
+                margin: 0 auto $indent__l auto;
+                padding-right: 50px;
+                margin-top: 50px;
+            }
 
-      div:not(:last-of-type) {
-        margin-right: $indent__m;
-      }
+            &-left-panel,
+            &-right-panel {
+                max-width: 400px;
+                margin: 0 auto $indent__xl auto;
+
+                @include min-screen($screen__m) {
+                    margin-top: 50px;
+                    max-width: 500px;
+                }
+            }
+
+            &-left-panel {
+                @include min-screen($screen__m) {
+                    margin-right: $indent__m;
+                }
+            }
+
+            &-right-panel {
+                @include min-screen($screen__m) {
+                    margin-right: $indent__m;
+                }
+            }
+        }
     }
   }
 
