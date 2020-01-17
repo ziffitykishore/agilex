@@ -38,7 +38,7 @@ define(
                         if (item.sku in response.data) {
                             if (quote.shippingMethod() && typeof response.data[item.sku] != 'string' ) {
                                 deliveryInfo(response.data[item.sku][quote.shippingMethod().method_code]);
-                            } else if (typeof deliveryInfo[item.sku] == 'string') {
+                            } else if (typeof response.data[item.sku] == 'string') {
                                 deliveryInfo(response.data[item.sku]);
                             }
                         }
