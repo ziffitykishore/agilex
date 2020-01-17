@@ -424,6 +424,42 @@ $cart-image-mobile-width: 60px !default;
         }
     }
 
+    .block-cart-failed {
+        padding: 0 15px;
+        width: 100%;
+        box-sizing: border-box;
+
+        .action-delete,
+        .action.clear {
+            @include button--type(secondary);
+        }
+
+        .action.tocart {
+            @include button--type(primary);
+        }
+
+        .cart.item .item-actions td {
+            padding-left: 0;
+        }
+
+        @include max-screen($screen__m) {
+            .item-actions td {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .product-item-photo {
+                position: static;
+                max-width: 100px;
+            }
+
+            .col.item {
+                padding-left: 0;
+                padding-top: 0;
+            }
+        }
+    }
+
     .checkout-methods-items {
         @extend .abs-reset-list;
         margin-top: $indent__xl;
