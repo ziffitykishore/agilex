@@ -49,7 +49,7 @@
                         <td data-th="<?= $block->escapeHtml(__('Order #')) ?>" class="col id"><?= /* @escapeNotVerified */ $block->escapeHtml($_order->getData('SxId')) ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->escapeHtml($_order->getData('Date')) ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Ship To')) ?>" class="col shipping"><?= /* @escapeNotVerified */ $block->escapeHtml($_order->getData('ShipTo')['ToName']) ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= /* @escapeNotVerified */ $block->escapeHtml($_order->getData('Total')) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Order Total')) ?>" class="col total"><?= /* @escapeNotVerified */ $block->getCurrencyFormat($block->escapeHtml($_order->getData('Total'))) ?></td>
                         <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"></td>
                         <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
                         	<a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_order) ?>" class="action view">

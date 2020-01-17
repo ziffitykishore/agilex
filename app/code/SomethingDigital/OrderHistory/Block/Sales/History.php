@@ -16,6 +16,7 @@ use Magento\Framework\Data\CollectionFactory as BaseCollectionFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Theme\Block\Html\Pager;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 
 class History extends SalesHistory
@@ -59,6 +60,11 @@ class History extends SalesHistory
     private $ordersApiResponse;
 
     /**
+     * @var RequestInterface
+     */
+    private $priceCurrency;
+
+    /**
      * @var Pager
      */
     private $_pager;
@@ -75,7 +81,8 @@ class History extends SalesHistory
         BaseCollectionFactory $collectionFactory,
         RequestInterface $request,
         ArrayManager $arrayManager,
-        \SomethingDigital\OrderHistory\Block\Pager\Pager $pager
+        \SomethingDigital\OrderHistory\Block\Pager\Pager $pager,
+        PriceCurrencyInterface $priceCurrency
     ) {
         $this->customerRepo = $customerRepo;
         $this->messageManager = $messageManager;
@@ -84,6 +91,7 @@ class History extends SalesHistory
         $this->collectionFactory = $collectionFactory;
         $this->request = $request;
         $this->arrayManager = $arrayManager;
+        $this->priceCurrency = $priceCurrency;
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
         $this->_pager = $pager;
     }
@@ -161,5 +169,14 @@ class History extends SalesHistory
     public function formatTime($time = NULL, $format = \IntlDateFormatter::SHORT, $showDate = false)
     {
         return date("m/d/y", strtotime($time));
+    }
+
+    /**
+     * Get current store currency symbol with price
+     */
+    public function getCurrencyFormat($price)
+    {
+        $price = $this->priceCurrency->format($price,true,2);
+        return $price;
     }
 }
