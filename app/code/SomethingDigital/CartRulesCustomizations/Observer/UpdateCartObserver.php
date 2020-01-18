@@ -91,7 +91,5 @@ class UpdateCartObserver implements ObserverInterface
         if ($addedGift) {
             $this->collector->collect($quote);
         }
-
-        $this->quote->repriceCustomerQuote();
     }
 }

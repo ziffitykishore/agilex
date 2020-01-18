@@ -49,9 +49,11 @@ class BundleItemConfiguration
 
         if ($this->customerSession->isLoggedIn()) {
             try {
-                $prices = $this->spotPricingApi->getSpotPrice($selectionProduct->getSku());
-                $price = $this->arrayManager->get('body/DiscountPrice', $prices);
-                if ($price && $price < $result) {
+                $pricesResponse = $this->spotPricingApi->getSpotPrice([$selectionProduct->getSku()]);
+
+                $prices = $this->arrayManager->get('body', $pricesResponse);
+
+                if (isset($prices[0]['DiscountPrice']) && $prices[0]['DiscountPrice'] < $result) {
                     return $price;
                 }
             } catch (LocalizedException $e) {

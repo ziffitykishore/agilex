@@ -52,11 +52,11 @@ class SpotPricingApi extends Adapter
     }
 
     /**
-     * @param string $productSku
+     * @param array $productSku
      * @return array
      * @throws LocalizedException
      */
-    public function getSpotPrice($productSku, $suffix = null)
+    public function getSpotPrice($productSkus, $suffix = null)
     {
         $customerAccountId = $this->getCustomerAccountId();
 
@@ -69,7 +69,7 @@ class SpotPricingApi extends Adapter
         }
 
         if (!$this->isTestMode()) {
-            $this->requestPath = $this->path.'/'.rawurlencode($productSku).'?' . http_build_query([
+            $this->requestPath = $this->path.'/?' . http_build_query([
                 'customerId' => $customerAccountId,
                 'brochurePrefix' => $suffix
             ]);
@@ -81,7 +81,11 @@ class SpotPricingApi extends Adapter
             ]);
         }
 
-        return $this->getRequest();
+        foreach ($productSkus as $sku) {
+            $this->requestBody[] = rawurlencode($sku);
+        }
+
+        return $this->postRequest();
     }
 
     /**

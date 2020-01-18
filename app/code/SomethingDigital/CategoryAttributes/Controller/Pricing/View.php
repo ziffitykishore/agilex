@@ -45,21 +45,24 @@ class View extends \Magento\Framework\App\Action\Action
             $productsSkusArray = explode(',', $productsSkus);
             try {
                 $data = array();
+                $productsPricesResponse = $this->spotPricingApi->getSpotPrice($productsSkusArray);
+                $productsPrices = $this->arrayManager->get('body', $productsPricesResponse, false);
 
-                foreach ($productsSkusArray as $sku) {
-                    $prices = $this->spotPricingApi->getSpotPrice($sku);
-                    if ($this->arrayManager->get('body/DiscountPrice', $prices)) {
-                        $data[] = [
-                            "sku" => $sku,
-                            "price" => $this->arrayManager->get('body/DiscountPrice', $prices),
-                            "price_formatted" => $this->priceCurrency->format($this->arrayManager->get('body/DiscountPrice', $prices),false,2),
-                            "QtyPrice1" => $this->arrayManager->get('body/QtyPrice1', $prices, 0),
-                            "QtyPrice2" => $this->arrayManager->get('body/QtyPrice2', $prices, 0),
-                            "QtyPrice3" => $this->arrayManager->get('body/QtyPrice3', $prices, 0),
-                            "QtyBreak1" => $this->arrayManager->get('body/QtyBreak1', $prices, 0),
-                            "QtyBreak2" => $this->arrayManager->get('body/QtyBreak2', $prices, 0),
-                            "QtyBreak3" => $this->arrayManager->get('body/QtyBreak3', $prices, 0)
-                        ];
+                if ($productsPrices) {
+                    foreach ($productsPrices as $productPrices) {
+                        if ($this->arrayManager->get('DiscountPrice', $productPrices)) {
+                            $data[] = [
+                                "sku" => $this->arrayManager->get('Sku', $productPrices),
+                                "price" => $this->arrayManager->get('DiscountPrice', $productPrices),
+                                "price_formatted" => $this->priceCurrency->format($this->arrayManager->get('DiscountPrice', $productPrices),false,2),
+                                "QtyPrice1" => $this->arrayManager->get('QtyPrice1', $productPrices, 0),
+                                "QtyPrice2" => $this->arrayManager->get('QtyPrice2', $productPrices, 0),
+                                "QtyPrice3" => $this->arrayManager->get('QtyPrice3', $productPrices, 0),
+                                "QtyBreak1" => $this->arrayManager->get('QtyBreak1', $productPrices, 0),
+                                "QtyBreak2" => $this->arrayManager->get('QtyBreak2', $productPrices, 0),
+                                "QtyBreak3" => $this->arrayManager->get('QtyBreak3', $productPrices, 0)
+                            ];
+                        }
                     }
                 }
 

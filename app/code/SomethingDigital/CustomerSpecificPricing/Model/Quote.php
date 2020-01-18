@@ -61,19 +61,46 @@ class Quote
         $items = $this->cart->getQuote()->getAllItems();
 
         if ($items) {
-            foreach ($items as $item) {
-                $product = $this->productRepo->getById($item->getProductId());
-                $price = $product->getPrice();
+            $productRegularPrices = [];
+            $productSkus = [];
 
-                try {
+            try {
+                foreach ($items as $item) {
+                    $product = $this->productRepo->getById($item->getProductId());
+                    $productsRegularPrices[$product->getSku()] = $product->getPrice();
+                    $productSkus[] = $product->getSku();
+                }
+
+                $pricesResponse = $this->spotPricingApi->getSpotPrice($productSkus, $suffix);
+                $allPrices = $this->arrayManager->get('body', $pricesResponse);
+                $spotPrices = [];
+                foreach ($allPrices as $productPrices) {
+                    $sku = $this->arrayManager->get('Sku', $productPrices);
+                    $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices);
+                    $spotPrices[$sku] = $spotPrice;
+                }
+
+                foreach ($items as $item) {
                     if ($item->getProductType() === \Magento\Catalog\Model\Product\Type::TYPE_SIMPLE) {
-                        $prices = $this->spotPricingApi->getSpotPrice($item->getSku(), $suffix);
-                        $spotPrice = $this->arrayManager->get('body/DiscountPrice', $prices);
+
+                        $isFreeGift = false;
+                        $itemOptions = $item->getOptions();
+                        if ($itemOptions) {
+                            foreach ($itemOptions as $option) {
+                                if ($option->getCode() == 'free_gift') {
+                                    $isFreeGift = true;
+                                }
+                            }
+                        }
+                        if ($isFreeGift) {
+                            continue;
+                        }
                         $customPrice = null;
-                        if ($spotPrice && $spotPrice < $price) {
+                        $spotPrice = isset($spotPrices[$item->getSku()]) ? $spotPrices[$item->getSku()] : false;
+                        if ($spotPrice && $spotPrice < $productsRegularPrices[$item->getSku()]) {
                             $customPrice = $spotPrice;
                         }
-                        $tierPrice = $this->helper->getTierPrice($prices, $item->getQty());
+                        $tierPrice = $this->helper->getTierPrice($allPrices, $item->getSku(), $item->getQty());
                         if ($tierPrice) {
                             $customPrice = $tierPrice;
                         }
@@ -84,9 +111,10 @@ class Quote
                             $item->save();
                         }
                     }
-                } catch (LocalizedException $e) {
-                    $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
                 }
+
+            } catch (LocalizedException $e) {
+                $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
             }
         }
     }
