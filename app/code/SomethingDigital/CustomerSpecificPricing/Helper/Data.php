@@ -146,21 +146,29 @@ class Data
     /**
      * Get customer specific tier price
      *
-     * @param array customerSpecificPrices
+     * @param array $customerSpecificPrices
+     * @param string $sku
      * @param int $totalItemQty
      * @return string|null
      */
-    public function getTierPrice($customerSpecificPrices, $totalItemQty) {
+    public function getTierPrice($customerSpecificPrices, $sku, $totalItemQty) {
         $prices = $this->arrayManager->get('body', $customerSpecificPrices);
+
         $tierPrice = null;
-        if (isset($prices['QtyBreak1']) && $prices['QtyBreak1'] && $totalItemQty >= $prices['QtyBreak1']) {
-            $tierPrice = $prices['QtyPrice1'];
-        }
-        if (isset($prices['QtyBreak2']) && $prices['QtyBreak2'] && $totalItemQty >= $prices['QtyBreak2']) {
-            $tierPrice = $prices['QtyPrice2'];
-        }
-        if (isset($prices['QtyBreak3']) && $prices['QtyBreak3'] && $totalItemQty >= $prices['QtyBreak3']) {
-            $tierPrice = $prices['QtyPrice3'];
+        if ($prices) {
+            foreach ($prices as $productPrices) {
+                if ($productPrices['Sku'] == $sku) {
+                    if (isset($productPrices['QtyBreak1']) && $productPrices['QtyBreak1'] && $totalItemQty >= $productPrices['QtyBreak1']) {
+                        $tierPrice = $productPrices['QtyPrice1'];
+                    }
+                    if (isset($productPrices['QtyBreak2']) && $productPrices['QtyBreak2'] && $totalItemQty >= $productPrices['QtyBreak2']) {
+                        $tierPrice = $productPrices['QtyPrice2'];
+                    }
+                    if (isset($productPrices['QtyBreak3']) && $productPrices['QtyBreak3'] && $totalItemQty >= $productPrices['QtyBreak3']) {
+                        $tierPrice = $productPrices['QtyPrice3'];
+                    }
+                }
+            }
         }
         return $tierPrice;
     }

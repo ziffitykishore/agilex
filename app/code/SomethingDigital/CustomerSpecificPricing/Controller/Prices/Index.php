@@ -37,46 +37,51 @@ class Index extends Action
 
     public function execute()
     {
-        $params = $this->getRequest()->getParam('products');
+        $skus = $this->getRequest()->getParam('products');
         $jsonResult = $this->resultFactory->create('json');
 
         $data = [];
 
         try {
-            foreach ($params as $id => $sku) {
-                $prices = $this->spotPricingApi->getSpotPrice($sku);
-                $spotPrice = $this->arrayManager->get('body/DiscountPrice', $prices, 0);
-                $product = $this->productRepository->get($sku);
-                $regularPrice = $product->getFinalPrice();
+            $pricesResponse = $this->spotPricingApi->getSpotPrice($skus);
+            $prices = $this->arrayManager->get('body', $pricesResponse, false);
 
-                if ($spotPrice < $regularPrice) {
-                    $price = $spotPrice;
-                } else {
-                    $price = $regularPrice;
+            if ($prices) {
+                foreach ($prices as $id => $productPrices) {
+                    $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices, 0);
+                    $sku = $this->arrayManager->get('Sku', $productPrices);
+                    $product = $this->productRepository->get($sku);
+                    $regularPrice = $product->getFinalPrice();
+
+                    if ($spotPrice < $regularPrice) {
+                        $price = $spotPrice;
+                    } else {
+                        $price = $regularPrice;
+                    }
+                    $unitPrice = $price;
+                    if ($product->getExactUnitPrice()) {
+                        $price = $product->getExactUnitPrice() * 100;
+                    }
+
+                    $qtyPrice1 = $this->arrayManager->get('QtyPrice1', $productPrices);
+                    $qtyPrice2 = $this->arrayManager->get('QtyPrice2', $productPrices);
+                    $qtyPrice3 = $this->arrayManager->get('QtyPrice3', $productPrices);
+                    $qtyBreak1 = round($this->arrayManager->get('QtyBreak1', $productPrices));
+                    $qtyBreak2 = round($this->arrayManager->get('QtyBreak2', $productPrices));
+                    $qtyBreak3 = round($this->arrayManager->get('QtyBreak3', $productPrices));
+
+                    $data[$sku] = [
+                        'price' => number_format($price, 2),
+                        'unitPrice' => $unitPrice,
+                        'QtyPrice1' => $qtyPrice1 ? number_format($qtyPrice1, 2) : '',
+                        'QtyPrice2' => $qtyPrice2 ? number_format($qtyPrice2, 2) : '',
+                        'QtyPrice3' => $qtyPrice3 ? number_format($qtyPrice3, 2) : '',
+                        'QtyBreak1' => $qtyBreak1 ? $qtyBreak1 : '',
+                        'QtyBreak2' => $qtyBreak2 ? $qtyBreak2 : '',
+                        'QtyBreak3' => $qtyBreak3 ? $qtyBreak3 : '',
+                        'currencySymbol' => $this->currency->getCurrency()->getCurrencySymbol()
+                    ];
                 }
-                $unitPrice = $price;
-                if ($product->getExactUnitPrice()) {
-                    $price = $product->getExactUnitPrice() * 100;
-                }
-
-                $qtyPrice1 = $this->arrayManager->get('body/QtyPrice1', $prices);
-                $qtyPrice2 = $this->arrayManager->get('body/QtyPrice2', $prices);
-                $qtyPrice3 = $this->arrayManager->get('body/QtyPrice3', $prices);
-                $qtyBreak1 = round($this->arrayManager->get('body/QtyBreak1', $prices));
-                $qtyBreak2 = round($this->arrayManager->get('body/QtyBreak2', $prices));
-                $qtyBreak3 = round($this->arrayManager->get('body/QtyBreak3', $prices));
-
-                $data[$sku] = [
-                    'price' => number_format($price, 2),
-                    'unitPrice' => $unitPrice,
-                    'QtyPrice1' => $qtyPrice1 ? number_format($qtyPrice1, 2) : '',
-                    'QtyPrice2' => $qtyPrice2 ? number_format($qtyPrice2, 2) : '',
-                    'QtyPrice3' => $qtyPrice3 ? number_format($qtyPrice3, 2) : '',
-                    'QtyBreak1' => $qtyBreak1 ? $qtyBreak1 : '',
-                    'QtyBreak2' => $qtyBreak2 ? $qtyBreak2 : '',
-                    'QtyBreak3' => $qtyBreak3 ? $qtyBreak3 : '',
-                    'currencySymbol' => $this->currency->getCurrency()->getCurrencySymbol()
-                ];
             }
         } catch (LocalizedException $e) {
             $this->logger->critical('Request has failed with exception: ' . $e->getMessage());
