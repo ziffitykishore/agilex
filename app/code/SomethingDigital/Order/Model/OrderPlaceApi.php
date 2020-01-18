@@ -4,7 +4,7 @@ namespace SomethingDigital\Order\Model;
 
 use SomethingDigital\Sx\Model\Adapter;
 use Magento\Framework\HTTP\ClientFactory;
-use Psr\Log\LoggerInterface;
+use SomethingDigital\Sx\Logger\Logger;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Customer\Model\Session;
@@ -32,7 +32,7 @@ class OrderPlaceApi extends Adapter
 
     public function __construct(
         ClientFactory $curlFactory,
-        LoggerInterface $logger,
+        Logger $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
         Session $session,

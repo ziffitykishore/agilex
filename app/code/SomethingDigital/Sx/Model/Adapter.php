@@ -4,7 +4,7 @@ namespace SomethingDigital\Sx\Model;
 
 use SomethingDigital\Sx\Exception\ApiRequestException;
 use Magento\Framework\HTTP\ClientFactory;
-use Psr\Log\LoggerInterface;
+use SomethingDigital\Sx\Logger\Logger;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
@@ -23,7 +23,7 @@ abstract class Adapter
     /** @var \Magento\Framework\HTTP\ClientFactory */
     protected $curlFactory;
 
-    /** @var \Psr\Log\LoggerInterface */
+    /** @var \SomethingDigital\Sx\Logger\Logger; */
     protected $logger;
 
     /** @var \Magento\Framework\App\Config\ScopeConfigInterface */
@@ -58,7 +58,7 @@ abstract class Adapter
 
     public function __construct(
         ClientFactory $curlFactory,
-        LoggerInterface $logger,
+        Logger $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
         TestMode $testMode,
@@ -96,6 +96,12 @@ abstract class Adapter
         }
         try {
             $curl->get($this->getRequestUrl());
+
+            if (!$this->isSuccessful($curl->getStatus())) {
+                $this->logger->alert('SX error from GET ' .$this->getRequestUrl(). ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
+                return false;
+            }
+
             return [
                 'status' => $curl->getStatus(),
                 'body' => \Zend_Json::decode($curl->getBody()),
@@ -134,9 +140,12 @@ abstract class Adapter
             throw new ApiRequestException(__('Empty SX API request'));
         }
         try {
-
             $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
 
+            if (!$this->isSuccessful($curl->getStatus())) {
+                $this->logger->alert('SX error from POST' .$this->getRequestUrl(). ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
+                return false;
+            }
             return [
                 'status' => $curl->getStatus(),
                 'body' => \Zend_Json::decode($curl->getBody()),
@@ -268,6 +277,21 @@ abstract class Adapter
     protected function getConfig($path)
     {
         return $this->config->getValue($path, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+    }
+
+    /**
+     * Check whether the response in successful
+     *
+     * @return boolean
+     */
+    public function isSuccessful($statusCode)
+    {
+        $restype = floor($statusCode / 100);
+        if ($restype == 2 || $restype == 1) {
+            return true;
+        }
+
+        return false;
     }
     
 }

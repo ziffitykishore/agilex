@@ -71,12 +71,15 @@ class Quote
                     $productSkus[] = $product->getSku();
                 }
 
-                $pricesResponse = $this->spotPricingApi->getSpotPrice($productSkus, $suffix);
-                $allPrices = $this->arrayManager->get('body', $pricesResponse);
-                if (empty($allPrices)) {
+                $allPrices = $this->spotPricingApi->getSpotPrice($productSkus, $suffix);
+                if (!$allPrices) {
+                    return;
+                }
+                if (empty($allPrices) || !is_array($allPrices)) {
                     return;
                 }
                 $spotPrices = [];
+
                 foreach ($allPrices as $productPrices) {
                     $sku = $this->arrayManager->get('Sku', $productPrices);
                     $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices);

@@ -45,8 +45,7 @@ class View extends \Magento\Framework\App\Action\Action
             $productsSkusArray = explode(',', $productsSkus);
             try {
                 $data = array();
-                $productsPricesResponse = $this->spotPricingApi->getSpotPrice($productsSkusArray);
-                $productsPrices = $this->arrayManager->get('body', $productsPricesResponse, false);
+                $productsPrices = $this->spotPricingApi->getSpotPrice($productsSkusArray);
 
                 if ($productsPrices) {
                     foreach ($productsPrices as $productPrices) {
