@@ -73,6 +73,9 @@ class Quote
 
                 $pricesResponse = $this->spotPricingApi->getSpotPrice($productSkus, $suffix);
                 $allPrices = $this->arrayManager->get('body', $pricesResponse);
+                if (empty($allPrices)) {
+                    return;
+                }
                 $spotPrices = [];
                 foreach ($allPrices as $productPrices) {
                     $sku = $this->arrayManager->get('Sku', $productPrices);
