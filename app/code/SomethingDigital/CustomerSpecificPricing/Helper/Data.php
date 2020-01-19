@@ -152,11 +152,9 @@ class Data
      * @return string|null
      */
     public function getTierPrice($customerSpecificPrices, $sku, $totalItemQty) {
-        $prices = $this->arrayManager->get('body', $customerSpecificPrices);
-
         $tierPrice = null;
-        if ($prices) {
-            foreach ($prices as $productPrices) {
+        if ($customerSpecificPrices) {
+            foreach ($customerSpecificPrices as $productPrices) {
                 if ($productPrices['Sku'] == $sku) {
                     if (isset($productPrices['QtyBreak1']) && $productPrices['QtyBreak1'] && $totalItemQty >= $productPrices['QtyBreak1']) {
                         $tierPrice = $productPrices['QtyPrice1'];

@@ -9,6 +9,7 @@ use Magento\Checkout\Model\Cart;
 use Magento\Framework\Stdlib\ArrayManager;
 use SomethingDigital\CustomerSpecificPricing\Helper\Data;
 use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Quote\Api\CartRepositoryInterface;
 
 class Quote
 {
@@ -46,7 +47,8 @@ class Quote
         Cart $cart,
         ArrayManager $arrayManager,
         Data $helper,
-        ProductRepositoryInterface $productRepo
+        ProductRepositoryInterface $productRepo,
+        CartRepositoryInterface $quoteRepository
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->logger = $logger;
@@ -54,9 +56,10 @@ class Quote
         $this->arrayManager = $arrayManager;
         $this->helper = $helper;
         $this->productRepo = $productRepo;
+        $this->quoteRepository = $quoteRepository;
     }
 
-    public function repriceCustomerQuote($saveQuoteItem = false, $suffix = null)
+    public function repriceCustomerQuote($suffix = null)
     {
         $items = $this->cart->getQuote()->getAllItems();
 
@@ -113,11 +116,12 @@ class Quote
                         $item->setCustomPrice($customPrice);
                         $item->setOriginalCustomPrice($customPrice);
                         $item->getProduct()->setIsSuperMode(true);
-                        if ($saveQuoteItem) {
-                            $item->save();
-                        }
+                        $item->save();
                     }
                 }
+
+                $quote = $this->quoteRepository->get($this->cart->getQuote()->getId());
+                $this->quoteRepository->save($quote->collectTotals());
 
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
