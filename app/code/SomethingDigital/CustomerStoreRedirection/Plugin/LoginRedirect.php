@@ -83,7 +83,7 @@ class LoginRedirect
 
                 if ($customerStore->getId() != $currectStore->getId()) {
                     $resultRedirect = $this->result->create(ResultFactory::TYPE_REDIRECT);
-                    $resultRedirect->setUrl($customerStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB).'customer/account');
+                    $resultRedirect->setPath($customerStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_WEB).'customer-store-redirection/redirect/');
                     return $resultRedirect;
                 }
             }
