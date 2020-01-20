@@ -40,7 +40,7 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
     public function isZipCodeValid($traversAccountId, $accountZipCode) {
         try {
             $customerApi = $this->customerApi->getCustomer($traversAccountId);
-            if ($customerApi['body']['Address']['PostalCode'] == $accountZipCode) {
+            if ($customerApi && $customerApi['body']['Address']['PostalCode'] == $accountZipCode) {
                 return true;
             }
         } catch (\Exception $e) {

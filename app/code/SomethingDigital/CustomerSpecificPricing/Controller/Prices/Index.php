@@ -43,8 +43,7 @@ class Index extends Action
         $data = [];
 
         try {
-            $pricesResponse = $this->spotPricingApi->getSpotPrice($skus);
-            $prices = $this->arrayManager->get('body', $pricesResponse, false);
+            $prices = $this->spotPricingApi->getSpotPrice($skus);
 
             if ($prices) {
                 foreach ($prices as $id => $productPrices) {

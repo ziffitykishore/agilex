@@ -72,7 +72,7 @@ class UploadFileQuickOrder
 
         }
         if ($skuSuffix) {
-            $this->quote->repriceCustomerQuote(true, $skuSuffix);
+            $this->quote->repriceCustomerQuote($skuSuffix);
         }
         $this->request->setPostValue('items',$finalItems);
     }

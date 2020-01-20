@@ -7,7 +7,6 @@ use Magento\Framework\Exception\LocalizedException;
 use Magento\Customer\Model\Session;
 use Magento\Bundle\Helper\Catalog\Product\Configuration;
 use Psr\Log\LoggerInterface;
-use Magento\Framework\Stdlib\ArrayManager;
 
 class BundleItemConfiguration
 {
@@ -17,7 +16,7 @@ class BundleItemConfiguration
     private $spotPricingApi;
 
     /**
-    * @var CustomerSession
+    * @var Session
     */
     private $customerSession;
 
@@ -26,21 +25,14 @@ class BundleItemConfiguration
      */
     private $logger;
 
-    /**
-     * @var ArrayManager
-     */
-    private $arrayManager;
-
     public function __construct(
         SpotPricingApi $spotPricingApi,
         Session $customerSession,
-        LoggerInterface $logger,
-        ArrayManager $arrayManager
+        LoggerInterface $logger
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->customerSession = $customerSession;
         $this->logger = $logger;
-        $this->arrayManager = $arrayManager;
     }
 
     public function aroundGetSelectionFinalPrice(Configuration $subject, \Closure $proceed, $item, $selectionProduct)
@@ -49,10 +41,10 @@ class BundleItemConfiguration
 
         if ($this->customerSession->isLoggedIn()) {
             try {
-                $pricesResponse = $this->spotPricingApi->getSpotPrice([$selectionProduct->getSku()]);
-
-                $prices = $this->arrayManager->get('body', $pricesResponse);
-
+                $prices = $this->spotPricingApi->getSpotPrice([$selectionProduct->getSku()]);
+                if (!$prices) {
+                    return $result;
+                }
                 if (isset($prices[0]['DiscountPrice']) && $prices[0]['DiscountPrice'] < $result) {
                     return $price;
                 }
