@@ -16,5 +16,5 @@ class Handler extends \Magento\Framework\Logger\Handler\Base
      * File name
      * @var string
      */
-    protected $fileName = '/var/log/sx.log';
+    protected $fileName = '/var/log/sd_sx.log';
 }

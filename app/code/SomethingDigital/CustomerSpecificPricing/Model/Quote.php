@@ -129,7 +129,8 @@ class Quote
                 }
 
                 $quote = $this->quoteRepository->get($this->cart->getQuote()->getId());
-                $this->quoteRepository->save($quote->collectTotals());
+                $quote->collectTotals();
+                $this->quoteRepository->save($quote);
 
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());

@@ -23,7 +23,7 @@ abstract class Adapter
     /** @var \Magento\Framework\HTTP\ClientFactory */
     protected $curlFactory;
 
-    /** @var \SomethingDigital\Sx\Logger\Logger; */
+    /** @var Logger */
     protected $logger;
 
     /** @var \Magento\Framework\App\Config\ScopeConfigInterface */
@@ -98,7 +98,7 @@ abstract class Adapter
             $curl->get($this->getRequestUrl());
 
             if (!$this->isSuccessful($curl->getStatus())) {
-                $this->logger->alert('SX error from GET ' .$this->getRequestUrl(). ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
+                $this->logger->alert('SX error from GET ' . $this->getRequestUrl() . ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
                 return false;
             }
 
@@ -143,7 +143,7 @@ abstract class Adapter
             $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
 
             if (!$this->isSuccessful($curl->getStatus())) {
-                $this->logger->alert('SX error from POST' .$this->getRequestUrl(). ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
+                $this->logger->alert('SX error from POST ' . $this->getRequestUrl() . ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
                 return false;
             }
             return [
