@@ -38,7 +38,15 @@ class Quote
      */
     private $productRepo;
 
+    /**
+     * @var Data
+     */
     private $helper;
+
+    /**
+     * @var CartRepositoryInterface
+     */
+    private $quoteRepository;
 
 
     public function __construct(

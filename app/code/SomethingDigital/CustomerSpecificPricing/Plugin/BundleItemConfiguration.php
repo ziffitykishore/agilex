@@ -16,7 +16,7 @@ class BundleItemConfiguration
     private $spotPricingApi;
 
     /**
-    * @var CustomerSession
+    * @var Session
     */
     private $customerSession;
 

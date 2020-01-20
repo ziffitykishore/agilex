@@ -85,12 +85,6 @@ class QuoteItemProcessor
         DataObject $request, 
         Product $candidate
     ) {
-        try {
-            /** @var \Magento\Customer\Api\Data\CustomerInterface $customerData */
-            $customerData = $this->customerRepo->getById($this->session->getCustomerId());
-        } catch (LocalizedException $e) {
-            return [$item, $request, $candidate];
-        }
         if ($this->session->isLoggedIn()) {
             try {
                 $id = $candidate->getId();
@@ -109,7 +103,7 @@ class QuoteItemProcessor
                         $totalItemQty += $quoteItem->getQty();
                     }
                 }
-                
+
                 $prices = $this->spotPricingApi->getSpotPrice([$sku]);
 
                 if (!$prices) {
