@@ -7,10 +7,9 @@ define(
     [
         'jquery',
         'uiComponent',
-        'Magento_Checkout/js/model/quote',
-        'ko'
+        'Magento_Checkout/js/model/quote'
     ],
-    function ($,Component, quote,ko) {
+    function ($,Component, quote) {
         "use strict";
         var quoteItemData = window.checkoutConfig.quoteItemData;
         var deliveryInfo = [];
