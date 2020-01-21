@@ -6,7 +6,7 @@ define([
             $('option',$(this)).each(function() {
                 var sku = $(this).data('sku');
                 var title = $(this).data('title');
-                if (data[sku] == undefined) {
+                if (data[sku] === undefined) {
                     return;
                 }
                 if (sku && data[sku]['price'] != 0 && title) {
