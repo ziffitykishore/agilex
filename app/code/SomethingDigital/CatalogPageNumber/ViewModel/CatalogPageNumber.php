@@ -58,7 +58,7 @@ class CatalogPageNumber implements \Magento\Framework\View\Element\Block\Argumen
 
         return [
             'catalog_page_number' => $catalogPageNumber,
-            'catalog_link' => $link.'/'.$catalogPageNumber
+            'catalog_link' => $link . $catalogPageNumber
         ];
     }
 
