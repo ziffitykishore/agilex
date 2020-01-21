@@ -25,7 +25,9 @@ class DeleteItem
         $removedGifts = [];
         $quoteItem = $this->getItemById($id);
         if ($quoteItem) {
-            $removedGifts = $this->session->getRemovedGifts();
+            if ($this->session->getRemovedGifts()) {
+                $removedGifts = $this->session->getRemovedGifts();
+            }
             $removedGifts[] = $quoteItem->getSku();
             $this->session->setRemovedGifts($removedGifts);
         }
