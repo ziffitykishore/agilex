@@ -6,6 +6,9 @@ define([
             $('option',$(this)).each(function() {
                 var sku = $(this).data('sku');
                 var title = $(this).data('title');
+                if (data[sku] === undefined) {
+                    return;
+                }
                 if (sku && data[sku]['price'] != 0 && title) {
                     $(this).text(title + ' +' + currencySymbol + data[sku]['price']);
                     $(this).attr('data-price', data[sku]['price']);
