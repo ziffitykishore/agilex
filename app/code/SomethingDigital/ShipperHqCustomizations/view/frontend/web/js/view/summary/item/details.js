@@ -7,13 +7,12 @@ define(
     [
         'jquery',
         'uiComponent',
-        'Magento_Checkout/js/model/quote',
-        'ko'
+        'Magento_Checkout/js/model/quote'
     ],
-    function ($,Component, quote,ko) {
+    function ($,Component, quote) {
         "use strict";
         var quoteItemData = window.checkoutConfig.quoteItemData;
-        var deliveryInfo = ko.observable(null);
+        var deliveryInfo = [];
         return Component.extend({
             defaults: {
                 template: 'SomethingDigital_ShipperHqCustomizations/summary/item/details'
@@ -32,22 +31,26 @@ define(
             },
             getDeliveryInfo: function(quoteItem) {
                 var self = this;
-                this.getDeliverInfoAjax().done(function (response, textStatus) {
+                if (!deliveryInfo.length) {
+                    this.getDeliverInfoAjax().done(function (response, textStatus) {
+                        if (response.data) {
+                            deliveryInfo = response.data;
+                        }
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        return '';
+                    });
+                }
+                if (deliveryInfo) {
                     var item = self.getItem(quoteItem.item_id);
-                    if (response.data) {
-                        if (item.sku in response.data) {
-                            if (quote.shippingMethod() && typeof response.data[item.sku] != 'string' ) {
-                                deliveryInfo(response.data[item.sku][quote.shippingMethod().method_code]);
-                            } else if (typeof response.data[item.sku] == 'string') {
-                                deliveryInfo(response.data[item.sku]);
-                            }
+                    if (item.sku in deliveryInfo) {
+                        if (quote.shippingMethod() && typeof deliveryInfo[item.sku] != 'string' ) {
+                            return deliveryInfo[item.sku][quote.shippingMethod().method_code];
+                        } else if (typeof deliveryInfo[item.sku] == 'string') {
+                            return deliveryInfo[item.sku];
                         }
                     }
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                    deliveryInfo(null);
-                });
-
-                return deliveryInfo;
+                }
+                return '';
             },
             getItem: function(item_id) {
                 var itemElement = null;
