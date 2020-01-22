@@ -11,7 +11,8 @@ use Magento\Framework\Json\EncoderInterface;
 use \Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\UrlFactory;
 use Magento\Store\Model\StoreManagerInterface;
- 
+use SomethingDigital\ReactPlp\Helper\AttributeSorter;
+
 class View extends \Magento\Framework\App\Action\Action
 {
     protected $context;
@@ -20,14 +21,19 @@ class View extends \Magento\Framework\App\Action\Action
     protected $categoryRepository;
     protected $storeManager;
     protected $productAttributeRepository;
+    /**
+     * @var AttributeSorter
+     */
+    private $attributeSorter;
 
     /**
-     * @param Context                    $context
-     * @param EncoderInterface           $encoder
-     * @param PageFactory                $pageFactory
-     * @param StoreManagerInterface      $storeManager
-     * @param CategoryRepository         $categoryRepository
+     * @param Context $context
+     * @param EncoderInterface $encoder
+     * @param PageFactory $pageFactory
+     * @param StoreManagerInterface $storeManager
+     * @param CategoryRepository $categoryRepository
      * @param ProductAttributeRepository $productAttributeRepository
+     * @param AttributeSorter $attributeSorter
      */
     
     public function __construct(
@@ -36,7 +42,8 @@ class View extends \Magento\Framework\App\Action\Action
         PageFactory $pageFactory,
         StoreManagerInterface $storeManager,
         CategoryRepository $categoryRepository,
-        ProductAttributeRepository $productAttributeRepository
+        ProductAttributeRepository $productAttributeRepository,
+        AttributeSorter $attributeSorter
     ) {
         $this->context = $context;
         $this->pageFactory = $pageFactory;
@@ -44,6 +51,7 @@ class View extends \Magento\Framework\App\Action\Action
         $this->storeManager = $storeManager;
         $this->categoryRepository = $categoryRepository;
         $this->productAttributeRepository = $productAttributeRepository;
+        $this->attributeSorter = $attributeSorter;
         parent::__construct($context);
     }
     
@@ -71,12 +79,7 @@ class View extends \Magento\Framework\App\Action\Action
                     if (!$attr || !$attr->getIncludeInTable())
                         unset($tableAttributes[$key]);
                 }
-                if (!in_array('price', $tableAttributes)) {
-                    array_push($tableAttributes, 'price');
-                }
-                if (!in_array('sku', $tableAttributes)) {
-                    array_unshift($tableAttributes, 'sku');
-                }
+                $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::FLAT_ATTRIBUTES);
             }
             if ($category->getListAttributes()) {
                 $listAttributes = preg_split('/\s+/', $category->getListAttributes());
