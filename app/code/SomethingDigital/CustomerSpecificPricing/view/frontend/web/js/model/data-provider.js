@@ -11,14 +11,15 @@ define([
              * @return {Promise}
              */
             getPrices: function(type) {
+                var skus = [];
                 if (type == 'related') {
-                    var skus = config.relatedProducts;
+                    skus = config.relatedProducts;
                 } else if (type == 'upsell') {
-                    var skus = config.upsellProducts;
+                    skus = config.upsellProducts;
                 } else if (type == 'crosssell') {
-                    var skus = config.crosssellProducts;
+                    skus = config.crosssellProducts;
                 } else {
-                    var skus = config.data;
+                    skus = config.data;
                 }
                 var settings = {
                     method: 'POST',

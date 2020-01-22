@@ -19,7 +19,7 @@ define([
             var self = this;
             this.getPrices(sku).done(function (response, textStatus) {
 
-                if (response.data[sku] == undefined) {
+                if (response.data[sku] === undefined) {
                     return;
                 }
 
