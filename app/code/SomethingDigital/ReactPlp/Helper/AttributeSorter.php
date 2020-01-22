@@ -17,9 +17,9 @@ class AttributeSorter
 
     /**
      * Add SKU attribute at front of array and
-     * Price attribute at left-most-viewable location.
+     * Price attribute at right-most-viewable location.
      *
-     * left-most-viewable means either the 9th element
+     * right-most-viewable means either the 9th element
      * of the array, or if the array is smaller than 9,
      * the last element of the array.
      *
