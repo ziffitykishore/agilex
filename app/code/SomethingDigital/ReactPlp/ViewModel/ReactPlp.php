@@ -215,6 +215,35 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             $this->saveDataInsideCache($tableAttributes, static::TABLE_ATTRIBUTES_CACHE_ID);
         }
 
+        $skuPos = array_search(
+            ['id' => 'sku', 'label' => 'SKU'],
+            $tableAttributes
+        );
+
+        if ($skuPos > 0) {
+            array_splice($tableAttributes, $skuPos, 1);
+        }
+        if ($skuPos > 0 || !$skuPos) {
+            array_unshift($tableAttributes, ['id' => 'sku', 'label' => 'SKU']);
+        }
+
+        $pricePos = array_search(
+            ['id' => 'price', 'label' => 'Price'],
+            $tableAttributes
+        );
+        $pricePushPos = min(8, sizeof($tableAttributes) - 1);
+        $badPricePos = $pricePos >= 0 && $pricePos != $pricePushPos;
+        if ($badPricePos) {
+            array_splice($tableAttributes, $pricePos, 1);
+        }
+        if ($badPricePos || !$pricePos) {
+            array_splice(
+                $tableAttributes,
+                $pricePushPos,
+                0,
+                [['id' => 'price', 'label' => 'Price']]
+            );
+        }
         return $tableAttributes;
     }
 
