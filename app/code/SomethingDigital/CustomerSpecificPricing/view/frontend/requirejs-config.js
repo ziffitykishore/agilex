@@ -8,6 +8,9 @@ var config = {
             cspConfigurable: 'SomethingDigital_CustomerSpecificPricing/js/view/types/configurable',
             cspBundle: 'SomethingDigital_CustomerSpecificPricing/js/view/types/bundle',
             cspGrouped: 'SomethingDigital_CustomerSpecificPricing/js/view/types/grouped',
+            cspRelated: 'SomethingDigital_CustomerSpecificPricing/js/view/types/related',
+            cspUpsell: 'SomethingDigital_CustomerSpecificPricing/js/view/types/upsell',
+            cspCrosssell: 'SomethingDigital_CustomerSpecificPricing/js/view/types/crosssell',
         }
     }
 };

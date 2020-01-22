@@ -102,8 +102,20 @@ class DataProvider extends Template
      */
     public function getJsConfig()
     {
+        /** @var string[] $config */
+        $config = [];
+
         /** @var \Magento\Catalog\Model\Product $currentProduct */
         $currentProduct = $this->getProduct();
+
+        if (!$currentProduct) {
+            $config['crosssellProducts'] = $this->getCrossSellProductsData();
+            $config['url'] = $this->getBaseUrl() . self::CSP_ENDPOINT_URL;
+            $config['type'] = 'crosssell';
+            $config['currencySymbol'] = $this->currency->getCurrency()->getCurrencySymbol();
+            $config['map'] = '';
+            return $this->jsonEncoder->serialize($config);
+        }
         /** @var string $productType */
         $productType = $currentProduct->getTypeId();
         try {
@@ -113,8 +125,6 @@ class DataProvider extends Template
             return '';
         }
 
-        /** @var string[] $config */
-        $config = [];
         if ($productType == 'simple') {
             $config['data'] = $this->getSimpleProductData($productData);
         } else if ($productType == Configurable::TYPE_CODE) {
@@ -124,6 +134,10 @@ class DataProvider extends Template
         } else if ($productType == Bundle::TYPE_CODE) {
             $config['data'] = $this->getBundleProductData($productData);
         }
+
+        $this->appendRelatedProductsData($config);
+        $this->appendUpsellProductsData($config);
+
         $this->appendConfigurations($config, $productData);
         return $this->jsonEncoder->serialize($config);
     }
@@ -210,5 +224,112 @@ class DataProvider extends Template
         } else {
             return false;
         }
+    }
+
+    private function appendRelatedProductsData(array &$config)
+    {
+        $related = $this->getRelatedProductCollection();
+        if ($related) {
+            foreach ($related as $product) {
+                $config['relatedProducts'][$product->getId()] = $product->getSku();
+            }
+        }
+    }
+
+    private function appendUpsellProductsData(array &$config)
+    {
+        $upsell = $this->getUpsellProductCollection();
+        if ($upsell) {
+            foreach ($upsell as $product) {
+                $config['upsellProducts'][$product->getId()] = $product->getSku();
+            }
+        }
+    }
+
+    private function getCrossSellProductsData()
+    {
+        $crossSell = $this->getCrossSellProductCollection();
+        $crossSellProductsData = [];
+
+        if ($crossSell) {
+            foreach ($crossSell as $product) {
+                $crossSellProductsData[$product->getId()] = $product->getSku();
+            }
+        }
+        return $crossSellProductsData;
+    }
+
+    /**
+     * @return \Magento\Eav\Model\Entity\Collection\AbstractCollection|null
+     */
+    public function getRelatedProductCollection()
+    {
+        /** @var \Magento\Catalog\Block\Product\ProductList\Related $relatedProductListBlock */
+        $relatedProductListBlock = $this->_layout->getBlock('catalog.product.related');
+        $collection = '';
+
+        if (empty($relatedProductListBlock)) {
+            return [];
+        }
+
+        $relatedProductListBlock->toHtml();
+
+        $blockType = $relatedProductListBlock->getData('type');
+        if ($blockType == 'related-rule') {
+            $collection = $relatedProductListBlock->getAllItems();
+        } else {
+            $collection = $relatedProductListBlock->getItems();
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @return \Magento\Eav\Model\Entity\Collection\AbstractCollection|null
+     */
+    public function getUpsellProductCollection()
+    {
+        /** @var \Magento\Catalog\Block\Product\ProductList\Upsell $upsellProductListBlock */
+        $upsellProductListBlock = $this->_layout->getBlock('product.info.upsell');
+        $collection = '';
+
+        if (empty($upsellProductListBlock)) {
+            return [];
+        }
+
+        $upsellProductListBlock->toHtml();
+
+        $blockType = $upsellProductListBlock->getData('type');
+        if ($blockType == 'upsell-rule') {
+            $collection = $upsellProductListBlock->getAllItems();
+        } else {
+            $collection = $upsellProductListBlock->getItemCollection()->getItems();
+        }
+
+        return $collection;
+    }
+
+    /**
+     * @return \Magento\Eav\Model\Entity\Collection\AbstractCollection|null
+     */
+    public function getCrossSellProductCollection()
+    {
+        /** @var \Magento\Checkout\Block\Cart\Crosssell $crossSellProductListBlock */
+        $crossSellProductListBlock = $this->_layout->getBlock('checkout.cart.crosssell');
+
+        if (empty($crossSellProductListBlock)) {
+            return [];
+        }
+        $crossSellProductListBlock->toHtml();
+
+        $blockType = $crossSellProductListBlock->getData('type');
+
+        if ($blockType == 'crosssell-rule') {
+            $collection = $crossSellProductListBlock->getItemCollection();
+        } else {
+            $collection = $crossSellProductListBlock->getItemCollection()->getItems();
+        }
+
+        return $collection;
     }
 }
