@@ -19,6 +19,10 @@ define([
             var self = this;
             this.getPrices(sku).done(function (response, textStatus) {
 
+                if (response.data[sku] == undefined) {
+                    return;
+                }
+
                 var prices = response.data[sku];
 
                 prices = self.removeIfZero(prices);
