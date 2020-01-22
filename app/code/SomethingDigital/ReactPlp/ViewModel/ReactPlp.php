@@ -219,7 +219,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                     'label' => $item->getStoreLabel()
                 ];
             }
-            $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::DEFAULT_ATTRIBUTES);
+            $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::ARRAYED_ATTRIBUTES);
             $this->saveDataInsideCache($tableAttributes, static::TABLE_ATTRIBUTES_CACHE_ID);
         }
 

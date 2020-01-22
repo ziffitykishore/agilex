@@ -79,7 +79,7 @@ class View extends \Magento\Framework\App\Action\Action
                     if (!$attr || !$attr->getIncludeInTable())
                         unset($tableAttributes[$key]);
                 }
-                $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::CUSTOM_ATTRIBUTES);
+                $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::FLAT_ATTRIBUTES);
             }
             if ($category->getListAttributes()) {
                 $listAttributes = preg_split('/\s+/', $category->getListAttributes());

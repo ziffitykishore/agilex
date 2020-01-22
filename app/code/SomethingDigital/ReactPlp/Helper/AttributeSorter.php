@@ -2,15 +2,14 @@
 
 namespace SomethingDigital\ReactPlp\Helper;
 
-
 class AttributeSorter
 {
-    public const DEFAULT_ATTRIBUTES = [
+    public const ARRAYED_ATTRIBUTES = [
         'price' => ['id' => 'price', 'label' => 'Price'],
         'sku' => ['id' => 'sku', 'label' => 'SKU']
     ];
 
-    public const CUSTOM_ATTRIBUTES = [
+    public const FLAT_ATTRIBUTES = [
         'price' => 'price',
         'sku' => 'sku'
     ];
