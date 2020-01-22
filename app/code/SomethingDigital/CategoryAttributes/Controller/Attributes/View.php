@@ -71,12 +71,37 @@ class View extends \Magento\Framework\App\Action\Action
                     if (!$attr || !$attr->getIncludeInTable())
                         unset($tableAttributes[$key]);
                 }
-                if (!in_array('price', $tableAttributes)) {
-                    array_push($tableAttributes, 'price');
+                //Start replacing SKU/Price
+                $skuPos = array_search(
+                    'sku',
+                    $tableAttributes
+                );
+
+                if ($skuPos > 0) {
+                    array_splice($tableAttributes, $skuPos, 1);
                 }
-                if (!in_array('sku', $tableAttributes)) {
+                if ($skuPos > 0 || !$skuPos) {
                     array_unshift($tableAttributes, 'sku');
                 }
+
+                $pricePos = array_search(
+                    'price',
+                    $tableAttributes
+                );
+                $pricePushPos = min(8, sizeof($tableAttributes) - 1);
+                $badPricePos = $pricePos >= 0 && $pricePos != $pricePushPos;
+                if ($badPricePos) {
+                    array_splice($tableAttributes, $pricePos, 1);
+                }
+                if ($badPricePos || !$pricePos) {
+                    array_splice(
+                        $tableAttributes,
+                        $pricePushPos,
+                        0,
+                        ['price']
+                    );
+                }
+                //End replacing SKU/price
             }
             if ($category->getListAttributes()) {
                 $listAttributes = preg_split('/\s+/', $category->getListAttributes());
