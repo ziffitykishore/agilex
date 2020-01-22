@@ -18,6 +18,7 @@ use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\CacheInterface;
 use Magento\Framework\Serialize\SerializerInterface;
+use SomethingDigital\ReactPlp\Helper\AttributeSorter;
 
 class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
@@ -38,6 +39,10 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     private $httpContext;
     private $cache;
     private $serializer;
+    /**
+     * @var AttributeSorter
+     */
+    private $attributeSorter;
 
     public function __construct(
         Registry $registry,
@@ -53,7 +58,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         HttpContext $httpContext,
         DirectoryList $directoryList,
         CacheInterface $cache,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        AttributeSorter $attributeSorter
     ) {
         $this->coreRegistry = $registry;
         $this->jsonEncoder = $jsonEncoder;
@@ -69,6 +75,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $this->directoryList = $directoryList;
         $this->cache = $cache;
         $this->serializer = $serializer;
+        $this->attributeSorter = $attributeSorter;
     }
 
     /**
@@ -212,38 +219,10 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                     'label' => $item->getStoreLabel()
                 ];
             }
+            $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::DEFAULT_ATTRIBUTES);
             $this->saveDataInsideCache($tableAttributes, static::TABLE_ATTRIBUTES_CACHE_ID);
         }
 
-        $skuPos = array_search(
-            ['id' => 'sku', 'label' => 'SKU'],
-            $tableAttributes
-        );
-
-        if ($skuPos > 0) {
-            array_splice($tableAttributes, $skuPos, 1);
-        }
-        if ($skuPos > 0 || !$skuPos) {
-            array_unshift($tableAttributes, ['id' => 'sku', 'label' => 'SKU']);
-        }
-
-        $pricePos = array_search(
-            ['id' => 'price', 'label' => 'Price'],
-            $tableAttributes
-        );
-        $pricePushPos = min(8, sizeof($tableAttributes) - 1);
-        $badPricePos = $pricePos >= 0 && $pricePos != $pricePushPos;
-        if ($badPricePos) {
-            array_splice($tableAttributes, $pricePos, 1);
-        }
-        if ($badPricePos || !$pricePos) {
-            array_splice(
-                $tableAttributes,
-                $pricePushPos,
-                0,
-                [['id' => 'price', 'label' => 'Price']]
-            );
-        }
         return $tableAttributes;
     }
 
