@@ -46,7 +46,7 @@ class BundleItemConfiguration
                     return $result;
                 }
                 if (isset($prices[0]['DiscountPrice']) && $prices[0]['DiscountPrice'] < $result) {
-                    return $price;
+                    return $prices[0];
                 }
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
