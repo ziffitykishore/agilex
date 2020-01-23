@@ -50,12 +50,10 @@ class Index extends Action
                     $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices, 0);
                     $sku = $this->arrayManager->get('Sku', $productPrices);
                     $product = $this->productRepository->get($sku);
-                    $regularPrice = $product->getFinalPrice();
+                    $price = $product->getFinalPrice();
 
-                    if ($spotPrice < $regularPrice) {
+                    if (!empty($spotPrice) && $spotPrice < $price) {
                         $price = $spotPrice;
-                    } else {
-                        $price = $regularPrice;
                     }
                     $unitPrice = $price;
                     if ($product->getExactUnitPrice()) {

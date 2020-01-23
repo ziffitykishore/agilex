@@ -68,6 +68,10 @@ class SpotPricingApi extends Adapter
             $suffix = $this->cart->getQuote()->getSuffix();
         }
 
+        if (empty($customerAccountId) && empty($suffix)) {
+            return false;
+        }
+
         if (!$this->isTestMode()) {
             $this->requestPath = $this->path.'/?' . http_build_query([
                 'customerId' => $customerAccountId,
@@ -81,8 +85,10 @@ class SpotPricingApi extends Adapter
             ]);
         }
 
-        foreach ($productSkus as $sku) {
-            $this->requestBody[] = rawurlencode($sku);
+        if ($productSkus && is_array($productSkus)) {
+            foreach ($productSkus as $sku) {
+                $this->requestBody[] = rawurlencode($sku);
+            }
         }
 
         $response = $this->postRequest();
@@ -101,7 +107,7 @@ class SpotPricingApi extends Adapter
         if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
             return $accountId->getValue();
         } else {
-            return false;
+            return '';
         }
     }
 

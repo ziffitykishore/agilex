@@ -3,14 +3,6 @@ define([
 ], function ($) {
     'use strict';
     return function (config) {
-        var settings = {
-            method: 'POST',
-            dataType: 'json',
-            url: config.url,
-            data: {
-                products: config.data,
-            }
-        }
 
         return {
             /**
@@ -18,7 +10,26 @@ define([
              *
              * @return {Promise}
              */
-            getPrices: function() {
+            getPrices: function(type) {
+                var skus = [];
+                if (type == 'related') {
+                    skus = config.relatedProducts;
+                } else if (type == 'upsell') {
+                    skus = config.upsellProducts;
+                } else if (type == 'crosssell') {
+                    skus = config.crosssellProducts;
+                } else {
+                    skus = config.data;
+                }
+                var settings = {
+                    method: 'POST',
+                    dataType: 'json',
+                    url: config.url,
+                    data: {
+                        products: skus,
+                    }
+                }
+
                 return $.ajax(settings);
             }
         }

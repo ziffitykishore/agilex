@@ -4,7 +4,7 @@ define([
     return function (data, currencySymbol) {
         var sku = $('[itemprop=sku]').text();
 
-        if (data[sku]['price'] !== undefined) {
+        if (data[sku] !== undefined && data[sku]['price'] !== undefined) {
             var price = data[sku]['price'];
 
             if (price !== null && price !== 0) {
