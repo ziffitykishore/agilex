@@ -164,7 +164,6 @@ Carts,Carts
 "Remove Cart Price Rule from Update","Remove Cart Price Rule from Update"
 "The cart price rule will be removed from the update and all scheduled changes will be lost.","The cart price rule will be removed from the update and all scheduled changes will be lost."
 "sales_rule","Cart Price Rules"
-Magento\SalesRule\Api\Data\RuleInterface,"Cart Price Rule"
 "Shopping Cart Display Settings","Shopping Cart Display Settings"
 "You added %1 to your shopping cart.","You added %1 to your shopping cart."
 "We can\'t add the item to the cart right now.","We can\'t add the item to the cart right now."
