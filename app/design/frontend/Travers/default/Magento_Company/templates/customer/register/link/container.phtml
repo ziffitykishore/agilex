@@ -5,9 +5,6 @@
  */
 
 // @codingStandardsIgnoreFile
-$customHeaderLink = $this->helper('SomethingDigital\BryantPark\Helper\CustomHeaderLinks');
-$about = $customHeaderLink->getAboutLink();
-$contact = $customHeaderLink->getContactLink();
 ?>
 <?php /** @var $block Magento\Framework\View\Element\Html\Link */ ?>
 <?php if($block->getChildHtml()):?>
@@ -31,16 +28,5 @@ $contact = $customHeaderLink->getContactLink();
         </ul>
     </div>
 </li>
-<?php endif; ?>
-
-<?php if ($about): ?>
-    <li class="about-link">
-        <a href="<?php echo $about ?>"><?php echo __('About') ?></a>
-    </li>
-<?php endif; ?>
-<?php if ($contact): ?>
-    <li class="contact-link">
-        <a href="<?php echo $contact ?>"><?php echo __('Contact') ?></a>
-    </li>
 <?php endif; ?>
 
