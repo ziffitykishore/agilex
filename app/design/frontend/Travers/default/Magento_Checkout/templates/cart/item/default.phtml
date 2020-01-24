@@ -102,11 +102,10 @@ $showOriginalPrice = (!$isFreeGift && $originalPrice > $finalPrice) ? true : fal
                 <?= $block->getUnitPriceHtml($_item) ?>
                 <?php if ($showMsrp || $showOriginalPrice): ?>
                     <div class="percent-saved">
-                        <?= __('You save ') ?>
-                        <?php if ($showMsrp): ?>
-                            <?= floor((($customMsrp - $finalPrice) / $customMsrp) * 100) . "%" ?>
-                        <?php elseif ($showOriginalPrice): ?>
-                            <?= floor((($originalPrice - $finalPrice) / $originalPrice) * 100) . "%" ?>
+                        <?php if ($showMsrp && floor((($customMsrp - $finalPrice) / $customMsrp) * 100) >= 5): ?>
+                            <?= __('You save ') + floor((($customMsrp - $finalPrice) / $customMsrp) * 100) . "%" ?>
+                        <?php elseif ($showOriginalPrice && floor((($originalPrice - $finalPrice) / $originalPrice) * 100) >= 5): ?>
+                            <?= __('You save ') + floor((($originalPrice - $finalPrice) / $originalPrice) * 100) . "%" ?>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
