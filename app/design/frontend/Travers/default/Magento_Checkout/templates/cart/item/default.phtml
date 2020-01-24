@@ -29,8 +29,8 @@ $pricing = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
 $showMsrp = (!$isFreeGift && $customMsrp && $customMsrp > $originalPrice && $customMsrp > $finalPrice) ? true : false;
 $showOriginalPrice = (!$isFreeGift && $originalPrice > $finalPrice) ? true : false;
-$msrpSaveAmount = floor((($customMsrp - $finalPrice) / $customMsrp) * 100);
-$originalSaveAmount = floor((($originalPrice - $finalPrice) / $originalPrice) * 100);
+$msrpSaveAmount = $customMsrp == 0 ? 0 : floor((($customMsrp - $finalPrice) / $customMsrp) * 100);
+$originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalPrice) / $originalPrice) * 100);
 ?>
 <tbody class="cart item">
     <tr class="item-info">
