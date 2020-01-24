@@ -987,6 +987,10 @@ body.catalog-product-compare-index {
             }
         }
 
+        .prop65 {
+            padding-left: $indent__s;
+        }
+
         tr {
             &:not(:last-of-type) {
                 border-bottom: 1px solid $c-grey;
