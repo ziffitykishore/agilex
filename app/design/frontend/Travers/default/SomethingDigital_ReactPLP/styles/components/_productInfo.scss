@@ -67,6 +67,13 @@
     letter-spacing: 0;
   }
 
+  .product-name {
+    @include hover {
+      text-decoration: none;
+      color: $c-cobalt;
+    }
+  }
+
   .pricing {
     .msrp {
       font-weight: $font-weight__semibold;
