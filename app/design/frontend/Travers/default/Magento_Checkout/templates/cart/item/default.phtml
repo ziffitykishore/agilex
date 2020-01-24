@@ -29,6 +29,8 @@ $pricing = $this->helper('Magento\Framework\Pricing\Helper\Data');
 $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
 $showMsrp = (!$isFreeGift && $customMsrp && $customMsrp > $originalPrice && $customMsrp > $finalPrice) ? true : false;
 $showOriginalPrice = (!$isFreeGift && $originalPrice > $finalPrice) ? true : false;
+$msrpSaveAmount = floor((($customMsrp - $finalPrice) / $customMsrp) * 100);
+$originalSaveAmount = floor((($originalPrice - $finalPrice) / $originalPrice) * 100);
 ?>
 <tbody class="cart item">
     <tr class="item-info">
@@ -102,10 +104,10 @@ $showOriginalPrice = (!$isFreeGift && $originalPrice > $finalPrice) ? true : fal
                 <?= $block->getUnitPriceHtml($_item) ?>
                 <?php if ($showMsrp || $showOriginalPrice): ?>
                     <div class="percent-saved">
-                        <?php if ($showMsrp && floor((($customMsrp - $finalPrice) / $customMsrp) * 100) >= 5): ?>
-                            <?= __('You save ') + floor((($customMsrp - $finalPrice) / $customMsrp) * 100) . "%" ?>
-                        <?php elseif ($showOriginalPrice && floor((($originalPrice - $finalPrice) / $originalPrice) * 100) >= 5): ?>
-                            <?= __('You save ') + floor((($originalPrice - $finalPrice) / $originalPrice) * 100) . "%" ?>
+                        <?php if ($showMsrp && $msrpSaveAmount >= 5): ?>
+                            <?= __('You save ') + $msrpSaveAmount . "%" ?>
+                        <?php elseif ($showOriginalPrice && $originalSaveAmount >= 5): ?>
+                            <?= __('You save ') + $originalSaveAmount . "%" ?>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
