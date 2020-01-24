@@ -30,5 +30,8 @@
             <?php endforeach; ?>
             </tbody>
         </table>
+        <div class="prop65">
+            <?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('prop65')->toHtml(); ?>
+        </div>
     </div>
 <?php endif;?>
