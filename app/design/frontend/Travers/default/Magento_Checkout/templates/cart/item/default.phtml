@@ -105,9 +105,9 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
                 <?php if ($showMsrp || $showOriginalPrice): ?>
                     <div class="percent-saved">
                         <?php if ($showMsrp && $msrpSaveAmount >= 5): ?>
-                            <?= __('You save ') + $msrpSaveAmount . "%" ?>
+                            <?= __('You save %1%', $msrpSaveAmount) ?>
                         <?php elseif ($showOriginalPrice && $originalSaveAmount >= 5): ?>
-                            <?= __('You save ') + $originalSaveAmount . "%" ?>
+                            <?= __('You save %1%', $originalSaveAmount) ?>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
