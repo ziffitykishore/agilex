@@ -6,4 +6,7 @@
                 sortOrder="10"
                 disabled="false"/>
     </type>
+    <type name="Magento\Payment\Gateway\Data\Order\OrderAdapter">
+        <plugin name="somethingdigital_pricerounding_round_grand_total" type="SomethingDigital\PriceRounding\Plugin\RoundGrandTotal"/>
+    </type>
 </config>
