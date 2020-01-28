@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <reactapp>
+                <limit_filter_attr_values>15</limit_filter_attr_values>
+            </reactapp>
+        </catalog>
+    </default>
+</config>

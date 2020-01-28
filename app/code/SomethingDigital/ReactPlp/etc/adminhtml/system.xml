@@ -14,5 +14,13 @@
                 </field>
             </group>
         </section>
+        <section id="catalog">
+            <group id="reactapp" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>React App</label>
+                <field id="limit_filter_attr_values" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Limit number of attribute values in filters</label>
+                </field>
+            </group>
+        </section>
     </system>
 </config>
