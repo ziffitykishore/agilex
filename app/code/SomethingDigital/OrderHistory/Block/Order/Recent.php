@@ -116,7 +116,7 @@ class Recent extends RecentOrders
 
     public function getViewUrl($order)
     {
-        return $this->getUrl('sales/order/detail', ['order' => $order->getData('SxId')]);
+        return $this->getUrl('sales/order/detail', ['order' => $order->getData('OrderNumber')]);
     }
 
     public function formatTime($time = NULL, $format = \IntlDateFormatter::SHORT, $showDate = false)
