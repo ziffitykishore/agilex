@@ -7,7 +7,7 @@ define(['mage/utils/wrapper'], function (wrapper) {
             
             var obj = originalAction(addressData);
             obj.getType = function () {
-                if (addressData['custom_attributes'].length != 0) {
+                if (addressData['custom_attributes']['is_billing'] !== undefined) {
                     if (addressData['custom_attributes']['is_billing']['value'] == 0) {
                         return 'customer-shipping-address';
                     }
@@ -28,7 +28,7 @@ define(['mage/utils/wrapper'], function (wrapper) {
                         }
                     }
                 }
-                if (addressData['custom_attributes'].length != 0) {
+                if (addressData['custom_attributes']['is_billing'] !== undefined) {
                     if (addressData['custom_attributes']['is_billing']['value'] == 1 || !customerHasBillingAddress) {
                         return true;
                     }
