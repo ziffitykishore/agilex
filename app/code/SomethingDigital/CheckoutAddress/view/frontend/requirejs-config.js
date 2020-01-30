@@ -39,6 +39,9 @@ var config = {
             },
             'Magento_Checkout/js/view/billing-address/list': {
                 'SomethingDigital_CheckoutAddress/js/view/billing-address/list-mixin': true
+            },
+            'Magento_Checkout/js/model/new-customer-address': {
+                'SomethingDigital_CheckoutAddress/js/model/new-customer-address-mixin': true
             }
         }
     }
