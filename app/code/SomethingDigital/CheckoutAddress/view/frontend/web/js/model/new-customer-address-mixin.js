@@ -12,7 +12,7 @@ define(['mage/utils/wrapper'], function (wrapper) {
                 var address;
                 if (customer.addresses !== undefined) {
                     for (address in customer.addresses) {
-                        if (typeof customer.addresses[address].custom_attributes.is_billing !== undefined) {
+                        if (typeof customer.addresses[address].custom_attributes.is_billing !== 'undefined') {
                             if (customer.addresses[address].custom_attributes.is_billing.value == 1) {
                                 customerHasBillingAddress = true;
                             }
