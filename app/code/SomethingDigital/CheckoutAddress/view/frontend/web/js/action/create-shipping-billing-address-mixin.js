@@ -15,6 +15,7 @@ define([
                 if (typeof customer.addresses[customerAddress].custom_attributes.is_billing === 'object') {
                     if (customer.addresses[customerAddress].custom_attributes.is_billing.value == 1) {
                         customerHasBillingAddress = true;
+                        break;
                     }
                 }
             }
