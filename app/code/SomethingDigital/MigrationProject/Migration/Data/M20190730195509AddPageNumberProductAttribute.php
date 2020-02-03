@@ -10,7 +10,7 @@ use SomethingDigital\Migration\Helper\Email\Template as EmailHelper;
 use Magento\Config\Model\ResourceModel\Config as ResourceConfig;
 use Magento\Catalog\Setup\CategorySetup;
 
-class M20190730195508AddPageNumberProductAttribute implements MigrationInterface
+class M20190730195509AddPageNumberProductAttribute implements MigrationInterface
 {
     protected $page;
     protected $block;
