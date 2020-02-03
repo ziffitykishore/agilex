@@ -34,6 +34,9 @@ var config = {
             'Magento_Checkout/js/action/create-billing-address': {
                 'SomethingDigital_CheckoutAddress/js/action/create-billing-address-mixin': true
             },
+            'Magento_Checkout/js/action/create-shipping-address': {
+                'SomethingDigital_CheckoutAddress/js/action/create-shipping-address-mixin': true
+            },
             'Magento_Checkout/js/model/checkout-data-resolver': {
                 'SomethingDigital_CheckoutAddress/js/model/checkout-data-resolver-mixin': true
             },
