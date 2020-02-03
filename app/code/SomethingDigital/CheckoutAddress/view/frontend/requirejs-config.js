@@ -32,13 +32,19 @@ var config = {
                 'SomethingDigital_CheckoutAddress/js/view/billing-address-mixin': true
             },
             'Magento_Checkout/js/action/create-billing-address': {
-                'SomethingDigital_CheckoutAddress/js/action/create-billing-address-mixin': true
+                'SomethingDigital_CheckoutAddress/js/action/create-shipping-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/action/create-shipping-address': {
+                'SomethingDigital_CheckoutAddress/js/action/create-shipping-billing-address-mixin': true
             },
             'Magento_Checkout/js/model/checkout-data-resolver': {
                 'SomethingDigital_CheckoutAddress/js/model/checkout-data-resolver-mixin': true
             },
             'Magento_Checkout/js/view/billing-address/list': {
                 'SomethingDigital_CheckoutAddress/js/view/billing-address/list-mixin': true
+            },
+            'Magento_Checkout/js/model/new-customer-address': {
+                'SomethingDigital_CheckoutAddress/js/model/new-customer-address-mixin': true
             }
         }
     }

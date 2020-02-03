@@ -53,10 +53,12 @@ define([
             }
 
             addressList.some(function (addrs) {
-                if (addrs.customAttributes.hasOwnProperty('is_billing')) {
-                    if (addrs.customAttributes.is_billing.value == 1) {
-                        selectBillingAddress(addrs);
-                        return true;
+                if (addrs.customAttributes !== undefined) {
+                    if (addrs.customAttributes.hasOwnProperty('is_billing')) {
+                        if (addrs.customAttributes.is_billing.value == 1) {
+                            selectBillingAddress(addrs);
+                            return true;
+                        }
                     }
                 }
             });
