@@ -56,11 +56,12 @@ class View extends \Magento\Framework\App\Action\Action
             throw new \Magento\Framework\Exception\NotFoundException(__('Category does not exists.'));
         }
         
-        $attrArray = [];
+        $attrArray = [
+            $category->getGroupingAttribute1(),
+            $category->getGroupingAttribute2(),
+            $category->getGroupingAttribute3()
+        ];
         $data = [];
-        $attrArray []= $category->getGroupingAttribute1();
-        $attrArray []= $category->getGroupingAttribute2();
-        $attrArray []= $category->getGroupingAttribute3();
 
         foreach ($attrArray as $key => $attrCode) {
             if (!empty($attrCode)) {
