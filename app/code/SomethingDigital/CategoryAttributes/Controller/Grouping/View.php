@@ -3,6 +3,7 @@ namespace SomethingDigital\CategoryAttributes\Controller\Grouping;
  
 use Magento\Framework\UrlFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Exception\NotFoundException;
  
 class View extends \Magento\Framework\App\Action\Action
 {
@@ -53,7 +54,7 @@ class View extends \Magento\Framework\App\Action\Action
         try {
             $category = $this->categoryRepository->get($cid, $this->storeManager->getStore()->getId());
         } catch (NoSuchEntityException $e) {
-            throw new \Magento\Framework\Exception\NotFoundException(__('Category does not exists.'));
+            throw new NotFoundException(__('Category does not exists.'));
         }
         
         $attrArray = [
@@ -77,7 +78,7 @@ class View extends \Magento\Framework\App\Action\Action
                         $optionExists = true;
                         try {
                             $optionHtml = $this->blockRepository->getById('grouping_' . $attrCode . '_' . $optionCode);
-                        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+                        } catch (NoSuchEntityException $e) {
                             $optionExists = false;
                         }
                         if ($optionExists) {
