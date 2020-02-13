@@ -5203,6 +5203,11 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
+sticky-table-headers@^0.1.24:
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/sticky-table-headers/-/sticky-table-headers-0.1.24.tgz#7aea1f0791ca3a02b0860cd885ed757a1acbf381"
+  integrity sha1-euofB5HKOgKwhgzYhe11ehrL84E=
+
 stickybits@^3.3.2:
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/stickybits/-/stickybits-3.6.6.tgz#ce042cbeaecfcc84cda602be6f5bc99b63e2964c"
