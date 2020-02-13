@@ -11,7 +11,6 @@ class AttributeOptionHelper
 {
     private $eventManager;
     private $configHelper;
-    private $storeUrls;
     private $productAttributeRepository;
     private $productAttributeCollectionFactory;
 
