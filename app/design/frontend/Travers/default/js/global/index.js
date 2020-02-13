@@ -14,6 +14,7 @@ import './coupon';
 require('lazysizes');
 require('jquery-smooth-scroll');
 require('peekaboo-toggle');
+require('sticky-table-headers');
 
 collapsible();
 customInputs();
@@ -25,4 +26,10 @@ domready(() => {
   $('.toggle-content').peekaboo();
   $('.so-smooth').smoothScroll();
   $('.back-to-top').smoothScroll();
+
+  $(window).on('table-headers-ready', function() {
+    $('table').stickyTableHeaders({
+      fixedOffset: 60
+    });
+  });
 });
