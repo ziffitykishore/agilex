@@ -9,7 +9,7 @@
 "var formattedBillingAddress|raw":"Billing Address",
 "var this.getUrl($store, 'customer/account/')":"Customer Account URL",
 "var order.getCustomerName()":"Customer Name",
-"var order.increment_id":"Order Id",
+"var order.real_order_id":"Order Id",
 "var payment_html|raw":"Payment Details",
 "var comment":"Shipment Comment",
 "var shipment.increment_id":"Shipment Id",
@@ -39,7 +39,7 @@
         <td>
             <p>{{trans "Your shipping confirmation is below. Thank you again for your business."}}</p>
 
-            <h1>{{trans "Your Shipment #%shipment_id for Order #%order_id" shipment_id=$shipment.increment_id order_id=$order.increment_id}}</h1>
+            <h1>{{trans "Your Shipment #%shipment_id for Order #%order_id" shipment_id=$shipment.increment_id order_id=$order.real_order_id}}</h1>
         </td>
     </tr>
     <tr class="email-information">
