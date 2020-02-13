@@ -20,4 +20,5 @@
             </argument>
         </arguments>
     </virtualType>
+    <preference for="Magento\Checkout\Block\Onepage\Success" type="SomethingDigital\Order\Block\Checkout\Success"/>
 </config>
