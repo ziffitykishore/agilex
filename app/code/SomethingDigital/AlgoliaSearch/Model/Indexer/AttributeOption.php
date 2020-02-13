@@ -53,7 +53,7 @@ class AttributeOption implements \Magento\Framework\Indexer\ActionInterface, \Ma
             return;
         }
 
-        $this->queue->addToQueue($this->fullAction, 'rebuildAttributeOptionIndex', [], 1);
+        $this->queue->addToQueue(get_class($this->fullAction), 'rebuildAttributeOptionIndex', [], 1);
 
     }
 
