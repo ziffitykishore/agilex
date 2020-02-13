@@ -3,6 +3,7 @@
     <module name="SomethingDigital_AlgoliaSearch" setup_version="1.0.0">
         <sequence>
             <module name="Algolia_AlgoliaSearch"/>
+            <module name="Magento_Catalog"/>
         </sequence>
     </module>
 </config>
