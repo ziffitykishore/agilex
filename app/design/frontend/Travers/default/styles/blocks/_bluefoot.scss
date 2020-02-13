@@ -1121,6 +1121,10 @@ footer.page-footer {
                 }
             }
         }
+
+        [data-content-type="button-item"] {
+            width: 100%;
+        }
     }
 }
 
