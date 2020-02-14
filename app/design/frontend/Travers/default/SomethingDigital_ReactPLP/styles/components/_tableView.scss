@@ -92,11 +92,6 @@
             th,
             td {
                 width: 100%;
-
-                &[data-row-selection] {
-                    width: 30px;
-                    min-width: 30px;
-                }
             }
         }
     }
