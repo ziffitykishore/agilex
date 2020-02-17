@@ -11,7 +11,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 
 class ProductUrlPathGenerator extends \Magento\CatalogUrlRewrite\Model\ProductUrlPathGenerator
 {
-    private $scopeConfig;
+    protected $scopeConfig;
 
     /**
      * @param StoreManagerInterface $storeManager
