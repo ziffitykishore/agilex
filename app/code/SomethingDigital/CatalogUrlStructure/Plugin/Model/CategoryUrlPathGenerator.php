@@ -9,6 +9,7 @@ use Magento\Store\Model\ScopeInterface;
 
 class CategoryUrlPathGenerator
 {
+    protected $scopeConfig;
 
     public function __construct(
         ScopeConfigInterface $scopeConfig
