@@ -101,7 +101,7 @@ class OrderPlace implements ObserverInterface
             }
             $this->customerRepository->save($customer);
         }
-        $order->setExtOrderId($sxOrderId);
+        $order->setRealOrderId($sxOrderId);
         $this->orderRepository->save($order);
     }
 
