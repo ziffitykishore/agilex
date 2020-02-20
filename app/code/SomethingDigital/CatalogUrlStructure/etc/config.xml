@@ -2,8 +2,8 @@
     <default>
         <catalog>
             <seo>
-                <product_url_prefix>product</product_url_prefix>
-                <category_url_prefix>category</category_url_prefix>
+                <product_url_prefix>product/</product_url_prefix>
+                <category_url_prefix>category/</category_url_prefix>
             </seo>
         </catalog>
     </default>
