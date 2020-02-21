@@ -6,16 +6,23 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Catalog\Model\CategoryRepository;
+use Magento\CatalogInventory\Model\ResourceModel\Stock\Status as StockStatusResource;
 
 
 class AddCategoryData implements ObserverInterface
 {
+    protected $_storeManager;
+    protected $categoryRepository;
+    protected $stockStatusResource;
+
     public function __construct(
         StoreManagerInterface $storeManager,
-        CategoryRepository $categoryRepository
+        CategoryRepository $categoryRepository,
+        StockStatusResource $stockStatusResource
     ) {
         $this->_storeManager = $storeManager;
         $this->categoryRepository = $categoryRepository;
+        $this->stockStatusResource = $stockStatusResource;
     }
 
     /**
@@ -31,7 +38,23 @@ class AddCategoryData implements ObserverInterface
         $this->addParentCategoryIds($category, $transport);
         $this->addGrouping($category, $transport);
         $this->removePubDirectory($category, $transport);
+        $this->excludeOutOfStockFromProductCount($category, $transport);
         
+    }
+
+    /**
+     * Modify product_count to include only in_stock products
+     *
+     * @param \Magento\Catalog\Model\Category $category
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function excludeOutOfStockFromProductCount($category, $transport)
+    {
+        $productCollection = $category->getProductCollection();
+        $productCollection = $this->stockStatusResource->addStockDataToCollection($productCollection, true);
+        $algoliaCategoryData = $transport->getData();
+        $algoliaCategoryData['product_count'] = $productCollection->getSize();
+        $transport->setData($algoliaCategoryData);
     }
 
     /**
