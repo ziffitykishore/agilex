@@ -50,7 +50,6 @@ class AttributeOptionHelper
         $attrOptionsData = [];
         foreach ($collection as $key => $attr) {
             $attrOptions = $attr->getOptions();
-            $sort = 0;
             $attrOptionsArray = [];
             foreach ($attrOptions as $option) {
                 if ($option->getValue()) {
