@@ -34,7 +34,7 @@ class AttributeOptionHelper
     public function getIndexSettings()
     {
         $indexSettings = [
-            'searchableAttributes' => ['unordered(attribute_id)', 'unordered(option_id)', 'unordered(option_label)']
+            'searchableAttributes' => ['unordered(attribute)', 'unordered(items)']
         ];
 
         return $indexSettings;
@@ -50,17 +50,18 @@ class AttributeOptionHelper
         $attrOptionsData = [];
         foreach ($collection as $key => $attr) {
             $attrOptions = $attr->getOptions();
-            $sort = 0;
+            $attrOptionsArray = [];
             foreach ($attrOptions as $option) {
                 if ($option->getValue()) {
-                    $attrOptionObject = [
-                        'attribute_id' => $attr->getId(),
-                        'option_id' => $option->getValue(),
-                        'option_label' => $option->getLabel(),
-                        'sort_order' => $sort++
-                    ];
-                    $attrOptionsData[] = $attrOptionObject;
+                    $attrOptionsArray[] = $option->getLabel();
                 }
+            }
+            if (!empty($attrOptionsArray)) {
+                $attrOptionObject = [
+                    'attribute' => $attr->getAttributeCode(),
+                    'items' => $attrOptionsArray
+                ];
+                $attrOptionsData[] = $attrOptionObject;
             }
         }
 
