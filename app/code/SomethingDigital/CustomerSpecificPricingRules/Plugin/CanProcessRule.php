@@ -9,7 +9,7 @@ use SomethingDigital\CustomerSpecificPricingRules\Model\QuoteItem;
 
 class CanProcessRule
 {
-    protected $scopeConfig;
+    protected $config;
     protected $quoteItem;
 
     public function __construct(
