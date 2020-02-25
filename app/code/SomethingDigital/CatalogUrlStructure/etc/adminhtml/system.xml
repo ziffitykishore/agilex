@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="seo">
+                <field id="product_url_prefix" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Product URL Prefix</label>
+                    <backend_model>SomethingDigital\CatalogUrlStructure\Model\System\Config\Backend\Catalog\Url\Rewrite\Prefix</backend_model>
+                </field>
+                <field id="category_url_prefix" translate="label" type="text" sortOrder="310" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Category URL Prefix</label>
+                    <backend_model>SomethingDigital\CatalogUrlStructure\Model\System\Config\Backend\Catalog\Url\Rewrite\Prefix</backend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
