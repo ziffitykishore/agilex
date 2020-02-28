@@ -157,7 +157,6 @@ abstract class Adapter
                 return false;
             }
 
-
             return [
                 'status' => $curl->getStatus(),
                 'body' => \Zend_Json::decode($curl->getBody()),
