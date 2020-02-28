@@ -19,6 +19,7 @@ abstract class Adapter
     const XML_PATH_API_TOKEN_EXPIRES = 'sx/general/token_expires';
     const XML_PATH_API_USERNAME = 'sx/general/username';
     const XML_PATH_API_PASSWORD = 'sx/general/password';
+    const XML_PATH_API_DEBUG_MODE = 'sx/general/debug_mode';
 
     /** @var \Magento\Framework\HTTP\ClientFactory */
     protected $curlFactory;
@@ -142,10 +143,20 @@ abstract class Adapter
         try {
             $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
 
+            if ($this->isDebugModeEnabled()) {
+                $this->logger->alert(
+                    'SX POST request to ' . $this->getRequestUrl() .
+                    ' with body: ' . json_encode($this->requestBody) .
+                    ' Response status: ' . $curl->getStatus() .
+                    ', Response Body: ' . $curl->getBody()
+                );
+            }
+
             if (!$this->isSuccessful($curl->getStatus())) {
                 $this->logger->alert('SX error from POST ' . $this->getRequestUrl() . ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
                 return false;
             }
+
             return [
                 'status' => $curl->getStatus(),
                 'body' => \Zend_Json::decode($curl->getBody()),
@@ -180,6 +191,16 @@ abstract class Adapter
     protected function isTestMode()
     {
         return $this->testMode->isEnabled();
+    }
+
+    /**
+     * Check whether debug mode is enabled
+     *
+     * @return bool
+     */
+    protected function isDebugModeEnabled()
+    {
+        return $this->getConfig(static::XML_PATH_API_DEBUG_MODE);
     }
 
     /**
