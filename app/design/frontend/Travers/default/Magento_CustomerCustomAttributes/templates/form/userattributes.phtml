@@ -20,7 +20,13 @@
     <fieldset class="fieldset">
     <?php endif;?>
     <?php foreach ($block->getUserDefinedAttributes() as $attribute):?>
-        <?php if (!in_array($attribute->getAttributeCode(), ["travers_account_id", "travers_contact_id", "is_read_only", "is_billing", "shipping_rate_group", "customer_freight_account"])): ?>
+        <?php if (!in_array($attribute->getAttributeCode(), [
+            "travers_account_id",
+            "travers_contact_id",
+            "is_read_only",
+            "is_billing",
+            "shipping_rate_group",
+            "customer_freight_account"])): ?>
             <?php $attributeContent = $block->getAttributeHtml($attribute);?>
             <?php if ($attributeContent): ?>
                 <?= /* @escapeNotVerified */ $attributeContent ?>
