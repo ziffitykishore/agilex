@@ -6,6 +6,7 @@
 /*global define*/
 define(
     [
+        'Magento_Ui/js/modal/alert',
         'jquery',
         'porthole',
         'simplewebpay',
@@ -16,9 +17,9 @@ define(
         'Magento_Checkout/js/action/redirect-on-success',
         'Magento_Checkout/js/model/full-screen-loader',
         'Magento_Checkout/js/model/error-processor',
-        'mage/url'
+        'mage/url',
     ],
-    function ($, porthole, simplewebpay,viewprocess,
+    function (alert, $, porthole, simplewebpay,viewprocess,
         quote,
         Component,
         additionalValidators,
@@ -132,9 +133,7 @@ define(
                                                                 if (msg.Result == 0) {
                                                                     $("#SendTokenClick").hide();
                                                                 } else {
-                                                                    var custommsg = {};
-                                                                    custommsg.responseText = JSON.stringify({message: msg.Message});
-                                                                    errorProcessor.process(custommsg);
+                                                                    self.showalert("Error", msg.Message);
                                                                 }
                                                             }
                                                         });
@@ -148,13 +147,16 @@ define(
                                             }
                                         },
                                         cancel: function (msg) {
-                                            var custommsg = {};
+                                           // var custommsg = {};
                                             if(window.checkoutConfig.payment.swppayment.istoken19 === "true"){
                                                 msg.Message = "There was an error capturing the card data, please try again";
                                             }
-                                            custommsg.responseText = JSON.stringify({message: msg.Message});
-                                            
-                                            errorProcessor.process(custommsg);
+                                            //custommsg.responseText = JSON.stringify({message: msg.Message});
+                                            if(msg.Message == "Error in Form"){
+                                                $("#NewCenposPlugin iframe").height(530);
+                                            }else  $("#NewCenposPlugin iframe").height(510);
+                                            self.showalert("Error", msg.Message , function(){});
+                                            //errorProcessor.process(custommsg);
                                         }
                                 });
                                 
@@ -181,8 +183,10 @@ define(
                             } else {
                                 var custommsg = {};
                               
-                                custommsg.responseText = JSON.stringify({message: msg2.Message});
-                                errorProcessor.process(custommsg);
+                               // custommsg.responseText = JSON.stringify({message: msg2.Message});
+                                
+                                self.showalert("Error", msg2.Message , function(){});
+                               //errorProcessor.process(custommsg);
                                 $(".payment-method-result-webpay").append("<a id='ReloadPayment' style='display:block; cursor: pointer'>Reload Payment/a>");
                                 $("#ReloadPayment").click(function(){self.createWebpay();});
                             }
@@ -192,9 +196,8 @@ define(
                 {
                     $("#loadersavecard").remove();
                     fullScreenLoader.stopLoader();
-                    var custommsg = {};
-                    custommsg.responseText = JSON.stringify(error);
-                    errorProcessor.process(custommsg);
+                    self.showalert("Error", JSON.stringify(error) + ". Please try again or another credit card");
+                   // errorProcessor.process(custommsg);
                 }
             },
 
@@ -215,6 +218,15 @@ define(
             getEmail: function () {
                 return quote.guestEmail;
             },
+            showalert:function(title,content, action){
+                alert({
+                    title: $.mage.__(title),
+                    content: $.mage.__(content),
+                    actions: {
+                        always: action
+                    }
+                });
+            },
             afterPlaceOrder: function (data, event) {
                 
             },
@@ -233,8 +245,9 @@ define(
                         $("#Form3dSecure").hide();
                         if (resposems.Result !== 0) {
                             self.isPlaceOrderActionAllowed(true);
-                            eventtemp.responseText = JSON.stringify({message: msgtemp.Message});
-                            errorProcessor.process(eventtemp);
+                           // eventtemp.responseText = JSON.stringify({message: msgtemp.Message});
+                            self.showalert("Error", msgtemp.Message);
+                           // errorProcessor.process(eventtemp);
                             fullScreenLoader.stopLoader();
                         } else {
                             $.ajax({
@@ -252,10 +265,11 @@ define(
                                     } else {
                                             self.isPlaceOrderActionAllowed(true);
                                             fullScreenLoader.stopLoader();
-                                            var custommsg = {};
-                                            custommsg.responseText = JSON.stringify({message: msg.Message});
-                                            errorProcessor.process(custommsg);
-                                            self.createWebpay();
+                            
+                                            self.showalert("Error", msg.Message, function(){self.createWebpay();});
+
+                                           // errorProcessor.process(custommsg);
+                                            //self.createWebpay();
                                     }
                                 }
                             });
@@ -329,16 +343,18 @@ define(
                                         self.isPlaceOrderActionAllowed(true);
                                         msg.message = msg.Message;
                                         event.responseText = JSON.stringify(msg);
-                                        errorProcessor.process(event);
+                                        
+                                         self.showalert("Error", event.responseText + ". Please try again or another credit card", function(){self.createWebpay();});
+                                      //  errorProcessor.process(event);
                                         fullScreenLoader.stopLoader();
-                                        self.createWebpay();
+                                       // self.createWebpay();
                                     }
                                 }catch(err){
                                     self.isPlaceOrderActionAllowed(true);
                                     fullScreenLoader.stopLoader();
                                     event.responseText = JSON.stringify(err);
-                                    errorProcessor.process(event);
-                                    self.createWebpay();
+                                    self.showalert("Error", event.responseText + ". Please try again or another credit card", function(){self.createWebpay();});
+                                    //self.createWebpay();
                                 }
                             }
                         );
@@ -348,6 +364,7 @@ define(
 
                 return false;
             },
+
             reloadPayment: function() {
                 var self = this;
                 fullScreenLoader.startLoader();
