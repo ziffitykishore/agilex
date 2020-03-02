@@ -1,0 +1,28 @@
+diff --git a/vendor/magento/module-swatches/view/adminhtml/web/js/text.js b/vendor/magento/module-swatches/view/adminhtml/web/js/text.js
+index 2bb1672d9e8..48a14c14bdf 100644
+--- a/vendor/magento/module-swatches/view/adminhtml/web/js/text.js
++++ b/vendor/magento/module-swatches/view/adminhtml/web/js/text.js
+@@ -13,7 +13,8 @@ define([
+     'mage/template',
+     'uiRegistry',
+     'jquery/ui',
+-    'prototype'
++    'prototype',
++    'validation'
+ ], function (jQuery, mageTemplate, rg) {
+     'use strict';
+ 
+diff --git a/vendor/magento/module-swatches/view/adminhtml/web/js/visual.js b/vendor/magento/module-swatches/view/adminhtml/web/js/visual.js
+index b91fea59229..19307432c41 100644
+--- a/vendor/magento/module-swatches/view/adminhtml/web/js/visual.js
++++ b/vendor/magento/module-swatches/view/adminhtml/web/js/visual.js
+@@ -14,7 +14,8 @@ define([
+     'uiRegistry',
+     'jquery/colorpicker/js/colorpicker',
+     'prototype',
+-    'jquery/ui'
++    'jquery/ui',
++    'validation'
+ ], function (jQuery, mageTemplate, rg) {
+     'use strict';
+ 
