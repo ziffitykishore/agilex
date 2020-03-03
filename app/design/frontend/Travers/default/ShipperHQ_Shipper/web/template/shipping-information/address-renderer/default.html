@@ -26,7 +26,7 @@
 <!-- ko if: element[attribute].value != null -->
 <!-- ko text: element[attribute].value --><!-- /ko --><br/>
 <!-- /ko -->
-<!-- ko if: element[attribute].value == null -->
+<!-- ko if: element[attribute].value == null && element.attribute_code != 'is_billing' -->
 <!-- ko text: element[attribute] --><!-- /ko --><br/>
 <!-- /ko -->
 <!-- /ko -->
