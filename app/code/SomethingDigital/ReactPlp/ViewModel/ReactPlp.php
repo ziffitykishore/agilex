@@ -145,7 +145,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'hasSpotPricing' => $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH),
             'defaultFilterAttributesInfo' => $this->getFilterAttributes(),
             'swatchImages' => $this->getSwatchImages(),
-            'attributes_values_limit' => $this->scopeConfig->getValue("catalog/reactapp/limit_filter_attr_values", ScopeInterface::SCOPE_STORE),
+            'attributesValuesLimit' => $this->scopeConfig->getValue("catalog/reactapp/limit_filter_attr_values", ScopeInterface::SCOPE_STORE),
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
