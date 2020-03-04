@@ -116,25 +116,25 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'customerGroupId' => $customerGroupId,
             'apiUrls' => [
                 'cms' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/cms/view/id',
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/cms/view/id',
                     'params' => []
                 ],
                 'grouping' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/grouping/view/id',
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/grouping/view/id',
                     'params' => []
                 ],
                 'addToCart' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'checkout/cart/add/product',
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'checkout/cart/add/product',
                     'params' => [
                         'form_key' => $this->formKey->getFormKey()
                     ]
                 ],
                 'pricing' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/pricing/view/products',
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/pricing/view/products',
                     'params' => []
                 ],
                 'attributes' => [
-                    'url' => $this->storeManager->getStore()->getBaseUrl().'travers-catalog/attributes/view/id',
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/attributes/view/id',
                     'params' => []
                 ]
             ],
@@ -149,9 +149,9 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
-                'productsIndexName' => $index_prefix.$this->storeManager->getStore()->getCode().'_products',
-                'categoriesIndexName' => $index_prefix.$this->storeManager->getStore()->getCode().'_categories',
-                'attributeOptionsIndexName' => $index_prefix.'default_attribute_option'
+                'productsIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_products',
+                'categoriesIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_categories',
+                'attributeOptionsIndexName' => $index_prefix . 'default_attribute_option'
             ]
         ];
         return $this->jsonEncoder->serialize($props);
@@ -294,7 +294,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
 
                 foreach ($swatches as $key => $swatch) {
                     if ($swatch['type'] == Swatch::SWATCH_TYPE_VISUAL_IMAGE) {
-                        if (file_exists($this->directoryList->getPath('pub').'/media/attribute/swatch'.$swatch['value'])) {
+                        if (file_exists($this->directoryList->getPath('pub') . '/media/attribute/swatch' . $swatch['value'])) {
                             $swatchImage = $this->swatchHelperMedia->getSwatchAttributeImage('swatch_thumb', $swatch['value']);
                         } else {
                             $swatchImage = '';
