@@ -15,7 +15,7 @@ class SaveConfigurationToAlgolia
     /** @var IndicesConfigurator */
     private $indicesConfigurator;
 
-    /** @var Cache */
+    /** @var CacheInterface */
     private $cache;
 
     public function __construct(
