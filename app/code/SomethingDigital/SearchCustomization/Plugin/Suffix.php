@@ -48,6 +48,7 @@ class Suffix
         $suffixMatch = substr($queryText, 0, max($minSkuLength, strlen($queryText) - $maxSuffixLength));
 
         $productcollection = $this->productCollection
+                ->setFlag('has_stock_status_filter', false)
                 ->addAttributeToSelect(['sku'])
                 ->addAttributeToFilter('sku', array('like' => $suffixMatch.'%'));
 
