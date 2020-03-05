@@ -15,8 +15,10 @@ const setQtyToMinimumIncrement = () => {
 }
 
 domready(() => {
-  if(!$.trim($('.detail-block-description').html()).length ) {
-    $('.detail-block-description').hide();
+  const $description = $('.detail-block-description');
+
+  if (!$.trim($description.html()).length) {
+    $description.hide();
   }
 
   setQtyToMinimumIncrement();
