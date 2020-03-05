@@ -10,6 +10,7 @@ use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Customer\Api\CustomerRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use SomethingDigital\Order\Helper\Email;
 
 class OrderPlace implements ObserverInterface
 {
@@ -20,6 +21,7 @@ class OrderPlace implements ObserverInterface
     protected $customerRepository;
     protected $orderRepository;
     protected $scopeConfig;
+    protected $email;
 
     /**
      * @param \DateTime $dateTime
@@ -31,7 +33,8 @@ class OrderPlace implements ObserverInterface
         ArrayManager $arrayManager,
         CustomerRepositoryInterface $customerRepository,
         OrderRepositoryInterface $orderRepository,
-        ScopeConfigInterface $scopeConfig
+        ScopeConfigInterface $scopeConfig,
+        Email $email
     ) {
         $this->logger = $logger;
         $this->orderPlaceApi = $orderPlaceApi;
@@ -39,6 +42,7 @@ class OrderPlace implements ObserverInterface
         $this->customerRepository = $customerRepository;
         $this->orderRepository = $orderRepository;
         $this->scopeConfig = $scopeConfig;
+        $this->email = $email;
     }
 
     /**
@@ -68,22 +72,7 @@ class OrderPlace implements ObserverInterface
     protected function processResponse($order, $response)
     {
         if ($response['status'] != 100 || !isset($response['body']['SxOrderId'])) {
-            try {
-                $mail = new \Zend\Mail('utf-8');
-                $mail->setFrom(
-                    $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE),
-                    $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
-                );
-                $mail->addTo(
-                    $this->scopeConfig->getValue('trans_email/ident_support/email',ScopeInterface::SCOPE_STORE),
-                    $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE)
-                );
-                $mail->setSubject(__('Order %1 has not been sent to API', $order->getIncrementId()));
-                $mail->setBodyText(__('Order %1 has not been sent to API. Status Code: %2, Error Message: %3',$order->getIncrementId(), $response['status'], $response['body'] ?? ''));
-                $mail->send();
-            } catch (\Exception $e) {
-                $this->logger->debug($e->getMessage());
-            }
+            $this->email->sendEmail($order, $response);
             return;
         }
 
