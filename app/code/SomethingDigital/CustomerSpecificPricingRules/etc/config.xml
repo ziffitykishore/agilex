@@ -3,7 +3,8 @@
         <catalog>
             <price>
                 <apply_cart_rules_if_suffix>0</apply_cart_rules_if_suffix>
-                <apply_cart_rules_if_cutomer_specific>0</apply_cart_rules_if_cutomer_specific>
+                <apply_cart_rules_if_customer_specific>0</apply_cart_rules_if_customer_specific>
+                <apply_cart_rules_if_customer_specific_tier_price>0</apply_cart_rules_if_customer_specific_tier_price>
             </price>
         </catalog>
     </default>
