@@ -23,15 +23,33 @@ class CanProcessRule
     public function aroundCanProcessRule(Utility $subject, callable $proceed, $rule, $address)
     {
         $applyDiscountIfSuffix = $this->config->getValue('catalog/price/apply_cart_rules_if_suffix', ScopeInterface::SCOPE_STORE);
-        $applyDiscountIfCSP = $this->config->getValue('catalog/price/apply_cart_rules_if_cutomer_specific', ScopeInterface::SCOPE_STORE);
+        $applyDiscountIfCSP = $this->config->getValue('catalog/price/apply_cart_rules_if_customer_specific', ScopeInterface::SCOPE_STORE);
+        $applyDiscountIfCSTP = $this->config->getValue('catalog/price/apply_cart_rules_if_customer_specific_tier_price', ScopeInterface::SCOPE_STORE);
 
         $quoteItem = $this->quoteItem->quoteItemHolder;
 
-        if (!$applyDiscountIfCSP && $quoteItem->getCustomPrice() && $rule->getSimpleFreeShipping() == 0) {
+        if (
+            !$applyDiscountIfCSP &&
+            $quoteItem->getIsCustomerSpecificPriceApplied() &&
+            !$quoteItem->getIsCustomerSpecificTierPriceApplied() &&
+            $rule->getSimpleFreeShipping() == 0
+        ) {
             return false;
         }
 
-        if (!$applyDiscountIfSuffix && $quoteItem->getQuote()->getSuffix() && $rule->getSimpleFreeShipping() == 0) {
+        if (
+            !$applyDiscountIfCSTP &&
+            $quoteItem->getIsCustomerSpecificTierPriceApplied() &&
+            $rule->getSimpleFreeShipping() == 0
+        ) {
+            return false;
+        }
+
+        if (
+            !$applyDiscountIfSuffix &&
+            $quoteItem->getQuote()->getSuffix() &&
+            $rule->getSimpleFreeShipping() == 0
+        ) {
             return false;
         }
 
