@@ -120,10 +120,13 @@ class Quote
                         $tierPrice = $this->helper->getTierPrice($allPrices, $item->getSku(), $item->getQty());
                         if ($tierPrice) {
                             $customPrice = $tierPrice;
+                            $item->setIsCustomerSpecificTierPriceApplied(true);
                         }
                         $item->setCustomPrice($customPrice);
                         $item->setOriginalCustomPrice($customPrice);
                         $item->getProduct()->setIsSuperMode(true);
+
+                        $item->setIsCustomerSpecificPriceApplied(true);
                         $item->save();
                     }
                 }

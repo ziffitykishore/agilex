@@ -114,10 +114,12 @@ class QuoteItemProcessor
                     $specialPrice = $this->arrayManager->get('DiscountPrice', $productPrices);
                     if ($specialPrice && $specialPrice < $product->getPrice()) {
                         $request->setCustomPrice($specialPrice);
+                        $item->setIsCustomerSpecificPriceApplied(true);
                     }
                     $tierPrice = $this->productHelper->getTierPrice($prices, $sku, $totalItemQty);
                     if ($tierPrice) {
                         $request->setCustomPrice($tierPrice);
+                        $item->setIsCustomerSpecificTierPriceApplied(true);
                     }
                 }
 
