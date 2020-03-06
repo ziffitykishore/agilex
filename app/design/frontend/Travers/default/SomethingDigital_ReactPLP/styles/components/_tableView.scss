@@ -5,13 +5,6 @@
     padding-right: 0;
   }
 
-  .view-all {
-    &:last-of-type,
-    .hide {
-      display: none;
-    }
-  }
-
   .products-table {
     font-weight: $font-weight__regular;
     line-height: 1.7;
