@@ -1264,9 +1264,12 @@ footer.page-footer {
         }
 
         .pagebuilder-overlay.pagebuilder-poster-overlay {
+            padding: 0 15px;
+
             @include min-screen($screen__m) {
                 justify-content: left;
                 margin-left: 35px;
+                padding: 0;
 
                 .pagebuilder-poster-content {
                     width: 580px;
