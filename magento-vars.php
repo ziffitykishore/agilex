@@ -25,10 +25,10 @@ if (isHttpHost("earthlite.com.c.kzhstxzybfg6w.ent.magento.cloud")) {
     $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
 
-/*if (isHttpHost("mcprod.earthlite.com")) {
+if (isHttpHost("mcprod.earthlite.com")) {
     $_SERVER["MAGE_RUN_CODE"] = "base";
     $_SERVER["MAGE_RUN_TYPE"] = "website";
-}*/
+}
 
 // Staging
 if (isHttpHost("mcstaging.earthlite.com.c.kzhstxzybfg6w.dev.ent.magento.cloud")) {
@@ -36,10 +36,10 @@ if (isHttpHost("mcstaging.earthlite.com.c.kzhstxzybfg6w.dev.ent.magento.cloud"))
     $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
 
-/*if (isHttpHost("mcstaging.earthlite.com")) {
+if (isHttpHost("mcstaging.earthlite.com")) {
     $_SERVER["MAGE_RUN_CODE"] = "base";
     $_SERVER["MAGE_RUN_TYPE"] = "website";
-}*/
+}
 
 // Integration
 if (isHttpHost("integration-5ojmyuq-kzhstxzybfg6w.us-3.magentosite.cloud")) {
