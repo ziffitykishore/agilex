@@ -11,6 +11,10 @@
                     <label>Category URL Prefix</label>
                     <backend_model>SomethingDigital\CatalogUrlStructure\Model\System\Config\Backend\Catalog\Url\Rewrite\Prefix</backend_model>
                 </field>
+                <field id="use_parent_category_path_for_category_urls" translate="label" type="select" sortOrder="320" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Use Parent Category Path for Category URLs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
     </system>

@@ -9,6 +9,8 @@ use Magento\Store\Model\ScopeInterface;
 
 class CategoryUrlPathGenerator
 {
+    const XML_USE_PARENT_CATEGORY_PATH = 'catalog/seo/use_parent_category_path_for_category_urls';
+
     protected $scopeConfig;
 
     public function __construct(
@@ -28,6 +30,12 @@ class CategoryUrlPathGenerator
         $storeScope = ScopeInterface::SCOPE_STORES;
 
         $category_prefix = $this->scopeConfig->getValue(Prefix::XML_PATH_CATEGORY_URL_PREFIX, $storeScope);
+
+        $useParentPath = $this->scopeConfig->getValue(self::XML_USE_PARENT_CATEGORY_PATH, $storeScope);
+        if ($useParentPath) {
+            $pathArr = explode('/',$path);
+            $path = end($pathArr);
+        }
 
         if (strpos($path,$category_prefix) === false) {
             $path = $category_prefix . $path;
