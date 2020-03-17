@@ -568,3 +568,8 @@ $sidebar__max-width: 240px;
     }
   }
 }
+
+.description__desktop img {
+    max-height: 300px;
+    object-fit: cover;
+}
