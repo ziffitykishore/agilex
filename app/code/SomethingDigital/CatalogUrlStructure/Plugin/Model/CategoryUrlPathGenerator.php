@@ -32,7 +32,7 @@ class CategoryUrlPathGenerator
         $category_prefix = $this->scopeConfig->getValue(Prefix::XML_PATH_CATEGORY_URL_PREFIX, $storeScope);
 
         $useParentPath = $this->scopeConfig->getValue(self::XML_USE_PARENT_CATEGORY_PATH, $storeScope);
-        if ($useParentPath) {
+        if (!$useParentPath) {
             $pathArr = explode('/',$path);
             $path = end($pathArr);
         }
