@@ -68,7 +68,7 @@ class SpotPricingApi extends Adapter
             $suffix = $this->cart->getQuote()->getSuffix();
         }
 
-        if (empty($customerAccountId) && empty($suffix)) {
+        if ($customerAccountId === 0 && empty($suffix)) {
             return false;
         }
 
@@ -107,7 +107,7 @@ class SpotPricingApi extends Adapter
         if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
             return $accountId->getValue();
         } else {
-            return '';
+            return 0;
         }
     }
 
