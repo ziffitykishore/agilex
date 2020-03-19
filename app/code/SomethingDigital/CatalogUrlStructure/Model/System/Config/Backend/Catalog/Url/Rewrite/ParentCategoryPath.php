@@ -174,17 +174,19 @@ class ParentCategoryPath extends \Magento\Framework\App\Config\Value
                     $category_prefix = $this->scopeConfig->getValue(Prefix::XML_PATH_CATEGORY_URL_PREFIX, $storeScope);
 
                     $path = $urlRewrite->getRequestPath();
+
                     if ($this->endsWith($urlRewrite->getRequestPath(), $category_suffix)) {
                         $path = substr($urlRewrite->getRequestPath(), 0, -strlen($category_suffix));
                     }
 
                     if (strpos($urlRewrite->getRequestPath(), $category_prefix) === 0) {
-                        $path = ltrim($path, $category_prefix);
+                        $path = substr($path, strlen($category_prefix));
                     }
 
                     $pathArray = explode('/', $path);
+                    $categoryKey = end($pathArray);
 
-                    $newurl = $category_prefix . end($pathArray) . $category_suffix;
+                    $newurl = $this->generateUrl($category_prefix, $category_suffix, $categoryKey, $urlRewrite);
 
                     $bind = [UrlRewrite::REQUEST_PATH => $newurl];
                     $where = ['url_rewrite_id = ?' => $urlRewrite->getUrlRewriteId()];
@@ -221,6 +223,7 @@ class ParentCategoryPath extends \Magento\Framework\App\Config\Value
             $storeIds = array_keys($this->storeManager->getStores());
             $storeIds = array_diff($storeIds, $this->getOverrideStoreIds($storeIds));
         }
+
         return $storeIds;
     }
 
@@ -237,6 +240,43 @@ class ParentCategoryPath extends \Magento\Framework\App\Config\Value
                 $excludeIds[] = $storeId;
             }
         }
+
         return $excludeIds;
+    }
+
+    protected function generateUrl($category_prefix, $category_suffix, $categoryKey, $urlRewrite, $categoryKeySufix = '')
+    {
+        $newurl = $category_prefix . $categoryKey;
+        if ($categoryKeySufix) {
+            $newurl .= '-' . $categoryKeySufix;
+        }
+        $newurl .= $category_suffix;
+
+        if ($this->isUrlAlreadyExist($newurl, $urlRewrite)) {
+            if (!$categoryKeySufix) {
+                $categoryKeySufix = 2;
+            } else {
+                $categoryKeySufix++;
+            }
+            $newurl = $this->generateUrl($category_prefix, $category_suffix, $categoryKey, $urlRewrite, $categoryKeySufix);
+        }
+
+        return $newurl;
+    }
+
+    protected function isUrlAlreadyExist($newurl, $urlRewrite)
+    {
+        $select = $this->connection->select()
+            ->from(
+                ['ur' => $this->resource->getTableName('url_rewrite')],
+                'ur.url_rewrite_id'
+            )->where(
+                "ur.request_path = '" . $newurl . "'
+                AND store_id = " . $urlRewrite->getStoreId() . "
+                AND url_rewrite_id != " . $urlRewrite->getUrlRewriteId()
+            );
+        $data = $this->connection->fetchOne($select);
+
+        return $data;
     }
 }
