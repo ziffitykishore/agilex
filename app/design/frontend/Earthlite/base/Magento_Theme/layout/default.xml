@@ -7,6 +7,39 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="my.accounts.links" template="Magento_Customer::account/my_account.phtml"  before="-" />
+            <block class="Magento\Wishlist\Block\Link" name="wishlist.link" after="my.accounts.links"/>
+        </referenceBlock>
+
+        <referenceContainer name="header-wrapper">
+            <container name="account-wishlist-links" htmlTag="div" htmlClass="account-wishlist-links" after="-"/>
+        </referenceContainer>
+
+
+        <move element="catalog.topnav" destination="header-wrapper" after="logo"/>
+
+        <move element="minicart" destination="top.links" after="-" />
+        <move element="catalog.compare.link" destination="top.links" before="minicart"/>
+
+        <move element="my-account-link"  destination="my.accounts.links"/>
+        <move element="authorization-link"  destination="my.accounts.links" after="-" />
+        <move element="header" destination="my.accounts.links" before="-" />
+
+        <move element="top.links" destination="account-wishlist-links" after="-" />
+        <move element="wishlist.link" destination="my.accounts.links" before="authorization-link"/>
+        <move element="top.search" destination="top.links" before="-" />
+
+
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="invitation_link_top" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
+
+        <!--<move element="top.links" destination="header-wrapper" before="minicart" />
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="header" remove="true"/>
+        <referenceBlock name="invitation_link_top" remove="true"/>
+        -->
     </body>
 </page>
