@@ -23,7 +23,14 @@
 
         .block {
             &-title {
-                .lib-visually-hidden();
+                .lib-button-icon(
+                    @_icon-font-content: @icon-search,
+                    @_icon-font-text-hide: true,
+                    @_icon-font-color: @header-icons-color
+                );
+                strong {
+                    .lib-visually-hidden();
+                }
             }
         }
 
@@ -206,7 +213,6 @@
         float: right;
         padding-left: 15px;
         position: relative;
-        width: 250px;
         z-index: 4;
 
         .label {
