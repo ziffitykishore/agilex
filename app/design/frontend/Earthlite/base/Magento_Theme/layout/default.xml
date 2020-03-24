@@ -42,13 +42,6 @@
         <move element="top.search" destination="header-right-pane" before="-" />
         <move element="minicart" destination="header-right-pane" after="-" />
 
-
-        <referenceContainer name="footer">
-
-        </referenceContainer>
-
-
-
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <referenceBlock name="invitation_link_top" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>

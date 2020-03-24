@@ -67,14 +67,32 @@
                         vertical-align: middle;
                         margin-bottom: 0;
 
+                        &.phone {
+                            position: relative;
+                            padding-right: 20px;
+                            &:after {
+                                content: '';
+                                position: absolute;
+                                height: 100%;
+                                width: 1px;
+                                background: @color-lines;
+                                right: 0;
+                                top: 0;
+                            }
+
+                            a {
+                                font-weight: @font-weight__bold;
+                                font-size: @font-size__l - 2;
+                            }
+                        }
+
                         & + li {
-                            margin-left: 20px;
+                            padding-left: 20px;
                         }
 
                         a {
-                            &:before {
-                                font-size: 16px;
-                            }
+
+                            display: block;
 
                             span {
                                 .lib-visually-hidden();
