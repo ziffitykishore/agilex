@@ -1,0 +1,17 @@
+<?php
+/** \Earthlite\Widget\Block\Product\FeaturedProductsList $block */
+$featuredProducts = $block->getFeaturedProducts();
+?>
+<h3><?= $block->escapeHtml($block->getData('title')) ?></h3>
+<?php foreach ($featuredProducts as $featuredProduct):
+       $productDetails = $block->getProductDetails($featuredProduct->getId());
+    ?>
+<div>
+    <div class="featured-products">
+        <div><span><?=$productDetails->getName();?></span> </div>
+        <div><img src="<?=$block->getImageUrl($featuredProduct->getImage());?>" alt="<?=$productDetails->getName();?>" height="42" width="42"></div>
+        <div><span><?=$featuredProduct->getMinPrice();?> </span></div>
+        <div><a href="<?=$featuredProduct->getProductUrl();?> ">View Details</a></div>
+    </div>
+</div>
+<?php endforeach; ?>
