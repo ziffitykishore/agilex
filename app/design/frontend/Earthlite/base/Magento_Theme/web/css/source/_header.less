@@ -118,6 +118,14 @@
         .navigation {
             background: transparent;
         }
+
+        .block-search {
+            position: relative;
+
+            .control {
+                position: static;
+            }
+        }
     }
 
     .header-right-pane {
@@ -192,13 +200,18 @@
             &.user {
                 line-height: normal;
                 display: block;
+                cursor: pointer;
+                color: @theme__color__secondary;
+                &:hover {
+                    color: @theme__color__primary;
+                }
                 .lib-icon-font(
                     @_icon-font-content: @icon-user,
                     @_icon-font: @icon__font-name,
                     @_icon-font-size: 20px,
                     @_icon-font-line-height: 20px,
-                    @_icon-font-color: @header-icons-color,
-                    @_icon-font-color-hover: @header-icons-color-hover,
+                    @_icon-font-color: inherit,
+                    @_icon-font-color-hover: inherit,
                     @_icon-font-color-active: @header-icons-color-hover,
                     @_icon-font-text-hide: true
                 );
@@ -209,17 +222,29 @@
                 .lib-visually-hidden();
             }
             &.switch {
+                color: inherit;
                 .lib-button-reset();
                 .lib-icon-font(
                     @_icon-font-content: @icon-chevron-down,
                     @_icon-font: @icon__font-name,
                     @_icon-font-size: 16px,
                     @_icon-font-line-height: 20px,
-                    @_icon-font-color: @header-icons-color,
-                    @_icon-font-color-hover: @header-icons-color-hover,
+                    @_icon-font-color: inherit,
+                    @_icon-font-color-hover: inherit,
                     @_icon-font-color-active: @header-icons-color-hover,
                     @_icon-font-text-hide: true
                 );
+            }
+
+            &.active {
+                .switch {
+                    .lib-icon-font(
+                        @_icon-font-content: @icon-chevron-up,
+                        @_icon-font: @icon__font-name,
+                        @_icon-font-size: 16px,
+                        @_icon-font-line-height: 20px
+                    );
+                }
             }
         }
     }
@@ -239,7 +264,78 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .header{
+        &.panel {
+            .social-links {
+                display: none;
+            }
+            .our-brands {
+                ul {
+                    justify-content: space-between;
+
+                    li{
+                        padding: 0;
+                        &:first-child {
+                            display: none;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        &-right-pane {
+            > .header {
+                display: none;
+            }
+        }
+
+        .block-search {
+            margin-top: 0;
+
+            .label {
+                display: none;
+            }
+
+            .control {
+                border: none;
+                margin: 0;
+                padding: 0;
+            }
+        }
+
+        .logo {
+            margin: 0 auto;
+        }
+
+        .nav-toggle {
+            position: static;
+        }
+
+        &.links {
+            .nav-sections & {
+                .dropdown {
+                    &-toggle {
+                        display: none;
+                    }
+
+                    &-content {
+                        padding-left: 0;
+
+                        li {
+                            font-weight: normal;
+                            a {
+                                font-weight: inherit;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
+
 
 
 //
