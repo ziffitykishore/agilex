@@ -7,7 +7,7 @@
 /** @var $block \Magento\Checkout\Block\Cart\Sidebar */
 ?>
 
-<li data-block="minicart" class="minicart-wrapper">
+<div data-block="minicart" class="minicart-wrapper">
     <a class="action showcart" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>"
        data-bind="scope: 'minicart_content'">
         <span class="text"><?= $block->escapeHtml(__('My Cart')) ?></span>
@@ -31,7 +31,7 @@
                 "timeout": "2000",
                 "closeOnMouseLeave": false,
                 "closeOnEscape": true,
-                "triggerClass":"active",
+                "triggerClass":"",
                 "parentClass":"active",
                 "buttons":[]}}'>
             <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
@@ -63,6 +63,6 @@
         }
     }
     </script>
-</li>
+</div>
 
 

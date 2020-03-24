@@ -7,6 +7,18 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <referenceContainer name="header.panel">
+            <block class="Magento\Cms\Block\Block" name="our-brands">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">our-brands</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="social-links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">social-links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
 
         <referenceBlock name="top.links">
             <block class="Magento\Customer\Block\Account\AuthorizationLink" name="my.accounts.links" template="Magento_Customer::account/my_account.phtml"  before="-" />
@@ -14,22 +26,27 @@
         </referenceBlock>
 
         <referenceContainer name="header-wrapper">
-            <container name="account-wishlist-links" htmlTag="div" htmlClass="account-wishlist-links" after="-"/>
+            <container name="header-right-pane" htmlTag="div" htmlClass="header-right-pane" after="-"/>
         </referenceContainer>
 
 
-        <move element="catalog.topnav" destination="header-wrapper" after="logo"/>
+        <move element="navigation.sections" destination="header-wrapper" after="logo"/>
 
-        <move element="minicart" destination="top.links" after="-" />
-        <move element="catalog.compare.link" destination="top.links" before="minicart"/>
 
         <move element="my-account-link"  destination="my.accounts.links"/>
         <move element="authorization-link"  destination="my.accounts.links" after="-" />
         <move element="header" destination="my.accounts.links" before="-" />
 
-        <move element="top.links" destination="account-wishlist-links" after="-" />
+        <move element="top.links" destination="header-right-pane" after="-" />
         <move element="wishlist.link" destination="my.accounts.links" before="authorization-link"/>
-        <move element="top.search" destination="top.links" before="-" />
+        <move element="top.search" destination="header-right-pane" before="-" />
+        <move element="minicart" destination="header-right-pane" after="-" />
+
+
+        <referenceContainer name="footer">
+
+        </referenceContainer>
+
 
 
         <referenceBlock name="catalog.compare.link" remove="true"/>
