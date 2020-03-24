@@ -10,3 +10,26 @@
 //  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
 //  Otherwise this theme won't be available for parent nesting
 //  All new variables should be placed in local theme lib or local theme files
+
+
+@theme__color__primary: #357df9;
+@theme__color__primary-alt: fadeOut(@theme__color__primary, 20%);
+@theme__color__secondary: #162d52;
+@color__ghostwhite: #f3f6ff;
+@color__linen: #f9ede4;
+
+
+
+@text__color: #687792;
+@text__color__secondary: @theme__color__secondary;
+
+// Menu
+
+@navigation-desktop-level0-item__color: @text__color__secondary;
+@navigation-desktop-level0-item__hover__color: @theme__color__primary;
+
+// alerts variables
+
+@success__color: #7cd17c;
+@message-warning__color: #fde95c;
+@error__color: #ff4133;
