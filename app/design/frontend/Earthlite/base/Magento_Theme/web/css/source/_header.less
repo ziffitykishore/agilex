@@ -249,8 +249,19 @@
         }
     }
 
+
+    .logo {
+        img {
+            max-width: 270px;
+            width: 100%;
+            height: auto;
+        }
+    }
+
     .navigation {
         .level0 {
+            .lib-font-size(12);
+
             > .level-top {
                 font-weight: 600;
             }
@@ -335,12 +346,17 @@
     }
 }
 
-
-
-
 //
 //  Desktop
 //  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @s-desk-lg) {
+    .navigation {
+        .level0 {
+            .lib-font-size(14)
+        }
+    }
+}
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
