@@ -24,7 +24,7 @@
                 ul {
                     .flex();
                     li {
-                        padding: 0 25px;
+                        padding: 0 20px;
                         position: relative;
 
                         &:first-child {
@@ -40,6 +40,10 @@
                                 .transform(translateY(-50%));
                                 right: -10px;
                             }
+                        }
+
+                        &:last-child {
+                            padding-right: 0;
                         }
 
                         a {
@@ -364,27 +368,42 @@
 
         .header {
             &.panel {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            &-top-links{
                 .flex();
                 justify-content: space-between;
                 align-items: center;
                 padding-top: 0;
                 padding-bottom: 0;
-
-                &:before, &:after {
-                    display: none;
-                }
             }
 
             .logo {
                 margin: 0;
             }
+
+            &.content {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
         }
+
+
+
     }
 
 
     .nav-sections {
         background: transparent;
         margin-bottom: 0;
+
+        .links {
+            display: none;
+        }
+
+
     }
     .navigation {
         max-width: none;
