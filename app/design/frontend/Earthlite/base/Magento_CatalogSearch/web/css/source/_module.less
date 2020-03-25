@@ -25,10 +25,13 @@
             &-title {
                 cursor: pointer;
                 margin-bottom: 0;
+                line-height: normal;
+                display: block;
                 .lib-icon-font(
-                    @_icon-font-content: @icon-search,
-                    @_icon-font-size: 35px,
-                    @_icon-font-line-height: 33px,
+                    @_icon-font-content: @icon-magnify,
+                    @_icon-font: @icon__font-name,
+                    @_icon-font-size: 20px,
+                    @_icon-font-line-height: 20px,
                     @_icon-font-color: @header-icons-color,
                     @_icon-font-color-hover: @header-icons-color-hover,
                     @_icon-font-color-active: @header-icons-color-hover,
@@ -43,8 +46,10 @@
         .block-content {
             margin-bottom: 0;
             position: absolute;
-            min-width: 320px;
+            min-width: 250px;
             right: 0;
+            top: 30px;
+            display: none;
         }
 
         .label {
