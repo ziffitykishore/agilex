@@ -21,10 +21,16 @@
                 }
             }
             .our-brands {
+                li {
+                    padding: 0 10px;
+                }
+                span, a {
+                    .lib-font-size(12);
+                }
+
                 ul {
                     .flex();
                     li {
-                        padding: 0 20px;
                         position: relative;
 
                         &:first-child {
@@ -58,6 +64,7 @@
                             padding: 12px 0;
                             display: block;
                             font-weight: @font-weight__semibold;
+
                         }
                     }
                 }
@@ -65,6 +72,14 @@
             }
 
             .social-links {
+                .phone {
+                    a {
+                        .lib-font-size(14);
+                    }
+                }
+                a {
+                    .lib-font-size(12);
+                }
                 ul {
                     li {
                         display: inline-block;
@@ -86,7 +101,7 @@
 
                             a {
                                 font-weight: @font-weight__bold;
-                                font-size: @font-size__l - 2;
+
                             }
                         }
 
@@ -95,9 +110,7 @@
                         }
 
                         a {
-
                             display: block;
-
                             span {
                                 .lib-visually-hidden();
                             }
@@ -141,14 +154,13 @@
         align-items: center;
 
         .minicart-wrapper {
-            margin: 0 0 0 20px;
+            margin: 0 0 0 15px;
         }
 
         > .header {
             padding: 0;
             margin-bottom: 0;
-            margin-left: 20px;
-
+            margin-left: 15px;
             list-style: none;
 
             > li {
@@ -276,14 +288,70 @@
     }
 }
 
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @s-desk-m) {
+    .slogan-sec {
+        display: none;
+    }
+    .logo {
+        img {
+            max-width: 150px;
+        }
+    }
+
+    .header {
+
+
+        &-right-pane {
+            .minicart-wrapper {
+                margin: 0 0 0 15px;
+            }
+
+            > .header {
+                margin-left: 15px;
+            }
+
+            .action {
+                &.user,
+                &.showsearch,
+                &.showcart {
+                    &:before {
+                        .lib-font-size(16);
+                        .lib-line-height(16);
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+
 
 //
 //  Mobile
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .nav-toggle{
+        &:before {
+            .lib-font-size(20);
+        }
+    }
     .header{
+
+        &.content {
+            padding-bottom: 10px;
+        }
+
         &.panel {
+            .wrapper & {
+                border-bottom: 1px solid @secondary__color;
+            }
             .slogan-sec,
             .social-links {
                 display: none;
@@ -325,6 +393,9 @@
 
         .logo {
             margin: 0 auto;
+            img {
+                max-width: 180px;
+            }
         }
 
         .nav-toggle {
@@ -359,9 +430,33 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @s-desk-lg) {
+    .header{
+        &.panel {
+            .our-brands {
+                li {
+                    padding: 0 20px;
+                }
+                span,a {
+                    .lib-font-size(14);
+                }
+            }
+
+            .social-links {
+                .phone {
+                    a {
+                        .lib-font-size(16);
+                    }
+                }
+
+                a {
+                    .lib-font-size(14);
+                }
+            }
+        }
+    }
     .navigation {
         .level0 {
-            .lib-font-size(14)
+            .lib-font-size(14);
         }
     }
 }
@@ -433,6 +528,7 @@
         font-weight: normal;
         .level0 {
             text-align: center;
+            margin-right: 0;
             > .level-top {
                 text-transform: none;
 
