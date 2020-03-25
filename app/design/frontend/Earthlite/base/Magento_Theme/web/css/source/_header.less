@@ -107,6 +107,9 @@
             }
         }
 
+        &-wrapper {
+            background: @color-white;
+        }
 
         &.content {
             display: flex;
@@ -373,6 +376,23 @@
                 padding-bottom: 0;
             }
 
+            &-wrapper {
+                transition: all 0.5s ease 0s;
+                position: relative;
+
+                &.sticky {
+                    z-index: 999;
+                    position: fixed;
+                    width: 100%;
+                    top: 0;
+                    box-shadow: 0 10px 5px -5px rgba(0,0,0,0.05);
+                }
+
+                &.scrollUp {
+                    transform: translateY(-120%);
+                }
+            }
+
             &-top-links{
                 .flex();
                 justify-content: space-between;
@@ -388,6 +408,7 @@
             &.content {
                 padding-top: 20px;
                 padding-bottom: 20px;
+                transition: all 0.5s ease 0s;
             }
         }
 
