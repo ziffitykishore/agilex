@@ -11,7 +11,7 @@
 /** @var $helper \Magento\Search\Helper\Data */
 $helper = $this->helper(\Magento\Search\Helper\Data::class);
 ?>
-<li class="block block-search">
+<div class="block block-search">
     <div class="block block-title showsearch"><strong><?= $block->escapeHtml(__('Search')) ?></strong></div>
     <div class="block block-content" data-role="dropdownDialog"
          data-mage-init='{"dropdownDialog":{
@@ -62,4 +62,4 @@ $helper = $this->helper(\Magento\Search\Helper\Data::class);
             </div>
         </form>
     </div>
-</li>
+</div>
