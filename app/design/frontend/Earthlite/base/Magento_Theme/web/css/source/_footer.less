@@ -20,7 +20,7 @@
     .block {
         &.newsletter {
             border-bottom: 1px solid @color-black;
-            padding: 30px 0;
+            padding: 40px 0;
             .flex();
             align-items: center;
             justify-content: center;
@@ -28,11 +28,16 @@
             .title {
                 display: block;
                 margin-bottom: 0;
-                margin-right: 20px;
+                margin-right: 40px;
                 .lib-css(color, @color-white);
                 strong {
                     font-size: @font-size__xl;
                 }
+            }
+
+            .content {
+                max-width: 570px;
+                width: 100%;
             }
 
 
@@ -52,8 +57,9 @@
 
                 .action {
                     &.primary {
-                        max-width: 160px;
+                        min-width: 160px;
                         height: 50px;
+                        .br-radius(3px);
                     }
                 }
             }
@@ -75,6 +81,7 @@
                         border: none;
                         margin: 0;
                         padding-left: 12px;
+                        padding-right: 15px;
                         height: 50px;
 
                         &:focus {
@@ -88,6 +95,24 @@
     }
 }
 
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .block.newsletter {
+        padding: 30px 0;
+        .title {
+            strong {
+                .lib-font-size(16);
+            }
+        }
+        .content {
+            max-width: 60%;
+        }
+    }
+}
+
 
 //
 //  Mobile
@@ -97,6 +122,18 @@
     .block.newsletter {
         .title {
             margin: 0 0 20px;
+        }
+
+        .content {
+            max-width: 100%;
+        }
+
+        .form {
+            .action{
+                &.primary {
+                    min-width: 100px;
+                }
+            }
         }
     }
 }
@@ -113,14 +150,7 @@
                 max-width: 100%;
                 width: 100%;
                 float: none;
-
-                .content {
-                    max-width: 570px;
-                    width: 100%;
-                }
             }
-
-
         }
     }
 }
