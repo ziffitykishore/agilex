@@ -47,5 +47,10 @@ define([
     sticky($('.header-wrapper'));
 
     $('.header-right-pane > .header.links').clone().appendTo('#store\\.links');
-
+    
+    $('.alert .close').on('click',function(e){
+        e.preventDefault();
+        $(this).closest('.alert').slideUp();
+    });
+    
 });
