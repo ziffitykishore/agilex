@@ -46,5 +46,15 @@
         <referenceBlock name="header" remove="true"/>
         <referenceBlock name="invitation_link_top" remove="true"/>
         -->
+
+        
+        <referenceContainer name='footer'>
+            <container name='custom_footer_links' htmlTag="div" label="Page Footer Links Container" htmlClass="footer-links" >
+            </container>
+            <container name='custom_copyrights' htmlTag="div" label="Page Footer Copyright" htmlClass="footer-copyright" >
+            </container>
+        </referenceContainer>
+        <referenceBlock name='footer_links' remove='true' />
+        <move element="copyright" destination="custom_copyrights" after="custom_footer_links" />
     </body>
 </page>
