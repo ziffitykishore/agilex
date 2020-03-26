@@ -6,6 +6,8 @@
 
     .header{
         &.panel {
+            padding-top: 0;
+            padding-bottom: 0;
            ul {
                 margin-bottom: 0;
                 padding: 0;
@@ -34,13 +36,13 @@
                         position: relative;
 
                         &:first-child {
-                            background: @theme__color__primary;
-                            color: @color-white;
+                            background: @color__linen;
+                            color: @theme__color__secondary;
 
                             &:before {
                                 content: '';
                                 border: 5px solid transparent;
-                                border-left-color: @theme__color__primary;
+                                border-left-color: @color__linen;
                                 position: absolute;
                                 top: 50%;
                                 .transform(translateY(-50%));
@@ -72,11 +74,6 @@
             }
 
             .social-links {
-                .phone {
-                    a {
-                        .lib-font-size(14);
-                    }
-                }
                 a {
                     .lib-font-size(12);
                 }
@@ -86,31 +83,16 @@
                         vertical-align: middle;
                         margin-bottom: 0;
 
-                        &.phone {
-                            position: relative;
-                            padding-right: 20px;
-                            &:after {
-                                content: '';
-                                position: absolute;
-                                height: 100%;
-                                width: 1px;
-                                background: @color-lines;
-                                right: 0;
-                                top: 0;
-                            }
-
-                            a {
-                                font-weight: @font-weight__bold;
-
-                            }
-                        }
-
                         & + li {
                             padding-left: 20px;
                         }
 
                         a {
                             display: block;
+                            color: @theme__color__primary;
+                            &:hover {
+                                color: @theme__color__secondary;
+                            }
                             span {
                                 .lib-visually-hidden();
                             }
@@ -122,6 +104,20 @@
 
         &-wrapper {
             background: @color-white;
+            transition: all 0.5s ease 0s;
+            position: relative;
+
+            &.sticky {
+                z-index: 999;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                box-shadow: 0 10px 5px -5px rgba(0,0,0,0.05);
+            }
+
+            &.scrollUp {
+                /* transform: translateY(-120%);*/
+            }
         }
 
         &.content {
@@ -292,7 +288,7 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @s-desk-m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
     .slogan-sec {
         display: none;
     }
@@ -303,8 +299,6 @@
     }
 
     .header {
-
-
         &-right-pane {
             .minicart-wrapper {
                 margin: 0 0 0 15px;
@@ -330,6 +324,40 @@
 }
 
 
+//
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+
+    .page-header {
+        .header {
+            &.content {
+                .logo {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+    .header {
+            .nav-toggle {
+                display: block;
+                position: static;
+            }
+
+            .nav-sections {
+                display: none;
+            }
+        &-right-pane {
+            .header {
+                display: none;
+            }
+        }
+    }
+}
+
+
 
 //
 //  Mobile
@@ -343,7 +371,6 @@
         }
     }
     .header{
-
         &.content {
             padding-bottom: 10px;
         }
@@ -398,10 +425,6 @@
             }
         }
 
-        .nav-toggle {
-            position: static;
-        }
-
         &.links {
             .nav-sections & {
                 .dropdown {
@@ -429,7 +452,7 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @s-desk-lg) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .header{
         &.panel {
             .our-brands {
@@ -442,12 +465,6 @@
             }
 
             .social-links {
-                .phone {
-                    a {
-                        .lib-font-size(16);
-                    }
-                }
-
                 a {
                     .lib-font-size(14);
                 }
@@ -461,6 +478,28 @@
     }
 }
 
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+    .header {
+        &-top-links {
+            .our-brands,
+            .slogan-sec,
+            .social-links {
+                .flex-width(percentage(1/3));
+            }
+
+            .slogan-sec {
+                text-align: center;
+            }
+
+            .social-links {
+                text-align: right;
+            }
+        }
+    }
+
+}
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
     .page-header {
@@ -470,24 +509,6 @@
                 padding-top: 0;
                 padding-bottom: 0;
             }
-
-            &-wrapper {
-                transition: all 0.5s ease 0s;
-                position: relative;
-
-                &.sticky {
-                    z-index: 999;
-                    position: fixed;
-                    width: 100%;
-                    top: 0;
-                    box-shadow: 0 10px 5px -5px rgba(0,0,0,0.05);
-                }
-
-                &.scrollUp {
-                    transform: translateY(-120%);
-                }
-            }
-
             &-top-links{
                 .flex();
                 justify-content: space-between;

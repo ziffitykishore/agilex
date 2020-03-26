@@ -5,6 +5,13 @@
     flex-wrap: wrap;
 }
 
+.flex-width(@width) {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 @width;
+    flex: 0 0 @width;
+    max-width: @width;
+}
+
 .box-shadow (@string) {
     -webkit-box-shadow: @string;
     -moz-box-shadow: @string;

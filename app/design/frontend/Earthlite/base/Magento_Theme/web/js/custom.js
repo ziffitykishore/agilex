@@ -14,10 +14,10 @@ define([
     function sticky(navbar) {
 
         let c, currentScrollTop = 0;
-
+        let b = navbar.outerHeight();
         $(window).scroll(function () {
             let a = $(window).scrollTop();
-            let b = navbar.height();
+
 
             currentScrollTop = a;
 
@@ -31,11 +31,15 @@ define([
 
 
         $(window).scroll(function () {
+
+            let panel = $('.panel.header').outerHeight();
             if ($(window).scrollTop() >= 46) {
                 navbar.addClass('sticky');
+                $('body').css('paddingTop', panel);
             }
             else {
                 navbar.removeClass('sticky');
+                $('body').css('paddingTop', 0);
             }
         });
     }
@@ -43,22 +47,5 @@ define([
     sticky($('.header-wrapper'));
 
     $('.header-right-pane > .header.links').clone().appendTo('#store\\.links');
-
-    // Sticky header and filter
-    var scroll = $(window).scrollTop();
-    var $window = $(window);
-    var head_height = $('.header.content').outerHeight();
-
-    $window.scroll(function () {
-        scroll = $window.scrollTop();
-
-        if (scroll > 220) {
-            $('body').addClass('fix-header');
-            $('body').css('paddingTop', head_height);
-        } else {
-            $('body').removeClass('fix-header');
-            $('body').css('paddingTop', 0);
-        }
-    });
 
 });
