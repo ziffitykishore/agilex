@@ -48,4 +48,9 @@ define([
 
     $('.header-right-pane > .header.links').clone().appendTo('#store\\.links');
 
+    $('.links-wrap .block-title').on('click', function(){
+        $(this).parent().toggleClass('active');
+        $(this).parents('.links-wrap .block').siblings().find('.block').removeClass('active');
+    });
+
 });

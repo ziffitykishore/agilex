@@ -13,6 +13,24 @@
     .page-footer {
         background: @theme__color__secondary;
 
+        .brand-message {
+            background: @theme__color__primary;
+            color: @color-white;
+            text-align: center;
+            padding: 25px 0;
+            .lib-font-size(20);
+            font-weight: @font-weight__bold;
+
+            [data-content-type='row'][data-appearance='contained'] {
+                padding-left: @layout-indent__width;
+                padding-right: @layout-indent__width;
+            }
+
+            .widget.block {
+                margin: 0;
+            }
+        }
+
         .footer {
             .widget.block {
                 margin: 0;
@@ -80,7 +98,9 @@
             .flex();
 
             .block {
+                margin-bottom: 0;
                 &-title {
+                    margin-top:40px;
                     strong {
                         .lib-font-size(20);
                     }
@@ -97,7 +117,7 @@
                 .flex-width(percentage(2/3));
                 .flex();
 
-                .block {
+                .widget.block {
                     .flex-width(percentage(1/4));
 
                     & + .block {
@@ -125,7 +145,6 @@
 
             .block-title {
                 color: @color-white;
-                margin-top:40px;
             }
 
 
@@ -196,6 +215,7 @@
                 .lib-css(color, @color-white);
                 strong {
                     font-size: @font-size__xl;
+                    font-weight: 700;
                 }
             }
 
@@ -319,6 +339,9 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
     .page-footer {
+        .brand-message {
+            .lib-font-size(16);
+        }
         .footer {
             &-copyright {
                 padding: 20px 0;
@@ -370,13 +393,73 @@
     }
 
     .footer{
-        &-links-wrap {
-            .links-wrap {
+        .social-links {
+            ul {
+                justify-content: center;
+            }
+        }
+        &-links {
+            > .widget.block {
+                border-bottom: 0;
+                padding-bottom: 10px;
+            }
+            &-wrap {
                 .block {
-                    .flex-width(100%);
+                    &-title {
+                        margin: 15px 0;
+                        padding-right: 20px;
+                        position: relative;
+                        width: 100%;
+                        cursor: pointer;
 
-                    & + .block {
-                        padding-left: 0;
+                        &:before {
+                            position: absolute;
+                            right: 0;
+                        }
+
+                        .lib-icon-font(
+                            @_icon-font-content: @icon-chevron-right,
+                            @_icon-font: @icon__font-name,
+                            @_icon-font-size: 20px,
+                            @_icon-font-line-height: 20px,
+                            @_icon-font-color: inherit,
+                            @_icon-font-color-hover: inherit,
+                            @_icon-font-color-active: @header-icons-color-hover,
+                            @_icon-font-text-hide: true
+                        );
+                    }
+
+                    &-content {
+                        display: none;
+                    }
+
+                    &.active {
+                        .block-title {
+                            &:before {
+                                .transform(rotate(-90deg));
+                            }
+                        }
+
+                        .block-content {
+                            display: block;
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+
+                .links-wrap {
+                    .widget.block {
+                        .flex-width(100%);
+
+                        &:first-child {
+                            border-top: 1px solid fadeOut(@color-black, 60%);
+                            border-bottom: 1px solid fadeOut(@color-black, 60%);
+                        }
+
+                        & + .block {
+                            padding-left: 0;
+                            border-bottom: 1px solid fadeOut(@color-black, 60%);
+                        }
                     }
                 }
             }
