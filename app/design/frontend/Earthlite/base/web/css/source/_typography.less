@@ -1,0 +1,77 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .lib-font-face(
+    @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/Manrope/regular/Manrope-Regular',
+        @font-weight: 400,
+        @font-style: normal,
+        @font-display: swap
+        );
+
+    .lib-font-face(
+    @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/Manrope/semibold/Manrope-SemiBold',
+        @font-weight: 600,
+        @font-style: normal,
+        @font-display: swap
+        );
+
+    .lib-font-face(
+    @family-name: @font-family-name__base,
+        @font-path: '@{baseDir}fonts/Manrope/bold/Manrope-Bold',
+        @font-weight: 700,
+        @font-style: normal,
+        @font-display: swap
+        );
+    
+    .h1 {
+        font-size: @h1__font-size;
+    }
+    .h2 {
+        font-size: @h2__font-size;
+    }
+    .h3 {
+        font-size: @h3__font-size;
+    }
+    .h4 {
+        font-size: @h4__font-size;
+    }
+    .h5 {
+        font-size: @h5__font-size;
+    }
+    
+    h1,h2,h3,h4,h5,h6,
+    .h1,.h2,.h3,.h4,.h5,.h6 {
+        color: @title_color;
+        font-weight: @font-weight__semibold;
+    } 
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    h1 {
+        .lib-css(font-size, @h1__font-size-desktop);
+        .lib-css(margin-bottom, @h1__margin-bottom__desktop);
+    }
+}
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .items {
+        .lib-list-reset-styles();
+    }
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright Â© Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.panel">
+            <block class="Magento\Cms\Block\Block" name="header-top-links">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header-top-links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\AuthorizationLink" name="my.accounts.links" template="Magento_Customer::account/my_account.phtml"  before="-" />
+            <block class="Magento\Wishlist\Block\Link" name="wishlist.link" after="my.accounts.links"/>
+        </referenceBlock>
+
+        <referenceContainer name="header.container">
+            <container name="header-outer-wrapper" htmlTag="div" htmlClass="header-wrapper" after="-"/>
+        </referenceContainer>
+
+        <referenceContainer name="header-wrapper">
+            <container name="header-right-pane" htmlTag="div" htmlClass="header-right-pane" after="-"/>
+        </referenceContainer>
+
+        <move element="header-wrapper" destination="header-outer-wrapper" before="-"/>
+
+
+        <move element="navigation.sections" destination="header-wrapper" after="logo"/>
+
+
+        <move element="my-account-link"  destination="my.accounts.links"/>
+        <move element="authorization-link"  destination="my.accounts.links" after="-" />
+        <move element="header" destination="my.accounts.links" before="-" />
+
+        <move element="top.links" destination="header-right-pane" after="-" />
+        <move element="wishlist.link" destination="my.accounts.links" before="authorization-link"/>
+        <move element="top.search" destination="header-right-pane" before="-" />
+        <move element="minicart" destination="header-right-pane" after="-" />
+
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="invitation_link_top" remove="true"/>
+        <referenceBlock name="report.bugs" remove="true"/>
+
+
+
+        <referenceContainer name='footer'>
+            <container name='custom_brand_message' htmlTag="div" label="Page Footer Brand Message" htmlClass="brand-message"/>
+            <container name='custom_footer_links' htmlTag="div" label="Page Footer Links Container" htmlClass="footer-links" >
+            </container>
+            <container name='custom_copyrights' htmlTag="div" label="Page Footer Copyright" htmlClass="footer-copyright" >
+            </container>
+        </referenceContainer>
+        <referenceBlock name='footer_links' remove='true' />
+        <move element="custom_brand_message" destination="footer-container" before="footer"/>
+        <move element="copyright" destination="custom_copyrights" after="custom_footer_links" />
+    </body>
+</page>
