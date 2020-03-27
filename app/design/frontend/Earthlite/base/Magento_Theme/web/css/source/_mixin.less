@@ -12,6 +12,12 @@
     max-width: @width;
 }
 
+.order(@order) {
+    -webkit-box-ordinal-group: @order + 1;
+    -ms-flex-order: @order;
+    order: @order;
+}
+
 .box-shadow (@string) {
     -webkit-box-shadow: @string;
     -moz-box-shadow: @string;
