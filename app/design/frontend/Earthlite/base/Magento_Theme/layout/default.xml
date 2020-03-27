@@ -47,13 +47,8 @@
         <referenceBlock name="invitation_link_top" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
 
-        <!--<move element="top.links" destination="header-wrapper" before="minicart" />
-        <referenceBlock name="catalog.compare.link" remove="true"/>
-        <referenceBlock name="header" remove="true"/>
-        <referenceBlock name="invitation_link_top" remove="true"/>
-        -->
 
-        
+
         <referenceContainer name='footer'>
             <container name='custom_footer_links' htmlTag="div" label="Page Footer Links Container" htmlClass="footer-links" >
             </container>
