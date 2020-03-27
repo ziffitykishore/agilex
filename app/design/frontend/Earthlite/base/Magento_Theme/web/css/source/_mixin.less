@@ -1,7 +1,3 @@
-
-/* Mixin style */
-
-
 .flex() {
     display: -ms-flexbox;
     display: flex;
@@ -74,13 +70,6 @@
     -o-transform: rotate(@deg);
     transform: rotate(@deg);
 }
-.skew (@deg, @deg2) {
-    -webkit-transform: skew(@deg, @deg2);
-    -moz-transform: skew(@deg, @deg2);
-    -ms-transform: skew(@deg, @deg2);
-    -o-transform: skew(@deg, @deg2);
-    transform: skew(@deg, @deg2);
-}
 .translate (@x, @y:0) {
     -webkit-transform: translate(@x, @y);
     -moz-transform: translate(@x, @y);
@@ -96,64 +85,22 @@
     transform: translate3d(@x, @y, @z);
 }
 
-.choice() {
-    input[type="checkbox"],
-    input[type="radio"]{
-        position: absolute;
-        visibility: hidden;
+.bg-primary {
+   background: @theme__color__primary;
+}
+.bg-secondary {
+   background: @theme__color__secondary;
+}
+.bg-linen {
+   background: @color__linen;
+}
+.bg-white {
+   background: #fff;
+}
+.bg-light {
+   background: @color__ghostwhite;
+}
 
-        & + label {
-            cursor: pointer;
-        }
-    }
-
-    input[type="radio"] {
-        &:checked + label {
-            &:before {
-                background: transparent;
-                box-shadow: inset 0px 0px 0px 3px @color_white, inset 0px 0px 0px 10px @primary__color;
-                text-align: center;
-                font-size: 25px;
-                line-height: 10px;
-            }
-        }
-        & + label {
-            &:before {
-                width: 16px;
-                height: 16px;
-                line-height: 16px;
-                border: 2px solid @primary__color;
-                color: @primary__color;
-                content: '';
-                .br-radius(50%);
-                font-family: @icon-fox;
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
-        }
-    }
-
-    input[type="checkbox"] {
-        &:checked + label {
-            &:before {
-                content: @check;
-                background: @primary__color;
-            }
-        }
-        & + label {
-            &:before {
-                width: 16px;
-                height: 16px;
-                line-height: 16px;
-                border: 1px solid @primary__color;
-                color: @color_white;
-                content: '';
-                font-family: @icon-fox;
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
-        }
-    }
+.text-title {
+    color: @text__color__secondary;
 }
