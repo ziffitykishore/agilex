@@ -1,0 +1,103 @@
+<?php
+if ($block->getUser()) {
+    $helper = $this->helper('Earthlite\Cartoption\Helper\Data');
+    $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $data = $this->getCatalogData();
+    $catalogData = $data['catalogData'];
+    $mediaBaseUrl = $data['mediaBaseUrl'];
+    if (isset($catalogData) && count($catalogData) > 0) {
+        ?>
+        <h2 class="text-center text-normal">
+            <?php echo $block->getTitle() ?>
+        </h2>
+        <div class="home-cat-sm">
+            <?php
+            foreach ($catalogData as $key => $cat) {
+                if ($key == 0) {
+                    ?>
+                    <div>
+                        <h4 class="clearfix">
+                            <?php echo $block->escapeHtml($cat->getName()); ?>  
+                            <a href="<?php echo $block->escapeUrl($cat->getUrl()); ?>" title="See all <?php echo $block->escapeHtml($cat->getName()); ?>" class="align-right">
+                                See all
+                            </a>
+                        </h4>
+
+                        <div class="parent-inline mb-10">
+                            <?php
+			    $collections = $helper->category->getCollection()->addFieldToFilter('entity_id', ['in' => [explode(',',$cat->getChildren())]]);
+                            foreach ($collections as $collection) {
+				$child = $_objectManager->create('Magento\Catalog\Model\Category')->load($collection->getId());
+                                ?>
+                                <div class="child-inline width-10 text-center mb-10">
+                                    <a href="<?php echo $block->escapeUrl($child->getUrl()); ?>">
+                                        <div class="mb-10">
+                                            <?php
+                                            $categoryName = str_replace(' ', '-', $child->getName());
+                                            $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
+                                            $categoryImageURL = $mediaBaseUrl . "catalog/category/" . strtolower(str_replace('--', '-', $CategoryNameSplChar)) . ".jpg";
+                                            ?>
+                                            <img src="<?php echo $categoryImageURL; ?>?format=A_68" alt="<?php echo $block->escapeHtml($child->getName()); ?>">
+                                        </div>
+                                        <small><?php echo $block->escapeHtml($child->getName()); ?></small>
+                                    </a>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                    <?php
+                }
+            }
+            ?>
+            <div class="flex-box row">
+                <?php foreach ($catalogData as $key => $cat) { ?>
+            <?php if ($key != 0) { ?>
+                        <div class="col-sm-6">
+                            <h4 class="clearfix">
+                                <?php echo $block->escapeHtml($cat->getName()); ?>   
+                                <a href="<?php echo $block->escapeUrl($cat->getUrl()); ?>" title="See all <?php echo $block->escapeHtml($cat->getName()); ?>" class="align-right">
+                                    See all 
+                                </a>
+                            </h4>
+
+                            <div class="parent-inline mb-10">
+                                <?php
+                                $i = 0;
+				$collections = $helper->category->getCollection()->addFieldToFilter('entity_id', ['in' => [explode(',',$cat->getChildren())]]);
+                                foreach ($collections as $collection) {
+				    $child = $_objectManager->create('Magento\Catalog\Model\Category')->load($collection->getId());
+                                    ?>
+                                    <div class="child-inline width-20 text-center mb-10">
+                                        <a href="<?php echo $block->escapeUrl($child->getUrl()); ?>">
+                                            <div class="mb-10">
+                                                <?php
+                                                $categoryName = str_replace(' ', '-', $child->getName());
+                                                $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
+                                                $categoryImageURL = $mediaBaseUrl . "catalog/category/" . strtolower(str_replace('--', '-', $CategoryNameSplChar)) . ".jpg";
+                                                ?>
+                                                <img src="<?php echo $categoryImageURL; ?>?format=A_68" alt="<?php echo $block->escapeHtml($child->getName()); ?>">
+                                            </div>
+                                            <small><?php echo $block->escapeHtml($child->getName()); ?></small>
+                                        </a>
+                                    </div>
+                                    <?php
+                                    $i++;
+                                    if ($i == 5) {
+                                        break;
+                                    }
+                                }
+                                ?>
+                            </div>
+                           
+                        </div>
+                    <?php }
+                }
+                ?>
+            </div>
+        </div>
+    <?php
+    }
+}
+?>
