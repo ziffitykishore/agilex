@@ -75,3 +75,58 @@
         .lib-list-reset-styles();
     }
 }
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    h1 {
+        font-size: 5.5rem;
+    }
+    h2 {
+        font-size: 5rem;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+    body {
+        font-size: 1.4rem;
+    }
+    h1 {
+        font-size: 4rem;
+        margin-bottom: 2rem;
+    }
+    h2 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
+
+    h3, .h3 {
+        font-size: 2.5rem;
+    }
+
+    h4, .h4 , .txt-18 {
+        font-size: 1.6rem;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    h1 {
+        font-size: 3rem;
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    h2 {
+        font-size: 2.5rem;
+    }
+    h3, .h3 {
+        font-size: 2rem;
+    }
+    h4, .h4 {
+        font-size: 1.5rem;
+    }
+}
