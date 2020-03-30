@@ -173,3 +173,9 @@
         padding-top: 2rem;
     }
 }
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+    .action.primary {
+        padding: 14px 15px;
+    }
+}
