@@ -97,6 +97,22 @@ if (isHttpHost("integration-5ojmyuq-kzhstxzybfg6w.us-3.magentosite.cloud")) {
     $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
 
+if (isHttpHost("livingearthcraft.integration-5ojmyuq-kzhstxzybfg6w.us-3.magentosite.cloud")) {
+    $_SERVER["MAGE_RUN_CODE"] = "livingearthcraft";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+if (isHttpHost("continuumpedicure.integration-5ojmyuq-kzhstxzybfg6w.us-3.magentosite.cloud")) {
+    $_SERVER["MAGE_RUN_CODE"] = "continuumpedicure";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+if (isHttpHost("taraspatherapy.integration-5ojmyuq-kzhstxzybfg6w.us-3.magentosite.cloud")) {
+    $_SERVER["MAGE_RUN_CODE"] = "taraspatherapy";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+
 function isHttpHost($host)
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
