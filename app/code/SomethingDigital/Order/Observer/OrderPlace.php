@@ -71,7 +71,7 @@ class OrderPlace implements ObserverInterface
      */
     protected function processResponse($order, $response)
     {
-        if ($response['status'] != 100 || !isset($response['body']['SxOrderId'])) {
+        if (!$this->orderPlaceApi->isSuccessful($response['status']) || !isset($response['body']['SxOrderId'])) {
             $this->email->sendEmail($order, $response);
             return;
         }
