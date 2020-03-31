@@ -1,7 +1,5 @@
 <?php
-/**
- * copy wight
- */
+
 declare(strict_types=1);
 
 namespace Earthlite\Customer\Test\Unit\Plugin\Model;

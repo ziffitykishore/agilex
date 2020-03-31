@@ -1,10 +1,6 @@
 <?php
 declare(strict_types=1);
 
-/**
- * Class Data
- *
- */
 namespace Earthlite\Customer\Setup\Patch\Data;
 use Magento\Customer\Model\Customer;
 use Magento\Customer\Setup\CustomerSetupFactory;
