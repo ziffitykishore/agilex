@@ -15,8 +15,6 @@ $tierPriceModel = $block->getPrice();
 $tierPrices = $tierPriceModel->getTierPriceList();
 $minSaleQty = $tierPriceModel->getMinSaleQty();
 $basePrice = $tierPriceModel->getBasePrice();
-
-
 $total = count($tierPrices);
 ?>
 <?php if (count($tierPrices)) : ?>
