@@ -85,40 +85,54 @@
     transform: translate3d(@x, @y, @z);
 }
 
-.bg-primary {
-    background: @theme__color__primary;
-}
-.bg-secondary {
-    background: @theme__color__secondary;
-}
-.bg-linen {
-    background: @color__linen;
-}
-.bg-white {
-    background: #fff;
-}
-.bg-light {
-    background: @color__ghostwhite;
-}
+//
+//  Common
+//  _____________________________________________
 
-.text-title {
-    color: @text__color__secondary;
-}
+& when (@media-common = true) {
 
-.py-10 {
-    padding: 6rem 0;
-}
+    .bg-primary {
+        background: @theme__color__primary;
+    }
+    .bg-secondary {
+        background: @theme__color__secondary;
+    }
+    .bg-linen {
+        background: @color__linen;
+    }
+    .bg-white {
+        background: #fff;
+    }
+    .bg-light {
+        background: @color__ghostwhite;
+    }
 
-.pb-10 {
-    padding-bottom: 6rem;
-}
+    .text-title {
+        color: @text__color__secondary;
+    }
 
-.pt-6 {
-    padding-top: 4rem;
-}
+    .py-10 {
+        padding: 6rem 0;
+    }
 
-.mb-6 {
-    margin-bottom: 4rem;
+    .pb-10 {
+        padding-bottom: 6rem;
+    }
+
+    .pt-6 {
+        padding-top: 4rem;
+    }
+
+    .mb-6 {
+        margin-bottom: 4rem;
+    }
+    .abs-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        transform: translate(-50%,-50%);
+    }
 }
 
 .inner-container {
@@ -169,5 +183,11 @@
     }
     .pt-6 {
         padding-top: 2rem;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+    .action.primary {
+        padding: 14px 15px;
     }
 }
