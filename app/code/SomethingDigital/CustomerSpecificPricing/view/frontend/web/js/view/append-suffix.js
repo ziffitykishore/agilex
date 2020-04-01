@@ -9,8 +9,10 @@ define([
         }
 
         $.ajax(settings).done(function(data){
-        	var sku = $('[itemprop=sku]').text();
-        	$('[itemprop=sku]').text(sku + data.suffix);
+            var sku = $('[itemprop=sku]').text();
+            if (data.suffix != null) {
+                $('[itemprop=sku]').text(sku + data.suffix);
+            }
         });
     }
 });
