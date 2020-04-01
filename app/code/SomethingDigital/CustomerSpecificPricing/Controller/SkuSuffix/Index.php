@@ -21,7 +21,7 @@ class Index extends Action
     public function execute()
     {
         $jsonResult = $this->resultFactory->create('json');
-        $suffix = $suffix = $this->sessionManager->getSkuSuffix();
+        $suffix = $this->sessionManager->getSkuSuffix();
 
         $jsonResult->setHttpResponseCode(200);
         $jsonResult->setData(
