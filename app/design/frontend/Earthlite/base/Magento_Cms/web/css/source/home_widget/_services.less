@@ -1,0 +1,53 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .home-elservice {
+        padding: 20px 0;
+        border-bottom: 1px solid @border_color;
+        .media {
+            padding: 10px;
+        }
+        i {
+            color: @color__points;
+            margin-right: 30px;
+        }
+        h5 {
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+        .icon-delivery {
+            font-size: 5rem;
+            line-height: .8;
+        }
+        .icon-security, .icon-support {
+            font-size: 4rem;
+        }
+        .col-md-4:not(:first-of-type) {
+            border-left: 1px solid @border_color;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .home-elservice {
+        .col-md-4:not(:last-of-type) {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .home-elservice {
+        .col-md-4:not(:last-of-type) {
+            margin-bottom: 20px;
+        }
+        i {
+            margin-right: 20px;
+        }
+        .media {
+            padding: 0;
+        }
+    }
+}
