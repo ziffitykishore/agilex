@@ -229,6 +229,7 @@
     require(['jquery', 'jquery/ui'], function ($) {
         jQuery(document).ready(function () {
             $(".field-abmp_number").hide();
+            $("#abmp_number").val('');
             $("#is_abmp").change(function () {
                 if ($(this).prop("checked") == true) {
                     $(".field-abmp_number").show();

@@ -16,7 +16,6 @@ use PHPUnit\Framework\TestCase;
 use Magento\Customer\Model\ResourceModel\Group as ResGroup;
 use Magento\Customer\Model\Group;
 
-
 /**
  * Description of ABMPCustomersGroupChangePluginTest
  *
@@ -69,17 +68,18 @@ class ABMPCustomersGroupChangePluginTest extends TestCase
     {
         $this->attributeInterfaceMock->expects($this->any())
              ->method('getValue')
-             ->willReturn($groupId);
+             ->willReturn('123456');
         $this->customerInterfaceMock->expects($this->any())
             ->method('getCustomAttribute')
             ->willReturn($this->attributeInterfaceMock);
+        
         
         $customerGroupModelMock = $this->getMockBuilder(Group::class)
             ->disableOriginalConstructor()
             ->getMock();
         $customerGroupModelMock->expects($this->any())
              ->method('getId')
-             ->willReturn(4);
+             ->willReturn($groupId);
         
         $this->customerGroupModelFactoryMock->expects($this->any())
              ->method('create')
@@ -100,7 +100,7 @@ class ABMPCustomersGroupChangePluginTest extends TestCase
         
         $this->customerInterfaceMock->expects($this->any())
             ->method('setGroupId')
-            ->with(4);
+            ->with($groupId);
         
         $this->assertEquals(
             [$this->customerInterfaceMock, ''],
