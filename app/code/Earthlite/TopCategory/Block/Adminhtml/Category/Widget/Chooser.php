@@ -1,8 +1,8 @@
 <?php
 namespace Earthlite\TopCategory\Block\Adminhtml\Category\Widget;
 
-
-class Chooser extends \Magento\Backend\Block\Template {
+class Chooser extends \Magento\Backend\Block\Template
+{
 
     protected $_elementFactory;
     /**
@@ -12,7 +12,8 @@ class Chooser extends \Magento\Backend\Block\Template {
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Data\Form\Element\Factory $elementFactory, array $data = []
+        \Magento\Framework\Data\Form\Element\Factory $elementFactory,
+        array $data = []
     ) {
         $this->_elementFactory = $elementFactory;
         parent::__construct($context, $data);
@@ -24,7 +25,8 @@ class Chooser extends \Magento\Backend\Block\Template {
      * @param \Magento\Framework\Data\Form\Element\AbstractElement $element Form Element
      * @return \Magento\Framework\Data\Form\Element\AbstractElement
      */
-    public function prepareElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element) {
+    public function prepareElementHtml(\Magento\Framework\Data\Form\Element\AbstractElement $element)
+    {
         $htmlId = $element->getId();
         $data = $element->getData();
         $data['after_element_js'] = $this->_afterElementJs($element);

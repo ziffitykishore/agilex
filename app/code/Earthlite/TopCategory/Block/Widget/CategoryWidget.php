@@ -3,36 +3,49 @@
 namespace Earthlite\TopCategory\Block\Widget;
 
 use Magento\Customer\Model\Context;
-use \Earthlite\CustomerSession\Model\Customer\Context as CustomerIdContext;
 
-class CategoryWidget extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface {
+
+class CategoryWidget extends \Magento\Framework\View\Element\Template implements \Magento\Widget\Block\BlockInterface
+{
 
     // @codingStandardsIgnoreStart
     protected $_categoryFactory;
     protected $httpContext;
-    // protected $customerHelper;
+
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    /**
+     * Subcategory config path
+     */
+    const XML_PATH_TOPCATEGORY_CONFIG = 'subcategory/general/enabletopcategory';
 
     public function __construct(
     \Magento\Framework\View\Element\Template\Context $context,
     \Magento\Catalog\Model\CategoryFactory $categoryFactory,
-    \Magento\Framework\App\Http\Context $httpContext
-    // \Earthlite\Customer\Helper\Data $customerHelper
+    \Magento\Framework\App\Http\Context $httpContext,
+    \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+
     ) {
         $this->_categoryFactory = $categoryFactory;
         $this->httpContext = $httpContext;
-        // $this->_customerHelper = $customerHelper;
         $this->_storeManager = $context->getStoreManager();
         $this->setTemplate($this->_getData('template'));
         parent::__construct($context);
+        $this->scopeConfig = $scopeConfig;
     }
 
-    public function getCategorymodel($catid) {
+    public function getCategorymodel($catid) 
+    {
         $_category = $this->_categoryFactory->create();
         $_category->load($catid);
         return $_category;
     }
 
-    public function getCatalogData() {
+    public function getCatalogData() 
+    {
         $catIds = explode(',', $this->_getData('parentcat'));
         $catIdsArray = array();
         if (isset($catIds)) {
@@ -48,34 +61,17 @@ class CategoryWidget extends \Magento\Framework\View\Element\Template implements
             'mediaBaseUrl' => $mediaBaseUrl
         );
         return $returndata;
-    }
-    public function isLoggedIn() {
-        return $this->httpContext->getValue(Context::CONTEXT_AUTH);
-    }
-
-    public function getCustomerId() {
-        return $this->httpContext->getValue(CustomerIdContext::CONTEXT_CUSTOMER_ID);
-    }
-
-    public function getUser(){
-        $user = $this->_getData('user');
-        $isB2BCustomer = null;
-        if($this->isLoggedIn())
-        {
-            $isB2BCustomer = $this->_customerHelper->isBusinessCustomer($this->getCustomerId());
-        }
-        if($user == 'b2b_user')
-        {
-                return ($isB2BCustomer ? true : false);
-        }else if($user == 'guest_b2c'){
-            return ($isB2BCustomer ? false : true);
-        }
-        
-        return true;
-    }
+    }    
     
-    public function getTitle(){
+    public function getTitle()
+    {
         return $this->_getData('title');
     }
-    
+
+    public function getTopCategoryConfig()
+    {
+        $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
+
+        return $this->scopeConfig->getValue(self::XML_PATH_TOPCATEGORY_CONFIG, $storeScope);
+    }    
 }

@@ -1,6 +1,7 @@
 <?php
-if ($block->getUser()) {
-    $data = $this->getCatalogData();
+if ($block->getTopCategoryConfig()) 
+{
+    $data = $block->getCatalogData();
     $catalogData = $data['catalogData'];
     $mediaBaseUrl = $data['mediaBaseUrl'];
     if (isset($catalogData) && count($catalogData) > 0) {
@@ -18,9 +19,7 @@ if ($block->getUser()) {
                             <?php
                             $categoryName = str_replace(' ', '-', $cat->getName());
                             $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
-                            $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl(): $this->getViewFileUrl('Earthlite_TopCategory::images/image_not_available.png');
-                            
-                            // $categoryImageURL = $mediaBaseUrl . "catalog/category/" . strtolower(str_replace('--', '-', $CategoryNameSplChar)) . ".jpg";
+                            $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl(): $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
                             ?>
                             <img src="<?php echo $block->escapeUrl($categoryImageURL); ?>?format=A_68" alt="<?php echo $block->escapeHtml($cat->getName()); ?>" />
                         </div>
