@@ -8,7 +8,10 @@
 ?>
 
 <div data-block="minicart" class="minicart-wrapper">
-    <a class="action showcart" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>"
+    <a class="action showmobcart" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>">
+    <span class="text"><?= $block->escapeHtml(__('My Cart')) ?></span>
+    </a>
+    <a class="action showcart desk" href="<?= $block->escapeUrl($block->getShoppingCartUrl()) ?>"
        data-bind="scope: 'minicart_content'">
         <span class="text"><?= $block->escapeHtml(__('My Cart')) ?></span>
         <span class="counter qty empty"

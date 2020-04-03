@@ -24,6 +24,7 @@
 
     .block-minicart {
         .items-total {
+            color: @title_color;
             float: left;
             margin: 0 @indent__s;
 
@@ -32,7 +33,11 @@
             }
         }
 
+        .action.viewcart {
+            font-weight: 600;
+        }
         .subtotal {
+            color: @title_color;
             margin: 0 @indent__s @indent__s;
             text-align: right;
 
@@ -45,6 +50,7 @@
             .price-wrapper {
                 &:first-child {
                     .price {
+                        color: @title_color;
                         font-size: @font-size__l;
                         font-weight: @font-weight__bold;
                     }
@@ -71,7 +77,7 @@
 
         .block-content {
             > .actions {
-                margin-top: 15px;
+                margin-top: 10px;
                 text-align: center;
 
                 > .primary {
@@ -79,10 +85,8 @@
 
                     .action {
                         &.primary {
-                            &:extend(.abs-button-l all);
-                            display: block;
-                            margin-bottom: 15px;
-                            width: 100%;
+                            &:extend(.abs-button-s all);
+                            margin-bottom: 10px;
 
                             &:last-child {
                                 margin-bottom: 0;
@@ -105,23 +109,23 @@
     .minicart-wrapper {
         .lib-dropdown(
         @_toggle-selector: ~'.action.showcart',
-        @_options-selector: ~'.block-minicart',
-        @_dropdown-list-width: 320px,
-        @_dropdown-list-position-right: 0,
-        @_dropdown-list-pointer-position: right,
-        @_dropdown-list-pointer-position-left-right: 26px,
-        @_dropdown-list-z-index: 101,
-        @_dropdown-toggle-icon-content: @icon-cart,
-        @_dropdown-toggle-active-icon-content: @icon-cart,
-        @_dropdown-list-item-padding: false,
-        @_dropdown-list-item-hover: false,
-        @_icon-font-position: before,
-        @_icon-font-size: 35px,
-        @_icon-font-line-height: 33px,
-        @_icon-font-color: @minicart-icons-color,
-        @_icon-font-color-hover: @minicart-icons-color-hover,
-        @_icon-font-color-active: @minicart-icons-color
-        );
+            @_options-selector: ~'.block-minicart',
+            @_dropdown-list-width: 320px,
+            @_dropdown-list-position-right: 0,
+            @_dropdown-list-pointer-position: right,
+            @_dropdown-list-pointer-position-left-right: 26px,
+            @_dropdown-list-z-index: 101,
+            @_dropdown-toggle-icon-content: @icon-cart,
+            @_dropdown-toggle-active-icon-content: @icon-cart,
+            @_dropdown-list-item-padding: false,
+            @_dropdown-list-item-hover: false,
+            @_icon-font-position: before,
+            @_icon-font-size: 35px,
+            @_icon-font-line-height: 33px,
+            @_icon-font-color: @minicart-icons-color,
+            @_icon-font-color-hover: @minicart-icons-color-hover,
+            @_icon-font-color-active: @minicart-icons-color
+            );
         float: right;
 
         .block-minicart {
@@ -148,11 +152,11 @@
         .action {
             &.close {
                 .lib-button-icon(
-                    @icon-remove,
-                    @_icon-font-size: 32px,
+                @icon-remove,
+                @_icon-font-size: 32px,
                     @_icon-font-line-height: 32px,
                     @_icon-font-text-hide: true
-                );
+                    );
                 .lib-button-reset();
                 height: 40px;
                 position: absolute;
@@ -209,15 +213,18 @@
         .lib-css(margin, 0 -@minicart__padding-horizontal);
         border-left: 0;
         border-right: 0;
-        overflow-x: auto;
+        overflow-y: auto;
         padding: 15px;
+        height: auto !important;
+        max-height: -webkit-calc(~'100vh - 350px');
+        max-height: calc(~'100vh - 350px');
     }
 
     .minicart-items {
         .lib-list-reset-styles();
 
         .product-item {
-            padding: @indent__base 0;
+            padding:15px 0;
 
             &:not(:first-child) {
                 .lib-css(border-top, 1px solid @minicart__border-color);
@@ -254,13 +261,13 @@
 
             .toggle {
                 .lib-icon-font(
-                    @_icon-font-content: @icon-down,
+                @_icon-font-content: @icon-down,
                     @_icon-font-size: 28px,
                     @_icon-font-line-height: 16px,
                     @_icon-font-text-hide: false,
                     @_icon-font-position: after,
                     @_icon-font-display: block
-                );
+                    );
                 cursor: pointer;
                 position: relative;
 
@@ -274,15 +281,16 @@
             &.active {
                 > .toggle {
                     .lib-icon-font-symbol(
-                        @_icon-font-content: @icon-up,
+                    @_icon-font-content: @icon-up,
                         @_icon-font-position: after
-                    );
+                        );
                 }
             }
         }
 
         .product-item-name {
             font-weight: @font-weight__regular;
+            font-size: 1.3rem;
             margin: 0 0 @indent__s;
 
             a {
@@ -293,7 +301,12 @@
         .product-item-details {
             padding-left: 88px;
 
+            dt {
+                color: @title_color;
+            }
+
             .price {
+                color: @title_color;
                 font-weight: @font-weight__bold;
             }
 
@@ -318,13 +331,13 @@
         .product.options {
             .tooltip.toggle {
                 .lib-icon-font(
-                    @icon-down,
-                    @_icon-font-size: 28px,
+                @icon-down,
+                @_icon-font-size: 28px,
                     @_icon-font-line-height: 28px,
                     @_icon-font-text-hide: true,
                     @_icon-font-margin: -3px 0 0 7px,
                     @_icon-font-position: after
-                );
+                    );
 
                 .details {
                     display: none;
@@ -342,6 +355,7 @@
         .item-qty {
             text-align: center;
             width: 45px;
+            height: 30px;
         }
 
         .update-cart-item {
@@ -357,20 +371,20 @@
             &.edit,
             &.delete {
                 .lib-icon-font(
-                    @icon-settings,
-                    @_icon-font-size: 28px,
+                @icon-settings,
+                @_icon-font-size: 28px,
                     @_icon-font-line-height: 28px,
                     @_icon-font-text-hide: true,
                     @_icon-font-color: @color-gray19,
                     @_icon-font-color-hover: @color-gray19,
                     @_icon-font-color-active: @color-gray19
-                );
+                    );
             }
 
             &.delete {
                 .lib-icon-font-symbol(
-                    @_icon-font-content: @icon-trash
-                );
+                @_icon-font-content: @icon-trash
+                    );
             }
         }
     }
@@ -413,6 +427,10 @@
         .block-minicart {
             right: -15px;
             width: 390px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+            .action.primary {
+                padding: 9px 15px;
+            }
         }
     }
 }
