@@ -1,0 +1,60 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .spa-table {
+        h2 {
+            color: @theme__color__primary;
+            padding-bottom: 15px;
+            border-bottom: 2px solid @theme__color__primary;
+            display: inline-block;
+            text-transform: uppercase;
+            .lib-font-size(20);
+            font-weight: @font-weight__bold;
+        }
+
+        .content {
+            .lib-font-size(60);
+            font-weight: @font-weight__semibold;
+            color: @color-white;
+            max-width: 490px;
+            margin-bottom: 35px;
+        }
+
+        .action {
+            padding: 20px 60px;
+            border: 2px solid @color-white;
+            .br-radius(4px);
+            display: inline-block;
+            color: @color-white;
+            .lib-font-size(16);
+            font-weight: @font-weight__semibold;
+            text-decoration: none;
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .spa-table {
+        .content {
+            .lib-font-size(40);
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .spa-table {
+        padding: 150px 0;
+    }
+}
