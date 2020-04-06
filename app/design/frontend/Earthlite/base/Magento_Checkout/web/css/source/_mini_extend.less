@@ -7,7 +7,7 @@
         float: none;
 
         .action {
-            &.showcart, &.showmobcart {
+            &.showcart {
                 line-height: normal;
                 vertical-align: middle;
                 position: relative;
@@ -87,6 +87,9 @@
             display: none;
         }
     }
+    .minicart-wrapper .action.showcart .counter.qty {
+        left: 5px;
+    }
 }
 
 
@@ -100,8 +103,8 @@
             right: 0;
         }
     }
-    .action {
-        &.showmobcart {
+    .action.showcart {
+        &.mob {
             display: none;
         }
     }
