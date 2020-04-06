@@ -1,0 +1,162 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .home-blog {
+        h2 {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+    }
+    .blog-list {
+
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 @layout-indent__width;
+
+        .row {
+            align-items: center;
+        }
+
+        .blog-image-wrap {
+            .slick-arrows {
+                background: @color__linen;
+                height: 125px;
+                max-width: 260px;
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                right: 15px;
+                z-index: 1;
+                .flex();
+                align-items: center;
+                justify-content: center;
+                .br-radius(10px);
+
+
+                .slick-arrow {
+                    height: 40px;
+                    width: 40px;
+                    background: transparent;
+                    border: 2px solid @theme__color__secondary;
+                    transform: none;
+                    position: static;
+                    .transition(all 0.5s ease 0s);
+
+                    &:before {
+                        color: @theme__color__secondary;
+                        font-size: 16px;
+                    }
+
+                    &:hover {
+                        background: @color-white;
+                        border-color: @color-white;
+                    }
+
+                    & + .slick-arrow {
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+
+        .blog-category {
+            background: @color-orange;
+            color: @color-white;
+            font-size: @font-size__s + 1;
+            padding: 6px 20px;
+            display: inline-block;
+            text-transform: uppercase;
+            .br-radius(3px);
+            margin-bottom: 30px;
+            font-weight: @font-weight__semibold;
+        }
+
+        .blog-title {
+            .lib-font-size(30);
+            color: @theme__color__secondary;
+            font-weight: @font-weight__semibold;
+            padding-bottom: 30px;
+            border-bottom: 1px solid @color-lines;
+        }
+
+        .blog-desc {
+            .lib-font-size(16);
+            margin: 30px 0;
+        }
+
+        .action {
+            text-transform: uppercase;
+            color: @text__color;
+            font-weight: @font-weight__semibold;
+            &:hover {
+                text-decoration: none;
+            }
+
+            &:after {
+                content: @icon-chevron-right;
+                font-family: @icon__font-name;
+                display: inline-block;
+                vertical-align: middle;
+                .lib-font-size(16);
+                line-height: normal;
+            }
+
+        }
+
+        .blog-image {
+            padding: 80px 80px 80px 0px;
+            &:before {
+                content: '';
+                position: absolute;
+                max-width: 760px;
+                width: 100%;
+                height: 100%;
+                left: 70px;
+                top: 0px;
+                .br-radius(10px);
+                background: @color__linen;
+                z-index: -1;
+            }
+
+
+            img {
+                .br-radius(10px);
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+    .blog-list {
+        .blog-image {
+            padding: 50px 50px 50px 0;
+        }
+        .blog-image-wrap {
+            .slick-arrows {
+                max-width: 200px;
+                height: 100px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .blog-list {
+        .blog-image {
+            padding: 30px;
+
+            &:before {
+                left: 0;
+            }
+        }
+        .blog-image-wrap {
+            margin-bottom: 30px;
+            .slick-arrows {
+                max-width: 200px;
+                height: 100px;
+            }
+        }
+    }
+}
