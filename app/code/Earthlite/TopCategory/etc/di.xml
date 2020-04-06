@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">    
+    <type name="Magento\Wishlist\Helper\Data">
+        <plugin name="EarthliteHelperData" type="Earthlite\TopCategory\Plugin\HelperPlugin" sortOrder="10"/>
+    </type>
+</config>
