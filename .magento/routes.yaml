@@ -6,6 +6,18 @@
     type: upstream
     upstream: "mymagento:http"
 
+"http://livingearthcraft.{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"http://continuumpedicure.{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
+"http://taraspatherapy.{default}/":
+    type: upstream
+    upstream: "mymagento:http"
+
 "http://{all}/":
     type: upstream
     upstream: "mymagento:http"
