@@ -32,8 +32,8 @@ define([
 
         $(window).scroll(function () {
 
-            let panel = $('.panel.header').outerHeight();
-            if ($(window).scrollTop() >= 46) {
+            let panel = $('.header-wrapper').outerHeight();
+            if ($(window).scrollTop() >= 130) {
                 navbar.addClass('sticky');
                 $('body').css('paddingTop', panel);
             }
