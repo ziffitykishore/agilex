@@ -1,0 +1,7 @@
+sfjghsfghjlsfgk
+<?php
+$request = $block->getRequest();
+if ($request->getFullActionName() == 'cms_index_index' || $request->getFullActionName() == 'b2bhome_index_index'):
+    ?>
+    <h2><?php echo $block->escapeHtml(__('topCategory')) ?></h2>
+<?php endif; ?>
