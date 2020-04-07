@@ -42,7 +42,7 @@ class HelperPlugin
             
             if ($category == '') {
                 $allowBlock = true;
-            } elseif ($category->getLevel() > 2 || empty($category->getChildrenCategories()->getSize()) || !$viewModel->getSubcategoryConfig()) {
+            } elseif ($category->getLevel() > 2 || empty($category->getChildrenCategories()->getSize())) {
                 $allowBlock = true;
             }
              
