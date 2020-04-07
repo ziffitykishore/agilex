@@ -41,7 +41,6 @@ class TierPrice extends \Magento\Catalog\Pricing\Price\TierPrice
         $stockItem = $this->stockRegistry->getStockItem($this->product->getId());
         
         return $stockItem->getMinSaleQty();
-        return 131;
     }
 
     public function getBasePrice()
