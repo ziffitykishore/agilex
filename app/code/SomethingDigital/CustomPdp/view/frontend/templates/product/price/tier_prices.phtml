@@ -13,6 +13,8 @@
 /** @var \Magento\Catalog\Pricing\Price\TierPrice $tierPriceModel */
 $tierPriceModel = $block->getPrice();
 $tierPrices = $tierPriceModel->getTierPriceList();
+$minSaleQty = $tierPriceModel->getMinSaleQty();
+$basePrice = $tierPriceModel->getBasePrice();
 $total = count($tierPrices);
 ?>
 <?php if (count($tierPrices)) : ?>
@@ -41,16 +43,27 @@ $total = count($tierPrices);
     <table class="<?= /* @escapeNotVerified */ ($block->hasListClass() ? $block->getListClass() : 'prices-tier items') ?>">
         <tr>
             <th><?= __('Quantity'); ?></th>
+            <?php if ($tierPrices[0]['price_qty'] > 2): ?>
+                <th>1 - <?php echo $tierPrices[0]['price_qty'] - 1 ?></th>
+            <?php elseif ($tierPrices[0]['price_qty'] == 2): ?>
+                <th>1</th>
+            <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <?php if ($index == $total - 1): ?>
                     <?= "<th>" . $price['price_qty'] . "+" . "</th>"; ?>
                     <?php break; ?>
                 <?php endif; ?>
-                <?= "<th>" . $price['price_qty'] . "</th>"; ?>
+                <?php
+                    $toQty = $tierPrices[$index + 1]['price_qty'] - 1;
+                    echo "<th>" . $price['price_qty'] . " - " . $toQty ."</th>";
+                ?>
             <?php endforeach; ?>
         </tr>
         <tr> 
             <td class="item row-index"><?= __('Price (ea.)'); ?>:</td>
+            <?php if ($tierPrices[0]['price_qty'] > 1): ?>
+                <td><?php echo $basePrice; ?></td>
+            <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <td class="item">
                         <?php
@@ -70,6 +83,7 @@ $total = count($tierPrices);
         </tr>
         <tr>
             <td class="item row-index"><?= __('You Save'); ?>:</td>
+            <td></td>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <td class="item">
                     <?= $tierPriceModel->getSavePercent($price['price']) . "%"; ?>
