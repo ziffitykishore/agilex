@@ -43,7 +43,11 @@ $total = count($tierPrices);
     <table class="<?= /* @escapeNotVerified */ ($block->hasListClass() ? $block->getListClass() : 'prices-tier items') ?>">
         <tr>
             <th><?= __('Quantity'); ?></th>
-            <th>1 - <?php echo $tierPrices[0]['price_qty'] - 1 ?></th>
+            <?php if ($tierPrices[0]['price_qty'] > 2): ?>
+                <th>1 - <?php echo $tierPrices[0]['price_qty'] - 1 ?></th>
+            <?php elseif ($tierPrices[0]['price_qty'] == 2): ?>
+                <th>1</th>
+            <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <?php if ($index == $total - 1): ?>
                     <?= "<th>" . $price['price_qty'] . "+" . "</th>"; ?>
@@ -57,7 +61,9 @@ $total = count($tierPrices);
         </tr>
         <tr> 
             <td class="item row-index"><?= __('Price (ea.)'); ?>:</td>
-            <td><?php echo $basePrice; ?></td>
+            <?php if ($tierPrices[0]['price_qty'] > 1): ?>
+                <td><?php echo $basePrice; ?></td>
+            <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <td class="item">
                         <?php
