@@ -9,7 +9,7 @@
     <body>
         <referenceContainer name="page.wrapper">
             <container name="subcategory.view.container" htmlTag="div" htmlClass="sub-category-view" before="main.content">
-                <block type='core\template' name='subcategory' template='Earthlite_TopCategory::subcategory.phtml' ifconfig="subcategory/general/enable">
+                <block class="Magento\Framework\View\Element\Template" name='subcategory' template='Earthlite_TopCategory::subcategory.phtml' ifconfig="subcategory/general/enable">
                 	<arguments>
 	                    <argument name="view_model" xsi:type="object">Earthlite\TopCategory\ViewModel\CategoryData</argument>
 	                </arguments>
