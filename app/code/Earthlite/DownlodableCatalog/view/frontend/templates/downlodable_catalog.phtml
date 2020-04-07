@@ -1,0 +1,10 @@
+<?php
+    /** @var \Earthlite\Downlodablecatalog\ViewModel\PubHtml $pubHtmlModel*/
+    $pubHtmlModel = $block->getViewModel();
+    
+?>
+<a href = "<?=$pubHtmlModel->getConfig('earthlite_general/earthlite_pubhtml/pubhtml_source_url') ?>" target="_blank">
+    <img src='<?=$pubHtmlModel->getConfig('earthlite_general/earthlite_pubhtml/pubhtml_img_src') ?>' 
+         data-rel='fh5-light-box-demo' 
+         data-width='900' data-height='500' data-title='Earthlite'>
+</a>
