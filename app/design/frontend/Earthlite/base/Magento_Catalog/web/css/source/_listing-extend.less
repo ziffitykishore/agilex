@@ -1,0 +1,128 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .price-box {
+        .price-label {
+            display: none;
+        }
+    }
+
+
+    .product {
+        &-item-info {
+            border: 1px solid @color-lines;
+            padding: 20px; 
+            .transition(all 0.5s ease 0s);
+
+            &:hover {
+                box-shadow: 0 0px 10px 5px fadeout(@color-lines, 20%);
+            }
+
+            .price {
+                color: @theme__color__primary;
+            }
+        }
+
+        &-item-actions {
+            .action {
+                &.towishlist {
+                    .lib-icon-font(
+                        @_icon-font-content: @icon-heart,
+                        @_icon-font: @icon__font-name,
+                        @_icon-font-size: 16px,
+                        @_icon-font-line-height: 20px,
+                        @_icon-font-color: @icon-color,
+                        @_icon-font-color-hover: inherit,
+                        @_icon-font-color-active: @header-icons-color-hover,
+                        @_icon-font-text-hide: true
+                    );
+                }
+            }
+        }
+    }
+
+    .products {
+        &-grid {
+            .product {
+                &-item {
+                    padding: 10px;
+                }
+                &-item-info {
+                    text-align: center;
+                    .br-radius(10px);
+                    position: relative;
+                    overflow: hidden;
+                    width: 100%;
+
+
+                    .swatch-attribute {
+                        display: none;
+                    }
+
+                    &:hover {
+                        
+                        .product-item-actions {
+                            .action {
+                                &s-primary {
+                                    bottom: 2px;
+                                }
+
+                                &.towishlist {
+                                    top: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &-reviews-summary {
+                    display: none;
+                }
+
+                &-item-inner {
+                    .product-item-actions {
+                        margin: 0;
+                    }
+                }
+
+                &-item-actions {
+                    .action {
+                        &s-primary {
+                            position: absolute;
+                            width: 98%;
+                            left: 0;
+                            right: 0;
+                            margin: 0 auto;
+                            background: @color-white;
+                            padding: 30px 0;
+                            bottom: -100%;
+                            .transition(all 0.5s ease 0s);
+                        }
+
+                        &.primary {
+                            .br-radius(5px);
+                        }
+
+                        &.towishlist {
+                            position: absolute;
+                            top:  -100%;
+                            right: 10px;
+                            .transition(all 0.5s ease 0s);
+                        }
+                        &.tocompare {
+                            display: none;
+                        }
+                    }
+                }
+
+
+
+            }
+        }
+    }
+
+
+}

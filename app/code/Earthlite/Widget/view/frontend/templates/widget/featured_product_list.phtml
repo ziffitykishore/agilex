@@ -2,16 +2,114 @@
 /** \Earthlite\Widget\Block\Product\FeaturedProductsList $block */
 $featuredProducts = $block->getFeaturedProducts();
 ?>
-<h3><?= $block->escapeHtml($block->getData('title')) ?></h3>
-<?php foreach ($featuredProducts as $featuredProduct):
+
+<section class="py-10 featured-products-wrap">
+<h2><?= $block->escapeHtml($block->getData('title')) ?></h2>
+<div class="products wrapper grid products-grid featured-products">
+    <ol class="products list items product-items">
+    <?php foreach ($featuredProducts as $featuredProduct):
        $productDetails = $block->getProductDetails($featuredProduct->getId());
     ?>
-<div>
-    <div class="featured-products">
-        <div><span><?=$productDetails->getName();?></span> </div>
-        <div><img src="<?=$block->getImageUrl($featuredProduct->getImage());?>" alt="<?=$productDetails->getName();?>" height="42" width="42"></div>
-        <div><span><?=$featuredProduct->getMinPrice();?> </span></div>
-        <div><a href="<?=$featuredProduct->getProductUrl();?> ">View Details</a></div>
-    </div>
+        <li class="item product product-item">
+            <div class="product-item-info">
+                <a href="<?=$featuredProduct->getProductUrl();?>" class="product photo product-item-photo" tabindex="-1">
+                    <span class="product-image-container" style="width:240px;">
+                        <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                            <img class="product-image-photo" src="<?=$block->getImageUrl($featuredProduct->getImage());?>" max-width="240" max-height="300" alt="<?=$productDetails->getName();?>">
+                        </span>
+                    </span>
+                </a>
+                <div class="product details product-item-details">
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link" href="<?=$featuredProduct->getProductUrl();?>"><?=$productDetails->getName();?></a>
+                        </strong>
+                        <div class="price-box">
+                            <span class="price"><?=$featuredProduct->getMinPrice();?> </span>
+                        </div>
+                        <div class="product-item-inner">
+                            <div class="product-item-actions">
+                                <div class="actions-primary">
+                                    <a href="<?=$featuredProduct->getProductUrl();?>" class="action primary"><?= $block->escapeHtml(__('View Details')) ?></a>
+                                </div>
+                                <div class="actions-secondary">
+                                    <a href="#" class="action towishlist" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>" tabindex="0">
+                                                <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ol>
 </div>
-<?php endforeach; ?>
+</section>
+
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'slick'
+    ], function ($) {
+        $('.featured-products .product-items').slick({
+            infinite: false,
+            speed: 300,
+            lazyLoad: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            responsive: [
+                {
+                    breakpoint: 1300,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 992,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 640,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+                            
+            ]
+        });
+
+        $('.featured-products .product-items').on('afterChange', function(event, slick, currentSlide){
+            $('.slick-list').addClass('pad');
+            if (currentSlide === 0) {
+                $('.slick-list').removeClass('pad');
+                $('.slick-list').addClass('first').removeClass('last');
+            }
+
+            if (currentSlide !== 0) {
+                $('.slick-list').removeClass('first');
+            }
+
+            if (slick.slideCount === currentSlide + 1) {
+                $('.slick-list').addClass('last').removeClass('first');
+            }
+
+            if (slick.slideCount !== currentSlide + 1) {
+                $('.slick-list').removeClass('last');
+            }
+        });
+
+        $('.featured-products .product-items').on('beforeChange', function(event, slick, currentSlide){
+            $('.slick-active').last().addClass('fade')
+        });
+
+
+
+    });
+</script>
