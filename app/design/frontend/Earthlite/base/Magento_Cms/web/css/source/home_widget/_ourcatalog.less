@@ -1,0 +1,41 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .our-catalogs {
+        .inner-container {
+            position: relative;
+        }
+        img {
+            border-radius: 10px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+    .our-catalogs {
+        p {
+            padding: 1rem 0 3rem;
+        }
+        .v-img {
+            position: absolute;
+            top: 0;
+            right: 15px;
+        }
+        .h-img {
+            vertical-align: top;
+            left: 18%;
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+
+}
