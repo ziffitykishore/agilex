@@ -1,0 +1,44 @@
+<?php
+    $viewModel = $block->getViewModel();
+    $category = $viewModel->getCurrentCategory();
+    $_outputhelper = $viewModel->getCatalogHelper();
+    $subcats = $category->getChildrenCategories();
+if ($subcats->getSize()) {
+    ?>
+<ul class="sub-cat">
+    <?php
+    foreach ($subcats as $subcat) {
+        $_category = $viewModel->loadCategoryById($subcat->getId());
+        $subcaturl = $subcat->getUrl();
+        $_imgHtml = '';
+        $_imgUrl = $_category->getImageUrl() ? $_category->getImageUrl() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
+        if ($_imgUrl) {
+            $_imgHtml = '<div class="list-image"><img src="' . $_imgUrl . '" /></div>';
+            $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
+            ?>
+                <li>
+                <?= $_imgHtml ?>                
+                    <div class="list-content">
+                        <div> <?= $_category->getName() ?></div> 
+                        <div> <?= $_category->getDescription() ?></div> 
+                        <div class="actions"> 
+                            <a class="action subscribe primary" href="<?= $subcaturl ?>"> 
+                            <?= $block->escapeHtml('View All Products')?> 
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            <?php
+        }
+    }
+    ?>
+</ul>
+<?php } elseif ($category->getLevel() == 2) { ?>
+
+<div class="message info empty">
+    <div>We can't find SubCategories matching the selection.</div>
+</div>
+
+    <?php
+}
+?>
