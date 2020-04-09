@@ -6,5 +6,13 @@
 var config = {
     deps: [
         'Magento_Theme/js/custom'
-    ]
+    ],
+    map: {
+        '*': {
+            'mgsaos': 'Magento_Theme/js/aos'
+        }
+    },
+    'shim': {
+        'mgsaos': ['jquery']
+    }
 };

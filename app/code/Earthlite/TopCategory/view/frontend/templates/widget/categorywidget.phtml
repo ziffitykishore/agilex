@@ -1,36 +1,65 @@
 <?php
-if ($block->getTopCategoryConfig()) 
-{
+if ($block->getTopCategoryConfig()) {
     $data = $block->getCatalogData();
     $catalogData = $data['catalogData'];
     $mediaBaseUrl = $data['mediaBaseUrl'];
     if (isset($catalogData) && count($catalogData) > 0) {
-        ?>
-        <h2 class="text-center text-normal">
+       ?>
+        <section class="dragger py-10">
+        <h2 class="mb-6">
             <?php echo $block->getTitle() ?>
         </h2>
-        <div class="home-cat">
-            <?php
-            foreach ($catalogData as $key => $cat) {
-                ?>
-                <div class="col-xs-4 col-sm-4 col-md-3 catalog-category">
-                    <a href="<?php echo $block->escapeUrl($cat->getUrl()); ?>">
-                        <div class="img-border">
-                            <?php
-                            $categoryName = str_replace(' ', '-', $cat->getName());
-                            $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
-                            $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl(): $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
-                            ?>
-                            <img src="<?php echo $block->escapeUrl($categoryImageURL); ?>?format=A_68" alt="<?php echo $block->escapeHtml($cat->getName()); ?>" />
+                <div class="dragger-zone">
+                    <div class="center dragger">
+                        <div class="drag-slider">
+                            <div class="dragger-inner">
+                                <div class="woocommerce columns-4">
+                                    <ul class="products columns-4">
+                                        <?php
+                                        foreach ($catalogData as $key => $cat) {
+                                            ?>
+                                            <li class="product-category product">
+                                                <?php
+                                                $categoryName = str_replace(' ', '-', $cat->getName());
+                                                $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
+                                                $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
+                                                ?>
+                                                <a href="<?= $block->escapeUrl($cat->getUrl()) ?>">
+                                                    <img src="<?= $categoryImageURL ?>" alt="jackets"/>		
+                                                    <h2 class="woocommerce-loop-category__title">
+                                                        <?= $categoryName ?>		
+                                                    </h2>
+                                                </a>
+                                            </li>
+                                            <?php } ?>
+                                        
+                            </ul>
+                                </div>
+                            </div>
+                            <ul class="dragger-controls">
+                                <li>
+                                    <button class="dragger-controls-prev button button--circle button--circle--revert icon-chevron-left">
+                                        <span class="svg svg-arrow-left">
+                                            <?= $block->escapeHtml(__('Previous')) ?>    
+                                        </span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button class="dragger-controls-next button button--circle icon-chevron-right">
+                                        <span class="svg svg-arrow-right">
+                                        <?= $block->escapeHtml(__('Next')) ?>
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
-                        <strong class="cat-name"><?php echo $block->escapeHtml($cat->getName()); ?></strong>
-                    </a>
+                <div class="dragger-footer">
+                    <span class="dragger-scrollbar">
+                        <span class="dragger-scrollbar-handle"></span>
+                    </span>
                 </div>
-                <?php
-            }
-            ?>
-        </div>
-        <?php
-    }
-}
-?>
+                    </div>
+                </div>
+    
+    </section>
+    <?php } }?>
