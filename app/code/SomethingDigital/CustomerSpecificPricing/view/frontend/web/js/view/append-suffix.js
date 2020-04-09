@@ -10,7 +10,7 @@ define([
 
         $.ajax(settings).done(function(data){
             var sku = $('[itemprop=sku]').text();
-            if (data.suffix != null) {
+            if (data.suffix !== null) {
                 $('[itemprop=sku]').text(sku + data.suffix);
             }
         });
