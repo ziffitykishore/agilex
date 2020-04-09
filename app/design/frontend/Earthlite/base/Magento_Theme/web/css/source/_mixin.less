@@ -133,6 +133,20 @@
         -webkit-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);
     }
+    .action.btn-bor {
+        .lib-button-primary();
+        background: transparent;
+        border-radius: 3px;
+        border: 2px solid @title_color;
+        color: @title_color;
+        display: inline-block;
+        text-decoration: none;
+        &:hover {
+            border: 2px solid @theme__color__primary;
+            background: transparent;
+            color: @theme__color__primary;
+        }
+    }
 }
 
 .inner-container {
@@ -195,7 +209,11 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
-    .action.primary {
-        padding: 14px 15px;
+    .action.primary, .action.btn-bor {
+        padding: 14px 20px;
+    }
+    .action.btn-bor {
+        min-width: 170px;
+        text-align: center;
     }
 }
