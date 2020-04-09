@@ -119,6 +119,10 @@
         padding-bottom: 6rem;
     }
 
+    .mb-10 {
+        margin-bottom: 6rem;
+    }
+
     .pt-6 {
         padding-top: 4rem;
     }
@@ -126,6 +130,7 @@
     .mb-6 {
         margin-bottom: 4rem;
     }
+    
     .abs-center {
         position: absolute;
         top: 50%;
@@ -133,20 +138,47 @@
         -webkit-transform: translate(-50%,-50%);
         transform: translate(-50%,-50%);
     }
-    .action.btn-bor {
-        .lib-button-primary();
-        background: transparent;
-        border-radius: 3px;
-        border: 2px solid @title_color;
-        color: @title_color;
-        display: inline-block;
-        text-decoration: none;
-        &:hover {
-            border: 2px solid @theme__color__primary;
-            background: transparent;
-            color: @theme__color__primary;
+
+    .w-overlay {
+        .transition (.5s);
+        background: rgba(0,0,0,.5);
+        cursor: pointer;
+        position: fixed;
+        top: 0;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 99;
+    }
+    a {
+        .icon-chevron-right {
+            transition: transform .3s cubic-bezier(.165,.84,.44,1);
+            display: inline-block;
+        }
+        &:hover .icon-chevron-right {
+            -webkit-animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
+            animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
         }
     }
+}
+
+.action.btn-bor {
+    .lib-button-primary();
+    background: transparent;
+    border-radius: 3px;
+    border: 2px solid @title_color;
+    color: @title_color;
+    display: inline-block;
+    text-decoration: none;
+    &:hover {
+        border: 2px solid @theme__color__primary;
+        background: transparent;
+        color: @theme__color__primary;
+    }
+}
 }
 
 .inner-container {
@@ -161,6 +193,9 @@
     } 
     .pb-10 {
         padding-bottom: 8rem;
+    }
+    .mb-10 {
+        margin-bottom: 8rem;
     } 
     .mb-6 {
         margin-bottom: 5rem;
@@ -177,6 +212,9 @@
     .pb-10 {
         padding-bottom: 10rem;
     }
+    .mb-10 {
+        margin-bottom: 10rem;
+    }
     .mb-6 {
         margin-bottom: 6rem;
     }
@@ -191,6 +229,9 @@
     }
     .pb-10 {
         padding-bottom: 4rem;
+    }
+    .mb-10 {
+        margin-bottom: 4rem;
     }
     .mb-6 {
         margin-bottom: 2rem;
