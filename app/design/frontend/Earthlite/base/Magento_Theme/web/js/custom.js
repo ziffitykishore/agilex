@@ -55,4 +55,15 @@ define([
         e.preventDefault();
         $(this).closest('.alert').slideUp();
     });
+    
+    // home brand1 sec modal
+    $('.home-brand1 a').on('click',function(e){
+        e.preventDefault();
+        $('body').addClass('brand-active');
+    });
+    $('.brand-overlay, .home-brand-more .icon-x').on('click',function(e){
+        e.preventDefault();
+        $('body').removeClass('brand-active');
+    });
+    
 });

@@ -1,17 +1,71 @@
 <?php
 /** \Earthlite\Widget\Block\Product\FeaturedProductsList $block */
 $featuredProducts = $block->getFeaturedProducts();
+$showWishlist = true;
+$showCompare = true;
 ?>
-<h3><?= $block->escapeHtml($block->getData('title')) ?></h3>
-<?php foreach ($featuredProducts as $featuredProduct):
-       $productDetails = $block->getProductDetails($featuredProduct->getId());
-    ?>
-<div>
-    <div class="featured-products">
-        <div><span><?=$productDetails->getName();?></span> </div>
-        <div><img src="<?=$block->getImageUrl($featuredProduct->getImage());?>" alt="<?=$productDetails->getName();?>" height="42" width="42"></div>
-        <div><span><?=$featuredProduct->getMinPrice();?> </span></div>
-        <div><a href="<?=$featuredProduct->getProductUrl();?> ">View Details</a></div>
-    </div>
-</div>
-<?php endforeach; ?>
+<?php if ($exist = ($block->getFeaturedProducts() && $block->getFeaturedProducts()->getSize())) : ?>
+    <section class="py-10 featured-products-wrap">
+        <h2><?= $block->escapeHtml($block->getData('title')) ?></h2>
+        <div class="products wrapper grid products-grid featured-products">
+            <ol class="products list items product-items">
+                <?php
+                foreach ($featuredProducts as $featuredProduct):
+                    $productDetails = $block->getProductDetails($featuredProduct->getId());
+                    ?>
+                    <li class="item product product-item">
+
+                        <div class="product-item-info">
+                            <a href="<?= $featuredProduct->getProductUrl(); ?>" class="product photo product-item-photo" tabindex="-1">
+                                <span class="product-image-container" style="width:240px;">
+                                    <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                                        <img class="product-image-photo" src="<?= $block->getImageUrl($featuredProduct->getImage()); ?>" max-width="240" max-height="300" alt="<?= $productDetails->getName(); ?>">
+                                    </span>
+                                </span>
+                            </a>
+                            <div class="product details product-item-details">
+                                <strong class="product name product-item-name">
+                                    <a class="product-item-link" href="<?= $featuredProduct->getProductUrl(); ?>"><?= $productDetails->getName(); ?></a>
+                                </strong>
+                                <div class="price-box">
+                                    <span class="price"><?= $featuredProduct->getMinPrice(); ?> </span>
+                                </div>
+
+                                <div class="product-item-inner">
+                                    <div class="product-item-actions">
+                                        <div class="actions-primary">
+                                            <a href="<?= $featuredProduct->getProductUrl(); ?>" class="action primary"><?= $block->escapeHtml(__('View Details')) ?></a>
+                                        </div>
+                                        <div class="actions-secondary">
+                                            -                                    <?php if ($showWishlist) : ?>
+                                                <div class="actions-secondary" data-role="add-to-links">
+                                                    <?php //phpcs:disable ?>
+                                                    <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist) : ?>
+                                                        <?php //phpcs:enable  ?>
+                                                        <a href="#" class="action towishlist"
+                                                           data-post='<?= /* @noEscape */ $block->getAddToWishlistParams($featuredProduct) ?>' class="" data-action="add-to-wishlist" title="<?= $block->escapeHtmlAttr(__('Add to Wish List')) ?>">
+                                                            <span><?= $block->escapeHtml(__('Add to Wish List')) ?></span>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+        </div>
+    </section>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Earthlite_Widget//js/featured-product-slick":{}
+    }
+}
+</script>
