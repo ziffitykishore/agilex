@@ -58,7 +58,7 @@
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
-        min-height: 800px !important;
+        min-height: 600px !important;
     }
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
@@ -109,6 +109,9 @@
                 font-size: 50px !important;
             }
         }
+    }
+    .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
+        min-height: 800px !important;
     }
 }
 
