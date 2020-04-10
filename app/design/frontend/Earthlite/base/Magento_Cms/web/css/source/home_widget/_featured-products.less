@@ -9,7 +9,9 @@
 
     .featured-products-wrap {
         text-align: center;
+        overflow: hidden;
             .products-grid {
+                margin: 0;
                 .product-items {
                     max-width: 82%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
                     margin: 0 auto;
@@ -47,21 +49,53 @@
     }
 }
 
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
+    .featured-products-wrap {
+        .products-grid {
+            .product-items {
+                max-width: 100%;
+            }
+            .slick-list {
+                padding-right: 3%;
+                padding-left: 15px;
+                overflow: hidden;
+                transition: all 0.5s ease 0s;
+                &.pad {
+                    padding: 0 3%;
+                }
+
+                &.last{
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
+
 
 //
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
-    .featured-products {
-        .slick-list {
-            padding-right: 10%;
-            &.pad {
-                padding: 0 10%;
-            }
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .featured-products-wrap {
+        .featured-products {
+            .slick-list {
+                padding-right: 7%;
+                padding-left: 15px;
+                overflow: hidden;
+                transition: all 0.5s ease 0s;
+                &.pad {
+                    padding: 0 7%;
+                }
 
-            &.last{
-                padding-right: 0;
+                &.last{
+                    padding-right: 15px;
+                }
             }
         }
     }

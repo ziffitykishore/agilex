@@ -9,6 +9,9 @@
     @keyframes slide-down { 0% { opacity:0; transform:translateY(-100%);}100% { opacity:1; transform:translateY(0);}}
 
 
+    
+
+
     .header{
         &.panel {
             padding-top: 0;
@@ -41,17 +44,13 @@
                         position: relative;
 
                         &:first-child {
-                            background: @color__linen;
+                            font-weight: 600;
                             color: @theme__color__secondary;
-
-                            &:before {
-                                content: '';
-                                border: 5px solid transparent;
-                                border-left-color: @color__linen;
-                                position: absolute;
-                                top: 50%;
-                                .transform(translateY(-50%));
-                                right: -10px;
+                            padding-left: 0;
+                            span {
+                                &:after {
+                                    content: ':';
+                                }
                             }
                         }
 
@@ -148,7 +147,6 @@
         }
 
         .block-search {
-            position: relative;
             .control {
                 position: static;
             }
@@ -161,13 +159,13 @@
         align-items: center;
 
         .minicart-wrapper {
-            margin: 0 0 0 15px;
+            margin: 0 0 0 20px;
         }
 
         > .header {
             padding: 0;
             margin-bottom: 0;
-            margin-left: 15px;
+            margin-left: 20px;
             list-style: none;
 
             > li {
@@ -299,14 +297,30 @@
 //  Desktop
 //  _____________________________________________
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
+    .page-wrapper {
+        .logo {
+            margin: 0;
+            float: none;
+            max-width: none;
+                img {
+                    max-width: 200px;
+                }
+        }
+    }
+
+    .header{
+        &.content {
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+    }
+    
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
     .slogan-sec {
         display: none;
-    }
-    .logo {
-        img {
-            max-width: 150px;
-        }
     }
 
     .header {
@@ -465,6 +479,10 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .header{
+        &.content {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
         &.panel {
             .our-brands {
                 li {
@@ -531,18 +549,8 @@
             .logo {
                 margin: 0;
             }
-
-            &.content {
-                padding-top: 20px;
-                padding-bottom: 20px;
-                transition: all 0.5s ease 0s;
-            }
         }
-
-
-
     }
-
 
     .nav-sections {
         background: transparent;
