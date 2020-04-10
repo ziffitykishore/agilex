@@ -58,7 +58,7 @@
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
-        min-height: 800px !important;
+        min-height: 600px !important;
     }
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
@@ -66,7 +66,7 @@
         min-height: 500px !important;
     }
     .home-banner {
-        .slick-dots { 
+        .slick-dots {
             bottom: 20px;
         }
         .pagebuilder-overlay {
@@ -96,6 +96,9 @@
                 }
             }
         }
+        sup {
+            top: -1em;
+        }
     }
 }
 
@@ -107,11 +110,14 @@
             }
         }
     }
+    .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
+        min-height: 800px !important;
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .home-banner {
-        .slick-dots { 
+        .slick-dots {
             display: none !important;
         }
         .pagebuilder-overlay {

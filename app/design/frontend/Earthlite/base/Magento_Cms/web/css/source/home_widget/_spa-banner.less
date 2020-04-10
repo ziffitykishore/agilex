@@ -1,0 +1,70 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .spa-table {
+        padding: 10rem 0;
+        h2 {
+            color: @theme__color__primary;
+            padding-bottom: 15px;
+            border-bottom: 2px solid @theme__color__primary;
+            display: inline-block;
+            text-transform: uppercase;
+            .lib-font-size(20);
+            font-weight: @font-weight__bold;
+        }
+
+        .content {
+            .lib-font-size(40);
+            font-weight: @font-weight__semibold;
+            color: @color-white;
+            max-width: 385px;
+            margin-bottom: 35px;
+        }
+
+        .action.btn-bor {
+            border: 2px solid @color-white;
+            background: transparent;
+            color: @color-white;
+            padding: 15px 30px;
+            &:hover {
+                border: 2px solid @theme__color__primary;
+                background: transparent;
+                color: @theme__color__primary;
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .spa-table {
+        .content {
+            .lib-font-size(40);
+        }
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .spa-table {
+        padding: 150px 0;
+
+        .content {
+            .lib-font-size(60);
+            font-weight: @font-weight__semibold;
+            color: @color-white;
+            max-width: 490px;
+            margin-bottom: 35px;
+        }
+    }
+}
