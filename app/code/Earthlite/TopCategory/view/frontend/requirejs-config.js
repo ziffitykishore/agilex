@@ -4,6 +4,6 @@
 
 var config = {
     deps: [
-        'Earthlite_TopCategory/js/dragger'
+       // 'Earthlite_TopCategory/js/dragger'
     ]
 };
