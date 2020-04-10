@@ -21,6 +21,10 @@
     .block-search {
         margin-bottom: 0;
 
+        > div {
+            display: block;
+        }
+
         .block {
             &-title {
                 cursor: pointer;
@@ -43,13 +47,28 @@
             }
         }
 
+        &.active {
+            .block-content {
+                width: 250px;
+                padding: 0 10px;
+                border: 1px solid @secondary__color;
+            }
+        }
+
         .block-content {
             margin-bottom: 0;
             position: absolute;
-            min-width: 250px;
+            width: 0;
             right: 0;
             top: 30px;
-            display: none;
+            transition: all 0.5s ease 0s;
+            overflow: hidden;
+            border-radius: 20px;
+            background: @color-white;
+
+            .actions {
+                visibility: hidden;
+            }
         }
 
         .label {
@@ -86,9 +105,11 @@
         }
 
         input {
-            left: -300%;
-            margin: 15px 0;
-            position: absolute;
+            border: none;
+            padding: 0;
+            &:focus {
+                box-shadow: none;
+            }
         }
 
         .nested {
@@ -244,8 +265,9 @@
         input {
             .lib-input-placeholder(@form-element-input-placeholder__color);
             margin: 0;
-            padding-right: 35px;
+            padding: 0;
             position: static;
+            border: none; 
         }
 
         .action.search {

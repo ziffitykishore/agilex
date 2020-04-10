@@ -9,7 +9,7 @@ define(['jquery', 'slick'], function ($) {
             slidesToScroll: 1,
             responsive: [
                 {
-                    breakpoint: 1300,
+                    breakpoint: 1320,
                     settings: {
                         slidesToShow: 3,
                         slidesToScroll: 1
@@ -23,7 +23,7 @@ define(['jquery', 'slick'], function ($) {
                     }
                 },
                 {
-                    breakpoint: 640,
+                    breakpoint: 768,
                     settings: {
                         arrows: false,
                         slidesToShow: 1,
@@ -35,27 +35,22 @@ define(['jquery', 'slick'], function ($) {
         });
 
         $('.featured-products .product-items').on('afterChange', function (event, slick, currentSlide) {
-            $('.slick-list').addClass('pad');
+            $('.featured-products .slick-list').addClass('pad');
             if (currentSlide === 0) {
-                $('.slick-list').removeClass('pad');
-                $('.slick-list').addClass('first').removeClass('last');
+                $('.featured-products .slick-list').removeClass('pad');
             }
 
             if (currentSlide !== 0) {
-                $('.slick-list').removeClass('first');
+                $('.featured-products .slick-list').removeClass('first');
             }
 
             if (slick.slideCount === currentSlide + 1) {
-                $('.slick-list').addClass('last').removeClass('first');
+                $('.featured-products .slick-list').addClass('last').removeClass('first');
             }
 
             if (slick.slideCount !== currentSlide + 1) {
-                $('.slick-list').removeClass('last');
+                $('.featured-products .slick-list').removeClass('last');
             }
-        });
-
-        $('.featured-products .product-items').on('beforeChange', function (event, slick, currentSlide) {
-            $('.slick-active').last().addClass('fade')
         });
     });
 });

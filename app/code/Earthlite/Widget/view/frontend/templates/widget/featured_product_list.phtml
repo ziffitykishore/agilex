@@ -6,7 +6,7 @@ $showCompare = true;
 ?>
 <?php if ($exist = ($block->getFeaturedProducts() && $block->getFeaturedProducts()->getSize())) : ?>
     <section class="py-10 featured-products-wrap">
-        <h2><?= $block->escapeHtml($block->getData('title')) ?></h2>
+        <h2 class="mb-6 aos-init aos-animate" data-aos="fade-up"><?= $block->escapeHtml($block->getData('title')) ?></h2>
         <div class="products wrapper grid products-grid featured-products">
             <ol class="products list items product-items">
                 <?php
@@ -28,7 +28,7 @@ $showCompare = true;
                                     <a class="product-item-link" href="<?= $featuredProduct->getProductUrl(); ?>"><?= $productDetails->getName(); ?></a>
                                 </strong>
                                 <div class="price-box">
-                                    <span class="price"><?= $featuredProduct->getMinPrice(); ?> </span>
+                                    <span class="price"><?= $block->getProductPrice($featuredProduct); ?> </span>
                                 </div>
 
                                 <div class="product-item-inner">
@@ -36,8 +36,8 @@ $showCompare = true;
                                         <div class="actions-primary">
                                             <a href="<?= $featuredProduct->getProductUrl(); ?>" class="action primary"><?= $block->escapeHtml(__('View Details')) ?></a>
                                         </div>
-                                        <div class="actions-secondary">
-                                            -                                    <?php if ($showWishlist) : ?>
+                                        
+                                        <?php if ($showWishlist) : ?>
                                                 <div class="actions-secondary" data-role="add-to-links">
                                                     <?php //phpcs:disable ?>
                                                     <?php if ($this->helper(\Magento\Wishlist\Helper\Data::class)->isAllow() && $showWishlist) : ?>
@@ -48,9 +48,7 @@ $showCompare = true;
                                                         </a>
                                                     <?php endif; ?>
                                                 </div>
-                                            <?php endif; ?>
-
-                                        </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
