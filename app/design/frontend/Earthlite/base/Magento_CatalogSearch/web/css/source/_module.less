@@ -19,7 +19,12 @@
 
 & when (@media-common = true) {
     .block-search {
+        position: relative;
         margin-bottom: 0;
+
+        > div {
+            display: block !important;
+        }
 
         .block {
             &-title {
@@ -43,13 +48,28 @@
             }
         }
 
+        &.active {
+            .block-content {
+                width: 250px;
+                padding: 0 10px;
+                border: 1px solid fadeout(@color-black, 50%);
+            }
+        }
+
         .block-content {
             margin-bottom: 0;
             position: absolute;
-            min-width: 250px;
+            width: 0;
             right: 0;
             top: 30px;
-            display: none;
+            transition: all 0.5s ease 0s;
+            overflow: hidden;
+            border-radius: 20px;
+            background: @color-white;
+
+            .actions {
+                visibility: hidden;
+            }
         }
 
         .label {
@@ -86,9 +106,11 @@
         }
 
         input {
-            left: -300%;
-            margin: 15px 0;
-            position: absolute;
+            border: none;
+            padding: 0;
+            &:focus {
+                box-shadow: none;
+            }
         }
 
         .nested {
@@ -205,8 +227,56 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .block-search {
+        position: static;
         .block-content {
             margin-bottom: 0;
+            width: 100%;
+            top: -150px;
+            right: 0;
+            left: 0;
+            border-radius: 0;
+            z-index: 999;
+            padding: 15px;
+
+            form {
+                position: relative;
+            }
+
+            input {
+                padding-right: 40px;
+            }
+
+            .actions {
+                visibility: visible;
+
+                .action {
+                    position: absolute;
+                    border: none;
+                    background: transparent;
+                    top: 0;
+                    right: 0;
+
+                    .lib-icon-font(
+                        @_icon-font-content: @icon-magnify,
+                        @_icon-font: @icon__font-name,
+                        @_icon-font-size: 20px,
+                        @_icon-font-line-height: 20px,
+                        @_icon-font-color: @header-icons-color,
+                        @_icon-font-color-hover: @header-icons-color-hover,
+                        @_icon-font-color-active: @header-icons-color-hover,
+                        @_icon-font-text-hide: true
+                    );
+                }
+            }
+        }
+
+        &.active {
+            .block-content {
+                top: 0;
+                width: 100%;
+                padding: 15px;
+                border: none;
+            }
         }
     }
 }
@@ -244,8 +314,9 @@
         input {
             .lib-input-placeholder(@form-element-input-placeholder__color);
             margin: 0;
-            padding-right: 35px;
+            padding: 0;
             position: static;
+            border: none; 
         }
 
         .action.search {

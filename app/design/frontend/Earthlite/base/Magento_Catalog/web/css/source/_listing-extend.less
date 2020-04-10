@@ -34,19 +34,21 @@
             }
         }
 
-        &-item-actions {
+        .product-item-actions {
             .action {
-                &.towishlist {
-                    .lib-icon-font(
-                        @_icon-font-content: @icon-heart,
-                        @_icon-font: @icon__font-name,
-                        @_icon-font-size: 16px,
-                        @_icon-font-line-height: 20px,
-                        @_icon-font-color: @icon-color,
-                        @_icon-font-color-hover: inherit,
-                        @_icon-font-color-active: @header-icons-color-hover,
-                        @_icon-font-text-hide: true
-                    );
+                &s-secondary {
+                    .action.towishlist {
+                        .lib-icon-font(
+                            @_icon-font-content: @icon-heart,
+                            @_icon-font: @icon__font-name,
+                            @_icon-font-size: 16px,
+                            @_icon-font-line-height: 20px,
+                            @_icon-font-color: @icon-font__color,
+                            @_icon-font-color-hover: @theme__color__primary,
+                            @_icon-font-color-active: @header-icons-color-hover,
+                            @_icon-font-text-hide: true
+                        );
+                    }
                 }
             }
         }
