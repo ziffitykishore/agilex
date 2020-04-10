@@ -34,10 +34,6 @@
             border-radius: 10px;
         }
     }
-    body [data-aos=fade-up] {
-        transition: opacity,transform 2s cubic-bezier(.16,1.08,.38,.98),-webkit-transform 2s cubic-bezier(.16,1.08,.38,.98) !important;
-        will-change: transform;
-    }
     .home-brand-more {
         .transition (.7s);
         overflow-y: auto;
@@ -48,9 +44,10 @@
         width: 90%;
         right: 0;
         bottom: 0;
-        padding: 20px;
+        padding: 5%;
         -webkit-transform: translateX(101%);
         transform: translateX(101%);
+        opacity: 0;
         h2 {
             padding-right: 20px;
         }
@@ -79,6 +76,7 @@
     .brand-active {
         overflow: hidden;
         .home-brand-more {
+            opacity: 1;
             -webkit-transform: translateX(0);
             transform: translateX(0);
         }
@@ -125,7 +123,7 @@
             letter-spacing: .5px;
         }
         h5 {
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
     }
     .home-brand-more { 
