@@ -1,0 +1,144 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .home-brand1 {
+        .container {
+            max-width: 1095px;
+        }
+        h5 {
+            color: @theme__color__primary;
+            span {
+                border-bottom: 2px solid @theme__color__primary;
+                padding-bottom: 5px;
+                line-height: 2;
+            }
+        }
+        figure {
+            padding : 0 5px;
+        }
+        a {
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .col-md-8 {
+            display: -ms-flex;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        img {
+            border-radius: 10px;
+        }
+    }
+    body [data-aos=fade-up] {
+        transition: opacity,transform 2s cubic-bezier(.16,1.08,.38,.98),-webkit-transform 2s cubic-bezier(.16,1.08,.38,.98) !important;
+        will-change: transform;
+    }
+    .home-brand-more {
+        .transition (.7s);
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        background: #fff;
+        z-index: 1000;
+        width: 90%;
+        right: 0;
+        bottom: 0;
+        padding: 20px;
+        -webkit-transform: translateX(101%);
+        transform: translateX(101%);
+        h2 {
+            padding-right: 20px;
+        }
+        .icon-x {
+            font-size: 3rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            z-index: 999;
+        }
+        h4 {
+            margin-top: 2rem;
+        }
+    }
+    .brand-overlay { 
+        z-index: 999;
+    }
+    .brand-active {
+        overflow: hidden;
+        .home-brand-more {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        .brand-overlay {
+            visibility: visible;
+            opacity: 1;
+
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .home-brand1 {
+        .col-md-8 {
+            margin-bottom: 20px;
+        }
+        figure {
+            width: 50%;
+        }
+        img {
+            object-fit: cover;
+            object-position: right;
+            width: 100%;
+            height: 300px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+    .home-brand-more { 
+        width: 60%;
+        h4 {
+            margin-top: 3rem;
+        }
+    }
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+    .home-brand1 {
+        .col-md-8 {
+            padding-right: 30px;
+        }
+        p {
+            margin-bottom: 35px;
+            letter-spacing: .5px;
+        }
+        h5 {
+            margin-bottom: 4rem;
+        }
+    }
+    .home-brand-more { 
+        h2 {
+            font-size: 3rem;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .home-brand1 {
+        img {
+            height: 160px;
+        }
+    }
+}
