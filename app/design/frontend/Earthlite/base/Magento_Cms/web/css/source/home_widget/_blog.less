@@ -6,7 +6,6 @@
     .home-blog {
         h2 {
             text-align: center;
-            margin-bottom: 60px;
         }
     }
     .blog-list {
@@ -20,6 +19,10 @@
         }
 
         .blog-image-wrap {
+            .slick-list {
+                .br-radius(10px);
+            }
+            
             .slick-arrows {
                 background: @color__linen;
                 height: 125px;
@@ -91,6 +94,7 @@
             font-weight: @font-weight__semibold;
             &:hover {
                 text-decoration: none;
+                color: @theme__color__primary;
             }
 
             &:after {
@@ -127,7 +131,7 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
     .blog-list {
         .blog-image {
             padding: 50px 50px 50px 0;

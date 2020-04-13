@@ -27,6 +27,10 @@
 
 & when (@media-target = 'mobile'), (@media-target = 'all') {
 
+    @media only screen and (max-width: (@screen__xl - 1)) {
+        .media-width('max', @screen__xl);
+    }
+
     @media only screen and (max-width: (@c-desk - 1)) {
         .media-width('max', @c-desk);
     }

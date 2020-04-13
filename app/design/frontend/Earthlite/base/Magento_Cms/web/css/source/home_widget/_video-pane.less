@@ -14,7 +14,7 @@
     .video-container {
         position: relative;
         overflow: hidden;
-        max-height: 746px;
+        max-height: 546px;
         transition: all 0.5s ease 0s;
         background: @color-white;
 
@@ -62,6 +62,7 @@
 
         video {
             transition: all 0.5s ease 0s;
+            display: block;
         }
 
         &.active {
@@ -98,11 +99,9 @@
 
             .action {
                 &.primary {
-                    max-width: 400px;
-                    padding: 24px 0;
-                    font-size: 35px;
+                    padding: 15px 30px;
+                    font-size: 25px;
                     font-weight: @font-weight__semibold;
-                    width: 100%;
                     text-align: center;
                     background: @theme__color__primary-alt;
                 }
@@ -142,12 +141,6 @@
                 }
             }
         }
-
-        video {
-
-        }
-
-
     }
 }
 
@@ -203,4 +196,25 @@
         }
     }
 
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .video-container {
+        max-height: 746px;
+        .outer-wrapper {
+            .action {
+                &.primary {
+                    max-width: 350px;
+                    width: 100%; 
+                    padding: 20px 0;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
 }

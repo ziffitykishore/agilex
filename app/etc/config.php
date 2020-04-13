@@ -1,5 +1,183 @@
 <?php
 return [
+    'scopes' => [
+        'websites' => [
+            'admin' => [
+                'website_id' => '0',
+                'code' => 'admin',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'default_group_id' => '0',
+                'is_default' => '0'
+            ],
+            'base' => [
+                'website_id' => '1',
+                'code' => 'base',
+                'name' => 'Earthlite',
+                'sort_order' => '0',
+                'default_group_id' => '1',
+                'is_default' => '1'
+            ],
+            'livingearthcraft' => [
+                'website_id' => '9',
+                'code' => 'livingearthcraft',
+                'name' => 'Livingearthcraft',
+                'sort_order' => '0',
+                'default_group_id' => '9',
+                'is_default' => '0'
+            ],
+            'continuumpedicure' => [
+                'website_id' => '12',
+                'code' => 'continuumpedicure',
+                'name' => 'Continuumpedicure',
+                'sort_order' => '0',
+                'default_group_id' => '12',
+                'is_default' => '0'
+            ],
+            'taraspatherapy' => [
+                'website_id' => '15',
+                'code' => 'taraspatherapy',
+                'name' => 'Taraspatherapy',
+                'sort_order' => '0',
+                'default_group_id' => '15',
+                'is_default' => '0'
+            ]
+        ],
+        'groups' => [
+            0 => [
+                'group_id' => '0',
+                'website_id' => '0',
+                'name' => 'Default',
+                'root_category_id' => '0',
+                'default_store_id' => '0',
+                'code' => 'default'
+            ],
+            1 => [
+                'group_id' => '1',
+                'website_id' => '1',
+                'name' => 'Earthlite Store',
+                'root_category_id' => '2',
+                'default_store_id' => '1',
+                'code' => 'earthlite_store'
+            ],
+            9 => [
+                'group_id' => '9',
+                'website_id' => '9',
+                'name' => 'Livingearthcraft Store',
+                'root_category_id' => '9',
+                'default_store_id' => '9',
+                'code' => 'livingearthcraft_store'
+            ],
+            12 => [
+                'group_id' => '12',
+                'website_id' => '12',
+                'name' => 'Continuumpedicure Store',
+                'root_category_id' => '6',
+                'default_store_id' => '12',
+                'code' => 'continuumpedicure_store'
+            ],
+            15 => [
+                'group_id' => '15',
+                'website_id' => '15',
+                'name' => 'Taraspatherapy Store',
+                'root_category_id' => '2',
+                'default_store_id' => '15',
+                'code' => 'taraspatherapy_store'
+            ]
+        ],
+        'stores' => [
+            'admin' => [
+                'store_id' => '0',
+                'code' => 'admin',
+                'website_id' => '0',
+                'group_id' => '0',
+                'name' => 'Admin',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'earthlite_store_view' => [
+                'store_id' => '1',
+                'code' => 'earthlite_store_view',
+                'website_id' => '1',
+                'group_id' => '1',
+                'name' => 'Earthlite Store View',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'livingearthcraft_store_view' => [
+                'store_id' => '9',
+                'code' => 'livingearthcraft_store_view',
+                'website_id' => '9',
+                'group_id' => '9',
+                'name' => 'Livingearthcraft Store View',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'continuumpedicure_store_view' => [
+                'store_id' => '12',
+                'code' => 'continuumpedicure_store_view',
+                'website_id' => '12',
+                'group_id' => '12',
+                'name' => 'Continuumpedicure Store View',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ],
+            'taraspatherapy_store_view' => [
+                'store_id' => '15',
+                'code' => 'taraspatherapy_store_view',
+                'website_id' => '15',
+                'group_id' => '15',
+                'name' => 'Taraspatherapy Store View',
+                'sort_order' => '0',
+                'is_active' => '1'
+            ]
+        ]
+    ],
+    'system' => [
+        'default' => [
+            'general' => [
+                'locale' => [
+                    'code' => 'en_US'
+                ]
+            ],
+            'dev' => [
+                'static' => [
+                    'sign' => '1'
+                ],
+                'front_end_development_workflow' => [
+                    'type' => 'server_side_compilation'
+                ],
+                'template' => [
+                    'minify_html' => '0'
+                ],
+                'js' => [
+                    'merge_files' => '0',
+                    'minify_files' => '0',
+                    'minify_exclude' => [
+                        'tiny_mce' => '/tiny_mce/',
+                        'cardinal_commerce' => '/v1/songbird',
+                        'authorizenet_acceptjs' => '\\.authorize\\.net/v1/Accept'
+                    ],
+                    'move_script_to_bottom' => '0',
+                    'session_storage_logging' => '0',
+                    'translate_strategy' => 'dictionary'
+                ],
+                'css' => [
+                    'minify_files' => '0',
+                    'minify_exclude' => [
+                        'tiny_mce' => '/tiny_mce/'
+                    ],
+                    'use_css_critical_path' => '0'
+                ]
+            ]
+        ],
+        'stores' => [
+
+        ],
+        'websites' => [
+
+        ]
+    ],
     'modules' => [
         'Magento_AdminAnalytics' => 1,
         'Magento_Store' => 1,
@@ -328,6 +506,10 @@ return [
         'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
         'Dotdigitalgroup_Enterprise' => 1,
+        'Earthlite_Customer' => 1,
+        'Earthlite_DownlodableCatalog' => 1,
+        'Earthlite_TopCategory' => 1,
+        'Earthlite_Widget' => 1,
         'Fastly_Cdn' => 1,
         'Klarna_Core' => 1,
         'Klarna_Ordermanagement' => 1,
@@ -338,5 +520,12 @@ return [
         'Vertex_Tax' => 1,
         'Vertex_AddressValidation' => 1,
         'Yotpo_Yotpo' => 1
+    ],
+    'admin_user' => [
+        'locale' => [
+            'code' => [
+                'en_US'
+            ]
+        ]
     ]
 ];

@@ -8,12 +8,9 @@
         position: relative;
         figure {
             padding: 0 2%;
-            transform: scale(0.8);
-            transition: all .3s ease;
             span {
                 border-radius: 10px;
                 display: inline-block;
-                width: 100%;
                 position: relative;
                 &:after {
                     border-radius: 10px;
@@ -25,7 +22,6 @@
                     background: rgba(0, 0, 0, 0.32);
                     content: '';
                     bottom: 0;
-                    opacity: 1;
                     transition: all .3 ease;
                 }
             }
@@ -44,13 +40,6 @@
         .slick-slide img {
             display: inline-block;
             border-radius: 10px;
-            width: 100%;
-        }
-        .slick-center figure {
-            transform: scale(1);
-            span:after {
-                opacity: 0;
-            }
         }
         .slick-arrow {
             height: 50px;
@@ -63,6 +52,27 @@
         }
         .slick-next {
             right: 7%;
+        }
+        /* slide when not active/center*/
+        .slick-slide,
+        .slick-slide[aria-hidden="true"]:not(.slick-cloned) ~ .slick-cloned[aria-hidden="true"] {
+            transform: scale(0.8, 0.8);
+            transition: all 0.3s;
+            figure {
+                span:after {
+                    opacity: 1;
+                }
+            }
+        }
+        /* slide when active/center */
+        .slick-center,
+        .slick-slide[aria-hidden="true"]:not([tabindex="-1"]) + .slick-cloned[aria-hidden="true"] {
+            transform: scale(1, 1);
+            figure {
+                span:after {
+                    opacity: 0;
+                }
+            }
         }
     }
 }
