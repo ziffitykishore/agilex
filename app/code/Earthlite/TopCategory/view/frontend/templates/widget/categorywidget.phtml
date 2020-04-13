@@ -1,36 +1,50 @@
 <?php
-if ($block->getTopCategoryConfig()) 
-{
+if ($block->getTopCategoryConfig()) {
     $data = $block->getCatalogData();
     $catalogData = $data['catalogData'];
     $mediaBaseUrl = $data['mediaBaseUrl'];
     if (isset($catalogData) && count($catalogData) > 0) {
         ?>
-        <h2 class="text-center text-normal">
-            <?php echo $block->getTitle() ?>
-        </h2>
-        <div class="home-cat">
-            <?php
-            foreach ($catalogData as $key => $cat) {
-                ?>
-                <div class="col-xs-4 col-sm-4 col-md-3 catalog-category">
-                    <a href="<?php echo $block->escapeUrl($cat->getUrl()); ?>">
-                        <div class="img-border">
+        <section class="category-slider-wrap py-10">
+            <h2 class="mb-6" data-aos="fade-up">
+                <?php echo $block->getTitle() ?>
+            </h2>
+
+            <div class="products wrapper grid products-grid category-slider" data-aos="fade-up">
+                <ol class="products list items product-items">
+                    <?php foreach ($catalogData as $key => $cat) { ?>
+                        <li class="item product product-item">
                             <?php
                             $categoryName = str_replace(' ', '-', $cat->getName());
                             $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
-                            $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl(): $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
-                            ?>
-                            <img src="<?php echo $block->escapeUrl($categoryImageURL); ?>?format=A_68" alt="<?php echo $block->escapeHtml($cat->getName()); ?>" />
-                        </div>
-                        <strong class="cat-name"><?php echo $block->escapeHtml($cat->getName()); ?></strong>
-                    </a>
+                            $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
+                            ?> 
+                            <div class="product-item-info">
+                                <a class="product-item-link" href="<?= $block->escapeUrl($cat->getUrl()) ?>" tabindex="0">
+                                    <div class="product details product-item-details">
+                                        <img class="product-image" src="<?= $categoryImageURL ?>" alt="<?= $categoryName ?>">
+                                        <strong class="product name product-item-name">
+                                            <?= $categoryName ?>
+                                        </strong>
+                                    </div>
+                                </a>
+                        </li>
+                    <?php } ?>
+                </ol>
+
+                <div class="progress-bar">
+                    <div class="progress-handle" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <?php
-            }
-            ?>
-        </div>
-        <?php
-    }
+            </div>
+        </section>
+    <?php }
 }
 ?>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Earthlite_TopCategory//js/topcatslick":{}
+    }
+}
+</script>

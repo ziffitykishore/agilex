@@ -1,0 +1,116 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    body {
+        overflow-x: hidden;
+    }
+
+    .featured-products-wrap {
+        text-align: center;
+        overflow: hidden;
+            .products-grid {
+                margin: 0;
+                .product-items {
+                    max-width: 82%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ;
+                    margin: 0 auto;
+                }
+                .product-item {
+                    margin-bottom: 0;
+                }
+            }
+      
+        .slick-slider {
+            .slick-list {
+                overflow: visible;
+                .slick-slide[aria-hidden="true"] {
+                    opacity: 0.6;
+                }
+            }
+            .slick-arrow {
+                background: @theme__color__primary;
+                .transition(all 0.5s ease 0s);
+
+                &.slick-prev {
+                    left: 15rem;
+                }
+
+
+                &.slick-next {
+                    right: 15rem;
+                }
+
+                &.slick-disabled {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
+    .featured-products-wrap {
+        .products-grid {
+            .product-items {
+                max-width: 100%;
+            }
+            .slick-list {
+                padding-right: 3%;
+                padding-left: 15px;
+                overflow: hidden;
+                transition: all 0.5s ease 0s;
+                &.pad {
+                    padding: 0 3%;
+                }
+
+                &.last{
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .featured-products-wrap {
+        .featured-products {
+            .slick-list {
+                padding-right: 7%;
+                padding-left: 15px;
+                overflow: hidden;
+                transition: all 0.5s ease 0s;
+                &.pad {
+                    padding: 0 7%;
+                }
+
+                &.last{
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .featured-products-wrap {
+        h2 {
+            margin-bottom: 60px;
+        }
+    }
+}

@@ -25,6 +25,15 @@
             <container name="top_category">                
                 <template name="topcategory" value="topcategory" />
             </container>
+            <container name="content">
+                <template name="topcategory" value="topcategory" />
+            </container>
+            <container name="content.top">
+                <template name="topcategory" value="topcategory" />
+            </container>
+            <container name="content.bottom">
+                <template name="topcategory" value="topcategory" />
+            </container>
         </containers>
     </widget>
 </widgets>

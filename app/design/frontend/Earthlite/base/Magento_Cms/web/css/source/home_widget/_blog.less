@@ -6,7 +6,6 @@
     .home-blog {
         h2 {
             text-align: center;
-            margin-bottom: 60px;
         }
     }
     .blog-list {
@@ -20,6 +19,10 @@
         }
 
         .blog-image-wrap {
+            .slick-list {
+                .br-radius(10px);
+            }
+            
             .slick-arrows {
                 background: @color__linen;
                 height: 125px;
@@ -74,7 +77,6 @@
         }
 
         .blog-title {
-            .lib-font-size(30);
             color: @theme__color__secondary;
             font-weight: @font-weight__semibold;
             padding-bottom: 30px;
@@ -92,6 +94,7 @@
             font-weight: @font-weight__semibold;
             &:hover {
                 text-decoration: none;
+                color: @theme__color__primary;
             }
 
             &:after {
@@ -128,7 +131,7 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
     .blog-list {
         .blog-image {
             padding: 50px 50px 50px 0;
@@ -142,21 +145,34 @@
     }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
     .blog-list {
         .blog-image {
-            padding: 30px;
+            padding: 40px 40px 40px 0;
+        }
+        .blog-image-wrap {
+            .slick-arrows {
+                max-width: 150px;
+                height: auto;
+                padding: 20px 15px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .blog-list {
+        padding: 0 15px;
+        .blog-image {
+            padding: 20px;
 
             &:before {
                 left: 0;
             }
         }
+
         .blog-image-wrap {
             margin-bottom: 30px;
-            .slick-arrows {
-                max-width: 200px;
-                height: 100px;
-            }
         }
     }
 }
