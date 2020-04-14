@@ -189,6 +189,10 @@
       width: 100%;
       flex-basis: 50%;
 
+      &:empty {
+        display: none;
+      }
+
       @include min-screen($screen__m) {
         flex-basis: 50%;
       }
