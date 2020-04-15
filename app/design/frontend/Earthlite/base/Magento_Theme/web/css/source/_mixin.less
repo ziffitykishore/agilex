@@ -85,6 +85,10 @@
     transform: translate3d(@x, @y, @z);
 }
 
+.lib-button-primary() {
+    .br-radius(3px);
+}
+
 //
 //  Common
 //  _____________________________________________
@@ -153,12 +157,19 @@
         visibility: hidden;
         z-index: 99;
     }
-    a, .read-more {
-        .icon-chevron-right, &:after {
+    .read-more {
+        &:after {
             transition: transform .3s cubic-bezier(.165,.84,.44,1);
             display: inline-block;
+            content: @icon-chevron-right;
+            font-family: @icon__font-name;
+            display: inline-block;
+            vertical-align: middle;
+            .lib-font-size(15);
+            margin-top: -2px;
+            line-height: normal;
         }
-        &:hover .icon-chevron-right, &:hover:after {
+        &:hover:after {
             -webkit-animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
             animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
         }
@@ -250,7 +261,7 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
-    .action.primary, .action.btn-bor {
+    .action.btn-bor {
         padding: 14px 20px;
     }
     .action.btn-bor {
