@@ -25,6 +25,7 @@
 @color-orange: #f26322;
 @color-red: #ff4133;
 @icon-color: @color-lines;
+@color-dark-blue: #1e60d7;
 
 
 // Icons color variables
@@ -50,6 +51,13 @@
 
 @link__color: @theme__color__secondary;
 @link__hover__color: @theme__color__primary;
+@link__hover__text-decoration: none;
+@link__active__text-decoration: @link__hover__text-decoration;
+
+
+// table
+
+@table-th__color: @theme__color__secondary;
 
 
 // Menu
@@ -66,8 +74,8 @@
 
 
 // form variables:
-
-@form-element-input__height: 36px;
+@form-element-input__border-color: @color-lines;
+@form-element-input__height: 40px;
 @border_color: @color-lines;
 
 @border-color__base: @color-lines;
@@ -75,6 +83,8 @@
 // button
 
 @button__padding: 9px 15px;
+@button-primary__hover__background: @color-dark-blue;
+@button-primary__hover__border: 1px solid @color-dark-blue;
 
 // drop down
 
@@ -82,10 +92,10 @@
 
 //Headings
 
-@h1__font-size: 50px;
+@h1__font-size: 40px;
 @h1__font-weight: @font-weight__semibold;
 @h1__margin-top: 0;
-@h2__font-size: 35px;
+@h2__font-size: 30px;
 @h2__font-weight: @font-weight__semibold;
 @h2__margin-top: 0;
 @h3__font-size: 24px;
@@ -100,4 +110,3 @@
 @h6__font-size: 14px;
 @h6__font-weight: @font-weight__bold;
 @h6__margin-top: 0;
-
