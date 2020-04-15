@@ -26,6 +26,10 @@
             margin-right: -10px;
         }
 
+        &-item {
+            padding: 10px;
+        }
+
         &-item-info {
             border: 1px solid @color-lines;
             padding: 20px; 
@@ -37,6 +41,10 @@
 
             .price {
                 color: @theme__color__primary;
+            }
+
+            .swatch-attribute {
+                display: none;
             }
         }
 
@@ -64,28 +72,49 @@
                             @_icon-font-text-hide: true
                         );
                     }
+
+                    .action.tocompare {
+                        .lib-icon-font(
+                            @_icon-font-content: @icon-compare,
+                            @_icon-font: @icon__font-name,
+                            @_icon-font-size: 16px,
+                            @_icon-font-line-height: 20px,
+                            @_icon-font-color: @icon-font__color,
+                            @_icon-font-color-hover: @theme__color__primary,
+                            @_icon-font-color-active: @header-icons-color-hover,
+                            @_icon-font-text-hide: true
+                        );
+                    }
                 }
             }
         }
     }
 
     .products {
+        &-list {
+            .product-item-info {
+                .flex();
+                width: 100%;
+            }
+            .product-item-photo {
+                width: auto;
+                padding-bottom: 0;
+                .flex-width(20%);
+            }
+
+            .product-item-details {
+                .flex-width(80%);
+            }
+
+        }
         &-grid {
             .product {
-                &-item {
-                    padding: 10px;
-                }
                 &-item-info {
                     text-align: center;
                     .br-radius(10px);
                     position: relative;
                     overflow: hidden;
                     width: 100%;
-
-
-                    .swatch-attribute {
-                        display: none;
-                    }
 
                     &:hover {
                         
