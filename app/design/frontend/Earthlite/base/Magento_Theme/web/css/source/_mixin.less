@@ -153,12 +153,19 @@
         visibility: hidden;
         z-index: 99;
     }
-    a, .read-more {
-        .icon-chevron-right, &:after {
+    .read-more {
+        &:after {
             transition: transform .3s cubic-bezier(.165,.84,.44,1);
             display: inline-block;
+            content: @icon-chevron-right;
+            font-family: @icon__font-name;
+            display: inline-block;
+            vertical-align: middle;
+            .lib-font-size(15);
+            margin-top: -2px;
+            line-height: normal;
         }
-        &:hover .icon-chevron-right, &:hover:after {
+        &:hover:after {
             -webkit-animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
             animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
         }
