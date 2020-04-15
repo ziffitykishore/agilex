@@ -3,7 +3,7 @@
     <body>
         <referenceBlock name="page.main.title" remove="true"/>
         <referenceContainer name="header.container" remove="true" />
-        <referenceContainer name="footer" remove="true" />
+        <referenceContainer name="footer-container" remove="true" />
         <referenceBlock name="customer.new" remove="true"/>
     </body>
 </page>
