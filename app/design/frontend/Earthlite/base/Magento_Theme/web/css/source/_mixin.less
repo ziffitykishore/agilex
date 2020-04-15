@@ -85,6 +85,10 @@
     transform: translate3d(@x, @y, @z);
 }
 
+.lib-button-primary() {
+    .br-radius(3px);
+}
+
 //
 //  Common
 //  _____________________________________________
@@ -153,7 +157,7 @@
         visibility: hidden;
         z-index: 99;
     }
-    a, .read-more {
+    .read-more {
         .icon-chevron-right, &:after {
             transition: transform .3s cubic-bezier(.165,.84,.44,1);
             display: inline-block;
@@ -250,7 +254,7 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
-    .action.primary, .action.btn-bor {
+    .action.btn-bor {
         padding: 14px 20px;
     }
     .action.btn-bor {

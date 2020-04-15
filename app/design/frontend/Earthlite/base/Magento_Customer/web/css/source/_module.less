@@ -291,6 +291,7 @@
         padding: @form-element-input__padding;
         position: relative;
         z-index: 1;
+        color: @theme__color__secondary;
 
         &:before {
             content: '';
@@ -299,6 +300,7 @@
             position: absolute;
             top: 0;
             z-index: -1;
+            transition: all 0.5s ease 0s;
         }
 
         .password-none & {
