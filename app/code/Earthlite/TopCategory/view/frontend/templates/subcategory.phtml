@@ -5,7 +5,7 @@
     $subcats = $category->getChildrenCategories();
 if ($subcats->getSize()) {
     ?>
-<ul class="sub-cat">
+<ul class="sub-cat inner-container gutter">
     <?php
     foreach ($subcats as $subcat) {
         $_category = $viewModel->loadCategoryById($subcat->getId());
@@ -13,16 +13,16 @@ if ($subcats->getSize()) {
         $_imgHtml = '';
         $_imgUrl = $_category->getImageUrl() ? $_category->getImageUrl() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
         if ($_imgUrl) {
-            $_imgHtml = '<div class="list-image"><img src="' . $_imgUrl . '" /></div>';
+            $_imgHtml = '<div class="list-image bg-img" style="background-image:url(' . $_imgUrl . ')"></div>';
             $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
             ?>
-                <li>
+                <li class="d-flex">
                 <?= $_imgHtml ?>                
                     <div class="list-content">
-                        <div> <?= $_category->getName() ?></div> 
-                        <div> <?= $_category->getDescription() ?></div> 
+                        <h5> <?= $_category->getName() ?></h5> 
+                        <div class="desc"> <?= $_category->getDescription() ?></div> 
                         <div class="actions"> 
-                            <a class="action subscribe primary" href="<?= $subcaturl ?>"> 
+                            <a class="action primary" href="<?= $subcaturl ?>"> 
                             <?= $block->escapeHtml('View All Products')?> 
                             </a>
                         </div>
