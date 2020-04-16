@@ -14,5 +14,7 @@
             </arguments>
         </referenceBlock>
         <move element="page.main.title" destination="content.top" before="-"/>
+
+        <referenceContainer name='sidebar.additional' remove='true' />
     </body>
 </page>

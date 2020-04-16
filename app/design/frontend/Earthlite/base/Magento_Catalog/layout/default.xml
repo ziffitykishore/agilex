@@ -15,5 +15,7 @@
             </referenceBlock>
             <referenceBlock name='wishlist_sidebar' remove='true' />
         </referenceContainer>
+
+        <referenceContainer name='sidebar.additional' remove='true' />
     </body>
 </page>
