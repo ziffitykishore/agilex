@@ -1,4 +1,19 @@
 <?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+
+<?php if ($block->canShowBlock()) : ?>
+<?php
     $viewModel = $block->getViewModel();
     $enableLayeredNavigation = $viewModel->getLayerNavigationConfig();
 ?>
@@ -52,4 +67,4 @@
         <?php endif; ?>        
     </div>
 </div>
-
+<?php endif; ?>        
