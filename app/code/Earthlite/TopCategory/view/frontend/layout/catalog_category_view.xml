@@ -8,7 +8,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="page.wrapper">
-            <container name="subcategory.view.container" htmlTag="div" htmlClass="sub-category-view" before="main.content">
+            <container name="subcategory.view.container" htmlTag="div" htmlClass="sub-category-view py-10" before="main.content">
                 <block class="Magento\Framework\View\Element\Template" name='subcategory' template='Earthlite_TopCategory::subcategory.phtml' ifconfig="subcategory/general/enable">
                 	<arguments>
 	                    <argument name="view_model" xsi:type="object">Earthlite\TopCategory\ViewModel\CategoryData</argument>
