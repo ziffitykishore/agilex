@@ -1,7 +1,3 @@
-/**
- * Copyright ? 2016 Mageplaza. All rights reserved.
- * See https://www.mageplaza.com/LICENSE.txt for license details.
- */
 define(
     [
     'jquery',
@@ -94,8 +90,7 @@ define(
                             data: {isAjax: 1},
                             type: 'post',
                             dataType: 'json',
-                            beforeSend: function () {
-                                $('.filter_overlay').show();
+                            beforeSend: function () {                                
                                 if (typeof window.history.pushState === 'function') {
                                     window.history.pushState({url: submitUrl}, '', submitUrl);
                                 }
@@ -112,8 +107,7 @@ define(
                                 if (res.products) {
                                     $(self.options.productsListSelector).replaceWith(res.products);
                                     $(self.options.productsListSelector).trigger('contentUpdated');
-                                }
-                                $('.filter_overlay').hide();
+                                }                                
                             },
                             error: function () {
                                 window.location.reload();

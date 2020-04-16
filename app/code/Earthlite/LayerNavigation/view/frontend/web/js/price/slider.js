@@ -1,7 +1,3 @@
-/**
- * Copyright � 2016 Mageplaza. All rights reserved.
- * See https://www.mageplaza.com/LICENSE.txt for license details.
- */
 define(
     [
     'jquery',
@@ -21,13 +17,21 @@ define(
                     var self = this;  
                     $("#apply_price").hide();          
                     $(this.options.sliderElement).slider(
-                        {                
+                        {
                             min: self.options.priceMin,
                             max: self.options.priceMax,
                             values: [self.options.selectedFrom, self.options.selectedTo],
                             slide: function( event, ui ) {
                                 $("#apply_price").show();
                                 self.showText(ui.values[0], ui.values[1]);
+                                var leftValLen,rightValLen = 0;
+                                var leftVal = $('#custom_price_slider .ui-slider-handle').get(0).style.left;
+                                var rightVal = $('#custom_price_slider .ui-slider-handle').get(1).style.left;
+                                leftValLen = leftVal.toString().replace('%', '');
+                                rightValLen = rightVal.toString().replace('%', '');
+                                var width = rightValLen - leftValLen;
+                                var rangeWidth = width+'%';
+                                $("#custom_price_slider #range_selected").css({"width": rangeWidth, "left": leftVal});
                             },
                             change: function(event, ui) { 
                                 self.applyPrice(ui);                    
