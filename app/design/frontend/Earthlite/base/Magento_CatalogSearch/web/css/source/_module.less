@@ -51,6 +51,11 @@
         }
 
         &.active {
+            .block-title {
+                &:before {
+                    content: @icon-x;
+                }
+            }
             .block-content {
                 width: 250px;
                 padding: 0 10px;
@@ -68,7 +73,7 @@
             top: -8px;
             transition: all 0.5s ease 0s;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 10px;
             background: @color-white;
 
             .actions {
