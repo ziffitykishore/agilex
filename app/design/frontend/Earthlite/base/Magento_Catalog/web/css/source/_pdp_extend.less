@@ -4,21 +4,93 @@
 
 & when (@media-common = true) {
 
+    .swatch-attribute {
+        .swatch-option {
+            width: 26px;
+            height: 26px;
+            min-width: auto;
+            .br-radius(50%);
+            border: none;
+            padding: 0;
+            line-height: 26px;
+            font-size: 10px;
+            text-align: center;
+
+            &:not(.disabled):hover{
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
     .product {
         &.media {
             display: block;
+
+            .fotorama__stage {
+                margin-bottom: 20px;
+            }
+
+            .fotorama__arr {
+                display: none !important;
+            }
+
+            .fotorama__nav__shaft {
+            
+                .fotorama__dot {
+                    width: 10px;
+                    height: 10px;
+                    border-color: @color-lines;
+                }
+            }
+
+            .fotorama__active {
+                .fotorama__dot {
+                    background: @theme__color__primary;
+                    border-color: @theme__color__primary;
+                }
+            }
+
+            .fotorama__nav-wrap {
+                .fotorama__thumb {
+                    border: 1px solid @color-lines;
+                }
+            }
         }
     }   
 
 }
 
 
+
 //
-//  Mobile
+//  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
-     
+    .page-layout-1column {
+
+        &.catalog-product-view  {
+            .product.media {
+                width: 45%;
+                padding-right: 60px;
+                border-right: 1px solid @color-lines;
+            }
+            .product-info-main {
+                width: 55%;
+                padding-left: 60px;
+            }
+        }
+    }
+
+    .product.media {
+        .fotorama__nav--thumbs {
+            .flex();
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
 
 }
