@@ -5,27 +5,25 @@
  * @var $block \Magento\Customer\Block\Form\Register
  */
 ?>
-
+<div class="register-container">
 <?php echo $this->getLayout()->createBlock("Earthlite\Customer\Block\Html\Logo")->setTemplate("Earthlite_Customer::html/logo.phtml")->toHtml(); ?>
+<div class="block block-customer-register">
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
-<a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= $block->escapeHtml(__('X')) ?></span></a>
+<a class="action close" href="<?= $block->getUrl('') ?>"><span><?= $block->escapeHtml(__('Close')) ?></span></a>
+
+<div class="block-content" aria-labelledby="block-customer-register-heading">
 <form class="form create account form-create-account" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
     <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
     <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
-    <fieldset class="fieldset create info">
-        <legend class="legend"><span><?=$block->escapeHtml(__('Welcome to Earthlite. Create your Account')) ?></span></legend><br>
+    <div class="form-heading"><span><?=$block->escapeHtml(__('Welcome to Earthlite. Create your Account')) ?></span></div>
+    <div class="fieldset create info">
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>"/>
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>"/>
         <?= $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Name::class)->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
         <!-- removed newsletter field from registration page, added abmp check box -->
-        <?php if ($block->getConfig('earthlite_general/earthlite_customer/enable')) : ?>
-            <div class="field choice abmp">
-                <input type="checkbox" name="is_abmp" title="<?= $block->escapeHtmlAttr(__('Do you have an ABMP membership number')) ?>" value="1" id="is_abmp" class="checkbox"/>
-                <label for="is_subscribed" class="label"><span><?= $block->escapeHtml(__('Do you have an ABMP membership number')) ?></span></label>
-            </div>
-        <?php endif ?>
+        
 
         <!-- end of customization -->
         <?php $_dob = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Dob::class) ?>
@@ -44,11 +42,9 @@
         <?php endif ?>
 
          <!-- moved custom attributes section --> 
-    </fieldset>
+  
 
     <?php if ($block->getShowAddressFields()) : ?>
-        <fieldset class="fieldset address">
-            <legend class="legend"><span></span></legend><br>
             <input type="hidden" name="create_address" value="1"/>
             <div class="field company">
                 <label for="company" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('company') ?></span></label>
@@ -124,11 +120,11 @@
             <?php endif; ?>
             <input type="hidden" name="default_billing" value="1"/>
             <input type="hidden" name="default_shipping" value="1"/>
-        </fieldset>
-
+        
     <?php endif; ?>
-    <fieldset class="fieldset create account" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
-        <legend class="legend"><span></span></legend><br>
+
+
+    
         <div class="field required">
             <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
             <div class="control">
@@ -156,34 +152,41 @@
             </div>
             <!-- removed confirm password -->
         </div>
-        <?= $block->getChildHtml('form_additional_info') ?>
-    </fieldset>
+       
+    
     <!-- Custom Attributes Section -->
-    <fieldset class="fieldset create info">
-        <legend class="legend"><span></span></legend><br>
+    <?php if ($block->getConfig('earthlite_general/earthlite_customer/enable')) : ?>
+            <div class="field choice abmp">
+                <input type="checkbox" name="is_abmp" title="<?= $block->escapeHtmlAttr(__('Do you have an ABMP membership number')) ?>" value="1" id="is_abmp" class="checkbox"/>
+                <label for="is_abmp" class="label"><span><?= $block->escapeHtml(__('Do you have an ABMP membership number')) ?></span></label>
+            </div>
+        <?php endif ?>
+    
         <?php $customerAttributes = $block->getChildBlock('customer_form_user_attributes'); ?>
         <?php if ($customerAttributes) : ?>
             <?php $customerAttributes->setObject($block->getFormData())->setEntityType('customer')->setShowContainer(false); ?>
             <?php $block->restoreSessionData($customerAttributes->getMetadataForm()); ?>
             <?= $customerAttributes->toHtml() ?>
         <?php endif; ?>
-
-    </fieldset>
+        <?= $block->getChildHtml('form_additional_info') ?>
+    
     <!-- End of Custom Attributes -->
     <div class="actions-toolbar">
         <div class="primary">
             <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Register')) ?></span></button>
-        </div>
-        <div>
-            <span>Already have an account?<a href="<?=$block->getUrl('*/*/login');?>">Sign In</a></span> 
+            <span><?= $block->escapeHtmlAttr(__('Already have an account?')) ?> <a class="action link" href="<?=$block->getUrl('*/*/login');?>"><?= $block->escapeHtmlAttr(__('Sign In')) ?></a></span> 
         </div>
     </div>
+        </div>
 </form>
-<div>
+<div class="terms-block">
     <span> 
-        By clicking Create Account,you acknowledge you have read and agreed to our <a href="#">Terms & Conditions </a> and <a href="#">Privacy Policy</a>
+        By clicking Create Account,you acknowledge you have read and agreed to our <a class="action link" href="#">Terms & Conditions </a> and <a class="action link" href="#">Privacy Policy</a>
     </span>
 </div>
+        </div>
+        </div>
+        </div>
 <?php if ($block->getShowAddressFields()) : ?>
     <script type="text/x-magento-init">
         {
