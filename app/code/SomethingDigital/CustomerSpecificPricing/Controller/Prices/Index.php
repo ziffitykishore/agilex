@@ -10,6 +10,7 @@ use Magento\Framework\Stdlib\ArrayManager;
 use Psr\Log\LoggerInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Index extends Action
 {
@@ -18,6 +19,7 @@ class Index extends Action
     private $currency;
     protected $logger;
     protected $productRepository;
+    protected $storeManager;
 
     public function __construct(
         Context $context,
@@ -25,13 +27,15 @@ class Index extends Action
         ArrayManager $arrayManager,
         LoggerInterface $logger,
         ProductRepositoryInterface $productRepository,
-        PriceCurrencyInterface $currency
+        PriceCurrencyInterface $currency,
+        StoreManagerInterface $storeManager
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->arrayManager = $arrayManager;
         $this->logger = $logger;
         $this->productRepository = $productRepository;
         $this->currency = $currency;
+        $this->storeManager = $storeManager;
         parent::__construct($context);
     }
 
@@ -51,22 +55,26 @@ class Index extends Action
 
             if ($prices) {
                 foreach ($prices as $id => $productPrices) {
-                    $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices, 0);
+                    $store = $this->storeManager->getStore()->getStoreId();
+                    $spotPrice = $this->currency->convert(
+                        $this->arrayManager->get('DiscountPrice', $productPrices, 0),
+                        $store
+                    );
                     $sku = $this->arrayManager->get('Sku', $productPrices);
                     $product = $this->productRepository->get($sku);
-                    $price = $product->getFinalPrice();
+                    $price = $this->currency->convert($product->getFinalPrice(), $store);
 
                     if (!empty($spotPrice) && $spotPrice < $price) {
                         $price = $spotPrice;
                     }
                     $unitPrice = $price;
                     if ($product->getExactUnitPrice()) {
-                        $price = $product->getExactUnitPrice() * 100;
+                        $price = $this->currency->convert($product->getExactUnitPrice(), $store) * 100;
                     }
 
-                    $qtyPrice1 = $this->arrayManager->get('QtyPrice1', $productPrices);
-                    $qtyPrice2 = $this->arrayManager->get('QtyPrice2', $productPrices);
-                    $qtyPrice3 = $this->arrayManager->get('QtyPrice3', $productPrices);
+                    $qtyPrice1 = $this->currency->convert($this->arrayManager->get('QtyPrice1', $productPrices), $store);
+                    $qtyPrice2 = $this->currency->convert($this->arrayManager->get('QtyPrice2', $productPrices), $store);
+                    $qtyPrice3 = $this->currency->convert($this->arrayManager->get('QtyPrice3', $productPrices), $store);
                     $qtyBreak1 = round($this->arrayManager->get('QtyBreak1', $productPrices));
                     $qtyBreak2 = round($this->arrayManager->get('QtyBreak2', $productPrices));
                     $qtyBreak3 = round($this->arrayManager->get('QtyBreak3', $productPrices));
