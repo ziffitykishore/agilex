@@ -24,10 +24,9 @@
         &-items {
             margin-left: -10px;
             margin-right: -10px;
-        }
-
-        &-item {
-            padding: 10px;
+            .product-item {
+                padding: 10px;
+            }
         }
 
         &-item-info {
@@ -130,6 +129,14 @@
                             }
                         }
                     }
+
+                    .product-item-actions {
+                        .actions-secondary {
+                            .tocompare {
+                                display: none;
+                            }
+                        }
+                    }
                 }
 
                 &-item-name {
@@ -175,13 +182,9 @@
                             right: 10px;
                             .transition(all 0.5s ease 0s);
                         }
-                        &.tocompare {
-                            display: none;
-                        }
+
                     }
                 }
-
-
 
             }
         }

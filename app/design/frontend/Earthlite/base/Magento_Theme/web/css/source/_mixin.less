@@ -109,6 +109,80 @@
     }
 }
 
+.choice() {
+    position: relative;
+    input[type="checkbox"],
+    input[type="radio"]{
+        position: absolute;
+        visibility: hidden;
+
+        & + label {
+            cursor: pointer;
+
+            span {
+                line-height: normal;
+            }
+        }
+    }
+
+    input[type="radio"] {
+        &:checked + label {
+            &:before {
+                background: transparent;
+                box-shadow: inset 0px 0px 0px 3px @color-white, inset 0px 0px 0px 10px @theme__color__primary;
+                text-align: center;
+                font-size: 25px;
+                line-height: 10px;
+            }
+        }
+        & + label {
+            line-height: normal;
+            margin-bottom: 0;
+            &:before {
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                border: 2px solid @color-lines;
+                color: @color-lines;
+                content: '';
+                .br-radius(50%);
+                //font-family: @icon-fox;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    input[type="checkbox"] {
+        &:checked + label {
+            &:before {
+                content: @icon-check;
+                background: @theme__color__primary;
+                border-color: @theme__color__primary;
+            }
+        }
+        & + label {
+            line-height: normal;
+            margin-bottom: 0;
+            &:before {
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                border: 1px solid @color-lines;
+                color: @color-white;
+                content: '';
+                font-family: @icon__font-name;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+                border-radius: 2px;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
 //
 //  Common
 //  _____________________________________________
@@ -199,6 +273,12 @@
     .action {
         &.reset {
             .br-radius(3px);
+        }
+    }
+
+    .action {
+        &.link {
+            .link-inverse();
         }
     }
 
