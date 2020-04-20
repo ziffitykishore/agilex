@@ -8,10 +8,6 @@
     @-moz-keyframes slide-down { 0% { opacity:0; transform:translateY(-100%);}100% { opacity:1; transform:translateY(0);}}
     @keyframes slide-down { 0% { opacity:0; transform:translateY(-100%);}100% { opacity:1; transform:translateY(0);}}
 
-
-    
-
-
     .header{
         &.panel {
             padding-top: 0;
@@ -187,32 +183,61 @@
                     }
                 }
                 &-content {
-                    display: none;
                     position: absolute;
                     right: 0;
-                    top: 30px;
+                    top: 60px;
                     min-width: 150px;
                     list-style: none;
                     background: @color-white;
                     border: 1px solid @border_color;
+                    border-top: 3px solid @theme__color__primary;
                     padding: 0;
+                    z-index: 2;
+                    transition: all 0.5s ease-in-out 0s;
+                    opacity: 0;
+                    visibility: hidden;
+
+                    &:before {
+                        content: '';
+                        border-top: 5px solid transparent;
+                        position: absolute;
+                        width: 100%;
+                        top: -10px;
+                    }
 
                     li {
                         margin-bottom: 0;
-                        span {
+                        > span {
                             font-weight: 700;
                             color: @theme__color__secondary;
                         }
-                        span, a {
+                        > span, a {
                             display: block;
                             padding: 5px 10px;
+                        }
+
+                        a {
+                            span {
+                                .lib-visually-hidden(); 
+                            }
                         }
                     }
                 }
 
-                &.active {
+                &:hover {
+                    .switch {
+                        .lib-icon-font(
+                            @_icon-font-content: @icon-chevron-up,
+                            @_icon-font: @icon__font-name,
+                            @_icon-font-size: 16px,
+                            @_icon-font-line-height: 20px
+                        );
+                    }
                     .dropdown-content {
-                        display: block;
+                        opacity: 1;
+                        visibility: visible;
+                        transition: all 0.5s ease-in-out 0s;
+                        top: 30px;
                     }
                 }
             }
@@ -258,17 +283,6 @@
                     @_icon-font-color-active: @header-icons-color-hover,
                     @_icon-font-text-hide: true
                 );
-            }
-
-            &.active {
-                .switch {
-                    .lib-icon-font(
-                        @_icon-font-content: @icon-chevron-up,
-                        @_icon-font: @icon__font-name,
-                        @_icon-font-size: 16px,
-                        @_icon-font-line-height: 20px
-                    );
-                }
             }
         }
     }
@@ -366,18 +380,13 @@
     }
 
     .header {
-            .nav-toggle {
-                display: block;
-                position: static;
-            }
+        .nav-toggle {
+            display: block;
+            position: static;
+        }
 
-            .nav-sections {
-                display: none;
-            }
-        &-right-pane {
-            .header {
-                display: none;
-            }
+        .nav-sections {
+            display: none;
         }
     }
 }
@@ -397,6 +406,7 @@
     }
     .header{
         &.content {
+            padding-top: 10px;
             padding-bottom: 10px;
         }
 
@@ -526,7 +536,6 @@
             }
         }
     }
-
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {

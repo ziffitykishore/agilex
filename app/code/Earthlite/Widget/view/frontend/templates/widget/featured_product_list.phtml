@@ -6,8 +6,8 @@ $showCompare = true;
 ?>
 <?php if ($exist = ($block->getFeaturedProducts() && $block->getFeaturedProducts()->getSize())) : ?>
     <section class="py-10 featured-products-wrap">
-        <h2 class="mb-6 aos-init aos-animate" data-aos="fade-up"><?= $block->escapeHtml($block->getData('title')) ?></h2>
-        <div class="products wrapper grid products-grid featured-products aos-init aos-animate" data-aos="fade-up">
+        <h2 class="mb-6" data-aos="fade-up"><?= $block->escapeHtml($block->getData('title')) ?></h2>
+        <div class="products wrapper grid products-grid featured-products" data-aos="fade-up">
             <ol class="products list items product-items">
                 <?php
                 foreach ($featuredProducts as $featuredProduct):
@@ -63,7 +63,7 @@ $showCompare = true;
 <script type="text/x-magento-init">
 {
     "*": {
-        "Earthlite_Widget//js/featured-product-slick":{}
+        "Earthlite_Widget/js/featured-product-slick":{}
     }
 }
 </script>

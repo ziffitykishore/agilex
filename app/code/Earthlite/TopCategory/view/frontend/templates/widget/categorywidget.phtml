@@ -6,11 +6,11 @@ if ($block->getTopCategoryConfig()) {
     if (isset($catalogData) && count($catalogData) > 0) {
         ?>
         <section class="category-slider-wrap py-10">
-            <h2 class="mb-6">
+            <h2 class="mb-6" data-aos="fade-up">
                 <?php echo $block->getTitle() ?>
             </h2>
 
-            <div class="products wrapper grid products-grid category-slider">
+            <div class="products wrapper grid products-grid category-slider" data-aos="fade-up">
                 <ol class="products list items product-items">
                     <?php foreach ($catalogData as $key => $cat) { ?>
                         <li class="item product product-item">
@@ -44,7 +44,7 @@ if ($block->getTopCategoryConfig()) {
 <script type="text/x-magento-init">
 {
     "*": {
-        "Earthlite_TopCategory//js/topcatslick":{}
+        "Earthlite_TopCategory/js/topcatslick":{}
     }
 }
 </script>

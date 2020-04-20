@@ -1,0 +1,99 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .account, .page-products {
+        .toolbar {
+            border: 1px solid @border-color__base;
+            .br-radius(10px);
+            background: #f3f6ff;
+            padding: 0;
+            height: 60px;
+
+            .toolbar-amount {
+                padding: 16px 0;
+                color: #687792;
+                margin-left: 20px;
+            }
+
+            .modes {
+                margin-right: 0;
+            }
+
+            .modes-mode {
+                padding: 20px;
+                border: none;
+                border-right: 1px solid @border-color__base;
+                &:before {
+                    color: #55637f;
+                    font-size: 18px;
+                }
+
+                &:not(.active):hover {
+                    background: @color-white;
+                }
+
+                &.active {
+                    &:before {
+                        color: @theme__color__primary;
+                    }
+                }
+
+                &.mode-list {
+                    &:before {
+                        content: @icon-list-view;
+                        font-family: @icon__font-name;
+                    }
+                }
+            }
+            
+
+            /* .sorter {
+                padding: 10px;
+                border-left: 1px solid @border-color__base;
+
+                &-label {
+                    font-weight: 600;
+                    color: @theme__color__secondary;
+                    padding: 0 13px 0 10px;
+                }
+
+                &-action {
+                    display: none;
+                }
+            } */
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .account, .page-products {
+        .toolbar {
+            height: auto;
+        }
+    }
+
+}
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .account, .page-products {
+        .toolbar {
+            .toolbar-amount {
+                padding: 16px 0;
+                line-height: 26px;
+            }
+        }
+    }
+}
