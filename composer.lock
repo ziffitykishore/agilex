@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1a241bb0415fb484a68c6041fb22cfe",
+    "content-hash": "1e4fb8f05381dc614778e3e0c2cb4e00",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -1132,10 +1132,16 @@
         {
             "name": "dotmailer/dotmailer-magento2-extension-enterprise",
             "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dotmailer/dotmailer-magento2-extension-enterprise.git",
+                "reference": "bd009ef8ed8f0dbff66a0ba8aad7a1ceed60ffdb"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://repo.magento.com/archives/dotmailer/dotmailer-magento2-extension-enterprise/dotmailer-dotmailer-magento2-extension-enterprise-1.0.4.0.zip",
-                "shasum": "ee7605db73688c7042f262240c1898ba5bb687e3"
+                "url": "https://api.github.com/repos/dotmailer/dotmailer-magento2-extension-enterprise/zipball/bd009ef8ed8f0dbff66a0ba8aad7a1ceed60ffdb",
+                "reference": "bd009ef8ed8f0dbff66a0ba8aad7a1ceed60ffdb",
+                "shasum": ""
             },
             "require": {
                 "dotmailer/dotmailer-magento2-extension": ">=3.0.2",
@@ -15198,6 +15204,85 @@
                 "framework"
             ],
             "time": "2019-11-26T15:09:40+00:00"
+        },
+        {
+            "name": "mageplaza/module-ajax-layered-navigation",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/magento-2-ajax-layered-navigation.git",
+                "reference": "dbe40dffd158820c172f9b48dab5479ade8aca9c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/magento-2-ajax-layered-navigation/zipball/dbe40dffd158820c172f9b48dab5479ade8aca9c",
+                "reference": "dbe40dffd158820c172f9b48dab5479ade8aca9c",
+                "shasum": ""
+            },
+            "require": {
+                "mageplaza/module-core": "^1.4.4"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\AjaxLayer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Magento 2 Ajax Layered Navigation Extension",
+            "time": "2019-06-10T02:49:59+00:00"
+        },
+        {
+            "name": "mageplaza/module-core",
+            "version": "1.4.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mageplaza/module-core.git",
+                "reference": "aa99d5aa974ec9bf799bcc9a2137095baf882093"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/aa99d5aa974ec9bf799bcc9a2137095baf882093",
+                "reference": "aa99d5aa974ec9bf799bcc9a2137095baf882093",
+                "shasum": ""
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Mageplaza\\Core\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Mageplaza",
+                    "email": "support@mageplaza.com",
+                    "homepage": "https://www.mageplaza.com",
+                    "role": "Technical Support"
+                }
+            ],
+            "description": "Mageplaza Core for Magento 2",
+            "time": "2019-12-23T03:04:13+00:00"
         },
         {
             "name": "monolog/monolog",

@@ -2,13 +2,13 @@ define(
     [
     'jquery',
     'Magento_Catalog/js/price-utils',
+    'Mageplaza_AjaxLayer/js/action/submit-filter',
     'jquery/ui',
-    'Earthlite_LayerNavigation/js/layer'
-    ], function($, priceUltil) {
+    ], function($, priceUltil, submitFilterAction) {
         "use strict";
     
         $.widget(
-            'custom.layerSlider', $.custom.layer, {
+            'custom.layerSlider', {
                 options: {
                     sliderElement: '#custom_price_slider',
                     textElement: '#custom_price_text'
@@ -33,19 +33,22 @@ define(
                                 var rangeWidth = width+'%';
                                 $("#custom_price_slider #range_selected").css({"width": rangeWidth, "left": leftVal});
                             },
-                            change: function(event, ui) { 
-                                self.applyPrice(ui);                    
+                            change: function(event, ui) {                                 
+                                $("#apply_price").show();
                             }
                         }
-                    );            
+                    );
+                    this.applyPrice();
                     this.showText(this.options.selectedFrom, this.options.selectedTo);
                 },
 
-                applyPrice: function(ui){
+                applyPrice: function(){
                     var self = this;
                     $("#apply_price").click(
-                        function() {
-                            self.ajaxSubmit(self.getUrl(ui.values[0], ui.values[1]));                
+                        function(e) {
+                            var minVal = $("#custom_price_slider").slider("option", "values")[0];
+                            var maxVal = $("#custom_price_slider").slider("option", "values")[1];
+                            return submitFilterAction(self.getUrl(minVal, maxVal));                            
                         }
                     );
                 },
