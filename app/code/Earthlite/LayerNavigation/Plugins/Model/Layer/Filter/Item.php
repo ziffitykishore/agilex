@@ -45,11 +45,11 @@ class Item
 
     public function aroundGetUrl(\Magento\Catalog\Model\Layer\Filter\Item $item, $proceed)
     {
-        if(!$this->getConfig("layernavigation/general/enablelayernavigation")) {
+        if(!$this->getConfig("layered_navigation/general/ajax_enable")) {
             return $proceed();
         }
 
-        $enable_price_slider = $this->getConfig("layernavigation/general/enablepriceslider"); 
+        $enable_price_slider = $this->getConfig("layered_navigation/general/enablepriceslider"); 
         
         $value = array();
         $requestVar = $item->getFilter()->getRequestVar();
@@ -75,7 +75,7 @@ class Item
 
     public function aroundGetRemoveUrl(\Magento\Catalog\Model\Layer\Filter\Item $item, $proceed)
     {
-        if(!$this->getConfig("layernavigation/general/enablelayernavigation")) {
+        if(!$this->getConfig("layered_navigation/general/ajax_enable")) {
             return $proceed();
         }
 
