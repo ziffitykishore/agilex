@@ -13,12 +13,12 @@ class LayerData implements \Magento\Framework\View\Element\Block\ArgumentInterfa
     /**
      * Recipient layer navigation config path
      */
-    const XML_PATH_LAYERNAVIGATION_CONFIG = 'layernavigation/general/enablelayernavigation';
+    const XML_PATH_LAYERNAVIGATION_CONFIG = 'layered_navigation/general/ajax_enable';
 
     /**
      * Recipient Price SLider config path
      */
-    const XML_PATH_PRICESLIDER_CONFIG = 'layernavigation/general/enablepriceslider';
+    const XML_PATH_PRICESLIDER_CONFIG = 'layered_navigation/general/enablepriceslider';
 
 
     public function __construct(        

@@ -4,7 +4,7 @@
 <?php echo $this->getLayout()->createBlock("Earthlite\Customer\Block\Html\Logo")->setTemplate("Earthlite_Customer::html/logo.phtml")->toHtml(); ?>
 
 <div class="block block-customer-login">
-        <a class="" href="<?= $block->getUrl('') ?>"><span><?= $block->escapeHtml(__('X')) ?></span></a>
+        <a class="action close" href="<?= $block->getUrl('') ?>"><span><?= $block->escapeHtml(__('Close')) ?></span></a>
 
     <div class="block-content" aria-labelledby="block-customer-login-heading">
         <form class="form form-login"
@@ -13,9 +13,8 @@
               id="login-form"
               data-mage-init='{"validation":{}}'>
             <?= $block->getBlockHtml('formkey') ?>
+            <div class="form-heading"><span><?= $block->escapeHtml(__('Sign in to your Earthlite account')) ?></span></div>
             <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtmlAttr(__('')) ?>">
-                <legend class="legend"><span></span></legend><br>
-                <div class="field note"><?= $block->escapeHtml(__('Sign in to your Earthlite account')) ?></div>
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                     <div class="control">
@@ -30,17 +29,23 @@
                 </div>
                 <?= $block->getChildHtml('form_additional_info') ?>
                 <div class="actions-toolbar">
-                    <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Login')) ?></span></button></div>
-                    <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
-                    <div>
-                        <span>Don't have an account?<a href="<?= $block->getUrl('*/*/create'); ?>">Sign Up</a></span> 
+                    <div class="secondary">
+                        <div class="remember-me choice">
+                            <input name="login[rememberme]" type="checkbox"  class="input-checkbox" id="rememberme" title="<?php echo __('Remember me on this computer') ?>" >
+                            <label for="rememberme"><span><?= $block->escapeHtml(__('Remember me')) ?></span></label>
+                        </div>
+                        <a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a>
+                    </div>
+                    <div class="primary">
+                        <button type="submit" class="action login primary" name="send" id="send2"><span><?= $block->escapeHtml(__('Login')) ?></span></button>
+                        <span><?= $block->escapeHtml(__("Don't have an account?")) ?> <a class="action link" href="<?= $block->getUrl('*/*/create'); ?>"><?= $block->escapeHtml(__('Sign Up')) ?></a></span> 
                     </div>
                 </div>
             </fieldset>
         </form>
-        <div>
+        <div class="terms-block">
             <span> 
-                By logging in you are agreeing to our <a href="#">Terms & Conditions </a> and <a href="#">Privacy Policy</a>
+                By logging in you are agreeing to our <a class="action link" href="#">Terms & Conditions </a> and <a class="action link" href="#">Privacy Policy</a>
             </span>
         </div>
     </div>
