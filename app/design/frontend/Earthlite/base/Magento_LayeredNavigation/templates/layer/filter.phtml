@@ -28,9 +28,9 @@
         		$getParamValue = $block->getRequest()->getParam($inputName);
         		if($inputName == 'price' && $enableLayeredNavigation && $enablePriceSlider) :
     				$productCollection = $filter->getLayer()->getProductCollection();
-    				$minPrice = $productCollection->getMinPrice();
+                    $minPrice = $productCollection->getMinPrice();
                     $maxPrice = $productCollection->getMaxPrice();
-                    if(($minPrice && $maxPrice) && ($minPrice != $maxPrice)):
+                    if($minPrice && $maxPrice):
         	?>
             	<div id="price_slider_attribute">
                     <div id="apply_price">Apply Price</div>
