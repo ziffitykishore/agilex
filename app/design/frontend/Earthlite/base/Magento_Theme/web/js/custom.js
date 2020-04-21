@@ -65,5 +65,17 @@ define([
         e.preventDefault();
         $('body').removeClass('brand-active');
     });
+    function veritcalScroll() {
+        if($('.related .product-items li').length > 3){
+            var items = $('.related .product-items li').outerHeight();
+            $('.related .product-items').css('max-height', 3 * items);
+        }
+    }
+
+   // veritcalScroll();
+
+    $(window).on('load resize', function(){
+        veritcalScroll();
+    });
     
 });
