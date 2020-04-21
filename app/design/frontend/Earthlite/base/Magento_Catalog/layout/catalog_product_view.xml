@@ -12,5 +12,15 @@
         <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
 
         <referenceBlock name="product.info.review" remove="true"/> -->
+
+        <!-- <move element="product.info.upsell" destination="product.info.details" after="-"/> -->
+        <referenceContainer name="content">
+            <container name="product.tab.related" htmlTag="div" htmlClass="product-tab-wrapper" after="product.info.media">
+                <container name="product.tab.container" htmlTag="div" htmlClass="inner-container"/>
+            </container>
+        </referenceContainer>
+
+        <move element="product.info.details" destination="product.tab.container" after="-"/>
+        <move element="catalog.product.related" destination="product.tab.container" after="-"/>
     </body>
 </page>

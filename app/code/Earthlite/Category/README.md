@@ -1,0 +1,1 @@
+Added Category Media gallery option to add category slider for the category listing pages. 
