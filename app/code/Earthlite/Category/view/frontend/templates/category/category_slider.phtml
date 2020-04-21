@@ -20,6 +20,19 @@ $categoryName = $block->getCurrentCategory()->getName();
     </div>
 </div>
 
+<div class="" >
+    <h2><?= $categoryName ?> </h2>
+    <?php if ($_description = $block->getCurrentCategory()->getDescription()) : ?>
+        <div class="category-description">
+            <?=
+            /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute(
+                    $block->getCurrentCategory(), $_description, 'description'
+            )
+            ?>
+        </div>
+    <?php endif; ?>
+</div>
+
 <script type="text/x-magento-init">
 {
    "*": {
@@ -27,4 +40,3 @@ $categoryName = $block->getCurrentCategory()->getName();
    }
 }
 </script>
-
