@@ -76,7 +76,6 @@ define(
                             }
                         },
                         error: function () {
-                            console.log('error')
                             window.location.reload();
                         }
                     }
