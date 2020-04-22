@@ -2,8 +2,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="page.main.title" remove="true"/>
-        <referenceContainer name="columns.top">
-            <container name="category.view.container" htmlTag="div" htmlClass="category-view" after="-">
+        <referenceContainer name="page.wrapper">
+            <container name="category.view.container" htmlTag="div" htmlClass="category-view" before="main.content">
                 <block ifconfig="earthlite_category/category_general/slider_enable" 
                    class="Earthlite\Category\Block\Category\View" 
                    name="category.image.carousel" 
