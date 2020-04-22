@@ -1,0 +1,13 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+ <div class="loader">
+  <div class="loader-container">
+  <?php echo $this->getLayout()->createBlock("Magento\Theme\Block\Html\Header\Logo")->setTemplate("Magento_Theme::html/header/logo.phtml")->toHtml(); ?>
+  <div id="progressbar"></div>
+  <div class="progress-label">Loading...</div>
+  </div>
+</div>

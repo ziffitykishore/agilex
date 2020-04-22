@@ -5,10 +5,38 @@
 
 define([
     'jquery',
-    'domReady!'
+    'jquery-ui-modules/progressbar',
 ], function ($) {
     'use strict';
 
+    /* Loader */
+    var progressbar = $("#progressbar"),
+        progressLabel = $(".progress-label");
+
+    progressbar.progressbar({
+        value: 0,
+        change: function () {
+            /* progressLabel.text(progressbar.progressbar("value") + "%"); */
+        },
+        complete: function () {
+            progressLabel.text( "Loaded!" );
+            $('.loader').fadeOut(1000);
+            $('body').addClass('page-loaded');
+        }
+    });
+
+    function progress() {
+        var val = progressbar.progressbar("value") || 0;
+        progressbar.progressbar("value", val + 1);
+        if (val < 100) {
+            setTimeout(progress, 0);
+        }
+    }
+
+    progressbar.progressbar("value", 0);
+    $(document).ready(function () {
+        progress();
+    });
     /* header sticky */
 
     function sticky(navbar) {
@@ -47,35 +75,35 @@ define([
     sticky($('.header-wrapper'));
 
     $('.header-right-pane > .header.links').clone().appendTo('#store\\.links');
-    $('.links-wrap .block-title').on('click', function(){
+    $('.links-wrap .block-title').on('click', function () {
         $(this).parent().toggleClass('active');
         $(this).parents('.links-wrap .block').siblings().find('.block').removeClass('active');
     });
-    $('.alert .close').on('click',function(e){
+    $('.alert .close').on('click', function (e) {
         e.preventDefault();
         $(this).closest('.alert').slideUp();
     });
-    
+
     // home brand1 sec modal
-    $('.home-brand1 a').on('click',function(e){
+    $('.home-brand1 a').on('click', function (e) {
         e.preventDefault();
         $('body').addClass('brand-active');
     });
-    $('.brand-overlay, .home-brand-more .icon-x').on('click',function(e){
+    $('.brand-overlay, .home-brand-more .icon-x').on('click', function (e) {
         e.preventDefault();
         $('body').removeClass('brand-active');
     });
     function veritcalScroll() {
-        if($('.related .product-items li').length > 3){
+        if ($('.related .product-items li').length > 3) {
             var items = $('.related .product-items li').outerHeight();
             $('.related .product-items').css('max-height', 3 * items);
         }
     }
 
-   // veritcalScroll();
+    // veritcalScroll();
 
-    $(window).on('load resize', function(){
+    $(window).on('load resize', function () {
         veritcalScroll();
     });
-    
+
 });

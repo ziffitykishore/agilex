@@ -8,6 +8,71 @@
     @-moz-keyframes slide-down { 0% { opacity:0; transform:translateY(-100%);}100% { opacity:1; transform:translateY(0);}}
     @keyframes slide-down { 0% { opacity:0; transform:translateY(-100%);}100% { opacity:1; transform:translateY(0);}}
 
+    /* loader */
+
+    body {
+        overflow-y: hidden;
+
+        &.page-loaded {
+            overflow-y: auto;
+        }
+    }
+
+    .loader {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        background: @color-white;
+        z-index : 99999;
+        .flex();
+        align-items: center;
+        justify-content: center;
+
+        .loader-container {
+            max-width: 200px;
+            margin: 0 auto;
+            width: 100%;
+            color: @theme__color__secondary;
+            text-align: center;
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .logo {
+                pointer-events: none;
+                margin: 0 auto;
+                float: none;
+                max-width: none;
+                display: block;
+            }
+        }
+
+        #progressbar {
+            position: relative;
+            background: @color-lines;
+            height: 10px;
+            margin: 20px 0 15px;
+        }
+        .ui-widget-header {
+            height: 100%;
+            width: 0%;
+            position: relative;
+            overflow: hidden;
+        }
+        .ui-widget-header:before {
+            content:'';
+            position: absolute;
+            height: 100%;
+            width:100%;
+            background: @theme__color__primary;
+            top:0;
+            left: 0;
+        }
+    }
+
     .header{
         &.panel {
             padding-top: 0;
