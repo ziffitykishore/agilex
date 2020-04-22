@@ -12,5 +12,8 @@
                 <argument name="view_model" xsi:type="object">Earthlite\LayerNavigation\ViewModel\LayerData</argument>
             </arguments>
 		</referenceBlock>
+                <referenceContainer name="catalog.leftnav">
+                    <block class="Magento\Framework\View\Element\Template" name="mob.filter.close" template="Magento_LayeredNavigation::filtertrigger.phtml" after="-" /> 
+                </referenceContainer>
     </body>
 </page>

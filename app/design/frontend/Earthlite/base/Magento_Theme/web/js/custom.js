@@ -66,4 +66,9 @@ define([
         $('body').removeClass('brand-active');
     });
     
+    // plp filter
+    $('.btn-filter').on('click', function(){
+        $('body').addClass('filter-active');
+    });
+    
 });
