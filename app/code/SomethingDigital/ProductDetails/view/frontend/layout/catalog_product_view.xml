@@ -11,6 +11,7 @@
                         </arguments>
                     </block>
                 </container>
+                <container name="product.detail.upsell.wrap" htmlTag="div" htmlClass="detail-block-description"></container>
                 <container name="product.detail.reviews.wrap" htmlTag="div" htmlClass="detail-block-description">
                     <block name="product.detail.reviews.header" template="SomethingDigital_ProductDetails::reviews_header.phtml" before="-" />
                 </container>
@@ -26,5 +27,6 @@
         <move element="product.info.description" destination="product.detail.description.wrap" before="-"/>
         <move element="reviews.tab" destination="content" after="-" />
         <move element="yotpo_widget_div" destination="product.detail.reviews.wrap" after="-" />
+        <move element="product.info.upsell" destination="product.detail.upsell.wrap"/>
     </body>
 </page>
