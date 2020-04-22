@@ -38,10 +38,30 @@
     </div>
 <?php endif; ?>
 
+<?php $title = __('Read More');?>
+
 <script type="text/javascript">
         require(['jquery', 'matchMedia', 'tabs'], function($, mediaCheck) {
 
             var detailsTabs = $('.product.data.items');
+            var readMore = '<a href="#description" class="action more"><?= $title ?></a>';
+
+            $(readMore).appendTo('.product.attribute.overview');
+
+            $('.product-info-main .product.attribute.overview a').click(function (event) {
+                var anchor,
+                header = $('.header-wrapper').outerHeight();
+                event.preventDefault();
+                anchor = $(this).attr('href').replace(/^.*?(#|$)/, '');
+                $('.product.data.items [data-role="content"]').each(function (index) { //eslint-disable-line
+                    if (this.id == 'description') { //eslint-disable-line eqeqeq
+                        detailsTabs.tabs('activate', index);
+                        $('html, body').animate({
+                            scrollTop: $('.product-tab-wrapper').offset().top - header
+                        }, 300);
+                    }
+                });
+            });
 
             $(window).resize(function(){
                 if($(window).width() >= 768) {
