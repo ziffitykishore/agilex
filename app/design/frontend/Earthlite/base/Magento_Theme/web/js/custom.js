@@ -5,10 +5,38 @@
 
 define([
     'jquery',
-    'domReady!'
+    'jquery-ui-modules/progressbar',
 ], function ($) {
     'use strict';
 
+    /* Loader */
+    var progressbar = $("#progressbar"),
+        progressLabel = $(".progress-label");
+
+    progressbar.progressbar({
+        value: 0,
+        change: function () {
+            /* progressLabel.text(progressbar.progressbar("value") + "%"); */
+        },
+        complete: function () {
+            progressLabel.text( "Loaded!" );
+            $('.loader').fadeOut(1000);
+            $('body').addClass('page-loaded');
+        }
+    });
+
+    function progress() {
+        var val = progressbar.progressbar("value") || 0;
+        progressbar.progressbar("value", val + 1);
+        if (val < 100) {
+            setTimeout(progress, 0);
+        }
+    }
+
+    progressbar.progressbar("value", 0);
+    $(document).ready(function () {
+        progress();
+    });
     /* header sticky */
 
     function sticky(navbar) {
