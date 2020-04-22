@@ -22,7 +22,6 @@ define(
             initObserve: function () {
                 var self = this;
                 var aElements = this.element.find('a');
-                console.log('initObserve initialized');
                 aElements.each(
                     function (index) {
                         var el = $(this);
@@ -77,7 +76,7 @@ define(
                             }
                         },
                         error: function () {
-                            console.log('error');
+                            console.log('error')
                             window.location.reload();
                         }
                     }
