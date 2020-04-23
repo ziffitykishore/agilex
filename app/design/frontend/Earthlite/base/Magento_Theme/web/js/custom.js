@@ -92,6 +92,12 @@ define([
         e.preventDefault();
         $('body').removeClass('brand-active');
     });
+    
+    // plp filter
+    $('.btn-filter').on('click', function(){
+        $('body').addClass('filter-active');
+    });
+    
     function veritcalScroll() {
         if ($('.related .product-items li').length > 3) {
             var items = $('.related .product-items li').outerHeight();
@@ -139,6 +145,5 @@ define([
     if ($(window).width() < 767) {
         moreToggler('.category-description p');
     }
-
 
 });

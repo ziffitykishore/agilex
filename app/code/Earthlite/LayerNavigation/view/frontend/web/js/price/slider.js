@@ -24,22 +24,27 @@ define(
                             slide: function( event, ui ) {
                                 $("#apply_price").show();
                                 self.showText(ui.values[0], ui.values[1]);
-                                var leftValLen,rightValLen = 0;
-                                var leftVal = $('#custom_price_slider .ui-slider-handle').get(0).style.left;
-                                var rightVal = $('#custom_price_slider .ui-slider-handle').get(1).style.left;
-                                leftValLen = leftVal.toString().replace('%', '');
-                                rightValLen = rightVal.toString().replace('%', '');
-                                var width = rightValLen - leftValLen;
-                                var rangeWidth = width+'%';
-                                $("#custom_price_slider #range_selected").css({"width": rangeWidth, "left": leftVal});
                             },
                             change: function(event, ui) {                                 
                                 $("#apply_price").show();
+                                self.applyPriceRange();
                             }
                         }
                     );
                     this.applyPrice();
+                    this.applyPriceRange();
                     this.showText(this.options.selectedFrom, this.options.selectedTo);
+                },
+
+                applyPriceRange: function(){
+                    var leftValLen,rightValLen = 0;
+                    var leftVal = $('#custom_price_slider .ui-slider-handle').get(0).style.left;
+                    var rightVal = $('#custom_price_slider .ui-slider-handle').get(1).style.left;                    
+                    leftValLen = leftVal.toString().replace('%', '');
+                    rightValLen = rightVal.toString().replace('%', '');
+                    var width = rightValLen - leftValLen;
+                    var rangeWidth = width+'%';
+                    $("#custom_price_slider #range_selected").css({"width": rangeWidth, "left": leftVal});
                 },
 
                 applyPrice: function(){
