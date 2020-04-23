@@ -20,6 +20,9 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-mob) {
     .our-catalogs {
+        h2 {
+            text-align: center;
+        }
         p {
             max-width: none;
         }
@@ -51,7 +54,7 @@
         }    
         .v-img {
             top: 0;
-            right: 0;
+            right: 15px;
             max-width: 40%;
         }
     }
@@ -75,8 +78,4 @@
             z-index: 1;
         }
     }
-}
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
-
 }

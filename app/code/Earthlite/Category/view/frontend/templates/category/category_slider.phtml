@@ -18,10 +18,10 @@ $categoryName = $block->getCurrentCategory()->getName();
 </div>
 
 <div class="container clpdesc">
-    <div class="clp-titledesc" >
-        <h2 class="text-center"><?= $categoryName ?> </h2>
+    <div class="clp-titledesc" data-aos="fade-up">
+        <h2 class="text-center" ><?= $categoryName ?> </h2>
         <?php if ($_description = $block->getCurrentCategory()->getDescription()) : ?>
-            <div class="category-description">
+            <div class="category-description" >
                 <?=
                 /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute(
                         $block->getCurrentCategory(), $_description, 'description'
