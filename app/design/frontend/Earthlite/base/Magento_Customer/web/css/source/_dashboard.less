@@ -38,6 +38,10 @@
         th, td {
             width: auto;
         }
+
+        .mark {
+            background: transparent;
+        }
     }
 
 
@@ -47,6 +51,10 @@
                 &-reorder {
                     .actions-toolbar {
                         max-width: none;
+                    }
+
+                    .product-item {
+                        padding: 0;
                     }
                 }
             }
@@ -112,7 +120,7 @@
             /* box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.08); */
             border: 1px solid @color-lines;
             border-top: 4px solid @theme__color__primary;
-            padding-top: 30px;
+            padding-top: 20px;
             border-radius: 0 0 6px 6px;
         }
         .items {
@@ -222,6 +230,12 @@
                 .box-actions {
                     .action {
                         .btn-bor();
+                        padding: 5px 15px;
+                        border: 1px solid @theme__color__primary;
+
+                        &:hover {
+                            border: @button-primary__hover__border;
+                        }
 
                         & + .action {
                             margin-left: 5px;
@@ -562,4 +576,47 @@
         }
     }
     
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) { 
+    .account {
+        .form-edit-account, 
+        .form-address-edit {
+            .fieldset {
+                margin-left: -15px;
+                margin-right: -15px;
+
+                .message {
+                    clear: both;
+                    margin: 0 15px;
+                }
+                .legend {
+                    padding: 0 15px;
+                }
+                > .field {
+                    padding-left: 15px;
+                    padding-right: 15px;
+                    &:not(.choice) {
+                        width: 50%;
+                        float: left;
+                    }
+
+                    &.street {
+                        width: 100%;
+                        .nested {
+                            margin-left: -15px;
+                            margin-right: -15px;
+                        }
+                        .field {
+                            padding-left: 15px;
+                            padding-right: 15px;
+                            width: 50%;
+                            float: left;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
