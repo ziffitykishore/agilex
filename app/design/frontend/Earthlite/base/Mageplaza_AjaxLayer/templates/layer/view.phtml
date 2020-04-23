@@ -51,13 +51,15 @@
                         <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle">
                             <?= /** @noEscape */ __('Filters') ?>
                         </strong>
-                        <div class="filter-options" id="narrow-by-list" data-role="content">
+                        <?php $collapsibleRange = implode(' ', range(0, $filter->getItemsCount())); ?>
+                        <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": "<?php echo $collapsibleRange ?>", "multipleCollapsible": true}}'>
                         <?php $wrapOptions = true;
                     endif; ?>
-                    <div data-role="ln_collapsible" class="filter-options-item"
+                     
+                    <div data-role="collapsible" class="filter-options-item active"
                          attribute="<?= /** @noEscape */ $filter->getRequestVar() ?>">
-                        <div data-role="ln_title" class="filter-options-title"><?= /** @noEscape */ __($filter->getName()) ?></div>
-                        <div data-role="ln_content" class="filter-options-content">
+                        <div data-role="title" class="filter-options-title"><?= /** @noEscape */ __($filter->getName()) ?></div>
+                        <div data-role="content" class="filter-options-content">
                             <?= /** @noEscape */ $block->getChildBlock('renderer')->setFilter($filter)->render($filter); ?>
                         </div>
                     </div>
@@ -70,7 +72,7 @@
                 require([
                     'jquery'
                 ], function ($) {
-                    $('#layered-filter-block').addClass('filter-no-options');
+                    $('#layered-filter-block').addClass('filter-no-options');                    
                 });
             </script>
             <?php endif; ?>
@@ -83,4 +85,16 @@
             </script>
         </div>
     </div>
+    <div class="close-filtermob d-md-none">
+        <button class="action close">close</button>            
+    </div>
+    <script>
+        require([
+            'jquery'
+        ], function ($) {
+            $('.close-filtermob .action').click(function(){
+                $('body').removeClass('filter-active');
+            });                        
+        });
+    </script>
 <?php endif; ?>
