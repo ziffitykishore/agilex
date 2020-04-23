@@ -93,7 +93,7 @@ class AddProductAttributes
         foreach ($attrCollection as $item) {
             $result[] = [
                 "attribute" => $item['attribute_code'],
-                "searchable"=> 1,
+                "searchable"=> ($item['is_searchable'] == 1) ? 1 : 0,
                 "order"=> "unordered",
                 "retrievable"=> 1
             ];
