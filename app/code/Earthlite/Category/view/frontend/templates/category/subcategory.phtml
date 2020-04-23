@@ -16,7 +16,7 @@ if ($subcats->getSize()) {
             $_imgHtml = '<div class="list-image bg-img" style="background-image:url(' . $_imgUrl . ')"></div>';
             $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
             ?>
-                <li class="d-flex">
+                <li class="d-flex" data-aos="fade-up">
                 <?= $_imgHtml ?>                
                     <div class="list-content">
                         <h5> <?= $_category->getName() ?></h5> 

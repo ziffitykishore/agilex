@@ -7,7 +7,7 @@
     .layered-filter-block-container {
         .filter-title {
             display: flex;
-            padding: 20px 30px;
+            padding: 15px 30px;
             justify-content: space-between;
             align-items: center;
             strong {
@@ -194,7 +194,7 @@
     .layered-filter-block-container {
         position: relative;
         .filter-options-item {
-            padding: 25px 30px;
+            padding: 20px 30px;
             border-top: 1px solid @color-lines;
         }
         .filter-current {
@@ -358,3 +358,14 @@
         }
     }
 }
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .layered-filter-block-container {
+        .filter-options-item, 
+        .filter-current,
+        .filter-title {
+            padding: 25px 30px;
+        }
+    }
+}
+
