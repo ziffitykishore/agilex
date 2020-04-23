@@ -56,7 +56,7 @@
                         <?php $wrapOptions = true;
                     endif; ?>
                      
-                    <div data-role="collapsible" class="filter-options-item"
+                    <div data-role="collapsible" class="filter-options-item active"
                          attribute="<?= /** @noEscape */ $filter->getRequestVar() ?>">
                         <div data-role="title" class="filter-options-title"><?= /** @noEscape */ __($filter->getName()) ?></div>
                         <div data-role="content" class="filter-options-content">
@@ -85,7 +85,7 @@
             </script>
         </div>
     </div>
-    <div class="close-filtermob">
+    <div class="close-filtermob d-md-none">
         <button class="action close">close</button>            
     </div>
     <script>
