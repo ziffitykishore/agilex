@@ -4,16 +4,22 @@
 
 & when (@media-common = true) {
 
-    .block.filter {
-        margin-bottom: @indent__xl;
-
+    .layered-filter-block-container {
         .filter-title {
+            display: flex;
             padding: 20px 30px;
+            justify-content: space-between;
+            align-items: center;
             strong {
                 font-size: 2rem;
                 color: @text__color__secondary;
             }
         }
+    }
+    .block.filter {
+        margin-bottom: @indent__xl;
+
+
 
         .ui-slider-handle {
             width: 20px;
@@ -50,7 +56,7 @@
         } 
     }
 
-    .filter-clear {
+    .filter-clear span {
         color: #ff1d0a;
     }
 
@@ -146,6 +152,7 @@
         }
         .swatch-option {
             border-radius: 50%;
+            width: 30px;
             height: 30px;
             &:hover {
                 border: 0 !important;
@@ -242,8 +249,8 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
     .layered-filter-block-container {
-        .filter-options-item {
-            padding: 15px;
+        .filter-options-item, .filter-current, .filter-title {
+            padding: 20px;
         }
     } 
 }
@@ -283,6 +290,27 @@
             }
         }
     }
+    .block.filter {
+        border: 0;
+        margin-bottom: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        padding-bottom: 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: calc(~'100% - 46px');
+    }
+    .close-filtermob {
+        position: absolute;
+        bottom: 0;
+        padding: 15px;
+        text-align: right;
+        width: 100%;
+        background: #fff;
+        border-top: 1px solid @color-lines;
+        z-index: 2;
+    }
     .layered-filter-block-container {
         position: fixed;
         top: 0;
@@ -292,11 +320,11 @@
         background: #fff;
         -webkit-transform: translateX(-101%);
         transform: translateX(-101%);
-        overflow: auto;
+        overflow: hidden;
         z-index: 999;
     }
     .filter-active {
-        overflow: hidden;
+        overflow: hidden !important;
         .page-header, .filter-trigger  {
             opacity: 0;
             visibility: hidden;
