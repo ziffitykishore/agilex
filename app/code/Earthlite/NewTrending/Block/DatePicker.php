@@ -38,7 +38,7 @@ class DatePicker extends \Magento\Config\Block\System\Config\Form\Field
         $html .= '<script type="text/javascript">
             require(["jquery", "jquery/ui"], function (jq) {
                 jq(document).ready(function () {
-                    jq("#' . $element->getHtmlId() . '").datepicker( { dateFormat: "dd/mm/yy" } );
+                    jq("#' . $element->getHtmlId() . '").datepicker( { dateFormat: "dd-mm-yy" } );
                     jq(".ui-datepicker-trigger").removeAttr("style");
                     jq(".ui-datepicker-trigger").click(function(){
                         jq("#' . $element->getHtmlId() . '").focus();
