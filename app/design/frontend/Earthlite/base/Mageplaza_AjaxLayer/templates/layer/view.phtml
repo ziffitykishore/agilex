@@ -34,16 +34,15 @@
         </div>
         <div class="block-title filter-title" data-count="<?= /** @noEscape */ $filtered ?>">
             <strong data-role="title"><?= /** @noEscape */ __('Filter') ?></strong>
-        </div>
-        <div class="block-content filter-content">
-            <?= /** @noEscape */ $block->getChildHtml('state') ?>
             <?php if ($block->getLayer()->getState()->getFilters()) : ?>
-                <div class="block-actions filter-actions">
                     <a href="<?= /** @noEscape */ $block->getClearUrl() ?>" class="action clear filter-clear">
                         <span><?= /** @noEscape */ __('Clear All') ?></span>
                     </a>
-                </div>
             <?php endif; ?>
+        </div>
+        <div class="block-content filter-content">
+            <?= /** @noEscape */ $block->getChildHtml('state') ?>
+            
             <?php $wrapOptions = false; ?>
             <?php foreach ($filters as $key => $filter) : ?>
                 <?php if ($filter->getItemsCount()) : ?>
@@ -86,7 +85,7 @@
         </div>
     </div>
     <div class="close-filtermob d-md-none">
-        <button class="action close">close</button>            
+        <button class="action close">Close</button>            
     </div>
     <script>
         require([
