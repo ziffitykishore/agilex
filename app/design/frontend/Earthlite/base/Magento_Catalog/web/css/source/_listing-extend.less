@@ -10,16 +10,6 @@
         }
     }
 
-    .page-products {
-        .products-grid {
-            .product-items {
-                .product-item {
-                    width: 100%;
-                }
-            }
-        }
-    }
-
     .products-grid {
         .product-items {
             margin-left: -10px;
@@ -215,17 +205,6 @@
     }
 }
 
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
-    .page-layout-2columns-left {
-        &.page-products {
-            .column.main,
-            .sidebar-main {
-                width: 100%;
-            }
-        }
-    }
-}
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .page-products {
