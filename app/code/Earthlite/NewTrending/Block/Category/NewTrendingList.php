@@ -13,6 +13,7 @@ use Magento\Catalog\Api\ProductRepositoryInterfaceFactory;
 use Magento\Framework\Registry;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
+use Magento\Catalog\Api\CategoryRepositoryInterfaceFactory;
 
 /**
  * class NewTrendingList
@@ -50,13 +51,19 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
      *
      * @var Registry 
      */
-    protected $registry;
+    protected $coreregistry;
     
     /**
      *
      * @var DateTime
      */
     protected $dateTime;
+    
+    /**
+     *
+     * @var CategoryRepositoryInterfaceFactory 
+     */
+    protected $categoryRepositoryInterfaceFactory;
 
     /**
      * NewTrendingList Constructor
@@ -68,6 +75,7 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
      * @param ProductRepositoryInterfaceFactory $productRepositoryInterfaceFactory
      * @param Registry $registry
      * @param DateTime $dateTime
+     * @param CategoryRepositoryInterfaceFactory $categoryRepositoryInterfaceFactory
      * @param array $data
      */
     public function __construct(
@@ -78,14 +86,16 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
         ProductRepositoryInterfaceFactory $productRepositoryInterfaceFactory,
         Registry $registry,
         DateTime $dateTime,
+        CategoryRepositoryInterfaceFactory $categoryRepositoryInterfaceFactory,
         array $data = []
     ) {
         $this->productCollectionFactory = $productCollectionFactory;
         $this->productStatus = $productStatus;
         $this->productVisibility = $productVisibility;
         $this->productRepositoryInterfaceFactory = $productRepositoryInterfaceFactory;
-        $this->registry = $registry;
+        $this->coreregistry = $registry;
         $this->dateTime = $dateTime;
+        $this->categoryRepositoryInterfaceFactory = $categoryRepositoryInterfaceFactory;
         parent::__construct($context, $data);
     }
     
@@ -105,7 +115,9 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
     public function getNewTrendingList()
     {
         /** @var $collection \Magento\Catalog\Model\ResourceModel\Product\Collection */
-        $collection = $this->productCollectionFactory->create();
+        $categoryIds = explode(',', $this->getChildCategories($this->getCategoryId()));
+        $collection = $this->productCollectionFactory->create()
+                ->addCategoriesFilter(['in' => $categoryIds]);
         return $this->getUpdatedCollection($collection);        
     }
     
@@ -120,16 +132,13 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
             $collection->setStoreId($this->getData('store_id'));
         }
         $collection->setVisibility($this->productVisibility->getVisibleInCatalogIds());
-//        $fromDate = date("Y-m-d h:i:s",strtotime($this->getFromDate())); 
-//        $toDate = date("Y-m-d h:i:s",strtotime($this->getToDate())); 
-        echo $fromDate = $this->dateTime->date($format = null, $input = $this->getFromDate());
-        echo $toDate = $this->dateTime->date($format = null, $input = $this->getToDate());
+        $fromDate = $this->dateTime->date($format = null, $input = $this->getFromDate());
+        $toDate = $this->dateTime->date($format = null, $input = $this->getToDate());
         $collection = $this->_addProductAttributesAndPrices($collection)
                 ->addStoreFilter()
                 ->addAttributeToFilter('created_at', array('from'=>$fromDate, 'to'=>$toDate))
                 ->addAttributeToSort('created_at', 'desc');
         $collection->distinct(true);
-
         return $collection;
     }
 
@@ -174,4 +183,39 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
         return $this->_scopeConfig->getValue('earthlite_category/new_trending/to_date',ScopeInterface::SCOPE_STORE);
     }
     
+    /**
+     * 
+     * @param type $categoryId
+     * @return string
+     */
+    protected function getChildCategories($categoryId)
+    {
+        $storeId = $this->_storeManager->getStore()->getId();
+        $categoryRepository = $this->categoryRepositoryInterfaceFactory->create();
+        $categoryDetails = $categoryRepository->get($categoryId, $storeId);
+        return $categoryDetails->getChildren();
+    }
+    
+    /**
+     * Retrieve current category instance
+     *
+     * @return array|null
+     */
+    public function getCategory()
+    {
+        return $this->coreregistry->registry('current_category');
+    }
+
+    /**
+     * Get category id
+     *
+     * @return int|string|null
+     */
+    public function getCategoryId()
+    {
+        if ($this->getCategory()) {
+            return $this->getCategory()->getId();
+        }
+        return \Magento\Catalog\Model\Category::TREE_ROOT_ID;
+    }
 }
