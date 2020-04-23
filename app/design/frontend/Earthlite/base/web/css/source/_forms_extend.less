@@ -16,6 +16,7 @@
     select:not([disabled]) {
         &:focus {
             .lib-css(box-shadow, none);
+            border-color: @theme__color__primary;
         }
     }
 
@@ -31,6 +32,7 @@
     textarea {
         .br-radius(3px);
         color: @text__color;
+        transition: border 0.5s ease 0s;
     }
 
 
@@ -38,6 +40,13 @@
         .legend {
             color: @theme__color__secondary;
         }
+
+        > .fields 
+        > .field 
+        > .label {
+            color: @theme__color__secondary;
+        }
+
         > .field{
             margin-bottom: 15px;
 

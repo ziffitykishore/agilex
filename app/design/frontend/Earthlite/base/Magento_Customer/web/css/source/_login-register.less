@@ -1,0 +1,305 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+
+    .customer-account-create,
+    .customer-account-login {
+        .columns {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-direction(column);
+            min-height: 100vh;
+
+            .column {
+                padding-bottom: 0;
+                .lib-vendor-prefix-display(flex);
+                align-items: center;
+                justify-content: center;
+
+                .form-heading {
+                    padding: 20px;
+                    text-align: center;
+                    border-bottom: 1px solid @color-lines;
+                    font-weight: 600;
+                    color: @theme__color__secondary;
+                }
+
+                .form {
+                    width: 100%;
+                    margin: 0 auto 50px;
+                    border: 1px solid @color-lines;
+                    border-top: 5px solid @theme__color__primary;
+                    box-shadow: 0px 15px 30px 0 rgba(0, 0, 0, 0.1);
+                    border-radius: 0 0 6px 6px;
+
+                    .fieldset {
+                        padding: 20px;
+                        margin-bottom: 0;
+                        
+                        &:after {
+                            display: none;
+                        }
+                    }
+
+                    .choice {
+                        .choice()
+                    }
+                }
+            }
+
+            .action {
+                &.close {
+                    position: fixed;
+                    right: 50px;
+                    top: 50px;
+                    opacity: 1;
+                    span {
+                        .lib-visually-hidden();
+                    }
+                    .lib-icon-font(
+                        @_icon-font-content: @icon-x,
+                        @_icon-font: @icon__font-name,
+                        @_icon-font-size: 30px,
+                        @_icon-font-line-height: 20px,
+                        @_icon-font-color: @theme__color__secondary,
+                        @_icon-font-color-hover: @theme__color__primary,
+                        @_icon-font-color-active: @header-icons-color-hover,
+                        @_icon-font-text-hide: true
+                    );
+                }
+            }
+
+            
+        }
+
+        .page-wrapper {
+            .nav-toggle {
+                display: none;
+            }
+            .logo {
+                margin: 0 auto 40px;
+                float: none;
+                display: block;
+                img {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+
+    .customer-account-create {
+        
+        .terms-block {
+            text-align: center;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        form.create.account {
+            max-width: 690px;
+            min-width: auto;
+
+            .fieldset {
+                .flex();
+                
+                > .field:not(.choice) {
+                    .flex-width(percentage(1/2));
+                    padding: 0 10px;
+                }
+                .field {
+                    padding: 0 10px;
+
+                    &.field-abmp_number {
+                        .flex-width(100%);
+                        padding: 27px;
+                        position: relative;
+                        margin-bottom: 0;
+
+                        &:before {
+                            content: '';
+                            position: absolute;
+                            background: @color__ghostwhite;
+                            left: -20px;
+                            right: -20px;
+                            top: 0;
+                            bottom: 0;
+                            display: block;
+                            z-index: -1;
+                        }
+                    }
+                }
+
+                .password-strength-meter {
+                    display: none;
+                }
+
+                .actions-toolbar {
+                    .flex-width(100%);
+                    > .primary {
+                        float: none;
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                    .action {
+                        &.primary {
+                            max-width: 300px;
+                            margin: 0 auto 30px;
+                            width: 100%;
+                            float: none;
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .customer-account-login {
+        .login-container {
+            .block {
+                width: 100%;
+            }
+
+            .form-login {
+                max-width: 375px;
+                width: 100%;
+            }        
+
+            .actions-toolbar {
+                .flex();  
+
+                > .primary,
+                .secondary {
+                    width: 100%;
+                    float: none;
+                }
+
+                .action {
+                    &.primary {
+                        margin: 15px 0 25px;
+                        width: 100%;
+                    }
+                }
+
+                .secondary {
+                    .flex();
+                    justify-content: space-between;
+                    align-items: center;
+
+                    .action {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .customer-account-create,
+    .customer-account-login {
+        .columns {
+            .column {
+                padding: 50px 0;
+            }
+            .action {
+                &.close {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+
+                    &:before {
+                        font-size: 20px;
+                    }
+                }
+            }
+            .terms-block {
+                font-size: 1.2rem;
+            }
+
+            .form {
+                .choice {
+                    .label {
+                        font-size: 1.2rem;
+                    }
+                }
+                .actions-toolbar {
+                    .action.remind {
+                        width: auto;
+                    }
+                    .action.remind,
+                    .remember-me {
+                        font-size: 1.2rem;
+                    }
+                }
+            }   
+
+            
+        }
+    }
+
+    .customer-account-create {
+        form.create.account {
+            .fieldset > {
+                .field:not(.choice), .field.choice {
+                    .flex-width(100%);
+                    padding: 0;
+                }
+                .field.field-abmp_number {
+                    padding: 27px 0px;
+                }
+            }
+        }
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .customer-account-create {
+        form.create.account {
+            .fieldset {
+                .field.field-abmp_number {
+                    .label,
+                    .control {
+                        float: left;
+                    }
+
+                    .label {
+                        width: 45%;
+                        margin-top: 5px;
+                    }
+                    .control {
+                        width: 55%;
+                    }
+                }
+            }
+        }
+    }    
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+    
+}

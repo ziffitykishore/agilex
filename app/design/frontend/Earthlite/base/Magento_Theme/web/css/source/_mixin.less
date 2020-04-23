@@ -89,6 +89,101 @@
     .br-radius(3px);
 }
 
+.btn-bor() {
+    border: 2px solid @theme__color__primary;
+    padding: 9px 15px;
+    display: inline-block;
+    border-radius: 3px;
+
+    &:hover {
+        background: @color-dark-blue;
+        border-color: @color-dark-blue;
+        color: @color-white;
+    }
+}
+
+.link-inverse() {
+    color: @theme__color__primary;
+    &:hover {
+        color: @color-dark-blue;
+    }
+}
+
+.choice() {
+    position: relative;
+    input[type="checkbox"],
+    input[type="radio"]{
+        position: absolute;
+        visibility: hidden;
+
+        & + label {
+            cursor: pointer;
+
+            span {
+                line-height: normal;
+            }
+        }
+    }
+
+    input[type="radio"] {
+        &:checked + label {
+            &:before {
+                background: transparent;
+                box-shadow: inset 0px 0px 0px 3px @color-white, inset 0px 0px 0px 10px @theme__color__primary;
+                text-align: center;
+                font-size: 25px;
+                line-height: 10px;
+            }
+        }
+        & + label {
+            line-height: normal;
+            margin-bottom: 0;
+            &:before {
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                border: 2px solid @color-lines;
+                color: @color-lines;
+                content: '';
+                .br-radius(50%);
+                //font-family: @icon-fox;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    input[type="checkbox"] {
+        &:checked + label {
+            &:before {
+                content: @icon-check;
+                background: @theme__color__primary;
+                border-color: @theme__color__primary;
+            }
+        }
+        & + label {
+            line-height: normal;
+            margin-bottom: 0;
+            &:before {
+                width: 15px;
+                height: 15px;
+                line-height: 15px;
+                border: 1px solid @color-lines;
+                color: @color-white;
+                content: '';
+                font-family: @icon__font-name;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+                border-radius: 2px;
+                font-weight: 600;
+                margin-top: -1px;
+            }
+        }
+    }
+}
+
 //
 //  Common
 //  _____________________________________________
@@ -157,7 +252,9 @@
         visibility: hidden;
         z-index: 99;
     }
-    .read-more {
+
+    .read-more, a.more {
+        text-transform: uppercase;
         &:after {
             transition: transform .3s cubic-bezier(.165,.84,.44,1);
             display: inline-block;
@@ -175,6 +272,18 @@
         }
     }
 
+    .action {
+        &.reset {
+            .br-radius(3px);
+        }
+    }
+
+    .action {
+        &.link {
+            .link-inverse();
+        }
+    }
+
     .action.btn-bor {
         .lib-button-primary();
         background: transparent;
@@ -184,15 +293,27 @@
         display: inline-block;
         text-decoration: none;
         &:hover {
-            border: 2px solid @theme__color__primary;
-            background: transparent;
-            color: @theme__color__primary;
+            border: 2px solid @color-dark-blue;
+            background: @color-dark-blue;
+            color: #fff;
         }
     }
+
     .inner-container {
         max-width: @inner_container__width;
         padding: 0 15px;
         margin: 0 auto;
+    }
+
+    .bg-img {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .gutter {
+        padding-left: 15px; 
+        padding-right: 15px; 
     }
 }
 
@@ -234,6 +355,13 @@
     }
 }
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .gutter {
+        padding-left: 20px; 
+        padding-right: 20px; 
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
     .py-10 {
         padding: 4rem 0;
@@ -252,17 +380,18 @@
     }
 }
 
-
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .action.primary {
-        padding: 15px 30px;
+        padding: 14px 30px;
     }
 }
-
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .action.btn-bor {
         padding: 14px 20px;
+    }
+    .action.primary {
+        padding: 12px 30px;
     }
     .action.btn-bor {
         min-width: 170px;
