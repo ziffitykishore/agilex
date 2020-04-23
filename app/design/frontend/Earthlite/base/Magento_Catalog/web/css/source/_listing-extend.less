@@ -20,14 +20,17 @@
         }
     }
 
-    .product {
-        &-items {
+    .products-grid {
+        .product-items {
             margin-left: -10px;
             margin-right: -10px;
             .product-item {
                 padding: 10px;
             }
         }
+    }
+
+    .product {
 
         &-item-info {
             border: 1px solid @color-lines;
@@ -66,7 +69,7 @@
                 &s-secondary {
                     .action.towishlist {
                         .lib-icon-font(
-                            @_icon-font-content: @icon-heart,
+                        @_icon-font-content: @icon-heart,
                             @_icon-font: @icon__font-name,
                             @_icon-font-size: 16px,
                             @_icon-font-line-height: 20px,
@@ -74,12 +77,12 @@
                             @_icon-font-color-hover: @theme__color__primary,
                             @_icon-font-color-active: @header-icons-color-hover,
                             @_icon-font-text-hide: true
-                        );
+                            );
                     }
 
                     .action.tocompare {
                         .lib-icon-font(
-                            @_icon-font-content: @icon-compare,
+                        @_icon-font-content: @icon-compare,
                             @_icon-font: @icon__font-name,
                             @_icon-font-size: 16px,
                             @_icon-font-line-height: 20px,
@@ -87,7 +90,7 @@
                             @_icon-font-color-hover: @theme__color__primary,
                             @_icon-font-color-active: @header-icons-color-hover,
                             @_icon-font-text-hide: true
-                        );
+                            );
                     }
                 }
             }
@@ -120,7 +123,7 @@
                     width: 100%;
 
                     &:hover {
-                        
+
                         .product-item-actions {
                             .action {
                                 &s-primary {
@@ -224,6 +227,25 @@
     }
 }
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
+    .page-products {
+        .products-grid {
+            .product-item {
+                width: calc(~'100% / 4');
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page-products {
+        .products-grid {
+            .product-item {
+                width: calc(~'100% / 2');
+            }
+        }
+    }
+}
 
 //
 //  Mobile
