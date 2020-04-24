@@ -7,14 +7,21 @@
 $catalogProductUrl = $block->getMediaUrl() . 'catalog/product';
 $categoryGalleryImages = $block->getImages();
 $categoryName = $block->getCurrentCategory()->getName();
+$catalogCategoryDefaultUrl = $block->getMediaUrl() . 'catalog/category/placeholder/';
 ?>
 
 <div class="clp-banner">
-    <?php foreach ($categoryGalleryImages as $categoryGalleryImage): ?>
-        <div class="bg-img slide" style="background-image: url(<?= $catalogProductUrl . $categoryGalleryImage->getValue() ?>)">
+    <?php if ($categoryGalleryImages->getSize()>0) { ?>
+        <?php foreach ($categoryGalleryImages as $categoryGalleryImage): ?>
+            <div class="bg-img slide" style="background-image: url(<?= $catalogProductUrl . $categoryGalleryImage->getValue() ?>)">
+
+            </div>
+        <?php endforeach; ?>
+    <?php } else { ?>
+        <div class="bg-img slide" style="background-image: url(<?= $catalogCategoryDefaultUrl . $block->getDefaultCategoryImage() ?>)">
 
         </div>
-    <?php endforeach; ?>
+    <?php } ?>
 </div>
 
 <div class="container clpdesc">
