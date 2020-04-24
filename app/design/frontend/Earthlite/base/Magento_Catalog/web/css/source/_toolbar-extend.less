@@ -141,11 +141,19 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .account, .page-products {
+    .account {
         .toolbar {
-            height: auto;
+            .limiter {
+                margin-bottom: 0;
+            }
+
+            .toolbar-amount {
+                padding: 10px 0;
+            }
         }
     }
+
+
 
     .page-products {
         .toolbar-products {
