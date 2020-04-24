@@ -19,6 +19,12 @@
                     <label>Category Listing Page</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="slider_default_image" translate="label" type="image" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Category Slider Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">catalog/category/placeholder</upload_dir>
+                    <base_url type="media" scope_info="1">catalog/category/placeholder</base_url>
+                </field>
             </group>
         </section>
     </system>

@@ -20,7 +20,7 @@ define([
         },
         complete: function () {
             progressLabel.text( "Loaded!" );
-            $('.loader').fadeOut(1000);
+            $('.preloader').fadeOut(1000);
             $('body').addClass('page-loaded');
         }
     });

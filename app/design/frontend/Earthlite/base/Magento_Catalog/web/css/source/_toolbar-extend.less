@@ -3,6 +3,22 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+
+    .toolbar-products {
+        margin-bottom: 0;
+
+        & + .products {
+            margin-top: 10px;
+            .products {
+                margin-top: 0;
+            }
+        }
+
+        & ~ .toolbar-products {
+            display: none;
+        }
+    }
+
     .account, .page-products {
         .toolbar {
             border: 1px solid @border-color__base;
