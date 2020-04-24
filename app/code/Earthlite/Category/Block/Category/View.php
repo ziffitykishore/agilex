@@ -8,12 +8,15 @@ use Magento\Catalog\Model\Layer\Resolver;
 use Magento\Framework\Registry;
 use Magento\Catalog\Helper\Category;
 use Earthlite\Category\Model\ResourceModel\CategoryGallery\CollectionFactory as CatalogGalleryCollectionFactory;
+use Magento\Store\Model\ScopeInterface;
 
 /*
  * class View
  */
 class View extends \Magento\Catalog\Block\Category\View
 {
+    const XML_PATH_CATEGORY_SLIDER = 'earthlite_category/category_general/slider_default_image';
+    
     /**
      * Core registry
      *
@@ -77,5 +80,14 @@ class View extends \Magento\Catalog\Block\Category\View
      public function getMediaUrl() 
      {
          return $this ->_storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+     }
+     
+     /**
+      * 
+      * @return string
+      */
+     public function getDefaultCategoryImage()
+     {
+         return $this->_scopeConfig->getValue(self::XML_PATH_CATEGORY_SLIDER, ScopeInterface::SCOPE_STORE);
      }
 }
