@@ -11,12 +11,12 @@ if ($subcats->getSize()) {
         $_category = $viewModel->loadCategoryById($subcat->getId());
         $subcaturl = $subcat->getUrl();
         $_imgHtml = '';
-        $_imgUrl = $_category->getImageUrl() ? $_category->getImageUrl() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
+        $_imgUrl = $_category->getImageUrl() ? $_category->getImageUrl() : $block->getViewFileUrl('Earthlite_Category::images/category_placeholder.png');
         if ($_imgUrl) {
             $_imgHtml = '<div class="list-image bg-img" style="background-image:url(' . $_imgUrl . ')"></div>';
             $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
             ?>
-                <li class="d-flex">
+                <li class="d-flex" data-aos="fade-up">
                 <?= $_imgHtml ?>                
                     <div class="list-content">
                         <h5> <?= $_category->getName() ?></h5> 
@@ -33,12 +33,4 @@ if ($subcats->getSize()) {
     }
     ?>
 </ul>
-<?php } elseif ($category->getLevel() == 2) { ?>
-
-<div class="message info empty">
-    <div>We can't find SubCategories matching the selection.</div>
-</div>
-
-    <?php
-}
-?>
+<?php } ?>

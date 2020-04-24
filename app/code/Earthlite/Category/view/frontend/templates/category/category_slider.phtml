@@ -7,24 +7,42 @@
 $catalogProductUrl = $block->getMediaUrl() . 'catalog/product';
 $categoryGalleryImages = $block->getImages();
 $categoryName = $block->getCurrentCategory()->getName();
+$catalogCategoryDefaultUrl = $block->getMediaUrl() . 'catalog/category/placeholder/';
 ?>
 
-<div class="gallery-container">
-    <div class="category-image">
+<div class="clp-banner">
+    <?php if ($categoryGalleryImages->getSize()>0) { ?>
         <?php foreach ($categoryGalleryImages as $categoryGalleryImage): ?>
-            <div>
-                <img src="<?= $catalogProductUrl . $categoryGalleryImage->getValue() ?>" 
-                     alt="<?= $categoryGalleryImage->getLabel() ?? $categoryName ?>"/>
+            <div class="bg-img slide" style="background-image: url(<?= $catalogProductUrl . $categoryGalleryImage->getValue() ?>)">
+
             </div>
         <?php endforeach; ?>
+    <?php } else { ?>
+        <div class="bg-img slide" style="background-image: url(<?= $catalogCategoryDefaultUrl . $block->getDefaultCategoryImage() ?>)">
+
+        </div>
+    <?php } ?>
+</div>
+
+<div class="container clpdesc">
+    <div class="clp-titledesc" data-aos="fade-up">
+        <h2 class="text-center" ><?= $categoryName ?> </h2>
+        <?php if ($_description = $block->getCurrentCategory()->getDescription()) : ?>
+            <div class="category-description" >
+                <?=
+                /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute(
+                        $block->getCurrentCategory(), $_description, 'description'
+                )
+                ?>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
 
 <script type="text/x-magento-init">
-{
-   "*": {
-       "Earthlite_Category/js/category-image-slider":{}
-   }
-}
+    {
+    "*": {
+    "Earthlite_Category/js/category-image-slider":{}
+    }
+    }
 </script>
-

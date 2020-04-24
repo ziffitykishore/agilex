@@ -8,9 +8,20 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="page.main.title" destination="product.info.main" before="-"/>
-        <!-- <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
-        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
 
-        <referenceBlock name="product.info.review" remove="true"/> -->
+        <referenceContainer name="content">
+            <container name="product.tab.related" htmlTag="div" htmlClass="product-tab-wrapper" after="product.info.media">
+                <container name="product.tab.container" htmlTag="div" htmlClass="inner-container"/>
+            </container>
+        </referenceContainer>
+
+        <move element="product.info.sku" destination="product.info.main" before="product.info.price"/>
+        <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
+        <move element="product.info.overview" destination="product.info.main" after="product.info.stock.sku"/>
+
+        <move element="product.info.details" destination="product.tab.container" after="-"/>
+        <move element="catalog.product.related" destination="product.tab.container" after="-"/>
+
+        <referenceBlock name="product.info.review" remove="true"/>
     </body>
 </page>

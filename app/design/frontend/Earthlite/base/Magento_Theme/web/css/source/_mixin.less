@@ -178,6 +178,7 @@
                 margin-right: 10px;
                 border-radius: 2px;
                 font-weight: 600;
+                margin-top: -1px;
             }
         }
     }
@@ -253,6 +254,7 @@
     }
 
     .read-more, a.more {
+        text-transform: uppercase;
         &:after {
             transition: transform .3s cubic-bezier(.165,.84,.44,1);
             display: inline-block;
@@ -261,7 +263,7 @@
             display: inline-block;
             vertical-align: middle;
             .lib-font-size(15);
-            margin-top: -2px;
+            margin-top: -1.5px;
             line-height: normal;
         }
         &:hover:after {
@@ -291,9 +293,9 @@
         display: inline-block;
         text-decoration: none;
         &:hover {
-            border: 2px solid @theme__color__primary;
-            background: transparent;
-            color: @theme__color__primary;
+            border: 2px solid @color-dark-blue;
+            background: @color-dark-blue;
+            color: #fff;
         }
     }
 
@@ -317,15 +319,15 @@
 
 @-webkit-keyframes button-arrow-right{0%{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}49%{opacity:0;-webkit-transform:translateX(25px);transform:translateX(25px)}50%{opacity:0;-webkit-transform:translateX(-25px);transform:translateX(-25px)}10%{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}}@keyframes button-arrow-right{0%{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}49%{opacity:0;-webkit-transform:translateX(25px);transform:translateX(25px)}50%{opacity:0;-webkit-transform:translateX(-25px);transform:translateX(-25px)}10%{opacity:1;-webkit-transform:translateX(0);transform:translateX(0)}}
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .py-10 {
-        padding: 8rem 0;
+        padding: 7rem 0;
     }
     .pb-10 {
-        padding-bottom: 8rem;
+        padding-bottom: 7rem;
     }
     .mb-10 {
-        margin-bottom: 8rem;
+        margin-bottom: 7rem;
     } 
     .mb-6 {
         margin-bottom: 5rem;

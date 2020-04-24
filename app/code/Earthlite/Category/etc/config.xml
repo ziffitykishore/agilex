@@ -2,10 +2,11 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
              xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <category_slider>
-            <category_slider_general>
-                <enable>1</enable>
-            </category_slider_general>
-        </category_slider>
+        <earthlite_category>
+            <category_general>
+                <slider_enable>1</slider_enable>
+                <clp_enable>1</clp_enable>
+            </category_general>
+        </earthlite_category>
     </default>
 </config>

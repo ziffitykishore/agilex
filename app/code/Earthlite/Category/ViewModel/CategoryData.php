@@ -1,7 +1,10 @@
 <?php
 
-namespace Earthlite\TopCategory\ViewModel;
+namespace Earthlite\Category\ViewModel;
 
+/**
+ * class CategoryData
+ */
 class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
 

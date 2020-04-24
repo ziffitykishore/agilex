@@ -3,13 +3,36 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+
+    .toolbar-products {
+        margin-bottom: 0;
+
+        & + .products {
+            margin-top: 10px;
+            .products {
+                margin-top: 0;
+            }
+        }
+
+        & ~ .toolbar-products {
+            display: none;
+        }
+    }
+
     .account, .page-products {
         .toolbar {
             border: 1px solid @border-color__base;
             .br-radius(10px);
             background: #f3f6ff;
             padding: 0;
-            height: 60px;
+
+            &:empty {
+                display: none;
+            }
+
+            .pages .items {
+                padding: 8px 10px;
+            }
 
             .toolbar-amount {
                 padding: 16px 0;
@@ -22,7 +45,7 @@
             }
 
             .modes-mode {
-                padding: 20px;
+                padding: 16px;
                 border: none;
                 border-right: 1px solid @border-color__base;
                 &:before {
@@ -49,8 +72,8 @@
             }
             
 
-            /* .sorter {
-                padding: 10px;
+            .sorter, .limiter {
+                padding: 5px 10px;
                 border-left: 1px solid @border-color__base;
 
                 &-label {
@@ -62,7 +85,7 @@
                 &-action {
                     display: none;
                 }
-            } */
+            }
         }
     }
 }
@@ -76,6 +99,10 @@
     .account, .page-products {
         .toolbar {
             height: auto;
+
+            .sorter {
+                display: none;
+            }
         }
     }
 
@@ -91,7 +118,7 @@
     .account, .page-products {
         .toolbar {
             .toolbar-amount {
-                padding: 16px 0;
+                padding: 12px 0;
                 line-height: 26px;
             }
         }

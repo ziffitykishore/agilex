@@ -4,16 +4,26 @@
         <tab id="earthlite" translate="label" sortOrder="300">
             <label>Earthlite</label>
         </tab>
-        <section id="category_slider" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="earthlite_category" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
-            <label>Category Slider</label>
+            <label>Category Page</label>
             <tab>earthlite</tab>
-            <resource>Earthlite_Customer::config_category_slider</resource>
-            <group id="category_slider_general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Earthlite_Customer::config_category_general</resource>
+            <group id="category_general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General Options</label>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Enable</label>
+                <field id="slider_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Category Slider</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="clp_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Category Listing Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="slider_default_image" translate="label" type="image" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select Category Slider Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">catalog/category/placeholder</upload_dir>
+                    <base_url type="media" scope_info="1">catalog/category/placeholder</base_url>
                 </field>
             </group>
         </section>
