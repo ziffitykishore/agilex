@@ -8,6 +8,10 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    body {
+        letter-spacing: .32px;
+    }
+
     .lib-font-face(
     @family-name: @font-family-name__base,
         @font-path: '@{baseDir}fonts/Manrope/regular/Manrope-Regular',
@@ -59,7 +63,7 @@
 //  Desktop
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     h1 {
         .lib-css(font-size, @h1__font-size-desktop);
         .lib-css(margin-bottom, @h1__margin-bottom__desktop);
@@ -77,9 +81,6 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-    h1 {
-        font-size: 5rem;
-    }
     h2 {
         font-size: 4rem;
     }
@@ -88,7 +89,7 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
 
     h1 {
-        font-size: 4rem;
+        font-size: 3.2rem;
     }
     h2 {
         font-size: 3rem;
@@ -105,11 +106,11 @@
         font-size: 1.4rem;
     }
     h1 {
-        font-size: 4rem;
+        font-size: 3rem;
         margin-bottom: 2rem;
     }
     h2 {
-        font-size: 3rem;
+        font-size: 2.8rem;
         margin-bottom: 2rem;
     }
 

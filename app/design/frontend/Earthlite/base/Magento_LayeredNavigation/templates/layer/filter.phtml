@@ -1,0 +1,84 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+?>
+<?php
+/**
+ * Template for filter items block
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\FilterRenderer
+ */
+?>
+<?php
+    $viewModel = $block->getViewModel();
+    $enableLayeredNavigation = $viewModel->getLayerNavigationConfig();
+    $enablePriceSlider = $viewModel->getPriceSliderConfig();
+?>
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem) : ?>
+        <li class="item">
+        	<?php
+        		$filter = $filterItem->getFilter();
+        		$attributeModel = $filter->getData('attribute_model');
+        		$inputName = $filter->getRequestVar();
+        		$getParamValue = $block->getRequest()->getParam($inputName);
+        		if($inputName == 'price' && $enableLayeredNavigation && $enablePriceSlider) :
+    				$productCollection = $filter->getLayer()->getProductCollection();
+                    $minPrice = $productCollection->getMinPrice();
+                    $maxPrice = $productCollection->getMaxPrice();
+                    if($minPrice && $maxPrice):
+        	?>
+            	<div id="price_slider_attribute">
+                    <div id="custom_price_slider">
+                        <div id="range_selected" style="position: absolute; height: 10px; width: 100%; left: 0%"></div>
+                    </div>  
+                    <div id="custom_price_text"></div>
+                </div>
+            <?php endif; ?>
+            <script type="text/x-magento-init">
+                {
+                    "#price_slider_attribute": {
+                        "Earthlite_LayerNavigation/js/price/slider": {
+                            "selectedFrom": <?php echo $minPrice ?>,
+                            "selectedTo": <?php echo $maxPrice ?>,
+                            "priceMin": <?php echo $minPrice ?>,
+                            "priceMax": <?php echo $maxPrice ?>,
+                            "priceFormat": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Tax\Helper\Data')->getPriceFormat($block->getStore()); ?>,
+                            "ajaxUrl": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($filterItem->getUrl()) ?>
+                        }
+                    }
+                }
+            </script>
+            <?php break; ?>
+            
+        	<?php else: ?>
+            <?php if ($filterItem->getCount() > 0) : ?>
+                <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
+                    <?= /* @noEscape */ $filterItem->getLabel() ?>
+                    <?php if ($this->helper(\Magento\Catalog\Helper\Data::class)->shouldDisplayProductCountOnLayer()) : ?>
+                        <span class="count"><?= /* @noEscape */ (int)$filterItem->getCount() ?><span class="filter-count-label">
+                            <?php if ($filterItem->getCount() == 1) :
+                                ?> <?= $block->escapeHtml(__('item')) ?><?php
+                            else :
+                                ?> <?= $block->escapeHtml(__('item')) ?><?php
+                            endif;?></span></span>
+                    <?php endif; ?>
+                </a>
+            <?php else :?>
+                <?= /* @noEscape */ $filterItem->getLabel() ?>
+                <?php if ($this->helper(\Magento\Catalog\Helper\Data::class)->shouldDisplayProductCountOnLayer()) : ?>
+                    <span class="count"><?= /* @noEscape */ (int)$filterItem->getCount() ?><span class="filter-count-label">
+                        <?php if ($filterItem->getCount() == 1) :
+                            ?><?= $block->escapeHtml(__('items')) ?><?php
+                        else :
+                            ?><?= $block->escapeHtml(__('items')) ?><?php
+                        endif;?></span></span>
+                <?php endif; ?>
+            <?php endif; endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>

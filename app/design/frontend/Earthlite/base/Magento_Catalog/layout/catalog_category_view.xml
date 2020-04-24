@@ -7,12 +7,16 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>        
-        <referenceContainer name="content">
-            <referenceBlock name="category.products">
-                <arguments>
-                    <argument name="view_model" xsi:type="object">Earthlite\TopCategory\ViewModel\CategoryData</argument>
-                </arguments>
-            </referenceBlock>            
-        </referenceContainer>        
+        <referenceContainer name="sidebar.additional" remove="true" />  
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="mob.filter.trigger" template="Magento_Catalog::filtertrigger.phtml" after="-" /> 
+        </referenceContainer>
+
+        <referenceContainer name="category.view.container">
+            <container name="category.image.wrapper" htmlTag="div" htmlClass="category-image-wrapper" before="-"/>
+        </referenceContainer>
+        <move element="category.image" destination="category.image.wrapper" after="-"/>
+        <move element="page.main.title" destination="category.image.wrapper" after="-"/>
+        <move element="category.view.container" destination="main" before="-"/>
     </body>
 </page>

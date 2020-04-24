@@ -34,6 +34,8 @@
 @import 'module/_toolbar.less';
 
 @import '_listing-extend';
+@import '_toolbar-extend';
+@import '_clp.less';
 @import '_pdp_extend.less';
 
 //
@@ -41,7 +43,7 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-
+    
     //
     //  Category view
     //  ---------------------------------------------
@@ -201,7 +203,6 @@
                 &.sku {
                     display: inline-block;
                     vertical-align: top;
-                    .lib-css(color, @text__color__muted);
 
                     > .value {
                         display: inline-block;
@@ -570,14 +571,6 @@
                 padding-top: @indent__m;
                 text-align: center;
                 vertical-align: bottom;
-            }
-        }
-    }
-
-    .product-info-main {
-        .page-title-wrapper {
-            .page-title {
-                margin-top: -13px;
             }
         }
     }
