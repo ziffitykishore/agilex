@@ -1,0 +1,4 @@
+#layer-product-list .ias-spinner ~ .ias-spinner
+{
+    display:none;
+}
