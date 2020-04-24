@@ -52,9 +52,7 @@ class CatalogPageNumber implements \Magento\Framework\View\Element\Block\Argumen
         $offset = $this->scopeConfig->getValue("catalog/frontend/catalog_page_number_offset", $storeScope);
         $link = $this->scopeConfig->getValue("catalog/frontend/catalog_link", $storeScope);
 
-        if (!empty($offset)) {
-            $urlCatalogPageNumber = $catalogPageNumber+$offset;
-        }
+        $urlCatalogPageNumber = $catalogPageNumber + $offset;
 
         return [
             'catalog_page_number' => $catalogPageNumber,
