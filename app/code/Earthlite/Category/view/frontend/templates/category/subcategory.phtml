@@ -1,0 +1,36 @@
+<?php
+    $viewModel = $block->getViewModel();
+    $category = $viewModel->getCurrentCategory();
+    $_outputhelper = $viewModel->getCatalogHelper();
+    $subcats = $category->getChildrenCategories();
+if ($subcats->getSize()) {
+    ?>
+<ul class="sub-cat inner-container gutter">
+    <?php
+    foreach ($subcats as $subcat) {
+        $_category = $viewModel->loadCategoryById($subcat->getId());
+        $subcaturl = $subcat->getUrl();
+        $_imgHtml = '';
+        $_imgUrl = $_category->getImageUrl() ? $_category->getImageUrl() : $block->getViewFileUrl('Earthlite_Category::images/category_placeholder.png');
+        if ($_imgUrl) {
+            $_imgHtml = '<div class="list-image bg-img" style="background-image:url(' . $_imgUrl . ')"></div>';
+            $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
+            ?>
+                <li class="d-flex" data-aos="fade-up">
+                <?= $_imgHtml ?>                
+                    <div class="list-content">
+                        <h5> <?= $_category->getName() ?></h5> 
+                        <div class="desc"> <?= $_category->getDescription() ?></div> 
+                        <div class="actions"> 
+                            <a class="action primary" href="<?= $subcaturl ?>"> 
+                            <?= $block->escapeHtml('View All Products')?> 
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            <?php
+        }
+    }
+    ?>
+</ul>
+<?php } ?>

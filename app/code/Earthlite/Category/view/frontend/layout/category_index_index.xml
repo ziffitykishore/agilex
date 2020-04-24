@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceContainer name="page.wrapper">
+            <container name="category.view.container" htmlTag="div" htmlClass="category-view" before="main.content">
+                <block ifconfig="earthlite_category/category_general/slider_enable" 
+                   class="Earthlite\Category\Block\Category\View" 
+                   name="category.image.carousel" 
+                   template="Earthlite_Category::category/category_slider.phtml"/>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="subcategory.view.container" htmlTag="div" htmlClass="sub-category-view py-10">
+                <block name='subcategory' 
+                       template='Earthlite_Category::category/subcategory.phtml' 
+                       ifconfig="subcategory/general/enable">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">Earthlite\Category\ViewModel\CategoryData</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

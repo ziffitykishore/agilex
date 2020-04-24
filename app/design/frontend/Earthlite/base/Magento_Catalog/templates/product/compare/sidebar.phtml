@@ -8,20 +8,6 @@
 
 /* @var $block \Magento\Framework\View\Element\Template */
 ?>
-<?php
-    $viewModel = $block->getViewModel();
-    $currentCategory = $viewModel->getCurrentCategory();
-    $allowBlock = false;
-    if($currentCategory == '')
-    {
-        $allowBlock = true;           
-    }
-    else if($currentCategory->getLevel() > 2 || empty($currentCategory->getChildrenCategories()->getSize()) || !$viewModel->getSubcategoryConfig())
-    {
-        $allowBlock = true;
-    }     
-    if($allowBlock):
-?>
 <div class="block block-compare" data-bind="scope: 'compareProducts'" data-role="compare-products-sidebar">
     <div class="block-title">
         <strong id="block-compare-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Compare Products')) ?></strong>
@@ -58,13 +44,9 @@
     </div>
     <!-- /ko -->
     <!-- ko ifnot: compareProducts().count -->
-    <div class="empty"><?= $block->escapeHtml(__('You have no items to compare.')) ?></div>
+    <div class="block-content empty"><?= $block->escapeHtml(__('You have no items to compare.')) ?></div>
     <!-- /ko -->
 </div>
 <script type="text/x-magento-init">
 {"[data-role=compare-products-sidebar]": {"Magento_Ui/js/core/app": <?= /* @noEscape */ $block->getJsLayout() ?>}}
 </script>
-
-<?php 
-    endif;     
-?>
