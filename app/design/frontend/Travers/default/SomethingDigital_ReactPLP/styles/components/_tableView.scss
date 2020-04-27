@@ -72,7 +72,7 @@
   height: 100%;
 }
 
-.react-bootstrap-table .sticky {
+.react-bootstrap-table {
     thead,
     tbody {
         display: block;
@@ -94,7 +94,20 @@
     }
 
     tbody {
-        max-height: 900px;
+        max-height: 500px;
         overflow-y: auto;
+
+        tr:nth-of-type(n+10) {
+            display: none;
+        }
+    }
+
+
+    .sticky tbody {
+        max-height: 800px;
+
+        tr:nth-of-type(n+10) {
+            display: inline-flex;
+        }
     }
 }
