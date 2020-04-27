@@ -32,6 +32,20 @@
 
         &.media {
             display: block;
+            position: relative;
+
+            .magnifier-preview {
+                border: 1px solid @color-lines;
+                box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.2);
+                width: ~"calc(100% - 100px)" !important;
+                height: ~"calc(100% - 100px)" !important;
+                left: ~"calc(100% + 20px)" !important;
+                top: 0px !important;
+                img { 
+                    max-height:inherit; 
+                    object-fit: cover; 
+                }
+            }
 
             .fotorama__stage {
                 margin-bottom: 20px;
