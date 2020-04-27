@@ -396,15 +396,19 @@
             padding-top: 15px;
             padding-bottom: 15px;
         }
+
+        &.panel {
+            .our-brands {
+                li {
+                    font-size: 1.2rem;
+                }
+            }
+        }
     }
 
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
-    .slogan-sec {
-        display: none;
-    }
-
     .header {
         &-right-pane {
             .minicart-wrapper {
@@ -448,6 +452,9 @@
     }
 
     .header {
+        .slogan-sec {
+            display: none;
+        }
         .nav-toggle {
             display: block;
             position: static;
