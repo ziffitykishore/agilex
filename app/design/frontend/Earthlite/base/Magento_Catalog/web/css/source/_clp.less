@@ -118,8 +118,16 @@
             -webkit-transition: all 0.5s ease 0s;
             transition: all 0.5s ease 0s;
         }
+        .slick-list .slick-slide[aria-hidden="true"] {
+            opacity: 0.6;
+        }
     }
-
+    .page-main {
+        .inner-container {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
@@ -257,5 +265,12 @@
         .slide {
             height: 250px;
         }
+    }
+    .new-trend-slider {
+        overflow: hidden;
+            padding-right: 20%;
+            .slick-list {
+                overflow: visible;
+            }
     }
 }

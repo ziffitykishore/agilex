@@ -33,6 +33,7 @@ define(['jquery', 'slick'], function ($) {
                 },
                 {
                     breakpoint: 480,
+                    infinite: true,
                     settings: {
                         arrows: false,
                         slidesToShow: 1,
