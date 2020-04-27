@@ -3,8 +3,10 @@
 $newTrendingProducts = $block->getNewTrendingList();
 ?>
 <?php if ($exist = ($block->getNewTrendingList() && $block->getNewTrendingList()->getSize())) : ?>
-    <h2><?= $block->escapeHtml($block->getData('title')) ?></h2>
-    <ol
+    <section class="new-trend-wrap inner-container">
+    <h2 class="mb-6 text-center" data-aos="fade-up"><?= $block->escapeHtml($block->getData('title')) ?></h2>
+    <div class="wrapper grid products-grid new-trend-products" >
+    <ol class="new-trend-slider product-items">
         <?php
         foreach ($newTrendingProducts as $newTrendingProduct) {
             $productDetails = $block->getProductDetails($newTrendingProduct->getId());
@@ -39,6 +41,13 @@ $newTrendingProducts = $block->getNewTrendingList();
             </li>
         <?php } ?>
     </ol>
+    </div>
+    </section>
 <?php endif; ?>
-
-
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Earthlite_NewTrending/js/newtrendslider":{}
+    }
+}
+</script>
