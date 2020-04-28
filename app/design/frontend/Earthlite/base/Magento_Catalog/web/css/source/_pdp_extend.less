@@ -295,7 +295,7 @@
                             max-height: 325px;
                             margin: 0;
                             .product-item {
-                                width: 100%;
+                                .flex-width(100%);
                                 padding: 5px 0;
                             }
                         }
@@ -343,6 +343,11 @@
 
                             a {
                                 color: @theme__color__secondary;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                display: block;
+                                width: 150px;
                                 &:hover {
                                     color: @theme__color__primary;
                                 }
@@ -350,7 +355,7 @@
                         }
 
                         .price-box {
-                            margin-bottom: 10px;
+                            margin: 10px 0;
                         }
 
                         .actions-secondary {
