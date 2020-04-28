@@ -51,7 +51,7 @@
                         <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle">
                             <?= /** @noEscape */ __('Filters') ?>
                         </strong>
-                        <?php $collapsibleRange = implode(' ', range(0, $filter->getItemsCount())); ?>
+                        <?php $collapsibleRange = implode(' ', range(0, 10));?>
                         <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": "<?php echo $collapsibleRange ?>", "multipleCollapsible": true, "animate":{"duration":"400"}}}'>
                         <?php $wrapOptions = true;
                     endif; ?>
