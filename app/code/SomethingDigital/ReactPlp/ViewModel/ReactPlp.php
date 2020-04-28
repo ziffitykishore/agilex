@@ -24,6 +24,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
 {
     const LIST_ATTRIBUTES_CACHE_ID = 'reactListAttributes';
     const TABLE_ATTRIBUTES_CACHE_ID = 'reactTableAttributes';
+    const SEARCH_ATTRIBUTES_CACHE_ID = 'reactSearchAttributes';
     const FILTER_ATTRIBUTES_CACHE_ID = 'reactFilterAttributes';
 
     private $storeManager;
@@ -142,6 +143,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'defaultListAttributes' => $this->getListAttributes(),
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
             'defaultTableAttributes' => $this->getTableAttributes(),
+            'searchTableAttributes' => $this->getSearchAttributes(),
             'hasSpotPricing' => $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH),
             'defaultFilterAttributesInfo' => $this->getFilterAttributes(),
             'swatchImages' => $this->getSwatchImages(),
@@ -226,6 +228,32 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         }
 
         return $tableAttributes;
+    }
+
+    /**
+     * Returns array with search attributes
+     *
+     * @return array
+     */
+    public function getSearchAttributes()
+    {
+        $searchAttributes = $this->loadDataFromCache(static::SEARCH_ATTRIBUTES_CACHE_ID);
+        if (!$searchAttributes) {
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToFilter('include_in_search_table', true);
+            $collection->setOrder('search_position','ASC');
+            $searchAttributes = [];
+            foreach ($collection as $item) {
+                $searchAttributes[] = [
+                    'id' => $item->getAttributeCode(),
+                    'label' => $item->getStoreLabel()
+                ];
+            }
+            $searchAttributes = $this->attributeSorter->sort($searchAttributes, AttributeSorter::ARRAYED_ATTRIBUTES);
+            $this->saveDataInsideCache($searchAttributes, static::SEARCH_ATTRIBUTES_CACHE_ID);
+        }
+
+        return $searchAttributes;
     }
 
     /** 
