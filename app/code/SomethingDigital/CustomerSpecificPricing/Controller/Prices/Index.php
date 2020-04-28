@@ -10,6 +10,7 @@ use Magento\Framework\Stdlib\ArrayManager;
 use Psr\Log\LoggerInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Framework\Session\SessionManagerInterface;
 
 class Index extends Action
 {
@@ -18,6 +19,7 @@ class Index extends Action
     private $currency;
     protected $logger;
     protected $productRepository;
+    protected $sessionManager;
 
     public function __construct(
         Context $context,
@@ -25,13 +27,15 @@ class Index extends Action
         ArrayManager $arrayManager,
         LoggerInterface $logger,
         ProductRepositoryInterface $productRepository,
-        PriceCurrencyInterface $currency
+        PriceCurrencyInterface $currency,
+        SessionManagerInterface $sessionManager
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->arrayManager = $arrayManager;
         $this->logger = $logger;
         $this->productRepository = $productRepository;
         $this->currency = $currency;
+        $this->sessionManager = $sessionManager;
         parent::__construct($context);
     }
 
@@ -85,12 +89,15 @@ class Index extends Action
             return $this->prepareFailedJsonResult($e->getMessage(), $jsonResult);
         }
 
+        $suffix = $this->sessionManager->getSkuSuffix();
+
         $jsonResult->setHttpResponseCode(200);
         $jsonResult->setData(
             [
                 'status' => 'success',
                 'code' => 200,
-                'data' => $data
+                'data' => $data,
+                'suffix' => $suffix
             ]
         );
         return $jsonResult;

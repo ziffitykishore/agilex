@@ -1,18 +1,10 @@
 define([
     'jquery',
 ], function ($) {
-    return function () {
-        var settings = {
-            method: 'POST',
-            dataType: 'json',
-            url: '/csp/skusuffix'
+    return function (suffix) {
+        var sku = $('[itemprop=sku]').text();
+        if (suffix !== null) {
+            $('[itemprop=sku]').text(sku + suffix);
         }
-
-        $.ajax(settings).done(function(data){
-            var sku = $('[itemprop=sku]').text();
-            if (data.suffix !== null) {
-                $('[itemprop=sku]').text(sku + data.suffix);
-            }
-        });
     }
 });
