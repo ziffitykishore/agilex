@@ -166,18 +166,12 @@
     }
 
     .account {
+        .page-header {
+            border-bottom: 1px solid @color-lines;
+        }
         .sidebar {
             &.sidebar-additional {
                 margin-top: 0;
-            }
-        }
-        .page-main {
-            &:before {
-                content: '';
-                border-top: 1px solid @color-lines;
-                position: absolute;
-                left: 0;
-                right: 0;
             }
         }
         .column.main {
@@ -252,6 +246,16 @@
     
             }
         }
+
+        &.wishlist-index-index,
+        &.page-multiple-wishlist {
+            .page-title-wrapper {
+                .page-title {
+                    .lib-visually-hidden-reset();
+                    margin-bottom: 20px;
+                }
+            }
+        }
     }
 
     .form-newsletter-manage,
@@ -294,6 +298,8 @@
 
     // Wish list
 
+
+
     .wishlist-index-index {
 
         .toolbar {
@@ -312,11 +318,19 @@
                     margin: 0;
                     width: 100%;
                     .flex-width(percentage(1/3));
+
+                    &:first-child {
+                        border: none;
+                    }
                 }
            }
 
            .product-item-info {
                 width: 100%;
+            }
+
+            .product-item-comment {
+                height: auto;
             }
 
             
@@ -407,37 +421,45 @@
         }
     }
 
-    .sidebar-main {
-        .block-collapsible-nav {
-            &-title {
-                padding: 10px 35px 10px 20px;
-                margin-bottom: 0;
-                color: @theme__color__secondary;
-                position: relative;
-                border: 1px solid @color-lines;
+    .account {
+        .sidebar-main {
+            margin-left: -20px;
+            margin-right: -20px;
+            .block-collapsible-nav {
+                margin-bottom: 20px;
+                &-title {
+                    padding: 10px 35px 10px 20px;
+                    margin-bottom: 0;
+                    margin-top: -1px;
+                    color: @theme__color__secondary;
+                    position: relative;
+                    border-top: 1px solid @color-lines;
+                    border-bottom: 1px solid @color-lines;
 
-                &:after {
-                    content: @icon-chevron-down;
-                    font-family: @icon__font-name;
-                    position: absolute;
-                    right: 15px;
-                    font-size: 1.6rem;
-
-                }
-
-                &.active {
                     &:after {
-                        content: @icon-chevron-up;
+                        content: @icon-chevron-down;
+                        font-family: @icon__font-name;
+                        position: absolute;
+                        right: 15px;
+                        font-size: 1.6rem;
+
+                    }
+
+                    &.active {
+                        &:after {
+                            content: @icon-chevron-up;
+                        }
                     }
                 }
-            }
-            &-content {
-                display: none;
-                box-shadow: none;
+                &-content {
+                    display: none;
+                    box-shadow: none;
+                    padding-top: 0;
 
-                &.active {
-                    display: block;
-                    margin-top: -1px;
+                    &.active {
+                        display: block;
+                        margin-top: -1px;
+                    }
                 }
             }
         }
@@ -481,7 +503,7 @@
 
     .account {
         .page-main {
-            padding-top: 20px;
+            padding-top: 0;
             &:before {
                 display: none;
             }
