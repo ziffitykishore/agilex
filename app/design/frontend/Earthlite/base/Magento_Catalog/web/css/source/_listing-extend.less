@@ -255,6 +255,81 @@
         }
     }
 
+    .catalog-product_compare-index {
+        .page-header {
+            border-bottom: 1px solid @color-lines;
+        }
+
+        .page-main {
+            margin-top: 20px;
+        }
+
+        .action.print {
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .comparison {
+            .table-comparison {
+                table-layout: auto;
+                border: 1px solid @color-lines;
+                tbody {
+                    & +tbody {
+                        border-top: 1px solid @color-lines;
+                    }
+                    tr {
+                        th {
+                            border-bottom: 1px solid @color-lines;
+                        }
+                        td {
+                            border-right: 1px solid @color-lines;
+                            border-bottom: 1px solid @color-lines;
+                        }
+                    }
+                }
+
+                .cell.label {
+                    border-right: 1px solid @color-lines;
+                }
+
+                .cell.remove {
+                    text-align: center;
+                    border-right: 1px solid @color-lines;
+                    padding: 15px;
+
+                    .action {
+                        &.delete {
+                            margin-left: 15px;
+                            .lib-icon-font(
+                                @_icon-font-content: @icon-trash,
+                                @_icon-font: @icon__font-name,
+                                @_icon-font-size: 16px,
+                                @_icon-font-line-height: 20px,
+                                @_icon-font-color: @header-icons-color,
+                                @_icon-font-color-hover: @header-icons-color-hover,
+                                @_icon-font-color-active: @header-icons-color-hover,
+                                @_icon-font-text-hide: true
+                            );
+                        }
+                    }
+                }
+
+                .price-box,
+                .product-reviews-summary {
+                    margin: 0;
+                }
+
+                .product-item-actions {
+                    > .actions-primary {
+                        & + .actions-secondary {
+                            margin-top: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 //
