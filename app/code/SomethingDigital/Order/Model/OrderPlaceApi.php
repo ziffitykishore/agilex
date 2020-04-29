@@ -249,7 +249,7 @@ class OrderPlaceApi extends Adapter
         return [
             "id" => (isset($sxAddressId) && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
             "ToName" => $addressArray['firstname'] . ' ' . $addressArray['lastname'],
-            "Company" => $addressArray['company'],
+            "Company" => $addressArray['company'] ?? '',
             "Line1" => $address[0],
             "Line2" => (isset($address[1])) ? $address[1] : '',
             "City" => $addressArray['city'],
