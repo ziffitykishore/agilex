@@ -32,6 +32,20 @@
 
         &.media {
             display: block;
+            position: relative;
+
+            .magnifier-preview {
+                border: 1px solid @color-lines;
+                box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.2);
+                width: ~"calc(100% - 10%)" !important;
+                height: ~"calc(100% - 10%)" !important;
+                left: ~"calc(100% + 20px)" !important;
+                top: 0px !important;
+                img { 
+                    max-height:inherit; 
+                    object-fit: cover; 
+                }
+            }
 
             .fotorama__stage {
                 margin-bottom: 20px;
@@ -76,12 +90,26 @@
                 }
             }
 
+            .product-info-stock-sku {
+                .flex();
+                align-items: center;
+            }
+
+            .shipping-details {
+                color: @theme__color__secondary;
+                font-weight: 600;
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 1.2rem;
+            }
+
             .stock {
                 min-width: 120px;
                 padding: 5px 10px;
                 .br-radius(3px);
                 color: @color-white;
                 text-align: center;
+                font-size: 1.3rem;
                 &.available {
                     background: @success__color;
                 }
@@ -295,7 +323,7 @@
                             max-height: 325px;
                             margin: 0;
                             .product-item {
-                                width: 100%;
+                                .flex-width(100%);
                                 padding: 5px 0;
                             }
                         }
@@ -343,6 +371,11 @@
 
                             a {
                                 color: @theme__color__secondary;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
+                                display: block;
+                                width: 150px;
                                 &:hover {
                                     color: @theme__color__primary;
                                 }
@@ -350,7 +383,7 @@
                         }
 
                         .price-box {
-                            margin-bottom: 10px;
+                            margin: 10px 0;
                         }
 
                         .actions-secondary {
@@ -567,6 +600,19 @@
                         display: none;
                     }
                 }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .page-layout-1column {
+        &.catalog-product-view  {
+            .product.media {
+                padding-right: 70px;
+            }
+            .product-info-main {
+                padding-left: 70px;
             }
         }
     }

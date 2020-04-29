@@ -14,6 +14,9 @@
                 <container name="product.tab.container" htmlTag="div" htmlClass="inner-container"/>
             </container>
         </referenceContainer>
+        <referenceContainer name="product.info.stock.sku">
+            <block class="Magento\Framework\View\Element\Template" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
+        </referenceContainer>
 
         <move element="product.info.sku" destination="product.info.main" before="product.info.price"/>
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>

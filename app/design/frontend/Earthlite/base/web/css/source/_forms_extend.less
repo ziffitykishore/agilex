@@ -63,6 +63,31 @@
         }
     }
 
+    .field {
+        &.password {
+            .control {
+                position: relative;
+                .input-text {
+                    padding-right: 50px;
+                }
+                .icon-password {
+                    cursor: pointer;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    width: 40px;
+                    height: 40px;
+                    z-index: 2;
+                    .flex();
+                    align-items: center;
+                    justify-content: center;
+                    color: @theme__color__secondary;
+                    font-size: 1.6rem;
+                }
+            }
+        }
+    }
+
 }
 
 //
