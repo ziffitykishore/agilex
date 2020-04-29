@@ -169,6 +169,8 @@
                     font-size: 1.4rem;
                     padding: 0;
                     display: inline-block;
+                    background: transparent;
+                    border: none;
 
                     &:after {
                         display: block;
@@ -178,8 +180,9 @@
                         background: @theme__color__secondary;
                         margin-top: 6px;
                     }
-
                     &:hover {
+                        background: transparent;
+                        border: none;
                         &:after {
                             background: @theme__color__primary;
                         }
@@ -198,6 +201,7 @@
                             .flex();
                             align-items: center;
                             justify-content: center;
+                            background: transparent;
 
                             &:before {
                                 content: @icon-heart;
@@ -208,6 +212,10 @@
                             }
                             > span {
                                 .lib-visually-hidden();
+                            }
+
+                            &:hover {
+                                background: transparent;
                             }
                         }
                     }
