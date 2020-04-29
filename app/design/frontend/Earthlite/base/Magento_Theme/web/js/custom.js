@@ -97,6 +97,14 @@ define([
     $('.btn-filter').on('click', function(){
         $('body').addClass('filter-active');
     });
+
+    $('.btn-sort').on('click', function(){
+        $('body').toggleClass('sorter-active');
+    });
+
+    $('.sorter-close').on('click', function(){
+        $('body').removeClass('sorter-active');
+    });
     
     function veritcalScroll() {
         if ($('.related .product-items li').length > 3) {
@@ -110,6 +118,40 @@ define([
     $(window).on('load resize', function () {
         veritcalScroll();
     });
+
+    $('.field.password').each(function(){
+        $(this).find('.control').append('<span class="icon-password icon-eye"/>');
+
+        $('.icon-password').on('click', function(){
+            $(this).toggleClass("icon-eye icon-eye-off");
+            var input = $(this).parent().find(".input-text");
+            if (input.attr("type") === "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    })
+
+    function bgSource(imgcontainer) {
+        $(imgcontainer).each(function () {
+            var img = $(this).find("img");
+
+            if(img.length) {
+                var height = img.height();
+                var img_src = img.attr("src");
+
+                $(this).css({
+                    "background-image": "url(" + img_src + ")",
+                    "background-size": "cover"
+                });
+            }
+
+            img.hide();
+        });
+    }
+
+    bgSource(".category-image-wrapper");
 
     // toggle text
     function moreToggler(s) {
