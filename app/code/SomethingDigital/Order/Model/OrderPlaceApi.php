@@ -251,7 +251,7 @@ class OrderPlaceApi extends Adapter
             "ToName" => $addressArray['firstname'] . ' ' . $addressArray['lastname'],
             "Company" => $addressArray['company'] ?? '',
             "Line1" => $address[0],
-            "Line2" => (isset($address[1])) ? $address[1] : '',
+            "Line2" => $address[1] ?? '',
             "City" => $addressArray['city'],
             "State" => $this->getRegionCodeById($addressArray['region_id']),
             "PostalCode" => $addressArray['postcode'],
