@@ -39,6 +39,7 @@ class UploadFileQuickOrder
     public function beforeExecute(\Magento\QuickOrder\Controller\Sku\UploadFile $subject)
     {
         $items = $this->request->getPost('items');
+
         $minSkuLength = $this->config->getValue('catalog/search/min_sku_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $maxSuffixLength = $this->config->getValue('catalog/search/max_suffix_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $finalItems = [];
@@ -48,6 +49,7 @@ class UploadFileQuickOrder
             }
             $suffixMatch = substr($item['sku'], 0, max($minSkuLength, strlen($item['sku']) - $maxSuffixLength));
 
+            $this->productCollection->clear()->getSelect()->reset(\Zend_Db_Select::WHERE);
             $productcollection = $this->productCollection
                 ->addAttributeToSelect(['sku'])
                 ->addAttributeToFilter('sku', array('like' => $suffixMatch.'%'));
@@ -59,13 +61,14 @@ class UploadFileQuickOrder
                         'qty' => $item['qty']
                     ];
                     $skuSuffix = substr($item['sku'], strlen($product->getSku()));
-                    $this->session->setSkuSuffix($skuSuffix);
+                    if ($skuSuffix != '') {
+                        $this->session->setSkuSuffix($skuSuffix);
 
-                    $currentQuote = $this->cart->getQuote();
-                    if ($currentQuote->getId()) {
-                        $quote = $this->quoteRepository->get($currentQuote->getId());
-                        $quote->setSuffix($skuSuffix);
-                        $this->quoteRepository->save($quote);
+                        $currentQuote = $this->cart->getQuote();
+                        if ($currentQuote->getId()) {
+                            $quote = $this->quoteRepository->get($currentQuote->getId());
+                            $quote->setSuffix($skuSuffix);
+                        }
                     }
                 }
             }
