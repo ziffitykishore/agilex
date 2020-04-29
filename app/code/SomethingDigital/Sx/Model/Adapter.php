@@ -141,7 +141,16 @@ abstract class Adapter
             throw new ApiRequestException(__('Empty SX API request'));
         }
         try {
-            $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
+            try {
+                $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
+            } catch (\Exception $e) {
+                $this->logger->alert(
+                    'SX POST request to ' . $this->getRequestUrl() .
+                    ' with body: ' . json_encode($this->requestBody) .
+                    ' Status: ' . $curl->getStatus() .
+                    ', Error Message: ' . $e->getMessage()
+                );
+            }
 
             if ($this->isDebugModeEnabled()) {
                 $this->logger->alert(

@@ -23,7 +23,7 @@
     top: 120px;
     padding: 0 $indent__m;
     padding-bottom: $indent__l;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     img {
       max-width: none;
@@ -72,6 +72,12 @@
       text-decoration: none;
       color: $c-cobalt;
     }
+  }
+
+  .view-details {
+      font-weight: $font-weight__semibold;
+      display: block;
+      margin-top: $indent__s;
   }
 
   .pricing {

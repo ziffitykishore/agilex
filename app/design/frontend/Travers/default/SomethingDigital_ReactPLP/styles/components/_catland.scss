@@ -189,6 +189,10 @@
       width: 100%;
       flex-basis: 50%;
 
+      &:empty {
+        display: none;
+      }
+
       @include min-screen($screen__m) {
         flex-basis: 50%;
       }
@@ -247,16 +251,26 @@
       padding-right: 0;
     }
 
-    .ais-Hits-item button {
+    .ais-Hits-item a {
+      display: block;
       width: 100%;
-      padding-bottom: 0;
-      font-size: $font-size__base--desktop;
       line-height: 1.5;
       text-align: left;
-    }
+      font-size: $font-size__base--desktop;
+      font-weight: $font-weight__regular;
+      color: $text__color;
+      text-decoration: none;
+      padding: 0;
+      padding-top: 15px;
 
-    .active {
-      color: $c-cobalt;
+      @include hover {
+        color: $c-cobalt;
+        cursor: pointer;
+      }
+
+      &.active {
+        color: $c-cobalt;
+      }
     }
 
     @include min-screen($screen__m) {
@@ -264,11 +278,6 @@
 
       .ais-Hits-list {
         padding-left: $indent__l;
-      }
-
-      .ais-Hits-item button {
-        font-size: $font-size__base--desktop;
-        font-weight: $font-weight__regular;
       }
 
       .active {

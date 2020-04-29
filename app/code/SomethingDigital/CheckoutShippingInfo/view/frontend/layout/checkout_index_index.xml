@@ -41,7 +41,7 @@
                                                                                         </item>
                                                                                         <item name="provider" xsi:type="string">checkoutProvider</item>
                                                                                         <item name="dataScope" xsi:type="string">customCheckoutForm.checkout_ponumber</item>
-                                                                                        <item name="label" xsi:type="string">P.O. Number</item>
+                                                                                        <item name="label" xsi:type="string">PO Number</item>
                                                                                         <item name="sortOrder" xsi:type="string">1</item>
                                                                                     </item>
                                                                                     <item name="checkout_shiptopo" xsi:type="array">

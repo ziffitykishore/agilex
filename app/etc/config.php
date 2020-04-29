@@ -418,7 +418,7 @@ return [
         'SomethingDigital_VirtualThemes' => 1,
         'SomethingDigital_WebsiteSwitcher' => 1,
         'Temando_Shipping' => 1,
-        'Taxjar_SalesTax' => 0,
+        'Taxjar_SalesTax' => 1,
         'SomethingDigital_ProductImportTweaks' => 1,
         'Unirgy_RapidFlowPro' => 1,
         'Unirgy_SimpleUp' => 1,
