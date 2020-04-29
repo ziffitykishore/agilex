@@ -225,13 +225,13 @@
         align-items: center;
 
         .minicart-wrapper {
-            margin: 0 0 0 18px;
+            margin: 0 0 0 25px;
         }
 
         > .header {
             padding: 0;
             margin-bottom: 0;
-            margin-left: 20px;
+            margin-left: 25px;
             list-style: none;
 
             > li {
@@ -327,8 +327,8 @@
                 .lib-icon-font(
                     @_icon-font-content: @icon-user,
                     @_icon-font: @icon__font-name,
-                    @_icon-font-size: 20px,
-                    @_icon-font-line-height: 20px,
+                    @_icon-font-size: 22px,
+                    @_icon-font-line-height: 22px,
                     @_icon-font-color: inherit,
                     @_icon-font-color-hover: inherit,
                     @_icon-font-color-active: @header-icons-color-hover,
@@ -343,6 +343,7 @@
             &.switch {
                 color: inherit;
                 .lib-button-reset();
+                margin-right: -5px;
                 .lib-icon-font(
                     @_icon-font-content: @icon-chevron-down,
                     @_icon-font: @icon__font-name,
@@ -396,23 +397,27 @@
             padding-top: 15px;
             padding-bottom: 15px;
         }
+
+        &.panel {
+            .our-brands {
+                li {
+                    font-size: 1.2rem;
+                }
+            }
+        }
     }
 
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
-    .slogan-sec {
-        display: none;
-    }
-
     .header {
         &-right-pane {
             .minicart-wrapper {
-                margin: 0 0 0 15px;
+                margin: 0 0 0 18px;
             }
 
             > .header {
-                margin-left: 15px;
+                margin-left: 18px;
             }
 
             .action {
@@ -420,8 +425,8 @@
                 &.showsearch,
                 &.showcart, &.showmobcart {
                     &:before {
-                        .lib-font-size(16);
-                        .lib-line-height(16);
+                        .lib-font-size(18);
+                        .lib-line-height(18);
                     }
                 }
             }
@@ -448,6 +453,9 @@
     }
 
     .header {
+        .slogan-sec {
+            display: none;
+        }
         .nav-toggle {
             display: block;
             position: static;
