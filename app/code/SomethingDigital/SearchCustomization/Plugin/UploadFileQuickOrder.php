@@ -60,11 +60,13 @@ class UploadFileQuickOrder
                         'sku' => $product->getSku(),
                         'qty' => $item['qty']
                     ];
+
                     $skuSuffix = substr($item['sku'], strlen($product->getSku()));
-                    if ($skuSuffix != '') {
+                    if ($skuSuffix !== '') {
                         $this->session->setSkuSuffix($skuSuffix);
 
                         $currentQuote = $this->cart->getQuote();
+
                         if ($currentQuote->getId()) {
                             $quote = $this->quoteRepository->get($currentQuote->getId());
                             $quote->setSuffix($skuSuffix);
@@ -74,7 +76,7 @@ class UploadFileQuickOrder
             }
 
         }
-        if ($skuSuffix != '') {
+        if ($skuSuffix !== '') {
             $this->quote->repriceCustomerQuote($skuSuffix);
         }
         $this->request->setPostValue('items',$finalItems);
