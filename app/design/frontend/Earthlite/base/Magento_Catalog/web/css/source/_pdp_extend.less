@@ -162,6 +162,57 @@
                     margin: 10px 0;
                 }
             }
+
+            .action {
+                &.tocompare {
+                    font-weight: 600;
+                    font-size: 1.4rem;
+                    padding: 0;
+                    display: inline-block;
+
+                    &:after {
+                        display: block;
+                        content: '';
+                        width: 100%;
+                        height: 1px;
+                        background: @theme__color__secondary;
+                        margin-top: 6px;
+                    }
+
+                    &:hover {
+                        &:after {
+                            background: @theme__color__primary;
+                        }
+                    }
+                }
+            }
+
+            .product-social-links {
+                .product-addto-links {
+                    .action {
+                        &.towishlist {
+                            width: 50px;
+                            height: 50px;
+                            border: 1px solid @color-lines;
+                            .br-radius(4px);
+                            .flex();
+                            align-items: center;
+                            justify-content: center;
+
+                            &:before {
+                                content: @icon-heart;
+                                font-family: @icon__font-name;
+                                font-size: 16px;
+                                line-height: 16px;
+                                color: @icon-color;
+                            }
+                            > span {
+                                .lib-visually-hidden();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
 
