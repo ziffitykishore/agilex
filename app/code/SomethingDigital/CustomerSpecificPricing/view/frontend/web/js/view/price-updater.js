@@ -1,8 +1,9 @@
 define([
     'jquery',
     'cspModel',
-    'cspViewStrategy'
-], function ($, cspModel, strategy) {
+    'cspViewStrategy',
+    'appendSuffix'
+], function ($, cspModel, strategy, appendSuffix) {
     return function (config) {
         var model = cspModel(config);
         var type = config.type;
@@ -21,6 +22,7 @@ define([
         } else {
             model.getPrices(false).done(function (response, textStatus) {
                 strategy(type, response.data, currencySymbol, productMap, config);
+                appendSuffix(response.suffix);
             }).fail(function (jqXHR, textStatus, errorThrown) {
                 // In this case we don't want to update the prices
             });
@@ -37,5 +39,6 @@ define([
                 // In this case we don't want to update the prices
             });
         }
+
     }
 });

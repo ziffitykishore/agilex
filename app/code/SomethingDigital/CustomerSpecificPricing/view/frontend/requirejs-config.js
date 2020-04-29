@@ -9,6 +9,7 @@ var config = {
             cspBundle: 'SomethingDigital_CustomerSpecificPricing/js/view/types/bundle',
             cspGrouped: 'SomethingDigital_CustomerSpecificPricing/js/view/types/grouped',
             cspCrossUpSellRelated: 'SomethingDigital_CustomerSpecificPricing/js/view/types/crossupsellrelated',
+            appendSuffix: 'SomethingDigital_CustomerSpecificPricing/js/view/append-suffix'
         }
     }
 };

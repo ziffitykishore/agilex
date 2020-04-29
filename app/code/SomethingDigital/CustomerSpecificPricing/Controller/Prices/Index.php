@@ -10,6 +10,7 @@ use Magento\Framework\Stdlib\ArrayManager;
 use Psr\Log\LoggerInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Framework\Session\SessionManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
 class Index extends Action
@@ -19,6 +20,7 @@ class Index extends Action
     private $currency;
     protected $logger;
     protected $productRepository;
+    protected $sessionManager;
     protected $storeManager;
 
     public function __construct(
@@ -28,6 +30,7 @@ class Index extends Action
         LoggerInterface $logger,
         ProductRepositoryInterface $productRepository,
         PriceCurrencyInterface $currency,
+        SessionManagerInterface $sessionManager,
         StoreManagerInterface $storeManager
     ) {
         $this->spotPricingApi = $spotPricingApi;
@@ -35,6 +38,7 @@ class Index extends Action
         $this->logger = $logger;
         $this->productRepository = $productRepository;
         $this->currency = $currency;
+        $this->sessionManager = $sessionManager;
         $this->storeManager = $storeManager;
         parent::__construct($context);
     }
@@ -97,12 +101,15 @@ class Index extends Action
             return $this->prepareFailedJsonResult($e->getMessage(), $jsonResult);
         }
 
+        $suffix = $this->sessionManager->getSkuSuffix();
+
         $jsonResult->setHttpResponseCode(200);
         $jsonResult->setData(
             [
                 'status' => 'success',
                 'code' => 200,
-                'data' => $data
+                'data' => $data,
+                'suffix' => $suffix
             ]
         );
         return $jsonResult;
