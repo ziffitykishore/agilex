@@ -44,6 +44,8 @@ class RepositoryPlugin
             $searchableInLayeredNav = $attribute->getData('extension_attributes')->getSearchableInLayeredNav();
             $layeredNavDescription = $attribute->getData('extension_attributes')->getLayeredNavDescription();
             $includeInList = $attribute->getData('extension_attributes')->getIncludeInList();
+            $includeInSearchTable = $attribute->getData('extension_attributes')->getIncludeInSearchTable();
+            $searchPosition = $attribute->getData('extension_attributes')->getSearchPosition();
             $attribute->setData('list_position', $listPosition);
             $attribute->setData('include_in_table', $includeInTable);
             $attribute->setData('table_position', $tablePosition);
@@ -52,6 +54,8 @@ class RepositoryPlugin
             $attribute->setData('searchable_in_layered_nav', $searchableInLayeredNav);
             $attribute->setData('layered_nav_description', $layeredNavDescription);
             $attribute->setData('include_in_list', $includeInList);
+            $attribute->setData('include_in_search_table', $includeInSearchTable);
+            $attribute->setData('search_position', $searchPosition);
         }
     }
 
@@ -74,7 +78,8 @@ class RepositoryPlugin
         $searchableInLayeredNav = $result->getData('searchable_in_layered_nav');
         $layeredNavDescription = $result->getData('layered_nav_description');
         $includeInList = $result->getData('include_in_list');
-
+        $includeInSearchTable = $result->getData('include_in_search_table');
+        $searchPosition = $result->getData('search_position');
 
         $extensionAttribute = $result->getExtensionAttributes()
             ? $result->getExtensionAttributes()
@@ -88,6 +93,8 @@ class RepositoryPlugin
         $extensionAttribute->setSearchableInLayeredNav($searchableInLayeredNav);
         $extensionAttribute->setLayeredNavDescription($layeredNavDescription);
         $extensionAttribute->setIncludeInList($includeInList);
+        $extensionAttribute->setIncludeInSearchTable($includeInSearchTable);
+        $extensionAttribute->setSearchPosition($searchPosition);
 
         $result->setExtensionAttributes($extensionAttribute);
         return $result;

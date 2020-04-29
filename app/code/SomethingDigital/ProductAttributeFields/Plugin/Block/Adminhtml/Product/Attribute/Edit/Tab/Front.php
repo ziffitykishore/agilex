@@ -131,6 +131,28 @@ class Front
                 'note' => __('Depends on design theme.')
             ]
         );
+        $fieldset->addField(
+            'include_in_search_table',
+            'select',
+            [
+                'name' => 'include_in_search_table',
+                'label' => __('Include In Search Table'),
+                'title' => __('Include In Search Table'),
+                'note' => __('Depends on design theme.'),
+                'values' => $yesnoSource
+            ]
+        );
+        $fieldset->addField(
+            'search_position',
+            'text',
+            [
+                'name' => 'search_position',
+                'label' => __('Search Position'),
+                'title' => __('Search Position'),
+                'note' => __('Depends on design theme.'),
+                'class' => 'validate-number'
+            ]
+        );
 
         $form->setValues($attributeObject->getData());
 
