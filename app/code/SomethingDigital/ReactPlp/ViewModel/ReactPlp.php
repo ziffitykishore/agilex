@@ -167,7 +167,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     public function getFlyoutAttributes()
     {
         $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('include_in_flyout', true);
+        $collection->addFieldToFilter('include_in_flyout', ['eq' => 1]);
         $collection->setOrder('flyout_position','ASC');
         $attr = [];
         foreach ($collection as $item) {
@@ -189,7 +189,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $listAttributes = $this->loadDataFromCache(static::LIST_ATTRIBUTES_CACHE_ID);
         if (!$listAttributes) {
             $collection = $this->collectionFactory->create();
-            $collection->addFieldToFilter('include_in_list', true);
+            $collection->addFieldToFilter('include_in_list', ['eq' => 1]);
             $collection->setOrder('list_position','ASC');
             $listAttributes = [];
             foreach ($collection as $item) {
@@ -214,7 +214,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $tableAttributes = $this->loadDataFromCache(static::TABLE_ATTRIBUTES_CACHE_ID);
         if (!$tableAttributes) {
             $collection = $this->collectionFactory->create();
-            $collection->addFieldToFilter('include_in_table', true);
+            $collection->addFieldToFilter('include_in_table', ['eq' => 1]);
             $collection->setOrder('table_position','ASC');
             $tableAttributes = [];
             foreach ($collection as $item) {
@@ -240,7 +240,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $searchAttributes = $this->loadDataFromCache(static::SEARCH_ATTRIBUTES_CACHE_ID);
         if (!$searchAttributes) {
             $collection = $this->collectionFactory->create();
-            $collection->addFieldToFilter('include_in_search_table', true);
+            $collection->addFieldToFilter('include_in_search_table', ['eq' => 1]);
             $collection->setOrder('search_position','ASC');
             $searchAttributes = [];
             foreach ($collection as $item) {
@@ -266,7 +266,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $filterAttributes = $this->loadDataFromCache(static::FILTER_ATTRIBUTES_CACHE_ID);
         if (!$filterAttributes) {
             $collection = $this->collectionFactory->create();
-            $collection->addFieldToFilter('is_filterable', true);
+            $collection->addFieldToFilter('is_filterable', ['eq' => 1]);
             $collection->setOrder('position','ASC');
             $filterAttributes = [];
             foreach ($collection as $item) {
@@ -307,7 +307,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     public function getSwatchImages()
     {
         $collection = $this->collectionFactory->create();
-        $collection->addFieldToFilter('is_filterable', true);
+        $collection->addFieldToFilter('is_filterable', ['eq' => 1]);
         $attr = [];
         foreach ($collection as $item) {
             if ($this->swatchHelper->isVisualSwatch($item)) {

@@ -27,7 +27,7 @@ class AttributeSorter
      * TraversTool-ReactPLP/src/Products/TableView/Table/Hits.js
      *
      * @param array $tableAttributes current attributes
-     * @param AttributeSorter::DEFAULT_ATTRIBUTES|AttributeSorter::CUSTOM_ATTRIBUTES $type whether this is for the default attributes or the custom attributes.
+     * @param array $type AttributeSorter::DEFAULT_ATTRIBUTES|AttributeSorter::CUSTOM_ATTRIBUTES $type whether this is for the default attributes or the custom attributes.
      * @return array
      */
     public function sort($tableAttributes, $type)
