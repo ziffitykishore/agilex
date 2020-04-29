@@ -42,6 +42,7 @@ class UploadFileQuickOrder
         $minSkuLength = $this->config->getValue('catalog/search/min_sku_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $maxSuffixLength = $this->config->getValue('catalog/search/max_suffix_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $finalItems = [];
+        $skuSuffix = '';
         foreach ($items as $key => $item) {
             if (!$item['sku']) {
                 continue;
@@ -73,7 +74,7 @@ class UploadFileQuickOrder
             }
 
         }
-        if ($skuSuffix) {
+        if ($skuSuffix != '') {
             $this->quote->repriceCustomerQuote($skuSuffix);
         }
         $this->request->setPostValue('items',$finalItems);
