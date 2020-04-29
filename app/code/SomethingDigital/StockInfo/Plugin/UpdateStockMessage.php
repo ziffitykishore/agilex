@@ -36,6 +36,9 @@ class UpdateStockMessage
      */
     public function afterCheckQuoteItemQty(StockStateProviderInterface $subject, $result, StockItemInterface $stockItem, $qty, $summaryQty, $origQty = 0)
     {
+        if ($result->getHasError()) {
+            return $result;
+        }
         $product = $this->productRepository->getById($stockItem->getProductId());
         $sxInventory = $product->getData('sx_inventory_status');
         if ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
