@@ -114,7 +114,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 <?= $block->getUnitPriceHtml($_item) ?>
             </td>
         <?php endif; ?>
-        <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Qty')) ?>">
+        <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Quantity')) ?>">
             <div class="field qty">
                 <div class="control qty">
                     <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">

@@ -110,6 +110,7 @@
                 color: @color-white;
                 text-align: center;
                 font-size: 1.3rem;
+                margin-bottom: 0;
                 &.available {
                     background: @success__color;
                 }
@@ -139,6 +140,11 @@
                     margin-left: 15px;
                     .price {
                         color: @text__color;
+                    }
+                }
+                .price-from {
+                    & + .price-to {
+                        margin-left: 15px;
                     }
                 }
             }
