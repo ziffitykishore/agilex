@@ -15,7 +15,7 @@
     <fieldset id="customer-email-fieldset" class="fieldset" data-bind="blockLoader: isLoading">
         <div class="field required">
             <label class="label" for="customer-email">
-                <span data-bind="i18n: 'Email Address'"></span>
+                <span data-bind="i18n: 'Email'"></span>
             </label>
             <div class="control _with-tooltip">
                 <input class="input-text"
@@ -28,7 +28,7 @@
                        data-validate="{required:true, 'validate-email':true}"
                        id="customer-email" />
                 <!-- ko template: 'ui/form/element/helper/tooltip' --><!-- /ko -->
-                <span class="note" data-bind="fadeVisible: isPasswordVisible() == false"><!-- ko i18n: 'You can create an account after checkout.'--><!-- /ko --></span>
+                <div class="info pt-4" data-bind="fadeVisible: isPasswordVisible() == false"><span class="icon-alert-circle mr-2"></span><!-- ko i18n: 'You may create an account after checkout.'--><!-- /ko --></div>
             </div>
         </div>
 

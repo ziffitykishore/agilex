@@ -24,6 +24,10 @@
         .modal-inner-wrap {
             padding: @block-auth__dropdown__padding;
         }
+        
+        .modal-header {
+            border: 0;
+        }
     }
 
     .authentication-wrapper {
@@ -127,7 +131,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .authentication-dropdown {
         .lib-css(background-color, @block-auth__dropdown__background-color);
-        .lib-css(border, @block-auth__border);
+        .lib-css(border, @color-lines);
         -webkit-transform: scale(1,0);
         -webkit-transform-origin: 0 0;
         -webkit-transition: -webkit-transform linear .1s, visibility 0s linear .1s;
@@ -139,6 +143,8 @@
         transition: transform linear .1s, visibility 0s linear .1s;
         visibility: hidden;
         width: 100%;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
 
         &._show {
             .lib-css(z-index, @dropdown-list__z-index);
@@ -157,7 +163,8 @@
 
     .block-authentication {
         .block-title {
-            .lib-font-size(@h2__font-size);
+            font-weight: 700;
+    font-size: 2rem;
             border-bottom: 0;
             margin-bottom: @indent__m;
         }
