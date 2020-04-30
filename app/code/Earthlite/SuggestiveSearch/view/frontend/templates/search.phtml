@@ -1,0 +1,56 @@
+<?php
+    $helper = $this->helper('Earthlite\SuggestiveSearch\Helper\Data');    
+    if ($helper->isEnabled()):
+?>    
+    
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'Magento_Catalog/js/price-utils',
+            'searchAutocomplete'
+        ], function ($, priceUtils) {
+            "use strict";
+
+            var baseUrl = '<?php echo trim($block->getBaseUrl(), '/') . '/' ?>',
+                baseImageUrl = '<?php echo $helper->getSearchMediaUrl() ?>';
+
+            var  searchInput = $('#search');        
+
+            searchInput.devbridgeAutocomplete({
+                lookup: <?php echo $helper->createJsonData(); ?>,
+                lookupLimit: <?php  echo (int)$helper->getConfigGeneral('search_results') ?: 10; ?>,
+                maxHeight: 2000,            
+                lookupFilter: function (suggestion, query, queryLowerCase) {                
+                    return suggestion.value.toLowerCase().indexOf(queryLowerCase) !== -1 || suggestion.name.toLowerCase().indexOf(queryLowerCase) !== -1;
+                    
+                },            
+                onSelect: function (suggestion) {
+                    window.location.href = correctProductUrl(suggestion.url);
+                },
+                formatResult: function (suggestion, currentValue) {
+                    var html = '<a href="' + correctProductUrl(suggestion.url) + '">';
+                    
+                    html += '<div class="image-container"><img class="img-responsive" src="' + correctProductUrl(suggestion.image, true) + '"/></div>';
+                    
+                    html += '<div class="description-container">';
+                    html += '<div class="product-name">' + suggestion.name + '</div>';
+
+                    html += '</div></a>';
+
+                    return html;
+                },
+
+                appendTo: ".field.search"
+            });
+
+            function correctProductUrl(urlKey, isImage) {
+                if (urlKey.search('http') !== -1) 
+                {
+                    return urlKey;
+                }
+
+                return ((typeof isImage !== 'undefined') ? baseImageUrl : baseUrl) + urlKey;
+            }
+        });
+    </script>
+<?php endif; ?>
