@@ -49,6 +49,8 @@ class CheckItemQuickOrder
         foreach ($productcollection as $key => $product) {
             if (stripos($queryText, $product->getSku()) === 0) {
                 $sku = $product->getSku();
+                $skuSuffix = substr($queryText, strlen($sku));
+                $this->session->setSkuSuffix($skuSuffix);
             }
         } 
         return [$sku, $qty, $config];
