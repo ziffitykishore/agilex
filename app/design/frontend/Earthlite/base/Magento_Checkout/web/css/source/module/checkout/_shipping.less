@@ -7,7 +7,7 @@
 //  Variables
 //  _____________________________________________
 
-@checkout-shipping-address__max-width: 600px;
+@checkout-shipping-address__max-width: none;
 @checkout-shipping-address__margin-top: 28px;
 
 @checkout-shipping-item-icon__background-color: @checkout-shipping-item__active__border-color;
@@ -51,14 +51,44 @@
 
         .form-login,
         .form-shipping-address {
-            .lib-css(margin-top, @checkout-shipping-address__margin-top);
-            margin-bottom: @indent__base;
+            /*            .lib-css(margin-top, @checkout-shipping-address__margin-top);
+                        margin-bottom: @indent__base;*/
 
             .fieldset {
                 .note {
                     font-size: @font-size__base;
                     margin-top: @indent__s;
                 }
+            }
+        }
+
+        .form-login {
+            padding: 2% 4% 3%;
+            border-bottom: 1px solid @color-lines;
+        }
+        .checkout-shipping-address .step-title {
+            padding : 3% 4% 0;
+        }
+        .form-shipping-address {
+            padding: 3% 4%;
+            border-bottom: 1px solid @color-lines;
+        }
+        div.checkout-shipping-method {
+            padding: 3% 4%;
+        }
+        .checkout-shipping-address {
+            .field-tooltip {
+                display: none;
+            }
+            .field .control._with-tooltip input {
+                width: 100%;
+                margin-right: 0;
+            }
+            .fieldset > .field {
+                margin-bottom: 10px;
+            }
+            .fieldset:last-child {
+                margin-bottom: 0;
             }
         }
 
@@ -201,11 +231,6 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .opc-wrapper {
-        .form-login {
-            .lib-css(border-bottom, 1px solid @checkout-shipping-item-before__border-color);
-            .lib-css(margin, @checkout-shipping-item-mobile__padding);
-            .lib-css(padding, @checkout-shipping-item-mobile__padding);
-        }
 
         .shipping-address-item {
             .lib-css(border-bottom, 1px solid @checkout-shipping-item-before__border-color);
@@ -223,11 +248,6 @@
             }
         }
 
-        .form-login,
-        .form-shipping-address {
-            .lib-css(margin-top, @checkout-shipping-address__margin-top);
-        }
-
         .action-select-shipping-item {
             float: none;
             margin-top: @indent__s;
@@ -240,14 +260,14 @@
 
         .edit-address-link {
             .lib-icon-font(
-                @icon-settings,
-                @_icon-font-size: 28px,
+            @icon-settings,
+            @_icon-font-size: 28px,
                 @_icon-font-line-height: 28px,
                 @_icon-font-text-hide: true,
                 @_icon-font-color: @color-gray19,
                 @_icon-font-color-hover: @color-gray19,
                 @_icon-font-color-active: @color-gray19
-            );
+                );
             margin: 0;
             position: absolute;
             right: 0;
@@ -272,6 +292,26 @@
                     margin: 0;
                 }
             }
+        }
+    }
+
+    .checkout-shipping-address {
+        .fieldset {
+            display: flex;
+            flex-wrap: wrap;    
+            margin-left: -10px;
+            margin-right: -10px;
+            .fieldset { 
+                margin-left: 0;
+                margin-right: 0;
+            }
+        }
+        .field {
+            width: 50%;
+            padding: 0 10px;
+        }
+        .actions-toolbar {
+            padding: 0 10px;
         }
     }
 
