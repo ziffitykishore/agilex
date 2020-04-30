@@ -270,8 +270,7 @@
 
 }
 
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
     .page-products {
         .sidebar {
             width: 280px;
@@ -279,6 +278,18 @@
         }
         .column.main {
             width: calc(~'100% - 280px');
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page-products {
+        .sidebar {
+            width: 250px;
+            padding-right: 15px;
+        }
+        .column.main {
+            width: calc(~'100% - 250px');
         }
     }
 }
