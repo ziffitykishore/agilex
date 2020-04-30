@@ -135,6 +135,7 @@ class OrderPlaceApi extends Adapter
             if ($company) {
                 $companyAddress = [
                     "id" => $this->getCustomerContactId(),
+                    "Company" => $company->getCompanyName(),
                     "ToName" => $company->getCompanyName(),
                     "Line1" => (isset($company->getStreet()[0])) ? $company->getStreet()[0] : '',
                     "City" => $company->getCity(),
@@ -243,10 +244,14 @@ class OrderPlaceApi extends Adapter
             }
         }
 
+        $address = explode(PHP_EOL, $addressArray['street']);
+
         return [
             "id" => (isset($sxAddressId) && $sxAddressId->getValue()) ? $sxAddressId->getValue() : '',
             "ToName" => $addressArray['firstname'] . ' ' . $addressArray['lastname'],
-            "Line1" => $addressArray['street'],
+            "Company" => $addressArray['company'] ?? '',
+            "Line1" => $address[0],
+            "Line2" => $address[1] ?? '',
             "City" => $addressArray['city'],
             "State" => $this->getRegionCodeById($addressArray['region_id']),
             "PostalCode" => $addressArray['postcode'],
