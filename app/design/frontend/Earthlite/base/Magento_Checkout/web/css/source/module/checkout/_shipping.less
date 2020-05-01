@@ -140,6 +140,7 @@
 
         .table-checkout-shipping-method {
             color: @title_color;
+            width: auto;
         }
 
         .checkout-shipping-address {
@@ -237,6 +238,7 @@
 
         .no-quotes-block {
             margin: @indent__base 0;
+            padding: 1% 4%;
         }
     }
 
@@ -307,7 +309,6 @@
 
             &.selected-item {
                 .lib-css(padding, @checkout-shipping-item-mobile__active__padding);
-                border-bottom-width: 2px;
 
                 .edit-address-link {
                     .lib-css(right, @checkout-shipping-item-icon__selected__width + @indent__s);
@@ -323,6 +324,10 @@
 
         .action-show-popup {
             width: 100%;
+        }
+        
+        .checkout-shipping-address .new-address-popup {
+            text-align: left;
         }
 
     }
