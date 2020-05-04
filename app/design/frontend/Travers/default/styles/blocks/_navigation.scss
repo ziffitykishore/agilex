@@ -586,7 +586,7 @@ $nav-section-title__height: 60px;
                     box-sizing: border-box;
                 }
 
-                &.first .submenu {
+                &.first .submenu:not(.ui-widget) {
                     padding: $indent__s 100px $indent__xl 70px;
                     width: 100vw;
                     left: 0 !important; // overrides the nav JS
