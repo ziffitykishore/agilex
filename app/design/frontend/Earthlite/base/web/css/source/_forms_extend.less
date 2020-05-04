@@ -84,7 +84,7 @@
     }
 
     .field.choice {
-        input[type='checkbox'] {
+        input[type='checkbox'], input[type='radio'] {
             opacity: 0;
             visibility: hidden;
             position: absolute;
@@ -94,7 +94,7 @@
             background: @theme__color__primary;
             border-color: @theme__color__primary;
         }
-        label {
+        input[type='checkbox'] + label {
             cursor: pointer;
             padding-left: 22px;
             position: relative;
@@ -114,6 +114,43 @@
                 line-height: 14px;
                 font-size: 1.2rem;
             }
+        }
+
+        input[type='radio']:checked + label:before {
+            background: #357df9;
+            border: 1px solid #357df9;
+        }
+
+        input[type='radio']:checked + label:after {
+            background: #fff;
+            border-radius: 50%;
+            content: '';
+            display: inline-block;
+            position: absolute;
+            height: 5px;
+            width: 5px;
+            left: 5px;
+            top: 7px;
+        }
+        input[type='radio'] + label {
+            cursor: pointer;
+            padding-left: 22px;
+            position: relative;
+        }
+        input[type='radio'] + label:before {
+            content: '';
+            border: 1px solid #8ea3d6;
+            border-radius: 50%;
+            cursor: pointer;
+            display: inline-block;
+            position: absolute;
+            height: 15px;
+            width: 15px;
+            padding: 4px;
+            -webkit-transition: all .4s ease;
+            transition: all .4s ease;
+            left: 0;
+            top: 2px;
         }
     }
 
