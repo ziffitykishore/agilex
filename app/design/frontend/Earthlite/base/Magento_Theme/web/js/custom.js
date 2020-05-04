@@ -107,9 +107,9 @@ define([
     });
     
     function veritcalScroll() {
-        if ($('.related .product-items li').length > 3) {
-            var items = $('.related .product-items li').outerHeight();
-            $('.related .product-items').css('max-height', 3 * items);
+        if ($('.related .product-items li, .crosssell .product-items li').length > 3) {
+            var items = $('.related .product-items li, .crosssell .product-items li').outerHeight();
+            $('.related .product-items, .crosssell .product-items').css('max-height', 3 * items);
         }
     }
 
@@ -184,8 +184,7 @@ define([
             return false;
         });
     }
-    if ($(window).width() < 767) {
-        moreToggler('.category-description p');
-    }
+    
+    moreToggler('.category-description p');
 
 });
