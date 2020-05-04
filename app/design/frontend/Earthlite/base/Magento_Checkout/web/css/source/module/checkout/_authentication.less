@@ -24,22 +24,35 @@
         .modal-inner-wrap {
             padding: @block-auth__dropdown__padding;
         }
-        
+
         .modal-header {
             border: 0;
         }
     }
 
+
     .authentication-wrapper {
         float: right;
-        margin-top: -1.5*@indent__xl;
-        max-width: 50%;
+        margin-top: -115px;
         position: relative;
         z-index: 1;
 
+        .action-close:before {
+            line-height: .5;
+        }
         ._has-auth-shown & {
             z-index: @modal__z-index;
         }
+
+        &:before {
+            content: '';
+            border-left: 1px solid @color-lines;
+            position: absolute;
+            height: 50px;
+            top: -8px;
+            left: -30px;
+        }
+
     }
 
     .action-auth-toggle {
@@ -131,7 +144,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .authentication-dropdown {
         .lib-css(background-color, @block-auth__dropdown__background-color);
-        .lib-css(border, @color-lines);
+        .lib-css(border, 1px solid @color-lines);
         -webkit-transform: scale(1,0);
         -webkit-transform-origin: 0 0;
         -webkit-transition: -webkit-transform linear .1s, visibility 0s linear .1s;
@@ -145,6 +158,8 @@
         width: 100%;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
+        width: 300px;
+        right: 0;
 
         &._show {
             .lib-css(z-index, @dropdown-list__z-index);
@@ -157,14 +172,13 @@
     }
 
     .authentication-wrapper {
-        .lib-column-width(@checkout-sidebar__columns);
         text-align: right;
     }
 
     .block-authentication {
         .block-title {
             font-weight: 700;
-    font-size: 2rem;
+            font-size: 2rem;
             border-bottom: 0;
             margin-bottom: @indent__m;
         }
