@@ -21,10 +21,14 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>        
-        <referenceBlock name="catalog.navigation.renderer">
+    <body>
+        <referenceBlock name="catalogsearch.leftnav">            
+            <container name="layer.additional.info" as="layer_additional_info"/>
+            <container name="layer.content.before" as="layer_content_before"/>
+        </referenceBlock>
+        <referenceBlock name="catalogsearch.navigation.renderer">
             <action method="setTemplate" ifconfig="layered_navigation/general/enabled">
-                <argument name="template" xsi:type="string">Earthlite_LayerNavigation::layer/filter.phtml</argument>
+                <argument name="template" xsi:type="string">Mageplaza_AjaxLayer::layer/filter.phtml</argument>
             </action>
         </referenceBlock>
     </body>
