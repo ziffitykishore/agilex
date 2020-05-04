@@ -19,19 +19,23 @@
                 <span><?= $block->escapeHtml(__('In stock')) ?></span>
             </div>
         <?php else :?>
-            <?php if ($stockItemQty >= 10) :?>
-                <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-                    <span><?= $block->escapeHtml(__('In stock')) ?></span>
-                </div>
-            <?php elseif ($stockItemQty < 10) :?>
-                <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-                    <span><?= $block->escapeHtml(__('<10 available')) ?></span>
-                </div>
-            <?php elseif ($stockItemQty = 0) :?>
-                <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-                    <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
-                </div>
-            <?php endif; ?>
+            <?php switch (true):
+                case $stockItemQty >=10: ?>
+                    <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                        <span><?= $block->escapeHtml(__('In stock')) ?></span>
+                    </div>
+                <?php break; ?>
+                <?php case ($stockItemQty < 10):?>
+                    <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                        <span><?= $block->escapeHtml(__('<10 available')) ?></span>
+                    </div>
+                <?php break; ?>
+                <?php case ($stockItemQty < 10):?>
+                    <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                        <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                    </div>
+                <?php break; ?>
+            <?php endswitch; ?>
         <?php endif; ?>
     <?php else :?>
         <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
