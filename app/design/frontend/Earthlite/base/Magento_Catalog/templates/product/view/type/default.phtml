@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+
+<?php
+    $_product = $block->getProduct();
+    $productionItem = $_product->getCustomAttribute('production_item')->getValue();
+    $stockItemQty = $_product->getExtensionAttributes()->getStockItem()->getQty();
+?>
+
+<?php if ($block->displayProductStockStatus()) :?>
+    <?php if ($_product->isAvailable()) :?>
+        <?php if ($productionItem) :?>
+            <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                <span><?= $block->escapeHtml(__('In stock')) ?></span>
+            </div>
+        <?php else :?>
+            <?php switch (true):
+                case $stockItemQty >=10: ?>
+                    <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                        <span><?= $block->escapeHtml(__('In stock')) ?></span>
+                    </div>
+                <?php break; ?>
+                <?php case ($stockItemQty < 10):?>
+                    <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                        <span><?= $block->escapeHtml(__('<10 available')) ?></span>
+                    </div>
+                <?php break; ?>
+                <?php case ($stockItemQty < 10):?>
+                    <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                        <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                    </div>
+                <?php break; ?>
+            <?php endswitch; ?>
+        <?php endif; ?>
+    <?php else :?>
+        <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+            <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

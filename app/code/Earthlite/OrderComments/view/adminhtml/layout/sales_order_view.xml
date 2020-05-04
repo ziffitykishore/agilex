@@ -1,0 +1,10 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>      
+        <referenceBlock name="order_additional_info">
+            <block  class="Earthlite\OrderComments\Block\Adminhtml\Order\Comments"
+                    name="sales_order_checkout_comments"
+                    ifconfig="earthlite_checkout/ordercomments/enable"
+                    template="Earthlite_OrderComments::order/view/comments.phtml" />
+        </referenceBlock>
+    </body>
+</page>
