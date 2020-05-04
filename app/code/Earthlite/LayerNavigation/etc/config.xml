@@ -3,7 +3,8 @@
     <default>
         <layered_navigation>
             <general>                
-                <enablepriceslider>1</enablepriceslider>
+                <enabled>1</enabled>
+                <ajax_enable>1</ajax_enable>
             </general>
         </layered_navigation>
     </default>

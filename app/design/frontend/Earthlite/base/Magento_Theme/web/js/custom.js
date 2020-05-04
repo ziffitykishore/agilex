@@ -184,8 +184,7 @@ define([
             return false;
         });
     }
-    if ($(window).width() < 767) {
-        moreToggler('.category-description p');
-    }
+    
+    moreToggler('.category-description p');
 
 });
