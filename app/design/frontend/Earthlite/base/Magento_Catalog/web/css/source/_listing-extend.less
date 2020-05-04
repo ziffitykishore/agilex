@@ -69,7 +69,6 @@
             margin-right: -10px;
             .product-item {
                 padding: 10px;
-                padding-bottom: 25px;
             }
         }
     }
@@ -154,11 +153,26 @@
             .product-item-photo {
                 width: auto;
                 padding-bottom: 0;
-                .flex-width(20%);
+                .flex-width(15%);
+                padding-left: 10px;
+                padding-right: 10px;
             }
 
             .product-item-details {
-                .flex-width(80%);
+                .flex-width(55%);
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .product-item-actions {
+                .flex-width(30%);
+                text-align: right;
+                padding-left: 10px;
+                padding-right: 10px;
+
+                .actions-secondary {
+                    display: block;
+                }
             }
 
             .product-item-description {
@@ -210,6 +224,7 @@
 
                 .price-box {
                     margin-bottom: 0;
+                    margin-top: 10px;
                 }
 
                 &-reviews-summary {
@@ -223,6 +238,7 @@
                 }
 
                 &-item-actions {
+                    margin: 0 !important;
                     .action {
                         &s-primary {
                             position: absolute;
@@ -361,12 +377,30 @@
 }
 
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .page-products {
+        .category-view {
+            .category-description {
+                padding: 15px;
+            }
+        }
+    }
+}
+
+
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
     .products-grid {
         .product-items:not(.slick-slider) {
             .product-item {
                 .flex-width(percentage(1/2));
             }
+        }
+    }
+
+    .product {
+        .product-item-info {
+            padding: 10px;
         }
     }
 }
@@ -407,8 +441,26 @@
                 } 
             }
         }
-    }            
 
+        &-list {
+            .product-item-info {
+                padding: 10px;
+                .product-item-photo  {
+                    .flex-width(30%);
+                }
+
+                .product-item-details {
+                    .flex-width(70%);
+                }
+
+                .product-item-actions {
+                    .flex-width(100%);
+                    padding-left: 35%;
+                    text-align: left;
+                }
+            }
+        }
+    }
 }
 
 
