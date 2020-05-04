@@ -114,12 +114,13 @@
     border-radius: 3px;
     background: transparent;
     color: @theme__color__primary;
+    font-weight: 600;
 
     &:focus,
     &:hover {
-        background: @color-lines;
-        color: @theme__color__secondary;
-        border: 1px solid @color-lines;
+        background: @theme__color__primary;
+        color: @color-white;
+        border: 1px solid @theme__color__primary
     }
 
     &:active {
@@ -216,6 +217,28 @@
     margin: 0 auto;
 }
 
+.more-icon() {
+    color: @theme__color__secondary;
+    &:after {
+        transition: transform .3s cubic-bezier(.165,.84,.44,1);
+        display: inline-block;
+        content: @icon-chevron-right;
+        font-family: @icon__font-name;
+        display: inline-block;
+        vertical-align: middle;
+        .lib-font-size(15);
+        margin-top: -1.5px;
+        line-height: normal;
+    }
+    &:hover {
+        color: @theme__color__primary;
+        &:after {
+            -webkit-animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
+            animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
+        }
+    }
+}
+
 //
 //  Common
 //  _____________________________________________
@@ -287,21 +310,7 @@
 
     .read-more, a.more {
         text-transform: uppercase;
-        &:after {
-            transition: transform .3s cubic-bezier(.165,.84,.44,1);
-            display: inline-block;
-            content: @icon-chevron-right;
-            font-family: @icon__font-name;
-            display: inline-block;
-            vertical-align: middle;
-            .lib-font-size(15);
-            margin-top: -1.5px;
-            line-height: normal;
-        }
-        &:hover:after {
-            -webkit-animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
-            animation: button-arrow-right .3s cubic-bezier(.165,.84,.44,1) both;
-        }
+        .more-icon();
     }
 
     .action {
