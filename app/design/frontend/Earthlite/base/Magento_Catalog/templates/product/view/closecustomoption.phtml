@@ -1,0 +1,30 @@
+<?php
+$product = $block->getProduct();
+$productType = $product->getTypeId();
+if($productType == 'configurable'):
+	$productInstance = $product->getTypeInstance();
+	if(count($productInstance->getConfigurableOptions($product)) > 3):
+?>
+<div class="header-content">
+	Customize your product
+</div>
+<div class="primary actions-primary">
+    <button type="button" class="action primary" id="product-customize-close">
+        <span>Close</span>
+    </button>            			
+</div>
+<script type="text/javascript">
+	require(['jquery'], function($) {
+    	$(".custom-options-container").hide();
+    	$("#product-customize-button").click(function(){
+    		$(".custom-options-container").show();
+    	});
+    	$("#product-customize-close").click(function(){
+    		$(".custom-options-container").hide();
+    	});    	
+    })
+</script>
+<?php
+	endif;
+endif;
+?>

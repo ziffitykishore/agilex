@@ -1,0 +1,16 @@
+<?php
+$product = $block->getProduct();
+$productType = $product->getTypeId();
+if($productType == 'configurable'):
+	$productInstance = $product->getTypeInstance();
+	if(count($productInstance->getConfigurableOptions($product)) > 3):
+?>
+<div class="custom action">
+    <button type="button" class="action primary" id="product-customize-button">
+        <span>Customize & Add to cart</span>
+    </button>            			
+</div>
+<?php
+	endif;
+endif;
+?>
