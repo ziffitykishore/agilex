@@ -32,6 +32,10 @@
         }
         .page-header {
             border-bottom: 1px solid @color-lines;
+            margin-bottom: 50px;
+            .nav-toggle {
+                display: none;
+            }
         }
     }
 
@@ -177,6 +181,48 @@
 
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
+    .checkout-index-index {
+        .authentication-wrapper, .opc-progress-bar {
+            margin-top: -105px;
+        }
+    }
+    .custom-slide .modal-inner-wrap {
+        background: #fff !important;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .checkout-index-index {
+        .page-header {
+            margin-bottom: 30px;
+        }
+        .opc-progress-bar {
+            padding-left: 15px;
+            margin: 0 0 25px;
+            width: 100%;
+            text-align: center;
+        }
+        .authentication-wrapper {
+            margin-top: -85px;
+            &:before {
+                content: none;
+            }
+        }
+        .opc-estimated-wrapper {
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            &:before, &:after {
+                content: none;
+            }
+            .estimated-block {
+                color: @title_color;
+            }
+        }
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .opc-wrapper {
         .step-title {
@@ -192,6 +238,15 @@
             right: 0;
             border-radius: 0 !important;
             bottom: 0;
+        }
+    }
+    .checkout-index-index .authentication-wrapper {
+        margin-top: 0; 
+        width: 100%;
+        margin-bottom: 20px;
+        text-align: center;
+        .modal-content {
+            text-align: left;
         }
     }
 }
