@@ -106,27 +106,11 @@ class Data extends AbstractHelper
                 'name' => $product->getName(),                
                 'value' => $product->getSku(),
                 'image'     => $this->getProductImage($product),
-                'url'     => $this->getProductUrl($product)
+                'url'     => $product->getProductUrl()
             ];
         }
 
         return json_encode($productList);                
-    }
-
-    protected function getProductUrl($product)
-    {
-        $productUrl  = $product->getProductUrl();
-        $requestPath = $product->getRequestPath();
-        if (!$requestPath) {
-            $pos = strpos($productUrl, 'catalog/product/view');
-            if ($pos !== false) {
-                $productUrl = substr($productUrl, $pos + 20);
-            }
-        } else {
-            $productUrl = $requestPath;
-        }
-
-        return $productUrl;
     }
       
     public function getProductImage($product, $imageId = 'autosearch_image')
