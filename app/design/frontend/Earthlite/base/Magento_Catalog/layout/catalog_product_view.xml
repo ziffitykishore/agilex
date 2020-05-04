@@ -14,6 +14,9 @@
                 <container name="product.tab.container" htmlTag="div" htmlClass="inner-container"/>
             </container>
         </referenceContainer>
+        <referenceContainer name="product.info.stock.sku">
+            <block class="Magento\Framework\View\Element\Template" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
+        </referenceContainer>
 
         <move element="product.info.sku" destination="product.info.main" before="product.info.price"/>
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
@@ -23,5 +26,14 @@
         <move element="catalog.product.related" destination="product.tab.container" after="-"/>
 
         <referenceBlock name="product.info.review" remove="true"/>
+        <referenceBlock name="product.info.form.options">            
+            <container name="custom.option.container" htmlTag="div" htmlClass="custom-options-container" after="-">
+                <block class="Magento\Catalog\Block\Product\View" name="close.custom.product.option" template="Magento_Catalog::product/view/closecustomoption.phtml" before="-"/>
+            </container>
+            <block class="Magento\Catalog\Block\Product\View" name="custom.product.option" template="Magento_Catalog::product/view/customoption.phtml" after="-"/>
+        </referenceBlock>
+        <move element="product.info.options.wrapper" destination="custom.option.container" after="close.custom.product.option"/>
+        <move element="product.info.options.wrapper.bottom" destination="custom.option.container" after="product.info.options.wrapper"/>
+        
     </body>
 </page>

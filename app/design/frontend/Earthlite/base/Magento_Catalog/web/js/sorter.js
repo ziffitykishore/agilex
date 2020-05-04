@@ -1,9 +1,10 @@
 define(
     [
         'jquery',
+        'Mageplaza_AjaxLayer/js/action/submit-filter',
         'jquery/ui',
         'productListToolbarForm'
-    ], function ($) {
+    ], function ($, submitFilterAction) {
         "use strict";
 
         $.widget(
@@ -17,7 +18,6 @@ define(
             _create: function () {
                 this.initObserve();
             },
-
 
             initObserve: function () {
                 var self = this;
@@ -35,9 +35,13 @@ define(
                         var link = self.checkUrl($(this).prop('href'));
                         if (!link) { return; }
 
-                        self.ajaxSubmit(link);
+                        submitFilterAction(link);
                         e.stopPropagation();
                         e.preventDefault();
+                        $('body').removeClass('sorter-active');
+                        $('body').on('click','.sorter-close',function(){
+                            $('body').removeClass('sorter-active');
+                        });
                     }
                 );
 
@@ -47,39 +51,6 @@ define(
                 var regex = /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
 
                 return regex.test(url) ? url : null;
-            },
-
-
-            ajaxSubmit: function (submitUrl) {
-                var self = this;
-
-                $.ajax(
-                    {
-                        url: submitUrl,
-                        type: 'post',
-                        dataType: 'json',
-                        beforeSend: function () {
-                            if (typeof window.history.pushState === 'function') {
-                                window.history.pushState({ url: submitUrl }, '', submitUrl);
-                            }
-                        },
-                        success: function (res) {
-                            if (res.backUrl) {
-                                window.location = res.backUrl;
-                                return;
-                            }
-                            if (res.navigation) {
-                                $(self.options.layerContainer).html(res.navigation);
-                            }
-                            if (res.products) {
-                                $(self.options.productContainer).html(res.products);
-                            }
-                        },
-                        error: function () {
-                            window.location.reload();
-                        }
-                    }
-                );
             }
         }
         );
