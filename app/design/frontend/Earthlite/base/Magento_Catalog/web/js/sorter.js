@@ -39,6 +39,9 @@ define(
                         e.stopPropagation();
                         e.preventDefault();
                         $('body').removeClass('sorter-active');
+                        $('body').on('click','.sorter-close',function(){
+                            $('body').removeClass('sorter-active');
+                        });
                     }
                 );
 
