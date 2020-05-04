@@ -7,7 +7,7 @@
     .toolbar-products {
         margin-bottom: 0;
 
-        & + .products {
+        & ~ .products {
             margin-top: 10px;
             .products {
                 margin-top: 0;
@@ -17,6 +17,47 @@
         & ~ .toolbar-products {
             display: none;
         }
+
+        .sorter-select {
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            padding: 20px 30px;
+            list-style: none;
+            border-top: 1px solid @color-lines;
+            clear: both;
+
+            li {
+                margin: 0;
+
+                & + li {
+                    margin-top: 15px;
+                }
+
+                a {
+                    display: block;
+                    position: relative;
+
+                    &:after {
+                        content:'';
+                        width: 15px;
+                        height: 15px;
+                        border-radius: 50%;
+                        border: 1px solid @color-lines;
+                        margin-top: 3px;
+                        float: right;
+                        box-shadow: none;
+                    }
+
+                    &.active {
+                        &:after {
+                            box-shadow: inset 0 0px 0px 4px @theme__color__primary;
+                            border-color: @theme__color__primary;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .account, .page-products {
@@ -25,6 +66,10 @@
             .br-radius(10px);
             background: #f3f6ff;
             padding: 0;
+
+            .sorter-close {
+                display: none;
+            }
 
             &:empty {
                 display: none;
@@ -92,16 +137,112 @@
 
 
 //
+//  Tablet
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+    .account,
+    .page-products {
+        .toolbar {
+            .toolbar-amount {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+
+
+//
 //  Mobile
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .account, .page-products {
+    .account {
         .toolbar {
-            height: auto;
+            .limiter {
+                margin-bottom: 0;
+            }
 
-            .sorter {
+            .toolbar-amount {
+                padding: 10px 0;
+            }
+        }
+    }
+
+
+
+    .page-products {
+        .filter-trigger {
+            z-index: 999;
+        }
+        .toolbar-products {
+            border: none;
+            .toolbar-amount {
                 display: none;
+            }
+
+            & ~ .products {
+                margin-top: 0px;
+            }
+
+            .toolbar-sorter {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: @color-white;
+                border-top: 4px solid @theme__color__primary;
+                z-index: 9999;
+                visibility: hidden;
+                opacity: 0;
+                padding: 0;
+
+                .sorter-options {
+                    display: none;
+                }
+            }
+        }
+
+
+
+        &.sorter-active {
+            overflow: hidden;
+            .columns {
+                z-index: auto;
+            }
+
+            .toolbar-sorter  {
+                visibility: visible;
+                opacity: 1;
+
+                label {
+                    display: inline-block;
+                    padding: 20px 30px;
+                    margin-bottom: 0;
+                }
+
+                .sorter-label {
+                    float: left;
+                }
+
+                .sorter-close {
+                    float: right;
+                    cursor: pointer;
+                }
+            }
+
+            .btn-sort {
+                &:after {
+                    position: fixed;
+                    content: '';
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: rgba(0,0,0,0.5);
+                    cursor: default;
+                }
             }
         }
     }
