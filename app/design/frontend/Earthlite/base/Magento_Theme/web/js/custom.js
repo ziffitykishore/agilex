@@ -83,6 +83,11 @@ define([
         $(this).closest('.alert').slideUp();
     });
 
+    $('.showsearch').on('click', function(){
+        $(this).parent('.block-search').find('.input-text').val('');
+        $('.autocomplete-suggestions').hide();
+    });
+
     // home brand1 sec modal
     $('.home-brand1 a').on('click', function (e) {
         e.preventDefault();

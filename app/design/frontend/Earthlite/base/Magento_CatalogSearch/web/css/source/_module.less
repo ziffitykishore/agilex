@@ -57,7 +57,7 @@
                 }
             }
             .block-content {
-                width: 250px;
+                width: 320px;
                 padding: 0 10px;
                 border: 1px solid @color-lines;
             }
@@ -72,7 +72,6 @@
             right: -10px;
             top: -8px;
             transition: all 0.5s ease 0s;
-            overflow: hidden;
             border-radius: 10px;
             background: @color-white;
 
@@ -125,11 +124,12 @@
             clear: both;
             margin: 0 -@layout__width-xs-indent -1px;
             padding: 0 0;
+            width: ~"calc(100% - 30px)";
         }
 
         input {
             border: none;
-            padding: 0 25px 0 0;
+            padding: 0;
             &:focus {
                 box-shadow: none;
             }
@@ -137,6 +137,37 @@
 
         .nested {
             display: none;
+        }
+    }
+
+    .autocomplete-suggestions {
+        background: @color-white;
+        .br-radius(6px);
+        height: 320px;
+        min-width: 100%;
+        left: 0;
+        overflow-y: auto;
+        border: 1px solid @color-lines;
+        border-top: none;
+
+        .autocomplete-suggestion {
+            display: inherit;
+            padding: 10px;
+
+            a {
+                .flex();
+            }
+
+            .image-container {
+                .flex-width(60px);
+                padding: 5px;
+                border: 1px solid @color-lines;
+                margin-right: 10px;
+            }
+
+            .description-container {
+                .flex-width(~"calc(100% - 70px)");
+            }
         }
     }
 
@@ -287,14 +318,6 @@
             border-radius: 0;
             z-index: 99;
             padding: 15px;
-
-            form {
-                position: relative;
-            }
-
-            input {
-                padding-right: 40px;
-            }
 
             .actions {
                 .action {
