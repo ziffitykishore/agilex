@@ -1,0 +1,16 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-block-summary" data-bind="blockLoader: isLoading">
+    <div class="block-title">
+        <span data-bind="i18n: 'Order Summary'" class="title"></span>
+        <a class="action viewcart" href="/checkout/cart/"><!-- ko i18n: 'Edit' --><!-- /ko --></a>
+    </div>
+    
+    <!-- ko foreach: elems() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+</div>

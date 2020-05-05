@@ -55,9 +55,8 @@
                         <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": "<?php echo $collapsibleRange ?>", "multipleCollapsible": true, "animate":{"duration":"400"}}}'>
                         <?php $wrapOptions = true;
                     endif; ?>
-                     <?php 
-                        $attributemode = $filter->getAttributeModel();
-                        if($attributemode && $attributemode->getAttributeCode() == 'price')
+                     <?php                         
+                        if($filter->getRequestVar() == 'price')
                         {
                             $productColl = $filter->getLayer()->getProductCollection();
                             if($productColl->getMinPrice() == $productColl->getMaxPrice())
