@@ -4,6 +4,128 @@
 
 & when (@media-common = true) {
 
+    // config slide
+    .custom-options-container.slide {
+        position: fixed;
+        top: 0;
+        right: 0;
+        padding: 25px;
+        background: #fff;
+        bottom: 0;
+        opacity: 0;
+        -webkit-transform: translateX(101%);
+        transform: translateX(101%);
+        -webkit-transition: .5s ease;
+        transition: .5s ease;
+        width: 290px;
+        overflow-y: auto;
+        z-index: 1000;
+        .swatch-option {
+            margin-right: 10px;
+        }
+        .box-tocart {
+            display: block;
+            .actions, .field.qty {
+                display: block;
+                margin-bottom: 0;
+            }
+            .action.tocart {
+                width: 100%;
+            }
+            .actions {
+                padding-top: 25px;
+            }
+        } 
+        .header-content {
+            display: -ms-flex;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 2.6rem;
+            border-bottom: 1px solid @color-lines;
+            h5 {
+                margin-bottom: 0;
+                font-size: 1.5rem;
+            }
+        }
+        .icon-x {
+            cursor: pointer;
+            color: @title_color;
+            font-size: 2.5rem; 
+        }
+    }
+
+    .configslide-open {
+        overflow: hidden !important;
+        .custom-options-container.slide {
+            opacity: 1;
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        .page-header {
+            opacity: 0;
+        }
+        .config-overlay {
+            z-index: 999;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .swatch-option-tooltip {
+        display: none !important;
+    }
+
+    .swatch-attribute.color_swatch[option-selected] {
+        padding-bottom: 25px;
+    }
+    .swatch-attribute.color_swatch {
+        border-bottom: 1px solid @color-lines;
+        margin-bottom: 15px;
+        position: relative;
+
+
+        .swatch-attribute-selected-option {
+            color: @title_color;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            padding-left: 0;
+        }
+    }
+
+    .swatch-option {
+        &:focus {
+            box-shadow: none;
+        }
+        &.selected {
+            outline: 0 none;
+            box-shadow: none;
+            &:after {
+                opacity: 1;
+            }
+        }
+        &:after {
+            content: '\e90d';
+            color: #fff;
+            font-family: 'ELite';
+            font-size: 1.6rem;
+            font-weight: 600;
+            opacity: 0;
+        }
+    }
+
+    .filter-options .swatch-option:after {
+        line-height: 2;
+    }
+
+    .swatch-attribute-label {
+        color: @title_color;
+    }
+
+    .swatch-attribute-options {
+        margin: 10px 0 15px;
+    }
     .swatch-attribute {
         .swatch-option {
             width: 26px;
@@ -60,7 +182,7 @@
                 .fotorama__thumb-border {
                     border: 1px solid @theme__color__primary;
                 }
-            
+
                 .fotorama__dot {
                     width: 10px;
                     height: 10px;
@@ -251,31 +373,31 @@
             }
 
             #product-review-container {
-              .review-details-value,
-              .review-title,
-              .block-title {
-                color: @theme__color__secondary;
-              }
+                .review-details-value,
+                .review-title,
+                .block-title {
+                    color: @theme__color__secondary;
+                }
 
-              .block-title {
-                  strong {
-                      font-size: 2.5rem;
-                  }
-              }
+                .block-title {
+                    strong {
+                        font-size: 2.5rem;
+                    }
+                }
 
-              .review-title {
-                  font-size: 1.6rem;
-              }
+                .review-title {
+                    font-size: 1.6rem;
+                }
 
-              .review-item {
-                  border-bottom-color: @color-lines;
-              }
+                .review-item {
+                    border-bottom-color: @color-lines;
+                }
 
-              .review-ratings .rating-label {
-                color: @theme__color__secondary;
-                padding-top: inherit;
-                vertical-align: middle;
-              }
+                .review-ratings .rating-label {
+                    color: @theme__color__secondary;
+                    padding-top: inherit;
+                    vertical-align: middle;
+                }
             }
 
             .review-form {
@@ -482,9 +604,31 @@
         }
     }
 
+    .custom-options-container.slide {
+        padding: 20px;
+    }
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .has-configslide .page-footer {
+        padding-bottom: 50px
+    }
+    
+    .product-add-form .custom.action {
+        position: fixed;
+        bottom: 0;
+        z-index: 99;
+        background: #fff;
+        left: 0;
+        right: 0;
+        .action {
+            border-radius: 0;
+            width: 100%;
+            
+        }
+    }
+    
     .product {
         &.info {
             &.detailed {
@@ -553,6 +697,17 @@
 //  _____________________________________________
 
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) { 
+    .configslide-open, .brand-active {
+        padding-right: 15px;
+    }
+    .custom-options-container:not(.slide) {
+        .product-options-wrapper {
+            max-width: 70%;
+        }
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) { 
     .product{
         &.media,
@@ -572,7 +727,7 @@
             .column {
                 margin-top: 35px;
             }
-            
+
             .product.media {
                 width: 50%;
                 padding-right: 70px;
@@ -628,7 +783,7 @@
 
                         &:not(.disabled) {
                             > .switch:focus,
-                            > .switch:hover {
+                                > .switch:hover {
                                 background: transparent;
                                 color: @theme__color__primary;
                             }
