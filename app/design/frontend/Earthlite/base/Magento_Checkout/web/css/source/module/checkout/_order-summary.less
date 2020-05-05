@@ -350,8 +350,17 @@
 
 
     .opc-block-shipping-information {
+        border-top: 1px solid @color-lines;
+        padding: 20px;
+
         .shipping-information-title {
+            padding: 20px;
+            border: 1px solid @color-lines;
+            margin-bottom: 0;
+            .br-radius(6px 6px 0 0);
             .action {
+                top: 20px;
+                right: 30px;
                 &-edit {
                     .lib-icon-font(
                         @_icon-font-content: @icon-edit,
@@ -365,6 +374,13 @@
                     );
                 }
             }
+        }
+
+        .shipping-information-content {
+            border: 1px solid @color-lines;
+            padding: 20px;
+            .br-radius(0 0 6px 6px);
+            margin-top: -1px;
         }
     }
 }
