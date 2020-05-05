@@ -25,8 +25,8 @@ switch ($type = $block->getType()) {
             $shuffle = (int) $block->isShuffled();
             $canItemsAddToCart = $block->canItemsAddToCart();
 
-            $showAddTo = true;
-            $showCart = false;
+            $showAddTo = false;
+            $showCart = true;
             $templateType = null;
             $description = false;
         }
@@ -98,7 +98,7 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
+            $title = __('Products You may like');
             $items = $block->getItemCollection();
 
             $showAddTo = true;
@@ -203,7 +203,7 @@ switch ($type = $block->getType()) {
                                         <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
                                     <?php endif; ?>
 
-                                    <?php if ($canItemsAddToCart && !$_item->isComposite() && $_item->isSaleable() && $type == 'related') :?>
+                                    <?php if ($canItemsAddToCart && !$_item->isComposite() && $_item->isSaleable() && $type != 'related') :?>
                                         <?php if (!$_item->getRequiredOptions()) :?>
                                             <div class="field choice related">
                                                 <input type="checkbox" class="checkbox related" id="related-checkbox<?= $block->escapeHtmlAttr($_item->getId()) ?>" name="related_products[]" value="<?= $block->escapeHtmlAttr($_item->getId()) ?>" />
@@ -225,11 +225,20 @@ switch ($type = $block->getType()) {
                                                             <?php $postDataHelper = $this->helper(Magento\Framework\Data\Helper\PostHelper::class);
                                                             $postData = $postDataHelper->getPostData($block->escapeUrl($block->getAddToCartUrl($_item)), ['product' => $_item->getEntityId()])
                                                             ?>
-                                                            <button class="action tocart primary"
+                                                            <?php if($_item->getTypeId() == 'simple'):?>
+                                                                <button class="action tocart primary"
                                                                     data-post='<?= /* @noEscape */ $postData ?>'
                                                                     type="button" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>">
-                                                                <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
-                                                            </button>
+                                                                
+                                                                    <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                                                </button>
+                                                                <?php else: ?>
+                                                                <button class="action tocart primary"
+                                                                    data-mage-init='{"redirectUrl": {"url": "<?= $_item->getProductUrl() ?>"}}'
+                                                                    type="button" title="<?= $block->escapeHtmlAttr(__('View Details')) ?>">
+                                                                    <span><?= $block->escapeHtml(__('View Details')) ?></span>
+                                                                </button>
+                                                            <?php endif; ?>
                                                         <?php endif; ?>
                                                     <?php else :?>
                                                         <?php if ($_item->getIsSalable()) :?>
