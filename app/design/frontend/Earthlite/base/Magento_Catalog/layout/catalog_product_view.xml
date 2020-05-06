@@ -34,6 +34,26 @@
         </referenceBlock>
         <move element="product.info.options.wrapper" destination="custom.option.container" after="close.custom.product.option"/>
         <move element="product.info.options.wrapper.bottom" destination="custom.option.container" after="product.info.options.wrapper"/>
-        
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View" name="color.stains.tab" template="Magento_Catalog::product/view/tab/color_stains.phtml" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Color &#38; Stains</argument>
+                    <argument name="sort_order" xsi:type="string">50</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="product.info.description">
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">Description</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.attributes">
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">Additional Information</argument>                    
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="cofig.overlay" template="Magento_Catalog::product/configoverlay.phtml" after="-"/>
+        </referenceContainer>
     </body>
 </page>
