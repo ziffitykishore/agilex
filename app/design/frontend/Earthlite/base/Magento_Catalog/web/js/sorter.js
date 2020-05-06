@@ -10,41 +10,29 @@ define(
         $.widget(
             'custom.sorter', {
 
-            options: {
-                productContainer: '#layer-product-list',
-                layerContainer: '.layered-filter-block-container'
-            },
-
             _create: function () {
                 this.initObserve();
             },
 
             initObserve: function () {
                 var self = this;
-                var aElements = this.element.find('a');
+                var aElements = $('#layer-product-list').find('.sorter-select a');
                 aElements.each(
-                    function (index) {
+                    function () {
                         var el = $(this);
                         var link = self.checkUrl(el.prop('href'));
                         if (!link) { return; }
-                    }
-                );
-
-                $(".sorter-select a").off('click').on(
-                    'click', function (e) {
-                        var link = self.checkUrl($(this).prop('href'));
-                        if (!link) { return; }
-
-                        submitFilterAction(link);
-                        e.stopPropagation();
-                        e.preventDefault();
-                        $('body').removeClass('sorter-active');
-                        $('body').on('click','.sorter-close',function(){
+                        el.bind('click', function (e) {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            submitFilterAction(link);
                             $('body').removeClass('sorter-active');
-                        });
+                            $('body').on('click','.sorter-close',function(){
+                                $('body').removeClass('sorter-active');
+                            });
+                        })
                     }
                 );
-
             },
 
             checkUrl: function (url) {

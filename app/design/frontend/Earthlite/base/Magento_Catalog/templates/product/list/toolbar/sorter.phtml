@@ -10,6 +10,16 @@
  *
  * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
  */
+
+$queryParam = '';
+$url = $this->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+if (parse_url($url, PHP_URL_QUERY)) {
+    $parsedUrl = parse_url($url);
+    parse_str($parsedUrl['query'], $params);
+    if (isset($params['q'])) {
+        $queryParam = '&q=' . $params['q'];
+    }
+}
 ?>
 <div class="toolbar-sorter sorter">
     <label class="sorter-label" for="sorter"><?= $block->escapeHtml(__('Sort By')) ?></label>
@@ -27,7 +37,7 @@
     </select>
     <ul data-role="sorter" class="sorter-select d-md-none">
         <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
-            <li><a href="<?= $block->getPagerUrl("product_list_order=" . $_key) ?>" 
+            <li><a href="<?= $block->getPagerUrl("product_list_order=" . $_key . $queryParam) ?>" 
             <?php if ($block->isOrderCurrent($_key)): ?> 
                 class="active"
             <?php endif; ?> 
