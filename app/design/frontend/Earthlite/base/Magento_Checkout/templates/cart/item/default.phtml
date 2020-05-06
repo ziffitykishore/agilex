@@ -119,6 +119,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 <div class="control qty">
                     <label for="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty">
                         <span class="label"><?= $block->escapeHtml(__('Qty')) ?></span>
+                        <input type='button' value='-' class='qtyminus' field='qty' />
                         <input id="cart-<?= $block->escapeHtmlAttr($_item->getId()) ?>-qty"
                                name="cart[<?= $block->escapeHtmlAttr($_item->getId()) ?>][qty]"
                                data-cart-item-id="<?= $block->escapeHtmlAttr($_item->getSku()) ?>"
@@ -130,6 +131,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                                class="input-text qty"
                                data-validate="{required:true,'validate-greater-than-zero':true}"
                                data-role="cart-item-qty"/>
+                        <input type='button' value='+' class='qtyplus' field='qty' />
                     </label>
                 </div>
             </div>
@@ -149,3 +151,28 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
         </td>
     </tr>
 </tbody>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        setTimeout(function () {
+            $('.field.qty .qtyplus').unbind().click(function (e) {                    
+                e.preventDefault();
+                var qty = 1;
+                $(this).prev().val(
+                    parseInt($(this).prev().val()) + qty
+                );
+            });
+            $(".field.qty .qtyminus").unbind().click(function (e) {                    
+                e.preventDefault();
+                var qty = 1;
+                if(parseInt($(this).next().val()) > qty) {
+                    $(this).next().val(
+                        parseInt($(this).next().val()) - qty
+                    );                    
+                } else {
+                    $(this).next().val(1);
+                }
+            });
+        }, 100);
+    });        
+</script>
