@@ -83,6 +83,11 @@ define([
         $(this).closest('.alert').slideUp();
     });
 
+    $('.showsearch').on('click', function(){
+        $(this).parent('.block-search').find('.input-text').val('');
+        $('.autocomplete-suggestions').hide();
+    });
+
     // home brand1 sec modal
     $('.home-brand1 a').on('click', function (e) {
         e.preventDefault();
@@ -154,8 +159,8 @@ define([
     bgSource(".category-image-wrapper");
 
     // toggle text
-    function moreToggler(s) {
-        var showChar = 150;
+    function moreToggler(s,c) {
+        var showChar = c;
         var ellipsestext = "";
         var moretext = "Read more";
         var lesstext = "Read less";
@@ -184,7 +189,9 @@ define([
             return false;
         });
     }
-    
-    moreToggler('.category-description p');
+    moreToggler('.category-description p', 150);
+    if ($(window).width() > 767) {
+        moreToggler('.category-description p', 350);
+    }
 
 });
