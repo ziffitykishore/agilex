@@ -1,0 +1,13 @@
+<?php 
+	$product = $block->getProduct();	
+	$baseUrl = $block->getBaseUrl();
+	$downloadUrl = $baseUrl . 'downloadspecs/download/index/id/' . $product->getId();
+?>
+<div class="block download">
+	<label> Click Below Image to Download the Sheet</label>
+	<div class="block-content">
+		<a href="<?php echo $downloadUrl ?>" target="blank">
+			<img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/pdf.png'); ?>" alt="">
+		</a>
+	</div>
+</div>

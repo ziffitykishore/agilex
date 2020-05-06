@@ -41,6 +41,12 @@
                     <argument name="sort_order" xsi:type="string">50</argument>
                 </arguments>
             </block>
+            <block class="Magento\Catalog\Block\Product\View" name="download.specs.tab" template="Magento_Catalog::product/view/tab/download_specs.phtml" ifconfig="download_spec/general/enabled" group="detailed_info">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Download Specifications</argument>
+                    <argument name="sort_order" xsi:type="string">70</argument>
+                </arguments>
+            </block>
         </referenceBlock>
         <referenceBlock name="product.info.description">
             <arguments>
