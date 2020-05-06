@@ -52,7 +52,7 @@
 <script type="text/javascript">
     require(['jquery'], function ($) {
         setTimeout(function () {
-            $('.qtyplus').click(function (e) {                    
+            $('.field.qty .qtyplus').click(function (e) {                    
                 e.preventDefault();
                 fieldName = $(this).attr('field');
                 var currentVal = parseInt($('#'+fieldName).val());
@@ -62,14 +62,12 @@
                     $('#'+fieldName).val(1);
                 }
             });
-            $(".qtyminus").click(function (e) {                    
+            $(".field.qty .qtyminus").click(function (e) {                    
                 e.preventDefault();
                 fieldName = $(this).attr('field');
                 var currentVal = parseInt($('#'+fieldName).val());
-                if (!isNaN(currentVal) && currentVal > 0) {
+                if (!isNaN(currentVal) && currentVal > 1) {
                     $('#'+fieldName).val(currentVal - 1);
-                } else {                        
-                    $('#'+fieldName).val(1);
                 }
             });
         }, 100);

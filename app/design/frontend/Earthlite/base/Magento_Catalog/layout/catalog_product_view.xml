@@ -34,6 +34,8 @@
         </referenceBlock>
         <move element="product.info.options.wrapper" destination="custom.option.container" after="close.custom.product.option"/>
         <move element="product.info.options.wrapper.bottom" destination="custom.option.container" after="product.info.options.wrapper"/>
-        
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="cofig.overlay" template="Magento_Catalog::product/configoverlay.phtml" after="-"/>
+        </referenceContainer>
     </body>
 </page>
