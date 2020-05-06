@@ -2,6 +2,36 @@
 //  Common
 //  _____________________________________________
 
+.qty() {
+    .qtyminus {
+        .br-radius(3px 0 0 3px);
+    }
+    .qtyplus {
+        .br-radius(0 3px 3px 0);
+    }
+    .qtyminus,
+    .qtyplus {
+        width: 40px;
+        height: 40px;
+        border: 1px solid @color-lines;
+        font-weight: bold;
+        background: transparent;
+        color: @color-dgray;
+        font-size: 20px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    .item-qty,
+    .input-text.qty {
+        width: 50px;
+        height: 40px;
+        .br-radius(0);
+        margin-left: -1px;
+        margin-right: -1px;
+        color: @theme__color__secondary;
+    }
+}
+
 & when (@media-common = true) {
 
     // config slide
@@ -302,6 +332,26 @@
                 }
             }
 
+            .box-tocart,
+            .product-options-bottom {
+                .fieldset {
+                    .field.qty {
+                        display: block;
+                    }
+                }
+                .control {
+                    .flex();
+                }
+                .qty {
+                    .qty();
+                }
+
+                .action.tocart {
+                    font-size: 1.4rem;
+                    line-height: 2rem;
+                }
+            }
+
             .action {
                 &.tocompare {
                     font-weight: 600;
@@ -331,16 +381,20 @@
 
             .product-social-links {
                 .product-addto-links {
+                    text-align: left;
+                    .flex();
+                    align-items: center;
                     .action {
                         &.towishlist {
                             width: 50px;
                             height: 50px;
                             border: 1px solid @color-lines;
                             .br-radius(4px);
-                            .flex();
-                            align-items: center;
-                            justify-content: center;
+                            line-height: 40px;
+                            text-align: center;
+                            display: inline-block;
                             background: transparent;
+                            margin-right: 20px;
 
                             &:before {
                                 content: @icon-heart;
