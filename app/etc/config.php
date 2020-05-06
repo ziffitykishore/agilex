@@ -367,6 +367,7 @@ return [
         'SomethingDigital_ApiMocks' => 1,
         'SomethingDigital_AssetOptimizer' => 1,
         'SomethingDigital_BatchRowsCount' => 1,
+        'SomethingDigital_BrandCategoryCreation' => 1,
         'SomethingDigital_BryantPark' => 1,
         'SomethingDigital_BuildNotation' => 1,
         'SomethingDigital_Cart' => 1,
