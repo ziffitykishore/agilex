@@ -13,6 +13,12 @@
             <container name="product.tab.related" htmlTag="div" htmlClass="product-tab-wrapper" after="product.info.media">
                 <container name="product.tab.container" htmlTag="div" htmlClass="inner-container"/>
             </container>
+            <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist.custom"
+                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+            <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.wishlist.media"
+                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+            <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.wishlist.addtocart"
+                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
         </referenceContainer>
         <referenceContainer name="product.info.stock.sku">
             <block class="Magento\Framework\View\Element\Template" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
@@ -24,6 +30,11 @@
 
         <move element="product.info.details" destination="product.tab.container" after="-"/>
         <move element="catalog.product.related" destination="product.tab.container" after="-"/>
+
+        <move element="view.addto.wishlist.custom" destination="custom.product.option" after=""/>
+        <move element="view.addto.wishlist" destination="product.info.addtocart" after=""/>
+        <move element="view.wishlist.addtocart" destination="product.info.addtocart.additional" after=""/>
+        <move element="view.wishlist.media" destination="product.info.media" before=""/>
 
         <referenceBlock name="product.info.review" remove="true"/>
         <referenceBlock name="product.info.form.options">            
