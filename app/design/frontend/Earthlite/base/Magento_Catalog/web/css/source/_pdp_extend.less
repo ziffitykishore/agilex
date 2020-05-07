@@ -131,21 +131,23 @@
     .swatch-attribute.color_swatch[option-selected] {
         padding-bottom: 25px;
     }
-    .swatch-attribute.color_swatch {
-        border-bottom: 1px solid @color-lines;
-        margin-bottom: 15px;
-        position: relative;
+
+    .product-info-main {
+        .swatch-attribute.color_swatch {
+            border-bottom: 1px solid @color-lines;
+            margin-bottom: 15px;
+            position: relative;
 
 
-        .swatch-attribute-selected-option {
-            color: @title_color;
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            padding-left: 0;
+            .swatch-attribute-selected-option {
+                color: @title_color;
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                padding-left: 0;
+            }
         }
     }
-
     .swatch-attribute.size {
         .swatch-attribute-options {
             .swatch-option {
@@ -157,13 +159,12 @@
 
 
                 &:hover,
-                &.selected {
+                    &.selected {
                     border: 1px solid @color-lines;
                 }
             }
         }
     }
-
     .swatch-option {
         &:focus {
             box-shadow: none;
@@ -223,7 +224,7 @@
             .action {
                 &.towishlist {
                     .lib-icon-font(
-                        @_icon-font-content: @icon-heart,
+                    @_icon-font-content: @icon-heart,
                         @_icon-font: @icon__font-name,
                         @_icon-font-size: 16px,
                         @_icon-font-line-height: 16px,
@@ -231,7 +232,7 @@
                         @_icon-font-color-hover: @header-icons-color-hover,
                         @_icon-font-color-active: @header-icons-color-hover,
                         @_icon-font-text-hide: true
-                    );
+                        );
                 }
             }
         }

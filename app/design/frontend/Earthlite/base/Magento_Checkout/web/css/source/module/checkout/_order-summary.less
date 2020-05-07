@@ -143,12 +143,12 @@
                 .lib-icon-font(
                 @icon-down,
                 @_icon-font-size: 30px,
-                @_icon-font-line-height: 12px,
-                @_icon-font-text-hide: true,
-                @_icon-font-margin: 3px 0 0,
-                @_icon-font-position: after,
-                @_icon-font-display: block
-                );
+                    @_icon-font-line-height: 12px,
+                    @_icon-font-text-hide: true,
+                    @_icon-font-margin: 3px 0 0,
+                    @_icon-font-position: after,
+                    @_icon-font-display: block
+                    );
                 margin-bottom: 0;
                 position: relative;
                 display: none;
@@ -170,8 +170,8 @@
                 > .title {
                     .lib-icon-font-symbol(
                     @_icon-font-content: @icon-up,
-                    @_icon-font-position: after
-                    );
+                        @_icon-font-position: after
+                        );
                 }
             }
 
@@ -363,7 +363,7 @@
                 right: 30px;
                 &-edit {
                     .lib-icon-font(
-                        @_icon-font-content: @icon-edit,
+                    @_icon-font-content: @icon-edit,
                         @_icon-font: @icon__font-name,
                         @_icon-font-size: 16px,
                         @_icon-font-line-height: 20px,
@@ -371,7 +371,7 @@
                         @_icon-font-color-hover: @header-icons-color-hover,
                         @_icon-font-color-active: @header-icons-color-hover,
                         @_icon-font-text-hide: true
-                    );
+                        );
                 }
             }
         }
@@ -431,6 +431,13 @@
         .shipping-information-title {
             font-size: 2rem;
         }
+    }
+
+    .opc-block-summary .items-in-cart {
+        padding: 3% 0 3% 4%;
+    }
+    .opc-block-summary > .block-title {
+        padding: 3% 4%;
     }
 }
 
