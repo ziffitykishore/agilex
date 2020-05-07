@@ -114,11 +114,9 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                                         </button>
                                     </form>
                                 <?php else :?>
-                                    <button type="button"
-                                                title="<?= $block->escapeHtmlAttr(__('View Details')) ?>"
-                                                class="action tocart primary">
-                                            <span><?= $block->escapeHtml(__('View Details')) ?></span>
-                                        </button>
+                                     <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
+                                       title="<?= $block->escapeHtml(__('View Details')) ?>"
+                                       class="action primary"><?= $block->escapeHtml(__('View Details')) ?></a>                                    
                                 <?php endif; ?>
                             <?php else :?>
                                 <?php if ($_product->isAvailable()) :?>
