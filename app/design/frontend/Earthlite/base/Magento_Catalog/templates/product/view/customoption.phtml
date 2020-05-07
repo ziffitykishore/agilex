@@ -5,10 +5,11 @@ if($productType == 'configurable'):
 	$productInstance = $product->getTypeInstance();
 	if(count($productInstance->getConfigurableOptions($product)) > 3):
 ?>
-<div class="custom action">
+<div class="custom-button actions">
     <button type="button" class="action primary" id="product-customize-button">
-        <span>Customize & Add to cart</span>
+        <span><?= $block->escapeHtml(__('Customize & Add to cart')) ?></span>
     </button>            			
+    <?= $block->getChildHtml('', true) ?>
 </div>
 <?php
 	endif;

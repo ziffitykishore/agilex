@@ -1,3 +1,5 @@
+@minicart__border-color: @color-lines;
+
 //
 //  Common
 //  _____________________________________________
@@ -11,6 +13,10 @@
                 line-height: normal;
                 vertical-align: middle;
                 position: relative;
+                font-weight: normal;
+                background: transparent;
+                border: none;
+                padding: 0;
 
                 .lib-icon-font(
                 @_icon-font-content: @icon-shopping-cart,
@@ -45,6 +51,23 @@
         }
 
         .minicart-items {
+            .update-cart-item {
+                padding: 0;
+                width: 40px;
+                height: 40px;
+                background: transparent;
+                border: 1px solid @color-lines;
+                .lib-icon-font(
+                    @_icon-font-content: @icon-update,
+                    @_icon-font: @icon-font,
+                    @_icon-font-size: 35px,
+                    @_icon-font-line-height: 20px,
+                    @_icon-font-color: @cart-icons,
+                    @_icon-font-color-hover: @cart-icons,
+                    @_icon-font-color-active: @cart-icons,
+                    @_icon-font-text-hide: true
+                );
+            }
             .action{
                 &.edit {
                     .lib-icon-font(

@@ -73,6 +73,31 @@
         }
     }
 
+    body {
+        &:not(.cms-index-index)
+        &:not(.checkout-index-index) {
+            .page-header {
+                border: none;
+                & + #maincontent {
+                    position: relative;
+                    &:before {
+                        content: '';
+                        width: 100vw;
+                        position: absolute;
+                        height: 1px;
+                        background: @color-lines;
+                        left: 50%;
+                        z-index: 1;
+                        right: 5%;
+                        top:0;
+                        margin-left: -50vw;
+                        margin-right: -50vw;
+                    }
+                }
+            }
+        }
+    }
+
     .header{
         &.panel {
             padding-top: 0;
