@@ -88,6 +88,10 @@ define([
         $('.autocomplete-suggestions').hide();
     });
 
+    $('#search').focus(function(){
+        $(this).val('');
+    });
+
     // home brand1 sec modal
     $('.home-brand1 a').on('click', function (e) {
         e.preventDefault();
