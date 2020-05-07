@@ -4,7 +4,7 @@ $newTrendingProducts = $block->getNewTrendingList();
 ?>
 <?php if ($exist = ($block->getNewTrendingList() && $block->getNewTrendingList()->getSize())) : ?>
     <section class="new-trend-wrap inner-container">
-    <h2 class="mb-6 text-center" data-aos="fade-up"><?= $block->escapeHtml($block->getData('title')) ?></h2>
+    <h2 class="mb-6 text-center"><?= $block->escapeHtml($block->getData('title')) ?></h2>
     <div class="wrapper grid products-grid new-trend-products" >
     <ol class="new-trend-slider product-items">
         <?php

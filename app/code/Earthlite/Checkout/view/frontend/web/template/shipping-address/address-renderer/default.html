@@ -5,7 +5,8 @@
  */
 -->
 <div class="shipping-address-item" css="'selected-item' : isSelected() , 'not-selected-item':!isSelected()">
-    
+    <div class="d-flex justify-content-between">
+        <div>
     <text args="address().prefix"/> <text args="address().firstname"/> <text args="address().middlename"/>
     <text args="address().lastname"/> <text args="address().suffix"/><br/>
     <text args="_.values(address().street).join(', ')"/><br/>
@@ -17,12 +18,15 @@
         <text args="$parent.getCustomAttributeLabel(element)"/>
         <br/>
     </each>
-
+        </div>
     
     <!-- ko if: (!isSelected()) -->
-    <button type="button" click="selectAddress" class="action action-select-shipping-item">
-        <span translate="'Ship Here'"></span>
+    <div>
+    <button type="button" click="selectAddress" class="action action-select-shipping-item primary">
+        <span translate="'Ship here'"></span>
     </button>
+    </div>
     <!-- /ko -->
+    </div>
 </div>
 
