@@ -8,14 +8,16 @@
 <!-- ko if: (visible)-->
 
 <div class="field addresses">
-    <div> Ship To </div> 
+    <div class="address-box">
+        <div class="head">
+    <h5> Ship To </h5> 
     <div id="select-address" style="display:none">
         <each args="data: elems, as: 'element'">
     <render if="hasTemplate()"/>
 </each>
 
     </div>
-    <div><a  href="#" data-bind="click: showFormPopUp">Change Address </a>
+    <a  href="#" data-bind="click: showFormPopUp">Change Address </a>
 </div>
     <div class="control">
         <div class="shipping-address-items">
@@ -25,5 +27,6 @@
 
         </div>
     </div>
+</div>
 </div>
 <!-- /ko -->

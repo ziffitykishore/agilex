@@ -159,7 +159,7 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
     public function getImageUrl($image)
     {
         $productImageUrl = $this->_imageHelper->getDefaultPlaceholderUrl('thumbnail');
-        if ($image) {
+        if ($image && $image!='no_selection') {
             $productImageUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' .$image;
         } 
         return $productImageUrl;
