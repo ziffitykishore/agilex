@@ -93,22 +93,33 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                         <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>
                             <?php if ($_product->isSaleable()) :?>
                                 <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                                <form data-role="tocart-form"
-                                        data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
-                                        action="<?= $block->escapeUrl($postParams['action']) ?>"
-                                        method="post">
-                                    <input type="hidden"
-                                            name="product"
-                                            value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
-                                    <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
-                                            value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
-                                    <?= $block->getBlockHtml('formkey') ?>
-                                    <button type="submit"
-                                            title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                            class="action tocart primary">
-                                        <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
-                                    </button>
-                                </form>
+                                <?php
+                                    $productType = $_product->getTypeId();
+                                    if ($productType == 'simple' || $productType == 'virtual'):
+                                ?>
+                                    <form data-role="tocart-form"
+                                            data-product-sku="<?= $block->escapeHtmlAttr($_product->getSku()) ?>"
+                                            action="<?= $block->escapeUrl($postParams['action']) ?>"
+                                            method="post">
+                                        <input type="hidden"
+                                                name="product"
+                                                value="<?= /* @noEscape */ $postParams['data']['product'] ?>">
+                                        <input type="hidden" name="<?= /* @noEscape */ Action::PARAM_NAME_URL_ENCODED ?>"
+                                                value="<?= /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                                        <?= $block->getBlockHtml('formkey') ?>
+                                        <button type="submit"
+                                                title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                class="action tocart primary">
+                                            <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                        </button>
+                                    </form>
+                                <?php else :?>
+                                    <button type="button"
+                                                title="<?= $block->escapeHtmlAttr(__('View Details')) ?>"
+                                                class="action tocart primary">
+                                            <span><?= $block->escapeHtml(__('View Details')) ?></span>
+                                        </button>
+                                <?php endif; ?>
                             <?php else :?>
                                 <?php if ($_product->isAvailable()) :?>
                                     <div class="stock available"><span><?= $block->escapeHtml(__('In stock')) ?></span></div>

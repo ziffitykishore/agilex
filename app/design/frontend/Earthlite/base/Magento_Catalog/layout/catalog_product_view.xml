@@ -31,10 +31,10 @@
         <move element="product.info.details" destination="product.tab.container" after="-"/>
         <move element="catalog.product.related" destination="product.tab.container" after="-"/>
 
-        <move element="view.addto.wishlist.custom" destination="custom.product.option" after=""/>
-        <move element="view.addto.wishlist" destination="product.info.addtocart" after=""/>
-        <move element="view.wishlist.addtocart" destination="product.info.addtocart.additional" after=""/>
-        <move element="view.wishlist.media" destination="product.info.media" before=""/>
+        <move element="view.addto.wishlist.custom" destination="custom.product.option" after="-"/>
+        <move element="view.addto.wishlist" destination="product.info.addtocart" after="-"/>
+        <move element="view.wishlist.addtocart" destination="product.info.addtocart.additional" after="-"/>
+        <move element="view.wishlist.media" destination="product.info.media" before="-"/>
 
         <referenceBlock name="product.info.review" remove="true"/>
         <referenceBlock name="product.info.form.options">            
