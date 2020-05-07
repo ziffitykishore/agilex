@@ -4,7 +4,7 @@ $newTrendingProducts = $block->getNewTrendingList();
 ?>
 <?php if ($exist = ($block->getNewTrendingList() && $block->getNewTrendingList()->getSize())) : ?>
     <section class="new-trend-wrap inner-container">
-    <h2 class="mb-6 text-center" data-aos="fade-up"><?= $block->escapeHtml($block->getData('title')) ?></h2>
+    <h2 class="mb-6 text-center"><?= $block->escapeHtml($block->getData('title')) ?></h2>
     <div class="wrapper grid products-grid new-trend-products" >
     <ol class="new-trend-slider product-items">
         <?php
@@ -14,7 +14,7 @@ $newTrendingProducts = $block->getNewTrendingList();
             <li class="item product product-item">
 
                 <div class="product-item-info">
-                    <a href="" class="product photo product-item-photo" tabindex="-1">
+                    <a href="<?= $newTrendingProduct->getProductUrl(); ?>" class="product photo product-item-photo" tabindex="-1">
                         <span class="product-image-container" style="width:240px;">
                             <span class="product-image-wrapper" style="padding-bottom: 125%;">
                                 <img class="product-image-photo" src="<?= $block->getImageUrl($newTrendingProduct->getThumbnail()); ?>" max-width="240" max-height="300" alt="<?= $productDetails->getName(); ?>">
