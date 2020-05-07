@@ -114,21 +114,24 @@
     .swatch-attribute.color_swatch[option-selected] {
         padding-bottom: 25px;
     }
-    .swatch-attribute.color_swatch {
-        border-bottom: 1px solid @color-lines;
-        margin-bottom: 15px;
-        position: relative;
+
+    .product-info-main {
+        .swatch-attribute.color_swatch {
+            border-bottom: 1px solid @color-lines;
+            margin-bottom: 15px;
+            position: relative;
 
 
-        .swatch-attribute-selected-option {
-            color: @title_color;
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            padding-left: 0;
+            .swatch-attribute-selected-option {
+                color: @title_color;
+                position: absolute;
+                bottom: 10px;
+                left: 0;
+                padding-left: 0;
+            }
         }
     }
-
+    
     .swatch-option {
         &:focus {
             box-shadow: none;
