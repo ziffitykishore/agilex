@@ -195,9 +195,9 @@ define([
     }
 
     if ($(window).width() > 767) {
-        moreToggler('.category-description', 250);
+        moreToggler('.category-description p', 250);
     } else {
-        moreToggler('.category-description', 150);
+        moreToggler('.category-description p', 150);
     }
 
 });
