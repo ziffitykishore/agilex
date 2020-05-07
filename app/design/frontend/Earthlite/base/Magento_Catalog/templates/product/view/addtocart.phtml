@@ -53,11 +53,6 @@
     require(['jquery'], function ($) {
         setTimeout(function () {
             $('.input-text.qty').on('blur keydown keypress keyup', function(e){
-                if (this.value.length == 0 && e.which == 48 ){
-                    $(this).val(1);
-                    return false;
-                }
-
                 if($(this).val().match(/^0/)){
                     $(this).val(1);
                     return false;
