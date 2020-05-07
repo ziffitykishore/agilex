@@ -416,7 +416,7 @@ $sidebar__max-width: 240px;
 
 .category-title {
   @include min-screen($screen__m) {
-    font-size: 40px;
+    margin-top: 50px;
   } 
 }
 
