@@ -14,7 +14,7 @@ $newTrendingProducts = $block->getNewTrendingList();
             <li class="item product product-item">
 
                 <div class="product-item-info">
-                    <a href="" class="product photo product-item-photo" tabindex="-1">
+                    <a href="<?= $newTrendingProduct->getProductUrl(); ?>" class="product photo product-item-photo" tabindex="-1">
                         <span class="product-image-container" style="width:240px;">
                             <span class="product-image-wrapper" style="padding-bottom: 125%;">
                                 <img class="product-image-photo" src="<?= $block->getImageUrl($newTrendingProduct->getThumbnail()); ?>" max-width="240" max-height="300" alt="<?= $productDetails->getName(); ?>">
