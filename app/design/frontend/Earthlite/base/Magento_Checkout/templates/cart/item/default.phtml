@@ -63,19 +63,26 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     
                 </div>
                 <?php if ($_options = $block->getOptionList()) :?>
-                    <dl class="item-options">
-                        <?php foreach ($_options as $_option) :?>
-                            <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
-                            <dt><?= $block->escapeHtml($_option['label']) ?></dt>
-                            <dd>
-                                <?php if (isset($_formatedOptionValue['full_view'])) :?>
-                                    <?= $block->escapeHtml($_formatedOptionValue['full_view']) ?>
-                                <?php else :?>
-                                    <?= $block->escapeHtml($_formatedOptionValue['value'], ['span', 'a']) ?>
-                                <?php endif; ?>
-                            </dd>
-                        <?php endforeach; ?>
-                    </dl>
+                    <div class="minicart-items">
+                        <div class="product options " data-bind="mageInit: {'collapsible':{'openedState': 'active'}}" data-collapsible="true" role="tablist">
+                            <span data-role="title" class="toggle" role="tab" aria-selected="true" aria-expanded="true" tabindex="0" style="margin-bottom: 5px;"><?= $block->escapeHtmlAttr(__('More Options')) ?></span>
+                            <div data-role="content" class="content" role="tabpanel" aria-hidden="true" style="display: none;">
+                                <dl class="item-options">
+                                    <?php foreach ($_options as $_option) :?>
+                                        <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                                        <dt><?= $block->escapeHtml($_option['label']) ?></dt>
+                                        <dd>
+                                            <?php if (isset($_formatedOptionValue['full_view'])) :?>
+                                                <?= $block->escapeHtml($_formatedOptionValue['full_view']) ?>
+                                            <?php else :?>
+                                                <?= $block->escapeHtml($_formatedOptionValue['value'], ['span', 'a']) ?>
+                                            <?php endif; ?>
+                                        </dd>
+                                    <?php endforeach; ?>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
                 <?php endif;?>
                 <?php if ($messages = $block->getMessages()) :?>
                     <?php foreach ($messages as $message) :?>
@@ -155,14 +162,25 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
 <script type="text/javascript">
     require(['jquery'], function ($) {
         setTimeout(function () {
-            $('.field.qty .qtyplus').unbind().click(function (e) {                    
+            $('.input-text.qty').on('blur keydown keypress keyup', function(e){
+                if($(this).val().match(/^0/)){
+                    $(this).val(1);
+                    return false;
+                }
+
+                if($(this).val() == '') {
+                    $(this).val(1);
+                    return false;
+                }
+            });
+            $('.field.qty .qtyplus').unbind().click(function (e) {
                 e.preventDefault();
                 var qty = 1;
                 $(this).prev().val(
                     parseInt($(this).prev().val()) + qty
                 );
             });
-            $(".field.qty .qtyminus").unbind().click(function (e) {                    
+            $(".field.qty .qtyminus").unbind().click(function (e) {
                 e.preventDefault();
                 var qty = 1;
                 if(parseInt($(this).next().val()) > qty) {

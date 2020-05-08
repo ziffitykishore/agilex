@@ -52,6 +52,17 @@
 <script type="text/javascript">
     require(['jquery'], function ($) {
         setTimeout(function () {
+            $('.input-text.qty').on('blur keydown keypress keyup', function(e){
+                if($(this).val().match(/^0/)){
+                    $(this).val(1);
+                    return false;
+                }
+
+                if($(this).val() == '') {
+                    $(this).val(1);
+                    return false;
+                }
+            });
             $('.field.qty .qtyplus').click(function (e) {                    
                 e.preventDefault();
                 fieldName = $(this).attr('field');

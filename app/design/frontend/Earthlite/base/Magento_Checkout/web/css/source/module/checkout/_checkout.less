@@ -152,6 +152,10 @@
             border: 0;
         }
     }
+
+    body._has-modal {
+        overflow: hidden !important; 
+    }
 }
 
 //
@@ -208,7 +212,7 @@
             float: none;
         }
         .authentication-wrapper {
-            margin-top: -85px;
+            margin-top: -141px;
             &:before {
                 content: none;
             }
@@ -217,9 +221,15 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .modal-popup.modal-slide .modal-inner-wrap[class] {
+        background: #fff;
+    }
     .opc-wrapper {
-        .step-title {
-            text-align: center;
+        /*        .step-title {
+                    text-align: center;
+                }*/
+        .address-box {
+            margin-bottom: 10px;
         }
         .checkout-shipping-address .step-title,
         .opc-payment .step-title {
@@ -291,6 +301,12 @@
             .field {
                 width: 50%;
                 padding: 0 10px;
+            }
+            .street {
+                .field {
+                    padding: 0;
+                    width: 100%;
+                }
             }
             .field.choice {
                 color: @title_color;
