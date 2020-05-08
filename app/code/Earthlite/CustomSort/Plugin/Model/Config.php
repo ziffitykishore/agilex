@@ -13,10 +13,6 @@ class Config
 */
     public function afterGetAttributeUsedForSortByArray(\Magento\Catalog\Model\Config $catalogConfig, $options)
     {
-        unset($options['position']);
-        unset($options['name']);
-        unset($options['price']);
-
         $newOption['position_asc'] = __('Position: Low to High');
         $newOption['position_desc'] = __('Position: High to Low');
         $newOption['name_asc'] = __('Product Name: A to Z');

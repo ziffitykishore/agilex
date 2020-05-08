@@ -152,7 +152,6 @@ define([
 
                 $(this).css({
                     "background-image": "url(" + img_src + ")",
-                    "background-size": "cover"
                 });
             }
 
