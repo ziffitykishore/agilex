@@ -159,7 +159,7 @@ define([
         });
     }
 
-//    bgSource(".category-image-wrapper");
+    bgSource(".category-image-wrapper");
 
     // toggle text
     function moreToggler(s, c) {

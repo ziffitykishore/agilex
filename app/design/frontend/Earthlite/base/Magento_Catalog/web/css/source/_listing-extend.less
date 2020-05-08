@@ -24,7 +24,6 @@
                     top: 50%;
                     left: 50px;
                     .transform(translateY(-50%));
-                    z-index: 2;
 
                     .page-title {
                         color: @color-white;
@@ -35,16 +34,11 @@
             }
 
             .category-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                margin: 0;
-                .image {
-                    display: none;
+                background: @theme__color__primary;
+                border-radius: 10px;
+                overflow: hidden;
+                margin-bottom: 0;
                 }
-            }
 
             .category-description {
                 padding: 25px;
@@ -429,9 +423,8 @@
             .category-image-wrapper {
                 padding: 20px 20px 25%;
                 .page-title-wrapper {
-                    position: relative;
+                    position: static;
                     transform: none;
-                    left: auto;
                     .page-title {
                         font-size: 2rem;
                     }
