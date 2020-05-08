@@ -106,7 +106,7 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                         </div>
                     </div>
 
-                    <?php if($viewMode = 'list'): ?>
+                    <?php if($viewMode == 'list'): ?>
                         <?= /* @noEscape */ $block->getProductPrice($_product) ?>
                     <?php endif; ?>
 
