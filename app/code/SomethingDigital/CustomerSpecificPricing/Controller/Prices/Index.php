@@ -53,6 +53,7 @@ class Index extends Action
         }
 
         $data = [];
+        $canShowSuffix = false;
 
         try {
             $prices = $this->spotPricingApi->getSpotPrice($skus);
@@ -70,6 +71,7 @@ class Index extends Action
 
                     if (!empty($spotPrice) && $spotPrice < $price) {
                         $price = $spotPrice;
+                        $canShowSuffix = true;
                     }
                     $unitPrice = $price;
                     if ($product->getExactUnitPrice()) {
@@ -82,6 +84,10 @@ class Index extends Action
                     $qtyBreak1 = round($this->arrayManager->get('QtyBreak1', $productPrices));
                     $qtyBreak2 = round($this->arrayManager->get('QtyBreak2', $productPrices));
                     $qtyBreak3 = round($this->arrayManager->get('QtyBreak3', $productPrices));
+
+                    if ($qtyPrice1 || $qtyPrice2 || $qtyPrice3) {
+                        $canShowSuffix = true;
+                    }
 
                     $data[$sku] = [
                         'price' => number_format($price, 2),
@@ -102,6 +108,11 @@ class Index extends Action
         }
 
         $suffix = $this->sessionManager->getSkuSuffix();
+        if ($canShowSuffix) {
+            $suffix = $this->sessionManager->getSkuSuffix();
+        } else {
+            $suffix = '';
+        }
 
         $jsonResult->setHttpResponseCode(200);
         $jsonResult->setData(
