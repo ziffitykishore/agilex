@@ -11,12 +11,7 @@
         <referenceContainer name="before.body.end">
             <block class="Magento\Framework\View\Element\Template" name="mob.filter.trigger" template="Magento_Catalog::filtertrigger.phtml" after="-" /> 
         </referenceContainer>
-
-        <referenceContainer name="category.view.container">
-            <container name="category.image.wrapper" htmlTag="div" htmlClass="category-image-wrapper" before="-"/>
-        </referenceContainer>
-        <move element="category.image" destination="category.image.wrapper" after="-"/>
-        <move element="page.main.title" destination="category.image.wrapper" after="-"/>
-        <move element="category.view.container" destination="main" before="-"/>
+        <move element="page.main.title" destination="category.image" after="-"/>
+        <move element="category.view.container" destination="content.top" before="-"/>
     </body>
 </page>
