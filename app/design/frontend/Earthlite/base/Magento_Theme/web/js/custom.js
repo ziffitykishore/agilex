@@ -152,7 +152,6 @@ define([
 
                 $(this).css({
                     "background-image": "url(" + img_src + ")",
-                    "background-size": "cover"
                 });
             }
 
@@ -160,7 +159,7 @@ define([
         });
     }
 
-    bgSource(".category-image-wrapper");
+//    bgSource(".category-image-wrapper");
 
     // toggle text
     function moreToggler(s, c) {
