@@ -77,17 +77,38 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                         <?php endif; ?>
 
                         <div class="product-item-inner">
-                            
-                            <?php if ($showDescription) :?>
+                            <?php
+                                $stripShortDesc = $block->stripTags($_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description'), null, true);                                
+                            ?>
+                            <?php if ($showDescription && $stripShortDesc) :?>
                                 <div class="product description product-item-description">
+                                    <?php
+                                        if (strlen($stripShortDesc) > 155):
+                                    
+                                            $stringCut = substr($stripShortDesc, 0, 155);
+                                            $endPoint = strrpos($stringCut, ' ');
+                                            
+                                            $shortDesc = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                            $shortDesc = '<p>'.$shortDesc.'...</p>';
+                                    ?>
+                                    <?= /* @noEscape */ $shortDesc ?>
+                                    <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
+                                       title="<?= /* @noEscape */ $_productNameStripped ?>"
+                                       class="action more"><?= $block->escapeHtml(__('Learn More')) ?></a>
+                                    <?php else : ?>
                                     <?= /* @noEscape */ $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                                     <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"
                                        title="<?= /* @noEscape */ $_productNameStripped ?>"
                                        class="action more"><?= $block->escapeHtml(__('Learn More')) ?></a>
+                                   <?php endif; ?>
                                 </div>
                             <?php endif; ?>
                         </div>
                     </div>
+
+                    <?php if($viewMode = 'list'): ?>
+                        <?= /* @noEscape */ $block->getProductPrice($_product) ?>
+                    <?php endif; ?>
 
                     <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $block->escapeHtmlAttr($position) : '' ?>>
                         <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>
