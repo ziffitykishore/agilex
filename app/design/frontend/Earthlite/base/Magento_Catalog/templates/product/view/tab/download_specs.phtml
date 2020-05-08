@@ -1,13 +1,51 @@
 <?php 
 	$product = $block->getProduct();	
-	$baseUrl = $block->getBaseUrl();
-	$downloadUrl = $baseUrl . 'downloadspecs/download/index/id/' . $product->getId();
+
+	$fileAttributes = array('product_pdf_link', 'product_excel_link', 'product_word_link');	
+	
+	$fileAttributeValues = array();
+	foreach ($fileAttributes as $fileAttribute) 
+	{
+		if($product->getCustomAttribute($fileAttribute))
+		{			
+			$fileAttributeUrl = $product->getCustomAttribute($fileAttribute)->getValue();
+			if(filter_var($fileAttributeUrl, FILTER_VALIDATE_URL))
+			{
+				$ext = pathinfo($fileAttributeUrl, PATHINFO_EXTENSION);
+				switch (strtolower($ext)) 
+				{
+	                case 'pdf':
+                        $fileAttributeValues[strtolower($ext)] = $fileAttributeUrl;
+                        break;
+	                case 'doc':
+                        $fileAttributeValues[strtolower($ext)] = $fileAttributeUrl;
+                        break;
+	                case 'xlsx':
+                        $fileAttributeValues[strtolower($ext)] = $fileAttributeUrl;
+                        break;	                
+	         	}			
+			}
+		}	
+	}		
 ?>
-<div class="block download">
-	<label> Click Below Image to Download the Sheet</label>
-	<div class="block-content">
-		<a href="<?php echo $downloadUrl ?>" target="blank">
-			<img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/pdf.png'); ?>" alt="">
-		</a>
+<?php
+	if (count($fileAttributeValues)):
+?>
+	<div class="block download">
+		<label> Use Below Links to Download the Specification Sheets</label>
+		<div class="block-content">
+			<?php
+				foreach ($fileAttributeValues as $ext => $attributeUrl) {
+			?>
+		
+			<a href="<?php echo $attributeUrl ?>" class="downloadable-sheet" target="blank" style="display: inline-block; width: 50px">
+				<img src="<?php echo $this->getViewFileUrl('Magento_Catalog::images/'.$ext.'.png'); ?>" alt="">
+			</a>
+			<?php } ?>
+		</div>
 	</div>
-</div>
+<?php else: ?>
+	<div class="block download">
+		<label> No Specification sheet are provided for this product. </label>		
+	</div>
+<?php endif; ?>
