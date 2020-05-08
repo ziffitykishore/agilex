@@ -74,10 +74,12 @@
     }
 
     body {
+        .page-header {
+            border: none;
+        }
         &:not(.cms-index-index)
         &:not(.checkout-index-index) {
             .page-header {
-                border: none;
                 & + #maincontent {
                     position: relative;
                     &:before {
