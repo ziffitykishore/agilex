@@ -224,7 +224,7 @@
             .action {
                 &.towishlist {
                     .lib-icon-font(
-                    @_icon-font-content: @icon-heart,
+                        @_icon-font-content: @icon-heart,
                         @_icon-font: @icon__font-name,
                         @_icon-font-size: 16px,
                         @_icon-font-line-height: 16px,
@@ -232,7 +232,7 @@
                         @_icon-font-color-hover: @header-icons-color-hover,
                         @_icon-font-color-active: @header-icons-color-hover,
                         @_icon-font-text-hide: true
-                        );
+                    );
                 }
             }
         }
@@ -245,6 +245,11 @@
                 position: absolute;
                 right: 0;
                 top: 0;
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                z-index: 9;
+                text-align: center;
             }
 
             .magnifier-preview {
@@ -447,6 +452,7 @@
                     display: inline-block;
                     background: transparent;
                     border: none;
+                    color: @theme__color__secondary;
 
                     &:after {
                         display: block;
@@ -459,6 +465,7 @@
                     &:hover {
                         background: transparent;
                         border: none;
+                        color: @theme__color__primary;
                         &:after {
                             background: @theme__color__primary;
                         }
@@ -634,7 +641,7 @@
                             margin: 0;
                             .product-item {
                                 .flex-width(100%);
-                                padding: 5px 0;
+                                padding: 0;
                             }
                         }
 
@@ -653,13 +660,14 @@
 
                         .product-item-photo  {
                             .flex-width(100px);
-                            padding: 5px 0px 5px 0;
+                            padding: 10px 0;
 
                             .product-image-container {
                                 border: 1px solid @color-lines;
                                 border-radius: 6px;
                                 overflow: hidden;
                                 padding: 5px;
+                                display: block;
                             }
 
                             .product-image-photo {
@@ -669,7 +677,7 @@
 
                         .product-item-details {
                             .flex-width(~"calc(100% - 100px)");
-                            padding: 5px 0 5px 0px;
+                            padding: 10px 0;
 
                             .choice {
                                 .choice();
@@ -788,6 +796,15 @@
     }
 
     .product {
+        &.media {
+            .fotorama__stage {
+                padding-top: 30px;
+            }
+
+            .fotorama__nav--thumbs {
+                text-align: center;
+            }
+        }
         &-info-main {
             .product-options-bottom,
             .box-tocart {
