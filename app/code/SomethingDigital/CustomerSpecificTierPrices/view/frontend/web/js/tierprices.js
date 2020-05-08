@@ -53,7 +53,7 @@ define([
                     prices['QtyBreak1'] = prices['QtyBreak1'] + '+';
                 }
                 if (prices['QtyBreak2'] && !prices['QtyPrice3']) {
-                    prices['QtyBreak1'] = prices['QtyBreak1'] + ' - ' + (prices['QtyBreak2'] - 1)
+                    prices['QtyBreak1'] = prices['QtyBreak1'] + ' - ' + (prices['QtyBreak2'] - 1);
                     prices['QtyBreak2'] = prices['QtyBreak2'] + '+';
                 }
 
