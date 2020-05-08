@@ -241,15 +241,33 @@
             display: block;
             position: relative;
 
-            .towishlist {
+            .product-info-main {
+                width: 100%;
+                float: none;
+                padding: 0;
+                border: none;
+                margin: 0;
+                position: relative;
+
+                .page-title-wrapper {
+                    margin-bottom: 0;
+                    .page-title {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+
+            .action.towishlist {
                 position: absolute;
                 right: 0;
-                top: 0;
+                bottom: 0;
                 width: 40px;
                 height: 40px;
                 line-height: 40px;
                 z-index: 9;
                 text-align: center;
+                border: none;
+                margin: 0;
             }
 
             .magnifier-preview {
@@ -795,8 +813,22 @@
         }
     }
 
+    .catalog-product-view {
+        .main {
+            > .product-info-main {
+                .page-title-wrapper,
+                .product.attribute.sku,
+                .product-info-price,
+                .product-info-stock-sku {
+                    display: none;
+                }
+            }
+        }
+    }
+
     .product {
         &.media {
+            margin-top: 10px;
             .fotorama__stage {
                 padding-top: 30px;
             }
@@ -926,6 +958,10 @@
                 margin-left: 1px;
 
                 .towishlist {
+                    display: none;
+                }
+
+                .product-info-main {
                     display: none;
                 }
             }
