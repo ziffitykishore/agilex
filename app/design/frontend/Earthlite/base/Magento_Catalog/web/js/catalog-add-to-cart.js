@@ -123,35 +123,6 @@ define([
                         'response': res
                     });
                     
-                    var popup = $('<div class="add-to-cart-dialog"/>').html('<span>Product has been added to cart.</span>').modal(
-                    { 
-                        modalClass: 'add-to-cart-popup',                        
-                        clickableOverlay: true,
-                        zIndex: 9999, 
-                        buttons: [
-                            {
-                                text: 'Continue Shopping',
-                                click: function () {
-                                    this.closeModal();
-                                }
-                            },
-                            {
-                                text: 'Proceed to Checkout',
-                                click: function () {
-                                    window.location = window.checkout.checkoutUrl
-                                }
-                            },
-                            {
-                            	text: 'Close',
-                                click: function () {
-                                	this.closeModal();
-                                	$('#product-customize-close').trigger( "click" );                                    
-                                }	
-                            }
-                        ]
-                    });
-                    
-                    
                     if (self.isLoaderEnabled()) {
                         $('body').trigger(self.options.processStop);
                     }
@@ -214,7 +185,7 @@ define([
 
                     if(res.state() == 'resolved')
                     {
-                    	popup.modal('openModal');
+                    	$('#product-customize-close').trigger( "click" );
                     }                    
                 }
             });
