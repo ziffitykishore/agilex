@@ -115,5 +115,11 @@ define([
             });
             return modal;
         },
+        visibleChangeAddress: function() {
+            if (addressList().length > 1) {
+                return true;
+            }
+            return false;
+        }
     });
 });
