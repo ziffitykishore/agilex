@@ -110,7 +110,7 @@ define([
                 })
             });
 
-            var currentElements = this.element.find('.filter-current a, .filter-actions a');
+            var currentElements = this.element.find('.filter-current a, .filter-actions a, .filter-title a');
             currentElements.each(function (index) {
                 var el = $(this),
                     link = self.checkUrl(el.prop('href'));

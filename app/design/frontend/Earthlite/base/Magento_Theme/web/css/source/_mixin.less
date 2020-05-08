@@ -264,6 +264,10 @@
     .bg-light {
         background: @color__ghostwhite;
     }
+    
+    .border-bottom {
+        border-bottom-color: @color-lines;
+    }
 
     .text-title {
         color: @text__color__secondary;
@@ -438,9 +442,6 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .action.btn-bor {
         padding: 14px 20px;
-    }
-    .action.primary {
-        padding: 12px 30px;
     }
     .action.btn-bor {
         min-width: 170px;
