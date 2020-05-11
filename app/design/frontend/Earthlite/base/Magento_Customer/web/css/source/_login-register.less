@@ -8,8 +8,9 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-
-
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-forgotpassword,
     .customer-account-create,
     .customer-account-login {
         .columns {
@@ -162,7 +163,8 @@
             }
         }
     }
-
+    
+    
     .customer-account-login {
         .login-container {
             .block {
@@ -172,7 +174,7 @@
             .form-login {
                 max-width: 375px;
                 width: 100%;
-            }        
+            }
 
             .actions-toolbar {
                 .flex();  
@@ -202,6 +204,63 @@
             }
         }
     }
+
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-forgotpassword {
+        .columns {
+            .column {
+                .form-container {
+                    max-width: 375px;
+                    width: 100%;
+                    .form {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        .captcha-image {
+            .flex();
+            justify-content: space-between;
+
+            &.control {
+                .captcha-img {
+                    margin: 0;
+                }    
+            } 
+
+            .action,
+            .captcha-img {
+                .flex-width(48%);
+            }
+
+            .action {
+                background: @color-lines;
+                color: @theme__color__secondary;
+                .br-radius(3px);
+
+                &:hover {
+                    background: @color-lines;
+                    color: @theme__color__secondary;
+                }
+            }
+        }
+
+        .actions-toolbar {
+            .primary {
+                float: none;
+                display: block;
+
+                .primary {
+                    width: 100%;
+                }
+            }
+            .secondary {
+                display: none;
+            }
+        }
+    }
     
 }
 
@@ -213,6 +272,9 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-forgotpassword,
     .customer-account-create,
     .customer-account-login {
         .columns {
@@ -268,7 +330,26 @@
             }
         }
     }
+}
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .customer-account-forgotpassword {
+        .captcha-image {
+            .flex();
+            justify-content: space-between;
+
+            &.control {
+                .captcha-img {
+                    margin-bottom: 20px;
+                }    
+            } 
+
+            .action,
+            .captcha-img {
+                .flex-width(100%);
+            }
+        }
+    }
 }
 
 //
@@ -277,7 +358,15 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+    .customer-account-confirmation,
+    .customer-account-createpassword,
+    .customer-account-forgotpassword {
+        .form.password.reset,
+        .form.password.forget,
+        .form.send.confirmation {
+            min-width: auto;
+        }
+    }
     .customer-account-create {
         form.create.account {
             .fieldset {
@@ -298,8 +387,4 @@
             }
         }
     }    
-}
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
-    
 }
