@@ -179,6 +179,84 @@
         }
     }
 
+    // Notification Messages
+    .page.messages {
+        .message {
+            font-weight: 600;
+            width: 300px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-weight: 700;
+            padding: 28px 15px 20px 55px;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            animation: hidenotify .3s 6s  ease-out forwards;
+            z-index: 999;
+            > *:first-child:before {
+                background: #fff;
+                border-radius: 50%;
+                font-family: @icon__font-name;
+                height: 32px;
+                width: 32px;
+                left: 12px;
+                top: 28px;
+            }
+            &.success > *:first-child:before {
+                content: '\e90d';
+            }
+            &.error > *:first-child:before {
+                content: '\e92e';
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                top: 0;
+                height: 5px;
+                left: 0;
+                display: block;
+                animation: notifydurbar 6s ease-out forwards;
+            }
+            &.success:after {
+                background: @message-success__bar;
+            }
+            &.error:after {
+                background: @message-error__bar;
+            }
+        }
+
+    }
+
+    ._has-modal {
+        .page.messages {
+            .message {
+                display: none;
+            }
+        }
+    }
+
+    @keyframes notifydurbar {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 100%;
+        }
+    }
+    @keyframes hidenotify {
+        0% {
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+        100% {
+            opacity: 0;
+            visibility: hidden;
+            display: none;
+            pointer-events: none;
+        }
+    }
+
 }
 
 //
