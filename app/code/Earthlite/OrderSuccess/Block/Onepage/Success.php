@@ -39,10 +39,10 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
 
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Checkout\Model\Session $checkoutSession
-     * @param \Magento\Sales\Model\Order\Config $orderConfig
-     * @param \Magento\Framework\App\Http\Context $httpContext
-     * @param array $data
+     * @param \Magento\Checkout\Model\Session                  $checkoutSession
+     * @param \Magento\Sales\Model\Order\Config                $orderConfig
+     * @param \Magento\Framework\App\Http\Context              $httpContext
+     * @param array                                            $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -64,12 +64,12 @@ class Success extends \Magento\Checkout\Block\Onepage\Success
     /**
      * Returns string with formatted address
      *
-     * @param Address $address
+     * @param  Address $address
      * @return null|string
      */
     public function _getAddressHtml($address)
     {
-    	$renderer = $this->_addressConfig->getFormatByCode('html')->getRenderer();
+        $renderer = $this->_addressConfig->getFormatByCode('html')->getRenderer();
         return $renderer->renderArray($address);        
     }
 }
