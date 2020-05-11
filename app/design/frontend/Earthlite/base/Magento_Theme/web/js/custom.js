@@ -11,7 +11,7 @@ define([
 
     /* Loader */
     var progressbar = $("#progressbar"),
-        progressLabel = $(".progress-label");
+            progressLabel = $(".progress-label");
 
     progressbar.progressbar({
         value: 0,
@@ -19,7 +19,7 @@ define([
             /* progressLabel.text(progressbar.progressbar("value") + "%"); */
         },
         complete: function () {
-            progressLabel.text( "Loaded!" );
+            progressLabel.text("Loaded!");
             $('.preloader').fadeOut(1000);
             $('body').addClass('page-loaded');
         }
@@ -83,9 +83,13 @@ define([
         $(this).closest('.alert').slideUp();
     });
 
-    $('.showsearch').on('click', function(){
+    $('.showsearch').on('click', function () {
         $(this).parent('.block-search').find('.input-text').val('');
         $('.autocomplete-suggestions').hide();
+    });
+
+    $('#search').focus(function(){
+        $(this).val('');
     });
 
     // home brand1 sec modal
@@ -97,20 +101,20 @@ define([
         e.preventDefault();
         $('body').removeClass('brand-active');
     });
-    
+
     // plp filter
-    $('.btn-filter').on('click', function(){
+    $('.btn-filter').on('click', function () {
         $('body').addClass('filter-active');
     });
 
-    $('.btn-sort').on('click', function(){
+    $('.btn-sort').on('click', function () {
         $('body').toggleClass('sorter-active');
     });
 
-    $('.sorter-close').on('click', function(){
+    $('.sorter-close').on('click', function () {
         $('body').removeClass('sorter-active');
     });
-    
+
     function veritcalScroll() {
         if ($('.related .product-items li, .crosssell .product-items li').length > 3) {
             var items = $('.related .product-items li, .crosssell .product-items li').outerHeight();
@@ -124,10 +128,10 @@ define([
         veritcalScroll();
     });
 
-    $('.field.password').each(function(){
+    $('.field.password').each(function () {
         $(this).find('.control').append('<span class="icon-password icon-eye"/>');
 
-        $('.icon-password').on('click', function(){
+        $('.icon-password').on('click', function () {
             $(this).toggleClass("icon-eye icon-eye-off");
             var input = $(this).parent().find(".input-text");
             if (input.attr("type") === "password") {
@@ -142,13 +146,12 @@ define([
         $(imgcontainer).each(function () {
             var img = $(this).find("img");
 
-            if(img.length) {
+            if (img.length) {
                 var height = img.height();
                 var img_src = img.attr("src");
 
                 $(this).css({
                     "background-image": "url(" + img_src + ")",
-                    "background-size": "cover"
                 });
             }
 
@@ -159,7 +162,7 @@ define([
     bgSource(".category-image-wrapper");
 
     // toggle text
-    function moreToggler(s,c) {
+    function moreToggler(s, c) {
         var showChar = c;
         var ellipsestext = "";
         var moretext = "Read more";
@@ -189,9 +192,11 @@ define([
             return false;
         });
     }
-    moreToggler('.category-description p', 150);
+
     if ($(window).width() > 767) {
-        moreToggler('.category-description p', 350);
+        moreToggler('.category-description p', 250);
+    } else {
+        moreToggler('.category-description p', 150);
     }
 
 });

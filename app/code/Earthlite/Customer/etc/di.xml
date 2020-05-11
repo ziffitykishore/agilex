@@ -4,5 +4,6 @@
         <plugin name="set_password_as_confirm_password"
                 type="Earthlite\Customer\Plugin\Controller\Account\CreatePostPlugin" sortOrder="10"/>
     </type>
-
+    <preference for="Magento\CustomerCustomAttributes\Block\Adminhtml\Customer\Address\Attribute\Edit\Tab\General"
+                type="Earthlite\Customer\Block\Adminhtml\Customer\Address\Attribute\Edit\Tab\General" />
 </config>

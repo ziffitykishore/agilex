@@ -73,22 +73,28 @@
         }
     }
 
-    body:not(.checkout-index-index) {
+    body {
         .page-header {
             border: none;
-            & + #maincontent {
-                position: relative;
-                &:before {
-                    content: '';
-                    width: 100vw;
-                    position: absolute;
-                    height: 1px;
-                    background: @color-lines;
-                    left: 50%;
-                    z-index: 1;
-                    right: 5%;
-                    margin-left: -50vw;
-                    margin-right: -50vw;
+        }
+        &:not(.cms-index-index)
+        &:not(.checkout-index-index) {
+            .page-header {
+                & + #maincontent {
+                    position: relative;
+                    &:before {
+                        content: '';
+                        width: 100vw;
+                        position: absolute;
+                        height: 1px;
+                        background: @color-lines;
+                        left: 50%;
+                        z-index: 1;
+                        right: 5%;
+                        top:0;
+                        margin-left: -50vw;
+                        margin-right: -50vw;
+                    }
                 }
             }
         }
