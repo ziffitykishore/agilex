@@ -8,7 +8,8 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-forgotpassword,
     .customer-account-create,
     .customer-account-login {
@@ -204,13 +205,17 @@
         }
     }
 
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-forgotpassword {
         .columns {
             .column {
-                .form {
+                .form-container {
                     max-width: 375px;
                     width: 100%;
-                    margin-bottom: 0;
+                    .form {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }
@@ -267,6 +272,8 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-forgotpassword,
     .customer-account-create,
     .customer-account-login {
@@ -351,8 +358,12 @@
 
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .customer-account-confirmation,
+    .customer-account-createpassword,
     .customer-account-forgotpassword {
-        .form.password.forget {
+        .form.password.reset,
+        .form.password.forget,
+        .form.send.confirmation {
             min-width: auto;
         }
     }
