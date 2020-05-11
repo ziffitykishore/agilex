@@ -213,6 +213,17 @@
                 border: 1px solid transparent;
                 outline: none;
             }
+
+            &[option-tooltip-value="#ffffff"] {
+                border: 1px solid @color-lines;
+                &:hover {
+                    border: 1px solid @color-lines;
+                }
+
+                &:after {
+                    color: @theme__color__secondary;
+                }
+            }
         }
     }
 
