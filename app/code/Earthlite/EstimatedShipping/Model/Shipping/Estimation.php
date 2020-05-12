@@ -15,8 +15,8 @@ class Estimation
     public function __construct(
         ProductRepositoryInterface $productRepository,
         DateTime $dateTime
-    )
-    {
+    ) {
+    
         $this->productRepository = $productRepository;    
         $this->dateTime = $dateTime;
     }
@@ -37,10 +37,8 @@ class Estimation
     {
         $product = $this->getProduct($sku);
 
-        if($product)
-        {
-            if($product->getCustomAttribute('requested_ship_date'))
-            {
+        if($product) {
+            if($product->getCustomAttribute('requested_ship_date')) {
                 $estimatedDays = $product->getCustomAttribute('requested_ship_date')->getValue();
                 $estimatedDays = '+'.$estimatedDays.' weekdays';
                 $timeStamp = $this->dateTime->timestamp($estimatedDays);

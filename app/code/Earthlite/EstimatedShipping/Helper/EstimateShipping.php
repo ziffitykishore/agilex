@@ -12,8 +12,8 @@ class EstimateShipping extends AbstractHelper
 
     public function __construct(        
         Estimation $shippingEstimation
-    )
-    {        
+    ) {
+            
         $this->shippingEstimation = $shippingEstimation;
     }
 
