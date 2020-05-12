@@ -1,3 +1,11 @@
+<?php
+	$product = $block->getProduct();
+	$helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
+    if($estimatedShipment = $helper->getShippingInfo($product->getSku())):
+?>
+
 <div class="shipping-details" title="Shipping">
-    <span><?= $block->escapeHtml(__('Ships by'))?> 04/03/2020</span>
+    <span><?= $block->escapeHtml(__('Ships by'))?><?= $estimatedShipment ?></span>
 </div>
+
+<?php endif; ?>
