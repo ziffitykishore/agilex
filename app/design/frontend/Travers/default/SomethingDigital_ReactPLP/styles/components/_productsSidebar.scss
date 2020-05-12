@@ -1,553 +1,551 @@
 .products-sidebar {
-  position: relative;
-  display: none;
-  width: 100%;
-  box-sizing: border-box;
-  background-color: $c-smoke;
+    position: relative;
+    display: none;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: $c-smoke;
 
-  &__opened {
-    display: block;
-  }
+    &__opened {
+        display: block;
+    }
 
-  .Collapsible {
-    &__trigger {
-      font-weight: $font-weight__semibold;
-      font-size: $font-size__base--desktop;
-      text-transform: capitalize;
+    .Collapsible {
+        &__trigger {
+            font-weight: $font-weight__semibold;
+            font-size: $font-size__base--desktop;
+            text-transform: capitalize;
 
-      &.is-closed::before {
-        content: '+';
-        margin-right: $indent__xs;
+            &.is-closed::before {
+                content: '+';
+                margin-right: $indent__xs;
+                font-weight: $font-weight__semibold;
+            }
+
+            &.is-open::before {
+                content: '−';
+                margin-right: $indent__xs;
+                font-weight: $font-weight__semibold;
+            }
+        }
+    }
+
+    @include max-screen($screen__m) {
+        max-width: none;
+
+        .show-hide {
+            display: none;
+        }
+    }
+
+    .view-all {
+        @include lib-button-reset();
+        padding: 0;
+        padding-left: 15px;
+        margin-top: $indent__s;
+        margin-bottom: $indent__xs;
+        font-family: $font-family__base;
+        font-size: $font-size__base--desktop;
+        color: $c-cobalt;
+        text-transform: none;
         font-weight: $font-weight__semibold;
-      }
+        letter-spacing: 0;
+        outline: 0;
 
-      &.is-open::before {
-        content: '−';
-        margin-right: $indent__xs;
-        font-weight: $font-weight__semibold;
-      }
+        @include hover {
+            color: $text__color;
+        }
+
+        .filter-heading {
+            font-size: 22px;
+            letter-spacing: 0;
+        }
     }
-  }
-
-  @include max-screen($screen__m) {
-    max-width: none;
-
-    .show-hide {
-      display: none;
-    }
-  }
-
-  .view-all {
-    @include lib-button-reset();
-    padding: 0;
-    padding-left: 15px;
-    margin-top: $indent__s;
-    margin-bottom: $indent__xs;
-    font-family: $font-family__base;
-    font-size: $font-size__base--desktop;
-    color: $c-cobalt;
-    text-transform: none;
-    font-weight: $font-weight__semibold;
-    letter-spacing: 0;
-    outline: 0;
-
-    @include hover {
-      color: $text__color;
-    }
-
-    .filter-heading {
-      font-size: 22px;
-      letter-spacing: 0;
-    }
-  }
 }
 
 .show-button-container {
-  position: relative;
-  margin-left: $indent__s;
+    position: relative;
+    margin-left: $indent__s;
 }
 
 .hide-button-container {
-  position: relative;
-  margin: $indent__s 0 50px;
+    position: relative;
+    margin: $indent__s 0 50px;
 }
 
 .show-button-container,
 .hide-button-container {
-  .show-hide {
-    right: $indent__s;
-    width: 100%;
-    padding: 8px $indent__l;
-    color: $c-cobalt;
-    background-color: $color-white;
-    border: 1px solid $c-grey;
-    border-radius: 5px;
-    font-weight: $font-weight__semibold;
-    position: relative;
-    text-transform: none;
-    font-family: $font-family__base;
-    font-weight: $font-weight__semibold;
-
-    &.show {
-      padding-left: $indent__xs;
-      margin-top: $indent__s;
-      margin-left: $indent__s;
-      max-width: 80px;
-    }
-
-    &.hide {
-      position: absolute;
-      max-width: 70px;
-    }
-
-    @include hover {
-      background-color: $c-cobalt;
-      box-shadow: 0;
-      color: $color-white;
-
-      .arrow {
-        background-color: $color-white;
+    .show-hide {
+        right: $indent__s;
+        width: 100%;
+        padding: 8px $indent__l;
         color: $c-cobalt;
-      }
+        background-color: $color-white;
+        border: 1px solid $c-grey;
+        border-radius: 5px;
+        font-weight: $font-weight__semibold;
+        position: relative;
+        text-transform: none;
+        font-family: $font-family__base;
+        font-weight: $font-weight__semibold;
+
+        &.show {
+            padding-left: $indent__xs;
+            margin-top: $indent__s;
+            margin-left: $indent__s;
+            max-width: 80px;
+        }
+
+        &.hide {
+            position: absolute;
+            max-width: 70px;
+        }
+
+        @include hover {
+            background-color: $c-cobalt;
+            box-shadow: 0;
+            color: $color-white;
+
+            .arrow {
+                background-color: $color-white;
+                color: $c-cobalt;
+            }
+        }
     }
-  }
 }
 
 .arrow {
-  position: absolute;
-  top: $indent__xs;
-  width: 13px;
-  padding: 3px;
-  color: $color-white;
-  background-color: $c-cobalt;
-  border-radius: 50%;
+    position: absolute;
+    top: $indent__xs;
+    width: 13px;
+    padding: 3px;
+    color: $color-white;
+    background-color: $c-cobalt;
+    border-radius: 50%;
 
-  &.left-arrow {
-    left: $indent__xs;
-  }
+    &.left-arrow {
+        left: $indent__xs;
+    }
 
-  &.right-arrow {
-    right: $indent__xs;
-  }
+    &.right-arrow {
+        right: $indent__xs;
+    }
 }
 
 .product-landing-page {
-  @include max-screen($screen__m) {
-    .ais-InstantSearch {
-      flex-direction: column;
+    @include max-screen($screen__m) {
+        .ais-InstantSearch {
+            flex-direction: column;
+        }
     }
-  }
 }
 
 .sidebar-filters {
-  .accordion {
-    display: none;
+    .accordion {
+        display: none;
 
-    &.show-accordion {
-      display: block;
-      border: 1px solid $c-grey;
-      border-bottom: 0;
+        &.show-accordion {
+            display: block;
+            border: 1px solid $c-grey;
+            border-bottom: 0;
 
-      @include min-screen($screen__m) {
-        border: 0;
-        border-top: 1px solid $c-grey;
-      }
+            @include min-screen($screen__m) {
+                border: 0;
+                border-top: 1px solid $c-grey;
+            }
+        }
     }
-  }
 
-  [class*="css-"] {
-    margin-left: $indent__s;
-  }
+    [class*="css-"] {
+        margin-left: $indent__s;
+    }
 
-  .searchable {
-    background-color: $color-white;
-    padding: 15px;
-    border: 1px solid $c-grey;
-    margin-top: 15px;
+    .searchable {
+        background-color: $color-white;
+        padding: 15px;
+        border: 1px solid $c-grey;
+        margin-top: 15px;
 
-    .search-container {
-      position: relative;
+        .search-container {
+            position: relative;
 
-      button {
-        position: absolute;
-        right: $indent__s;
-        top: $indent__xs;
-        padding: 0;
-        border: 0;
-        background-color: transparent;
-        pointer-events: none;
+            button {
+                position: absolute;
+                right: $indent__s;
+                top: $indent__xs;
+                padding: 0;
+                border: 0;
+                background-color: transparent;
+                pointer-events: none;
 
-        @include icon-svg(
-          $icon       : search,
-          $fill       : $c-scorpion,
-          $width      : 25px
-          );
-      }
+                @include icon-svg($icon : search,
+                    $fill : $c-scorpion,
+                    $width : 25px);
+            }
 
-      .searchbox {
-        height: 35px;
-        margin-bottom: $indent__xs;
-      }
+            .searchbox {
+                height: 35px;
+                margin-bottom: $indent__xs;
+            }
+        }
+
+        .refinement-list {
+            padding-left: 0;
+        }
     }
 
     .refinement-list {
-      padding-left: 0;
-    }
-  }
+        list-style-type: none;
+        padding-left: 15px;
+        margin-top: 15px;
 
-  .refinement-list {
-    list-style-type: none;
-    padding-left: 15px;
-    margin-top: 15px;
-
-    .refinement-checkbox {
-      position: absolute;
-      padding-right: 100%;
-    }
-
-    .refinement-label {
-      min-height: $indent__s;
-      margin-bottom: $indent__xs;
-      font-size: 15px;
-      line-height: 0;
-
-      &::before,
-      &::after {
-        width: 15px;
-        height: 15px;
-      }
-
-      &::after {
-        top: -1px !important; // override VERY nested Bryant Park custom checkbox CSS
-        left: -1px !important; // override VERY nested Bryant Park custom checkbox CSS
-      }
-
-      @include hover {
-        a {
-          color: $c-cobalt;
+        .refinement-checkbox {
+            position: absolute;
+            padding-right: 100%;
         }
 
-        &::after {
-          border-width: 0;
+        .refinement-label {
+            min-height: $indent__s;
+            margin-bottom: $indent__xs;
+            font-size: 15px;
+            line-height: 0;
+
+            &::before,
+            &::after {
+                width: 15px;
+                height: 15px;
+            }
+
+            &::after {
+                top: -1px !important; // override VERY nested Bryant Park custom checkbox CSS
+                left: -1px !important; // override VERY nested Bryant Park custom checkbox CSS
+            }
+
+            @include hover {
+                a {
+                    color: $c-cobalt;
+                }
+
+                &::after {
+                    border-width: 0;
+                }
+            }
+
+            a {
+                vertical-align: middle;
+                pointer-events: none;
+                display: inline-block;
+                line-height: 1;
+
+                @include hover {
+                    text-decoration: none;
+                }
+            }
         }
-      }
 
-      a {
-        vertical-align: middle;
-        pointer-events: none;
-        display: inline-block;
-        line-height: 1;
+        &.swatches {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
 
+            li {
+                margin: $indent__s 0;
+                box-sizing: border-box;
+                flex-basis: 50%;
+
+                a,
+                a:active {
+                    text-align: center;
+                    font-size: $font-size__base--desktop;
+
+                    @include hover {
+                        color: $c-cobalt;
+                        text-decoration: none;
+                    }
+                }
+
+                img {
+                    border: 2px solid $c-grey;
+                    width: 100%;
+                    max-width: 70px;
+                    max-height: 70px;
+
+                    &:hover,
+                    &:focus,
+                    &.active {
+                        border: 2px solid $c-cobalt;
+                    }
+                }
+            }
+        }
+
+        li {
+            display: flex;
+            margin-top: $indent__xs;
+            margin-bottom: 0;
+            line-height: 1;
+
+            a {
+                color: $text__color;
+                font-weight: $font-weight__semibold;
+
+                @include hover {
+                    color: $c-royal;
+                }
+            }
+        }
+    }
+
+    .accordion {
         @include hover {
-          text-decoration: none;
+            cursor: pointer;
+
+            .Collapsible__trigger {
+                color: $c-cobalt;
+            }
         }
-      }
     }
 
-    &.swatches {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 0;
-
-      li {
-        margin: $indent__s 0;
-        box-sizing: border-box;
-        flex-basis: 50%;
-
-        a,
-        a:active {
-          text-align: center;
-          font-size: $font-size__base--desktop;
-
-          @include hover {
-            color: $c-cobalt;
-            text-decoration: none;
-          }
-        }
-
-        img {
-          border: 2px solid $c-grey;
-          width: 100%;
-          max-width: 70px;
-          max-height: 70px;
-
-          &:hover,
-          &:focus,
-          &.active {
-            border: 2px solid $c-cobalt;
-          }
-        }
-      }
-    }
-
-    li {
-      display: flex;
-      margin-top: $indent__xs;
-      margin-bottom: 0;
-      line-height: 1;
-
-      a {
-        color: $text__color;
-        font-weight: $font-weight__semibold;
-
+    .Collapsible {
         @include hover {
-          color: $c-royal;
-        }
-      }
-    }
-  }
-
-  .accordion {
-    @include hover {
-      cursor: pointer;
-
-      .Collapsible__trigger {
-        color: $c-cobalt;
-      }
-    }
-  }
-
-  .Collapsible {
-    @include hover {
-      &__trigger.is-closed {
-        color: $primary__color;
-      }
-    }
-
-    &__trigger {
-      display: block;
-      width: 90%;
-      height: 100%;
-      padding-top: $indent__s;
-
-      &.is-closed {
-        padding-bottom: $indent__s;
-      }
-    }
-
-    &__opened {
-      position: relative;
-
-      .sidebar-description-icon {
-        position: absolute;
-        top: 8px;
-        right: $indent__m;
-      }
-
-      .sidebar-description-content {
-        position: absolute;
-        margin-top: 0;
-        top: 0;
-        right: 0;
-        transform: translateX(95%);
-        background-color: $color-white;
-        padding: $indent__xs;
-        border: 1px solid $c-grey;
-        z-index: 2;
-        font-size: $font-size__base--desktop;
-
-        &::after {
-          content: " ";
-          position: absolute;
-          top: 50%;
-          right: 100%;
-          margin-top: -$indent__xs;
-          border-width: 5px;
-          border-style: solid;
-          border-color: transparent $c-grey transparent transparent;
+            &__trigger.is-closed {
+                color: $primary__color;
+            }
         }
 
-        @include max-screen($screen__m) {
-          right: 230px;
-          max-width: 170px;
+        &__trigger {
+            display: block;
+            width: 90%;
+            height: 100%;
+            padding-top: $indent__s;
 
-          &::after {
-            right: -$indent__s;
-            top: 20px;
-            transform: rotate(180deg);
-          }
+            &.is-closed {
+                padding-bottom: $indent__s;
+            }
         }
-      }
-    }
 
-    &__trigger,
-    &__contentOuter {
-      padding-left: $indent__m;
-      padding-right: $indent__s;
-    }
+        &__opened {
+            position: relative;
 
-    &__contentInner {
-      padding-bottom: $indent__s;
-    }
+            .sidebar-description-icon {
+                position: absolute;
+                top: 8px;
+                right: $indent__m;
+            }
 
-    &__contentOuter {
-        transition: height 180ms linear 0s !important; // override React library styling
+            .sidebar-description-content {
+                position: absolute;
+                margin-top: 0;
+                top: 0;
+                right: 0;
+                transform: translateX(95%);
+                background-color: $color-white;
+                padding: $indent__xs;
+                border: 1px solid $c-grey;
+                z-index: 2;
+                font-size: $font-size__base--desktop;
+
+                &::after {
+                    content: " ";
+                    position: absolute;
+                    top: 50%;
+                    right: 100%;
+                    margin-top: -$indent__xs;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: transparent $c-grey transparent transparent;
+                }
+
+                @include max-screen($screen__m) {
+                    right: 230px;
+                    max-width: 170px;
+
+                    &::after {
+                        right: -$indent__s;
+                        top: 20px;
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+        }
+
+        &__trigger,
+        &__contentOuter {
+            padding-left: $indent__m;
+            padding-right: $indent__s;
+        }
+
+        &__contentInner {
+            padding-bottom: $indent__s;
+        }
+
+        &__contentOuter {
+            transition: height 180ms linear 0s !important; // override React library styling
+        }
     }
-  }
 }
 
 .sidebar-description-icon {
-  padding: 0;
-  border: 0;
-  background-color: transparent;
-
-  @include hover {
+    padding: 0;
     border: 0;
     background-color: transparent;
-  }
 
-  svg {
-    width: 20px;
-    height: 20px;
-  }
+    @include hover {
+        border: 0;
+        background-color: transparent;
+    }
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .ais-ClearRefinements {
-  margin-bottom: $indent__s;
+    margin-bottom: $indent__s;
 
-  .ais-ClearRefinements-button {
-    background-color: transparent;
-    color: $c-cobalt;
-    font-weight: $font-weight__semibold;
-    text-transform: initial;
-    font-family: $font-family__base;
-    border: 0;
-    padding: 0;
-    letter-spacing: 0;
-    font-size: $font-size__base--desktop;
+    .ais-ClearRefinements-button {
+        background-color: transparent;
+        color: $c-cobalt;
+        font-weight: $font-weight__semibold;
+        text-transform: initial;
+        font-family: $font-family__base;
+        border: 0;
+        padding: 0;
+        letter-spacing: 0;
+        font-size: $font-size__base--desktop;
 
-    @include hover {
-      color: $text__color;
+        @include hover {
+            color: $text__color;
+        }
+
+        &--disabled {
+            display: none;
+        }
     }
-
-    &--disabled {
-      display: none;
-    }
-  }
 }
 
 .current-refinements {
-  list-style-type: none;
-  margin-top: 15px;
-  padding-left: $indent__m;
+    list-style-type: none;
+    margin-top: 15px;
+    padding-left: $indent__m;
 
-  ul {
-    @include lib-list-reset-styles();
+    ul {
+        @include lib-list-reset-styles();
 
-    li {
-      margin-bottom: $indent__xs;
+        li {
+            margin-bottom: $indent__xs;
 
-      @include hover {
-        color: $c-cobalt;
-        cursor: pointer;
+            @include hover {
+                color: $c-cobalt;
+                cursor: pointer;
 
-        a {
-          color: $c-cobalt;
+                a {
+                    color: $c-cobalt;
+                }
+            }
         }
-      }
+
+        li,
+        li a {
+            margin: 0;
+            font-size: $font-size__base;
+            font-weight: $font-weight__semibold;
+            text-transform: capitalize;
+        }
     }
 
-    li,
-    li a {
-      margin: 0;
-      font-size: $font-size__base;
-      font-weight: $font-weight__semibold;
-      text-transform: capitalize;
+    a {
+        color: $c-steel;
+        text-decoration: none;
     }
-  }
 
-  a {
-    color: $c-steel;
-    text-decoration: none;
-  }
-
-  .clear-refinement-x {
-    @include lib-button-reset();
-    transform: translateY(-3px);
-    line-height: 1;
-    padding: 0;
-    background-color: transparent;
-    border: 0;
-    color: $c-cobalt;
-    font-size: 20px;
-    font-weight: $font-weight__semibold;
-    font-family: $font-family__base;
-    margin-right: $indent__s;
-    cursor: pointer;
-  }
+    .clear-refinement-x {
+        @include lib-button-reset();
+        transform: translateY(-3px);
+        line-height: 1;
+        padding: 0;
+        background-color: transparent;
+        border: 0;
+        color: $c-cobalt;
+        font-size: 20px;
+        font-weight: $font-weight__semibold;
+        font-family: $font-family__base;
+        margin-right: $indent__s;
+        cursor: pointer;
+    }
 }
 
 .ais-ClearRefinements,
 .filter-heading {
-  padding-left: $indent__m;
+    padding-left: $indent__m;
 }
 
 @include max-screen($screen__m) {
-  .products-sidebar {
-    .hide-button-container {
-      display: none;
-    }
-
-    .action.search {
-      width: auto;
-    }
-
-    .current-refinements {
-      padding: 0;
-
-      .clear-refinement-x {
-        width: auto;
-      }
-    }
-
-    .ais-ClearRefinements {
-      padding-left: 0;
-      margin-bottom: 0;
-
-      button {
-        width: auto;
-      }
-    }
-
-    .sidebar-filters {
-      background-color: $color-white;
-
-      .Collapsible {
-        &__trigger {
-          display: block;
-          cursor: pointer;
-          transform: translateX(-$indent__s);
-
-          &::before {
-            vertical-align: middle;
-          }
+    .products-sidebar {
+        .hide-button-container {
+            display: none;
         }
 
-        &__contentOuter {
-          padding-left: 0;
-          padding-right: 0;
-          border-top: 0;
+        .action.search {
+            width: auto;
+        }
 
-          .Collapsible__trigger {
-            &::before {
-              vertical-align: baseline;
+        .current-refinements {
+            padding: 0;
+
+            .clear-refinement-x {
+                width: auto;
             }
-          }
         }
 
-        &__contentInner {
-          background-color: $c-smoke;
-          margin-top: 11px;
+        .ais-ClearRefinements {
+            padding-left: 0;
+            margin-bottom: 0;
 
-          .Collapsible__contentOuter {
-            border: none;
-          }
+            button {
+                width: auto;
+            }
         }
-      }
-    }
 
-    .sidebar-description-icon {
-      width: auto;
+        .sidebar-filters {
+            background-color: $color-white;
+
+            .Collapsible {
+                &__trigger {
+                    display: block;
+                    cursor: pointer;
+                    transform: translateX(-$indent__s);
+
+                    &::before {
+                        vertical-align: middle;
+                    }
+                }
+
+                &__contentOuter {
+                    padding-left: 0;
+                    padding-right: 0;
+                    border-top: 0;
+
+                    .Collapsible__trigger {
+                        &::before {
+                            vertical-align: baseline;
+                        }
+                    }
+                }
+
+                &__contentInner {
+                    background-color: $c-smoke;
+                    margin-top: 11px;
+
+                    .Collapsible__contentOuter {
+                        border: none;
+                    }
+                }
+            }
+        }
+
+        .sidebar-description-icon {
+            width: auto;
+        }
     }
-  }
 }

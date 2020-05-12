@@ -1,78 +1,79 @@
 .table-view {
-  width: 100%;
+    width: 100%;
 
-  .productInfo-opened & {
-    padding-right: 0;
-  }
+    .productInfo-opened & {
+        padding-right: 0;
+    }
 
-  .products-table {
-    font-weight: $font-weight__regular;
-    line-height: 1.7;
-    border-collapse: collapse;
-    margin-bottom: $indent__l;
+    .products-table {
+        font-weight: $font-weight__regular;
+        line-height: 1.7;
+        border-collapse: collapse;
+        margin-bottom: $indent__l;
 
-    thead {
-      border-bottom: 2px solid $c-royal;
+        thead {
+            border-bottom: 2px solid $c-royal;
 
-      th {
-        padding-left: $indent__s;
-        padding-bottom: $indent__xs;
-        text-align: left;
-        font-size: $font-size__base--desktop;
-        font-weight: $font-weight__semibold;
-      }
+            th {
+                padding-left: $indent__s;
+                padding-bottom: $indent__xs;
+                text-align: left;
+                font-size: $font-size__base--desktop;
+                font-weight: $font-weight__semibold;
+            }
 
-      .sorting-arrow {
-        position: absolute;
-        margin-left: $indent__xs;
+            .sorting-arrow {
+                position: absolute;
+                margin-left: $indent__xs;
 
-        svg {
-          width: 12px;
-          height: 12px;
-          fill: $c-cobalt;
+                svg {
+                    width: 12px;
+                    height: 12px;
+                    fill: $c-cobalt;
+                }
+
+                &.down-arrow {
+                    svg {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
         }
 
-        &.down-arrow {
-          svg {
-            transform: rotate(180deg);
-          }
+        tbody tr {
+            border-bottom: 1px solid $c-grey;
+
+            @include hover {
+                cursor: pointer;
+            }
         }
-      }
-    }
 
-    tbody tr {
-      border-bottom: 1px solid $c-grey;
+        .selected-row {
+            background-color: $c-smoke;
+        }
 
-      @include hover {
-        cursor: pointer;
-      }
-    }
+        &-rows {
+            @include hover {
+                background-color: $c-royal;
+                color: $color-white;
+                cursor: default;
+            }
+        }
 
-    .selected-row {
-      background-color: $c-smoke;
+        td {
+            padding: $indent__xs $indent__s;
+            font-size: $font-size__base;
+        }
     }
-
-    &-rows {
-      @include hover {
-        background-color: $c-royal;
-        color: $color-white;
-        cursor: default;
-      }
-    }
-
-    td {
-      padding: $indent__xs $indent__s;
-      font-size: $font-size__base;
-    }
-  }
 }
 
 .table-and-flyout {
-  display: flex;
-  height: 100%;
+    display: flex;
+    height: 100%;
 }
 
 .react-bootstrap-table {
+
     thead,
     tbody {
         display: block;
@@ -86,7 +87,8 @@
             td {
                 width: 100%;
 
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+                @media all and (-ms-high-contrast: none),
+                (-ms-high-contrast: active) {
                     width: 120px;
                 }
             }

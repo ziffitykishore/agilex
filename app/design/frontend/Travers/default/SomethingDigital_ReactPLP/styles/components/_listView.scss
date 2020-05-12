@@ -1,179 +1,180 @@
 .list-view {
-  .product-name {
-    display: block;
-    color: $c-steel;
-    text-decoration: none;
-    font-weight: $font-weight__semibold;
+    .product-name {
+        display: block;
+        color: $c-steel;
+        text-decoration: none;
+        font-weight: $font-weight__semibold;
 
-    @include hover {
-      color: $c-cobalt;
-    }
-  }
-
-  .product-sku {
-    margin-bottom: $indent__s;
-
-    @include min-screen($screen__m) {
-      margin-bottom: 0;
-    }
-  }
-
-  .pricing {
-    .price,
-    .as-low-as {
-      margin-top: 0;
-      font-weight: $font-weight__semibold;
-      font-family: $font-family__base;
-      margin-bottom: $indent__xs;
-    }
-
-    .msrp {
-      font-size: $font-size__base__desktop;
-      font-weight: $font-weight__semibold;
-    }
-  }
-
-  .cart-actions {
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column-reverse;
-
-    @include min-screen($screen__l) {
-      overflow-x: visible;
-    }
-  }
-
-  .quantity-and-cart {
-    width: 100%;
-
-    @include max-screen($screen__m) {
-      justify-content: flex-start;
-      margin-left: $list-image__max-width + $list-image__margin--mobile;
-      padding-right: 0;
-
-      .quantity-input {
-        margin-right: $indent__s;
-
-        input {
-          margin: 0;
+        @include hover {
+            color: $c-cobalt;
         }
-      }
-
-      .add-to-cart {
-        max-width: 110px;
-        padding-left: $indent__s;
-        padding-right: $indent__s;
-      }
     }
 
-    @include min-screen($screen__m) {
-      flex-wrap: wrap;
-      margin-left: $list-image__max-width + $list-image__margin--desktop + 15px;
+    .product-sku {
+        margin-bottom: $indent__s;
+
+        @include min-screen($screen__m) {
+            margin-bottom: 0;
+        }
     }
 
-    @include min-screen($screen__l) {
-      justify-content: flex-end;
-      max-width: 300px;
-      margin-left: 0;
+    .pricing {
+
+        .price,
+        .as-low-as {
+            margin-top: 0;
+            font-weight: $font-weight__semibold;
+            font-family: $font-family__base;
+            margin-bottom: $indent__xs;
+        }
+
+        .msrp {
+            font-size: $font-size__base__desktop;
+            font-weight: $font-weight__semibold;
+        }
     }
 
-    .message {
-      width: 100%;
-      flex-basis: 100%;
-      order: 1;
-      margin-top: $indent__base;
-      margin-left: -($list-image__max-width + $list-image__margin--mobile);
-      background-color: transparent;
-      font-weight: $font-weight__semibold;
-      text-align: center;
-      font-size: $font-size__base;
-      padding: 0;
-      margin-bottom: $indent__xs;
+    .cart-actions {
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column-reverse;
 
-      a::before {
-        display: none;
-      }
+        @include min-screen($screen__l) {
+            overflow-x: visible;
+        }
+    }
 
-      &.hide {
-        display: none;
-      }
-
-      @include min-screen($screen__l) {
-        margin-left: 0;
-        font-size: $font-size__base--desktop;
-        margin-bottom: 0;
-        padding: $indent__xs 0;
+    .quantity-and-cart {
         width: 100%;
-        max-width: none;
-        text-align: center;
-        left: 0;
-        position: absolute;
-        bottom: 0;
 
-        &.error {
-            background-color: $c-error;
+        @include max-screen($screen__m) {
+            justify-content: flex-start;
+            margin-left: $list-image__max-width + $list-image__margin--mobile;
+            padding-right: 0;
+
+            .quantity-input {
+                margin-right: $indent__s;
+
+                input {
+                    margin: 0;
+                }
+            }
+
+            .add-to-cart {
+                max-width: 110px;
+                padding-left: $indent__s;
+                padding-right: $indent__s;
+            }
         }
 
-        &.success {
-            background-color: $c-success;
+        @include min-screen($screen__m) {
+            flex-wrap: wrap;
+            margin-left: $list-image__max-width + $list-image__margin--desktop + 15px;
         }
-      }
+
+        @include min-screen($screen__l) {
+            justify-content: flex-end;
+            max-width: 300px;
+            margin-left: 0;
+        }
+
+        .message {
+            width: 100%;
+            flex-basis: 100%;
+            order: 1;
+            margin-top: $indent__base;
+            margin-left: -($list-image__max-width + $list-image__margin--mobile);
+            background-color: transparent;
+            font-weight: $font-weight__semibold;
+            text-align: center;
+            font-size: $font-size__base;
+            padding: 0;
+            margin-bottom: $indent__xs;
+
+            a::before {
+                display: none;
+            }
+
+            &.hide {
+                display: none;
+            }
+
+            @include min-screen($screen__l) {
+                margin-left: 0;
+                font-size: $font-size__base--desktop;
+                margin-bottom: 0;
+                padding: $indent__xs 0;
+                width: 100%;
+                max-width: none;
+                text-align: center;
+                left: 0;
+                position: absolute;
+                bottom: 0;
+
+                &.error {
+                    background-color: $c-error;
+                }
+
+                &.success {
+                    background-color: $c-success;
+                }
+            }
+        }
     }
-  }
 
-  .list-item {
-    padding-top: $indent__s;
-    padding-bottom: $indent__s;
-    border-bottom: 1px solid $c-grey;
-    position: relative;
-
-    &:first-of-type {
-        border-top: 1px solid $c-grey;
-    }
-
-    @include min-screen($screen__l) {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    ul li {
-      margin: 0;
-      padding: 1px 0;
-      color: $c-nickel;
-
-      @include min-screen($screen__l) {
-        padding: 2px 0;
+    .list-item {
+        padding-top: $indent__s;
+        padding-bottom: $indent__s;
+        border-bottom: 1px solid $c-grey;
+        position: relative;
 
         &:first-of-type {
-          padding-top: 0;
+            border-top: 1px solid $c-grey;
         }
-      }
+
+        @include min-screen($screen__l) {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        ul li {
+            margin: 0;
+            padding: 1px 0;
+            color: $c-nickel;
+
+            @include min-screen($screen__l) {
+                padding: 2px 0;
+
+                &:first-of-type {
+                    padding-top: 0;
+                }
+            }
+        }
+
+        .list-inner {
+            display: flex;
+            flex-basis: 55%;
+
+            @include min-screen($screen__l) {
+                flex-basis: 65%;
+            }
+        }
+
+        .list-image {
+            width: 100%;
+            max-width: $list-image__max-width;
+            margin-right: $list-image__margin--mobile;
+
+            @include min-screen($screen__m) {
+                margin-left: $list-image__margin--desktop;
+            }
+
+            @include min-screen($screen__l) {
+                max-width: 130px;
+            }
+        }
     }
-
-    .list-inner {
-      display: flex;
-      flex-basis: 55%;
-
-      @include min-screen($screen__l) {
-        flex-basis: 65%;
-      }
-    }
-
-    .list-image {
-      width: 100%;
-      max-width: $list-image__max-width;
-      margin-right: $list-image__margin--mobile;
-
-      @include min-screen($screen__m) {
-        margin-left: $list-image__margin--desktop;
-      }
-
-      @include min-screen($screen__l) {
-        max-width: 130px;
-      }
-    }
-  }
 }
 
 .list-content {
