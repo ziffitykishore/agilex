@@ -8,7 +8,7 @@
 
 <?php
     $_product = $block->getProduct();
-    $productionItem = $_product->getCustomAttribute('production_item')->getValue();
+    $productionItem = true;
     $stockItemQty = $_product->getExtensionAttributes()->getStockItem()->getQty();
 ?>
 
