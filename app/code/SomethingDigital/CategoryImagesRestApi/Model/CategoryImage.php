@@ -35,7 +35,7 @@ class CategoryImage implements CategoryImageInterface
         $imageName = strip_tags(trim($params['content']['name']));
 
         if (!preg_match("/^[a-zA-Z0-9-_.]+$/", $imageName)) {
-          return false;
+          return "Image name must match pattern [a-zA-Z0-9-_.].";
         }
 
         $mediaDirectory = $this->directoryList->getPath(DirectoryList::MEDIA);
@@ -50,7 +50,7 @@ class CategoryImage implements CategoryImageInterface
 
         return true;
       } catch (\Exception $e) {
-        return false;
+        return $e->getMessage();
       }
   }
 }
