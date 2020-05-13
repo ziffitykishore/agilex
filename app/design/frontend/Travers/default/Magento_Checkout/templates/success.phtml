@@ -17,7 +17,7 @@
         <?php  else :?>
             <p><?= __('Your order # is: <span>%1</span>.', $block->escapeHtml($order->getRealOrderId())) ?></p>
         <?php endif;?>
-            <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details and tracking info.') ?></p>
+            <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
     <?php endif;?>
 
     <?= $block->getAdditionalInfoHtml() ?>
