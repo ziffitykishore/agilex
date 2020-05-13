@@ -43,7 +43,7 @@ class CatalogPageNumber implements \Magento\Framework\View\Element\Block\Argumen
         $product = $this->getProduct();
         $catalogPageNumber = $product->getData('catalog_page_number');
 
-        if (!$catalogPageNumber) {
+        if (!$catalogPageNumber || $catalogPageNumber >= 9000) {
             return false;
         }
         
