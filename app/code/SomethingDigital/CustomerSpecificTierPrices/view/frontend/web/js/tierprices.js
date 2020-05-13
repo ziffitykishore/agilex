@@ -44,11 +44,24 @@ define([
 
                 prices = self.calculateSavings(prices);
 
+                if (prices['QtyPrice1'] && prices['QtyBreak1'] > 1) {
+                    prices['UpFirstBreak'] = '1 - ' + (prices['QtyBreak1'] - 1);
+                    prices['RegularPrice'] = prices['price'];
+                }
+
                 if (!prices['QtyPrice2'] && !prices['QtyPrice3']) {
                     prices['QtyBreak1'] = prices['QtyBreak1'] + '+';
                 }
+
                 if (prices['QtyBreak2'] && !prices['QtyPrice3']) {
+                    prices['QtyBreak1'] = prices['QtyBreak1'] + ' - ' + (prices['QtyBreak2'] - 1);
                     prices['QtyBreak2'] = prices['QtyBreak2'] + '+';
+                }
+
+                if (prices['QtyPrice3']) {
+                    prices['QtyBreak1'] = prices['QtyBreak1'] + ' - ' + (prices['QtyBreak2'] - 1);
+                    prices['QtyBreak2'] = prices['QtyBreak2'] + ' - ' + (prices['QtyBreak3'] - 1);
+                    prices['QtyBreak3'] = prices['QtyBreak3'] + '+';
                 }
 
                 tierPrices.push(prices);
