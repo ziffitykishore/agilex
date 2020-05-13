@@ -45,23 +45,28 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     <strong class="type"><?= $block->escapeHtmlAttr(__('SKU')) ?></strong>
                     <span class="value" itemprop="sku"><?php echo $_item->getSku() ?></span>
                 </div>
-                <div class="shipping-details" title="Shipping">
-                    <span class="value with-tooltip">
-                        <?= $block->escapeHtmlAttr(__('Ships by ')) ?> 04/03/2020
-                        <div class="field-tooltip toggle">
-                            <span class="field-tooltip-action"
-                                    tabindex="0"
-                                    data-toggle="dropdown"
-                                    data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
-                            </span>
-                            <div class="field-tooltip-content"
-                                    data-target="dropdown">
-                                    ships by
+                <?php                    
+                    $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
+                    if($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
+                ?>
+                    <div class="shipping-details" title="Shipping">
+                        <span class="value with-tooltip">
+                            <?= $block->escapeHtmlAttr(__('Ships by')) ?> 
+                            <?= $estimatedShipment ?>
+                            <div class="field-tooltip toggle">
+                                <span class="field-tooltip-action"
+                                        tabindex="0"
+                                        data-toggle="dropdown"
+                                        data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
+                                </span>
+                                <div class="field-tooltip-content"
+                                        data-target="dropdown">
+                                        ships by
+                                </div>
                             </div>
-                        </div>
-                    </span>
-                    
-                </div>
+                        </span>
+                    </div>
+                <?php endif; ?>
                 <?php if ($_options = $block->getOptionList()) :?>
                     <div class="minicart-items">
                         <div class="product options " data-bind="mageInit: {'collapsible':{'openedState': 'active'}}" data-collapsible="true" role="tablist">

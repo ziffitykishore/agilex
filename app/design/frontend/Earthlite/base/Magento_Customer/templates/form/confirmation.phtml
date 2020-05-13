@@ -1,0 +1,35 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<div class="form-container confirm-container">
+    <?php echo $this->getLayout()->createBlock("Earthlite\Customer\Block\Html\Logo")->setTemplate("Earthlite_Customer::html/logo.phtml")->toHtml(); ?>
+    <div class="block block-customer-forget">
+        <a class="action close" href="<?= $block->getUrl('') ?>"><span><?= $block->escapeHtml(__('Close')) ?></span></a>
+        <div class="block-content" aria-labelledby="block-customer-heading">
+            <form action="" method="post" id="form-validate" class="form send confirmation" data-mage-init='{"validation":{}}'>
+                <fieldset class="fieldset" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                    <div class="form-heading"><span><?= $block->escapeHtml(__('Please enter your email below and we will send you the confirmation link.')) ?></span></div>
+                    <div class="field email required">
+                        <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                        <div class="control">
+                            <input type="email" name="email" id="email_address" class="input-text" value="<?= $block->escapeHtmlAttr($block->getEmail()) ?>" data-validate="{required:true, 'validate-email':true}" data-mage-init='{"mage/trim-input":{}}'>
+                        </div>
+                    </div>
+                    <div class="actions-toolbar">
+                        <div class="primary">
+                            <button type="submit" class="action send primary"><span><?= $block->escapeHtml(__('Send confirmation link')) ?></span></button>
+                        </div>
+                        <div class="secondary">
+                            <a href="<?= $block->escapeUrl($block->getLoginUrl()) ?>" class="action back"><span><?= $block->escapeHtml(__('Back to Sign In')) ?></span></a>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
