@@ -21,7 +21,7 @@
                        template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
         </referenceContainer>
         <referenceContainer name="product.info.stock.sku">
-            <block class="Magento\Framework\View\Element\Template" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
         </referenceContainer>
 
         <move element="product.info.sku" destination="product.info.main" before="product.info.price"/>
@@ -86,7 +86,7 @@
                 </block>
                 <container name="mob.product.info.stock.sku" label="Product auxiliary info" htmlTag="div" htmlClass="product-info-stock-sku">                    
                     <block class="Magento\Catalog\Block\Product\View\Type\Simple" name="mob.product.info.simple" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
-                    <block class="Magento\Framework\View\Element\Template" name="mob.product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml"/>
+                    <block class="Magento\Catalog\Block\Product\View" name="mob.product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml"/>
                 </container>
                 <block class="Magento\Catalog\Pricing\Render" name="mob.product.price.final">
                     <arguments>
