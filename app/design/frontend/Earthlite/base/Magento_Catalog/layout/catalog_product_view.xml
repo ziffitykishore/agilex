@@ -21,7 +21,7 @@
                        template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
         </referenceContainer>
         <referenceContainer name="product.info.stock.sku">
-            <block class="Magento\Framework\View\Element\Template" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
         </referenceContainer>
 
         <move element="product.info.sku" destination="product.info.main" before="product.info.price"/>
@@ -75,19 +75,19 @@
         <referenceContainer name="product.info.media">
             <container name="mob.instance.option.container" htmlTag="div" htmlClass="mob product-info-main" before="-">
                 <block class="Magento\Catalog\Block\Product\View" name="mob.page.title" template="Magento_Catalog::product/view/mob_product_title.phtml" />            
+                <block class="Magento\Catalog\Block\Product\View\Description" name="mob.product.info.sku" template="Magento_Catalog::product/view/attribute.phtml" after="product.info.type">
+                    <arguments>
+                        <argument name="at_call" xsi:type="string">getSku</argument>
+                        <argument name="at_code" xsi:type="string">sku</argument>
+                        <argument name="css_class" xsi:type="string">sku</argument>
+                        <argument name="at_label" xsi:type="string">default</argument>
+                        <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
+                    </arguments>
+                </block>
                 <container name="mob.product.info.stock.sku" label="Product auxiliary info" htmlTag="div" htmlClass="product-info-stock-sku">                    
-                    <block class="Magento\Catalog\Block\Product\View\Description" name="mob.product.info.sku" template="Magento_Catalog::product/view/attribute.phtml" after="product.info.type">
-                        <arguments>
-                            <argument name="at_call" xsi:type="string">getSku</argument>
-                            <argument name="at_code" xsi:type="string">sku</argument>
-                            <argument name="css_class" xsi:type="string">sku</argument>
-                            <argument name="at_label" xsi:type="string">default</argument>
-                            <argument name="add_attribute" xsi:type="string">itemprop="sku"</argument>
-                        </arguments>
-                    </block>
-                </container>                                                
-                <block class="Magento\Catalog\Block\Product\View\Type\Simple" name="mob.product.info.simple" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>                                
-                <block class="Magento\Framework\View\Element\Template" name="mob.product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml"/>
+                    <block class="Magento\Catalog\Block\Product\View\Type\Simple" name="mob.product.info.simple" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
+                    <block class="Magento\Catalog\Block\Product\View" name="mob.product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml"/>
+                </container>
                 <block class="Magento\Catalog\Pricing\Render" name="mob.product.price.final">
                     <arguments>
                         <argument name="price_render" xsi:type="string">product.price.render.default</argument>
