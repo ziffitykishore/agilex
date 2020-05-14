@@ -102,7 +102,7 @@
                                 <tr>
                                     <td class="col carrier">
                                         <select name="tracking_carrier_select" id="tracking_carrier_select" class="select" data-validate="{required:true}">
-                                            <option value=""></option>
+                                            <option value="custom"><?= $block->escapeHtml(__('Custom Value')) ?></option>
                                             <?php foreach ($block->getCarriers() as $key => $value) : ?>
                                                 <option value="<?= $block->escapeHtmlAttr($key); ?>"><?= $block->escapeHtml($value) ?></option>
                                             <?php endforeach ?>
