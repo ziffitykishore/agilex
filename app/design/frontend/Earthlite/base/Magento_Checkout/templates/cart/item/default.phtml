@@ -50,8 +50,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     if($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
                 ?>
                     <div class="shipping-details" title="Shipping">
-                        <span class="value with-tooltip">
-                            <?= $block->escapeHtmlAttr(__('Ships by')) ?> 
+                        <span class="value with-tooltip">                            
                             <?= $estimatedShipment ?>
                             <div class="field-tooltip toggle">
                                 <span class="field-tooltip-action"
@@ -61,7 +60,11 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                                 </span>
                                 <div class="field-tooltip-content"
                                         data-target="dropdown">
-                                        ships by
+                                    <?php if($helper->getItemProductionStatus($_item->getSku())): ?>
+                                        <?= $helper->getStoreConfig('production_item_text') ?>
+                                    <?php else: ?>
+                                        <?= $helper->getStoreConfig('nonproduction_item_text') ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </span>
