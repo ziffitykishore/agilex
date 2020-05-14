@@ -41,6 +41,11 @@ if ($_attributeType && $_attributeType == 'text') {
 } else {
     $_attributeValue = $_helper->productAttribute($_product, $_product->$_call(), $_code);
 }
+
+if ($_attributeLabel && $_attributeLabel == 'SKU') {
+    $_attributeLabel = "Item #";
+}
+
 ?>
 
 <?php if ($_attributeValue): ?>
