@@ -235,7 +235,7 @@
             .action {
                 &.towishlist {
                     .lib-icon-font(
-                        @_icon-font-content: @icon-heart,
+                    @_icon-font-content: @icon-heart,
                         @_icon-font: @icon__font-name,
                         @_icon-font-size: 16px,
                         @_icon-font-line-height: 16px,
@@ -243,7 +243,7 @@
                         @_icon-font-color-hover: @header-icons-color-hover,
                         @_icon-font-color-active: @header-icons-color-hover,
                         @_icon-font-text-hide: true
-                    );
+                        );
                 }
             }
         }
@@ -806,8 +806,30 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .has-configslide .page-footer {
-        padding-bottom: 50px
+    .has-configslide { 
+        .page-footer {
+            padding-bottom: 50px
+        }
+        #product-customize-button {
+            position: fixed;
+            z-index: 9;
+            width: 100%;
+            left: 0;
+            border-radius: 0;
+            bottom: 0;
+        }
+    }
+    .product.media, .product-info-main {
+        margin-bottom: 20px;
+    }
+
+    .product-tab-wrapper {
+        padding: 30px 0;
+    }
+
+    .product-info-main .page-title-wrapper .page-title {
+        font-size: 2rem;
+        line-height: 1;
     }
 
     .product-add-form .custom.action {
@@ -853,7 +875,7 @@
             .box-tocart {
                 .fieldset {
                     .actions {
-                        padding-top: 25px;
+                        padding-top: 20px;
                     }
                 }
             }
@@ -882,7 +904,7 @@
                         }
 
                         > .switch {
-                            padding: 15px 30px 15px 15px;
+                            padding: 10px 30px 10px 15px;
                             background: @color-white;
                             .br-radius(6px);
                         }
