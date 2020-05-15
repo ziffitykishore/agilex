@@ -43,6 +43,10 @@
 <script type="text/javascript">
         require(['jquery', 'matchMedia', 'tabs'], function($, mediaCheck) {
 
+            if($('.product.data.items > .item.title').length > 4) {
+                $('.product.info.detailed').addClass('tab-size');
+            }
+
             var detailsTabs = $('.product.data.items');
             var readMore = '<a href="#description" class="action more"><?= $title ?></a>';
 

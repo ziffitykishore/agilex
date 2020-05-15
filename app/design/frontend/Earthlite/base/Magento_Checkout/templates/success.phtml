@@ -1,0 +1,188 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) : ?>
+        <div class="order-success-msg">
+            <h5><?= $block->escapeHtml(__('Thankyou for your purchase')) ?></h5>
+            <?php if ($block->getCanViewOrder()) : ?>
+                <h2><?= $block->escapeHtml(__('Order Number : %1', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></h2>
+            <?php else : ?>
+                <h2><?= $block->escapeHtml(__('Order Number : <span>%1</span>', $block->getOrderId()), ['span']) ?></h2>
+            <?php endif; ?>
+            <div><?= $block->escapeHtml(__('The following information has also been forwarded to your email.')) ?></div>
+        </div>
+    <?php endif; ?>
+
+    <?= $block->getAdditionalInfoHtml() ?>    
+
+    <?php $_order = $block->getOrder() ?>
+
+    <div class="block block-order-info-view">	    
+        <div class="block-content row">
+
+            <?php if (!$_order->getIsVirtual()) : ?>
+                <div class="col-md-6 col-lg-3 mb-4">
+                    <div class="card box-order-shipping-address">
+                        <strong class="card-header"><span><?= $block->escapeHtml(__('Ship To')) ?></span></strong>
+                        <div class="card-body">
+                            <address><?= /* @noEscape */ $block->_getAddressHtml($_order->getShippingAddress()) ?></address>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card box-order-billing-address">
+                    <strong class="card-header">
+                        <span><?= $block->escapeHtml(__('Bill To')) ?></span>
+                    </strong>
+                    <div class="card-body">
+                        <address><?= /* @noEscape */ $block->_getAddressHtml($_order->getBillingAddress()) ?></address>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card box-order-comments">
+                    <strong class="card-header">
+                        <span><?= $block->escapeHtml(__('Order Comments')) ?></span>
+                    </strong>
+                    <div class="card-body">
+                        <?php if ($_order->getOrderComments()): ?>
+                            <address><?= /* @noEscape */ $_order->getOrderComments() ?></address>
+                        <?php else: ?>
+                            <span><?= $block->escapeHtml(__('No Order Comments Available')) ?></span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ordered-items-summary row">
+        <?php if ($_order->getAllItems()) : ?>
+            <div class="order block block-order-item form-cart col-lg-8">
+                <h3 class="block-title">
+                    <?= $block->escapeHtml(__('Items Ordered:')) ?>
+                </h3>
+                <div class="cart table-wrapper">
+                    <table class="data table cart table-order-items" id="my-orders-table">
+                        <thead>
+                            <tr>
+                                <th class="col item"><?= $block->escapeHtml(__('Product Details')) ?></th>
+                                <th class="col price"><?= $block->escapeHtml(__('Price')) ?></th>
+                                <th class="col qty"><?= $block->escapeHtml(__('Quantity')) ?></th>
+                                <th class="col subtotal"><?= $block->escapeHtml(__('Sub Total')) ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $_items = $_order->getAllItems();
+
+                            foreach ($_items as $_item) {
+                                if ($_item->getParentItem()) {
+                                    continue;
+                                }
+                                ?>
+                                <tr id="order-item-row-<?= (int) $_item->getId() ?>" class="item-info">
+
+                                    <td class="col item" data-th="<?= $block->escapeHtmlAttr(__('Product Name')) ?>">
+                                        <?php
+                                        $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+                                        if ($childProd = current($_item->getChildrenItems())) {
+                                            $productImage = $_imagehelper->init($childProd->getProduct(), 'category_page_list', array('height' => 75, 'width' => 75))->getUrl();
+                                        } else {
+                                            $productImage = $_imagehelper->init($_item->getProduct(), 'category_page_list', array('height' => 75, 'width' => 75))->getUrl();
+                                        }
+                                        ?>
+                                        <span class="product-item-photo">
+                                            <span class="product-image-container" style="width:80px;" >
+                                                <span class="product-image-wrapper">
+                                                    <img src="<?= $productImage ?>" title="<?= $block->escapeHtml($_item->getName()) ?>" alt="<?= $block->escapeHtml($_item->getName()) ?>" />
+                                                </span>
+                                            </span>
+                                        </span>
+                                        <div class="product-item-details">
+                                            <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
+                                            <div class="product sku product-item-sku"><?= /* @noEscape */ $_item->getSku() ?></div>
+                                            <?php                    
+                                                $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
+                                                if($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
+                                            ?>
+                                                <div class="shipping-details" title="Shipping">
+                                                    <span class="value with-tooltip">                            
+                                                        <?= $estimatedShipment ?>
+                                                        <div class="field-tooltip toggle">
+                                                            <span class="field-tooltip-action"
+                                                                    tabindex="0"
+                                                                    data-toggle="dropdown"
+                                                                    data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
+                                                            </span>
+                                                            <div class="field-tooltip-content"
+                                                                    data-target="dropdown">
+                                                                <?php if($helper->getItemProductionStatus($_item->getSku())): ?>
+                                                                    <?= $helper->getStoreConfig('production_item_text') ?>
+                                                                <?php else: ?>
+                                                                    <?= $helper->getStoreConfig('nonproduction_item_text') ?>
+                                                                <?php endif; ?>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                    </td>					    
+                                    <td class="col price" data-th="<?= $block->escapeHtmlAttr(__('Price')) ?>">
+                                        <strong> <?php echo $this->helper('Magento\Framework\Pricing\Helper\Data')->currency($_item->getPrice(), true, false); ?></strong>
+                                    </td>
+                                    <td class="col qty" data-th="<?= $block->escapeHtmlAttr(__('Qty')) ?>">
+                                        <?php if ($_item->getQtyOrdered() > 0) : ?>
+                                            <span class="content"><?= (float) $_item->getQtyOrdered() ?></span>
+                                        <?php else: ?>
+                                            <span class="content"><?= (float) 0 ?></span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="col subtotal" data-th="<?= $block->escapeHtmlAttr(__('Subtotal')) ?>">
+                                        <?php
+                                        $unitPrice = $_item->getPrice();
+                                        $unitSubtotal = $unitPrice * $_item->getQtyOrdered();
+                                        ?>
+                                        <strong class="price"><?= $block->escapeHtml($this->helper('Magento\Framework\Pricing\Helper\Data')->currency($unitSubtotal, true, false)); ?></strong>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php endif; ?>
+        <div class="block block-order-summary col-lg-4">
+            <h3 style="opacity:0" class="d-none d-lg-block">
+                   <?= $block->escapeHtml(__('Order Summary')) ?>
+            </h3>
+            <div class="order-summary-wrap">
+                <h4 class="box-title">
+                    <span><?= $block->escapeHtml(__('Order Summary')) ?></span>
+                </h4>
+                <div class="box-content">
+                    <div class="order-summary">
+                        <div class="cart-totals">
+                            <div class="table-wrapper">
+                                <table class="data table totals">
+                                    <tfoot>
+                                        <?= $block->getChildHtml('order_totals') ?>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

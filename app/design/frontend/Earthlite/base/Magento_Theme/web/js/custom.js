@@ -199,4 +199,13 @@ define([
         moreToggler('.category-description p', 150);
     }
 
+
+    if($('.product-tab-wrapper .product.info.detailed').length == 0 && $('.product-tab-wrapper .products-wrapper').length === 0) {
+        $('.product-tab-wrapper').addClass('no-tabs-wrapper');
+    }
+
+    if($('.product-tab-wrapper .products-wrapper').length == 0) {
+        $('.product-tab-wrapper').addClass('no-related');
+    }
+
 });

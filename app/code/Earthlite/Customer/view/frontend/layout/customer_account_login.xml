@@ -5,5 +5,7 @@
         <referenceContainer name="header.container" remove="true" />
         <referenceContainer name="footer-container" remove="true" />
         <referenceBlock name="customer.new" remove="true"/>
+
+        <move element="persistent.remember.me" destination="customer_form_login" before="-"/>
     </body>
 </page>

@@ -126,7 +126,6 @@
 
         .swatch-attribute-options  {
             margin: 0;
-            padding: 15px 0;
         }
 
         .active {
@@ -140,11 +139,15 @@
         .filter-options-content {
             /*margin: 0 0 @indent__m;*/
             font-size: 1.3rem;
-            padding-top: 20px;
-
+             > * {
+                padding-top: 20px;
+            }
             .item {
                 margin-bottom: @indent__s;
                 position: relative;
+                &:last-child {
+                    margin-bottom: 0;
+                }
                 input[type=checkbox] {
                     position: absolute;
                     opacity: 0;
@@ -194,10 +197,6 @@
             border-radius: 50%;
             width: 30px;
             height: 30px;
-            &:hover {
-                border: 0 !important;
-                outline: 0 none !important;
-            }
         }
     }
 
