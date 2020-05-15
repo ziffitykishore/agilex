@@ -21,4 +21,14 @@ class EstimateShipping extends AbstractHelper
     {
         return $this->shippingEstimation->getEstimatedShipping($sku);   
     }
+
+    public function getStoreConfig($code)
+    {
+        return $this->shippingEstimation->getConfigGeneral($code);
+    }
+
+    public function getItemProductionStatus($code)
+    {
+        return $this->shippingEstimation->getItemProductionStatus($code);        
+    }
 }
