@@ -1,0 +1,14 @@
+diff --git a/vendor/magento/module-checkout/view/frontend/web/template/cart/shipping-rates.html b/vendor/magento/module-checkout/view/frontend/web/template/cart/shipping-rates.html
+index 5d1889519a3..9f0d4360569 100644
+--- a/vendor/magento/module-checkout/view/frontend/web/template/cart/shipping-rates.html
++++ b/vendor/magento/module-checkout/view/frontend/web/template/cart/shipping-rates.html
+@@ -24,7 +24,8 @@
+                                 checked: $parents[1].selectedShippingMethod,
+                                 attr: {
+                                         value: carrier_code + '_' + method_code,
+-                                        id: 's_method_' + carrier_code + '_' + method_code
++                                        id: 's_method_' + carrier_code + '_' + method_code,
++                                        disabled: false
+                                         }
+                                 "/>
+                     <label class="label" data-bind="attr: {for: 's_method_' + carrier_code + '_' + method_code}">
