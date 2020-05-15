@@ -8,6 +8,13 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    .customer-account-logoutsuccess {
+        .page-main {
+            padding-top: 30px;
+        }
+    }
+
+
     .customer-account-confirmation,
     .customer-account-createpassword,
     .customer-account-forgotpassword,
@@ -176,6 +183,12 @@
                 width: 100%;
             }
 
+            .persistent {
+                .tooltip {
+                    display: none;
+                }
+            }
+
             .actions-toolbar {
                 .flex();  
 
@@ -187,7 +200,7 @@
 
                 .action {
                     &.primary {
-                        margin: 15px 0 25px;
+                        margin: 15px 0 20px;
                         width: 100%;
                     }
                 }
@@ -196,6 +209,7 @@
                     .flex();
                     justify-content: space-between;
                     align-items: center;
+                    margin-bottom: 0;
 
                     .action {
                         margin-top: 0;

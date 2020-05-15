@@ -30,10 +30,7 @@
                 <?= $block->getChildHtml('form_additional_info') ?>
                 <div class="actions-toolbar">
                     <div class="secondary">
-                        <div class="remember-me choice">
-                            <input name="login[rememberme]" type="checkbox"  class="input-checkbox" id="rememberme" title="<?php echo __('Remember me on this computer') ?>" >
-                            <label for="rememberme"><span><?= $block->escapeHtml(__('Remember me')) ?></span></label>
-                        </div>
+                        <?= $block->getChildHtml('', true) ?>
                         <a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a>
                     </div>
                     <div class="primary">
