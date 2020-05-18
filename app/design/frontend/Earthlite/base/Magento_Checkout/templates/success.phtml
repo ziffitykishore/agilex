@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-lg-4">
                 <div class="card box-order-comments">
                     <strong class="card-header">
                         <span><?= $block->escapeHtml(__('Order Comments')) ?></span>
@@ -107,18 +107,31 @@
                                         <div class="product-item-details">
                                             <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
                                             <div class="product sku product-item-sku"><?= /* @noEscape */ $_item->getSku() ?></div>
-                                            <div class="shipping-details" title="Shipping">
-                                                <span class="value with-tooltip">
-                                                    <span> Ships by 04/03/2020 </span>
-                                                    <div class="field-tooltip toggle">
-                                                        <span class="field-tooltip-action" tabindex="0" data-toggle="dropdown" data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}" aria-haspopup="true" aria-expanded="false" role="button">
-                                                        </span>
-                                                        <div class="field-tooltip-content" data-target="dropdown" aria-hidden="true">
-                                                            ships by
+                                            <?php                    
+                                                $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
+                                                if($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
+                                            ?>
+                                                <div class="shipping-details" title="Shipping">
+                                                    <span class="value with-tooltip">                            
+                                                        <?= $estimatedShipment ?>
+                                                        <div class="field-tooltip toggle">
+                                                            <span class="field-tooltip-action"
+                                                                    tabindex="0"
+                                                                    data-toggle="dropdown"
+                                                                    data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
+                                                            </span>
+                                                            <div class="field-tooltip-content"
+                                                                    data-target="dropdown">
+                                                                <?php if($helper->getItemProductionStatus($_item->getSku())): ?>
+                                                                    <?= $helper->getStoreConfig('production_item_text') ?>
+                                                                <?php else: ?>
+                                                                    <?= $helper->getStoreConfig('nonproduction_item_text') ?>
+                                                                <?php endif; ?>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </span>
-                                            </div>
+                                                    </span>
+                                                </div>
+                                            <?php endif; ?>
                                         </div>
                                     </td>					    
                                     <td class="col price" data-th="<?= $block->escapeHtmlAttr(__('Price')) ?>">

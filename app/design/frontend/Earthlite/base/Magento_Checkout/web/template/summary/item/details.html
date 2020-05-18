@@ -14,12 +14,17 @@
         <div class="product-item-name-block">
             <strong class="product-item-name" data-bind="html: $parent.name"></strong>
             <div class="sku">
-                <span class="label"><!-- ko i18n: 'SKU' --><!-- /ko --></span>
-                <span class="value">123</span>
+                <!-- ko foreach: window.checkoutConfig.quoteItemData -->
+                    <!-- ko if: item_id === $parents[1].item_id -->
+                        <span class="label" data-bind="i18n: 'SKU : '"></span>
+                        <!-- ko text: sku --><!-- /ko -->
+                    <!-- /ko -->
+                <!-- /ko -->
             </div>
+            <!-- ko if: (getEstimateShip($parent))-->
             <div class="shipping-details" title="Shipping">
                 <span class="value with-tooltip">
-                    <!-- ko i18n: 'Ships by' --><!-- /ko -->04/03/2020
+                    <span class="ship-estimation" data-bind="text: getEstimateShip($parent)"></span>
                     <div class="field-tooltip">
                         <span class="field-tooltip-action"
                                 tabindex="0"
@@ -27,12 +32,12 @@
                                 data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
                         </span>
                         <div class="field-tooltip-content"
-                                data-target="dropdown">
-                                ships by
+                                data-target="dropdown" data-bind="text: getShippingText($parent)">
                         </div>
                     </div>
                 </span>
             </div>
+            <!-- /ko -->
         </div>
         <div class="details-qty">
             <span class="label"><!-- ko i18n: 'Qty' --><!-- /ko --></span>
