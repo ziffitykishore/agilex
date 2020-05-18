@@ -36,6 +36,12 @@ define([
     progressbar.progressbar("value", 0);
     $(document).ready(function () {
         progress();
+        setTimeout(function () {
+            progressLabel.text("Loaded!");
+            $('.preloader').fadeOut(1000);
+            progressbar.progressbar("value", 100);
+            $('body').addClass('page-loaded');
+        }, 3000);
     });
     /* header sticky */
 
@@ -88,7 +94,7 @@ define([
         $('.autocomplete-suggestions').hide();
     });
 
-    $('#search').focus(function(){
+    $('#search').focus(function () {
         $(this).val('');
     });
 
@@ -200,11 +206,11 @@ define([
     }
 
 
-    if($('.product-tab-wrapper .product.info.detailed').length == 0 && $('.product-tab-wrapper .products-wrapper').length === 0) {
+    if ($('.product-tab-wrapper .product.info.detailed').length == 0 && $('.product-tab-wrapper .products-wrapper').length === 0) {
         $('.product-tab-wrapper').addClass('no-tabs-wrapper');
     }
 
-    if($('.product-tab-wrapper .products-wrapper').length == 0) {
+    if ($('.product-tab-wrapper .products-wrapper').length == 0) {
         $('.product-tab-wrapper').addClass('no-related');
     }
 
