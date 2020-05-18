@@ -41,9 +41,7 @@ class UpdateStockMessage
         }
         $product = $this->productRepository->getById($stockItem->getProductId());
         $sxInventory = $product->getData('sx_inventory_status');
-        if ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
-            $result->setMessage(__('Direct from factory'));
-        } elseif ($sxInventory == SxInventoryStatus::STATUS_STOCK) {
+        if ($sxInventory == SxInventoryStatus::STATUS_STOCK) {
             if (($stockItem->getQty() - $summaryQty < 0)
                 && $stockItem->getProductName()
                 && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
