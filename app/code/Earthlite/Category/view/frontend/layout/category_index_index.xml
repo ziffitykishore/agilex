@@ -20,6 +20,14 @@
                     </arguments>
                 </block>
             </container>
+            <container name="brands.block.view.container" htmlTag="div" htmlClass="brands-block-view">
+                <block name="brands.block" 
+                       template="Earthlite_Category::category/brands.phtml">
+                    <arguments>
+                        <argument name="view_model" xsi:type="object">Earthlite\Category\ViewModel\CategoryData</argument>
+                    </arguments>
+                </block>
+            </container>
         </referenceContainer>
     </body>
 </page>
