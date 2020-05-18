@@ -24,6 +24,9 @@
 & when (@media-common = true) {
 
     .checkout-index-index {
+        .page-header + #maincontent:before {
+            content: none !important;
+        }
         .brand-message {
             display: none;
         }
@@ -160,10 +163,7 @@
     .checkout-onepage-success {
         .page-main {
             max-width: @inner_container__width;
-        }
-        .page-header {
-            border-bottom: 1px solid @color-lines;
-            margin-bottom: 20px;
+            padding-top: 20px
         }
     }
 
