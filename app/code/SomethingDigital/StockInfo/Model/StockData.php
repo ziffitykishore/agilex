@@ -71,6 +71,16 @@ class StockData
     }
 
     /**
+     * Get sx inventory status
+     *
+     * @return string
+     */
+    public function getSxInventoryStatus()
+    {
+        return $this->getProduct()->getData('sx_inventory_status');
+    }
+
+    /**
      * Get product type
      *
      * @return string
