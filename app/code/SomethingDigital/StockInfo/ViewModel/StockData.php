@@ -55,6 +55,4 @@ class StockData implements \Magento\Framework\View\Element\Block\ArgumentInterfa
             return false;
         }
     }
-
-
 }
