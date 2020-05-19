@@ -20,7 +20,7 @@
                     </arguments>
                 </block>
             </container>
-            <container name="brands.block.view.container" htmlTag="div" htmlClass="brands-block-view">
+            <container name="brands.block.view.container" htmlTag="div" htmlClass="brands-block-view mb-md-6">
                 <block name="brands.block" 
                        template="Earthlite_Category::category/brands.phtml">
                     <arguments>
