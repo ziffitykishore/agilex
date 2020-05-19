@@ -2,6 +2,8 @@
 
 namespace SomethingDigital\StockInfo\ViewModel;
 
+use SomethingDigital\StockInfo\Model\Product\Attribute\Source\SxInventoryStatus;
+
 class StockData implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
     /**
@@ -38,5 +40,19 @@ class StockData implements \Magento\Framework\View\Element\Block\ArgumentInterfa
     public function getProductType()
     {
         return $this->stockData->getProductType();
+    }
+
+    /**
+     * Check is order as needed product
+     *
+     * @return string
+     */
+    public function isOAN()
+    {
+        if ($this->stockData->getSxInventoryStatus() == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

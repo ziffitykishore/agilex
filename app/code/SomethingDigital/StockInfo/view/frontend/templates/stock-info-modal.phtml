@@ -1,5 +1,6 @@
 <?php $stockData = $block->getViewModel()->getStockData() ?>
 <?php $productType = $block->getViewModel()->getProductType() ?>
+<?php $isOAN = $block->getViewModel()->isOAN() ?>
 <div id="stock-info-modal" data-bind="scope: 'stockInfoModal'" style="display: none;">
     <!-- ko template: getTemplate() --><!-- /ko -->
 </div>
@@ -13,6 +14,7 @@
                         "config": {
                             "template": "SomethingDigital_StockInfo/stock-info-modal",
                             "productType": "<?= $productType ?>",
+                            "isOAN": "<?= $isOAN ?>",
                             "stockData": <?= json_encode($stockData) ?>,
                             "popupSelector": "#stock-info-modal-popup",
                             "popupOpenerSelector": ".stock-info-popup-trigger",
