@@ -1,0 +1,67 @@
+<?php
+use Mirasvit\Blog\Model\Post;
+
+/** @var \Mirasvit\Blog\Block\Post\Recent $block */
+$postCollection = $block->getCollection()
+    ->setPageSize($this->getPageSize());
+?>
+
+<div class="block blog__main-recent">
+    <div class="block-title">        
+        <h2><?= __('Our Latest Blog') ?></h2>
+    </div>
+
+    <div class="block-content blog-content">
+
+        <?php if ($postCollection->count()): ?>
+            <div class="blog__post-list-wrapper blog-list">
+                <ol class="blog__post-list">
+                    <?php /** @var Post $post */ ?>
+                    <?php foreach ($postCollection as $post): ?>
+                        <li class="blog__post-item">
+                             <?php 
+                                $categoryName = '';
+                                $postCategories = $post->getCategories(); 
+                                if($postCategories){
+                                    foreach ($postCategories as $cat) 
+                                    {
+                                       $categoryName = $cat->getName();
+                                       break;
+                                    }
+                                }
+                            ?>
+                            <?php if($categoryName): ?>
+                                <div class="cat-name blog-category"><?= $categoryName ?></div>
+                            <?php endif; ?>
+                            <header class="blog__post-header">
+                                <h3 class="blog__post-title blog-title" itemprop="headline">
+                                    <a href="<?= $post->getUrl() ?>" rel="bookmark"><?= $post->getName() ?></a>
+                                </h3>
+                            </header>
+
+                            <div class="blog__post-excerpt" itemprop="text">
+                                <div class="blog-desc"><?= mb_substr(strip_tags($post->getShortContent()), 0, 180).' ...' ?></div>
+
+                                <a class="action read-more" href="<?= $post->getUrl() ?>"><?= __('Read Article') ?></a>
+                            </div>
+                            <?php if ($post->getFeaturedImageUrl() && $post->getFeaturedShowOnHome()): ?>
+                            <div class="blog-image">                                
+                                <img 
+                                        src="<?= $post->getFeaturedImageUrl() ?>" 
+                                        alt="<?= $block->getFeaturedAlt($post) ?>"
+                                    <?= $block->getImageWidth() ? "width=\"" . $block->getImageWidth() . "px\"" : '' ?>
+                                    <?= $block->getImageHeight() ? "height=\"" . $block->getImageHeight() . "px\"" : '' ?>
+                                />                                
+                            </div>
+                            <?php endif ?>  
+                        </li>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+        <?php else: ?>
+            <div class="message notice">
+                <div><?= __('There are no posts available.') ?></div>
+            </div>
+        <?php endif ?>
+    </div>
+</div>
