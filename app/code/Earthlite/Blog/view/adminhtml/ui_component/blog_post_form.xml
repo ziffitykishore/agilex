@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <container name="main">     
+        <fieldset name="general">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">General Information</item>
+                    <item name="collapsible" xsi:type="boolean">true</item>
+                    <item name="opened" xsi:type="boolean">true</item>
+                    <item name="area" xsi:type="string">main</item>
+                </item>
+            </argument>            
+            <field name="content">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="label" xsi:type="string" translate="true">Content</item>
+                        <item name="dataType" xsi:type="string">text</item>
+                        <item name="formElement" xsi:type="string">wysiwyg</item>
+                        <item name="wysiwyg" xsi:type="boolean">true</item>
+                        <item name="wysiwygConfigData" xsi:type="array">
+                            <item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </argument>
+            </field>
+        </fieldset>
+    </container>
+</form>

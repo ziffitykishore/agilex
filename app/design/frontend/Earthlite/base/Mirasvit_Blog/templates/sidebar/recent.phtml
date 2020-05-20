@@ -1,0 +1,44 @@
+<?php
+//@codingStandardsIgnoreFile
+
+/** @var Recent $block */
+$collection = $block->getCollection()
+    ->setPageSize($this->getPageSize());
+if ($collection->getSize() === 0) {
+    return;
+}
+
+use Mirasvit\Blog\Block\Sidebar\Recent; ?>
+<div class="block blog__sidebar-recent">
+    <div class="block-title">
+        <strong><?= __('Recent Posts') ?></strong>
+    </div>
+
+    <div class="block-content">
+        <ol class="items">
+            <?php foreach ($collection as $post): ?>
+                <?php
+                $imgPath = $post->getFeaturedImageUrl();
+                ?>
+                <li class="item">                                        
+                    <?php if ($imgPath): ?>
+                        <a href="<?= $post->getUrl() ?>">
+                            <img
+                                    src="<?= $imgPath ?>" 
+                                    alt="<?= $post->getName() ?>" 
+                                    class="blog__post-featured-image"
+                                <?= $block->getImageWidth() ? "width=\"" . $block->getImageWidth() . "px\"" : '' ?>
+                                <?= $block->getImageHeight() ? "height=\"" . $block->getImageHeight() . "px\"" : '' ?>
+                            />
+                        </a>
+                    <?php endif ?>                   
+                    <?php if($post->getName()): ?>
+                        <div class="post-name"><?= $post->getName() ?></div>                        
+                    <?php endif; ?> 
+                    
+                    <a href="<?= $post->getUrl() ?>"><?php echo __('Read Article') ?></a>
+                </li>
+            <?php endforeach ?>
+        </ol>
+    </div>
+</div>

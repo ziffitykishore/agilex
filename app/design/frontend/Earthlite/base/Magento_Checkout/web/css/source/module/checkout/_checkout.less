@@ -24,6 +24,9 @@
 & when (@media-common = true) {
 
     .checkout-index-index {
+        .page-header + #maincontent:before {
+            content: none !important;
+        }
         .brand-message {
             display: none;
         }
@@ -34,10 +37,12 @@
             max-width: @inner_container__width;
         }
         .page-header {
-            border-bottom: 1px solid @color-lines;
-            margin-bottom: 50px;
             .nav-toggle {
                 display: none;
+            }
+
+            & + .page-main {
+                padding-top: 50px;
             }
         }
     }
@@ -160,10 +165,7 @@
     .checkout-onepage-success {
         .page-main {
             max-width: @inner_container__width;
-        }
-        .page-header {
-            border-bottom: 1px solid @color-lines;
-            margin-bottom: 20px;
+            padding-top: 30px;
         }
     }
 
@@ -480,6 +482,16 @@
         -webkit-order: 1;
         order: 1;
         padding-right: 20px;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
+    .block-order-info-view {
+        .row {
+            > div {
+                margin-bottom: 0;
+            }
+        }
     }
 }
 

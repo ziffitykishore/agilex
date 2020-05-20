@@ -1,0 +1,103 @@
+<?php
+
+use Mirasvit\Blog\Model\Post;
+
+/** @var \Mirasvit\Blog\Block\Post\Recent $block */
+$postCollection = $block->getCollection()
+        ->setPageSize($this->getPageSize());
+?>
+
+<section class="home-blog py-10">
+    <h2 class="mb-6 aos-init aos-animate"><?= __('Our Latest Blog') ?></h2>
+
+    <div class="blog-list aos-init aos-animate" data-aos="fade-up">
+
+        <?php if ($postCollection->count()): ?>
+
+            <div class="blog-slider">
+                <?php /** @var Post $post */ ?>
+                <div class="row">
+
+                    <div class="col-md-7 col-lg-8 order-md-2 blog-image-wrap">
+                        <div class="blog-slick-arrows"></div>
+                        <div class="blog-image-slider">  
+                            <?php foreach ($postCollection as $post): ?>
+                                <?php if ($post->getFeaturedImageUrl() && $post->getFeaturedShowOnHome()): ?>
+                                    <div class="blog-image">                                
+                                        <img 
+                                            src="<?= $post->getFeaturedImageUrl() ?>" 
+                                            alt="<?= $block->getFeaturedAlt($post) ?>"
+                                            />                                
+                                    </div>
+                                <?php endif ?>  
+                            <?php endforeach ?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 col-lg-4 blog-content-wrap">
+                        <?php foreach ($postCollection as $post): ?>
+                            <?php
+                            $categoryName = '';
+                            $postCategories = $post->getCategories();
+                            if ($postCategories) {
+                                foreach ($postCategories as $cat) {
+                                    $categoryName = $cat->getName();
+                                    break;
+                                }
+                            }
+                            ?>
+                            <div  class="blog-content">
+                                <?php if ($categoryName): ?>
+                                    <div class="cat-name blog-category"><?= $categoryName ?></div>
+                                <?php endif; ?>
+                                <h3 class="blog__post-title blog-title" itemprop="headline">
+                                    <a href="<?= $post->getUrl() ?>" rel="bookmark"><?= $post->getName() ?></a>
+                                </h3>
+
+                                <div class="blog__post-excerpt" itemprop="text">
+                                    <div class="blog-desc"><?= mb_substr(strip_tags($post->getShortContent()), 0, 180) . ' ...' ?></div>
+
+                                    <a class="action read-more" href="<?= $post->getUrl() ?>"><?= __('Read Article') ?></a>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="message notice">
+                <div><?= __('There are no posts available.') ?></div>
+            </div>
+        <?php endif ?>
+    </div>
+</section>
+
+<script type="text/javascript" xml="space">
+    require([
+        'jquery',
+        'slick'
+    ], function ($) {
+        $('.blog-content-wrap').slick({
+            autoplay: false,
+            arrows: false,
+            speed: 500,
+            dots: false,
+            autoplaySpeed: 5000,
+            fade: true,
+            draggable: false,
+            cssEase: 'linear'
+        });
+
+        $('.blog-image-slider').slick({
+            autoplay: false,
+            arrows: true,
+            appendArrows: '.blog-slick-arrows',
+            speed: 500,
+            dots: false,
+            autoplaySpeed: 5000,
+            fade: true,
+            cssEase: 'cubic-bezier(0.7, 0, 0.3, 1)',
+            asNavFor: '.blog-content-wrap'
+        });
+    });
+</script>
