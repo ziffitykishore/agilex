@@ -1,0 +1,52 @@
+<?php
+//@codingStandardsIgnoreFile
+
+/** @var PostList $block */
+
+use Mirasvit\Blog\Api\Data\PostInterface;
+use Mirasvit\Blog\Block\Post\PostList;
+
+$collection = $block->getPostCollection();
+?>
+
+<?php if ($collection->count()): ?>
+    <div class="blog__post-list-wrapper">
+        <ol class="blog__post-list">
+            <?php /** @var PostInterface $post */ ?>
+            <?php foreach ($collection as $post): ?>
+                <li class="blog__post-item">
+                    <header class="blog__post-header">
+                        <h2 class="blog__post-title" itemprop="headline">
+                            <a href="<?= $post->getUrl() ?>" rel="bookmark"><?= $post->getName() ?></a>
+                        </h2>
+
+                        <?= $block->getPostMetaHeader($post)->toHtml() ?>
+                    </header>
+
+                    <div class="blog__post-excerpt" itemprop="text">                        
+                        <?php if ($post->getFeaturedImageUrl() && $post->getFeaturedShowOnHome()): ?>
+                            <a href="<?= $post->getUrl() ?>">
+                                <img src="<?= $post->getFeaturedImageUrl() ?>"
+                                     alt="<?= $block->getFeaturedAlt($post) ?>"/>
+                            </a>
+                        <?php endif ?>
+
+                        <?php if($post->getShortContent()): ?>
+                        <div class="blog-desc"><?= mb_substr(strip_tags($post->getShortContent()), 0, 180).' ...' ?></div>
+                        <?php endif ?>
+                        
+                        <?= $block->getContentMoreTag($post) ?>
+
+                        <a class="read-more" href="<?= $post->getUrl() ?>"><?= __('Read more...') ?></a>
+                    </div>                    
+                </li>
+            <?php endforeach ?>
+        </ol>
+
+        <?= $block->getToolbarHtml() ?>
+    </div>
+<?php else: ?>
+    <div class="message notice">
+        <div><?= __('There are no posts available for this category.') ?></div>
+    </div>
+<?php endif ?>

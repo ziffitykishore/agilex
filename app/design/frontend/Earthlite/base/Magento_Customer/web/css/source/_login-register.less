@@ -129,7 +129,6 @@
                         .flex-width(100%);
                         padding: 27px;
                         position: relative;
-                        margin-bottom: 0;
 
                         &:before {
                             content: '';
@@ -145,12 +144,17 @@
                     }
                 }
 
+                #remember-me-box {
+                    display: none;
+                }
+
                 .password-strength-meter {
                     display: none;
                 }
 
                 .actions-toolbar {
                     .flex-width(100%);
+                    margin-top: 10px;
                     > .primary {
                         float: none;
                         width: 100%;
@@ -160,7 +164,7 @@
                     .action {
                         &.primary {
                             max-width: 300px;
-                            margin: 0 auto 30px;
+                            margin: 0 auto 25px;
                             width: 100%;
                             float: none;
                             display: block;
