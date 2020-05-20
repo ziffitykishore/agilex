@@ -962,6 +962,12 @@ body.catalog-product-compare-index {
         width: 100%;
     }
 
+    .icon {
+        width: 30px;
+        height: 30px;
+        transform: translateY($indent__s);
+    }
+
     .additional-attributes-wrapper {
         margin-top: $indent__base;
 
