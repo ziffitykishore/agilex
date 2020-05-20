@@ -7,27 +7,3 @@
         max-width: 1100px;
     }
 }
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    .home-awards li {
-        margin-bottom: 4rem;
-    }
-}
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
-    .home-awards li {
-        margin-bottom: 5rem;
-    }
-}
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-    .home-awards li {
-        margin-bottom: 7rem;
-    }
-}
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-desk) {
-    .home-awards li {
-        padding: 0 10px;
-    }
-}
