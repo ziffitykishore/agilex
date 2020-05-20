@@ -273,10 +273,11 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         $filterAttributes = $this->loadDataFromCache($cacheId);
         if (!$filterAttributes) {
             $collection = $this->collectionFactory->create();
-            $collection->addFieldToFilter('is_filterable', ['eq' => 1]);
 
             if ($this->request->getFullActionName() == 'catalogsearch_result_index') {
                 $collection->addFieldToFilter('is_filterable_in_search', ['eq' => 1]);
+            } else {
+                $collection->addFieldToFilter('is_filterable', ['eq' => 1]);
             }
 
             $collection->setOrder('position','ASC');
