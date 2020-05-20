@@ -26,6 +26,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     const TABLE_ATTRIBUTES_CACHE_ID = 'reactTableAttributes';
     const SEARCH_ATTRIBUTES_CACHE_ID = 'reactSearchAttributes';
     const FILTER_ATTRIBUTES_CACHE_ID = 'reactFilterAttributes';
+    const FILTER_ATTRIBUTES_SEARCH_CACHE_ID = 'reactFilterAttributesSearch';
 
     private $storeManager;
     private $customerSession;
@@ -263,10 +264,22 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
      */
     public function getFilterAttributes()
     {
-        $filterAttributes = $this->loadDataFromCache(static::FILTER_ATTRIBUTES_CACHE_ID);
+        if ($this->request->getFullActionName() == 'catalogsearch_result_index') {
+            $cacheId = static::FILTER_ATTRIBUTES_SEARCH_CACHE_ID;
+        } else {
+            $cacheId = static::FILTER_ATTRIBUTES_CACHE_ID;
+        }
+
+        $filterAttributes = $this->loadDataFromCache($cacheId);
         if (!$filterAttributes) {
             $collection = $this->collectionFactory->create();
-            $collection->addFieldToFilter('is_filterable', ['eq' => 1]);
+
+            if ($this->request->getFullActionName() == 'catalogsearch_result_index') {
+                $collection->addFieldToFilter('is_filterable_in_search', ['eq' => 1]);
+            } else {
+                $collection->addFieldToFilter('is_filterable', ['eq' => 1]);
+            }
+
             $collection->setOrder('position','ASC');
             $filterAttributes = [];
             foreach ($collection as $item) {
@@ -278,7 +291,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                     'description' => $item->getLayeredNavDescription()
                 ];
             }
-            $this->saveDataInsideCache($filterAttributes, static::FILTER_ATTRIBUTES_CACHE_ID);
+            $this->saveDataInsideCache($filterAttributes, $cacheId);
         }
         return $filterAttributes;
     }
