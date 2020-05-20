@@ -20,7 +20,8 @@
     "require": {
         "magento/magento-cloud-metapackage": ">=2.3.4 <2.3.5",
         "mageplaza/module-ajax-layered-navigation": "1.0",
-        "mageplaza/module-core": "1.4"
+        "mageplaza/module-core": "1.4",
+        "mirasvit/module-blog": "^1.0"
     },
     "suggest": {
         "ext-pcntl": "Need for run processes in parallel mode"

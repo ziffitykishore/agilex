@@ -90,6 +90,10 @@
                 <width>88</width>
                 <height>110</height>
             </image>
+            <image id="swatch_image" type="swatch_image">
+                <width>90</width>
+                <height>50</height>
+            </image>
             <image id="product_page_main_image" type="image">
                 <width>500</width>
                 <height>500</height>
