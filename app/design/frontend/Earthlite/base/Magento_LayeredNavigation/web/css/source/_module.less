@@ -4,6 +4,21 @@
 
 & when (@media-common = true) {
 
+    .swatch-layered.brands {
+        .swatch-option.image {
+            width: 90px;
+            height: 50px;
+            margin-right: 10px;
+            border: 1px solid @color-lines;
+            border-radius: 5px;
+            -webkit-transition: box-shadow .5s ease;
+            transition: box-shadow .5s ease;
+            &:hover {
+                box-shadow: 4px 8px 10px 3px rgba(220, 224, 236, 0.64);
+            }
+        }
+    }
+
     .layered-filter-block-container {
         .filter-title {
             display: flex;
@@ -139,7 +154,7 @@
         .filter-options-content {
             /*margin: 0 0 @indent__m;*/
             font-size: 1.3rem;
-             > * {
+            > * {
                 padding-top: 20px;
             }
             .item {
