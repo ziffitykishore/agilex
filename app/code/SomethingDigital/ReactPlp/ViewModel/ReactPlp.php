@@ -94,7 +94,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getDisplayMode()
     {
