@@ -119,7 +119,7 @@ class LateOrders
         }
         $leadTime = str_replace("days","weekdays",$leadTime);
         return $this->dateTime->date(
-            'Y-m-d H:i:s', strtotime($leadTime, strtotime($createdAt))
+            'Y-m-d', strtotime($leadTime, strtotime($createdAt))
         );
     }
 
