@@ -7,9 +7,7 @@ use Magento\Framework\Registry;
 use Magento\Catalog\Helper\Output;
 use Magento\Catalog\Model\Category;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Swatches\Model\SwatchFactory;
-use Magento\Swatches\Model\ResourceModel\SwatchFactory as SwatchResourceFactory;
-use Magento\Swatches\Helper\Media;
+use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * class CategoryData
@@ -54,18 +52,6 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
      * @var ProductAttributeOptionManagementInterface 
      */
     protected $productAttributeOptions;
-    
-    /**
-     *
-     * @var SwatchFactory
-     */
-    protected $swatchFactory;
-    
-    /**
-     *
-     * @var SwatchResourceFactory
-     */
-    protected $swatchResourceFactory;
 
     /**
      * CategoryData Constructor
@@ -75,9 +61,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
      * @param Category $categoryModel
      * @param ScopeConfigInterface $scopeConfig
      * @param ProductAttributeOptionManagementInterface $productAttributeOptions
-     * @param SwatchFactory $swatchFactory
-     * @param SwatchResourceFactory $swatchResourceFactory
-     * @param Media
+     * @param StoreManagerInterface $storeManagerInterface
      */
     public function __construct(
         Registry $registry,
@@ -85,18 +69,14 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         Category $categoryModel,
         ScopeConfigInterface $scopeConfig,
         ProductAttributeOptionManagementInterface $productAttributeOptions,
-        SwatchFactory $swatchFactory,
-        SwatchResourceFactory $swatchResourceFactory,
-        Media $media
+        StoreManagerInterface $storeManagerInterface
     ) {
         $this->_coreRegistry = $registry;
         $this->_catalogHelper = $catalogHelper;
         $this->_categoryModel = $categoryModel;
         $this->scopeConfig = $scopeConfig;
         $this->productAttributeOptions = $productAttributeOptions;
-        $this->swatchFactory = $swatchFactory;
-        $this->swatchResourceFactory = $swatchResourceFactory;
-        $this->media = $media;
+        $this->storeManagerInterface = $storeManagerInterface;
     }
 
     /**
@@ -146,19 +126,45 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
     {
         $options = $this->productAttributeOptions->getItems(self::ATTRIBUTE_CODE);
         $brands = [];
+        $defaultBrands = [
+            "Earthlite",
+            "Stronglite",
+            "InnerStrength"
+        ];
         foreach ($options as $option) {
-            if ($option->getValue()) {
-                $swatchModel = $this->swatchFactory->create();
-                $swatchResourceModel = $this->swatchResourceFactory->create();
-                $swatchResourceModel->load($swatchModel, $option->getValue(), 'option_id');
-                $brandImageUrl = $this->media->getSwatchMediaUrl() . $swatchModel->getValue();
+            if (in_array($option->getLabel(), $defaultBrands)) { 
+                $brandImageUrl = $this->getBrandsUrl();
+                switch ($option->getLabel()) {
+                    case "Earthlite":
+                        $imageUrl = $brandImageUrl . 'logo-earthlite.png';
+                        break;
+                    case "Stronglite":
+                        $imageUrl = $brandImageUrl . 'logo-inner-strength.png';
+                        break;
+                    case "InnerStrength":
+                        $imageUrl = $brandImageUrl . 'logo-stronglite.png';
+                        break;
+                    default:
+                        $imageUrl = $brandImageUrl;
+                }
                 $brands[] = [
                     'brandLabel' => $option->getLabel(),
                     'brandValue' => $option->getValue(),
-                    'brandImage' => $brandImageUrl
+                    'brandImage' => $imageUrl
                 ];
             }
         }
         return $brands;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getBrandsUrl()
+    {
+        return $this->storeManagerInterface
+            ->getStore()
+            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'brands/';
     }
 }
