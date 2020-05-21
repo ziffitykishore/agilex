@@ -43,10 +43,12 @@ use Earthlite\LayerNavigation\Model\Search\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
 use Zend_Db_Exception;
+use Magento\Framework\Registry;
 
 
 class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
 {
+    const PART_FINDER_ENABLED = 'partfinder/general/enable';
 
     public $collectionClone = null;
 
@@ -72,6 +74,8 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
 
     private $defaultFilterStrategyApplyChecker;
 
+    protected $_registry;
+
     public function __construct(
         EntityFactory $entityFactory,
         LoggerInterface $logger,
@@ -94,6 +98,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         GroupManagementInterface $groupManagement,
         TemporaryStorageFactory $tempStorageFactory,
         Http $request,
+        Registry $registry,
         AdapterInterface $connection = null,
         DefaultFilterStrategyApplyCheckerInterface $defaultFilterStrategyApplyChecker = null,
         $searchRequestName = 'catalog_view_container'
@@ -124,6 +129,7 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         $this->temporaryStorageFactory           = $tempStorageFactory;
         $this->searchRequestName                 = $searchRequestName;
         $this->request                           = $request;
+        $this->_registry                         = $registry;
         $this->defaultFilterStrategyApplyChecker = $defaultFilterStrategyApplyChecker ?: ObjectManager::getInstance()
             ->get(DefaultFilterStrategyApplyChecker::class);
     }
@@ -318,6 +324,21 @@ class Collection extends \Magento\Catalog\Model\ResourceModel\Product\Collection
         if ($priceRangeCalculation) {
             $this->filterBuilder->setField('price_dynamic_algorithm');
             $this->filterBuilder->setValue('auto');
+            $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
+        }
+
+        $isEnabled = $this->_scopeConfig->getValue(
+            self::PART_FINDER_ENABLED,
+            ScopeInterface::SCOPE_STORE
+        );
+        if ($this->_registry->registry('partfinder')) {
+            $listOfSku = explode(',', $this->_registry->registry('partfinder'));
+        }
+        if ($isEnabled && isset($listOfSku)) {
+            //Filter the product collection by SKU for Part Finder
+            $this->filterBuilder->setField('sku');
+            $this->filterBuilder->setValue($listOfSku);
+            $this->filterBuilder->setConditionType('in');
             $this->searchCriteriaBuilder->addFilter($this->filterBuilder->create());
         }
 
