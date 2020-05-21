@@ -90,7 +90,7 @@ class LateOrders
                     $leadTime = $this->getDefaultNonProductionItemLeadTime();
                 }
                 if ($leadTime) {
-                    $todayDate = $this->dateTime->gmtDate();
+                    $todayDate = $this->dateTime->gmtDate('Y-m-d');
                     $leadTimeDate = $this->formatLeadDate($leadTime, $order->getCreatedAt());
                     if ($leadTimeDate && $todayDate > $leadTimeDate) {
                         $delayedProductDetails[] = ["product" => $productDetails, "orderItem" => $item];
@@ -117,8 +117,13 @@ class LateOrders
            $this->logger->info("Invalid Lead Time: $leadTime");
             return false; 
         }
+        if (strpos($leadTime, 'days')) {
+            $leadTime = str_replace("days", "weekdays", $leadTime);
+        } else {
+            $leadTime = str_replace("day", "weekdays", $leadTime);
+        }
         return $this->dateTime->date(
-            'Y-m-d H:i:s', strtotime($leadTime, strtotime($createdAt))
+            'Y-m-d', strtotime($leadTime, strtotime($createdAt))
         );
     }
 
