@@ -1,0 +1,11 @@
+<!--@subject {{trans "Your %store_name late order email" store_name=$store.frontend_name}} @-->
+<!--@vars {
+
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+        	<p class="greeting">{{trans "%customer_name," customer_name=$customer_name}}</p>
+
+{{layout handle="late_orders_email_items" order=$order}}
+{{template config_path="design/email/footer_template"}}
