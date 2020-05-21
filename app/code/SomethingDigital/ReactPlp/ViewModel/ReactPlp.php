@@ -94,6 +94,19 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     }
 
     /**
+     * @return string|null
+     */
+    public function getDisplayMode()
+    {
+        if ($this->request->getFullActionName() == 'catalog_category_view') {
+            $category = $this->coreRegistry->registry('current_category');
+            return $category->getDisplayMode();
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Returns a JSON object
      * 
      * @return string JSON
@@ -115,6 +128,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         }
         $props = [
             'defaultCategoryId' => $this->getCategoryId(),
+            'displayMode' => $this->getDisplayMode(),
             'customerGroupId' => $customerGroupId,
             'apiUrls' => [
                 'cms' => [
