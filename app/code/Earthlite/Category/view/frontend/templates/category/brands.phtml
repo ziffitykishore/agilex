@@ -5,7 +5,7 @@
     $brands = $viewModel->getBrands();
 ?>
 <div class="shop-by-brand gutter">
-    <h2 class="text-center mb-6">Shop By Brands</h2>
+    <h2 class="text-center mb-6">Shop By Brand</h2>
     <div class="sbb-slider outer-arrow">
         <?php foreach ($brands as $brand ):?>
         <a class="item" href="<?=$categoryUrl?>?brands=<?=$brand['brandValue']?>"><figure><img src="<?=$brand['brandImage'] ?>" alt="<?=$brand['brandLabel'] ?>" /></figure></a>
