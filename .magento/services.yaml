@@ -12,3 +12,7 @@ redis:
 elasticsearch:
     type: elasticsearch:6.5
     disk: 4096
+
+rabbitmq:
+    type: rabbitmq:3.8
+    disk: 4096
