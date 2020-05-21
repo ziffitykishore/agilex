@@ -24,10 +24,6 @@
             <block class="Magento\Catalog\Block\Product\View" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
         </referenceContainer>
 
-        <referenceBlock name="product.info.addto">
-                <block class="Magento\Framework\View\Element\Template" name="parts.for.product" template="Magento_Catalog::product/view/partsforproducts.phtml" after="-"/>
-            </referenceBlock>
-
         <move element="product.info.sku" destination="product.info.main" before="product.info.price"/>
         <move element="product.info.stock.sku" destination="product.info.main" after="product.info.price"/>
         <move element="product.info.overview" destination="product.info.main" after="product.info.stock.sku"/>
