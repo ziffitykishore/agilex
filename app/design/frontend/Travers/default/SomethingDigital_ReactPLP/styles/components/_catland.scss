@@ -123,7 +123,6 @@
 .catland-content {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
 
     @include min-screen($screen__m) {
         flex-direction: row;
@@ -133,6 +132,10 @@
     .filter-heading {
         font-size: $font-size__base--desktop;
         min-height: 50px;
+
+        @include max-screen($screen__m) {
+            margin-top: 50px;
+        }
     }
 
     .catland-subcategories {
