@@ -117,7 +117,11 @@ class LateOrders
            $this->logger->info("Invalid Lead Time: $leadTime");
             return false; 
         }
-        $leadTime = str_replace("days","weekdays",$leadTime);
+        if (strpos($leadTime, 'days')) {
+            $leadTime = str_replace("days", "weekdays", $leadTime);
+        } else {
+            $leadTime = str_replace("day", "weekdays", $leadTime);
+        }
         return $this->dateTime->date(
             'Y-m-d', strtotime($leadTime, strtotime($createdAt))
         );
