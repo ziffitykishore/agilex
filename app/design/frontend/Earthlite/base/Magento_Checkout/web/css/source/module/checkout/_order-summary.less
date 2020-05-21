@@ -34,8 +34,12 @@
 
     .opc-block-summary {
         &:extend(.abs-add-box-sizing all);
-        .lib-css(background, @checkout-summary__background-color);
-        margin: 0 0 @indent__base;
+        /*.lib-css(background, @checkout-summary__background-color);*/
+        margin: 0;
+
+        .grand.totals {
+            font-size: 1.8rem;
+        }
 
         > .block-title {
             &:extend(.abs-checkout-title all);
@@ -60,7 +64,7 @@
                 &:after {
                     content: @icon-edit;
                     font-family: @icon__font-name;
-                    margin-left: 5px;
+                    margin-left: 10px;
                     display: inline-block;
                     vertical-align: middle;
                 }
@@ -69,6 +73,7 @@
 
         .items-in-cart {
             padding: 20px 0 20px 20px;
+            margin-bottom: 20px;
         }
 
         //  Totals table
@@ -76,6 +81,7 @@
             background: @color__ghostwhite;
             padding: 20px 15px;
             margin-bottom: 0;
+            border-radius: 0 0 10px 10px;
         }
         .table-totals {
             &:extend(.abs-sidebar-totals all);
@@ -284,7 +290,7 @@
 
             .product-item-name-block {
                 display: table-cell;
-                padding-right: @indent__xs;
+                padding-right: 10px;
                 text-align: left;
                 vertical-align: top;
 
@@ -301,6 +307,8 @@
 
             .details-qty {
                 .lib-font-size(13);
+                padding-right: 10px;
+                white-space: nowrap;
             }
 
             .subtotal {
@@ -351,8 +359,8 @@
 
 
     .opc-block-shipping-information {
-        border-top: 1px solid @color-lines;
-        padding: 20px;
+        /*        border-top: 1px solid @color-lines;
+                padding: 20px;*/
 
         .shipping-information-title {
             padding: 20px;

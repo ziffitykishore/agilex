@@ -1,3 +1,5 @@
 <?php if ($block->getPartFinderValue() && $block->getPartFinderCategoryUrl()): ?>
-    <a href="<?= $block->getPartFinderCategoryUrl() ?>"><?= $block->escapeHtml(__('Part Finder')) ?></a>
+    <a class="action product-parts" href="<?= $block->getPartFinderCategoryUrl() ?>" title="<?= $block->escapeHtml(__('Shop parts for this product'))?>">
+        <span><?= $block->escapeHtml(__('Shop parts for this product'))?></span>
+    </a>
 <?php endif; ?>
