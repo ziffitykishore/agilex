@@ -100,7 +100,7 @@ abstract class Adapter
 
             if (!$this->isSuccessful($curl->getStatus())) {
                 $this->logger->alert('SX error from GET ' . $this->getRequestUrl() . ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
-                return false;
+                return [];
             }
 
             return [
