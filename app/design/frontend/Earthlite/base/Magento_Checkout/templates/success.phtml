@@ -45,20 +45,18 @@
                     </div>
                 </div>
             </div>
+            <?php if ($_order->getOrderComments()): ?>
             <div class="col-lg-6 mb-lg-4">
                 <div class="card box-order-comments">
                     <strong class="card-header">
                         <span><?= $block->escapeHtml(__('Order Comments')) ?></span>
                     </strong>
                     <div class="card-body">
-                        <?php if ($_order->getOrderComments()): ?>
-                            <address><?= /* @noEscape */ $_order->getOrderComments() ?></address>
-                        <?php else: ?>
-                            <span><?= $block->escapeHtml(__('No Order Comments Available')) ?></span>
-                        <?php endif; ?>
+                        <address><?= /* @noEscape */ $_order->getOrderComments() ?></address>
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="ordered-items-summary row">
@@ -91,11 +89,8 @@
                                     <td class="col item" data-th="<?= $block->escapeHtmlAttr(__('Product Name')) ?>">
                                         <?php
                                         $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
-                                        if ($childProd = current($_item->getChildrenItems())) {
-                                            $productImage = $_imagehelper->init($childProd->getProduct(), 'category_page_list', array('height' => 75, 'width' => 75))->getUrl();
-                                        } else {
-                                            $productImage = $_imagehelper->init($_item->getProduct(), 'category_page_list', array('height' => 75, 'width' => 75))->getUrl();
-                                        }
+
+                                        $productImage = $_imagehelper->init($_item->getProduct(), 'category_page_list', array('height' => 75, 'width' => 75))->getUrl();
                                         ?>
                                         <span class="product-item-photo">
                                             <span class="product-image-container" style="width:80px;" >
@@ -107,26 +102,26 @@
                                         <div class="product-item-details">
                                             <strong class="product name product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
                                             <div class="product sku product-item-sku"><?= /* @noEscape */ $_item->getSku() ?></div>
-                                            <?php                    
-                                                $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
-                                                if($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
-                                            ?>
+                                            <?php
+                                            $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
+                                            if ($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
+                                                ?>
                                                 <div class="shipping-details" title="Shipping">
                                                     <span class="value with-tooltip">                            
                                                         <?= $estimatedShipment ?>
                                                         <div class="field-tooltip toggle">
                                                             <span class="field-tooltip-action"
-                                                                    tabindex="0"
-                                                                    data-toggle="dropdown"
-                                                                    data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
+                                                                  tabindex="0"
+                                                                  data-toggle="dropdown"
+                                                                  data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}">
                                                             </span>
                                                             <div class="field-tooltip-content"
-                                                                    data-target="dropdown">
-                                                                <?php if($helper->getItemProductionStatus($_item->getSku())): ?>
-                                                                    <?= $helper->getStoreConfig('production_item_text') ?>
-                                                                <?php else: ?>
-                                                                    <?= $helper->getStoreConfig('nonproduction_item_text') ?>
-                                                                <?php endif; ?>
+                                                                 data-target="dropdown">
+                                                                     <?php if ($helper->getItemProductionStatus($_item->getSku())): ?>
+                                                                         <?= $helper->getStoreConfig('production_item_text') ?>
+                                                                     <?php else: ?>
+                                                                         <?= $helper->getStoreConfig('nonproduction_item_text') ?>
+                                                                     <?php endif; ?>
                                                             </div>
                                                         </div>
                                                     </span>
@@ -147,7 +142,7 @@
                                     <td class="col subtotal" data-th="<?= $block->escapeHtmlAttr(__('Subtotal')) ?>">
                                         <?php
                                         $unitPrice = $_item->getPrice();
-                                        $unitSubtotal = $unitPrice * $_item->getQtyOrdered();
+                                        $unitSubtotal = $_item->getRowTotal();
                                         ?>
                                         <strong class="price"><?= $block->escapeHtml($this->helper('Magento\Framework\Pricing\Helper\Data')->currency($unitSubtotal, true, false)); ?></strong>
                                     </td>
@@ -163,7 +158,7 @@
         <?php endif; ?>
         <div class="block block-order-summary col-lg-4">
             <h3 style="opacity:0" class="d-none d-lg-block">
-                   <?= $block->escapeHtml(__('Order Summary')) ?>
+                <?= $block->escapeHtml(__('Order Summary')) ?>
             </h3>
             <div class="order-summary-wrap">
                 <h4 class="box-title">
