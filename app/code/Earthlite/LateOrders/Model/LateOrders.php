@@ -2,8 +2,6 @@
 declare(strict_types = 1);
 namespace Earthlite\LateOrders\Model;
 
-use Magento\Catalog\Api\ProductRepositoryInterfaceFactory;
-use Magento\Catalog\Model\ProductFactory;
 use Magento\Sales\Model\Order;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -17,17 +15,13 @@ use Psr\Log\LoggerInterface;
  */
 class LateOrders
 {
+    const LEAD_TIME_PATTERN = '/\b([1-9]{1}[0-9]{0,2} days|[1-9]{1}[0-9]{0,2} day|[1-9]{1}[0-9]{0,2}days|[1-9]{1}[0-9]{0,2}day)\b$/';
+    
     /**
      *
      * @var ProductRepositoryInterfaceFactory
      */
     protected $productRepositoryInterface;
-    
-    /**
-     *
-     * @var ProductFactory 
-     */
-    protected $productFactory;
     
     /**
      *
@@ -46,61 +40,80 @@ class LateOrders
      * @var Logger
      */
     protected $logger;
-
-
+    
     /**
      * LateOrders Constructor
-     * @param ProductRepositoryInterfaceFactory $productRepositoryInterface
-     * @param ProductFactory $productFactory
+     * 
      * @param DateTime $dateTime
      * @param ScopeConfigInterface $scopeConfig
      * @param LoggerInterface $logger
      */
     public function __construct(
-        ProductRepositoryInterfaceFactory $productRepositoryInterface,
-        ProductFactory $productFactory,
         DateTime $dateTime,
         ScopeConfigInterface $scopeConfig,
         LoggerInterface $logger
     ) {
-        $this->productRepositoryInterface = $productRepositoryInterface;
         $this->dateTime = $dateTime;
-        $this->productFactory = $productFactory;
         $this->scopeConfig = $scopeConfig;
         $this->logger = $logger;
     }
 
     /**
-     * 
+     *  
      * @param Order $order
-     * @return array
+     * @return bool
      */
-    public function getDelayedProducts(Order $order):array
+    public function checkOrderDelayed(Order $order):bool
     {
-        $delayedProductDetails = [];
-        foreach ($order->getAllVisibleItems() as $item) {
-            $productModel = $this->productFactory->create();
-            if ($item->getQtyOrdered() != $item->getQtyShipped() && $productModel->getIdBySku($item->getSku())) {
-                $productRepository = $this->productRepositoryInterface->create();
-                $productRepository->cleanCache();
-                $productDetails = $productRepository->getById($item->getProductId());
-                $leadTime = $productDetails->getCustomAttribute('lead_time')?$productDetails->getCustomAttribute('lead_time')->getValue():'';
-                $productionItem = $productDetails->getCustomAttribute('production_item')->getValue();
-                if (!$leadTime && !$productionItem) {
-                    $leadTime = $this->getDefaultNonProductionItemLeadTime();
-                }
-                if ($leadTime) {
-                    $todayDate = $this->dateTime->gmtDate('Y-m-d');
-                    $leadTimeDate = $this->formatLeadDate($leadTime, $order->getCreatedAt());
-                    if ($leadTimeDate && $todayDate > $leadTimeDate) {
-                        $delayedProductDetails[] = ["product" => $productDetails, "orderItem" => $item];
-                    }
+        if (!$order->hasShipments()) {
+            $modifiedLeadDatesofOrderItems = [];
+            foreach ($order->getAllVisibleItems() as $item) {
+                if ($item->getProduct() &&
+                        $leadTime = $this->getLeadTime($item->getProduct())
+                ) {
+                    $modifiedLeadDatesofOrderItems[] = $this->formatLeadDate($leadTime, $order->getCreatedAt());
                 }
             }
+            if ($modifiedLeadDatesofOrderItems) {
+                return $this->canSendEmail($modifiedLeadDatesofOrderItems); 
+            }
         }
-        return $delayedProductDetails;
+        return false;
     }
     
+    /**
+     * 
+     * @param  $product
+     * @return string|null
+     */
+    protected function getLeadTime($product)
+    {
+        $leadTime = $product->getLeadTime();
+        $productionItem = $product->getProductionItem();
+        if (!$leadTime && !$productionItem) {
+            $leadTime = $this->getDefaultNonProductionItemLeadTime();
+        }
+        return $leadTime;
+    }
+    
+    /**
+     * 
+     * @param type $modifiedLeadDatesofOrderItems
+     * @return bool
+     */
+    protected function canSendEmail($modifiedLeadDatesofOrderItems):bool
+    {
+        $maxLeadTime = $this->dateTime->gmtDate('Y-m-d',
+                max($modifiedLeadDatesofOrderItems)
+             );
+        $todayDate = $this->dateTime->gmtDate('Y-m-d');
+        if ($maxLeadTime && $todayDate > $maxLeadTime) {
+            return true;
+        }
+        return false;
+    }
+
+
     /**
      * 
      * @param string $leadTime
@@ -112,10 +125,9 @@ class LateOrders
         if (is_numeric($leadTime)) {
             $leadTime = "$leadTime days";
         }
-        $validLeadTimePattern = '/\b([1-9]{1,3} days|[1-9]{1,} day|[1-9]{1,}days|[1-9]{1,}day)\b$/';
-        if (!preg_match($validLeadTimePattern, $leadTime)) {
-           $this->logger->info("Invalid Lead Time: $leadTime");
-            return false; 
+        if (!preg_match(self::LEAD_TIME_PATTERN, $leadTime)) {
+            $this->logger->info("Invalid Lead Time: $leadTime");
+            return false;
         }
         if (strpos($leadTime, 'days')) {
             $leadTime = str_replace("days", "weekdays", $leadTime);
@@ -123,7 +135,7 @@ class LateOrders
             $leadTime = str_replace("day", "weekdays", $leadTime);
         }
         return $this->dateTime->date(
-            'Y-m-d', strtotime($leadTime, strtotime($createdAt))
+                        'Y-m-d', strtotime($leadTime, strtotime($createdAt))
         );
     }
 
