@@ -1,0 +1,43 @@
+<?php
+//@codingStandardsIgnoreFile
+
+/** @var Result $block */
+
+use Mirasvit\Blog\Block\Search\Result;
+
+?>
+
+<?php if ($block->getPostCollection()->count() > 0 || $block->getCmsPageFilters()->getSize()): ?>    <?php if($block->getCmsPageFilters()->getSize()): ?>
+        <div class="cms-pages">
+            <div class="block-title">
+                <?= $block->escapeHtml(__('Page List')) ?>
+            </div>
+            <div class="block-content">
+                <ul class="page-list">
+                    <?php
+                        if($collection = $block->getCmsPageFilters())
+                        {
+                            foreach($collection as $page)
+                            {
+                    ?>
+                    <li class="item">
+                        <?php if($page->getIdentifier() == 'home'):?>
+                            <a href="<?php echo $block->getBaseUrl() ?>"><?= $page->getTitle() ?></a>
+                        <?php else: ?>
+                        <a href="<?php echo $block->getBaseUrl().$page->getIdentifier().'/' ?>"><?= $page->getTitle() ?></a>
+                        <?php endif; ?>
+                    </li>
+                    <?php                     
+                            }
+                        }
+                    ?>
+                </ul>
+            </div>        
+        </div>
+    <?php endif ?>
+    <?= $block->getChildHtml('blog.post.list') ?>
+<?php else: ?>
+    <div class="message notice">
+        <div><?= __('Your search returned no results.') ?></div>
+    </div>
+<?php endif ?>
