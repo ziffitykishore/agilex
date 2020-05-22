@@ -8,6 +8,10 @@
             <resource>Earthlite_Customer::config_lateorders</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Late Orders Configuration</label>
+                <field id="late_order_enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="defaul_lead_time" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Defaut Lead Time</label>
                     <comment>This will be used for non production items.</comment>
