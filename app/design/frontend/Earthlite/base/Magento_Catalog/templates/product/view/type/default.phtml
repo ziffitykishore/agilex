@@ -7,9 +7,10 @@
 <?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
 
 <?php
+    $blockObj = $block->getLayout()->createBlock('Earthlite\ProductAvailability\Block\Product\View\AbstractView');
     $_product = $block->getProduct();
     $productionItem = $_product->getCustomAttribute('production_item')->getValue();
-    $stockItemQty = $_product->getExtensionAttributes()->getStockItem()->getQty();
+    $stockItemQty = $blockObj->getStockItem($_product->getId())->getQty();
 ?>
 
 <?php if ($block->displayProductStockStatus()) :?>
@@ -25,12 +26,12 @@
                         <span><?= $block->escapeHtml(__('In stock')) ?></span>
                     </div>
                 <?php break; ?>
-                <?php case ($stockItemQty < 10):?>
+                <?php case ($stockItemQty < 10 and $stockItemQty > 0):?>
                     <div class="stock low-available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
                         <span><?= $block->escapeHtml(__('<10 available')) ?></span>
                     </div>
                 <?php break; ?>
-                <?php case ($stockItemQty < 10):?>
+                <?php case ($stockItemQty == 0):?>
                     <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
                         <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
                     </div>
