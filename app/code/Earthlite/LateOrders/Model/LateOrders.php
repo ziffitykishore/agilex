@@ -175,4 +175,16 @@ class LateOrders
             ScopeInterface::SCOPE_STORE
         );
     }
+    
+    /**
+     * 
+     * @return int
+     */
+    public function getModuleStatus()
+    {
+        return $this->scopeConfig->getValue(
+            'earthlite_lateorders/general/late_order_enable',
+            ScopeInterface::SCOPE_STORE
+        );
+    }
 }

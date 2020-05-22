@@ -97,6 +97,10 @@ class LateOrders
      */
     public function execute()
     {
+        if (!$this->lateOrdersHelper->getModuleStatus())  {
+            $this->logger->info("Late orders module not enabled");
+            return false;
+        }
         $this->logger->info("Late orders cron started");
         $orders = $this->getOrders();
         foreach ($orders as $order) {
