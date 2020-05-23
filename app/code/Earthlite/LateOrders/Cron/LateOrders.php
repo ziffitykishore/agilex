@@ -97,6 +97,10 @@ class LateOrders
      */
     public function execute()
     {
+        if (!$this->lateOrdersHelper->getModuleStatus())  {
+            $this->logger->info("Late orders module not enabled");
+            return false;
+        }
         $this->logger->info("Late orders cron started");
         $orders = $this->getOrders();
         foreach ($orders as $order) {
@@ -127,9 +131,9 @@ class LateOrders
     protected function lateOrders(\Magento\Sales\Model\Order $order)
     { 
         try {
-            $delayedProductList = $this->lateOrdersHelper->getDelayedProducts($order);
-            if ($delayedProductList) {
-                $this->sendLateOrderEmail($order, $delayedProductList);
+            $delayedOrder = $this->lateOrdersHelper->checkOrderDelayed($order);
+            if ($delayedOrder) {
+               $this->sendLateOrderEmail($order);
             }
         } catch (\Exception $e) {
             $this->logger->info("Exception on late orders:".$e->getMessage());
@@ -139,9 +143,8 @@ class LateOrders
     /**
      * 
      * @param \Magento\Sales\Model\Order $order
-     * @param array $delayedProductDetails
      */
-    protected function sendLateOrderEmail(\Magento\Sales\Model\Order $order, array $delayedProductList)
+    protected function sendLateOrderEmail(\Magento\Sales\Model\Order $order)
     {
         $templateOptions = [
             'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
@@ -149,7 +152,7 @@ class LateOrders
         ];
         $templateVars = [
             'store' => $this->storeManagerInterface->getStore($order->getStoreId()),
-            'customer_name' => $order->getCustomerFirstName() . $order->getCustomerLastName(),
+            'customer_name' => $order->getCustomerFirstName() .' '. $order->getCustomerLastName(),
             'order' => $order
         ];
         $emailFromAddress = [
