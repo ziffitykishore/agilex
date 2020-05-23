@@ -5,11 +5,35 @@
         }
     }
 
-    .blog__post-view {
+    div.blog__post-view {
         .lib-clearfix();
+        font-size: 1.6rem;
+        line-height: 1.5;
 
         .blog__post-featured-image {
-            padding: 0 2rem 2rem 0;
+            border-radius: 8px;
+            margin: 0 2rem 2rem 0;
+            float: left;
+            max-width: 70%;
+        }
+
+        .post-entry-with-image {
+            margin-top: 20px;
+        }
+        
+        img {
+            height: auto;
+        }
+        .blog__post-footer, .blog__post-view-related-posts {
+            float: left;
+            width: 100%;
+        }
+        .blog__post-footer {
+            margin-top: 20px;
+        }
+        h2 {
+            font-size: 2.8rem;
+            margin-top: 30px;
         }
     }
 }
