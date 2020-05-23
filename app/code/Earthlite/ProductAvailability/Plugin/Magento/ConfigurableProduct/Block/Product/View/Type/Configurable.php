@@ -31,14 +31,14 @@ class Configurable
         \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable $subject,
         $result
     ) {
-        $jsonResult = json_decode($result, true);
-        $jsonResult['simpleQtys'] = [];
-        foreach ($subject->getAllowProducts() as $product) {
-            $productId = $product->getId();
-            $productQty = $this->stockItemRepository->get($productId);
-            $jsonResult['simpleQtys'][$productId] = $productQty->getQty();
-        }
-        $result = json_encode($jsonResult);
+//        $jsonResult = json_decode($result, true);
+//        $jsonResult['simpleQtys'] = [];
+//        foreach ($subject->getAllowProducts() as $product) {
+//            $productId = $product->getId();
+//            $productQty = $this->stockItemRepository->get($productId,'product_id');
+//            $jsonResult['simpleQtys'][$productId] = $productQty->getQty();
+//        }
+//        $result = json_encode($jsonResult);
         return $result;
     }
 }
