@@ -5,7 +5,8 @@
         <earthlite_lateorders>
             <general>
                 <defaul_lead_time>2days</defaul_lead_time>
-                <late_order_cron>0 12 * * *</late_order_cron>
+                <late_order_cron>0 0 * * *</late_order_cron>
+                <late_order_enable>1</late_order_enable>
             </general>
         </earthlite_lateorders>
     </default>
