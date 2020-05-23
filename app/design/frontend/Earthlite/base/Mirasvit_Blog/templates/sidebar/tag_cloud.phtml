@@ -1,0 +1,23 @@
+<?php
+//@codingStandardsIgnoreFile
+
+/** @var TagCloud $block */
+
+use Mirasvit\Blog\Block\Sidebar\TagCloud;
+
+$max = $block->getMaxPopularity() + 1;
+?>
+<div class="block blog__sidebar-tag-cloud">
+	<div class="block-title">
+		<?= __('Blog Tags') ?>
+	</div>
+    <div class="block-content">
+        <?php foreach ($block->getCollection() as $tag): ?>
+        	<li class="tag items">
+	            <a href="<?= $tag->getUrl() ?>" style="font-size: <?= ($tag->getPopularity() / $max * 3.0) ?>em">
+	                <?= $tag->getName() ?>
+	            </a>
+	        </li>
+        <?php endforeach ?>
+    </div>
+</div>

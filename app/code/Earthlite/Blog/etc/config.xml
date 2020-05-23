@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <blog>
+            <appearance>
+                <menu_title>Blog</menu_title>
+                <blog_name>Blog</blog_name>                
+            </appearance>
+            <comments>
+                <provider>Disable comments</provider>                
+            </comments>
+            <sharing>
+                <enable_addthis>0</enable_addthis>
+            </sharing>
+        </blog>
+    </default>
+</config>

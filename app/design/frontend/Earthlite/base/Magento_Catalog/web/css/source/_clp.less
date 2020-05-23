@@ -111,7 +111,9 @@
             opacity: 1;
         }
     }
-
+    .new-trend-slider {
+        overflow: hidden;
+    }
     .new-trend-wrap {
         margin-bottom: -40px;
         .product-item {
@@ -130,6 +132,46 @@
         }
         .slick-list .slick-slide[aria-hidden="true"] {
             opacity: 0.6;
+        }
+    }
+
+    .shop-by-brand {
+        max-width: 960px;
+        margin: 0 auto;
+        img  {
+            display: inline-block;
+            max-height: 80%;
+        }
+        figure {
+            text-align: center;
+            padding: 3rem;
+            border: 1px solid @color-lines;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 10px 20px;
+            position: relative;
+            -webkit-transition: box-shadow .7s ease;
+            transition: box-shadow .7s ease;
+            &:hover {
+                box-shadow: 4px 8px 10px 3px rgba(220, 224, 236, 0.64);
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                &:before {
+                    border-top: 6px solid @theme__color__primary;
+                }
+            }
+            &:before {
+                -webkit-transition: border .7s ease;
+                transition: border .7s ease;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -1px;
+                right: -1px;
+                border: 0;
+            }
         }
     }
 }
@@ -161,7 +203,13 @@
             right: -40px;
         }
     }
+    .shop-by-brand {
+        figure {
+            min-height: 150px;
+        }
+    }
 }
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
     .new-trend-products {
         .slick-prev {
@@ -186,6 +234,11 @@
     .clp-banner {
         .slide {
             height: 500px;
+        }
+    }
+    .shop-by-brand {
+        figure {
+            min-height: 200px;
         }
     }
 }
@@ -231,6 +284,14 @@
             padding: 0;
         }
     } 
+    .outer-arrow {
+        .slick-prev {
+            left: -3rem;
+        }
+        .slick-next {
+            right: -3rem;
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-mob) {
@@ -279,10 +340,15 @@
         }
     }
     .new-trend-slider {
-        overflow: hidden;
         padding-right: 20%;
         .slick-list {
             overflow: visible;
+        }
+    }
+    .shop-by-brand {
+        figure {
+            min-height: 100px;
+            padding: 2rem;
         }
     }
 }

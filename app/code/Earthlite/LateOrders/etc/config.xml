@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <earthlite_lateorders>
+            <general>
+                <defaul_lead_time>2days</defaul_lead_time>
+                <late_order_cron>0 0 * * *</late_order_cron>
+                <late_order_enable>1</late_order_enable>
+            </general>
+        </earthlite_lateorders>
+    </default>
+</config>

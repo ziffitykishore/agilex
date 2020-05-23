@@ -78,7 +78,8 @@ class ViewPlugin
         $storeId = $this->storeManagerInterface->getStore()->getId();
         $categoryDetails = $categoryRepository->get($categoryId, $storeId);
         if ($this->getCategoryListingPageStatus()) {
-            if ($categoryDetails->getLevel() == self::CATEGORY_LISTING_PAGE_LEVEL) {
+            if ($categoryDetails->getLevel() == self::CATEGORY_LISTING_PAGE_LEVEL
+                    && !array_key_exists('brands', $subject->getRequest()->getParams())) {
                 $resultForward = $this->resultForwardFactory->create();
                 $resultForward->setModule('category');
                 $resultForward->setController('index');

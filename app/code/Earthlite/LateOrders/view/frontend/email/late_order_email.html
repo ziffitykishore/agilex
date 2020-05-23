@@ -1,0 +1,13 @@
+<!--@subject {{trans "Your %store_name late order email" store_name=$store.frontend_name}} @-->
+<!--@vars {
+
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "%customer_name," customer_name=$customer_name}}</p>
+{{trans "It looks like your order #%increment_id has not shipped within our promised time frame." increment_id=$order.increment_id}}
+{{trans "We apologize for keeping you waiting and assure you we are trying our Best to get your order out of our warehouse in Southern California as soon as possible."}}
+{{trans "Thank you for your patience and understanding"}}
+
+{{template config_path="design/email/footer_template"}}
