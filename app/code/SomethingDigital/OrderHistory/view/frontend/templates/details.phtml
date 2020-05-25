@@ -10,6 +10,8 @@
 <?php /** @var  $block SomethingDigital\OrderHistory\Block\Sales\OrderDetails*/?>
 <div class="order-details-items ordered">
     <?php $order = $block->getOrder() ?>
+    <?php $subtotal = $block->getOrderSubtotal($order); ?>
+    <?php $grandTotal = $block->getOrderGrandTotal($order); ?>
 
     <div class="order-title">
         <strong><?= /* @escapeNotVerified */ __('Items Ordered') ?></strong>
@@ -66,7 +68,7 @@
                         <?= __('Subtotal') ?>
                     </th>
                     <td class="amount" data-th="<?= __('Subtotal') ?>">
-                    <span class="price"><?= $block->getCurrencyFormat($order->getData('Total')) ?></span>                    
+                    <span class="price"><?= $block->getCurrencyFormat($subtotal) ?></span>
                     </td>
                 </tr>
                 <?php if ($order->getDiscountAmount() != 0): ?>
@@ -87,12 +89,20 @@
                         <span class="price"><?= $block->getCurrencyFormat($order->getData('ShipFee')) ?></span>                    
                     </td>
                 </tr>
+                <tr class="tax">
+                    <th colspan="4" class="mark" scope="row">
+                        <?= __('Tax') ?>
+                    </th>
+                    <td class="amount" data-th="<?= __('Tax') ?>">
+                        <span class="price"><?= $block->getCurrencyFormat($order->getData('Tax')) ?></span>
+                    </td>
+                </tr>
                 <tr class="grand_total">
                     <th colspan="4" class="mark" scope="row">
                         <strong><?= __('Grand Total') ?></strong>
                     </th>
                     <td class="amount" data-th="<?= __('Grand Total') ?>">
-                        <strong><span class="price"><?= $block->getCurrencyFormat($order->getData('Total')) ?></span></strong>
+                        <strong><span class="price"><?= $block->getCurrencyFormat($grandTotal) ?></span></strong>
                     </td>
                 </tr>
             </tfoot>
