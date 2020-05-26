@@ -7,6 +7,7 @@ use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Catalog\Api\ProductRepositoryInterfaceFactory;
+use Magento\Directory\Model\Currency;
 
 class OrderItems
 {
@@ -29,14 +30,18 @@ class OrderItems
      */
     protected $productRepositoryInterface;
 
+    protected $currency;
+
     public function __construct(
         ProductFactory $productFactory,
         ScopeConfigInterface $scopeConfig,
-        ProductRepositoryInterfaceFactory $productRepositoryInterface
+        ProductRepositoryInterfaceFactory $productRepositoryInterface,
+        Currency $currency
     ) {
         $this->productFactory = $productFactory;
         $this->scopeConfig = $scopeConfig;
         $this->productRepositoryInterface = $productRepositoryInterface;
+        $this->currency = $currency;
     }
 
     /**
@@ -55,7 +60,9 @@ class OrderItems
                 $productRepository->cleanCache();
                 $productDetails = $productRepository->get($item->getSku());
                 if($productDetails->getTypeId() != 'virtual') {
-                    $delayedProductDetails[] = ['name' => $item->getName(), 'sku' => $item->getSku()];
+                    $unShippedQty = $item->getQtyOrdered()-$item->getQtyShipped();
+                    $price = $this->currency->format($item->getPrice(), array(), false, false);
+                    $delayedProductDetails[] = ['name' => $item->getName(), 'sku' => $item->getSku(), 'qty' => $unShippedQty, 'price' => $price];
                 }
             }
         }
