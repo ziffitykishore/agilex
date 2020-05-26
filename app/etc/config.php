@@ -531,7 +531,7 @@ return [
            ',
                     'session_storage_logging' => '0',
                     'translate_strategy' => 'dictionary',
-                    'enable_js_bundling' => '1'
+                    'enable_js_bundling' => '0'
                 ],
                 'css' => [
                     'minify_files' => '1',
