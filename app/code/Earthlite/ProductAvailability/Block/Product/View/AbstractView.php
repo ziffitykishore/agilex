@@ -1,22 +1,45 @@
 <?php
-
 namespace Earthlite\ProductAvailability\Block\Product\View;
 
+use Magento\CatalogInventory\Api\StockStateInterfaceFactory;
+use Magento\Backend\Block\Template\Context;
+
+/**
+ * class AbstractView
+ */
 class AbstractView extends \Magento\Framework\View\Element\Template
 {
+    /**
+     *
+     * @var StockStateInterfaceFactory
+     */
     protected $_stockItemRepository;
 
+    /**
+     * AbstractView constructor
+     * 
+     * @param Context $context
+     * @param StockStateInterfaceFactory $stockStateInterface
+     * @param array $data
+     */
     public function __construct(
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\CatalogInventory\Model\Stock\StockItemRepository $stockItemRepository,
+        Context $context,
+        StockStateInterfaceFactory $stockStateInterface,
         array $data = []
     ) {
-        $this->_stockItemRepository = $stockItemRepository;
+        $this->stockStateInterface = $stockStateInterface;
         parent::_construct($context, $data);
     }
 
-    public function getStockItem($productId)
+    /**
+     * 
+     * @param int $productId
+     * @return float
+     */
+    public function getStockQty($productId)
     {
-        return $this->_stockItemRepository->get($productId);
+        /** @var \Magento\CatalogInventory\Api\StockStateInterface $stockState **/
+        $stockState = $this->stockStateInterface->create();
+        return $stockState->getStockQty($productId);
     }
 }

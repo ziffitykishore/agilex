@@ -1,0 +1,24 @@
+<?php
+	if(!empty($items = $block->getOrderItems())):
+?>
+<table>
+	<thead>
+		<th><?= $block->escapeHtmlAttr(__('Item Name')) ?></th>
+		<th><?= $block->escapeHtmlAttr(__('Item Sku')) ?></th>
+		<th><?= $block->escapeHtmlAttr(__('Status')) ?></th>
+	</thead>
+	<tbody>
+		<?php foreach ($items as $item) 
+		{
+		?>
+			<tr>
+				<td><?= $item['name'] ?></td>
+				<td><?= $item['sku'] ?></td>
+				<td><?= $block->escapeHtmlAttr(__('Not Shipped')) ?></td>
+			</tr>
+		<?php			
+		} 
+		?>
+	</tbody>
+</table>
+<?php endif; ?>
