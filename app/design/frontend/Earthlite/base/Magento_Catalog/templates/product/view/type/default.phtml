@@ -10,7 +10,7 @@
     $blockObj = $block->getLayout()->createBlock('Earthlite\ProductAvailability\Block\Product\View\AbstractView');
     $_product = $block->getProduct();
     $productionItem = $_product->getCustomAttribute('production_item')->getValue();
-    $stockItemQty = 100;//$blockObj->getStockItem($_product->getId())->getQty();
+    $stockItemQty = $blockObj->getStockQty($_product->getId());
 ?>
 
 <?php if ($block->displayProductStockStatus()) :?>
