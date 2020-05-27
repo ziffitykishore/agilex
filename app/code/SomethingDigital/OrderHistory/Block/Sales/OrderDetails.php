@@ -62,6 +62,40 @@ class OrderDetails extends Template
     }
 
     /**
+     * Calculate order grand total
+     *
+     * @return float
+     */
+    public function getOrderGrandTotal($order)
+    {
+        $items = $order->getData('LineItems');
+        $total = 0;
+        foreach ($items as $key => $item) {
+            $total += $item['SoldPrice'];
+        }
+        $total += $order->getData('ShipFee');
+        $total += $order->getData('Tax');
+
+        return $total;
+    }
+
+    /**
+     * Calculate subtotal
+     *
+     * @return float
+     */
+    public function getOrderSubtotal($order)
+    {
+        $items = $order->getData('LineItems');
+        $total = 0;
+        foreach ($items as $key => $item) {
+            $total += $item['SoldPrice'];
+        }
+
+        return $total;
+    }
+
+    /**
      * Return back url for logged in and guest users
      *
      * @return string
