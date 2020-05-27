@@ -599,7 +599,7 @@ class Topmenu extends MagentoTopmenu
                 }
                 $html .= '<li class="menu-dropdown-icon category-item nav-'.$menuTree->getItemId().' '. $class . ' ' . $dataclass . '"><a href="' . $linkurl . '"><span class="megaitemicons">' . $menuTree->getItemFontIcon() . '</span> ' . $this->generateMenuName($menuTree) . '</a>';
 
-                $html .= '<ul class="animated ' . $animationOption . ' column' . $columnCount . " " . $verticalMenuClass . '" style="animation-duration: 0.7s;">';
+                $html .= '<div class="wrapper animated ' . $animationOption . '" style="animation-duration: 0.7s;"><ul class="column' . $columnCount . " " . $verticalMenuClass . '">';
 
                 if ($header_enable) {
                     $headerblockObject = $this->getLayout()->createBlock('Magento\Cms\Block\Block')
@@ -749,7 +749,7 @@ class Topmenu extends MagentoTopmenu
                     $html .= '</ul></li>';
                 }
 
-                $html .= '</ul></li>';
+                $html .= '</ul></div></li>';
             } else {
                 $html .= '<li class="' . $class . ' ' . $dataclass . '"><a href="' . $linkurl . '"><span class="megaitemicons">' . $menuTree->getItemFontIcon() . '</span> ' . $this->generateMenuName($menuTree) . '</a></li>';
             }
