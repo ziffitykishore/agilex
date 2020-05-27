@@ -12,6 +12,7 @@
 $columnsLimit = $block->getColumnsLimit() ? : 0;  
 ?>
 <?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit, false) ?>
+<?php $_mobMenu = $block->getHtml('level-top', 'submenu', $columnsLimit, true) ?>
 <?php $menuDesign = $block->getMenuDesign(); ?>
 
 <div class="menu-container horizontal-menu">
@@ -66,4 +67,49 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
             });
         }
     });
+</script>
+
+
+<div id="mobile-menu" class="mobile-menu">
+    <ul>
+        <?php if($customer = $block->getCustomerData()): ?>
+            <li class="greet welcome">
+                <?php echo 'Hello '.$customer->getFirstName().' '.$customer->getLastName(). '!'?> 
+            </li>
+            <li>
+                <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
+            </li>
+            <li class="link wishlist">
+                <a href="<?php echo $block->getBaseUrl().'wishlist/'?>">
+                    <?= $block->escapeHtml(__('My Wishlist')) ?>                        
+                </a>
+            </li>
+            <li class="authorization-link">
+                <a href="<?php echo $block->getLogoutUrl() ?>">Sign Out</a>
+            </li>
+        <?php else: ?>
+            <li> 
+                <a href="<?php echo $block->getBaseUrl().'customer/account/login'?>">
+                    <?= $block->escapeHtml(__('Sign In')) ?>                    
+                </a>
+            </li>
+            <li> 
+                <a href="<?php echo $block->getBaseUrl().'customer/account/create'?>">
+                    <?= $block->escapeHtml(__('Create Account')) ?>
+                </a> 
+            </li>
+        <?php endif; ?>
+    </ul>
+    <ul class="menu-list">
+        <?= /* @noEscape */ $_mobMenu; ?>
+    </ul>
+</div>
+
+<script type="text/javascript">
+	require(['jquery', 'mmenu'], function ($) 
+	{
+		$(document).ready(function(){
+		  $('#mobile-menu').mmenu();
+		});
+	});
 </script>
