@@ -1,0 +1,134 @@
+& when (@media-common = true) {
+    .blog__sidebar-main {
+        > .block {
+            margin-bottom: 2rem !important;
+
+            .block-title {
+                font-size: 18px;
+                font-weight: 300;
+                margin-bottom: 0.5rem;
+
+                strong {
+                    font-weight: 300;
+                }
+            }
+        }
+    }
+
+    .blog__sidebar-search {
+        margin-bottom: 2rem;
+
+        form {
+            position: relative;
+
+            input {
+                font-size: 1.3rem;
+                border-radius: 3px;
+            }
+
+            button {
+                right: 0;
+                top: 0;
+                position: absolute;
+                border-radius: 0 3px 3px 0;
+            }
+        }
+    }
+    
+    .block-collapsible-nav .item a, 
+    .block-collapsible-nav .item>strong {
+        padding: 4px 20px;
+    }
+
+    .blog__sidebar-recent {
+        .item {
+            .lib-clearfix();
+            margin-botttom: 15px;
+            .post-name {
+                font-size: 1.2rem;
+            }
+            img {
+                padding: 0 1rem 1rem 0;
+                float: left;
+                max-width: 10rem;
+                border-radius: 2px;
+            }
+
+            a {
+                font-size: 1.2rem;
+                display: block;
+                text-decoration: none;
+            }
+        }
+    }
+
+    .blog__sidebar-category-tree {
+        li.item {
+            &.level-2 {
+                a {
+                    padding-left: 4rem;
+                }
+            }
+
+            &.level-3 {
+                a {
+                    padding-left: 7rem;
+                }
+            }
+
+            &.level-4 {
+                a {
+                    padding-left: 9rem;
+                }
+            }
+
+            &.level-5 {
+                a {
+                    padding-left: 12rem;
+                }
+            }
+        }
+    }
+
+    .blog__sidebar-tag-cloud {
+        .tag.items {
+            float: left;
+            margin-bottom: 5px;
+        }
+        a {
+            border: 1px solid @title_color;
+            padding: 4px 15px;
+            display: block;
+            border-radius: 4px;
+        }
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .blog__sidebar-rss-link {
+        text-align: center;
+
+        a {
+            color: #999;
+            font-size: 1.5rem;
+
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .page-main {
+        .blog & {
+            position: relative;
+            padding-top: 41px;
+        }
+    }
+}
+

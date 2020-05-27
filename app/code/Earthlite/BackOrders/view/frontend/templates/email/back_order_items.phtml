@@ -1,0 +1,35 @@
+<?php
+	if(!empty($items = $block->getOrderItems())):
+?>
+<table class="email-items">
+	<thead>	
+        <tr>
+            <th class="item-info">
+                <?= $block->escapeHtml(__('Items')) ?>
+            </th>
+            <th class="item-qty">
+                <?= $block->escapeHtml(__('Qty Not Shipped')) ?>
+            </th>
+            <th class="item-price">
+                <?= $block->escapeHtml(__('Unit Price')) ?>
+            </th>
+        </tr>        
+	</thead>
+	<tbody>
+		<?php foreach ($items as $item) 
+		{
+		?>
+			<tr>
+				<td style="text-align: left;">
+					<p><?= $item['name'] ?></p>
+					<p><?= $block->escapeHtmlAttr(__('Sku : ')) ?><?= $item['sku'] ?></p>
+				</td>
+				<td style="text-align: center;"><?= $item['qty'] ?></td>
+				<td style="text-align: right;"><span><?= $item['price'] ?></span></td>
+			</tr>
+		<?php			
+		} 
+		?>
+	</tbody>
+</table>
+<?php endif; ?>
