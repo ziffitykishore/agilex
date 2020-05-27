@@ -11,7 +11,7 @@
  */
 $columnsLimit = $block->getColumnsLimit() ? : 0;  
 ?>
-<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit, false) ?>
 <?php $menuDesign = $block->getMenuDesign(); ?>
 
 <div class="menu-container horizontal-menu">
@@ -34,6 +34,7 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
     require(['jquery'], function ($) {
         var nav = $('.horizontal-menu');
         if (nav.length) {
+            $('body').addClass('mega-menu');
             var stickyHeaderTop = nav.offset().top;
             $(window).scroll(function () {
                 if ($(window).width() >= 768) {
@@ -58,6 +59,9 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
 
             $('.section-item-content .menu-container.horizontal-menu .menu > ul li.dropdown').each(function (e) {
                 $(this).children('a').after('<span class="plus"></span>');
+                if($(this).find('ul a').length) {
+                    $(this).addClass('parent');
+                }
             });
 
             $('.section-item-content .menu-container.horizontal-menu .menu > ul li.dropdown span.plus').click(function (e) {
@@ -65,5 +69,13 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                 $(this).toggleClass('active').siblings('ul').slideToggle('500');
             });
         }
+
+        if($(".section-item-content .menu-container .menu > ul > li").length > 4) {
+            $('.section-item-content .menu-container').addClass('menu-extended');
+        }
+
+        $(".section-item-content .menu-container .menu > ul > li.dropdown").hover(function () {
+            $('body').toggleClass("menu-hovered");
+        });
     });
 </script>

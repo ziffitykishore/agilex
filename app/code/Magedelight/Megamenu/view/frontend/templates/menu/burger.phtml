@@ -11,7 +11,7 @@
  */
 $burgerStatus = $block->getConfigBurgerStatus();
 $columnsLimit = $block->getColumnsLimit() ?: 0;
-$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit, false)
 ?>
 
 <nav class="navigation" data-action="navigation">
