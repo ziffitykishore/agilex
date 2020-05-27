@@ -692,6 +692,25 @@
                     background: transparent;
                     margin-bottom: 0;
 
+
+                    > ul { 
+                        > li.has-active {
+                            background: transparent;
+                            > a {
+                                color: @theme__color__primary;
+                                &:before {
+                                    display: block;
+                                }
+                            }
+
+                            li.has-active {
+                               >  a {
+                                    color: @theme__color__primary;
+                                }
+                            }
+                        }
+                    }
+
                     > ul {
                         position: static;
                         > li {
@@ -806,6 +825,12 @@
                                                         color: @theme__color__primary;
                                                     }
                                                 }
+
+                                                li.has-active {
+                                                    >  a {
+                                                         color: @theme__color__primary;
+                                                     }
+                                                 }
                                             }
                                         }
                                     }
@@ -1017,6 +1042,7 @@
             background: rgba(0,0,0,0.5);
             visibility: hidden;
             opacity: 0;
+            z-index: 99;
         }
 
         .page-header {
