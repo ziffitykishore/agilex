@@ -6,9 +6,12 @@
 {{template config_path="design/email/header_template"}}
 
 <p class="greeting">{{trans "%customer_name," customer_name=$customer_name}}</p>
-{{trans "It looks like your order #%increment_id with the following has not been shipped." increment_id=$order.increment_id}}
+{{trans "It looks like we just ran out of stock on some of your ordered items."}}
+<br /><br />
 {{layout handle="back_order_email_items" items=$items}}
-{{trans "We will keeping you waiting and assure we willdo our Best to get your order out of our warehouse in Southern California as soon as possible."}}
-{{trans "Thank you for your patience and understanding"}}
+<br />
+{{trans "The missing pieces will ship as soon as we have inventory again. If you would like to cancel the backordered items in the meantime, please visit your account. If you would like to know when we will have the products back in stock."}}
+<br /><br />
+{{trans 'please reach out to us via email : <a href="mailto:info@earthlite.com" style="display: inline-block;">info@earthlite.com</a>'|raw}}{{trans ' , chat on our website or phone : <a href="tel:800-872-0560" style="display: inline-block;">800-872-0560</a>'|raw}} {{trans 'We appreciate your understanding.'}}
 
 {{template config_path="design/email/footer_template"}}

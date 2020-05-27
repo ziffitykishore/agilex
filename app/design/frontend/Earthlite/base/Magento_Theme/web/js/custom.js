@@ -137,7 +137,8 @@ define([
     $('.field.password').each(function () {
         $(this).find('.control').append('<span class="icon-password icon-eye"/>');
 
-        $('.icon-password').on('click', function () {
+        $('.icon-password').on('click', function (event) {
+            event.stopImmediatePropagation();
             $(this).toggleClass("icon-eye icon-eye-off");
             var input = $(this).parent().find(".input-text");
             if (input.attr("type") === "password") {
