@@ -12,15 +12,18 @@ class Inventory implements ObserverInterface
         foreach ($vars['new_data'] as &$row) {
             if (isset($row['sx_inventory_status'])) {
                 if (strtolower(trim($row['sx_inventory_status'])) == 'dnr') {
+                    $row['stock.use_config_backorders'] = "No";
                     $row['stock.backorders'] = "No Backorders";
                     $row['stock.use_config_manage_stock'] =  "No";
                     $row['stock.manage_stock'] = "Yes";
                 } elseif (strtolower(trim($row['sx_inventory_status'])) == 'order as needed') {
+                    $row['stock.use_config_backorders'] = "No";
                     $row['stock.backorders'] = "No Backorders";
                     $row['stock.use_config_manage_stock'] =  "No";
                     $row['stock.is_in_stock'] = "In Stock";
                     $row['stock.manage_stock'] = "No";
                 } elseif (strtolower(trim($row['sx_inventory_status'])) == 'stock') {
+                    $row['stock.use_config_backorders'] = "No";
                     $row['stock.backorders'] = "Allow Qty Below 0 and Notify Customer";
                     $row['stock.use_config_manage_stock'] = "No";
                     $row['stock.is_in_stock'] = "In Stock";
