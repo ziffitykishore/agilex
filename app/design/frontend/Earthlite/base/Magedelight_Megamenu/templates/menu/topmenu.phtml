@@ -73,12 +73,15 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
 <div id="mobile-menu" class="mobile-menu">        
     <ul class="menu-list">
         <?php if($customer = $block->getCustomerData()): ?>
+        <li class="greet welcome">
+            <span class="customer-logo"></span>
+            <span class="message">
+                <?php echo 'Hello '.$customer->getFirstName().' '.$customer->getLastName(). '!'?> 
+            </span>
+        </li>
         <li>
             <a href="javascript.void(0)">My Account</a>
-            <ul>
-                <li class="greet welcome">
-                    <?php echo 'Hello '.$customer->getFirstName().' '.$customer->getLastName(). '!'?> 
-                </li>
+            <ul>               
                 <li>
                     <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
                 </li>
