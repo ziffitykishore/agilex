@@ -8,7 +8,9 @@ $newTrendingProducts = $block->getNewTrendingListForMenuItems();
     <div>
     <ul >
         <?php
+        $incr = 0;
         foreach ($newTrendingProducts as $newTrendingProduct) {
+            if($incr < 5){
             $productDetails = $block->getProductDetails($newTrendingProduct->getId());
             ?>
             <li>
@@ -28,7 +30,7 @@ $newTrendingProducts = $block->getNewTrendingListForMenuItems();
                     </div>
                 </div>
             </li>
-        <?php } ?>
+        <?php $incr ++; } } ?>
     </ul>
     </div>
     </section>
