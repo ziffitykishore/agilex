@@ -13,6 +13,7 @@ use Magento\Checkout\Model\Cart;
 class Suffix
 {
 
+    public $suffixFlag = false;
     protected $request;
     protected $session;
     protected $productCollection;
@@ -68,6 +69,9 @@ class Suffix
                     $quote = $this->quoteRepository->get($currentQuote->getId());
                     $quote->setSuffix($skuSuffix);
                     $this->quoteRepository->save($quote);
+                }
+                if ($skuSuffix) {
+                    $this->suffixFlag = true;
                 }
 
                 $subject->getResponse()->setRedirect($product->getProductUrl());
