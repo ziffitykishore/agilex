@@ -37,7 +37,7 @@ class ShortcodeMenu extends Topmenu
         return $this->primaryMenu->getIsSticky();
     }
 
-    public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0)
+    public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0, $mobMenu = false)
     {
         $html = '';
 

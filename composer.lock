@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36d5c3831586fdf5bbda84e552529f1f",
+    "content-hash": "a6f510b1be2c74956788300066b25b64",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -230,6 +230,33 @@
             "time": "2020-04-20T17:47:06+00:00"
         },
         {
+            "name": "avalara/avatax",
+            "version": "15.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/avadev/AvaTax-Calc-SOAP-PHP.git",
+                "reference": "5f1e6539c6c086be6ac137a824e265c646aef452"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/avadev/AvaTax-Calc-SOAP-PHP/zipball/5f1e6539c6c086be6ac137a824e265c646aef452",
+                "reference": "5f1e6539c6c086be6ac137a824e265c646aef452",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AvaTax\\": "AvaTax"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "A set of classes to assist with integration to the Avalara AvaTax SOAP API.",
+            "time": "2017-05-25T15:46:32+00:00"
+        },
+        {
             "name": "bacon/bacon-qr-code",
             "version": "1.0.3",
             "source": {
@@ -431,6 +458,40 @@
                 "rfc4648"
             ],
             "time": "2018-11-02T09:03:50+00:00"
+        },
+        {
+            "name": "classyllama/module-avatax",
+            "version": "1.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/classyllama/ClassyLlama_AvaTax.git",
+                "reference": "cbebfa657f9a5e8f4b2c9be2a0b9c82c60527ffc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/classyllama/ClassyLlama_AvaTax/zipball/cbebfa657f9a5e8f4b2c9be2a0b9c82c60527ffc",
+                "reference": "cbebfa657f9a5e8f4b2c9be2a0b9c82c60527ffc",
+                "shasum": ""
+            },
+            "require": {
+                "avalara/avatax": "^15.5.2.0",
+                "magento/framework": "^100.1.0|101.0.*|^102.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "ClassyLlama\\AvaTax\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "abandoned": "avalara/avatax-magento",
+            "time": "2019-02-22T20:55:07+00:00"
         },
         {
             "name": "colinmollenhour/cache-backend-file",

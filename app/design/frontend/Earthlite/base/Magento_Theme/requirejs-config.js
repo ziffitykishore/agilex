@@ -9,7 +9,8 @@ var config = {
     ],
     map: {
         '*': {
-            'mgsaos': 'Magento_Theme/js/aos'
+            'mgsaos': 'Magento_Theme/js/aos',
+            'mmenu': 'js/mmenu'
         }
     },
     'shim': {

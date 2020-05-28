@@ -1,0 +1,17 @@
+<!--@subject {{trans "Your %store_name back order email" store_name=$store.frontend_name}} @-->
+<!--@vars {
+
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">{{trans "%customer_name," customer_name=$customer_name}}</p>
+{{trans "It looks like we just ran out of stock on some of your ordered items."}}
+<br /><br />
+{{layout handle="back_order_email_items" items=$items}}
+<br />
+{{trans "The missing pieces will ship as soon as we have inventory again. If you would like to cancel the backordered items in the meantime, please visit your account. If you would like to know when we will have the products back in stock."}}
+<br /><br />
+{{trans 'please reach out to us via email : <a href="mailto:info@earthlite.com" style="display: inline-block;">info@earthlite.com</a>'|raw}}{{trans ' , chat on our website or phone : <a href="tel:800-872-0560" style="display: inline-block;">800-872-0560</a>'|raw}} {{trans 'We appreciate your understanding.'}}
+
+{{template config_path="design/email/footer_template"}}

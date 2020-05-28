@@ -1,0 +1,138 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2017 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_Megamenu
+ * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+$columnsLimit = $block->getColumnsLimit() ? : 0;  
+?>
+<?php $_menu = $block->getHtml('level-top', 'submenu', $columnsLimit, false) ?>
+<?php $_mobMenu = $block->getHtml('level-top', 'submenu', $columnsLimit, true) ?>
+<?php $menuDesign = $block->getMenuDesign(); ?>
+
+<div class="menu-container horizontal-menu">
+    <div data-action="navigation" class="menu <?= /* @noEscape */ $menuDesign; ?> <?php
+    if ($block->isSticky() === '1') :
+        echo "stickymenu";
+    endif;
+            ?>">
+        <ul>
+            <?= /* @noEscape */ $_menu; ?>
+        </ul>
+        <?php
+        echo $block->menuStyleHtml();
+        ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var animation_time = '<?= /* @noEscape */ $block->animationTime(); ?>';
+    require(['jquery'], function ($) {
+        var nav = $('.horizontal-menu');
+        if (nav.length) {
+            $('body').addClass('mega-menu');
+            var stickyHeaderTop = nav.offset().top;
+            $(window).scroll(function () {
+                if ($(window).width() >= 768) {
+                    if ($(window).scrollTop() > stickyHeaderTop) {
+
+                        if ($('.horizontal-menu .stickymenu').hasClass('vertical-right')) {
+                            var outerWidth = $('.section-items.nav-sections-items').width();
+                            var innerWidth = $('.menu-container.horizontal-menu').width();
+                            var rightMargin = ((outerWidth - innerWidth) / 2) + 'px';
+                            $('.horizontal-menu .stickymenu').css({position: 'fixed', top: '0px', right: rightMargin});
+                        } else {
+                            $('.horizontal-menu .stickymenu').css({position: 'fixed', top: '0px'});
+                        }
+
+                        $('.stickyalias').css('display', 'block');
+                    } else {
+                        $('.horizontal-menu .stickymenu').css({position: 'static', top: '0px'});
+                        $('.stickyalias').css('display', 'none');
+                    }
+                }
+            });
+
+            $('.section-item-content .menu-container.horizontal-menu .menu > ul li.dropdown').each(function (e) {
+                $(this).children('a').after('<span class="plus"></span>');
+                if($(this).find('ul a').length) {
+                    $(this).addClass('parent');
+                }
+            });
+
+            $('.section-item-content .menu-container.horizontal-menu .menu > ul li.dropdown span.plus').click(function (e) {
+                $(this).siblings('a').toggleClass('active');
+                $(this).toggleClass('active').siblings('ul').slideToggle('500');
+            });
+        }
+
+        if($(".section-item-content .menu-container .menu > ul > li").length > 4) {
+            $('.section-item-content .menu-container').addClass('menu-extended');
+        }
+
+        $(".section-item-content .menu-container .menu > ul > li.dropdown").hover(function () {
+            $('body').toggleClass("menu-hovered");
+        });
+    });
+</script>
+
+
+<div id="mobile-menu" class="mobile-menu">        
+    <ul class="menu-list">
+        <?php if($customer = $block->getCustomerData()): ?>
+        <li class="greet welcome">
+            <span class="customer-logo"></span>
+            <span class="message">
+                <?php echo 'Hello '.$customer->getFirstName().' '.$customer->getLastName(). '!'?> 
+            </span>
+        </li>
+        <li>
+            <a href="javascript.void(0)">My Account</a>
+            <ul>               
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
+                </li>
+                <li class="link wishlist">
+                    <a href="<?php echo $block->getBaseUrl().'wishlist/'?>">
+                        <?= $block->escapeHtml(__('My Wishlist')) ?>                        
+                    </a>
+                </li>
+                <li class="authorization-link">
+                    <a href="<?php echo $block->getLogoutUrl() ?>">Sign Out</a>
+                </li>
+            </ul>
+        </li>
+        <?php else: ?>
+            <li>
+                <a href="javascript.void(0)">My Account</a>
+                <ul>
+                    <li> 
+                        <a href="<?php echo $block->getBaseUrl().'customer/account/login'?>">
+                            <?= $block->escapeHtml(__('Sign In')) ?>                    
+                        </a>
+                    </li>
+                    <li> 
+                        <a href="<?php echo $block->getBaseUrl().'customer/account/create'?>">
+                            <?= $block->escapeHtml(__('Create Account')) ?>
+                        </a> 
+                    </li>
+                </ul>
+            </li>
+        <?php endif; ?>
+        <?= /* @noEscape */ $_mobMenu; ?>
+    </ul>
+</div>
+
+<script type="text/javascript">
+	require(['jquery', 'mmenu'], function ($) 
+	{
+		$(document).ready(function(){
+		  $('#mobile-menu').mmenu();
+		});
+	});
+</script>

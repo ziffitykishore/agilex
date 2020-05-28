@@ -2,22 +2,27 @@
 
 namespace Earthlite\ProductAvailability\Plugin\Magento\ConfigurableProduct\Block\Product\View\Type;
 
+use Magento\CatalogInventory\Api\StockStateInterfaceFactory;
+
 /**
  * Configurable class
  */
 class Configurable
 {
-    private $stockItemRepository;
+    /**
+     *
+     * @var StockStateInterfaceFactory 
+     */
+    protected $stockStateInterface;
 
     /**
-     * Construct function
-     *
-     * @param \Magento\CatalogInventory\Model\Stock\StockItemRepository $stockItemRepository
+     * 
+     * @param StockStateInterfaceFactory $stockStateInterface
      */
     public function __construct(
-        \Magento\CatalogInventory\Model\Stock\StockItemRepository $stockItemRepository
+        StockStateInterfaceFactory $stockStateInterface
     ) {
-        $this->stockItemRepository = $stockItemRepository;
+        $this->stockStateInterface = $stockStateInterface;
     }
 
     /**
@@ -35,8 +40,9 @@ class Configurable
         $jsonResult['simpleQtys'] = [];
         foreach ($subject->getAllowProducts() as $product) {
             $productId = $product->getId();
-            $productQty = $this->stockItemRepository->get($productId);
-            $jsonResult['simpleQtys'][$productId] = $productQty->getQty();
+            /** @var \Magento\CatalogInventory\Api\StockStateInterface $stockState **/
+            $stockState = $this->stockStateInterface->create();
+            $jsonResult['simpleQtys'][$productId] = $stockState->getStockQty($productId);
         }
         $result = json_encode($jsonResult);
         return $result;
