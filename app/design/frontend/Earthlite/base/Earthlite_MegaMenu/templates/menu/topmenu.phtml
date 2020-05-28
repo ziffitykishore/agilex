@@ -92,7 +92,7 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
             </span>
         </span>
         <li>
-            <span>My Account</span>
+            <span><?= $block->escapeHtml(__('My Account')) ?></span>
             <ul>               
                 <li>
                     <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
@@ -103,13 +103,13 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                     </a>
                 </li>
                 <li class="authorization-link">
-                    <a href="<?php echo $block->getLogoutUrl() ?>">Sign Out</a>
+                    <a href="<?php echo $block->getLogoutUrl() ?>"><?= $block->escapeHtml(__('Sign Out')) ?></a>
                 </li>
             </ul>
         </li>
         <?php else: ?>
             <li>
-                <span>My Account</span>
+                <span><?= $block->escapeHtml(__('My Account')) ?></span>
                 <ul>
                     <li> 
                         <a href="<?php echo $block->getBaseUrl().'customer/account/login'?>">
@@ -125,6 +125,10 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
             </li>
         <?php endif; ?>
         <?= /* @noEscape */ $_mobMenu; ?>
+        
+        <span class="phone-sec">
+            <a href="tel:800-872-0560">800-872-0560</a>
+        </span>
     </ul>
 </div>
 
@@ -155,10 +159,6 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                 
                 $('.menu-list .greet.welcome').wrap('<div class="user-info"/>');
                 $('.user-info').insertAfter('.mm-navbar-top .mm-title');
-
-                if($('.user-info').is(':visible')) {
-                    $('.mm-navbar-top').toggleClass('white-bg');
-                }
 
 		});
 	});
