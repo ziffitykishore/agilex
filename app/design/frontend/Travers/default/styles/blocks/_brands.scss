@@ -1,4 +1,14 @@
 .cms-brands {
+    .breadcrumbs {
+        max-width: 90%;
+        margin: 0 auto;
+        padding-left: $indent__xs;
+
+        @include min-screen($screen__m) {
+            max-width: 80%;
+        }
+    }
+
     .column.main {
         [data-content-type="row"] {
             margin: 0 !important; // Overrides PageBuilder
