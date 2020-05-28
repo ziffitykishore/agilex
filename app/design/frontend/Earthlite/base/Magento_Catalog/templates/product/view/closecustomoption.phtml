@@ -1,28 +1,29 @@
 <?php
 $product = $block->getProduct();
 $productType = $product->getTypeId();
-if ($productType == 'configurable'):
+$customOptions = $product->getProductOptionsCollection();
+$size = $customOptions->getSize();
+if ($productType == 'configurable') {
     $productInstance = $product->getTypeInstance();
-    if (count($productInstance->getConfigurableOptions($product)) > 3):
-        ?>
+    $size += count($productInstance->getConfigurableOptions($product));
+}
+if ($size > 3):
+    ?>
 
-        <div class="header-content">
-            <h5>Customize your product</h5>
-            <span class="icon-x" data-role="button" id="product-customize-close"></span>
-        </div>
-        <script type="text/javascript">
-            require(['jquery'], function ($) {
-                $("body").addClass("has-configslide");
-                $(".custom-options-container").addClass("slide");
-                $("#product-customize-button").click(function () {
-                    $("body").addClass('configslide-open');
-                });
-                $("#product-customize-close, .config-overlay").click(function () {
-                    $("body").removeClass('configslide-open');
-                });
-            })
-        </script>
-        <?php
-    endif;
-endif;
-?>
+    <div class="header-content">
+        <h5>Customize your product</h5>
+        <span class="icon-x" data-role="button" id="product-customize-close"></span>
+    </div>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            $("body").addClass("has-configslide");
+            $(".custom-options-container").addClass("slide");
+            $("#product-customize-button").click(function () {
+                $("body").addClass('configslide-open');
+            });
+            $("#product-customize-close, .config-overlay").click(function () {
+                $("body").removeClass('configslide-open');
+            });
+        })
+    </script>
+<?php endif; ?>
