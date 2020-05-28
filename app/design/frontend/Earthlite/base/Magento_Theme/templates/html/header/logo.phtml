@@ -9,7 +9,7 @@
  */
 $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt()
 ?>
-<a href="#mobile-menu" data-action="toggle-nav" class="action nav-toggle menu-toggle"><span><?= $block->escapeHtml(__('Toggle Nav')) ?></span></a>
+<a href="#mobile-menu" data-action="toggle-nav" class="action menu-toggle"><span><?= $block->escapeHtml(__('Toggle Nav')) ?></span></a>
 <a
     class="logo"
     href="<?= $block->escapeUrl($block->getUrl('')) ?>"

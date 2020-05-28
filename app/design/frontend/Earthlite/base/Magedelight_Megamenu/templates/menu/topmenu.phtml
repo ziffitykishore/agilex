@@ -82,17 +82,17 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
 </script>
 
 
-<div id="mobile-menu" class="mobile-menu">        
+<div id="mobile-menu" class="mobile-menu">
     <ul class="menu-list">
         <?php if($customer = $block->getCustomerData()): ?>
-        <li class="greet welcome">
+        <span class="greet welcome">
             <span class="customer-logo"></span>
             <span class="message">
                 <?php echo 'Hello '.$customer->getFirstName().' '.$customer->getLastName(). '!'?> 
             </span>
-        </li>
+        </span>
         <li>
-            <a href="javascript.void(0)">My Account</a>
+            <span>My Account</span>
             <ul>               
                 <li>
                     <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
@@ -109,7 +109,7 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
         </li>
         <?php else: ?>
             <li>
-                <a href="javascript.void(0)">My Account</a>
+                <span>My Account</span>
                 <ul>
                     <li> 
                         <a href="<?php echo $block->getBaseUrl().'customer/account/login'?>">
@@ -132,7 +132,34 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
 	require(['jquery', 'mmenu'], function ($) 
 	{
 		$(document).ready(function(){
-		  $('#mobile-menu').mmenu();
+		  $('#mobile-menu').mmenu({
+                extensions: ['effect-slide-menu'],
+                    searchfield: false,
+                    counters: false,
+                    navbar: {
+                        title: ['']
+                    },
+                    offCanvas: {
+                        position: "left"
+                    },
+                    navbars: [{
+                            position: 'top',
+                            content: [
+                                'prev',
+                                'title',
+                                'close'
+                            ]
+                        }]
+                });
+
+                
+                $('.menu-list .greet.welcome').wrap('<div class="user-info"/>');
+                $('.user-info').insertAfter('.mm-navbar-top .mm-title');
+
+                if($('.user-info').is(':visible')) {
+                    $('.mm-navbar-top').toggleClass('white-bg');
+                }
+
 		});
 	});
 </script>
