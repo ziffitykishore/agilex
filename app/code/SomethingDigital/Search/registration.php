@@ -1,7 +1,7 @@
 <?php
 
 \Magento\Framework\Component\ComponentRegistrar::register(
-    ComponentRegistrar::MODULE, 
+    \Magento\Framework\Component\ComponentRegistrar::MODULE,
     'SomethingDigital_Search', 
     __DIR__
 );
