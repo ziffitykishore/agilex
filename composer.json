@@ -15,9 +15,14 @@
         "repo": {
             "type": "composer",
             "url": "https://repo.magento.com"
+        },
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/enterprise/"
         }
     },
     "require": {
+        "amasty/feed": "^2.6",
         "classyllama/module-avatax": "^1.5",
         "magento/magento-cloud-metapackage": ">=2.3.4 <2.3.5",
         "mageplaza/module-ajax-layered-navigation": "1.0",
