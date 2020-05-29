@@ -967,7 +967,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                 }
                 $html .= '<li class="menu-dropdown-icon category-item nav-'.$menuTree->getItemId().' '. $class . ' ' . $dataclass . '"><a href="' . $linkurl . '"><span class="megaitemicons">' . $menuTree->getItemFontIcon() . '</span> ' . $this->generateMenuName($menuTree) . '</a>';
 
-                $html .= '<ul class="animated1111 ' . $animationOption . ' column' . $columnCount . " " . $verticalMenuClass . '" style="animation-duration: 0.7s;">';
+                $html .= '<ul class="animated ' . $animationOption . ' column' . $columnCount . " " . $verticalMenuClass . '" style="animation-duration: 0.7s;">';
 
                 if ($header_enable) {
                     $headerblockObject = $this->getLayout()->createBlock('Magento\Cms\Block\Block')
