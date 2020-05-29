@@ -500,13 +500,16 @@ return [
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
         'Magento_Worldpay' => 1,
+        'Amasty_Base' => 1,
+        'Amasty_CronScheduleList' => 1,
+        'Dotdigitalgroup_Email' => 1,
         'Amazon_Core' => 1,
         'Amazon_Login' => 1,
         'Amazon_Payment' => 1,
         'ClassyLlama_AvaTax' => 1,
-        'Dotdigitalgroup_Email' => 1,
         'Dotdigitalgroup_Chat' => 1,
         'Dotdigitalgroup_Enterprise' => 1,
+        'Amasty_Feed' => 1,
         'Earthlite_BackOrders' => 1,
         'Mirasvit_Blog' => 1,
         'Earthlite_Category' => 1,
@@ -558,3 +561,4 @@ return [
         ]
     ]
 ];
+
