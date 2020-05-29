@@ -21,6 +21,7 @@ use Magento\Framework\Data\Tree\NodeFactory;
 use Magedelight\Megamenu\Model\MenuFactory;
 use Magedelight\Megamenu\Model\MenuItemsFactory;
 use Magento\Cms\Model\BlockFactory;
+use Magento\Customer\Model\Context;
 
 /**
  * Class Topmenu
@@ -89,6 +90,23 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
 
     public $output;
 
+    /**
+     * Customer session
+     *
+     * @var \Magento\Framework\App\Http\Context
+     */
+    protected $httpContext;
+
+    /**
+     * @var \Magento\Customer\Model\Url
+     */
+    protected $_customerUrl;
+
+    /**
+     * @var \Magento\Framework\Data\Helper\PostHelper
+     */
+    protected $_postDataHelper;
+
     protected $mdColumnCount = 10;
 
     /**
@@ -122,6 +140,9 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
         \Magento\Catalog\Helper\Output $output,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Customer\Model\SessionFactory $customerSession,
+        \Magento\Framework\App\Http\Context $httpContext,
+        \Magento\Customer\Model\Url $customerUrl,
+        \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
         array $data = []
     ) {
         parent::__construct($context, $nodeFactory, $treeFactory, $menuFactory, $menuItemsFactory, $blockFactory, $page, $session, $registry, $categoryRepository, $categoryHelper, $categoryFlatState, $categoryFactory, $output, $data);
@@ -139,6 +160,9 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
         $this->categoryFactory = $categoryFactory;
         $this->output = $output;
         $this->_storeManager = $storeManager;
+        $this->httpContext = $httpContext;
+        $this->_customerUrl = $customerUrl;
+        $this->_postDataHelper = $postDataHelper;
     }
 
     /**         /**
@@ -178,19 +202,50 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
      */
     public function getCustomerData() 
     {
-        if ($this->customerSession->create()->getCustomer()) {
-        
+        if ($this->isLoggedIn())
+        {        
             return $this->customerSession->create()->getCustomerData();
         }        
         return false;  
     }
 
     public function getLogoutUrl() {
-        if ($this->customerSession->create()->getCustomer()) {
+        if ($this->isLoggedIn()) {
             return $this->_storeManager->getStore()->getUrl('customer/account/logout');
         }
 
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHref()
+    {
+        return $this->isLoggedIn()
+            ? $this->_customerUrl->getLogoutUrl()
+            : $this->_customerUrl->getLoginUrl();
+    }
+
+
+    /**
+     * Retrieve params for post request
+     *
+     * @return string
+     */
+    public function getPostParams()
+    {
+        return $this->_postDataHelper->getPostData($this->getHref());
+    }
+
+    /**
+     * Is logged in
+     *
+     * @return bool
+     */
+    public function isLoggedIn()
+    {
+        return (bool) $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
     }
 
     /**
@@ -912,7 +967,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                 }
                 $html .= '<li class="menu-dropdown-icon category-item nav-'.$menuTree->getItemId().' '. $class . ' ' . $dataclass . '"><a href="' . $linkurl . '"><span class="megaitemicons">' . $menuTree->getItemFontIcon() . '</span> ' . $this->generateMenuName($menuTree) . '</a>';
 
-                $html .= '<ul class="animated ' . $animationOption . ' column' . $columnCount . " " . $verticalMenuClass . '" style="animation-duration: 0.7s;">';
+                $html .= '<ul class="animated1111 ' . $animationOption . ' column' . $columnCount . " " . $verticalMenuClass . '" style="animation-duration: 0.7s;">';
 
                 if ($header_enable) {
                     $headerblockObject = $this->getLayout()->createBlock('Magento\Cms\Block\Block')
@@ -1016,7 +1071,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                             $childrenCats = $_category->getChildrenCategories();
 
                             $html .= '<li class="category-item nav-'.$menuTree->getItemId().'-'.$subcat->getId().' ' . $verticalclass . '"><a href="' . $_category->getUrl() . '">' . $_category->getName() . '</a>';
-                            if (!empty($childrenCats)) {
+                            if (!empty($childrenCats) && $childrenCats->count()) {
                                 $html .= '<ul class="level3">';
                                 foreach ($childrenCats as $childrenCat) {
                                     $verticalclass = '';
