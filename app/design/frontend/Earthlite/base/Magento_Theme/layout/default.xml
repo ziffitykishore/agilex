@@ -52,7 +52,9 @@
         <referenceBlock name="invitation_link_top" remove="true"/>
         <referenceBlock name="report.bugs" remove="true"/>
 
-
+        <container name="scroll-to-top" htmlTag="div" htmlClass="to-top" htmlId="toTop" after="-">
+            <block class="Magento\Framework\View\Element\Template" name="to-top" template="Magento_Theme::html/scrolltotop.phtml" />
+        </container>
 
         <referenceContainer name='footer'>
             <container name='custom_brand_message' htmlTag="div" label="Page Footer Brand Message" htmlClass="brand-message"/>
