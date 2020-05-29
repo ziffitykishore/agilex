@@ -27,6 +27,7 @@ define([
                     url: config.url,
                     data: {
                         products: skus,
+                        type: type
                     }
                 }
 
