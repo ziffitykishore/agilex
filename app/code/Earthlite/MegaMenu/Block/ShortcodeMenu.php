@@ -11,7 +11,7 @@
  * @author Magedelight <info@magedelight.com>
  */
 
-namespace Magedelight\Megamenu\Block;
+namespace Earthlite\MegaMenu\Block;
 
 use Magedelight\Megamenu\Block\Topmenu;
 
@@ -20,24 +20,10 @@ use Magedelight\Megamenu\Block\Topmenu;
  *
  * @package Magedelight\Megamenu\Block
  */
-class ShortcodeMenu extends Topmenu
-{
-    /**
-     * Get top menu html
-     *
-     * @param string $outermostClass
-     * @param string $childrenWrapClass
-     * @param int $limit
-     * @return string
-     */
-    public function isStickyEnable()
-    {
-        $this->primaryMenuId = $this->getMenuid();
-        $this->primaryMenu = $this->menuFactory->create()->load($this->primaryMenuId);
-        return $this->primaryMenu->getIsSticky();
-    }
+class ShortcodeMenu extends \Magedelight\Megamenu\Block\ShortcodeMenu
+{  
 
-    public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0)
+    public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0, $mobMenu = false)
     {
         $html = '';
 

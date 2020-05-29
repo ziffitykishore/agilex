@@ -116,9 +116,8 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
     {
         /** @var $collection \Magento\Catalog\Model\ResourceModel\Product\Collection */
         $categoryIds = explode(',', $this->getChildCategories($this->getCategoryId()));
-        $collection = $this->productCollectionFactory->create()
-                ->addCategoriesFilter(['in' => $categoryIds]);
-        return $this->getUpdatedCollection($collection);        
+        $categoryIds[] = $this->getCategoryId();
+        return $this->getProductCollection($categoryIds);        
     }
     
     /**
@@ -218,4 +217,23 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
         }
         return \Magento\Catalog\Model\Category::TREE_ROOT_ID;
     }
+    
+    public function getNewTrendingListForMenuItems()
+    {
+        return $this->getProductCollection(explode(',', $this->_getData('parentcat')));        
+    }
+    
+    /**
+     * 
+     * @param array $categoryIds
+     * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
+     */
+    public function getProductCollection(array $categoryIds) 
+    {
+        /** @var $collection \Magento\Catalog\Model\ResourceModel\Product\Collection */
+        $collection = $this->productCollectionFactory->create()
+                ->addCategoriesFilter(['in' => $categoryIds]);
+        return $this->getUpdatedCollection($collection);
+    }
+
 }
