@@ -81,7 +81,7 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
     });
 </script>
 
-<div data-bind="scope: 'customer'" class="user-prof">
+<div data-bind="scope: 'customer'" class="user-prof customer-name">
     <!-- ko if: customer().firstname  -->
     <span class="mob greet user-info">
         <span class="customer-logo"></span>
@@ -157,7 +157,7 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                 });        
 		});
                 
-                $('.user-prof').detach().appendTo('.mobile-menu .mm-navbar-top-1 .mm-title');
+        $('.user-prof').detach().insertAfter('.mobile-menu .mm-navbar-top-1 .mm-title');
                 
 	});
 </script>
