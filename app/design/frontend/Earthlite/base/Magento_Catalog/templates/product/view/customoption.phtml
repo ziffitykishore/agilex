@@ -1,17 +1,18 @@
 <?php
 $product = $block->getProduct();
 $productType = $product->getTypeId();
-if($productType == 'configurable'):
-	$productInstance = $product->getTypeInstance();
-	if(count($productInstance->getConfigurableOptions($product)) > 3):
-?>
-<div class="custom-button actions">
-    <button type="button" class="action primary" id="product-customize-button">
-        <span><?= $block->escapeHtml(__('Customize & Add to cart')) ?></span>
-    </button>            			
+$customOptions = $product->getProductOptionsCollection();
+$size = $customOptions->getSize();
+if ($productType == 'configurable') {
+    $productInstance = $product->getTypeInstance();
+    $size += count($productInstance->getConfigurableOptions($product));
+}
+if ($size > 3):
+    ?>
+    <div class="custom-button actions">
+        <button type="button" class="action primary" id="product-customize-button">
+            <span><?= $block->escapeHtml(__('Customize & Add to cart')) ?></span>
+        </button>            			
     <?= $block->getChildHtml('', true) ?>
-</div>
-<?php
-	endif;
-endif;
-?>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,37 @@
+<?php
+/** @var \Earthlite\NewTrending\Block\Category\NewTrendingList $block */
+$newTrendingProducts = $block->getNewTrendingListForMenuItems();
+?>
+<?php if ($exist = ($block->getNewTrendingListForMenuItems() && $block->getNewTrendingListForMenuItems()->getSize())) : ?>
+    <section>
+    <h2 class="mb-6 text-center"><?= $block->escapeHtml($block->getData('title')) ?></h2>
+    <div>
+    <ul >
+        <?php
+        $incr = 0;
+        foreach ($newTrendingProducts as $newTrendingProduct) {
+            if($incr < 5){
+            $productDetails = $block->getProductDetails($newTrendingProduct->getId());
+            ?>
+            <li>
+
+                <div>
+                    <a href="<?= $newTrendingProduct->getProductUrl(); ?>" class="product photo product-item-photo" tabindex="-1">
+                        <span class="product-image-container" style="width:240px;">
+                            <span class="product-image-wrapper" style="padding-bottom: 125%;">
+                                <img class="product-image-photo" src="<?= $block->getImageUrl($newTrendingProduct->getThumbnail()); ?>" max-width="240" max-height="300" alt="<?= $productDetails->getName(); ?>">
+                            </span>
+                        </span>
+                    </a>
+                    <div>
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link" href="<?= $newTrendingProduct->getProductUrl(); ?>"><?= $productDetails->getName(); ?></a>
+                        </strong>
+                    </div>
+                </div>
+            </li>
+        <?php $incr ++; } } ?>
+    </ul>
+    </div>
+    </section>
+<?php endif; ?>
