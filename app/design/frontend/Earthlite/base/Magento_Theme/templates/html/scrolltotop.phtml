@@ -1,0 +1,50 @@
+<style type="text/css">
+    #backtotop {
+     background: #357DF9;
+     border: 2px solid white;
+     border-radius: 100%;
+     -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+     box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+     color: #ffffff;
+     cursor: pointer;
+     font-size: 26px;
+     font-weight: 600;
+     height: 60px;
+     line-height: 18px;
+     padding: 2px;
+     position: fixed;
+     right: 20px;
+     bottom: 20px;
+     text-align: center;
+     text-transform: uppercase;
+     width: 60px;
+     z-index: 9999;
+     display: none;
+     text-decoration: none;
+    }
+    #backtotop span {display: block}   
+    #backtotop .gt-arrow {
+        padding-top: 13px;
+    }
+</style>
+
+<a rel="nofollow" onclick="javascript:void(0);" id="backtotop"><span class="gt-arrow">^</span></a>
+
+<script type="text/javascript">
+ require(['jquery', 'domReady!'], function($){
+ var $bt = $('#backtotop');
+ function ManageGoToTop() {
+         if($(this).scrollTop() > 300) {
+             $bt.fadeIn();
+         } else {
+             $bt.fadeOut();
+         }
+     }
+     ManageGoToTop();
+     $(window).scroll(ManageGoToTop);
+     $bt.on('click touch',function() {
+         $('body,html').animate({scrollTop:0},500);
+ return false;
+     })
+});
+</script>
