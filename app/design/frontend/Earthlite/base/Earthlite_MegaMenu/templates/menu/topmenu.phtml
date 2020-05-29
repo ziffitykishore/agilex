@@ -81,19 +81,18 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
     });
 </script>
 
-
+<div data-bind="scope: 'customer'" class="user-prof">
+    <!-- ko if: customer().firstname  -->
+    <span class="mob greet user-info">
+        <span class="customer-logo"></span>
+        <span class="logged-in"
+              data-bind="text: new String('<?= $block->escapeHtml(__('Hello, %1!', '%1')) ?>').replace('%1', customer().firstname)">
+        </span>
+    </span>             
+    <!-- /ko -->                         
+</div>
 <div id="mobile-menu" class="mobile-menu">   
     <ul class="menu-list">
-        <li data-bind="scope: 'customer'" class="customer-name">
-            <!-- ko if: customer().firstname  -->
-            <span class="mob greet user-info">
-                <span class="customer-logo"></span>
-                <span class="logged-in"
-                  data-bind="text: new String('<?= $block->escapeHtml(__('Hello, %1!', '%1')) ?>').replace('%1', customer().firstname)">
-                </span>
-            </span>             
-            <!-- /ko -->                         
-        </li>
         <li>
             <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
             
@@ -157,6 +156,9 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                         }]
                 });        
 		});
+                
+                $('.user-prof').detach().appendTo('.mobile-menu .mm-navbar-top-1 .mm-title');
+                
 	});
 </script>
  <script type="text/x-magento-init">
