@@ -465,6 +465,16 @@
 //  Mobile
 //  _____________________________________________
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-mob) {
+    .product-items {
+        margin-left: -5px;
+        margin-right: -5px;
+        .product-item {
+            padding: 5px;
+        }
+    }
+}
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
     .page-products {
@@ -480,6 +490,10 @@
                 }
             }
         }
+    }
+
+    page-products .category-view .category-description p {
+        text-align: center;
     }
 
     .products-grid {

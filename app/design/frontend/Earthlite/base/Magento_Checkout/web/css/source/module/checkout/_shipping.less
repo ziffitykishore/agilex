@@ -318,6 +318,7 @@
                 }
                 &.col-method-carrier {
                     padding-right: 2.5rem;
+                    white-space: nowrap;
                 }
             }
 
@@ -336,6 +337,18 @@
                     padding-top: 0;
                 }
             }
+        }
+    }
+
+    .shipping-address-items .shipping-address-item {
+        .action-select-shipping-item {
+            display: none;
+        }
+    }
+    
+    .discount-code {
+        .action-apply {
+            margin-right: 0 !important;
         }
     }
 }
@@ -396,13 +409,7 @@
             max-width: 50%;
         }
     }
-
-    .shipping-address-items .shipping-address-item {
-        .action-select-shipping-item {
-            display: none;
-        }
-    }
-
+    
     .form-shipping-address, .billing-address-form {
         .fieldset {
             margin-left: -10px;

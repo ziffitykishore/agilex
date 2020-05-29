@@ -819,7 +819,7 @@
         width: 100%;
         z-index: 99999;
         margin-top: 38px;
-        overflow: visible;
+        /*overflow: visible;*/
         &:after {
             display: none;
         }
@@ -848,6 +848,7 @@
             right: 0;
             .transform(transform .4s ease);
             .transform(translate3d(-100%, 0 , 0)) !important;
+            transition: .4s ease;
             z-index: 99999;
             height: 38px;
         }
@@ -1127,8 +1128,8 @@
                                 list-style: none;
                                 box-sizing: border-box;
                                 min-height: 300px;
-                                -webkit-animation-name: slideInUp;
-                                animation-name: slideInUp;
+/*                                -webkit-animation-name: slideInUp;
+                                animation-name: slideInUp;*/
     
                                 > ul {
                                     max-width: 1000px;

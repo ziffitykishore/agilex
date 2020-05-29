@@ -361,7 +361,7 @@
     .opc-block-shipping-information {
         /*        border-top: 1px solid @color-lines;
                 padding: 20px;*/
-
+        margin-top: 30px;
         .shipping-information-title {
             padding: 20px;
             border: 1px solid @color-lines;
@@ -414,6 +414,7 @@
             .action {
                 &.viewcart {
                     padding: 5px 10px;
+                    margin: 0;
                     > span {
                         .lib-visually-hidden();
                     }
@@ -426,11 +427,16 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .opc-block-summary {
         .product-item {
-            .details-qty,
-            .product-item-name-block,
-            .subtotal {
+            .product-item-name-block
+            {
                 display: block;
                 text-align: left;
+                padding-right: 0;
+            }
+            .details-qty,
+            .subtotal {
+                display: inline-block;
+                margin: 5px 0;
             }
         }
     }
