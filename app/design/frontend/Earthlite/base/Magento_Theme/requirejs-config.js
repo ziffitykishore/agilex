@@ -5,7 +5,7 @@
 
 var config = {
     deps: [
-        'Magento_Theme/js/custom'
+        'Magento_Theme/js/custom'        
     ],
     map: {
         '*': {
@@ -14,6 +14,9 @@ var config = {
         }
     },
     'shim': {
-        'mgsaos': ['jquery']
+        'mgsaos': ['jquery'],
+        'mmenu': {
+            deps: ['Magento_Customer/js/view/customer']
+        }
     }
 };

@@ -81,19 +81,23 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
     });
 </script>
 
-
-<div id="mobile-menu" class="mobile-menu">
-    <ul class="menu-list">
-        <?php if($customer = $block->getCustomerData()): ?>
-        <span class="greet welcome">
-            <span class="customer-logo"></span>
-            <span class="message">
-                <?php echo 'Hello '.$customer->getFirstName().' '.$customer->getLastName(). '!'?> 
-            </span>
+<div data-bind="scope: 'customer'" class="user-prof customer-name">
+    <!-- ko if: customer().firstname  -->
+    <span class="mob greet user-info">
+        <span class="customer-logo"></span>
+        <span class="logged-in"
+              data-bind="text: new String('<?= $block->escapeHtml(__('Hello, %1!', '%1')) ?>').replace('%1', customer().firstname)">
         </span>
+    </span>             
+    <!-- /ko -->                         
+</div>
+<div id="mobile-menu" class="mobile-menu">   
+    <ul class="menu-list">
         <li>
-            <span><?= $block->escapeHtml(__('My Account')) ?></span>
-            <ul>               
+            <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
+            
+            <ul data-bind="scope: 'customer'" class="customer-name">               
+                <!-- ko if: customer().firstname  -->
                 <li>
                     <a href="<?php echo $block->getBaseUrl().'customer/account/'?>"><?= $block->escapeHtml(__('My Account')) ?></a>
                 </li>
@@ -103,28 +107,24 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                     </a>
                 </li>
                 <li class="authorization-link">
-                    <a href="<?php echo $block->getLogoutUrl() ?>"><?= $block->escapeHtml(__('Sign Out')) ?></a>
+                    <a href="<?php echo $block->getLogoutUrl() ?>" data-post='<?= /* @noEscape */ $block->getPostParams() ?>'><?= $block->escapeHtml(__('Sign Out')) ?></a>
                 </li>
-            </ul>
-        </li>
-        <?php else: ?>
-            <li>
-                <span><?= $block->escapeHtml(__('My Account')) ?></span>
-                <ul>
-                    <li> 
-                        <a href="<?php echo $block->getBaseUrl().'customer/account/login'?>">
-                            <?= $block->escapeHtml(__('Sign In')) ?>                    
-                        </a>
-                    </li>
-                    <li> 
-                        <a href="<?php echo $block->getBaseUrl().'customer/account/create'?>">
-                            <?= $block->escapeHtml(__('Create Account')) ?>
-                        </a> 
-                    </li>
-                </ul>
-            </li>
-        <?php endif; ?>
-        <?= /* @noEscape */ $_mobMenu; ?>
+                <!-- /ko -->
+                <!-- ko ifnot: customer().firstname  -->
+                <li> 
+                    <a href="<?php echo $block->getBaseUrl().'customer/account/login'?>">
+                        <?= $block->escapeHtml(__('Sign In')) ?>                    
+                    </a>
+                </li>
+                <li> 
+                    <a href="<?php echo $block->getBaseUrl().'customer/account/create'?>">
+                        <?= $block->escapeHtml(__('Create Account')) ?>
+                    </a> 
+                </li>
+                <!-- /ko -->            
+            </ul>                    
+        </li>                             
+        <?= /* @noEscape */ $_mobMenu; ?>                                   
         
         <span class="phone-sec">
             <a href="tel:800-872-0560">800-872-0560</a>
@@ -154,12 +154,23 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                                 'close'
                             ]
                         }]
-                });
-
-                
-                $('.menu-list .greet.welcome').wrap('<div class="user-info"/>');
-                $('.user-info').insertAfter('.mm-navbar-top .mm-title');
-
+                });        
 		});
+                
+        $('.user-prof').detach().insertAfter('.mobile-menu .mm-navbar-top-1 .mm-title');
+                
 	});
 </script>
+ <script type="text/x-magento-init">
+  {
+    ".customer-name": {
+      "Magento_Ui/js/core/app": {
+        "components": {
+          "customer": {
+            "component": "Magento_Customer/js/view/customer"
+          }
+        }
+      }
+    }
+  }
+  </script>
