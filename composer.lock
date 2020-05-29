@@ -4,8 +4,83 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6f510b1be2c74956788300066b25b64",
+    "content-hash": "8c71dc4dd69928e07022968d0d3fbaae",
     "packages": [
+        {
+            "name": "amasty/base",
+            "version": "1.10.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/base-1.10.1-ee.zip"
+            },
+            "require": {
+                "php": "7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Base\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Amasty Base"
+        },
+        {
+            "name": "amasty/cron-schedule-list",
+            "version": "1.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/cron-schedule-list-1.0.5-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.9.10",
+                "php": "7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\CronScheduleList\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Cron Schedule List by Amasty"
+        },
+        {
+            "name": "amasty/feed",
+            "version": "2.6.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/enterprise/packages/feed-2.6.2-ee.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.10.1",
+                "amasty/cron-schedule-list": ">=1.0.5",
+                "php": "7.0.2|7.0.4|~7.0.6|^7.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Feed\\": ""
+                }
+            },
+            "license": [
+                "Commercial"
+            ],
+            "description": "Product Feed by Amasty"
+        },
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
             "version": "3.3.1",
