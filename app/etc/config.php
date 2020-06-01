@@ -1,6 +1,5 @@
 <?php
-
-Return [
+return [
     'scopes' => [
         'websites' => [
             'admin' => [
