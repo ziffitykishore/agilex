@@ -1411,6 +1411,8 @@ define([
         },
         _updateStock: function () {
             var updatePricesUrl = window.BASE_URL + 'productavailability/index/getstock';
+            $("#notify-block").css("display", "none");
+            $("#child_product_id").val(this.getProduct());
             $.post(updatePricesUrl, {id: this.getProduct()}).done(function (response) {
                 var selectedQty = response['qty'];
                 var selectedClass = $('div.product-info-stock-sku .stock').attr('class');
@@ -1423,6 +1425,7 @@ define([
                 } else if (selectedQty == 0) {
                     $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock unavailable');
                     $('div.product-info-stock-sku .stock span').text('Out of stock');
+                    $("#notify-block").css("display", "block");
                 }
             });
         }

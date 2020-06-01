@@ -10,4 +10,6 @@
     </type>
     <preference for="Magento\ProductAlert\Model\Observer" type="Earthlite\ProductAlert\Model\ProductAlert"/>
     <preference for="Magento\ProductAlert\Model\Email" type="Earthlite\ProductAlert\Model\StockAlertEmail"/>
+    <preference for="Magento\ProductAlert\Block\Product\View\Stock" type="Earthlite\ProductAlert\Block\Product\View\Stock"/>
+    <preference for="Magento\ProductAlert\Block\Email\Stock" type="Earthlite\ProductAlert\Block\Email\Stock"/>
 </config>
