@@ -35,7 +35,7 @@
                 position: relative;
                 z-index: 9;
                 .lib-icon-font(
-                    @_icon-font-content: @icon-magnify,
+                @_icon-font-content: @icon-magnify,
                     @_icon-font: @icon__font-name,
                     @_icon-font-size: 22px,
                     @_icon-font-line-height: 22px,
@@ -43,7 +43,7 @@
                     @_icon-font-color-hover: @header-icons-color-hover,
                     @_icon-font-color-active: @header-icons-color-hover,
                     @_icon-font-text-hide: true
-                );
+                    );
                 strong {
                     .lib-visually-hidden();
                 }
@@ -80,7 +80,7 @@
 
                 .action {
                     .lib-icon-font(
-                        @_icon-font-content: @icon-magnify,
+                    @_icon-font-content: @icon-magnify,
                         @_icon-font: @icon__font-name,
                         @_icon-font-size: 20px,
                         @_icon-font-line-height: 20px,
@@ -88,7 +88,7 @@
                         @_icon-font-color-hover: @header-icons-color-hover,
                         @_icon-font-color-active: @header-icons-color-hover,
                         @_icon-font-text-hide: true
-                    );
+                        );
                 }
             }
         }
@@ -96,13 +96,13 @@
         .label {
             .lib-icon-font(
             @_icon-font-content: @icon-search,
-            @_icon-font-size: 35px,
-            @_icon-font-line-height: 33px,
-            @_icon-font-color: @header-icons-color,
-            @_icon-font-color-hover: @header-icons-color-hover,
-            @_icon-font-color-active: @header-icons-color-hover,
-            @_icon-font-text-hide: true
-            );
+                @_icon-font-size: 35px,
+                @_icon-font-line-height: 33px,
+                @_icon-font-color: @header-icons-color,
+                @_icon-font-color-hover: @header-icons-color-hover,
+                @_icon-font-color-active: @header-icons-color-hover,
+                @_icon-font-text-hide: true
+                );
             display: inline-block;
             float: right;
 
@@ -149,24 +149,27 @@
         overflow-y: auto;
         border: 1px solid @color-lines;
         border-top: none;
+        font-size: 1.2rem;
 
         .autocomplete-suggestion {
             display: inherit;
-            padding: 10px;
+            padding: 5px 10px;
 
             a {
                 .flex();
             }
 
             .image-container {
-                .flex-width(60px);
+                .flex-width(50px);
                 padding: 5px;
                 border: 1px solid @color-lines;
                 margin-right: 10px;
+                border-radius: 4px;
             }
 
             .description-container {
-                .flex-width(~"calc(100% - 70px)");
+                .flex-width(~"calc(100% - 60px)");
+                font-size: 1.2rem;
             }
         }
     }
@@ -202,7 +205,7 @@
                 }
 
                 &:hover,
-                &.selected {
+                    &.selected {
                     .lib-css(background, @autocomplete-item__hover__color);
                 }
 
@@ -284,7 +287,7 @@
 
         .block-title {
             position: static;
-            
+
             &:after {
                 transition: all 0.5s ease 0s;
                 visibility: hidden;
@@ -382,9 +385,9 @@
             display: inline-block;
             .lib-button-icon(
             @_icon-font-content: @icon-search,
-            @_icon-font-text-hide: true,
-            @_icon-font-color: @header-icons-color
-            );
+                @_icon-font-text-hide: true,
+                @_icon-font-color: @header-icons-color
+                );
             .lib-button-reset();
             padding: 8px 0;
             position: absolute;

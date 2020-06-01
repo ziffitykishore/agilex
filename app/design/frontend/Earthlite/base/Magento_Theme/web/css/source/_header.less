@@ -827,7 +827,7 @@
         width: 100%;
         z-index: 99999;
         margin-top: 38px;
-        overflow: visible;
+        /*overflow: visible;*/
         &:after {
             display: none;
         }
@@ -856,6 +856,7 @@
             right: 0;
             .transform(transform .4s ease);
             .transform(translate3d(-100%, 0 , 0)) !important;
+            transition: .4s ease;
             z-index: 99999;
             height: 38px;
         }

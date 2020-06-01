@@ -436,7 +436,7 @@
                         }
 
                         .lib-icon-font(
-                            @_icon-font-content: @icon-chevron-right,
+                        @_icon-font-content: @icon-chevron-right,
                             @_icon-font: @icon__font-name,
                             @_icon-font-size: 20px,
                             @_icon-font-line-height: 20px,
@@ -444,7 +444,7 @@
                             @_icon-font-color-hover: inherit,
                             @_icon-font-color-active: @header-icons-color-hover,
                             @_icon-font-text-hide: true
-                        );
+                            );
                     }
 
                     &-content {
@@ -482,6 +482,27 @@
                 }
             }
         }
+    }
+    .block.newsletter {
+        .field.newsletter input,
+        .form .action.primary {
+            height: 40px;
+        }
+    }
+    .footer .social-links li a {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+    }
+    .page-footer .brand-message {
+        font-size: 1.4rem;
+        padding: 10px 0;
+    }
+    .block.newsletter {
+        padding: 20px 0;
+    }
+    .page-footer .footer.content .footer-links>.block {
+        padding: 20px 0;
     }
 }
 
