@@ -11,18 +11,25 @@ $unSubscribeStatus = false;
     <table>
         <?php foreach ($_products as $_product) : ?>
             <tr>
+                <?php 
+                    if ($_product->getVisibility() == 1) {
+                        $product = $this->getParentProduct($_product->getId());
+                    } else {
+                        $product = $_product;
+                    }
+                ?>
                 <td class="col photo">
-                    <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>" title="<?= $block->escapeHtmlAttr($_product->getName()) ?>" class="product photo">
-                        <?= $block->getImage($_product, 'product_thumbnail_image', ['class' => 'photo image'])->toHtml() ?>
+                    <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>" title="<?= $block->escapeHtmlAttr($_product->getName()) ?>" class="product photo">
+                        <?= $block->getImage($product, 'product_thumbnail_image', ['class' => 'photo image'])->toHtml() ?>
                     </a>
                 </td>
                 <td class="col item">
                     <p>
                         <strong class="product name">
-                            <a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>"><?= $block->escapeHtml($_product->getName()) ?></a>
+                            <a href="<?= $block->escapeUrl($product->getProductUrl()) ?>"><?= $block->escapeHtml($product->getName()) ?></a>
                         </strong>
                     </p>
-                    <?php if ($shortDescription = $block->getFilteredContent($_product->getShortDescription())) : ?>
+                    <?php if ($shortDescription = $block->getFilteredContent($product->getShortDescription())) : ?>
                         <p><small><?= /* @noEscape */ $shortDescription ?></small></p>
                     <?php endif; ?>
                     <?=
