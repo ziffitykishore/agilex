@@ -11,6 +11,8 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\ProductAlert\Model\Stock;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Controller\Result\Redirect;
+use Magento\Customer\Model\Session as CustomerSession;
+
 
 /**
  * Controller for guest users stock alert subscription
@@ -49,6 +51,7 @@ class StockAlert extends Action implements HttpPostActionInterface
         AccountManagementInterface $customerAccountManagement,
         StoreManagerInterface $storeManager,
         ProductRepositoryInterface $productRepository,
+        CustomerSession $customerSession,
         Stock $productAlertModel
     ) {
         parent::__construct($context);
@@ -56,6 +59,7 @@ class StockAlert extends Action implements HttpPostActionInterface
         $this->storeManager = $storeManager;
         $this->productRepository = $productRepository;
         $this->productAlertModel = $productAlertModel;
+        $this->customerSession = $customerSession;
     }
 
     /**
@@ -65,18 +69,22 @@ class StockAlert extends Action implements HttpPostActionInterface
      */
     public function execute()
     {
+        if ($this->customerSession->getCustomer()) {
+            $customerId = $this->customerSession->getCustomer()->getId();
+        }
         if (!$this->getRequest()->isPost()) {
             return $this->resultRedirectFactory->create()->setPath('*/*/');
         }
-
-        if ($this->isCustomerExist($this->getRequest()->getParam('email'))) {
-            return $this->resultRedirectFactory->create()->setPath('customer/account/login');
+        if ($this->getRequest()->getParam('email')) {
+            if ($this->isCustomerExist($this->getRequest()->getParam('email'))) {
+                return $this->resultRedirectFactory->create()->setPath('customer/account/login');
+            }
         }
 
         try {
-            $product = $this->productRepository->getById((int)$this->getRequest()->getParam('product_id'));
+            $product = $this->productRepository->getById((int)$this->getRequest()->getParam('child_product_id'));
             $store = $this->storeManager->getStore();
-            $this->productAlertModel->setCustomerId(0)
+            $this->productAlertModel->setCustomerId($customerId??0)
                 ->setProductId($product->getId())
                 ->setEmail($this->getRequest()->getParam('email'))
                 ->setWebsiteId($store->getWebsiteId())

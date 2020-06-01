@@ -7,6 +7,7 @@ use Magento\Customer\Model\Session;
 use Magento\Framework\Registry;
 use Magento\Framework\App\Http\Context;
 
+
 /**
  * View Model class for stock alert block
  */
@@ -62,4 +63,17 @@ class CustomerSession implements ArgumentInterface
         }
         return false;
     }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function displayBlock()
+    {
+        if (!$this->getProduct() || $this->getProduct()->isAvailable()) {
+            return 'none';
+        }
+        return 'block';
+    }
+
 }
