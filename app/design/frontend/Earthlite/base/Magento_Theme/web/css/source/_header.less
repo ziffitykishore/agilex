@@ -457,9 +457,13 @@
                     &.stickymenu {
                         > ul {
                             > li {
-                                > a {
+                                 a {
                                     font-size: 1.3rem;
                                 }
+                            }
+
+                            h2 {
+                                font-size: 1.3rem;
                             }
                         }
                     }
@@ -510,9 +514,12 @@
                     &.stickymenu {
                         > ul {
                             > li {
-                                > a {
+                                 a {
                                     font-size: 1.2rem;
                                 }
+                            }
+                            h2 {
+                                font-size: 1.2rem;
                             }
                         }
                     }
@@ -1145,9 +1152,10 @@
                                     float: none;
 
                                     .category-item {
+                                        padding: 0;
                                         > a {
                                             font-weight: 600;
-                                            margin-bottom: 20px;
+                                            margin-bottom: 15px;
                                             display: block;
 
                                             & + ul {
@@ -1169,12 +1177,52 @@
                                         }
                                     }
 
+
+                                    .menu-content {
+                                        &.col-menu-9 {
+                                            width: percentage(3/4);
+                                            padding-right: 20px;
+
+                                            & ~ .menu-sidebar-right {
+                                                padding-left: 20px;
+                                                width: percentage(1/4);
+                                                border-left: 1px solid @color-lines;
+                                            }
+                                        }
+                                        > [class*="column"] {
+                                            > li {
+                                                width: percentage(1/5);
+                                            }
+                                        }
+                                    }
+
+                                    .shop-by-brand {
+                                        h2 {
+                                            text-align: left;
+                                            margin-bottom: 15px;
+                                        }
+
+                                        li {
+                                            a {
+                                                color: @color-dgray;
+
+                                                &:hover {
+                                                    color: @theme__color__primary;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    [data-element='inner'] {
+                                        padding: 0 !important;
+                                        margin: 0 !important;
+                                    }
+
                                     .menu-footer {
                                         ul {
                                             section h2 {
                                                 text-align: left;
-                                                font-size: 14px;
-                                                margin-bottom: 20px;
+                                                margin-bottom: 15px;
                                             }
                                             ul {
                                                 .flex();
@@ -1195,7 +1243,6 @@
                                                     }
 
                                                     .product-item-link {
-                                                        font-size: 13px;
                                                         color: @color-dgray;
                                                     }
                                                 }
