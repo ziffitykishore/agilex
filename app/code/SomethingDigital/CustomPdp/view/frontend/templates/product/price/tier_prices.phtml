@@ -83,7 +83,9 @@ $total = count($tierPrices);
         </tr>
         <tr>
             <td class="item row-index"><?= __('You Save'); ?>:</td>
-            <td></td>
+            <?php if ($tierPrices[0]['price_qty'] > 1): ?>
+                <td><?= $tierPriceModel->getSavePercent($basePrice) . "%"; ?></td>
+            <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
                 <td class="item">
                     <?= $tierPriceModel->getSavePercent($price['price']) . "%"; ?>
