@@ -4,11 +4,11 @@
  * Magedelight
  * Copyright (C) 2017 Magedelight <info@magedelight.com>
  *
- * @category Magedelight
- * @package Magedelight_Megamenu
+ * @category  Magedelight
+ * @package   Magedelight_Megamenu
  * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author Magedelight <info@magedelight.com>
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
  */
 
 namespace Earthlite\MegaMenu\Block;
@@ -21,7 +21,8 @@ use Magedelight\Megamenu\Block\Topmenu;
  * @package Magedelight\Megamenu\Block
  */
 class ShortcodeMenu extends \Magedelight\Megamenu\Block\ShortcodeMenu
-{  
+{
+  
 
     public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0, $mobMenu = false)
     {
@@ -32,9 +33,9 @@ class ShortcodeMenu extends \Magedelight\Megamenu\Block\ShortcodeMenu
 
         if ($this->getConfigMenuStatus() == 1 && $this->primaryMenu->getIsActive() == 1) {
             $menuItems = $this->menuItemsFactory->create()->getCollection()
-                    ->addFieldToFilter('menu_id', $this->primaryMenuId)
-                    ->addFieldToFilter('item_parent_id', 0)
-                    ->setOrder('sort_order', 'ASC');
+                ->addFieldToFilter('menu_id', $this->primaryMenuId)
+                ->addFieldToFilter('item_parent_id', 0)
+                ->setOrder('sort_order', 'ASC');
             foreach ($menuItems as $item) {
                 $childrenWrapClass = "level0 nav-1 first parent main-parent";
                 $html .= $this->setMegamenu($item, $childrenWrapClass);

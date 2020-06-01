@@ -4,11 +4,11 @@
  * Magedelight
  * Copyright (C) 2017 Magedelight <info@magedelight.com>
  *
- * @category Magedelight
- * @package Magedelight_Megamenu
+ * @category  Magedelight
+ * @package   Magedelight_Megamenu
  * @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
- * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
- * @author Magedelight <info@magedelight.com>
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
  */
 
 namespace Earthlite\MegaMenu\Block;
@@ -111,17 +111,18 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
 
     /**
      * Topmenu constructor.
-     * @param Template\Context $context
-     * @param NodeFactory $nodeFactory
-     * @param TreeFactory $treeFactory
-     * @param MenuFactory $menuFactory
-     * @param MenuItemsFactory $menuItemsFactory
-     * @param BlockFactory $blockFactory
-     * @param \Magento\Cms\Model\Page $page
-     * @param \Magento\Customer\Model\Session $session
-     * @param \Magento\Framework\Registry $registry
+     *
+     * @param Template\Context                          $context
+     * @param NodeFactory                               $nodeFactory
+     * @param TreeFactory                               $treeFactory
+     * @param MenuFactory                               $menuFactory
+     * @param MenuItemsFactory                          $menuItemsFactory
+     * @param BlockFactory                              $blockFactory
+     * @param \Magento\Cms\Model\Page                   $page
+     * @param \Magento\Customer\Model\Session           $session
+     * @param \Magento\Framework\Registry               $registry
      * @param \Magento\Catalog\Model\CategoryRepository $categoryRepository
-     * @param array $data
+     * @param array                                     $data
      */
     public function __construct(
         Template\Context $context,
@@ -165,11 +166,12 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
         $this->_postDataHelper = $postDataHelper;
     }
 
-    /**         /**
+    /**
+         * /**
      * Get block cache life time
      *
      * @return int
-     * @since 100.1.0
+     * @since  100.1.0
      */
     protected function getCacheLifetime()
     {
@@ -202,14 +204,14 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
      */
     public function getCustomerData() 
     {
-        if ($this->isLoggedIn())
-        {        
+        if ($this->isLoggedIn()) {        
             return $this->customerSession->create()->getCustomerData();
         }        
         return false;  
     }
 
-    public function getLogoutUrl() {
+    public function getLogoutUrl() 
+    {
         if ($this->isLoggedIn()) {
             return $this->_storeManager->getStore()->getUrl('customer/account/logout');
         }
@@ -255,11 +257,12 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
      */
     public function setCustomTemplate($template)
     {
-        if(!$this->getConfigBurgerStatus()){
+        if(!$this->getConfigBurgerStatus()) {
             $this->primaryMenuId = $this->getStoreMenuId();
             $this->primaryMenu = $this->menuFactory->create()->load($this->primaryMenuId);
-            if (($this->primaryMenu->getMenuType() == 2) and ( $this->primaryMenu->getIsActive() == 1) and
-                ( $this->getConfigMenuStatus() == 1)) {
+            if (($this->primaryMenu->getMenuType() == 2) and ( $this->primaryMenu->getIsActive() == 1) 
+                and ( $this->getConfigMenuStatus() == 1)
+            ) {
                 /* Set Megamenu Custom Template */
                 $this->setTemplate('Earthlite_MegaMenu::menu/topmenu.phtml');
             } else {
@@ -274,7 +277,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Get store identifier
      *
-     * @return  int
+     * @return int
      */
     public function getStoreId()
     {
@@ -315,22 +318,22 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
         if (empty($menu_id)) {
             $current_store_id = $this->getStoreId();
             $menuCollection = $this->menuFactory->create()->getCollection()
-                    ->addStoreFilter($current_store_id)
-                    ->addFieldToFilter('is_active', '1')
-                    ->addFieldToFilter('customer_groups', ['finset' => $currentCustomerGroupId])
-                    ->setPageSize(1)
-                    ->setCurPage(1);
+                ->addStoreFilter($current_store_id)
+                ->addFieldToFilter('is_active', '1')
+                ->addFieldToFilter('customer_groups', ['finset' => $currentCustomerGroupId])
+                ->setPageSize(1)
+                ->setCurPage(1);
             foreach ($menuCollection as $singleCollection) {
                 return $menu_id = $singleCollection->getMenuId();
             }
         }
         if (empty($menu_id)) {
             $menuCollection = $this->menuFactory->create()->getCollection()
-                    ->addStoreFilter(0)
-                    ->addFieldToFilter('is_active', '1')
-                    ->addFieldToFilter('customer_groups', ['finset' => $currentCustomerGroupId])
-                    ->setPageSize(1)
-                    ->setCurPage(1);
+                ->addStoreFilter(0)
+                ->addFieldToFilter('is_active', '1')
+                ->addFieldToFilter('customer_groups', ['finset' => $currentCustomerGroupId])
+                ->setPageSize(1)
+                ->setCurPage(1);
             foreach ($menuCollection as $singleCollection) {
                 return $menu_id = $singleCollection->getMenuId();
             }
@@ -342,15 +345,15 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Check item children
      *
-     * @param int
+     * @param  int
      * @return int
      */
     protected function hasChildrenItems($parentId)
     {
         $count = $this->menuItemsFactory->create()->getCollection()
-                ->addFieldToFilter('menu_id', $this->primaryMenuId)
-                ->addFieldToFilter('item_parent_id', $parentId)
-                ->count();
+            ->addFieldToFilter('menu_id', $this->primaryMenuId)
+            ->addFieldToFilter('item_parent_id', $parentId)
+            ->count();
         return $count;
     }
 
@@ -370,15 +373,15 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Get top menu html
      *
-     * @param string $outermostClass
-     * @param string $childrenWrapClass
-     * @param int $limit
+     * @param  string $outermostClass
+     * @param  string $childrenWrapClass
+     * @param  int    $limit
      * @return string
      */
     public function getHtml($outermostClass = '', $childrenWrapClass = '', $limit = 0, $mobMenu = false)
     {
         /* Burger menu for desktop */
-        if($this->getConfigBurgerStatus()){
+        if($this->getConfigBurgerStatus()) {
             /* Start Burgermenu code */
                 $this->_eventManager->dispatch(
                     'page_block_html_topmenu_gethtml_before',
@@ -393,11 +396,11 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                  $transportObject = new \Magento\Framework\DataObject(['html' => $html]);
 
                  $this->_eventManager->dispatch(
-                    'page_block_html_topmenu_gethtml_after',
-                    ['menu' => $this->_menu, 'transportObject' => $transportObject]
-                );
-                $html = $transportObject->getHtml();
-                return $html;
+                     'page_block_html_topmenu_gethtml_after',
+                     ['menu' => $this->_menu, 'transportObject' => $transportObject]
+                 );
+                 $html = $transportObject->getHtml();
+                 return $html;
         }
 
         /* Start Megamenu code */
@@ -409,17 +412,17 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
         $this->_menu->setOutermostClass($outermostClass);
         $this->_menu->setChildrenWrapClass($childrenWrapClass);
 
-        if (($this->primaryMenu->getMenuType() == 2) and ( $this->primaryMenu->getIsActive() == 1) and
-            ( $this->getConfigMenuStatus() == 1)) {
+        if (($this->primaryMenu->getMenuType() == 2) and ( $this->primaryMenu->getIsActive() == 1) 
+            and ( $this->getConfigMenuStatus() == 1)
+        ) {
             $menuItems = $this->menuItemsFactory->create()->getCollection()
-                    ->addFieldToFilter('menu_id', $this->primaryMenuId)
-                    ->addFieldToFilter('item_parent_id', 0)
-                    ->setOrder('sort_order', 'ASC');
+                ->addFieldToFilter('menu_id', $this->primaryMenuId)
+                ->addFieldToFilter('item_parent_id', 0)
+                ->setOrder('sort_order', 'ASC');
             $html = '';
             foreach ($menuItems as $item) {
                 $childrenWrapClass = "level0 nav-1 first parent main-parent";
-                if($mobMenu)
-                {
+                if($mobMenu) {
                     $html .= $this->setMobileMegamenu($item, $childrenWrapClass);
                 }
                 else
@@ -427,11 +430,12 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                     $html .= $this->setMegamenu($item, $childrenWrapClass);
                 }
             }
-        } elseif (($this->primaryMenu->getMenuType() == 1) and
-            ( $this->primaryMenu->getIsActive() == 1) and ( $this->getConfigMenuStatus() == 1)) {
+        } elseif (($this->primaryMenu->getMenuType() == 1) 
+            and ( $this->primaryMenu->getIsActive() == 1) and ( $this->getConfigMenuStatus() == 1)
+        ) {
             $menuItems = $this->menuItemsFactory->create()->getCollection()
-                    ->addFieldToFilter('menu_id', $this->primaryMenuId)
-                    ->addFieldToFilter('item_parent_id', 0);
+                ->addFieldToFilter('menu_id', $this->primaryMenuId)
+                ->addFieldToFilter('item_parent_id', 0);
             $parent = 'root';
             $level = 0;
             $html = $this->setPrimaryMenu($menuItems, $level, $parent, $outermostClass);
@@ -451,10 +455,10 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Recursively generates top menu html from data that is specified in $menuTree
      *
-     * @param array $menuItems
-     * @param int $level
-     * @param int $parent
-     * @param string $outermostClass
+     * @param  array  $menuItems
+     * @param  int    $level
+     * @param  int    $parent
+     * @param  string $outermostClass
      * @return string
      */
     public function setPrimaryMenu($menuItems, $level = 0, $parent = '', $outermostClass = '')
@@ -502,8 +506,8 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                     $this->escapeHtml($this->generateMenuName($menuItem)) . '</span></a>';
 
                 $menuItems = $this->menuItemsFactory->create()->getCollection()
-                        ->addFieldToFilter('menu_id', $this->primaryMenuId)
-                        ->addFieldToFilter('item_parent_id', $menuItemId);
+                    ->addFieldToFilter('menu_id', $this->primaryMenuId)
+                    ->addFieldToFilter('item_parent_id', $menuItemId);
 
                 //Get list of child menu
                 $html .= $this->setPrimaryMenu($menuItems, $level + 1);
@@ -524,7 +528,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Retrieve menu url based on there type
      *
-     * @param MenuFactory $menuItem
+     * @param  MenuFactory $menuItem
      * @return string
      */
     public function generateMenuUrl($menuItem)
@@ -546,7 +550,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Retrieve menu name based on there type
      *
-     * @param MenuFactory $menuItem
+     * @param  MenuFactory $menuItem
      * @return string
      */
     public function generateMenuName($menuItem)
@@ -581,7 +585,6 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
 
     /**
      * Retrieve Html for Mega block
-     *
      */
     protected function setMegamenu($menuTree, $childrenWrapClass)
     {
@@ -690,7 +693,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                 }
                 $html .= '<li class="menu-dropdown-icon category-item nav-'.$menuTree->getItemId().' '. $class . ' ' . $dataclass . '"><a href="' . $linkurl . '"><span class="megaitemicons">' . $menuTree->getItemFontIcon() . '</span> ' . $this->generateMenuName($menuTree) . '</a>';
 
-                $html .= '<div class="wrapper animated ' . $animationOption . '" style="animation-duration: 0.7s;"><ul class="column' . $columnCount . " " . $verticalMenuClass . '">';
+                $html .= '<div class="wrapper animated" style="animation-duration: 0.7s;"><ul class="column' . $columnCount . " " . $verticalMenuClass . '">';
 
                 if ($header_enable) {
                     $headerblockObject = $this->getLayout()->createBlock('Magento\Cms\Block\Block')
@@ -858,7 +861,6 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
 
     /**
      * Retrieve Html for Mega block
-     *
      */
     protected function setMobileMegamenu($menuTree, $childrenWrapClass)
     {
@@ -1133,7 +1135,6 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
 
     /**
      * Retrieve Html for Mega block
-     *
      */
     public function setChildMegamenuColumn($childrenMenu, $animationOption)
     {
@@ -1157,9 +1158,9 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
                 }
                 $childHtml .= '<ul>';
                 $menuItems = $this->menuItemsFactory->create()->getCollection()
-                        ->addFieldToFilter('menu_id', $subMenuId)
-                        ->addFieldToFilter('item_parent_id', 0)
-                        ->setOrder('sort_order', 'ASC');
+                    ->addFieldToFilter('menu_id', $subMenuId)
+                    ->addFieldToFilter('item_parent_id', 0)
+                    ->setOrder('sort_order', 'ASC');
 
                 foreach ($menuItems as $menuitem) {
                     $class = $this->getActiveClass($menuitem);
@@ -1234,7 +1235,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
      * Get cache key informative items
      *
      * @return array
-     * @since 100.1.0
+     * @since  100.1.0
      */
     public function getCacheKeyInfo()
     {
@@ -1247,7 +1248,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
      * Get tags array for saving cache
      *
      * @return array
-     * @since 100.1.0
+     * @since  100.1.0
      */
     protected function getCacheTags()
     {
@@ -1262,7 +1263,7 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
 
-        if($this->getConfigMenuStatus() && $burgerMenuStatus){
+        if($this->getConfigMenuStatus() && $burgerMenuStatus) {
             return true;
         }
 
@@ -1280,26 +1281,25 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
     /**
      * Retrieve current store categories
      *
-     * @param bool|string $sorted
-     * @param bool $asCollection
-     * @param bool $toLoad
+     * @param  bool|string $sorted
+     * @param  bool        $asCollection
+     * @param  bool        $toLoad
      * @return \Magento\Framework\Data\Tree\Node\Collection|\Magento\Catalog\Model\Resource\Category\Collection|array
      */
-   public function getStoreCategories($sorted = false, $asCollection = false, $toLoad = true)
+    public function getStoreCategories($sorted = false, $asCollection = false, $toLoad = true)
     {
-        return $this->categoryHelper->getStoreCategories($sorted , $asCollection, $toLoad);
+        return $this->categoryHelper->getStoreCategories($sorted, $asCollection, $toLoad);
     }
     /**
      * Retrieve child store categories
-     *
      */
     public function getChildCategories($category)
     {
-           if ($this->categoryFlatState->isFlatEnabled() && $category->getUseFlatResource()) {
-                $subcategories = (array)$category->getChildrenNodes();
-            } else {
-                $subcategories = $category->getChildren();
-            }
+        if ($this->categoryFlatState->isFlatEnabled() && $category->getUseFlatResource()) {
+             $subcategories = (array)$category->getChildrenNodes();
+        } else {
+            $subcategories = $category->getChildren();
+        }
             return $subcategories;
     }
 
@@ -1313,9 +1313,9 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
         $classes = parent::_getMenuItemClasses($item);
 
          /* Burger menu for desktop */
-        if($this->getConfigBurgerStatus()){
-            if($item->getLevel() == 1){
-                if(!empty($this->mdColumnCount) && $this->mdColumnCount != 0){
+        if($this->getConfigBurgerStatus()) {
+            if($item->getLevel() == 1) {
+                if(!empty($this->mdColumnCount) && $this->mdColumnCount != 0) {
                     $classes[] = 'col-'. $this->mdColumnCount;
                 }
             }
@@ -1325,30 +1325,30 @@ class Topmenu extends \Magedelight\Megamenu\Block\Topmenu
 
     /**
      * @param \Magento\Framework\Data\Tree\Node $child
-     * @param string $childLevel
-     * @param string $childrenWrapClass
-     * @param int $limit
+     * @param string                            $childLevel
+     * @param string                            $childrenWrapClass
+     * @param int                               $limit
      * @return string
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     protected function _addSubMenu($child, $childLevel, $childrenWrapClass, $limit)
     {
         /* Burger menu for desktop */
-        if(!$this->getConfigBurgerStatus()){
+        if(!$this->getConfigBurgerStatus()) {
             return parent::_addSubMenu($child, $childLevel, $childrenWrapClass, $limit);
         }
 
         $html = '';
 
-        if($childLevel == 0){
-            $catIdArray = explode('-',$child->getId());
+        if($childLevel == 0) {
+            $catIdArray = explode('-', $child->getId());
             $this->categoryData = $this->categoryFactory->create()->load(end($catIdArray));
             $getLabel = $this->categoryData->getData('md_label');
             $this->getDescription = $this->categoryData->getData('md_category_editor');
             $color = $this->categoryData->getData('md_label_text_color');
             $backgroundColor = $this->categoryData->getData('md_label_background_color');
             $this->mdColumnCount = $this->categoryData->getData('md_column_count');
-            if(isset($getLabel) && $getLabel != ''){
+            if(isset($getLabel) && $getLabel != '') {
                 $html .= '<span class="md-label-text" style="color:'. $color .'!important;background-color:'.
                     $backgroundColor .'!important; ">' .__($getLabel).'</span>';
             }

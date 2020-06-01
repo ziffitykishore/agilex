@@ -18,5 +18,8 @@
                 <argument name='template' xsi:type='string'>Magento_Theme::html/topmenu.phtml</argument>
             </action>
         </referenceBlock>
+        <referenceContainer name="content">
+            <container name="megamenu.shopbybrand" label="shop by brand" before="-"/>
+        </referenceContainer>
     </body>
 </page>

@@ -1,0 +1,29 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="earthlite_menu_shopbybrands" class="Earthlite\MegaMenu\Block\Menu\ShopbyBrands">
+        <label translate="true">Megamenu Shopby Brands</label>
+        <description translate="true">Shop By Brands</description>
+        <parameters>   
+            <parameter name="title" sort_order="10" visible="true" xsi:type="text">
+                <label>Title</label>
+            </parameter>
+            <parameter name="parentcat" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Select Categories</label>
+                <block class="Earthlite\TopCategory\Block\Adminhtml\Category\Widget\Chooser" />
+            </parameter>
+            <parameter name="template" xsi:type="select" required="true" visible="true">
+                <label translate="true">Template</label>
+                <options>                    
+                    <option name="megamenu.shopbybrand" value="Earthlite_MegaMenu::widget/menu_shopby_brand.phtml">
+                        <label translate="true">Menu Shopby Brand Template</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+        <containers>
+            <container name="menu_shopby_brand">                
+                <template name="megamenu.shopbybrand" value="megamenu.shopbybrand" />
+            </container>            
+        </containers>       
+    </widget>
+</widgets>

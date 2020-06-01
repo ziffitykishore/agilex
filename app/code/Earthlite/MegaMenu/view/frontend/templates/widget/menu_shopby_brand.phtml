@@ -1,0 +1,15 @@
+<?php
+	$category = $block->getCategory();	
+	$categoryUrl = $category->getUrl();
+	$brands = $block->getBrands();
+?>
+<div class="shop-by-brand">
+    <h2 class="title"><?= $block->getTitle() ?></h2>
+    <ul class="content">
+        <?php foreach ($brands as $brand ):?>
+        <li>
+        	<a class="item" href="<?=$categoryUrl?>?brands=<?=$brand['brandValue']?>"><?= $brand['brandLabel'] ?></a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>
