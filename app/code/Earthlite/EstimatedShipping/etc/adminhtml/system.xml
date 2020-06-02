@@ -19,6 +19,9 @@
                 <field id="nonproduction_item_text" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Non-Production Item Text</label>                    
                 </field>
+                <field id="notification_message" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Message</label>                    
+                </field>
             </group>
         </section>
     </system>

@@ -15,15 +15,19 @@ class Estimation
 
     protected $scopeConfig;
 
+    protected $cart;
+
     public function __construct(
         ProductRepositoryInterface $productRepository,
         DateTime $dateTime,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Checkout\Model\Cart $cart
     ) {
     
         $this->productRepository = $productRepository;    
         $this->dateTime = $dateTime;
         $this->scopeConfig = $scopeConfig;
+        $this->cart = $cart;
     }
 
     public function getProduct($sku)
@@ -40,6 +44,15 @@ class Estimation
 
     public function getEstimatedShipping($sku)
     {
+        if($this->getCartItemStatus())
+        {
+            return 'success';
+        }
+        else
+        {
+            return 'failure';
+        }
+        
         $product = $this->getProduct($sku);
 
         if($product && $this->isEnabled()) 
@@ -84,7 +97,7 @@ class Estimation
     }
 
     public function getItemProductionStatus($sku)
-    {
+    {        
         $product = $this->getProduct($sku);
 
         if($product) 
@@ -122,5 +135,29 @@ class Estimation
     public function getConfigValue($fullPath, $storeId)
     {        
         return $this->scopeConfig->getValue($fullPath, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-    } 
+    }
+
+    public function getCartItemStatus()
+    {
+        $productionItem = $inStockItem = false;
+        $items = $this->cart->getQuote()->getAllVisibleItems();
+        foreach ($items as $item) {
+            $itemStatus = $this->getItemProductionStatus($item->getSku());
+            if($itemStatus)
+            {
+                $productionItem = true;
+            }
+            else
+            {
+                $inStockItem = true;
+            }
+        }
+        
+        if ($productionItem && $inStockItem) 
+        {
+            return true;
+        }
+
+        return false;
+    }
 }

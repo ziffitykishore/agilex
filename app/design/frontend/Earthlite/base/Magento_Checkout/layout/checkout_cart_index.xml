@@ -28,6 +28,7 @@
 
         <referenceContainer name="checkout.cart.container">
             <container name="checkout.cart.sidebar" htmlTag="div" htmlClass="cart-sidebar" before="-"/>
+            <block class="Magento\Framework\View\Element\Template" name="shipping.info" template="Magento_Checkout::message/notification.phtml" before="-"/>
         </referenceContainer>
         <move element="cart.summary" destination="checkout.cart.sidebar" before="-"/>
         <move element="checkout.cart.crosssell" destination="checkout.cart.sidebar" after="-"/>

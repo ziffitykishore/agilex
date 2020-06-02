@@ -31,4 +31,9 @@ class EstimateShipping extends AbstractHelper
     {
         return $this->shippingEstimation->getItemProductionStatus($code);        
     }
+
+    public function getCartItemStatus()
+    {
+        return $this->shippingEstimation->getCartItemStatus();
+    }
 }
