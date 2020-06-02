@@ -5,7 +5,14 @@
 ?>
 <?php if($block->isEnabled()) : ?>
     <div data-bind="scope: 'instaFeed'">
-        <!-- ko template: getTemplate() --><!-- /ko -->
+        <section class="home-instagram mb-10">
+            <div class="inner-container">
+                <h2 class="mb-6" data-aos="fade-up"><?= $block->escapeHtml(__('Meet The Community')) ?></h2>
+                <div class="position-relative" data-aos="fade-up">
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                </div>
+            </div>
+        </section>
     </div>
     <script type="text/x-magento-init">
     {

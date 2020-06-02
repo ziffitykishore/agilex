@@ -26,31 +26,31 @@ define([
                         self.feed.push(value);
                     });
 
-                    var insta_set = {
-                        arrows: false,
-                        slidesToShow: 2,
-                        mobileFirst: true,
-            
-                        responsive: [
-                            {
-                                breakpoint: 992,
-                                settings: 'unslick'
-                            },
-                            {
-                                breakpoint: 768,
-                                settings: {
-                                    slidesToShow: 4
+                    
+                    if($('.home-instagram #scroller li').length) {
+                        $('.home-instagram #scroller').slick({
+                            arrows: false,
+                            slidesToShow: 6,
+                            responsive: [
+                                {
+                                    breakpoint: 992,
+                                    settings: 'unslick'
+                                },
+                                {
+                                    breakpoint: 768,
+                                    settings: {
+                                        slidesToShow: 4
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 3
+                                    }
                                 }
-                            },
-                            {
-                                breakpoint: 480,
-                                settings: {
-                                    slidesToShow: 3
-                                }
-                            }
-                        ]
-                    };
-                    $('.home-instagram ul').slick(insta_set);
+                            ]
+                        });
+                    }
                 },
                 error: function (data) {
                     console.log(data);

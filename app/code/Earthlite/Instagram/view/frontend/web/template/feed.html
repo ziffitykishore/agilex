@@ -1,16 +1,12 @@
-<section class="home-instagram mb-10">
-    <div class="inner-container">
-        <h2 class="mb-6">Meet The Community</h2>
-        <div>
-            <ul id='scroller'>
-                <!-- ko foreach: feed -->
-                <li>
-                    <a data-bind= "attr: { href: permalink}" target="_blank">
-                        <img data-bind="attr: { src: media_url}" alt="">
-                    </a>
-                </li>
-                <!-- /ko -->
-            </ul>                
-        </div>
-    </div>
-</section>
+
+<ul id='scroller'>
+    <!-- ko foreach: feed -->
+    <li>
+        <a data-bind= "attr: { href: permalink}" target="_blank">
+            <img data-bind="attr: { src: media_url}" alt="">
+        </a>
+    </li>
+    <!-- /ko -->
+</ul>
+<a href="#" class="action primary abs-center">#INSTAGRAM Earthlite</a>
+        
