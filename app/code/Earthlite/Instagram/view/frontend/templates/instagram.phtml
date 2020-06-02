@@ -1,0 +1,26 @@
+<?php
+/**
+ * @var $block Earthlite\Instagram\Block\Widget
+ */
+?>
+<?php if($block->isEnabled()) : ?>
+    <div data-bind="scope: 'instaFeed'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "instaFeed": {
+                        "component" : "Earthlite_Instagram/js/instagram",
+                        "template" : "Earthlite_Instagram/feed",
+                        "access_token" : "<?= $block->getAccessToken() ?>",
+                        "api_endpoint" : "<?= $block->getApiEndpoint() ?>"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+<?php endif; ?>
