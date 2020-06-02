@@ -43,16 +43,7 @@ class Estimation
     }
 
     public function getEstimatedShipping($sku)
-    {
-        if($this->getCartItemStatus())
-        {
-            return 'success';
-        }
-        else
-        {
-            return 'failure';
-        }
-        
+    {                
         $product = $this->getProduct($sku);
 
         if($product && $this->isEnabled()) 
