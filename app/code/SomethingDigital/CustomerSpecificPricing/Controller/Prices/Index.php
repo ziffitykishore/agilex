@@ -89,9 +89,18 @@ class Index extends Action
                         $canShowSuffix = true;
                     }
 
+                    $msrp = $product->getCustomAttribute('manufacturer_price');
+
+                    if ($msrp && $msrp->getValue()) {
+                        $msrpVal = $msrp->getValue();
+                    } else {
+                        $msrpVal = '';
+                    }
+
                     $data[$sku] = [
                         'price' => number_format($price, 2),
                         'unitPrice' => $unitPrice,
+                        'msrp' => $msrpVal,
                         'QtyPrice1' => $qtyPrice1 ? number_format($qtyPrice1, 2) : '',
                         'QtyPrice2' => $qtyPrice2 ? number_format($qtyPrice2, 2) : '',
                         'QtyPrice3' => $qtyPrice3 ? number_format($qtyPrice3, 2) : '',
