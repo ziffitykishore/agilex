@@ -1,0 +1,10 @@
+<?php
+	$helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
+    if($helper->getCartItemStatus()):
+?>
+<div class="message info">
+	<span>
+		<?= $helper->getStoreConfig('notification_message') ?>
+	</span>
+</div>
+<?php endif; ?>
