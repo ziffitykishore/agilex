@@ -4,7 +4,7 @@ $newTrendingProducts = $block->getNewTrendingListForMenuItems();
 ?>
 <?php if ($exist = ($block->getNewTrendingListForMenuItems() && $block->getNewTrendingListForMenuItems()->getSize())) : ?>
     <section>
-    <h2 class="mb-6 text-center"><?= $block->escapeHtml($block->getData('title')) ?></h2>
+    <a class="heading"><?= $block->escapeHtml($block->getData('title')) ?></a>
     <div>
     <ul >
         <?php
