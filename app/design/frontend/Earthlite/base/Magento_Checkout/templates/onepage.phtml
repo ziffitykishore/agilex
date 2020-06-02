@@ -23,6 +23,21 @@
             <?= $helper->getStoreConfig('notification_message') ?>
         </span>
     </div>
+    <script type="text/javascript">
+        require([
+            'jquery'
+        ], function($) {
+            $( document ).ready(function() {
+                window.setInterval(function(){
+                    if($(".opc-progress-bar").length)
+                    {
+                        $(".opc-progress-bar").addClass('message');
+                        clearInterval();
+                    }
+                }, 1000);
+            });
+        })
+    </script>
     <?php endif; ?>
     <!-- ko template: getTemplate() --><!-- /ko -->
     <script type="text/x-magento-init">
