@@ -38,4 +38,44 @@
             white-space: nowrap;
         }
     }
+
+    .cms-instagram {
+        .row {
+            margin: 0 -10px;
+            li {
+                padding: 0 10px;
+                margin-bottom: 20px;
+            }
+            a {
+                border: 1px solid @color-lines;
+                border-radius: 10px;
+                overflow: hidden;
+                -webkit-transition: .6s ease;
+                transition: .6s ease;
+                &:hover {
+                    img {
+                        -webkit-transform: scale(1.05);
+                        transform: scale(1.05);
+                    }
+                }
+            }
+            img {
+                border-radius: 10px;
+                -webkit-transition: .6s ease;
+                transition: .6s ease;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) { 
+    .cms-instagram {
+        .row {
+            margin: 0 -5px;
+            li {
+                padding: 0 5px;
+                margin-bottom: 10px;
+            }
+        }
+    }
 }

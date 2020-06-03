@@ -1,8 +1,8 @@
 
-<ul id='scroller'>
+<ul id='scroller' class="row list-unstyled">
     <!-- ko foreach: feed -->
-    <li>
-        <a data-bind= "attr: { href: permalink}" target="_blank">
+    <li class="col-6 col-md-3" data-aos="fade-up">
+        <a data-bind= "attr: { href: permalink}" target="_blank" class="d-block">
             <img data-bind="attr: { src: media_url}" alt="">
         </a>
     </li>
