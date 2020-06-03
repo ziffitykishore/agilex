@@ -13,7 +13,7 @@ if ($subcats->getSize()) {
         $_imgHtml = '';
         $_imgUrl = $_category->getImageUrl() ? $_category->getImageUrl() : $block->getViewFileUrl('Earthlite_Category::images/category_placeholder.png');
         if ($_imgUrl) {
-            $_imgHtml = '<div class="list-image bg-img" style="background-image:url(' . $_imgUrl . ')"></div>';
+            $_imgHtml = '<div class="list-image bg-img" ><img src="' . $_imgUrl . '" alt="img" /></div>';
             $_imgHtml = $_outputhelper->categoryAttribute($_category, $_imgHtml, 'image');
             ?>
                 <li class="d-flex" >
