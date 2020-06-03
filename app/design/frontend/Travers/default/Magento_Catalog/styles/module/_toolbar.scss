@@ -10,19 +10,11 @@ $toolbar-element-background--active: $toolbar-element-background !default;
 
     &.page-layout-2columns-left {
         .sidebar-main {
-            width: 25%;
-
-            @include min-screen($screen__l) {
-                width: 19%;
-            }
+            display: none;
         }
 
         .column.main {
-            width: 75%;
-
-            @include min-screen($screen__l) {
-                width: 81%;
-            }
+            width: 100%;
         }
     }
 }
