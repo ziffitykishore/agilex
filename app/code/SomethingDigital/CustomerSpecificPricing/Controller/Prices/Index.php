@@ -46,6 +46,7 @@ class Index extends Action
     public function execute()
     {
         $skus = $this->getRequest()->getParam('products');
+        $type = $this->getRequest()->getParam('type');
         $jsonResult = $this->resultFactory->create('json');
 
         if (!$skus) {
@@ -57,10 +58,10 @@ class Index extends Action
 
         try {
             $prices = $this->spotPricingApi->getSpotPrice($skus);
+            $store = $this->storeManager->getStore()->getStoreId();
 
             if ($prices) {
                 foreach ($prices as $id => $productPrices) {
-                    $store = $this->storeManager->getStore()->getStoreId();
                     $spotPrice = $this->currency->convert(
                         $this->arrayManager->get('DiscountPrice', $productPrices, 0),
                         $store
@@ -109,6 +110,22 @@ class Index extends Action
                         'QtyBreak3' => $qtyBreak3 ? $qtyBreak3 : '',
                         'currencySymbol' => $this->currency->getCurrency()->getCurrencySymbol()
                     ];
+                }
+            } else {
+                if ($type == 'false') {
+                    foreach ($skus as $sku) {
+                        $product = $this->productRepository->get($sku);
+
+                        if ($product->getExactUnitPrice()) {
+                            $unitPrice = $product->getExactUnitPrice();
+                            $price = $this->currency->convert($unitPrice, $store) * 100;
+
+                            $data[$sku] = [
+                                'price' => number_format($price, 2),
+                                'unitPrice' => $unitPrice
+                            ];
+                        }
+                    }
                 }
             }
         } catch (LocalizedException $e) {
