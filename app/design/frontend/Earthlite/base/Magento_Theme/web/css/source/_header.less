@@ -441,7 +441,7 @@
     a.mm-prev.mm-btn ~ .user-prof {
         display: none;
     }
-    
+
     .mm-prev.mm-btn.mm-hidden ~ .user-prof {
         display: block;
     }
@@ -500,7 +500,7 @@
                     &.stickymenu {
                         > ul {
                             > li {
-                                 a {
+                                a {
                                     font-size: 1.3rem;
                                 }
                             }
@@ -557,7 +557,7 @@
                     &.stickymenu {
                         > ul {
                             > li {
-                                 a {
+                                a {
                                     font-size: 1.2rem;
                                 }
                             }
@@ -603,22 +603,22 @@
             .lib-icon-font(
             @icon-menu,
             @_icon-font-size: 28px,
-            @_icon-font-color: @header-icons-color,
-            @_icon-font-color-hover: @header-icons-color-hover
-            );
+                @_icon-font-color: @header-icons-color,
+                @_icon-font-color-hover: @header-icons-color-hover
+                );
             .lib-icon-text-hide();
             cursor: pointer;
             display: block;
             font-size: 0;
         }
 
-        
+
 
         .nav-sections {
             display: none;
         }
 
-        
+
         &-right-pane {
             .minicart-wrapper {
                 margin: 0 0 0 15px;
@@ -641,7 +641,7 @@
             }
 
         }
-        
+
     }
 
     .mm-background {
@@ -661,7 +661,7 @@
         }
     }
 
-    
+
 
     .mobile-menu {
         .phone-sec {
@@ -709,7 +709,7 @@
                 vertical-align: middle;
                 margin-right: 10px;
                 .lib-icon-font(
-                    @_icon-font-content: @icon-user,
+                @_icon-font-content: @icon-user,
                     @_icon-font: @icon__font-name,
                     @_icon-font-size: 20px,
                     @_icon-font-line-height: 20px,
@@ -717,7 +717,7 @@
                     @_icon-font-color-hover: @color-white,
                     @_icon-font-color-active: @color-white,
                     @_icon-font-text-hide: true
-                );
+                    );
             }
 
             .welcome {
@@ -778,7 +778,7 @@
             .mm-panel {
                 padding: 0;
                 top: 81px;
-                
+
 
                 &.mm-hasnavbar:first-child {
                     .mm-navbar {
@@ -812,7 +812,7 @@
                         .mm-next:after {
                             border-color: @theme__color__secondary;
                         } 
-                        
+
 
                         &:not(.mm-divider):after {
                             left: 0;
@@ -1035,9 +1035,9 @@
         .section-item-content {
             .menu-container {
                 .menu.horizontal, .stickymenu {
-                     > ul > li > a:before {
-                         bottom: -10px;
-                     }
+                    > ul > li > a:before {
+                        bottom: -10px;
+                    }
                 } 
             }
         }
@@ -1087,7 +1087,7 @@
                             }
 
                             li.has-active {
-                               >  a {
+                                >  a {
                                     color: @theme__color__primary;
                                 }
                             }
@@ -1109,12 +1109,12 @@
                                         display: block;
                                     }
                                 }
-    
+
                                 > .wrapper {
                                     display: block;
                                 }
                             }
-    
+
                             > a {
                                 color: @theme__color__secondary;
                                 padding: 20px 0;
@@ -1145,11 +1145,11 @@
                                     content: '';
                                 }
                             }
-    
+
                             &.dropdown {
                                 position: static;
                             }
-    
+
                             ul {
                                 margin-bottom: 0;
 
@@ -1168,13 +1168,13 @@
                                 }
                             }
 
-                            
-    
+
+
                             .wrapper {
                                 display: none;
                                 width: 100%;
                                 background: #fff;
-                                padding: 20px;
+                                padding: 15px;
                                 box-shadow: inset 0px 9px 6px 0px rgba(0, 0, 0, 0.05);
                                 border: none;
                                 border-top: 1px solid @color-lines;
@@ -1188,9 +1188,9 @@
                                 min-height: 300px;
                                 -webkit-animation: none;
                                 animation: none;
-    
+
                                 > ul {
-                                    max-width: 1000px;
+                                    max-width: 1200px;
                                     margin: 0 auto;
                                     float: none;
 
@@ -1198,13 +1198,14 @@
                                         padding: 0 5px;
                                         > a {
                                             font-weight: bold;
-                                            margin-bottom: 10px;
+                                            margin-bottom: 5px;
                                             display: block;
+                                            font-size: 13px;
 
                                             & + ul {
                                                 a {
                                                     color: @color-dgray;
-                                                    font-size: 13px;
+                                                    font-size: 12px;
 
                                                     &:hover {
                                                         color: @theme__color__primary;
@@ -1213,9 +1214,9 @@
 
                                                 li.has-active {
                                                     >  a {
-                                                         color: @theme__color__primary;
-                                                     }
-                                                 }
+                                                        color: @theme__color__primary;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -1223,24 +1224,24 @@
 
                                     .heading {
                                         font-weight: bold;
-                                        margin-bottom: 10px;
+                                        margin-bottom: 5px;
                                         display: block;
                                     }
 
                                     .menu-content {
                                         &.col-menu-9 {
-                                            width: percentage(3/4);
+                                            width: 84%;
                                             padding-right: 20px;
 
                                             & ~ .menu-sidebar-right {
                                                 padding-left: 20px;
-                                                width: percentage(1/4);
+                                                width: 16%;
                                                 border-left: 1px solid @color-lines;
                                             }
                                         }
                                         > [class*="column"] {
                                             > li {
-                                                width: percentage(1/5);
+                                                width: percentage(1/6);
                                             }
                                         }
                                     }
@@ -1278,8 +1279,8 @@
                                                 margin-left: -10px;
                                                 margin-right: -10px;
                                                 li {
-                                                    .flex-width(150px);
-                                                    padding: 10px;
+                                                    .flex-width(140px);
+                                                    padding: 5px;
 
                                                     &:hover {
                                                         .product-item-photo {
@@ -1300,7 +1301,7 @@
                                                     border: 1px solid @color-lines;
                                                     .br-radius(10px);
                                                     display: block;
-                                                    padding: 10px;
+                                                    padding: 5px;
                                                     .product-image-container {
                                                         max-width: 150px;
                                                         width: 100% !important;
@@ -1315,6 +1316,20 @@
                     }
                 }
             }
+        }
+    }
+
+    .section-item-content .menu-container .menu > ul > li ul li {
+        padding: 2px 0;
+        line-height: 1.2;
+    }
+
+    .megaStaticBlock {
+        .product-image-wrapper {
+            padding-bottom: 40% !important;
+        }
+        .product-item-name {
+            font-size: 12px;
         }
     }
 }
@@ -1380,9 +1395,9 @@
         .section-item-content {
             .menu-container {
                 .menu.horizontal, .stickymenu {
-                     > ul > li > a:before {
-                         bottom: -12px;
-                     }
+                    > ul > li > a:before {
+                        bottom: -12px;
+                    }
                 } 
             }
         }
@@ -1434,8 +1449,8 @@
                     > ul {
                         > li {
                             padding: 0 10px;
-                            
-    
+
+
                             > a {
                                 padding: 20px 0;
                                 &:before {
@@ -1458,9 +1473,9 @@
         .section-item-content {
             .menu-container {
                 .menu.horizontal, .stickymenu {
-                     > ul > li > a:before {
-                         bottom: -10px;
-                     }
+                    > ul > li > a:before {
+                        bottom: -10px;
+                    }
                 } 
             }
         }
@@ -1524,7 +1539,7 @@
             position: relative;
         }
     }
-    
+
     .menu-hovered {
         .page-wrapper {
             &:after {
