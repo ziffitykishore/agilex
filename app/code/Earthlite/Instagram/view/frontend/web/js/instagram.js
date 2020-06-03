@@ -17,7 +17,8 @@ define([
                 url: self.api_endpoint,
                 data: {
                     access_token: self.access_token,
-                    fields : 'id,caption,media_url,permalink'
+                    fields : 'id,caption,media_url,permalink',
+                    limit : parseInt(self.limit)
                 },
                 dataType: "json",
                 type: "GET",
@@ -26,8 +27,7 @@ define([
                         self.feed.push(value);
                     });
 
-                    
-                    if($('.home-instagram #scroller li').length) {
+                    if(self.slick && $('.home-instagram #scroller li').length) {
                         $('.home-instagram #scroller').slick({
                             arrows: false,
                             slidesToShow: 6,

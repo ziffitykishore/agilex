@@ -4,30 +4,64 @@
  */
 ?>
 <?php if($block->isEnabled()) : ?>
-    <div data-bind="scope: 'instaFeed'">
-        <section class="home-instagram mb-10">
-            <div class="inner-container">
-                <h2 class="mb-6" data-aos="fade-up"><?= $block->escapeHtml(__('Meet The Community')) ?></h2>
-                <div class="position-relative" data-aos="fade-up">
-                <!-- ko template: getTemplate() --><!-- /ko -->
+    <?php if($block->getTemplateType() == 'slick'): ?>
+        <div data-bind="scope: 'instaFeed'">
+            <section class="home-instagram mb-10">
+                <div class="inner-container">
+                    <h2 class="mb-6" data-aos="fade-up"><?= $block->getHeadingTitle() ?></h2>
+                    <div class="position-relative" data-aos="fade-up">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <a href="<?= $block->getInstagramCmsUrl() ?>" class="action primary abs-center">#INSTAGRAM Earthlite</a>
+                    </div>
                 </div>
-            </div>
-        </section>
-    </div>
-    <script type="text/x-magento-init">
-    {
-        "*": {
-            "Magento_Ui/js/core/app": {
-                "components": {
-                    "instaFeed": {
-                        "component" : "Earthlite_Instagram/js/instagram",
-                        "template" : "Earthlite_Instagram/feed",
-                        "access_token" : "<?= $block->getAccessToken() ?>",
-                        "api_endpoint" : "<?= $block->getApiEndpoint() ?>"
+            </section>
+        </div>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "instaFeed": {
+                            "component" : "Earthlite_Instagram/js/instagram",
+                            "template" : "Earthlite_Instagram/feed",
+                            "access_token" : "<?= $block->getAccessToken() ?>",
+                            "api_endpoint" : "<?= $block->getApiEndpoint() ?>",
+                            "limit" : "<?= $block->getPostCount() ?>",
+                            "slick" : true
+                        }
                     }
                 }
             }
         }
-    }
-    </script>
+        </script>
+    <?php else: ?>
+        <div data-bind="scope: 'instaFeed'">
+            <section class="cms-instagram">
+                <div class="inner-container">
+                    <h2 class="mb-6 mt-3 mt-md-5 text-center"><?= $block->getHeadingTitle() ?></h2>
+                    <div class="position-relative" >
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    </div>
+                </div>
+            </section>
+        </div>
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "instaFeed": {
+                            "component" : "Earthlite_Instagram/js/instagram",
+                            "template" : "Earthlite_Instagram/feed",
+                            "access_token" : "<?= $block->getAccessToken() ?>",
+                            "api_endpoint" : "<?= $block->getApiEndpoint() ?>",
+                            "limit" : "<?= $block->getPostCount() ?>",
+                            "slick" : false
+                        }
+                    }
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
 <?php endif; ?>

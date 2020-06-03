@@ -4,5 +4,29 @@
     <widget class="Earthlite\Instagram\Block\Widget" id="instagram_widget">
         <label>Instagram Feed Widget</label>
         <description>Create Instagram Feed to website.</description>
+        <parameters>
+            <parameter name="heading_title" visible="true" xsi:type="text" required="true" sort_order="1">
+                <label>Widget Heading Title</label>
+            </parameter>
+            <parameter name="instagram_cms_url" visible="true" xsi:type="text" required="true" sort_order="2">
+                <label>Instagram CMS Page URL</label>
+                <description>Specify the CMS Page URL. For example "/cms-page-url"</description>
+            </parameter>
+            <parameter name="template_type" xsi:type="select" required="true" visible="true" sort_order="3">
+                <label translate="true">Template for Instagram Post</label>
+                <options>
+                    <option name="slick" value="slick" selected="true">
+                        <label translate="true">Slick Template</label>
+                    </option>
+                    <option name="grid" value="grid">
+                        <label translate="true">Grid Template</label>
+                    </option>
+                </options>
+            </parameter>
+            <parameter name="post_count" xsi:type="text" required="true" visible="true">
+                <label translate="true">Number of Post to Display</label>
+                <value>10</value>
+            </parameter>
+        </parameters>
     </widget>
 </widgets>
