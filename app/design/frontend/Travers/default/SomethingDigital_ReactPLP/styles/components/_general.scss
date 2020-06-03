@@ -355,16 +355,11 @@ $sidebar__max-width: 240px;
         top: $indent__base;
     }
 
-    button,
+    a,
     span {
-        background-color: transparent;
-        padding: 0;
-        border: 0;
-        text-transform: none;
         font-weight: $font-weight__regular;
         font-family: $font-family__base;
         font-size: $font-size__base;
-        width: auto;
         vertical-align: baseline;
 
         @include min-screen($screen__m) {
@@ -372,7 +367,7 @@ $sidebar__max-width: 240px;
         }
     }
 
-    button {
+    a {
         color: $c-cobalt;
 
         &::after {
@@ -384,6 +379,7 @@ $sidebar__max-width: 240px;
 
         @include hover {
             color: $text__color;
+            text-decoration: none;
         }
     }
 }
