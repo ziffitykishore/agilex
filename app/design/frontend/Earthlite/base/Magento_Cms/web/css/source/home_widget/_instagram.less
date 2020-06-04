@@ -16,16 +16,20 @@
 
         }
         li {
-            padding: 0 10px;
+            padding: 10px;
             margin-bottom: 0;
-            border-radius: 10px;
-            overflow: hidden;
-            -webkit-transition: .6s ease;
-            transition: .6s ease;
-            &:hover {
-                img {
-                    -webkit-transform: scale(1.05);
-                    transform: scale(1.05);
+            a {
+                border: 1px solid @color-lines;
+                display: block;
+                border-radius: 10px;
+                overflow: hidden;
+                -webkit-transition: .6s ease;
+                transition: .6s ease;
+                &:hover {
+                    img {
+                        -webkit-transform: scale(1.05);
+                        transform: scale(1.05);
+                    }
                 }
             }
         }
@@ -37,6 +41,15 @@
         .action {
             white-space: nowrap;
         }
+
+        .slick-list {
+            .slick-slide {
+                li {
+                    .flex-width(100%);
+                }
+            }
+        }
+
     }
 
     .cms-instagram {
