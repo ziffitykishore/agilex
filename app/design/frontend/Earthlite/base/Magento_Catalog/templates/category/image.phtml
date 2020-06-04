@@ -20,12 +20,12 @@
     $_category  = $block->getCurrentCategory();
     $_imgHtml   = '';
     if ($_imgUrl = $_category->getImageUrl('banner_image')) : ?>
-        <div class="category-image" style="background-image: url('<?= $block->escapeUrl($_imgUrl)?>')">
-            <img src="<?= $block->escapeUrl($_imgUrl)?>" alt="<?= $block->escapeHtmlAttr($_category->getName()) ?>" title="<?= $block->escapeHtmlAttr($_category->getName()) ?>" class="image" style="display: none;">
+        <div class="category-image" >
+            <img src="<?= $block->escapeUrl($_imgUrl)?>" alt="<?= $block->escapeHtmlAttr($_category->getName()) ?>" title="<?= $block->escapeHtmlAttr($_category->getName()) ?>" class="image" >
             <?= $block->getChildHtml('', true) ?>
         </div>
     <?php else : ?>
-        <div class="category-image">
+        <div class="category-image no-image">
             <?= $block->getChildHtml('', true) ?>
         </div>
     <?php endif; ?>

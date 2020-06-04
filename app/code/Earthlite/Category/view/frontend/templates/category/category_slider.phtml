@@ -13,13 +13,13 @@ $catalogCategoryDefaultUrl = $block->getMediaUrl() . 'catalog/category/placehold
 <div class="clp-banner">
     <?php if ($categoryGalleryImages->getSize()>0) { ?>
         <?php foreach ($categoryGalleryImages as $categoryGalleryImage): ?>
-            <div class="bg-img slide" style="background-image: url(<?= $catalogProductUrl . $categoryGalleryImage->getValue() ?>)">
-
+            <div class="bg-img slide">
+              <img src="<?= $catalogProductUrl . $categoryGalleryImage->getValue() ?>" alt="<?= $block->escapeHtmlAttr($categoryGalleryImage->getLabel()??$categoryName) ?>" title="" class="image" />
             </div>
         <?php endforeach; ?>
     <?php } else { ?>
-        <div class="bg-img slide" style="background-image: url(<?= $catalogCategoryDefaultUrl . $block->getDefaultCategoryImage() ?>)">
-
+        <div class="bg-img slide" >
+              <img src="<?= $catalogCategoryDefaultUrl . $block->getDefaultCategoryImage() ?>" alt="category" title="" class="image" />
         </div>
     <?php } ?>
 </div>
