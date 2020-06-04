@@ -34,7 +34,9 @@ define([
                             responsive: [
                                 {
                                     breakpoint: 992,
-                                    settings: 'unslick'
+                                    settings: {
+                                        slidesToShow: 5
+                                    }
                                 },
                                 {
                                     breakpoint: 768,
