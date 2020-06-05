@@ -304,6 +304,14 @@ $nav-section-title__height: 60px;
             }
         }
 
+        .pagebuilder-column {
+            padding: 0 !important; // override PageBuilder Nav custom block
+
+            p:last-of-type a {
+                padding-bottom: 0;
+            }
+        }
+
         .parent .level-top {
             text-transform: uppercase;
             letter-spacing: .5px;
