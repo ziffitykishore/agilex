@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Override class to prevent inefficient database query from running -->
+    <preference for="Magento\Search\Model\PopularSearchTerms" type="SomethingDigital\Search\Model\PopularSearchTerms" />
+</config>
