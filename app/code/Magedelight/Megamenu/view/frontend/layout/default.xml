@@ -16,7 +16,7 @@
         <referenceContainer name='root'>
             <block class='Magedelight\Megamenu\Block\Init' name='md_megamenu_block_init' ifconfig='magedelight/general/megamenu_status'/>
         </referenceContainer>
-        <referenceBlock name="catalog.topnav">
+        <referenceBlock name="catalog.topnav.without.ttl">
             <action method='setCustomTemplate'>
                 <argument name='template' xsi:type='string'>Magento_Theme::html/topmenu.phtml</argument>
             </action>
