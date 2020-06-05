@@ -59,6 +59,10 @@ $sidebar__max-width: 240px;
 
 .description {
     margin-bottom: $indent__s;
+
+    @include max-screen($screen__m) {
+        display: none;
+    }
 }
 
 .description__mobile {
@@ -451,7 +455,6 @@ $sidebar__max-width: 240px;
 .list-view,
 .table-view,
 .product-info {
-
     .product-name,
     .pricing .price,
     .pricing .as-low-as,
