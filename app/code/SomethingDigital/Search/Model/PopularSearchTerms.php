@@ -21,6 +21,11 @@ class PopularSearchTerms
     protected $scopeConfig;
 
     /**
+     * @var Suffix
+     */
+    protected $searchSuffix;
+
+    /**
      * PopularSearchTerms constructor.
      *
      * @param ScopeConfigInterface $scopeConfig
