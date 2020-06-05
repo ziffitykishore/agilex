@@ -72,7 +72,6 @@ class Index extends Action
 
                     if (!empty($spotPrice) && $spotPrice < $price) {
                         $price = $spotPrice;
-                        $canShowSuffix = true;
                     }
                     $unitPrice = $price;
                     if ($product->getExactUnitPrice()) {
@@ -86,7 +85,14 @@ class Index extends Action
                     $qtyBreak2 = round($this->arrayManager->get('QtyBreak2', $productPrices));
                     $qtyBreak3 = round($this->arrayManager->get('QtyBreak3', $productPrices));
 
-                    if ($qtyPrice1 || $qtyPrice2 || $qtyPrice3) {
+                    if ($this->arrayManager->get('BrochurePricing', $productPrices) !== null &&
+                        (
+                            $this->arrayManager->get('BrochurePricing/DiscountPrice', $productPrices) !== null ||
+                            $this->arrayManager->get('BrochurePricing/QtyPrice1', $productPrices) !== null ||
+                            $this->arrayManager->get('BrochurePricing/QtyPrice2', $productPrices) !== null ||
+                            $this->arrayManager->get('BrochurePricing/QtyPrice3', $productPrices) !== null
+                        )
+                    ) {
                         $canShowSuffix = true;
                     }
 
