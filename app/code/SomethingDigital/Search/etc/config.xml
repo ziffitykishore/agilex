@@ -3,7 +3,7 @@
     <default>
         <catalog>
             <search>
-                <cacheable_search_term>0</cacheable_search_term>
+                <cacheable_search_term>1</cacheable_search_term>
             </search>
         </catalog>
     </default>
