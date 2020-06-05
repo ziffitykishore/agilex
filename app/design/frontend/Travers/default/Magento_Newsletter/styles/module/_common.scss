@@ -41,4 +41,8 @@
             }
         }
     }
+
+    .grecaptcha-badge {
+        bottom: 75px !important; // override Google Recaptcha JS
+    }
 }
