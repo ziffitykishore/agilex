@@ -5,6 +5,7 @@
     </type>
     <type name="Magento\AdvancedCheckout\Model\Cart">
         <plugin name="SomethingDigital_SearchCustomization_AddSufixToQuote" type="SomethingDigital\SearchCustomization\Plugin\AddSuffixToQuote" />
+        <plugin name="SomethingDigital_SearchCustomization_PrepareAddProductsBySku" type="SomethingDigital\SearchCustomization\Plugin\PrepareAddProductsBySku" />
     </type>
     <type name="Magento\QuickOrder\Model\Cart">
         <plugin name="SomethingDigital_SearchCustomization_CheckItemQuickOrder" type="SomethingDigital\SearchCustomization\Plugin\CheckItemQuickOrder" />
