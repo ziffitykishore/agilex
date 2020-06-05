@@ -267,17 +267,30 @@ $product-hero__button-and-catalog__width: 240px;
     }
 }
 
+.master-catalog-link {
+    color: $text__color;
+    display: block;
+    margin: $indent__m 0;
+    max-width: $product-hero__button-and-catalog__width;
+
+    @include hover {
+        text-decoration: none;
+
+        h2,
+        p {
+            color: $link__hover__color;
+        }
+    }
+}
+
 .master-catalog-listing {
     border: 1px solid $c-grey;
     max-width: 460px;
     width: 100%;
-    margin: $indent__m 0;
     padding: 12px;
     box-sizing: border-box;
-
-    @include min-screen($screen__xs) {
-        max-width: $product-hero__button-and-catalog__width;
-    }
+    pointer-events: none;
+    color: $text__color;
 
     .header {
         @include bryant-park-headings-h3;
