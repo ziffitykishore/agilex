@@ -282,6 +282,7 @@ define([
             }
 
             this._reloadPrice();
+            this._reloadLeadTime(this.simpleProduct);
             this._displayRegularPriceBlock(this.simpleProduct);
             this._displayTierPriceBlock(this.simpleProduct);
             this._displayNormalPriceLabel();
@@ -540,6 +541,17 @@ define([
             }else if(selectedQty == 0) {
                 $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock unavailable');
                 $('div.product-info-stock-sku .stock span').text('Out of stock');
+            }
+        },
+
+        _reloadLeadTime: function (chosenProduct) {
+            if (chosenProduct
+                && typeof this.options.spConfig.leadTime != 'undefined'
+                && this.options.spConfig.leadTime[chosenProduct]
+            ) {
+                $('div.shipping-details').html(
+                    '<span>' + this.options.spConfig.leadTime[chosenProduct] + '</span>'
+                );
             }
         },
 
