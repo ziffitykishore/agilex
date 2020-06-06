@@ -50,9 +50,9 @@ class Estimation
         {
             if($productionItem = $product->getCustomAttribute('production_item'))
             {                
-                if($product->getCustomAttribute('requested_ship_date') && $productionItem->getValue()) 
+                if($product->getCustomAttribute('lead_time') && $productionItem->getValue()) 
                 {
-                    $estimatedDays = $product->getCustomAttribute('requested_ship_date')->getValue();
+                    $estimatedDays = $product->getCustomAttribute('lead_time')->getValue();
                     $estimatedDays = '+'.$estimatedDays.' weekdays';
                     $timeStamp = $this->dateTime->timestamp($estimatedDays);
                     $deliveryDate = $this->dateTime->gmtDate('d/m/Y', $timeStamp);
