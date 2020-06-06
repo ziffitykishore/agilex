@@ -756,6 +756,7 @@ define([
                     ) {
                 $widget._UpdatePrice();
             }
+            $widget._reloadLeadTime();
             $widget._updateStock();
             $(document).trigger('updateMsrpPriceBlock',
                     [
@@ -824,6 +825,7 @@ define([
 
             $widget._Rebuild();
             $widget._UpdatePrice();
+            $widget._reloadLeadTime();
             $widget._updateStock();
             $widget._loadMedia();
             $input.trigger('change');
@@ -987,6 +989,19 @@ define([
                 }
             }.bind(this));
         },
+
+        _reloadLeadTime: function () {
+            var chosenProduct = this.getProduct();
+            if (chosenProduct
+                && typeof this.options.jsonConfig.leadTime != 'undefined'
+                && this.options.jsonConfig.leadTime[chosenProduct]
+            ) {
+                $('div.shipping-details').html(
+                    '<span>' + this.options.jsonConfig.leadTime[chosenProduct] + '</span>'
+                );
+            }
+        },
+
 
         /**
          * Get new prices for selected options
