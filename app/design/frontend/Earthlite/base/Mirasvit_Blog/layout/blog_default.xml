@@ -24,12 +24,11 @@
             <block class="Mirasvit\Blog\Block\Sidebar\TagCloud" name="blog.sidebar.tag.cloud"
                    template="sidebar/tag_cloud.phtml"/>
 
-            <block class="Mirasvit\Blog\Block\Category\Rss" name="blog.sidebar.rss" template="sidebar/rss.phtml"/>
+            <referenceBlock name="blog.sidebar.rss" remove="true" />
         </referenceContainer>
 
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template" name="blog.right" after="-"
-                   template="Mirasvit_Blog::html/copyright.phtml"/>
+              <referenceBlock name="blog.right" remove="true" />
         </referenceContainer>
     </body>
 </page>
