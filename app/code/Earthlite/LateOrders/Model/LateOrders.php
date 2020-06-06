@@ -7,6 +7,7 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 use Psr\Log\LoggerInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 /**
  * Currently Accepted LeadtTime formats number followed by days or day
@@ -19,7 +20,7 @@ class LateOrders
     
     /**
      *
-     * @var ProductRepositoryInterfaceFactory
+     * @var ProductRepositoryInterface
      */
     protected $productRepositoryInterface;
     
@@ -47,15 +48,18 @@ class LateOrders
      * @param DateTime $dateTime
      * @param ScopeConfigInterface $scopeConfig
      * @param LoggerInterface $logger
+     * @param ProductRepositoryInterface $productRepository
      */
     public function __construct(
         DateTime $dateTime,
         ScopeConfigInterface $scopeConfig,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        ProductRepositoryInterface $productRepository
     ) {
         $this->dateTime = $dateTime;
         $this->scopeConfig = $scopeConfig;
         $this->logger = $logger;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -68,11 +72,8 @@ class LateOrders
         if (!$order->hasShipments()) {
             $modifiedLeadDatesofOrderItems = [];
             foreach ($order->getAllVisibleItems() as $item) {
-                if ($item->getProduct() &&
-                        $leadTime = $this->getLeadTime($item->getProduct())
-                ) {
-                    $modifiedLeadDatesofOrderItems[] = $this->formatLeadDate($leadTime, $order->getCreatedAt());
-                }
+                $leadTime = $this->getLeadTime($item);
+                $modifiedLeadDatesofOrderItems[] = $this->formatLeadDate($leadTime, $order->getCreatedAt());
             }
             if ($modifiedLeadDatesofOrderItems) {
                 return $this->canSendEmail($modifiedLeadDatesofOrderItems); 
@@ -83,11 +84,12 @@ class LateOrders
     
     /**
      * 
-     * @param  $product
+     * @param  $item
      * @return string|null
      */
-    protected function getLeadTime($product)
+    protected function getLeadTime($item)
     {
+        $product = $this->productRepository->get($item->getSku());
         $leadTime = $product->getLeadTime();
         $productionItem = $product->getProductionItem();
         if (!$leadTime && !$productionItem) {
