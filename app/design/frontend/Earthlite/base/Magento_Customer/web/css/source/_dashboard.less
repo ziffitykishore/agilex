@@ -9,6 +9,17 @@
 
 & when (@media-common = true) {
 
+    .account
+    { 
+        .fieldset{
+            .field.choice 
+            {
+                display: inline-block;
+                width: 100%;
+            }
+        }
+    }
+
     .actions-toolbar {
         > a.action {
             .link-inverse();
@@ -623,6 +634,7 @@
             }
         }
     }
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-tab) {
