@@ -87,7 +87,7 @@ class LateOrders
      * @param  $item
      * @return string|null
      */
-    protected function getLeadTime($item)
+    public function getLeadTime($item)
     {
         $product = $this->productRepository->get($item->getSku());
         $leadTime = $product->getLeadTime();
@@ -122,7 +122,7 @@ class LateOrders
      * @param string $createdAt
      * @return string
      */
-    protected function formatLeadDate($leadTime, $createdAt)
+    public function formatLeadDate($leadTime, $createdAt)
     { 
         if (is_numeric($leadTime)) {
             $leadTime = "$leadTime days";
@@ -170,7 +170,7 @@ class LateOrders
      * 
      * @return string
      */
-    protected function getDefaultNonProductionItemLeadTime()
+    public function getDefaultNonProductionItemLeadTime()
     {
         return $this->scopeConfig->getValue(
             'earthlite_lateorders/general/defaul_lead_time',
