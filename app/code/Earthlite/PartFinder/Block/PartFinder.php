@@ -87,8 +87,11 @@ class PartFinder extends Description
     {
         $categories = $this->getProduct()->getCategoryCollection();
         foreach ($categories as $category) {
-            if ($category->getParentCategory()->getLevel() == 2) {
+            if ($category->getLevel() == 4) {
                 return $category->getParentCategory();
+            }
+            if ($category->getLevel() == 3) {
+                return $category;
             }
         }
         return false;
