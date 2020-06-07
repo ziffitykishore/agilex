@@ -1,4 +1,7 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
     <preference for="Magento\Catalog\Pricing\Price\TierPrice" type="SomethingDigital\CustomPdp\Pricing\Price\TierPrice" />
+    <type name="Magento\Catalog\ViewModel\Product\Breadcrumbs">
+        <plugin name="productBreadcrumb" type="SomethingDigital\CustomPdp\Plugin\Breadcrumb"/>
+    </type>
 </config>
