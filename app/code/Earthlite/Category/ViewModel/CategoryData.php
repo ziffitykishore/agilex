@@ -129,7 +129,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         $defaultBrands = [
             "Earthlite",
             "Stronglite",
-            "InnerStrength"
+            "Inner Strength"
         ];
         foreach ($options as $option) {
             if (in_array($option->getLabel(), $defaultBrands)) { 
@@ -139,10 +139,10 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
                         $imageUrl = $brandImageUrl . 'logo-earthlite.png';
                         break;
                     case "Stronglite":
-                        $imageUrl = $brandImageUrl . 'logo-inner-strength.png';
-                        break;
-                    case "InnerStrength":
                         $imageUrl = $brandImageUrl . 'logo-stronglite.png';
+                        break;
+                    case "Inner Strength":
+                        $imageUrl = $brandImageUrl . 'logo-inner-strength.png';
                         break;
                     default:
                         $imageUrl = $brandImageUrl;
