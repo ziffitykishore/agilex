@@ -73,5 +73,10 @@
         <referenceBlock name="store.menu">
             <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav.without.ttl" template="Magento_Theme::html/topmenu.phtml" before="-"/>
         </referenceBlock>
+
+        <!-- Contact Link on all pages -->
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="sticky_contact_link" template="Magento_Theme::html/sticky_contact_link.phtml" after="-"/>                            
+        </referenceContainer>
     </body>
 </page>
