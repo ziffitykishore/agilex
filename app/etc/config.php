@@ -520,6 +520,7 @@ return [
         'Earthlite_DownlodableCatalog' => 1,
         'Earthlite_EstimatedShipping' => 1,
         'Mageplaza_Core' => 1,
+        'Earthlite_Instagram' => 1,
         'Earthlite_LateOrders' => 1,
         'Mageplaza_AjaxLayer' => 1,
         'Magedelight_Base' => 1,
@@ -561,4 +562,3 @@ return [
         ]
     ]
 ];
-
