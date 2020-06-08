@@ -86,7 +86,7 @@ class Router implements \Magento\Framework\App\RouterInterface
         if ($parts[0] == 'c') {
             return $this->redirectToCategoryByLegacyId($parts[1]);
         } elseif ($parts[0] == 'p') {
-            if (preg_match('/^[0-9]*$/' , $parts[1])) {
+            if (trim($parts[1], '0..9') === '' && $parts[1] !== '') {
                 return $this->redirectToCategoryByLegacyItemGroups($parts[1]);
             } else {
                 return $this->redirectByProductSku($parts[1]);
