@@ -3,10 +3,11 @@
 namespace SomethingDigital\LegacyRedirect\Controller;
 
 use Magento\Framework\Exception\NoSuchEntityException;
-use Magento\Framework\UrlInterface;
 use Magento\Framework\App\ResponseFactory;
 use Magento\Catalog\Model\ProductRepository;
 use Magento\Catalog\Model\CategoryFactory;
+use Magento\Framework\App\ResponseInterface;
+use Magento\Framework\App\ActionFactory;
 
 class Router implements \Magento\Framework\App\RouterInterface
 {
@@ -27,7 +28,15 @@ class Router implements \Magento\Framework\App\RouterInterface
      */
     protected $categoryFactory;
 
-    protected $url;
+    /**
+     * @var ResponseInterface
+     */
+    protected $response;
+
+    /**
+     * @var ActionFactory
+     */
+    protected $actionFactory;
 
     /**
      * @param \Magento\Framework\App\ResponseInterface $response
@@ -36,12 +45,14 @@ class Router implements \Magento\Framework\App\RouterInterface
         ResponseFactory $responseFactory,
         ProductRepository $productRepository,
         CategoryFactory $categoryFactory,
-        UrlInterface $url
+        ResponseInterface $response,
+        ActionFactory $actionFactory
     ) {
         $this->responseFactory = $responseFactory;
         $this->productRepository = $productRepository;
         $this->categoryFactory = $categoryFactory;
-        $this->url = $url;
+        $this->response = $response;
+        $this->actionFactory = $actionFactory;
     }
 
     /**
@@ -55,10 +66,9 @@ class Router implements \Magento\Framework\App\RouterInterface
         $uri = $this->getRedirectUrl($request->getRequestUri(), $request);
 
         if ($uri) {
-           $this->responseFactory->create()
-               ->setRedirect($uri, self::HTTP_CODE_301)
-               ->sendResponse();
-           exit;
+            $this->response->setRedirect($uri, self::HTTP_CODE_301);
+            $request->setDispatched(true);
+            return $this->actionFactory->create(Redirect::class);
         }
         return null;
     }
@@ -125,7 +135,8 @@ class Router implements \Magento\Framework\App\RouterInterface
     protected function redirectToCategoryByLegacyItemGroups($id)
     {
         $categoryCollection = $this->categoryFactory->create()->getCollection()
-            ->addAttributeToFilter('legacy_item_groups', ['like' => '%' . $id . '%']);
+            ->addAttributeToFilter('legacy_item_groups', ['finset' => [$id]]);
+
         $category = $categoryCollection->getFirstItem();
         if ($category->getId()) {
             return $category->getUrl();
