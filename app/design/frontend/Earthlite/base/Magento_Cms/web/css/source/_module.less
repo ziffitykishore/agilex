@@ -7,13 +7,22 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-    .contact-index-index,
     .cms-no-route {
         .page-main {
             .inner-container();
             padding-top: 30px;
         }
     }
+
+
+    .contact-index-index {
+        .page-main {
+            max-width: @layout__max-width;
+            padding: 0 30px;
+            padding-top: 30px;
+            margin: 0 auto;
+        }
+    } 
 
     .cms-no-route {
         .sidebar {
@@ -22,3 +31,11 @@
     }
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .contact-index-index {
+        .page-main {
+            padding: 0 15px;
+            padding-top: 30px;
+        }
+    } 
+}
