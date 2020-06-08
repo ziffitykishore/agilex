@@ -1,0 +1,12 @@
+<?php
+	$_helper = $this->helper('Earthlite\Stickylinks\Helper\StoreConfig');
+	$storeContactNumber = $_helper->getConfigValue('general/store_information/phone');
+	if($storeContactNumber):
+?>
+
+<a class="sticky contact" href="<?php echo "tel:".str_replace("-","",$storeContactNumber) ?>">
+        <i class="icon-info"></i>
+	<span>Contact</span>
+</a>
+
+<?php endif; ?>

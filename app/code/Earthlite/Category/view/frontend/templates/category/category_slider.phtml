@@ -29,11 +29,9 @@ $catalogCategoryDefaultUrl = $block->getMediaUrl() . 'catalog/category/placehold
         <h2 class="text-center" ><?= $categoryName ?> </h2>
         <?php if ($_description = $block->getCurrentCategory()->getDescription()) : ?>
             <div class="category-description" >
-                <?=
-                /* @noEscape */ $this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute(
-                        $block->getCurrentCategory(), $_description, 'description'
-                )
-                ?>
+                <p>
+                    <?= /* @noEscape */ $block->stripTags($this->helper(Magento\Catalog\Helper\Output::class)->categoryAttribute($block->getCurrentCategory(), $_description, 'description')) ?>
+                </p>
             </div>
         <?php endif; ?>
     </div>
