@@ -4,9 +4,9 @@
 	if($storeContactNumber):
 ?>
 
-<div class="sticky contact">
-	<span>contact</span>
-	<a href="<?php echo "tel:".str_replace("-","",$storeContactNumber) ?>"><?= $storeContactNumber; ?></a>
-</div>
+<a class="sticky contact" href="<?php echo "tel:".str_replace("-","",$storeContactNumber) ?>">
+        <i class="icon-info"></i>
+	<span>Contact</span>
+</a>
 
 <?php endif; ?>

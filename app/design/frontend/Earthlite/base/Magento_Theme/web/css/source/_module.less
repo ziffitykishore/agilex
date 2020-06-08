@@ -65,7 +65,37 @@
     .page-main {
         .lib-vendor-prefix-flex-grow(1);
     }
-    
+
+    .sticky.contact {
+        background: @theme__color__secondary;
+        box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 4px 4px;
+        color: #fff;
+        position: fixed;
+        right: -45px;
+        top: 40%;
+        transform: rotate(90deg) translateZ(0);
+        span, i {
+            color: #fff;
+            padding: 14px;
+            display: inline-block;
+            vertical-align: middle;
+            zoom: 1.005;
+        }
+        span {
+            -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
+            zoom: 1.005;
+        }
+        i {
+            border-bottom: 1px solid #04112b;
+            font-size: 20px;
+            -webkit-transform: rotate(-90deg) translateZ(0);
+            transform: rotate(-90deg) translateZ(0);
+
+        }
+    }
+
     //
     //  Header
     //  ---------------------------------------------
@@ -210,14 +240,14 @@
             .options {
                 .lib-dropdown(
                 @_dropdown-actions-padding: 0,
-                @_dropdown-list-item-padding: 0,
-                @_dropdown-toggle-icon-content: @icon-down,
-                @_dropdown-toggle-active-icon-content: @icon-up,
-                @_icon-font-text-hide: true,
-                @_icon-font-size: 22px,
-                @_icon-font-line-height: 22px,
-                @_dropdown-list-min-width: 160px
-                );
+                    @_dropdown-list-item-padding: 0,
+                    @_dropdown-toggle-icon-content: @icon-down,
+                    @_dropdown-toggle-active-icon-content: @icon-up,
+                    @_icon-font-text-hide: true,
+                    @_icon-font-size: 22px,
+                    @_icon-font-line-height: 22px,
+                    @_dropdown-list-min-width: 160px
+                    );
 
                 ul.dropdown {
                     a {
@@ -252,7 +282,7 @@
 
     .sidebar {
         .widget.block:not(:last-child),
-        .widget:not(:last-child) {
+            .widget:not(:last-child) {
             &:extend(.abs-margin-for-blocks-and-widgets all);
         }
     }
