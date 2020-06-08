@@ -3,13 +3,21 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 /** @var $block \Magento\Catalog\Block\Product\View\Addto\Compare */
+if ($block->getProduct()->getAttributeText('table_type') == 'Stationary') {
+    $cmsPageUrl = '/compare-stationary-products';
+} elseif ($block->getProduct()->getAttributeText('table_type') == 'Portable') {
+    $cmsPageUrl = '/compare-portable-products';
+} else {
+    $cmsPageUrl = '';
+}
 ?>
 
 <?php $viewModel = $block->getData('addToCompareViewModel'); ?>
-<?php if ($viewModel->isAvailableForCompare($block->getProduct())) :?>
-    <a href="/compare-products" data-role="add-to-links" class="action tocompare">
-        <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
-    </a>
+<?php if ($viewModel->isAvailableForCompare($block->getProduct())) : ?>
+    <?php if ($cmsPageUrl) : ?>
+        <a href="<?= $cmsPageUrl ?>" data-role="add-to-links" class="action tocompare">
+            <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
+        </a>
+    <?php endif; ?>
 <?php endif; ?>
