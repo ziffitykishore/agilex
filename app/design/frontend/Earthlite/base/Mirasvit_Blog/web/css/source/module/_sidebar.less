@@ -34,27 +34,31 @@
             }
         }
     }
-    
+
     .block-collapsible-nav .item a, 
     .block-collapsible-nav .item>strong {
-        padding: 4px 20px;
+        padding: 4px 10px !important;
     }
 
     .blog__sidebar-recent {
         .item {
             .lib-clearfix();
-            margin-botttom: 15px;
+            margin-bottom: 15px;
             .post-name {
                 font-size: 1.2rem;
             }
             img {
-                padding: 0 1rem 1rem 0;
+
                 float: left;
-                max-width: 10rem;
-                border-radius: 2px;
+                max-width: 9rem;
+                border-radius: 6px;
             }
 
             a {
+                &:first-of-type {
+                    padding: 0 1rem 1rem 0;
+                    float: left;
+                }
                 font-size: 1.2rem;
                 display: block;
                 text-decoration: none;
@@ -93,7 +97,7 @@
     .blog__sidebar-tag-cloud {
         .tag.items {
             float: left;
-            margin-bottom: 5px;
+            margin: 0 5px 5px 0;
         }
         a {
             border: 1px solid @title_color;

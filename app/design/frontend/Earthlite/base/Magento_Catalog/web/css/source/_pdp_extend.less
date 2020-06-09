@@ -44,6 +44,17 @@
 
 & when (@media-common = true) {
 
+    .additional-attributes {
+        .data img {
+            width: 50px;
+        }
+    }
+
+    .product.attribute.description b {
+        display: block;
+        margin-top: 10px;
+    }
+
     // config slide
     .custom-options-container.slide {
         position: fixed;
@@ -100,6 +111,10 @@
             color: @title_color;
             font-size: 2.5rem; 
         }
+    }
+
+    .swatch-option.disabled:after {
+        opacity: 1;
     }
 
     .custom-options-container.slide div.mage-error[generated] {
@@ -1033,7 +1048,7 @@
             &.detailed {
                 .product.data.items {
                     > .item.title {
-                    & ~ .item.title {
+                        & ~ .item.title {
                             margin-left: 30px;
                         }
                     }
@@ -1054,7 +1069,7 @@
             &.detailed {
                 .product.data.items {
                     > .item.title {
-                       & ~ .item.title {
+                        & ~ .item.title {
                             margin-left: 50px;
                         }
                     }

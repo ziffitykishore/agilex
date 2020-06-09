@@ -5,6 +5,21 @@
             height: 100%;
         }
     }
+
+    .blog-search-result {
+        .cms-pages {
+            .block-title {
+                color: @title_color;
+                font-weight: 600;
+                font-size: 1.6rem;
+                margin-bottom: 15px;
+            }
+            .page-list {
+                padding-left: 16px;
+            }
+        }
+    }
+
     .blog__post-list-wrapper {
         .blog__post-list {
             list-style: none;
@@ -130,8 +145,9 @@
             a {
                 border: 1px solid @title_color;
                 padding: 5px 15px;
-                display: block;
+                display: inline-block;
                 border-radius: 4px;
+                margin: 0 2px 5px 0;
                 &::after {
                     content: ',';
                 }

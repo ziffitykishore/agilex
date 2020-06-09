@@ -8,9 +8,9 @@ $postCollection = $block->getCollection()
 ?>
 
 <section class="home-blog py-10">
-    <h2 class="mb-6 aos-init aos-animate"><?= __('Our Latest Blog') ?></h2>
+    <h2 class="mb-6" data-aos="fade-up"><?= __('Our Latest Blog') ?></h2>
 
-    <div class="blog-list aos-init aos-animate" data-aos="fade-up">
+    <div class="blog-list" data-aos="fade-up">
 
         <?php if ($postCollection->count()): ?>
 

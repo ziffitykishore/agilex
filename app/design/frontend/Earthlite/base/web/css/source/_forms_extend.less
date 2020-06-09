@@ -226,15 +226,21 @@
 
     }
 
-    .message.info > *:first-child:before {
-        content: "\e91a";
-        font-family: 'ELite' !important;
-        margin: -12px 0 0;
-        color: #fff;
-    }
+    .message {
+        &.info, &.notice  {
+            > *:first-child:before {
+                content: "\e91a";
+                font-family: 'ELite' !important;
+                margin: -12px 0 0;
+                color: #fff;
+            }
+        }
+    } 
 
-    .message.info {
-        border-radius: 6px;
+    .message {
+        &.info, &.notice  {
+            border-radius: 6px;
+        }
     }
 
     ._has-modal {
