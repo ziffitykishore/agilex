@@ -124,21 +124,23 @@ class LateOrders
      */
     public function formatLeadDate($leadTime, $createdAt)
     { 
-        if (is_numeric($leadTime)) {
-            $leadTime = "$leadTime days";
+        if ($leadTime) {
+            if (is_numeric($leadTime)) {
+                $leadTime = "$leadTime days";
+            }
+            if (!preg_match(self::LEAD_TIME_PATTERN, $leadTime)) {
+                $this->logger->info("Invalid Lead Time: $leadTime");
+                return false;
+            }
+            if (strpos($leadTime, 'days')) {
+                $leadTime = str_replace("days", "weekdays", $leadTime);
+            } else {
+                $leadTime = str_replace("day", "weekdays", $leadTime);
+            }
+            return $this->dateTime->date(
+                            'Y-m-d', strtotime($leadTime, strtotime($createdAt))
+            );
         }
-        if (!preg_match(self::LEAD_TIME_PATTERN, $leadTime)) {
-            $this->logger->info("Invalid Lead Time: $leadTime");
-            return false;
-        }
-        if (strpos($leadTime, 'days')) {
-            $leadTime = str_replace("days", "weekdays", $leadTime);
-        } else {
-            $leadTime = str_replace("day", "weekdays", $leadTime);
-        }
-        return $this->dateTime->date(
-                        'Y-m-d', strtotime($leadTime, strtotime($createdAt))
-        );
     }
 
 

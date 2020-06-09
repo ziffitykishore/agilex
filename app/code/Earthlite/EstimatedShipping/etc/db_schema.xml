@@ -9,10 +9,10 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="quote_item" resource="checkout" engine="innodb" comment="Sales Flat Quote Item">
         <column xsi:type="varchar" name="shipping_lead_time" nullable="true" length="255" comment="shipping_lead_time"/>
-        <column xsi:type="boolean" name="lead_time_status"/>
+        <column xsi:type="boolean" name="item_type" default="0"/>
     </table>
     <table name="sales_order_item" resource="sales" engine="innodb" comment="Sales Flat Order Item">
         <column xsi:type="varchar" name="shipping_lead_time" nullable="true" length="255" comment="shipping_lead_time"/>
-        <column xsi:type="boolean" name="lead_time_status"/>
+        <column xsi:type="boolean" name="item_type" default="0"/>
     </table>
 </schema>
