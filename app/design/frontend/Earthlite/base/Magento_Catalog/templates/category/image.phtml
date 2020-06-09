@@ -22,7 +22,6 @@
     if ($_imgUrl = $_category->getImageUrl('banner_image')) : ?>
         <div class="category-image" >
             <img src="<?= $block->escapeUrl($_imgUrl)?>" alt="<?= $block->escapeHtmlAttr($_category->getName()) ?>" title="<?= $block->escapeHtmlAttr($_category->getName()) ?>" class="image" >
-            <?= $block->getChildHtml('', true) ?>
         </div>
     <?php else : ?>
         <div class="category-image no-image">

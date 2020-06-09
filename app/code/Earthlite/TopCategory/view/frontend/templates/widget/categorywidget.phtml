@@ -17,7 +17,7 @@ if ($block->getTopCategoryConfig()) {
                             <?php
                             $categoryName = str_replace(' ', '-', $cat->getName());
                             $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
-                            $categoryImageURL = $cat->getImageUrl() ? $cat->getImageUrl() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
+                            $categoryImageURL = $cat->getShopCategoryImage() ? $cat->getShopCategoryImage() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
                             ?> 
                             <div class="product-item-info">
                                 <a class="product-item-link" href="<?= $block->escapeUrl($cat->getUrl()) ?>" tabindex="0">
@@ -37,7 +37,8 @@ if ($block->getTopCategoryConfig()) {
                 </div>
             </div>
         </section>
-    <?php }
+    <?php
+    }
 }
 ?>
 

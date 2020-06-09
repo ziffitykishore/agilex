@@ -14,7 +14,7 @@ class DataProvider extends \Magento\Catalog\Model\Category\DataProvider
     {
         $fields = parent::getFieldsMap();
         $fields['content'][] = 'banner_image';
+        $fields['content'][] = 'shop_category_image';
         return $fields;
     }
-
 }
