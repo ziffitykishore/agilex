@@ -963,9 +963,9 @@ define([
                     && typeof this.options.jsonConfig.leadTime != 'undefined'
                     && this.options.jsonConfig.leadTime[chosenProduct]
                     ) {
-                $('div.shipping-details').html(
-                        '<span>' + this.options.jsonConfig.leadTime[chosenProduct] + '</span>'
-                        );
+                $('div.shipping-details span.estimation').html(this.options.jsonConfig.leadTime[chosenProduct]);
+                var toolTipMesage = this.options.jsonConfig.tooltip[this.getProduct()];
+                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
             }
         },
 
@@ -1401,10 +1401,12 @@ define([
             var selectedQty = 0;
             if (this.getProduct()) {
                 $("#child_product_id").val(this.getProduct());
-                var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];
+                var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];            
             } else {
                 var selectedQty = Math.max.apply(Math, Object.values(this.options.jsonConfig.simpleQtys));
+            
             }
+            
             if (selectedQty >= 10) {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
                 this.addToCart(false, '', 'disabled');
@@ -1429,7 +1431,7 @@ define([
          */
         updateStockStatusText: function (addClass, removeClass, text) {
             $('div.product-info-stock-sku .stock').removeClass(removeClass).addClass(addClass);
-            $('div.product-info-stock-sku .stock span').text(text);
+            $('div.product-info-stock-sku .stock > span.estimation').text(text);
         },
 
         /**

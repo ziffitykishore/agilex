@@ -280,7 +280,7 @@ define([
             } else {
                 this._resetChildren(element);
             }
-
+            $('.product-info-stock-sku .shipping-details').hide();
             this._reloadPrice();
             this._reloadLeadTime(this.simpleProduct);
             this._updateStock(this.simpleProduct);
@@ -535,9 +535,9 @@ define([
                 && typeof this.options.spConfig.leadTime != 'undefined'
                 && this.options.spConfig.leadTime[chosenProduct]
             ) {
-                $('div.shipping-details').html(
-                    '<span>' + this.options.spConfig.leadTime[chosenProduct] + '</span>'
-                );
+                $('div.shipping-details span.estimation').html(this.options.spConfig.leadTime[chosenProduct]);
+                var toolTipMesage = this.options.spConfig.tooltip[chosenProduct];
+                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
             }
         },
 
@@ -744,6 +744,7 @@ define([
          */
         _updateStock: function (simpleProduct) {
             $("#notify-block").css("display", "none");
+            $('.product-info-stock-sku .shipping-details').hide();
             var selectedQty = 0;
             if (simpleProduct) {
                 $("#child_product_id").val(simpleProduct);
@@ -754,15 +755,16 @@ define([
             if (selectedQty >= 10) {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
                 this.addToCart(false, '', 'disabled');
-                $('.shipping-details').show();
+                $('.product-info-stock-sku .shipping-details').show();
             } else if (selectedQty < 10 && selectedQty > 0) {
                 this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
                 this.addToCart(false, '', 'disabled');
-                $('.shipping-details').show();
+                $('.product-info-stock-sku .shipping-details').show();
             } else if (selectedQty === 0) {
                 this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
                 this.displayNotifyStock();
                 this.addToCart(true, 'disabled', '');
+                $('.product-info-stock-sku .shipping-details').hide();
             }
         },
 
