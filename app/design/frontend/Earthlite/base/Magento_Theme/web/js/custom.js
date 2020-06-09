@@ -211,8 +211,8 @@ define([
         $('.product-tab-wrapper').addClass('no-tabs-wrapper');
     }
 
-    if ($('.product-tab-wrapper .products-wrapper').length == 0) {
+    /*if ($('.product-tab-wrapper .products-wrapper').length == 0) {
         $('.product-tab-wrapper').addClass('no-related');
-    }
+    }*/
 
 });
