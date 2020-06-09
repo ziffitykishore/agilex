@@ -1397,6 +1397,7 @@ define([
          * @return {undefined}
          */
         _updateStock: function () {
+            $("#notify-block").css("display", "none");
             var selectedQty = 0;
             if (this.getProduct()) {
                 $("#child_product_id").val(this.getProduct());
@@ -1443,7 +1444,7 @@ define([
         displayNotifyStock: function () {
             $("#notify-block").css("display", "block");
             if ($("#product-customize-button").length) {
-                $("#stock-alert").insertBefore("#product-options-wrapper");
+                $("#notify-block").insertBefore("#product-options-wrapper");
             }
         }
     });
