@@ -22,6 +22,5 @@
                 </block>
             </referenceBlock>
         </referenceContainer>
-        <referenceBlock  name="sticky_contact_link" remove="true" />
     </body>
 </page>
