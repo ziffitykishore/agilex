@@ -44,8 +44,7 @@
             <block class="Magento\Catalog\Block\Product\View" name="custom.product.option" template="Magento_Catalog::product/view/customoption.phtml" after="-"/>
         </referenceContainer>
         <move element="productalert.stock" destination="custom.option.container" before="-" />
-        <move element="product.info.options.wrapper" destination="custom.option.container" after="close.custom.product.option"/>
-        <move element="product.info.options.wrapper.bottom" destination="custom.option.container" after="product.info.options.wrapper"/>
+        <move element="product.info" destination="custom.option.container" after="close.custom.product.option"/>
         <referenceBlock name="product.info.details">
             <block class="Magento\Catalog\Block\Product\View" name="color.stains.tab" template="Magento_Catalog::product/view/tab/color_stains.phtml" group="detailed_info">
                 <arguments>
