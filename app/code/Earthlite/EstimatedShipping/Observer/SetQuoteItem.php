@@ -1,35 +1,59 @@
 <?php
+declare(strict_types = 1);
 namespace Earthlite\EstimatedShipping\Observer;
 
 use Magento\Framework\Event\ObserverInterface;
-use Magento\Catalog\Model\Product;
 use Earthlite\EstimatedShipping\Model\Shipping\Estimation;
 
+/**
+ * class SetQuoteItem
+ */
 class SetQuoteItem implements ObserverInterface
 {
-   protected $product;
-
-   protected $quote;
-
+    /**
+     *
+     * @var Estimation 
+     */
+   protected $shippingEstimation;
+   
+   /**
+    * 
+    * @param Estimation $shippingEstimation
+    */
     public function __construct(                
-        \Magento\Quote\Model\Quote\Item $quote,
         Estimation $shippingEstimation
     ) {          
-        $this->quote = $quote;
         $this->shippingEstimation = $shippingEstimation;
     }
+    
+    /**
+     * 
+     * @param \Magento\Framework\Event\Observer $observer
+     */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {                
         $quoteItem = $observer->getQuoteItem();
         $itemSku = $quoteItem->getSku();        
-        $leadTime = $this->getShippingInfo($itemSku);        
-        $quoteItem->setShippingLeadTime($leadTime);        
-        
-        return $observer;
+        $quoteItem->setShippingLeadTime($this->getShippingInfo($itemSku));        
+        $quoteItem->setItemType($this->getItemType($itemSku));        
     }
 
+    /**
+     * 
+     * @param type $sku
+     * @return string
+     */
     public function getShippingInfo($sku)
     {
         return $this->shippingEstimation->getQuoteEstimatedShipping($sku);   
+    }
+    
+    /**
+     * 
+     * @param string $sku
+     */
+    public function getItemType(string $sku):bool
+    {
+        return (bool) $this->shippingEstimation->getItemType($sku);
     }
 }
