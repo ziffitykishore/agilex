@@ -1408,13 +1408,16 @@ define([
             if (selectedQty >= 10) {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
                 this.addToCart(false, '', 'disabled');
+                $('.shipping-details').show();
             } else if (selectedQty < 10 && selectedQty > 0) {
                 this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
                 this.addToCart(false, '', 'disabled');
+                $('.shipping-details').show();
             } else if (selectedQty === 0) {
                 this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
                 this.displayNotifyStock();
                 this.addToCart(true, 'disabled', '');
+                $('.shipping-details').hide();
             }
         },
 

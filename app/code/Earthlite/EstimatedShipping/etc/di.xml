@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">    
+    
     <preference for="Magento\Checkout\Model\DefaultConfigProvider" type="Earthlite\EstimatedShipping\Model\DefaultConfigProvider" />
+
+  	<type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="custom_attribute_quote_to_order_item" type="Earthlite\EstimatedShipping\Plugin\SetQuoteToOrderItem"/>
+    </type>
 </config>

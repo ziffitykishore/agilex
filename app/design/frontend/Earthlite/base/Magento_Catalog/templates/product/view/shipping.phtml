@@ -1,11 +1,11 @@
 <?php
 	$product = $block->getProduct();
-	$helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
-    if($estimatedShipment = $helper->getShippingInfo($product->getSku())):
+	$helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');	
+    if(($estimatedShipment = $helper->getShippingInfo($product->getSku())) && ($product->getTypeId() == 'simple')):
 ?>
 
 <div class="shipping-details" title="Shipping">
-    <span><?= $estimatedShipment ?></span>
+    <span><?php echo $estimatedShipment ?></span>
 </div>
 <?php else: ?>
     <div class="shipping-details" title="Shipping"></div>

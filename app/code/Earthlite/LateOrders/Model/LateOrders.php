@@ -72,7 +72,7 @@ class LateOrders
         if (!$order->hasShipments()) {
             $modifiedLeadDatesofOrderItems = [];
             foreach ($order->getAllVisibleItems() as $item) {
-                $leadTime = $this->getLeadTime($item);
+                $leadTime = $item->getShippingLeadTime();
                 $modifiedLeadDatesofOrderItems[] = $this->formatLeadDate($leadTime, $order->getCreatedAt());
             }
             if ($modifiedLeadDatesofOrderItems) {

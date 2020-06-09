@@ -34,11 +34,8 @@ class AddProductionItemToTransport implements ObserverInterface
         $order = $transport['order'];
         $modifiedLeadDatesofOrderItems = [];
         foreach ($order->getAllVisibleItems() as $item) {
-            $product = $item->getProduct();
-            if ($product->getProductionItem()) {
-                $productionItemExist = true;
-            }
-            $leadTime = $this->lateOrders->getLeadTime($item);
+            
+            $leadTime = $item->getShippingLeadTime();
             
             $modifiedLeadDatesofOrderItems[] = $this->lateOrders->formatLeadDate($leadTime, $order->getCreatedAt());
         }

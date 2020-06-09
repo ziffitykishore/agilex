@@ -22,6 +22,12 @@
                 <field id="notification_message" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Notification Message</label>                    
                 </field>
+                <field id="default_lead_time_production" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-Production Item Shipping Estimation</label>                    
+                </field>
+                <field id="default_lead_time_nonproduction" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-Production Item Shipping Estimation</label>                    
+                </field>
             </group>
         </section>
     </system>
