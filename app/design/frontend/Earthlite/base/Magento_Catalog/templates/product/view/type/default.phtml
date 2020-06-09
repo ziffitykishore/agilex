@@ -11,13 +11,16 @@
     $_product = $block->getProduct();
     $productionItem = $_product->getCustomAttribute('production_item')->getValue();
     $productId = $_product->getId();
-    if ($_product->getTypeId() == 'configurable') {
-        $firsttem = $_product->getTypeInstance()
-                ->getUsedProductCollection($_product)
-                ->getFirstItem();
-        $productId = $firsttem->getId();
-    }
     $stockItemQty = $blockObj->getStockQty($productId);
+    if ($_product->getTypeId() == 'configurable') {
+        $childItems = $_product->getTypeInstance()
+                ->getUsedProductCollection($_product);
+        $qty = [];
+        foreach ($childItems as $child) {
+            $qty[] = $blockObj->getStockQty($child->getId());
+        }
+        $stockItemQty = max($qty);
+    }
 ?>
 
 <?php if ($block->displayProductStockStatus()) :?>
