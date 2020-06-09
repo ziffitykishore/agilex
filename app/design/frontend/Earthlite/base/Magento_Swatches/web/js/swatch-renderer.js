@@ -731,10 +731,6 @@ define([
                         );
             }
 
-            if ($this.hasClass('disabled')) {
-                return;
-            }
-
             if ($this.hasClass('selected')) {
                 $parent.removeAttr('option-selected').find('.selected').removeClass('selected');
                 $input.val('');
@@ -849,10 +845,6 @@ define([
          */
         _Rewind: function (controls) {
             controls.find('div[option-id], option[option-id]').removeClass('disabled').removeAttr('disabled');
-            controls.find('div[option-empty], option[option-empty]')
-                    .attr('disabled', true)
-                    .addClass('disabled')
-                    .attr('tabindex', '-1');
         },
 
         /**
@@ -873,31 +865,6 @@ define([
                 return;
             }
 
-            // Disable not available options
-            controls.each(function () {
-                var $this = $(this),
-                        id = $this.attr('attribute-id'),
-                        products = $widget._CalcProducts(id);
-
-                if (selected.length === 1 && selected.first().attr('attribute-id') === id) {
-                    return;
-                }
-
-                $this.find('[option-id]').each(function () {
-                    var $element = $(this),
-                            option = $element.attr('option-id');
-
-                    if (!$widget.optionsMap.hasOwnProperty(id) || !$widget.optionsMap[id].hasOwnProperty(option) ||
-                            $element.hasClass('selected') ||
-                            $element.is(':selected')) {
-                        return;
-                    }
-
-                    if (_.intersection(products, $widget.optionsMap[id][option].products).length <= 0) {
-                        $element.attr('disabled', true).addClass('disabled');
-                    }
-                });
-            });
         },
 
         /**
@@ -993,15 +960,14 @@ define([
         _reloadLeadTime: function () {
             var chosenProduct = this.getProduct();
             if (chosenProduct
-                && typeof this.options.jsonConfig.leadTime != 'undefined'
-                && this.options.jsonConfig.leadTime[chosenProduct]
-            ) {
+                    && typeof this.options.jsonConfig.leadTime != 'undefined'
+                    && this.options.jsonConfig.leadTime[chosenProduct]
+                    ) {
                 $('div.shipping-details').html(
-                    '<span>' + this.options.jsonConfig.leadTime[chosenProduct] + '</span>'
-                );
+                        '<span>' + this.options.jsonConfig.leadTime[chosenProduct] + '</span>'
+                        );
             }
         },
-
 
         /**
          * Get new prices for selected options
@@ -1424,25 +1390,61 @@ define([
                 this.options.mediaCache[JSON.stringify(mediaCallData)] = this.options.jsonConfig.preSelectedGallery;
             }
         },
+
+        /**
+         * Update Stock info based on options
+         * 
+         * @return {undefined}
+         */
         _updateStock: function () {
-            var updatePricesUrl = window.BASE_URL + 'productavailability/index/getstock';
-            $("#notify-block").css("display", "none");
-            $("#child_product_id").val(this.getProduct());
-            $.post(updatePricesUrl, {id: this.getProduct()}).done(function (response) {
-                var selectedQty = response['qty'];
-                var selectedClass = $('div.product-info-stock-sku .stock').attr('class');
-                if (selectedQty >= 10) {
-                    $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock available');
-                    $('div.product-info-stock-sku .stock span').text('In stock');
-                } else if (selectedQty < 10 && selectedQty > 0) {
-                    $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock low-available');
-                    $('div.product-info-stock-sku .stock span').text('<10 available');
-                } else if (selectedQty == 0) {
-                    $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock unavailable');
-                    $('div.product-info-stock-sku .stock span').text('Out of stock');
-                    $("#notify-block").css("display", "block");
-                }
-            });
+            var selectedQty = 0;
+            if (this.getProduct()) {
+                $("#child_product_id").val(this.getProduct());
+                var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];
+            } else {
+                var selectedQty = Math.max.apply(Math, Object.values(this.options.jsonConfig.simpleQtys));
+            }
+            if (selectedQty >= 10) {
+                this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
+                this.addToCart(false, '', 'disabled');
+            } else if (selectedQty < 10 && selectedQty > 0) {
+                this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
+                this.addToCart(false, '', 'disabled');
+            } else if (selectedQty === 0) {
+                this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
+                this.displayNotifyStock();
+                this.addToCart(true, 'disabled', '');
+            }
+        },
+
+        /**
+         * Updated Classes for stock sections based on qty
+         * @param string addClass
+         * @param string removeClass
+         * @param string text
+         */
+        updateStockStatusText: function (addClass, removeClass, text) {
+            $('div.product-info-stock-sku .stock').removeClass(removeClass).addClass(addClass);
+            $('div.product-info-stock-sku .stock span').text(text);
+        },
+
+        /**
+         * 
+         * Enable Add to cart button 
+         */
+        addToCart: function (status, addClass, removeClass) {
+            $("#product-addtocart-button").attr('disabled', status).removeClass(removeClass).addClass(addClass);
+        },
+
+        /**
+         * 
+         * append to customize container based on options
+         */
+        displayNotifyStock: function () {
+            $("#notify-block").css("display", "block");
+            if ($("#product-customize-button").length) {
+                $("#stock-alert").insertBefore("#product-options-wrapper");
+            }
         }
     });
 

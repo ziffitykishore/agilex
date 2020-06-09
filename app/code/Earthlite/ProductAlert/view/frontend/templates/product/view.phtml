@@ -23,7 +23,7 @@ $customerId = $viewModel->isLoggedIn();
         <div class="actions-toolbar">
             <div class="primary">
                 <div class="control">
-                    <input name="product_id" id="product_id" value="<?= $product->getId() ?>" type="hidden"/>
+                    <input name="product_id" id="parent_product_id" value="<?= $product->getId() ?>" type="hidden"/>
                     <input name="child_product_id" id="child_product_id" value="<?= $product->getId() ?>" type="hidden"/>
                 </div>
                 <button type="submit" title="<?= $block->escapeHtmlAttr(__('Notify Me')) ?>" class="action submit primary">
