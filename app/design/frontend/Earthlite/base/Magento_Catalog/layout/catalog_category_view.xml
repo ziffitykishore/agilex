@@ -7,7 +7,6 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="page.main.title" remove="true"/>        
         <referenceContainer name="sidebar.additional" remove="true" />  
         <referenceContainer name="before.body.end">
             <block class="Magento\Framework\View\Element\Template" name="mob.filter.trigger" template="Magento_Catalog::filtertrigger.phtml" after="-" /> 

@@ -3,6 +3,7 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+
     .page-products {
         .ln_overlay {
             width: 100%;
@@ -46,9 +47,12 @@
                         font-weight: 700;
                     }
                 }
-                
-                &.no-image {
-                    min-height: 150px;
+
+                &.no-image img {
+                    min-height: 100px;
+                    display: inline-block;
+                    object-fit: cover;
+                    object-position: right;
                 }
             }
 
@@ -227,6 +231,7 @@
             .product {
                 &-items:not(.slick-slider) {
                     .flex();
+                    justify-content: center;
                 }
                 &-item {
                     width: 100%;
@@ -386,6 +391,22 @@
         }
     }
 
+    .search.results {
+        .toolbar {
+            margin-bottom: 20px;
+        }
+        .block {
+            margin-bottom: 10px;
+            .title {
+                margin-bottom: 10px;
+            }
+            dd.item {
+                display: inline-block;
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    }
 }
 
 //

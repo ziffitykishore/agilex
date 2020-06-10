@@ -60,8 +60,10 @@
         .desc {
             line-height: 1.6;
             flex-grow: 1;
-            max-height: 200px;
-            overflow: hidden;
+             > :first-child {
+                overflow: hidden;
+                max-height: 150px;
+            }
         }
     }
     .gallery-container {
@@ -96,11 +98,11 @@
     .clpdesc {
         max-width: 1260px;
     }
-/*    .clp-banner {
-        .slide {
-            height: 300px;
-        }
-    }*/
+    /*    .clp-banner {
+            .slide {
+                height: 300px;
+            }
+        }*/
     .morecontent span {
         display: none;
     }
@@ -187,11 +189,11 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
-/*    .clp-banner {
-        .slide {
-            height: 420px;
-        }
-    }*/
+    /*    .clp-banner {
+            .slide {
+                height: 420px;
+            }
+        }*/
     .clp-titledesc { 
         top: -60px;
     }
@@ -211,6 +213,9 @@
         figure {
             min-height: 150px;
         }
+    }
+    .sub-category-view .desc > :first-child {
+        max-height: 130px;
     }
 }
 
@@ -235,15 +240,18 @@
         padding: 30px 60px 10px;
         /*top: -100px;*/
     }
-/*    .clp-banner {
-        .slide {
-            height: 500px;
-        }
-    }*/
+    /*    .clp-banner {
+            .slide {
+                height: 500px;
+            }
+        }*/
     .shop-by-brand {
         figure {
             min-height: 200px;
         }
+    }
+    .sub-category-view .desc > :first-child {
+        max-height: 160px;
     }
 }
 
@@ -271,11 +279,14 @@
         }
     }
 
-/*    .clp-banner {
-        .slide {
-            height: 350px;
-        }
-    }*/
+    /*    .clp-banner {
+            .slide {
+                height: 350px;
+            }
+        }*/
+    .sub-category-view .desc > :first-child {
+        max-height: 85px;
+    }
 
 }
 
@@ -338,11 +349,11 @@
             margin-bottom: 1rem;
         }
     }
-/*    .clp-banner {
-        .slide {
-            height: 250px;
-        }
-    }*/
+    /*    .clp-banner {
+            .slide {
+                height: 250px;
+            }
+        }*/
     .new-trend-slider {
         padding-right: 20%;
         .slick-list {

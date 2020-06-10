@@ -58,12 +58,12 @@
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
     .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
-        min-height: 600px !important;
+        min-height: calc(~'100vh - 250px') !important;
     }
 }
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
-        min-height: 500px !important;
+        min-height: calc(100vh - 350px) !important;
     }
     .home-banner {
         .slick-dots {
@@ -111,7 +111,7 @@
         }
     }
     .home-banner, .pagebuilder-slide-wrapper, .pagebuilder-overlay {
-        min-height: 800px !important;
+        min-height: calc(~'100vh - 260px') !important;
     }
 }
 
