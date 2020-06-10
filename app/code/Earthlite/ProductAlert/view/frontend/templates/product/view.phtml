@@ -15,7 +15,6 @@ $customerId = $viewModel->isLoggedIn();
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Sign up for stock alert')) ?></span></label>
                     <div class="control">
                         <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
-                        <input name="product_id" id="product_id" value="<?= $product->getId() ?>" type="hidden"/>
                     </div>
                 </div>
             <?php endif; ?>

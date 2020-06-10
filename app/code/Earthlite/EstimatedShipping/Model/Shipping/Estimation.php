@@ -10,7 +10,8 @@ use Magento\Checkout\Model\CartFactory;
 /**
  * class Estimation
  */
-class Estimation {
+class Estimation 
+{
 
     const CONFIG_MODULE_PATH = 'estimate_shipping';
     
@@ -92,10 +93,10 @@ class Estimation {
                 }
             } else if ($product->getCustomAttribute('non_productive_item_shipping')) {
                 $deliveryDate = $product->getCustomAttribute('non_productive_item_shipping')->getValue();
-                $deliveryDate = 'Ships Within ' . $deliveryDate;
+                $deliveryDate = 'Ships within ' . $deliveryDate;
                 return $deliveryDate;
             } else {
-                return $this->getConfigGeneral('default_lead_time_nonproduction');
+                return 'Ships within '.$this->getConfigGeneral('default_lead_time_nonproduction');
             }
         }
     }
@@ -228,7 +229,7 @@ class Estimation {
     {
         $estimatedDays = '+' . $estimateDays . ' weekdays';
         $timeStamp = $this->dateTime->timestamp($estimatedDays);
-        $deliveryDate = $this->dateTime->gmtDate('d/m/Y', $timeStamp);
+        $deliveryDate = $this->dateTime->gmtDate('m/d/Y', $timeStamp);
         $deliveryDate = 'Ships by ' . $deliveryDate;
         return $deliveryDate;
     }
