@@ -24,7 +24,7 @@
             text: '<?php echo $block->escapeJsQuote(__($block->getDesign('done_text'))); ?>',
             html: '<div class="ias-noneleft" style="text-align: center;">{text}</div>',
             spinnerSrc: '<?php echo $this->getViewFileUrl('Earthlite_InfiniteScroll::images/loading-gear.gif'); ?>',            
-            spinnerHtml: '<?php echo '<div class="ias-spinner" style="text-align: center;"><img style="display:inline" src="{src}"/> '.
+            spinnerHtml: '<?php echo '<div class="ias-spinner w-100 text-center" ><img style="display:inline" src="{src}"/> '.
                 $block->escapeJsQuote(__($block->getScrollConfig('design/loading_text'))).
                 '</div>'; ?>',
             trigger: {

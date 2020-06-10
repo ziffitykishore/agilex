@@ -166,11 +166,17 @@
 
         &._complete {
             cursor: pointer;
-
+            &:after {
+                .lib-css(background, @checkout-progress-bar-item__active__background-color);
+            }
             > span {
-                .lib-css(color, @checkout-progress-bar-item__color);
-
+                .lib-css(color, @theme__color__primary);
+                &:before {
+                    .lib-css(background, @checkout-progress-bar-item__active__background-color);
+                    border: 0;
+                }
                 &:after {
+                    .lib-css(color, #fff);
                     .lib-css(content, @checkout-progress-bar-item-element-inner__active__content);
                     .lib-css(font-family, 'ELite');
                     .lib-css(line-height, @checkout-progress-bar-item-element-inner__active__line-height);

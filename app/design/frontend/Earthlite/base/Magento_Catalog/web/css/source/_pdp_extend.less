@@ -50,9 +50,10 @@
         }
     }
 
-    .product.attribute.description b {
-        display: block;
-        margin-top: 10px;
+    .product.attribute.description .value {
+        white-space: pre;
+        white-space: pre-line;
+        word-wrap: break-word;
     }
 
     // config slide
@@ -370,7 +371,7 @@
                     position: relative;
                     display: inline-block;
                     top: -1px;
-                    
+
                     .field-tooltip-action:before {
                         content: "\e91a";
                         font-family: 'ELite';
@@ -623,6 +624,7 @@
 
             & ~ .products-wrapper {
                 margin-top: 40px;
+                padding-bottom: 30px;
                 .block-title {
                     text-align: center;
                     color: @theme__color__secondary;

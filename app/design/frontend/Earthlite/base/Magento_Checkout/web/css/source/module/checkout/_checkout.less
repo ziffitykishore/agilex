@@ -349,7 +349,9 @@
             border: 0;
         }
     }
-
+    .authentication-wrapper.message , .opc-progress-bar.message {
+        margin-top: -160px;
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) {
@@ -373,15 +375,15 @@
             font-size: 3rem;
         }
     }    
+    .authentication-wrapper.message , .opc-progress-bar.message {
+        margin-top: -170px;
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xl) {
     .checkout-index-index {
         .authentication-wrapper, .opc-progress-bar {
             margin-top: -105px;
-        }
-        .authentication-wrapper.message , .opc-progress-bar.message {
-            margin-top: -170px;
         }
     }
     .custom-slide .modal-inner-wrap {
@@ -403,6 +405,9 @@
         }
         .authentication-wrapper {
             margin-top: -141px;
+            &.message {
+                margin-top: -211px;
+            }
             &:before {
                 content: none;
             }
@@ -437,7 +442,7 @@
         }
     }
     .checkout-index-index .authentication-wrapper {
-        margin-top: 0; 
+        margin-top: 0 !important; 
         width: 100%;
         margin-bottom: 20px;
         text-align: center;

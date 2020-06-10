@@ -25,6 +25,7 @@
         </div>
     <?php else : ?>
         <div class="category-image no-image">
+            <img src="<?= $block->getViewFileUrl('Magento_Catalog::images/PLP-Level3.png') ?>" alt="<?= $block->escapeHtmlAttr($_category->getName()) ?>" title="<?= $block->escapeHtmlAttr($_category->getName()) ?>" class="image" >
             <?= $block->getChildHtml('', true) ?>
         </div>
     <?php endif; ?>
