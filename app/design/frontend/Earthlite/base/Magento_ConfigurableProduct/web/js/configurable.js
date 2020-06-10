@@ -280,9 +280,10 @@ define([
             } else {
                 this._resetChildren(element);
             }
-
+            $('.product-info-stock-sku .shipping-details').hide();
             this._reloadPrice();
             this._reloadLeadTime(this.simpleProduct);
+            this._updateStock(this.simpleProduct);
             this._displayRegularPriceBlock(this.simpleProduct);
             this._displayTierPriceBlock(this.simpleProduct);
             this._displayNormalPriceLabel();
@@ -527,21 +528,6 @@ define([
          */
         _reloadPrice: function () {
             $(this.options.priceHolderSelector).trigger('updatePrice', this._getPrices());
-            
-            //This custom code is used to identify the configurable product availability
-            var selectedId = this.simpleProduct == undefined ? Object.keys(this.options.spConfig.simpleQtys)[0] : this.simpleProduct;
-            var selectedQty = this.options.spConfig.simpleQtys['' + selectedId]
-            var selectedClass = $('div.product-info-stock-sku .stock').attr('class');
-            if(selectedQty >= 10) {
-                $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock available');
-                $('div.product-info-stock-sku .stock span').text('In stock');
-            }else if(selectedQty < 10 && selectedQty > 0) {
-                $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock low-available');
-                $('div.product-info-stock-sku .stock span').text('<10 available');
-            }else if(selectedQty == 0) {
-                $('div.product-info-stock-sku .stock').removeClass(selectedClass).addClass('stock unavailable');
-                $('div.product-info-stock-sku .stock span').text('Out of stock');
-            }
         },
 
         _reloadLeadTime: function (chosenProduct) {
@@ -549,9 +535,9 @@ define([
                 && typeof this.options.spConfig.leadTime != 'undefined'
                 && this.options.spConfig.leadTime[chosenProduct]
             ) {
-                $('div.shipping-details').html(
-                    '<span>' + this.options.spConfig.leadTime[chosenProduct] + '</span>'
-                );
+                $('div.shipping-details span.estimation').html(this.options.spConfig.leadTime[chosenProduct]);
+                var toolTipMesage = this.options.spConfig.tooltip[chosenProduct];
+                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
             }
         },
 
@@ -748,6 +734,67 @@ define([
                 }
             } else {
                 $(this.options.tierPriceBlockSelector).hide();
+            }
+        },
+        
+        /**
+         * Update the Stock Qty base on the option
+         * In case of option absence take max aty item Id
+         * @param {String|undefined} simpleProduct
+         */
+        _updateStock: function (simpleProduct) {
+            $("#notify-block").css("display", "none");
+            $('.product-info-stock-sku .shipping-details').hide();
+            var selectedQty = 0;
+            if (simpleProduct) {
+                $("#child_product_id").val(simpleProduct);
+                var selectedQty = this.options.spConfig.simpleQtys[simpleProduct];
+            } else {
+                var selectedQty = Math.max.apply(Math, Object.values(this.options.spConfig.simpleQtys));
+            }
+            if (selectedQty >= 10) {
+                this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
+                this.addToCart(false, '', 'disabled');
+                $('.product-info-stock-sku .shipping-details').show();
+            } else if (selectedQty < 10 && selectedQty > 0) {
+                this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
+                this.addToCart(false, '', 'disabled');
+                $('.product-info-stock-sku .shipping-details').show();
+            } else if (selectedQty === 0) {
+                this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
+                this.displayNotifyStock();
+                this.addToCart(true, 'disabled', '');
+                $('.product-info-stock-sku .shipping-details').hide();
+            }
+        },
+
+        /**
+         * Updated Classes for stock sections based on qty
+         * @param string addClass
+         * @param string removeClass
+         * @param string text
+         */
+        updateStockStatusText: function (addClass, removeClass, text) {
+            $('div.product-info-stock-sku .stock').removeClass(removeClass).addClass(addClass);
+            $('div.product-info-stock-sku .stock span').text(text);
+        },
+
+        /**
+         * 
+         * Enable Add to cart button 
+         */
+        addToCart: function (status, addClass, removeClass) {
+            $("#product-addtocart-button").attr('disabled', status).removeClass(removeClass).addClass(addClass);
+        },
+
+        /**
+         * 
+         * append to customize container based on options
+         */
+        displayNotifyStock: function () {
+            $("#notify-block").css("display", "block");
+            if ($("#product-customize-button").length) {
+                $("#stock-alert").insertBefore("#product-options-wrapper");
             }
         }
     });

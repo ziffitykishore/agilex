@@ -1,12 +1,38 @@
 <?php
 	$product = $block->getProduct();
-	$helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
-    if($estimatedShipment = $helper->getShippingInfo($product->getSku())):
+	$helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');	
+    if(($estimatedShipment = $helper->getShippingInfo($product->getSku())) && ($product->getTypeId() == 'simple')):
+
+    $tooltipContent = '';	
+	if( $helper->getItemProductionStatus($product->getSku())){
+        $tooltipContent =  $helper->getStoreConfig('production_item_text');                
+    }
+    else
+    {
+        $tooltipContent =  $helper->getStoreConfig('nonproduction_item_text');
+    }
 ?>
 
 <div class="shipping-details" title="Shipping">
-    <span><?= $estimatedShipment ?></span>
+    <span class="estimation"><?php echo $estimatedShipment ?></span>
+    <?php if($tooltipContent): ?>
+	    <div class="field-tooltip toggle">
+		    <span class="field-tooltip-action" tabindex="0" data-toggle="dropdown" data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}" aria-haspopup="true" aria-expanded="false" role="button">
+		    </span>
+		    <div class="field-tooltip-content" data-target="dropdown" aria-hidden="true">
+		    	<?= $tooltipContent ?>
+		    </div>
+		</div>
+	<?php endif; ?>
 </div>
 <?php else: ?>
-    <div class="shipping-details" title="Shipping"></div>
+    <div class="shipping-details" title="Shipping" style="display: none;">
+    	<span class="estimation"></span>
+    	<div class="field-tooltip toggle">
+		    <span class="field-tooltip-action" tabindex="0" data-toggle="dropdown" data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}" aria-haspopup="true" aria-expanded="false" role="button">
+		    </span>
+		    <div class="field-tooltip-content" data-target="dropdown" aria-hidden="true">
+		    </div>
+		</div>
+    </div>
 <?php endif; ?>

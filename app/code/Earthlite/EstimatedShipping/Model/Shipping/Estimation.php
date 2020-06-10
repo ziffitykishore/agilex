@@ -1,121 +1,182 @@
 <?php
-
+declare(strict_types = 1);
 namespace Earthlite\EstimatedShipping\Model\Shipping;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Checkout\Model\CartFactory;
 
-class Estimation
-{
+/**
+ * class Estimation
+ */
+class Estimation {
+
     const CONFIG_MODULE_PATH = 'estimate_shipping';
-
-    protected $productRepository; 
-
+    
+    /**
+     *
+     * @var ProductRepositoryInterface 
+     */
+    protected $productRepository;
+    
+   /**
+    *
+    * @var DateTime 
+    */
     protected $dateTime;
-
+    
+    /**
+     *
+     * @var ScopeConfigInterface 
+     */
     protected $scopeConfig;
-
+    
+    /**
+     *
+     * @var CartFactory 
+     */
     protected $cart;
 
     public function __construct(
-        ProductRepositoryInterface $productRepository,
-        DateTime $dateTime,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
-        \Magento\Checkout\Model\Cart $cart
+        ProductRepositoryInterface $productRepository, 
+        DateTime $dateTime, 
+        ScopeConfigInterface $scopeConfig, 
+        CartFactory $cart
     ) {
-    
-        $this->productRepository = $productRepository;    
+
+        $this->productRepository = $productRepository;
         $this->dateTime = $dateTime;
         $this->scopeConfig = $scopeConfig;
         $this->cart = $cart;
     }
-
-    public function getProduct($sku)
-    {        
-        try 
-        {
+    
+    /**
+     * 
+     * @param type $sku
+     * @return boolean
+     */
+    public function getProduct($sku) 
+    {
+        try {
             $product = $this->productRepository->get($sku);
-        } catch (\Magento\Framework\Exception\NoSuchEntityException $e){
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             $product = false;
         }
-
         return $product;
     }
-
-    public function getEstimatedShipping($sku)
-    {                
+    
+    /**
+     * 
+     * @param string $sku
+     * @return string
+     */
+    public function getEstimatedShipping($sku) 
+    {
         $product = $this->getProduct($sku);
 
-        if($product && $this->isEnabled()) 
-        {
-            if($productionItem = $product->getCustomAttribute('production_item'))
-            {                
-                if($product->getCustomAttribute('lead_time') && $productionItem->getValue()) 
-                {
+        if ($product && $this->isEnabled()) {
+            if ($product->getCustomAttribute('production_item') && $product->getCustomAttribute('production_item')->getValue()) {
+                if ($product->getCustomAttribute('lead_time')) {
                     $estimatedDays = $product->getCustomAttribute('lead_time')->getValue();
-                    $estimatedDays = '+'.$estimatedDays.' weekdays';
-                    $timeStamp = $this->dateTime->timestamp($estimatedDays);
-                    $deliveryDate = $this->dateTime->gmtDate('d/m/Y', $timeStamp);
-                    $deliveryDate = 'Ships by '. $deliveryDate;
+
+                    $deliveryDate = $this->getProductionItemEstimation($estimatedDays);
+
+                    return $deliveryDate;
+                } else {
+                    $estimatedDays = $this->getConfigGeneral('default_lead_time_production');
+
+                    $deliveryDate = $this->getProductionItemEstimation($estimatedDays);
+
                     return $deliveryDate;
                 }
-                else if($product->getCustomAttribute('non_productive_item_shipping')) 
-                {
-                    $deliveryDate = $product->getCustomAttribute('non_productive_item_shipping')->getValue();
-                    $deliveryDate = 'Ships Within '.$deliveryDate;
-                    return $deliveryDate;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else if($product->getCustomAttribute('non_productive_item_shipping')) 
-            {
+            } else if ($product->getCustomAttribute('non_productive_item_shipping')) {
                 $deliveryDate = $product->getCustomAttribute('non_productive_item_shipping')->getValue();
-                $deliveryDate = 'Ships Within '.$deliveryDate;
+                $deliveryDate = 'Ships Within ' . $deliveryDate;
                 return $deliveryDate;
+            } else {
+                return $this->getConfigGeneral('default_lead_time_nonproduction');
             }
-            else
-            {
-                return false;
-            }
-        }
-        else
-        {
-            return false;
         }
     }
 
+    /**
+     *
+     * @param string $sku
+     * @return string
+     */
+    public function getItemType($sku) 
+    {
+        $product = $this->getProduct($sku);
+        if ($product && $this->isEnabled()) {
+            if ($product->getCustomAttribute('production_item') && $product->getCustomAttribute('production_item')->getValue()) {
+                return $product->getCustomAttribute('production_item')->getValue();
+            }
+        }
+    }
+    
+    /**
+     * 
+     * @param string $sku
+     */
+    public function getQuoteEstimatedShipping($sku)
+    {
+        $product = $this->getProduct($sku);
+        if ($product && $this->isEnabled()) {
+            if ($product->getCustomAttribute('production_item') && $product->getCustomAttribute('production_item')->getValue()) {
+                if ($product->getCustomAttribute('lead_time') && $estimatedDays = $product->getCustomAttribute('lead_time')->getValue()) {
+                    return $estimatedDays;
+                } else {
+                    return $this->getConfigGeneral('default_lead_time_production');
+                }
+            } else if ($product->getCustomAttribute('non_productive_item_shipping') && $deliveryDate = $product->getCustomAttribute('non_productive_item_shipping')->getValue()) {
+                return $deliveryDate;
+            } else {
+                return $this->getConfigGeneral('default_lead_time_nonproduction');
+            }
+        } else {
+            return $this->getConfigGeneral('default_lead_time_production');
+        }
+    }
+
+    /**
+     * 
+     * @param type $sku
+     * @return boolean
+     */
     public function getItemProductionStatus($sku)
-    {        
+    {
         $product = $this->getProduct($sku);
 
-        if($product) 
-        {
-            if($productionItem = $product->getCustomAttribute('production_item'))
-            {
-                if($productionItem->getValue())
-                {
-                    return true;
+        $status = false;
+
+        if ($product) {
+            if ($productionItem = $product->getCustomAttribute('production_item')) {
+                if ($productionItem->getValue()) {
+                    $status = true;
                 }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
             }
         }
+
+        return $status;
     }
 
+    /**
+     * 
+     * @param type $storeId
+     * @return bool
+     */
     public function isEnabled($storeId = null)
-    {        
+    {
         return $this->getConfigGeneral('enabled', $storeId);
     }
 
+    /**
+     * 
+     * @param type $code
+     * @param type $storeId
+     * @return string|null
+     */
     public function getConfigGeneral($code = '', $storeId = null)
     {
         $code = ($code !== '') ? '/' . $code : '';
@@ -123,32 +184,53 @@ class Estimation
         return $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general' . $code, $storeId);
     }
 
-    public function getConfigValue($fullPath, $storeId)
-    {        
+    /**
+     * 
+     * @param type $fullPath
+     * @param type $storeId
+     * @return string|null
+     */
+    public function getConfigValue($fullPath, $storeId) 
+    {
         return $this->scopeConfig->getValue($fullPath, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 
-    public function getCartItemStatus()
+    /**
+     * 
+     * @return boolean
+     */
+    public function getCartItemStatus():bool      
     {
         $productionItem = $inStockItem = false;
-        $items = $this->cart->getQuote()->getAllVisibleItems();
+        $items = $this->cart->create()->getQuote()->getAllVisibleItems();
         foreach ($items as $item) {
             $itemStatus = $this->getItemProductionStatus($item->getSku());
-            if($itemStatus)
-            {
+            if ($itemStatus) {
                 $productionItem = true;
-            }
-            else
-            {
+            } else {
                 $inStockItem = true;
             }
         }
-        
-        if ($productionItem && $inStockItem) 
-        {
+
+        if ($productionItem && $inStockItem) {
             return true;
         }
 
         return false;
     }
+    
+    /**
+     * 
+     * @param string $estimateDays
+     * @return string
+     */
+    public function getProductionItemEstimation($estimateDays):string
+    {
+        $estimatedDays = '+' . $estimateDays . ' weekdays';
+        $timeStamp = $this->dateTime->timestamp($estimatedDays);
+        $deliveryDate = $this->dateTime->gmtDate('d/m/Y', $timeStamp);
+        $deliveryDate = 'Ships by ' . $deliveryDate;
+        return $deliveryDate;
+    }
+
 }

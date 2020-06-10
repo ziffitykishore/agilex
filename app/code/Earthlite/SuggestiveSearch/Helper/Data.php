@@ -104,7 +104,7 @@ class Data extends AbstractHelper
         {
             $productList[] = [
                 'name' => $product->getName(),                
-                'value' => $product->getSku(),
+                'value' => $product->getName() .' '. $product->getSku(),
                 'image'     => $this->getProductImage($product),
                 'url'     => $product->getProductUrl()
             ];

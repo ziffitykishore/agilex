@@ -72,8 +72,11 @@ class LateOrders
         if (!$order->hasShipments()) {
             $modifiedLeadDatesofOrderItems = [];
             foreach ($order->getAllVisibleItems() as $item) {
-                $leadTime = $this->getLeadTime($item);
-                $modifiedLeadDatesofOrderItems[] = $this->formatLeadDate($leadTime, $order->getCreatedAt());
+                $leadTime = $item->getShippingLeadTime();
+                if ($leadTime) {
+                    $type = $item->getItemType();
+                    $modifiedLeadDatesofOrderItems[] = $this->formatLeadDate($leadTime, $order,$type);
+                }
             }
             if ($modifiedLeadDatesofOrderItems) {
                 return $this->canSendEmail($modifiedLeadDatesofOrderItems); 
@@ -100,7 +103,7 @@ class LateOrders
     
     /**
      * 
-     * @param type $modifiedLeadDatesofOrderItems
+     * @param array $modifiedLeadDatesofOrderItems
      * @return bool
      */
     protected function canSendEmail($modifiedLeadDatesofOrderItems):bool
@@ -119,16 +122,31 @@ class LateOrders
     /**
      * 
      * @param string $leadTime
-     * @param string $createdAt
+     * @param Order $order
      * @return string
      */
-    public function formatLeadDate($leadTime, $createdAt)
+    public function formatLeadDate($leadTime, $order, $type)
     { 
+        if ($type) {
+            return $this->formatProductionItemLeadTime($leadTime, $order);
+        } else {
+            return $this->formatNonProductionItemLeadTime($leadTime, $order);
+        }
+    }
+    
+    /**
+     * 
+     * @param string $leadTime
+     * @param Order $order
+     * @return boolean|string
+     */
+    protected function formatProductionItemLeadTime($leadTime, $order)
+    {
         if (is_numeric($leadTime)) {
             $leadTime = "$leadTime days";
         }
         if (!preg_match(self::LEAD_TIME_PATTERN, $leadTime)) {
-            $this->logger->info("Invalid Lead Time: $leadTime");
+            $this->logger->info("Invalid Lead Time: $leadTime for Order".$order->getIncrementId());
             return false;
         }
         if (strpos($leadTime, 'days')) {
@@ -137,10 +155,29 @@ class LateOrders
             $leadTime = str_replace("day", "weekdays", $leadTime);
         }
         return $this->dateTime->date(
-                        'Y-m-d', strtotime($leadTime, strtotime($createdAt))
+                        'Y-m-d', strtotime($leadTime, strtotime($order->getCreatedAt()))
         );
     }
-
+    
+    /**
+     * 
+     * @param string $leadTime
+     * @param Order $order
+     * @return string|bool
+     */
+    protected function formatNonProductionItemLeadTime($leadTime, $order)
+    {
+        $modifiedLeadTime = trim(str_replace("hours", "", strtolower($leadTime)));
+        $explodeLeadTime = explode('-', $modifiedLeadTime);
+        $maxLeadTime = end($explodeLeadTime);
+        if (!is_numeric($maxLeadTime)) {
+            $this->logger->info("Invalid Lead Time: $leadTime for Order".$order->getIncrementId());
+            return false;
+        }
+        return $this->dateTime->date(
+                        'Y-m-d', strtotime($maxLeadTime.'hours', strtotime($order->getCreatedAt()))
+        );
+    }
 
     /**
      * 

@@ -7,6 +7,8 @@
                 <production_item_text>This is a production item, which is made to order. This item will be shipped to you based on the shipping lead time mentioned here.</production_item_text>
                 <nonproduction_item_text>This is a non-production item, which is readily stocked in the warehouse. This item will be shipped to you based on the shipping lead time mentioned here.</nonproduction_item_text>
                 <notification_message>Your order will ship together based on the lead time of the item that’s made to order. If you would like to receive parts of your order faster, please order them separately.</notification_message>
+                <default_lead_time_production>5</default_lead_time_production>
+                <default_lead_time_nonproduction>24-48 Hours</default_lead_time_nonproduction>
             </general>
         </estimate_shipping>
     </default>

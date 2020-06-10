@@ -5,7 +5,7 @@ namespace Earthlite\Category\ViewModel;
 use Magento\Catalog\Api\ProductAttributeOptionManagementInterface;
 use Magento\Framework\Registry;
 use Magento\Catalog\Helper\Output;
-use Magento\Catalog\Model\Category;
+use Magento\Catalog\Model\CategoryFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
 
@@ -66,7 +66,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
     public function __construct(
         Registry $registry,
         Output $catalogHelper,
-        Category $categoryModel,
+        CategoryFactory $categoryModel,
         ScopeConfigInterface $scopeConfig,
         ProductAttributeOptionManagementInterface $productAttributeOptions,
         StoreManagerInterface $storeManagerInterface
@@ -105,7 +105,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
      */
     public function loadCategoryById($id)
     {
-        $category = $this->_categoryModel->load($id);
+        $category = $this->_categoryModel->create()->load($id);
         return $category;
     }
 

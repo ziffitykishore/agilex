@@ -45,14 +45,23 @@ class Configurable
     ) {
         $jsonResult = json_decode($result, true);
         $jsonResult['simpleQtys'] = [];
-        foreach ($subject->getAllowProducts() as $product) {
+        foreach ($subject->getAllowProducts() as $product) 
+        {
             $productId = $product->getId();
             /** @var \Magento\CatalogInventory\Api\StockStateInterface $stockState **/
             $stockState = $this->stockStateInterface->create();
             $jsonResult['simpleQtys'][$productId] = $stockState->getStockQty($productId);
-            if ($product->getData('production_item')) {
-                $jsonResult['leadTime'][$productId] = $this->estimateShipping->getShippingInfo($product->getSku());
+            
+            if($this->estimateShipping->getItemProductionStatus($product->getSku())){
+                $jsonResult['tooltip'][$productId] = $this->estimateShipping->getStoreConfig('production_item_text');                
             }
+            else
+            {
+                $jsonResult['tooltip'][$productId] = $this->estimateShipping->getStoreConfig('nonproduction_item_text');
+            }
+
+            $jsonResult['leadTime'][$productId] = $this->estimateShipping->getShippingInfo($product->getSku());
+            
         }
         $result = json_encode($jsonResult);
         return $result;
