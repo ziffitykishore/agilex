@@ -29,24 +29,34 @@ class AddProductionItemToTransport implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $productionItemExist = false;
-        $transport = $observer->getEvent()->getTransport();
-        $order = $transport['order'];
-        $modifiedLeadDatesofOrderItems = [];
-        foreach ($order->getAllVisibleItems() as $item) {
+        try {
+            $productionItemExist = false;
+            $transport = $observer->getEvent()->getTransport();
+            $order = $transport['order'];
+            $modifiedLeadDatesofOrderItems = [];
+            foreach ($order->getAllVisibleItems() as $item) {
+                $leadTime = $item->getShippingLeadTime();
+                if ($leadTime) {
+                    $type = $item->getItemType();
+                    $modifiedLeadDatesofOrderItems[] = $this->lateOrders->formatLeadDate($leadTime, $order, $type);
+                }
+            }
+            $transport['is_production'] = $productionItemExist;
+            if ($order->getShippingMethod(true)->getMethod() == 'GROUND') {
+                $transport['ground_method'] = true;
+            }
+            if ($order->getShippingMethod(true)->getMethod() == 'Freight') {
+                $transport['freight_method'] = true;
+            }
+            $transport['estimated_date'] = $this->dateTime->date(
+                    'Y-m-d', strtotime('2 days', strtotime($order->getCreatedAt()))
+            );
+            if (!empty($modifiedLeadDatesofOrderItems)) {
+                $transport['estimated_date'] = $this->getEstimatedDeliveryTime($modifiedLeadDatesofOrderItems);
+            }
+        } catch (\Exception $e) {
             
-            $leadTime = $item->getShippingLeadTime();
-            
-            $modifiedLeadDatesofOrderItems[] = $this->lateOrders->formatLeadDate($leadTime, $order->getCreatedAt());
         }
-        $transport['is_production'] = $productionItemExist;
-        if ($order->getShippingMethod(true)->getMethod() == 'GROUND') {
-            $transport['ground_method'] = true;
-        }
-        if ($order->getShippingMethod(true)->getMethod() == 'Freight') {
-            $transport['freight_method'] = true;
-        }
-        $transport['estimated_date'] = $this->getEstimatedDeliveryTime($modifiedLeadDatesofOrderItems);
     }
     
     /**
@@ -56,8 +66,6 @@ class AddProductionItemToTransport implements ObserverInterface
      */
     protected function getEstimatedDeliveryTime($modifiedLeadDatesofOrderItems)
     {
-         return  $maxLeadTime = $this->dateTime->gmtDate('M d, Y',
-                max($modifiedLeadDatesofOrderItems)
-         );
+        return $this->dateTime->gmtDate('M d, Y', max($modifiedLeadDatesofOrderItems));
     }
 }
