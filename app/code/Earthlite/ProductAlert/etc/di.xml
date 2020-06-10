@@ -12,4 +12,8 @@
     <preference for="Magento\ProductAlert\Model\Email" type="Earthlite\ProductAlert\Model\StockAlertEmail"/>
     <preference for="Magento\ProductAlert\Block\Product\View\Stock" type="Earthlite\ProductAlert\Block\Product\View\Stock"/>
     <preference for="Magento\ProductAlert\Block\Email\Stock" type="Earthlite\ProductAlert\Block\Email\Stock"/>
+    <type name="Magento\ConfigurableProduct\Helper\Data">
+        <plugin name="earthlite_out_of_stock_product_alert"
+                type="Earthlite\ProductAlert\Plugin\Helper\DataPlugin" sortOrder="10"/>
+    </type>
 </config>

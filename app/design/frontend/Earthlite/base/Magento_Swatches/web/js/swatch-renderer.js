@@ -1431,7 +1431,7 @@ define([
          */
         updateStockStatusText: function (addClass, removeClass, text) {
             $('div.product-info-stock-sku .stock').removeClass(removeClass).addClass(addClass);
-            $('div.product-info-stock-sku .stock > span.estimation').text(text);
+            $('div.product-info-stock-sku .stock > span').text(text);
         },
 
         /**
