@@ -8,6 +8,7 @@
         border-bottom: 1px solid @border_color;
         .media {
             padding: 10px;
+            align-items: center;
         }
         /*        i {
                     color: @color__points;
@@ -25,13 +26,17 @@
         strong {
             color: @theme__color__primary;
         }
-/*        .icon-delivery {
-            font-size: 5rem;
-            line-height: .8;
+        /*        .icon-delivery {
+                    font-size: 5rem;
+                    line-height: .8;
+                }
+                .icon-security, .icon-support {
+                    font-size: 4rem;
+                }*/
+        .col-md-4 {
+            display: flex;
+            justify-content: center;
         }
-        .icon-security, .icon-support {
-            font-size: 4rem;
-        }*/
         .col-md-4:not(:first-of-type) {
             border-left: 1px solid @border_color;
         }

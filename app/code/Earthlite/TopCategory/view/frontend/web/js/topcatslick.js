@@ -8,28 +8,28 @@ define(['jquery', 'slick'], function ($) {
             infinite: false,
             speed: 300,
             slidesToShow: 4,
-            slidesToScroll: 1,
+            slidesToScroll: 3,
             responsive: [
                 {
                     breakpoint: 1300,
                     settings: {
-                        slidesToShow: 3,
-                        slidesToScroll: 1
+                        slidesToShow: 4,
+                        slidesToScroll: 3
                     }
                 },
                 {
                     breakpoint: 992,
                     settings: {
                         slidesToShow: 2,
-                        slidesToScroll: 1
+                        slidesToScroll: 2
                     }
                 },
                 {
                     breakpoint: 768,
                     settings: {
                         arrows: false,
-                        slidesToShow: 1,
-                        slidesToScroll: 1
+                        slidesToShow: 2,
+                        slidesToScroll: 2
                     }
                 }
 
