@@ -280,7 +280,7 @@ define([
             } else {
                 this._resetChildren(element);
             }
-            $('.product-info-stock-sku .shipping-details').hide();
+                        
             this._reloadPrice();
             this._reloadLeadTime(this.simpleProduct);
             this._updateStock(this.simpleProduct);
@@ -744,27 +744,29 @@ define([
          */
         _updateStock: function (simpleProduct) {
             $("#notify-block").css("display", "none");
-            $('.product-info-stock-sku .shipping-details').hide();
+            $('.product-info-stock-sku .shipping-details.configurable').hide();
             var selectedQty = 0;
             if (simpleProduct) {
                 $("#child_product_id").val(simpleProduct);
                 var selectedQty = this.options.spConfig.simpleQtys[simpleProduct];
+                if(selectedQty > 0)
+                {
+                   $('.product-info-stock-sku .shipping-details.configurable').show(); 
+                }
             } else {
                 var selectedQty = Math.max.apply(Math, Object.values(this.options.spConfig.simpleQtys));
             }
+            
             if (selectedQty >= 10) {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
-                this.addToCart(false, '', 'disabled');
-                $('.product-info-stock-sku .shipping-details').show();
+                this.addToCart(false, '', 'disabled');            
             } else if (selectedQty < 10 && selectedQty > 0) {
                 this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
                 this.addToCart(false, '', 'disabled');
-                $('.product-info-stock-sku .shipping-details').show();
             } else if (selectedQty === 0) {
                 this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
                 this.displayNotifyStock();
                 this.addToCart(true, 'disabled', '');
-                $('.product-info-stock-sku .shipping-details').hide();
             }
         },
 

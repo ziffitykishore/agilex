@@ -1398,10 +1398,15 @@ define([
          */
         _updateStock: function () {
             $("#notify-block").css("display", "none");
+            $('.product-info-stock-sku .shipping-details.configurable').hide();
             var selectedQty = 0;
             if (this.getProduct()) {
                 $("#child_product_id").val(this.getProduct());
-                var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];            
+                var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];
+                if(selectedQty > 0)
+                {
+                    $('.product-info-stock-sku .shipping-details.configurable').show();
+                }
             } else {
                 var selectedQty = Math.max.apply(Math, Object.values(this.options.jsonConfig.simpleQtys));
             
@@ -1409,17 +1414,14 @@ define([
             
             if (selectedQty >= 10) {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
-                this.addToCart(false, '', 'disabled');
-                $('.shipping-details').show();
+                this.addToCart(false, '', 'disabled');                
             } else if (selectedQty < 10 && selectedQty > 0) {
                 this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
-                this.addToCart(false, '', 'disabled');
-                $('.shipping-details').show();
+                this.addToCart(false, '', 'disabled');                
             } else if (selectedQty === 0) {
                 this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
                 this.displayNotifyStock();
-                this.addToCart(true, 'disabled', '');
-                $('.shipping-details').hide();
+                this.addToCart(true, 'disabled', '');                
             }
         },
 
