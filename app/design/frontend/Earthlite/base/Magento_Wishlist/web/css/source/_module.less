@@ -54,9 +54,9 @@
         .action {
             &.towishlist {
                 &:extend(.abs-actions-addto-gridlist all);
-                .lib-icon-font-symbol(
+/*                .lib-icon-font-symbol(
                 @icon-wishlist-empty
-                );
+                );*/
             }
         }
     }
@@ -179,6 +179,9 @@
                     input.qty {
                         height: 40px;
                         &:extend(.abs-input-qty all);
+                    }
+                    .actions-primary button {
+                        padding: 9px 20px;
                     }
                 }
             }

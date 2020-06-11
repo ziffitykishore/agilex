@@ -43,7 +43,11 @@
 }
 
 & when (@media-common = true) {
-
+    .catalog-product-view {
+        .products-grid .product-items:not(.slick-slider) {
+            justify-content: center;
+        }
+    }
     .additional-attributes {
         .data img {
             width: 50px;
