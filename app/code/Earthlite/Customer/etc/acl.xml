@@ -6,7 +6,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Earthlite_Customer::config_earthlite" title="Earthlite Section" translate="title" sortOrder="100" />
+                            <resource id="Earthlite_Customer::config_earthlite" title="EarthLite Section" translate="title" sortOrder="100" />
                         </resource>
                     </resource>
                 </resource>

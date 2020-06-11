@@ -3,10 +3,10 @@ declare(strict_types=1);
 namespace Earthlite\Category\ViewModel;
 
 use Magento\Catalog\Api\ProductAttributeOptionManagementInterface;
-use Magento\Framework\Registry;
 use Magento\Catalog\Helper\Output;
 use Magento\Catalog\Model\CategoryFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Registry;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
@@ -15,12 +15,12 @@ use Magento\Store\Model\StoreManagerInterface;
 class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInterface
 {
     const ATTRIBUTE_CODE = 'brands';
-    
+
     /**
      * Recipient email config path
      */
     const XML_PATH_SUBCATEGORY_CONFIG = 'subcategory/general/enable';
-    
+
     /**
      * Core registry
      *
@@ -46,16 +46,16 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
     protected $scopeConfig;
-    
+
     /**
      *
-     * @var ProductAttributeOptionManagementInterface 
+     * @var ProductAttributeOptionManagementInterface
      */
     protected $productAttributeOptions;
 
     /**
      * CategoryData Constructor
-     * 
+     *
      * @param Registry $registry
      * @param Output $catalogHelper
      * @param Category $categoryModel
@@ -80,7 +80,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
     }
 
     /**
-     * 
+     *
      * @return \Magento\Catalog\Model\Category
      */
     public function getCurrentCategory()
@@ -90,7 +90,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
     }
 
     /**
-     * 
+     *
      * @return Output
      */
     public function getCatalogHelper()
@@ -99,7 +99,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
     }
 
     /**
-     * 
+     *
      * @param type $id
      * @return Category
      */
@@ -110,7 +110,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getSubcategoryConfig()
@@ -118,7 +118,7 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
         return $this->scopeConfig->getValue(self::XML_PATH_SUBCATEGORY_CONFIG, $storeScope);
     }
-    
+
     /**
      * @return []
      */
@@ -127,18 +127,18 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         $options = $this->productAttributeOptions->getItems(self::ATTRIBUTE_CODE);
         $brands = [];
         $defaultBrands = [
-            "Earthlite",
-            "Stronglite",
+            "EarthLite",
+            "StrongLite",
             "Inner Strength"
         ];
         foreach ($options as $option) {
-            if (in_array($option->getLabel(), $defaultBrands)) { 
+            if (in_array($option->getLabel(), $defaultBrands)) {
                 $brandImageUrl = $this->getBrandsUrl();
                 switch ($option->getLabel()) {
-                    case "Earthlite":
+                    case "EarthLite":
                         $imageUrl = $brandImageUrl . 'logo-earthlite.png';
                         break;
-                    case "Stronglite":
+                    case "StrongLite":
                         $imageUrl = $brandImageUrl . 'logo-stronglite.png';
                         break;
                     case "Inner Strength":
@@ -156,15 +156,15 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         }
         return $brands;
     }
-    
+
     /**
-     * 
+     *
      * @return string
      */
     public function getBrandsUrl()
     {
         return $this->storeManagerInterface
             ->getStore()
-            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA).'brands/';
+            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'brands/';
     }
 }
