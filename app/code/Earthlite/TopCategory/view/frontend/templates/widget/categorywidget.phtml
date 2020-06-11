@@ -15,7 +15,7 @@ if ($block->getTopCategoryConfig()) {
                     <?php foreach ($catalogData as $key => $cat) { ?>
                         <li class="item product product-item">
                             <?php
-                            $categoryName = str_replace(' ', '-', $cat->getName());
+                            $categoryName = $cat->getName();
                             $CategoryNameSplChar = preg_replace('/[^A-Za-z0-9\-]/', '', $categoryName);
                             $categoryImageURL = $cat->getShopCategoryImage() ? $cat->getShopCategoryImage() : $block->getViewFileUrl('Earthlite_TopCategory::images/category_placeholder.png');
                             ?> 
