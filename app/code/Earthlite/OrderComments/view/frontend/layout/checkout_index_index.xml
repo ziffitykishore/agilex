@@ -7,6 +7,21 @@
                     <item name="components" xsi:type="array">
                         <item name="checkout" xsi:type="array">
                             <item name="children" xsi:type="array">
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="additional-shipping-information" xsi:type="array">
+                                            <item name="sortOrder" xsi:type="string">11</item>
+                                            <item name="component"  xsi:type="string">uiComponent</item>
+                                            <item name="displayArea" xsi:type="string">shipping-information</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="shipping-additional-information" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Earthlite_OrderComments/js/view/checkout/sidebar/shippinginfo</item>
+                                                    <item name="displayArea" xsi:type="string">ship-to</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
                                 <item name="steps" xsi:type="array">
                                     <item name="children" xsi:type="array">
                                         <item name="shipping-step" xsi:type="array">

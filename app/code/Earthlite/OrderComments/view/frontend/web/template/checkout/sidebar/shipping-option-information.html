@@ -1,0 +1,19 @@
+<!-- ko if: (isVisibleSidebar()) -->
+	<!-- ko if: (isVisible()) -->
+		<!-- ko if: (orderUpdatedComments()) -->
+			<div class="additional-shipping-information ship-to">
+				<div class="additional shipping-information-title">
+		            <span data-bind="i18n: 'Order Comments:'"></span>
+		            <button class="action action-edit" data-bind="click: backToShippingMethod">
+		                <span data-bind="i18n: 'edit'">edit</span>
+		            </button>
+		        </div>
+
+		        <div class="additional shipping-information-content">
+					
+					<div data-bind="html: orderUpdatedComments()" ></div>																				
+				</div>
+			</div>
+		<!-- /ko -->
+	<!-- /ko -->
+<!-- /ko -->	

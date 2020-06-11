@@ -2,7 +2,8 @@ define([
     'jquery',
     'ko',
     'uiComponent',
-    'mage/translate'], function ($, ko, Component) {
+    'Earthlite_OrderComments/js/model/ObserveData',
+    'mage/translate',], function ($, ko, Component, ObserveData) {
     'use strict';
     return Component.extend({
         defaults: {
@@ -19,6 +20,7 @@ define([
             var self = this;
             var title = $.mage.__(window.checkoutConfig.order_comments_title);
             var commentValue = window.checkoutConfig.quoteData.order_comments;
+            ObserveData.setComment(commentValue);
             self.ordercomments(commentValue);
             self.title(title);
             this._super();
