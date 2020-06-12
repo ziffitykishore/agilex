@@ -50,7 +50,7 @@
                     .fieldset {
                         padding: 20px;
                         margin-bottom: 0;
-                        
+
                         &:after {
                             display: none;
                         }
@@ -72,7 +72,7 @@
                         .lib-visually-hidden();
                     }
                     .lib-icon-font(
-                        @_icon-font-content: @icon-x,
+                    @_icon-font-content: @icon-x,
                         @_icon-font: @icon__font-name,
                         @_icon-font-size: 30px,
                         @_icon-font-line-height: 20px,
@@ -80,11 +80,11 @@
                         @_icon-font-color-hover: @theme__color__primary,
                         @_icon-font-color-active: @header-icons-color-hover,
                         @_icon-font-text-hide: true
-                    );
+                        );
                 }
             }
 
-            
+
         }
 
         .page-wrapper {
@@ -104,7 +104,7 @@
 
 
     .customer-account-create {
-        
+
         .terms-block {
             text-align: center;
             max-width: 460px;
@@ -115,9 +115,13 @@
             max-width: 690px;
             min-width: auto;
 
+            label[for="is_abmp"] {
+                margin-bottom: 10px!important;
+            }
+
             .fieldset {
                 .flex();
-                
+
                 > .field:not(.choice) {
                     .flex-width(percentage(1/2));
                     padding: 0 10px;
@@ -125,7 +129,7 @@
                 .field {
                     padding: 0 10px;
 
-                    &.field-abmp_number {
+                    &.field-abmp_number, &.field-amta_number {
                         .flex-width(100%);
                         padding: 27px;
                         position: relative;
@@ -174,8 +178,8 @@
             }
         }
     }
-    
-    
+
+
     .customer-account-login {
         .login-container {
             .block {
@@ -279,7 +283,7 @@
             }
         }
     }
-    
+
 }
 
 
@@ -331,7 +335,7 @@
                 }
             }   
 
-            
+
         }
     }
 
@@ -342,7 +346,7 @@
                     .flex-width(100%);
                     padding: 0;
                 }
-                .field.field-abmp_number {
+                .field.field-abmp_number, .field.field-amta_number {
                     padding: 27px 0px;
                 }
             }
@@ -388,7 +392,7 @@
     .customer-account-create {
         form.create.account {
             .fieldset {
-                .field.field-abmp_number {
+                .field.field-abmp_number, .field.field-amta_number {
                     .label,
                     .control {
                         float: left;

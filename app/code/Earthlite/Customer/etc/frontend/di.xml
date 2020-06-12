@@ -4,4 +4,7 @@
         <plugin name="abmp_customers_group_change"
                 type="Earthlite\Customer\Plugin\Model\ABMPCustomersGroupChangePlugin" sortOrder="10"/>
     </type>
+    <type name="Magento\Customer\Model\ResourceModel\CustomerRepository">
+        <plugin name="amta_customers_group_change" type="Earthlite\Customer\Plugin\Model\AMTACustomersGroupChangePlugin" sortOrder="15"/>
+    </type>
 </config>

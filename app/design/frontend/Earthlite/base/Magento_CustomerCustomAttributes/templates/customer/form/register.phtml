@@ -156,9 +156,11 @@
     
     <!-- Custom Attributes Section -->
     <?php if ($block->getConfig('earthlite_general/earthlite_customer/enable')) : ?>
-            <div class="field choice abmp">
-                <input type="checkbox" name="is_abmp" title="<?= $block->escapeHtmlAttr(__('Do you have an ABMP membership number')) ?>" value="1" id="is_abmp" class="checkbox"/>
-                <label for="is_abmp" class="label"><span><?= $block->escapeHtml(__('Do you have an ABMP membership number')) ?></span></label>
+            <div class="field choice abmp amta">
+                <input type="checkbox" id="is_abmp" name="customer_group_abmp" value="abmp" class="checkbox">
+                <label for="is_abmp"><span><?= $block->escapeHtml(__('Do you have an ABMP membership number')) ?></span></label><br>
+                <input type="checkbox" id="is_amta" name="customer_group_amta" value="amta" class="checkbox">
+                <label for="is_amta"><span><?= $block->escapeHtml(__('Do you have an AMTA membership number')) ?></span></label><br>
             </div>
         <?php endif ?>
     
@@ -231,18 +233,33 @@
 <script type="text/javascript">
     require(['jquery', 'jquery/ui'], function ($) {
         jQuery(document).ready(function () {
-            $(".field-abmp_number").hide();
-            $("#abmp_number").val('');
-            $("#is_abmp").change(function () {
-                if ($(this).prop("checked") == true) {
-                    $(".field-abmp_number").show();
-                    $(".field-abmp_number").attr("class","field field-abmp_number required");
-                    $("#abmp_number").attr("data-validate","{required:true, 'validate-digits':true}");
-                } else if ($(this).prop("checked") == false) {
-                    $("#abmp_number").val('');
-                    $(".field-abmp_number").attr("class","field field-abmp_number");
-                    $("#abmp_number").attr("data-validate","{}");
-                    $(".field-abmp_number").hide();         
+            $(".field-abmp_number, .field-amta_number").hide();
+            $('#is_abmp, #is_amta').change(function(element) {
+                $customerGroup = 'general';
+
+                if (element.target.id == 'is_abmp' && $('#is_abmp').is(":checked")) {
+                    $customerGroup = 'abmp';
+                } else if (element.target.id == 'is_amta' && $('#is_amta').is(":checked")) {
+                    $customerGroup = 'amta';
+                }
+
+                switch ($customerGroup) {
+                    case "abmp":
+                        $("#amta_number").val('');
+                        $(".field-amta_number, #abmp_number-error").hide();
+                        $(".field-abmp_number").show().attr("class","field field-abmp_number required");
+                        $("#abmp_number").attr("data-validate","{required:true, 'validate-digits':true}").focus();
+                        $("#is_amta").prop("checked", false);
+                        break;
+                    case "amta":
+                        $("#abmp_number").val('');
+                        $(".field-abmp_number, #amta_number-error").hide();
+                        $(".field-amta_number").show().attr("class","field field-amta_number required");
+                        $("#amta_number").attr("data-validate","{required:true, 'validate-digits':true}").focus();
+                        $("#is_abmp").prop("checked", false);
+                        break;
+                    default:
+                        $(".field-amta_number, .field-abmp_number").hide();
                 }
             });
         });
