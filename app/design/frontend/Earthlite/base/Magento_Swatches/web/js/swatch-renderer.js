@@ -12,7 +12,7 @@ define([
     'priceUtils',
     'jquery-ui-modules/widget',
     'jquery/jquery.parsequery',
-    'mage/validation/validation'
+    'mage/validation/validation',
 ], function ($, _, mageTemplate, keyboardHandler, $t, priceUtils) {
     'use strict';
 
@@ -918,6 +918,12 @@ define([
                         'prices': $widget._getPrices(result, $productPrice.priceBox('option').prices)
                     }
             );
+            
+            if(result.finalPrice.amount){
+                var formatedPrice = priceUtils.formatPrice(result.finalPrice.amount);                
+                $('.custom-product-info-price span.price-final_price > span.price-wrapper > span.price').text(formatedPrice);
+            }
+
 
             isShow = typeof result != 'undefined' && result.oldPrice.amount !== result.finalPrice.amount;
 
@@ -1398,14 +1404,14 @@ define([
          */
         _updateStock: function () {
             $("#notify-block").css("display", "none");
-            $('.product-info-stock-sku .shipping-details.configurable').hide();
+            $('.page-product-configurable .shipping-details.configurable').hide();
             var selectedQty = 0;
             if (this.getProduct()) {
                 $("#child_product_id").val(this.getProduct());
                 var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];
                 if(selectedQty > 0)
                 {
-                    $('.product-info-stock-sku .shipping-details.configurable').show();
+                    $('.page-product-configurable .shipping-details.configurable').show();
                 }
             } else {
                 var selectedQty = Math.max.apply(Math, Object.values(this.options.jsonConfig.simpleQtys));
@@ -1442,6 +1448,7 @@ define([
          */
         addToCart: function (status, addClass, removeClass) {
             $("#product-addtocart-button").attr('disabled', status).removeClass(removeClass).addClass(addClass);
+            $("#sticky-addtocart-button").attr('disabled', status);
         },
 
         /**
