@@ -316,6 +316,11 @@
             padding: 0;
         }
     }
+
+    input::-ms-clear {
+        display: none;
+    }
+
 }
 
 //
@@ -434,6 +439,6 @@
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     iframe.zEWidget-launcher {
         right: auto!important;
-        bottom: 40px!important;
+        bottom: 60px!important;
     }
 }
