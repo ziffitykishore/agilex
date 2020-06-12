@@ -55,11 +55,13 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
         $sxInventoryStatus = $product->getData('sx_inventory_status');
         $stockItem = $this->stockItem->load($product->getId(), 'product_id');
         $statusLabel = '';
+        $isZeroDNR = false;
         if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR) {
             if ($stockItem->getQty() > 5) {
                 $statusLabel = __('In Stock');
             } elseif ($stockItem->getQty() == 0) {
                 $statusLabel = __('%1 is no longer available for purchase. For additional information, please contact one of our customer service representatives at 1-800-221-0270.', $product->getName());
+                $isZeroDNR = true;
             } else {
                 $statusLabel = __('Limited Supplies');
             }
@@ -76,6 +78,9 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
                 $statusLabel = __('On Temporary Backorder');
             }
         }
-        return $statusLabel;
+        return [
+            'label' => $statusLabel,
+            'isZeroDNR' => $isZeroDNR
+        ];
     }
 }
