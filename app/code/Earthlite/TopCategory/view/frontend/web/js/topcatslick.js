@@ -20,8 +20,8 @@ define(['jquery', 'slick'], function ($) {
                 {
                     breakpoint: 992,
                     settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
+                        slidesToShow: 3,
+                        slidesToScroll: 3
                     }
                 },
                 {
@@ -45,7 +45,7 @@ define(['jquery', 'slick'], function ($) {
 
 
             //$progressBar.css('left',  + calc+ '%');
-            if (!(calc == 100)) {
+            if (!(calc >= 100)) {
                 $progressBar.css('left', 'calc(' + calc + '% - 0px)');
             } else {
                 $progressBar.css('left', 'calc(' + calc + '% - 100px)');
