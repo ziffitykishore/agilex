@@ -175,7 +175,7 @@
     <!-- End of Custom Attributes -->
     <div class="actions-toolbar">
         <div class="primary">
-            <button type="submit" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Register')) ?></span></button>
+            <button type="submit" id="register" class="action submit primary" title="<?= $block->escapeHtmlAttr(__('Create an Account')) ?>"><span><?= $block->escapeHtml(__('Register')) ?></span></button>
             <span><?= $block->escapeHtmlAttr(__('Already have an account?')) ?> <a class="action link" href="<?=$block->getUrl('*/*/login');?>"><?= $block->escapeHtmlAttr(__('Sign In')) ?></a></span> 
         </div>
     </div>
@@ -260,6 +260,11 @@
                         break;
                     default:
                         $(".field-amta_number, .field-abmp_number").hide();
+                }
+            });
+            $('#form-validate').submit(function() {
+                if ($(this).valid()) {
+                    $("#register").prop('disabled', true);
                 }
             });
         });
