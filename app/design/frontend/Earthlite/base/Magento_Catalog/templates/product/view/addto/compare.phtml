@@ -16,7 +16,7 @@ if ($block->getProduct()->getAttributeText('table_type') == 'Stationary') {
 <?php $viewModel = $block->getData('addToCompareViewModel'); ?>
 <?php if ($viewModel->isAvailableForCompare($block->getProduct())) : ?>
     <?php if ($cmsPageUrl) : ?>
-        <a href="<?= $cmsPageUrl ?>" data-role="add-to-links" class="action tocompare">
+        <a href="<?= $cmsPageUrl ?>" data-role="add-to-links" class="action tocompare" target="_blank">
             <span><?= $block->escapeHtml(__('Add to Compare')) ?></span>
         </a>
     <?php endif; ?>
