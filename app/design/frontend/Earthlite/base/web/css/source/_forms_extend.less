@@ -227,7 +227,7 @@
     }
 
     .message {
-        &.info, &.notice  {
+        &.info, &.notice, &.error  {
             > *:first-child:before {
                 content: "\e91a";
                 font-family: 'ELite' !important;
@@ -235,10 +235,13 @@
                 color: #fff;
             }
         }
+        &.error  {
+            content: '\e92e';
+        }
     } 
 
     .message {
-        &.info, &.notice  {
+        &.info, &.notice, &.error  {
             border-radius: 6px;
         }
     }

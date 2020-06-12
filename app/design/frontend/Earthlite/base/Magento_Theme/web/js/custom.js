@@ -171,7 +171,7 @@ define([
     // toggle text
     function moreToggler(s, c) {
         var showChar = c;
-        var ellipsestext = "";
+        var ellipsestext = "...";
         var moretext = "Read more";
         var lesstext = "Read less";
         var selector = s;

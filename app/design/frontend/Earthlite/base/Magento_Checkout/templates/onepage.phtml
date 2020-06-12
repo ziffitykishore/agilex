@@ -34,6 +34,11 @@
                         $(".opc-progress-bar").addClass('message');
                         clearInterval();
                     }
+                    if($(".authentication-wrapper").length)
+                    {
+                        $(".authentication-wrapper").addClass('message');
+                        clearInterval();
+                    }
                 }, 1000);
             });
         })
