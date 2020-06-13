@@ -9,7 +9,7 @@
 <?php
     $blockObj = $block->getLayout()->createBlock('Earthlite\ProductAvailability\Block\Product\View\AbstractView');
     $_product = $block->getProduct();
-    $productionItem = $_product->getCustomAttribute('production_item')->getValue();
+    $productionItem = true;
     $productId = $_product->getId();
     $stockItemQty = $blockObj->getStockQty($productId);
     if ($_product->getTypeId() == 'configurable') {
