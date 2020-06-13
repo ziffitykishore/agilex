@@ -94,6 +94,7 @@ define([
 
             $(self.options.minicartSelector).trigger('contentLoading');
             self.disableAddToCartButton(form);
+            self.disableStickyAddToCartButton(form);
             formData = new FormData(form[0]);
 
             $.ajax({
@@ -165,6 +166,7 @@ define([
                             .html(res.product.statusText);
                     }
                     self.enableAddToCartButton(form);
+                    self.enableStickyAddToCartButton(form);
                 },
 
                 /** @inheritdoc */
@@ -202,6 +204,18 @@ define([
             addToCartButton.find('span').text(addToCartButtonTextWhileAdding);
             addToCartButton.attr('title', addToCartButtonTextWhileAdding);
         },
+        
+        /**
+         * @param {String} form
+         */
+        disableStickyAddToCartButton: function (form) {
+            var addToCartButtonTextWhileAdding = this.options.addToCartButtonTextWhileAdding || $t('Adding...'),
+                addToCartButton = $("#sticky-addtocart-button");
+
+            addToCartButton.addClass(this.options.addToCartButtonDisabledClass);
+            addToCartButton.find('span').text(addToCartButtonTextWhileAdding);
+            addToCartButton.attr('title', addToCartButtonTextWhileAdding);
+        },
 
         /**
          * @param {String} form
@@ -210,6 +224,26 @@ define([
             var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('Added'),
                 self = this,
                 addToCartButton = $(form).find(this.options.addToCartButtonSelector);
+
+            addToCartButton.find('span').text(addToCartButtonTextAdded);
+            addToCartButton.attr('title', addToCartButtonTextAdded);
+
+            setTimeout(function () {
+                var addToCartButtonTextDefault = self.options.addToCartButtonTextDefault || $t('Add to Cart');
+
+                addToCartButton.removeClass(self.options.addToCartButtonDisabledClass);
+                addToCartButton.find('span').text(addToCartButtonTextDefault);
+                addToCartButton.attr('title', addToCartButtonTextDefault);
+            }, 1000);
+        },
+
+        /**
+         * @param {String} form
+         */
+        enableStickyAddToCartButton: function (form) {
+            var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('Added'),
+                self = this,
+                addToCartButton = $("#sticky-addtocart-button");
 
             addToCartButton.find('span').text(addToCartButtonTextAdded);
             addToCartButton.attr('title', addToCartButtonTextAdded);

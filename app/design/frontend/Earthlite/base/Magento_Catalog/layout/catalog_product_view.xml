@@ -8,17 +8,46 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="page.main.title" destination="product.info.main" before="-"/>
-
+        
         <referenceContainer name="content">
-            <container name="product.tab.related" htmlTag="div" htmlClass="product-tab-wrapper" after="product.info.media">
+            <container name="pdp.info.media" htmlTag="div" htmlClass="pdp-info-media d-md-flex" before="-" />
+            
+            <container name="product.tab.related" htmlTag="div" htmlClass="product-tab-wrapper" after="product.sticky.option">
                 <container name="product.tab.container" htmlTag="div" htmlClass="inner-container"/>
             </container>
             <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.addto.wishlist.custom"
-                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+                   template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
             <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.wishlist.media"
-                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+                   template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
             <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="view.wishlist.addtocart"
-                       template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+                   template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
+
+            <container name="product.sticky.option" htmlTag="div" htmlId="PDP-sticky" htmlClass="product-sticky-action" after="pdp.info.media">
+                <container name="product.sticky.container" htmlTag="div" htmlClass="sticky-container d-flex justify-content-between align-items-center" after="product.info.media">
+                    <block class="Magento\Catalog\Block\Product\View" name="sticky.product.title" template="Magento_Catalog::product/view/sticky-title.phtml"/>
+                    <container name="sticky.right.container" htmlTag="div" htmlClass="pdp-sticky-right d-flex align-items-center" >
+                        <container name="sticky.product.price.container" htmlTag="div" htmlClass="custom-product-info-price">
+                            <block class="Magento\Catalog\Pricing\Render" name="sticky.product.price.final">
+                                <arguments>
+                                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                                    <argument name="price_type_code" xsi:type="string">final_price</argument>
+                                    <argument name="zone" xsi:type="string">item_view</argument>
+                                </arguments>
+                            </block>
+                            <block class="Magento\Catalog\Pricing\Render" name="sticky.product.price.tier">
+                                <arguments>
+                                    <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                                    <argument name="price_type_code" xsi:type="string">tier_price</argument>
+                                    <argument name="zone" xsi:type="string">item_view</argument>
+                                </arguments>
+                            </block>
+                        </container>
+                        <block class="Magento\Catalog\Block\Product\View" name="sticky.product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml"/>
+
+                        <block class="Magento\Catalog\Block\Product\View" name="product.sticky.action" template="Magento_Catalog::product/view/sticky-action.phtml"/>  
+                    </container>
+                </container>              
+            </container>
         </referenceContainer>
         <referenceContainer name="product.info.stock.sku">
             <block class="Magento\Catalog\Block\Product\View" name="product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml" after="-"/>
@@ -35,6 +64,9 @@
         <move element="view.addto.wishlist" destination="product.info.addtocart" after="-"/>
         <move element="view.wishlist.addtocart" destination="product.info.addtocart.additional" after="-"/>
         <move element="view.wishlist.media" destination="product.info.media" before="-"/>
+        
+        <move element="product.info.main" destination="pdp.info.media" after="-"/>
+        <move element="product.info.media" destination="pdp.info.media" before="-"/>
        
         <referenceBlock name="product.info.review" remove="true"/>
         <referenceContainer name="product.info.main">            
@@ -88,20 +120,22 @@
                     <block class="Magento\Catalog\Block\Product\View\Type\Simple" name="mob.product.info.simple" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
                     <block class="Magento\Catalog\Block\Product\View" name="mob.product.info.shipping" template="Magento_Catalog::product/view/shipping.phtml"/>
                 </container>
-                <block class="Magento\Catalog\Pricing\Render" name="mob.product.price.final">
-                    <arguments>
-                        <argument name="price_render" xsi:type="string">product.price.render.default</argument>
-                        <argument name="price_type_code" xsi:type="string">final_price</argument>
-                        <argument name="zone" xsi:type="string">item_view</argument>
-                    </arguments>
-                </block>
-                <block class="Magento\Catalog\Pricing\Render" name="mob.product.price.tier">
-                    <arguments>
-                        <argument name="price_render" xsi:type="string">product.price.render.default</argument>
-                        <argument name="price_type_code" xsi:type="string">tier_price</argument>
-                        <argument name="zone" xsi:type="string">item_view</argument>
-                    </arguments>
-                </block>
+                <container name="mob.product.price.container" htmlTag="div" htmlClass="custom-product-info-price">
+                    <block class="Magento\Catalog\Pricing\Render" name="mob.product.price.final">
+                        <arguments>
+                            <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                            <argument name="price_type_code" xsi:type="string">final_price</argument>
+                            <argument name="zone" xsi:type="string">item_view</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Catalog\Pricing\Render" name="mob.product.price.tier">
+                        <arguments>
+                            <argument name="price_render" xsi:type="string">product.price.render.default</argument>
+                            <argument name="price_type_code" xsi:type="string">tier_price</argument>
+                            <argument name="zone" xsi:type="string">item_view</argument>
+                        </arguments>
+                    </block>
+                </container>
             </container>            
         </referenceContainer>
         <move element="view.wishlist.media" destination="mob.instance.option.container" before="-"/>

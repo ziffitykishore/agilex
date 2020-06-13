@@ -744,14 +744,14 @@ define([
          */
         _updateStock: function (simpleProduct) {
             $("#notify-block").css("display", "none");
-            $('.product-info-stock-sku .shipping-details.configurable').hide();
+            $('.page-product-configurable .shipping-details.configurable').hide();
             var selectedQty = 0;
             if (simpleProduct) {
                 $("#child_product_id").val(simpleProduct);
                 var selectedQty = this.options.spConfig.simpleQtys[simpleProduct];
                 if(selectedQty > 0)
                 {
-                   $('.product-info-stock-sku .shipping-details.configurable').show(); 
+                   $('.page-product-configurable .shipping-details.configurable').show(); 
                 }
             } else {
                 var selectedQty = Math.max.apply(Math, Object.values(this.options.spConfig.simpleQtys));
@@ -787,6 +787,7 @@ define([
          */
         addToCart: function (status, addClass, removeClass) {
             $("#product-addtocart-button").attr('disabled', status).removeClass(removeClass).addClass(addClass);
+            $("#sticky-addtocart-button").attr('disabled', status);
         },
 
         /**
