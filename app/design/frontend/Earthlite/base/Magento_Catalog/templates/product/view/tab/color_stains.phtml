@@ -9,9 +9,17 @@ $stainBlockId = false;
 $product = $block->getProduct();
 
 if ($product->getData('upholstery')) {
-	$upholsteryBlockId = 'nt_product_block';
-	if ($product->getAttributeText('upholstery') == "NS") {
-		$upholsteryBlockId = 'ns_product_block';
+	$type = $product->getAttributeText('upholstery');
+	switch ($type) {
+		case "NS":
+			$upholsteryBlockId = 'ns_product_block';
+			break;
+		case "NT":
+			$upholsteryBlockId = 'nt_product_block';
+			break;
+		case "UL Pro":
+			$upholsteryBlockId = 'ulpro_product_block';
+			break;
 	}
 }
 if ($product->getData('custom_stain')) {
