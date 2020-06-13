@@ -46,9 +46,9 @@ define(['jquery', 'slick'], function ($) {
 
             //$progressBar.css('left',  + calc+ '%');
             if (!(calc >= 100)) {
-                $progressBar.css('left', 'calc(' + calc + '% - 0px)');
+                $progressBar.css('left', calc);
             } else {
-                $progressBar.css('left', 'calc(' + calc + '% - 100px)');
+                $progressBar.css('left', 'calc(100% - 100px)');
             }
             if (timeout) {
                 clearTimeout(timeout);
