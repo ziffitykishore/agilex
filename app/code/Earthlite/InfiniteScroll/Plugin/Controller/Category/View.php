@@ -37,9 +37,9 @@ class View
     {        
         if ($this->_moduleHelper->ajaxEnabled() && $action->getRequest()->isAjax()) {            
             
-            $request_body = file_get_contents('php://input');
+            $request_body = file_get_contents('php://input');            
             
-            if($request_body)
+            if($request_body && method_exists($page, 'getLayout'))
             {
                 $navigation = $page->getLayout()->getBlock('catalog.leftnav');
                 $products   = $page->getLayout()->getBlock('category.products');
