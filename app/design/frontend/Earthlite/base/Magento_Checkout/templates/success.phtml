@@ -8,7 +8,7 @@
 <div class="checkout-success">
     <?php if ($block->getOrderId()) : ?>
         <div class="order-success-msg">
-            <h5><?= $block->escapeHtml(__('Thankyou for your purchase')) ?></h5>
+            <h5><?= $block->escapeHtml(__('Thank you for your purchase')) ?></h5>
             <?php if ($block->getCanViewOrder()) : ?>
                 <h2><?= $block->escapeHtml(__('Order Number : %1', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></h2>
             <?php else : ?>
