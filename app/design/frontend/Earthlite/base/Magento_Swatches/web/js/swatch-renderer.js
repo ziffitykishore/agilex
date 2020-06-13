@@ -918,10 +918,16 @@ define([
                         'prices': $widget._getPrices(result, $productPrice.priceBox('option').prices)
                     }
             );
-            
-            if(result.finalPrice.amount){
-                var formatedPrice = priceUtils.formatPrice(result.finalPrice.amount);                
-                $('.custom-product-info-price span.price-final_price > span.price-wrapper > span.price').text(formatedPrice);
+
+            if(result.finalPrice.amount){                
+                var formatedFinalPrice = priceUtils.formatPrice(result.finalPrice.amount);
+                $('.custom-product-info-price .normal-price span.price-final_price > span.price-wrapper > span.price').text(formatedFinalPrice);
+            }
+
+            if(result.oldPrice.amount)
+            {
+                var formatedOldPrice = priceUtils.formatPrice(result.oldPrice.amount);
+                $('.custom-product-info-price .old-price span.price-final_price > span.price-wrapper > span.price').text(formatedOldPrice);
             }
 
 
