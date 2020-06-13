@@ -93,10 +93,10 @@ class Estimation
                 }
             } else if ($product->getCustomAttribute('non_productive_item_shipping')) {
                 $deliveryDate = $product->getCustomAttribute('non_productive_item_shipping')->getValue();
-                $deliveryDate = 'Ships within ' . $deliveryDate;
+                $deliveryDate = '<span>Ships within</span> ' . $deliveryDate;
                 return $deliveryDate;
             } else {
-                return 'Ships within '.$this->getConfigGeneral('default_lead_time_nonproduction');
+                return '<span>Ships within</span> '.$this->getConfigGeneral('default_lead_time_nonproduction');
             }
         }
     }
@@ -230,7 +230,7 @@ class Estimation
         $estimatedDays = '+' . $estimateDays . ' weekdays';
         $timeStamp = $this->dateTime->timestamp($estimatedDays);
         $deliveryDate = $this->dateTime->gmtDate('m/d/Y', $timeStamp);
-        $deliveryDate = 'Ships by ' . $deliveryDate;
+        $deliveryDate = '<span>Ships by</span> ' . $deliveryDate;
         return $deliveryDate;
     }
 
