@@ -48,6 +48,11 @@ class TierPrice extends \Magento\Catalog\Pricing\Price\TierPrice
         return parent::getBasePrice();
     }
 
+    public function getBasePriceFormatted()
+    {
+        return $this->priceCurrency->convertAndFormat($this->getBasePrice());
+    }
+
     public function getMsrpPrice()
     {
         $attribute = $this->product->getCustomAttribute('manufacturer_price');
