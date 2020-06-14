@@ -9,14 +9,18 @@
 <?php
     $blockObj = $block->getLayout()->createBlock('Earthlite\ProductAvailability\Block\Product\View\AbstractView');
     $_product = $block->getProduct();
+    $productionItemExist = false;
     $productionItem = $_product->getCustomAttribute('production_item')->getValue();
     $productId = $_product->getId();
     $stockItemQty = $blockObj->getStockQty($productId);
     if ($_product->getTypeId() == 'configurable') {
         $childItems = $_product->getTypeInstance()
-                ->getUsedProductCollection($_product);
+                ->getUsedProducts($_product,['production_item']);
         $qty = [];
         foreach ($childItems as $child) {
+            if ($child->getProductionItem()) {
+                $productionItemExist = true;
+            }
             $qty[] = $blockObj->getStockQty($child->getId());
         }
         $stockItemQty = max($qty);
@@ -25,7 +29,7 @@
 
 <?php if ($block->displayProductStockStatus()) :?>
     <?php if ($_product->isAvailable()) :?>
-        <?php if ($productionItem) :?>
+        <?php if ($productionItem || $productionItemExist) :?>
             <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
                 <span><?= $block->escapeHtml(__('In stock')) ?></span>
             </div>

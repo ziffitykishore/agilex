@@ -33,9 +33,13 @@ class SetQuoteItem implements ObserverInterface
     public function execute(\Magento\Framework\Event\Observer $observer)
     {                
         $quoteItem = $observer->getQuoteItem();
-        $itemSku = $quoteItem->getSku();        
-        $quoteItem->setShippingLeadTime($this->getShippingInfo($itemSku));        
-        $quoteItem->setItemType($this->getItemType($itemSku));        
+        if ($quoteItem->getChildren()) {
+            $shippingInfoSku = $quoteItem->getChildren()[0]->getSku();
+        } else {
+            $shippingInfoSku = $quoteItem->getSku();
+        }
+        $quoteItem->setShippingLeadTime($this->getShippingInfo($shippingInfoSku));        
+        $quoteItem->setItemType($this->getItemType($shippingInfoSku));        
     }
 
     /**

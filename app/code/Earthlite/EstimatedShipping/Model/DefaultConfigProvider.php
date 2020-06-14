@@ -436,8 +436,13 @@ class DefaultConfigProvider implements \Magento\Checkout\Model\ConfigProviderInt
                     $quoteItem->getProduct(),
                     'product_thumbnail_image'
                 )->getUrl();
-                $quoteItemData[$index]['message'] = $quoteItem->getMessage();               
-                $quoteItemData[$index]['custom_ship_estimation'] = $this->shippingEstimation->getEstimatedShipping($quoteItem['sku']);
+                $quoteItemData[$index]['message'] = $quoteItem->getMessage();      
+                if ($quoteItem->getChildren()) {
+                    $shippingInfoSku = $quoteItem->getChildren()[0]->getSku();
+                } else {
+                    $shippingInfoSku = $quoteItem->getSku();
+                }
+                $quoteItemData[$index]['custom_ship_estimation'] = $this->shippingEstimation->getEstimatedShipping($shippingInfoSku);
                 $quoteItemData[$index]['item_productivity'] = $this->shippingEstimation->getItemProductionStatus($quoteItem['sku']);                
                 $quoteItemData[$index]['production_item_text'] = $this->shippingEstimation->getConfigGeneral('production_item_text');
                 $quoteItemData[$index]['nonproduction_item_text'] = $this->shippingEstimation->getConfigGeneral('nonproduction_item_text');

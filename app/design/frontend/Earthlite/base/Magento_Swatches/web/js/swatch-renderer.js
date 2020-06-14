@@ -957,18 +957,6 @@ define([
             }.bind(this));
         },
 
-        _reloadLeadTime: function () {
-            var chosenProduct = this.getProduct();
-            if (chosenProduct
-                    && typeof this.options.jsonConfig.leadTime != 'undefined'
-                    && this.options.jsonConfig.leadTime[chosenProduct]
-                    ) {
-                $('div.shipping-details span.estimation').html(this.options.jsonConfig.leadTime[chosenProduct]);
-                var toolTipMesage = this.options.jsonConfig.tooltip[this.getProduct()];
-                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
-            }
-        },
-
         /**
          * Get new prices for selected options
          *
@@ -1394,34 +1382,51 @@ define([
         /**
          * Update Stock info based on options
          * 
-         * @return {undefined}
+         * @return {void}
          */
         _updateStock: function () {
             $("#notify-block").css("display", "none");
             $('.product-info-stock-sku .shipping-details.configurable').hide();
             var selectedQty = 0;
+            var productionItem = false;
             if (this.getProduct()) {
                 $("#child_product_id").val(this.getProduct());
                 var selectedQty = this.options.jsonConfig.simpleQtys[this.getProduct()];
-                if(selectedQty > 0)
+                var productType = this.options.jsonConfig.itemType[this.getProduct()];
+                if (selectedQty > 0 || productType)
                 {
                     $('.product-info-stock-sku .shipping-details.configurable').show();
                 }
             } else {
-                var selectedQty = Math.max.apply(Math, Object.values(this.options.jsonConfig.simpleQtys));
-            
+                var qtysPolyfill = function values(object) {
+                    return Object.keys(object).map(key => object[key]);
+                };
+                var qtys = Object.values || qtysPolyfill;
+                var selectedQty = Math.max.apply(Math,qtys(this.options.jsonConfig.simpleQtys));
+                
+                var itemTypesPolyfill = function values(object) {
+                    return Object.keys(object).map(key => object[key]);
+                };
+                var types = Object.values || itemTypesPolyfill;
+                 if($.inArray(1,types(this.options.jsonConfig.itemType))) {
+                     var productionItem = true;
+                 }
             }
-            
-            if (selectedQty >= 10) {
+            if (!productType) {
+                if (selectedQty >= 10 || productionItem) {
+                    this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
+                    this.addToCart(false, '', 'disabled');
+                } else if (selectedQty < 10 && selectedQty > 0) {
+                    this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
+                    this.addToCart(false, '', 'disabled');
+                } else if (selectedQty === 0) {
+                    this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
+                    this.displayNotifyStock();
+                    this.addToCart(true, 'disabled', '');
+                }
+            } else {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
-                this.addToCart(false, '', 'disabled');                
-            } else if (selectedQty < 10 && selectedQty > 0) {
-                this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
-                this.addToCart(false, '', 'disabled');                
-            } else if (selectedQty === 0) {
-                this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
-                this.displayNotifyStock();
-                this.addToCart(true, 'disabled', '');                
+                this.addToCart(false, '', 'disabled');
             }
         },
 
@@ -1452,6 +1457,21 @@ define([
             $("#notify-block").css("display", "block");
             if ($("#product-customize-button").length) {
                 $("#notify-block").insertBefore("#product-options-wrapper");
+            }
+        },
+        /**
+         * 
+         * @return {void}
+         */
+        _reloadLeadTime: function () {
+            var chosenProduct = this.getProduct();
+            if (chosenProduct
+                    && typeof this.options.jsonConfig.leadTime != 'undefined'
+                    && this.options.jsonConfig.leadTime[chosenProduct]
+                    ) {
+                $('div.shipping-details span.estimation').html(this.options.jsonConfig.leadTime[chosenProduct]);
+                var toolTipMesage = this.options.jsonConfig.tooltip[this.getProduct()];
+                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
             }
         }
     });

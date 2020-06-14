@@ -3,6 +3,12 @@
         <plugin name="rewrite-street" 
                 type="Earthlite\Checkout\Model\Checkout\LayoutProcessorPlugin" sortOrder="10"/>
     </type>
+    <type name="Magento\InventorySales\Model\IsProductSalableForRequestedQtyCondition\IsAnySourceItemInStockCondition">
+        <plugin name="exclude_source_check_production_items" 
+                type="Earthlite\Checkout\Plugin\Model\IsProductSalableForRequestedQtyCondition\IsAnySourceItemInStockConditionPlugin" sortOrder="10"/>
+    </type>
+    <preference for="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator"
+                type="Earthlite\Checkout\Model\Quote\Item\QuantityValidator" />
 </config>
 
 

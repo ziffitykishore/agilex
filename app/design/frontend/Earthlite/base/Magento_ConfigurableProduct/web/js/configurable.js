@@ -746,18 +746,32 @@ define([
             $("#notify-block").css("display", "none");
             $('.product-info-stock-sku .shipping-details.configurable').hide();
             var selectedQty = 0;
+            var productionItem = false;
             if (simpleProduct) {
                 $("#child_product_id").val(simpleProduct);
                 var selectedQty = this.options.spConfig.simpleQtys[simpleProduct];
-                if(selectedQty > 0)
+                var productType = this.options.spConfig.itemType[simpleProduct];
+                if(selectedQty > 0 || productType)
                 {
                    $('.product-info-stock-sku .shipping-details.configurable').show(); 
                 }
             } else {
-                var selectedQty = Math.max.apply(Math, Object.values(this.options.spConfig.simpleQtys));
+                var qtysPolyfill = function values(object) {
+                    return Object.keys(object).map(key => object[key]);
+                };
+                var qtys = Object.values || qtysPolyfill;
+                var selectedQty = Math.max.apply(Math,qtys(this.options.spConfig.simpleQtys));
+                
+                var itemTypesPolyfill = function values(object) {
+                    return Object.keys(object).map(key => object[key]);
+                };
+                var types = Object.values || itemTypesPolyfill;
+                 if($.inArray(1,types(this.options.spConfig.itemType))) {
+                     var productionItem = true;
+                 }
             }
             
-            if (selectedQty >= 10) {
+            if (selectedQty >= 10 || productionItem) {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
                 this.addToCart(false, '', 'disabled');            
             } else if (selectedQty < 10 && selectedQty > 0) {

@@ -47,7 +47,12 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                 </div>
                 <?php                    
                     $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
-                    if($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
+                    if ($_item->getChildren()) {
+                        $shippingInfoSku = $_item->getChildren()[0]->getSku();
+                    } else  {
+                        $shippingInfoSku = $_item->getSku();
+                    } 
+                    if($estimatedShipment = $helper->getShippingInfo($shippingInfoSku)):
                 ?>
                     <div class="shipping-details" title="Shipping">
                         <span class="value with-tooltip">                            
