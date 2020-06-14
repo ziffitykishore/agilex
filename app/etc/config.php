@@ -531,7 +531,9 @@ return [
         'Earthlite_ProductAlert' => 1,
         'Earthlite_ProductAvailability' => 1,
         'Earthlite_Rma' => 1,
+        'Earthlite_Stickylinks' => 1,
         'Earthlite_SuggestiveSearch' => 1,
+        'Earthlite_Test' => 1,
         'Earthlite_TopCategory' => 1,
         'Earthlite_Widget' => 1,
         'Fastly_Cdn' => 1,
@@ -562,3 +564,4 @@ return [
         ]
     ]
 ];
+

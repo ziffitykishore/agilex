@@ -12,7 +12,7 @@ define([
     'priceUtils',
     'jquery-ui-modules/widget',
     'jquery/jquery.parsequery',
-    'mage/validation/validation'
+    'mage/validation/validation',
 ], function ($, _, mageTemplate, keyboardHandler, $t, priceUtils) {
     'use strict';
 
@@ -919,6 +919,18 @@ define([
                     }
             );
 
+            if(result.finalPrice.amount){                
+                var formatedFinalPrice = priceUtils.formatPrice(result.finalPrice.amount);
+                $('.custom-product-info-price .normal-price span.price-final_price > span.price-wrapper > span.price').text(formatedFinalPrice);
+            }
+
+            if(result.oldPrice.amount)
+            {
+                var formatedOldPrice = priceUtils.formatPrice(result.oldPrice.amount);
+                $('.custom-product-info-price .old-price span.price-final_price > span.price-wrapper > span.price').text(formatedOldPrice);
+            }
+
+
             isShow = typeof result != 'undefined' && result.oldPrice.amount !== result.finalPrice.amount;
 
             $product.find(this.options.slyOldPriceSelector)[isShow ? 'show' : 'hide']();
@@ -1386,7 +1398,7 @@ define([
          */
         _updateStock: function () {
             $("#notify-block").css("display", "none");
-            $('.product-info-stock-sku .shipping-details.configurable').hide();
+            $('.page-product-configurable .shipping-details.configurable').hide();
             var selectedQty = 0;
             var productionItem = false;
             if (this.getProduct()) {
@@ -1395,7 +1407,7 @@ define([
                 var productType = this.options.jsonConfig.itemType[this.getProduct()];
                 if (selectedQty > 0 || productType)
                 {
-                    $('.product-info-stock-sku .shipping-details.configurable').show();
+                    $('.page-product-configurable .shipping-details.configurable').show();
                 }
             } else {
                 var qtysPolyfill = function values(object) {
@@ -1447,6 +1459,7 @@ define([
          */
         addToCart: function (status, addClass, removeClass) {
             $("#product-addtocart-button").attr('disabled', status).removeClass(removeClass).addClass(addClass);
+            $("#sticky-addtocart-button").attr('disabled', status);
         },
 
         /**

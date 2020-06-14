@@ -1,0 +1,70 @@
+<?php
+	$product = $block->getProduct();
+	$productType = $product->getTypeId();
+	$customOptions = $product->getProductOptionsCollection();
+	$size = $customOptions->getSize();
+	if (($productType == 'configurable')): 	
+	    $productInstance = $product->getTypeInstance();
+	    $size += count($productInstance->getConfigurableOptions($product));	
+		if ($size > 3):
+?>
+    <div class="custom-button actions">
+        <button type="button" class="action primary" id="sticky-customize-button">
+            <span><?= $block->escapeHtml(__('Customize & Add to cart')) ?></span>
+        </button>
+    </div>
+	<?php else: ?> 	
+		<div class="actions">
+		    <button type="button" title="Add to Cart" class="action primary tocart" id="sticky-addtocart-button">
+				<span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+		    </button>
+		</div>	
+	<?php 
+		endif;
+	 else:  
+	?>
+
+	<div class="actions">
+	    <button type="button" title="Add to Cart" class="action primary tocart" id="sticky-addtocart-button">
+			<span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+	    </button>
+	</div>
+	
+<?php endif; ?>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {            
+        
+        $("#sticky-customize-button").click(function () {
+                $("body").addClass('configslide-open');
+            });
+
+        $("#sticky-addtocart-button").click(function () {
+            $("#product_addtocart_form").submit();
+        });    
+
+       if ($('#PDP-sticky').length > 0) {
+
+            var $window = $(window);
+            
+            var pdp_sticky = $('#PDP-sticky');
+            var distance;
+            
+
+            $(window).scroll(function () {
+                sticky_height = $('#PDP-sticky').outerHeight();
+                distance = $('.product-tab-wrapper').offset().top - ($('.header-wrapper').outerHeight() + $('.product-sticky-action').outerHeight());
+                scroll = $window.scrollTop();
+                $('.product-sticky-action').css('top',$('.header-wrapper').outerHeight());
+                if (scroll >= distance) {
+                    $('body').addClass('sticked');
+                    $('.product-tab-wrapper').css('marginTop',sticky_height);
+                } else {
+                    $('.product-sticky-action').css('top',0);
+                    $('body').removeClass('sticked');
+                    $('.product-tab-wrapper').css('marginTop',0);
+                }
+            });
+        }        
+    })
+</script>
