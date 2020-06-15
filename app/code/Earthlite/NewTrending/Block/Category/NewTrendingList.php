@@ -95,10 +95,7 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
      */
     public function getNewTrendingList() 
     {
-        /** @var $collection \Magento\Catalog\Model\ResourceModel\Product\Collection */
-        $categoryIds = explode(',', $this->getChildCategories($this->getCategoryId()));
-        $categoryIds[] = $this->getCategoryId();
-        return $this->getProductCollection($categoryIds);
+        return $this->getProductCollection($this->getChildCategories($this->getCategoryId()));
     }
 
     /**
@@ -176,7 +173,7 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
         $storeId = $this->_storeManager->getStore()->getId();
         $categoryRepository = $this->categoryRepositoryInterfaceFactory->create();
         $categoryDetails = $categoryRepository->get($categoryId, $storeId);
-        return $categoryDetails->getChildren();
+        return $categoryDetails->getAllChildren(true);
     }
 
     /**
@@ -184,7 +181,7 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
      *
      * @return array|null
      */
-    public function getCategory() 
+    private function getCategory() 
     {
         return $this->coreregistry->registry('current_category');
     }
@@ -194,7 +191,7 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
      *
      * @return int|string|null
      */
-    public function getCategoryId() 
+    protected function getCategoryId() 
     {
         if ($this->getCategory()) {
             return $this->getCategory()->getId();
@@ -207,8 +204,11 @@ class NewTrendingList extends AbstractProduct implements BlockInterface
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection
      */
     public function getNewTrendingListForMenuItems() 
-    {
-        return $this->getProductCollection(explode(',', $this->_getData('parentcat')));
+    {        
+        if ($this->_getData('new_trending_category')) {
+            $category = explode('/',$this->_getData('new_trending_category'));
+            return $this->getProductCollection($this->getChildCategories($category[1]));
+        }
     }
 
     /**

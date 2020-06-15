@@ -7,9 +7,15 @@
             <parameter name="title" sort_order="10" visible="true" xsi:type="text">
                 <label>Title</label>
             </parameter>
-            <parameter name="parentcat" xsi:type="block" visible="true" required="true" sort_order="10">
-                <label translate="true">Select Categories</label>
-                <block class="Earthlite\TopCategory\Block\Adminhtml\Category\Widget\Chooser" />
+            <parameter name="new_trending_category" xsi:type="block" visible="true" required="true" sort_order="10">
+                <label translate="true">Select Category</label>
+                <block class="Magento\Catalog\Block\Adminhtml\Category\Widget\Chooser">
+                    <data>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Category...</item>
+                        </item>
+                    </data>
+                </block>            
             </parameter>
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label translate="true">Template</label>
