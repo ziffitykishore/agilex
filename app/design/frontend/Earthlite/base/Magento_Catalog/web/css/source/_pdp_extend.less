@@ -43,7 +43,7 @@
 }
 
 & when (@media-common = true) {
-    
+
     .catalog-product-view .price-box .old-price .price {
         color: #687792;
     }
@@ -92,7 +92,7 @@
         transform: translateX(101%);
         -webkit-transition: .5s ease;
         transition: .5s ease;
-        width: 290px;
+        width: 310px;
         overflow-y: auto;
         z-index: 1000;
         .swatch-option {
@@ -152,8 +152,9 @@
             -webkit-transform: translateX(0);
             transform: translateX(0);
         }
-        .page-header {
+        .page-header, .zEWidget-launcher {
             opacity: 0;
+            visibility: hidden;
         }
         .config-overlay {
             z-index: 999;
@@ -847,15 +848,49 @@
         }
     }
 
+    // slide down animation
+    @-webkit-keyframes slide-down {
+        0% {
+            transform: translateY(-100%);
+        } 
+        100% {
+            transform: translateY(0);
+        } 
+    }
+    @-moz-keyframes slide-down {
+        0% {
+            transform: translateY(-100%);
+        } 
+        100% {
+            transform: translateY(0);
+        } 
+    }
+    @keyframes slide-down {
+        0% {
+            transform: translateY(-100%);
+        } 
+        100% {
+            transform: translateY(0);
+        } 
+    }
+    .product-sticky-action {
+        box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.05);
+        position: fixed;
+        left: 0;
+        right: 0;
+        padding: 0 20px;
+        background: #fff;
+        z-index: 9;
+        opacity: 0;
+        visibility: hidden;
+    }
     .sticked {
         .product-sticky-action {
-            box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            left: 0;
-            right: 0;
-            padding: 0 20px;
-            background: #fff;
-            z-index: 9;
+            opacity: 1;
+            visibility: visible;
+            -webkit-animation: slide-down .7s;
+            -moz-animation: slide-down .7s;
+            animation: slide-down .7s;
         }
         .header-wrapper.sticky {
             box-shadow: none;
@@ -1149,9 +1184,6 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @c-desk) { 
     .configslide-open, .brand-active {
         padding-right: 15px;
-    }
-    .custom-options-container.slide {
-        width: 310px;
     }
     .custom-options-container:not(.slide) {
         .product-options-wrapper {
