@@ -18,9 +18,9 @@ $viewModel = $block->getViewModel();
     <?= $block->getPostContent() ?>
 
     <?= $this->getPostMetaFooter()->toHtml() ?>
-
-    <a href="<?= $viewModel->getBlogBackUrl() ?>"><?= $block->escapeHtml(__('Back to Blogs'))?></a>
-
+    <div class="text-right">
+    <a href="<?= $viewModel->getBlogBackUrl() ?>" class="action primary"><i class="icon-chevron-left align-middle"></i>  <?= $block->escapeHtml(__('Back to Blogs'))?></a>
+    </div>
     <?= $this->getChildHtml('blog.post.related.posts') ?>
 
     <?= $this->getChildHtml('blog.post.related.products') ?>
