@@ -5,6 +5,7 @@ namespace Earthlite\OrderSuccess\Observer;
 use Magento\Framework\Event\ObserverInterface;
 use Earthlite\LateOrders\Model\LateOrders;
 use Magento\Framework\Stdlib\DateTime\DateTime;
+use Psr\Log\LoggerInterface;
 
 /**
  * class AddProductionItemToTransport
@@ -17,10 +18,12 @@ class AddProductionItemToTransport implements ObserverInterface
      */
     public function __construct(
       LateOrders $lateOrders,
-      DateTime $dateTime
+      DateTime $dateTime,
+      LoggerInterface $logger
     ) {
         $this->lateOrders = $lateOrders;
         $this->dateTime = $dateTime;
+        $this->logger = $logger;
     }
 
     /**
@@ -40,6 +43,9 @@ class AddProductionItemToTransport implements ObserverInterface
                     $type = $item->getItemType();
                     $modifiedLeadDatesofOrderItems[] = $this->lateOrders->formatLeadDate($leadTime, $order, $type);
                 }
+                if ($type == 1) {
+                    $productionItemExist = true;
+                }
             }
             $transport['is_production'] = $productionItemExist;
             if ($order->getShippingMethod(true)->getMethod() == 'GROUND') {
@@ -54,8 +60,9 @@ class AddProductionItemToTransport implements ObserverInterface
             if (!empty($modifiedLeadDatesofOrderItems)) {
                 $transport['estimated_date'] = $this->getEstimatedDeliveryTime($modifiedLeadDatesofOrderItems);
             }
+
         } catch (\Exception $e) {
-            
+            $this->logger->info($e->getMessage());
         }
     }
     

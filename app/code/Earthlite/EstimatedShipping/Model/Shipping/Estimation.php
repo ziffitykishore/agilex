@@ -6,6 +6,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Checkout\Model\CartFactory;
+use Magento\CatalogInventory\Api\StockStateInterfaceFactory;
 
 /**
  * class Estimation
@@ -43,9 +44,10 @@ class Estimation
         ProductRepositoryInterface $productRepository, 
         DateTime $dateTime, 
         ScopeConfigInterface $scopeConfig, 
-        CartFactory $cart
+        CartFactory $cart,
+        StockStateInterfaceFactory $stockStateInterface
     ) {
-
+        $this->stockStateInterface = $stockStateInterface;
         $this->productRepository = $productRepository;
         $this->dateTime = $dateTime;
         $this->scopeConfig = $scopeConfig;
@@ -75,28 +77,34 @@ class Estimation
     public function getEstimatedShipping($sku) 
     {
         $product = $this->getProduct($sku);
-
         if ($product && $this->isEnabled()) {
             if ($product->getCustomAttribute('production_item') && $product->getCustomAttribute('production_item')->getValue()) {
                 if ($product->getCustomAttribute('lead_time')) {
                     $estimatedDays = $product->getCustomAttribute('lead_time')->getValue();
-
                     $deliveryDate = $this->getProductionItemEstimation($estimatedDays);
-
                     return $deliveryDate;
                 } else {
                     $estimatedDays = $this->getConfigGeneral('default_lead_time_production');
-
                     $deliveryDate = $this->getProductionItemEstimation($estimatedDays);
-
                     return $deliveryDate;
                 }
             } else if ($product->getCustomAttribute('non_productive_item_shipping')) {
+                $stockState = $this->stockStateInterface->create();
+                if (($stockState->getStockQty($product->getId()) <= 0) && ($product->getTypeId() == 'simple')) {
+                    return "";
+                }
                 $deliveryDate = $product->getCustomAttribute('non_productive_item_shipping')->getValue();
                 $deliveryDate = '<span>Ships within</span> ' . $deliveryDate;
                 return $deliveryDate;
             } else {
+
+                $stockState = $this->stockStateInterface->create();
+                if (($stockState->getStockQty($product->getId()) <= 0) && ($product->getTypeId() == 'simple')) {
+                    return "";
+                }
+
                 return '<span>Ships within</span> '.$this->getConfigGeneral('default_lead_time_nonproduction');
+
             }
         }
     }

@@ -46,16 +46,16 @@
                 </div>
             </div>
             <?php if ($_order->getOrderComments()): ?>
-            <div class="col-lg-6 mb-lg-4">
-                <div class="card box-order-comments">
-                    <strong class="card-header">
-                        <span><?= $block->escapeHtml(__('Order Comments')) ?></span>
-                    </strong>
-                    <div class="card-body">
-                        <address><?= /* @noEscape */ $_order->getOrderComments() ?></address>
+                <div class="col-lg-6 mb-lg-4">
+                    <div class="card box-order-comments">
+                        <strong class="card-header">
+                            <span><?= $block->escapeHtml(__('Order Comments')) ?></span>
+                        </strong>
+                        <div class="card-body">
+                            <address><?= /* @noEscape */ $_order->getOrderComments() ?></address>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php endif; ?>
         </div>
     </div>
@@ -104,7 +104,12 @@
                                             <div class="product sku product-item-sku"><?= /* @noEscape */ $_item->getSku() ?></div>
                                             <?php
                                             $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
-                                            if ($estimatedShipment = $helper->getShippingInfo($_item->getSku())):
+                                            if ($_item->getChildren()) {
+                                                $shippingInfoSku = $_item->getChildrenItems()[0]->getSku();
+                                            } else {
+                                                $shippingInfoSku = $_item->getSku();
+                                            }
+                                            if ($estimatedShipment = $helper->getShippingInfo($shippingInfoSku)):
                                                 ?>
                                                 <div class="shipping-details" title="Shipping">
                                                     <span class="value with-tooltip">                            
