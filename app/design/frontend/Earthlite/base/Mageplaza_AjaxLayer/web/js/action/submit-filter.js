@@ -53,6 +53,13 @@ define(
             return storage.post(submitUrl, JSON.stringify(dataToPass),
                     true).done(
                 function (response) {
+                    
+                    if(!response.navigation && !response.products)
+                    {
+                        window.location = submitUrl;
+                        return;
+                    }
+
                     if (response.backUrl) {
                         window.location = response.backUrl;
                         return;

@@ -13,5 +13,10 @@
         </referenceContainer>
         <move element="page.main.title" destination="category.image" after="-"/>
         <move element="category.view.container" destination="content.top" before="-"/>
+        <referenceBlock name="category.image">
+        	<arguments>
+                <argument name="view_model" xsi:type="object">Earthlite\Category\ViewModel\CategoryData</argument>
+            </arguments>
+        </referenceBlock>
     </body>
 </page>

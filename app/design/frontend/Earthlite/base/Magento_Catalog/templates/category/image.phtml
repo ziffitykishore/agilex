@@ -16,12 +16,33 @@
 // phpcs:disable Magento2.Security.LanguageConstruct.DirectOutput
 ?>
 <?php
+    
+    $reqParams = $this->getRequest()->getParams();
     $_helper    = $this->helper(Magento\Catalog\Helper\Output::class);
-    $_category  = $block->getCurrentCategory();
+    $_category  = $block->getCurrentCategory();  
+    $brandsModels = $block->getViewModel();   
     $_imgHtml   = '';
     if ($_imgUrl = $_category->getImageUrl('banner_image')) : ?>
         <div class="category-image" >
             <img src="<?= $block->escapeUrl($_imgUrl)?>" alt="<?= $block->escapeHtmlAttr($_category->getName()) ?>" title="<?= $block->escapeHtmlAttr($_category->getName()) ?>" class="image" >
+        </div>
+    <?php elseif($_category->getLevel() == '2' && array_key_exists('brands', $reqParams)) : ?>
+        <?php
+            $brandIds =  explode(',', $reqParams['brands']);
+            $brandImageUrl = '';
+            if(!empty($brandIds))
+            {
+                foreach ($brandsModels->getBrandValues() as $brand) 
+                {
+                    if($brand['brandValue'] == $brandIds[0])
+                    {
+                        $brandImageUrl = $brand['brandImage'];
+                    }
+               }   
+            }
+        ?>
+        <div class="category-image brand-image">
+            <img src="<?= $block->escapeUrl($brandImageUrl)?>" alt="<?= $block->escapeHtmlAttr($_category->getName()) ?>" title="<?= $block->escapeHtmlAttr($_category->getName()) ?>" class="image" >
         </div>
     <?php else : ?>
         <div class="category-image no-image">

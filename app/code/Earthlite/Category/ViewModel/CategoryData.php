@@ -157,11 +157,57 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         return $brands;
     }
 
+
+    public function getBrandValues()
+    {
+        $options = $this->productAttributeOptions->getItems(self::ATTRIBUTE_CODE);
+        $brands = [];
+        $defaultBrands = [
+            "EarthLite",
+            "StrongLite",
+            "Inner Strength"
+        ];
+        foreach ($options as $option) {
+            if (in_array($option->getLabel(), $defaultBrands)) {
+                $brandImageUrl = $this->getBrandsBannerUrl();                
+                switch ($option->getLabel()) {                    
+                    case "EarthLite":
+                        $imageUrl = $brandImageUrl . 'brand-earthlite.png';
+                        break;
+                    case "StrongLite":
+                        $imageUrl = $brandImageUrl . 'brand-stronglite.png';
+                        break;
+                    case "Inner Strength":
+                        $imageUrl = $brandImageUrl . 'brand-IS.png';
+                        break;
+                    default:
+                        $imageUrl = $brandImageUrl;
+                }
+                $brands[] = [                    
+                    'brandValue' => $option->getValue(),
+                    'brandImage' => $imageUrl
+                ];
+            }
+        }
+        return $brands;
+    }
+
     /**
      *
      * @return string
      */
     public function getBrandsUrl()
+    {
+        return $this->storeManagerInterface
+            ->getStore()
+            ->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'brands/';
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getBrandsBannerUrl()
     {
         return $this->storeManagerInterface
             ->getStore()
