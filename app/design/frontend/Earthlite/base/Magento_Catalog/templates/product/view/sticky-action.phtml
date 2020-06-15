@@ -53,16 +53,14 @@
 
             $(window).scroll(function () {
                 sticky_height = $('#PDP-sticky').outerHeight();
-                distance = $('.product-tab-wrapper').offset().top - ($('.header-wrapper').outerHeight() + $('.product-sticky-action').outerHeight());
+                distance = $('.product-tab-wrapper').offset().top - ($('.header-wrapper').outerHeight());
                 scroll = $window.scrollTop();
                 $('.product-sticky-action').css('top',$('.header-wrapper').outerHeight());
                 if (scroll >= distance) {
                     $('body').addClass('sticked');
-                    $('.product-tab-wrapper').css('marginTop',sticky_height);
                 } else {
                     $('.product-sticky-action').css('top',0);
                     $('body').removeClass('sticked');
-                    $('.product-tab-wrapper').css('marginTop',0);
                 }
             });
         }        
