@@ -57,11 +57,6 @@ class QuantityValidator extends \Magento\CatalogInventory\Model\Quote\Item\Quant
      */
     public function validate(Observer $observer)
     {
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/test.log');
-$logger = new \Zend\Log\Logger();
-$logger->addWriter($writer);
-$logger->info('Your text message');
-
         /* @var $quoteItem Item */
         $quoteItem = $observer->getEvent()->getItem();
         if (!$quoteItem ||

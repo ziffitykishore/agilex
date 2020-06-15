@@ -23,12 +23,14 @@
             }
             $qty[] = $blockObj->getStockQty($child->getId());
         }
-        $stockItemQty = max($qty);
+        if (!empty($qty)) {
+            $stockItemQty = max($qty);
+        }
     }
 ?>
 
 <?php if ($block->displayProductStockStatus()) :?>
-    <?php if ($_product->isAvailable()) :?>
+    <?php if ($_product->isAvailable() ||$productionItemExist ) :?>
         <?php if ($productionItem || $productionItemExist) :?>
             <div class="stock available" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
                 <span><?= $block->escapeHtml(__('In stock')) ?></span>
