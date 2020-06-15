@@ -1,0 +1,48 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Email extend styles
+//  _____________________________________________
+
+//  This file should be used for theme-specific styles for emails that extend or modify the styles in _email.less
+//  This will allow you to edit email styles without copying and editing the _email.less file
+
+//  Custom fonts are declared here, rather than in _email-base.less, as it allows for custom fonts to be changed/removed
+//  in custom themes.
+
+//  Importing fonts from an external CSS file, rather than embedding @font-face declarations inside the <style> tag,
+//  as the latter will cause font rendering issues if the web fonts are inaccessible.
+
+@import url("@{baseUrl}css/email-fonts.css");
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: @text-highlight__color;
+}
+
+.main {
+    background-color: #fff;
+}
+
+.main-wrap {
+    width: 800px;
+    margin: 0 auto;
+    background-color: #f3f6ff;
+}
+
+.header {
+    background-color: #f3f6ff;
+    padding: 22.5px 0 22.5px;
+    border-bottom: 6px solid #357df9;
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+
+}
