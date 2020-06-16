@@ -9,8 +9,7 @@
 
 & when (@media-common = true) {
 
-    .account
-    { 
+    .account {
         .fieldset{
             .field.choice 
             {
@@ -178,6 +177,42 @@
     }
 
     .account {
+        .form-create-return {
+            .fieldset {
+                margin-bottom: 30px;
+
+                .actions-toolbar {
+                    margin-top: 0;
+                    .secondary {
+                        .action {
+                            margin-top: 0 !important;
+                        }
+                    }
+                }
+
+                .field.comment {
+                    margin-top: 30px;
+                }
+            }
+            .fields {
+                &.additional {
+                    display: block;
+                    margin-left: 0;
+                    margin-right: 0;
+                    margin-top: 30px;
+                }
+
+                .actions-toolbar {
+                    margin-bottom: 20px;
+                    .secondary {
+                        .action {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+        }
+
         .sidebar {
             &.sidebar-additional {
                 margin-top: 0;
@@ -318,15 +353,28 @@
 
         .order-title {
             color: @theme__color__secondary;
-
+            strong {
+                margin-right: 10px;
+            }
             .action {
                 .link-inverse();
+                
+                &.track {
+                    margin-left: 10px;
+                }
             }
         }
 
         .order-details-items {
             .table-wrapper {
                 border-top: 4px solid @theme__color__primary;
+            }
+
+            .actions-toolbar {
+                margin: 20px 0;
+                .action.print{
+                    display: inline-block;
+                }
             }
         }
     }
@@ -558,8 +606,17 @@
                 margin-right: 5px;
             }
         }
-    }
 
+        .form-create-return {
+            .fieldset {
+                .field {
+                    .control {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -571,6 +628,13 @@
         }
 
         .order-details-items {
+            .order-title {
+                margin-bottom: 20px;
+
+                strong {
+                    display: block;
+                }
+            }
             .table-wrapper {
                 .item-options,
                 .item.options {

@@ -19,8 +19,6 @@ $collection = $block->getPostCollection();
                         <h2 class="blog__post-title" itemprop="headline">
                             <a href="<?= $post->getUrl() ?>" rel="bookmark"><?= $post->getName() ?></a>
                         </h2>
-
-                        <?= $block->getPostMetaHeader($post)->toHtml() ?>
                     </header>
 
                     <div class="blog__post-excerpt" itemprop="text">                        
@@ -37,7 +35,7 @@ $collection = $block->getPostCollection();
                         
                         <?= $block->getContentMoreTag($post) ?>
 
-                        <a class="read-more" href="<?= $post->getUrl() ?>"><?= __('Read more...') ?></a>
+                        <a class="read-more" href="<?= $post->getUrl() ?>"><?= __('Read more') ?></a>
                     </div>                    
                 </li>
             <?php endforeach ?>

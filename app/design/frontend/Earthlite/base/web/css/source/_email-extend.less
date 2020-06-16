@@ -39,10 +39,15 @@ h6 {
 
 .header {
     background-color: #f3f6ff;
-    padding: 22.5px 0 22.5px;
+    padding: 30px 0 22.5px;
     border-bottom: 6px solid #357df9;
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
-
+    .header {
+        text-align: center;
+    }
+    .m-p {
+        padding: 0 20px;
+    }
 }

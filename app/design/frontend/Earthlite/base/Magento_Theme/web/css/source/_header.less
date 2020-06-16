@@ -47,6 +47,20 @@
         }
     }
 
+    .page-print {
+        .preloader {
+            display: none !important;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .page-title-wrapper {
+            margin-top: 20px;
+        }
+    }
+
     .preloader {
         width: 100%;
         height: 100%;
@@ -216,7 +230,7 @@
                         margin-bottom: 0;
 
                         & + li {
-                            padding-left: 20px;
+                            padding-left: 15px;
                         }
 
                         a {
@@ -423,8 +437,8 @@
 
     .logo {
         img {
-            max-width: 270px;
-            width: 100%;
+            /*max-width: 270px;*/
+            width: auto;
             height: auto;
         }
     }
@@ -457,6 +471,43 @@
     {
         font-size: 13px;
     }
+    
+    .sticky.contact {
+        .lib-tooltip(left);
+        position: fixed;
+        right: -1px;
+        top: 40%;
+        z-index: 9;
+        span, i {
+            color: #fff;
+            padding: 10px;
+            display: inline-block;
+            vertical-align: middle;
+            zoom: 1.005;
+        }
+        /*        span {
+                    -webkit-transform: rotate(-180deg);
+                    transform: rotate(-180deg);
+                    zoom: 1.005;
+                }*/
+        i {
+            /*border-bottom: 1px solid #04112b;*/
+            font-size: 20px;
+/*            -webkit-transform: rotate(-90deg) translateZ(0);
+            transform: rotate(-90deg) translateZ(0);*/
+            border-radius: 0 0 4px 4px;
+            background: @theme__color__secondary;
+            box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.1);
+            border-radius: 4px 0 0 4px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .tooltip-content {
+            right: 42px;
+            min-width: 125px;
+            padding: 8px 10px;
+        }
+    }
 }
 
 //
@@ -469,9 +520,9 @@
             margin: 0;
             float: none;
             max-width: none;
-            img {
+/*            img {
                 max-width: 200px;
-            }
+            }*/
         }
     }
 
@@ -1116,7 +1167,7 @@
 
                             > a {
                                 color: @theme__color__secondary;
-                                padding: 20px 0;
+                                padding: 20px 15px;
                                 position: relative;
                                 > span {
                                     display: none;
@@ -1147,7 +1198,7 @@
 
                             &.dropdown {
                                 position: static;
-                                padding: 0 10px;
+                                padding: 0;
                             }
 
                             ul {
@@ -1241,8 +1292,15 @@
                                         }
                                         > [class*="column"] {
                                             > li {
-                                                width: percentage(1/6);
+                                                /*width: percentage(1/6);*/
+                                                width: inherit;
                                             }
+                                        }
+                                        > ul {
+                                            display: -ms-flex;
+                                            display: flex;
+                                            -webkit-flex-wrap: nowrap;
+                                            flex-wrap: nowrap;
                                         }
                                     }
 
@@ -1342,9 +1400,9 @@
         }
         &.panel {
             .our-brands {
-                li {
+/*                li {
                     padding: 0 18px;
-                }
+                }*/
                 span,a {
                     .lib-font-size(14);
                 }
@@ -1452,7 +1510,7 @@
 
 
                             > a {
-                                padding: 20px 0;
+                                padding: 20px 15px;
                                 &:before {
                                     bottom: -15px;
                                 }
@@ -1589,5 +1647,11 @@
 
             }
         }
+    }
+}
+
+@media print {
+    .page-wrapper .logo img {
+        width: 200px;
     }
 }

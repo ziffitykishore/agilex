@@ -24,7 +24,7 @@
             <!-- ko if: (getEstimateShip($parent))-->
             <div class="shipping-details" title="Shipping">
                 <span class="value with-tooltip">
-                    <span class="ship-estimation" data-bind="text: getEstimateShip($parent)"></span>
+                    <span class="ship-estimation" data-bind="html: getEstimateShip($parent)"></span>
                     <div class="field-tooltip">
                         <span class="field-tooltip-action"
                                 tabindex="0"

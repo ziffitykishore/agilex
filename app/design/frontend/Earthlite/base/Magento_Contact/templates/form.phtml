@@ -6,6 +6,8 @@
 
 /** @var \Magento\Contact\Block\ContactForm $block */
 ?>
+<div class="row">
+<div class="col-xl-6">
 <div class="contact message">
 	<?php
 	    echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')
@@ -13,6 +15,8 @@
 	        ->toHtml();
 	?>
 </div>
+</div>
+<div class="col-xl-6">
 <form class="form contact"
       action="<?= $block->escapeUrl($block->getFormAction()) ?>"
       id="contact-form"
@@ -57,3 +61,5 @@
         </div>
     </div>
 </form>
+</div>
+</div>
