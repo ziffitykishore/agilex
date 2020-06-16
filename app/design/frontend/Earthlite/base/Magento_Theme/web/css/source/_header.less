@@ -24,6 +24,7 @@
             border-radius: 100%;
             -webkit-box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
             box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid @color-white;
             color: #ffffff;
             cursor: pointer;
             font-size: 26px;
@@ -40,6 +41,11 @@
             z-index: 88;
             display: none;
             text-decoration: none;
+
+            .gt-arrow {
+                display: block;
+                padding-top: 13px;
+            }
 
             &:hover {
                 background: @theme__color__primary;
@@ -898,6 +904,52 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    .to-top {
+        background: @color-lines;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 0;
+        #backtotop {
+            background: @color-lines;
+            color: @theme__color__secondary;
+            width: auto;
+            height: auto;
+            border: none;
+            position: static;
+            display: inline-block;
+            box-shadow: none;
+            .br-radius(0);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: normal;
+            padding: 0;
+            .gt-arrow {
+                display: none;
+            }
+
+            &:hover {
+                background: inherit;
+            }
+
+            .icon-arrow-right {
+                font-weight: inherit;
+                display: inline-block;
+                vertical-align: middle;
+                &:before {
+                    display: block;
+                    .transform(rotate(-90deg));
+                }
+            }
+
+            .text {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 2px;
+            }
+        }
+    }
 
     html {
         &.mm-opening {
