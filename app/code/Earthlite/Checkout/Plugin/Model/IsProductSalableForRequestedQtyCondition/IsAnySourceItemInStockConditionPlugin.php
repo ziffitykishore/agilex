@@ -47,7 +47,7 @@ class IsAnySourceItemInStockConditionPlugin
         $productRepository = $this->productRepositoryInterfaceFactory->create();
         $product = $productRepository->get($sku);
         if (($product->getCustomAttribute('production_item')) && !($product->getCustomAttribute('production_item')->getValue())) {
-            $result = $proceed();
+            $result = $proceed($sku,$stockId,$requestedQty);
         } else {
             $result = $this->productSalableResultFactory->create(['errors' => $errors]);
         }
