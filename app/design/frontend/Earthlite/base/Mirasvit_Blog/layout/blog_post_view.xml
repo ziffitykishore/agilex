@@ -9,6 +9,9 @@
         <referenceContainer name="content">
             <block name="blog.post.view" class="Mirasvit\Blog\Block\Post\View" template="post/view.phtml"
                    cacheable="true">
+              <arguments>
+                     <argument name="view_model" xsi:type="object">Earthlite\Blog\ViewModel\Blog</argument>
+              </arguments>
                 <block name="blog.post.comments" class="Mirasvit\Blog\Block\Post\Meta"
                        template="post/view/comments.phtml"/>
 
