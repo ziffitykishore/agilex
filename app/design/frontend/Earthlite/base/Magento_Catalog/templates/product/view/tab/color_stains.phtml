@@ -6,6 +6,8 @@
 <?php
 $upholsteryBlockId = false;
 $stainBlockId = false;
+$laminateBlockId = false;
+$lacquerBlockId = false;
 $product = $block->getProduct();
 
 if ($product->getData('upholstery')) {
@@ -25,6 +27,12 @@ if ($product->getData('upholstery')) {
 if ($product->getData('custom_stain')) {
 	$stainBlockId = 'stain_product_block';
 }
+if ($product->getData('laminate')) {
+	$laminateBlockId = 'laminate_product_block';
+}
+if ($product->getData('lacquer')) {
+	$lacquerBlockId = 'lacquer_product_block';
+}
 ?>
 
 <?php if ($upholsteryBlockId): ?>
@@ -33,4 +41,12 @@ if ($product->getData('custom_stain')) {
 
 <?php if ($stainBlockId): ?>
 	<?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($stainBlockId)->toHtml() ?>
+<?php endif; ?>
+
+<?php if ($laminateBlockId): ?>
+	<?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($laminateBlockId)->toHtml() ?>
+<?php endif; ?>
+
+<?php if ($lacquerBlockId): ?>
+	<?= $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($lacquerBlockId)->toHtml() ?>
 <?php endif; ?>
