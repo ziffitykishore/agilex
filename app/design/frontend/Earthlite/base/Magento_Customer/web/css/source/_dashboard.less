@@ -318,11 +318,14 @@
 
         .order-title {
             color: @theme__color__secondary;
-
+            strong {
+                margin-right: 10px;
+            }
             .action {
                 .link-inverse();
-                &.print{
-                    margin: 0 10px;
+                
+                &.track {
+                    margin-left: 10px;
                 }
             }
         }
@@ -581,6 +584,13 @@
         }
 
         .order-details-items {
+            .order-title {
+                margin-bottom: 20px;
+
+                strong {
+                    display: block;
+                }
+            }
             .table-wrapper {
                 .item-options,
                 .item.options {
