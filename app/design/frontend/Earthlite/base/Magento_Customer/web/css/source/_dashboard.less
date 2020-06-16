@@ -321,12 +321,22 @@
 
             .action {
                 .link-inverse();
+                &.print{
+                    margin: 0 10px;
+                }
             }
         }
 
         .order-details-items {
             .table-wrapper {
                 border-top: 4px solid @theme__color__primary;
+            }
+
+            .actions-toolbar {
+                margin: 20px 0;
+                .action.print{
+                    display: inline-block;
+                }
             }
         }
     }
