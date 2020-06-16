@@ -135,6 +135,24 @@
     }
 }
 
+.btn-muted() {
+    background: @color-lines;
+    color: @theme__color__secondary;
+
+    &:hover {
+        background: @color-lines;
+        color: @theme__color__secondary;
+        border-color: @color-lines;
+    }
+}
+
+.action {
+    &.clear,
+    &-dismiss {
+        .btn-muted();
+    }
+}
+
 .choice() {
     position: relative;
     input[type="checkbox"],
