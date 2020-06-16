@@ -159,6 +159,12 @@
                         </tbody>
                     </table>
                 </div>
+                    <?php
+                    echo $this->getLayout()
+                    ->createBlock('Magento\Cms\Block\Block')
+                    ->setBlockId('order_disclaimer')
+                    ->toHtml();
+                    ?>
             </div>
         <?php endif; ?>
         <div class="block block-order-summary col-lg-4">
