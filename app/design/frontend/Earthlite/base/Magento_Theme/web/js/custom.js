@@ -175,35 +175,40 @@ define([
         var moretext = "Read more";
         var lesstext = "Read less";
         var selector = s;
-        $(selector).each(function () {
-            var content = $(this).html();
+        var contentSelector = s+ ' p.half-desc';
+        var fullDescSelector = s+ ' div.full-desc';
+        
+        var content = $(contentSelector).html();
 
-            if (content.length > showChar) {
-                var c = content.substr(0, showChar);
-                var h = content.substr(showChar, content.length - showChar);
-                var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink read-more">' + moretext + '</a></span>';
-                $(this).html(html);
-            }
-        });
+        if (content.length > showChar) {
+            var c = content.substr(0, showChar);            
+            var html = '<span>' + c + '... </span>&nbsp;&nbsp;';
+            $(selector).append('<a href="javascript:void(0)" class="morelink read-more">' + moretext + '</a>');
+            $(contentSelector).html(html);
+            $(fullDescSelector).hide();
+        }
+        
 
         $(".morelink").click(function () {
-            if ($(this).hasClass("less")) {
+            if ($(this).hasClass("less")) 
+            {
                 $(this).removeClass("less");
                 $(this).html(moretext);
+                $(contentSelector).show(500);
+                $(fullDescSelector).hide(500);                
             } else {
                 $(this).addClass("less");
                 $(this).html(lesstext);
-            }
-            $(this).parent().prev().toggle();
-            $(this).prev().toggle();
-            return false;
+                $(contentSelector).hide(500);
+                $(fullDescSelector).show(500);                
+            }                
         });
     }
 
     if ($(window).width() > 767) {
-        moreToggler('.category-description p', 250);
+        moreToggler('.category-description', 300);
     } else {
-        moreToggler('.category-description p', 150);
+        moreToggler('.category-description', 200);
     }
 
 
