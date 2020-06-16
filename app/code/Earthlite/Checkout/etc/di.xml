@@ -9,6 +9,12 @@
     </type>
     <preference for="Magento\CatalogInventory\Model\Quote\Item\QuantityValidator"
                 type="Earthlite\Checkout\Model\Quote\Item\QuantityValidator" />
+
+    <type name="Magento\ConfigurableProduct\Model\Product\Type\Configurable">
+        <plugin name="make_saleable_true" 
+                type="Earthlite\Checkout\Plugin\Model\Product\Type\ConfigurablePlugin" sortOrder="10"/>
+    </type>
+
 </config>
 
 

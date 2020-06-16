@@ -12,13 +12,30 @@
                     <label>Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="defaul_lead_time" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Defaut Lead Time</label>
-                    <comment>This will be used for non production items.</comment>
-                </field>
-                <field id="late_order_cron" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="late_order_cron" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Late Order Cron</label>
-                </field>             
+                </field>
+                <field id="production_item_text" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Item Text</label>
+                </field>
+                <field id="nonproduction_item_text" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-Production Item Text</label>                    
+                </field>
+                <field id="notification_message" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Message</label>                    
+                </field>
+                <field id="default_lead_time_production" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Item Shipping Estimation</label>                    
+                </field>
+                <field id="default_lead_time_nonproduction" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-Production Item Shipping Estimation</label>                    
+                </field>
+                <field id="lead_time_production_buffer" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Production Item Late Order Buffer Time</label>                    
+                </field>
+                <field id="lead_time_nonproduction_buffer" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-Production Item Late Order Buffer Time</label>                    
+                </field>
             </group>
         </section>
     </system>
