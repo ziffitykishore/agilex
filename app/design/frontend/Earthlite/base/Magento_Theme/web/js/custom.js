@@ -178,20 +178,18 @@ define([
         var contentSelector = s+ ' p.half-desc';
         var fullDescSelector = s+ ' div.full-desc';
         
-        var content = $(contentSelector).html();
-
-        if (content.length > showChar) {
-            var c = content.substr(0, showChar);            
-            var html = '<span>' + c + '... </span>&nbsp;&nbsp;';
-            $(selector).append('<a href="javascript:void(0)" class="morelink read-more">' + moretext + '</a>');
-            $(contentSelector).html(html);
-            $(fullDescSelector).hide();
-        }
-        else
+        if($(s).length)
         {
-            $(fullDescSelector).hide();            
+            var content = $(contentSelector).html();
+            $(fullDescSelector).hide();
+            if (content.length > showChar) {
+                var c = content.substr(0, showChar);            
+                var html = '<span>' + c + '... </span>&nbsp;&nbsp;';
+                $(selector).append('<a href="javascript:void(0)" class="morelink read-more">' + moretext + '</a>');
+                $(contentSelector).html(html);
+                
+            }
         }
-        
 
         $(".morelink").click(function () {
             if ($(this).hasClass("less")) 
