@@ -187,6 +187,10 @@ define([
             $(contentSelector).html(html);
             $(fullDescSelector).hide();
         }
+        else
+        {
+            $(fullDescSelector).hide();            
+        }
         
 
         $(".morelink").click(function () {
