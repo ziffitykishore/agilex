@@ -318,15 +318,28 @@
 
         .order-title {
             color: @theme__color__secondary;
-
+            strong {
+                margin-right: 10px;
+            }
             .action {
                 .link-inverse();
+                
+                &.track {
+                    margin-left: 10px;
+                }
             }
         }
 
         .order-details-items {
             .table-wrapper {
                 border-top: 4px solid @theme__color__primary;
+            }
+
+            .actions-toolbar {
+                margin: 20px 0;
+                .action.print{
+                    display: inline-block;
+                }
             }
         }
     }
@@ -571,6 +584,13 @@
         }
 
         .order-details-items {
+            .order-title {
+                margin-bottom: 20px;
+
+                strong {
+                    display: block;
+                }
+            }
             .table-wrapper {
                 .item-options,
                 .item.options {
