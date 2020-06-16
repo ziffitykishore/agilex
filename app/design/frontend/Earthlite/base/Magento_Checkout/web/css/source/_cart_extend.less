@@ -885,7 +885,11 @@
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+    
+    .cart-summary .block .fieldset .field:not(.choice) > .control {
+        padding-right: 10px;
+    }
+    
     .form-cart {
         .cart.table-wrapper {
             .table {

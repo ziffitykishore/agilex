@@ -20,7 +20,17 @@ if ($subcats->getSize()) {
                 <?= $_imgHtml ?>                
                     <div class="list-content">
                         <h5> <?= $_category->getName() ?></h5> 
-                        <div class="desc"> <?= $_category->getDescription() ?></div> 
+                        <div class="desc">
+                        <?php if ($_description = $_category->getDescription()) : ?>
+                            <p>
+                                <?= substr($block->stripTags(
+                                    $this->helper(Magento\Catalog\Helper\Output::class)
+                                    ->categoryAttribute($block->getCurrentCategory(), $_description, 'description')
+                                ), 0, 120)."..."
+                                ?>
+                            </p>
+                        <?php endif; ?>
+                        </div>
                         <div class="actions"> 
                             <a class="action primary" href="<?= $subcaturl ?>"> 
                             <?= $block->escapeHtml('View All Products')?> 
