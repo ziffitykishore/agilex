@@ -180,12 +180,15 @@
         .form-create-return {
             .fieldset {
                 margin-bottom: 30px;
-
+                > .legend + br {
+                    display: none;
+                }
                 .actions-toolbar {
                     margin-top: 0;
                     .secondary {
                         .action {
                             margin-top: 0 !important;
+                            position: static;
                         }
                     }
                 }
@@ -237,6 +240,8 @@
 
         .table-wrapper {
             border: 1px solid @color-lines;
+            .br-radius(0 0 6px 6px);
+
             .actions {
                 .action {
                     .link-inverse();
@@ -374,6 +379,17 @@
                 margin: 20px 0;
                 .action.print{
                     display: inline-block;
+                }
+            }
+        }
+
+        .order-actions-toolbar {
+            .actions {
+                .action {
+                    margin-right: 0;
+                    & + .action {
+                        margin-left: 20px;
+                    }
                 }
             }
         }
@@ -608,6 +624,15 @@
         }
 
         .form-create-return {
+            .fields {
+                .actions-toolbar {
+                    .secondary {
+                        .action {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
             .fieldset {
                 .field {
                     .control {
