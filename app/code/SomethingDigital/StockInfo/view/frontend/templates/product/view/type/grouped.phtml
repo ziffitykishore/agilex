@@ -14,7 +14,9 @@
 <?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
 <?php if ($block->displayProductStockStatus()): ?>
     <p class="stock available" title="<?= /* @escapeNotVerified */ __('Availability:') ?>">
-        <span><?= /* @escapeNotVerified */ $stockStatus ?></span>
-        <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
+        <span><?= /* @escapeNotVerified */ $stockStatus['label'] ?></span>
+        <?php if (!$stockStatus['isZeroDNR']): ?>
+            <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
+        <?php endif; ?>
     </p>
 <?php endif; ?>
