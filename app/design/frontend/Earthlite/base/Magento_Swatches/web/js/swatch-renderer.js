@@ -1436,7 +1436,7 @@ define([
                     return Object.keys(object).map(key => object[key]);
                 };
                 var types = Object.values || itemTypesPolyfill;
-                if ($.inArray(1, types(this.options.jsonConfig.itemType))) {
+                 if(($.inArray("1",(types(this.options.jsonConfig.itemType)))) > -1) {
                     var productionItem = true;
                 }
             }
