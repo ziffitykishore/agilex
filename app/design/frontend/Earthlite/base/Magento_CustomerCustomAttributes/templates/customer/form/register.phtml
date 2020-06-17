@@ -246,20 +246,20 @@
                 switch ($customerGroup) {
                     case "abmp":
                         $("#amta_number").val('');
-                        $(".field-amta_number, #abmp_number-error").hide();
-                        $(".field-abmp_number").show().attr("class","field field-abmp_number required");
+                        $(".field-amta_number, #abmp_number-error").slideUp();
+                        $(".field-abmp_number").slideDown().attr("class","field field-abmp_number required");
                         $("#abmp_number").attr("data-validate","{required:true, 'validate-digits':true}").focus();
                         $("#is_amta").prop("checked", false);
                         break;
                     case "amta":
                         $("#abmp_number").val('');
-                        $(".field-abmp_number, #amta_number-error").hide();
-                        $(".field-amta_number").show().attr("class","field field-amta_number required");
+                        $(".field-abmp_number, #amta_number-error").slideUp();
+                        $(".field-amta_number").slideDown().attr("class","field field-amta_number required");
                         $("#amta_number").attr("data-validate","{required:true, 'validate-digits':true}").focus();
                         $("#is_abmp").prop("checked", false);
                         break;
                     default:
-                        $(".field-amta_number, .field-abmp_number").hide();
+                        $(".field-amta_number, .field-abmp_number").slideUp();
                 }
             });
             $('#form-validate').submit(function() {
