@@ -1,8 +1,3 @@
-/**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
-
 define([
     'jquery',
     'underscore',
@@ -12,7 +7,7 @@ define([
     'priceUtils',
     'jquery-ui-modules/widget',
     'jquery/jquery.parsequery',
-    'mage/validation/validation',
+    'mage/validation/validation'
 ], function ($, _, mageTemplate, keyboardHandler, $t, priceUtils) {
     'use strict';
 
@@ -731,6 +726,10 @@ define([
                         );
             }
 
+            if ($this.hasClass('disabled')) {
+                return;
+            }
+
             if ($this.hasClass('selected')) {
                 $parent.removeAttr('option-selected').find('.selected').removeClass('selected');
                 $input.val('');
@@ -753,6 +752,7 @@ define([
                 $widget._UpdatePrice();
             }
             $widget._reloadLeadTime();
+
             $widget._updateStock();
             $(document).trigger('updateMsrpPriceBlock',
                     [
@@ -818,11 +818,10 @@ define([
                 $parent.removeAttr('option-selected');
                 $input.val('');
             }
-
-            $widget._Rebuild();
-            $widget._UpdatePrice();
             $widget._reloadLeadTime();
             $widget._updateStock();
+            $widget._Rebuild();
+            $widget._UpdatePrice();
             $widget._loadMedia();
             $input.trigger('change');
         },
@@ -845,6 +844,10 @@ define([
          */
         _Rewind: function (controls) {
             controls.find('div[option-id], option[option-id]').removeClass('disabled').removeAttr('disabled');
+            controls.find('div[option-empty], option[option-empty]')
+                    .attr('disabled', true)
+                    .addClass('disabled')
+                    .attr('tabindex', '-1');
         },
 
         /**
@@ -865,6 +868,31 @@ define([
                 return;
             }
 
+            // Disable not available options
+            controls.each(function () {
+                var $this = $(this),
+                        id = $this.attr('attribute-id'),
+                        products = $widget._CalcProducts(id);
+
+                if (selected.length === 1 && selected.first().attr('attribute-id') === id) {
+                    return;
+                }
+
+                $this.find('[option-id]').each(function () {
+                    var $element = $(this),
+                            option = $element.attr('option-id');
+
+                    if (!$widget.optionsMap.hasOwnProperty(id) || !$widget.optionsMap[id].hasOwnProperty(option) ||
+                            $element.hasClass('selected') ||
+                            $element.is(':selected')) {
+                        return;
+                    }
+
+                    if (_.intersection(products, $widget.optionsMap[id][option].products).length <= 0) {
+                        $element.attr('disabled', true).addClass('disabled');
+                    }
+                });
+            });
         },
 
         /**
@@ -912,24 +940,13 @@ define([
                     result = $widget._getNewPrices(),
                     tierPriceHtml,
                     isShow;
+
             $productPrice.trigger(
                     'updatePrice',
                     {
                         'prices': $widget._getPrices(result, $productPrice.priceBox('option').prices)
                     }
             );
-
-            if(result.finalPrice.amount){                
-                var formatedFinalPrice = priceUtils.formatPrice(result.finalPrice.amount);
-                $('.custom-product-info-price .normal-price span.price-final_price > span.price-wrapper > span.price').text(formatedFinalPrice);
-            }
-
-            if(result.oldPrice.amount)
-            {
-                var formatedOldPrice = priceUtils.formatPrice(result.oldPrice.amount);
-                $('.custom-product-info-price .old-price span.price-final_price > span.price-wrapper > span.price').text(formatedOldPrice);
-            }
-
 
             isShow = typeof result != 'undefined' && result.oldPrice.amount !== result.finalPrice.amount;
 
@@ -1390,7 +1407,6 @@ define([
                 this.options.mediaCache[JSON.stringify(mediaCallData)] = this.options.jsonConfig.preSelectedGallery;
             }
         },
-
         /**
          * Update Stock info based on options
          * 
@@ -1414,15 +1430,15 @@ define([
                     return Object.keys(object).map(key => object[key]);
                 };
                 var qtys = Object.values || qtysPolyfill;
-                var selectedQty = Math.max.apply(Math,qtys(this.options.jsonConfig.simpleQtys));
-                
+                var selectedQty = Math.max.apply(Math, qtys(this.options.jsonConfig.simpleQtys));
+
                 var itemTypesPolyfill = function values(object) {
                     return Object.keys(object).map(key => object[key]);
                 };
                 var types = Object.values || itemTypesPolyfill;
-                 if($.inArray(1,types(this.options.jsonConfig.itemType))) {
-                     var productionItem = true;
-                 }
+                if ($.inArray(1, types(this.options.jsonConfig.itemType))) {
+                    var productionItem = true;
+                }
             }
             if (!productType) {
                 if (selectedQty >= 10 || productionItem) {
