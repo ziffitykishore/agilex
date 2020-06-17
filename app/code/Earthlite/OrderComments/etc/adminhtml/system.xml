@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <tab id="earthlite" translate="label" sortOrder="300">
-            <label>EarthLite</label>
+            <label>Earthlite</label>
         </tab>
         <section id="earthlite_checkout" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
