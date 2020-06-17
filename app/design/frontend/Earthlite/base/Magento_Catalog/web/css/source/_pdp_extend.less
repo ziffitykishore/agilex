@@ -164,7 +164,11 @@
     }
 
     .swatch-option-tooltip {
-        display: none !important;
+        /*display: none !important;*/
+        z-index: 9999;
+        .image {
+            display: none !important;
+        }
     }
 
     .swatch-attribute.color_swatch[option-selected] {
@@ -551,8 +555,8 @@
                     font-size: 1.4rem;
                     padding: 0;
                     display: inline-block;
-                    background: transparent;
-                    border: none;
+                    background: transparent !important;
+                    border: none !important;
                     color: @theme__color__secondary;
                     line-height: normal;
                     padding: 10px;
@@ -843,6 +847,7 @@
                 }
                 .field-tooltip {
                     display: none;
+                    .lib-tooltip(bottom);
                 }
             }
         }

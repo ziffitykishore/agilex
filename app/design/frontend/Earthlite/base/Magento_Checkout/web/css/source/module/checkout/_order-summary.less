@@ -339,7 +339,7 @@
 
             .secondary {
                 border-top: @border-width__base solid @border-color__base;
-                display: block;
+                display: none;
                 float: none;
                 margin: -1px 0 0;
                 padding: 15px 0 0;
@@ -361,7 +361,10 @@
     .opc-block-shipping-information {
         /*        border-top: 1px solid @color-lines;
                 padding: 20px;*/
-        margin-top: 30px;
+        > &:first-child {
+            margin-top: 30px;
+        }
+
         .shipping-information-title {
             padding: 20px;
             border: 1px solid @color-lines;
