@@ -26,20 +26,19 @@
     <script type="text/javascript">
         require([
             'jquery'
-        ], function($) {
+        ], function($) {        
+            var interval = null;
             $( document ).ready(function() {
-                window.setInterval(function(){
+
+                interval = setInterval(updateDiv,1000);
+
+                function updateDiv(){
                     if($(".opc-progress-bar").length)
                     {
-                        $(".opc-progress-bar").addClass('message');
-                        clearInterval();
-                    }
-                    if($(".authentication-wrapper").length)
-                    {
-                        $(".authentication-wrapper").addClass('message');
-                        clearInterval();
-                    }
-                }, 1000);
+                        $('.message.info').detach().insertBefore('.opc-wrapper');
+                        clearInterval(interval);
+                    }                    
+                }                
             });
         })
     </script>
