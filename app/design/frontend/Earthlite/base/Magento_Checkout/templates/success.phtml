@@ -104,7 +104,7 @@
                                             <div class="product sku product-item-sku"><?= /* @noEscape */ $_item->getSku() ?></div>
                                             <?php
                                             $helper = $this->helper('Earthlite\EstimatedShipping\Helper\EstimateShipping');
-                                            if ($_item->getChildren()) {
+                                            if ($_item->getChildrenItems()) {
                                                 $shippingInfoSku = $_item->getChildrenItems()[0]->getSku();
                                             } else {
                                                 $shippingInfoSku = $_item->getSku();
