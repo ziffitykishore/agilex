@@ -78,5 +78,6 @@
         <referenceContainer name="before.body.end">
             <block class="Magento\Framework\View\Element\Template" name="sticky_contact_link" template="Magento_Theme::html/sticky_contact_link.phtml" after="-"/>                            
         </referenceContainer>
+         <move element="scroll-to-top" destination="footer-container" before="-"/>
     </body>
 </page>
