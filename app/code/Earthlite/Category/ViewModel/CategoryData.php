@@ -127,18 +127,18 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         $options = $this->productAttributeOptions->getItems(self::ATTRIBUTE_CODE);
         $brands = [];
         $defaultBrands = [
-            "EarthLite",
-            "StrongLite",
+            "Earthlite",
+            "Stronglite",
             "Inner Strength"
         ];
         foreach ($options as $option) {
             if (in_array($option->getLabel(), $defaultBrands)) {
                 $brandImageUrl = $this->getBrandsUrl();
                 switch ($option->getLabel()) {
-                    case "EarthLite":
+                    case "Earthlite":
                         $imageUrl = $brandImageUrl . 'logo-earthlite.png';
                         break;
-                    case "StrongLite":
+                    case "Stronglite":
                         $imageUrl = $brandImageUrl . 'logo-stronglite.png';
                         break;
                     case "Inner Strength":
@@ -163,18 +163,18 @@ class CategoryData implements \Magento\Framework\View\Element\Block\ArgumentInte
         $options = $this->productAttributeOptions->getItems(self::ATTRIBUTE_CODE);
         $brands = [];
         $defaultBrands = [
-            "EarthLite",
-            "StrongLite",
+            "Earthlite",
+            "Stronglite",
             "Inner Strength"
         ];
         foreach ($options as $option) {
             if (in_array($option->getLabel(), $defaultBrands)) {
                 $brandImageUrl = $this->getBrandsBannerUrl();                
                 switch ($option->getLabel()) {                    
-                    case "EarthLite":
+                    case "Earthlite":
                         $imageUrl = $brandImageUrl . 'brand-earthlite.png';
                         break;
-                    case "StrongLite":
+                    case "Stronglite":
                         $imageUrl = $brandImageUrl . 'brand-stronglite.png';
                         break;
                     case "Inner Strength":

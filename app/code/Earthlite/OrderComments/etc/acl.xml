@@ -7,7 +7,7 @@
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
                             <resource id="Earthlite_Customer::config_earthlite">
-                                <resource id="Earthlite_OrderComments::config_checkout" title="EarthLite Checkout" translate="title" sortOrder="40" />
+                                <resource id="Earthlite_OrderComments::config_checkout" title="Earthlite Checkout" translate="title" sortOrder="40" />
                             </resource>
                         </resource>
                     </resource>
