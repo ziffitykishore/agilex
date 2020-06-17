@@ -742,6 +742,7 @@ define([
                 if(selectedQty > 0 || productType)
                 {
                    $('.page-product-configurable .shipping-details.configurable').show(); 
+                   var productionItem =true;
                 }
             } else {
                 var qtysPolyfill = function values(object) {
@@ -754,21 +755,25 @@ define([
                     return Object.keys(object).map(key => object[key]);
                 };
                 var types = Object.values || itemTypesPolyfill;
-                 if(($.inArray("1",(types(this.options.spConfig.itemType)))) > -1) {
-                     var productionItem = true;
-                 }
+                if (($.inArray(1, (types(this.options.spConfig.itemType)))) !== -1) {
+                    var productionItem = true;
+                }
             }
-            
-            if (selectedQty >= 10 || productionItem) {
+            if (!productType) {
+                if (selectedQty >= 10 || productionItem) {
+                    this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
+                    this.addToCart(false, '', 'disabled');
+                } else if (selectedQty < 10 && selectedQty > 0) {
+                    this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
+                    this.addToCart(false, '', 'disabled');
+                } else if (selectedQty === 0) {
+                    this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
+                    this.displayNotifyStock();
+                    this.addToCart(true, 'disabled', '');
+                }
+            } else {
                 this.updateStockStatusText('available', 'unavailable low-available', 'In Stock');
-                this.addToCart(false, '', 'disabled');            
-            } else if (selectedQty < 10 && selectedQty > 0) {
-                this.updateStockStatusText('low-available', 'unavailable available', '<10 available');
                 this.addToCart(false, '', 'disabled');
-            } else if (selectedQty === 0) {
-                this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
-                this.displayNotifyStock();
-                this.addToCart(true, 'disabled', '');
             }
         },
         
