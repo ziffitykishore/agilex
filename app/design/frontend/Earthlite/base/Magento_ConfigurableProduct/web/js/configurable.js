@@ -280,7 +280,7 @@ define([
             } else {
                 this._resetChildren(element);
             }
-                        
+
             this._reloadPrice();
             this._reloadLeadTime(this.simpleProduct);
             this._updateStock(this.simpleProduct);
@@ -524,21 +524,9 @@ define([
         /**
          * Reload the price of the configurable product incorporating the prices of all of the
          * configurable product's option selections.
-         * 
          */
         _reloadPrice: function () {
             $(this.options.priceHolderSelector).trigger('updatePrice', this._getPrices());
-        },
-
-        _reloadLeadTime: function (chosenProduct) {
-            if (chosenProduct
-                && typeof this.options.spConfig.leadTime != 'undefined'
-                && this.options.spConfig.leadTime[chosenProduct]
-            ) {
-                $('div.shipping-details span.estimation').html(this.options.spConfig.leadTime[chosenProduct]);
-                var toolTipMesage = this.options.spConfig.tooltip[chosenProduct];
-                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
-            }
         },
 
         /**
@@ -766,7 +754,7 @@ define([
                     return Object.keys(object).map(key => object[key]);
                 };
                 var types = Object.values || itemTypesPolyfill;
-                 if($.inArray(1,types(this.options.spConfig.itemType))) {
+                 if(($.inArray("1",(types(this.options.spConfig.itemType)))) > -1) {
                      var productionItem = true;
                  }
             }
@@ -781,6 +769,17 @@ define([
                 this.updateStockStatusText('unavailable', 'available low-available', 'Out of stock');
                 this.displayNotifyStock();
                 this.addToCart(true, 'disabled', '');
+            }
+        },
+        
+        _reloadLeadTime: function (chosenProduct) {
+            if (chosenProduct
+                && typeof this.options.spConfig.leadTime != 'undefined'
+                && this.options.spConfig.leadTime[chosenProduct]
+            ) {
+                $('div.shipping-details span.estimation').html(this.options.spConfig.leadTime[chosenProduct]);
+                var toolTipMesage = this.options.spConfig.tooltip[chosenProduct];
+                $('div.shipping-details .field-tooltip-content').html(toolTipMesage);
             }
         },
 
