@@ -215,22 +215,25 @@
             }
         }
     }
-    .action.print {
-        border: 1px solid @color-lines;
-        padding: 5px 10px;
-        border-radius: 4px;
-        .icon-printer {
-            display: inline-block;
-            width: 1.2em;
-            height: 1em;
-            stroke-width: 0;
-            stroke: currentColor;
-            fill: currentColor;
-            stroke-width: .6px;
-            margin-left: 5px;
-        }
-        &:hover {
-            border-color: @theme__color__primary;
+
+    .checkout-onepage-success {
+        .action.print {
+            border: 1px solid @color-lines;
+            padding: 5px 10px;
+            border-radius: 4px;
+            .icon-printer {
+                display: inline-block;
+                width: 1.2em;
+                height: 1em;
+                stroke-width: 0;
+                stroke: currentColor;
+                fill: currentColor;
+                stroke-width: .6px;
+                margin-left: 5px;
+            }
+            &:hover {
+                border-color: @theme__color__primary;
+            }
         }
     }
     .order-summary-wrap {
