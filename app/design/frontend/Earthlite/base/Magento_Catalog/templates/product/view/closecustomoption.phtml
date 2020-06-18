@@ -19,6 +19,7 @@ if ($size > 3):
             $("body").addClass("has-configslide");
             $(".custom-options-container").addClass("slide");
             $("#product-customize-button").click(function () {
+                $('body,html').animate({scrollTop:$('#maincontent').offset().top},500);
                 $("body").addClass('configslide-open');
             });
             $("#product-customize-close, .config-overlay").click(function () {
