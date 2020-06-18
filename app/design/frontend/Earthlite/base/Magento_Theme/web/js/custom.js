@@ -196,13 +196,13 @@ define([
             {
                 $(this).removeClass("less");
                 $(this).html(moretext);
-                $(contentSelector).show(500);
-                $(fullDescSelector).hide(500);                
+                $(contentSelector).show();
+                $(fullDescSelector).hide();                
             } else {
                 $(this).addClass("less");
                 $(this).html(lesstext);
-                $(contentSelector).hide(500);
-                $(fullDescSelector).show(500);                
+                $(contentSelector).hide();
+                $(fullDescSelector).show();                
             }                
         });
     }
