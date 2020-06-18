@@ -19,9 +19,7 @@ use Magento\Sales\Model\ResourceModel\OrderFactory;
  * class LateOrders
  */
 class LateOrders
-{
-    const LATE_ORDER_EMAIL_TEMPLATE = 'late_orders_email_template';
-        
+{        
     /**
      *
      * @var LoggerInterface
@@ -161,7 +159,7 @@ class LateOrders
         ];
         $this->stateInterface->suspend();
         $emailToAddresses = [$order->getCustomerEmail()];
-        $transport = $this->transportBuilder->setTemplateIdentifier(self::LATE_ORDER_EMAIL_TEMPLATE)
+        $transport = $this->transportBuilder->setTemplateIdentifier($this->lateOrdersHelper->getLateOrdersTemplateId($order->getStoreId()))
                 ->setTemplateOptions($templateOptions)
                 ->setTemplateVars($templateVars)
                 ->setFrom($emailFromAddress)
