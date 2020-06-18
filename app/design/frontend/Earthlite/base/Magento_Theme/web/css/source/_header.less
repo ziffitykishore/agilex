@@ -480,6 +480,8 @@
 
     a.mm-prev.mm-btn ~ .user-prof {
         display: none;
+        margin-left: -20px;
+        text-align: left;
     }
 
     .mm-prev.mm-btn.mm-hidden ~ .user-prof {
@@ -785,6 +787,7 @@
                 display: inline-block;
                 vertical-align: middle;
                 margin-right: 10px;
+                text-align: center;
                 .lib-icon-font(
                 @_icon-font-content: @icon-user,
                     @_icon-font: @icon__font-name,
@@ -812,7 +815,7 @@
             background: @color-white;
 
             .mm-navbar {
-                height: 80px;
+                height: 81px;
                 line-height: 60px;
                 background: @color__ghostwhite;
                 .mm-btn {
@@ -931,7 +934,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 8px 0;
+        padding: 12px 0;
         #backtotop {
             background: @color-lines;
             color: @theme__color__secondary;
@@ -939,6 +942,7 @@
             height: auto;
             border: none;
             position: static;
+            z-index: auto;
             display: inline-block;
             box-shadow: none;
             .br-radius(0);

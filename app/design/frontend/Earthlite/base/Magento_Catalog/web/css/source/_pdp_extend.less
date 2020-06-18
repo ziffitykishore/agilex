@@ -75,8 +75,9 @@
                 margin-bottom: -13px;
             }
         }
-        br {
-            display: none;
+
+        b {
+            color: @theme__color__secondary;
         }
     }
 
@@ -536,9 +537,15 @@
                     margin-left: 20px;
                     padding: 0;
 
+                    &:active,
+                    &:focus,
                     &:hover {
                         background: transparent;
-                        border-color: @theme__color__primary
+                        border-color: @theme__color__primary;
+
+                        &:before {
+                            color: @theme__color__primary;
+                        }
                     }
                 }
             }
@@ -1045,6 +1052,12 @@
             .flex-width(100%);
             margin-top: 30px;
             padding: 0;
+        }
+    }
+
+    .product.media {
+        .fotorama__stage {
+            padding-left: 0;
         }
     }
 

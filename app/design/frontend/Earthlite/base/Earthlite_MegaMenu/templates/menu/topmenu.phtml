@@ -89,7 +89,15 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
               data-bind="text: new String('<?= $block->escapeHtml(__('Hello, %1!', '%1')) ?>').replace('%1', customer().firstname)">
         </span>
     </span>             
-    <!-- /ko -->                         
+    <!-- /ko -->
+    <!-- ko ifnot: customer().firstname  -->
+    <span class="mob greet user-info">
+        <span class="customer-logo"></span>
+        <span class="logged-in"
+              data-bind="text: new String('<?= $block->escapeHtml(__('Hello, User!')) ?>')">
+        </span>
+    </span>
+    <!-- /ko -->
 </div>
 <div id="mobile-menu" class="mobile-menu">   
     <ul class="menu-list">
