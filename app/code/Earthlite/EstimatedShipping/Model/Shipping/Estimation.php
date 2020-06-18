@@ -14,7 +14,7 @@ use Magento\CatalogInventory\Api\StockStateInterfaceFactory;
 class Estimation 
 {
 
-    const CONFIG_MODULE_PATH = 'estimate_shipping';
+    const CONFIG_MODULE_PATH = 'earthlite_lateorders';
     
     /**
      *
@@ -177,7 +177,7 @@ class Estimation
      */
     public function isEnabled($storeId = null)
     {
-        return $this->getConfigGeneral('enabled', $storeId);
+        return $this->getConfigGeneral('late_order_enable', $storeId);
     }
 
     /**
@@ -190,7 +190,7 @@ class Estimation
     {
         $code = ($code !== '') ? '/' . $code : '';
 
-        return $this->getConfigValue(static::CONFIG_MODULE_PATH . '/general' . $code, $storeId);
+        return $this->getConfigValue(self::CONFIG_MODULE_PATH . '/general' . $code, $storeId);
     }
 
     /**

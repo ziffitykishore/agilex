@@ -48,10 +48,10 @@ class AddProductionItemToTransport implements ObserverInterface
                 }
             }
             $transport['is_production'] = $productionItemExist;
-            if ($order->getShippingMethod(true)->getMethod() == 'GROUND') {
+            if ($order->getShippingMethod(true)->getMethod() == 'FEDEX_GROUND') {
                 $transport['ground_method'] = true;
             }
-            if ($order->getShippingMethod(true)->getMethod() == 'Freight') {
+            if ($order->getShippingMethod(true)->getMethod() == 'FEDEX_FREIGHT') {
                 $transport['freight_method'] = true;
             }
             $transport['estimated_date'] = $this->dateTime->date(

@@ -32,53 +32,48 @@
             <p>
                 {{trans "Thank you for your order. We take this relationship seriously, and we are prepared to jump through hoops to make sure you are completely satisfied with your product."}}
                 {{trans "This is a confirmation that your order has been received and is currently being processed."}}
+                {{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
             </p>
             {{if is_production}}
-                {{depend freight_method}}
-                <p>
-                    {{trans "Please be advised that the table you ordered is an made to order item, which means there’s production lead time."}}
-                    {{trans 'Your order has an estimated ship date of %edt .' edt=$estimated_date}}
-                </p>
-                <p>
-                    {{trans "The freight method covers standard curbside delivery, meaning the freight company will drop off the crate at curbside, they will NOT deliver inside. The freight company will contact you to schedule a time and date of delivery"}}
-                    {{trans "If you have any questions concerning your order, please contact us referencing the 9-digit order confirmation number."}}
-                    {{trans "Watch us drop everything, even our coffee, to help you."}}
-                </p>
-                <p>
-                    {{trans "Reach us at orders@earthlite.com, or call us M-F, 8am - 5pm PST at 800-872-0560."}}
-                </p>
-                <div>
-                    {{trans "Please keep below important notes in mind upon delivery. "}}
-                    <p>{{trans "- Check the shipment/product for any damage BEFORE signing a delivery document."}}</p>
-                    <p>{{trans "Signing the document means confirming no damage and accepting it AS IS (thus releasing liability, and not possible to file claims afterwards)."}}</p>
-                    <p>{{trans "- If damage found, REFUSE delivery and contact Earthlite immediately (request a driver to take it back to terminal for further instruction)."}}</p>
-                    <p>{{trans "- If delivery must be accepted, leave detailed note about damage on BOL and get a copy from the driver.  It’s also highly recommended to take pictures of document and delivery."}}</p>
-                </div>
-                {{/depend}}
-                {{depend ground_method}}
-                <p>
-                    {{trans "Please be advised that the table you ordered is an made to order item, which means there’s production lead time."}}
-                    {{trans 'Your order has an estimated ship date of %edt and will ship Ground.' edt=$estimated_date}}
-                </p>
-                <p>
-                    {{trans "If you have any questions concerning your order, please contact us referencing the 9-digit order confirmation number."}}
-                    {{trans "Watch us drop everything, even our coffee, to help you."}}
-                </p>
-                <p>
-                    {{trans "Reach us at orders@earthlite.com, or call us M-F, 8am - 5pm PST at 800-872-0560."}}
-                </p>
-                {{/depend}}
+            {{depend freight_method}}
+            <p>
+                {{trans "Please be advised that the table you ordered is an made to order item, which means there’s production lead time."}}
+                {{trans 'Your order has an estimated ship date of %edt .' edt=$estimated_date}}
+            </p>
+            <p>
+                {{trans "The freight method covers standard curbside delivery, meaning the freight company will drop off the crate at curbside, they will NOT deliver inside. The freight company will contact you to schedule a time and date of delivery"}}
+                {{trans "If you have any questions concerning your order, please contact us referencing the 9-digit order confirmation number."}}
+                {{trans "Watch us drop everything, even our coffee, to help you."}}
+            </p>
+            <div>
+                {{trans "Please keep below important notes in mind upon delivery. "}}
+                <p>{{trans "- Check the shipment/product for any damage BEFORE signing a delivery document."}}</p>
+                <p>{{trans "- Signing the document means confirming no damage and accepting it AS IS (thus releasing liability, and not possible to file claims afterwards)."}}</p>
+                <p>{{trans "- If damage found, REFUSE delivery and contact Earthlite immediately (request a driver to take it back to terminal for further instruction)."}}</p>
+                <p>{{trans "- If delivery must be accepted, leave detailed note about damage on BOL and get a copy from the driver.  It’s also highly recommended to take pictures of document and delivery."}}</p>
+            </div>
+            {{/depend}}
+            {{depend ground_method}}
+            <p>
+                {{trans "Please be advised that the table you ordered is an made to order item, which means there’s production lead time."}}
+                {{trans 'Your order has an estimated ship date of %edt and will ship Ground.' edt=$estimated_date}}
+            </p>
+            <p>
+                {{trans "If you have any questions concerning your order, please contact us referencing the 9-digit order confirmation number."}}
+                {{trans "Watch us drop everything, even our coffee, to help you."}}
+            </p>
+            {{/depend}}
             {{else}}
             <p>
-                <p>
+            <p>
                 {{trans "Once it ships, you will receive an email with your tracking number."}}
                 {{trans "If you have any questions concerning your order, please contact us referencing the 9-digit order confirmation number. Watch us drop everything, even our coffee, to help you."}}
             </p>
-            <p>
-                {{trans "Reach us at orders@earthlite.com, or call us M-F, 8am - 5pm PST at 800-872-0560."}}
-            </p>
             </p>
             {{/if}}
+            <p>
+                {{trans 'Reach us at <a href="mailto: orders@earthlite.com">orders@earthlite.com</a>, or call us M-F, 8am - 5pm PST at 800-872-0560.'|raw}}
+            </p>
         </td>
     </tr>
     <tr class="email-summary">

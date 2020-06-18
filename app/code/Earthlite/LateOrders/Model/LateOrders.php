@@ -17,7 +17,13 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 class LateOrders
 {
     const LEAD_TIME_PATTERN = '/\b([1-9]{1}[0-9]{0,2} days|[1-9]{1}[0-9]{0,2} day|[1-9]{1}[0-9]{0,2}days|[1-9]{1}[0-9]{0,2}day)\b$/';
-    
+    const XML_PATH_STORE_NAME = 'trans_email/ident_sales/name';
+    const XML_PATH_STORE_EMAIL =  'trans_email/ident_sales/email';
+    const XML_PATH_MODULE_STATUS = 'earthlite_lateorders/general/late_order_enable';
+    const XML_PATH_PRODUCTION_BUFFER_TIME  = 'earthlite_lateorders/general/lead_time_production_buffer';
+    const XML_PATH_NON_PRODUCTION_BUFFER_TIME  = 'earthlite_lateorders/general/lead_time_nonproduction_buffer';
+    const XML_PATH_LATE_ORDERS_TEMPLATE  = 'earthlite_lateorders/general/template';
+
     /**
      *
      * @var ProductRepositoryInterface
@@ -154,9 +160,10 @@ class LateOrders
         } else {
             $leadTime = str_replace("day", "weekdays", $leadTime);
         }
-        return $this->dateTime->date(
+        $leadDate = $this->dateTime->date(
                         'Y-m-d', strtotime($leadTime, strtotime($order->getCreatedAt()))
         );
+         return $this->getLeadTimeWithBuffer($leadDate, true);
     }
     
     /**
@@ -174,11 +181,45 @@ class LateOrders
             $this->logger->info("Invalid Lead Time: $leadTime for Order".$order->getIncrementId());
             return false;
         }
-        return $this->dateTime->date(
+        $leadDate = $this->dateTime->date(
                         'Y-m-d', strtotime($maxLeadTime.'hours', strtotime($order->getCreatedAt()))
         );
+        return $this->getLeadTimeWithBuffer($leadDate);
     }
+    
+    /**
+     * 
+     * @param type $leadDate
+     * @param type $type
+     * @return type
+     */
+    protected function getLeadTimeWithBuffer($leadDate, $type=false)
+    {
+        if ($type) {
+            $bufferTime = $this->getProductionItemBufferTime();
+        } else {
+            $bufferTime = $this->getNonProductionItemBufferTime();
+        }
+        if ($bufferTime) {
+            if (is_numeric($bufferTime)) {
+                $bufferTime = "$bufferTime days";
+            }
+            if (!preg_match(self::LEAD_TIME_PATTERN, $bufferTime)) {
+                $this->logger->info("Invalid Buffer Time:" . $bufferTime);
+                return $leadDate;
+            }
+            if (strpos($bufferTime, 'days')) {
+                $bufferTime = str_replace("days", "weekdays", $bufferTime);
+            } else {
+                $bufferTime = str_replace("day", "weekdays", $bufferTime);
+            }
 
+            return $this->dateTime->date(
+                            'Y-m-d', strtotime($bufferTime, strtotime($leadDate))
+            );
+        }
+        return $leadDate;
+    }
     /**
      * 
      * @return string
@@ -186,7 +227,7 @@ class LateOrders
     public function getStorename()
     {
         return $this->scopeConfig->getValue(
-            'trans_email/ident_sales/name',
+            self::XML_PATH_STORE_NAME,
             ScopeInterface::SCOPE_STORE
         );
     }
@@ -198,19 +239,7 @@ class LateOrders
     public function getStoreEmail()
     {
         return $this->scopeConfig->getValue(
-            'trans_email/ident_sales/email',
-            ScopeInterface::SCOPE_STORE
-        );
-    }
-    
-    /**
-     * 
-     * @return string
-     */
-    public function getDefaultNonProductionItemLeadTime()
-    {
-        return $this->scopeConfig->getValue(
-            'earthlite_lateorders/general/defaul_lead_time',
+            self::XML_PATH_STORE_EMAIL,
             ScopeInterface::SCOPE_STORE
         );
     }
@@ -222,8 +251,42 @@ class LateOrders
     public function getModuleStatus()
     {
         return $this->scopeConfig->getValue(
-            'earthlite_lateorders/general/late_order_enable',
+            self::XML_PATH_MODULE_STATUS,
             ScopeInterface::SCOPE_STORE
         );
+    }
+    
+    /**
+     * 
+     * @return string|null
+     */
+    public function getProductionItemBufferTime()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_PRODUCTION_BUFFER_TIME,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+    
+    /**
+     * 
+     * @return string|null
+     */
+    public function getNonProductionItemBufferTime()
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_NON_PRODUCTION_BUFFER_TIME,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+    
+    public function getLateOrdersTemplateId($storeId)
+    {
+        return $this->scopeConfig->getValue(
+            self::XML_PATH_LATE_ORDERS_TEMPLATE,
+            ScopeInterface::SCOPE_STORE,
+            $storeId
+        );
+        
     }
 }
