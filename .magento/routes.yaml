@@ -21,3 +21,7 @@
 "http://{all}/":
     type: upstream
     upstream: "mymagento:http"
+
+"https://{all}/":
+    type: upstream
+    upstream: "mymagento:http"
