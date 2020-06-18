@@ -203,7 +203,7 @@
             <var name="caption">false</var> <!-- Display alt text as image title (true/false) -->
             <var name="allowfullscreen">true</var> <!-- Turn on/off fullscreen (true/false) -->
             <var name="navdir">vertical</var> <!-- Sliding direction of thumbnails (horizontal/vertical) -->
-            <var name="navwidth">300px</var>
+            <var name="navwidth">300</var>
             <var name="thumbmargin">10px</var>
             <var name="navarrows">true</var> <!-- Turn on/off on the thumbs navigation sides arrows(true/false) -->
             <var name="navtype">slides</var> <!-- Sliding type of thumbnails (slides/thumbs) -->

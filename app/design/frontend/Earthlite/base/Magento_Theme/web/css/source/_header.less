@@ -27,7 +27,7 @@
     option:disabled {
         color: #ccc;
     }
-    
+
     .to-top {
         #backtotop {
             background: @theme__color__secondary;
@@ -503,7 +503,7 @@
         .lib-tooltip(left);
         position: fixed;
         right: -1px;
-        top: 23%;
+        top: 200px;
         z-index: 999;
         span, i {
             color: #fff;
@@ -1152,6 +1152,13 @@
     }
     .header-right-pane {
         min-width: 95px;
+        justify-content: flex-end;
+    }
+
+    .header .logo, .header-right-pane {
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
     }
 
     .sticky {
@@ -1569,6 +1576,7 @@
 
     .nav-sections {
         max-width: calc(~'100% - 300px');
+        margin-left: -10%;
     }
 
     .section-item-content {
