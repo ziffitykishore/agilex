@@ -404,6 +404,17 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .opc-block-summary-mobile {
+        .table td, .table th {
+            padding: .2rem .8rem;
+        }
+        .table th {
+            padding-left: 0;
+        }
+        span.not-calculated {
+            font-size: 13px;
+        }
+    }
     .opc-sidebar {
         left: 0;
         .modal-header {
