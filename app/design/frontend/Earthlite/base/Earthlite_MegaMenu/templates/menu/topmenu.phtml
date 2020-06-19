@@ -132,8 +132,133 @@ $columnsLimit = $block->getColumnsLimit() ? : 0;
                 <!-- /ko -->            
             </ul>                    
         </li>                             
-        <?= /* @noEscape */ $_mobMenu; ?>                                   
-        
+        <?= /* @noEscape */ $_mobMenu; ?>
+        <li> 
+            <a href="<?php echo $block->getBaseUrl().'shop-by-brand'?>">
+                <?= $block->escapeHtml(__('Our Brands')) ?>
+            </a> 
+            <ul>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'shop-by-brands/earthlite.html'?>">
+                        <?= $block->escapeHtml(__('Earthlite')) ?>
+                    </a> 
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'shop-by-brands/stronglite.html'?>">
+                        <?= $block->escapeHtml(__('Stronglite')) ?>
+                    </a> 
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'shop-by-brands/inner-strength.html'?>">
+                        <?= $block->escapeHtml(__('Inner Strength')) ?>
+                    </a> 
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>Our Company</span>
+            <ul class="links">
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'about-earthlite' ?>" title="About Us">
+                        <?= $block->escapeHtml(__('About Us')) ?>
+                    </a> 
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'earthlite-difference' ?>" title="Earthlite Difference">
+                        <?= $block->escapeHtml(__('Earthlite Difference')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'guiding-principles' ?>" title="Guiding Principles">
+                        <?= $block->escapeHtml(__('Guiding Principles')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'from-our-founder' ?>" title="From Our Founder">
+                        <?= $block->escapeHtml(__('From Our Founder')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'press-releases' ?>" title="Press Releases"><?= $block->escapeHtml(__('Press Releases')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'blog' ?>" title="blog">
+                        <?= $block->escapeHtml(__('Blog')) ?>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>Customer Service</span>
+            <ul class="links">
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'contact' ?>" title="Contact Us">
+                        <?= $block->escapeHtml(__('Contact Us')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'warranty' ?>" title="warranty">
+                        <?= $block->escapeHtml(__('Warranty')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'returns' ?>" title="Returns">
+                        <?= $block->escapeHtml(__('Returns')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'shipping-info' ?>" title="Shipping Info">
+                        <?= $block->escapeHtml(__('Shipping Info')) ?>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span>Resources</span>
+            <ul class="links">
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'faqs' ?>" title="FAQs">
+                        <?= $block->escapeHtml(__('FAQs')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'help-desk' ?>" title="Help Desk">
+                        <?= $block->escapeHtml(__('Help Desk')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://online.pubhtml5.com/byrl/ioet/" target="blank" title="Our Catalogs">
+                       <?= $block->escapeHtml(__('Our Catalog')) ?>
+                   </a>
+               </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'upholstery-options' ?>" title="Upholstery Options">
+                        <?= $block->escapeHtml(__('Upholstery Info')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'stain-options' ?>" title="Stain & Lacquer Options">
+                        <?= $block->escapeHtml(__('Stain & Lacquer Info')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'cleaning-instructions' ?>" title="Cleaning Instructions">
+                        <?= $block->escapeHtml(__('Cleaning Instructions')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'privacy' ?>" title="Earthlite Privacy & Security">
+                        <?= $block->escapeHtml(__('Security & Privacy')) ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="<?php echo $block->getBaseUrl().'policy' ?>" title="General Policies">
+                        <?= $block->escapeHtml(__('Our Policy')) ?>
+                    </a>
+                </li>
+        </ul>
+        </li>                
         <span class="phone-sec">
             <a href="tel:800-872-0560">800-872-0560</a>
         </span>
