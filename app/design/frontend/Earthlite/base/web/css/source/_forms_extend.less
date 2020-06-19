@@ -209,6 +209,9 @@
                 content: '\e92e';
                 color: @message-error__bar;
             }
+            &.notice > *:first-child:before {
+                color: @message-info__background;
+            }
             &:after {
                 content: '';
                 position: absolute;
@@ -223,6 +226,9 @@
             }
             &.error:after {
                 background: @message-error__bar;
+            }
+            &.notice:after {
+                background: @message-info__bar;
             }
         }
 
@@ -278,11 +284,13 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     body .page.messages .message {
-        bottom: 40px;
+        bottom: auto;
         left: 10px;
         right: 10px;
+        top: 50%;
         width: auto;
         padding: 22px 15px 15px 55px;
+        transform: translateY(-50%);
     }
 }
 
