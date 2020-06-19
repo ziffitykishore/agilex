@@ -410,6 +410,11 @@
             }
         }
     }
+    .products-list .product-item-actions {
+        .price-box {
+            display: none;
+        }
+    }
 }
 
 //
@@ -580,15 +585,20 @@
         .product-item {
             &-info {
                 .product-item-details {
-                    .flex-width(50%);
-                    max-width: 50%;
+                    .flex-width(45%);
+                    max-width: 45%;
 
                     .price-box {
                         display: none;
                     }
                 }
                 .product-item-actions {
-                .flex-width(25%);
+                    .flex-width(40%);
+                    .price-box {
+                        margin: 10px 0;
+                        display: inline-block;
+                        padding-right: 20px;
+                    }
                 }
                 > .price-box {
                     display: block;
