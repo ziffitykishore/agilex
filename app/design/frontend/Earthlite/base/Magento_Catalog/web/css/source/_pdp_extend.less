@@ -538,8 +538,8 @@
                     padding: 0;
 
                     &:active,
-                    &:focus,
-                    &:hover {
+                        &:focus,
+                        &:hover {
                         background: transparent;
                         border-color: @theme__color__primary;
 
@@ -1079,6 +1079,22 @@
             left: 0;
             border-radius: 0;
             bottom: 0;
+        }
+    }
+    .product-info-main {
+        .box-tocart {
+            #product-addtocart-button {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                z-index: 99;
+                border-radius: 0;
+            }
+        }
+    }
+    .catalog-product-view {
+        .page-footer {
+            padding-bottom: 50px;
         }
     }
     .product.media, .product-info-main {
