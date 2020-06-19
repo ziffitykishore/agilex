@@ -106,11 +106,10 @@ $_helper = $this->helper(Magento\Catalog\Helper\Output::class);
                         </div>
                     </div>
 
+                    <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $block->escapeHtmlAttr($position) : '' ?>>
                     <?php if($viewMode == 'list'): ?>
                         <?= /* @noEscape */ $block->getProductPrice($_product) ?>
                     <?php endif; ?>
-
-                    <div class="product actions product-item-actions"<?= strpos($pos, $viewMode . '-actions') ? $block->escapeHtmlAttr($position) : '' ?>>
                         <div class="actions-primary"<?= strpos($pos, $viewMode . '-primary') ? $block->escapeHtmlAttr($position) : '' ?>>
                             <?php if ($_product->isSaleable()) :?>
                                 <?php $postParams = $block->getAddToCartPostParams($_product); ?>
