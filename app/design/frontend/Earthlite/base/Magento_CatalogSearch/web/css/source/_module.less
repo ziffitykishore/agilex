@@ -368,7 +368,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .block-search {
         position: relative;
-        z-index: 4;
+        z-index: 10;
 
         .label {
             &:extend(.abs-visually-hidden-desktop all);
@@ -389,7 +389,8 @@
             .lib-input-placeholder(@form-element-input-placeholder__color);
             margin: 0;
             position: static;
-            border: none; 
+            border: none;
+            padding: 0;
         }
 
         .action.search {

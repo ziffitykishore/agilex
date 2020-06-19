@@ -130,6 +130,11 @@
             padding-right: 0;
         }
     }
+
+    .home-banner, .home-banner .pagebuilder-slide-wrapper {
+        min-height: ~"calc(100vh - 208px)" !important;
+    }
+
     .alert.offer-note .h5 { 
         font-size: 13px;
     }
@@ -142,3 +147,25 @@
         width: 100%;
     }
 }*/
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @c-tab) {
+    .home-elservice {
+        .media {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        img {
+            margin-right: 15px;
+            width: 40px;
+        }
+        .media-body {
+            h5 {
+                font-size: 1.3rem;
+            }
+            strong {
+                font-size: 1.2rem;
+                display: block;
+            }
+        }
+    }
+}
