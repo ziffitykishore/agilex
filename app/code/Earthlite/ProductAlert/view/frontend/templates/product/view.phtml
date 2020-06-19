@@ -9,16 +9,16 @@ $customerId = $viewModel->isLoggedIn();
 ?>
 <div id="notify-block" style="display: <?= $viewModel->displayBlock()?>">
     <form class="form notify-me" action="<?= $block->escapeUrl($block->getUrl('guestalert/add/stockalert')) ?>" id="stock-alert" method="post" data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>" data-mage-init='{"validation":{}}'>
-        <fieldset class="fieldset">
-            <?php if (!$customerId): ?>
+        <?php if (!$customerId): ?>
+            <fieldset class="fieldset">
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Sign up for stock alert')) ?></span></label>
                     <div class="control">
                         <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                 </div>
-            <?php endif; ?>
-        </fieldset>
+            </fieldset>
+        <?php endif; ?>
         <div class="actions-toolbar">
             <div class="primary">
                 <div class="control">
