@@ -75,13 +75,15 @@ class OrderPlaceApi extends Adapter
         }
 
         $shipto = $this->getCustomerAddress($order, 'shipping');
+        $shipToData = (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '';
+        $shipToData['ShipToPo'] = $order->getCheckoutShiptopo();
 
         $this->requestBody = [
             'SxId' => '',
-            'ShipTo' => (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '',
+            'ShipTo' => $shipToData,
             'Customer' => $this->getCustomerInfo($order),
             'LineItems' => $this->getItems($order),
-            'externalIds' => '',
+            'externalIds' => $order->getIncrementId(),
             'PurchaseOrderId' => $order->getCheckoutPonumber(),
             'ShipServiceCode' => $order->getShippingMethod(),
             'Date' => $order->getCreatedAt(),
@@ -89,8 +91,8 @@ class OrderPlaceApi extends Adapter
             'Tax' => $order->getTaxAmount(),
             'ShipFee' => $order->getShippingAmount(),
             'DiscountAmount' => $order->getDiscountAmount(),
-            'CreditTermsMessage' => '',
-            'Notes' => '',
+            'DeliveryNotes' => $order->getCheckoutDeliverypoint(),
+            'Notes' => $order->getCheckoutOrdernotes(),
             'Payments' => $this->getPaymentInfo($order)
         ];
 
@@ -173,7 +175,7 @@ class OrderPlaceApi extends Adapter
                 "GroupCode" => "",
                 "CustomerId" => $this->getCustomerAccountId(),
                 "Addresses" => [],
-                "MagentoId" => $order->getIncrementId(),
+                "MagentoId" => $order->getCustomerId(),
                 "ProspectId" => ""
             ]
         ];
