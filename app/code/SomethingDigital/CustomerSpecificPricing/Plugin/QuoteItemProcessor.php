@@ -85,47 +85,45 @@ class QuoteItemProcessor
         DataObject $request, 
         Product $candidate
     ) {
-        if ($this->session->isLoggedIn()) {
-            try {
-                $id = $candidate->getId();
-                /** @var ProductInterface $product */
-                $product = $this->productRepo->getById($id);
+        try {
+            $id = $candidate->getId();
+            /** @var ProductInterface $product */
+            $product = $this->productRepo->getById($id);
 
-                $sku = $product->getSku();
-                /** @var int $qty */
-                $qty = $candidate->getCartQty();
+            $sku = $product->getSku();
+            /** @var int $qty */
+            $qty = $candidate->getCartQty();
 
-                $items = $this->cart->getQuote()->getAllVisibleItems();
+            $items = $this->cart->getQuote()->getAllVisibleItems();
 
-                $totalItemQty = $qty;
-                foreach ( $items as $quoteItem) {
-                    if ($quoteItem->getProductId() == $id) {
-                        $totalItemQty += $quoteItem->getQty();
-                    }
+            $totalItemQty = $qty;
+            foreach ( $items as $quoteItem) {
+                if ($quoteItem->getProductId() == $id) {
+                    $totalItemQty += $quoteItem->getQty();
                 }
-
-                $prices = $this->spotPricingApi->getSpotPrice([$sku]);
-
-                if (!$prices) {
-                    return [$item, $request, $candidate];
-                }
-
-                foreach ($prices as $key => $productPrices) {
-                    $specialPrice = $this->arrayManager->get('DiscountPrice', $productPrices);
-                    if ($specialPrice && $specialPrice < $product->getPrice()) {
-                        $request->setCustomPrice($specialPrice);
-                        $item->setIsCustomerSpecificPriceApplied(true);
-                    }
-                    $tierPrice = $this->productHelper->getTierPrice($prices, $sku, $totalItemQty);
-                    if ($tierPrice) {
-                        $request->setCustomPrice($tierPrice);
-                        $item->setIsCustomerSpecificTierPriceApplied(true);
-                    }
-                }
-
-            } catch (LocalizedException $e) {
-                $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
             }
+
+            $prices = $this->spotPricingApi->getSpotPrice([$sku]);
+
+            if (!$prices) {
+                return [$item, $request, $candidate];
+            }
+
+            foreach ($prices as $key => $productPrices) {
+                $specialPrice = $this->arrayManager->get('DiscountPrice', $productPrices);
+                if ($specialPrice && $specialPrice < $product->getPrice()) {
+                    $request->setCustomPrice($specialPrice);
+                    $item->setIsCustomerSpecificPriceApplied(true);
+                }
+                $tierPrice = $this->productHelper->getTierPrice($prices, $sku, $totalItemQty);
+                if ($tierPrice) {
+                    $request->setCustomPrice($tierPrice);
+                    $item->setIsCustomerSpecificTierPriceApplied(true);
+                }
+            }
+
+        } catch (LocalizedException $e) {
+            $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
         }
         return [$item, $request, $candidate];
     }
