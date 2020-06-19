@@ -21,5 +21,8 @@
                 </argument>
             </arguments>
         </referenceBlock>
+        <referenceContainer name="cart.summary">
+            <referenceBlock name="checkout.cart.giftcardaccount" remove="true"/>
+        </referenceContainer>
     </body>
 </page>
