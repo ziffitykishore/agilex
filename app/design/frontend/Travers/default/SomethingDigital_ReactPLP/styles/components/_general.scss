@@ -572,3 +572,16 @@ $sidebar__max-width: 240px;
     max-height: 300px;
     object-fit: cover;
 }
+
+.no-matches-header {
+    margin-bottom: $indent__xl;
+
+    @include min-screen($screen__m) {
+        padding-left: 50px;
+        margin-top: $indent__l;
+    }
+
+    @include min-screen($screen__l) {
+        padding-left: 70px;
+    }
+}
