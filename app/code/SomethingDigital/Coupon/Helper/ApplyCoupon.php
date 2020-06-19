@@ -36,7 +36,10 @@ class ApplyCoupon extends \Magento\Framework\App\Helper\AbstractHelper
 
             if (!$coupon->getCouponCode()) {
                 //if no coupon code is found set coupon code as suffix value
-                $this->session->setSkuSuffix($couponCode);
+                $couponCodeHasSymbols = strcspn($couponCode, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($couponCode);
+                if (!$couponCodeHasSymbols) {
+                    $this->session->setSkuSuffix($couponCode);
+                }
             }
         }
     }

@@ -81,6 +81,7 @@ class AddRules
         $this->freeGiftSku->skus = $freeGiftSkus;
 
         if ($skuSuffix) {
+            // $skuSuffix from the cart rule can contain symbols like "#TP3"
             $this->session->setSkuSuffix($skuSuffix);
         }
 
