@@ -10,6 +10,7 @@ import './fullbleed';
 import './stickyNav';
 import './theme';
 import './coupon';
+import './tabs';
 
 require('lazysizes');
 require('jquery-smooth-scroll');
