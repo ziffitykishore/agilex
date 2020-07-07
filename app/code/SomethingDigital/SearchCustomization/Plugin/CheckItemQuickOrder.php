@@ -50,7 +50,10 @@ class CheckItemQuickOrder
             if (stripos($queryText, $product->getSku()) === 0) {
                 $sku = $product->getSku();
                 $skuSuffix = substr($queryText, strlen($sku));
-                $this->session->setSkuSuffix($skuSuffix);
+                $suffixHasSymbols = strcspn($skuSuffix, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($skuSuffix);
+                if (!$suffixHasSymbols) {
+                    $this->session->setSkuSuffix($skuSuffix);
+                }
             }
         } 
         return [$sku, $qty, $config];

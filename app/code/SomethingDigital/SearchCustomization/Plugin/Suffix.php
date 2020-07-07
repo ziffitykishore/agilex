@@ -61,17 +61,21 @@ class Suffix
 
             if (strpos($queryText, $sku) === 0) {
                 $skuSuffix = substr($queryText, strlen($sku));
-                $this->session->setSkuSuffix($skuSuffix);
-                $this->quote->repriceCustomerQuote();
+                $suffixHasSymbols = strcspn($skuSuffix, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($skuSuffix);
 
-                $currentQuote = $this->cart->getQuote();
-                if ($currentQuote && $currentQuote->getId()) {
-                    $quote = $this->quoteRepository->get($currentQuote->getId());
-                    $quote->setSuffix($skuSuffix);
-                    $this->quoteRepository->save($quote);
-                }
-                if ($skuSuffix) {
-                    $this->suffixFlag = true;
+                if (!$suffixHasSymbols) {
+                    $this->session->setSkuSuffix($skuSuffix);
+                    $this->quote->repriceCustomerQuote();
+
+                    $currentQuote = $this->cart->getQuote();
+                    if ($currentQuote && $currentQuote->getId()) {
+                        $quote = $this->quoteRepository->get($currentQuote->getId());
+                        $quote->setSuffix($skuSuffix);
+                        $this->quoteRepository->save($quote);
+                    }
+                    if ($skuSuffix) {
+                        $this->suffixFlag = true;
+                    }
                 }
 
                 $subject->getResponse()->setRedirect($product->getProductUrl());
