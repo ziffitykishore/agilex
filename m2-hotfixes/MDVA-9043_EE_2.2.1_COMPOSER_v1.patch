@@ -1,0 +1,13 @@
+diff --git a/vendor/magento/module-company-payment/Model/Company/SaveHandler/AvailablePaymentMethods.php b/vendor/magento/module-company-payment/Model/Company/SaveHandler/AvailablePaymentMethods.php
+index 263cd10e9..da0125e97 100644
+--- a/vendor/magento/module-company-payment/Model/Company/SaveHandler/AvailablePaymentMethods.php
++++ b/vendor/magento/module-company-payment/Model/Company/SaveHandler/AvailablePaymentMethods.php
+@@ -99,7 +99,7 @@ class AvailablePaymentMethods implements \Magento\Company\Model\SaveHandlerInter
+ 
+         $availableMethods = is_array($extensionAttributes->getAvailablePaymentMethods()) ?
+             implode(',', $extensionAttributes->getAvailablePaymentMethods())
+-            : '';
++            : (string)$extensionAttributes->getAvailablePaymentMethods();
+ 
+         $paymentSettings->setApplicablePaymentMethod($extensionAttributes->getApplicablePaymentMethod());
+         $paymentSettings->setAvailablePaymentMethods($availableMethods);
