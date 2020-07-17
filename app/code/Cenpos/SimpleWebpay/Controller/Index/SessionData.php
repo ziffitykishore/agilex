@@ -93,6 +93,9 @@ class SessionData extends \Magento\Framework\App\Action\Action
                 throw new \Exception($ResponseSave->Message);
             }
         } catch (\Exception $ex) {
+            if (!isset($ResponseSave)){
+                $ResponseSave = new stdClass();
+            }
             $ResponseSave->Message = $ex->getMessage();
             $ResponseSave->Result = -1;
         }
