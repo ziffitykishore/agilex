@@ -8,6 +8,7 @@ use Magento\Catalog\Model\ProductRepository;
 use Magento\Catalog\Model\CategoryFactory;
 use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\App\ActionFactory;
+use Magento\Framework\App\Action\Redirect;
 
 class Router implements \Magento\Framework\App\RouterInterface
 {
@@ -77,8 +78,22 @@ class Router implements \Magento\Framework\App\RouterInterface
     {
         $path = trim($request->getPathInfo(), '/');
         $parts = explode("/", $path);
+        $key = false;
 
-        return $this->handleGenericUrl($parts);
+        if (in_array('p', $parts)) {
+            $key = array_search('p', $parts);
+        } elseif (in_array('c', $parts)) {
+            $key = array_search('c', $parts);
+        }
+
+        if ($key !== false) {
+            return $this->handleGenericUrl([
+                $parts[$key],
+                $parts[$key + 1]
+            ]);
+        } else {
+            return false;
+        }
     }
 
     protected function handleGenericUrl($parts)
