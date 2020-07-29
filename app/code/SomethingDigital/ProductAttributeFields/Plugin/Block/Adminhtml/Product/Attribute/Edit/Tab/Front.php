@@ -143,6 +143,17 @@ class Front
             ]
         );
         $fieldset->addField(
+            'include_in_search_list',
+            'select',
+            [
+                'name' => 'include_in_search_list',
+                'label' => __('Include In Search List View'),
+                'title' => __('Include In Search List View'),
+                'note' => __('Depends on design theme.'),
+                'values' => $yesnoSource
+            ]
+        );
+        $fieldset->addField(
             'search_position',
             'text',
             [

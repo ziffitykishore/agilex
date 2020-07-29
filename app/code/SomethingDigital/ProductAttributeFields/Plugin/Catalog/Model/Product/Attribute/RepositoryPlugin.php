@@ -45,6 +45,7 @@ class RepositoryPlugin
             $layeredNavDescription = $attribute->getData('extension_attributes')->getLayeredNavDescription();
             $includeInList = $attribute->getData('extension_attributes')->getIncludeInList();
             $includeInSearchTable = $attribute->getData('extension_attributes')->getIncludeInSearchTable();
+            $includeInSearchList = $attribute->getData('extension_attributes')->getIncludeInSearchList();
             $searchPosition = $attribute->getData('extension_attributes')->getSearchPosition();
             $attribute->setData('list_position', $listPosition);
             $attribute->setData('include_in_table', $includeInTable);
@@ -55,6 +56,7 @@ class RepositoryPlugin
             $attribute->setData('layered_nav_description', $layeredNavDescription);
             $attribute->setData('include_in_list', $includeInList);
             $attribute->setData('include_in_search_table', $includeInSearchTable);
+            $attribute->setData('include_in_search_list', $includeInSearchList);
             $attribute->setData('search_position', $searchPosition);
         }
     }
@@ -79,6 +81,7 @@ class RepositoryPlugin
         $layeredNavDescription = $result->getData('layered_nav_description');
         $includeInList = $result->getData('include_in_list');
         $includeInSearchTable = $result->getData('include_in_search_table');
+        $includeInSearchList = $result->getData('include_in_search_list');
         $searchPosition = $result->getData('search_position');
 
         $extensionAttribute = $result->getExtensionAttributes()
@@ -94,6 +97,7 @@ class RepositoryPlugin
         $extensionAttribute->setLayeredNavDescription($layeredNavDescription);
         $extensionAttribute->setIncludeInList($includeInList);
         $extensionAttribute->setIncludeInSearchTable($includeInSearchTable);
+        $extensionAttribute->setIncludeInSearchList($includeInSearchList);
         $extensionAttribute->setSearchPosition($searchPosition);
 
         $result->setExtensionAttributes($extensionAttribute);
