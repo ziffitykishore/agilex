@@ -101,13 +101,12 @@ class AddRules
         if ($skuSuffix) {
             // $skuSuffix from the cart rule can contain symbols like "#TP3"
             $this->session->setSkuSuffix($skuSuffix);
-            $this->quote->repriceCustomerQuote();
+            $this->quote->repriceCustomerQuote($skuSuffix);
 
             $currentQuote = $this->cart->getQuote();
             if ($currentQuote && $currentQuote->getId()) {
                 $quote = $this->quoteRepository->get($currentQuote->getId());
                 $quote->setSuffix($skuSuffix);
-                $this->quoteRepository->save($quote);
             }
         }
 
