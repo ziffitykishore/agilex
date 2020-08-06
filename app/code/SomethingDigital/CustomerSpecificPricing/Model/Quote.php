@@ -67,9 +67,13 @@ class Quote
         $this->quoteRepository = $quoteRepository;
     }
 
-    public function repriceCustomerQuote($suffix = null)
+    public function repriceCustomerQuote($suffix = null, $quote = null)
     {
-        $items = $this->cart->getQuote()->getAllItems();
+        if ($quote) {
+            $items = $quote->getAllItems();
+        } else {
+            $items = $this->cart->getQuote()->getAllItems();
+        }
 
         if ($items) {
             $productRegularPrices = [];
@@ -130,11 +134,6 @@ class Quote
                         $item->save();
                     }
                 }
-
-                $quote = $this->quoteRepository->get($this->cart->getQuote()->getId());
-                $quote->collectTotals();
-                $this->quoteRepository->save($quote);
-
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
             }

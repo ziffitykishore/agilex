@@ -6,7 +6,4 @@
     <type name="Magento\Bundle\Helper\Catalog\Product\Configuration">
         <plugin name="somethingdigital_customerspecificpricing_bundle_configuration" type="SomethingDigital\CustomerSpecificPricing\Plugin\BundleItemConfiguration"/>
     </type>
-    <type name="Magento\Customer\Controller\Account\LoginPost">
-        <plugin name="somethingdigital_customerspecificpricing_update_quote" type="SomethingDigital\CustomerSpecificPricing\Plugin\UpdateCustomerQuoteAfterMerge"/>
-    </type>
 </config>
