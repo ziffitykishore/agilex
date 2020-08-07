@@ -48,7 +48,8 @@ class CanProcessRule
         if (
             !$applyDiscountIfSuffix &&
             $quoteItem->getQuote()->getSuffix() &&
-            $rule->getSimpleFreeShipping() == 0
+            $rule->getSimpleFreeShipping() == 0 &&
+            $rule->getSkuSuffix() == ''
         ) {
             return false;
         }
