@@ -120,6 +120,7 @@ class Quote
                         $spotPrice = isset($spotPrices[$item->getSku()]) ? $spotPrices[$item->getSku()] : false;
                         if ($spotPrice && $spotPrice < $productsRegularPrices[$item->getSku()]) {
                             $customPrice = $spotPrice;
+                            $item->setIsCustomerSpecificPriceApplied(true);
                         }
                         $tierPrice = $this->helper->getTierPrice($allPrices, $item->getSku(), $item->getQty());
                         if ($tierPrice) {
@@ -130,7 +131,6 @@ class Quote
                         $item->setOriginalCustomPrice($customPrice);
                         $item->getProduct()->setIsSuperMode(true);
 
-                        $item->setIsCustomerSpecificPriceApplied(true);
                         $item->save();
                     }
                 }
