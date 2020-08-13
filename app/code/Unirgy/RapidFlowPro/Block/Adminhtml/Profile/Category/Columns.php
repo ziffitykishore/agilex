@@ -96,7 +96,7 @@ class Columns
         $attrs = $this->_categoryResource->fetchSystemAttributes();
         $gr = array('category' => 'System Attributes');
         if ($this->getProfile()->getProfileType() === 'import') {
-            $removeFields = array_merge($removeFields, ['category.entity_id']);
+            $removeFields = array_merge($removeFields, ['category.entity_id','category.row_id']);
         }
         foreach ($attrs as $f => $a) {
             if (in_array($f, $removeFields)) continue;

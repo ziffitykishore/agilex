@@ -134,6 +134,17 @@ class Tabs extends WidgetTabs
 
         $this->addTab('json_section', $jsonTab);
 
+        if ($profile->getId()) {
+            $this->addTab('history_section', [
+                'label' => __('Profile History'),
+                'title' => __('Profile History'),
+                'content' => $this->getLayout()
+                    ->createBlock('Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\History')
+                    ->setProfile($profile)
+                    ->toHtml(),
+            ]);
+        }
+
         return parent::_beforeToHtml();
     }
 }

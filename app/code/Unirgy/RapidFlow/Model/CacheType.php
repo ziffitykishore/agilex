@@ -9,6 +9,8 @@
  */
 namespace Unirgy\RapidFlow\Model;
 
+use Magento\Framework\App\Cache\Type\FrontendPool as CacheTypeFrontendPool;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Cache\Frontend\Decorator\TagScope;
 use Magento\Framework\Config\CacheInterface;
 
@@ -25,16 +27,16 @@ class CacheType extends TagScope implements CacheInterface
     const CACHE_TAG = 'config_urapidflow';
 
     /**
-     * @var \Magento\Framework\App\Cache\Type\FrontendPool
+     * @return CacheTypeFrontendPool
      */
-    private $cacheFrontendPool;
-
-    /**
-     * @param \Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool
-     */
-    public function __construct(\Magento\Framework\App\Cache\Type\FrontendPool $cacheFrontendPool)
+    protected function cacheFrontendPool()
     {
-        $this->cacheFrontendPool = $cacheFrontendPool;
+        return ObjectManager::getInstance()->get(CacheTypeFrontendPool::class);
+    }
+
+    public function __construct(CacheTypeFrontendPool $cacheFrontendPool)
+    {
+        parent::__construct($cacheFrontendPool->get(self::TYPE_IDENTIFIER), self::CACHE_TAG);
     }
 
     /**
@@ -46,7 +48,7 @@ class CacheType extends TagScope implements CacheInterface
     {
         $frontend = parent::_getFrontend();
         if (!$frontend) {
-            $frontend = $this->cacheFrontendPool->get(self::TYPE_IDENTIFIER);
+            $frontend = $this->cacheFrontendPool()->get(self::TYPE_IDENTIFIER);
             $this->setFrontend($frontend);
         }
         return $frontend;

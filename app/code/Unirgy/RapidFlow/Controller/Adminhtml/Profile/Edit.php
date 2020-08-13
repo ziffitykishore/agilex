@@ -50,7 +50,7 @@ class Edit extends AbstractProfile
         if ($id === 0 || $model->getId()) {
             $data = $this->_getSession()->getFormData(true);
             if (!empty($data)) {
-                $model->setData($data);
+                $model->addData($data);
             }
 
             $this->_registry->register('profile_data', $model);

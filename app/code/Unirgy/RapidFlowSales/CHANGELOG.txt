@@ -1,0 +1,53 @@
+===== 2020-07-20 2.0.21 =====
+  * Fixed sku is not exported when specific row types selected in 'Export Options' column
+
+===== 2020-06-02 2.0.20 =====
+  * Fixed sku is not exported on some installations
+
+===== 2020-05-18 2.0.19 =====
+  * Added automatic convesion of serializable fields from php to json
+
+===== 2020-04-09 2.0.17 =====
+  * Fixed date filter doesn't work for SII, SCMI, SSHIPI, SPT, SOA, SOP rows
+
+===== 2019-09-05 2.0.15 =====
+  * Fixed compatibility with recent rapidflow history functionality
+
+===== 2018-12-03 2.0.13 =====
+  * Added urfid_column, alt_urfid row type config nodes
+
+===== 2018-12-03 2.0.12 =====
+  * Fixed installation fails on magento 2.3.0
+
+===== 2018-08-09 2.0.10 =====
+  * Fixed Notice: Undefined offset: <number> in Model/Fixed/AbstractSales.php on line 0
+
+===== 2018-07-23 2.0.9 =====
+  * Added extra vars for import events
+
+===== 2018-06-20 2.0.8 =====
+  * Fixed order, invoice, shipment, creditmemo items sku not exported for non-existing products
+  * Fixed urf_id not populated in sales_*_grid tables
+
+===== 2.0.7 =====
+  * Fixed "Unique constraint violation found" on some 2.2 installations
+
+===== 2.0.6 =====
+  * Fixed sku field is not imported in items tables when no matching product found
+
+===== 2.0.5 =====
+  * Fixed newly created customer and his group not saved in sales tables
+
+===== 2.0.4 =====
+  * Fixed create customer when customers per website configuration selected
+  * Added revertInstall method in InstallSchema
+
+===== 2.0.3 =====
+  * Added error "Missing %1 at index %2. Possible header and data format missmatch" when header and data columns number missmatch
+
+===== 2.0.2 =====
+  * Fixed Uncaught TypeError: Argument 1 passed to Magento\Setup\Module\DataSetup::__construct() must be an instance of Magento\Framework\Module\Setup\Context, instance of Magento\Framework\ObjectManager\ObjectManager given
+
+===== 1.0.0 =====
+
+  * Initial release

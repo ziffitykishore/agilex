@@ -62,7 +62,7 @@ class Upload extends Content
         $this->setChild('uploader', $uploader);
         $uploader->setTemplate('Unirgy_RapidFlow::urapidflow/upload/uploader.phtml');
         $uploader->getConfig()
-            ->setUrl($this->_backendModelUrl->addSessionParam()->getUrl('*/*/upload', $this->_params()))
+            ->setUrl($this->_backendModelUrl->getUrl('*/*/upload', $this->_params()))
             ->setFileField('file')
             ->setFilters([
                              'csv' => [

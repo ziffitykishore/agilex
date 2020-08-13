@@ -155,6 +155,53 @@
                 </profile>
             </category>
 
+            <enterprise>
+                <title>Enterprise Data</title>
+                <row_format>fixed</row_format>
+                <model>Unirgy\RapidFlowPro\Model\ResourceModel\Enterprise</model>
+                <restrictions>
+                    <magento_edition>ee</magento_edition>
+                </restrictions>
+                <profile>
+                    <import>
+                        <tabs>
+                            <file>
+                                <title>File Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\File</block>
+                            </file>
+                            <csv>
+                                <title>Format Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Csv</block>
+                            </csv>
+                            <options>
+                                <title>Import Options</title>
+                                <block>Unirgy\RapidFlowPro\Block\Adminhtml\Profile\Enterprise\ImportOptions</block>
+                            </options>
+                            <upload>
+                                <title>Upload Files</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Upload</block>
+                            </upload>
+                        </tabs>
+                    </import>
+                    <export>
+                        <tabs>
+                            <file>
+                                <title>File Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\File</block>
+                            </file>
+                            <csv>
+                                <title>Format Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Csv</block>
+                            </csv>
+                            <options>
+                                <title>Export Options</title>
+                                <block>Unirgy\RapidFlowPro\Block\Adminhtml\Profile\Enterprise\ExportOptions</block>
+                            </options>
+                        </tabs>
+                    </export>
+                </profile>
+            </enterprise>
+
         </data_types>
 
         <row_types>
@@ -660,6 +707,39 @@
                     <percentage_value><col>6</col></percentage_value>
                 </columns>
             </CPPT>
+
+            <GCA>
+                <title>Gift Card Account</title>
+                <data_type>enterprise</data_type>
+                <restrictions>
+                    <magento_edition>ee</magento_edition>
+                </restrictions>
+                <columns>
+                    <code><col>1</col><key>1</key></code>
+                    <balance><col>2</col><key>1</key></balance>
+                    <status><col>3</col><key>1</key></status>
+                    <state><col>4</col><key>1</key></state>
+                    <is_redeemable><col>5</col><key>1</key></is_redeemable>
+                    <date_created><col>6</col></date_created>
+                    <date_expires><col>7</col></date_expires>
+                    <website><col>8</col></website>
+                </columns>
+            </GCA>
+            <GCAH>
+                <title>Gift Card Account History</title>
+                <data_type>enterprise</data_type>
+                <restrictions>
+                    <magento_edition>ee</magento_edition>
+                </restrictions>
+                <columns>
+                    <code><col>1</col><key>1</key></code>
+                    <updated_at><col>2</col><key>1</key></updated_at>
+                    <action><col>3</col><key>1</key></action>
+                    <balance_amount><col>4</col><key>1</key></balance_amount>
+                    <balance_delta><col>5</col><key>1</key></balance_delta>
+                    <additional_info><col>6</col></additional_info>
+                </columns>
+            </GCAH>
             <!--<CPPG>
                 <title>Catalog Product Group Prices</title>
                 <data_type>product_extra</data_type>

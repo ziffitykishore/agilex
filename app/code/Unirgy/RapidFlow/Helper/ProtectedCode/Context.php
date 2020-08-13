@@ -17,7 +17,6 @@ use Magento\Catalog\Model\Product\Type;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\CatalogInventory\Api\StockConfigurationInterface;
 use Magento\CatalogInventory\Model\Stock\Status;
-use Magento\CatalogSearch\Model\Indexer\Fulltext\Action\Full as FullTextIndexer;
 use Magento\CatalogUrlRewrite\Model\CategoryUrlRewriteGenerator;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Indexer\IndexerRegistry;
@@ -56,8 +55,6 @@ class Context
     public $modelProductAction;
 
     public $catalogStockConfiguration;
-
-    public $fullTextIndexer;
 
     public $productFlatIndexHelper;
 
@@ -147,7 +144,6 @@ class Context
 
     /**
      * Context constructor.
-     * @param FullTextIndexer $fullTextIndexer
      * @param ScopeConfigInterface $scopeConfig
      * @param Collection $catalogProductCollection
      * @param Product $catalogProduct
@@ -179,7 +175,6 @@ class Context
      * @param \Unirgy\RapidFlow\Helper\ImageCache $imageCacheHelper
      */
     public function __construct(
-        FullTextIndexer $fullTextIndexer,
         ScopeConfigInterface $scopeConfig,
         Collection $catalogProductCollection,
         Product $catalogProduct,
@@ -223,7 +218,6 @@ class Context
         $this->indexerRegistry = $indexerRegistry;
         $this->modelProductAction = $modelProductAction;
         $this->catalogStockConfiguration = $stockConfiguration;
-        $this->fullTextIndexer = $fullTextIndexer;
 
         $this->productFlatIndexHelper = $flatIndexHelper;
         $this->productFlatIndexState = $productFlatState;

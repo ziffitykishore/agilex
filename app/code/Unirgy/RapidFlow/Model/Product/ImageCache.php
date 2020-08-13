@@ -53,6 +53,16 @@ class ImageCache extends BaseImageCache
         }
         return $this;
     }
+    protected function imageResize23()
+    {
+        return ObjectManager::getInstance()->get('Magento\MediaStorage\Service\ImageResize');
+    }
+    public function resizeProduct23(Product $product)
+    {
+        foreach ($product->getMediaGalleryImages() as $image) {
+            $this->imageResize23()->resizeFromImageName($image->getFile());
+        }
+    }
     public function resizeProduct(Product $product)
     {
         $galleryImages = $product->getMediaGalleryImages();
@@ -70,7 +80,9 @@ class ImageCache extends BaseImageCache
                 foreach ($allData as $currentData) {
                     foreach ($currentData as $imageData) {
                         $__image = $this->makeImage($image->getFile(), $imageData);
-                        $__image->resize();
+                        if (isset($imageData['width']) && isset($imageData['height'])) {
+                            $__image->resize();
+                        }
                         $__image->saveFile();
                     }
                 }

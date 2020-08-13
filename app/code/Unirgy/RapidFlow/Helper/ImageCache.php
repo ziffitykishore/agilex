@@ -54,10 +54,12 @@ class ImageCache
                 $imageCache = $this->_imageCacheFactory->create();
                 $imageCache->flushProduct($product);
 
-                if ($this->_rfHlp->compareMageVer('2.2.8')
-                    && $profile->getData('options/import/import_image_generate')
-                ) {
-                    $imageCache->resizeProduct($product);
+                if ($profile->getData('options/import/import_image_generate')) {
+                    if ($this->_rfHlp->isModuleActive('Magento_MediaStorage')) {
+                        $imageCache->resizeProduct23($product);
+                    } elseif ($this->_rfHlp->compareMageVer('2.2.8')) {
+                        $imageCache->resizeProduct($product);
+                    }
                 }
             }
         } catch (\Exception $e) {

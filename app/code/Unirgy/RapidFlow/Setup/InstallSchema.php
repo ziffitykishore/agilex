@@ -12,7 +12,7 @@ use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
 
-class InstallSchema implements InstallSchemaInterface
+class InstallSchema extends AbstractSchema implements InstallSchemaInterface
 {
 
     /**
@@ -77,6 +77,7 @@ class InstallSchema implements InstallSchemaInterface
                 ->setOption('charset', 'utf8');
             $connection->createTable($table);
         }
+        $this->createHistoryTable($setup);
         $installer->endSetup();
     }
 }

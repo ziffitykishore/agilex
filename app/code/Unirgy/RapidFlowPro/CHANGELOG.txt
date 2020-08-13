@@ -1,3 +1,39 @@
+===== 2020-06-16 3.0.66 =====
+  * Fixed  Undefined index: path in ResourceModel/Category/AbstractCategory.php
+
+===== 2020-03-20 3.0.65 =====
+  * Fixed Undefined offset: 5 in ProductExtra.php
+
+===== 2020-03-16 3.0.64 =====
+  * Fixed -CC doesn't remove all required data. Changed from table delete sql to category repository delete
+
+===== 2020-02-16 3.0.63 =====
+  * Fixed EAG 'Column 'attribute_group_code' cannot be null' when no group code in import file
+
+===== 2020-02-14 3.0.61 =====
+  * Fixed support of multiple root categories within website
+
+===== 2020-02-11 3.0.60 =====
+  * Fixed -CP doesn't trigger all necessary events
+
+===== 2020-01-14 3.0.59 =====
+  * Added "Enterprise Data" data type to support giftcard import/export
+
+===== 2019-11-13 3.0.57 =====
+  * Fixed -CPPT issue "The website with code that was requested wasn't found" error
+
+===== 2019-10-25 3.0.56 =====
+  * Fixed "Integrity constraint violation" during CPCOSL update
+
+===== 2019-10-25 3.0.55 =====
+  * Fixed "invalid attribute" error when import EAV for category
+
+===== 2019-08-29 3.0.54 =====
+  * Fixed categories export entity_id field in EE
+
+===== 2019-08-27 3.0.53 =====
+  * Fixed categories export error "Unknown column 'v.row_id' in 'on clause'"
+
 ===== 2019-07-16 3.0.51 =====
   * Fixed EAO export can export non-dropdown attribute options if they exists in options table
 

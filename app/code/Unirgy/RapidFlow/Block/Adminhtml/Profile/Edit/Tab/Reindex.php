@@ -103,6 +103,7 @@ class Reindex extends Template
             /** @var Indexer $indexer */
             foreach ($this->getAllIndexers() as $indexer) {
                 $code = $indexer->getId();
+                if ($code=='catalog_product_category') continue;
                 $reindexFields[] = array(
                     'label' => __($indexer->getTitle()),
                     'value' => $code,

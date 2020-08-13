@@ -10,6 +10,7 @@
         </Unirgy_RapidFlow>
         <urapidflow>
             <finetune>
+                <enable_history>0</enable_history>
                 <import_page_size>100</import_page_size>
                 <export_page_size>100</export_page_size>
                 <page_sleep_delay>0</page_sleep_delay>
@@ -23,6 +24,7 @@
                 <export_dir>{var}/urapidflow/export</export_dir>
                 <log_dir>{var}/urapidflow/log</log_dir>
                 <report_dir>{var}/urapidflow/report</report_dir>
+                <archive_dir>{var}/urapidflow/archive</archive_dir>
                 <images_dir>images</images_dir>
             </dirs>
             <admin>

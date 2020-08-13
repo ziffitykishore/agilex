@@ -28,6 +28,7 @@ use Magento\Framework\Db\Adapter\Pdo\Mysql;
 use Psr\Log\LoggerInterface;
 use Unirgy\RapidFlow\Helper\Data;
 use Unirgy\RapidFlow\Model\Profile;
+use Unirgy\RapidFlow\Model\Profile\HistoryFactory;
 use Unirgy\RapidFlow\Model\ResourceModel\Profile as ProfileResource;
 
 /**
@@ -64,10 +65,11 @@ abstract class AbstractProfile extends Action
      */
     protected $_logger;
 
-    public function __construct(Context $context,
-                                Profile $profile,
-                                HelperData $catalogHelper,
-                                ProfileResource $resource
+    public function __construct(
+        Context $context,
+        Profile $profile,
+        HelperData $catalogHelper,
+        ProfileResource $resource
     )
     {
         $this->_profile = $profile;
