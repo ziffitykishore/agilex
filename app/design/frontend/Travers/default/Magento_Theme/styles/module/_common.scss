@@ -419,8 +419,17 @@ body {
         }
     }
 
+    [data-content-type="row"] {
+        @include min-screen($mobile-nav__breakpoint) {
+            display: inline-block;
+            float: left;
+            margin-top: 1px;
+        }
+    }
+
     .phone-number {
         display: none;
+        font-size: 13px;
 
         @include min-screen($mobile-nav__breakpoint) {
             display: block;
