@@ -60,6 +60,8 @@ class Url extends AbstractHelper
      */
     private $rfHelper;
 
+    protected $_storeManager;
+
     /**
      * Url constructor.
      * @param Context $context
@@ -73,12 +75,14 @@ class Url extends AbstractHelper
         ProductFactory $catalogFactory,
         ProductUrlRewriteGenerator $productUrlRewriteGenerator,
         UrlPersistInterface $urlPersist,
-        Data $rfHelper
+        Data $rfHelper,
+        \Magento\Store\Model\StoreManagerInterface $storeManager
     )
     {
         $this->_catalogProductFactory = $catalogFactory;
         $this->_urlPersist = $urlPersist;
         $this->_generator = $productUrlRewriteGenerator;
+        $this->_storeManager = $storeManager;
 
         parent::__construct($context);
         $this->rfHelper = $rfHelper;
@@ -127,6 +131,11 @@ class Url extends AbstractHelper
             if (isset($productData[$field])) {
                 $product->setData($field, $productData[$field]);
             }
+        }
+
+        if ($this->_storeManager->isSingleStoreMode()) {
+            $defWid = $this->_storeManager->getDefaultStoreView()->getWebsiteId();
+            $product->setData('store_ids', $this->_storeManager->getWebsite($defWid)->getStoreIds());
         }
 
         $this->_urlPersist->deleteByData(

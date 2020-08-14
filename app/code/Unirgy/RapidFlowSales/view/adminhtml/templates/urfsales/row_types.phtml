@@ -1,0 +1,201 @@
+<?php
+/**
+ * @see
+ */
+?>
+
+<?php echo $this->getChildHtml(); ?>
+<fieldset class="fieldset admin__fieldset" id="export_row_types_fieldset">
+    <legend class="admin__legend legend">
+        <span><?php echo __('Row Types') ?></span>
+    </legend>
+    <input type="hidden" name="options[row_types_json]" id="row_types" value=""/>
+    <div class="admin__field field field-row_types" id="row_types_container">
+        <label class="label admin__field-label"><?php echo __('Row Types') ?></label>
+        <div class="admin__field-control control" style="padding: 10px 0;">
+            <div class="tree-wrapper x-tree" id="row-types-tree"></div>
+        </div>
+    </div>
+
+    <!-- Draw Resources Tree -->
+    <script type="text/javascript">
+        var tree;
+        require([
+            "prototype",
+            "extjs/ext-tree-checkbox",
+        ], function () {
+                Ext.EventManager.onDocumentReady(function () {
+                    tree = new Ext.tree.TreePanel('row-types-tree', {
+                        animate: false,
+                        loader: false,
+                        enableDD: false,
+                        containerScroll: true,
+                        rootUIProvider: Ext.tree.CheckboxNodeUI,
+                        selModel: new Ext.tree.CheckNodeMultiSelectionModel(),
+                        rootVisible: false
+                    });
+
+                    tree.on('check', checkHandler, tree);
+
+                    // set the root node
+                    var root = new Ext.tree.TreeNode({
+                        text: 'root',
+                        draggable: false,
+                        checked: 'false',
+                        id: '__root__',
+                        uiProvider: Ext.tree.CheckboxNodeUI
+                    });
+
+                    tree.setRootNode(root);
+                    bildResourcesTree(root, <?php echo $this->getRowTypesTreeJson() ?>);
+                    tree.addListener('click', resourceClick.createDelegate(this));
+
+                    // render the tree
+                    tree.render();
+                    //root.expand();
+                    tree.expandAll();
+
+                    $('row_types').value = JSON.stringify(processChecked(tree));
+
+                    collapseUnchecked(tree);
+                });
+
+                function collapseUnchecked(tree, node) {
+                    if (!tree) {
+                        console.log('tree missing');
+                        return;
+                    }
+
+                    if (typeof node === 'undefined') {
+                        node = tree.getRootNode();
+                    }
+
+                    if (node.childNodes.length) {
+                        var checkedChildren = [];
+                        for (var i = 0; i < node.childNodes.length; i++) {
+                            var childNode = node.childNodes[i];
+                            //if (!childNode.attributes.checked) {
+                            //    continue;
+                            //}
+                            checkedChildren = checkedChildren.concat(collapseUnchecked(tree, childNode));
+                        }
+
+                        if (checkedChildren.length === 0 && !node.attributes.checked) {
+                            node.collapse();
+                        }
+                    }
+                    return node.attributes.checked ? true : [];
+                }
+
+                function resourceClick(node, e) {
+                    node.getUI().check(!node.getUI().checked());
+                    varienElementMethods.setHasChanges(Event.element(e), e);
+                }
+                ;
+
+                function bildResourcesTree(parent, config) {
+                    if (!config) {
+                        return null;
+                    }
+
+                    if (parent && config && config.length) {
+                        for (var i = 0; i < config.length; i++) {
+                            config[i].uiProvider = Ext.tree.CheckboxNodeUI;
+                            var node = new Ext.tree.TreeNode(config[i]);
+                            parent.appendChild(node);
+                            if (config[i].children) {
+                                bildResourcesTree(node, config[i].children);
+                            }
+                        }
+                    }
+                }
+
+                function checkHandler(node) {
+                    if (node.attributes.checked && node.parentNode) {
+                        var n = node.parentNode;
+                        this.removeListener('check', checkHandler);
+                        do {
+                            if (!n || n.attributes.id === '*' || n.attributes.id === '__root__') {
+                                break;
+                            } else {
+                                n.ui.check(true);
+                            }
+                        } while (n = n.parentNode);
+                        this.on('check', checkHandler);
+                    }
+                    if (!node.isLeaf() && node.hasChildNodes()) {
+                        this.removeListener('check', checkHandler);
+                        processChildren(node, node.attributes.checked);
+                        this.on('check', checkHandler);
+                    }
+
+                    if (!node.attributes.checked && node.parentNode && node.parentNode.ui.check !== undefined) {
+                        // if any siblings are unchecked, un-check parent too
+                        var parentChecked = true;
+                        for (var i = 0; i < node.parentNode.childNodes.length; i++) {
+                            if (!node.parentNode.childNodes[i].attributes.checked) {
+                                parentChecked = false;
+                                break;
+                            }
+                        }
+                        this.removeListener('check', checkHandler);
+                        node.parentNode.ui.check(parentChecked);
+                        this.on('check', checkHandler);
+                    }
+                    $('row_types').value = JSON.stringify(processChecked(this));
+                }
+
+                function processChildren(node, state) {
+                    if (!node.hasChildNodes()) {
+                        return false;
+                    }
+                    for (var i = 0; i < node.childNodes.length; i++) {
+                        node.childNodes[i].ui.check(state);
+                        if (node.childNodes[i].hasChildNodes()) {
+                            processChildren(node.childNodes[i], state);
+                        }
+                    }
+                    return true;
+                }
+
+                function processChecked(tree, node) {
+                    var checked = [], i, n = {}, cn = {}, childNode, checkedChildren;
+
+                    if (typeof node === 'undefined') {
+                        //node = this.rootVisible ? this.getRootNode() : this.getRootNode().firstChild;
+                        node = tree.getRootNode();
+                    }
+
+                    if (node.attributes.checked && (node.childNodes.length === 0 || node.id === '*')) {
+                        n[node.id] = true;
+                        checked.push(n);
+                    }
+
+                    if (node.attributes.checked && node.id === '*') {
+                        // all checked
+                        return checked;
+                    }
+
+                    if (node.childNodes.length) {
+                        checkedChildren = [];
+                        for (i = 0; i < node.childNodes.length; i++) {
+                            childNode = node.childNodes[i];
+                            //if (!childNode.attributes.checked) {
+                            //    continue;
+                            //}
+                            checkedChildren = checkedChildren.concat(processChecked(tree, childNode));
+                        }
+
+                        if (checkedChildren.length) {
+                            cn[node.id] = checkedChildren;
+                            checked.push(cn);
+                        }
+                    }
+
+                    return checked;
+                }
+            }
+            );
+
+    </script>
+</fieldset>

@@ -1,1699 +1,1154 @@
-<?php
-
-namespace Unirgy\RapidFlowPro\Model\ResourceModel\Category;
-
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Stdlib\DateTime;
-use Magento\Staging\Model\VersionManager;
-use Magento\Store\Model\ScopeInterface;
-use Unirgy\RapidFlow\Exception;
-use Unirgy\RapidFlow\Helper\Data as HelperData;
-use Unirgy\RapidFlow\Model\ResourceModel\Catalog\AbstractCatalog;
-use Unirgy\RapidFlow\Model\ResourceModel\Catalog\Product\AbstractProduct;
-
-abstract class AbstractCategory
-    extends AbstractCatalog
-{
-
-    protected $_logger;
-
-
-    protected $_scopeConfig;
-
-
-    protected $_translateModule = 'Unirgy_RapidFlowPro';
-
-
-    protected $_entityType = 'catalog_category';
-
-
-    protected $_entityTypeId;
-
-
-    protected $_attributeSetId;
-
-
-    protected $_pathSuffix;
-
-
-    protected $_rootCatId;
-
-
-    protected $_rootCatIds;
-
-
-    protected $_upPrependRoot;
-
-
-    protected $_categories = [];
-
-
-    protected $_categoriesByNamePath = [];
-
-
-    protected $_attributeSetFields = [];
-
-
-    protected $_attrDepends = [];
-
-
-    protected $_attrJoined = [];
-
-
-    protected $_storeId;
-
-
-    protected $_websiteStores = [];
-
-
-    protected $_websitesByStore = [];
-
-
-    protected $_storesByWebsite = [];
-
-
-    protected $_fields = [];
-
-
-    protected $_fieldsCodes = [];
-
-
-    protected $_entities = [];
-
-
-    protected $_entityIds = [];
-
-
-    protected $_entityIdsUpdated = [];
-
-
-    protected $_defaultUsed = [];
-
-
-    protected $_valid = [];
-
-
-    protected $_pathLine = [];
-
-
-    protected $_attrValueIds = [];
-
-
-    protected $_attrValuesFetched = [];
-
-
-    protected $_websiteScope = [];
-
-
-    protected $_websiteScopeProducts = [];
-
-
-    protected $_websiteScopeAttributes = [];
-
-
-    protected $_insertEntity = [];
-
-
-    protected $_updateEntity = [];
-
-
-    protected $_changeAttr = [];
-
-
-    protected $_insertAttr = [];
-
-
-    protected $_updateAttr = []; // type/#=>row
-
-
-    protected $_deleteAttr = []; // type/vId=>value
-
-
-    protected $_childrenCount = []; // type/#=>vId
-
-
-    protected $_changeChildrenCount = [];
-
-
-    protected $_urlPaths = [];
-
-
-    protected $_parentPath = [];
-
-
-    protected $_parentPathExtra = []; //
-
-
-    protected $_newDataTemplate = []; //
-
-
-    protected $_newData = [];
-
-
-    protected $_pathIdx = null;
-
-
-    protected $_startLine;
-
-
-    protected $_isLastPage = false;
-
-    protected $_catEntity2Row = [];
-    protected $_catRow2Entity = [];
-
-
-    protected $_fieldAttributes = [
-        'product.attribute_set' => 'attribute_set_id',
-        'product.type' => 'type_id',
-        'product.store' => 'store_id',
-        'category.entity_id' => 'entity_id'
-    ];
-
-
-    protected $_rootCatPaths;
-
-
-    protected $_modelProductImage;
-
-    protected $_urlsToUpdate = [];
-    protected $_categoriesBySeqId;
-
-    protected function _importPrepareColumns()
-    {
-        AbstractProduct::validateLicense('Unirgy_RapidFlowPro');
-
-        $columns = (array) $this->_profile->getColumns();
-        $attrs = [];
-        $dups = [];
-        $alias = [];
-        $this->_fields = [];
-        $this->_newDataTemplate = [];
-        $this->_fieldsCodes = [
-            'url_key' => 0,
-        ];
-        foreach ($columns as $i => &$f) {
-            if (!empty($f['alias'])/* && strtolower(trim($f['alias']))!=$f['field']*/) {
-                $aliasKey = strtolower(trim($f['alias']));
-                if (!isset($alias[$aliasKey])) {
-                    $alias[$aliasKey] = $f['field'];
-                } elseif (!is_array($alias[$aliasKey]) && $alias[$aliasKey] != $f['field']) {
-                    $alias[$aliasKey] = array($alias[$aliasKey], $f['field']);
-                } elseif (!in_array($f['field'], $alias[$aliasKey])) {
-                    $alias[$aliasKey][] = $f['field'];
-                }
-            }
-            if (!in_array($f['field'], ['const.value', 'const.function']) && !empty($attrs[$f['field']])) {
-                $dups[$f['field']] = $f['field'];
-            }
-            $this->_fields[$f['field']] = $f;
-            $this->_fieldsCodes[$f['field']] = 0;
-
-            if (isset($f['default']) && $f['default'] !== '') {
-                if (!empty($f['default_multiselect'])) {
-                    $f['default'] = explode(',', $f['default']);
-                }
-                $this->_newDataTemplate[$f['field']] = $f['default'];
-            }
-        }
-        unset($f);
-        if ($dups) {
-            throw new LocalizedException(__('Duplicate attributes: %1', implode(', ', $dups)));
-        }
-
-        $headers = $this->_profile->ioRead();
-        if (!$headers) {
-            //no data
-            $this->_profile->ioClose();
-            return;
-        }
-        $this->_fieldsIdx = [];
-        foreach ($headers as $i => $f) {
-            if ($f === '') {
-                $this->_fieldsIdx[$i] = false;
-                $this->_profile->addValue('num_warnings');
-                $this->_profile->getLogger()->setLine(2)->setColumn($i + 1)
-                    ->warning(__('Empty title, the column will be ignored'));
-                continue;
-            }
-            $f = strtolower($f);
-            $f = !empty($alias[$f]) ? $alias[$f] : $f;
-            $this->_fieldsIdx[$i] = $f;
-            foreach ((array)$f as $_ff) {
-                $this->_fieldsCodes[$_ff] = $i;
-            }
-        }
-
-        if (!isset($this->_fieldsCodes['url_path'])) {
-            //no url_path field
-            $this->_profile->ioClose();
-            throw new LocalizedException(__('Missing url_path column'));
-        }
-        $this->_pathIdx = $this->_fieldsCodes['url_path'];
-    }
-
-
-    protected function _prepareAttributes(array $columns = [])
-    {
-        AbstractProduct::validateLicense('Unirgy_RapidFlowPro');
-
-        // reset all attributes
-        $this->_attributesById = [];
-        $this->_attributesByCode = [];
-        $this->_attributesByType = [];
-        $storeId = $this->_profile->getStoreId();
-
-        $removeFields = [
-            'children',
-            'children_count',
-            'all_children',
-            'path_in_store',
-            'path',
-            'parent_id',
-            'level'
-        ];
-        if ($this->_profile->getProfileType() === 'import') {
-            $removeFields = array_merge($removeFields, ['created_at', 'updated_at']);
-        }
-        // collect data about all attributes used in profile
-        $select = $this->_read->select()->from(['a' => $this->_t(self::TABLE_EAV_ATTRIBUTE)])
-            ->where('entity_type_id=?', $this->_entityTypeId)
-            ->where("frontend_input <> 'gallery' OR frontend_input IS NULL")
-            ->where('attribute_code not in (?)', $removeFields);
-
-        if ($columns) {
-            $attrCodes = [];
-            // special attributes
-            foreach ($columns as $f) {
-                if (strpos($f, '.') === false) {
-                    $attrCodes[$f] = $f;
-                }
-                if (is_array($f) && !empty($this->_attrDepends[$f['field']])) {
-                    foreach ((array)$this->_attrDepends[$f['field']] as $v) {
-                        $attrCodes[$v] = $v;
-                    }
-                }
-            }
-            $attrCodes[] = 'url_key';
-            array_unique($attrCodes);
-
-            $select->where("is_required=1 or default_value<>'' or attribute_code in (?)", $attrCodes);
-            if (($catalogAttrTable = $this->_t(self::TABLE_CATALOG_EAV_ATTRIBUTE))) {
-                $select->join(array('c' => $catalogAttrTable), 'c.attribute_id=a.attribute_id');
-            }
-        }
-        $rows = $this->_read->fetchAll($select);
-        foreach ($rows as $r) {
-//            $a = [];
-//            if (!empty($r['apply_to'])) {
-//                foreach (explode(',', $r['apply_to']) as $t) {
-//                    $a[$t] = true;
-//                }
-//            }
-//            $r['apply_to'] = $a;
-
-            if ($r['default_value'] !== '' && !isset($this->_newDataTemplate[$r['attribute_code']])) {
-                $this->_newDataTemplate[$r['attribute_code']] = $r['default_value'];
-            }
-
-            // if special source_model (options) fetch them from model class
-            if (!empty($r['source_model']) && $r['source_model'] !== 'Magento\Eav\Model\Entity\Attribute\Source\Table') {
-                $model = $this->_rapidFlowHelper->om()->get($r['source_model']);
-                if ($model && is_callable([$model, 'getAllOptions']) && ($options = $model->getAllOptions())) {
-                    $r['options'] = [];
-                    foreach ($options as $o) {
-                        if (is_array($o['value'])) {
-                            foreach ($o['value'] as $o1) {
-                                $r['options'][$o1['value']] = $o['label'] . ' - ' . $o1['label'];
-                                $r['options_bytext'][strtolower(trim($o['label'] . ' - ' . $o1['label']))] = $o1['value'];
-                            }
-                            continue;
-                        }
-                        $r['options'][$o['value']] = $o['label'];
-                        $r['options_bytext'][strtolower(trim($o['label']))] = $o['value'];
-                    }
-                }
-            }
-            // save with different fetch methods
-            $this->_attributesById[$r['attribute_id']] = $r;
-            $this->_attributesByCode[$r['attribute_code']] =& $this->_attributesById[$r['attribute_id']];
-            $aType = $this->getAttrType($r, 'catalog/category');
-            $this->_attributesByType[$aType][$r['attribute_id']] =& $this->_attributesById[$r['attribute_id']];
-        }
-        // retrieve all options for regular eav source
-//        $sql = $this->_read->quoteInto(
-//            "SELECT o.attribute_id, o.option_id, v.value
-//FROM {$this->_t(self::TABLE_EAV_ATTRIBUTE_OPTION_VALUE)} v
-//INNER JOIN {$this->_t(self::TABLE_EAV_ATTRIBUTE_OPTION)} o USING (option_id)
-//WHERE v.store_id IN (0, $storeId) AND o.attribute_id IN (?)
-//ORDER BY v.store_id DESC",
-//            array_keys($this->_attributesById)
-//        );
-        $sql = $this->_read->select()
-            ->from(['v' => $this->_t(self::TABLE_EAV_ATTRIBUTE_OPTION_VALUE)], 'value')
-            ->join(['o' => $this->_t(self::TABLE_EAV_ATTRIBUTE_OPTION)], 'v.option_id=o.option_id', ['attribute_id', 'option_id'])
-            ->where('v.store_id IN (0, ?)', $storeId)->where('o.attribute_id IN (?)', array_keys($this->_attributesById))
-            ->order('v.store_id DESC');
-//        $this->_profile->getLogger()->notice($sql);
-        $rows = $this->_read->fetchAll($sql);
-        if ($rows) {
-            foreach ($rows as $r) {
-                if (empty($this->_attributesById[$r['attribute_id']]['options'][$r['option_id']])) {
-                    $this->_attributesById[$r['attribute_id']]['options'][$r['option_id']] = $r['value'];
-                    $this->_attributesById[$r['attribute_id']]['options_bytext'][strtolower(trim($r['value']))] = $r['option_id'];
-                }
-            }
-        }
-    }
-
-
-    protected function _prepareSystemAttributes()
-    {
-        $sysAttr = ['custom_design_apply', 'available_sort_by', 'landing_page', 'custom_design', 'default_sort_by', 'page_layout'];
-        foreach ($sysAttr as $k) {
-            if (!empty($this->_attributesByCode[$k]['is_required'])) {
-                $this->_attributesByCode[$k]['is_required'] = false;
-            }
-        }
-        $this->_attributesByCode['custom_design_apply']['options_bytext']['all'] = 1;
-
-        if (!isset($this->_profile) || $this->_profile->getProfileType() === 'export') {
-            $this->_attributesByCode['category.entity_id'] = [
-                'frontend_label' => 'Entity ID',
-                'frontend_input' => 'text',
-                'backend_type' => 'static',
-                'force_field' => $this->_entityIdField
-            ];
-        }
-    }
-
-
-    protected function _importValidateColumns()
-    {
-        foreach ($this->_fieldsIdx as $i => $f) {
-            if ($f === false) {
-                continue;
-            }
-            if (!isset($this->_attributesByCode[$f])) {
-                $this->_profile->addValue('num_warnings');
-                $this->_profile->getLogger()->setLine(2)->setColumn($i + 1)
-                    ->warning(__('Unknown field, the column will be ignored: %1', htmlentities($f)));
-            }
-        }
-    }
-
-
-    protected function _prepareCategories()
-    {
-        AbstractProduct::validateLicense('Unirgy_RapidFlowPro');
-
-        $storeId = $this->_profile->getStoreId();
-        $suffix = $this->_getPathSuffix($storeId);
-        $suffixLen = strlen($suffix);
-
-        $this->_upPrependRoot = $this->_profile->getData('options/import/urlpath_prepend_root');
-
-        $categoryTable = $this->_t(self::TABLE_CATALOG_CATEGORY_ENTITY);
-
-        // load categories for the store specified in profile
-        $eav = $this->_eavModelConfig;
-        $rootCatId = $this->_getRootCatId();
-        $rootPath = $rootCatId ? '1/' . $rootCatId : '1';
-
-        $entityId = $this->_entityIdField;
-        if ($this->_upPrependRoot) {
-            $nameAttrId = $this->_attr('name', 'attribute_id');
-            $rootCatPathsSel = $this->_read->select()
-                ->from(['w' => $this->_t(self::TABLE_STORE_WEBSITE)], [])
-                ->join(['g' => $this->_t(self::TABLE_STORE_GROUP)], 'g.group_id=w.default_group_id', [])
-                ->join(['e' => $categoryTable], "e.entity_id=g.root_category_id", ["concat('1/',e.entity_id)"])
-                ->join(['name' => $categoryTable . '_varchar'],
-                       "name.{$entityId}=e.{$entityId} and name.attribute_id={$nameAttrId} and name.value<>'' and name.value is not null and name.store_id=0",
-                       ['value'])
-                ->group("e.entity_id");
-            if ($storeId) {
-                $rootCatPathsSel->where("e.entity_id=?", $rootCatId);
-            }
-            $this->_rootCatPaths = $this->_read->fetchPairs($rootCatPathsSel);
-        }
-
-        // find all categories for this store
-        $_rcPaths = [];
-        if ($this->_upPrependRoot && !empty($this->_rootCatPaths)) {
-            foreach ($this->_rootCatPaths as $_rcPath => $_rcName) {
-                $_rcPaths[] = $this->_read->quoteInto('path=?', $_rcPath);
-                $_rcPaths[] = $this->_read->quoteInto('path like ?', $_rcPath . '/%');
-            }
-        } else {
-            $_rcPaths[] = $this->_read->quoteInto('path=?', $rootPath);
-            $_rcPaths[] = $this->_read->quoteInto('path like ?', $rootPath . '/%');
-        }
-//        $sql = "SELECT {$entityId}, path, children_count FROM {$categoryTable}
-//                WHERE {$entityId}=1 OR " . implode(' OR ', $_rcPaths);
-        $cols = [$entityId, 'path', 'children_count'];
-        if ($this->_rapidFlowHelper->hasMageFeature(static::ROW_ID)) {
-            $cols[] = 'entity_id';
-        }
-        $sql = $this->_write->select()->from($categoryTable, $cols)
-            ->where($entityId . '=1 OR ' . implode(' OR ', $_rcPaths));
-
-        if ($this->currentVersion && $this->currentVersion->getId()) {
-            $sql->setPart('disable_staging_preview', true);
-            $sql->where($categoryTable . '.created_in <= ?', $this->currentVersion->getId());
-            $sql->where($categoryTable . '.updated_in > ?', $this->currentVersion->getId());
-        }
-        $rows = $this->_read->fetchAll($sql);
-
-        if ($rows) {
-            $this->_categories = [];
-            $row2Entity = [];
-            $entity2Row = [];
-            // create associated array
-            foreach ($rows as $r) {
-                $this->_categories[$r[$entityId]] = $r;
-                $this->_categoriesBySeqId[$r['entity_id']] = $r;
-                $row2Entity[$r[$entityId]] = $r['entity_id'];
-                $entity2Row[$r['entity_id']] = $r[$entityId];
-            }
-            $this->_catEntity2Row = $entity2Row;
-            $this->_catRow2Entity = $row2Entity;
-
-            // fetch names and url_paths for loaded categories
-            // start select
-            $rows = $this->getUrlPaths($storeId, $categoryTable);
-
-            foreach ($rows as $r) {
-                // load names for specific store OR default
-                if (empty($this->_categories[$r[$entityId]][$r['attribute_code']])) {
-                    $this->_categories[$r[$entityId]][$r['attribute_code']] = $r['value'];
-                    $this->_categoriesBySeqId[$r['entity_id']][$r['attribute_code']] = $r['value'];
-                }
-                if (empty($this->_categories[$r[$entityId]]['url_key']) && isset($r['url_key'])) {
-                    $this->_categories[$r[$entityId]]['url_key'] = $r['url_key'];
-                    $this->_categoriesBySeqId[$r['entity_id']]['url_key'] = $r['url_key'];
-                }
-            }
-
-            // generate breadcrumbs for loaded categories
-
-            foreach ($this->_categories as $id => &$c) {
-                $urlPath = !empty($c['url_path']) ? $c['url_path'] : $this->catBuildPath($c);
-                $c['url_path'] = $this->_upPrependRoot($c, $urlPath);
-                if (empty($c['url_path'])) {
-                    $this->_childrenCount[$id] = $c['children_count'];
-                    continue;
-                }
-                $this->_urlPaths[$c['url_path']] = $id;
-                $this->_childrenCount[$c['url_path']] = $c['children_count'];
-                if ($suffix) {
-                    $additionalKey = substr($c['url_path'], -$suffixLen) === $suffix
-                        ? substr($c['url_path'], 0, strlen($c['url_path']) - $suffixLen)
-                        : $c['url_path'] . $suffix;
-                    $this->_urlPaths[$additionalKey] = $id;
-                    $this->_childrenCount[$additionalKey] = $c['children_count'];
-                }
-            }
-            unset($c);
-        }
-    }
-
-
-    protected function _getPathSuffix($storeId)
-    {
-        $suffix = $this->_scopeConfig->getValue('catalog/seo/category_url_suffix', ScopeInterface::SCOPE_STORE, $storeId);
-        if (strpos($suffix, '.') !== 0) {
-            $suffix = '.' . $suffix;
-            return $suffix;
-        }
-
-        return $suffix;
-    }
-
-
-    protected function getUrlPaths($storeId, $table)
-    {
-        $rows = [];
-        $entityId = $this->_entityIdField;
-
-        foreach (['url_path', 'url_key'] as $field) {
-            $select = $this->_read->select();
-
-            $cols = [$entityId];
-            if ($field === 'url_path') {
-                $cols[] = 'value';
-            } else {
-                $cols[$field] = 'value';
-            }
-            $select->from(['v' => "{$table}_varchar"], $cols)
-                ->joinLeft(['a' => $this->_t(self::TABLE_EAV_ATTRIBUTE)], 'a.attribute_id=v.attribute_id', 'attribute_code')
-                ->where('v.store_id in (?)', [0, $storeId])
-                ->where("v.{$entityId} in (?)", array_keys($this->_categories))
-                ->where('a.entity_type_id=?', $this->_entityTypeId)
-                ->where('a.attribute_code=?', $field)
-                ->order('v.store_id asc');
-
-            $entCols = ['path'];
-            if ($this->_rapidFlowHelper->hasMageFeature(self::ROW_ID)) {
-                $entCols[] = 'entity_id';
-            }
-            $select->join(['e' => $table], 'v.row_id=e.row_id', $entCols);
-
-            foreach ($this->_read->fetchAll($select) as $r) {
-                if (isset($rows[$r[$entityId]])) {
-                    $rows[$r[$entityId]] = array_merge($rows[$r[$entityId]], $r);
-                } else {
-                    $rows[$r[$entityId]] = $r;
-                }
-                $rows[$r[$entityId]]['attribute_code'] = 'url_path';
-                if (!isset($rows[$r[$entityId]]['value'])) {
-                    $rows[$r[$entityId]]['value'] = null;
-                }
-                if ($this->_upPrependRoot && !empty($this->_rootCatPaths)) {
-                    foreach ($this->_rootCatPaths as $_rcPath => $_rcName) {
-                        if ($r['path'] == $_rcPath) {
-                            $rows[$r[$entityId]]['value'] = $_rcName;
-                        }
-                    }
-                }
-            }
-        }
-        return $rows;
-    }
-
-
-    protected function _upPrependRoot($row, $value)
-    {
-        if ($this->_upPrependRoot) {
-            $_rootCat = explode('/', $row['path'], 3);
-            $_rootCatCnt = count($_rootCat);
-            unset($_rootCat[2]);
-            $_rootCat = implode('/', $_rootCat);
-            if (isset($this->_rootCatPaths[$_rootCat])) {
-                if (empty($value) || $_rootCatCnt<3) {
-                    $value = $this->_rootCatPaths[$_rootCat];
-                } else {
-                    $value = $this->_rootCatPaths[$_rootCat] . '/' . $value;
-                }
-            }
-        }
-        return $value;
-    }
-
-
-    protected function _importFetchNewData()
-    {
-        $defaultSeparator = $this->_profile->getData('options/csv/multivalue_separator');
-        if (!$defaultSeparator) {
-            $defaultSeparator = ';';
-        }
-
-        $this->_newData = [];
-
-        // $i1 should be preserved during the loop
-        for ($i1 = 0; $i1 < $this->_pageRowCount; $i1++) {
-            $error = false;
-            $row = $this->_profile->ioRead();
-            if (!$row) {
-                // last row
-                $this->_isLastPage = true;
-                return true;
-            }
-            $empty = true;
-            foreach ($row as $v) {
-                if (trim($v) !== '') {
-                    $empty = false;
-                    break;
-                }
-            }
-            if ($empty) {
-                $this->_profile->addValue('rows_empty');
-                continue;
-            }
-            $this->_profile->addValue('rows_processed');
-            $this->_profile->getLogger()->setLine($this->_startLine + $i1);
-            if (empty($row[$this->_pathIdx]) || !empty($this->_newData[$row[$this->_pathIdx]])) {
-                $this->_profile->addValue('rows_errors')->addValue('num_errors');
-                $this->_profile->getLogger()->setColumn($this->_pathIdx + 1)
-                    ->error(empty($row[$this->_pathIdx]) ? __('Empty URL Path') : __('Duplicate URL Path'));
-                continue;
-            }
-            $urlPath = trim($row[$this->_pathIdx]);
-            $this->_pathLine[$urlPath] = $this->_startLine + $i1;
-            $this->_newData[$urlPath] = $this->_newDataTemplate;
-            $this->_defaultUsed[$urlPath] = $this->_newDataTemplate;
-
-            $error = false;
-            foreach ($row as $col => $v) {
-                if ($v !== '' && !isset($this->_fieldsIdx[$col])) {
-                    $this->_profile->addValue('num_warnings');
-                    $this->_profile->getLogger()->setColumn($col + 1)
-                        ->warning(__('Column is out of boundaries, ignored'));
-                    continue;
-                }
-                $k = $this->_fieldsIdx[$col];
-                if ($k === false || $k === 'const.value') {
-                    continue;
-                }
-                /*
-                if ($k=='url_path' && $this->_upPrependRoot) {
-                    $_up = explode('/', $v, 2);
-                    array_shift($_up);reset($_up);
-                    $v = current($_up);
-                }
-                */
-                $input = $this->_attr($k, 'frontend_input');
-                $multiselect = $input === 'multiselect';
-                $separator = trim(!empty($this->_fields[$k]['separator']) ? $this->_fields[$k]['separator'] : $defaultSeparator);
-                try {
-                    $v = $this->_convertEncoding($v);
-                } catch (Exception $e) {
-                    $this->_profile->addValue('num_warnings');
-                    $this->_profile->getLogger()->setColumn($col + 1)->warning($e);
-                    #error = true;
-                }
-                if ($v !== '') {
-                    // options and multiselect
-                    if ($input === 'select') {
-                        $v = trim($v);
-                    } elseif ($multiselect) {
-                        $values = explode($separator, $v);
-                        $v = [];
-                        foreach ($values as $v1) {
-                            $v[] = $v1;
-                        }
-                    }
-                }
-                if (!isset($this->_defaultUsed[$urlPath][$k]) || ($v !== '' && $v !== [])) {
-                    $this->_newData[$urlPath][$k] = $v;
-                    unset($this->_defaultUsed[$urlPath][$k]);
-                }
-            }
-            if ($error) {
-                unset($this->_newData[$urlPath]);
-            }
-        }
-        return false;
-    }
-
-
-    protected function _importFetchOldData()
-    {
-        $attributeFields = array_flip($this->_fieldAttributes);
-        $table = $this->_t(self::TABLE_CATALOG_CATEGORY_ENTITY);
-        $upAttrId = $this->_attr('url_key', 'attribute_id');
-        $entityId = $this->_entityIdField;
-        $storeId = $this->_profile->getStoreId();
-//        $noUrlPath = $this->_rapidFlowHelper->hasMageFeature('no_url_path');
-
-        $suffix = $this->_getPathSuffix($storeId);
-        $suffixLen = strlen($suffix);
-
-        $keys = array_keys($this->_newData);
-        if ($suffix) {
-            foreach (array_keys($this->_newData) as $key) {
-                $keys[] = substr($key, -$suffixLen) === $suffix ?
-                    substr($key, 0, strlen($key) - $suffixLen) :
-                    $key . $suffix;
-            }
-        }
-        $entityIds = [];
-        foreach ($keys as $key) {
-            if (isset($this->_urlPaths[$key])) {
-                $entityIds[] = $this->_urlPaths[$key];
-            }
-        }
-
-        $select = $this->_write->select()->from(['e' => $table]);
-
-        // retrieve product rows from database using url_paths from file
-        $select->joinLeft(['up' => $table . '_varchar'],
-                          "up.{$entityId}=e.{$entityId} and up.attribute_id={$upAttrId}",
-                          ['value_id', 'url_key' => 'value', 'store_id'])
-            //->where('up.value in (?)', $keys);
-            ->where("e.{$entityId} in (?)", $entityIds)
-            // when fetching categories data in beginning we filter it by store id
-            // we need to do the same here
-            ->where('up.store_id in (0, ?)', $storeId);
-//        }
-
-        $this->_attrJoined = array($upAttrId);
-        $categoryRows = $this->_write->fetchAll($select);
-//        $this->_profile->getLogger()->notice('Category old data SELECT: ' . (string)$select);
-//        $this->_profile->getLogger()->notice('Category old data rows: ' . print_r($categoryRows, 1));
-        unset($select);
-        //$this->_urlPaths = [];
-        $this->_entities = [];
-        foreach ($categoryRows as $r) {
-            $sId = $r['store_id'];
-            $r1 = [];
-            foreach ($r as $k => $v) {
-                if ($k === 'value_id') {
-                    continue;
-                }
-                if (!empty($attributeFields[$k])) {
-                    $r1[$attributeFields[$k]] = $v;
-                } else {
-                    $r1[$k] = $v;
-                }
-            }
-//            $r1['url_path'] = $this->_upPrependRoot($r1, $r1['url_path']);
-            $this->_attrValueIds[$r[$entityId]][$sId]['url_key'] = $r['value_id'];
-            $this->_entities[$r[$entityId]][$sId] = $r1;
-        }
-        $this->_entityIds = array_keys($this->_entities);
-    }
-
-    protected function _importResetPageData()
-    {
-        $this->_isLastPage = false;
-        $this->_entities = [];
-        $this->_newData = [];
-        $this->_defaultUsed = [];
-        $this->_valid = [];
-        $this->_pathLine = [];
-        $this->_entityIdsUpdated = [];
-        $this->_attrValueIds = [];
-        $this->_attrValuesFetched = [];
-        $this->_insertEntity = [];
-        $this->_updateEntity = [];
-        $this->_changeAttr = [];
-        $this->_insertAttr = []; // type/#=>row
-        $this->_updateAttr = []; // type/vId=>value
-        $this->_deleteAttr = []; // type/#=>vId
-        $this->_changeChildrenCount = [];
-    }
-
-    protected function _importProcessNewData()
-    {
-        foreach ($this->_newData as $urlPath => &$p) {
-            // generate url_key if not provided
-            if (empty($this->_urlPaths[$urlPath])) {
-                if (!empty($p['url_key'])) {
-                    $urlKey = $p['url_key'];
-                } else {
-                    $urlKey = basename($urlPath, $this->_getPathSuffix($this->_storeId));
-                }
-                $p['url_key'] = $this->_rapidFlowHelper->formatUrlKey($urlKey);
-            }
-
-            // do not overwrite attributes with default values for existing categories
-            if (!empty($this->_urlPaths[$urlPath])) {
-                foreach ($this->_defaultUsed[$urlPath] as $k => $v) {
-                    unset($p[$k]);
-                }
-            }
-        }
-        unset($p);
-    }
-
-
-    protected function _importValidateNewData()
-    {
-        $logger = $this->_profile->getLogger();
-        $autoCreateOptions = $this->_profile->getData('options/import/create_options');
-        $actions = $this->_profile->getData('options/import/actions');
-        $allowSelectIds = $this->_profile->getData('options/import/select_ids');
-
-        // find changed data
-        foreach ($this->_newData as $urlPath => $p) {
-            $logger->setLine($this->_pathLine[$urlPath]);
-            // check if the product is new
-            $isNew = empty($this->_urlPaths[$urlPath]);
-
-            if (($isNew && $actions === 'update') || (!$isNew && $actions === 'create')) {
-                $this->_profile->addValue('rows_nochange');
-                $this->_valid[$urlPath] = false;
-                continue;
-            }
-
-            // validate required attributes
-            $this->_valid[$urlPath] = true;
-
-            // check missing required columns
-            foreach ($this->_attributesByCode as $k => $attr) {
-                if (isset($p[$k]) || empty($attr['is_required']) || !$isNew) {
-                    continue;
-                }
-                $this->_profile->addValue('num_errors');
-                $logger->setColumn(1);
-                $logger->error(__("Missing required value for '%1'", $k));
-                $this->_valid[$urlPath] = false;
-            }
-
-            if ($isNew) {
-                if (strpos($urlPath, '/') === false) {
-                    $this->_parentPath[$urlPath] = '';
-                    $this->_urlPaths[$urlPath] = true;
-                } else {
-                    $parentPath = preg_replace('#/[^/]+$#', '', $urlPath);
-                    $parentPathOrig = $parentPath;
-                    if (empty($this->_urlPaths[$parentPath])) {
-                        $parentPath = $this->_addPathSuffix($parentPath);
-                    }
-                    if (empty($this->_urlPaths[$parentPath])) {
-                        $this->_profile->addValue('num_errors');
-                        $logger->setColumn($this->_pathIdx + 1);
-                        $logger->error(__("Invalid parent path '%1'", $parentPathOrig));
-                        $this->_valid[$urlPath] = false;
-                    } else {
-                        $this->_parentPath[$urlPath] = $parentPath;
-                        $this->_urlPaths[$urlPath] = true;
-                    }
-                    while (preg_match('#/[^/]+$#', $parentPath)
-                        && ($parentPath = preg_replace('#/[^/]+$#', '', $parentPath))
-                    ) {
-                        $parentPathOrig = $parentPath;
-                        if (empty($this->_urlPaths[$parentPath])) {
-                            $parentPath = $this->_addPathSuffix($parentPath);
-                        }
-                        if (!empty($this->_urlPaths[$parentPath])) {
-                            if (empty($this->_parentPathExtra[$urlPath])) {
-                                $this->_parentPathExtra[$urlPath] = [];
-                            }
-                            $this->_parentPathExtra[$urlPath][] = $parentPath;
-                        }
-                    }
-                }
-            }
-
-            // walk the attributes
-            foreach ($p as $k => $newValue) {
-                $attr = $this->_attr($k);
-                $logger->setColumn(isset($this->_fieldsCodes[$k]) ? $this->_fieldsCodes[$k] + 1 : -1);
-
-                $empty = is_null($newValue) || $newValue === '' || $newValue === [];
-                $required = !empty($attr['is_required']);
-                $selectable = !empty($attr['frontend_input']) && ($attr['frontend_input'] === 'select' || $attr['frontend_input'] === 'multiselect');
-
-                if ($empty && $required) {
-                    $this->_profile->addValue('num_errors');
-                    $logger->error(__("Missing required value for '%1'", $k));
-                    $this->_valid[$urlPath] = false;
-                    continue;
-                }
-
-                if ($selectable && !$empty) {
-                    foreach ((array)$newValue as $i => $v) {
-                        $vLower = strtolower(trim($v));
-                        if (isset($this->_defaultUsed[$urlPath][$k])) {
-                            // default used, no mapping required
-                        } elseif (isset($attr['options_bytext'][$vLower])) {
-                            if (is_array($newValue)) {
-                                $this->_newData[$urlPath][$k][$i] = $attr['options_bytext'][$vLower];
-                            } else {
-                                $this->_newData[$urlPath][$k] = $attr['options_bytext'][$vLower];
-                            }
-                        } elseif ($allowSelectIds && isset($attr['options'][$v])) {
-                            // select id used, no mapping required
-                        } else {
-                            if ($autoCreateOptions && !empty($attr['attribute_id']) && (empty($attr['source_model'])
-                                    || $attr['source_model'] === 'Magento\Eav\Model\Entity\Attribute\Source\Table')) {
-                                $this->_importCreateAttributeOption($attr, $v);
-
-                                $this->_profile->addValue('num_warnings');
-                                $logger->warning(__("Created a new option '%1' for attribute '%2'", $v, $k));
-                            } else {
-#var_dump($attr); exit;
-                                $this->_profile->addValue('num_errors');
-                                $logger->error(__("Invalid option '%1'", $v));
-                                $this->_valid[$urlPath] = false;
-                            }
-                        }
-                    } // foreach ((array)$newValue as $v)
-                }
-            } // foreach ($p as $k=>$newValue)
-
-            if (!$this->_valid[$urlPath]) {
-                $this->_profile->addValue('rows_errors');
-            }
-        } // foreach ($this->_newData as $p)
-        unset($p);
-    }
-
-    protected function _addPathSuffix($path)
-    {
-        if (null === $this->_pathSuffix) {
-            $this->_pathSuffix = $this->_getPathSuffix($this->_storeId);
-        }
-        return trim($path, '/') . $this->_pathSuffix;
-    }
-
-    protected function _importCreateAttributeOption($attr, $name)
-    {
-        $aId = $attr['attribute_id'];
-        $name = trim($name);
-        if (!empty($this->_attributesById[$aId]['options_bytext'][strtolower($name)])) {
-            return;
-        }
-        if (!$this->_profile->getData('options/import/dryrun')) {
-
-            $this->_write->insert($this->_t(self::TABLE_EAV_ATTRIBUTE_OPTION), ['attribute_id' => $aId]);
-            $oId = $this->_write->lastInsertId();
-
-            $this->_write->insert($this->_t(self::TABLE_EAV_ATTRIBUTE_OPTION_VALUE),
-                                  ['option_id' => $oId, 'store_id' => 0, 'value' => $name]);
-        } else {
-            $oId = 0;
-            foreach ($this->_attributesByCode[$aId]['options'] as $k => $v) {
-                $oId = max($oId, $k);
-            }
-        }
-
-        $this->_attributesById[$aId]['options'][$oId] = $name;
-        $this->_attributesById[$aId]['options_bytext'][strtolower($name)] = $oId;
-
-    }
-
-    protected function _importProcessDataDiff()
-    {
-        //        $oldValues = [];
-
-        $profile = $this->_profile;
-        $forceUrlRewritesRefresh = $profile->getData('options/import/force_urlrewrite_refresh');
-        // find changed data
-        foreach ($this->_newData as $urlPath => $p) {
-
-            if (!$this->_valid[$urlPath]) {
-                continue;
-            }
-
-            $this->_profile->getLogger()->setLine($this->_pathLine[$urlPath]);
-
-            // check if the category is new
-            $isNew = empty($this->_urlPaths[$urlPath]) || $this->_urlPaths[$urlPath] === true;
-
-            $isUpdated = false;
-
-            // create new category
-            if ($isNew) {
-                $this->_insertEntity[$urlPath] = [
-                    'attribute_set_id' => $this->_attributeSetId,
-                    'created_at' => $this->_rapidFlowHelper->now(),
-                    'updated_at' => $this->_rapidFlowHelper->now(),
-                    'position' => isset($p['position']) ? $p['position'] : 0,
-                ];
-                if($this->_rapidFlowHelper->hasMageFeature(self::ROW_ID)){
-                    $this->_insertEntity[$urlPath]['entity_id'] = $this->_getNextCategorySequence((bool)$this->_profile->getData('options/import/dryrun'));
-                    $this->_insertEntity[$urlPath]['created_in'] = 1;
-                    $this->_insertEntity[$urlPath]['updated_in'] = \Magento\Staging\Model\VersionManager::MAX_VERSION;
-                }
-                $cId = null;
-                $parentPath = $this->_parentPath[$urlPath];
-                $this->_changeChildrenCount[$urlPath] = 0;
-                if ($parentPath) {
-                    if (!isset($this->_changeChildrenCount[$parentPath])) {
-                        $count = !empty($this->_childrenCount[$parentPath]) ? $this->_childrenCount[$parentPath] : 0;
-                        $this->_changeChildrenCount[$parentPath] = $count + 1;
-                    } else {
-                        $this->_changeChildrenCount[$parentPath]++;
-                    }
-                }
-                if (!empty($this->_parentPathExtra[$urlPath])) {
-                    foreach ($this->_parentPathExtra[$urlPath] as $parentPath) {
-                        if (!isset($this->_changeChildrenCount[$parentPath])) {
-                            $count = !empty($this->_childrenCount[$parentPath]) ? $this->_childrenCount[$parentPath] : 0;
-                            $this->_changeChildrenCount[$parentPath] = $count + 1;
-                        } else {
-                            $this->_changeChildrenCount[$parentPath]++;
-                        }
-                    }
-                }
-            } else {
-                $cId = $this->_urlPaths[$urlPath];
-                // $urlPath = $this->_entities[$cId][0]['url_path'];
-                // $this->_psrLogLoggerInterface->log("cId: ".$cId, null, 'rf.log', true);
-                // $this->_psrLogLoggerInterface->log("urlPath: ".$urlPath, null, 'rf.log', true);
-                if (isset($p['position']) && $p['position'] !== '' && $p['position'] != $this->_entities[$cId][0]['position']) {
-                    $this->_updateEntity[$cId]['position'] = $p['position'];
-                    $isUpdated = true;
-                }
-            }
-
-            // walk the attributes
-            foreach ($p as $k => $newValue) {
-                $this->_profile->getLogger()->setColumn(isset($this->_fieldsCodes[$k]) ? $this->_fieldsCodes[$k] + 1 : -1);
-
-                $oldValue = !$cId ? null : (
-                    isset($this->_entities[$cId][$this->_storeId][$k]) ? $this->_entities[$cId][$this->_storeId][$k] : (
-                        isset($this->_entities[$cId][0][$k]) ? $this->_entities[$cId][0][$k] : null
-                    )
-                );
-                $attr = $this->_attr($k);
-
-                // convert options text to values
-                /*
-                if (!empty($attr['frontend_input'])) {
-                    switch ($attr['frontend_input']) {
-                    case 'select':
-                        $lower = strtolower($newValue);
-                        if ($newValue=='' && !isset($attr['options_bytext'][$lower])) {
-                            $newValue = null;
-                        } elseif (!is_null($newValue)) {
-                            $newValue = $attr['options_bytext'][$lower];
-                        }
-                        break;
-
-                    case 'multiselect':
-                        $v1 = [];
-                        foreach ((array)$newValue as $k1=>$v) {
-                            $v1[] = $attr['options_bytext'][strtolower($v)];
-                        }
-                        $newValue = $v1;
-                        break;
-                    }
-                }
-                */
-
-                // some validation happens here as well
-                $this->_cleanupValues($attr, $oldValue, $newValue);
-
-                if (empty($attr['attribute_id']) || empty($attr['backend_type']) || $attr['backend_type'] == 'static') {
-                    continue;
-                }
-                // existing attribute values
-                $isValueChanged = false;
-                if (is_array($newValue)) {
-                    $isValueChanged = array_diff($newValue, $oldValue) || array_diff($oldValue, $newValue);
-                } else {
-                    $isValueChanged = $newValue !== $oldValue;
-                }
-                // add updated attribute values
-                $empty = $newValue === '' || null === $newValue || $newValue === [];
-                if (($isNew && !$empty) || $isValueChanged) {
-
-#$profile->getLogger()->log('DIFF', $p['url_path'].'/'.$k.': '.print_r($oldValue,1).';'.print_r($newValue,1));
-//                    $oldValues[$urlPath][$k] = $oldValue;
-                    if ($k === 'url_path' && $this->_upPrependRoot) { // strip prepended root category from path
-                        $_up = explode('/', $newValue, 2);
-                        array_shift($_up);
-                        reset($_up);
-                        $newValue = current($_up);
-                    }
-
-                    if($k === 'url_key' || $k === 'is_anchor'){ // in these cases, url rewrites need to be updated
-                        $this->_urlsToUpdate[$urlPath] = true;
-                    }
-                    $this->_changeAttr[$urlPath][$k] = $newValue;
-                    if (!$isNew) {
-                        $this->_profile->getLogger()->setColumn(isset($this->_fieldsCodes[$k]) ? $this->_fieldsCodes[$k] + 1 : -1)
-                            ->success(null, null, $newValue, $oldValue);
-                    }
-                    $isUpdated = true;
-                }
-            } // foreach ($p as $k=>$newValue)
-            if ($forceUrlRewritesRefresh) {
-                $this->_urlsToUpdate[$urlPath] = true;
-            }
-
-            if ($isUpdated) {
-                $this->_profile->addValue('rows_success');
-                /*
-                $logger->setColumn(0);
-                if (!empty($oldValues[$p['sku']])) $logger->success('OLD: '.print_r($oldValues[$p['sku']],1));
-                if (!empty($this->_changeStock[$p['sku']])) $logger->success('STOCK: '.print_r($this->_changeStock[$p['sku']],1));
-                if (!empty($this->_changeWebsite[$p['sku']])) $logger->success('WEBSITE: '.print_r($this->_changeWebsite[$p['sku']],1));
-                if (!empty($this->_changeAttr[$p['sku']])) $logger->success('ATTR: '.print_r($this->_changeAttr[$p['sku']],1));
-                */
-                if (!$isNew) {
-                    $this->_updateEntity[$cId]['updated_at'] = HelperData::now();
-                }
-            } else {
-                $this->_profile->addValue('rows_nochange');
-            }
-        } // foreach ($this->_newData as $p)
-        /*
-        echo '<table><tr><td>';
-        var_dump($oldValues);
-        echo '</td><td>';
-        var_dump($this->_changeAttr);
-        echo '</td></tr></table>';
-        exit;
-        */
-    }
-
-    protected function _importGenerateAttributeValues()
-    {
-        $sameAsDefault = $this->_profile->getData('options/import/store_value_same_as_default');
-
-        // load old values for changed website scope attributes for comparison
-        if (!empty($this->_websiteScope)) {
-            $websiteProductIds = array_keys($this->_websiteScopeProducts);
-            $websiteAttrIds = array_keys($this->_websiteScopeAttributes);
-            foreach ($this->_websiteStores[$this->_storeId] as $sId) {
-                $this->_fetchAttributeValues($sId, false, $websiteProductIds, $websiteAttrIds);
-            }
-        }
-
-        // generate attribute value actions
-        foreach ($this->_changeAttr as $urlPath => $p) {
-            //$logger->setLine($this->_pathLine[$urlPath]);
-            $cId = $this->_urlPaths[$urlPath];
-            foreach ($p as $k => $v) {
-                $attr = $this->_attr($k);
-                if (!$attr) {
-                    continue;
-                }
-                $aId = $attr['attribute_id'];
-                $aType = $this->getAttrType($attr, 'catalog/category');
-                // multiselect values
-                if (is_array($v)) {
-                    $v = join(',', $v);
-                }
-                // find which actions need to be performed
-                $values = [];
-                if (!empty($this->_entities[$cId])) {
-                    foreach ($this->_entities[$cId] as $sId => $sValues) {
-                        if (isset($sValues[$k])) {
-                            $values[$sId] = $sValues[$k];
-                        }
-                    }
-                }
-                $sActions = [];
-                if (null !== $v) { // new value exists
-                    // no default value at all, save only default value
-                    if (!isset($this->_attrValueIds[$cId][0][$k])) {
-                        $sActions = [0 => 'I'];
-                    } // updating default and it's set
-                    elseif (!$this->_storeId) {
-                        $sActions = [0 => 'U'];
-                    } // attribute is global
-                    elseif ($attr['is_global'] == 1) {
-                        $sActions = [0 => 'U'];
-                    } // updating not defaults, default value is set, check store values
-                    else {
-                        $sIds = [$this->_storeId];
-                        foreach ($sIds as $sId) {
-                            if (isset($this->_attrValueIds[$cId][$sId][$k])) {
-                                if (isset($values[0]) && $v == $values[0] && $sameAsDefault === 'default') {
-                                    $sActions[$sId] = 'D';
-                                } else {
-                                    $sActions[$sId] = 'U';
-                                }
-                            } else {
-                                $sActions[$sId] = 'I';
-                            }
-                        }
-                    }
-                } else { // new value is empty
-                    // default value exists and updating defaults - delete default
-                    if (isset($this->_attrValueIds[$cId][0][$k]) && !$this->_storeId) {
-                        $sActions = [0 => 'D'];
-                    } // attribute is global
-                    elseif ($attr['is_global'] == 1) {
-                        $sActions = [0 => 'D'];
-                    } // updating not defaults, delete store values
-                    elseif ($this->_storeId && isset($this->_attrValueIds[$cId][$this->_storeId][$k])) {
-                        $sActions[$this->_storeId] = 'D';
-                    }
-                }
-
-                // generate attribute value inserts/updates/deletes
-                foreach ($sActions as $sId => $action) {
-                    switch ($action) {
-                        case 'I':
-                            $a = [
-                                'attribute_id' => $aId,
-                                'store_id' => $sId,
-                                $this->_entityIdField => $cId,
-                                'value' => $v,
-                            ];
-                            if ($cId === true) {
-                                $a['url_path'] = $urlPath;
-                            }
-                            $this->_insertAttr[$aType][] = $a;
-                            break;
-
-                        case 'U':
-                            $this->_updateAttr[$aType][$this->_attrValueIds[$cId][$sId][$k]] = $v;
-                            break;
-
-                        case 'D':
-                            $this->_deleteAttr[$aType][] = $this->_attrValueIds[$cId][$sId][$k];
-                            break;
-                    }
-                }
-            }
-        }
-    }
-
-
-    protected function _fetchAttributeValues($storeId, $defaults = false, $entityIds = null, $limitAttrIds = null)
-    {
-        if (!empty($this->_attrValuesFetched[$storeId])) {
-            return;
-        }
-        // do not fetch attributes of existing products when only creating new products
-        if ($this->_profile->getData('options/import/actions') === 'create') {
-            return;
-        }
-        if (null === $entityIds) {
-            $entityIds = $this->_entityIds;
-        }
-        $table = $this->_t(self::TABLE_CATALOG_CATEGORY_ENTITY);
-
-        // retrieve attribute data by type (table)
-        foreach ($this->_attributesByType as $type => $attrs) {
-            // static attributes are already loaded with entity rows
-            if ($type === 'static') {
-                continue;
-            }
-            // no need to retrieve attributes used in filters
-            foreach ($this->_attrJoined as $id) {
-                unset($attrs[$id]);
-            }
-            if ($limitAttrIds && is_array($limitAttrIds)) {
-                $oldAttrs = $attrs;
-                foreach ($oldAttrs as $id => $a) {
-                    if (!in_array($id, $limitAttrIds)) {
-                        unset($attrs[$id]);
-                    }
-                }
-            }
-            $attrIds = array_keys($attrs);
-            // retrieve attribute data for this page
-            $entityId = $this->_entityIdField;
-            $select = $this->_read->select()->from($table . '_' . $type)
-                ->where("{$entityId} in (?)", $entityIds)// load values only for products in this page
-                ->where('attribute_id in (?)', $attrIds)// load only attributes stored in this table
-                ->where('store_id in (0, ?)', $storeId);
-            //->order('store_id', 'desc')) // first load store specific records
-            //$this->_psrLogLoggerInterface->log($select->assemble(), null, 'rf.log', true);
-            $rows = $this->_read->fetchAll($select); // load both default and store specific records
-            if (empty($rows)) {
-                $this->_logger->debug('rows empty: ' . __LINE__);
-                continue;
-            }
-            // retrieve store specific data AND default data
-            foreach ($rows as $r) {
-                $attrCode = $this->_attr($r['attribute_id'], 'attribute_code');
-                if ($attrCode === 'url_path') {
-                    $r['value'] = $this->_upPrependRoot($this->_entities[$r[$entityId]][0], $r['value']);
-                }
-                if (empty($this->_entities[$r[$entityId]][$r['store_id']][$attrCode])) {
-                    // text multiselect values separated by commas
-                    if ($this->_attr($r['attribute_id'], 'frontend_input') === 'multiselect') {
-                        if ($r['value'] === '' || null === $r['value']) {
-                            $r['value'] = [];
-                        } else {
-                            $r['value'] = explode(',', $r['value']);
-                        }
-                    }
-                    // if value was not set before, just set it as plain value
-                    $this->_entities[$r[$entityId]][$r['store_id']][$attrCode] = $r['value'];
-                } else {
-                    if (!is_array($this->_entities[$r[$entityId]][$r['store_id']][$attrCode])) {
-                        if ($r['value'] !== $this->_entities[$r[$entityId]][$r['store_id']][$attrCode]) {
-                            // if value was set already, it is a multiselect, convert to array
-                            $this->_entities[$r[$entityId]][$r['store_id']][$attrCode] = array(
-                                $this->_entities[$r[$entityId]][$r['store_id']][$attrCode],
-                                $r['value'],
-                            );
-                        }
-                    } else {
-                        if (!in_array($r['value'], $this->_entities[$r[$entityId]][$r['store_id']][$attrCode])) {
-                            // multiselect was already initialized, add to array
-                            $this->_entities[$r[$entityId]][$r['store_id']][$attrCode][] = $r['value'];
-                        }
-                    }
-                }
-                $this->_attrValueIds[$r[$entityId]][$r['store_id']][$attrCode] = $r['value_id'];
-            }
-        } // foreach ($this->_attributesByType as $type=>$attrs)
-
-        if ($defaults) {
-            $this->_attrValuesFetched[0] = true;
-        }
-        $this->_attrValuesFetched[$storeId] = true;
-    }
-
-
-    protected function _importSaveEntities()
-    {
-        $suffix = $this->_getPathSuffix($this->_storeId);
-        $suffixLen = strlen($suffix);
-        $hasRowId = $this->_rapidFlowHelper->hasMageFeature(self::ROW_ID);
-
-        $table = $this->_t(self::TABLE_CATALOG_CATEGORY_ENTITY);
-        // create new categories
-
-        foreach ($this->_changeChildrenCount as $urlPath => $count) {
-            if (strpos($urlPath, '/') === false) {
-                $_incVal = $count;
-                if (!empty($this->_childrenCount[$urlPath])) {
-                    $_incVal -= $this->_childrenCount[$urlPath];
-                } else {
-                    $_incVal++;
-                }
-                if (!empty($this->_rootCatId)) {
-                    if (!isset($this->_childrenCount[$this->_rootCatId])) {
-                        $this->_childrenCount[$this->_rootCatId] = 0;
-                    }
-                    $this->_childrenCount[$this->_rootCatId] += $_incVal;
-                    $this->_updateEntity[$this->_rootCatId]['children_count'] = $this->_childrenCount[$this->_rootCatId];
-                }
-                if (!isset($this->_childrenCount[1])) {
-                    $this->_childrenCount[1] = 0;
-                }
-                $this->_childrenCount[1] += $_incVal;
-                $this->_updateEntity[1]['children_count'] = $this->_childrenCount[1];
-            }
-        }
-
-        foreach ($this->_insertEntity as $urlPath => $a) {
-            $this->_profile->getLogger()->setLine($this->_pathLine[$urlPath]);
-            /** @var false|string $parentPath */
-            $parentPath = !empty($this->_parentPath[$urlPath]) ? $this->_parentPath[$urlPath] : false;
-            if (!$parentPath) {
-                $a['parent_id'] = $this->_rootCatId;
-                $a['path'] = '1/' . $this->_rootCatId . '/';
-                $a['level'] = 2;
-            } elseif ($this->_urlPaths[$parentPath] === true) {
-                $this->_profile->getLogger()->setColumn($this->_pathIdx + 1)
-                    ->error(__("Parent category wasn't created due to error"));
-                $this->_profile->addValue('num_errors')->addValue('rows_errors');
-                continue;
-            } else {
-                $parentPathId = $this->_urlPaths[$parentPath];
-                if (isset($this->_categories[$parentPathId])) {
-                    $parentPathId = $this->_categories[$parentPathId]['entity_id'];
-                }
-                $a['parent_id'] = $parentPathId;
-                $a['path'] = $this->_categories[$this->_urlPaths[$parentPath]]['path'] . '/';
-                $a['level'] = count(explode('/', $a['path'])) - 1;
-            }
-            if (!empty($this->_changeChildrenCount[$urlPath])) {
-                $a['children_count'] = $this->_changeChildrenCount[$urlPath];
-                unset($this->_changeChildrenCount[$urlPath]);
-            } else {
-                $a['children_count'] = 0;
-            }
-            if($hasRowId){
-                $a['entity_id'] = isset($a['entity_id']) ? $a['entity_id'] : $this->_getNextCategorySequence((bool)$this->_profile->getData('options/import/dryrun'));
-                $a['created_in'] = 1;
-                $a['updated_in'] = VersionManager::MAX_VERSION;
-            }
-            $this->_write->insert($table, $a);
-            $cId = $this->_write->lastInsertId();
-            if (!$hasRowId) {
-                $a['entity_id'] = $cId;
-            }
-            $pathId = $hasRowId ? $a['entity_id'] : $cId;
-
-            $this->_updateEntity[$cId] = ['path' => $a['path'] . $pathId];
-            $newData = [
-                $this->_entityIdField => $cId,
-                'path' => $a['path'] . $pathId,
-                'url_path' => $urlPath,
-            ];
-            if ($hasRowId) {
-                $newData['entity_id'] = $a['entity_id'];
-            }
-            $this->_categories[$cId] = $newData;
-            $this->_categoriesBySeqId[$a['entity_id']] = $newData;
-            $this->_urlPaths[$urlPath] = $cId;
-
-            if ($suffix) {
-                $additionalKey = substr($urlPath, -$suffixLen) === $suffix
-                    ? substr($urlPath, 0, strlen($urlPath) - $suffixLen)
-                    : $urlPath . $suffix;
-                $this->_urlPaths[$additionalKey] = $cId;
-            }
-
-            $this->_childrenCount[$urlPath] = $a['children_count'];
-            if (!empty($additionalKey)) $this->_childrenCount[$additionalKey] = $a['children_count'];
-
-            $this->_entityIdsUpdated[$cId] = 1;
-            $this->_profile->getLogger()->setColumn(0)->success(null);
-        }
-
-        foreach ($this->_changeChildrenCount as $urlPath => $count) {
-            $this->_updateEntity[$this->_urlPaths[$urlPath]]['children_count'] = $count;
-            $this->_childrenCount[$urlPath] = $count;
-        }
-
-        // update existing entity rows
-        foreach ($this->_updateEntity as $cId => $a) {
-            $this->_write->update($table, $a, $this->_entityIdField . '=' . $cId);
-            $this->_entityIdsUpdated[$cId] = 1;
-        }
-    }
-
-
-    protected function _importSaveAttributeValues()
-    {
-        $table = $this->_t(self::TABLE_CATALOG_CATEGORY_ENTITY);
-        foreach ($this->_insertAttr as $type => $attrs) {
-            if ($type === 'static') {
-                continue;
-            }
-            $rows = [];
-            $entityId = $this->_entityIdField;
-            $sqlPrefix = "INSERT INTO `{$table}_{$type}` (`attribute_id`, `store_id`, `{$entityId}`, `value`) values ";
-
-            foreach ($attrs as $a) {
-                if (isset($a['url_path'])) {
-                    if ($this->_urlPaths[$a['url_path']] === true) {
-                        continue;
-                    }
-                    $a[$entityId] = $this->_urlPaths[$a['url_path']];
-                    unset($a['url_path']);
-                }
-                $sqlValue = "('{$a['attribute_id']}', '{$a['store_id']}', '{$a[$entityId]}', ?)";
-                $value = $type === 'varchar' ? substr($a['value'], 0, 255) : $a['value'];
-                $sql = $this->_write->quoteInto($sqlValue, $value);
-                if ($type === 'text' && strlen((string)$value) > 4000) {
-                    try {
-                        $this->_write->getConnection()->exec($sqlPrefix . $sql);
-                    } catch (Exception $e) {
-                        $this->_profile->getLogger()->error(__METHOD__ . ':' . __LINE__ . ':' . $e->getMessage());
-                        $this->_logger->error($sqlPrefix . $sql);
-                    }
-                } else {
-                    $rows[] = $sql;
-                }
-            }
-            #$chunks = array_chunk($rows, $this->_insertAttrChunkSize);
-            $chunks = array_chunk($rows, 100);
-            foreach ($chunks as $chunk) {
-                try {
-                    $this->_write->getConnection()->exec($sqlPrefix . join(',', $chunk));
-                } catch (Exception $e) {
-                    $this->_profile->getLogger()->error(__METHOD__ . ':' . __LINE__ . ':' . $e->getMessage());
-                    $this->_logger->error($sqlPrefix . join(',', $chunk));
-                    $this->_logger->error(print_r($attrs, 1));
-                }
-            }
-        }
-        foreach ($this->_updateAttr as $type => $attrs) {
-            if ($type === 'static') {
-                continue;
-            }
-            foreach ($attrs as $k => $v) {
-                try {
-                    $this->_write->update($table . '_' . $type, array(
-                        'value' => $type === 'varchar' ? substr($v, 0, 255) : $v,
-                    ), 'value_id=' . $k);
-                } catch (Exception $e) {
-                    $this->_profile->getLogger()->error(__METHOD__ . ':' . __LINE__ . ':' . $e->getMessage());
-                }
-            }
-        }
-        foreach ($this->_deleteAttr as $type => $vIds) {
-            if ($type === 'static') {
-                continue;
-            }
-            try {
-                $this->_write->delete($table . '_' . $type, 'value_id in (' . join(',', $vIds) . ')');
-            } catch (Exception $e) {
-                $this->_profile->getLogger()->error(__METHOD__ . ':' . __LINE__ . ':' . $e->getMessage());
-            }
-        }
-    }
-
-
-    protected function _getAttributeSetFields($attrSet)
-    {
-        if ($attrSet && !is_numeric($attrSet)) {
-            $attrSet = $this->_attr('product.attribute_set', 'options_bytext', strtolower($attrSet));
-        }
-        if (!$attrSet) {
-            throw new LocalizedException(__('Invalid attribute set'));
-        }
-
-        if (empty($this->_attributeSetFields[$attrSet])) {
-//            $select = "SELECT a.attribute_code, a.attribute_id
-//                FROM {$this->_t(self::TABLE_EAV_ENTITY_ATTRIBUTE)} ea
-//                INNER JOIN {$this->_t(self::TABLE_EAV_ATTRIBUTE)} a ON a.attribute_id=ea.attribute_id
-//                WHERE attribute_set_id={$attrSet}";
-            $select = $this->_write->select()->from(['ea' => $this->_t(self::TABLE_EAV_ENTITY_ATTRIBUTE)], [])
-                ->join(['a'=> $this->_t(self::TABLE_EAV_ATTRIBUTE)], 'a.attribute_id=ea.attribute_id', ['attribute_code', 'attribute_id'])
-                ->where('attribute_set_id=?', $attrSet);
-            $this->_attributeSetFields[$attrSet] = $this->_write->fetchPairs($select);
-        }
-        return $this->_attributeSetFields[$attrSet];
-    }
-
-    protected function _cleanupValues($attr, &$oldValue, &$newValue)
-    {
-        // trying to work around PHP's weakly typed mess...
-        if (!empty($attr['frontend_input'])) {
-            switch ($attr['frontend_input']) {
-                case 'media_image':
-                    if (null !== $oldValue) {
-                        if ($oldValue === 'no_selection') {
-                            $oldValue = '';
-                        }
-                    }
-                    break;
-
-                case 'multiselect':
-                    if (null === $oldValue) {
-                        $oldValue = [];
-                    }
-                    if ($newValue === '') {
-                        $newValue = [];
-                    }
-                    break;
-            }
-        }
-        if (!empty($attr['backend_type'])) {
-            switch ($attr['backend_type']) {
-                case 'int':
-                    if (null !== $newValue && !is_array($newValue)) {
-                        if ($newValue === '') {
-                            $newValue = null;
-                        } else {
-                            $newValue = $this->_locale->getNumber($newValue);
-                            if ($newValue != (int)$newValue) {
-                                $this->_profile->addValue('num_errors');
-                                $this->_profile->getLogger()->error(__("Invalid int value"));
-                            } else {
-                                $newValue = (int)$newValue;
-                            }
-                        }
-                    }
-                    if (null !== $oldValue && !is_array($oldValue)) {
-                        if ($oldValue === '') {
-                            $oldValue = null;
-                        } else {
-                            $oldValue = (int)$oldValue;
-                        }
-                    }
-                    break;
-
-                case 'decimal':
-                    if (null !== $newValue) {
-                        if ($newValue === '') {
-                            $newValue = null;
-                        } else {
-                            $newValue = $this->_locale->getNumber($newValue);
-                            if (!is_numeric($newValue)) {
-                                $this->_profile->addValue('num_errors');
-                                $this->_profile->getLogger()->error(__('Invalid decimal value'));
-                            } else {
-                                $newValue *= 1.0;
-                            }
-                        }
-                    }
-                    if (null !== $oldValue) {
-                        if ($oldValue === '') {
-                            $oldValue = null;
-                        } else {
-                            $oldValue *= 1.0;
-                        }
-                    }
-                    break;
-
-                case 'datetime':
-                    if (null !== $newValue) {
-                        if ($newValue === '') {
-                            $newValue = null;
-                        } else {
-                            static $_dp;
-                            if (null === $_dp) {
-                                $_dp = $this->_scopeConfig->getValue('urapidflow/import_options/date_processor');
-                                if ($_dp === 'date_parse_from_format' && !version_compare(phpversion(), '5.3.0', '>=')) {
-                                    $_dp = 'strtotime';
-                                }
-                            }
-                            static $_attrFormat = [];
-                            $_attrCode = $attr['attribute_code'];
-                            if (!isset($_attrFormat[$_attrCode])) {
-                                if (isset($this->_fields[$_attrCode]['format'])) {
-                                    $_attrFormat[$_attrCode] = $this->_fields[$_attrCode]['format'];
-                                } else {
-                                    $_attrFormat[$_attrCode] = $this->_profile->getDefaultDatetimeFormat();
-                                }
-                                if ($_dp === 'zend_date') {
-                                    $_attrFormat[$_attrCode] = \Zend_Locale_Format::convertPhpToIsoFormat($_attrFormat[$_attrCode]);
-                                }
-                            }
-                            switch ($_dp) {
-                                case 'zend_date':
-                                    /** @var \Zend_Date $_zendDate */
-                                    static $_zendDate;
-                                    if (null === $_zendDate) {
-                                        $_zendDate = new \Zend_Date($newValue, $_attrFormat[$_attrCode],
-                                                                    $this->_profile->getProfileLocale());
-                                    } else {
-                                        $_zendDate->set($newValue, $_attrFormat[$_attrCode]);
-                                    }
-                                    $newValue = $_zendDate->toString(DateTime::DATETIME_INTERNAL_FORMAT);
-                                    break;
-                                case 'date_parse_from_format':
-                                    $_phpDatetime = \DateTime::createFromFormat($_attrFormat[$_attrCode], $newValue);
-                                    $newValue = $_phpDatetime->format('Y-m-d H:i:s');
-                                    break;
-                                default:
-                                    $newValue = date('Y-m-d H:i:s', strtotime($newValue));
-                                    break;
-                            }
-                            if (!$newValue) {
-                                $this->_profile->addValue('num_errors');
-                                $this->_profile->getLogger()->error(__('Invalid datetime value'));
-                            }
-                        }
-                    }
-                    if (null !== $oldValue) {
-                        if ($oldValue === '') {
-                            $oldValue = null;
-                        }
-                    }
-                    break;
-
-                case 'varchar':
-                case 'text':
-                    if ($oldValue === '' && null === $newValue) {
-                        $newValue = '';
-                    } elseif (null === $oldValue && $newValue === '') {
-                        $newValue = null;
-                    } elseif (is_numeric($newValue)) {
-                        $newValue = (string)$newValue;
-                    }
-                    break;
-            }
-        }
-    }
-
-    protected function _updateUrlRewrites()
-    {
-        if(!$this->_urlsToUpdate){
-            return;
-        }
-        foreach ($this->_urlsToUpdate as $url=>$dummy) {
-            if ($this->_urlPaths[$url] === true) {
-                continue;
-            }
-            $eId = $this->_urlPaths[$url];
-            $this->_rapidFlowHelper->addCategoryIdForRewriteUpdate($eId, $this->catSeqIdByRowId($eId));
-        }
-        $this->_urlsToUpdate = [];// reset after processing
-    }
-    public function catRowIdBySeqId($seqId)
-    {
-        return @$this->_catEntity2Row[$seqId];
-    }
-    public function catSeqIdByRowId($rowId)
-    {
-        return @$this->_catRow2Entity[$rowId];
-    }
-}
+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

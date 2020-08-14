@@ -39,6 +39,7 @@
 
 namespace Unirgy\RapidFlow\Model\ResourceModel\Catalog;
 
+use Magento\Bundle\Model\Product\Price as BundlePrice;
 use Magento\Catalog\Model\Product\Image;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Db\Select;
@@ -157,6 +158,8 @@ class Product
         $imagesFromDir = $mediaDir . DIRECTORY_SEPARATOR . 'catalog' . DIRECTORY_SEPARATOR . 'product';
         $imagesToDir = $profile->getImagesBaseDir();
 
+        $websitesFilter = $profile->getData('options/export/websites_filter');
+
         $this->_profile->activity(__('Loading products'));
         // main product table
         $table = $this->_t('catalog_product_entity');
@@ -221,7 +224,12 @@ class Product
         }
 
         if ($skipOutOfStock) {
-            $select->where("entity_id IN (SELECT product_id FROM {$this->_t('cataloginventory_stock_item')} WHERE (qty>0 && is_in_stock=1) OR NOT IF(use_config_manage_stock,{$manageStock},manage_stock))");
+            //$select->where("entity_id IN (SELECT product_id FROM {$this->_t('cataloginventory_stock_item')} WHERE (qty>0 && is_in_stock=1) OR NOT IF(use_config_manage_stock,{$manageStock},manage_stock))");
+            $__wfSql = '';
+            /*if ($websitesFilter) {
+                $__wfSql = $this->_read->quoteInto(' and website_id in (?)', $websitesFilter);
+            }*/
+            $select->where("entity_id in (select product_id from {$this->_t('cataloginventory_stock_status')} where stock_status>0 $__wfSql)");
         }
         $condProdIds = $profile->getConditionsProductIds();
         if (is_array($condProdIds)) {
@@ -884,9 +892,25 @@ class Product
         }
     }
 
+    protected function _importFetchPageRows($profile)
+    {
+        $rows = array();
+        for ($i1 = 0; $i1 < $this->_pageRowCount; $i1++) {
+            /** @var array $row */
+            $row = $profile->ioRead();
+            if (!$row) {
+                // last row
+                $this->_isLastPage = true;
+
+#var_dump($this->_newData);
+                break;
+            }
+            $rows[] = $row;
+        }
+        return $rows;
+    }
+
     /**
-     * put your comment there...
-     *
      * @return boolean last page
      */
     protected function _importFetchNewData()
@@ -902,17 +926,9 @@ class Product
 
         // read rows from file into memory and collect skus
         $this->_newData = [];
+        $rows = $this->_importFetchPageRows($profile);
         // $i1 should be preserved during the loop
-        for ($i1 = 0; $i1 < $this->_pageRowCount; $i1++) {
-            $error = false;
-            $row = $profile->ioRead();
-            if (!$row) {
-                // last row
-                $this->_isLastPage = true;
-#var_dump($this->_newData);
-                return true;
-            }
-
+        foreach ($rows as $i1=>$row) {
             $empty = true;
             foreach ($row as $v) {
                 if (trim($v) !== '') {
@@ -1121,15 +1137,15 @@ class Product
 
                 $attrSetFields = $this->_getAttributeSetFields($attrSetId);
                 $typeId = !empty($typeId) ? $typeId : $oldProduct['product.type'];
+                $this->_typeBySku[$sku] = $typeId;
                 $isParentProduct = $typeId === 'configurable' || $typeId === 'grouped' || $typeId === 'bundle';
 
                 $dynamic = (string)__('Dynamic');
 //                $dynPrice = ($typeId === 'configurable' || $typeId === 'bundle')
-                $dynPrice = $typeId === 'bundle'
-                    && (isset($p['price_type']) && !empty($p['price_type'])
-                        && in_array($p['price_type'],
-                                    [$dynamic, \Magento\Bundle\Model\Product\Price::PRICE_TYPE_DYNAMIC])
-                        || !isset($p['price_type']) && isset($oldProduct['price_type']) && (int)$oldProduct['price_type'] === \Magento\Bundle\Model\Product\Price::PRICE_TYPE_DYNAMIC);
+                $dynPrice = $typeId === 'bundle' &&
+                    (isset($p['price_type']) && !empty($p['price_type'])
+                        && in_array($p['price_type'], [$dynamic, (string)BundlePrice::PRICE_TYPE_DYNAMIC], true)
+                    || !isset($p['price_type']) && isset($oldProduct['price_type']) && (int)$oldProduct['price_type'] === BundlePrice::PRICE_TYPE_DYNAMIC);
 
                 $dynWeight = ($typeId === 'configurable' || $typeId === 'bundle')
                     && (isset($p['weight_type']) && !empty($p['weight_type'])
@@ -1236,11 +1252,13 @@ class Product
                                 } else {
                                     $this->_newData[$sku][$k] = $vId;
                                 }
-                            } else if ($allowSelectIds && isset($attr['options'][$v])) {
+                            } else if ($allowSelectIds && isset($attr['options'][$v])
+                                && !in_array($k, ['category.name', 'category.path', 'category.ids'])
+                            ) {
                                 // select ids used, no mapping required
                             } else {
-                                if ($k === 'category.name') {
-                                    if ($autoCreateCategories) {
+                                if (in_array($k, ['category.name', 'category.path', 'category.ids'])) {
+                                    if ($autoCreateCategories && $k == 'category.name') {
                                         $newOptionId = $this->_importCreateCategory($v);
                                         if (is_array($newValue)) {
                                             $this->_newData[$sku][$k][$i] = $newOptionId;
@@ -1363,7 +1381,7 @@ class Product
                     $pId = $this->_skus[$sku];
                 }
                 $isUpdated = false;
-                
+
                 if ($stockZeroOut && isset($p['stock.qty'])) {
                     if (!empty($p['stock.use_config_min_qty'])) {
                         $minQty = $defMinQty;
@@ -1395,11 +1413,13 @@ class Product
                     if (strpos($k, 'stock.') === 0) {
                         if ($oldValue !== $newValue && $newValue !== null) {
                             list(, $f) = explode('.', $k, 2);
-                            $this->_changeStock[$sku][$f] = $newValue;
-                            if (!$isNew && isset($this->_fieldsCodes[$k])) {
-                                $logger->success($newValue);
+                            if ($k!='stock.qty' || $this->isQtyBySku($sku)) {
+                                $this->_changeStock[$sku][$f] = $newValue;
+                                if (!$isNew && isset($this->_fieldsCodes[$k])) {
+                                    $logger->success($newValue);
+                                }
+                                $isUpdated = true;
                             }
-                            $isUpdated = true;
                         }
                         continue;
                     }
@@ -1443,6 +1463,8 @@ class Product
                     if (($k === 'category.ids' || $k === 'category.path' || $k === 'category.name') && ($newValue || $deleteOldCat)) {
                         $newValue = array_unique((array)$newValue);
                         $oldValue = !empty($this->_products[$pId][0][$k]) ? (array)$this->_products[$pId][0][$k] : [];
+                        $newValueSeq = $this->_categoryProductId($newValue);
+                        $oldValueSeq = $this->_categoryProductId($oldValue);
 
                         $insert1 = array_diff($newValue, $oldValue);
                         $insert = [];
@@ -1452,17 +1474,16 @@ class Product
                                 $logger->warning("'$cId' does not seem like category id, skipping.");
                                 continue;
                             }
-                            if ($this->_categoryProductId($cId)) {
-                                $cId = $this->_categoryProductId($cId);
+                            if ($__cId = $this->_categoryProductId($cId)) {
+                                $insert[$__cId] = ++$pos;
                             }
-                            $insert[$cId] = ++$pos;
                         }
 
                         $delete = $deleteOldCat ? array_diff($oldValue, $newValue) : [];
 
                         foreach ($delete as $i => $cId) {
-                            if ($this->_categoryProductId($cId)) {
-                                $delete[$i] = $this->_categoryProductId($cId);
+                            if ($__cId = $this->_categoryProductId($cId)) {
+                                $delete[$i] = $__cId;
                             }
                         }
 
@@ -1480,8 +1501,8 @@ class Product
                             }
                             if (!$isNew) {
                                 $logger->success(sprintf('new: %s, old: %s',
-                                                         implode(', ', $newValue),
-                                                         implode(', ', $oldValue)));
+                                                         implode(', ', $newValueSeq),
+                                                         implode(', ', $oldValueSeq)));
                             }
                             $isUpdated = true;
                             $this->addProductForUrlUpdate($sku);
@@ -1493,24 +1514,28 @@ class Product
                     }
                     // existing attribute values
                     $isValueChanged = false;
-                    if ($attr['frontend_input'] === 'media_image' && $newValue) {
-                        if ($importImageFiles) {
-                            if (!$dryRun) {
-                                $this->_currentMediaSku = $sku;
-                                $isValueChanged = $this->_copyImageFile($imagesFromDir, $imagesToDir, $newValue, true,
-                                                                        $oldValue);
-                                if ($isValueChanged === null) {
-                                    $isValueChanged = $newValue !== $oldValue;
+                    if ($attr['frontend_input'] === 'media_image') {
+                        if ($newValue) {
+                            if ($importImageFiles) {
+                                if (!$dryRun) {
+                                    $this->_currentMediaSku = $sku;
+                                    $isValueChanged = $this->_copyImageFile($imagesFromDir, $imagesToDir, $newValue, true,
+                                        $oldValue);
+                                    if ($isValueChanged === null) {
+                                        $isValueChanged = $newValue !== $oldValue;
+                                    }
+                                } else {
+                                    $isValueChanged = false;
                                 }
                             } else {
-                                $isValueChanged = false;
+                                if ($this->_validateImageFile($newValue, $imagesToDir)) {
+                                    $isValueChanged = $newValue !== $oldValue;
+                                } else {
+                                    $isValueChanged = false;
+                                }
                             }
                         } else {
-                            if ($this->_validateImageFile($newValue, $imagesToDir)) {
-                                $isValueChanged = $newValue !== $oldValue;
-                            } else {
-                                $isValueChanged = false;
-                            }
+                            $isValueChanged = $newValue !== $oldValue;
                         }
                         if ($isValueChanged) {
                             $this->addProductForImageCacheFlush($sku);
@@ -1628,7 +1653,7 @@ class Product
     protected function _rtIdxRegisterAttrChange($pId, $attrCode, $value, $isSku = true)
     {
         $sku = $pId;
-        $pId = $isSku ? $this->_skus[$pId] : $pId;
+        $pId = $isSku ? $this->_skuSeq[$pId] : $pId;
         $attr = $this->_attr($attrCode);
         if (!empty($attr['rtidx_stock'])) {
             $this->_realtimeIdx['cataloginventory_stock'][$pId] = true;
@@ -1643,7 +1668,7 @@ class Product
             $this->_realtimeIdx['tag_summary'][$pId] = true;
         }
         if (!empty($attr['rtidx_category'])) {
-            $this->_realtimeIdx['catalog_category_product'][$pId] = true;
+            $this->_realtimeIdx['catalog_product_category'][$pId] = true;
         }
         $excludeActions = ['I', 'D'];
         if (!empty($attr['rtidx_url'])) {
@@ -1667,12 +1692,12 @@ class Product
     protected function _rtIdxRegisterNewProduct($pId, $isSku = true)
     {
         $sku = $pId;
-        $pId = $isSku ? $this->_skus[$pId] : $pId;
+        $pId = $isSku ? $this->_skuSeq[$pId] : $pId;
         $this->_realtimeIdx['cataloginventory_stock'][$pId] = true;
         $this->_realtimeIdx['catalog_product_attribute'][$pId] = true;
         $this->_realtimeIdx['catalog_product_price'][$pId] = true;
         $this->_realtimeIdx['tag_summary'][$pId] = true;
-        $this->_realtimeIdx['catalog_category_product'][$pId] = true;
+        $this->_realtimeIdx['catalog_product_category'][$pId] = true;
         $excludeActions = ['I', 'D'];
         $this->_rtIdxRegisterByWebsites($sku, $this->_realtimeIdx['catalog_url']['full'], $excludeActions);
         $this->_rtIdxRegisterByWebsites($sku, $this->_realtimeIdx['catalogsearch_fulltext']['full'], $excludeActions);
@@ -1682,12 +1707,12 @@ class Product
     protected function _rtIdxRegisterWebsiteChange($pId, $wData, $isSku = true)
     {
         $sku = $pId;
-        $pId = $isSku ? $this->_skus[$pId] : $pId;
+        $pId = $isSku ? $this->_skuSeq[$pId] : $pId;
         $this->_realtimeIdx['cataloginventory_stock'][$pId] = true;
         $this->_realtimeIdx['catalog_product_attribute'][$pId] = true;
         $this->_realtimeIdx['catalog_product_price'][$pId] = true;
         $this->_realtimeIdx['tag_summary'][$pId] = true;
-        $this->_realtimeIdx['catalog_category_product'][$pId] = true;
+        $this->_realtimeIdx['catalog_product_category'][$pId] = true;
         $excludeActions = ['C'];
         $this->_rtIdxRegisterByWebsites($sku, $this->_realtimeIdx['catalog_url']['website'], $excludeActions);
         $this->_rtIdxRegisterByWebsites($sku, $this->_realtimeIdx['catalogsearch_fulltext']['website'],
@@ -1698,20 +1723,20 @@ class Product
     protected function _rtIdxRegisterCategoryChange($pId, $cData, $isSku = true)
     {
         $sku = $pId;
-        $pId = $isSku ? $this->_skus[$pId] : $pId;
+        $pId = $isSku ? $this->_skuSeq[$pId] : $pId;
         $this->_rtIdxRegisterByWebsites($sku, $this->_realtimeIdx['catalog_url']['full'], ['I', 'D']);
-        $this->_realtimeIdx['catalog_category_product'][$pId] = true;
+        $this->_realtimeIdx['catalog_product_category'][$pId] = true;
     }
 
     protected function _rtIdxRegisterStockChange($pId, $sData, $isSku = true)
     {
-        $pId = $isSku ? $this->_skus[$pId] : $pId;
+        $pId = $isSku ? $this->_skuSeq[$pId] : $pId;
         $this->_realtimeIdx['cataloginventory_stock'][$pId] = true;
     }
 
     protected function _rtIdxRegisterByWebsites($sku, &$indexStorage, $excludeActions = array())
     {
-        $pId = $this->_skus[$sku];
+        $pId = $this->_skuSeq[$sku];
         $current = !empty($this->_products[$pId][0]['product.websites'])
             ? $this->_products[$pId][0]['product.websites'] : [];
         $insert = !empty($this->_changeWebsite[$sku]['I'])
@@ -1888,14 +1913,41 @@ class Product
      * are related by sequence 'entity_id' and not primary key row_id
      *
      * @param int $cId
-     * @return int
+     * @return int|null
+     */
+    /**
+     * Retrieve proper category ID for product relation
+     *
+     * In Magento EE with staging feature, categories and products
+     * are related by sequence 'entity_id' and not primary key row_id
+     *
+     * @param int|array $cId
+     * @return int|array
      */
     protected function _categoryProductId($cId)
     {
-        if(isset($this->_categories[$cId]['entity_id'])){
-            $cId = $this->_categories[$cId]['entity_id'];
+        $allCategories = $this->_attributesByCode['category.ids']['options'];
+        $result = null;
+        if (is_array($cId)) {
+            $result = [];
+            foreach ($cId as &$__cId) {
+                if(isset($allCategories[$__cId])){
+                    $result[] = $allCategories[$__cId];
+                } else {
+                    $this->_profile->addValue('num_errors');
+                    $this->_profile->getLogger()
+                        ->error("category with row id '$__cId' does not exist");
+                }
+            }
+            unset($__cId);
+        } elseif (isset($allCategories[$cId])){
+            $result = $allCategories[$cId];
+        } else {
+            $this->_profile->addValue('num_errors');
+            $this->_profile->getLogger()
+                ->error("category with row id '$cId' does not exist");
         }
 
-        return $cId;
+        return $result;
     }
 }

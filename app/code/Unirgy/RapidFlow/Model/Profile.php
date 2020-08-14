@@ -52,6 +52,7 @@ use Unirgy\RapidFlow\Exception\Stop;
 use Unirgy\RapidFlow\Helper\Data as HelperData;
 use Unirgy\RapidFlow\Model\Io\AbstractIo;
 use Unirgy\RapidFlow\Model\Io\File;
+use Unirgy\RapidFlow\Model\Profile\HistoryFactory;
 use Unirgy\RapidFlow\Model\Logger\AbstractLogger;
 use Unirgy\RapidFlow\Model\ResourceModel\AbstractResource as ResourceModelAbstractResource;
 use Zend\Json\Json;
@@ -259,7 +260,10 @@ class Profile extends AbstractModel
      */
     protected $_localeDate;
 
+    protected $_historyFactory;
+
     public function __construct(
+        HistoryFactory $historyFactory,
         Context $context,
         Registry $registry,
         MergeService $mergeService,
@@ -280,6 +284,7 @@ class Profile extends AbstractModel
         AbstractDb $resourceCollection = null,
         array $data = []
     ) {
+        $this->_historyFactory = $historyFactory;
         $this->_rapidFlowConfig = $rapidFlowConfig;
         $this->_rapidFlowHelper = $rapidFlowHelper;
         $this->_directoryList = $directoryList;
@@ -320,11 +325,11 @@ class Profile extends AbstractModel
     {
         $dataTypes = $this->_rapidFlowConfig->getDataTypes();
         $type = $this->getDataType();
-        if (!$type) {
+        if (!$type || !isset($dataTypes[$type])) {
             return $this;
             //throw new \Exception('Data type is not set');
         }
-        $model = $dataTypes->descend("{$type}/profile/model");
+        $model = $dataTypes[$type]->descend("profile/model");
         if (!$model) {
             return $this;
         }
@@ -357,10 +362,10 @@ class Profile extends AbstractModel
     {
         $root = $this->_rapidFlowConfig->getDataTypes();
         $dataType = $this->getDataType();
-        if (!isset($root->$dataType) || !isset($root->$dataType->model)) {
+        if (!isset($root[$dataType]) || !isset($root[$dataType]->model)) {
             throw new LocalizedException(__('Invalid data type model'));
         }
-        return $this->getObjectManager()->create((string)$root->$dataType->model);
+        return $this->getObjectManager()->create((string)$root[$dataType]->model);
     }
 
     public function getLogTail($length = 1000)
@@ -429,6 +434,12 @@ class Profile extends AbstractModel
         }
         if ($this->getRunStatus() === 'running') {
             $this->finish()->save();
+
+            try {
+                $this->archiveImportFile();
+            } catch (\Exception $e) {
+                $this->_logger->critical($e);
+            }
 
             try {
                 $this->doReindexActions();
@@ -659,8 +670,68 @@ class Profile extends AbstractModel
         return $this;
     }
 
+    public function archiveImportFile()
+    {
+        if ($this->getProfileType() == 'import'
+            && !$this->getData('options/import/dryrun')
+            && $this->getData('options/import/autoarchive')
+        ) {
+            if (empty($this->getArchiveBaseDir())) {
+                throw new \Exception(__("Archive Base Dir not specified"));
+            }
+            $this->_ioFile
+                ->setBaseDir($this->getArchiveBaseDir())
+                ->open($this->getArchiveFilename(), 'w')
+                ->close();
+            @rename(
+                $this->getFileBaseDir().DIRECTORY_SEPARATOR.$this->getFilename(),
+                $this->getArchiveBaseDir().DIRECTORY_SEPARATOR.$this->getArchiveFilename()
+            );
+        }
+        return $this;
+    }
+
+    public function isHistoryEnabled()
+    {
+        return $this->_scopeConfig->isSetFlag(
+                'urapidflow/finetune/enable_history',
+                ScopeInterface::SCOPE_STORE,
+                $this->getStoreId()
+            );
+    }
+    public function saveHistory()
+    {
+        if (!$this->isHistoryEnabled()) return;
+        $tpl = __('%d:%02d');
+        $_percent = $this->getRowsFound() ? ceil(100 * ($this->getRowsProcessed() / $this->getRowsFound())) : 0;
+        $_snapshot = strtotime($this->getSnapshotAt());
+        $_started = strtotime($this->getStartedAt());
+        $_runtime = $_snapshot && $_started ? max(1, $_snapshot - $_started) : 0;
+        $_rate = $_runtime ? round($this->getRowsProcessed() / $_runtime, 2) : 0;
+        $_runtimeString = sprintf($tpl, floor($_runtime / 60), $_runtime % 60);
+
+        $_rateStr  = number_format($_rate).__(' rows/sec');
+
+        $history = $this->_historyFactory->create();
+        $history->setProfileId($this->getId());
+        $history->setCurrentActivity($this->getCurrentActivity());
+        $history->setStartedAt($this->getStartedAt());
+        $history->setSnapshotAt($this->getSnapshotAt());
+        $history->setRuntime($_runtime);
+        $history->setRuntimeString($_runtimeString);
+        $history->setCrunchRate($_rate);
+        $history->setCrunchRateString($_rateStr);
+        $history->setPercent($_percent);
+        foreach ($this->_saveFields as $f) {
+            $history->setData($f, $this->getData($f));
+        }
+        $history->save();
+    }
+
     public function reset()
     {
+        $this->saveHistory();
+
         foreach ($this->_saveFields as $f) {
             $this->setData($f, 0);
         }
@@ -853,8 +924,13 @@ class Profile extends AbstractModel
         try {
 //            $processes = $indexMgr->getProcessesCollectionByCodes(array_keys($processes));
             $this->_eventManager->dispatch('urf_reindex_init_process');
+            $skipCatProdIdx = false;
             foreach ($processes as $process => $sortOrder) {
                 try {
+                    if (in_array($process, ['catalog_product_category','catalog_category_product'])) {
+                        if ($skipCatProdIdx) continue;
+                        $skipCatProdIdx = true;
+                    }
                     /** @var \Magento\Indexer\Model\Indexer $indexer */
                     $indexer = $indexerRegistry->get($process);
                     if ($indexer->isWorking()) {
@@ -867,7 +943,7 @@ class Profile extends AbstractModel
                         $this->_eventManager->dispatch($indexer->getId() . '_urf_reindex_after');
                         $this->activity($indexer->getTitle() . ' index was rebuilt successfully');
                     }
-                } catch (LocalizedException $le) {
+                } catch (\InvalidArgumentException $le) {
                     $this->getLogger()->log('ERROR', $le->getMessage());
                 } catch (\Exception $e) {
                     $this->getLogger()->log('ERROR', $indexer->getTitle() . " index process unknown error:\n" . $e);
@@ -1193,6 +1269,29 @@ class Profile extends AbstractModel
             $fileName .= date('-m-d-Y_H-i-s');
         }
         $fileName .= '.xls';
+
+        return $fileName;
+    }
+
+    public function getArchiveBaseDir()
+    {
+        $dir = $this->_scopeConfig->getValue('urapidflow/dirs/archive_dir', ScopeInterface::SCOPE_STORE,
+                                             $this->getStoreId());
+        return $this->_processDir($dir);
+    }
+
+    public function getArchiveFilename($timeStamped = true)
+    {
+        $_fileName = $this->getFilename();
+        $fileInfo = pathinfo($_fileName);
+        $fileName = @$fileInfo['filename'];
+        if (empty($fileName)) {
+            $fileName = $_fileName;
+        }
+        if ($timeStamped) {
+            $fileName .= date('-m-d-Y_H-i-s');
+        }
+        $fileName .= '.'.@$fileInfo['extension'];
 
         return $fileName;
     }

@@ -300,14 +300,14 @@ class Data extends AbstractHelper
         return $metaData->getVersion();
     }
 
-    private function isEnterpriseEdition()
+    public static function isEnterpriseEdition()
     {
         return in_array(strtolower(self::_getMetaData()->getEdition()), ['enterprise', 'b2b']);
     }
 
     public function compareMageVer($ceVer, $eeVer = null, $op = '>=')
     {
-        return $this->isEnterpriseEdition()
+        return self::isEnterpriseEdition()
             ? version_compare(self::getVersion(), null !== $eeVer ? $eeVer : $ceVer, $op)
             : version_compare(self::getVersion(), $ceVer, $op);
     }
@@ -482,7 +482,20 @@ class Data extends AbstractHelper
             try {
                 $this->updateCategoryUrlRewritesById($cId, $store_id);
             } catch (\Exception $e) {
-                if ($__cp = $this->currentProfile) $__cp->getLogger()->error($e->getMessage());
+                if ($__cp = $this->currentProfile) {
+                    $errors = [];
+                    $__e = $e; $__i = 0; do {
+                        $__msg = $__e->getMessage();
+                        $__msg = preg_replace('/query was:.*/', '', $__msg);
+                        $errors[] = $__msg;
+                    } while (($__e = $__e->getPrevious()) && $__i++<5);
+                    $errorMsg = implode(' ', array_unique($errors));
+                    /*
+                    if ($e instanceof \Magento\UrlRewrite\Model\Exception\UrlAlreadyExistsException) {
+                        $errorMsg .= "\n".var_export($e->getUrls(),1);
+                    }*/
+                    $__cp->getLogger()->error($errorMsg);
+                }
             }
         }
         $this->restoreUrlPath($this->_categoryIdsToUpdate);
