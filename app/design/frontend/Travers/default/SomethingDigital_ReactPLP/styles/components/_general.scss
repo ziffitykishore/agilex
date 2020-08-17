@@ -589,3 +589,7 @@ $sidebar__max-width: 240px;
         padding-left: 70px;
     }
 }
+
+.catalog-category-view #launcher {
+    display: none; // hide chat button on PLPs
+}
