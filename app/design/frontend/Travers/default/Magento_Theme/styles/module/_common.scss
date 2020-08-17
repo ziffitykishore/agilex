@@ -713,3 +713,22 @@ body {
         margin-top: $indent__l;
     }
 }
+
+//
+//  Sitemap
+//  ---------------------------------------------
+
+.column.main .xsitemap {
+    @include max-screen($screen__m) {
+        &-categories,
+        &-pages {
+            width: 100%;
+            float: none;
+        }
+
+        ul {
+            padding-left: $indent__s;
+            list-style-type: none;
+        }
+    }
+}

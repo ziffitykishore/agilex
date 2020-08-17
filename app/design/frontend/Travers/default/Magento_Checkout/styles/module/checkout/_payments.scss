@@ -45,6 +45,10 @@ $checkout-billing-address-form__max-width     : $checkout-shipping-address__max-
                     padding-right: 0;
                 }
             }
+
+            .form-purchase-order {
+                display: none;
+            }
         }
     }
 
