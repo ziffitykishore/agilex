@@ -26,8 +26,8 @@
         overflow-y: auto;
 
         img {
-            max-width: none;
-            margin-top: 50px;
+            max-width: 100px;
+            margin-top: $indent__s;
         }
 
         .message {

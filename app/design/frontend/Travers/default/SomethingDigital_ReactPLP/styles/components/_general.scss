@@ -333,7 +333,11 @@ $sidebar__max-width: 240px;
 
     h2 {
         margin-top: $indent__l;
-        font-size: 30px;
+        font-size: 24px;
+
+        @include min-screen($screen__m) {
+            font-size: 30px;
+        }
     }
 
     h3 {
@@ -584,4 +588,8 @@ $sidebar__max-width: 240px;
     @include min-screen($screen__l) {
         padding-left: 70px;
     }
+}
+
+.catalog-category-view #launcher {
+    display: none; // hide chat button on PLPs
 }
