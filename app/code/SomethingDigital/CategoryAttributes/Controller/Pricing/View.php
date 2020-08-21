@@ -5,7 +5,6 @@ use Magento\Framework\UrlFactory;
 use SomethingDigital\CustomerSpecificPricing\Model\SpotPricingApi;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\ArrayManager;
-use Magento\Store\Model\StoreManagerInterface;
  
 class View extends \Magento\Framework\App\Action\Action
 {
@@ -14,7 +13,6 @@ class View extends \Magento\Framework\App\Action\Action
     protected $jsonEncoder;
     private $spotPricingApi;
     private $arrayManager;
-    protected $storeManager;
 
     /**
      * @param Context                    $context
@@ -28,8 +26,7 @@ class View extends \Magento\Framework\App\Action\Action
         \Magento\Framework\View\Result\PageFactory $pageFactory,
         SpotPricingApi $spotPricingApi,
         PriceCurrencyInterface $priceCurrency,
-        ArrayManager $arrayManager,
-        StoreManagerInterface $storeManager
+        ArrayManager $arrayManager
     ) {
         $this->context = $context;
         $this->pageFactory = $pageFactory;
@@ -37,14 +34,12 @@ class View extends \Magento\Framework\App\Action\Action
         $this->spotPricingApi = $spotPricingApi;
         $this->priceCurrency = $priceCurrency;
         $this->arrayManager = $arrayManager;
-        $this->storeManager = $storeManager;
         parent::__construct($context);
     }
     
     public function execute() 
     {       
         $productsSkus = $this->getRequest()->getParam('products');
-        $store = $this->storeManager->getStore()->getStoreId();
 
         if ($productsSkus) {
             $productsSkusArray = explode(',', $productsSkus);
