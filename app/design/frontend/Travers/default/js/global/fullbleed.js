@@ -49,4 +49,5 @@ function updateMaxWidth() {
 }
 
 updateMaxWidth();
+
 $(window).on('resize', debounce(updateMaxWidth, 1000 / 60));
