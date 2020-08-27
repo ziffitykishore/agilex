@@ -101,7 +101,11 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
                 <?php elseif ($showOriginalPrice): ?>
                     <?= /* @escapeNotVerified */ $pricing->currency($originalPrice) ?>
                 <?php endif; ?>
-                <?= $block->getUnitPriceHtml($_item) ?>
+                <span class="price-excluding-tax" data-label="Excl. Tax">
+                    <span class="cart-price">
+                        <span class="price"><?= $pricing->currency($finalPrice) ?></span>
+                    </span>
+                </span>
                 <?php if ($showMsrp || $showOriginalPrice): ?>
                     <div class="percent-saved">
                         <?php if ($showMsrp && $msrpSaveAmount >= 5): ?>
