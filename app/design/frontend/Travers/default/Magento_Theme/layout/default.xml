@@ -6,6 +6,7 @@
                 <argument name="block_id" xsi:type="string">header_phone_number</argument>
             </arguments>
         </block>
+        <block class="Magento\Framework\View\Element\Template" name="header_cms_links" template="Magento_Theme::html/header/custom-links.phtml" />
     </referenceBlock>
     <referenceContainer name="footer">
         <block class="Magento\Cms\Block\Block" name="footer_promo_banner">
