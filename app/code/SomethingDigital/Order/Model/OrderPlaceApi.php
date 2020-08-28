@@ -85,7 +85,7 @@ class OrderPlaceApi extends Adapter
             'LineItems' => $this->getItems($order),
             'externalIds' => $order->getIncrementId(),
             'PurchaseOrderId' => $order->getCheckoutPonumber(),
-            'ShipServiceCode' => $order->getShippingMethod(),
+            'ShippingMethod' => $order->getShippingMethod(),
             'Date' => $order->getCreatedAt(),
             'Total' => $order->getGrandTotal(),
             'Tax' => $order->getTaxAmount(),
