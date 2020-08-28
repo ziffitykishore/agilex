@@ -90,6 +90,7 @@ class OrderPlaceApi extends Adapter
             'Total' => $order->getGrandTotal(),
             'Tax' => $order->getTaxAmount(),
             'ShipFee' => $order->getShippingAmount(),
+            "CouponCode" => $order->getCouponCode(),
             'DiscountAmount' => $order->getDiscountAmount(),
             'DeliveryNotes' => $order->getCheckoutDeliverypoint(),
             'Notes' => $order->getCheckoutOrdernotes(),
@@ -227,7 +228,8 @@ class OrderPlaceApi extends Adapter
                     "Qty" => intval($value->getQtyOrdered()),
                     "SoldPrice" => $price,
                     "CostAtTimeOfPurchase" => $price,
-                    "DiscountAmount" => $discountAmount
+                    "DiscountAmount" => $discountAmount,
+                    "DiscountSuffix" => $order->getSuffix()
                 ];
             }
         }
