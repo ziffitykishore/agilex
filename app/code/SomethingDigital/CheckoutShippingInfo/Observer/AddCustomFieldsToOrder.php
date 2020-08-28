@@ -35,5 +35,9 @@ class AddCustomFieldsToOrder implements ObserverInterface
             'checkout_ordernotes',
             $quote->getData('checkout_ordernotes')
         );
+        $order->setData(
+            'suffix',
+            $quote->getData('suffix')
+        );
     }
 }
