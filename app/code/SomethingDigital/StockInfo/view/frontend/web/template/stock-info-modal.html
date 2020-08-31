@@ -1,13 +1,13 @@
 <div id="stock-info-modal-popup" data-bind="afterRender: createModalPopup" style="display: none">
     <div class="product-inventory-table">
         <h2 data-bind="i18n: 'Check Warehouse Stock Availability'"></h2>
-        <!-- ko if: stockDataIsEmptyObservable && !isOAN -->
+        <!-- ko if: stockDataIsEmptyObservable() && !isOAN -->
         <p class="no-inventory" data-bind="i18n: 'Stock information not yet available for this item'"></p>
         <!-- /ko -->
-        <!-- ko if: stockDataIsEmptyObservable && isOAN -->
+        <!-- ko if: stockDataIsEmptyObservable() && isOAN -->
         <p class="no-inventory" data-bind="i18n: 'Item ships direct from factory'"></p>
         <!-- /ko -->
-        <!-- ko ifnot: stockDataIsEmptyObservable -->
+        <!-- ko ifnot: stockDataIsEmptyObservable() -->
         <div class="product-inventory-table__mobile">
             <!-- ko foreach: { data: stockDataObservable(), as: 'element' } -->
             <div class="inventory-table--row">
