@@ -57,11 +57,14 @@ class Removeblocks implements ObserverInterface
     public function isZeroDNR()
     {
         $product = $this->getProduct();
-        $sxInventoryStatus = $product->getData('sx_inventory_status');
-        $stockItem = $this->stockItem->load($product->getId(), 'product_id');
         $isZeroDNR = false;
-        if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR && $stockItem->getQty() == 0) {
-            $isZeroDNR = true;
+        if ($product) {
+            $sxInventoryStatus = $product->getData('sx_inventory_status');
+            $stockItem = $this->stockItem->load($product->getId(), 'product_id');
+            $isZeroDNR = false;
+            if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR && $stockItem->getQty() == 0) {
+                $isZeroDNR = true;
+            }
         }
         return $isZeroDNR;
     }
