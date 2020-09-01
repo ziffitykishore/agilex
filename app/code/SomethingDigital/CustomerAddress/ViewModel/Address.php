@@ -22,10 +22,14 @@ class Address implements \Magento\Framework\View\Element\Block\ArgumentInterface
     public function isAddressIdReadOnly($addressId)
     {
         try {
-            $shippingAddress = $this->addressRepository->getById($addressId);
-            if ($shippingAddress) {
-                $shippingAddressReadOnly = $shippingAddress ? $shippingAddress->getCustomAttribute('is_read_only') : null;
-                if ($shippingAddress !== null && ($shippingAddressReadOnly === null || !$shippingAddressReadOnly->getValue())) {
+            $address = $this->addressRepository->getById($addressId);
+            if ($address) {
+                $addressReadOnly = $address ? $address->getCustomAttribute('is_read_only') : null;
+                $addressIsBilling = $address ? $address->getCustomAttribute('is_billing') : null;
+                if ($address !== null
+                    && ($addressReadOnly === null || !$addressReadOnly->getValue())
+                    && ($addressIsBilling === null || !$addressIsBilling->getValue())
+                ) {
                     return false;
                 } else {
                     return true;
