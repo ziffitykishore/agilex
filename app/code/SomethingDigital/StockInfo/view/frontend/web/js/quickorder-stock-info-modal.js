@@ -9,6 +9,7 @@ define([
     return Component.extend({
         modalWindow: null,
         productType: null,
+        isOAN: null,
         popupSelector: null,
         popupOpenerSelector: null,
         swatchSelector: null,
