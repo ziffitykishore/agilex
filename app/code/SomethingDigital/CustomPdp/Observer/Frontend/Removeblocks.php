@@ -5,7 +5,7 @@ namespace SomethingDigital\CustomPdp\Observer\Frontend;
 use Magento\Framework\Event\ObserverInterface;
 use Magento\Framework\Registry as CoreRegistry;
 use SomethingDigital\StockInfo\Model\Product\Attribute\Source\SxInventoryStatus;
-use \Magento\CatalogInventory\Model\Stock\Item;
+use Magento\CatalogInventory\Model\Stock\Item as StockItem;
  
 class Removeblocks implements ObserverInterface
 {
@@ -19,13 +19,18 @@ class Removeblocks implements ObserverInterface
      */
     protected $stockItem;
 
+    /**
+    * @param CoreRegistry $coreRegistry
+    * @param StockItem $stockItem
+    **/
     public function __construct(
         CoreRegistry $coreRegistry,
-        Item $stockItem
+        StockItem $stockItem
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->stockItem = $stockItem;
     }
+
     /*
      * Hide MSRP Price, Final Price and Master catalog link if DNR & Zero Stock 
     */
