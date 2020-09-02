@@ -27,7 +27,10 @@ class UpdateAjaxResponse
             foreach ($result as $item) {
                 $sku = $item['sku'];
                 $stockData = $this->stockData->getStockData($sku);
+                $minSaleQtyAndIncrements = $this->stockData->getMinSaleQtyAndIncrements($sku);
                 $result[$sku]['stockData'] = $stockData;
+                $result[$sku]['min_sale_qty'] = $minSaleQtyAndIncrements['min_sale_qty'];
+                $result[$sku]['qty_increments'] = $minSaleQtyAndIncrements['qty_increments'];
             }
         }
         return $result;

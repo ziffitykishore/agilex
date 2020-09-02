@@ -7,6 +7,7 @@ use Magento\Catalog\Helper\Product as ProductHelper;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
+use Magento\CatalogInventory\Model\Stock\Item as StockItem;
 
 class StockData
 {
@@ -36,18 +37,25 @@ class StockData
      */
     private $logger;
 
+    /**
+     * @var StockItem
+     */
+    private $stockItem;
+
     public function __construct(
         CoreRegistry $coreRegistry,
         ProductHelper $productHelper,
         ProductRepositoryInterface $productRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        StockItem $stockItem
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->productHelper = $productHelper;
         $this->productRepository = $productRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->logger = $logger;
+        $this->stockItem = $stockItem;
     }
 
     /**
@@ -191,5 +199,30 @@ class StockData
             ];
         }
         return $stock;
+    }
+
+    /**
+     * Get product min_sale_qty and qty_increments
+     *
+     * @param $sku
+     * @return []
+     */
+    public function getMinSaleQtyAndIncrements($sku)
+    {
+        $data = [
+            'min_sale_qty' => 1,
+            'qty_increments' => 1
+        ];
+        $product = $this->getProduct($sku);
+        if ($product) {
+            $stockItem = $this->stockItem->load($product->getId(), 'product_id');
+            if ($stockItem) {
+                $data = [
+                    'min_sale_qty' => $stockItem->getMinSaleQty(),
+                    'qty_increments' => $stockItem->getQtyIncrements()
+                ];
+            }
+        }
+        return $data;
     }
 }
