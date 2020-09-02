@@ -25,11 +25,11 @@ class HideStockInfoAlert
             return $result;
         }
         $product = $subject->getProduct();
-        $sxInventoryStatus = $product->getData('sx_inventory_status');
-        $stockItem = $this->stockItem->load($product->getId(), 'product_id');
-        
-        if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR) {
-            if ($stockItem->getQty() == 0) {
+        if ($product) {
+            $sxInventoryStatus = $product->getData('sx_inventory_status');
+            $stockItem = $this->stockItem->load($product->getId(), 'product_id');
+
+            if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR && $stockItem->getQty() == 0) {
                 return false;
             }
         }
