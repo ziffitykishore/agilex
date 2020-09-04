@@ -29,7 +29,8 @@ class FormPostAddress
             $address = $this->addressRepository->getById($addressId);
             $isReadOnly = $address->getCustomAttribute('is_read_only');
             $isBilling = $address->getCustomAttribute('is_billing');
-            if ($isReadOnly->getValue() || $isBilling->getValue()) {
+            if ((isset($isReadOnly) && $isReadOnly->getValue()) ||
+                (isset($isBilling) && $isBilling->getValue())) {
                 return $this->resultRedirectFactory->create()->setPath('*/*/index');
             }
         }
