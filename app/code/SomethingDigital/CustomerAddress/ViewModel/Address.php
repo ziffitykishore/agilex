@@ -23,20 +23,18 @@ class Address implements \Magento\Framework\View\Element\Block\ArgumentInterface
     {
         try {
             $address = $this->addressRepository->getById($addressId);
-            if ($address) {
-                $addressReadOnly = $address ? $address->getCustomAttribute('is_read_only') : null;
-                $addressIsBilling = $address ? $address->getCustomAttribute('is_billing') : null;
-                if ($address !== null
-                    && ($addressReadOnly === null || !$addressReadOnly->getValue())
-                    && ($addressIsBilling === null || !$addressIsBilling->getValue())
+            if ($address->getId()) {
+                $addressReadOnly = $address->getCustomAttribute('is_read_only');
+                $addressIsBilling = $address->getCustomAttribute('is_billing');
+                if (($addressReadOnly !== null && $addressReadOnly->getValue())
+                    || ($addressIsBilling !== null && $addressIsBilling->getValue())
                 ) {
-                    return false;
-                } else {
                     return true;
                 }
             }
         } catch (NoSuchEntityException $e) {
-            return false;
+            // no action needed
         }
+        return false;
     }
 }
