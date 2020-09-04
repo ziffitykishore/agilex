@@ -8,6 +8,7 @@ use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
 use Magento\CatalogInventory\Model\Stock\Item as StockItem;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class StockData
 {
@@ -104,7 +105,7 @@ class StockData
      * Provide data for different product types
      *
      * @param string $sku
-     * @return []
+     * @return array
      */
     public function getStockData($sku = null)
     {
@@ -169,7 +170,7 @@ class StockData
      * This include In Stock data only
      *
      * @param \Magento\Catalog\Model\Product $product
-     * @return []
+     * @return array
      */
     private function retrieveProductStockData($product)
     {
@@ -205,7 +206,7 @@ class StockData
      * Get product min_sale_qty and qty_increments
      *
      * @param $sku
-     * @return []
+     * @return array
      */
     public function getMinSaleQtyAndIncrements($sku)
     {
@@ -213,15 +214,19 @@ class StockData
             'min_sale_qty' => 1,
             'qty_increments' => 1
         ];
-        $product = $this->getProduct($sku);
-        if ($product) {
-            $stockItem = $this->stockItem->load($product->getId(), 'product_id');
-            if ($stockItem) {
-                $data = [
-                    'min_sale_qty' => $stockItem->getMinSaleQty(),
-                    'qty_increments' => $stockItem->getQtyIncrements()
-                ];
+        try {
+           $product = $this->getProduct($sku);
+            if ($product) {
+                $stockItem = $this->stockItem->load($product->getId(), 'product_id');
+                if ($stockItem) {
+                    $data = [
+                        'min_sale_qty' => $stockItem->getMinSaleQty(),
+                        'qty_increments' => $stockItem->getQtyIncrements()
+                    ];
+                }
             }
+        } catch (NoSuchEntityException $e) {
+            //no action required
         }
         return $data;
     }
