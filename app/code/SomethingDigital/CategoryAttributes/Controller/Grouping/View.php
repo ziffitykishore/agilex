@@ -113,8 +113,9 @@ class View extends \Magento\Framework\App\Action\Action
                 }
 
                 foreach ($blocks as $key => $block) {
+                    $indentifierSplitted = explode("_", $block->getIdentifier());
                     $filteredOptionHtml = $this->filterProvider->getPageFilter()->filter($block->getContent());
-                    $data[$attrCode][$block->getIdentifier()] = $filteredOptionHtml;
+                    $data[$attrCode][end($indentifierSplitted)] = $filteredOptionHtml;
                 }
             }
         }
