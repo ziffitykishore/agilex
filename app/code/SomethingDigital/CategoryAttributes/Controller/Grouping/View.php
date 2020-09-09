@@ -13,8 +13,11 @@ class View extends \Magento\Framework\App\Action\Action
     protected $categoryRepository;
     protected $storeManager;
     protected $blockRepository;
+    protected $filterGroup;
+    protected $filterBuilder;
     protected $filterProvider;
     protected $productAttributeRepository;
+    protected $searchCriteriaBuilder;
 
     /**
      * @param Context                    $context
@@ -23,8 +26,11 @@ class View extends \Magento\Framework\App\Action\Action
      * @param StoreManagerInterface      $storeManager
      * @param CategoryRepository         $categoryRepository
      * @param BlockRepositoryInterface   $blockRepository
+     * @param FilterGroup             $filterGroup
+     * @param FilterBuilder             $filterBuilder
      * @param FilterProvider             $filterProvider
      * @param ProductAttributeRepository $productAttributeRepository
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
      */
     
     public function __construct(
@@ -34,8 +40,11 @@ class View extends \Magento\Framework\App\Action\Action
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Catalog\Model\CategoryRepository $categoryRepository,
         \Magento\Cms\Api\BlockRepositoryInterface $blockRepository,
+        \Magento\Framework\Api\Search\FilterGroup $filterGroup,
+        \Magento\Framework\Api\FilterBuilder $filterBuilder,
         \Magento\Cms\Model\Template\FilterProvider $filterProvider,
-        \Magento\Catalog\Model\Product\Attribute\Repository $productAttributeRepository
+        \Magento\Catalog\Model\Product\Attribute\Repository $productAttributeRepository,
+        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
     ) {
         $this->context = $context;
         $this->pageFactory = $pageFactory;
@@ -43,8 +52,11 @@ class View extends \Magento\Framework\App\Action\Action
         $this->storeManager = $storeManager;
         $this->categoryRepository = $categoryRepository;
         $this->blockRepository = $blockRepository;
+        $this->filterGroup = $filterGroup;
+        $this->filterBuilder = $filterBuilder;
         $this->filterProvider = $filterProvider;
         $this->productAttributeRepository = $productAttributeRepository;
+        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         parent::__construct($context);
     }
     
@@ -72,20 +84,38 @@ class View extends \Magento\Framework\App\Action\Action
                     continue;
                 }
 
-                foreach ($attrOptions as $option) {
-                    if (trim($option->getLabel()) != '') {
-                        $optionCode = strtolower(str_replace(' ', '-', $option->getLabel()));
-                        $optionExists = true;
-                        try {
-                            $optionHtml = $this->blockRepository->getById('grouping_' . $attrCode . '_' . $optionCode);
-                        } catch (NoSuchEntityException $e) {
-                            $optionExists = false;
-                        }
-                        if ($optionExists) {
-                            $filteredOptionHtml = $this->filterProvider->getPageFilter()->filter($optionHtml->getContent());
-                            $data[$attrCode][$optionCode] = $filteredOptionHtml;
-                        }
-                    }
+                $filter = $this->filterBuilder
+                    ->setField('identifier')
+                    ->setConditionType('like')
+                    ->setValue('grouping_' . $cid . '_' . $attrCode . '_%')
+                    ->create();
+
+                $this->searchCriteriaBuilder->addFilters([$filter]);
+                $searchCriteria = $this->searchCriteriaBuilder->create();
+
+                $blocks = $this->blockRepository
+                    ->getList($searchCriteria)
+                    ->getItems();
+
+                if (!$blocks) {
+                    $filter = $this->filterBuilder
+                        ->setField('identifier')
+                        ->setConditionType('like')
+                        ->setValue('grouping_' . $attrCode . '_%')
+                        ->create();
+
+                    $this->searchCriteriaBuilder->addFilters([$filter]);
+                    $searchCriteria = $this->searchCriteriaBuilder->create();
+
+                    $blocks = $this->blockRepository
+                        ->getList($searchCriteria)
+                        ->getItems();
+                }
+
+                foreach ($blocks as $key => $block) {
+                    $indentifierSplitted = explode("_", $block->getIdentifier());
+                    $filteredOptionHtml = $this->filterProvider->getPageFilter()->filter($block->getContent());
+                    $data[$attrCode][end($indentifierSplitted)] = $filteredOptionHtml;
                 }
             }
         }
