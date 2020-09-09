@@ -14,12 +14,9 @@
     <% if (data.stockData != '') { %>
     <span class="stock-info-popup-trigger" href="">Check Locations</span>
     <% } %>
-    <% if (data.min_sale_qty > 1) { %>
-        <p>You must buy at least <%= data.min_sale_qty %> of these per purchase.</p>
-    <% } %>
-    <% if (data.qty_increments > 1) { %>
-        <p>Only sold in increments of <%= data.qty_increments %></p>
-    <% } %>
+    <% _.each(data.stockInfo, function(value){ %>
+        <p><%= value %></p>
+    <% }) %>
 </div>
 <% } %>
 <% if (data.result) { %>

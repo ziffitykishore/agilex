@@ -208,23 +208,22 @@ class StockData
      * @param $sku
      * @return array
      */
-    public function getMinSaleQtyAndIncrements($sku)
+    public function getMinSaleQtyAndIncrementsInfo($sku)
     {
-        $data = [
-            'min_sale_qty' => 1,
-            'qty_increments' => 1
-        ];
+        $messages = [];
         try {
             $stockItem = $this->stockRegistry->getStockItemBySku($sku);
             if ($stockItem) {
-                $data = [
-                    'min_sale_qty' => $stockItem->getMinSaleQty(),
-                    'qty_increments' => $stockItem->getQtyIncrements()
-                ];
+                if ($stockItem->getMinSaleQty() > 1) {
+                    $messages[] = __('You must buy at least %1 of these per purchase.', $stockItem->getMinSaleQty());
+                }
+                if ($stockItem->getQtyIncrements() > 1) {
+                    $messages[] = __('Only sold in increments of %1', $stockItem->getQtyIncrements());
+                }
             }
         } catch (NoSuchEntityException $e) {
             //no action required
         }
-        return $data;
+        return $messages;
     }
 }
