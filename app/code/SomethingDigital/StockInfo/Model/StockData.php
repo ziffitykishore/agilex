@@ -7,7 +7,7 @@ use Magento\Catalog\Helper\Product as ProductHelper;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
-use Magento\CatalogInventory\Model\Stock\Item as StockItem;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class StockData
@@ -39,9 +39,9 @@ class StockData
     private $logger;
 
     /**
-     * @var StockItem
+     * @var StockRegistryInterface
      */
-    private $stockItem;
+    private $stockRegistry;
 
     public function __construct(
         CoreRegistry $coreRegistry,
@@ -49,14 +49,14 @@ class StockData
         ProductRepositoryInterface $productRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
         LoggerInterface $logger,
-        StockItem $stockItem
+        StockRegistryInterface $stockRegistry
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->productHelper = $productHelper;
         $this->productRepository = $productRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->logger = $logger;
-        $this->stockItem = $stockItem;
+        $this->stockRegistry = $stockRegistry;
     }
 
     /**
@@ -147,7 +147,7 @@ class StockData
      * Retrieve stock data for given products
      *
      * @param \Magento\Catalog\Model\Product[] $products
-     * @return []
+     * @return array
      */
     private function prepareProductsStockData($products)
     {
@@ -215,15 +215,12 @@ class StockData
             'qty_increments' => 1
         ];
         try {
-           $product = $this->getProduct($sku);
-            if ($product) {
-                $stockItem = $this->stockItem->load($product->getId(), 'product_id');
-                if ($stockItem) {
-                    $data = [
-                        'min_sale_qty' => $stockItem->getMinSaleQty(),
-                        'qty_increments' => $stockItem->getQtyIncrements()
-                    ];
-                }
+            $stockItem = $this->stockRegistry->getStockItemBySku($sku);
+            if ($stockItem) {
+                $data = [
+                    'min_sale_qty' => $stockItem->getMinSaleQty(),
+                    'qty_increments' => $stockItem->getQtyIncrements()
+                ];
             }
         } catch (NoSuchEntityException $e) {
             //no action required
