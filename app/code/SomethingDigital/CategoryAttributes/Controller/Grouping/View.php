@@ -87,7 +87,7 @@ class View extends \Magento\Framework\App\Action\Action
                 $filter = $this->filterBuilder
                     ->setField('identifier')
                     ->setConditionType('like')
-                    ->setValue('grouping_' . $cid . '_' . $attrCode . '%')
+                    ->setValue('grouping_' . $cid . '_' . $attrCode . '_%')
                     ->create();
 
                 $this->searchCriteriaBuilder->addFilters([$filter]);
@@ -101,7 +101,7 @@ class View extends \Magento\Framework\App\Action\Action
                     $filter = $this->filterBuilder
                         ->setField('identifier')
                         ->setConditionType('like')
-                        ->setValue('grouping_' . $attrCode . '%')
+                        ->setValue('grouping_' . $attrCode . '_%')
                         ->create();
 
                     $this->searchCriteriaBuilder->addFilters([$filter]);
