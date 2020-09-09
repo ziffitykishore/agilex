@@ -114,7 +114,7 @@ class View extends \Magento\Framework\App\Action\Action
 
                 foreach ($blocks as $key => $block) {
                     $filteredOptionHtml = $this->filterProvider->getPageFilter()->filter($block->getContent());
-                    $data[$attrCode] = $filteredOptionHtml;
+                    $data[$attrCode][$block->getIdentifier()] = $filteredOptionHtml;
                 }
             }
         }
