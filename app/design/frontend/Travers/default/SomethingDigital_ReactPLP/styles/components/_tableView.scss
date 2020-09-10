@@ -66,6 +66,10 @@
             font-size: $font-size__base;
         }
     }
+
+    .grecaptcha-badge {
+        opacity: 0;
+    }
 }
 
 .table-and-flyout {
