@@ -12,7 +12,7 @@ const select = tab => {
   const tabItemId = tab.attr('href'); // matches the corresponding content's id
   const tabContent = $(`.tabs-content ${tabItemId}`);
   tab.parents('li').addClass(activeClass);
-  tabContent.show();
+  tabContent.parents('[data-content-type="tab-item"]').show();
 } 
 
 $('.tab-header a').on('click', function(e) {
