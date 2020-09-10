@@ -4,6 +4,9 @@
  */
 /*browser:true*/
 /*global define*/
+
+var selfprocess = null;
+
 define(
     [
         'Magento_Ui/js/modal/alert',
@@ -231,6 +234,7 @@ define(
                 
             },
             placeOrder: function (data, event) {
+                var selfprocess = this;
                 var self = this;
                 var msgtemp = {};
                 var eventtemp = {};
@@ -289,19 +293,19 @@ define(
                                             $(".payment-method-content .messages").addClass("dpnoneimpo");
                                             fullScreenLoader.stopLoader();
                                             result.View3D = result.View3D.replace("function(messageEvent){", "function(messageEvent){ document.getElementById('CardinalResponse').value = messageEvent.data; document.getElementById('CardinalResponse').dispatchEvent(new Event('change')); ");
-                                            result.View3D = msg.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
+                                            result.View3D = result.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
                                             result.View3D = result.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
                                             $("#Form3dSecure").show();
                                             $("#Form3dSecure").html("<div>" + result.View3D + "</div>");
                                         }else {
-                                            self.createWebpay();
+                                            selfprocess.createWebpay();
                                            // $(".payment-method-content .messages").addClass("dpnoneimpo");
                                         }
                                     }
                                 }catch(e){
-                                    self.createWebpay();
+                                    selfprocess.createWebpay();
                                 }
-                                self.isPlaceOrderActionAllowed(true);
+                                selfprocess.isPlaceOrderActionAllowed(true);
                             }
                         ).done(
                             function (msg, message, event) {

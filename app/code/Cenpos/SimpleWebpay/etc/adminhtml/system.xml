@@ -34,6 +34,14 @@
                     <label>Enabled CVV</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="isrecaptcha" translate="label" type="select" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled Recaptcha</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="recaptchaversion" translate="label" type="select" sortOrder="51" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Recaptcha Version</label>
+                    <source_model>Cenpos\SimpleWebpay\Model\Category\RecaptchaOption</source_model>
+                </field>
                  <field id="payment_action" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Payment Action</label>
                     <source_model>Cenpos\SimpleWebpay\Model\Payment\PaymentAction</source_model>

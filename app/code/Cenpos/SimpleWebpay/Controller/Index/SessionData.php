@@ -60,20 +60,25 @@ class SessionData extends \Magento\Framework\App\Action\Action
                 $Street = "";
             } 
 
-            $ch = curl_init($this->_paymentMethod->getConfigData('url')."?app=genericcontroller&action=siteVerify");
+            $urlswp = $this->_paymentMethod->getConfigData('url');
+            $endurlswp = substr($urlswp, strlen($urlswp) - 1);
+            $urlswp = $endurlswp == "/" ? $urlswp : $urlswp ."/";
+
+            $ch = curl_init($urlswp ."?app=genericcontroller&action=siteVerify");
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_POST, 1);
 
             $postSend = "secretkey=".$this->_paymentMethod->getConfigData('secretkey');
             $postSend .= "&merchant=".$this->_paymentMethod->getConfigData('merchantid');
             $postSend .= "&address=".$Street;
-            $postSend .= "&isrecaptcha=false";
-            $postSend .= "&zipcode=".$dataAddress["postcode"];
+            $postSend .= "&isrecaptcha=".(($this->_paymentMethod->getConfigData('isrecaptcha') === "1")? "true" : "false");
+            $postSend .= "&recaptchaversion=".$this->_paymentMethod->getConfigData('recaptchaversion');
+            if(array_key_exists("postcode", $dataAddress) && isset($dataAddress["postcode"])) $postSend .= "&zipcode=".$dataAddress["postcode"];
             if ($this->_customerSession->isLoggedIn()) {
                 $customerData = $this->_customerSession->getCustomer();
                 $postSend .= "&customercode=".$customerData->getId();
             }
-            $postSend .= "&email=".$dataAddress["email"];
+            if(array_key_exists("email", $dataAddress) && isset($dataAddress["email"])) $postSend .= "&email=".$dataAddress["email"];
             $postSend .= "&ip=$ip";
             curl_setopt ($ch, CURLOPT_POSTFIELDS, $postSend);
 
@@ -93,9 +98,6 @@ class SessionData extends \Magento\Framework\App\Action\Action
                 throw new \Exception($ResponseSave->Message);
             }
         } catch (\Exception $ex) {
-            if (!isset($ResponseSave)){
-                $ResponseSave = new stdClass();
-            }
             $ResponseSave->Message = $ex->getMessage();
             $ResponseSave->Result = -1;
         }
