@@ -2,7 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="page.top">
-            <block name="sd_breadcrumbs" template="SomethingDigital_FixProductBreadcrumbs::breadcrumb.phtml">
+            <block name="sd_fixproductbreadcrumbs_view_model" template="SomethingDigital_FixProductBreadcrumbs::breadcrumb.phtml">
             	<arguments>
                     <argument name="view_model" xsi:type="object">SomethingDigital\FixProductBreadcrumbs\ViewModel\Breadcrumbs</argument>
                 </arguments>
