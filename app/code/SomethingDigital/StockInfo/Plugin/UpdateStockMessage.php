@@ -6,6 +6,7 @@ use Magento\CatalogInventory\Model\Spi\StockStateProviderInterface;
 use Magento\CatalogInventory\Api\Data\StockItemInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use SomethingDigital\StockInfo\Model\Product\Attribute\Source\SxInventoryStatus;
+use Magento\Framework\App\RequestInterface;
 
 class UpdateStockMessage
 {
@@ -15,12 +16,19 @@ class UpdateStockMessage
     private $productRepository;
 
     /**
+     * @var RequestInterface
+     */
+    private $request;
+
+    /**
      * @param ProductRepositoryInterface $productRepository
      */
     public function __construct(
-        ProductRepositoryInterface $productRepository
+        ProductRepositoryInterface $productRepository,
+        RequestInterface $request
     ) {
         $this->productRepository = $productRepository;
+        $this->request = $request;
     }
 
     /**
@@ -46,7 +54,12 @@ class UpdateStockMessage
                 && $stockItem->getProductName()
                 && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
             ) {
-                $result->setMessage(__('Items will be back ordered'));
+                if ($this->request->getControllerName() == 'cart'){
+                    $result->setMessage(__('Items will be back ordered'));
+                } else {
+                    // Hide default message on checkout summary as we already have it in blue.
+                    $result->unsMessage();
+                }
             }
         }
         return $result;
