@@ -79,7 +79,7 @@ class Breadcrumbs implements \Magento\Framework\View\Element\Block\ArgumentInter
         $prevLevel = 0;
         foreach ($categoriesLevel as $catId => $level) {
             if ($level < $prevLevel) {
-                continue;
+                break;
             }
             if (isset($categoryData[$catId])) {
                 $breadcrumbData = [];
