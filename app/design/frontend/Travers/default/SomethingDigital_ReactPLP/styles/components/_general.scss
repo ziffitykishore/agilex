@@ -145,13 +145,13 @@ $sidebar__max-width: 240px;
 
 .hide-on-mobile {
     @include max-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder display: flex
     }
 }
 
 .hide-on-desktop {
     @include min-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder display: flex
     }
 }
 
