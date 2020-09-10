@@ -45,11 +45,11 @@ class Breadcrumbs implements \Magento\Framework\View\Element\Block\ArgumentInter
         }
 
 
-        $categoriesids = $product->getCategoryIds();
+        $categoryIds = $product->getCategoryIds();
 
         try {
             $categoriesCollection = $this->collection
-                ->addFieldToFilter('entity_id', array('in' => $categoriesids))
+                ->addFieldToFilter('entity_id', array('in' => $categoryIds))
                 ->addAttributeToSelect('name')
                 ->addAttributeToSelect('url_key')
                 ->addAttributeToSelect('include_in_menu')
