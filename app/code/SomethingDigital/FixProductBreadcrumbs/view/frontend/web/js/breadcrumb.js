@@ -21,7 +21,6 @@ define([
                 if (stopLoop) {
                     return;
                 }
-                var breadcrumb = [];
                 breadcrumbs.forEach(function(item) {
                     var breadcrumb = [];
                     breadcrumb['name'] = item.name;

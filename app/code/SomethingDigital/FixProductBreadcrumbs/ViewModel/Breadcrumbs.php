@@ -41,13 +41,12 @@ class Breadcrumbs implements \Magento\Framework\View\Element\Block\ArgumentInter
         try {
             $product = $this->getProduct();
         } catch (LocalizedException $e) {
-            return $result;
+            return [];
         }
 
 
         $categoriesids = $product->getCategoryIds();
 
-        $categoriesCollection = null;
         try {
             $categoriesCollection = $this->collection
                 ->addFieldToFilter('entity_id', array('in' => $categoriesids))
@@ -58,7 +57,7 @@ class Breadcrumbs implements \Magento\Framework\View\Element\Block\ArgumentInter
                 ->addAttributeToSelect('category_ids')
                 ->addAttributeToSelect('is_anchor');
         } catch (LocalizedException $e) {
-            return $result;
+            return [];
         }
 
         $categoryData = [];
