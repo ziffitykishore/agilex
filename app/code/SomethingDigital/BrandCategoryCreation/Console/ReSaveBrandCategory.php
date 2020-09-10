@@ -12,10 +12,12 @@ use Magento\Eav\Model\Config;
 class ReSaveBrandCategory extends Command
 {
 
-    protected $categoryFactory;
     protected $categoryRepository;
+    protected $categoryListRepository;
     protected $eavConfig;
-    protected $rules;
+    protected $filterGroup;
+    protected $filterBuilder;
+    protected $searchCriteria;
 
     public function __construct(
         CategoryRepositoryInterface $categoryRepository,
