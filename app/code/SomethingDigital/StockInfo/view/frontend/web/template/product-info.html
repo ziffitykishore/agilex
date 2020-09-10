@@ -14,6 +14,9 @@
     <% if (data.stockData != '') { %>
     <span class="stock-info-popup-trigger" href="">Check Locations</span>
     <% } %>
+    <% _.each(data.stockInfo, function(value){ %>
+        <p><%= value %></p>
+    <% }) %>
 </div>
 <% } %>
 <% if (data.result) { %>
