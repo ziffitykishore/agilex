@@ -8,6 +8,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\CategoryListInterface;
 use Magento\Eav\Model\Config;
+use Magento\Framework\Api\Search\FilterGroup;
+use Magento\Framework\Api\FilterBuilder;
+use Magento\Framework\Api\SearchCriteriaInterface;
+use Magento\Catalog\Model\Category;
 
 class ReSaveBrandCategory extends Command
 {
@@ -23,9 +27,9 @@ class ReSaveBrandCategory extends Command
         CategoryRepositoryInterface $categoryRepository,
         CategoryListInterface $categoryListRepository,
         Config $eavConfig,
-        \Magento\Framework\Api\Search\FilterGroup $filterGroup,
-        \Magento\Framework\Api\FilterBuilder $filterBuilder,
-        \Magento\Framework\Api\SearchCriteriaInterface $criteria
+        FilterGroup $filterGroup,
+        FilterBuilder $filterBuilder,
+        SearchCriteriaInterface $criteria
     ) {
         $this->categoryRepository = $categoryRepository;
         $this->categoryListRepository = $categoryListRepository;
@@ -55,7 +59,7 @@ class ReSaveBrandCategory extends Command
             try {
                 $this->filterGroup->setFilters([
                     $this->filterBuilder
-                        ->setField(\Magento\Catalog\Model\Category::KEY_NAME)
+                        ->setField(Category::KEY_NAME)
                         ->setConditionType('like')
                         ->setValue($option['label'])
                         ->create()
