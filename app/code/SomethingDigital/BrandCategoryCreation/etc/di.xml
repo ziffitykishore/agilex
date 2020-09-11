@@ -4,6 +4,7 @@
        <arguments>
            <argument name="commands" xsi:type="array">
                <item name="brand-category" xsi:type="object">SomethingDigital\BrandCategoryCreation\Console\CreateBrandCategory</item>
+               <item name="re-save-brand-category" xsi:type="object">SomethingDigital\BrandCategoryCreation\Console\ReSaveBrandCategory</item>
            </argument>
        </arguments>
    </type>
