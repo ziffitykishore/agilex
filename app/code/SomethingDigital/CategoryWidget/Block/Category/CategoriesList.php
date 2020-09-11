@@ -113,20 +113,17 @@ class CategoriesList extends Template implements BlockInterface, IdentityInterfa
         if ($this->getData('store_id') !== null) {
             $collection->setStoreId($this->getData('store_id'));
         }
-        
+
         $collection->addAttributeToSelect('*')->joinUrlRewrite();
         $collection->addFieldToFilter('path', ['like' => '1/' . $rootId . '/%']); // load only from store root
         $collection->addFieldToFilter('parent_id', (int) $this->getParentCategoryId()); // load only direct child categories
-        
-        // commented this. Looks like all categories in project are marked as not included to menu
-//        $collection->addAttributeToFilter('include_in_menu', ['eq' => 1]); // load only category which can include into menu
         $collection->addIsActiveFilter(); //active category filter
         $collection->addOrder('position', Collection::SORT_ORDER_ASC);
 
         if ($this->getPageSize()) {
             $collection->setPageSize($this->getPageSize());
         }
-        
+
         return $collection;
     }//end createCollection()
 
@@ -221,7 +218,6 @@ class CategoriesList extends Template implements BlockInterface, IdentityInterfa
     {
         return $this->getCategoriesCount();
     }//end getPageSize()
-    
     
     public function getCategoryCollection()
     {
