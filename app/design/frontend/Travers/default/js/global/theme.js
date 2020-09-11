@@ -1,6 +1,22 @@
 import $ from 'jquery';
 import domready from 'domready';
 
+const $menuItem = $('.level-top.level0 a');
+
+const toggleMobileSubmenu = menuItem => {
+  menuItem.next('.static-block-submenu').toggle();
+}
+
+$menuItem.click(e => {
+  e.stopPropagation();
+
+  if ($(e.currentTarget).find('span').length) {
+    e.preventDefault();
+  }
+
+  toggleMobileSubmenu($(e.currentTarget));
+});
+
 domready(() => {
   // this clones the account links from desktop to the mobile account menu
   $('.panel.header > .header.links').clone().appendTo('#store\\.links');
@@ -18,10 +34,6 @@ domready(() => {
       $(this).addClass('has-mobile-submenu');
     }
   });
-
-  $('.level-top.level0').on('click', function() {
-    $(this).find('.mobile-submenu').toggleClass('show');
-  })
 
   const hideGroupHeaders = (view, item) => {
     const maxGroupCount = 3;
