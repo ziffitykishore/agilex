@@ -103,12 +103,12 @@ class OrderPlaceApi extends Adapter
     /**
      * @return string
      */
-    protected function getCustomerAccountId()
+    protected function getCustomerAccountId($order)
     {
         if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
             return $accountId->getValue();
         } else {
-            return '';
+            return $order->getTraversAccountId();
         }
     }
 
@@ -155,7 +155,7 @@ class OrderPlaceApi extends Adapter
         }
 
         $customerInfo = [
-            "Id" => $this->getCustomerAccountId(),
+            "Id" => $this->getCustomerAccountId($order),
             "Name" => $companyAddress['ToName'],
             "Address" => $companyAddress,
             "Comment" => '',
@@ -174,7 +174,7 @@ class OrderPlaceApi extends Adapter
                 "MiddleName" => $order->getCustomerMiddlename(),
                 "LastName" => $order->getCustomerLastname(),
                 "GroupCode" => "",
-                "CustomerId" => $this->getCustomerAccountId(),
+                "CustomerId" => $this->getCustomerAccountId($order),
                 "Addresses" => [],
                 "MagentoId" => $order->getCustomerId(),
                 "ProspectId" => ""
