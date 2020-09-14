@@ -5,6 +5,7 @@ namespace SomethingDigital\BrandCategoryCreation\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\CategoryListInterface;
 use Magento\Eav\Model\Config;
@@ -15,6 +16,8 @@ use Magento\Catalog\Model\Category;
 
 class ReSaveBrandCategory extends Command
 {
+
+    const OFFSET = 'Offset';
 
     protected $categoryRepository;
     protected $categoryListRepository;
@@ -43,6 +46,12 @@ class ReSaveBrandCategory extends Command
     {
         $this->setName('sd:re-save-brand-categories');
         $this->setDescription('Resave brand categories');
+        $this->addOption(
+            self::OFFSET,
+            null,
+            InputOption::VALUE_OPTIONAL,
+            'Offset'
+        );
        
         parent::configure();
     }
@@ -54,6 +63,12 @@ class ReSaveBrandCategory extends Command
         foreach ($options as $key => $option) {
             if (trim($option['label']) == '') {
                 continue;
+            }
+
+            if ($offset = $input->getOption(self::OFFSET)) {
+                if ($key < $offset) {
+                    continue;
+                }
             }
 
             try {
