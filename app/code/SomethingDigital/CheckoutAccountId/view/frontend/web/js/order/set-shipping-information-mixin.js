@@ -12,7 +12,7 @@ define([
             if (shippingAddress['extension_attributes'] === undefined) {
                 shippingAddress['extension_attributes'] = {};
             }
-            shippingAddress['extension_attributes']['travers_account_id'] = jQuery('[name="travers_account_id"]').val();
+            shippingAddress['extension_attributes']['travers_account_id'] = $('[name="travers_account_id"]').val();
             return originalAction();
         });
     };
