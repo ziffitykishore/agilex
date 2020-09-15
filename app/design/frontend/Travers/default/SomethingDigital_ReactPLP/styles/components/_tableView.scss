@@ -66,10 +66,6 @@
             font-size: $font-size__base;
         }
     }
-
-    .grecaptcha-badge {
-        position: relative;
-    }
 }
 
 .table-and-flyout {
@@ -117,4 +113,8 @@
             display: inline-flex;
         }
     }
+}
+
+.grecaptcha-badge {
+    position: relative !important; // override inline styling
 }

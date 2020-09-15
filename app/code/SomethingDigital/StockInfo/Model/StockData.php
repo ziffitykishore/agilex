@@ -218,7 +218,7 @@ class StockData
                     $messages[] = __('You must buy at least %1 of these per purchase.', $stockItem->getMinSaleQty());
                 }
                 if ($stockItem->getQtyIncrements() > 1) {
-                    $messages[] = __('Only sold in increments of %1', $stockItem->getQtyIncrements());
+                    $messages[] = __('Sold in increments of %1', $stockItem->getQtyIncrements());
                 }
             }
         } catch (NoSuchEntityException $e) {

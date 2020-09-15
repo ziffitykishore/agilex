@@ -746,15 +746,19 @@ body {
         &-pages {
             border-left: 1px solid $secondary__color;
             padding-left: 15px;
+        }
 
-            h3 {
-                display: none;
-            }
+        &-categories {
+            padding-right: 15px;
         }
 
         ul {
             padding-left: 0;
             list-style-type: none;
         }
+    }
+
+    &-pages h3 {
+        display: none;
     }
 }
