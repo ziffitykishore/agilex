@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import domready from 'domready';
+import breakpoints from '../utils/breakpoints';
 
 const $menuItem = $('.level-top.level0 a');
 
@@ -7,14 +8,22 @@ const toggleMobileSubmenu = menuItem => {
   menuItem.next('.static-block-submenu').toggle();
 }
 
-$menuItem.click(e => {
-  e.stopPropagation();
+window.require(['matchMedia'], function(mediaCheck) {
+  mediaCheck({
+    media: `(max-width: ${breakpoints.mobile__nav__breakpoint}px)`,
+    entry: function () {
+      $menuItem.click(e => {
+        e.stopPropagation();
 
-  if ($(e.currentTarget).find('span').length) {
-    e.preventDefault();
-  }
+        if ($(e.currentTarget).find('span').length) {
+          e.preventDefault();
+        }
 
-  toggleMobileSubmenu($(e.currentTarget));
+        toggleMobileSubmenu($(e.currentTarget));
+      });
+    },
+    exit: function () {}
+  });
 });
 
 domready(() => {
