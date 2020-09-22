@@ -546,6 +546,11 @@ return [
                  /tiny_mce/
              '
                 ]
+            ],
+            'catalog' => [
+                'search' => [
+                    'engine' => 'mysql'
+                ]
             ]
         ],
         'websites' => [
