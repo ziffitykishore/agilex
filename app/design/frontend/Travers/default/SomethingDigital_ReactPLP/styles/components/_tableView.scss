@@ -115,6 +115,6 @@
     }
 }
 
-.grecaptcha-badge {
-    position: relative !important; // override inline styling
+.catalog-category-view .grecaptcha-badge {
+    visibility: hidden !important; // override inline styling
 }
