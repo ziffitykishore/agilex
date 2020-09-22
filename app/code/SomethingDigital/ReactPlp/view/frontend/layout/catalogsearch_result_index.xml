@@ -18,7 +18,7 @@
                     <argument name="search_result_page" xsi:type="boolean">true</argument>
                 </arguments>
             </block>
-            <referenceBlock name="search.result" display="false" />
+            <referenceBlock name="search_result_list" display="false" />
         </referenceContainer>
         <referenceBlock name="catalogsearch.leftnav" remove="true" />
         <referenceBlock name="breadcrumbs" remove="true" />
