@@ -49,6 +49,9 @@ class PriceDesc implements \Magento\Framework\View\Element\Block\ArgumentInterfa
         if ($product->getExactUnitPrice()) {
             $priceDesc = $this->currency->getCurrency()->getCurrencySymbol() . $product->getExactUnitPrice();
         }
+        if ($product->getSpecialExactUnitPrice()) {
+            $priceDesc = $this->currency->getCurrency()->getCurrencySymbol() . $product->getSpecialExactUnitPrice();
+        }
         
         return $priceDesc;
     }
