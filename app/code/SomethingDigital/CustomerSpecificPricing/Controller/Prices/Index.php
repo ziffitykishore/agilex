@@ -74,6 +74,9 @@ class Index extends Action
                     if ($product->getExactUnitPrice()) {
                         $price = $this->currency->convert($product->getExactUnitPrice(), $store) * 100;
                     }
+                    if ($product->getSpecialExactUnitPrice()) {
+                        $price = $this->currency->convert($product->getSpecialExactUnitPrice(), $store) * 100;
+                    }
 
                     $qtyPrice1 = $this->arrayManager->get('QtyPrice1', $productPrices);
                     $qtyPrice2 = $this->arrayManager->get('QtyPrice2', $productPrices);
@@ -121,7 +124,12 @@ class Index extends Action
 
                         if ($product->getExactUnitPrice()) {
                             $unitPrice = $product->getExactUnitPrice();
+                            $specialUnitPrice = $product->getSpecialExactUnitPrice();
                             $price = $this->currency->convert($unitPrice, $store) * 100;
+
+                            if ($specialUnitPrice) {
+                                $price = $this->currency->convert($specialUnitPrice, $store) * 100;
+                            }
 
                             $data[$sku] = [
                                 'price' => number_format($price, 2),
