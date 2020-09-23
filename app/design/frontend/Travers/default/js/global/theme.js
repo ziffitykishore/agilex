@@ -43,27 +43,5 @@ domready(() => {
       $(this).addClass('has-mobile-submenu');
     }
   });
-
-  const hideGroupHeaders = (view, item) => {
-    const maxGroupCount = 3;
-
-    for (let i = 1; i <= maxGroupCount; i++) {
-      $(`.${view}-and-flyout .group--level-${i}`).each(function () {
-        if ($(this).find($(`.${item}`)).length === 0) {
-          $(this).hide();
-        } else {
-          $(this).show();
-        }
-      });
-    }
-  }
-
-  $(window).on('refined', function() {
-    // TODO -> remove setTimeout
-    setTimeout(() => {
-      hideGroupHeaders('list', 'list-item');
-      hideGroupHeaders('table', 'react-bootstrap-table');
-    }, 1);
-  });
 });
 
