@@ -24,7 +24,7 @@ const wrapNavItemsInAnchorTag = () => {
   });
 }
 
-const $brandsPage = $('.cms-brands');
+const $brandsPage = $('body[class*="brand"]');
 
 domready(() => {
   if ($brandsPage.length) {
