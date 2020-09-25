@@ -88,10 +88,10 @@
             td {
                 width: 100%;
 
-                @media all and (-ms-high-contrast: none),
-                (-ms-high-contrast: active) {
-                    width: 120px;
-                }
+                // @media all and (-ms-high-contrast: none),
+                // (-ms-high-contrast: active) {
+                //     width: 120px;
+                // }
             }
         }
     }
