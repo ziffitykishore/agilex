@@ -125,11 +125,8 @@ class UpdateCartObserver implements ObserverInterface
                     $quote->addItem($quoteItem);
                 }
                 $addedGift = true;
-            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-                $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
-            }
-            if (in_array($giftSku, $skusInCart) && $skusInCartQty[$giftSku] > $minQty) {
-                try {
+
+                if (in_array($giftSku, $skusInCart) && $skusInCartQty[$giftSku] > $minQty) {
                     $product = $this->productRepository->get($giftSku);
                     $quoteItem = $this->quoteItemFactory->create();
                     $quoteItem->setProduct($product);
@@ -141,9 +138,9 @@ class UpdateCartObserver implements ObserverInterface
                         'value' => true
                     ]);
                     $quote->addItem($quoteItem);
-                } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-                    $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
                 }
+            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+                $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
             }
         }
         if ($addedGift) {
