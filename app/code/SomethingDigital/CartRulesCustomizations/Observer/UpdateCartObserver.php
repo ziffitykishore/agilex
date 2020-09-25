@@ -12,6 +12,7 @@ use Magento\Framework\Session\SessionManagerInterface;
 use Psr\Log\LoggerInterface;
 use SomethingDigital\CustomerSpecificPricing\Model\Quote;
 use Magento\Quote\Api\Data\CartItemInterfaceFactory;
+use Magento\CatalogInventory\Model\Stock\StockItemRepository;
 
 class UpdateCartObserver implements ObserverInterface
 {
@@ -23,6 +24,7 @@ class UpdateCartObserver implements ObserverInterface
     protected $logger;
     protected $quote;
     protected $quoteItemFactory;
+    protected $stockItemRepository;
 
     public function __construct(
         FreeGiftSku $freeGiftSku,
@@ -32,7 +34,8 @@ class UpdateCartObserver implements ObserverInterface
         SessionManagerInterface $session,
         LoggerInterface $logger,
         Quote $quote,
-        CartItemInterfaceFactory $quoteItemFactory
+        CartItemInterfaceFactory $quoteItemFactory,
+        StockItemRepository $stockItemRepository
     ) {
         $this->freeGiftSku = $freeGiftSku;
         $this->productRepository = $productRepository;
@@ -42,6 +45,7 @@ class UpdateCartObserver implements ObserverInterface
         $this->logger = $logger;
         $this->quote = $quote;
         $this->quoteItemFactory = $quoteItemFactory;
+        $this->stockItemRepository = $stockItemRepository;
     }
 
     /**
@@ -88,8 +92,12 @@ class UpdateCartObserver implements ObserverInterface
             }
             try {
                 $product = $this->productRepository->get($giftSku);
-                $quoteItem = $quote->addProduct($product, 1);
-                if (!in_array($giftSku, $skusInCart) || $skusInCartQty[$giftSku] == 1) {
+                $productStock = $this->stockItemRepository->get($product->getId());
+                $minQty = $productStock->getMinSaleQty();
+                $quote->save();
+
+                $quoteItem = $quote->addProduct($product, $minQty);
+                if (!in_array($giftSku, $skusInCart)) {
                     $quoteItem->setCustomPrice(0);
                     $quoteItem->setOriginalCustomPrice(0);
                     $quoteItem->addOption([
@@ -99,24 +107,15 @@ class UpdateCartObserver implements ObserverInterface
                         'value' => true
                     ]);
                 }
-                if (in_array($giftSku, $skusInCart) && $skusInCartQty[$giftSku] > 1) {
-                    $quoteItem->setQty($skusInCartQty[$giftSku] - 1);
-                } else {
-                    $quoteItem->setQty(1);
-                }
-                $quoteItem->save();
-                $addedGift = true;
-            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-                $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
-            }
-            if (in_array($giftSku, $skusInCart) && $skusInCartQty[$giftSku] > 1) {
-                try {
+
+                if (isset($skusInCartQty[$giftSku])) {
+                    $quoteItem->delete();
                     $product = $this->productRepository->get($giftSku);
                     $quoteItem = $this->quoteItemFactory->create();
                     $quoteItem->setProduct($product);
                     $quoteItem->setCustomPrice(0);
                     $quoteItem->setOriginalCustomPrice(0);
-                    $quoteItem->setQty(1);
+                    $quoteItem->setQty($minQty);
                     $quoteItem->addOption([
                         'product_id' => $product->getId(),
                         'product'    => $product,
@@ -124,9 +123,24 @@ class UpdateCartObserver implements ObserverInterface
                         'value' => true
                     ]);
                     $quote->addItem($quoteItem);
-                } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
-                    $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
                 }
+                $addedGift = true;
+
+                if (in_array($giftSku, $skusInCart) && $skusInCartQty[$giftSku] > $minQty) {
+                    $product = $this->productRepository->get($giftSku);
+                    $quoteItem = $this->quoteItemFactory->create();
+                    $quoteItem->setProduct($product);
+                    $quoteItem->setQty($skusInCartQty[$giftSku] - $minQty);
+                    $quoteItem->addOption([
+                        'product_id' => $product->getId(),
+                        'product'    => $product,
+                        'code' => 'free_gift',
+                        'value' => true
+                    ]);
+                    $quote->addItem($quoteItem);
+                }
+            } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+                $this->logger->warning("Couldn't add free gift product $giftSku to the quote.");
             }
         }
         if ($addedGift) {
