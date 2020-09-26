@@ -812,6 +812,22 @@ div[data-content-type='slider'].slick-initialized.slick-dotted {
     }
 }
 
+.pb-banner-row {
+    [data-content-type="banner"] {
+        @include max-screen($screen__m) {
+            display: none !important; // override PageBuilder
+        }
+    }
+
+    [data-content-type="image"],
+    [data-content-type="text"],
+    [data-content-type="buttons"] {
+        @include min-screen($screen__m) {
+            display: none !important; // override PageBuilder
+        }
+    }
+}
+
 .footer-promo-banner {
     padding: $indent__m $indent__s;
     background-color: $c-smoke;
