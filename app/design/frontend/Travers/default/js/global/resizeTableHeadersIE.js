@@ -1,6 +1,9 @@
 import $ from 'jquery';
 import domready from 'domready';
 
+
+// @todo remove setTimeout()
+
 function GetIEVersion() {
   var sAgent = window.navigator.userAgent;
   var Idx = sAgent.indexOf("MSIE");
@@ -48,7 +51,7 @@ if (GetIEVersion() > 0) {
     setTimeout(() => {
       resizeTableHeaders(false);
       $('tr:not(.selected-row)').click(() => resizeTableHeaders(true))
-      $('.product-info .close-button').click(() => resizeTableHeaders(false))
-    }, 1000);
+      // $('.product-info .close-button').click(() => resizeTableHeaders(false)) @todo get this working. It is added/removed to the DOM
+    }, 1000); // @todo remove setTimeout()
   })
 }
