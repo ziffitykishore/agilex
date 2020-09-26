@@ -826,6 +826,22 @@ div[data-content-type='slider'].slick-initialized.slick-dotted {
             display: none !important; // override PageBuilder
         }
     }
+
+    [data-content-type="button-item"] {
+        @include max-screen($screen__m) {
+            width: 100% !important; // override PageBuilder
+        }
+    }
+
+    .pagebuilder-button-primary {
+        box-shadow: inset 0 -2px $c-sapphire, inset 0px 0px 0px 2px $c-waterfall !important; // override PageBuilder
+        border-radius: 6px !important; // override PageBuilder
+    }
+
+    .pagebuilder-button-secondary {
+        box-shadow: inset 0 -2px $c-aluminum, inset 0px 0px 0px 2px $c-grey !important; // override PageBuilder
+        border-radius: 6px !important; // override PageBuilder
+    }
 }
 
 .footer-promo-banner {
