@@ -43,15 +43,15 @@ const resizeTableHeaders = isProductInfoOpened => {
       tableHeaders.css('width', newColumnWidth);
       tableRows.css('width', newColumnWidth);
     }
-  })
+  });
 }
 
 if (GetIEVersion() > 0) {
   $(window).on('attributesLoaded', function() {
     setTimeout(() => {
       resizeTableHeaders(false);
-      $('tr:not(.selected-row)').click(() => resizeTableHeaders(true))
-      // $('.product-info .close-button').click(() => resizeTableHeaders(false)) @todo get this working. It is added/removed to the DOM
+      $('tr:not(.selected-row)').click(() => resizeTableHeaders(true));
+      // $('.product-info .close-button').click(() => resizeTableHeaders(false)); @todo get this working. It is added/removed to the DOM
     }, 1000); // @todo remove setTimeout()
-  })
+  });
 }
