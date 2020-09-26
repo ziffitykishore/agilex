@@ -1,6 +1,23 @@
 import $ from 'jquery';
 import domready from 'domready';
 
+function GetIEVersion() {
+  var sAgent = window.navigator.userAgent;
+  var Idx = sAgent.indexOf("MSIE");
+
+  if (Idx > 0) {
+    return parseInt(sAgent.substring(Idx+ 5, sAgent.indexOf(".", Idx)));
+  }
+
+  else if (!!navigator.userAgent.match(/Trident\/7\./)) {
+    return 11;
+  }
+
+  else {
+    return 0; //It is not IE
+  }
+}
+
 const resizeTableHeaders = isProductInfoOpened => {
   const refinementsWidth = 240;
   const productInfoWidth = 230;
@@ -26,10 +43,12 @@ const resizeTableHeaders = isProductInfoOpened => {
   })
 }
 
-$(window).on('attributesLoaded', function() {
-  setTimeout(() => {
-    resizeTableHeaders(false);
-    $('tr:not(.selected-row)').click(() => resizeTableHeaders(true))
-    $('.product-info .close-button').click(() => resizeTableHeaders(false))
-  }, 1000);
-})
+if (GetIEVersion() > 0) {
+  $(window).on('attributesLoaded', function() {
+    setTimeout(() => {
+      resizeTableHeaders(false);
+      $('tr:not(.selected-row)').click(() => resizeTableHeaders(true))
+      $('.product-info .close-button').click(() => resizeTableHeaders(false))
+    }, 1000);
+  })
+}
