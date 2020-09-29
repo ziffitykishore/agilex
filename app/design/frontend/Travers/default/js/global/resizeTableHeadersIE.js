@@ -9,7 +9,7 @@ const isIE = window.navigator.userAgent.indexOf("MSIE") > 0 || !!navigator.userA
 const resizeTableHeaders = isProductInfoOpened => {
   const refinementsWidth = 240;
   const productInfoWidth = 230;
-  const tablePadding = 2 * 70;
+  const tablePadding = 140; // 2 * 70px left/right padding
   let tableWidth;
   
   if (isProductInfoOpened) {
