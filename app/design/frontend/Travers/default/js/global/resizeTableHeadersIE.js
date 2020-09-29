@@ -36,7 +36,12 @@ if (isIE) {
     setTimeout(() => {
       resizeTableHeaders(false);
       $('tr:not(.selected-row)').click(() => resizeTableHeaders(true));
-      // $('.product-info .close-button').click(() => resizeTableHeaders(false)); @todo get this working. It is added/removed to the DOM
-    }, 1000); // @todo remove setTimeout()
+    }, 500); // @todo remove setTimeout()
+  });
+
+  $(window).on('productInfoOpened', function() {
+    $('.plp-content').on('click', '.product-info .close-button', function() {
+      resizeTableHeaders(false);
+    });
   });
 }
