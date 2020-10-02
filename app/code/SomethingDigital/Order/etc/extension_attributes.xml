@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="customer_carrier" type="string" />
+        <attribute code="customer_carrier_phone_number" type="string" />
+        <attribute code="freight_account_number" type="string" />
+        <attribute code="purchase_order_id" type="string" />
+        <attribute code="ship_to_po" type="string" />
+        <attribute code="delivery_notes" type="string" />
+        <attribute code="notes" type="string" />
+        <attribute code="coupon_code" type="string" />
+        <attribute code="customer_id" type="string" />
+        <attribute code="contact_id" type="string" />
+        <attribute code="sx_address_id" type="string" />
+        <attribute code="discount_suffix" type="string" />
+    </extension_attributes>
+</config>

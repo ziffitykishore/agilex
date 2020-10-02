@@ -21,4 +21,7 @@
         </arguments>
     </virtualType>
     <preference for="Magento\Checkout\Block\Onepage\Success" type="SomethingDigital\Order\Block\Checkout\Success"/>
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin name="sd_add_order_extension_attribute" type="SomethingDigital\Order\Plugin\OrderRepositoryPlugin" />
+    </type>
 </config>
