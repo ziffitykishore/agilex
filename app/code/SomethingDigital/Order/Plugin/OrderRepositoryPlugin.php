@@ -97,6 +97,7 @@ class OrderRepositoryPlugin
         $extensionAttributes->setDeliveryNotes($order->getCheckoutDeliverypoint() ?? "");
         $extensionAttributes->setNotes($order->getCheckoutOrdernotes() ?? "");
         $extensionAttributes->setCouponCode($order->getCouponCode() ?? "");
+        $extensionAttributes->setDiscountSuffix($order->getSuffix() ?? "");
         $extensionAttributes->setCustomerId("");
         $extensionAttributes->setSxAddressId("");
         $extensionAttributes->setContactId("");

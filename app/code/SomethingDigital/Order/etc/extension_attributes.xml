@@ -13,5 +13,6 @@
         <attribute code="customer_id" type="string" />
         <attribute code="contact_id" type="string" />
         <attribute code="sx_address_id" type="string" />
+        <attribute code="discount_suffix" type="string" />
     </extension_attributes>
 </config>
