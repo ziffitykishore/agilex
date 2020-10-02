@@ -101,7 +101,7 @@ class OrderRepositoryPlugin
         $extensionAttributes->setSxAddressId("");
         $extensionAttributes->setContactId("");
 
-        if ($order->getCustomerId()) {
+        if ($order->getCustomerId() !== null) {
             try {
                 $customer = $this->customerRepository->getById($order->getCustomerId());
                 $traversAccountId = $customer->getCustomAttribute('travers_account_id');
