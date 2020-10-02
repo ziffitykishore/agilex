@@ -68,7 +68,7 @@ class OrderRepositoryPlugin
     public function afterGetList(OrderRepositoryInterface $subject, OrderSearchResultInterface $searchResult)
     {
         $orders = $searchResult->getItems();
-        foreach ($orders as &$order) {
+        foreach ($orders as $order) {
             
             $extensionAttributes = $order->getExtensionAttributes();
             $extensionAttributes = $extensionAttributes ? $extensionAttributes : $this->extensionFactory->create();
