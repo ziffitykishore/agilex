@@ -38,7 +38,7 @@ class OrderRepositoryPlugin
         $this->customerRepository = $customerRepository;
         $this->addressRepository = $addressRepository;
     }
-    
+
     /**
      * Add extension attributes to order data object to make it accessible in API data
      *
@@ -81,10 +81,10 @@ class OrderRepositoryPlugin
     /**
      * Set extension attributes
      *
-     * @param $extensionAttributes
+     * @param object $extensionAttributes
      * @param OrderInterface $order
      *
-     * @return $extensionAttributes
+     * @return object
      */
     public function setOrderExtensionAttribute($extensionAttributes, $order)
     {
