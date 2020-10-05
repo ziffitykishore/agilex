@@ -69,7 +69,7 @@
         <label class="label shq-title" for="shipperhq_customer_carrier">
             <span data-bind="i18n: 'Customer Carrier'"></span>
         </label>
-        <input type="text" id="shipperhq_customer_carrier" name="shipperhq-option"/>
+        <select id="shipperhq_customer_carrier"  name="shipperhq-option" data-bind="options: getCustomerCarrierOptions(), optionsCaption: 'Choose...'"></select>
     </div>
     <div id="shq_customer_carrier_ph" data-bind="fadeVisible: shouldShowCustomerCarrierPh" class="shq-input shq-optn-100">
         <label class="label shq-title" for="shipperhq_customer_carrier_ph">
