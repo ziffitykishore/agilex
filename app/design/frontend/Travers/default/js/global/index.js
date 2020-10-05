@@ -10,7 +10,6 @@ import './fullbleed';
 import './stickyNav';
 import './theme';
 import './coupon';
-import './resizeTableHeadersIE';
 import './tabs';
 
 require('lazysizes');
