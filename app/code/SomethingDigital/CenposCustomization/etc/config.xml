@@ -8,12 +8,5 @@
                 <can_capture>0</can_capture>
             </swppayment>
         </payment>
-        <dev>
-            <js>
-                <minify_exclude>
-                    <cenpos>jquery\.viewprocess</cenpos>
-                </minify_exclude>
-            </js>
-        </dev>
     </default>
 </config>
