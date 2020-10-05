@@ -5,13 +5,21 @@ define([
 
     var mixin = {
         getCustomerCarrierAccountNumber: function () {
-            let customer = window.customerData;
+            var customer = window.customerData;
 
+            if (customer.length < 1) {
+                return '';
+            }
             if (typeof(customer.custom_attributes.customer_freight_account) != 'undefined') {
                 return customer.custom_attributes.customer_freight_account.value;
             } else {
                 return '';
             }
+        },
+        getCustomerCarrierOptions: function () {
+            var checkoutConfig = window.checkoutConfig;
+
+            return checkoutConfig.shipperhq_customer_carrier_options
         }
     };
 
