@@ -11,7 +11,7 @@
         <dev>
             <js>
                 <minify_exclude>
-                    <cenpos>jquery.viewprocess</cenpos>
+                    <cenpos>jquery\.viewprocess</cenpos>
                 </minify_exclude>
             </js>
         </dev>
