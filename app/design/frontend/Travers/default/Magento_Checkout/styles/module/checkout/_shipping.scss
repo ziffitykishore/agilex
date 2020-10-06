@@ -201,7 +201,7 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 }
 
-.methods-shipping {
+form.methods-shipping {
     .shq-input {
         input {
             height: $form-element-input__height !important; // override ShipperHQ
@@ -209,6 +209,12 @@ $checkout-shipping-method__padding             : $indent__base !default;
             font-size: $form-element-input__font-size--mobile !important; // override ShipperHQ
             max-width: $form-field__width__desktop !important; // override ShipperHQ
             margin-bottom: $indent__base;
+        }
+
+        select {
+            max-width: 460px;
+            height: 50px;
+            border: 1px solid #C2C2C2;
         }
 
         label span::after {
