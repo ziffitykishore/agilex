@@ -137,9 +137,6 @@ abstract class Adapter
             $curl->addHeader('Cache-Control', 'no-cache');
         }
         $curl->addHeader('Content-Type', 'application/json');
-        if (empty($this->requestBody)) {
-            throw new ApiRequestException(__('Empty SX API request'));
-        }
         try {
             try {
                 $curl->post($this->getRequestUrl(), json_encode($this->requestBody));
@@ -163,7 +160,6 @@ abstract class Adapter
 
             if (!$this->isSuccessful($curl->getStatus())) {
                 $this->logger->alert('SX error from POST ' . $this->getRequestUrl() . ' with status: ' . $curl->getStatus() . ', ResponseBody: ' . $curl->getBody());
-                return false;
             }
 
             return [

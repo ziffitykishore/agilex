@@ -101,7 +101,7 @@ class SpotPricingApi extends Adapter
 
         $response = $this->postRequest();
 
-        if ($response && isset($response['body'])) {
+        if ($response && isset($response['body']) && $this->isSuccessful($response['status'])) {
             return $this->convertPrices($response['body']);
         }
         return false;
