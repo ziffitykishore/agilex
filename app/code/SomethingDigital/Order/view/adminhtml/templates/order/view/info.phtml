@@ -108,6 +108,14 @@ $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub
                         <td><?= $block->escapeHtml($order->getBaseToOrderRate()) ?></td>
                     </tr>
                 <?php endif; ?>
+                <tr>
+                    <th><?= $block->escapeHtml(__('SX Integration Status')) ?></th>
+                    <td><?= $block->escapeHtml($order->getSxIntegrationStatus()) ?></td>
+                </tr>
+                <tr>
+                    <th><?= $block->escapeHtml(__('SX Integration Response')) ?></th>
+                    <td style="overflow-wrap: anywhere;"><?= $block->escapeHtml($order->getSxIntegrationResponse()) ?></td>
+                </tr>
             </table>
             </div>
         </div>
