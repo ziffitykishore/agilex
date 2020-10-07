@@ -22,6 +22,8 @@ use Magento\Directory\Model\Region;
 
 class OrderPlaceApi extends Adapter
 {
+    const XML_PATH_API_USE_NEW_ORDER_API_ENDPOINT = 'sx/general/use_new_api_order_endpoint';
+
     protected $session;
     protected $addressRepository;
     protected $orderItemRepository;
@@ -68,36 +70,50 @@ class OrderPlaceApi extends Adapter
 
     public function sendOrder($order)
     {
-        if (!$this->isTestMode()) {
+        if (!$this->isTestMode() && $this->canUseNewApiOrderEndpoint()) {
+            $this->requestPath = 'api/Order/ProcessMagentoOrder/1745';
+        } elseif (!$this->isTestMode()) {
             $this->requestPath = 'api/Order';
         } else {
             $this->requestPath = 'api-mocks/Order/PlaceOrder';
         }
 
-        $shipto = $this->getCustomerAddress($order, 'shipping');
-        $shipToData = (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '';
-        $shipToData['ShipToPo'] = $order->getCheckoutShiptopo();
+        if (!$this->canUseNewApiOrderEndpoint()) {
+            $shipto = $this->getCustomerAddress($order, 'shipping');
+            $shipToData = (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '';
+            $shipToData['ShipToPo'] = $order->getCheckoutShiptopo();
 
-        $this->requestBody = [
-            'SxId' => '',
-            'ShipTo' => $shipToData,
-            'Customer' => $this->getCustomerInfo($order),
-            'LineItems' => $this->getItems($order),
-            'externalIds' => $order->getIncrementId(),
-            'PurchaseOrderId' => $order->getCheckoutPonumber(),
-            'ShippingMethod' => $order->getShippingMethod(),
-            'Date' => $order->getCreatedAt(),
-            'Total' => $order->getGrandTotal(),
-            'Tax' => $order->getTaxAmount(),
-            'ShipFee' => $order->getShippingAmount(),
-            "CouponCode" => $order->getCouponCode(),
-            'DiscountAmount' => $order->getDiscountAmount(),
-            'DeliveryNotes' => $order->getCheckoutDeliverypoint(),
-            'Notes' => $order->getCheckoutOrdernotes(),
-            'Payments' => $this->getPaymentInfo($order)
-        ];
+            $this->requestBody = [
+                'SxId' => '',
+                'ShipTo' => $shipToData,
+                'Customer' => $this->getCustomerInfo($order),
+                'LineItems' => $this->getItems($order),
+                'externalIds' => $order->getIncrementId(),
+                'PurchaseOrderId' => $order->getCheckoutPonumber(),
+                'ShippingMethod' => $order->getShippingMethod(),
+                'Date' => $order->getCreatedAt(),
+                'Total' => $order->getGrandTotal(),
+                'Tax' => $order->getTaxAmount(),
+                'ShipFee' => $order->getShippingAmount(),
+                "CouponCode" => $order->getCouponCode(),
+                'DiscountAmount' => $order->getDiscountAmount(),
+                'DeliveryNotes' => $order->getCheckoutDeliverypoint(),
+                'Notes' => $order->getCheckoutOrdernotes(),
+                'Payments' => $this->getPaymentInfo($order)
+            ];
+        }
 
         return $this->postRequest();
+    }
+
+    /**
+     * Check whether we can use new order endpoint to process magento order
+     *
+     * @return bool
+     */
+    protected function canUseNewApiOrderEndpoint()
+    {
+        return $this->getConfig(static::XML_PATH_API_USE_NEW_ORDER_API_ENDPOINT);
     }
 
     /**

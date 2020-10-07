@@ -8,6 +8,7 @@ use Psr\Log\LoggerInterface;
 use SomethingDigital\Order\Model\OrderPlaceApi;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Customer\Api\CustomerRepositoryInterface;
+use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use SomethingDigital\Order\Helper\Email;
@@ -19,6 +20,7 @@ class OrderPlace implements ObserverInterface
     protected $orderPlaceApi;
     protected $arrayManager;
     protected $customerRepository;
+    protected $addressRepository;
     protected $orderRepository;
     protected $scopeConfig;
     protected $email;
@@ -32,6 +34,7 @@ class OrderPlace implements ObserverInterface
         OrderPlaceApi $orderPlaceApi,
         ArrayManager $arrayManager,
         CustomerRepositoryInterface $customerRepository,
+        AddressRepositoryInterface $addressRepository,
         OrderRepositoryInterface $orderRepository,
         ScopeConfigInterface $scopeConfig,
         Email $email
@@ -40,6 +43,7 @@ class OrderPlace implements ObserverInterface
         $this->orderPlaceApi = $orderPlaceApi;
         $this->arrayManager = $arrayManager;
         $this->customerRepository = $customerRepository;
+        $this->addressRepository = $addressRepository;
         $this->orderRepository = $orderRepository;
         $this->scopeConfig = $scopeConfig;
         $this->email = $email;
@@ -56,6 +60,7 @@ class OrderPlace implements ObserverInterface
         
         try {
             $response = $this->orderPlaceApi->sendOrder($order);
+
             $this->processResponse($order, $response);
         } catch (\Exception $e) {
             $this->logger->alert($e);
@@ -72,6 +77,9 @@ class OrderPlace implements ObserverInterface
     protected function processResponse($order, $response)
     {
         if (!$this->orderPlaceApi->isSuccessful($response['status']) || !isset($response['body']['SxOrderId'])) {
+            $order->setSxIntegrationStatus('failed');
+            $order->setSxIntegrationResponse($response['body']);
+            $this->orderRepository->save($order);
             $this->email->sendEmail($order, $response);
             return;
         }
@@ -79,6 +87,7 @@ class OrderPlace implements ObserverInterface
         $sxCustomerId = $this->arrayManager->get('body/SxCustomerId', $response);
         $sxContactId = $this->arrayManager->get('body/SxContactId', $response);
         $sxOrderId = $this->arrayManager->get('body/SxOrderId', $response);
+        $shipToId = $this->arrayManager->get('body/ShipToId', $response);
 
         if ($order->getCustomerId()) {
             $customer = $this->customerRepository->getById($order->getCustomerId());
@@ -89,8 +98,18 @@ class OrderPlace implements ObserverInterface
                 $customer->setCustomAttribute('travers_contact_id', $sxContactId);
             }
             $this->customerRepository->save($customer);
+
+            $shippingAddress = $order->getShippingAddress();
+            $customerAddressId = $shippingAddress->getCustomerAddressId();
+            $address = $this->addressRepository->getById($customerAddressId);
+            if (!empty($shipToId) && !$this->getTraversShipToId($address)) {
+                $address->setCustomAttribute('sx_address_id', $shipToId);
+            }
+            $this->addressRepository->save($address);
         }
         $order->setRealOrderId($sxOrderId);
+        $order->setSxIntegrationStatus('processing');
+        $order->setSxIntegrationResponse(json_encode($response['body']));
         $this->orderRepository->save($order);
     }
 
@@ -106,6 +125,14 @@ class OrderPlace implements ObserverInterface
     {
         if ($customer->getCustomAttribute('travers_contact_id')) {
             return $customer->getCustomAttribute('travers_contact_id')->getValue();
+        }
+        return '';
+    }
+
+    protected function getTraversShipToId($address)
+    {
+        if ($address->getCustomAttribute('sx_address_id')) {
+            return $address->getCustomAttribute('sx_address_id')->getValue();
         }
         return '';
     }
