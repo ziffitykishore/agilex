@@ -71,7 +71,7 @@ class OrderPlaceApi extends Adapter
     public function sendOrder($order)
     {
         if (!$this->isTestMode() && $this->canUseNewApiOrderEndpoint()) {
-            $this->requestPath = 'api/Order/ProcessMagentoOrder/1745';
+            $this->requestPath = 'api/Order/ProcessMagentoOrder/' . $order->getEntityId();
         } elseif (!$this->isTestMode()) {
             $this->requestPath = 'api/Order';
         } else {
