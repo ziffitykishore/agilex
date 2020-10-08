@@ -17400,17 +17400,17 @@
         },
         {
             "name": "shipperhq/module-option",
-            "version": "20.5.0",
+            "version": "20.4.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:webshopapps/module-option.git",
-                "reference": "a22ebf64d5a0f6e575ec5468f3a678970ca936c1"
+                "reference": "35c3b4e8fb7b298f1d3a793bafe24c90ec9300df"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://packages.shipperhq.com/dist/shipperhq/module-option/shipperhq-module-option-a22ebf64d5a0f6e575ec5468f3a678970ca936c1-zip-e1a7ad.tar",
-                "reference": "a22ebf64d5a0f6e575ec5468f3a678970ca936c1",
-                "shasum": "07fb39370aaf7f64e452d98d85af5b2afd2e9b1a"
+                "url": "https://packages.shipperhq.com/dist/shipperhq/module-option/shipperhq-module-option-35c3b4e8fb7b298f1d3a793bafe24c90ec9300df-zip-01d6ed.tar",
+                "reference": "35c3b4e8fb7b298f1d3a793bafe24c90ec9300df",
+                "shasum": "7be8ebb279b62d7d5e56d1e7ec3a2690efa53ebf"
             },
             "require": {
                 "shipperhq/module-common": "^20.8",
@@ -17456,10 +17456,10 @@
             "description": "ShipperHQ Option functionality",
             "support": {
                 "documentation": "http://docs.shipperhq.com",
-                "source": "https://github.com/webshopapps/module-option/tree/20.5.0",
+                "source": "https://github.com/webshopapps/module-option/tree/20.4.1",
                 "issues": "https://github.com/webshopapps/module-option/issues"
             },
-            "time": "2019-11-20T15:59:29+00:00"
+            "time": "2019-06-28T16:50:59+00:00"
         },
         {
             "name": "shipperhq/module-shipper",
