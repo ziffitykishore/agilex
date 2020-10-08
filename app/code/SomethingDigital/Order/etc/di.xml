@@ -10,6 +10,7 @@
         <arguments>
             <argument name="columns" xsi:type="array">
                 <item name="real_order_id" xsi:type="string">sales_order.real_order_id</item>
+                <item name="sx_integration_status" xsi:type="string">sales_order.sx_integration_status</item>
             </argument>
         </arguments>
     </virtualType>
@@ -17,6 +18,7 @@
         <arguments>
             <argument name="columns" xsi:type="array">
                 <item name="real_order_id" xsi:type="string">sales_order.real_order_id</item>
+                <item name="sx_integration_status" xsi:type="string">sales_order.sx_integration_status</item>
             </argument>
         </arguments>
     </virtualType>
