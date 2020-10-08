@@ -24,4 +24,7 @@
     <type name="Magento\Sales\Api\OrderRepositoryInterface">
         <plugin name="sd_add_order_extension_attribute" type="SomethingDigital\Order\Plugin\OrderRepositoryPlugin" />
     </type>
+    <type name="Magento\Sales\Block\Order\Totals">
+        <plugin name="sd_order_remove_base_grandtotal" type="SomethingDigital\Order\Plugin\RemoveBaseGrandtotal" />
+    </type>
 </config>
