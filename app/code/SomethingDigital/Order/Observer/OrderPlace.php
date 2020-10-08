@@ -12,6 +12,7 @@ use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use SomethingDigital\Order\Helper\Email;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class OrderPlace implements ObserverInterface
 {
@@ -77,9 +78,13 @@ class OrderPlace implements ObserverInterface
     protected function processResponse($order, $response)
     {
         if (!$this->orderPlaceApi->isSuccessful($response['status']) || !isset($response['body']['SxOrderId'])) {
-            $order->setSxIntegrationStatus('failed');
-            $order->setSxIntegrationResponse($response['body']);
-            $this->orderRepository->save($order);
+            try {
+                $order->setSxIntegrationStatus('failed');
+                $order->setSxIntegrationResponse($response['body']);
+                $this->orderRepository->save($order);
+            } catch (\Exception $e) {
+
+            }
             $this->email->sendEmail($order, $response);
             return;
         }
@@ -98,14 +103,17 @@ class OrderPlace implements ObserverInterface
                 $customer->setCustomAttribute('travers_contact_id', $sxContactId);
             }
             $this->customerRepository->save($customer);
-
-            $shippingAddress = $order->getShippingAddress();
-            $customerAddressId = $shippingAddress->getCustomerAddressId();
-            $address = $this->addressRepository->getById($customerAddressId);
-            if (!empty($shipToId) && !$this->getTraversShipToId($address)) {
-                $address->setCustomAttribute('sx_address_id', $shipToId);
+            try {
+                $shippingAddress = $order->getShippingAddress();
+                $customerAddressId = $shippingAddress->getCustomerAddressId();
+                $address = $this->addressRepository->getById($customerAddressId);
+                if (!empty($shipToId) && !$this->getTraversShipToId($address)) {
+                    $address->setCustomAttribute('sx_address_id', $shipToId);
+                }
+                $this->addressRepository->save($address);
+            } catch (NoSuchEntityException $e) {
+                //no action needed
             }
-            $this->addressRepository->save($address);
         }
         $order->setRealOrderId($sxOrderId);
         $order->setSxIntegrationStatus('processing');
