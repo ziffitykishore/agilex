@@ -83,7 +83,7 @@ class OrderPlace implements ObserverInterface
                 $order->setSxIntegrationResponse($response['body']);
                 $this->orderRepository->save($order);
             } catch (\Exception $e) {
-                $this->logger->alert('Could not save an order when processing response from middleware API order.' . $e->getMessage());
+                $this->logger->alert('Could not save an order and set sx order status when processing response from middleware API order.' . $e->getMessage());
             }
             $this->email->sendEmail($order, $response);
             return;
@@ -112,7 +112,7 @@ class OrderPlace implements ObserverInterface
                 }
                 $this->addressRepository->save($address);
             } catch (NoSuchEntityException $e) {
-                $this->logger->alert('Could not save address when processing response from middleware API order.' . $e->getMessage());
+                $this->logger->alert('Could not save address and set sx_address_id when processing response from middleware API order.' . $e->getMessage());
             }
         }
         $order->setRealOrderId($sxOrderId);
