@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2573803f161a2d695c4b8f0f9e94707a",
+    "content-hash": "49b5dab4164d5d7b28dbc06e0ad1e71b",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -609,21 +609,21 @@
         },
         {
             "name": "colinmollenhour/php-redis-session-abstract",
-            "version": "v1.4.1",
+            "version": "v1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/php-redis-session-abstract.git",
-                "reference": "4949ca28b86037abb44984c77bab9d0a4e075643"
+                "reference": "39ca38da5e0a981bc1a7e39a86693c128784a513"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/4949ca28b86037abb44984c77bab9d0a4e075643",
-                "reference": "4949ca28b86037abb44984c77bab9d0a4e075643",
+                "url": "https://api.github.com/repos/colinmollenhour/php-redis-session-abstract/zipball/39ca38da5e0a981bc1a7e39a86693c128784a513",
+                "reference": "39ca38da5e0a981bc1a7e39a86693c128784a513",
                 "shasum": ""
             },
             "require": {
                 "colinmollenhour/credis": "~1.6",
-                "php": "^5.5 || ^7.0"
+                "php": "^5.5 || ^7.0|| ^7.1 || ^7.2"
             },
             "type": "library",
             "autoload": {
@@ -642,7 +642,7 @@
             ],
             "description": "A Redis-based session handler with optimistic locking",
             "homepage": "https://github.com/colinmollenhour/php-redis-session-abstract",
-            "time": "2019-03-18T14:43:14+00:00"
+            "time": "2020-10-07T09:47:22+00:00"
         },
         {
             "name": "composer/ca-bundle",
@@ -15634,16 +15634,16 @@
         },
         {
             "name": "magento/zendframework1",
-            "version": "1.14.2",
+            "version": "1.14.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magento/zf1.git",
-                "reference": "8221062d42a198e431d183bbe672e5e1a2f98c5f"
+                "reference": "250f35c0e80b5e6fa1a1598c144cba2fff36b565"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magento/zf1/zipball/8221062d42a198e431d183bbe672e5e1a2f98c5f",
-                "reference": "8221062d42a198e431d183bbe672e5e1a2f98c5f",
+                "url": "https://api.github.com/repos/magento/zf1/zipball/250f35c0e80b5e6fa1a1598c144cba2fff36b565",
+                "reference": "250f35c0e80b5e6fa1a1598c144cba2fff36b565",
                 "shasum": ""
             },
             "require": {
@@ -15677,7 +15677,7 @@
                 "ZF1",
                 "framework"
             ],
-            "time": "2019-07-26T16:43:11+00:00"
+            "time": "2020-05-19T23:25:07+00:00"
         },
         {
             "name": "mageworx/module-htmlsitemap",
@@ -15778,16 +15778,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.25.1",
+            "version": "1.25.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf"
+                "reference": "1817faadd1846cd08be9a49e905dc68823bc38c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
-                "reference": "70e65a5470a42cfec1a7da00d30edb6e617e8dcf",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/1817faadd1846cd08be9a49e905dc68823bc38c0",
+                "reference": "1817faadd1846cd08be9a49e905dc68823bc38c0",
                 "shasum": ""
             },
             "require": {
@@ -15801,11 +15801,10 @@
                 "aws/aws-sdk-php": "^2.4.9 || ^3.0",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
-                "jakub-onderka/php-parallel-lint": "0.9",
                 "php-amqplib/php-amqplib": "~2.4",
                 "php-console/php-console": "^3.1.3",
+                "php-parallel-lint/php-parallel-lint": "^1.0",
                 "phpunit/phpunit": "~4.5",
-                "phpunit/phpunit-mock-objects": "2.3.0",
                 "ruflin/elastica": ">=0.90 <3.0",
                 "sentry/sentry": "^0.13",
                 "swiftmailer/swiftmailer": "^5.3|^6.0"
@@ -15852,7 +15851,17 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2019-09-06T13:49:17+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/Seldaek",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/monolog/monolog",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-23T08:35:51+00:00"
         },
         {
             "name": "msp/adminrestriction",
@@ -16810,16 +16819,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/446d54b4cb6bf489fc9d75f55843658e6f25d801",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
                 "shasum": ""
             },
             "require": {
@@ -16853,7 +16862,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2019-11-01T11:05:21+00:00"
+            "time": "2020-03-23T09:12:05+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -17212,16 +17221,16 @@
         },
         {
             "name": "shipperhq/library-shipper",
-            "version": "20.11.1",
+            "version": "20.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shipperhq/library-shipper.git",
-                "reference": "a8a0508ccf889526c0f870d6f955887a4946d178"
+                "reference": "67b518c5b956cf633a02bba34eacab2b9a62ab9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shipperhq/library-shipper/zipball/a8a0508ccf889526c0f870d6f955887a4946d178",
-                "reference": "a8a0508ccf889526c0f870d6f955887a4946d178",
+                "url": "https://api.github.com/repos/shipperhq/library-shipper/zipball/67b518c5b956cf633a02bba34eacab2b9a62ab9a",
+                "reference": "67b518c5b956cf633a02bba34eacab2b9a62ab9a",
                 "shasum": ""
             },
             "type": "magento2-library",
@@ -17249,7 +17258,7 @@
                 }
             ],
             "description": "ShipperHQ Library",
-            "time": "2019-09-12T17:41:24+00:00"
+            "time": "2020-08-20T09:20:20+00:00"
         },
         {
             "name": "shipperhq/library-ws",
@@ -17294,22 +17303,22 @@
         },
         {
             "name": "shipperhq/module-common",
-            "version": "20.8.0",
+            "version": "20.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shipperhq/module-common.git",
-                "reference": "6372807ddde7faa5a5fd8e35268b3bfb45bce353"
+                "reference": "627b46edcf45d43f319c9ce0fa71265a2cace270"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shipperhq/module-common/zipball/6372807ddde7faa5a5fd8e35268b3bfb45bce353",
-                "reference": "6372807ddde7faa5a5fd8e35268b3bfb45bce353",
+                "url": "https://api.github.com/repos/shipperhq/module-common/zipball/627b46edcf45d43f319c9ce0fa71265a2cace270",
+                "reference": "627b46edcf45d43f319c9ce0fa71265a2cace270",
                 "shasum": ""
             },
             "require": {
                 "magento/framework": ">=100.0",
                 "magento/module-store": ">=100.0",
-                "shipperhq/library-shipper": "^20.10",
+                "shipperhq/library-shipper": "^20.12",
                 "shipperhq/library-ws": "^20.4"
             },
             "require-dev": {
@@ -17352,7 +17361,7 @@
                 }
             ],
             "description": "ShipperHQ Common",
-            "time": "2019-03-14T16:58:46+00:00"
+            "time": "2019-11-20T15:58:33+00:00"
         },
         {
             "name": "shipperhq/module-logger",
@@ -17400,21 +17409,22 @@
         },
         {
             "name": "shipperhq/module-option",
-            "version": "20.4.1",
+            "version": "20.5.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:webshopapps/module-option.git",
-                "reference": "35c3b4e8fb7b298f1d3a793bafe24c90ec9300df"
+                "reference": "e32ee77ee441bb6a4d9da848840805d289bdd93d"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://packages.shipperhq.com/dist/shipperhq/module-option/shipperhq-module-option-35c3b4e8fb7b298f1d3a793bafe24c90ec9300df-zip-01d6ed.tar",
-                "reference": "35c3b4e8fb7b298f1d3a793bafe24c90ec9300df",
-                "shasum": "7be8ebb279b62d7d5e56d1e7ec3a2690efa53ebf"
+                "url": "https://packages.shipperhq.com/dist/shipperhq/module-option/shipperhq-module-option-e32ee77ee441bb6a4d9da848840805d289bdd93d-zip-cf3dab.tar",
+                "reference": "e32ee77ee441bb6a4d9da848840805d289bdd93d",
+                "shasum": "602bdea62f3bc87cbda31257bdcd27182af29b61"
             },
             "require": {
+                "shipperhq/library-shipper": "^20.12",
                 "shipperhq/module-common": "^20.8",
-                "shipperhq/module-shipper": "^20.22"
+                "shipperhq/module-shipper": "^20.34"
             },
             "require-dev": {
                 "fabpot/php-cs-fixer": "~1.2",
@@ -17456,23 +17466,23 @@
             "description": "ShipperHQ Option functionality",
             "support": {
                 "documentation": "http://docs.shipperhq.com",
-                "source": "https://github.com/webshopapps/module-option/tree/20.4.1",
+                "source": "https://github.com/webshopapps/module-option/tree/20.5.2",
                 "issues": "https://github.com/webshopapps/module-option/issues"
             },
-            "time": "2019-06-28T16:50:59+00:00"
+            "time": "2020-06-12T09:19:45+00:00"
         },
         {
             "name": "shipperhq/module-shipper",
-            "version": "20.32.1",
+            "version": "20.34.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/shipperhq/module-shipper.git",
-                "reference": "d31e1115ce40e5e4d772189ae317336ebca00c7e"
+                "reference": "05eaaff051220743014beebf9b3716950ec81061"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shipperhq/module-shipper/zipball/d31e1115ce40e5e4d772189ae317336ebca00c7e",
-                "reference": "d31e1115ce40e5e4d772189ae317336ebca00c7e",
+                "url": "https://api.github.com/repos/shipperhq/module-shipper/zipball/05eaaff051220743014beebf9b3716950ec81061",
+                "reference": "05eaaff051220743014beebf9b3716950ec81061",
                 "shasum": ""
             },
             "require": {
@@ -17480,9 +17490,9 @@
                 "magento/framework": ">=100.0",
                 "magento/module-store": ">=100.2",
                 "shipperhq/library-graphql": "^20.0",
-                "shipperhq/library-shipper": "^20.10",
+                "shipperhq/library-shipper": "^20.12",
                 "shipperhq/library-ws": "^20.4",
-                "shipperhq/module-common": "^20.8",
+                "shipperhq/module-common": "^20.9",
                 "shipperhq/module-logger": "*"
             },
             "require-dev": {
@@ -17526,7 +17536,7 @@
                 }
             ],
             "description": "Magento Shipping integration with ShipperHQ",
-            "time": "2019-11-06T11:22:46+00:00"
+            "time": "2019-11-21T22:54:48+00:00"
         },
         {
             "name": "snowdog/frontools",
@@ -18312,16 +18322,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a6977d63bf9a0ad4c65cd352709e230876f9904a",
+                "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a",
                 "shasum": ""
             },
             "require": {
@@ -18333,7 +18343,11 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.18-dev"
+                },
+                "thanks": {
+                    "name": "symfony/polyfill",
+                    "url": "https://github.com/symfony/polyfill"
                 }
             },
             "autoload": {
@@ -18367,7 +18381,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-14T12:35:20+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
@@ -19593,16 +19621,16 @@
         },
         {
             "name": "zendframework/zend-db",
-            "version": "2.10.0",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-db.git",
-                "reference": "77022f06f6ffd384fa86d22ab8d8bbdb925a1e8e"
+                "reference": "71626f95f6f9ee326e4be3c34228c1c466300a2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-db/zipball/77022f06f6ffd384fa86d22ab8d8bbdb925a1e8e",
-                "reference": "77022f06f6ffd384fa86d22ab8d8bbdb925a1e8e",
+                "url": "https://api.github.com/repos/zendframework/zend-db/zipball/71626f95f6f9ee326e4be3c34228c1c466300a2c",
+                "reference": "71626f95f6f9ee326e4be3c34228c1c466300a2c",
                 "shasum": ""
             },
             "require": {
@@ -19610,7 +19638,7 @@
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7.25 || ^6.4.4",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14",
                 "zendframework/zend-coding-standard": "~1.0.0",
                 "zendframework/zend-eventmanager": "^2.6.2 || ^3.0",
                 "zendframework/zend-hydrator": "^1.1 || ^2.1 || ^3.0",
@@ -19624,8 +19652,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9-dev",
-                    "dev-develop": "2.10-dev"
+                    "dev-master": "2.11.x-dev",
+                    "dev-develop": "2.12.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\Db",
@@ -19648,7 +19676,7 @@
                 "zf"
             ],
             "abandoned": "laminas/laminas-db",
-            "time": "2019-02-25T11:37:45+00:00"
+            "time": "2019-12-31T19:43:46+00:00"
         },
         {
             "name": "zendframework/zend-di",
