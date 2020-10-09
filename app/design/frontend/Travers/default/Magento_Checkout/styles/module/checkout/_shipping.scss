@@ -215,6 +215,7 @@ form.methods-shipping {
             max-width: $form-field__width__desktop;
             height: $select__height;
             border: 1px solid $c-border;
+            font-size: 14px;
         }
 
         label span::after {
