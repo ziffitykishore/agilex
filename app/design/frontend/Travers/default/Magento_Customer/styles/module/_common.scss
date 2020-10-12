@@ -73,6 +73,14 @@ $_password-very-strong: #81b562 !default;
     }
 }
 
+.form-login .field.note {
+    padding-right: $indent__m;
+
+    p {
+        margin-bottom: 15px;
+    }
+}
+
 .forget {
     .fieldset:before {
         margin-bottom: 10px;
