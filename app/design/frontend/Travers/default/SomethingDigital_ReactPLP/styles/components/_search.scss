@@ -1,0 +1,89 @@
+.catalogsearch-result-index {
+    .search-results-header {
+        @include max-screen($screen__m) {
+            padding-left: 0;
+        }
+    }
+
+    p {
+        font-weight: $font-weight__bold;
+        font-size: 16px;
+    }
+
+    .search-top-hits {
+        padding: $indent__m 0;
+
+        @include min-screen($screen__m) {
+            padding: $indent__m $indent__l;
+        }
+    }
+
+    .search-top-hits-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        @include min-screen($screen__s) {
+            justify-content: flex-start;
+        }
+
+        .search-hit {
+            display: flex;
+            padding: $indent__xs;
+            margin: $indent__s $indent__xs;
+            width: 150px;
+            height: 50px;
+            border: 1px solid $c-grey;
+            text-align: left;
+            color: $text__color;
+            align-items: center;
+            border-radius: $indent__s;
+            font-size: 13px;
+            position: relative;
+
+            @include hover {
+                box-shadow: 0 $indent__xs $indent__s $c-grey;
+                transition: box-shadow .2s ease;
+                text-decoration: none;
+            }
+
+            @include min-screen($screen__xs) {
+                width: 170px;
+            }
+
+            @include min-screen($screen__m) {
+                width: 200px;
+            }
+
+            img {
+                width: 40px;
+                height: 40px;
+                margin-right: $indent__s;
+            }
+
+            span {
+                position: absolute;
+                display: block;
+                top: 50%;
+                transform: translateY(-50%); 
+
+                &:not(:last-of-type) {
+                    max-height: 40px;
+                    overflow: hidden;
+                    left: 70px;
+                    max-width: 100px;
+                }
+
+                &:last-of-type {
+                    display: none;
+                    margin-left: $indent__xs;
+                    right: $indent__s;
+
+                    @include min-screen($screen__m) {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}
