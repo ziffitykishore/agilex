@@ -72,6 +72,42 @@ class AddProductAttributes
             'order' => 'unordered',
             'retrievable' => 1
         ];
+        $result[] = [
+            'attribute' => 'wh_ca_qty',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'wh_ca_status',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'wh_ny_qty',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'wh_ny_status',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'wh_sc_qty',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
+        $result[] = [
+            'attribute' => 'wh_sc_status',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
 
         $customerGroups = $this->customerGroupRepository->getList($this->searchCriteriaBuilder->create())->getItems();
         foreach ($customerGroups as $customerGroup) {

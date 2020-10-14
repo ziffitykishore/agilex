@@ -78,13 +78,19 @@ class AddProductData implements ObserverInterface
      */
     private function addStockData($product, $transport)
     {
+        $algoliaProductData = $transport->getData();
+        $algoliaProductData['wh_ca_qty'] = $product->getData('wh_ca_qty');
+        $algoliaProductData['wh_ca_status'] = $product->getWhCaStatus();
+        $algoliaProductData['wh_ny_qty'] = $product->getWhNyQty();
+        $algoliaProductData['wh_ny_status'] = $product->getWhNyStatus();
+        $algoliaProductData['wh_sc_qty'] = $product->getWhScQty();
+        $algoliaProductData['wh_sc_status'] = $product->getWhScStatus();
         $stockItem = $this->stockRegistry->getStockItem($product->getId());
         if ($stockItem) {
-            $algoliaProductData = $transport->getData();
             $algoliaProductData['min_sale_qty'] = $stockItem->getMinSaleQty();
             $algoliaProductData['qty_increment'] = $stockItem->getQtyIncrements();
-            $transport->setData($algoliaProductData);
         }
+        $transport->setData($algoliaProductData);
     }
 
     /**
