@@ -422,6 +422,7 @@ return [
         'SomethingDigital_SidebarMinicart' => 1,
         'SomethingDigital_StockInfo' => 1,
         'SomethingDigital_CustomerSpecificTierPrices' => 1,
+        'SomethingDigital_URapidFlowAutoExecute' => 1,
         'SomethingDigital_VirtualThemes' => 1,
         'SomethingDigital_WebsiteSwitcher' => 1,
         'Temando_Shipping' => 1,

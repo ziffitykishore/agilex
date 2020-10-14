@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "49b5dab4164d5d7b28dbc06e0ad1e71b",
+    "content-hash": "5757abc2cdd28f7a82cc2023fd0a032f",
     "packages": [
         {
             "name": "algolia/algoliasearch-client-php",
@@ -17662,6 +17662,30 @@
             },
             "description": "A module to alert an email address on a successful/failed login attempt.",
             "time": "2019-11-05T18:39:44+00:00"
+        },
+        {
+            "name": "somethingdigital/urapidflow-autoexecute",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_URapidFlowAutoExecute.git",
+                "reference": "e4e853c3d5dd6584bb46443e0e7ddb0de8f0ca1a"
+            },
+            "require": {
+                "magento/framework": "*",
+                "php": ">= 7.0.0 <8.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "SomethingDigital\\URapidFlowAutoExecute\\": ""
+                }
+            },
+            "description": "A module used to run urapidflow profiles via a console command",
+            "time": "2020-09-11T02:03:04+00:00"
         },
         {
             "name": "spomky-labs/otphp",
