@@ -46,7 +46,11 @@ define([
 
                 if (prices['QtyPrice1'] && prices['QtyBreak1'] > 1) {
                     prices['UpFirstBreak'] = '1 - ' + (prices['QtyBreak1'] - 1);
-                    prices['RegularPrice'] = prices['price'];
+                    if (prices['pricePer100']) {
+                        prices['RegularPrice'] = '$' + prices['unitPrice'].toFixed(2)
+                    } else {
+                        prices['RegularPrice'] = prices['price'];
+                    }
                 }
 
                 if (!prices['QtyPrice2'] && !prices['QtyPrice3']) {
