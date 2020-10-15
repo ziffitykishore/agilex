@@ -53,6 +53,7 @@
 
             @include min-screen($screen__xs) {
                 width: 170px;
+                margin-left: 0;
             }
 
             @include min-screen($screen__m) {
@@ -74,7 +75,7 @@
                 &:not(:last-of-type) {
                     max-height: 40px;
                     overflow: hidden;
-                    left: 70px;
+                    left: 55px;
                     max-width: 100px;
                 }
 
@@ -89,6 +90,14 @@
                     @include min-screen($screen__m) {
                         display: inline-block;
                     }
+                }
+
+                &.search-hit-badge {
+                    top: -3px;
+                    background-color: $primary__color;
+                    padding: 2px 7px;
+                    border-radius: 10px;
+                    color: $color-white;
                 }
             }
         }
