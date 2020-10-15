@@ -92,19 +92,11 @@
 
     tbody {
         overflow-y: auto;
-
-        tr:nth-of-type(n+10) {
-            display: none;
-        }
     }
 
 
     .sticky tbody {
         max-height: 630px;
-
-        tr:nth-of-type(n+20) {
-            display: inline-flex;
-        }
     }
 }
 
