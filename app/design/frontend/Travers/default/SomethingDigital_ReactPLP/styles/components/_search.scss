@@ -31,7 +31,7 @@
             display: flex;
             padding: $indent__xs;
             margin: $indent__s $indent__xs;
-            width: 150px;
+            width: 100%;
             height: 50px;
             border: 1px solid $c-grey;
             text-align: left;
@@ -45,6 +45,10 @@
                 box-shadow: 0 $indent__xs $indent__s $c-grey;
                 transition: box-shadow .2s ease;
                 text-decoration: none;
+            }
+
+            @include min-screen($screen__xxs) {
+                width: 140px;
             }
 
             @include min-screen($screen__xs) {
@@ -75,9 +79,12 @@
                 }
 
                 &:last-of-type {
-                    display: none;
                     margin-left: $indent__xs;
                     right: $indent__s;
+
+                    @include min-screen($screen__xxs) {
+                        display: none;
+                    }
 
                     @include min-screen($screen__m) {
                         display: inline-block;
