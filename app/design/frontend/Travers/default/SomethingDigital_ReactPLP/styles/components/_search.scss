@@ -91,14 +91,6 @@
                         display: inline-block;
                     }
                 }
-
-                &.search-hit-badge {
-                    top: -3px;
-                    background-color: $primary__color;
-                    padding: 2px 7px;
-                    border-radius: 10px;
-                    color: $color-white;
-                }
             }
         }
     }
