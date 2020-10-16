@@ -108,6 +108,12 @@ class AddProductAttributes
             'order' => 'unordered',
             'retrievable' => 1
         ];
+        $result[] = [
+            'attribute' => 'grouping_image_name',
+            'searchable' => 2,
+            'order' => 'unordered',
+            'retrievable' => 1
+        ];
 
         $customerGroups = $this->customerGroupRepository->getList($this->searchCriteriaBuilder->create())->getItems();
         foreach ($customerGroups as $customerGroup) {
