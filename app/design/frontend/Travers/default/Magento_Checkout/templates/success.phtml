@@ -9,6 +9,7 @@
 ?>
 <?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
 <?php $order = $block->getOrder()?>
+<?php $sxIntegrationResponse = json_decode($order->getSxIntegrationResponse()); ?>
 <div class="checkout-success">
     <h1><?= __('Order confirmed') ?></h1>
     <?php if ($block->getOrderId()):?>
@@ -17,7 +18,12 @@
         <?php  else :?>
             <p><?= __('Your order # is: <span>%1</span>.', $block->escapeHtml($order->getRealOrderId())) ?></p>
         <?php endif;?>
-            <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
+
+        <?php if (isset($sxIntegrationResponse->CreditMessaging) && !empty($sxIntegrationResponse->CreditMessaging)): ?>
+            <p><?= /* @escapeNotVerified */ $sxIntegrationResponse->CreditMessaging ?></p>
+        <?php endif;?>
+
+        <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
     <?php endif;?>
 
     <?= $block->getAdditionalInfoHtml() ?>
