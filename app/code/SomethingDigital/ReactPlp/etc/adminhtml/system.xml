@@ -20,6 +20,9 @@
                 <field id="limit_filter_attr_values" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="1">
                     <label>Limit number of attribute values in filters</label>
                 </field>
+                <field id="url_to_grouping_images_catalog" translate="label comment" type="text" sortOrder="300" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>URL to grouping images catalog</label>
+                </field>
             </group>
         </section>
     </system>
