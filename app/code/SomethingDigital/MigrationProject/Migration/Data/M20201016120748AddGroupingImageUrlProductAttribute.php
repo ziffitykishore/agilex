@@ -16,6 +16,7 @@ class M20201016120748AddGroupingImageUrlProductAttribute implements MigrationInt
     protected $block;
     protected $email;
     protected $resourceConfig;
+    protected $categorySetup;
 
     public function __construct(
         PageHelper $page,
