@@ -3,12 +3,12 @@
     <a class="algoliasearch-autocomplete-hit" href="{{url}}">
         <div>
             <div>
-                {{#_highlightResult.path}}
-                {{{_highlightResult.path.value}}}
-                {{/_highlightResult.path}}
-                {{^_highlightResult.path}}
-                {{{path}}}
-                {{/_highlightResult.path}}
+                {{#_highlightResult.name}}
+                {{{_highlightResult.name.value}}}
+                {{/_highlightResult.name}}
+                {{^_highlightResult.name}}
+                {{{name}}}
+                {{/_highlightResult.name}}
 
                 {{#product_count}}
                 <small>({{product_count}})</small>
