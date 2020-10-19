@@ -29,4 +29,7 @@
     <type name="Magento\Sales\Block\Order\Totals">
         <plugin name="sd_order_remove_base_grandtotal" type="SomethingDigital\Order\Plugin\RemoveBaseGrandtotal" />
     </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+       <plugin name="sd_order_sales_order_adminhtml_view_custom_button_plugin" type="SomethingDigital\Order\Plugin\Sales\Block\Adminhtml\Order\Button"/>
+   </type>
 </config>
