@@ -46,6 +46,16 @@
             width: 90% !important;
         }
     }
+
+    @include min-screen($screen__m) {
+        .aa-dropdown-menu .aa-dataset-products .aa-suggestion {
+            width: 100% !important;
+
+            &:nth-of-type(n+5) {
+                display: none !important;
+            }
+        }
+    }
 }
 
 #algolia-searchbox {
