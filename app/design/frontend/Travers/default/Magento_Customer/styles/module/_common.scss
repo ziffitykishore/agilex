@@ -90,21 +90,25 @@ $_password-very-strong: #81b562 !default;
         }
     }
 }
+
 .customer-account-forgotpassword {
     .static-block {
         float: right;
         max-width: 460px;
         width: calc(100% - 490px);
+
         @include max-screen($screen__m) {
             max-width: none;
             width: 100%;
             padding: 20px 0;
         }
     }
+
     .clear {
         clear:both;
     }
 }
+
 .form.password.forget {
     float: left;
 }
