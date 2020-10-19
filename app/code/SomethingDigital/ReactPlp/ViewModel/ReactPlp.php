@@ -165,6 +165,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'defaultFilterAttributesInfo' => $this->getFilterAttributes(),
             'swatchImages' => $this->getSwatchImages(),
             'attributesValuesLimit' => $this->scopeConfig->getValue("catalog/reactapp/limit_filter_attr_values", ScopeInterface::SCOPE_STORE),
+            'urlToGroupingImagesCatalog' => $this->scopeConfig->getValue("catalog/reactapp/url_to_grouping_images_catalog", ScopeInterface::SCOPE_STORE),
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
