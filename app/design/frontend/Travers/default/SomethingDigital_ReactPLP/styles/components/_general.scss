@@ -321,10 +321,14 @@ $sidebar__max-width: 240px;
     .grouping-image {
         width: 60px;
         position: absolute;
-        top: -$indent__base;
+        top: -$indent__xs;
         border: 2px solid $c-light-grey;
         border-radius: 10px;
         padding: $indent__xs;
+
+        @include min-screen($screen__m) {
+            top: -$indent__base;
+        }
     }
 
     p {
