@@ -19,7 +19,6 @@
     }
 
     .pricing {
-
         .price,
         .as-low-as {
             margin-top: 0;
@@ -178,6 +177,10 @@
 }
 
 .list-content {
+    &-left p {
+        margin-left: 0;
+    }
+
     @include min-screen($screen__l) {
         .item-and-attributes {
             width: 400px;

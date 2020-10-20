@@ -315,8 +315,25 @@ $sidebar__max-width: 240px;
 }
 
 .group {
+    position: relative;
+    margin-bottom: 70px;
+
+    .grouping-image {
+        width: 60px;
+        position: absolute;
+        top: -$indent__xs;
+        border: 2px solid $c-light-grey;
+        border-radius: 10px;
+        padding: $indent__xs;
+
+        @include min-screen($screen__m) {
+            top: -$indent__base;
+        }
+    }
+
     p {
         max-width: 950px;
+        margin-left: 90px;
     }
 
     h2,
@@ -324,6 +341,7 @@ $sidebar__max-width: 240px;
     h4 {
         font-weight: $font-weight__semibold;
         letter-spacing: 0;
+        margin-left: 90px;
     }
 
     h3,
@@ -337,6 +355,10 @@ $sidebar__max-width: 240px;
 
         @include min-screen($screen__m) {
             font-size: 30px;
+        }
+
+        .list-and-flyout & {
+            margin-bottom: 50px;
         }
     }
 
