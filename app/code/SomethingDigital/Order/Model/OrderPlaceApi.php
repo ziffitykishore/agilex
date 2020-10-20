@@ -7,7 +7,6 @@ use Magento\Framework\HTTP\ClientFactory;
 use SomethingDigital\Sx\Logger\Logger;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Sales\Model\Order\ItemRepository;
@@ -19,6 +18,7 @@ use Magento\Company\Api\CompanyManagementInterface;
 use Magento\Company\Api\CompanyRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Directory\Model\Region;
+use SomethingDigital\Order\Model\OrderApiResponse;
 
 class OrderPlaceApi extends Adapter
 {
@@ -31,13 +31,13 @@ class OrderPlaceApi extends Adapter
     protected $companyManagement;
     protected $companyRepository;
     protected $region;
+    protected $orderApiResponse;
 
     public function __construct(
         ClientFactory $curlFactory,
         Logger $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
-        Session $session,
         TestMode $testMode,
         AddressRepositoryInterface $addressRepository,
         ItemRepository $orderItemRepository,
@@ -47,7 +47,8 @@ class OrderPlaceApi extends Adapter
         CustomerRepositoryInterface $customerRepository,
         CompanyManagementInterface $companyManagement,
         CompanyRepositoryInterface $companyRepository,
-        Region $region
+        Region $region,
+        OrderApiResponse $orderApiResponse
     ) {
         parent::__construct(
             $curlFactory,
@@ -59,13 +60,13 @@ class OrderPlaceApi extends Adapter
             $cacheTypeList,
             $encryptor
         );
-        $this->session = $session;
         $this->addressRepository = $addressRepository;
         $this->orderItemRepository = $orderItemRepository;
         $this->customerRepository = $customerRepository;
         $this->companyManagement = $companyManagement;
         $this->companyRepository = $companyRepository;
         $this->region = $region;
+        $this->orderApiResponse = $orderApiResponse;
     }
 
     public function sendOrder($order)
@@ -102,8 +103,10 @@ class OrderPlaceApi extends Adapter
                 'Payments' => $this->getPaymentInfo($order)
             ];
         }
+        $response = $this->postRequest();
+        $result = $this->orderApiResponse->process($order, $response, $this->isSuccessful($response['status']));
 
-        return $this->postRequest();
+        return $result;
     }
 
     /**
@@ -121,23 +124,35 @@ class OrderPlaceApi extends Adapter
      */
     protected function getCustomerAccountId($order)
     {
-        if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
-            return $accountId->getValue();
-        } else {
-            return $order->getTraversAccountId();
+        if ($order->getCustomerId()) {
+            try {
+                $customer = $this->customerRepository->getById($order->getCustomerId());
+                if ($customer->getCustomAttribute('travers_account_id')) {
+                    return $customer->getCustomAttribute('travers_account_id')->getValue();
+                }
+            } catch (\Exception $e) {
+
+            }
         }
+        return $order->getTraversAccountId();
     }
 
     /**
      * @return string
      */
-    protected function getCustomerContactId()
+    protected function getCustomerContactId($order)
     {
-        if (($contactId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_contact_id'))) {
-            return $contactId->getValue();
-        } else {
-            return '';
+        if ($order->getCustomerId()) {
+            try {
+                $customer = $this->customerRepository->getById($order->getCustomerId());
+                if ($customer->getCustomAttribute('travers_contact_id')) {
+                    return $customer->getCustomAttribute('travers_contact_id')->getValue();
+                }
+            } catch (\Exception $e) {
+
+            }
         }
+        return '';
     }
 
     protected function getCustomerInfo($order)
@@ -153,7 +168,7 @@ class OrderPlaceApi extends Adapter
 
             if ($company) {
                 $companyAddress = [
-                    "id" => $this->getCustomerContactId(),
+                    "id" => $this->getCustomerContactId($order),
                     "Company" => $company->getCompanyName(),
                     "ToName" => $company->getCompanyName(),
                     "Line1" => (isset($company->getStreet()[0])) ? $company->getStreet()[0] : '',
@@ -181,7 +196,7 @@ class OrderPlaceApi extends Adapter
             "StatusType" => '',
             "FreightAccountNumber" => $customerFreightAccount,
             "Contact" => [
-                "Id" => $this->getCustomerContactId(),
+                "Id" => $this->getCustomerContactId($order),
                 "ContactType" => "",
                 "TypeDescription" => "",
                 "Email" => $order->getCustomerEmail(),
