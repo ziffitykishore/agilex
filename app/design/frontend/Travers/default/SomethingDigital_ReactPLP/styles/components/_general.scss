@@ -352,6 +352,10 @@ $sidebar__max-width: 240px;
         @include min-screen($screen__m) {
             font-size: 30px;
         }
+
+        .list-and-flyout & {
+            margin-bottom: 50px;
+        }
     }
 
     h3 {
