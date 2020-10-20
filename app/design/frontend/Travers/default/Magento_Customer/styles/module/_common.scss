@@ -100,7 +100,7 @@ $_password-very-strong: #81b562 !default;
         @include max-screen($screen__m) {
             max-width: none;
             width: 100%;
-            padding: 20px 0;
+            padding: $indent__base 0;
         }
     }
     .column.main:after{
