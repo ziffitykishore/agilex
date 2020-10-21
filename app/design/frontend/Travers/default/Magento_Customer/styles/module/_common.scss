@@ -91,6 +91,29 @@ $_password-very-strong: #81b562 !default;
     }
 }
 
+.customer-account-forgotpassword {
+    .static-block {
+        float: right;
+        max-width: 460px;
+        width: calc(100% - 490px);
+
+        @include max-screen($screen__m) {
+            max-width: none;
+            width: 100%;
+            padding: $indent__base 0;
+        }
+    }
+    .column.main:after{
+        content: "";
+        clear: both;
+        display: block;
+    }
+}
+
+.form.password.forget {
+    float: left;
+}
+
 .block-addresses-list {
     .block-title {
         margin-bottom: 8px;
