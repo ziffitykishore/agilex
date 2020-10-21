@@ -50,7 +50,7 @@ class Index extends Action
         $jsonResult = $this->resultFactory->create('json');
 
         if (!$skus) {
-            return $this->prepareFailedJsonResult('Empty skus.', $jsonResult);
+            return $jsonResult;
         }
 
         $data = [];
