@@ -333,6 +333,7 @@ $sidebar__max-width: 240px;
 
     h2 {
         margin-top: $indent__l;
+        margin-bottom: $indent__l;
         font-size: 24px;
 
         @include min-screen($screen__m) {
