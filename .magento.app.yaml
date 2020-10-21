@@ -2,6 +2,7 @@
 # in the same project.
 # The name of this app. Must be unique within a project.
 
+
 name: mymagento
 
 # The toolstack used to build the application.
