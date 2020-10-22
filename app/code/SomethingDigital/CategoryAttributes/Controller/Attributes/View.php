@@ -65,7 +65,7 @@ class View extends \Magento\Framework\App\Action\Action
             $listAttributes = '';
 
             if ($category->getFilterAttributes()) {
-                $filterAttributes = preg_split('/\s+/', $category->getFilterAttributes());
+                $filterAttributes = preg_split('/\s+/', trim($category->getFilterAttributes()));
                 foreach ($filterAttributes as $key => $attrCode) {
                     $attr = $this->productAttributeRepository->get($attrCode);
                     if (!$attr || !$attr->getIsFilterable())
@@ -73,7 +73,7 @@ class View extends \Magento\Framework\App\Action\Action
                 }
             }
             if ($category->getTableAttributes()) {
-                $tableAttributes = preg_split('/\s+/', $category->getTableAttributes());
+                $tableAttributes = preg_split('/\s+/', trim($category->getTableAttributes()));
                 foreach ($tableAttributes as $key => $attrCode) {
                     $attr = $this->productAttributeRepository->get($attrCode);
                     if (!$attr || !$attr->getIncludeInTable())
@@ -82,7 +82,7 @@ class View extends \Magento\Framework\App\Action\Action
                 $tableAttributes = $this->attributeSorter->sort($tableAttributes, AttributeSorter::FLAT_ATTRIBUTES);
             }
             if ($category->getListAttributes()) {
-                $listAttributes = preg_split('/\s+/', $category->getListAttributes());
+                $listAttributes = preg_split('/\s+/', trim($category->getListAttributes()));
                 foreach ($listAttributes as $key => $attrCode) {
                     $attr = $this->productAttributeRepository->get($attrCode);
                     if (!$attr || !$attr->getIncludeInList())
