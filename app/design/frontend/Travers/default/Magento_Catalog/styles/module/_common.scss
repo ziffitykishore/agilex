@@ -60,6 +60,10 @@
 
     &-view {
         display: none;
+
+        .category-brands & {
+            display: block;
+        }
     }
 
     &-image,
