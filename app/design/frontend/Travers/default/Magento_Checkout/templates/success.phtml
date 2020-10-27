@@ -10,9 +10,9 @@
 <?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
 <?php $order = $block->getOrder()?>
 <?php
-    if (is_string($order->getSxIntegrationResponse())):
+    if (is_string($order->getSxIntegrationResponse())) {
         $sxIntegrationResponse = json_decode($order->getSxIntegrationResponse());
-    endif;
+    }
 ?>
 <div class="checkout-success">
     <h1><?= __('Order confirmed') ?></h1>
