@@ -9,7 +9,11 @@
 ?>
 <?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
 <?php $order = $block->getOrder()?>
-<?php $sxIntegrationResponse = json_decode($order->getSxIntegrationResponse()); ?>
+<?php
+    if (is_string($order->getSxIntegrationResponse())) {
+        $sxIntegrationResponse = json_decode($order->getSxIntegrationResponse());
+    }
+?>
 <div class="checkout-success">
     <h1><?= __('Order confirmed') ?></h1>
     <?php if ($block->getOrderId()):?>
