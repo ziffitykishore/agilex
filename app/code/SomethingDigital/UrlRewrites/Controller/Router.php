@@ -112,7 +112,7 @@ class Router implements \Magento\Framework\App\RouterInterface
     }
 
     /**
-     * @param RequestInterface|HttpRequest $request
+     * @param RequestInterface $request
      * @param string $url
      * @param int $code
      * @return ActionInterface
