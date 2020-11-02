@@ -24,22 +24,26 @@ class Router implements \Magento\Framework\App\RouterInterface
     protected $actionFactory;
 
     /**
-     * @var \Magento\UrlRewrite\Model\UrlFinderInterface
+     * @var UrlFinderInterface
      */
     protected $urlFinder;
 
     /**
-     * @var \Magento\Store\Model\StoreManagerInterface
+     * @var StoreManagerInterface
      */
     protected $storeManager;
 
     /**
-     * @var \Magento\Framework\UrlInterface
+     * @var UrlInterface
      */
     protected $url;
 
     /**
-     * @param \Magento\Framework\App\ResponseInterface $response
+     * @param ResponseInterface $response
+     * @param ActionFactory $actionFactory
+     * @param UrlFinderInterface $urlFinder
+     * @param StoreManagerInterface $storeManager
+     * @param UrlInterface $url
      */
     public function __construct(
         ResponseInterface $response,
