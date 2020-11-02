@@ -100,18 +100,18 @@ crons:
     algolia_suggestions:
         spec: "1 * * * *"
         cmd: "php bin/magento indexer:reindex algolia_suggestions"
-   urapidflow_media_export:
+    urapidflow_media_export:
         spec: "0 22 * * *"
-        cmd: "php bin/magento" sd:urapidflow:run 'Auto Product Media Export'"
+        cmd: "php bin/magento" sd:urapidflow:run 'Auto Product Media Export'
     urapidflow_related_products_export:
         spec: "15 22 * * *"
-        cmd: "php bin/magento" sd:urapidflow:run 'Auto Related Products Export'"
-    urapidflow_related_products_export:
+        cmd: "php bin/magento" sd:urapidflow:run 'Auto Related Products Export'
+    urapidflow_product_additions_import:
         spec: "0 1 * * *"
-        cmd: "php bin/magento" sd:urapidflow:run 'Auto Product Additions Import'"
-    urapidflow_related_products_export:
+        cmd: "php bin/magento" sd:urapidflow:run 'Auto Product Additions Import'
+    urapidflow_product_updates_import:
         spec: "15 1 * * *"
-        cmd: "php bin/magento" sd:urapidflow:run 'Auto Product Updates Import'"
+        cmd: "php bin/magento" sd:urapidflow:run 'Auto Product Updates Import'
         
 # Environment variables
 variables:
