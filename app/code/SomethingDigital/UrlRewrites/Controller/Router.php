@@ -68,7 +68,7 @@ class Router implements \Magento\Framework\App\RouterInterface
     public function match(\Magento\Framework\App\RequestInterface $request)
     {
         $rewrite = $this->getRewrite(
-            $request->getRequestUri(),
+            /** @scrutinizer ignore-call */ $request->getRequestUri(),
             $this->storeManager->getStore()->getId()
         );
 
@@ -123,7 +123,7 @@ class Router implements \Magento\Framework\App\RouterInterface
      */
     protected function redirect($request, $url, $code)
     {
-        $this->response->setRedirect($url, $code);
+        /** @scrutinizer ignore-call */ $this->response->setRedirect($url, $code);
         $request->setDispatched(true);
 
         return $this->actionFactory->create(Redirect::class);
