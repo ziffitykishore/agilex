@@ -52,7 +52,7 @@ class OrderApiResponse
         if (!$status || !isset($response['body']['SxOrderId'])) {
             try {
                 $order->setSxIntegrationStatus('failed');
-                $order->setSxIntegrationResponse($response['body']);
+                $order->setSxIntegrationResponse(json_encode($response['body']));
                 $this->orderRepository->save($order);
             } catch (\Exception $e) {
                 $this->logger->alert('Could not save an order with entity id: ' . $order->getEntityId() .
