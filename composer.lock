@@ -17665,11 +17665,11 @@
         },
         {
             "name": "somethingdigital/urapidflow-autoexecute",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sdinteractive/Magento2_SomethingDigital_URapidFlowAutoExecute.git",
-                "reference": "e4e853c3d5dd6584bb46443e0e7ddb0de8f0ca1a"
+                "reference": "217e9531914b3c485a6d87701091cd2f039e3098"
             },
             "require": {
                 "magento/framework": "*",
@@ -17685,7 +17685,7 @@
                 }
             },
             "description": "A module used to run urapidflow profiles via a console command",
-            "time": "2020-09-11T02:03:04+00:00"
+            "time": "2020-11-05T12:33:40+00:00"
         },
         {
             "name": "spomky-labs/otphp",
@@ -22869,6 +22869,7 @@
                 }
             ],
             "description": "JSONPath implementation for parsing, searching and flattening arrays",
+            "abandoned": "softcreatr/jsonpath",
             "time": "2018-03-04T16:39:47+00:00"
         },
         {
