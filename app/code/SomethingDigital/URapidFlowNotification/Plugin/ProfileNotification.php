@@ -6,7 +6,7 @@ use Unirgy\RapidFlow\Model\Profile;
 use SomethingDigital\URapidFlowNotification\Helper\Email;
 
 /**
- * Class OrderRepositoryPlugin
+ * Class ProfileNotification
  */
 class ProfileNotification
 {
