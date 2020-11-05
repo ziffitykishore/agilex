@@ -92,21 +92,30 @@ $_password-very-strong: #81b562 !default;
 }
 
 .customer-account-forgotpassword {
-    .static-block {
-        float: right;
-        max-width: 460px;
-        width: calc(100% - 490px);
+    .column.main {
+        display: flex;
+        flex-direction: column;
 
-        @include max-screen($screen__m) {
-            max-width: none;
-            width: 100%;
-            padding: $indent__base 0;
+        @include min-screen($mobile-nav__breakpoint) {
+            flex-direction: row;
+            justify-content: space-between;
         }
-    }
-    .column.main:after{
-        content: "";
-        clear: both;
-        display: block;
+
+        .static-block {
+            @include min-screen($mobile-nav__breakpoint) {
+                padding-left: $indent__l !important; // override PageBuilder
+            }
+
+            @include min-screen($screen__l) {
+                width: 600px;
+            }
+        }
+
+        &::after{
+            content: "";
+            clear: both;
+            display: block;
+        }
     }
 }
 
