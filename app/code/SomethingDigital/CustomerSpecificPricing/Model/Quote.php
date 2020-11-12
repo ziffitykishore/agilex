@@ -149,8 +149,6 @@ class Quote
                         $item->setCustomPrice($customPrice);
                         $item->setOriginalCustomPrice($customPrice);
                         $item->getProduct()->setIsSuperMode(true);
-
-                        $item->save();
                     }
                 }
             } catch (LocalizedException $e) {
