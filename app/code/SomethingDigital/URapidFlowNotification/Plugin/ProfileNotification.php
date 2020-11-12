@@ -10,6 +10,8 @@ use SomethingDigital\URapidFlowNotification\Helper\Email;
  */
 class ProfileNotification
 {
+    protected $email;
+
     /**
      * ProfileNotification constructor
      *
