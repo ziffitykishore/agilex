@@ -153,9 +153,6 @@ class CaptureHandler implements HandlerInterface
                 throw new \InvalidArgumentException('Payment data object should be provided');
             }
         }else{
-        
-            $Is3dsecure = $payment->getAdditionalInformation("ReferenceNumber");
-            
             if($payment->getAdditionalInformation("ReferenceNumber") != "" && $payment->getAdditionalInformation("ReferenceNumber") != NULL){
                 $ResponseSave->Message =  $payment->getAdditionalInformation("Message");
                 $ResponseSave->Result =  $payment->getAdditionalInformation("Result");

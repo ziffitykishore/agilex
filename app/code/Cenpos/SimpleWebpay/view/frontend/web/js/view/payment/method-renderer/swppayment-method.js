@@ -6,7 +6,6 @@
 /*global define*/
 
 var selfprocess = null;
-
 define(
     [
         'Magento_Ui/js/modal/alert',
@@ -15,6 +14,7 @@ define(
         'simplewebpay',
         'viewprocess',
         'Magento_Checkout/js/model/quote',
+        'Magento_Customer/js/model/customer',
         'Magento_Checkout/js/view/payment/default',
         'Magento_Checkout/js/model/payment/additional-validators',
         'Magento_Checkout/js/action/redirect-on-success',
@@ -24,6 +24,7 @@ define(
     ],
     function (alert, $, porthole, simplewebpay,viewprocess,
         quote,
+        customerq,
         Component,
         additionalValidators,
         redirectOnSuccessAction,
@@ -83,11 +84,10 @@ define(
                                 params += "&isemail=true";
                                 params += "&iscvv="+window.checkoutConfig.payment.swppayment.iscvv;
                                 if(window.checkoutConfig.payment.swppayment.istoken19 === "true") params += "&type=createtoken19";
-                                if (quote.guestEmail !== "" && quote.guestEmail !== null && quote.guestEmail !== undefined) {
+                                if (!customerq.isLoggedIn() && quote.guestEmail !== "" && quote.guestEmail !== null && quote.guestEmail !== undefined) {
                                     params += "&email=" + quote.guestEmail;
                                     isToken = false;
                                 }
-                                
                                 params += "&onlyform="+((isToken) ? "false" : "true");
                                     
                                 $("#NewCenposPlugin > div").createWebpay(
@@ -241,19 +241,26 @@ define(
                 if (event) {
                     event.preventDefault();
                 }
+                $("#Form3dSecure").html("<input type='hidden' name='CardinalResponse' id='CardinalResponse' />");
+               
                 $("#CardinalResponse").off("change");
                 $("#CardinalResponse").on('change', function () {
                     var Value = $(this).val();
                     if (Value !== "") {
                         var resposems = JSON.parse(Value);
                         $("#Form3dSecure").hide();
-                        if (resposems.Result !== 0) {
+                        if(resposems.Result == 200){
+                            fullScreenLoader.startLoader();
+                        }else if (resposems.Result !== 0) {
                             self.isPlaceOrderActionAllowed(true);
                            // eventtemp.responseText = JSON.stringify({message: msgtemp.Message});
-                            self.showalert("Error", msgtemp.Message);
+                            self.showalert("Error", resposems.Message);
                            // errorProcessor.process(eventtemp);
                             fullScreenLoader.stopLoader();
                         } else {
+                            // $("#SubmitWebpaySend").trigger("click");
+                            // $("#FormWebpay").append('<input type="hidden" name="payment[webpay3dpares]" value="' + resposems.PaRes + '" />');
+                            // $("#FormWebpay").append('<input type="hidden" name="payment[webpay3dmd]" value="' + resposems.MD + '" />');
                             $.ajax({
                                 type: "POST",
                                 url: window.checkoutConfig.payment.swppayment.url3d,
@@ -284,7 +291,7 @@ define(
                     this.isPlaceOrderActionAllowed(false);
                     this.getPlaceOrderDeferredObject()
                         .fail(
-                            function (msg, data, data2) {
+                            function (msg) {
                                 try{
                                     if(msg.responseJSON){
                                         var result = JSON.parse(msg.responseJSON.message);
@@ -296,7 +303,7 @@ define(
                                             result.View3D = result.View3D.replace("window['returnCardinalMag'](messageEvent.data)", "");
                                             result.View3D = result.View3D.replace("framecenpos'  width='100%'", "framecenpos' width='100%' height='400'");
                                             $("#Form3dSecure").show();
-                                            $("#Form3dSecure").html("<div>" + result.View3D + "</div>");
+                                            $("#Form3dSecure").append("<div>" + result.View3D + "</div>");
                                         }else {
                                             selfprocess.createWebpay();
                                            // $(".payment-method-content .messages").addClass("dpnoneimpo");
@@ -312,7 +319,15 @@ define(
                                 try{
                                     msgtemp = msg;
                                     eventtemp = event;
-                                    if (Number.isInteger(Number.parseInt(msg))) {
+                                    var numberresult = "";
+                                    try{
+                                        numberresult = parseInt(msg)
+                                    }catch(e){
+                                        numberresult = "";
+                                        console(e);
+                                    }
+
+                                    if (Number.isInteger(numberresult)) {
                                         msg = { Result: 0, Message: "Approval" }
                                     } else{
                                         if(msg.indexOf("{") == 0){

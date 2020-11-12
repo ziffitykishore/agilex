@@ -19,6 +19,12 @@
                 <value id="cardinalcommerce" type="host">*.cardinalcommerce.com</value>
             </values>
         </policy>
+        <policy id="img-src">
+            <values>
+                <value id="cenpos_url" type="host">*.cenpos.net</value>
+                <value id="devdocs-base" type="host">*.cenpos.com</value>
+            </values>
+        </policy>
         <policy id="form-action">
             <values>
                 <value id="cenpos_url" type="host">*.cenpos.net</value>
