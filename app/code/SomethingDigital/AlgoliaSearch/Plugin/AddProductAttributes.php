@@ -109,7 +109,7 @@ class AddProductAttributes
             'retrievable' => 1
         ];
         $result[] = [
-            'attribute' => 'grouping_image_name',
+            'attribute' => 'item_group_image',
             'searchable' => 2,
             'order' => 'unordered',
             'retrievable' => 1
