@@ -1,57 +1,60 @@
-<?php 
-namespace Cenpos\SimpleWebpay\Controller\Index;
+<?php
+namespace Cenpos\SimpleWebpay\Controller\Adminhtml\Index;
 
-class Process extends \Magento\Framework\App\Action\Action
+use Magento\Backend\App\Action;
+use Magento\Backend\App\Action\Context;
+
+class Process extends Action
 {
-    protected $_customerSession;
-    protected $resultPageFactory;
+	/**
+	 * @var \Cenpos\SimpleWebpay\Model\Ui\ConfigProvider
+	 */
     protected $_paymentMethod;
-    protected $_checkoutSession;
-    protected $checkout;
-    protected $cartManagement;
-    protected $guestcartManagement;
-    protected $orderRepository;
-    protected $_scopeConfig;
-    protected $_orderFactory;
-    protected $sadasdasd;
+
+	/**
+	 * @var \Magento\Quote\Model\QuoteManagement
+	 */
     protected $_quoteManagement;
-    /**
-     * @param \Magento\Framework\App\Action\Context $context
-     * @param \Magento\Customer\Model\Session $customerSession
-     */
+
+	/**
+	 * @var \Magento\Backend\Model\Session\Quote
+	 */
+    protected $_quoteSession;
+
+	/**
+	 * Process constructor.
+	 * @param Context $context
+	 * @param \Cenpos\SimpleWebpay\Model\Ui\ConfigProvider $paymentMethod
+	 * @param \Magento\Quote\Model\QuoteManagement $quoteManagement
+	 * @param \Magento\Backend\Model\Session\Quote $quoteSession
+	 */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Customer\Model\Session $customerSession,
+        \Magento\Backend\App\Action\Context $context,
         \Cenpos\SimpleWebpay\Model\Ui\ConfigProvider $paymentMethod,
-        \Magento\Checkout\Model\Session $checkoutSession,
-        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
-        \Magento\Sales\Model\OrderFactory $orderFactory,
         \Magento\Quote\Model\QuoteManagement $quoteManagement,
-        \Magento\Framework\App\Response\Http $response,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-            
+        \Magento\Backend\Model\Session\Quote $quoteSession
     ) {
-        $this->_customerSession = $customerSession;
         parent::__construct($context);
         $this->_paymentMethod = $paymentMethod;
-        $this->_checkoutSession = $checkoutSession;
-        $this->_orderFactory = $orderFactory;
-        $this->orderRepository = $orderRepository;
-        $this->_scopeConfig = $scopeConfig;
         $this->_quoteManagement = $quoteManagement;
-        $this->response = $response;
+        $this->_quoteSession = $quoteSession;
     }
 
+	/**
+	 * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|void
+	 */
     public function execute()
     {
+        die("3");
         $ResponseSave = new \stdClass();
         try{
             error_reporting(0);
-            $quote = $this->_checkoutSession->getQuote();
+            $quote = $this->_quoteSession->getQuote();
             $ResponseSave = (object) $_POST;
             $quote->reserveOrderId();
             $payment = $quote->getPayment();
             $quote->getPayment()->setMethod('swppayment');
+            
             if($ResponseSave->Result === "0"){
                 $inarray = array("Result","AutorizationNumber","ReferenceNumber","TraceNumber","Amount","CardType",
                     "Message","RecurringTokenId","InvoiceNumber","OriginalAmount");
@@ -62,8 +65,7 @@ class Process extends \Magento\Framework\App\Action\Action
                 $payment->setTransactionId($_POST["ReferenceNumber"]);
                 $payment->save();
                 $quote->save();
-              //  $order = $this->_quoteManagement->submit($quote);
-                //die("asdasd2");
+                $this->_quoteManagement->submit($quote);
             }
             
             if($ResponseSave->Result != "0") {
