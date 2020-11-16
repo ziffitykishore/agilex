@@ -75,9 +75,11 @@
     }
 
     .product-name {
+        color: $c-cobalt;
+
         @include hover {
             text-decoration: none;
-            color: $c-cobalt;
+            color: $c-royal;
         }
     }
 
