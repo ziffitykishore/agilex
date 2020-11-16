@@ -5,11 +5,12 @@ let lastScroll = 0;
 
 function scrollPlpFlyout() {
   const scrollTop = $(this).scrollTop();
+  const flyoutContent = $(".product-info-content--inner");
 
   if (lastScroll >= scrollTop) {
-    $(".product-info-content--inner").animate({ scrollTop: 0 });
+    flyoutContent.animate({ scrollTop: 0 });
   } else {
-    $(".product-info-content--inner").animate({ scrollTop: $(".product-info-content--inner")[0].scrollHeight });
+    flyoutContent.animate({ scrollTop: flyoutContent[0].scrollHeight });
   }
 
   lastScroll = scrollTop;
