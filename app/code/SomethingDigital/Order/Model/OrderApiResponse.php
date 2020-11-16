@@ -50,6 +50,7 @@ class OrderApiResponse
     public function process($order, $response, $status)
     {
         if (!$status || !isset($response['body']['SxOrderId'])) {
+            $this->logger->alert('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
             try {
                 $order->setSxIntegrationStatus('failed');
                 $order->setSxIntegrationResponse(json_encode($response['body']));
@@ -57,7 +58,6 @@ class OrderApiResponse
             } catch (\Exception $e) {
                 $this->logger->alert('Could not save an order with entity id: ' . $order->getEntityId() .
                     ' and set sx order status when processing response from middleware API order.' . $e->getMessage());
-                $this->logger->alert('Response from middleware order endpoint:' . json_encode($response));
             }
             $this->email->sendEmail($order, $response);
             return [
