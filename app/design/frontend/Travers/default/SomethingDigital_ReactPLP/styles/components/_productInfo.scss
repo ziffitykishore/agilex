@@ -24,6 +24,12 @@
         padding: 0 $indent__m;
         padding-bottom: $indent__l;
         overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
         img {
             max-width: 100px;
@@ -51,6 +57,7 @@
 
         &--inner {
             overflow-y: auto;
+            height: 85vh;
         }
     }
 
@@ -68,9 +75,11 @@
     }
 
     .product-name {
+        color: $c-cobalt;
+
         @include hover {
             text-decoration: none;
-            color: $c-cobalt;
+            color: $c-royal;
         }
     }
 
