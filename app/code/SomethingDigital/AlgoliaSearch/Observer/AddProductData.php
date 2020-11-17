@@ -47,6 +47,21 @@ class AddProductData implements ObserverInterface
         $this->addManufacturerPrice($product, $transport);
         $this->addStockData($product, $transport);
         $this->addTierPrices($product, $transport);
+        $this->addRadius($product, $transport);
+    }
+
+    /**
+     * Index 0 value of corner_radius_233 attr.
+     * Algolia module doesn't reindex attr with 0 value.
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function addRadius($product, $transport)
+    {
+        $algoliaProductData = $transport->getData();
+        $algoliaProductData['corner_radius_233'] = $product->getAttributeText('corner_radius_233');
+        $transport->setData($algoliaProductData);
     }
 
     /**
