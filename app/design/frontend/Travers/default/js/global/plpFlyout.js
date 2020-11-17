@@ -7,6 +7,10 @@ function scrollPlpFlyout() {
   const scrollTop = $(this).scrollTop();
   const flyoutContent = $(".product-info-content--inner");
 
+  if (!flyoutContent.length) {
+    return;
+  }
+
   if (lastScroll >= scrollTop) {
     flyoutContent.animate({ scrollTop: 0 });
   } else {
