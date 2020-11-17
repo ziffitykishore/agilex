@@ -63,7 +63,7 @@ class Suffix
                 $skuSuffix = substr($queryText, strlen($sku));
                 $suffixHasSymbols = strcspn($skuSuffix, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($skuSuffix);
 
-                if (!$suffixHasSymbols) {
+                if (!$suffixHasSymbols && $skuSuffix) {
                     $this->session->setSkuSuffix($skuSuffix);
                     $this->quote->repriceCustomerQuote();
 
@@ -73,9 +73,7 @@ class Suffix
                         $quote->setSuffix($skuSuffix);
                         $this->quoteRepository->save($quote);
                     }
-                    if ($skuSuffix) {
-                        $this->suffixFlag = true;
-                    }
+                    $this->suffixFlag = true;
                 }
 
                 $subject->getResponse()->setRedirect($product->getProductUrl());
