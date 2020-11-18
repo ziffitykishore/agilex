@@ -1,7 +1,13 @@
 <?php $exactPrice = $block->getViewModel()->getExactPrice() ?>
 <?php if (!empty($exactPrice)): ?>
 <div class="priceDesc">
-    <?php echo __('Price Per 100') ?>
-    <span>(<span class="price-per-each"><?= $exactPrice ?></span> <?php echo __('each') ?>)</span>
+    <?php echo __('Price Per 100:') ?>
 </div>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "pricePerEach": "<span class='pricePerEach'><?php echo __('%1 each', $exactPrice) ?></span>"
+    }
+}
+</script>
 <?php endif; ?>
