@@ -63,10 +63,10 @@ $total = count($tierPrices);
         <tr> 
             <td class="item row-index"><?= __('Price (ea.)'); ?>:</td>
             <?php if ($tierPrices[0]['price_qty'] > 1): ?>
-                <td><?= $basePriceFormatted ?></td>
+                <td class="price-field" data-index="base" data-price="<?= $basePrice ?>"><?= $basePriceFormatted ?></td>
             <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
-                <td class="item">
+                <td class="item price-field" data-index="<?= $index ?>" data-price="<?= $price['price'] ?>">
                         <?php
                             $priceAmountBlock = $block->renderAmount(
                                 $price['price'],
@@ -85,10 +85,10 @@ $total = count($tierPrices);
         <tr>
             <td class="item row-index"><?= __('You Save'); ?>:</td>
             <?php if ($tierPrices[0]['price_qty'] > 1): ?>
-                <td><?= $tierPriceModel->getSavePercent($basePrice) . "%"; ?></td>
+                <td class="col-base"><?= $tierPriceModel->getSavePercent($basePrice) . "%"; ?></td>
             <?php endif; ?>
             <?php foreach ($tierPrices as $index => $price) : ?>
-                <td class="item">
+                <td class="item col-<?= $index ?>">
                     <?= $tierPriceModel->getSavePercent($price['price']) . "%"; ?>
                 </td>
             <?php endforeach; ?>

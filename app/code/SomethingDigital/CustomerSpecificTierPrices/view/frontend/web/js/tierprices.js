@@ -26,13 +26,25 @@ define([
                 var prices = response.data[sku];
 
                 prices = self.removeIfZero(prices);
-
-                $('.product-info-main > table.prices-tier').hide(); //Is unhidden later if tierPricing occurs
+                var basePrice = $('.price-field').first().data('price');
+                if ($('.prices-tier.items').length) {
+                    // update magento tier prices if customer special price is lower
+                    $('.price-field').each(function() {
+                        if ($(this).data('price') > prices['unitPrice']) {
+                            $('span.price', $(this)).text(prices['currencySymbol'] + prices['unitPrice']);
+                            var saving = self.getSaveBreak(basePrice, prices['unitPrice']);
+                            var index = $(this).data('index');
+                            $('.col-' + index).text(saving);
+                        }
+                    });
+                }
 
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
                   $('.as-low-as').hide();
                   return;
                 }
+
+                $('.product-info-main > table.prices-tier').hide();
 
                 prices['saveBreak1'] = '';
                 prices['saveBreak2'] = '';
