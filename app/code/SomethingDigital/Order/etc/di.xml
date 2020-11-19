@@ -31,5 +31,8 @@
     </type>
     <type name="Magento\Sales\Block\Adminhtml\Order\View">
        <plugin name="sd_order_sales_order_adminhtml_view_custom_button_plugin" type="SomethingDigital\Order\Plugin\Sales\Block\Adminhtml\Order\Button"/>
-   </type>
+    </type>
+    <type name="Magento\Checkout\Controller\Onepage\Success">
+       <plugin name="sd_order_sales_send_order_to_api" type="SomethingDigital\Order\Plugin\SendOrderToAPI"/>
+    </type>
 </config>

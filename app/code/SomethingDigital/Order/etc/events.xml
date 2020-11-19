@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="checkout_onepage_controller_success_action">
-        <observer name="sd_sx_order" instance="SomethingDigital\Order\Observer\OrderPlace" />
+    <event name="sales_order_place_after">
+        <observer name="sd_sx_preauth" instance="SomethingDigital\Order\Observer\PreAuth" />
     </event>
 </config>
