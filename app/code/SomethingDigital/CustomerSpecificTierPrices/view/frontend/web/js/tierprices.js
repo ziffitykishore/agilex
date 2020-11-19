@@ -31,7 +31,7 @@ define([
                     // update magento tier prices if customer special price is lower
                     $('.price-field').each(function() {
                         if ($(this).data('price') > prices['unitPrice']) {
-                            $('span.price', $(this)).text(prices['currencySymbol'] + prices['unitPrice']);
+                            $('span.price', $(this)).text(prices['currencySymbol'] + prices['unitPrice'].toFixed(2));
                             var saving = self.getSaveBreak(basePrice, prices['unitPrice']);
                             var index = $(this).data('index');
                             $('.col-' + index).text(saving);
