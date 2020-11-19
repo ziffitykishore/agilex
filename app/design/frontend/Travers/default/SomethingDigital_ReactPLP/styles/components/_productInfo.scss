@@ -70,8 +70,11 @@
     .product-name {
         font-weight: $font-weight__semibold;
         font-family: $font-family__base;
-        color: $c-aluminum;
         letter-spacing: 0;
+    }
+
+    .pricing p {
+        color: $c-aluminum;
     }
 
     .product-name {
