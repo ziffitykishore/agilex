@@ -327,7 +327,7 @@ define(
                                         console(e);
                                     }
 
-                                    if (Number.isInteger(numberresult)) {
+                                    if (numberresult) {
                                         msg = { Result: 0, Message: "Approval" }
                                     } else{
                                         if(msg.indexOf("{") == 0){
