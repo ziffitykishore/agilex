@@ -50,7 +50,7 @@ class TierPrice extends \Magento\Catalog\Pricing\Price\TierPrice
 
     public function getBasePriceFormatted()
     {
-        return $this->priceCurrency->convertAndFormat($this->getBasePrice());
+        return $this->priceCurrency->format($this->getBasePrice());
     }
 
     public function getMsrpPrice()
