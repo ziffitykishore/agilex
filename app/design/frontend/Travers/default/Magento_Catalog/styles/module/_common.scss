@@ -959,6 +959,8 @@ body.catalog-product-compare-index {
 
 // PDP Details Blocks
 .detail-blocks {
+    order: 3;
+
     .additional-attributes-wrapper,
     .detail-block-description {
         border: 1px solid $c-grey;
@@ -1090,13 +1092,17 @@ body.catalog-product-compare-index {
     }
 }
 
-.upsell .product-items {
-    display: flex;
-    flex-wrap: wrap;
+.upsell {
+    position: static;
+    
+    .product-items {
+        display: flex;
+        flex-wrap: wrap;
 
-    .product-item {
-        margin: 0 0 30px;
-        width: 220px;
-        max-width: 50%;
+        .product-item {
+            margin: 0 0 30px;
+            width: 220px;
+            max-width: 50%;
+        }
     }
 }

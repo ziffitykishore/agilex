@@ -2,18 +2,20 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <container name="product.detail.blocks" htmlTag="div" htmlClass="detail-blocks" before="-">
-                <container name="product.detail.attributes.wrap" htmlTag="div" htmlClass="detail-block-attributes"></container>
-                <container name="product.detail.description.wrap" htmlTag="div" htmlClass="detail-block-description">
-                    <block name="product.manuals" template="SomethingDigital_ProductDetails::manuals.phtml" after="product.info.description">
-                        <arguments>
-                            <argument name="view_model" xsi:type="object">SomethingDigital\ProductDetails\ViewModel\Manuals</argument>
-                        </arguments>
-                    </block>
-                </container>
-                <container name="product.detail.upsell.wrap" htmlTag="div" htmlClass="detail-block-description"></container>
-                <container name="product.detail.reviews.wrap" htmlTag="div" htmlClass="detail-block-description">
-                    <block name="product.detail.reviews.header" template="SomethingDigital_ProductDetails::reviews_header.phtml" before="-" />
+            <container name="product.info.wrapper" htmlTag="div" htmlClass="product-information-wrapper" before="-">
+                <container name="product.detail.blocks" htmlTag="div" htmlClass="detail-blocks" after="-">
+                    <container name="product.detail.attributes.wrap" htmlTag="div" htmlClass="detail-block-attributes"></container>
+                    <container name="product.detail.description.wrap" htmlTag="div" htmlClass="detail-block-description">
+                        <block name="product.manuals" template="SomethingDigital_ProductDetails::manuals.phtml" after="product.info.description">
+                            <arguments>
+                                <argument name="view_model" xsi:type="object">SomethingDigital\ProductDetails\ViewModel\Manuals</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <container name="product.detail.upsell.wrap" htmlTag="div" htmlClass="detail-block-description"></container>
+                    <container name="product.detail.reviews.wrap" htmlTag="div" htmlClass="detail-block-description">
+                        <block name="product.detail.reviews.header" template="SomethingDigital_ProductDetails::reviews_header.phtml" before="-" />
+                    </container>
                 </container>
             </container>
         </referenceContainer>
@@ -25,6 +27,7 @@
 
         <move element="product.attributes" destination="product.detail.attributes.wrap"/>
         <move element="product.info.description" destination="product.detail.description.wrap" before="-"/>
+        <move element="product.hero.container" destination="product.info.wrapper" before="-"/>
         <move element="reviews.tab" destination="content" after="-" />
         <move element="yotpo_widget_div" destination="product.detail.reviews.wrap" after="-" />
         <move element="product.info.upsell" destination="product.detail.upsell.wrap"/>
