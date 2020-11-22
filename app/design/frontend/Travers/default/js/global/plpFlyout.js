@@ -7,6 +7,7 @@ function scrollPlpFlyout() {
   const flyoutContainer = $('.product-info-content');
   const flyoutContent = $('.product-info-content--inner');
   const windowHeight = window.innerHeight - 100;
+  const translateY = px => flyoutContainer.css('transform', `translateY(${px}px)`);
 
   if (
     scrollTop < 500 ||
@@ -17,17 +18,12 @@ function scrollPlpFlyout() {
   }
 
   if (lastScroll >= scrollTop) {
-    flyoutContainer.css({
-      'transform': 'translate3d(0, 0, 0)',
-      transition: '.8s'
-    })
+    translateY(0);
   } else {
-    flyoutContainer.css({
-      'transform': 'translate3d(0,' + (windowHeight - flyoutContent.height()) + 'px, 0)',
-      transition: '.8s'
-    })
+    translateY(windowHeight - flyoutContent.height());
   }
 
+  flyoutContainer.css('transition', '.8s');
   lastScroll = scrollTop;
 }
 
