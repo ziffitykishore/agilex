@@ -9,11 +9,12 @@ function scrollPlpFlyout() {
   const windowHeight = window.innerHeight - 100;
   const translateY = px => flyoutContainer.css('transform', `translateY(${px}px)`);
 
-  if (
-    scrollTop < 500 ||
-    !flyoutContent.length ||
-    (flyoutContent.length && flyoutContent.height() < windowHeight)
-  ) {
+  if (scrollTop < 500 || !flyoutContent.length) {
+    return;
+  }
+
+  if (scrollTop > 500 && (flyoutContent.length && flyoutContent.height() < windowHeight)) {
+    translateY(0);
     return;
   }
 
