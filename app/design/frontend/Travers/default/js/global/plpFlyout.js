@@ -1,23 +1,34 @@
 import $ from 'jquery';
-import debounce from 'debounce';
 
 let lastScroll = 0;
 
 function scrollPlpFlyout() {
   const scrollTop = $(this).scrollTop();
-  const flyoutContent = $(".product-info-content--inner");
+  const flyoutContainer = $('.product-info-content');
+  const flyoutContent = $('.product-info-content--inner');
+  const windowHeight = window.innerHeight - 100;
 
-  if (!flyoutContent.length) {
+  if (
+    scrollTop < 500 ||
+    !flyoutContent.length ||
+    (flyoutContent.length && flyoutContent.height() < windowHeight)
+  ) {
     return;
   }
 
   if (lastScroll >= scrollTop) {
-    flyoutContent.animate({ scrollTop: 0 });
+    flyoutContainer.css({
+      'transform': 'translate3d(0, 0, 0)',
+      transition: '.8s'
+    })
   } else {
-    flyoutContent.animate({ scrollTop: flyoutContent[0].scrollHeight });
+    flyoutContainer.css({
+      'transform': 'translate3d(0,' + (windowHeight - flyoutContent.height()) + 'px, 0)',
+      transition: '.8s'
+    })
   }
 
   lastScroll = scrollTop;
 }
 
-window.onscroll = debounce(scrollPlpFlyout, 50);
+window.onscroll = scrollPlpFlyout;
