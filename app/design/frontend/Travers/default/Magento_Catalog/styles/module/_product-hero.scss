@@ -49,6 +49,20 @@ $product-hero__button-and-catalog__width: 240px;
         }
     }
 
+    .priceDesc {
+        text-transform: uppercase;
+        font-weight: $font-weight__extrabold;
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+
+    .pricePerEach {
+        color: $c-dusty-grey;
+        font-weight: $font-weight__extrabold;
+        font-size: 15px;
+        margin: $indent__xs;
+    }
+
     .product.media,
     .product-info-main {
         float: none;
