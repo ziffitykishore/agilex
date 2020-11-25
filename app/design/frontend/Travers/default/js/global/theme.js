@@ -42,6 +42,14 @@ domready(() => {
     if ($(this).find('.mobile-submenu').length > 0) {
       $(this).addClass('has-mobile-submenu');
     }
+
+    $(this).hover(() => {
+      $('.submenu').hide();
+      $(this).find('.submenu').css({
+        display: 'block',
+        top: '45px',
+        left: '70px'
+      });
+    });
   });
 });
-
