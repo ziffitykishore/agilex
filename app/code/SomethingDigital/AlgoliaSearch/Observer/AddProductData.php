@@ -60,7 +60,11 @@ class AddProductData implements ObserverInterface
     private function addRadius($product, $transport)
     {
         $algoliaProductData = $transport->getData();
-        $algoliaProductData['corner_radius_233'] = $product->getAttributeText('corner_radius_233');
+        if ($product->getAttributeText('corner_radius_233') !== false &&
+            $product->getAttributeText('corner_radius_233') !== null
+        ) {
+            $algoliaProductData['corner_radius_233'] = $product->getAttributeText('corner_radius_233');
+        }
         $transport->setData($algoliaProductData);
     }
 
