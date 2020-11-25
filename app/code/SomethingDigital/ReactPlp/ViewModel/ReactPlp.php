@@ -153,6 +153,10 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 'attributes' => [
                     'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/attributes/view/id',
                     'params' => []
+                ],
+                'facetAttributes' => [
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/facets/view/id',
+                    'params' => []
                 ]
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
