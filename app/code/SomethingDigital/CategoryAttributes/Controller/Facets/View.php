@@ -72,10 +72,8 @@ class View extends \Magento\Framework\App\Action\Action
                     }
                 }
             }
-
-            $data = $attrOptionsData;
             
-            $this->getResponse()->representJson($this->jsonEncoder->encode($data))->setHeader('Cache-Control', 'max-age=86400, public');
+            $this->getResponse()->representJson($this->jsonEncoder->encode($attrOptionsData))->setHeader('Cache-Control', 'max-age=86400, public');
         } catch (NoSuchEntityException $e) {
             throw new NotFoundException(__('Category does not exist.')); 
         }
