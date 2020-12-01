@@ -44,12 +44,8 @@ domready(() => {
     }
 
     $(this).hover(() => {
-      $('.submenu').hide();
-      $(this).find('.submenu').css({
-        display: 'block',
-        top: '45px',
-        left: '70px'
-      });
+      $('.submenu').css('display', 'none').attr('aria-expanded', 'false');
+      $(this).find('.desktop-submenu').css('display', 'block').attr('aria-expanded', 'true');
     });
   });
 });
