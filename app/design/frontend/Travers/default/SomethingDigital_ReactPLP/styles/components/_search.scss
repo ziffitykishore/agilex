@@ -34,6 +34,7 @@
         .search-hit {
             display: flex;
             padding: $indent__xs;
+            padding-right: 0;
             margin: $indent__s $indent__xs;
             width: 100%;
             height: 50px;
@@ -43,6 +44,7 @@
             align-items: center;
             border-radius: $indent__s;
             font-size: 13px;
+            line-height: 1.1;
             position: relative;
 
             @include hover {
@@ -61,7 +63,7 @@
             }
 
             @include min-screen($screen__m) {
-                width: 200px;
+                width: 220px;
             }
 
             img {
@@ -77,15 +79,14 @@
                 transform: translateY(-50%); 
 
                 &:not(:last-of-type) {
-                    max-height: 40px;
                     overflow: hidden;
                     left: 55px;
-                    max-width: 100px;
+                    max-width: 130px;
                 }
 
                 &:last-of-type {
                     margin-left: $indent__xs;
-                    right: $indent__s;
+                    right: $indent__xs;
 
                     @include min-screen($screen__xxs) {
                         display: none;
