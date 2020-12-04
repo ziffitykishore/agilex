@@ -127,6 +127,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         } else {
             $index_prefix = $this->scopeConfig->getValue("algoliasearch_credentials/credentials/index_prefix", ScopeInterface::SCOPE_STORE);
         }
+        $storeCode = $this->storeManager->getStore()->getCode();
         $props = [
             'defaultCategoryId' => $this->getCategoryId(),
             'displayMode' => $this->getDisplayMode(),
@@ -173,8 +174,9 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
-                'productsIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_products',
-                'categoriesIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_categories',
+                'productsIndexName' => $index_prefix . $storeCode . '_products',
+                'categoriesIndexName' => $index_prefix . $storeCode . '_categories',
+                'searchIndexName' => $index_prefix . $storeCode . '_products_search_sorted',
                 'attributeOptionsIndexName' => $index_prefix . 'default_attribute_option'
             ]
         ];
