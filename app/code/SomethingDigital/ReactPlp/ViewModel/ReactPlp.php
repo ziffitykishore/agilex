@@ -175,6 +175,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
                 'productsIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_products',
                 'categoriesIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_categories',
+                'searchIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_products_search_sorted',
                 'attributeOptionsIndexName' => $index_prefix . 'default_attribute_option'
             ]
         ];
