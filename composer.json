@@ -13,11 +13,11 @@
         },
         {
             "type": "git",
-            "url": "https://bitbucket.org/Travers-Workspace/snowdog_frontools.git"
+            "url": "https://bitbucket.org/Travers-Workspace/magento2-frontools.git"
         },
         {
             "type": "git",
-            "url": "https://bitbucket.org/Travers-Workspace/jamescowie_composer-patcher.git"
+            "url": "https://bitbucket.org/Travers-Workspace/composer-patcher.git"
         },
         {
             "type": "git",
