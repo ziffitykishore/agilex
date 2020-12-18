@@ -5,7 +5,8 @@
 # The project theme must be loaded BEFORE bryant park.
 source:
   - ../app/design/frontend/Travers/default/styles
-  - ../vendor/somethingdigital/magento2-theme-bryantpark/styles
+  - ../app/code/SomethingDigital/bryantpark/styles
+#  - ../vendor/somethingdigital/magento2-theme-bryantpark/styles
 
 
 # The directory that hologram will build to
