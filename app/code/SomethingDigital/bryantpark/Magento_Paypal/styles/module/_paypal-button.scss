@@ -1,0 +1,25 @@
+//  PayPal checkout button
+.paypal {
+    &.acceptance {
+        display: block;
+        margin: 0 0 $indent__base;
+
+        img {
+            max-width: 100%;
+        }
+    }
+}
+
+.box-tocart,
+.block-minicart {
+    .paypal img {
+        display: block;
+        margin: 0 auto;
+    }
+}
+
+.paypal-button-widget {
+    .paypal-button {
+        @include button--inline-link();
+    }
+}

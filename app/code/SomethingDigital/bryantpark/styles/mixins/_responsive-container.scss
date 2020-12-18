@@ -1,0 +1,97 @@
+/*doc
+---
+title: Responsive Container
+name: responsive-container
+category: Mixins - ResponsiveContainer
+---
+
+To have a Youtube video or other iframe/embed/object element respond to browser width, wrap it in a `.video-container` class. This will correct scale 16:9 elements.
+For custom aspect ratios, we have a mixin called `responsive-container` which accepts an aspect ratio value as a percentage. Mixin [Credits](https://coolestguidesontheplanet.com/videodrome/youtube/).
+
+**Note however** that it will cause the iframe/embed/object to extend 100% of the width.
+
+#### Example
+
+```
+@include responsive-container(43.29%)
+```
+
+##### PS: 43.29% is Cinema aspect ratio.
+
+```html_example_table
+  <div class="video-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/rCmQ7TXC5jk" frameborder="0" allowfullscreen></iframe>
+  </div>
+```
+
+*/
+
+// 16:9 or 9/16 = 0.5625 = 56.25%
+@mixin responsive-container($_aspect: 56.25%) {
+    position: relative;
+    height: 0;
+    padding-top: 30px;
+    padding-bottom: $_aspect;
+    overflow: hidden;
+
+    > iframe,
+    > object,
+    > embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.video-container {
+    @include responsive-container;
+}
+
+/* Lazysizes Video Embed Styles */
+.ratio-16-9 {
+    padding-bottom: 56.25%; // 16:9
+}
+
+.ls-video {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: block;
+    height: 0;
+    margin: auto;
+    position: relative;
+    transition: all 200ms ease-out;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .play-btn {
+        text-indent: -200em;
+        display: block;
+        overflow: hidden;
+        background: url("data:image/svg+xml,%3Csvg width='50px' height='50px' viewBox='0 0 50 50' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E %3Cpath fill-rule='evenodd' d='M25,1 C11.745166,1 1,11.745166 1,25 C1,38.254834 11.745166,49 25,49 C31.3651958,49 37.4696897,46.4714358 41.9705627,41.9705627 C46.4714358,37.4696897 49,31.3651958 49,25 C49,11.728 38.2,1 25,1 L25,1 Z' fill='%23000000'%3E%3C/path%3E %3Cpath fill-rule='evenodd' d='M20,34 L20,16 L36,25 L20,34 Z' fill='%23FFFFFF'%3E%3C/path%3E %3C/svg%3E") no-repeat center center;
+        background-size: 64px 64px;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: .7;
+        padding: 0;
+        filter: alpha(opacity=80);
+        transition: all 0.2s ease-out;
+
+        @include hover {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+    }
+}

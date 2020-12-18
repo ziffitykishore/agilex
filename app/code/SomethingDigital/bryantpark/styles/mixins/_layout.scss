@@ -1,0 +1,42 @@
+// Creates a standard page-wrapping grid row
+//
+//
+// @param $behavior
+//   Modifications to grid row behavior. `collapse` will remove gutters.
+//
+// @param $size
+//  Max-width of row.
+@mixin layout-container(
+    $behavior: null,
+    $size: $layout__max-width
+) {
+    @if index($behavior, collapse) == null {
+        @include layout-gutters();
+    }
+
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $size;
+}
+
+// Generates gutters for containers
+// @todo make the upper breakpoints optional
+@mixin layout-gutters(
+    $s-gutters: $layout__width-xs-indent,
+    $m-gutters: $layout-indent__width,
+    $l-gutters: $layout-indent__width
+) {
+    padding-left: $s-gutters;
+    padding-right: $s-gutters;
+
+    @include min-screen($screen__xs) {
+        padding-left: $m-gutters;
+        padding-right: $m-gutters;
+    }
+
+    @include min-screen($screen__m) {
+        padding-left: $l-gutters;
+        padding-right: $l-gutters;
+    }
+}

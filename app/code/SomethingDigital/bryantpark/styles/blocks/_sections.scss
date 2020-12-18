@@ -1,0 +1,53 @@
+.product.data.items {
+    @include bryant-park-lib-data-accordion();
+    margin-bottom: $indent__base;
+    border: $tab-control__border-width solid $tab-control__border-color;
+    border-top: none;
+
+    > .item.title > .switch > span {
+        @include lib-visually-hidden-reset();
+    }
+
+    .data.item .counter {
+        &::before {
+            content: '(';
+        }
+
+        &::after {
+            content: ')';
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .product.data.items {
+        @include lib-data-tabs(
+            $_tab-control-padding-top       : 12px,
+            $_tab-control-padding-bottom    : 12px,
+            $_tab-control-padding-left      : 35px,
+            $_tab-control-padding-right     : 35px,
+            $_tab-content-margin-top        : 45px,
+            $_tab-control-margin-right      : -1px,
+            $_tab-control-font-size         : $tab-control__font-size
+        );
+        border: none;
+    }
+}
+
+@include max-screen($screen__m) {
+    .product.data.items {
+        @include bryant-park-lib-data-accordion();
+        .data.item {
+            display: block;
+            position: relative;
+
+            p {
+                margin-top: 0;
+            }
+        }
+    }
+}

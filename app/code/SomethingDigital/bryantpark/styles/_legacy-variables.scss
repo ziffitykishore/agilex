@@ -1,0 +1,148 @@
+/**
+ * This file contains both MUI variables and older BryantPark
+ * variables that we're resetting to expected, standard values.
+ *
+ * Generally speaking, you shouldn't be using any of these.
+ */
+
+// Magento 2 Base Colors -- overriding Snowdog variables
+$color-gray19: $c-light-grey;
+$color-gray20: $c-dark-grey;
+$color-gray34: $c-dark-grey;
+$color-gray40: $c-dark-grey;
+$color-gray52: $c-dark-grey;
+$color-gray55: $c-dark-grey;
+$color-gray56: $c-dark-grey;
+$color-gray60: $c-medium-grey;
+$color-gray62: $c-medium-grey;
+$color-gray64: $c-medium-grey;
+$color-gray68: $c-medium-grey;
+$color-gray76: $c-light-grey;
+$color-gray78: $c-light-grey;
+$color-gray79: $c-light-grey;
+$color-gray80: $c-light-grey;
+$color-gray82: $c-light-grey;
+$color-gray89: $c-light-grey;
+$color-gray90: $c-light-grey;
+$color-gray91: $c-light-grey;
+$color-gray92: $c-light-grey;
+$color-gray94: $c-light-grey;
+$color-gray95: $c-light-grey;
+$color-white-smoke: $c-light-grey;
+$color-white-dark-smoke: $c-light-grey;
+$color-white-fog: $c-light-grey;
+$color-gray-light0: $c-light-grey;
+$color-gray-light01: $c-light-grey;
+$color-gray-light1: $c-light-grey;
+$color-gray-light2: $c-medium-grey;
+$color-gray-light3: $c-medium-grey;
+$color-gray-light4: $c-light-grey;
+$color-gray-light5: $c-medium-grey;
+$color-gray-light6: $c-medium-grey;
+$color-gray-middle1: $c-light-grey;
+$color-gray-middle2: $c-light-grey;
+$color-gray-middle3: $c-dark-grey;
+$color-gray-darken0: $c-light-grey;
+$color-gray-darken1: $c-light-grey;
+$color-gray-darken2: $c-light-grey;
+$color-gray-darken3: $c-dark-grey;
+$color-gray-darken4: $c-dark-grey;
+
+$color-red9: $c-red;
+$color-red10: $c-red;
+$color-red11: $c-red;
+$color-red12: $c-red;
+
+$color-orange-red1: $c-orange;
+$color-orange-red2: $c-orange;
+$color-orange-red3: $c-orange;
+$color-orange-red4: $c-orange;
+
+$color-dark-green1: $c-green;
+
+$color-blue1: $c-blue;
+$color-blue2: $c-blue;
+$color-sky-blue1: $c-blue;
+
+$color-pink1: $c-pink;
+$color-dark-pink1: $c-pink;
+
+$color-brownie1: $c-brown;
+$color-brownie-light1: $c-brown;
+
+$color-yellow-light1: $c-yellow;
+$color-yellow-light2: $c-yellow;
+$color-yellow-light3: $c-yellow;
+
+/**
+ * Setting H3 variables to mapped values
+ *
+ * Magento 2's LESS implementation had variables for each property
+ * of each level of header. Snowdog, in their SCSS port, moved these
+ * properties to maps. Oddly, these H3 variables are the only ones that
+ * still exist in Snowdog's core SCSS. These now have seeped into
+ * our child themes as well. Here, we're simply setting them to
+ * the values that are present in our H3 map to allow for backwards
+ * compatibility
+ */
+$h3__font-size: headings($heading-h3, font-size);
+$h3__font-weight: headings($heading-h3, font-weight);
+$h3__margin-top: headings($heading-h3, margin-top);
+
+// These variables are only used in a few places - better to just standardize
+$border-color__light: $c-border;
+$text__color__intense: $text__color;
+
+
+/**
+ * Overriding primary and secondary alternates
+ *
+ * We want a standardized color palette on our builds, and therefore
+ * (generally) want to have only one "primary" and one "secondary" color
+ */
+$primary__color__dark: $primary__color;
+$primary__color__darker: $primary__color;
+$primary__color__lighter: $primary__color;
+$primary__color__light: $primary__color;
+$secondary__color__light: $secondary__color;
+
+// Previously used on BryantPark v2.0.0, kept for backwards compatability
+$c-primary__color: $primary__color;
+$c-secondary__color: $secondary__color;
+
+// Should always be the same
+$form-field__height: $form-element-input__height;
+
+@mixin bryant-park-headings-h1 {
+    @warn "`bryant-park-headings-h1()` mixin will be removed in an upcoming version. Use `lib-heading(h1);` instead";
+    @include lib-heading(h1);
+}
+
+@mixin bryant-park-headings-h2 {
+    @warn "`bryant-park-headings-h2()` mixin will be removed in an upcoming version. Use `lib-heading(h2);` instead";
+    @include lib-heading(h2);
+}
+
+@mixin bryant-park-headings-h3 {
+    @warn "`bryant-park-headings-h3()` mixin will be removed in an upcoming version. Use `lib-heading(h3);` instead";
+    @include lib-heading(h3);
+}
+
+@mixin bryant-park-headings-h4 {
+    @warn "`bryant-park-headings-h4()` mixin will be removed in an upcoming version. Use `lib-heading(h4);` instead";
+    @include lib-heading(h4);
+}
+
+@mixin bryant-park-headings-h5 {
+    @warn "`bryant-park-headings-h5()` mixin will be removed in an upcoming version. Use `lib-heading(h5);` instead";
+    @include lib-heading(h5);
+}
+
+@mixin bryant-park-headings-h6 {
+    @warn "`bryant-park-headings-h6()` mixin will be removed in an upcoming version. Use `lib-heading(h6);` instead";
+    @include lib-heading(h6);
+}
+
+@mixin bryant-park-typography-all() {
+    @warn "`bryant-park-typography-all()` is deprecated, please remove.";
+}

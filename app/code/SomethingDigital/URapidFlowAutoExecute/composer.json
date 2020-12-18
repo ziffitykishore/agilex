@@ -1,0 +1,19 @@
+{
+    "name": "somethingdigital/urapidflow-autoexecute",
+    "description": "A module used to run urapidflow profiles via a console command",
+    "require": {
+        "php": ">= 7.0.0 <8.0.0",
+        "magento/framework": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.2",
+    "license": [],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "SomethingDigital\\URapidFlowAutoExecute\\": ""
+        }
+    }
+}

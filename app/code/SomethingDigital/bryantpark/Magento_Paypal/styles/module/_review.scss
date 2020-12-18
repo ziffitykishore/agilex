@@ -1,0 +1,247 @@
+//  PayPal Review Order page
+.paypal-review {
+    .block {
+        @extend .abs-account-blocks;
+        .actions-toolbar {
+            .action {
+                &.primary {
+                    @include lib-button-revert-secondary-color();
+                }
+            }
+        }
+    }
+
+    .paypa-review-title {
+        & > strong {
+            @include lib-heading(h3);
+            display: inline-block;
+        }
+    }
+
+    .items-qty {
+
+        @extend .abs-reset-list;
+
+        .item {
+            white-space: nowrap;
+        }
+
+        .title {
+            &:after {
+                content: ': ';
+            }
+        }
+    }
+
+    .paypal-review-title {
+        & > strong {
+            @include lib-heading(h3);
+            display: inline-block;
+        }
+    }
+
+    .actions-toolbar {
+        margin-top: 0;
+
+        @include min-screen($screen__m) {
+            margin-top: $indent__s;
+        }
+    }
+
+    .item-options {
+        dt {
+            display: inline-block;
+            &:after {
+                content: ': ';
+            }
+        }
+
+        dd {
+            margin: 0;
+        }
+    }
+
+    .paypal-review-title {
+        .edit {
+            display: none;
+        }
+    }
+}
+
+//  Discounts
+.paypal-review-discount {
+    border-bottom: $border-width__base solid $border-color__base;
+    margin: $indent__base 0;
+
+    .block {
+        margin-bottom: 0;
+
+        > .title {
+            border-top: $border-width__base solid $border-color__base;
+            cursor: pointer;
+            font-weight: $font-weight__semibold;
+            @include lib-icon-font(
+            $_icon-font-content : $icon-down,
+            $_icon-font-size    : 30px,
+            $_icon-font-position: before,
+            $_icon-font-display : block
+            );
+            margin-bottom: 0;
+            overflow: hidden;
+            padding: 0 $indent__l 0 $indent__xs;
+            position: relative;
+
+            &::after {
+                position: absolute;
+                right: -5px;
+                top: -5px;
+            }
+
+            strong {
+                .column.main & {
+                    @include lib-heading(h5);
+                }
+            }
+        }
+
+        &.giftcard > .title {
+            border-bottom: $border-width__base solid $border-color__base;
+        }
+
+        > .content {
+            display: none;
+        }
+
+        &.active {
+            > .title {
+                @include lib-icon-font-symbol(
+                $_icon-font-content : $icon-up,
+                $_icon-font-position: before
+                );
+            }
+
+            > .content {
+                display: block;
+            }
+        }
+
+        .fieldset {
+            padding: $indent__s 0 $indent__base;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .paypal-review {
+        .block-content {
+
+            @include lib-clearfix();
+            .box-order-shipping-address,
+            .box-order-shipping-method,
+            .box-order-shipping-method + .box-order-billing-address {
+                box-sizing: border-box;
+                float: left;
+                width: 33%;
+            }
+
+            .box-order-shipping-address {
+                padding: 0 5%;
+                width: 34%;
+            }
+        }
+
+        .column.main & {
+            .actions-toolbar {
+
+                @extend .abs-reset-left-margin-desktop;
+            }
+        }
+
+        .col.subtotal,
+        .mark,
+        .amount {
+            text-align: right;
+        }
+    }
+}
+
+.paypal-express-review {
+    .product-item-details {
+        padding-left: 50px;
+    }
+
+    .columns .column.main {
+        padding-bottom: 70px;
+    }
+
+    .cart.table-wrapper {
+        @include max-screen($screen__m) {
+            margin-bottom: 0;
+        }
+
+        .opc-block-summary {
+            @include max-screen($screen__l) {
+                margin-bottom: 0;
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            @include min-screen($screen__s) {
+                border: none;
+            }
+
+            @include min-screen($screen__m) {
+                display: table-row;
+            }
+
+            > tr {
+                @include max-screen($screen__m) {
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+
+                &.grand.totals {
+                    @include min-screen($screen__s) {
+                        display: table-row;
+                    }
+                }
+            }
+
+            tr {
+                th {
+                    @include min-screen($screen__m) {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+
+    .table-wrapper .table:not(.totals):not(.table-comparison) tfoot {
+        @include min-screen($screen__m) {
+            display: table-footer-group;
+        }
+
+        tr {
+            @include min-screen($screen__m) {
+                display: table-row;
+            }
+
+            th {
+                @include min-screen($screen__m) {
+                    float: none;
+                }
+            }
+
+            td {
+                @include min-screen($screen__m) {
+                    float: none;
+                }
+            }
+        }
+    }
+}

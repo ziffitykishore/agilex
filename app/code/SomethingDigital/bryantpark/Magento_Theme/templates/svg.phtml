@@ -1,0 +1,13 @@
+<?php
+/*
+    :: USAGE EXAMPLE ::
+    <svg class="icon icon-menu" role="img" focusable="false">
+        <use href="#facebook" xlink:href="#facebook"></use>
+    </svg>
+*/
+$helper = $this->helper('SomethingDigital\BryantPark\Helper\Data');
+$svgFile = $helper->getStaticPath('svg/symbols.svg');
+if (file_exists($svgFile)) {
+    include_once ($svgFile);
+}
+?>

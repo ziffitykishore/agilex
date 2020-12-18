@@ -1,0 +1,27 @@
+/**
+ * When content should be hidden in browser but kept visible to screen readers
+ *
+ * Useful for adding labels to icon links
+ */
+.visuallyhidden {
+    @include lib-visually-hidden();
+
+    /**
+     * Extends the .visuallyhidden class to allow the element to be focusable
+     * when navigated to via the keyboard
+     */
+    &.focusable {
+        &:active,
+        &:focus {
+            @include lib-visually-hidden-reset();
+        }
+    }
+}
+
+.responsive-video {
+    @include responsive-video();
+}
+
+.no-display {
+    display: none;
+}

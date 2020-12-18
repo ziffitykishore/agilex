@@ -1,0 +1,41 @@
+// 3rd Party Brand Colors
+$c-brands: (
+  'facebook': #3b5998,
+  'twitter': #55acee,
+  'instagram': #3f729b,
+  'pinterest': #bd081c,
+  'googleplus': #dc4e41,
+);
+
+@function brand-color($brand) {
+    @if not map-has-key($c-brands, $brand) {
+        @warn "No brand color found in $c-brands map for `#{$brand}`. Property omitted.";
+    }
+
+    @return map-get($c-brands, $brand);
+}
+
+/*doc
+---
+title: Brand Colors
+name: colors_brand
+category: Style-Guide -- Brand-Colors
+---
+
+### Brand Color Helper Function
+
+When using brand colors, you should use the `brand-color()` helper function. Simply write `color: brand-color('brand');` and replace **brand** with the $c-brand array value inside the $c-brand map located in mixins/_brand-colors.scss, such as `brand-color('facebook')`.
+
+### Brand Colors
+
+You can quickly grab brand color values from <https://brandcolors.net/> and add them to the $c-brands color map.
+
+<ul class="colors--bg">
+  <li class="bg bg--brand--facebook"></li>
+  <li class="bg bg--brand--twitter"></li>
+  <li class="bg bg--brand--instagram"></li>
+  <li class="bg bg--brand--pinterest"></li>
+  <li class="bg bg--brand--googleplus"></li>
+</ul>
+
+*/

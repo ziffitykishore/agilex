@@ -1,0 +1,974 @@
+//
+//  List default styles reset
+//  ---------------------------------------------
+
+.abs-reset-list {
+    @include lib-list-reset-styles();
+
+    & > li {
+        margin: 0;
+    }
+}
+
+//
+//  Product options list
+//  ---------------------------------------------
+
+@mixin abs-product-options-list() {
+    dt {
+        clear: left;
+        float: left;
+        margin: 0 $indent__s $indent__xs 0;
+
+        &::after {
+            content: ': ';
+        }
+    }
+
+    dd {
+        float: left;
+        margin: 0 0 $indent__xs;
+    }
+}
+
+.abs-product-options-list {
+    @include abs-product-options-list();
+}
+
+@include min-screen($screen__m) {
+    .abs-product-options-list-desktop {
+        @include abs-product-options-list();
+    }
+}
+
+//
+//  Blocks in 2 columns
+//  ---------------------------------------------
+
+@mixin abs-blocks-2columns() {
+    width: 48.8%;
+
+    &:nth-child(odd) {
+        clear: left;
+        float: left;
+    }
+
+    &:nth-child(even) {
+        float: right;
+    }
+}
+
+.abs-blocks-2columns,
+.abs-blocks-2columns-s {
+    @include abs-blocks-2columns();
+}
+
+//
+//  Reset image alignment in container
+//  ---------------------------------------------
+
+.abs-reset-image-wrapper {
+    height: auto;
+    padding: 0 !important;
+
+    .product-image-photo {
+        position: static;
+    }
+}
+
+//
+//  Adaptive images
+//  ---------------------------------------------
+
+.abs-adaptive-images {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+.abs-adaptive-images-centered {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+//
+//  Title for login blocks
+//  ---------------------------------------------
+
+.abs-login-block-title {
+    font-size: 18px;
+    border-bottom: 1px solid $c-border;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+
+    strong {
+        font-weight: 500;
+    }
+}
+
+//
+//  Abstract block title
+//  ---------------------------------------------
+
+.abs-block-title {
+    & > strong {
+        @include lib-heading(h3);
+    }
+
+    margin-bottom: 15px;
+}
+
+//
+//  Account blocks
+//  ---------------------------------------------
+
+.abs-account-blocks {
+    .block-title {
+        @extend .abs-block-title;
+        & > .action {
+            margin-left: 15px;
+        }
+    }
+
+    .box-title {
+        display: inline-block;
+
+        & > span {
+            @include lib-heading(h4);
+        }
+
+        & > .action {
+            font-weight: 400;
+            margin-left: $indent__s;
+        }
+    }
+
+    .block-content {
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        .box {
+            margin-bottom: $indent__base;
+        }
+    }
+}
+
+.block-content .box *:first-child:not(.block-title) {
+    margin-top: $indent__xs;
+}
+
+//
+//  Account pages: actions
+//  ---------------------------------------------
+
+@mixin abs-account-actions() {
+    &::after {
+        border-left: 1px solid $c-border;
+        content: '';
+        display: inline-block;
+        height: 12px;
+        margin: 0 $indent__s;
+        vertical-align: -1px;
+    }
+
+    &:last-child::after {
+        display: none;
+    }
+}
+
+.abs-account-actions {
+    @include abs-account-actions();
+}
+
+.abs-account-actions-mobile {
+    @include max-screen($screen__m) {
+        @include abs-account-actions();
+    }
+}
+
+//
+//  Account pages: title
+//  ---------------------------------------------
+
+%abs-account-title {
+    border-bottom: 1px solid $c-border;
+    margin-bottom: $indent__m;
+    padding-bottom: $indent__s;
+
+    > strong,
+    > span {
+        font-size: map-get($heading-h3, font-size-desktop);
+        line-height: map-get($heading-h3, line-height-desktop);
+    }
+}
+
+//
+//  Account pages: margin for table
+//  ---------------------------------------------
+
+@include max-screen($screen__m) {
+    %abs-account-table-margin-mobile {
+        margin-top: -$indent__base;
+    }
+}
+
+@include min-screen($screen__m) {
+    %abs-account-table-margin-desktop {
+        margin-top: -$indent__m;
+    }
+}
+
+
+//
+//  Account blocks
+//  ---------------------------------------------
+
+%abs-account-blocks {
+    .block-title {
+        @extend %abs-account-title;
+        margin-bottom: 0;
+
+        > h3 {
+            display: inline-block;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        > .action {
+            margin-left: 15px;
+        }
+
+        &.order {
+            margin-bottom: $indent__base + $indent__xs;
+        }
+    }
+
+    &.block-addresses-list,
+    &.block-balance,
+    &.block-balance-history,
+    &.block-reviews-dashboard {
+        .block-title {
+            margin-bottom: $indent__base + $indent__xs;
+        }
+    }
+
+    &.block-order-details-view .block-title {
+        margin-bottom: 0;
+    }
+
+    .box-title {
+        display: inline-block;
+
+        h4 {
+            margin-bottom: $indent__xs;
+        }
+
+        > span {
+            font-size: 16px;
+        }
+
+        > .action {
+            font-weight: 400;
+            margin-left: $indent__s;
+        }
+    }
+}
+
+//
+//  Simple Dropdown
+//  ---------------------------------------------
+
+.abs-dropdown-simple {
+    @include lib-dropdown(
+        $_dropdown-list-item-padding: 5px 5px 5px 23px,
+        $_dropdown-list-min-width: 200px,
+        $_icon-font-margin: 0 0 0 5px,
+        $_icon-font-vertical-align: middle,
+        $_dropdown-toggle-icon-content: $icon-down,
+        $_dropdown-toggle-active-icon-content: $icon-up
+    );
+
+    display: inline-block;
+}
+
+//
+//  Input quantity
+//  ---------------------------------------------
+
+.abs-input-qty {
+    text-align: center;
+    width: 47px;
+}
+
+//
+//  Marging for blocks & widgets
+//  ---------------------------------------------
+
+.abs-margin-for-blocks-and-widgets {
+    margin-bottom: $indent__xl;
+}
+
+//
+//  Remove button for blocks
+//  ---------------------------------------------
+
+.abs-remove-button-for-blocks {
+    @include lib-icon-font(
+        $icon-remove,
+        $_icon-font-size        : 26px,
+        $_icon-font-line-height : 15px,
+        $_icon-font-text-hide   : true,
+        $_icon-font-color       : $color-gray19,
+        $_icon-font-color-hover : $color-black,
+        $_icon-font-color-active: $color-black
+    );
+}
+
+//
+//  Product link
+//  ---------------------------------------------
+
+.abs-product-link {
+    font-size: $product-name-link__font-size;
+
+    & > a {
+        @include lib-link(
+            $_link-color                  : $product-name-link__color,
+            $_link-text-decoration        : $product-name-link__text-decoration,
+            $_link-color-visited          : $product-name-link__color__visited,
+            $_link-text-decoration-visited: $product-name-link__text-decoration__visited,
+            $_link-color-hover            : $product-name-link__color__hover,
+            $_link-text-decoration-hover  : $product-name-link__text-decoration__hover,
+            $_link-color-active           : $product-name-link__color__active,
+            $_link-text-decoration-active : $product-name-link__text-decoration__active
+        );
+    }
+}
+
+//
+//  Reset left margin
+//  ---------------------------------------------
+
+@include min-screen($screen__m) {
+    .abs-reset-left-margin-desktop {
+        margin-left: 0;
+    }
+}
+
+@include min-screen($screen__s) {
+    .abs-reset-left-margin-desktop-s {
+        margin-left: 0;
+    }
+}
+
+//
+//  Add Recipient
+//  ---------------------------------------------
+
+.abs-add-fields {
+    .fieldset {
+        .actions-toolbar:not(:first-child) {
+            @include lib-clearfix();
+
+            & > .secondary {
+                float: left;
+
+                .action.add {
+                    margin-top: $indent__l;
+                }
+            }
+        }
+
+        .fields .actions-toolbar {
+            margin: 0;
+        }
+    }
+
+    .message.notice {
+        margin: $indent__l 0 0;
+    }
+
+    .additional {
+        margin-top: $indent__l;
+        position: relative;
+    }
+
+    .action.remove {
+        @include button--inline-link();
+        width: auto;
+    }
+}
+
+//
+//  Add Recipient for desktop
+//  ---------------------------------------------
+
+@include min-screen($screen__m) {
+    .abs-add-fields-desktop {
+        .fieldset {
+            .field:not(.choice) .control {
+                width: 50%;
+            }
+
+            .additional .action .remove {
+                @include button--inline-link();
+            }
+        }
+    }
+}
+
+//
+//  Margin for forms
+//  ---------------------------------------------
+
+@include min-screen($screen__m) {
+    .abs-margin-for-forms-desktop {
+        margin-left: 0;
+    }
+}
+
+@include min-screen($screen__s) {
+    .abs-margin-for-forms-desktop-s {
+        margin-left: 0;
+    }
+}
+
+//
+//  Visually hidden / show visually hidden
+//  ---------------------------------------------
+
+@include max-screen($screen__s) {
+    .abs-visually-hidden-mobile {
+        @include lib-visually-hidden();
+    }
+}
+
+@include max-screen($screen__m) {
+    .abs-visually-hidden-mobile-m {
+        @include lib-visually-hidden();
+    }
+}
+
+@include min-screen($screen__s) {
+    .abs-visually-hidden-desktop-s {
+        @include lib-visually-hidden();
+    }
+}
+
+@include min-screen($screen__m) {
+    .abs-visually-hidden-desktop {
+        @include lib-visually-hidden();
+    }
+}
+
+//
+//  Box-sizing
+//  ---------------------------------------------
+
+@include min-screen($screen__m) {
+    .abs-add-box-sizing-desktop {
+        box-sizing: border-box;
+    }
+}
+
+@include min-screen($screen__s) {
+    .abs-add-box-sizing-desktop-s {
+        box-sizing: border-box;
+    }
+}
+
+@include min-screen($screen__m) {
+    .abs-add-box-sizing-desktop-m {
+        box-sizing: border-box;
+    }
+}
+
+//
+//  Split button
+//  ---------------------------------------------
+
+.abs-actions-addto-gridlist {
+    @include lib-icon-font(
+        $_icon-font-content       : inherit,
+        $_icon-font-size          : 29px,
+        $_icon-font-color         : $addto-color,
+        $_icon-font-color-hover   : $addto-hover-color,
+        $_icon-font-text-hide     : true,
+        $_icon-font-vertical-align: middle,
+        $_icon-font-line-height   : 24px
+    );
+}
+
+//
+//  Excl/Incl tax
+//  ---------------------------------------------
+
+.abs-adjustment-incl-excl-tax {
+    .price-including-tax,
+    .price-excluding-tax,
+    .weee {
+        font-size: 14px;
+        display: inline-block;
+        white-space: nowrap;
+    }
+
+    .price-including-tax + .price-excluding-tax {
+        display: inline-block;
+        font-size: 11px;
+
+        &::before {
+            content: '('attr(data-label)': ';
+        }
+
+        &::after {
+            content: ')';
+        }
+    }
+}
+
+//
+//  Add colon
+//  ---------------------------------------------
+
+.abs-colon {
+    &::after {
+        content: ': ';
+    }
+}
+
+//
+//  Icon - create add
+//  ---------------------------------------------
+
+.abs-icon-add {
+    @include icon-svg(
+        $icon       : expand,
+        $fill       : $secondary__color,
+        $width      : 10px,
+        $height     : auto,
+        $pseudo     : before,
+        $hideLabel  : false
+    );
+}
+
+.abs-icon-add-large {
+    @include icon-svg(
+        $icon       : expand,
+        $fill       : $secondary__color,
+        $width      : $toggling-icon-width,
+        $height     : auto,
+        $pseudo     : before,
+        $hideLabel  : false
+    );
+}
+
+.abs-icon-collapse {
+    @include icon-svg(
+        $icon       : collapse,
+        $fill       : $secondary__color,
+        $width      : 10px,
+        $height     : auto,
+        $pseudo     : before,
+        $hideLabel  : false
+    );
+}
+
+.abs-icon-collapse-large {
+    @include icon-svg(
+        $icon       : collapse,
+        $fill       : $secondary__color,
+        $width      : $toggling-icon-width,
+        $height     : auto,
+        $pseudo     : before,
+        $hideLabel  : false
+    );
+}
+
+//
+//  Dropdown items - create new
+//  ---------------------------------------------
+
+.abs-dropdown-items-new {
+    .items .item:last-child {
+        @include hover {
+            background: $color-gray91;
+        }
+    }
+
+    .action.new {
+        @extend .abs-icon-add;
+
+        &::before {
+            margin-left: -17px;
+            margin-right: $indent__xs;
+        }
+    }
+}
+
+//
+//  Abstract toggle title block
+//  ---------------------------------------------
+$toggling-icon-width: 15px !default;
+
+%abs-toggling-title {
+    @include icon-svg(
+        $icon       : expand,
+        $fill       : $secondary__color,
+        $width      : $toggling-icon-width,
+        $height     : auto,
+        $pseudo     : after
+    );
+    border-top: $border-width__base solid $border-color__base;
+    cursor: pointer;
+    margin-bottom: 0;
+    padding: $indent__s $indent__xl $indent__s 0;
+    position: relative;
+    font-size: 16px;
+
+    &:after {
+        @include vertically-center($position: absolute);
+        right: 0;
+    }
+}
+
+@include max-screen($screen__m) {
+    .abs-toggling-title-mobile {
+        border-bottom: $border-width__base solid $border-color__base;
+        border-top: $border-width__base solid $border-color__base;
+        cursor: pointer;
+        margin-bottom: 0;
+        padding: $layout__width-xs-indent $mobile-cart-padding;
+        padding-right: ( $toggling-icon-width + $indent__s );
+        position: relative;
+        display: block;
+
+        @include icon-svg(
+            $icon       : down,
+            $fill       : $secondary__color,
+            $width      : 30px,
+            $height     : auto,
+            $pseudo     : after,
+            $hideLabel  : false
+        );
+
+        &::after {
+            @include vertically-center($position: absolute);
+            right: 0;
+        }
+
+        &.active {
+            @include icon-svg(
+                $icon       : up,
+                $fill       : $secondary__color,
+                $width      : 30px,
+                $height     : auto,
+                $pseudo     : after,
+                $hideLabel  : false
+            );
+        }
+    }
+}
+
+//
+//  Status
+//  ---------------------------------------------
+
+%abs-status {
+    display: inline-block;
+    border: solid 2px $border-color__base;
+    border-radius: 3px;
+    padding: 2px $indent__s;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+//
+//  Page title - orders pages
+//  ---------------------------------------------
+
+%abs-title-orders {
+    .page-main .page-title-wrapper {
+        .page-title {
+            margin-right: 25px;
+        }
+
+        .order-date {
+            font-size: 16px;
+            margin-bottom: $indent__s;
+            text-transform: uppercase;
+        }
+    }
+}
+
+@mixin abs-title-orders-mobile {
+    @include max-screen($screen__s) {
+        .page-main .page-title-wrapper .page-title {
+            display: block;
+        }
+    }
+}
+
+//
+//  Pager toolbar for non-catalog pages
+//  ---------------------------------------------
+
+@include max-screen($screen__s) {
+    .abs-pager-toolbar-mobile-s {
+        .toolbar-amount,
+        .limiter,
+        .pages {
+            margin-bottom: $indent__m;
+        }
+    }
+}
+
+@include max-screen($screen__m) {
+    .abs-pager-toolbar-mobile {
+        .toolbar-amount,
+        .limiter,
+        .pages {
+            float: none;
+            margin-bottom: $indent__m;
+        }
+    }
+}
+
+@include min-screen($screen__m) {
+    .abs-pager-toolbar {
+        @include lib-clearfix();
+        margin-bottom: $indent__base;
+        position: relative;
+
+        .limiter {
+            float: right;
+            position: relative;
+            z-index: 1;
+        }
+
+        .toolbar-amount {
+            float: left;
+            line-height: normal;
+            padding: 7px 0 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pages {
+            position: absolute;
+            width: 100%;
+            z-index: 0;
+        }
+    }
+}
+
+//
+//  Items counter in blocks
+//  ---------------------------------------------
+
+.abs-block-items-counter {
+    color: $primary__color__lighter;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+//
+//  Shopping cart items
+//  ---------------------------------------------
+
+.abs-shopping-cart-items {
+    border-bottom: solid 1px $c-border;
+    padding-bottom: $indent__base;
+
+    .action.continue {
+        @include lib-button();
+        @include headingFont;
+        text-decoration: none;
+    }
+}
+
+@include min-screen($screen__m) {
+    .abs-shopping-cart-items-desktop {
+        float: left;
+        position: relative;
+        width: 56%;
+
+        @include min-screen($screen__l) {
+            width: 70%;
+        }
+
+        .actions {
+            text-align: center;
+        }
+
+        .action {
+            &.continue {
+                float: left;
+            }
+
+            &.clear {
+                margin-right: $indent__s;
+            }
+        }
+    }
+}
+
+//
+//  Form Field Date Input
+//  ---------------------------------------------
+
+.abs-field-date-input {
+    margin-right: $indent__s;
+    width: calc(100% - (#{$icon-calendar__font-size} + #{$indent__m}));
+}
+
+//
+//  Checkout Tooltip Content (position: top)
+//  ---------------------------------------------
+
+@mixin abs-checkout-tooltip-content-position-top() {
+    right: $checkout-tooltip-content-mobile__right;
+    top: $checkout-tooltip-content-mobile__top;
+    left: auto;
+
+    &::before,
+    &::after {
+        @include lib-arrow(
+            $_position: top,
+            $_size: $checkout-tooltip-icon-arrow__font-size,
+            $_color: $checkout-tooltip-content__background-color
+        );
+        margin-top: $checkout-tooltip-icon-arrow__left;
+        right: $indent__s;
+        left: auto;
+        top: 0;
+    }
+
+    &::before {
+        border-bottom-color: $checkout-tooltip-content__border-color;
+    }
+
+    &::after {
+        border-bottom-color: $checkout-tooltip-content__background-color;
+        top: 1px;
+    }
+}
+
+.abs-checkout-tooltip-content-position-top {
+    @include abs-checkout-tooltip-content-position-top();
+}
+
+@include max-screen($screen__m + 1) {
+    .abs-checkout-tooltip-content-position-top-mobile {
+        @include abs-checkout-tooltip-content-position-top();
+    }
+}
+
+//
+//  Checkout title
+//  ---------------------------------------------
+
+.abs-checkout-title {
+    @include lib-heading(h2);
+
+    border-bottom: $checkout-step-title__border;
+    padding-bottom: $checkout-step-title__padding;
+    margin-top: 0;
+}
+
+//
+//  Shopping cart sidebar and checkout sidebar totals
+//  ---------------------------------------------
+
+.abs-sidebar-totals {
+    .mark {
+        font-weight: $font-weight__regular;
+        padding-left: 4px;
+        text-align: left;
+
+        strong {
+            font-weight: $font-weight__regular;
+        }
+    }
+
+    .amount {
+        padding-right: 4px;
+        text-align: right;
+        white-space: nowrap;
+
+        strong {
+            font-weight: $font-weight__regular;
+        }
+    }
+
+    .grand .amount {
+        padding-right: 4px;
+        text-align: right;
+
+        strong {
+            font-weight: $font-weight__bold;
+        }
+    }
+
+    .msrp {
+        margin-bottom: $indent__s;
+    }
+
+    .totals-tax {
+        &-summary {
+            .mark,
+            .amount {
+                border-top: $border-width__base solid $border-color__base;
+                border-bottom: $border-width__base solid $border-color__base;
+                cursor: pointer;
+            }
+
+            .amount .price {
+                @include lib-icon-font(
+                    $icon-down,
+                    $_icon-font-size     : 30px,
+                    $_icon-font-text-hide: true,
+                    $_icon-font-position : after,
+                    $_icon-font-display  : block
+                );
+                padding-right: $indent__m;
+                position: relative;
+
+                &::after {
+                    position: absolute;
+                    right: -5px;
+                    top: -12px;
+                }
+            }
+
+            &.expanded {
+                .mark,
+                .amount {
+                    border-bottom: 0;
+                }
+
+                .amount .price {
+                    @include lib-icon-font-symbol(
+                        $_icon-font-content : $icon-up,
+                        $_icon-font-position: after
+                    );
+                }
+            }
+        }
+
+        &-details {
+            display: none;
+            border-bottom: $border-width__base solid $border-color__base;
+
+            &.shown {
+                display: table-row;
+            }
+        }
+    }
+
+    .table-caption {
+        display: none;
+    }
+}
