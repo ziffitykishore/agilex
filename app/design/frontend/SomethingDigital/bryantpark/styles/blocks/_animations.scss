@@ -1,0 +1,29 @@
+$transition-speed: .6s;
+$transition-func: cubic-bezier(0.77, 0, 0.175, 1);
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slidein {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hasFade {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity $transition-speed $transition-func;
+}
+
+.fadeIn {
+    opacity: 1;
+    pointer-events: all;
+}

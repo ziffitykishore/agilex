@@ -1,0 +1,7 @@
+<?php
+$googleVerificationTag = $this->helper('SomethingDigital\BryantPark\Helper\GoogleVerificationTag')->getGoogleVerificationTag();
+?>
+
+<?php if ($googleVerificationTag): ?>
+    <meta name="google-site-verification" content="<?php echo $googleVerificationTag; ?>">
+<?php endif; ?>

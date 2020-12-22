@@ -50,7 +50,7 @@ class Index extends Action
         $jsonResult = $this->resultFactory->create('json');
 
         if (!$skus) {
-            return $this->prepareFailedJsonResult('Empty skus.', $jsonResult);
+            return $jsonResult;
         }
 
         $data = [];
@@ -66,16 +66,19 @@ class Index extends Action
                     $sku = $this->arrayManager->get('Sku', $productPrices);
                     $product = $this->productRepository->get($sku);
                     $price = $this->currency->convert($product->getFinalPrice(), $store);
-
+                    $pricePer100 = false;
                     if (!empty($spotPrice) && $spotPrice < $price) {
                         $price = $spotPrice;
                     }
                     $unitPrice = $price;
                     if ($product->getExactUnitPrice()) {
-                        $price = $this->currency->convert($product->getExactUnitPrice(), $store) * 100;
+                        $unitPrice = min($product->getExactUnitPrice(), $price);
+                        $price = $this->currency->convert($unitPrice, $store) * 100;
+                        $pricePer100 = true;
                     }
                     if ($product->getSpecialExactUnitPrice()) {
-                        $price = $this->currency->convert($product->getSpecialExactUnitPrice(), $store) * 100;
+                        $exactUnitPrice = min($product->getSpecialExactUnitPrice(), $price);
+                        $price = $this->currency->convert($exactUnitPrice, $store) * 100;
                     }
 
                     $qtyPrice1 = $this->arrayManager->get('QtyPrice1', $productPrices);
@@ -107,6 +110,7 @@ class Index extends Action
                     $data[$sku] = [
                         'price' => number_format($price, 2),
                         'unitPrice' => $unitPrice,
+                        'pricePer100' => $pricePer100,
                         'msrp' => $msrpVal,
                         'QtyPrice1' => $qtyPrice1 ? number_format($qtyPrice1, 2) : '',
                         'QtyPrice2' => $qtyPrice2 ? number_format($qtyPrice2, 2) : '',

@@ -1,0 +1,64 @@
+[data-content-type="collapsible"] {
+    position: relative;
+    width: 100%;
+}
+
+.pagebuilder-collapsible {
+    font-size: $font-size__base;
+    line-height: $line-height__base;
+
+    .coll-header {
+        position: relative;
+        overflow: hidden;
+        padding: $indent__s;
+        font-size: $font-size__base;
+        border: 1px solid $c-border;
+        font-weight: bold;
+
+        // TODO: Clean this up to avoid span.class and use .class directly.
+        // scss-lint:disable NestingDepth, SelectorDepth
+        span {
+            float: left;
+
+            &.coll-title {
+                display: block;
+                cursor: text;
+            }
+
+            &::after {
+                font-family: $icon-font;
+            }
+
+            &.content-opened,
+            &.content-closed {
+                margin-right: $indent__s;
+            }
+
+            &.content-opened::after {
+                content: $icon-expand;
+            }
+
+            &.content-closed::after {
+                content: $icon-collapse;
+            }
+        }
+        // scss-lint:enable NestingDepth, SelectorDepth
+    }
+
+    &[data-only-mobile="true"] {
+        .content-opened,
+        .content-closed {
+            @include min-screen($screen__m) {
+                display: none;
+            }
+        }
+    }
+
+    [data-role="content"] {
+        position: relative;
+        overflow: hidden;
+        padding: $indent__s;
+        border: 1px solid $c-border;
+        border-top: 0;
+    }
+}

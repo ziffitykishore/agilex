@@ -1,0 +1,75 @@
+[data-content-type="banner"] {
+    .pagebuilder-wrapper:not(.fullbleed) {
+        box-sizing: border-box;
+        margin: 0 auto;
+        max-width: $layout__max-width;
+        width: 100%;
+    }
+
+    .pagebuilder-wrapper.fullbleed {
+        margin-left: -15px;
+        margin-right: -15px;
+
+        @include min-screen($screen__m) {
+            margin-left: -$indent__base;
+            margin-right: -$indent__base;
+        }
+
+        @include min-screen($layout__max-width) {
+            margin-left: calc(-50vw + ((#{$layout__max-width} - #{$indent__base}) / 2));
+            margin-right: calc(-50vw + ((#{$layout__max-width} - #{$indent__base}) / 2));
+        }
+    }
+
+    .pagebuilder-banner-wrapper {
+        height: 0; //IE fix when min-height set
+        position: relative;
+
+        .pagebuilder-overlay {
+            padding: 15px;
+
+            @include min-screen($screen__m) {
+                padding: $indent__l;
+            }
+        }
+
+        .pagebuilder-overlay:not(.pagebuilder-poster-overlay) {
+            width: 100%;
+            max-width: 540px;
+        }
+    }
+
+    &[data-appearance="poster"] .pagebuilder-banner-wrapper {
+        height: auto;
+
+        .pagebuilder-poster-overlay {
+            height: 0; //IE fix when min-height set
+        }
+    }
+
+    &:not([data-appearance="poster"])[data-fullbleed="1"] .layout_wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding: 15px;
+        max-width: $layout__max-width;
+        width: 100%;
+
+        @include min-screen($screen__m) {
+            padding: $indent__base;
+        }
+    }
+
+    &[data-fullbleed="0"] .pagebuilder-banner-wrapper {
+        display: flex;
+
+        > div {
+            align-self: stretch;
+            flex-grow: 1;
+        }
+    }
+}

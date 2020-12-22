@@ -1,6 +1,7 @@
 <?php 
     $urlsession =  $block->geturlsession();
     $url = $block->geturlprocess(); 
+    $iscvv =  ($block->getIsCvv() == 1) ? 'true' : 'false';
 ?>
 <script type="text/x-magento-init">
  { "#viewprocess": { "Cenpos_SimpleWebpay/js/cardstore": {

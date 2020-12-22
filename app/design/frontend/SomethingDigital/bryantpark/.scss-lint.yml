@@ -1,0 +1,90 @@
+severity: error
+
+linters:
+  EmptyLineBetweenBlocks:
+    enabled: true
+
+  HexLength:
+    enabled: true
+    style: short
+
+  HexNotation:
+    enabled: true
+    style: lowercase
+
+  HexValidation:
+    enabled: true
+
+  Indentation:
+    enabled: true
+    character: space
+    width: 4
+
+  LeadingZero:
+    enabled: true
+    style: exclude_zero
+
+  NameFormat:
+    enabled: false
+    convention: BEM
+
+  PlaceholderInExtend:
+    enabled: false
+    
+  PropertySortOrder:
+    enabled: false
+
+  PropertySpelling:
+    enabled: true
+
+  SelectorDepth:
+    enabled: true
+    depth: 5
+
+  Shorthand:
+    enabled: true
+
+  SingleLinePerProperty:
+    enabled: true
+    allow_single_line_rule_sets: false
+
+  SpaceAfterComma:
+    enabled: true
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceAroundOperator:
+    enabled: false
+
+  SpaceBeforeBrace:
+    enabled: true
+
+  SpaceBetweenParens:
+    enabled: true
+    spaces: 0
+
+  StringQuotes:
+    enabled: false
+
+  TrailingSemicolon:
+    enabled: true
+
+  TrailingZero:
+    enabled: true
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
+    enabled: true
+
+  UrlQuotes:
+    enabled: true
+
+  ZeroUnit:
+    enabled: true

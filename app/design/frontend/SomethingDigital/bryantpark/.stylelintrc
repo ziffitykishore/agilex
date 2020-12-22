@@ -1,0 +1,5 @@
+{
+  "extends": "stylelint-config-somethingdigital",
+  "rules": { "indentation": 4 }
+}
+

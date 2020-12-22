@@ -1,0 +1,48 @@
+.filter--menu {
+    @include min-screen($screen__m) {
+        .block-title.filter-title {
+            display: none;
+        }
+
+        .filter-content {
+            display: block !important; // ignore [hidden]
+        }
+
+        .filter-options {
+            border-top: 0;
+        }
+
+        .filter-options-item button {
+            margin-left: 0;
+            padding-bottom: 0;
+            pointer-events: none;
+
+            &::before {
+                display: none;
+            }
+        }
+
+        .filter-options-item button,
+        .filter-options-content,
+        .filter-content .item a {
+            padding-left: 0;
+        }
+
+        .filter-content .item {
+            margin-bottom: 10px;
+
+            a {
+                margin-left: 0;
+            }
+        }
+
+        .filter-options-item {
+            border-bottom: 0;
+        }
+
+        .filter-options-content {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+}

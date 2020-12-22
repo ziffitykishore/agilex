@@ -1,0 +1,259 @@
+$toolbar-mode-icon-font-size: 24px !default;
+$toolbar-element-background: $panel__background-color !default;
+$toolbar-element-background--active: $toolbar-element-background !default;
+
+.page-products {
+    .columns {
+        position: relative;
+        z-index: 1;
+    }
+
+    &.page-layout-2columns-left {
+        .sidebar-main {
+            width: 25%;
+
+            @include min-screen($screen__l) {
+                width: 19%;
+            }
+        }
+
+        .column.main {
+            width: 75%;
+
+            @include min-screen($screen__l) {
+                width: 81%;
+            }
+        }
+    }
+}
+
+.toolbar {
+    @include lib-clearfix();
+
+    &-wrapper {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+
+        @include min-screen($screen__s) {
+            justify-content: space-between;
+        }
+    }
+}
+
+.toolbar-amount {
+    float: left;
+    display: block;
+    line-height: $toolbar-mode-icon-font-size + 2;
+    margin: 0;
+    padding: 8px 0 0;
+
+    .products.wrapper ~ .toolbar & {
+        display: none;
+    }
+}
+
+.toolbar-products {
+    @include lib-clearfix();
+    margin-bottom: $indent__xl;
+    padding: 0;
+    padding-top: 15px;
+    text-align: center;
+
+    @include min-screen($screen__xs) {
+        padding-right: $indent__s;
+        padding-left: $indent__s;
+    }
+
+    @include max-screen($screen__m) {
+        padding-top: $indent__s;
+    }
+
+    .pages {
+        .products.wrapper ~ & {
+            display: block;
+        }
+    }
+
+    .field.limiter label {
+        font-size: 14px;
+    }
+}
+
+// Hide "naked" limiters - generally only used on account pages...
+.limiter {
+    // ...But show limiters used elsewhere
+    .control {
+        display: inline-block;
+    }
+}
+
+.sorter {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 0;
+    clear: both;
+
+    @include min-screen($screen__xs) {
+        justify-content: flex-end;
+        clear: none;
+        padding-top: 0;
+    }
+
+    .toolbar--bottom & {
+        display: none;
+    }
+
+    .products.wrapper ~ .toolbar & {
+        display: none;
+    }
+}
+
+.sorter-options {
+    margin: 0 0 0 7px;
+    width: auto;
+}
+
+.sorter-action {
+    display: flex;
+    align-items: center;
+    min-height: $form-element-input__height;
+    vertical-align: top;
+    @include icon-svg(
+        $icon       : arrow-up,
+        $fill       : $header-icons-color,
+        $fill-hover : $header-icons-color-hover,
+        $width      : 35px
+    );
+
+    &.sort-desc {
+        @include icon-svg(
+            $icon       : arrow-down,
+            $fill       : $header-icons-color,
+            $fill-hover : $header-icons-color-hover
+        );
+    }
+}
+
+.limiter-options {
+    position: relative;
+    margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    min-width: 60px;
+    z-index: 10;
+}
+
+.limiter-label,
+.limiter-text {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.modes {
+    display: block;
+    float: left;
+    margin-right: $indent__base;
+
+    .products.wrapper ~ .toolbar & {
+        display: none;
+    }
+}
+
+.modes-label {
+    @include lib-visually-hidden;
+}
+
+.modes-mode {
+    @include icon-svg(
+        $icon       : grid,
+        $fill       : $text__color__muted,
+        $width      : 19px
+    );
+    color: $text__color__muted;
+    border: 1px solid $border-color__base;
+    border-right: 0;
+    float: left;
+    font-weight: $font-weight__regular;
+    line-height: 1;
+    padding: 7px 10px;
+    text-align: center;
+    background-color: $toolbar-element-background;
+
+    &:not(.active) {
+        @include hover {
+            color: $text__color__muted;
+            background: $toolbar-element-background--active;
+        }
+    }
+
+    &:last-child {
+        border-right: 1px solid $border-color__base;
+    }
+
+    &.active {
+        color: $primary__color__light;
+        background-color: $color-white;
+    }
+
+    .toolbar--bottom & {
+        display: none;
+    }
+}
+
+.mode-list {
+    @include icon-svg(
+        $icon       : list,
+        $fill       : $text__color__muted
+    );
+}
+
+.toolbar--top {
+    .pages,
+    .limiter {
+        display: none;
+    }
+}
+
+.toolbar--bottom {
+    .pages {
+        float: right;
+        margin-left: 20px;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .page-products {
+        .columns {
+            padding-top: 0;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    .toolbar {
+        .products.wrapper ~ & .pages {
+            float: left;
+        }
+    }
+
+    .toolbar-amount {
+        float: left;
+    }
+
+    .sorter {
+        float: right;
+    }
+
+    .limiter {
+        float: right;
+
+        .products.wrapper ~ .toolbar & {
+            display: block;
+        }
+    }
+}

@@ -52,7 +52,6 @@ class Process extends \Magento\Framework\App\Action\Action
             $quote->reserveOrderId();
             $payment = $quote->getPayment();
             $quote->getPayment()->setMethod('swppayment');
-            
             if($ResponseSave->Result === "0"){
                 $inarray = array("Result","AutorizationNumber","ReferenceNumber","TraceNumber","Amount","CardType",
                     "Message","RecurringTokenId","InvoiceNumber","OriginalAmount");
@@ -63,8 +62,8 @@ class Process extends \Magento\Framework\App\Action\Action
                 $payment->setTransactionId($_POST["ReferenceNumber"]);
                 $payment->save();
                 $quote->save();
-                $order = $this->_quoteManagement->submit($quote);
-           
+              //  $order = $this->_quoteManagement->submit($quote);
+                //die("asdasd2");
             }
             
             if($ResponseSave->Result != "0") {

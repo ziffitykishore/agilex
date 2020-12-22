@@ -1,0 +1,62 @@
+/*doc
+---
+title: Links
+name: links
+category: Blocks - Links
+---
+
+```html_example
+<p>This is a plain old paragraph with a random <a href="#">link</a> thrown in for good measure.</p>
+```
+*/
+
+a {
+    transition: color .15s ease;
+}
+
+//
+//  Link as a button
+//  ---------------------------------------------
+.abs-action-link-button,
+.block-title a.action:not(.primary),
+a.viewcart,
+a.multicheckout {
+    @include button--tertiary;
+}
+
+// Regular links (CMS content) should be underlined
+.cms-page-view .page-main a,
+.box-actions a {
+    text-decoration: $paragraph-link__text-decoration;
+}
+
+// Redefining the standard lib-link mixin to include transition
+@mixin lib-link(
+    $_link-color                  : $link__color,
+    $_link-text-decoration        : $link__text-decoration,
+    $_link-color-visited          : $link__visited__color,
+    $_link-text-decoration-visited: $link__visited__text-decoration,
+    $_link-color-hover            : $link__hover__color,
+    $_link-text-decoration-hover  : $link__hover__text-decoration,
+    $_link-color-active           : $link__active__color,
+    $_link-text-decoration-active : $link__active__text-decoration
+) {
+    @include hover {
+        color: $_link-color-hover;
+        text-decoration: $_link-text-decoration-hover;
+    }
+
+    color: $_link-color;
+    text-decoration: $_link-text-decoration;
+    transition: color .15s ease;
+
+    &:visited {
+        color: $_link-color-visited;
+        text-decoration: $_link-text-decoration-visited;
+    }
+
+    &:active {
+        color: $_link-color-active;
+        text-decoration: $_link-text-decoration-active;
+    }
+}

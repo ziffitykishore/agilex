@@ -1,0 +1,417 @@
+// Category Landing Page
+// https://github.com/sdinteractive/SomethingDigital-FrontEndComponents
+// v1.0.2
+
+$max-content-width: 1200px !default;
+$container-max-width: $max-content-width !default;
+$container-gutter: 20px !default;
+
+$catland-gutter: 20px !default;
+
+$c-background-light: rgba(#fff, .8) !default;
+$c-background-dark: rgba(#333, .8) !default;
+$c-text-light: #fff !default;
+$c-border: #ccc !default;
+
+$bp-small: 480px !default;
+$bp-medium: 850px !default;
+$bp-large: 969px !default;
+
+// Breakpoint above which the fullbleed sections span multiple columns
+$bp-fullbleed: $bp-medium !default;
+
+@media only screen and (min-width: ($bp-large +  1)) {
+    body.catland {
+        overflow-x: hidden;
+    }
+}
+
+.catland__section {
+    margin-bottom: 35px;
+}
+
+@media screen and (min-width: ($bp-small + 1)) {
+    .catland .col-main {
+        padding-top: 0;
+    }
+
+    .catland h1 {
+        margin-bottom: 20px;
+    }
+
+    .catland__section {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (min-width: ($bp-medium + 1)) {
+    body.catland .breadcrumbs {
+        padding-top: 15px;
+        padding-left: 30px;
+        padding-bottom: 15px;
+    }
+}
+
+.catland__subtitle {
+    margin-bottom: 10px;
+}
+
+.catland__desc p:not(:last-child) {
+    padding-bottom: 10px;
+}
+
+.catland__button {
+    display: inline-block;
+    min-width: 130px;  // 150px - 20px padding
+    padding: ($catland-gutter / 2) 10px;
+    transition: background-color .25s;
+}
+
+// catland touts
+.catland__touts {
+    figure {
+        margin: 0;
+        margin-bottom: 25px;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    figcaption {
+        padding-top: $catland-gutter;
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        div {
+            padding-bottom: 5px;
+        }
+    }
+
+    .catland__button {
+        margin-top: 5px;
+    }
+
+    &--full-width {
+        .catland__row {
+            flex-wrap: wrap;
+        }
+
+        figure {
+            flex: 100%;
+            width: auto;
+            max-width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: $bp-small) {
+    .catland__touts br {
+        display: none; // We don't want line breaks on mobile
+    }
+}
+
+@media screen and (min-width: ($bp-small + 1)) {
+    .catland__row {
+        display: flex;
+        justify-content: center;
+
+        > * {
+            flex: 1;
+        }
+    }
+
+    .catland__touts figure {
+        width: calc(50% - #{$catland-gutter / 2});
+        margin-bottom: $catland-gutter;
+    }
+
+    .catland__touts--full-width figure {
+        width: auto;
+        max-width: 100%;
+    }
+
+    .catland__touts figure:not(:last-child) {
+        margin-right: $catland-gutter;
+    }
+
+    .catland__touts figure:only-child {
+        margin-right: 0;
+    }
+
+    .catland__touts figure {
+        position: relative;
+    }
+
+    .catland__touts img {
+        max-width: 100%;
+    }
+
+    .catland__touts figcaption.atop {
+        top: 30px;
+        bottom: auto;
+    }
+
+    .catland__touts figcaption.acenter {
+        @include vertically-center();
+        bottom: auto;
+    }
+}
+
+@media screen and (min-width: ($bp-medium + 1)) {
+    .catland__touts figcaption {
+        min-width: 170px;
+    }
+}
+
+// Catland Fullbleed
+.catland__fullbleed {
+    margin-left: -20px;
+    margin-right: -20px;
+}
+
+.catland__fullbleed .fullbleed > a {
+    display: block;
+}
+
+.fullbleed__bg {
+    min-height: 190px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.fullbleed__caption {
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.fullbleed__caption p {
+    margin-bottom: 0;
+    padding-bottom: 5px;
+}
+
+.fullbleed__caption {
+    .catland__button {
+        margin-top: 10px;
+    }
+
+    h2 + .catland__button {
+        margin-top: 0;
+    }
+}
+
+@media screen and (min-width: ($bp-small + 1)) and (max-width: $bp-fullbleed) {
+    .fullbleed:nth-child(odd) .fullbleed__bg {
+        height: 300px;
+    }
+
+    .fullbleed:nth-child(even) .fullbleed__bg {
+        height: 460px;
+    }
+}
+
+@media screen and (max-width: $bp-fullbleed) {
+    .fullbleed:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .fullbleed:nth-child(even) .fullbleed__bg {
+        min-height: 280px;
+    }
+
+    .fullbleed__caption br {
+        display: none; // We don't want line breaks on mobile
+    }
+}
+
+@media screen and (min-width: ($bp-fullbleed + 1)) {
+    .catland__fullbleed {
+        display: flex;
+
+        &--60-40 {
+            .fullbleed:nth-child(odd) {
+                flex: 0 0 auto;
+                width: calc(60% - #{$catland-gutter} / 2);
+            }
+        }
+
+        &--40-60 {
+            .fullbleed:nth-child(odd) {
+                flex: 0 0 auto;
+                width: calc(40% - #{$catland-gutter} / 2);
+            }
+        }
+    }
+
+    .fullbleed {
+        position: relative;
+        flex: 1;
+
+        &:nth-child(odd) {
+            margin-right: $catland-gutter;
+        }
+
+        &:only-child {
+            margin-right: 0;
+        }
+    }
+
+    .fullbleed__bg {
+        min-height: 567px;
+    }
+
+    .fullbleed__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-width: calc(100% - 180px);
+        padding: 30px 40px;
+        transform: translate(-50%, -50%);
+    }
+
+    .fullbleed__caption.atop {
+        top: 50px;
+        transform: none;
+    }
+
+    .fullbleed__caption.acenter {
+        top: 50% !important; // overwrite any other helper class values
+        bottom: auto !important; // overwrite any other helper class values
+        left: 50% !important; // overwrite any other helper class values
+        transform: translate(-50%, -50%);
+    }
+
+    .fullbleed__caption.no-background {
+        background: transparent;
+    }
+
+    .fullbleed__caption.abottom {
+        top: auto;
+        bottom: 50px;
+        transform: none;
+    }
+}
+
+@media screen and (min-width: $container-max-width) {
+    .catland__fullbleed {
+        margin-right: calc(-50vw + (#{$container-max-width} / 2)); // container width
+        margin-left: calc(-50vw + (#{$container-max-width} / 2)); // container width
+    }
+}
+
+.catland__section .text-left {
+    text-align: left;
+}
+
+.catland__section .text-center {
+    text-align: center;
+}
+
+.catland__section .text-right {
+    text-align: right;
+}
+
+@media screen and (min-width: ($bp-fullbleed + 1)) {
+    // Positioning -- Desktop only
+    .catland__section .left-top {
+        position: absolute;
+        top: 30px;
+        right: auto;  // force reset
+        bottom: auto;  // force reset
+        left: 30px;
+        transform: none; // force reset
+    }
+
+    .catland__section .left-center {
+        @include vertically-center($position: absolute);
+        right: auto;  // force reset
+        bottom: auto; // force reset
+        left: 30px;
+    }
+
+    .catland__section .left-bottom {
+        position: absolute;
+        top: auto; // force reset
+        right: auto;  // force reset
+        bottom: 30px;
+        left: 30px;
+        transform: none; // force reset
+    }
+
+    .catland__section .center-top {
+        position: absolute;
+        top: 30px;
+        right: auto;  // force reset
+        bottom: auto;  // force reset
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .catland__section .center-center {
+        position: absolute;
+        top: 50%;
+        right: auto;  // force reset
+        bottom: auto; // force reset
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .catland__section .center-bottom {
+        position: absolute;
+        top: auto; // force reset
+        right: auto;  // force reset
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .catland__section .right-top {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        bottom: auto;  // force reset
+        left: auto;  // force reset
+        transform: none; // force reset
+    }
+
+    .catland__section .right-center {
+        @include vertically-center($position: absolute);
+        right: 30px;
+        bottom: auto; // force reset
+        left: auto;  // force reset
+    }
+
+    .catland__section .right-bottom {
+        position: absolute;
+        top: auto; // force reset
+        right: 30px;
+        bottom: 30px;
+        left: auto;  // force reset
+        transform: none; // force reset
+    }
+
+    .catland__section {
+        .background,
+        .background-light,
+        .background-dark {
+            padding: 25px; // any backgrounds (including inline custom) should have 25px padding
+        }
+
+        .background-light {
+            background-color: $c-background-light;
+        }
+
+        .background-dark {
+            color: $c-text-light;
+            background-color: $c-background-dark;
+        }
+
+        .text-light {
+            color: $c-text-light;
+        }
+    }
+}

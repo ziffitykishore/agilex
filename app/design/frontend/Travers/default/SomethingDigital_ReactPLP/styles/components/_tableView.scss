@@ -86,51 +86,16 @@
             th,
             td {
                 width: 100%;
+
+                @media all and (-ms-high-contrast: none),
+                (-ms-high-contrast: active) {
+                    width: 120px;
+                }
             }
-        }
-    }
-
-    tbody {
-        overflow-y: auto;
-
-        tr:nth-of-type(n+10) {
-            display: none;
-        }
-    }
-
-
-    .sticky tbody {
-        max-height: 630px;
-
-        tr:nth-of-type(n+20) {
-            display: inline-flex;
         }
     }
 }
 
 .catalog-category-view .grecaptcha-badge {
     visibility: hidden !important; // override inline styling
-}
-
-
-// Resize table headers in IE
-
-@media all and (-ms-high-contrast: none),
-(-ms-high-contrast: active) {
-    $table-width: 75vw;
-
-    @for $i from 1 through 6 {
-        .react-bootstrap-table {
-            [class*="header-count"] {
-                min-width: 120px;
-            }
-
-            .header-count-#{$i} {
-                td,
-                th {
-                    width: calc(#{$table-width} / #{$i});
-                }
-            }
-        }
-    }
 }

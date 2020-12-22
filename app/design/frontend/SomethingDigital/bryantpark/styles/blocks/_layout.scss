@@ -1,0 +1,103 @@
+$layout-column-main__sidebar-offset: 2%;
+$layout-column__additional-sidebar-offset: $layout-column-main__sidebar-offset;
+
+.page-wrapper > .widget,
+.page-wrapper > .page-bottom,
+.block.category.event,
+.top-container {
+    @include layout-container;
+}
+
+.page-wrapper {
+    @include min-screen($mobile-nav__breakpoint) {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+
+        .ie10 &,
+        .ie11 & {
+            height: 100%;
+        }
+
+        > .breadcrumbs,
+        > .top-container,
+        > .widget {
+            width: 100%;
+        }
+    }
+}
+
+.page-main {
+    @include layout-container;
+    width: 100%;
+
+    @include max-screen($screen__m) {
+        .account &,
+        .cms-privacy-policy & {
+            padding-top: 41px; // height of collapsible nav + .page-header's bottom margin
+            position: relative;
+        }
+    }
+}
+
+.columns {
+    @include lib-layout-columns();
+
+    @include min-screen($screen__m) {
+        display: block;
+    }
+}
+
+.column.main {
+    box-sizing: border-box;
+    padding-bottom: $indent__xl;
+    flex-basis: 100%;
+    flex-grow: 1;
+    order: 1;
+
+    @include min-screen($screen__m) {
+        @include lib-layout-columns__main();
+        min-height: 300px;
+    }
+}
+
+.sidebar-main {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 100%;
+    order: 1;
+
+    @include min-screen($screen__m) {
+        @include lib-layout-columns__left();
+        padding-right: $layout-column-main__sidebar-offset;
+
+        .page-layout-2columns-right & {
+            padding-left: $layout-column-main__sidebar-offset;
+            padding-right: 0;
+        }
+
+        .block-collapsible-nav {
+            border: solid 1px $c-border;
+        }
+    }
+}
+
+.sidebar-additional {
+    box-sizing: border-box;
+    flex-grow: 1;
+    flex-basis: 100%;
+    order: 2;
+
+    @include min-screen($screen__m) {
+        @include lib-layout-columns__right();
+        clear: right;
+        padding-left: $layout-column__additional-sidebar-offset;
+
+        .page-layout-2columns-left & {
+            clear: left;
+            float: left;
+            padding-left: 0;
+            padding-right: $layout-column__additional-sidebar-offset;
+        }
+    }
+}

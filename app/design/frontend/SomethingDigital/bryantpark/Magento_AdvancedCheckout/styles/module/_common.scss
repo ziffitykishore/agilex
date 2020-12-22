@@ -1,0 +1,112 @@
+.column {
+    .block-addbysku {
+        .fieldset {
+            max-width: $form-field__width__desktop;
+            margin: 0;
+
+            .fields {
+                display: flex;
+                flex-wrap: wrap;
+                position: relative;
+                margin-bottom: 10px;
+
+                .field {
+                    display: inline-block;
+                    margin-bottom: 0;
+                    vertical-align: top;
+                }
+            }
+        }
+        .sku {
+            box-sizing: border-box;
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: calc(85% - 10px);
+            margin-right: 5px;
+        }
+
+        .skus {
+            > .label {
+                margin-top: $indent__s;
+            }
+        }
+
+        .qty {
+            .qty {
+                @extend .abs-input-qty;
+
+                + .mage-error {
+                    width: 80px;
+                }
+            }
+        }
+        .block-content {
+            @include min-screen($screen__m) {
+                @include lib-clearfix();
+            }
+
+            .box .qty {
+                margin-top: $indent__xs;
+            }
+
+            .actions-toolbar {
+                clear: both;
+                @include lib-actions-toolbar(
+                    $_actions-toolbar-actions-position: left,
+                    $_actions-toolbar-margin          : 0
+                );
+                @include lib-actions-toolbar-clear-floats();
+
+                > .secondary {
+                    text-align: left;
+
+                    .action.remove {
+                        @include button--inline-link();
+                    }
+                }
+            }
+        }
+
+        .reset {
+            margin: $indent__s 0;
+        }
+
+        .note {
+            display: block;
+            margin: 0 0 $indent__base;
+        }
+    }
+}
+.block-cart-failed {
+    @extend .abs-shopping-cart-items;
+    margin-top: $indent__xl;
+    .block-title {
+        font-size: headings($heading-h2, font-size);
+        strong {
+            font-weight: headings($heading-h2, font-weight);
+        }
+    }
+    .actions {
+        text-align: center;
+        .action {
+            margin-bottom: $indent__s;
+        }
+    }
+}
+
+//  Desktop
+//  _____________________________________________
+@include min-screen($screen__m) {
+    .block-cart-failed {
+        @extend .abs-shopping-cart-items-desktop;
+        .actions {
+            text-align: left;
+        }
+        .actions.primary {
+            float: right;
+        }
+        .block-content {
+            @include lib-clearfix();
+        }
+    }
+}

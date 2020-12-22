@@ -1,0 +1,16 @@
+.catland {
+    &__touts img {
+        width: 100%;
+    }
+}
+
+.catland__touts figcaption {
+    @include max-screen($screen__m) {
+        background: transparent !important;
+        color: inherit !important;
+
+        h2 {
+            margin-top: 0;
+        }
+    }
+}

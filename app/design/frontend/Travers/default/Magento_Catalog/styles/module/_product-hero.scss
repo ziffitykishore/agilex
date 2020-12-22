@@ -10,6 +10,12 @@ $product-inventory-table--header__font-size: 24px;
 $product-inventory-table--header__font-size--desktop: 16px;
 $product-hero__button-and-catalog__width: 240px;
 
+.product-information-wrapper {
+    @include min-screen($screen__l) {
+        position: relative;
+    }
+}
+
 .product-hero {
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +28,7 @@ $product-hero__button-and-catalog__width: 240px;
         display: flex;
         flex-wrap: wrap;
         align-content: start;
-        width: calc(100% - #{$width__product-related} - #{$indent__xl});
+        width: calc(100% - 250px);
 
         @include max-screen($screen__l) {
             width: 100%;
@@ -35,9 +41,26 @@ $product-hero__button-and-catalog__width: 240px;
         width: 100%;
 
         @include min-screen($screen__l) {
-            width: $width__product-related;
+            width: 170px;
             order: 2;
+            position: absolute;
+            top: 0;
+            right: 0;
         }
+    }
+
+    .priceDesc {
+        text-transform: uppercase;
+        font-weight: $font-weight__extrabold;
+        margin-bottom: 0;
+        font-size: 16px;
+    }
+
+    .pricePerEach {
+        color: $c-dusty-grey;
+        font-weight: $font-weight__extrabold;
+        font-size: 15px;
+        margin: $indent__xs;
     }
 
     .product.media,

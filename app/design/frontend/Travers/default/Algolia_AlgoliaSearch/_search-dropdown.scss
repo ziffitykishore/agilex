@@ -137,6 +137,16 @@ $search-dropdown-footer__height: 50px;
         }
     }
 
+    .algoliasearch-autocomplete-hit .info {
+        max-width: 350px;
+        white-space: normal !important;
+        max-height: 90px;
+
+        @include min-screen($screen__m) {
+            max-width: 450px;
+        }
+    }
+
     .col9,
     .col3 {
         width: 100% !important;

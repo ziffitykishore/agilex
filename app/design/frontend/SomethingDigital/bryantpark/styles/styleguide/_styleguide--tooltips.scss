@@ -1,0 +1,234 @@
+/*doc
+---
+title: Tooltips
+name: tooltips
+category: DOCS_MagentoUI - Tooltips
+---
+
+Magento UI library provides 4 tooltip types as defined on the **$_tooltip-position** property:
+
+- top
+- bottom
+- left
+- right
+
+```html_example_table
+Lorem Ipsum is simply <span class="example-tooltip-bottom tooltip-wrapper"><a href="#" aria-describedby="tooltip-1">dummy</a><span class="tooltip-content" id="tooltip-1" role="tooltip">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span></span> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a <span class="example-tooltip-left"><a href="#" aria-describedby="tooltip-2">galley</a><span class="tooltip-content" id="tooltip-2" role="tooltip">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span></span> of type and scrambled it to make a type specimen book. It has survived <span class="example-tooltip-right"><a href="#" aria-describedby="tooltip-3">not</a><span class="tooltip-content" id="tooltip-3" role="tooltip">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span></span> only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing <span class="example-tooltip-top"><a href="#" aria-describedby="tooltip-4">software</a><span class="tooltip-content" id="tooltip-4" role="tooltip">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</span></span> like Aldus PageMaker including versions of Lorem Ipsum.
+```
+*/
+
+/*doc
+---
+title: Tooltip variables
+name: tooltips1
+category: DOCS_MagentoUI - Tooltips
+---
+
+<table>
+       <tr>
+           <th class="vars_head">Mixin variable</th>
+           <th class="vars_head">Global variable</th>
+           <th class="vars_head">Default value</th>
+           <th class="vars_head">Allowed values</th>
+           <th class="vars_head">Comment</th>
+       </tr>
+       <tr>
+           <th>$_tooltip-position</th>
+           <td>-</td>
+           <td class="vars_value">top</td>
+           <td class="vars_value">top | right | bottom | left</td>
+           <td>Side of the element tooltip is displayed on</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-selector-toggle</th>
+           <td>-</td>
+           <td class="vars_value">~".tooltip-toggle"</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>The class name of the element that toggles tooltip</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-selector-content</th>
+           <td>-</td>
+           <td class="vars_value">~".tooltip-content"</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>The tooltip content class name</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-background</th>
+           <td>$tooltip__background</td>
+           <td class="vars_value">$color-white</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip background color</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-border-color</th>
+           <td>$tooltip__border-color</td>
+           <td class="vars_value">#bbb</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip border color</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-border-width</th>
+           <td>$tooltip__border-width</td>
+           <td class="vars_value">1px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip border width</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-border-radius</th>
+           <td>$tooltip__border-radius</td>
+           <td class="vars_value">false</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip border radius</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-color</th>
+           <td>$tooltip__color</td>
+           <td class="vars_value">$primary__color</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip text color</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-cursor</th>
+           <td>$tooltip__cursor</td>
+           <td class="vars_value">help</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip cursor</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-font-size</th>
+           <td>$tooltip__font-size</td>
+           <td class="vars_value">false</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip font size</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-font-family</th>
+           <td>$tooltip__font-family</td>
+           <td class="vars_value">false</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip font family</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-font-weight</th>
+           <td>$tooltip__font-weight</td>
+           <td class="vars_value">false</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip font weight</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-font-style</th>
+           <td>$tooltip__font-style</td>
+           <td class="vars_value">false</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip font style</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-line-height</th>
+           <td>$tooltip__line-height</td>
+           <td class="vars_value">1.4</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip line height</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-margin</th>
+           <td>$tooltip__margin</td>
+           <td class="vars_value">false</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip margin</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-padding</th>
+           <td>$tooltip__padding</td>
+           <td class="vars_value">12px 16px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip padding</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-min-width</th>
+           <td>$tooltip__min-width</td>
+           <td class="vars_value">210px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip minimal width</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-max-width</th>
+           <td>$tooltip__max-width</td>
+           <td class="vars_value">360px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip maximal width</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-arrow-size</th>
+           <td>$tooltip-arrow__size</td>
+           <td class="vars_value">5px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip arrow size</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-arrow-offset</th>
+           <td>$tooltip-arrow__offset</td>
+           <td class="vars_value">10px</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip arrow offset</td>
+       </tr>
+       <tr>
+           <th>$_tooltip-z-index</th>
+           <td>$tooltip__z-index</td>
+           <td class="vars_value">100</td>
+           <td class="vars_value">'' | false | value</td>
+           <td>Tooltip z-index</td>
+       </tr>
+</table>
+*/
+
+// .example-tooltip-bottom {
+//    @include lib-tooltip(bottom);
+// }
+//
+// .example-tooltip-left {
+//    @include lib-tooltip(left);
+// }
+//
+// .example-tooltip-right {
+//    @include lib-tooltip(right);
+// }
+//
+// .example-tooltip-top {
+//    @include lib-tooltip(top);
+// }
+
+/*doc
+---
+title: Tooltip Mixin Definition
+name: tooltips2
+category: DOCS_MagentoUI - Tooltips
+---
+
+```
+ @mixin lib-tooltip(
+     $_tooltip-position        : top,
+     $_tooltip-selector-toggle : ".tooltip-toggle",
+     $_tooltip-selector-content: ".tooltip-content",
+     $_tooltip-background      : $color-white,
+     $_tooltip-border-color    : $color-gray-light2,
+     $_tooltip-border-width    : 1px,
+     $_tooltip-border-radius   : inherit,
+     $_tooltip-color           : $primary__color,
+     $_tooltip-cursor          : help,
+     $_tooltip-font-size       : inherit,
+     $_tooltip-font-family     : inherit,
+     $_tooltip-font-weight     : inherit,
+     $_tooltip-line-height     : 1.4,
+     $_tooltip-font-style      : inherit,
+     $_tooltip-margin          : inherit,
+     $_tooltip-padding         : 12px 16px,
+     $_tooltip-min-width       : 210px,
+     $_tooltip-max-width       : 360px,
+     $_tooltip-arrow-size      : 5px,
+     $_tooltip-arrow-offset    : 10px,
+     $_tooltip-z-index         : 100
+ )
+```
+
+*/

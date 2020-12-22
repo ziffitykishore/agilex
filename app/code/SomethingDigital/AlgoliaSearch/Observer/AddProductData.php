@@ -47,6 +47,25 @@ class AddProductData implements ObserverInterface
         $this->addManufacturerPrice($product, $transport);
         $this->addStockData($product, $transport);
         $this->addTierPrices($product, $transport);
+        $this->addRadius($product, $transport);
+    }
+
+    /**
+     * Index 0 value of corner_radius_233 attr.
+     * Algolia module doesn't reindex attr with 0 value.
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function addRadius($product, $transport)
+    {
+        $algoliaProductData = $transport->getData();
+        if ($product->getAttributeText('corner_radius_233') !== false &&
+            $product->getAttributeText('corner_radius_233') !== null
+        ) {
+            $algoliaProductData['corner_radius_233'] = $product->getAttributeText('corner_radius_233');
+        }
+        $transport->setData($algoliaProductData);
     }
 
     /**
@@ -78,13 +97,19 @@ class AddProductData implements ObserverInterface
      */
     private function addStockData($product, $transport)
     {
+        $algoliaProductData = $transport->getData();
+        $algoliaProductData['wh_ca_qty'] = $product->getData('wh_ca_qty');
+        $algoliaProductData['wh_ca_status'] = $product->getWhCaStatus();
+        $algoliaProductData['wh_ny_qty'] = $product->getWhNyQty();
+        $algoliaProductData['wh_ny_status'] = $product->getWhNyStatus();
+        $algoliaProductData['wh_sc_qty'] = $product->getWhScQty();
+        $algoliaProductData['wh_sc_status'] = $product->getWhScStatus();
         $stockItem = $this->stockRegistry->getStockItem($product->getId());
         if ($stockItem) {
-            $algoliaProductData = $transport->getData();
             $algoliaProductData['min_sale_qty'] = $stockItem->getMinSaleQty();
             $algoliaProductData['qty_increment'] = $stockItem->getQtyIncrements();
-            $transport->setData($algoliaProductData);
         }
+        $transport->setData($algoliaProductData);
     }
 
     /**

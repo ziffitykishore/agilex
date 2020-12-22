@@ -42,6 +42,10 @@ domready(() => {
     if ($(this).find('.mobile-submenu').length > 0) {
       $(this).addClass('has-mobile-submenu');
     }
+
+    $(this).hover(() => {
+      $('.submenu').css('display', 'none').attr('aria-expanded', 'false');
+      $(this).find('.desktop-submenu').css('display', 'block').attr('aria-expanded', 'true');
+    });
   });
 });
-

@@ -91,6 +91,38 @@ $_password-very-strong: #81b562 !default;
     }
 }
 
+.customer-account-forgotpassword {
+    .column.main {
+        display: flex;
+        flex-direction: column;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .static-block {
+            @include min-screen($mobile-nav__breakpoint) {
+                padding-left: $indent__l !important; // override PageBuilder
+            }
+
+            @include min-screen($screen__l) {
+                width: 600px;
+            }
+        }
+
+        &::after{
+            content: "";
+            clear: both;
+            display: block;
+        }
+    }
+}
+
+.form.password.forget {
+    float: left;
+}
+
 .block-addresses-list {
     .block-title {
         margin-bottom: 8px;
