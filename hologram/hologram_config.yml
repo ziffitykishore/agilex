@@ -5,7 +5,7 @@
 # The project theme must be loaded BEFORE bryant park.
 source:
   - ../app/design/frontend/Travers/default/styles
-  - ../app/code/SomethingDigital/bryantpark/styles
+  - ../app/design/SomethingDigital/bryantpark/styles
 #  - ../vendor/somethingdigital/magento2-theme-bryantpark/styles
 
 

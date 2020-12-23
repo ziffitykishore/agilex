@@ -64,7 +64,7 @@ echo -e "\nInstalling yarn dependencies..."
 yarn
 pushd vendor/snowdog/frontools; yarn; popd
 if [ "$SD_THEME" != "" ]; then
-    pushd vendor/somethingdigital/magento2-theme-bryantpark; yarn; popd
+    pushd app/design/frontend/SomethingDigital/bryantpark; yarn; popd
     # Allow wildcards by using a for.
     for d in app/design/frontend/$SD_THEME; do
         pushd $d; yarn; popd
