@@ -31,6 +31,8 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 8.15.1
 nvm use 8.15.1
 
+mkdir -p /var/www/m2zdev/init/pub/static
+
 reportStats() {
     local error_code="$?"
     echo -e "\n\n.sd-build.sh exited: $error_code"
