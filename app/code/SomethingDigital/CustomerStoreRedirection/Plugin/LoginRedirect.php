@@ -50,13 +50,15 @@ class LoginRedirect
         Validator $formKeyValidator,
         CustomerRepositoryInterface $customerRepository,
         StoreManagerInterface $storeManager,
-        ResultFactory $result
+        ResultFactory $result,
+        \Magento\Framework\Message\ManagerInterface $messageManager
     ) {
         $this->session = $customerSession;
         $this->formKeyValidator = $formKeyValidator;
         $this->customerRepository = $customerRepository;
         $this->storeManager = $storeManager;
         $this->result = $result;
+        $this->messageManager = $messageManager;
     }
 
     public function aroundExecute(LoginPost $subject, callable $proceed)
@@ -74,7 +76,7 @@ class LoginRedirect
                 try {
                     $customer = $this->customerRepository->get($login['username']);
                 } catch (NoSuchEntityException $e) {
-                    throw new InvalidEmailOrPasswordException(__('Invalid login or password.'));
+                    return $proceed();
                 }
 
                 $customerStoreId = $customer->getStoreId();
