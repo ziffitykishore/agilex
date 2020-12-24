@@ -1,0 +1,19 @@
+// Helper mixin to automatically include the
+// correct properties when using the heading font
+@mixin headingFont($includefamily: false) {
+    @if $includefamily {
+        font-family: $heading__font-family__base;
+    }
+
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+@mixin resetHeadingFont {
+    letter-spacing: normal;
+    text-transform: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-font-smoothing: inherit;
+}

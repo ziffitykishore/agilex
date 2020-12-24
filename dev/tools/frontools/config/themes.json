@@ -1,6 +1,6 @@
 {
   "sd": {
-    "src": "vendor/somethingdigital/magento2-theme-bryantpark",
+    "src": "app/design/frontend/SomethingDigital/bryantpark",
     "dest": "pub/static/frontend/SomethingDigital/bryantpark",
     "locale": [
       "en_US"

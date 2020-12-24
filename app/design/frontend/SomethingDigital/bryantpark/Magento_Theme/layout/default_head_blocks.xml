@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/styles.css" />
+        <css src="css/print.css" media="print" />
+
+        <!-- Favicons -->
+        <link src="Magento_Theme::logo-32x32.png" rel="icon" sizes="32x32" />
+        <link src="Magento_Theme::logo-192x192.png" rel="icon" sizes="192x192" />
+        <link src="Magento_Theme::logo-180x180.png" rel="apple-touch-icon-precomposed" />
+    </head>
+</page>

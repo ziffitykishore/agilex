@@ -1,0 +1,15 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+
+<?php $navID = md5(uniqid('nav_', true)) ?>
+<nav class="block <?= /* @escapeNotVerified */ $block->getBlockCss(); ?>">
+    <h2 class="heading">
+        <button type="button" class="title <?= /* @escapeNotVerified */ $block->getBlockCss();?>-title" aria-controls="<?= $navID ?>">
+            <?= /* @escapeNotVerified */ __($block->getBlockTitle()) ?>
+        </button>
+    </h2>
+    <div id="<?= $navID ?>" class="content <?= /* @escapeNotVerified */ $block->getBlockCss() ?>-content" id="<?= /* @escapeNotVerified */ $block->getBlockCss() ?>" hidden>
+        <?= $block->getChildHtml(); ?>
+    </div>
+</nav>

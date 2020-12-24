@@ -1,0 +1,69 @@
+.downloadable.samples {
+    margin-bottom: $indent__base;
+
+    dd {
+        margin: 0 0 $indent__s;
+    }
+}
+
+.table-downloadable-products {
+    .product-name {
+        margin-right: 15px;
+    }
+}
+
+.field.downloads {
+    .price-container {
+        display: inline;
+        white-space: nowrap;
+
+        &:before {
+            content: ' + ';
+            display: inline;
+        }
+    }
+
+    .price-excluding-tax {
+        display: inline;
+
+        &:before {
+            content: ' ('attr(data-label) ': ';
+        }
+
+        &:after {
+            content: ')';
+        }
+    }
+
+    .price-including-tax {
+        font-size: 14px;
+        display: inline;
+        font-weight: $font-weight__semibold;
+    }
+
+    .sample.link {
+        float: right;
+    }
+}
+
+.page-product-downloadable {
+    .product-add-form {
+        @include lib-clearfix();
+        clear: both;
+        margin-bottom: $indent__m;
+    }
+
+    .product-options-bottom {
+        .field.qty {
+            display: none !important;
+        }
+    }
+
+    .product-options-wrapper {
+        .fieldset {
+            .legend.links-title {
+                @include lib-visually-hidden();
+            }
+        }
+    }
+}

@@ -1,0 +1,23 @@
+.product-photo {
+    &--rollover {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .15s ease-in;
+        z-index: 1;
+    }
+}
+
+.product.photo {
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    @include hover {
+        .product-photo--rollover {
+            opacity: 1;
+        }
+    }
+}

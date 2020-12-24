@@ -1,0 +1,67 @@
+// Helper function to easily link to an SVG icon
+@function svg-path($svg_id) {
+    @return $theme-web-path + '/svg/#{$svg_id}.svg';
+}
+
+/*
+
+@include icon-svg(
+  $icon       : remove,
+  $fill       : $primary__color,
+  $fill-hover : $color__white,
+  $width      : 35px,
+  $pseudo     : after
+);
+
+*/
+@mixin icon-svg(
+    $icon,
+    $width      : null,
+    $fill       : null,
+    $fill-hover : null,
+    $stroke     : null,
+    $hideLabel  : true,
+    $pseudo     : before,
+    $height     : null,
+    $lineHeight : 1
+) {
+    &::#{$pseudo} {
+        @if ($fill and $stroke) {
+            content: svg-load(svg-path($icon), fill=$fill, stroke=$stroke) !important;
+        } @elseif ($fill) {
+            content: svg-load(svg-path($icon), fill=$fill) !important;
+        } @elseif ($stroke) {
+            content: svg-load(svg-path($icon), stroke=$stroke) !important;
+        } @else {
+            content: svg-load(svg-path($icon)) !important;
+        }
+
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 0; // removes inline-block's whitespace
+        line-height: $lineHeight;
+
+        @if ($width) {
+            width: $width;
+
+            @if ($height) {
+                height: $height;
+            } @else {
+                height: $width;
+            }
+        }
+    }
+
+    @if ($fill-hover) {
+        &:hover::#{$pseudo},
+        &:focus::#{$pseudo} {
+            content: svg-load(svg-path($icon), fill=$fill-hover) !important;
+        }
+    }
+
+    @if ($hideLabel) {
+        > span {
+            @include lib-visually-hidden;
+        }
+    }
+}
