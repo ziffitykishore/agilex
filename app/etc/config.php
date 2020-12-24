@@ -426,6 +426,7 @@ return [
         'SomethingDigital_WebsiteSwitcher' => 1,
         'Temando_Shipping' => 1,
         'Taxjar_SalesTax' => 1,
+        'Travers_OptimizeCrons' => 1,
         'SomethingDigital_ProductImportTweaks' => 1,
         'Unirgy_RapidFlowPro' => 1,
         'Unirgy_RapidFlowSales' => 1,
