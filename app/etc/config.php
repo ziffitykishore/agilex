@@ -340,7 +340,6 @@ return [
         'Magento_WishlistGraphQl' => 1,
         'Magento_MultipleWishlistSampleData' => 1,
         'Magento_Worldpay' => 1,
-        'Aheadworks_Csblock' => 1,
         'Algolia_AlgoliaSearch' => 1,
         'Amazon_Core' => 0,
         'Amazon_Login' => 0,
