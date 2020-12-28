@@ -1,0 +1,31 @@
+// Basic Lazysizes animation with opacity fade-in
+// @USAGE  class="lazyload ls-animate"
+.ls-animate {
+    transition-property: opacity;
+    transition-duration: .25s;
+    transition-timing-function: ease-in;
+
+    &.lazyload,
+    &.lazyloading {
+        opacity: 0;
+    }
+
+    &.lazyloaded {
+        opacity: 1;
+    }
+}
+
+// Lazysizes animation with image zoom-out
+// @USAGE  class="lazyload ls-animate ls-zoom"
+.ls-zoom {
+    transition-property: opacity, transform;
+
+    &.lazyload,
+    &.lazyloading {
+        transform: scale(1.25);
+    }
+
+    &.lazyloaded {
+        transform: scale(1);
+    }
+}

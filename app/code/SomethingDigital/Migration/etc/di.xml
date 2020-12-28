@@ -1,0 +1,41 @@
+﻿<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="SomethingDigital\Migration\Api\MigratorInterface" type="SomethingDigital\Migration\Migrator" />
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="migrate:make" xsi:type="object">SomethingDigital\Migration\Console\MakeCommand</item>
+                <item name="migrate:retry" xsi:type="object">SomethingDigital\Migration\Console\RetryCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SomethingDigital\Migration\Console\Input\ParserFactory">
+        <arguments>
+            <argument name="parsers" xsi:type="array">
+                <item name="general" xsi:type="string">SomethingDigital\Migration\Console\Input\Parser\General</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="SomethingDigital\Migration\Model\Migration\GeneratorFactory">
+        <arguments>
+            <argument name="generators" xsi:type="array">
+                <item name="standard" xsi:type="string">SomethingDigital\Migration\Model\Migration\Generator\Standard</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Workaround for EavSetup and DataSetup -->
+    <!-- (Magento\Setup\Module\DataSetup can't be instantiated when compilation is enabled) -->
+    <virtualType name="SomethingDigital\MigrationProject\Eav\Setup\EavSetup" type="Magento\Eav\Setup\EavSetup">
+        <arguments>
+            <argument name="setup" xsi:type="object">SomethingDigital\MigrationProject\Setup\Module\DataSetup</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SomethingDigital\MigrationProject\Setup\Module\DataSetup" type="Magento\Setup\Module\DataSetup">
+        <arguments>
+            <argument name="context" xsi:type="object">Magento\Framework\Module\Setup\Context</argument>
+        </arguments>
+    </virtualType>
+    <!-- end workaround -->
+</config>

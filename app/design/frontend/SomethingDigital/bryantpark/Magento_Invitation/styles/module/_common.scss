@@ -1,0 +1,54 @@
+.form-add-invitations {
+    @extend .abs-add-fields;
+
+    .actions-toolbar {
+        > .secondary {
+            text-align: left;
+            margin-bottom: 0;
+        }
+    }
+
+    .fieldset {
+        .actions-toolbar {
+            &:not(:first-child) {
+                > .secondary {
+                    float: none;
+                }
+            }
+        }
+    }
+
+    button,
+    .action.primary {
+        width: 100%;
+
+        @include min-screen($screen__s) {
+            width: 100%;
+        }
+    }
+
+    .field {
+        margin-bottom: 20px;
+
+        @include min-screen($screen__m) {
+            margin-bottom: 0;
+        }
+
+        &.text {
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($screen__m) {
+    .table-invitations {
+        .col {
+            width: 50%;
+        }
+    }
+}

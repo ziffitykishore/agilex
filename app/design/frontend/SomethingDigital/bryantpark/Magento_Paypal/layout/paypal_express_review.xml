@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container" remove="true" />
+        <referenceContainer name="footer" remove="true" />
+        <referenceContainer name="footer.connect" remove="true" />
+        <referenceContainer name="navigation.sections" remove="true" />
+        <referenceContainer name="page.top" remove="true" />
+        <referenceContainer name="page.wrapper">
+            <container name="paypal.express.header.container" as="paypal_express_header_container" label="Paypal Express Review Header Container" htmlTag="header" htmlClass="page-header" before="main.content">
+                <container name="paypal.express.header.wrapper" label="Paypal Express Review Page Header" as="paypal_express_header_wrapper" htmlTag="div" htmlClass="header content"/>
+            </container>
+        </referenceContainer>
+        <move element="logo" destination="paypal.express.header.wrapper"/>
+    </body>
+</page>

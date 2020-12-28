@@ -1,0 +1,90 @@
+/*doc
+---
+title: Media Query Mixins
+name: media-queries
+category: Mixins - MediaQueries
+---
+
+Magento comes with a number of media query mixin helpers for various situations. For a list of breakpoint variables, see the [variables page](/styleguide/base_-_variables.html#variables_1).
+
+| Mixin | Parameters |
+| :--- | :--- |
+| Mininimum Width | `@include min-screen($min)` |
+| Maximum Width | `@include max-screen($max)` |
+| Screen | `@include screen($min, $max, $orientation: false)` |
+| Landscape Only | `@include landscape()` |
+| Portrait Only | `@include portrait()` |
+| Minimum Screen Height | `@include min-screen-height($min)` |
+| Maximum Screen Height | `@include max-screen-height($max)` |
+| Screen-Height | `@include screen-height($min, $max, $orientation: false)` |
+
+
+### Min-Width
+
+When you need to include only a minimum width:
+
+```scss
+@include min-screen($min) {}
+```
+
+### Max-Width
+
+When you need to include only a maximum width:
+
+```scss
+@include max-screen($max) {}
+```
+
+### Screen
+
+When you need to include both a min and max width:
+
+```scss
+@include screen($min, $max, $orientation: false) {}
+```
+
+### Landscape
+
+When you need to restrict styling to landscape only:
+
+```scss
+@include landscape() {
+  @content
+}
+```
+
+### Portrait
+
+When you need to restrict styling to portrait only:
+
+```scss
+@include portrait() {
+  @content
+}
+```
+
+### Min-Screen-Height
+
+When you need to restrict to a minimum screen height:
+
+```style_example_template
+@include min-screen-height($min) {}
+```
+
+### Max-Screen-Height
+
+When you need to restrict to a maximum screen height:
+
+```scss
+@include max-screen-height($max) {}
+```
+
+### Screen-Height
+
+When you need to restrict both minimum and maximum screen height:
+
+```scss
+@include screen-height($min, $max, $orientation: false) {}
+```
+
+*/

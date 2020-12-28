@@ -1,0 +1,74 @@
+.pages {
+    margin-bottom: $indent__m;
+
+    @include lib-pager(
+        $_pager-icon-font-margin: 0
+    );
+
+    .item {
+        &:not(:first-child) {
+            padding: 0 $indent__s;
+        }
+
+        &:first-child {
+            padding-right: $indent__s;
+        }
+
+        &.pages-item-next {
+            @include max-screen($screen__xxs) {
+                margin-right: 0;
+            }
+        }
+    }
+
+    strong.page,
+    .item {
+        font-size: $pages__pagination__fontsize;
+        line-height: 2.85;
+    }
+
+    strong.page {
+        color: $pages__active__color;
+    }
+
+    a.page {
+        @include hover {
+            color: $pages__active__color;
+        }
+    }
+}
+
+
+.pages .action {
+    &.previous,
+    &.next {
+        // at mobile we have a simple arrow, at desktop we have a button proper
+        @include lib-button(
+            $_button-background: $pages__color,
+            $_button-color: $pages__arrow__color
+        );
+        @include headingFont;
+
+        &::before,
+        &:visited:not(:hover)::before {
+            color: $pages__arrow__color;
+        }
+
+        @include max-screen($screen__m) {
+            padding: $indent__s $indent__xs;
+        }
+
+        @include min-screen($screen__m) {
+            > span {
+                // these nested <span>s are automatically excluded as screen-reader content
+                // by theme-blank-sass, but it's where "Next"/"Previous" reside
+                @include lib-visually-hidden-reset();
+            }
+
+            &::before,
+            .label {
+                display: none;
+            }
+        }
+    }
+}

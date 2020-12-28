@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="js/dist/common.js" />
+    </head>
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="google.verification.tag" template="Magento_Theme::html/google-verification-tag.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="invitation_link_top" remove="true" />
+
+        <referenceContainer name="after.body.start">
+           <block class="Magento\Framework\View\Element\Template" name="back2top" template="Magento_Theme::html/backtotop.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">header links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="navigation.sections">
+            <block class="Magento\Framework\View\Element\Text" name="close.menu" group="navigation-sections">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Close</argument>
+                    <argument name="text" xsi:type="string"><![CDATA[<!-- Close menu -->]]></argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="report.bugs" remove="true"/>
+
+        <referenceContainer name="footer">
+            <container name="footer-phone" label="Footer Phone Number" htmlTag="div" htmlClass="footer phone" after="footer_links">
+                <block class="Magento\Cms\Block\Block" name="footer_phone_number">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_phone_number</argument>
+                        <argument name="css_class" xsi:type="string">faq</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <move element="form.subscribe" destination="footer.connect" before="-"/>
+        <referenceContainer name="footer-container">
+            <container name="footer.connect" htmlTag="div" htmlClass="footer__connect" before="-">
+                <block class="Magento\Framework\View\Element\Template" name="footer.social" template="Magento_Theme::html/social.phtml" after="-" />
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="svg.symbols" template="Magento_Theme::svg.phtml" />
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,26 @@
+filter:
+  excluded_paths:
+      - "styles/vendor/magento-ui" # Thousands of issues, no sense fixing
+      - '*.min.js'
+      - 'bin/templates/registration.php'
+
+checks:
+  javascript: true
+  php:
+    excluded_dependencies:
+      - 'magento/*'
+
+build:
+  environment:
+    node: 'v8.15.1'
+    ruby: '2.5.5' # Needed for scss-lint
+  nodes:
+    analysis:
+      tests:
+        override:
+          - php-scrutinizer-run
+          - js-scrutinizer-run
+          - scss-lint-run
+
+build_failure_conditions:
+  - 'issues.severity(>= MINOR).new.exists' # Fail on all issues
