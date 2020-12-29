@@ -403,7 +403,7 @@ return [
         'SomethingDigital_UrlRewrites' => 1,
         'SomethingDigital_VirtualThemes' => 1,
         'SomethingDigital_WebsiteSwitcher' => 1,
-        'Temando_Shipping' => 1,
+        'Temando_Shipping' => 0,
         'Taxjar_SalesTax' => 1,
         'SomethingDigital_ProductImportTweaks' => 1,
         'Unirgy_RapidFlowPro' => 1,
