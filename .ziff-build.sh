@@ -31,6 +31,8 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 8.15.1
 nvm use 8.15.1
 
+mkdir -p /var/www/m2zdev/init/pub/static
+
 reportStats() {
     local error_code="$?"
     echo -e "\n\n.sd-build.sh exited: $error_code"
@@ -120,7 +122,7 @@ else
 fi
 
 # Also setup the styleguide.
-rsync -a pub/styleguide/ init/pub/styleguide/
+#rsync -a pub/styleguide/ init/pub/styleguide/
 
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
