@@ -12,8 +12,10 @@ define(
     function ($,Component, quote) {
         "use strict";
         var quoteItemData = window.checkoutConfig.quoteItemData;
-        var inserted_id =  store_delivery_value = deliveryInfo =[];
-
+        var inserted_id =  [];
+        var store_delivery_value = [];
+        var deliveryInfo = [];
+        var intial = quote.shippingAddress();
         return Component.extend({
             defaults: {
                 template: 'SomethingDigital_ShipperHqCustomizations/summary/item/details'
@@ -32,6 +34,14 @@ define(
             },
             getDeliveryInfo: function(quoteItem) {
                 var self = this;
+                var shippingAddress = quote.shippingAddress();
+                var shippingMethod = quote.shippingMethod();
+
+                /** Check the Changes in shipping address */
+                if(intial != shippingAddress){
+                    intial = shippingAddress;
+                    inserted_id =[];
+                }
                 if ($.inArray(quoteItem.item_id, inserted_id) == -1){
 
                     /** Insert the  quoteItem_id and response Data to array*/
