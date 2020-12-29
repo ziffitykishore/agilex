@@ -124,7 +124,7 @@ return [
         'Magento_CatalogPermissions' => 1,
         'Magento_CatalogStaging' => 1,
         'Magento_GiftMessage' => 1,
-        'Magento_GiftMessageStaging' => 0,
+        'Magento_GiftMessageStaging' => 1,
         'Magento_UrlRewrite' => 1,
         'Magento_GiftWrapping' => 0,
         'Magento_GiftWrappingStaging' => 0,
