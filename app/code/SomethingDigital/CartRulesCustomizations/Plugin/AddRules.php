@@ -11,10 +11,22 @@ use Magento\SalesRule\Model\Rule;
 use Magento\Framework\Registry;
 use SomethingDigital\CartRulesCustomizations\Model\FreeGiftSku;
 use Magento\Framework\Session\SessionManagerInterface;
+use SomethingDigital\CustomerSpecificPricing\Model\Quote;
+use Magento\Checkout\Model\Cart;
+use Magento\Quote\Api\CartRepositoryInterface;
 
 class AddRules
 {
     protected $registry;
+    protected $collectionFactory;
+    protected $storeManager;
+    protected $customerSession;
+    protected $ruleModel;
+    protected $freeGiftSku;
+    protected $session;
+    protected $quote;
+    protected $cart;
+    protected $quoteRepository;
 
     public function __construct(
         CollectionFactory $collectionFactory,
@@ -23,7 +35,10 @@ class AddRules
         Rule $rule,
         Registry $registry,
         FreeGiftSku $freeGiftSku,
-        SessionManagerInterface $session
+        SessionManagerInterface $session,
+        Quote $quote,
+        Cart $cart,
+        CartRepositoryInterface $quoteRepository
     ) {
         $this->collectionFactory = $collectionFactory;
         $this->storeManager = $storeManager;
@@ -32,6 +47,9 @@ class AddRules
         $this->registry = $registry;
         $this->freeGiftSku = $freeGiftSku;
         $this->session = $session;
+        $this->quote = $quote;
+        $this->cart = $cart;
+        $this->quoteRepository = $quoteRepository;
     }
 
     public function beforeApplyRules(RulesApplier $subject, $item, $rules, $skipValidation, $couponCode)
@@ -81,7 +99,15 @@ class AddRules
         $this->freeGiftSku->skus = $freeGiftSkus;
 
         if ($skuSuffix) {
+            // $skuSuffix from the cart rule can contain symbols like "#TP3"
             $this->session->setSkuSuffix($skuSuffix);
+            $this->quote->repriceCustomerQuote($skuSuffix);
+
+            $currentQuote = $this->cart->getQuote();
+            if ($currentQuote && $currentQuote->getId()) {
+                $quote = $this->quoteRepository->get($currentQuote->getId());
+                $quote->setSuffix($skuSuffix);
+            }
         }
 
         return $result;

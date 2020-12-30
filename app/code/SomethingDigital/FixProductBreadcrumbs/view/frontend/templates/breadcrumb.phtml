@@ -1,0 +1,22 @@
+<?php $breadcrumbs = $block->getViewModel()->getBreadcrumbs() ?>
+<div data-bind="scope: 'breadcrumb'">
+<!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+ 
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "breadcrumb": {
+                            "component": "SomethingDigital_FixProductBreadcrumbs/js/breadcrumb",
+                            "template" : "SomethingDigital_FixProductBreadcrumbs/breadcrumb",
+                            "config": {
+                                "breadcrumbs": <?= json_encode($breadcrumbs) ?>
+                            }
+                        }
+                    }
+                }
+            }
+        }
+</script>

@@ -1,7 +1,9 @@
 <?php $catalogPage = $block->getViewModel()->getCatalogPage() ?>
 <?php if ($catalogPage): ?>
-<div class="master-catalog-listing">
-    <div class="header"><?= __('Master Catalog Listing'); ?></div>
-    <a rel=”nofollow” title="" href="<?php echo $catalogPage['catalog_link'] ?>"><?= __('View Page %1', $catalogPage['catalog_page_number']); ?></a>
-</div>
+<a class="master-catalog-link" rel=”nofollow” title="<?= __('View Page %1', $catalogPage['catalog_page_number']); ?>" href="<?php echo $catalogPage['catalog_link'] ?>">
+    <div class="master-catalog-listing">
+        <h2 class="header"><?= __('Master Catalog Listing'); ?></h2>
+        <p><?= __('View Page %1', $catalogPage['catalog_page_number']); ?></p>
+    </div>
+</a>
 <?php endif; ?>

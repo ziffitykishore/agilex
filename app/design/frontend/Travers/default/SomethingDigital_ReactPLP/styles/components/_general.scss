@@ -59,6 +59,10 @@ $sidebar__max-width: 240px;
 
 .description {
     margin-bottom: $indent__s;
+
+    @include max-screen($screen__m) {
+        display: none;
+    }
 }
 
 .description__mobile {
@@ -141,13 +145,13 @@ $sidebar__max-width: 240px;
 
 .hide-on-mobile {
     @include max-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder display: flex
     }
 }
 
 .hide-on-desktop {
     @include min-screen($screen__m) {
-        display: none;
+        display: none !important; // override PageBuilder display: flex
     }
 }
 
@@ -311,6 +315,21 @@ $sidebar__max-width: 240px;
 }
 
 .group {
+    position: relative;
+    margin-bottom: 30px;
+
+    .grouping-image {
+        width: 60px;
+        height: 60px;
+        border: 2px solid $c-light-grey;
+        border-radius: 10px;
+        padding: $indent__xs;
+
+        @include min-screen($screen__m) {
+            top: -$indent__base;
+        }
+    }
+
     p {
         max-width: 950px;
     }
@@ -329,7 +348,12 @@ $sidebar__max-width: 240px;
 
     h2 {
         margin-top: $indent__l;
-        font-size: 30px;
+        margin-bottom: $indent__l;
+        font-size: 24px;
+
+        @include min-screen($screen__m) {
+            font-size: 30px;
+        }
     }
 
     h3 {
@@ -344,6 +368,15 @@ $sidebar__max-width: 240px;
     }
 }
 
+.group-header {
+    display: flex;
+    align-items: center;
+
+    img {
+        margin-right: $indent__base;
+    }
+}
+
 .plp-breadcrumbs {
     display: flex;
     flex-wrap: wrap;
@@ -355,16 +388,11 @@ $sidebar__max-width: 240px;
         top: $indent__base;
     }
 
-    button,
+    a,
     span {
-        background-color: transparent;
-        padding: 0;
-        border: 0;
-        text-transform: none;
         font-weight: $font-weight__regular;
         font-family: $font-family__base;
         font-size: $font-size__base;
-        width: auto;
         vertical-align: baseline;
 
         @include min-screen($screen__m) {
@@ -372,7 +400,7 @@ $sidebar__max-width: 240px;
         }
     }
 
-    button {
+    a {
         color: $c-cobalt;
 
         &::after {
@@ -384,6 +412,7 @@ $sidebar__max-width: 240px;
 
         @include hover {
             color: $text__color;
+            text-decoration: none;
         }
     }
 }
@@ -424,7 +453,7 @@ $sidebar__max-width: 240px;
 
 .cart-actions {
     .increment-message {
-        color: $c-nickel;
+        color: $text__color;
         font-weight: $font-weight__semibold;
         margin-left: $list-image__max-width + $list-image__margin--mobile;
         order: 1;
@@ -455,7 +484,6 @@ $sidebar__max-width: 240px;
 .list-view,
 .table-view,
 .product-info {
-
     .product-name,
     .pricing .price,
     .pricing .as-low-as,
@@ -572,4 +600,21 @@ $sidebar__max-width: 240px;
 .description__desktop img {
     max-height: 300px;
     object-fit: cover;
+}
+
+.no-matches-header {
+    margin-bottom: $indent__xl;
+
+    @include min-screen($screen__m) {
+        padding-left: 50px;
+        margin-top: $indent__l;
+    }
+
+    @include min-screen($screen__l) {
+        padding-left: 70px;
+    }
+}
+
+.catalog-category-view #launcher {
+    display: none; // hide chat button on PLPs
 }

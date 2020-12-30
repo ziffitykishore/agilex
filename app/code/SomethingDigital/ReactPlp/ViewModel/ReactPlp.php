@@ -24,7 +24,8 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
 {
     const LIST_ATTRIBUTES_CACHE_ID = 'reactListAttributes';
     const TABLE_ATTRIBUTES_CACHE_ID = 'reactTableAttributes';
-    const SEARCH_ATTRIBUTES_CACHE_ID = 'reactSearchAttributes';
+    const SEARCH_TABLE_ATTRIBUTES_CACHE_ID = 'reactSearchTableAttributes';
+    const SEARCH_LIST_ATTRIBUTES_CACHE_ID = 'reactSearchListAttributes';
     const FILTER_ATTRIBUTES_CACHE_ID = 'reactFilterAttributes';
     const FILTER_ATTRIBUTES_SEARCH_CACHE_ID = 'reactFilterAttributesSearch';
 
@@ -126,6 +127,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
         } else {
             $index_prefix = $this->scopeConfig->getValue("algoliasearch_credentials/credentials/index_prefix", ScopeInterface::SCOPE_STORE);
         }
+        $storeCode = $this->storeManager->getStore()->getCode();
         $props = [
             'defaultCategoryId' => $this->getCategoryId(),
             'displayMode' => $this->getDisplayMode(),
@@ -152,22 +154,29 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 'attributes' => [
                     'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/attributes/view/id',
                     'params' => []
+                ],
+                'facetAttributes' => [
+                    'url' => $this->storeManager->getStore()->getBaseUrl() . 'travers-catalog/facets/view/id',
+                    'params' => []
                 ]
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
             'defaultListAttributes' => $this->getListAttributes(),
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
             'defaultTableAttributes' => $this->getTableAttributes(),
-            'searchTableAttributes' => $this->getSearchAttributes(),
+            'searchTableAttributes' => $this->getSearchTableAttributes(),
+            'searchListAttributes' => $this->getSearchListAttributes(),
             'hasSpotPricing' => $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH),
             'defaultFilterAttributesInfo' => $this->getFilterAttributes(),
             'swatchImages' => $this->getSwatchImages(),
             'attributesValuesLimit' => $this->scopeConfig->getValue("catalog/reactapp/limit_filter_attr_values", ScopeInterface::SCOPE_STORE),
+            'urlToGroupingImagesCatalog' => $this->scopeConfig->getValue("catalog/reactapp/url_to_grouping_images_catalog", ScopeInterface::SCOPE_STORE),
             'algolia' => [
                 'applicationId' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/application_id", ScopeInterface::SCOPE_STORE),
                 'searchApiKey' => $this->scopeConfig->getValue("algoliasearch_credentials/credentials/search_only_api_key", ScopeInterface::SCOPE_STORE),
-                'productsIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_products',
-                'categoriesIndexName' => $index_prefix . $this->storeManager->getStore()->getCode() . '_categories',
+                'productsIndexName' => $index_prefix . $storeCode . '_products',
+                'categoriesIndexName' => $index_prefix . $storeCode . '_categories',
+                'searchIndexName' => $index_prefix . $storeCode . '_products_search_sorted',
                 'attributeOptionsIndexName' => $index_prefix . 'default_attribute_option'
             ]
         ];
@@ -246,13 +255,13 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     }
 
     /**
-     * Returns array with search attributes
+     * Returns array with search table attributes
      *
      * @return array
      */
-    public function getSearchAttributes()
+    public function getSearchTableAttributes()
     {
-        $searchAttributes = $this->loadDataFromCache(static::SEARCH_ATTRIBUTES_CACHE_ID);
+        $searchAttributes = $this->loadDataFromCache(static::SEARCH_TABLE_ATTRIBUTES_CACHE_ID);
         if (!$searchAttributes) {
             $collection = $this->collectionFactory->create();
             $collection->addFieldToFilter('include_in_search_table', ['eq' => 1]);
@@ -265,7 +274,33 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
                 ];
             }
             $searchAttributes = $this->attributeSorter->sort($searchAttributes, AttributeSorter::ARRAYED_ATTRIBUTES);
-            $this->saveDataInsideCache($searchAttributes, static::SEARCH_ATTRIBUTES_CACHE_ID);
+            $this->saveDataInsideCache($searchAttributes, static::SEARCH_TABLE_ATTRIBUTES_CACHE_ID);
+        }
+
+        return $searchAttributes;
+    }
+
+    /**
+     * Returns array with search list attributes
+     *
+     * @return array
+     */
+    public function getSearchListAttributes()
+    {
+        $searchAttributes = $this->loadDataFromCache(static::SEARCH_LIST_ATTRIBUTES_CACHE_ID);
+        if (!$searchAttributes) {
+            $collection = $this->collectionFactory->create();
+            $collection->addFieldToFilter('include_in_search_list', ['eq' => 1]);
+            $collection->setOrder('search_position','ASC');
+            $searchAttributes = [];
+            foreach ($collection as $item) {
+                $searchAttributes[] = [
+                    'id' => $item->getAttributeCode(),
+                    'label' => $item->getStoreLabel()
+                ];
+            }
+            $searchAttributes = $this->attributeSorter->sort($searchAttributes, AttributeSorter::ARRAYED_ATTRIBUTES);
+            $this->saveDataInsideCache($searchAttributes, static::SEARCH_LIST_ATTRIBUTES_CACHE_ID);
         }
 
         return $searchAttributes;

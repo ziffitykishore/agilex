@@ -1,0 +1,126 @@
+@mixin bryant-park-lib-data-accordion(
+    $_accordion-control-font-family            : $tab-control__font-family,
+    $_accordion-control-font-size              : $tab-control__font-size,
+    $_accordion-control-font-style             : $tab-control__font-style,
+    $_accordion-control-font-weight            : $font-weight__semibold,
+    $_accordion-control-line-height            : $indent__base * 2,
+
+    $_accordion-control-border-top             : none,
+    $_accordion-control-border-right           : none,
+    $_accordion-control-border-bottom          : none,
+    $_accordion-control-border-left            : none,
+
+    $_accordion-control-background-color       : $tab-control__background-color,
+    $_accordion-control-color                  : $tab-control__color,
+    $_accordion-control-text-decoration        : $tab-control__text-decoration,
+
+    $_accordion-control-color-visited          : $tab-control__color,
+    $_accordion-control-text-decoration-visited: $tab-control__text-decoration,
+
+    $_accordion-control-background-color-hover : lighten($tab-control__background-color, 5%),
+    $_accordion-control-color-hover            : $tab-control__color,
+    $_accordion-control-text-decoration-hover  : $tab-control__text-decoration,
+
+    $_accordion-control-background-color-active: lighten($tab-control__background-color, 15%),
+    $_accordion-control-color-active           : $text__color,
+    $_accordion-control-text-decoration-active : $tab-control__text-decoration,
+
+    $_accordion-control-height                 : $indent__base * 2,
+    $_accordion-control-margin-bottom          : $indent__xs,
+
+    $_accordion-control-padding-top            : $tab-control__padding-top,
+
+    $_accordion-control-padding-right          : $tab-content__padding-right,
+    $_accordion-control-padding-bottom         : $tab-control__padding-bottom,
+    $_accordion-control-padding-left           : $tab-content__padding-left,
+
+    $_accordion-content-background-color       : lighten($tab-control__background-color, 15%),
+    $_accordion-content-border                 : $tab-content__border,
+
+    $_accordion-content-margin                 : 0 0 0,
+    $_accordion-content-padding                : $tab-content__padding-top $tab-content__padding-right $tab-content__padding-bottom $tab-content__padding-left
+) {
+    @include lib-data-accordion__base();
+    @if $_accordion-control-margin-bottom == 0 {
+        & > .item.title {
+            margin: 0;
+        }
+    }
+    @if $_accordion-control-margin-bottom == 0 {
+        & > .item.title {
+            margin: 0 0 $_accordion-control-margin-bottom;
+        }
+    }
+
+    & > .item.title {
+        & > .switch {
+            height: $_accordion-control-height;
+            border-top: $_accordion-content-border;
+            padding: $_accordion-control-padding-top $_accordion-control-padding-right $_accordion-control-padding-bottom $_accordion-control-padding-left;
+            @include lib-typography(
+                $_color      : $_accordion-control-color,
+                $_font-family: $_accordion-control-font-family,
+                $_font-size  : $_accordion-control-font-size,
+                $_font-style : $_accordion-control-font-style,
+                $_font-weight: $_accordion-control-font-weight,
+                $_line-height: $_accordion-control-line-height
+            );
+            @include lib-link(
+                $_link-color                  : $_accordion-control-color,
+                $_link-text-decoration        : $_accordion-control-text-decoration,
+                $_link-color-visited          : $_accordion-control-color-visited,
+                $_link-text-decoration-visited: $_accordion-control-text-decoration-visited,
+                $_link-color-hover            : $_accordion-control-color-hover,
+                $_link-text-decoration-hover  : $_accordion-control-text-decoration-hover,
+                $_link-color-active           : $_accordion-control-color-active,
+                $_link-text-decoration-active : $_accordion-control-text-decoration-active
+            );
+
+            @include icon-svg(
+                $icon       : expand,
+                $fill       : $secondary__color,
+                $width      : 17px,
+                $pseudo     : after,
+                $hideLabel  : false
+            );
+
+            &:after {
+                position: absolute;
+                right: 10px;
+                font-size: 24px;
+
+                @include min-screen($screen__m) {
+                    display: none !important; // ensure mobile active nav icon doesn't cause icons to show on desktop
+                }
+            }
+        }
+
+        &:not(.disabled) > .switch:focus,
+        &:not(.disabled) > .switch:hover {
+            background: $_accordion-control-background-color-hover;
+        }
+
+        &:not(.disabled) > .switch:active,
+        &.active > .switch,
+        &.active > .switch:focus,
+        &.active > .switch:hover {
+            background: $_accordion-control-background-color-active;
+            padding-bottom: $_accordion-control-padding-bottom;
+            cursor: default; // clicking active tab won't actually collapse it
+
+            &:after {
+                content: '' !important;
+            }
+        }
+    }
+
+    & > .item.content {
+        background: $_accordion-content-background-color;
+        margin: $_accordion-content-margin;
+        padding: $_accordion-content-padding;
+
+        @include min-screen($screen__m) {
+            border: $_accordion-content-border;
+        }
+    }
+}

@@ -150,6 +150,15 @@ class Main extends Generic
             $form->setValues($profile->getData());
         }
 
+        if ($profile->getProfileType() == 'import') {
+            $fieldset->addField('autoarchive', 'select', [
+                'label' => __('Auto-archive Import File'),
+                'name' => 'options[import][autoarchive]',
+                'values' => $source->setPath('yesno')->toOptionArray(),
+                'value' => $profile->getData('options/import/autoarchive'),
+            ]);
+        }
+
         $fieldset = $form->addFieldset('log_form', ['legend' => __('Logging Options')]);
 
         $fieldset->addField('minimum_log_level', 'select', [

@@ -7,6 +7,8 @@ use Magento\Catalog\Helper\Product as ProductHelper;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
+use Magento\CatalogInventory\Api\StockRegistryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class StockData
 {
@@ -36,18 +38,25 @@ class StockData
      */
     private $logger;
 
+    /**
+     * @var StockRegistryInterface
+     */
+    private $stockRegistry;
+
     public function __construct(
         CoreRegistry $coreRegistry,
         ProductHelper $productHelper,
         ProductRepositoryInterface $productRepository,
         SearchCriteriaBuilder $searchCriteriaBuilder,
-        LoggerInterface $logger
+        LoggerInterface $logger,
+        StockRegistryInterface $stockRegistry
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->productHelper = $productHelper;
         $this->productRepository = $productRepository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->logger = $logger;
+        $this->stockRegistry = $stockRegistry;
     }
 
     /**
@@ -96,7 +105,7 @@ class StockData
      * Provide data for different product types
      *
      * @param string $sku
-     * @return []
+     * @return array
      */
     public function getStockData($sku = null)
     {
@@ -138,7 +147,7 @@ class StockData
      * Retrieve stock data for given products
      *
      * @param \Magento\Catalog\Model\Product[] $products
-     * @return []
+     * @return array
      */
     private function prepareProductsStockData($products)
     {
@@ -161,7 +170,7 @@ class StockData
      * This include In Stock data only
      *
      * @param \Magento\Catalog\Model\Product $product
-     * @return []
+     * @return array
      */
     private function retrieveProductStockData($product)
     {
@@ -191,5 +200,30 @@ class StockData
             ];
         }
         return $stock;
+    }
+
+    /**
+     * Get product min_sale_qty and qty_increments
+     *
+     * @param $sku
+     * @return array
+     */
+    public function getMinSaleQtyAndIncrementsInfo($sku)
+    {
+        $messages = [];
+        try {
+            $stockItem = $this->stockRegistry->getStockItemBySku($sku);
+            if ($stockItem) {
+                if ($stockItem->getMinSaleQty() > 1) {
+                    $messages[] = __('You must buy at least %1 of these per purchase.', $stockItem->getMinSaleQty());
+                }
+                if ($stockItem->getQtyIncrements() > 1) {
+                    $messages[] = __('Sold in increments of %1', $stockItem->getQtyIncrements());
+                }
+            }
+        } catch (NoSuchEntityException $e) {
+            //no action required
+        }
+        return $messages;
     }
 }

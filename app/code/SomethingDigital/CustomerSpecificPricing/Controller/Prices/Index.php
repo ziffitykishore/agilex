@@ -46,10 +46,11 @@ class Index extends Action
     public function execute()
     {
         $skus = $this->getRequest()->getParam('products');
+        $type = $this->getRequest()->getParam('type');
         $jsonResult = $this->resultFactory->create('json');
 
         if (!$skus) {
-            return $this->prepareFailedJsonResult('Empty skus.', $jsonResult);
+            return $jsonResult;
         }
 
         $data = [];
@@ -57,41 +58,60 @@ class Index extends Action
 
         try {
             $prices = $this->spotPricingApi->getSpotPrice($skus);
+            $store = $this->storeManager->getStore()->getStoreId();
 
             if ($prices) {
                 foreach ($prices as $id => $productPrices) {
-                    $store = $this->storeManager->getStore()->getStoreId();
-                    $spotPrice = $this->currency->convert(
-                        $this->arrayManager->get('DiscountPrice', $productPrices, 0),
-                        $store
-                    );
+                    $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices, 0);
                     $sku = $this->arrayManager->get('Sku', $productPrices);
                     $product = $this->productRepository->get($sku);
                     $price = $this->currency->convert($product->getFinalPrice(), $store);
-
+                    $pricePer100 = false;
                     if (!empty($spotPrice) && $spotPrice < $price) {
                         $price = $spotPrice;
-                        $canShowSuffix = true;
                     }
                     $unitPrice = $price;
                     if ($product->getExactUnitPrice()) {
-                        $price = $this->currency->convert($product->getExactUnitPrice(), $store) * 100;
+                        $unitPrice = min($product->getExactUnitPrice(), $price);
+                        $price = $this->currency->convert($unitPrice, $store) * 100;
+                        $pricePer100 = true;
+                    }
+                    if ($product->getSpecialExactUnitPrice()) {
+                        $exactUnitPrice = min($product->getSpecialExactUnitPrice(), $price);
+                        $price = $this->currency->convert($exactUnitPrice, $store) * 100;
                     }
 
-                    $qtyPrice1 = $this->currency->convert($this->arrayManager->get('QtyPrice1', $productPrices), $store);
-                    $qtyPrice2 = $this->currency->convert($this->arrayManager->get('QtyPrice2', $productPrices), $store);
-                    $qtyPrice3 = $this->currency->convert($this->arrayManager->get('QtyPrice3', $productPrices), $store);
+                    $qtyPrice1 = $this->arrayManager->get('QtyPrice1', $productPrices);
+                    $qtyPrice2 = $this->arrayManager->get('QtyPrice2', $productPrices);
+                    $qtyPrice3 = $this->arrayManager->get('QtyPrice3', $productPrices);
                     $qtyBreak1 = round($this->arrayManager->get('QtyBreak1', $productPrices));
                     $qtyBreak2 = round($this->arrayManager->get('QtyBreak2', $productPrices));
                     $qtyBreak3 = round($this->arrayManager->get('QtyBreak3', $productPrices));
 
-                    if ($qtyPrice1 || $qtyPrice2 || $qtyPrice3) {
+                    if ($this->arrayManager->get('BrochurePricing', $productPrices) !== null &&
+                        (
+                            $this->arrayManager->get('BrochurePricing/DiscountPrice', $productPrices) !== null ||
+                            $this->arrayManager->get('BrochurePricing/QtyPrice1', $productPrices) !== null ||
+                            $this->arrayManager->get('BrochurePricing/QtyPrice2', $productPrices) !== null ||
+                            $this->arrayManager->get('BrochurePricing/QtyPrice3', $productPrices) !== null
+                        )
+                    ) {
                         $canShowSuffix = true;
+                    }
+
+                    $msrp = $product->getCustomAttribute('manufacturer_price');
+
+                    if ($msrp && $msrp->getValue()) {
+                        $msrpVal = $msrp->getValue();
+                    } else {
+                        $msrpVal = '';
                     }
 
                     $data[$sku] = [
                         'price' => number_format($price, 2),
                         'unitPrice' => $unitPrice,
+                        'pricePer100' => $pricePer100,
+                        'msrp' => $msrpVal,
                         'QtyPrice1' => $qtyPrice1 ? number_format($qtyPrice1, 2) : '',
                         'QtyPrice2' => $qtyPrice2 ? number_format($qtyPrice2, 2) : '',
                         'QtyPrice3' => $qtyPrice3 ? number_format($qtyPrice3, 2) : '',
@@ -100,6 +120,27 @@ class Index extends Action
                         'QtyBreak3' => $qtyBreak3 ? $qtyBreak3 : '',
                         'currencySymbol' => $this->currency->getCurrency()->getCurrencySymbol()
                     ];
+                }
+            } else {
+                if ($type == 'false') {
+                    foreach ($skus as $sku) {
+                        $product = $this->productRepository->get($sku);
+
+                        if ($product->getExactUnitPrice()) {
+                            $unitPrice = $product->getExactUnitPrice();
+                            $specialUnitPrice = $product->getSpecialExactUnitPrice();
+                            $price = $this->currency->convert($unitPrice, $store) * 100;
+
+                            if ($specialUnitPrice) {
+                                $price = $this->currency->convert($specialUnitPrice, $store) * 100;
+                            }
+
+                            $data[$sku] = [
+                                'price' => number_format($price, 2),
+                                'unitPrice' => $unitPrice
+                            ];
+                        }
+                    }
                 }
             }
         } catch (LocalizedException $e) {

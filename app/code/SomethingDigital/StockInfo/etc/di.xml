@@ -6,4 +6,7 @@
     <type name="Magento\QuickOrder\Model\Cart">
         <plugin name="SomethingDigital_StockInfoQuickOrder" type="SomethingDigital\StockInfo\Plugin\UpdateAjaxResponse" sortOrder="0" />
     </type>
+    <type name="Magento\ProductAlert\Helper\Data">
+        <plugin name="SomethingDigital_ProductAlert" type="SomethingDigital\StockInfo\Plugin\HideStockInfoAlert" sortOrder="0" />
+    </type>
 </config>

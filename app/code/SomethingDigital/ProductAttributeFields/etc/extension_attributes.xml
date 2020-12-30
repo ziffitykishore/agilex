@@ -16,6 +16,7 @@
         <attribute code="layered_nav_description" type="string"/>
         <attribute code="include_in_list" type="boolean"/>
         <attribute code="include_in_search_table" type="boolean"/>
+        <attribute code="include_in_search_list" type="boolean"/>
         <attribute code="search_position" type="integer"/>
     </extension_attributes>
 </config>

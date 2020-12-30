@@ -20,8 +20,6 @@ use Magento\Widget\Block\BlockInterface;
  *
  * Catalog Categories List widget block
  *
- * @method CategoriesList setCategoryCollection(CategoryCollection $collection)
- * @method CategoryCollection getCategoryCollection()
  *
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  * @SuppressWarnings(PHPMD.ExcessiveParameterList)
@@ -46,7 +44,12 @@ class CategoriesList extends Template implements BlockInterface, IdentityInterfa
      * @var CategoryCollectionFactory
      */
     protected $categoryCollectionFactory;
-
+    
+    /**
+     * @var null|CategoryCollection
+     */
+    private $categoryCollection = null;
+    
     /**
      * CategoriesList constructor
      *
@@ -113,8 +116,7 @@ class CategoriesList extends Template implements BlockInterface, IdentityInterfa
 
         $collection->addAttributeToSelect('*')->joinUrlRewrite();
         $collection->addFieldToFilter('path', ['like' => '1/' . $rootId . '/%']); // load only from store root
-        $collection->addFieldToFilter('parent_id', $this->getParentCategoryId()); // load only direct child categories
-        $collection->addAttributeToFilter('include_in_menu', 1); // load only category which can include into menu
+        $collection->addFieldToFilter('parent_id', (int) $this->getParentCategoryId()); // load only direct child categories
         $collection->addIsActiveFilter(); //active category filter
         $collection->addOrder('position', Collection::SORT_ORDER_ASC);
 
@@ -204,7 +206,6 @@ class CategoriesList extends Template implements BlockInterface, IdentityInterfa
      */
     protected function _beforeToHtml()
     {
-        $this->setCategoryCollection($this->createCollection());
         return parent::_beforeToHtml();
     }//end _beforeToHtml()
 
@@ -217,4 +218,13 @@ class CategoriesList extends Template implements BlockInterface, IdentityInterfa
     {
         return $this->getCategoriesCount();
     }//end getPageSize()
+    
+    public function getCategoryCollection()
+    {
+        if (null === $this->categoryCollection) {
+            $this->categoryCollection = $this->createCollection();
+        }
+    
+        return $this->categoryCollection;
+    }
 }

@@ -21,7 +21,7 @@
     <div class="clear"></div>
     <script id="<?php echo $block->getHtmlId() ?>-template" type="text/x-magento-template">
         <div id="<%- data.id %>" class="file-row" style="clear: both">
-            <span class="file-info"><%- data.name %> (<%- data.size %>)</span>
+            <span class="file-info"><%- data.file %> (<%- data.size %>)</span>
             <div class="progressbar-container">
                 <div class="progressbar upload-progress" style="width: 0%; height: 2em; background-color: #27cc60;"></div>
             </div>
@@ -30,7 +30,7 @@
     </script>
     <script id="<?php echo $block->getHtmlId() ?>-template-download" type="text/x-magento-template">
         <tr id="file-<%- data.id %>" class="file-row">
-            <td><span class="file-success"><%- data.name %> (<%- data.size %>)</span></td>
+            <td><span class="file-success"><%- data.file %> (<%- data.size %>)</span></td>
         </tr>
     </script>
     <script id="<?php echo $block->getHtmlId() ?>-template-error" type="text/x-magento-template">
@@ -95,6 +95,7 @@
                     var doneTmpl = mageTemplate('#<?php echo $block->getHtmlId(); ?>-template-download');
                     var tmpl = doneTmpl({
                         data: {
+                            file: result.file,
                             name: result.name,
                             size: byteConvert(result.size),
                             id: data.fileId

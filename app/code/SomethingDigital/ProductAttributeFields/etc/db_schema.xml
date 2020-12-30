@@ -3,6 +3,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="catalog_eav_attribute" resource="default" engine="innodb">
         <column xsi:type="smallint" name="include_in_search_table" nullable="false" default="0" comment="Include in search table" identity="false"/>
+        <column xsi:type="smallint" name="include_in_search_list" nullable="false" default="0" comment="Include in search list view" identity="false"/>
         <column xsi:type="int" name="search_position" nullable="false" default="0" comment="Search position" identity="false"/>
     </table>
 </schema>

@@ -28,6 +28,7 @@ class UpdateAjaxResponse
                 $sku = $item['sku'];
                 $stockData = $this->stockData->getStockData($sku);
                 $result[$sku]['stockData'] = $stockData;
+                $result[$sku]['stockInfo'] = $this->stockData->getMinSaleQtyAndIncrementsInfo($sku);
             }
         }
         return $result;

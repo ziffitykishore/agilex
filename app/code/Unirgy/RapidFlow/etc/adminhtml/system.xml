@@ -8,6 +8,10 @@
             <resource>Unirgy_RapidFlow::system_config</resource>
             <group id="finetune" translate="label" sortOrder="10" type="text" showInDefault="1">
                 <label>Fine Tuning</label>
+                <field id="enable_history" translate="label" sortOrder="10" type="select" showInDefault="1">
+                    <label>Enable Profiles History</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="import_page_size" translate="label" sortOrder="10" type="text" showInDefault="1">
                     <label>Import Data Page Size (rows)</label>
                 </field>
@@ -70,6 +74,10 @@
                        showInWebsite="1" showInStore="1">
                     <label>Images Dir</label>
                     <comment>If not absolute path, it is relative to the CSV file</comment>
+                </field>
+                <field id="archive_dir" translate="label comment" sortOrder="50" type="text" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Archive Dir</label>
                 </field>
             </group>
             <group id="import_options" translate="label" sortOrder="17" type="text" showInDefault="1">

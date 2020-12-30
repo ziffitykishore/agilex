@@ -1,3 +1,114 @@
+===== 2020-06-23 3.0.114 =====
+  * Fixed qty changed for products which type does not support it
+
+===== 2020-06-15 3.0.113 =====
+  * Extracted few methods to allow post-process header and rows right after csv file read
+
+===== 2020-06-12 3.0.112 =====
+  * Fixed Class Unirgy\RapidFlow\Model\CacheType does not exist
+
+===== 2020-05-27 3.0.111 =====
+  * Fixed configurables export with "Skip out of stock products"=Yes
+
+===== 2020-05-21 3.0.109 =====
+  * Fixed price import of bundle products with fixed price type
+
+===== 2020-05-12 3.0.108 =====
+  * Fixed media gallery being case insensitive
+
+===== 2020-05-07 3.0.107 =====
+  * Fixed import creates duplicate entries in catalog_product_entity_media_gallery* tables
+
+===== 2020-05-05 3.0.106 =====
+  * Fixed auto-import categories on EE
+
+===== 2020-04-30 3.0.105 =====
+  * Fixed depricated url addSessionParam
+  * Fixed categories filter in product export on EE
+
+===== 2020-04-29 3.0.104 =====
+  * Fixed wrong saved filename displayed in Upload files tab
+
+===== 2020-04-13 3.0.103 =====
+  * Fixed Duplicate entry 'xx-xx' for key 'xxx', query was: INSERT INTO catalog_product_entity_media_gallery_value_to_entity
+
+===== 2020-04-12 3.0.102 =====
+  * Fixed Indexer handler is not available: elasticsearch
+
+===== 2020-04-10 3.0.101 =====
+  * Fixed media gallery entries not created
+
+===== 2020-04-01 3.0.99 =====
+  * Fixed usage of category.ids from different website issue sql error (should be warning)
+
+===== 2020-03-30 3.0.96 =====
+  * Fixed possible sql error during images import
+
+===== 2020-03-27 3.0.95 =====
+  * Fixed usage of category.ids in EE
+
+===== 2020-03-02 3.0.94 =====
+  * Fixed profile "save and run" redirect to new profile page when exception happens during run
+
+===== 2020-02-05 3.0.93 =====
+  * Added check for wrong attributes source which issue Invalid argument supplied for foreach() in Block/Adminhtml/Profile/Edit/Tab/Columns.php on line 83
+  * Fixed 2.3.4 Declaration of UrlRewriteDbStorage::insertMultiple($data) must be
+compatible with Magento\UrlRewrite\Model\Storage\DbStorage::insertMultiple($data): void
+
+===== 2020-01-14 3.0.92 =====
+  * Added "restrictions/magento_edition" flag support in urapidflow.xml config
+
+===== 2019-01-13 3.0.91 =====
+  * Added workaround in categories autocreate when category name doesn't match url_key
+  * Added workaround for magento bug in Product::getStoreIds in single store mode
+
+===== 2019-12-05 3.0.90 =====
+  * Added workaround to handle image urls with space char instead of %20
+  * Added exception handling around \Zend\Validator\File\MimeType::isValid call
+  * Added '400 Bad Request' handling during image fetch
+
+===== 2019-11-14 3.0.89 =====
+  * Fixed image resize problem on some themes by usage of Magento_MediaStorage resize features if that module available
+
+===== 2019-11-12 3.0.88 =====
+  * Added more informative logging of url_rewrites errors
+
+===== 2019-11-05 3.0.87 =====
+  * Fixed "Skip usage check when delete old image"=No doesn't work
+
+===== 2019-10-31 3.0.86 =====
+  * Fixed categories auto create set wrong parent_id in EE
+
+===== 2019-10-17 3.0.85 =====
+  * Removed "catalog_product_category" from full reindex list to eliminate redundant run after "catalog_category_product" reindex as they do the same
+  * Added safeguard code to eliminate duplicate run of category/product full reindex to fix possible
+  "Base table or view not found: catalog_category_product_index_store1_tmp doesn't exist"
+
+===== 2019-10-15 3.0.84 =====
+  * Fixed "category.ids" in EE export row_id instead of entity_id
+
+===== 2019-10-11 3.0.83 =====
+  * Fixed "Delete old image" doesn't remove the file when new value is empty
+
+===== 2019-10-10 3.0.82 =====
+  * Fixed "Retain remote subfolders" instead of save in subfolders save in root folder with / replaced with  -
+
+===== 2019-09-27 3.0.81 =====
+  * Fixed Undefined index: extension in \Magento\Framework\File\Uploader when import image name don't have extension
+
+===== 2019-09-24 3.0.80 =====
+  * Fixed realtime reindex
+
+===== 2019-08-14 3.0.77 =====
+  * Added 'Auto-archive Import File' option
+
+===== 2019-08-12 3.0.76 =====
+  * Fixed url_key gets updated with default value in non-admin storeview import
+    even if not exists in the import file
+  * Fixed products extra export filter in EE
+  * Added profile history tab
+  * Fixed "Allow mutable attributes" checkbox cannot be saved
+
 ===== 2019-07-05 3.0.75 =====
   * Added 'Generate resized images' option for magento >2.2.8
 

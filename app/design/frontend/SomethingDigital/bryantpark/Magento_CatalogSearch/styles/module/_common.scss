@@ -1,0 +1,269 @@
+//
+//  Common
+//  _____________________________________________
+
+.block-search {
+    margin-bottom: 0;
+
+    .block {
+        &-title {
+            display: none;
+        }
+    }
+
+    .block-content {
+        margin-bottom: 0;
+    }
+
+    .label {
+        @include icon-svg(
+            $icon       : search,
+            $fill       : $header-icons-color,
+            $fill-hover : $header-icons-color-hover,
+            $width      : 28px
+        );
+        display: flex;
+        align-items: center;
+        min-height: $header__icon-height;
+        margin-top: 2px;
+        margin-right: ($indent__s * 1.5);
+        float: right;
+        cursor: pointer;
+
+        &.active {
+            @include icon-svg(
+                $icon       : search,
+                $fill       : $header-icons-color-hover,
+                $width      : 28px
+            );
+
+            + .control {
+                .actions {
+                    display: block;
+                }
+
+                input {
+                    position: static;
+                }
+            }
+        }
+    }
+
+    .action.search {
+        display: none;
+    }
+
+    .control {
+        position: relative;
+        margin: 0 (-$layout__width-xs-indent) -1px;
+        padding: 0 $layout__width-xs-indent;
+        clear: both;
+
+        .actions {
+            @include max-screen($mobile-nav__breakpoint) {
+                display: none;
+            }
+        }
+    }
+
+    input {
+        left: -300%;
+        margin: 15px 0;
+        position: absolute;
+    }
+
+    .nested {
+        display: none;
+    }
+
+    .action.search {
+        @include icon-svg(
+            $icon       : search,
+            $fill       : $header-icons-color,
+            $fill-hover : $header-icons-color-hover,
+            $width      : 25px
+        );
+        @include lib-button-reset();
+        @include vertically-center($position: absolute);
+        display: inline-block;
+        padding: $indent__xs 0;
+        right: 10px;
+        z-index: 1;
+
+        @include max-screen($mobile-nav__breakpoint) {
+            right: 20px;
+            width: auto;
+        }
+
+        &:focus::before {
+            color: $color-gray20;
+        }
+
+        &[disabled] {
+            opacity: 1; // it's not really "disabled"
+        }
+    }
+}
+
+.search-autocomplete {
+    box-sizing: border-box;
+    display: none;
+    margin-top: -15px;
+    overflow: hidden;
+    position: absolute;
+    z-index: $dropdown-list__z-index;
+
+    ul {
+        @include lib-list-reset-styles();
+
+        li {
+            border-top: $autocomplete-item__border;
+            cursor: pointer;
+            margin: 0;
+            padding: $indent__xs $indent__xl $indent__xs $indent__s;
+            position: relative;
+            text-align: left;
+            white-space: normal;
+
+            @include hover {
+                background: $autocomplete-item__hover__color;
+            }
+
+            &:not(:empty) {
+                border-top: 0;
+                border: $autocomplete__border;
+                background: $autocomplete__background-color;
+            }
+
+            &:first-child {
+                border-top: none;
+            }
+
+            &.selected {
+                background: $autocomplete-item__hover__color;
+            }
+
+            .amount {
+                color: $autocomplete-item-amount__color;
+                position: absolute;
+                right: 7px;
+                top: $indent__xs;
+            }
+        }
+    }
+}
+
+.form.search.advanced {
+    .fields.range {
+        .field {
+            &:first-child {
+                position: relative;
+
+                .control {
+                    padding-right: 25px;
+
+                    &:after {
+                        content: ' \2013 ';
+                        display: inline-block;
+                        position: absolute;
+                        right: 0;
+                        text-align: center;
+                        top: 6px;
+                        width: 25px;
+                    }
+                }
+            }
+
+            &:last-child {
+                position: relative;
+
+                div.mage-error[generated] {
+                    left: 0;
+                    position: absolute;
+                    top: 32px;
+                }
+            }
+
+            &.with-addon {
+                .control {
+                    padding-right: 45px;
+                }
+            }
+        }
+    }
+
+    .group.price {
+        .addon {
+            .addafter {
+                background: none;
+                border: 0;
+                padding-top: 6px;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.search.summary {
+    margin-bottom: $indent__s;
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+@include max-screen($mobile-nav__breakpoint) {
+    .block-search {
+        .block-content {
+            margin-bottom: 0;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+@include min-screen($mobile-nav__breakpoint) {
+    .block-search {
+        float: right;
+        padding-left: 15px;
+        width: 250px;
+        z-index: 4;
+
+        .label {
+            @include lib-visually-hidden();
+        }
+
+        .control {
+            border-top: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nested {
+            display: block;
+            padding-top: 5px;
+            position: absolute;
+        }
+
+        input {
+            @include lib-input-placeholder() {
+                color: $form-element-input-placeholder__color;
+            }
+            margin: 0;
+            padding-right: 35px;
+            position: static;
+        }
+    }
+
+    .search-autocomplete {
+        margin-top: 0;
+    }
+}
+
+.catalogsearch-result-index .columns .sidebar-main {
+    order: 0;
+}

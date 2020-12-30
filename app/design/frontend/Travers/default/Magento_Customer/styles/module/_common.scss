@@ -73,6 +73,14 @@ $_password-very-strong: #81b562 !default;
     }
 }
 
+.form-login .field.note {
+    padding-right: $indent__m;
+
+    p {
+        margin-bottom: 15px;
+    }
+}
+
 .forget {
     .fieldset:before {
         margin-bottom: 10px;
@@ -81,6 +89,38 @@ $_password-very-strong: #81b562 !default;
             max-width: $form-field__width__desktop;
         }
     }
+}
+
+.customer-account-forgotpassword {
+    .column.main {
+        display: flex;
+        flex-direction: column;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .static-block {
+            @include min-screen($mobile-nav__breakpoint) {
+                padding-left: $indent__l !important; // override PageBuilder
+            }
+
+            @include min-screen($screen__l) {
+                width: 600px;
+            }
+        }
+
+        &::after{
+            content: "";
+            clear: both;
+            display: block;
+        }
+    }
+}
+
+.form.password.forget {
+    float: left;
 }
 
 .block-addresses-list {

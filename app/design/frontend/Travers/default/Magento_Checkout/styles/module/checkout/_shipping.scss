@@ -201,7 +201,7 @@ $checkout-shipping-method__padding             : $indent__base !default;
     }
 }
 
-.methods-shipping {
+form.methods-shipping {
     .shq-input {
         input {
             height: $form-element-input__height !important; // override ShipperHQ
@@ -211,10 +211,23 @@ $checkout-shipping-method__padding             : $indent__base !default;
             margin-bottom: $indent__base;
         }
 
+        select {
+            max-width: $form-field__width__desktop;
+            height: $select__height;
+            border: 1px solid $c-border;
+            font-size: 14px;
+        }
+
         label span::after {
             content: '*';
             color: $c-red;
             margin-left: 3px;
+        }
+
+        &#shq_customer_carrier_ph {
+            label span::after {
+                display: none;
+            }
         }
     }
 

@@ -1,0 +1,18 @@
+// helper class to set a container class on a block
+.container {
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: $layout__max-width;
+    padding-left: $layout-indent__width;
+    padding-right: $layout-indent__width;
+    width: auto;
+
+    @at-root :root#{&}--full-width {
+        max-width: 100%;
+        margin-left: 0; // remove bluefoot negative margin on full-width
+        margin-right: 0; // remove bluefoot negative margin on full-width
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

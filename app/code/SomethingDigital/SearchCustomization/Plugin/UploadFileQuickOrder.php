@@ -62,7 +62,8 @@ class UploadFileQuickOrder
                     ];
 
                     $skuSuffix = substr($item['sku'], strlen($product->getSku()));
-                    if ($skuSuffix !== '') {
+                    $suffixHasSymbols = strcspn($skuSuffix, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($skuSuffix);
+                    if ($skuSuffix !== '' && !$suffixHasSymbols) {
                         $this->session->setSkuSuffix($skuSuffix);
 
                         $currentQuote = $this->cart->getQuote();

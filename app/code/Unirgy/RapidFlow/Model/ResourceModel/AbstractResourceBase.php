@@ -75,6 +75,8 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
     const TABLE_CATALOG_PRODUCT_SUPER_LINK                        = 'catalog_product_super_link';
     const TABLE_CATALOG_PRODUCT_WEBSITE                           = 'catalog_product_website';
     const TABLE_CATALOGINVENTORY_STOCK_ITEM                       = 'cataloginventory_stock_item';
+    const TABLE_GIFTCARD_ACCOUNT                                  = 'magento_giftcardaccount';
+    const TABLE_GIFTCARD_ACCOUNT_HISTORY                          = 'magento_giftcardaccount_history';
     const TABLE_INVENTORY_SOURCE                                  = 'inventory_source';
     const TABLE_INVENTORY_STOCK                                   = 'inventory_stock';
     const TABLE_INVENTORY_SOURCE_ITEM                             = 'inventory_source_item';
@@ -793,7 +795,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
      */
     protected function _applyProductFilter($attr = 'main.entity_id')
     {
-        $attr = str_replace('entity_id', $this->_entityIdField, $attr);
+        //$attr = str_replace('entity_id', $this->_entityIdField, $attr);
         if (!empty($this->_filter['product_ids'])) {
             $this->_select->where("{$attr} in (?)", $this->_filter['product_ids']);
         }
@@ -924,13 +926,17 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                         $filename = array_pop($filenameArr) . $ds . $filename;
                     }
                     $slashPos = strpos($filename, $ds);
+                    $filename = str_replace(
+                        [' ', '%', '?',],
+                        '-',
+                        urldecode($filename));
                 } else {
                     $filename = $basename;
+                    $filename = str_replace(
+                        [' ', '%', '?', '/'],
+                        '-',
+                        urldecode($filename));
                 }
-                $filename = str_replace(
-                    [' ', '%', '?', '/'],
-                    '-',
-                    urldecode($filename));
             }
         } else {
             $slashPos = strpos($filename, $ds);
@@ -954,7 +960,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
         $warning = '';
         //error_log('4', 3, '/var/www/html/var/log/unirgy.log');
         $origBasename = basename($filename);
-        $cleanBasename = \Magento\Framework\File\Uploader::getCorrectFileName($origBasename);
+        $cleanBasename = $this->getCorrectFileName($origBasename);
         if ($origBasename!=$cleanBasename) {
             $filename = str_replace($origBasename, $cleanBasename, $filename);
             $warning .= __(' Corrected image name: %1.', $filename);
@@ -1064,7 +1070,8 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                     throw new \Exception(__('Unable to locate curl module'));
                 }
                 if (!$this->_downloadRemoteImagesBatch) {
-                    if (!($ch = curl_init($fromFilename))) {
+                    $__fromFilename = str_replace(' ', '%20', $fromFilename);
+                    if (!($ch = curl_init($__fromFilename))) {
                         throw new \Exception(__('Unable to open remote file: %1', $fromFilename));
                     }
                     if ($this->_curlCustomRequest) curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->_curlCustomRequest);
@@ -1086,6 +1093,9 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
                     }
                     if (false !== strpos($headResult, '404 Not Found')) {
                         throw new \Exception(__('"404 Not Found" response for remote file: %1', $fromFilename));
+                    }
+                    if (false !== strpos($headResult, '400 Bad Request')) {
+                        throw new \Exception(__('"400 Bad Request" response for remote file: %1', $fromFilename));
                     }
                     if (!($fp = fopen($toFilename, 'w'))) {
                         throw new \Exception(__('Unable to open local file for writing: %1', $toFilename));
@@ -1113,7 +1123,7 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
             if (!empty($fp)) {
                 fclose($fp);
             }
-            if (!$this->_isValidImageFile($toFilename)) {
+            if (!$this->_downloadRemoteImagesBatch && !$this->_isValidImageFile($toFilename)) {
                 @unlink($toFilename);
                 unset($this->_remoteImagesCache[$fromFilename]);
                 $error = __('Remote file is not an image: %1', $fromFilename);
@@ -1168,7 +1178,12 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
     protected function _isValidImageFile($filename)
     {
         $validator = new \Zend\Validator\File\MimeType('image/png,image/jpeg,image/pjpeg,image/gif');
-        return $validator->isValid($filename);
+        try {
+            $result = $validator->isValid($filename);
+        } catch (\Exception $e) {
+            $result = false;
+        }
+        return $result;
     }
 
     protected function _importProcessRemoteImageBatch()
@@ -1183,7 +1198,8 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
         $handles = [];
         foreach ($this->_remoteImagesBatch as $fromFilename => $toFilename) {
             try {
-                if (!($ch = curl_init($fromFilename))) {
+                $__fromFilename = str_replace(' ', '%20', $fromFilename);
+                if (!($ch = curl_init($__fromFilename))) {
                     throw new \Exception(__('Unable to open remote file: %1', $fromFilename));
                 }
                 if (!($fp = fopen($toFilename, 'w'))) {
@@ -1591,5 +1607,19 @@ abstract class AbstractResourceBase extends \Magento\Framework\Model\ResourceMod
     {
         $this->_write->insert($tableName, []);
         return $this->_write->lastInsertId($tableName);
+    }
+
+    public function getCorrectFileName($fileName)
+    {
+        $fileName = preg_replace('/[^a-z0-9_\\-\\.]+/i', '_', $fileName);
+        $fileInfo = pathinfo($fileName);
+
+        if (preg_match('/^_+$/', $fileInfo['filename'])) {
+            $fileName = 'file';
+            if (isset($fileInfo['extension'])) {
+                $fileName .= '.'.$fileInfo['extension'];
+            }
+        }
+        return $fileName;
     }
 }

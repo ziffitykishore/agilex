@@ -1,0 +1,109 @@
+<?php
+// social helper
+$social = $this->helper('SomethingDigital\BryantPark\Helper\Social');
+
+// profiles
+$instagram = $social->getInstagram();
+$facebook = $social->getFacebook();
+$pinterest = $social->getPinterest();
+$twitter = $social->getTwitter();
+$googleplus = $social->getGooglePlus();
+$snapchat = $social->getSnapchat();
+$houzz = $social->getHouzz();
+$linkedin = $social->getLinkedIn();
+$youtube = $social->getYoutube();
+?>
+
+<h2 class="visuallyhidden"><?php echo __('Follow us on social media') ?></h2>
+<ul class="social-links">
+    <?php if ($instagram): ?>
+    <li>
+        <a href="<?php echo $instagram ?>" target="_blank" rel="noopener noreferrer" data-network="instagram">
+            <span class="visuallyhidden"><?php echo __('Instagram') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#instagram" xlink:href="#instagram"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($facebook): ?>
+    <li>
+        <a href="<?php echo $facebook ?>" target="_blank" rel="noopener noreferrer" data-network="facebook">
+            <span class="visuallyhidden"><?php echo __('Facebook') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#facebook" xlink:href="#facebook"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($pinterest): ?>
+    <li>
+        <a href="<?php echo $pinterest ?>" target="_blank" rel="noopener noreferrer" data-network="pinterest">
+            <span class="visuallyhidden"><?php echo __('Pinterest') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#pinterest" xlink:href="#pinterest"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($twitter): ?>
+    <li>
+        <a href="<?php echo $twitter ?>" target="_blank" rel="noopener noreferrer" data-network="twitter">
+            <span class="visuallyhidden"><?php echo __('Twitter') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#twitter" xlink:href="#twitter"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($googleplus): ?>
+    <li>
+        <a href="<?php echo $googleplus ?>" target="_blank" rel="noopener noreferrer">
+            <span class="visuallyhidden"><?php echo __('Google Plus') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#googleplus" xlink:href="#googleplus"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($snapchat): ?>
+    <li>
+        <a href="<?php echo $snapchat ?>" target="_blank" rel="noopener noreferrer" data-network="snapchat">
+            <span class="visuallyhidden"><?php echo __('Snapchat') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#snapchat" xlink:href="#snapchat"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($houzz): ?>
+    <li>
+        <a href="<?php echo $houzz ?>" target="_blank" rel="noopener noreferrer" data-network="houzz">
+            <span class="visuallyhidden"><?php echo __('Houzz') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#houzz" xlink:href="#houzz"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($linkedin): ?>
+    <li>
+        <a href="<?php echo $linkedin ?>" target="_blank" rel="noopener noreferrer" data-network="linkedin">
+            <span class="visuallyhidden"><?php echo __('LinkedIn') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#linkedin" xlink:href="#linkedin"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+    <?php if ($youtube): ?>
+    <li>
+        <a href="<?php echo $youtube ?>" target="_blank" rel="noopener noreferrer" data-network="youtube">
+            <span class="visuallyhidden"><?php echo __('Youtube') ?></span>
+            <svg class="icon icon-menu" role="img" focusable="false">
+                <use href="#youtube" xlink:href="#youtube"></use>
+            </svg>
+        </a>
+    </li>
+    <?php endif; ?>
+</ul>

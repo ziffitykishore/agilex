@@ -74,7 +74,7 @@ class LoginRedirect
                 try {
                     $customer = $this->customerRepository->get($login['username']);
                 } catch (NoSuchEntityException $e) {
-                    throw new InvalidEmailOrPasswordException(__('Invalid login or password.'));
+                    return $proceed();
                 }
 
                 $customerStoreId = $customer->getStoreId();

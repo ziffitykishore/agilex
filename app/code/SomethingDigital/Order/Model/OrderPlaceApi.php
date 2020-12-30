@@ -7,7 +7,6 @@ use Magento\Framework\HTTP\ClientFactory;
 use SomethingDigital\Sx\Logger\Logger;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Customer\Model\Session;
 use SomethingDigital\ApiMocks\Helper\Data as TestMode;
 use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Sales\Model\Order\ItemRepository;
@@ -19,9 +18,12 @@ use Magento\Company\Api\CompanyManagementInterface;
 use Magento\Company\Api\CompanyRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Directory\Model\Region;
+use SomethingDigital\Order\Model\OrderApiResponse;
 
 class OrderPlaceApi extends Adapter
 {
+    const XML_PATH_API_USE_NEW_ORDER_API_ENDPOINT = 'sx/general/use_new_api_order_endpoint';
+
     protected $session;
     protected $addressRepository;
     protected $orderItemRepository;
@@ -29,13 +31,13 @@ class OrderPlaceApi extends Adapter
     protected $companyManagement;
     protected $companyRepository;
     protected $region;
+    protected $orderApiResponse;
 
     public function __construct(
         ClientFactory $curlFactory,
         Logger $logger,
         ScopeConfigInterface $config,
         StoreManagerInterface $storeManager,
-        Session $session,
         TestMode $testMode,
         AddressRepositoryInterface $addressRepository,
         ItemRepository $orderItemRepository,
@@ -45,7 +47,8 @@ class OrderPlaceApi extends Adapter
         CustomerRepositoryInterface $customerRepository,
         CompanyManagementInterface $companyManagement,
         CompanyRepositoryInterface $companyRepository,
-        Region $region
+        Region $region,
+        OrderApiResponse $orderApiResponse
     ) {
         parent::__construct(
             $curlFactory,
@@ -57,68 +60,99 @@ class OrderPlaceApi extends Adapter
             $cacheTypeList,
             $encryptor
         );
-        $this->session = $session;
         $this->addressRepository = $addressRepository;
         $this->orderItemRepository = $orderItemRepository;
         $this->customerRepository = $customerRepository;
         $this->companyManagement = $companyManagement;
         $this->companyRepository = $companyRepository;
         $this->region = $region;
+        $this->orderApiResponse = $orderApiResponse;
     }
 
     public function sendOrder($order)
     {
-        if (!$this->isTestMode()) {
+        if (!$this->isTestMode() && $this->canUseNewApiOrderEndpoint()) {
+            $this->requestPath = 'api/Order/ProcessMagentoOrder/' . $order->getEntityId();
+        } elseif (!$this->isTestMode()) {
             $this->requestPath = 'api/Order';
         } else {
             $this->requestPath = 'api-mocks/Order/PlaceOrder';
         }
 
-        $shipto = $this->getCustomerAddress($order, 'shipping');
+        if (!$this->canUseNewApiOrderEndpoint()) {
+            $shipto = $this->getCustomerAddress($order, 'shipping');
+            $shipToData = (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '';
+            $shipToData['ShipToPo'] = $order->getCheckoutShiptopo();
 
-        $this->requestBody = [
-            'SxId' => '',
-            'ShipTo' => (!empty($shipto)) ? $this->assignAddressInformation($shipto) : '',
-            'Customer' => $this->getCustomerInfo($order),
-            'LineItems' => $this->getItems($order),
-            'externalIds' => '',
-            'PurchaseOrderId' => $order->getCheckoutPonumber(),
-            'ShipServiceCode' => $order->getShippingMethod(),
-            'Date' => $order->getCreatedAt(),
-            'Total' => $order->getGrandTotal(),
-            'Tax' => $order->getTaxAmount(),
-            'ShipFee' => $order->getShippingAmount(),
-            'DiscountAmount' => $order->getDiscountAmount(),
-            'CreditTermsMessage' => '',
-            'Notes' => '',
-            'Payments' => $this->getPaymentInfo($order)
-        ];
+            $this->requestBody = [
+                'SxId' => '',
+                'ShipTo' => $shipToData,
+                'Customer' => $this->getCustomerInfo($order),
+                'LineItems' => $this->getItems($order),
+                'externalIds' => $order->getIncrementId(),
+                'PurchaseOrderId' => $order->getCheckoutPonumber(),
+                'ShippingMethod' => $order->getShippingMethod(),
+                'Date' => $order->getCreatedAt(),
+                'Total' => $order->getGrandTotal(),
+                'Tax' => $order->getTaxAmount(),
+                'ShipFee' => $order->getShippingAmount(),
+                "CouponCode" => $order->getCouponCode(),
+                'DiscountAmount' => $order->getDiscountAmount(),
+                'DeliveryNotes' => $order->getCheckoutDeliverypoint(),
+                'Notes' => $order->getCheckoutOrdernotes(),
+                'Payments' => $this->getPaymentInfo($order)
+            ];
+        }
+        $response = $this->postRequest();
+        $result = $this->orderApiResponse->process($order, $response, $this->isSuccessful($response['status']));
 
-        return $this->postRequest();
+        return $result;
+    }
+
+    /**
+     * Check whether we can use new order endpoint to process magento order
+     *
+     * @return bool
+     */
+    protected function canUseNewApiOrderEndpoint()
+    {
+        return $this->getConfig(static::XML_PATH_API_USE_NEW_ORDER_API_ENDPOINT);
     }
 
     /**
      * @return string
      */
-    protected function getCustomerAccountId()
+    protected function getCustomerAccountId($order)
     {
-        if (($accountId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_account_id'))) {
-            return $accountId->getValue();
-        } else {
-            return '';
+        if ($order->getCustomerId()) {
+            try {
+                $customer = $this->customerRepository->getById($order->getCustomerId());
+                if ($customer->getCustomAttribute('travers_account_id')) {
+                    return $customer->getCustomAttribute('travers_account_id')->getValue();
+                }
+            } catch (\Exception $e) {
+
+            }
         }
+        return $order->getTraversAccountId();
     }
 
     /**
      * @return string
      */
-    protected function getCustomerContactId()
+    protected function getCustomerContactId($order)
     {
-        if (($contactId = $this->session->getCustomerDataObject()->getCustomAttribute('travers_contact_id'))) {
-            return $contactId->getValue();
-        } else {
-            return '';
+        if ($order->getCustomerId()) {
+            try {
+                $customer = $this->customerRepository->getById($order->getCustomerId());
+                if ($customer->getCustomAttribute('travers_contact_id')) {
+                    return $customer->getCustomAttribute('travers_contact_id')->getValue();
+                }
+            } catch (\Exception $e) {
+
+            }
         }
+        return '';
     }
 
     protected function getCustomerInfo($order)
@@ -134,7 +168,7 @@ class OrderPlaceApi extends Adapter
 
             if ($company) {
                 $companyAddress = [
-                    "id" => $this->getCustomerContactId(),
+                    "id" => $this->getCustomerContactId($order),
                     "Company" => $company->getCompanyName(),
                     "ToName" => $company->getCompanyName(),
                     "Line1" => (isset($company->getStreet()[0])) ? $company->getStreet()[0] : '',
@@ -152,7 +186,7 @@ class OrderPlaceApi extends Adapter
         }
 
         $customerInfo = [
-            "Id" => $this->getCustomerAccountId(),
+            "Id" => $this->getCustomerAccountId($order),
             "Name" => $companyAddress['ToName'],
             "Address" => $companyAddress,
             "Comment" => '',
@@ -162,7 +196,7 @@ class OrderPlaceApi extends Adapter
             "StatusType" => '',
             "FreightAccountNumber" => $customerFreightAccount,
             "Contact" => [
-                "Id" => $this->getCustomerContactId(),
+                "Id" => $this->getCustomerContactId($order),
                 "ContactType" => "",
                 "TypeDescription" => "",
                 "Email" => $order->getCustomerEmail(),
@@ -171,9 +205,9 @@ class OrderPlaceApi extends Adapter
                 "MiddleName" => $order->getCustomerMiddlename(),
                 "LastName" => $order->getCustomerLastname(),
                 "GroupCode" => "",
-                "CustomerId" => $this->getCustomerAccountId(),
+                "CustomerId" => $this->getCustomerAccountId($order),
                 "Addresses" => [],
-                "MagentoId" => $order->getIncrementId(),
+                "MagentoId" => $order->getCustomerId(),
                 "ProspectId" => ""
             ]
         ];
@@ -225,7 +259,8 @@ class OrderPlaceApi extends Adapter
                     "Qty" => intval($value->getQtyOrdered()),
                     "SoldPrice" => $price,
                     "CostAtTimeOfPurchase" => $price,
-                    "DiscountAmount" => $discountAmount
+                    "DiscountAmount" => $discountAmount,
+                    "DiscountSuffix" => $order->getSuffix()
                 ];
             }
         }

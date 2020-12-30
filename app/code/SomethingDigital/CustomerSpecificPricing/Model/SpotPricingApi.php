@@ -14,6 +14,8 @@ use Magento\Checkout\Model\Cart;
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Framework\Stdlib\ArrayManager;
 
 class SpotPricingApi extends Adapter
 {
@@ -22,6 +24,8 @@ class SpotPricingApi extends Adapter
     protected $session;
     protected $sessionManager;
     protected $cart;
+    protected $currency;
+    protected $arrayManager;
 
     public function __construct(
         ClientFactory $curlFactory,
@@ -34,7 +38,9 @@ class SpotPricingApi extends Adapter
         Cart $cart,
         WriterInterface $configWriter,
         TypeListInterface $cacheTypeList,
-        EncryptorInterface $encryptor
+        EncryptorInterface $encryptor,
+        PriceCurrencyInterface $currency,
+        ArrayManager $arrayManager
     ) {
         parent::__construct(
             $curlFactory,
@@ -49,6 +55,8 @@ class SpotPricingApi extends Adapter
         $this->session = $session;
         $this->sessionManager = $sessionManager;
         $this->cart = $cart;
+        $this->currency = $currency;
+        $this->arrayManager = $arrayManager;
     }
 
     /**
@@ -93,8 +101,8 @@ class SpotPricingApi extends Adapter
 
         $response = $this->postRequest();
 
-        if ($response && isset($response['body'])) {
-            return $response['body'];
+        if ($response && isset($response['body']) && $this->isSuccessful($response['status'])) {
+            return $this->convertPrices($response['body']);
         }
         return false;
     }
@@ -111,4 +119,34 @@ class SpotPricingApi extends Adapter
         }
     }
 
+    /**
+     * @return array
+     */
+    protected function convertPrices($response)
+    {
+        $store = $this->storeManager->getStore()->getStoreId();
+
+        if (is_array($response)) {
+            foreach ($response as $key => $productPrices) {
+                $response[$key]['DiscountPrice'] = $this->currency->convert(
+                    $this->arrayManager->get('DiscountPrice', $productPrices, 0),
+                    $store
+                );
+                $response[$key]['QtyPrice1'] = $this->currency->convert(
+                    $this->arrayManager->get('QtyPrice1', $productPrices, 0),
+                    $store
+                );
+                $response[$key]['QtyPrice2'] = $this->currency->convert(
+                    $this->arrayManager->get('QtyPrice2', $productPrices, 0),
+                    $store
+                );
+                $response[$key]['QtyPrice3'] = $this->currency->convert(
+                    $this->arrayManager->get('QtyPrice3', $productPrices, 0),
+                    $store
+                );
+            }
+        }
+
+        return $response;
+    }
 }

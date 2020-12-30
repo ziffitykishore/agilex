@@ -24,10 +24,16 @@
         padding: 0 $indent__m;
         padding-bottom: $indent__l;
         overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
         img {
-            max-width: none;
-            margin-top: 50px;
+            max-width: 100px;
+            margin-top: $indent__s;
         }
 
         .message {
@@ -63,14 +69,19 @@
     .product-name {
         font-weight: $font-weight__semibold;
         font-family: $font-family__base;
-        color: $c-aluminum;
         letter-spacing: 0;
     }
 
+    .pricing p {
+        color: $c-aluminum;
+    }
+
     .product-name {
+        color: $c-cobalt;
+
         @include hover {
             text-decoration: none;
-            color: $c-cobalt;
+            color: $c-royal;
         }
     }
 
@@ -191,5 +202,79 @@
 
     100% {
         transform: translate(19px, 0);
+    }
+}
+
+// Stock status modal
+.ReactModal__Overlay {
+    z-index: 100;
+    background-color: rgba(0, 0, 0, .7) !important; // override React Modal
+
+    .modal-close-btn {
+        @include lib-button-reset();
+
+        @include icon-svg(
+            $icon       : remove,
+            $fill       : $text__color,
+            $fill-hover : $link__color,
+            $width      : 17px,
+            $height     : 15px,
+            $pseudo     : after
+        );
+
+        &::after {
+            position: absolute;
+            top: $indent__base;
+            right: $indent__base;
+        }
+    }
+}
+
+.ReactModal__Content {
+    top: 50% !important; // override React Modal
+    left: 50% !important; // override React Modal
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 330px;
+    background-color: $color-white !important; // override React Modal
+
+    h2 {
+        text-align: center;
+    }
+
+    table {
+        margin-top: $indent__m;
+
+        thead {
+            border-bottom: 2px solid $primary__color;
+            font-size: $font-size__base--desktop;
+
+            th {
+                padding-bottom: $indent__xs;
+            }
+        }
+
+        tr {
+            border-bottom: 1px solid $c-grey;
+        }
+
+        td {
+            padding: 8px $indent__s;
+        }
+    }
+}
+
+.stock-modal-trigger {
+    @include lib-button-reset();
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: $font-weight__semibold;
+    font-family: $font-family__sans-serif;
+    color: $link__color;
+    margin: $indent__s;
+    margin-left: 0;
+
+    @include hover {
+        color: $c-royal;
     }
 }

@@ -1,5 +1,30 @@
 import $ from 'jquery';
 import domready from 'domready';
+import breakpoints from '../utils/breakpoints';
+
+const $menuItem = $('.level-top.level0 a');
+
+const toggleMobileSubmenu = menuItem => {
+  menuItem.next('.static-block-submenu').toggle();
+}
+
+window.require(['matchMedia'], function(mediaCheck) {
+  mediaCheck({
+    media: `(max-width: ${breakpoints.mobile__nav__breakpoint}px)`,
+    entry: function () {
+      $menuItem.click(e => {
+        e.stopPropagation();
+
+        if ($(e.currentTarget).find('span').length) {
+          e.preventDefault();
+        }
+
+        toggleMobileSubmenu($(e.currentTarget));
+      });
+    },
+    exit: function () {}
+  });
+});
 
 domready(() => {
   // this clones the account links from desktop to the mobile account menu
@@ -17,32 +42,10 @@ domready(() => {
     if ($(this).find('.mobile-submenu').length > 0) {
       $(this).addClass('has-mobile-submenu');
     }
-  });
 
-  $('.level-top.level0').on('click', function() {
-    $(this).find('.mobile-submenu').toggleClass('show');
-  })
-
-  const hideGroupHeaders = (view, item) => {
-    const maxGroupCount = 3;
-
-    for (let i = 1; i <= maxGroupCount; i++) {
-      $(`.${view}-and-flyout .group--level-${i}`).each(function () {
-        if ($(this).find($(`.${item}`)).length === 0) {
-          $(this).hide();
-        } else {
-          $(this).show();
-        }
-      });
-    }
-  }
-
-  $(window).on('refined', function() {
-    // TODO -> remove setTimeout
-    setTimeout(() => {
-      hideGroupHeaders('list', 'list-item');
-      hideGroupHeaders('table', 'react-bootstrap-table');
-    }, 1);
+    $(this).hover(() => {
+      $('.submenu').css('display', 'none').attr('aria-expanded', 'false');
+      $(this).find('.desktop-submenu').css('display', 'block').attr('aria-expanded', 'true');
+    });
   });
 });
-

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <remove src="mage/gallery/gallery.css"/>
+        <link src="js/dist/pdp.js" />
+    </head>
+    <body>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <move element="product.info.main" destination="product.hero.info"/>
+        <move element="product.info.media" destination="product.hero.info"/>
+        <move element="product.info.details" destination="product.hero.info"/>
+        <move element="product.info.overview" destination="product.info.main" after="product.info.price"/>
+        <move element="catalog.product.related" destination="product.hero.container"/>
+        <referenceContainer name="content">
+            <container name="product.hero.container" htmlTag="div" htmlClass="product-hero" before="-">
+                <container name="product.hero.info" htmlTag="div" htmlClass="product-hero__info" before="-"/>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="product.hero.container">
+            <block class="Magento\Framework\View\Element\Template" name="product.view.activate_zoom" template="Magento_Catalog::product/view/zoom.phtml" before="-" />
+        </referenceContainer>
+    </body>
+</page>

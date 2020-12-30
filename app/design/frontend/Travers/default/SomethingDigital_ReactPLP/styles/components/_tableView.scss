@@ -74,7 +74,6 @@
 }
 
 .react-bootstrap-table {
-
     thead,
     tbody {
         display: block;
@@ -95,22 +94,8 @@
             }
         }
     }
+}
 
-    tbody {
-        max-height: 500px;
-        overflow-y: auto;
-
-        tr:nth-of-type(n+10) {
-            display: none;
-        }
-    }
-
-
-    .sticky tbody {
-        max-height: 800px;
-
-        tr:nth-of-type(n+10) {
-            display: inline-flex;
-        }
-    }
+.catalog-category-view .grecaptcha-badge {
+    visibility: hidden !important; // override inline styling
 }

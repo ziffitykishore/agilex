@@ -1,0 +1,38 @@
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="devdocs-base" type="host">*.cenpos.com</value>
+                <value id="cenposscript" type="host">*.cenpos.net</value>
+                <value id="googlescript" type="host">*.google.com</value>
+                <value id="gstaticscript" type="host">*.gstatic.com</value>
+                <value id="cardinalcommerce" type="host">*.cardinalcommerce.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="cenpos_url" type="host">*.cenpos.net</value>
+                <value id="devdocs-base" type="host">*.cenpos.com</value>
+                <value id="googlescript" type="host">*.google.com</value>
+                <value id="gstaticscript" type="host">*.gstatic.com</value>
+                <value id="cardinalcommerce" type="host">*.cardinalcommerce.com</value>
+            </values>
+        </policy>
+        <policy id="img-src">
+            <values>
+                <value id="cenpos_url" type="host">*.cenpos.net</value>
+                <value id="devdocs-base" type="host">*.cenpos.com</value>
+            </values>
+        </policy>
+        <policy id="form-action">
+            <values>
+                <value id="cenpos_url" type="host">*.cenpos.net</value>
+                <value id="devdocs-base" type="host">*.cenpos.com</value>
+                <value id="googlescript" type="host">*.google.com</value>
+                <value id="gstaticscript" type="host">*.gstatic.com</value>
+                <value id="cardinalcommerce" type="host">*.cardinalcommerce.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

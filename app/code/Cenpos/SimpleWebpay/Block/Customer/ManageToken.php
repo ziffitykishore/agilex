@@ -55,8 +55,12 @@ class ManageToken extends \Magento\Framework\View\Element\Template
                 $Street = "";
             } 
 
-            $this->_coreRegistry->register('urloption', $this->_paymentMethod->getConfigData('url'));
-            $ch = curl_init($this->_paymentMethod->getConfigData('url')."/?app=genericcontroller&action=siteVerify");
+            $urlswp = $this->_paymentMethod->getConfigData('url');
+            $endurlswp = substr($urlswp, strlen($urlswp) - 1);
+            $urlswp = $endurlswp == "/" ? $urlswp : $urlswp ."/";
+
+            $this->_coreRegistry->register('urloption', $urlswp);
+            $ch = curl_init($urlswp."/?app=genericcontroller&action=siteVerify");
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_POST, 1);
             $email = "";
@@ -91,8 +95,12 @@ class ManageToken extends \Magento\Framework\View\Element\Template
             $ResponseSave->Message = $ex->getMessage();
             $ResponseSave->Result = -1;
         }
-        
-        $ResponseSave->Url = $this->_paymentMethod->getConfigData('url_view');
+
+        $url_view = $this->_paymentMethod->getConfigData('url_view');
+        $endurlswp = substr($url_view, strlen($url_view) - 1);
+        $url_view = $endurlswp == "/" ? $url_view : $url_view ."/";
+
+        $ResponseSave->Url = $url_view;
         
         return $ResponseSave;
     }
@@ -104,6 +112,10 @@ class ManageToken extends \Magento\Framework\View\Element\Template
 
     public function geturlprocess()
     {
-        return  $this->_paymentMethod->getConfigData('url_view');
+        $url_view = $this->_paymentMethod->getConfigData('url_view');
+        $endurlswp = substr($url_view, strlen($url_view) - 1);
+        $url_view = $endurlswp == "/" ? $url_view : $url_view ."/";
+
+        return  $url_view;
     }
 }

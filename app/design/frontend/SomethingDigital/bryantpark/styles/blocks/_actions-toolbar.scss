@@ -1,0 +1,61 @@
+.actions-toolbar {
+    @include lib-actions-toolbar();
+
+    @include max-screen($screen__m) {
+        @include lib-actions-toolbar-clear-floats();
+    }
+
+    > .primary,
+    > .secondary {
+        margin-bottom: $indent__s;
+
+        .action {
+            margin-bottom: $indent__s;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    > .primary .action {
+        text-align: center;
+
+        @include max-screen($screen__xs) {
+            margin-right: 0;
+        }
+    }
+
+    > .secondary .action.back {
+        display: none;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+@include min-screen($screen__m) {
+    .actions-toolbar {
+        > .secondary,
+        > .primary {
+            margin-bottom: 0;
+
+            .action {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    form {
+        .actions-toolbar {
+            .column:not(.sidebar-additional) &,
+            .column:not(.sidebar-main) & {
+                @extend .abs-margin-for-forms-desktop;
+            }
+        }
+    }
+}

@@ -32,7 +32,8 @@ class CanProcessRule
             !$applyDiscountIfCSP &&
             $quoteItem->getIsCustomerSpecificPriceApplied() &&
             !$quoteItem->getIsCustomerSpecificTierPriceApplied() &&
-            $rule->getSimpleFreeShipping() == 0
+            $rule->getSimpleFreeShipping() == 0 &&
+            $rule->getSkuSuffix() == ''
         ) {
             return false;
         }
@@ -40,7 +41,8 @@ class CanProcessRule
         if (
             !$applyDiscountIfCSTP &&
             $quoteItem->getIsCustomerSpecificTierPriceApplied() &&
-            $rule->getSimpleFreeShipping() == 0
+            $rule->getSimpleFreeShipping() == 0 &&
+            $rule->getSkuSuffix() == ''
         ) {
             return false;
         }
@@ -48,7 +50,8 @@ class CanProcessRule
         if (
             !$applyDiscountIfSuffix &&
             $quoteItem->getQuote()->getSuffix() &&
-            $rule->getSimpleFreeShipping() == 0
+            $rule->getSimpleFreeShipping() == 0 &&
+            $rule->getSkuSuffix() == ''
         ) {
             return false;
         }

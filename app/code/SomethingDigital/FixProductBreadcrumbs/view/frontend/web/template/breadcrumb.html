@@ -1,0 +1,17 @@
+<div class="breadcrumbs">
+    <ul class="items">
+        <li class="item home">
+            <a href="/" data-bind="i18n: 'Home'"></a>
+        </li>
+        <!-- ko foreach: { data: getBreadcrumbs(), as: 'element' } -->
+        <li class="item product">
+            <!-- ko if: element.url != "" -->
+            <a data-bind="attr: { href: element.url}, text: element.name"></a>
+            <!-- /ko -->
+            <!-- ko if: element.url == ""  -->
+            <span data-bind="text: element.name"></span>
+            <!-- /ko -->
+        </li>
+        <!-- /ko -->
+    </ul>
+</div>

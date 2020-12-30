@@ -129,6 +129,11 @@ $nav-section-title__height: 60px;
         }
     }
 
+    .level0.first .desktop-submenu {
+        left: 70px;
+        top: 45px;
+    }
+
     .first .all-text {
         display: none;
     }
@@ -301,6 +306,14 @@ $nav-section-title__height: 60px;
                         }
                     }
                 }
+            }
+        }
+
+        .pagebuilder-column {
+            padding: 0 !important; // override PageBuilder Nav custom block
+
+            p:last-of-type a {
+                padding-bottom: 0;
             }
         }
 

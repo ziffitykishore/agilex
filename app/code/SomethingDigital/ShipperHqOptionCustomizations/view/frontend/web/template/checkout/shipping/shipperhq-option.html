@@ -69,19 +69,19 @@
         <label class="label shq-title" for="shipperhq_customer_carrier">
             <span data-bind="i18n: 'Customer Carrier'"></span>
         </label>
-        <input type="text" id="shipperhq_customer_carrier" name="shipperhq-option"/>
-    </div>
-    <div id="shq_customer_carrier_ph" data-bind="fadeVisible: shouldShowCustomerCarrierPh" class="shq-input shq-optn-100">
-        <label class="label shq-title" for="shipperhq_customer_carrier_ph">
-            <span data-bind="i18n: 'Customer Carrier Phone Number'"></span>
-        </label>
-        <input type="text" id="shipperhq_customer_carrier_ph" name="shipperhq-option"/>
+        <select id="shipperhq_customer_carrier"  name="shipperhq-option" data-bind="options: getCustomerCarrierOptions(), optionsCaption: 'Choose...'"></select>
     </div>
     <div id="shq_customer_carrier_account" data-bind="fadeVisible: shouldShowCustomerCarrierAccount" class="shq-input shq-optn-100">
         <label class="label shq-title" for="shipperhq_customer_carrier_account">
             <span data-bind="i18n: 'Customer Carrier Account Number'"></span>
         </label>
         <input data-bind="value: getCustomerCarrierAccountNumber()" type="text" id="shipperhq_customer_carrier_account" name="shipperhq-option"/>
+    </div>
+    <div id="shq_customer_carrier_ph" data-bind="fadeVisible: shouldShowCustomerCarrierPh" class="shq-input shq-optn-100">
+        <label class="label shq-title" for="shipperhq_customer_carrier_ph">
+            <span data-bind="i18n: 'Customer Carrier Phone Number (Optional)'"></span>
+        </label>
+        <input type="text" id="shipperhq_customer_carrier_ph" name="shipperhq-option"/>
     </div>
 </div>
 <div style="clear:both;"></div>

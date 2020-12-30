@@ -80,14 +80,18 @@ class Columns
                         continue;
                     }
                     $opts = $a->getSource()->getAllOptions();
-                    foreach ($opts as $o) {
-                        if (is_array($o['value'])) {
-                            foreach ($o['value'] as $o1) {
-                                $attr['options'][$o['label']][$o1['value']] = $o1['label'];
+                    if (is_array($opts) || (is_object($opts) && ($opts instanceof \Traversable))) {
+                        foreach ($opts as $o) {
+                            if (is_array($o['value'])) {
+                                foreach ($o['value'] as $o1) {
+                                    $attr['options'][$o['label']][$o1['value']] = $o1['label'];
+                                }
+                            } elseif (is_scalar($o['value'])) {
+                                $attr['options'][$o['value']] = $o['label'];
                             }
-                        } elseif (is_scalar($o['value'])) {
-                            $attr['options'][$o['value']] = $o['label'];
                         }
+                    } else {
+                        $attr['options'] = [];
                     }
                 } catch (\Exception $e) {
                     // can be all kinds of custom source models, just ignore

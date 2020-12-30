@@ -10,6 +10,8 @@ use Magento\Framework\Stdlib\ArrayManager;
 use SomethingDigital\CustomerSpecificPricing\Helper\Data;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Quote\Api\CartRepositoryInterface;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class Quote
 {
@@ -48,6 +50,16 @@ class Quote
      */
     private $quoteRepository;
 
+    /**
+     * @var PriceCurrencyInterface
+     */
+    protected $currency;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
 
     public function __construct(
         SpotPricingApi $spotPricingApi,
@@ -56,7 +68,9 @@ class Quote
         ArrayManager $arrayManager,
         Data $helper,
         ProductRepositoryInterface $productRepo,
-        CartRepositoryInterface $quoteRepository
+        CartRepositoryInterface $quoteRepository,
+        PriceCurrencyInterface $currency,
+        StoreManagerInterface $storeManager
     ) {
         $this->spotPricingApi = $spotPricingApi;
         $this->logger = $logger;
@@ -65,20 +79,29 @@ class Quote
         $this->helper = $helper;
         $this->productRepo = $productRepo;
         $this->quoteRepository = $quoteRepository;
+        $this->currency = $currency;
+        $this->storeManager = $storeManager;
     }
 
-    public function repriceCustomerQuote($suffix = null)
+    public function repriceCustomerQuote($suffix = null, $quote = null)
     {
-        $items = $this->cart->getQuote()->getAllItems();
+        if ($quote) {
+            $items = $quote->getAllItems();
+        } else {
+            $items = $this->cart->getQuote()->getAllItems();
+        }
 
         if ($items) {
             $productRegularPrices = [];
             $productSkus = [];
+            $store = $this->storeManager->getStore()->getStoreId();
 
             try {
                 foreach ($items as $item) {
                     $product = $this->productRepo->getById($item->getProductId());
-                    $productsRegularPrices[$product->getSku()] = $product->getPrice();
+                    $productsRegularPrices[$product->getSku()] = $this->currency->convert(
+                        $product->getPrice(), $store
+                    );
                     $productSkus[] = $product->getSku();
                 }
 
@@ -116,6 +139,7 @@ class Quote
                         $spotPrice = isset($spotPrices[$item->getSku()]) ? $spotPrices[$item->getSku()] : false;
                         if ($spotPrice && $spotPrice < $productsRegularPrices[$item->getSku()]) {
                             $customPrice = $spotPrice;
+                            $item->setIsCustomerSpecificPriceApplied(true);
                         }
                         $tierPrice = $this->helper->getTierPrice($allPrices, $item->getSku(), $item->getQty());
                         if ($tierPrice) {
@@ -125,16 +149,8 @@ class Quote
                         $item->setCustomPrice($customPrice);
                         $item->setOriginalCustomPrice($customPrice);
                         $item->getProduct()->setIsSuperMode(true);
-
-                        $item->setIsCustomerSpecificPriceApplied(true);
-                        $item->save();
                     }
                 }
-
-                $quote = $this->quoteRepository->get($this->cart->getQuote()->getId());
-                $quote->collectTotals();
-                $this->quoteRepository->save($quote);
-
             } catch (LocalizedException $e) {
                 $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
             }

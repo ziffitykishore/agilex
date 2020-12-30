@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <resource>Magento_CatalogSearch::config_cacheable_search_term</resource>
+            <group id="search">
+                <field id="cacheable_search_term" translate="label comment" type="select" sortOrder="101" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Use Cacheable Popular Search Term</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[This setting will prevent database query from running.]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -26,13 +26,25 @@ define([
                 var prices = response.data[sku];
 
                 prices = self.removeIfZero(prices);
-
-                $('.product-info-main > table.prices-tier').hide(); //Is unhidden later if tierPricing occurs
+                var basePrice = $('.price-field').first().data('price');
+                if ($('.prices-tier.items').length) {
+                    // update magento tier prices if customer special price is lower
+                    $('.price-field').each(function() {
+                        if ($(this).data('price') > prices['unitPrice']) {
+                            $('span.price', $(this)).text(prices['currencySymbol'] + prices['unitPrice'].toFixed(2));
+                            var saving = self.getSaveBreak(basePrice, prices['unitPrice']);
+                            var index = $(this).data('index');
+                            $('.col-' + index).text(saving);
+                        }
+                    });
+                }
 
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
                   $('.as-low-as').hide();
                   return;
                 }
+
+                $('.product-info-main > table.prices-tier').hide();
 
                 prices['saveBreak1'] = '';
                 prices['saveBreak2'] = '';
@@ -46,7 +58,11 @@ define([
 
                 if (prices['QtyPrice1'] && prices['QtyBreak1'] > 1) {
                     prices['UpFirstBreak'] = '1 - ' + (prices['QtyBreak1'] - 1);
-                    prices['RegularPrice'] = prices['price'];
+                    if (prices['pricePer100']) {
+                        prices['RegularPrice'] = '$' + prices['unitPrice'].toFixed(2);
+                    } else {
+                        prices['RegularPrice'] = prices['price'];
+                    }
                 }
 
                 if (!prices['QtyPrice2'] && !prices['QtyPrice3']) {
@@ -79,16 +95,22 @@ define([
             return prices;
         },
         calculateSavings: function(prices) {
+            if (prices['msrp'] > prices['unitPrice']) {
+                prices['saveMsrp'] = this.getSaveBreak(prices['msrp'], prices['unitPrice']);
+            } else {
+                prices['saveMsrp'] = '';
+            }
+            var maxPrice = Math.max(prices['unitPrice'], prices['msrp']);
             for (let i = 1; i <= 3; i++) {
                 if (prices['QtyPrice'+i]) {
-                    prices['saveBreak'+i] = this.getSaveBreak(prices['unitPrice'], prices['QtyPrice'+i]);
+                    prices['saveBreak'+i] = this.getSaveBreak(maxPrice, prices['QtyPrice'+i]);
                     prices['QtyPrice'+i] = prices['currencySymbol'] + prices['QtyPrice'+i];
                 }
             }
             return prices;
         },
-        getSaveBreak: function(unitPrice, qtyPrice) {
-            return (Math.round(100 - ((100 / unitPrice) * qtyPrice))).toFixed()+'%';
+        getSaveBreak: function(maxPrice, qtyPrice) {
+            return (Math.round(100 - ((100 / maxPrice) * qtyPrice))).toFixed()+'%';
         },
         getPrices: function(sku) {
             var settings = {

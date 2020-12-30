@@ -1,0 +1,33 @@
+/**
+ * A common Magento UI component that has a button inline
+ * at the end of a fieldset
+ */
+@mixin inlinefieldset() {
+    display: table;
+
+    > * {
+        display: table-cell;
+    }
+
+    > .actions-toolbar {
+        // Our inputs are the same height, but the field prior may have labels,
+        // and we want our buttons to appear next to the input. Ergo, align: bottom
+        vertical-align: bottom;
+        width: 1%;
+
+        /**
+         * TODO: consider adding in a way to handle a second
+         * button, perhaps via absolute positioning
+         */
+        .action {
+            white-space: nowrap;
+            width: auto;
+            margin-right: 0;
+        }
+    }
+
+    // This is safe as each inline fieldset should only have one input inside it
+    div.mage-error {
+        position: absolute;
+    }
+}

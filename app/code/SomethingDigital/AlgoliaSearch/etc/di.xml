@@ -10,4 +10,7 @@
     <type name="Magento\Catalog\Model\ResourceModel\Product">
         <plugin name="algoliaProducts" type="SomethingDigital\AlgoliaSearch\Plugin\ReindexCategory"/>
     </type>
+    <type name="Algolia\AlgoliaSearch\Helper\Entity\CategoryHelper">
+        <plugin name="SomethingDigital_Algolia_FixGetCoreCategories" type="SomethingDigital\AlgoliaSearch\Plugin\FixGetCoreCategories"/>
+    </type>
 </config>

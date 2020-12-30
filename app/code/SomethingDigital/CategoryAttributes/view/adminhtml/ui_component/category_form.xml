@@ -111,5 +111,25 @@
                 </item>
             </argument>
         </field>
+        <field name="legacy_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Legacy ID</item>
+                </item>
+            </argument>
+        </field>
+        <field name="legacy_item_groups">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="dataType" xsi:type="string">string</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="label" xsi:type="string" translate="true">Legacy Item Groups</item>
+                </item>
+            </argument>
+        </field>
     </fieldset>
 </form>

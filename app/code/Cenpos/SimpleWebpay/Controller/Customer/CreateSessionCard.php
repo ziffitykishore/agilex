@@ -63,8 +63,12 @@ class CreateSessionCard extends \Magento\Framework\App\Action\Action {
             } 
 
             $this->_coreRegistry->register('urloption', $this->_paymentMethod->getConfigData('url'));
-         
-            $ch = curl_init($this->_paymentMethod->getConfigData('url')."/?app=genericcontroller&action=siteVerify");
+           
+            $urlswp = $this->_paymentMethod->getConfigData('url');
+            $endurlswp = substr($urlswp, strlen($urlswp) - 1);
+            $urlswp = $endurlswp == "/" ? $urlswp : $urlswp ."/";
+
+            $ch = curl_init($urlswp ."?app=genericcontroller&action=siteVerify");
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt ($ch, CURLOPT_POST, 1);
             $email = "";

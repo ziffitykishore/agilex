@@ -1,0 +1,695 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Unirgy LLC
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.unirgy.com/LICENSE-M1.txt
+ *
+ * @category   Unirgy
+ * @package    Unirgy_RapidFlow
+ * @copyright  Copyright (c) 2008-2009 Unirgy LLC (http://www.unirgy.com)
+ * @license    http:///www.unirgy.com/LICENSE-M1.txt
+ */
+-->
+<config>
+    <urapidflow>
+        <data_types>
+            <sales>
+                <title>Sales</title>
+                <row_format>fixed</row_format>
+                <model>Unirgy\RapidFlowSales\Model\FixedSales</model>
+                <profile>
+                    <model>Unirgy\RapidFlowSales\Model\Profile\Sales</model>
+                    <import>
+                        <tabs>
+                            <file>
+                                <title>File Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\File</block>
+                            </file>
+                            <csv>
+                                <title>Format Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Csv</block>
+                            </csv>
+                            <options>
+                                <title>Import Options</title>
+                                <block>Unirgy\RapidFlowSales\Block\Adminhtml\Profile\Sales\ImportOptions</block>
+                            </options>
+                            <upload>
+                                <title>Upload Files</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Upload</block>
+                            </upload>
+                        </tabs>
+                    </import>
+                    <export>
+                        <tabs>
+                            <file>
+                                <title>File Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\File</block>
+                            </file>
+                            <csv>
+                                <title>Format Options</title>
+                                <block>Unirgy\RapidFlow\Block\Adminhtml\Profile\Edit\Tab\Csv</block>
+                            </csv>
+                            <options>
+                                <title>Export Options</title>
+                                <block>Unirgy\RapidFlowSales\Block\Adminhtml\Profile\Sales\ExportOptions</block>
+                            </options>
+                        </tabs>
+                    </export>
+                </profile>
+            </sales>
+        </data_types>
+        <!-- exclude element contains list of self closed tags which correspond to column names, not to be included in export -->
+        <!-- depends element contains list of entities on which the current entity depends on -->
+        <!--
+            map element contains list of self closed elements, which names correspond to columns in exported entity,
+            which must be mapped to values from another table.
+            Each map element must contain the following attributes:
+                dest - column name in destination table
+                value - column name in destination table, which will be used as value in the export
+                table - destination table
+                to - map the value to column named as this attribute.
+                optional="1" - if column is optional
+              optional for many to many relation:
+                rel_table - relational table for many to many relation
+                rel_src - relational table src field matching the mapped column
+        -->
+        <row_types>
+            <GM>
+                <data_type>sales</data_type>
+                <title>Gift Message</title>
+                <table>gift_message</table>
+                <key>gift_message_id</key>
+                <exclude>
+                    <gift_message_id/>
+                </exclude>
+                <map>
+                    <customer_id dest="entity_id" value="email" default="0"
+                                 table="customer_entity" to="customer" optional="1"/>
+                </map>
+
+            </GM>
+            <SBA>
+                <data_type>sales</data_type>
+                <title>Billing Agreement</title>
+                <table>paypal_billing_agreement</table>
+                <key>agreement_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <agreement_id/>
+                </exclude>
+                <map>
+                    <store_id dest="store_id" value="code" table="store" to="store"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer"/>
+                </map>
+            </SBA>
+            <SCM>
+                <data_type>sales</data_type>
+                <title>Creditmemo</title>
+                <table>sales_creditmemo</table>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                    <SOA/>
+                    <SI/>
+                </depends>
+                <map>
+                    <store_id dest="store_id" value="code" table="store" to="store"/>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order"/>
+                    <invoice_id dest="entity_id" value="urf_id" table="sales_invoice" to="invoice" optional="1"/>
+                    <shipping_address_id dest="entity_id" value="urf_id" table="sales_order_address"
+                                         to="shipping_address" optional="1"/>
+                    <billing_address_id dest="entity_id" value="urf_id" table="sales_order_address"
+                                        to="billing_address" optional="1"/>
+                </map>
+            </SCM>
+            <SCMC>
+                <title>Creditmemo Comment</title>
+                <data_type>sales</data_type>
+                <table>sales_creditmemo_comment</table>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends><SCM/></depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_creditmemo" to="creditmemo"/>
+                </map>
+            </SCMC>
+            <SCMG>
+                <title>Creditmemo Grid</title>
+                <data_type>sales</data_type>
+                <table>sales_creditmemo_grid</table>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <depends>
+                    <SCM/>
+                    <SO/>
+                    <SI/>
+                </depends>
+                <map>
+                    <entity_id dest="entity_id" table="sales_creditmemo" value="urf_id" to="creditmemo"/>
+                    <store_id dest="store_id" value="code" table="store" to="store"/>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order" optional="1"/>
+                </map>
+            </SCMG>
+            <SCMI>
+                <title>Creditmemo Item</title>
+                <data_type>sales</data_type>
+                <table>sales_creditmemo_item</table>
+                <key>entity_id</key>
+                <created_at>parent.created_at</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SCM/>
+                    <SOI/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_creditmemo" to="creditmemo" table_alias="parent" />
+                    <product_id dest="entity_id" value="sku" table="catalog_product_entity" to="sku" optional="1" keep="1" noexport="1" />
+                    <order_item_id dest="item_id" value="urf_id" table="sales_order_item" to="order_item" optional="1"/>
+                </map>
+                <serializable>
+                    <weee_tax_applied />
+                </serializable>
+            </SCMI>
+            <SI>
+                <title>Invoice</title>
+                <data_type>sales</data_type>
+                <table>sales_invoice</table>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                </depends>
+                <map>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order"/>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                </map>
+            </SI>
+            <SIC>
+                <title>Invoice Comment</title>
+                <table>sales_invoice_comment</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SI/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_invoice" to="invoice"/>
+                </map>
+            </SIC>
+            <SIG>
+                <title>Invoice Grid</title>
+                <data_type>sales</data_type>
+                <table>sales_invoice_grid</table>
+                <key>entity_id</key>
+                <depends>
+                    <SO/>
+                    <SI/>
+                </depends>
+                <map>
+                    <entity_id dest="entity_id" table="sales_invoice" value="urf_id" to="invoice"/>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order" optional="1"/>
+                </map>
+            </SIG>
+            <SII>
+                <title>Invoice Item</title>
+                <data_type>sales</data_type>
+                <table>sales_invoice_item</table>
+                <key>entity_id</key>
+                <created_at>parent.created_at</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SCM/>
+                    <SII/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_invoice" to="invoice" table_alias="parent"  />
+                    <product_id dest="entity_id" value="sku" table="catalog_product_entity" to="sku" optional="1" keep="1" noexport="1" />
+                    <order_item_id dest="item_id" value="urf_id" table="sales_order_item" to="order_item" optional="1"/>
+                </map>
+                <serializable>
+                    <weee_tax_applied />
+                </serializable>
+            </SII>
+            <SO>
+                <title>Order</title>
+                <table>sales_order</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <!--<key>increment_id</key>-->
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SQ/>
+                    <SQA/>
+                    <GM/>
+                </depends>
+                <map>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer" optional="1"/>
+                    <billing_address_id dest="entity_id" value="urf_id" table="sales_order_address"
+                                        to="billing_address" optional="1"/>
+                    <gift_message_id dest="gift_message_id" value="urf_id" table="gift_message"
+                                     to="gift_message" optional="1"/>
+                    <shipping_address_id dest="entity_id" value="urf_id" table="sales_order_address"
+                                         to="shipping_address" optional="1"/>
+                    <quote_id dest="entity_id" value="urf_id" table="quote" to="quote" optional="1"/>
+                    <quote_address_id dest="address_id" value="urf_id" table="quote_address"
+                                      to="quote_address" optional="1"/>
+                    <customer_group_id dest="customer_group_id" value="customer_group_code" table="customer_group"
+                                       to="customer_group" optional="1"/>
+                </map>
+            </SO>
+            <SOA>
+                <table>sales_order_address</table>
+                <title>Order Address</title>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>parent.created_at</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                    <SQA/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_order" to="order" optional="1" table_alias="parent"  />
+                    <quote_address_id dest="address_id" value="urf_id" table="quote_address"
+                                      to="quote_address" optional="1"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer" optional="1"/>
+                </map>
+            </SOA>
+            <SOG>
+                <title>Order Grid</title>
+                <table>sales_order_grid</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <depends>
+                    <SO/>
+                </depends>
+                <map>
+                    <entity_id dest="entity_id" table="sales_order" value="urf_id" to="order"/>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer" optional="1"/>
+                </map>
+            </SOG>
+            <SOI>
+                <title>Order Item</title>
+                <table>sales_order_item</table>
+                <data_type>sales</data_type>
+                <key>item_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <item_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                    <SQI/>
+                    <SI/>
+                </depends>
+                <map>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order" />
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                    <product_id dest="entity_id" value="sku" table="catalog_product_entity" to="sku" optional="1" keep="1" noexport="1" />
+                    <quote_item_id dest="item_id" value="urf_id" table="quote_item" to="quote_item" optional="1"/>
+                    <parent_item_id dest="item_id" value="urf_id" table="sales_order_item" to="parent_item"
+                                    optional="1"/>
+                    <gift_message_id dest="gift_message_id" value="urf_id" table="gift_message"
+                                     to="gift_message" optional="1"/>
+                </map>
+                <serializable>
+                    <product_options />
+                    <additional_data />
+                    <weee_tax_applied />
+                </serializable>
+            </SOI>
+            <SOP>
+                <title>Order Payment</title>
+                <table>sales_order_payment</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>parent.created_at</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_order" to="order" table_alias="parent" />
+                </map>
+                <serializable>
+                    <additional_information />
+                </serializable>
+            </SOP>
+            <SOSH>
+                <title>Order Status History</title>
+                <table>sales_order_status_history</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_order" to="order"/>
+                </map>
+            </SOSH>
+            <SQ>
+                <title>Quote</title>
+                <table>quote</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <GM/>
+                </depends>
+                <map>
+                    <store_id dest="store_id" value="code" table="store" to="store"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer" optional="1"/>
+                    <customer_group_id dest="customer_group_id" value="customer_group_code" table="customer_group"
+                                       to="customer_group" optional="1"/>
+                    <gift_message_id dest="gift_message_id" value="urf_id" table="gift_message"
+                                     to="gift_message" optional="1"/>
+                </map>
+            </SQ>
+            <SQA>
+                <title>Quote Address</title>
+                <table>quote_address</table>
+                <data_type>sales</data_type>
+                <key>address_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <address_id/>
+                </exclude>
+                <depends>
+                    <SQ/>
+                </depends>
+                <map>
+                    <quote_id dest="entity_id" value="urf_id" table="quote" to="quote"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer" optional="1"/>
+                </map>
+                <serializable>
+                    <applied_taxes />
+                </serializable>
+            </SQA>
+            <SQAI>
+                <title>Quote Address Item</title>
+                <table>quote_address_item</table>
+                <data_type>sales</data_type>
+                <key>address_item_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <address_item_id/>
+                </exclude>
+                <depends>
+                    <SQA/>
+                    <SQI/>
+                    <GM/>
+                </depends>
+                <map>
+                    <quote_address_id dest="address_id" value="urf_id" table="quote_address"
+                                      to="quote_address"/>
+                    <quote_item_id dest="item_id" value="urf_id" table="quote_item" to="quote_item"/>
+                    <parent_item_id dest="address_item_id" value="urf_id" table="quote_address_item"
+                                    to="parent_item" optional="1"/>
+                    <gift_message_id dest="gift_message_id" value="urf_id" table="gift_message"
+                                     to="gift_message" optional="1"/>
+                </map>
+            </SQAI>
+            <SQI>
+                <title>Quote Item</title>
+                <table>quote_item</table>
+                <data_type>sales</data_type>
+                <key>item_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <item_id/>
+                </exclude>
+                <depends>
+                    <SQ/>
+                    <GM/>
+                </depends>
+                <map>
+                    <quote_id dest="entity_id" value="urf_id" table="quote" to="quote"/>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                    <product_id dest="entity_id" value="sku" table="catalog_product_entity" to="sku" optional="1" keep="1" />
+                    <parent_item_id dest="item_id" value="urf_id" table="quote_item" to="parent_item"
+                                    optional="1"/>
+                    <gift_message_id dest="gift_message_id" value="urf_id" table="gift_message"
+                                     to="gift_message" optional="1"/>
+                </map>
+                <serializable>
+                    <weee_tax_applied />
+                </serializable>
+            </SQI>
+            <SQIO>
+                <title>Quote Item Option</title>
+                <data_type>sales</data_type>
+                <table>quote_item_option</table>
+                <key>option_id</key>
+                <exclude>
+                    <option_id/>
+                </exclude>
+                <depends>
+                    <SQI/>
+                </depends>
+                <map>
+                    <item_id dest="item_id" value="urf_id" table="quote_item" to="item"/>
+                    <product_id dest="entity_id" value="sku" table="catalog_product_entity" to="sku" keep="1" />
+                </map>
+            </SQIO>
+            <SQP>
+                <title>Quote Payment</title>
+                <table>quote_payment</table>
+                <data_type>sales</data_type>
+                <key>payment_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <payment_id/>
+                </exclude>
+                <depends>
+                    <SQ/>
+                </depends>
+                <map>
+                    <quote_id dest="entity_id" value="urf_id" table="quote" to="quote"/>
+                </map>
+            </SQP>
+            <SQSR>
+                <title>Quote Shipping Rate</title>
+                <table>quote_shipping_rate</table>
+                <data_type>sales</data_type>
+                <key>rate_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <rate_id/>
+                </exclude>
+                <depends>
+                    <SQA/>
+                </depends>
+                <map>
+                    <address_id dest="address_id" value="urf_id" table="quote_address" to="address"/>
+                </map>
+            </SQSR>
+            <SSHIP>
+                <title>Shipment</title>
+                <data_type>sales</data_type>
+                <table>sales_shipment</table>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SOA/>
+                    <SO/>
+                </depends>
+                <map>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order"/>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                    <customer_id dest="entity_id" value="email" table="customer_entity" to="customer" optional="1"/>
+                    <shipping_address_id dest="entity_id" value="urf_id" table="sales_order_address"
+                                         to="shipping_address" optional="1"/>
+                    <billing_address_id dest="entity_id" value="urf_id" table="sales_order_address"
+                                        to="billing_address" optional="1"/>
+                </map>
+                <serializable>
+                    <packages />
+                </serializable>
+            </SSHIP>
+            <SSHIPC>
+                <title>Shipment Comment</title>
+                <table>sales_shipment_comment</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SSHIP/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_shipment" to="shipment"/>
+                </map>
+            </SSHIPC>
+            <SSHIPG>
+                <title>Shipment Grid</title>
+                <table>sales_shipment_grid</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <depends>
+                    <SSHIP/>
+                    <SO/>
+                </depends>
+                <map>
+                    <entity_id dest="entity_id" value="urf_id" table="sales_shipment" to="shipment"/>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order" optional="1"/>
+                    <store_id dest="store_id" value="code" table="store" to="store" optional="1"/>
+                </map>
+            </SSHIPG>
+            <SSHIPI>
+                <title>Shipment Item</title>
+                <table>sales_shipment_item</table>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>parent.created_at</created_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SSHIP/>
+                    <SOI/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_shipment" to="shipment" table_alias="parent" />
+                    <product_id dest="entity_id" value="sku" table="catalog_product_entity" to="sku" optional="1" keep="1" noexport="1" />
+                    <order_item_id dest="item_id" value="urf_id" table="sales_order_item" to="order_item"
+                                   optional="1"/>
+                </map>
+            </SSHIPI>
+            <SSHIPT>
+                <table>sales_shipment_track</table>
+                <title>Shipment Track</title>
+                <data_type>sales</data_type>
+                <key>entity_id</key>
+                <created_at>1</created_at>
+                <updated_at>1</updated_at>
+                <exclude>
+                    <entity_id/>
+                </exclude>
+                <depends>
+                    <SSHIP/>
+                    <SO/>
+                </depends>
+                <map>
+                    <parent_id dest="entity_id" value="urf_id" table="sales_shipment" to="shipment"/>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order" optional="1"/>
+                </map>
+            </SSHIPT>
+            <SOT>
+                <table>sales_order_tax</table>
+                <title>Order Tax</title>
+                <data_type>sales</data_type>
+                <key>tax_id</key>
+                <exclude>
+                    <tax_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                </depends>
+                <map>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order"/>
+                </map>
+            </SOT>
+            <SOTI>
+                <table>sales_order_tax_item</table>
+                <title>Order Tax Item</title>
+                <data_type>sales</data_type>
+                <key>tax_item_id</key>
+                <exclude>
+                    <tax_item_id/>
+                </exclude>
+                <depends>
+                    <SOT/>
+                    <SOI/>
+                </depends>
+                <map>
+                    <tax_id dest="tax_id" value="urf_id" table="sales_order_tax" to="tax"/>
+                    <item_id dest="item_id" value="urf_id" table="sales_order_item" to="item"/>
+                </map>
+            </SOTI>
+            <SPT>
+                <table>sales_payment_transaction</table>
+                <title>Payment Transaction</title>
+                <data_type>sales</data_type>
+                <key>transaction_id</key>
+                <created_at>parent.created_at</created_at>
+                <exclude>
+                    <transaction_id/>
+                </exclude>
+                <depends>
+                    <SO/>
+                    <SOP/>
+                </depends>
+                <map>
+                    <order_id dest="entity_id" value="urf_id" table="sales_order" to="order" table_alias="parent" />
+                    <payment_id dest="entity_id" value="urf_id" table="sales_order_payment" to="payment"/>
+                    <parent_id dest="transaction_id" value="urf_id" table="sales_payment_transaction"
+                               to="parent" optional="1"/>
+                </map>
+                <serializable>
+                    <additional_information />
+                </serializable>
+            </SPT>
+        </row_types>
+    </urapidflow>
+</config>

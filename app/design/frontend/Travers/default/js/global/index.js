@@ -10,6 +10,8 @@ import './fullbleed';
 import './stickyNav';
 import './theme';
 import './coupon';
+import './tabs';
+import './plpFlyout';
 
 require('lazysizes');
 require('jquery-smooth-scroll');

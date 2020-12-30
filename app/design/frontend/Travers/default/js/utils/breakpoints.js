@@ -15,6 +15,7 @@ export default {
   screen__xs: 480,
   screen__s: 640,
   screen__m: 768,
+  mobile__nav__breakpoint: 880,
   screen__l: 1024,
   screen__xl: 1440
 };

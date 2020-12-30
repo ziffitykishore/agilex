@@ -36,6 +36,20 @@ body {
         margin-bottom: 0;
     }
 
+    .header-info {
+        display: none;
+
+        @include min-screen($mobile-nav__breakpoint) {
+            display: flex;
+        }
+
+        .header-name {
+            font-size: 13px;
+            margin: 0;
+            margin-right: $indent__s;
+        }
+    }
+
     .phone-number {
         float: left;
         margin: 0;
@@ -419,8 +433,17 @@ body {
         }
     }
 
+    [data-content-type="row"] {
+        @include min-screen($mobile-nav__breakpoint) {
+            display: inline-block;
+            float: left;
+            margin-top: 1px;
+        }
+    }
+
     .phone-number {
         display: none;
+        font-size: 13px;
 
         @include min-screen($mobile-nav__breakpoint) {
             display: block;

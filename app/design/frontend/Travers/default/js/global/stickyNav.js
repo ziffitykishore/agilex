@@ -66,6 +66,12 @@ const stickyHandler = () => {
   }
 }
 
+$(window).on('scroll', function() {
+  if ($('.aa-dropdown-menu').is(':visible')) {
+    fixAutocompleteCssSticky('.algolia-search-input');
+  }
+});
+
 domready(() => {
     if (!isBlacklisted()) {
         stickyHandler();

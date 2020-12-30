@@ -16,6 +16,8 @@ use SomethingDigital\CustomerSpecificPricing\Helper\Data as ProductHelper;
 use SomethingDigital\CustomerSpecificPricing\Model\SpotPricingApi;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Checkout\Model\Cart;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class QuoteItemProcessor
 {
@@ -59,6 +61,16 @@ class QuoteItemProcessor
      */
     private $cart;
 
+    /**
+     * @var PriceCurrencyInterface
+     */
+    protected $currency;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
     public function __construct (
         CustomerRepositoryInterface $customerRepo,
         ProductRepositoryInterface $productRepo,
@@ -67,7 +79,9 @@ class QuoteItemProcessor
         ProductHelper $productHelper,
         SpotPricingApi $spotPricingApi,
         ArrayManager $arrayManager,
-        Cart $cart
+        Cart $cart,
+        PriceCurrencyInterface $currency,
+        StoreManagerInterface $storeManager
     ) {
         $this->customerRepo = $customerRepo;
         $this->productRepo = $productRepo;
@@ -77,6 +91,8 @@ class QuoteItemProcessor
         $this->spotPricingApi = $spotPricingApi;
         $this->arrayManager = $arrayManager;
         $this->cart = $cart;
+        $this->currency = $currency;
+        $this->storeManager = $storeManager;
     }
 
     public function beforePrepare(
@@ -85,47 +101,48 @@ class QuoteItemProcessor
         DataObject $request, 
         Product $candidate
     ) {
-        if ($this->session->isLoggedIn()) {
-            try {
-                $id = $candidate->getId();
-                /** @var ProductInterface $product */
-                $product = $this->productRepo->getById($id);
+        try {
+            $id = $candidate->getId();
+            /** @var ProductInterface $product */
+            $product = $this->productRepo->getById($id);
 
-                $sku = $product->getSku();
-                /** @var int $qty */
-                $qty = $candidate->getCartQty();
+            $sku = $product->getSku();
+            /** @var int $qty */
+            $qty = $candidate->getCartQty();
 
-                $items = $this->cart->getQuote()->getAllVisibleItems();
+            $items = $this->cart->getQuote()->getAllVisibleItems();
 
-                $totalItemQty = $qty;
-                foreach ( $items as $quoteItem) {
-                    if ($quoteItem->getProductId() == $id) {
-                        $totalItemQty += $quoteItem->getQty();
-                    }
+            $totalItemQty = $qty;
+            foreach ( $items as $quoteItem) {
+                if ($quoteItem->getProductId() == $id) {
+                    $totalItemQty += $quoteItem->getQty();
                 }
-
-                $prices = $this->spotPricingApi->getSpotPrice([$sku]);
-
-                if (!$prices) {
-                    return [$item, $request, $candidate];
-                }
-
-                foreach ($prices as $key => $productPrices) {
-                    $specialPrice = $this->arrayManager->get('DiscountPrice', $productPrices);
-                    if ($specialPrice && $specialPrice < $product->getPrice()) {
-                        $request->setCustomPrice($specialPrice);
-                        $item->setIsCustomerSpecificPriceApplied(true);
-                    }
-                    $tierPrice = $this->productHelper->getTierPrice($prices, $sku, $totalItemQty);
-                    if ($tierPrice) {
-                        $request->setCustomPrice($tierPrice);
-                        $item->setIsCustomerSpecificTierPriceApplied(true);
-                    }
-                }
-
-            } catch (LocalizedException $e) {
-                $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
             }
+
+            $prices = $this->spotPricingApi->getSpotPrice([$sku]);
+
+            if (!$prices) {
+                return [$item, $request, $candidate];
+            }
+
+            $store = $this->storeManager->getStore()->getStoreId();
+
+            foreach ($prices as $key => $productPrices) {
+                $specialPrice = $this->arrayManager->get('DiscountPrice', $productPrices);
+                $regularProductPrice = $this->currency->convert($product->getPrice(), $store);
+                if ($specialPrice && $specialPrice < $regularProductPrice) {
+                    $request->setCustomPrice($specialPrice);
+                    $item->setIsCustomerSpecificPriceApplied(true);
+                }
+                $tierPrice = $this->productHelper->getTierPrice($prices, $sku, $totalItemQty);
+                if ($tierPrice) {
+                    $request->setCustomPrice($tierPrice);
+                    $item->setIsCustomerSpecificTierPriceApplied(true);
+                }
+            }
+
+        } catch (LocalizedException $e) {
+            $this->logger->error("SomethingDigital_CustomerSpecificPricing: " . $e->getMessage());
         }
         return [$item, $request, $candidate];
     }

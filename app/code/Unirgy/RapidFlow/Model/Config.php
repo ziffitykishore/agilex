@@ -128,7 +128,21 @@ class Config extends Base
     public function getDataTypes()
     {
         $this->_loadData();
-        return $this->getNode('data_types')->children();
+        $nodes = $this->getNode('data_types')->children();
+        /** @var Element $node */
+        $dataTypes = [];
+        foreach ($nodes as $k => $node) {
+            $restrictMagentoVersion = $node->descend('restrictions/magento_version');
+            $restrictMagentoEdition = $node->descend('restrictions/magento_edition');
+            if ($restrictMagentoVersion && version_compare(Data::getVersion(), (string)$restrictMagentoVersion, '<')) {
+                continue;
+            }
+            if ($restrictMagentoEdition && $restrictMagentoEdition!=$this->getMagentoEdition()) {
+                continue;
+            }
+            $dataTypes[$k] = $node;
+        }
+        return $dataTypes;
     }
 
     /**
@@ -146,7 +160,11 @@ class Config extends Base
         /** @var Element $node */
         foreach ($nodes as $k => $node) {
             $restrictMagentoVersion = $node->descend('restrictions/magento_version');
+            $restrictMagentoEdition = $node->descend('restrictions/magento_edition');
             if ($restrictMagentoVersion && version_compare(Data::getVersion(), (string)$restrictMagentoVersion, '<')) {
+                continue;
+            }
+            if ($restrictMagentoEdition && $restrictMagentoEdition!=$this->getMagentoEdition()) {
                 continue;
             }
             if ($dataType !== (string)$node->data_type) {
@@ -155,6 +173,11 @@ class Config extends Base
             $rowTypes[$k] = $node;
         }
         return $rowTypes;
+    }
+
+    public function getMagentoEdition()
+    {
+        return Data::isEnterpriseEdition() ? 'ee' : 'ce';
     }
 
     /**

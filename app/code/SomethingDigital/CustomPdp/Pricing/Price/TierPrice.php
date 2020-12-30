@@ -47,4 +47,31 @@ class TierPrice extends \Magento\Catalog\Pricing\Price\TierPrice
     {
         return parent::getBasePrice();
     }
+
+    public function getBasePriceFormatted()
+    {
+        return $this->priceCurrency->format($this->getBasePrice());
+    }
+
+    public function getMsrpPrice()
+    {
+        $attribute = $this->product->getCustomAttribute('manufacturer_price');
+        if (!$attribute) {
+            return 0;
+        }
+        return $attribute->getValue();
+    }
+
+    public function getSavePercent($amount)
+    {
+        $basePrice = $this->getBasePrice();
+        $msrp = $this->getMsrpPrice();
+        $max_price = max($msrp, $basePrice);
+        if (!is_float($amount)) {
+            $amount = $amount->getValue();
+        }
+        return round(
+            100 - ((100 / $max_price) * $amount)
+        );
+    }
 }

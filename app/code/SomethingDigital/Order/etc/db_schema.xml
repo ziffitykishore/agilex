@@ -3,8 +3,12 @@
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
     <table name="sales_order" resource="sales" engine="innodb" comment="Sales Order">
         <column xsi:type="varchar" name="real_order_id" nullable="true" length="32" comment="SX Order ID"/>
+        <column xsi:type="varchar" name="suffix" nullable="true" length="32" comment="Suffix"/>
+        <column xsi:type="varchar" name="sx_integration_status" nullable="true" length="32" comment="SX integration status"/>
+        <column xsi:type="text" name="sx_integration_response" nullable="true" comment="SX integration response"/>
     </table>
     <table name="sales_order_grid" resource="sales" engine="innodb" comment="Sales Order Grid">
         <column xsi:type="varchar" name="real_order_id" nullable="true" length="32" comment="SX Order ID"/>
+        <column xsi:type="varchar" name="sx_integration_status" nullable="true" length="32" comment="SX integration status"/>
     </table>
 </schema>

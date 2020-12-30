@@ -189,9 +189,11 @@ class Product extends ConditionProduct
 
         if ($a === 'category_ids') {
             $entityId = 'entity_id';
+            /*
             if ($this->rfHelper->hasMageFeature(RfProduct::ROW_ID)) {
                 $entityId = RfProduct::ROW_ID;
             }
+            */
             $res = $this->_productResource;
             $read = $res->getConnection();
             $sql = $read->quoteInto("SELECT product_id FROM `{$res->getTable('catalog_category_product')}` WHERE category_id IN (?)",
