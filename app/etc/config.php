@@ -526,6 +526,9 @@ return [
                     'minify_exclude' => '
                  /tiny_mce/
              '
+                ],
+                'grid' => [
+                    'async_indexing' => '1'
                 ]
             ]
         ],
