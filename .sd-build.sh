@@ -19,6 +19,7 @@ export NO_UPDATE_NOTIFIER=1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 nvm install 8.15.1 --latest-npm
+npm install -g requirejs
 nvm use 8.15.1
 
 reportStats() {
