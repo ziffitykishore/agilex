@@ -55,7 +55,10 @@ class UpdateStockMessage
                 && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
             ) {
                 if ($this->request->getControllerName() == 'cart'){
-                    $result->setMessage(__('Items will be back ordered'));
+                    if ($stockItem->getQty() > 0)
+                        $result->setMessage(__('Item(s) will be backordered. '.$stockItem->getQty().' item(s) will ship from available inventory and '.($summaryQty-$stockItem->getQty()).' items will ship as soon as possible.'));
+                    else
+                        $result->setMessage(__('Item(s) will be backordered. '.$summaryQty.' item(s) will ship as soon as possible'));
                 } else {
                     // Hide default message on checkout summary as we already have it in blue.
                     $result->unsMessage();
