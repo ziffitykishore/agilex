@@ -22,10 +22,6 @@ nvm install 8.15.1 --latest-npm
 npm install -g requirejs
 nvm use 8.15.1
 
-mv pub/static/frontend/Travers/default/en_US pub/static/frontend/Travers/default/en_US_Source
-
-${HOME}/.nvm/versions/node/v8.15.1/bin/r.js -o build.js baseUrl="pub/static/frontend/Travers/default/en_US_Source/" dir="pub/static/frontend/Travers/default/en_US/"
-
 reportStats() {
     local error_code="$?"
     echo -e "\n\n.sd-build.sh exited: $error_code"
@@ -119,6 +115,10 @@ fi
 
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
+
+mv ./pub/static/frontend/Travers/default/en_US ./pub/static/frontend/Travers/default/en_US_Source
+
+./.nvm/versions/node/v8.15.1/bin/r.js -o build.js baseUrl="pub/static/frontend/Travers/default/en_US_Source/" dir="pub/static/frontend/Travers/default/en_US/"
 
 gpgconf --kill gpg-agent || true
 killall gpg-agent || true
