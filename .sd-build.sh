@@ -22,6 +22,10 @@ nvm install 8.15.1 --latest-npm
 npm install -g requirejs
 nvm use 8.15.1
 
+mv ${HOME}/pub/static/frontend/Travers/default/en_US ${HOME}/pub/static/frontend/Travers/default/en_US_Source
+
+${HOME}/.nvm/versions/node/v8.15.1/bin/r.js -o ${HOME}/build.js baseUrl="${HOME}/pub/static/frontend/Travers/default/en_US_Source/" dir="${HOME}/pub/static/frontend/Travers/default/en_US/"
+
 reportStats() {
     local error_code="$?"
     echo -e "\n\n.sd-build.sh exited: $error_code"
