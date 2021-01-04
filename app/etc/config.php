@@ -339,6 +339,7 @@ return [
         'ShipperHQ_Logger' => 1,
         'ShipperHQ_Shipper' => 1,
         'ShipperHQ_Option' => 1,
+        'Magento_BundleConfig' => 1,
         'SomethingDigital_AdminNotify' => 1,
         'SomethingDigital_AlgoliaSearch' => 1,
         'SomethingDigital_ApiMocks' => 1,
