@@ -116,9 +116,9 @@ fi
 ln -s ./media/robots.txt $MAGENTO_CLOUD_APP_DIR/pub/robots.txt
 ln -s ./media/sitemap.xml $MAGENTO_CLOUD_APP_DIR/pub/sitemap.xml
 
-mv ./pub/static/frontend/Travers/default/en_US ./pub/static/frontend/Travers/default/en_US_Source
+mv ${MAGENTO_CLOUD_APP_DIR}/pub/static/frontend/Travers/default/en_US ${MAGENTO_CLOUD_APP_DIR}/pub/static/frontend/Travers/default/en_US_Source
 
-./.nvm/versions/node/v8.15.1/bin/r.js -o build.js baseUrl="pub/static/frontend/Travers/default/en_US_Source/" dir="pub/static/frontend/Travers/default/en_US/"
+${MAGENTO_CLOUD_APP_DIR}/.nvm/versions/node/v8.15.1/bin/r.js -o ${MAGENTO_CLOUD_APP_DIR}/build.js baseUrl="${MAGENTO_CLOUD_APP_DIR}/pub/static/frontend/Travers/default/en_US_Source/" dir="${MAGENTO_CLOUD_APP_DIR}/pub/static/frontend/Travers/default/en_US/"
 
 gpgconf --kill gpg-agent || true
 killall gpg-agent || true
