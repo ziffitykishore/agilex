@@ -76,7 +76,11 @@ class Hits extends PureComponent {
                         )
                       )}
                       {rawTierGroups ? (
+                       <> 
                         <p className="as-low-as">As low as {currencySymbol + Number(lowestTierPrice).toFixed(2)}</p>
+                        <p>Original Price{hit.price[this.props.currency].default_formated}</p>
+
+                       </>
                       ) : (
                         <React.Fragment>
                           {hit.exact_unit_price ? (
