@@ -512,7 +512,7 @@ return [
                 ],
                 'js' => [
                     'merge_files' => '0',
-                    'minify_files' => '1',
+                    'minify_files' => '0',
                     'minify_exclude' => '
                        /tiny_mce/\\n
                        cenpos\\.com/Plugins/jquery\\.viewprocess
