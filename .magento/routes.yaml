@@ -5,3 +5,16 @@
 "http://{default}/":
     type: upstream
     upstream: "mymagento:php"
+
+"https://{default}/":
+    type: upstream
+    upstream: "mymagento:php"
+
+"http://{all}/":
+    type: upstream
+    upstream: "mymagento:php"
+
+"https://{all}/":
+    type: upstream
+    upstream: "mymagento:php"
+
