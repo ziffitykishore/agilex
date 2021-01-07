@@ -152,8 +152,10 @@ class History extends SalesHistory
                 $orders = array_slice($orders, $offset, $limit);
             }
             foreach ($orders as $key => $item) {
+                $apiResult = $this->ordersApi->getOrder($item['OrderNumber']);
+                $apiResult['body']['EnterDate'] = $item['EnterDate'];
                 $varienObject = new \Magento\Framework\DataObject();
-                $varienObject->setData($item);
+                $varienObject->setData($apiResult['body']);
                 $collection->addItem($varienObject);
             }
         }
@@ -163,7 +165,7 @@ class History extends SalesHistory
 
     public function getViewUrl($order)
     {
-        return $this->getUrl('sales/order/detail', ['order' => $order->getData('OrderNumber')]);
+        return $this->getUrl('sales/order/detail', ['order' => $order->getData('SxId')]);
     }
 
     public function formatTime($time = NULL, $format = \IntlDateFormatter::SHORT, $showDate = false)
@@ -178,5 +180,23 @@ class History extends SalesHistory
     {
         $price = $this->priceCurrency->format($price,true,2);
         return $price;
+    }
+
+    /**
+     * Calculate order grand total
+     *
+     * @return float
+     */
+    public function getOrderGrandTotal($order)
+    {
+        $items = $order->getData('LineItems');
+        $total = 0;
+        foreach ($items as $key => $item) {
+            $total += ($item['SoldPrice']*$item['Qty']);
+        }
+        $total += $order->getData('ShipFee');
+        $total += $order->getData('Tax');
+
+        return $total;
     }
 }

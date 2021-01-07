@@ -47,5 +47,6 @@
     <move element="algolia.beforecontent" destination="header-wrapper" after="-"/>
     <move element="algolia.instant.wrapper" destination="header-wrapper" after="-"/>
     <move element="header_cms_links" destination="header.links" after="-"/>
+    <move element="product.page.number" destination="product.info.social" before="-" />
 </page>
 
