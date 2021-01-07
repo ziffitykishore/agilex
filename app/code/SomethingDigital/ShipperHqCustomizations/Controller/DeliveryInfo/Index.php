@@ -63,7 +63,9 @@ class Index extends Action
                 if (($stockItem->getQty() - $item->getQty() < 0)
                     && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
                 ) {
-                    $deliveryInfo[$sku] = __('Item on backorder');
+                    $deliveryInfo[$sku] = __('Item(s) will be backordered. '.$item->getQty().' item(s) will ship as soon as possible');
+                    if ($stockItem->getQty() > 0)
+                        $deliveryInfo[$sku] = __('Item(s) will be backordered. '.$stockItem->getQty().' item(s) will ship from available inventory and '.($item->getQty()-$stockItem->getQty()).' items will ship as soon as possible.');
                 }
             } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
                $deliveryInfo[$sku] = __('Ships direct from manufacturer');
