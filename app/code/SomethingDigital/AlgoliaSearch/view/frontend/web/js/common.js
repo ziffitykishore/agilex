@@ -508,6 +508,12 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 
             return div;
         };
+        /** Stop loading empty search */
+        $('.search-button').click(function() {
+		    if($('#search').val() == '') {
+				return false;
+			}
+		})
 
         $(document).on('click', '.clear-query-autocomplete', function () {
             var input = $(this).closest('#algolia-searchbox').find('input');
