@@ -12,6 +12,7 @@
  *
  * @return bool
  */
+/*
 function checkHost($domain)
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
@@ -27,3 +28,47 @@ if (checkHost('traverscanada')) {
     $_SERVER['MAGE_RUN_CODE'] = 'default';
     $_SERVER['MAGE_RUN_TYPE'] = 'store';
 }
+*/
+
+function isHttpHost($host)
+{
+    if (!isset($_SERVER['HTTP_HOST'])) {
+        return false;
+    }
+    return strpos(str_replace('---', '.', $_SERVER['HTTP_HOST']), $host) === 0;
+    // return $_SERVER['HTTP_HOST'] ===  $host;
+}
+
+// McProd
+if (isHttpHost("mcprod.travers.com")) {
+    $_SERVER["MAGE_RUN_CODE"] = "base";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+if (isHttpHost("mcprod.traverscanada.com")) {
+    $_SERVER["MAGE_RUN_CODE"] = "web_canada";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+// McStaging
+if (isHttpHost("mcstaging.travers.com")) {
+    $_SERVER["MAGE_RUN_CODE"] = "base";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+if (isHttpHost("mcstaging.traverscanada.com")) {
+    $_SERVER["MAGE_RUN_CODE"] = "web_canada";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+// McStaging2
+if (isHttpHost("mcstaging2.travers.com")) {
+    $_SERVER["MAGE_RUN_CODE"] = "base";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
+if (isHttpHost("mcstaging2.traverscanada.com")) {
+    $_SERVER["MAGE_RUN_CODE"] = "web_canada";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}
+
