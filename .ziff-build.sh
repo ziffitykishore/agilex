@@ -28,7 +28,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | d
 export NO_UPDATE_NOTIFIER=1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install 8.15.1
+nvm install 8.15.1 --latest-npm
+npm install -g requirejs
 nvm use 8.15.1
 
 mkdir -p /var/www/m2zdev/init/pub/static
@@ -107,6 +108,10 @@ yarn build:production
 for f in `find pub/static/frontend/Travers/default/en_US/ReactPLP -name '*.js'`; do
     cp -f $f ${f/.js/.min.js};
 done
+
+mkdir -p pub/static/frontend/Travers/default/en_US_Source
+cp -R pub/static/frontend/Travers/default/en_US pub/static/frontend/Travers/default/en_US_Source
+$HOME/.nvm/versions/node/v8.15.1/bin/r.js -o build.js baseUrl="pub/static/frontend/Travers/default/en_US_Source/" dir="pub/static/frontend/Travers/default/en_US/"
 
 # Now, unfortunately, we need to take those built files into a separate directory.
 # Cloud doesn't copy pub/ across.
