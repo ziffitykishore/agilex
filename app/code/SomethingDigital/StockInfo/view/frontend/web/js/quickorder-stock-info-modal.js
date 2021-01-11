@@ -39,7 +39,6 @@ define([
                  $(".fieldset").on('keydown', 'input[type=text]', function(e) {
                   var keyCode = e.keyCode || e.which;
                   if (keyCode == 9) {
-                      console.log($('.quickorder-product-info-wrapper').length);
                       if($('.quickorder-product-info-wrapper').length == count){
                           e.preventDefault();
                       }
