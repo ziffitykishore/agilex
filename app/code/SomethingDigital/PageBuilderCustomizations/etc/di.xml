@@ -53,4 +53,8 @@
             </argument>
         </arguments>
     </type>
+    <!-- PageBuilder core issue fix -->
+    <type name="Magento\PageBuilder\Model\Stage\Preview">
+        <plugin name="pagebuilder_issue" type="SomethingDigital\PageBuilderCustomizations\Plugin\Preview"/>
+    </type>
 </config>
