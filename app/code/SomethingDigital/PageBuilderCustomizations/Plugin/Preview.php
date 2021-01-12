@@ -18,6 +18,6 @@ class Preview
     {
         if($result == null)
             return false; // fix for null returned issue
-        return $this->isPreview;
+        return $result;
     }
 }
