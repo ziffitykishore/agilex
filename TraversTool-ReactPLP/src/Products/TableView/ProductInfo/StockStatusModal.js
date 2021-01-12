@@ -31,11 +31,11 @@ class StockStatusModal extends PureComponent {
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr> 
                 <td><span>{this.props.hit.sku}</span></td>
-                <td><span>Chatsworth, CA</span></td>
-                <td><span>{this.determineStockStatus(this.props.hit.wh_ca_qty)}</span></td>
-                <td><span>{this.props.hit.wh_ca_qty}</span></td>
+                <td><span>Duncan, SC</span></td>
+                <td><span>{this.determineStockStatus(this.props.hit.wh_sc_qty)}</span></td>
+                <td><span>{this.props.hit.wh_sc_qty}</span></td>
               </tr>
               <tr>
                 <td><span>{this.props.hit.sku}</span></td>
@@ -44,10 +44,10 @@ class StockStatusModal extends PureComponent {
                 <td><span>{this.props.hit.wh_ny_qty}</span></td>
               </tr>
               <tr>
-                <td><span>{this.props.hit.sku}</span></td>
-                <td><span>Duncan, SC</span></td>
-                <td><span>{this.determineStockStatus(this.props.hit.wh_sc_qty)}</span></td>
-                <td><span>{this.props.hit.wh_sc_qty}</span></td>
+               <td><span>{this.props.hit.sku}</span></td>
+                <td><span>Chatsworth, CA</span></td>
+                <td><span>{this.determineStockStatus(this.props.hit.wh_ca_qty)}</span></td>
+                <td><span>{this.props.hit.wh_ca_qty}</span></td>
               </tr>
             </tbody>
           </table>
