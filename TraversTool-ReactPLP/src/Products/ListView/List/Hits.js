@@ -33,7 +33,7 @@ class Hits extends PureComponent {
           const rawTierGroups = hit[`group_${this.props.customerGroupId}_tiers`] || hit.group_32000_tiers;
           const lowestTierPrice = rawTierGroups && JSON.parse(rawTierGroups).map(tier => tier.price).reduce((a, b) => Math.min(a, b));
           const currencySymbol = this.props.currency === 'CAD' ? 'CA $' : '$';
-
+          
           const strikethrough = classNames({
             strikethrough: spotPrice.price && spotPrice.price != 0,
           });
@@ -56,6 +56,7 @@ class Hits extends PureComponent {
                     <a dangerouslySetInnerHTML={{ __html: hit.name }} href={hit.url} className="product-name"></a>
                     <div className="item-and-attributes">
                       <p className="product-sku">Item # {sku}</p>
+                      
                       <ul className="list-content-right">
                         {listAttributes.map(listAttribute => (
                           <li key={listAttribute.id}>
@@ -95,6 +96,8 @@ class Hits extends PureComponent {
                         </React.Fragment>
                       )}
                     </div>
+                    {hit.unit_of_measurement && <div>UOM : {hit.unit_of_measurement}</div> }
+                                  
                   </div>
                 </div>
               </div>
