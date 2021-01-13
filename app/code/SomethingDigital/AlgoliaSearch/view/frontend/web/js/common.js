@@ -517,6 +517,15 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
 
             handleInputCrossAutocomplete(input);
         });
+        /**Hide keyword when empty suggestions */
+        $("body").on('DOMSubtreeModified', ".aa-dataset-suggestions", function() {
+            if ( $('.aa-dataset-suggestions').is(':empty') ) {
+                $('#keyword-hide').hide();
+            }else
+            {
+                $('#keyword-hide').show();
+            }
+            }); 
 
         /** Handle small screen **/
         $('body').on('click', '#refine-toggle', function () {
