@@ -96,8 +96,7 @@ class Hits extends PureComponent {
                         </React.Fragment>
                       )}
                     </div>
-                    {hit.unit_of_measurement && <div>UOM : {hit.unit_of_measurement}</div> }
-                                  
+                    {hit.unit_of_measure && <div>UOM : {hit.unit_of_measure}</div> }             
                   </div>
                 </div>
               </div>
