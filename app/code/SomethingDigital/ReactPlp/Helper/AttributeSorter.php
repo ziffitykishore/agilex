@@ -6,12 +6,14 @@ class AttributeSorter
 {
     public const ARRAYED_ATTRIBUTES = [
         'price' => ['id' => 'price', 'label' => 'Price'],
-        'sku' => ['id' => 'sku', 'label' => 'SKU']
+        'sku' => ['id' => 'sku', 'label' => 'SKU'],
+        'unit_of_measure' => ['id' => 'unit_of_measure', 'label' => 'Unit Of Measure']
     ];
 
     public const FLAT_ATTRIBUTES = [
         'price' => 'price',
-        'sku' => 'sku'
+        'sku' => 'sku',
+        'unit_of_measure' => 'unit_of_measure'
     ];
 
     /**
@@ -34,6 +36,7 @@ class AttributeSorter
     {
         $priceValue = $type['price'];
         $skuValue = $type['sku'];
+        $uomValue = $type['unit_of_measure'];
         //Find position of SKU in the array
         $skuPosition = array_search(
             $skuValue,
@@ -56,7 +59,7 @@ class AttributeSorter
         );
 
         //Find position that Price must be in the array.
-        $pricePushPos = min(8, sizeof($tableAttributes));
+        $pricePushPos = min(7, sizeof($tableAttributes));
 
         if ($pricePosition !== $pricePushPos) {
             if ($pricePosition && $pricePosition >= 0) {
@@ -66,6 +69,23 @@ class AttributeSorter
 
             //Add Price to required array position.
             array_splice($tableAttributes, $pricePushPos, 0, [$priceValue]);
+        }
+
+        //Find position that UoM must be in the array
+        $uomPosition = array_search(
+            $uomValue,
+            $tableAttributes
+        );
+
+        $uomPushPos = min(8, sizeof($tableAttributes));
+        if ($uomPosition !== $uomPushPos) {
+            if ($uomPosition && $uomPosition >= 0) {
+                //If UoM is not in the position it must be, we remove the old position.
+                array_splice($tableAttributes, $uomPosition, 1);
+            }
+
+            //Add UoM to required array position.
+            array_splice($tableAttributes, $uomPushPos, 0, [$uomValue]);
         }
 
         return $tableAttributes;
