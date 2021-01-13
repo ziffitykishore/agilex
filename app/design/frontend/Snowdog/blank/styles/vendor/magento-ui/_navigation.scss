@@ -84,6 +84,10 @@
                 @include lib-css(padding, $_nav-level0-item-padding);
                 @include lib-css(text-transform, $_nav-level0-text-transform);
                 word-wrap: break-word;
+                text-transform: uppercase;
+                letter-spacing: .5px;
+                text-decoration: none;
+                font-family: Oswald, Impact, Arial;
             }
 
             &.active {
