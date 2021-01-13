@@ -155,7 +155,9 @@ class Sidebar extends PureComponent {
               <Skeleton duration={1.7} count={1} height={25} width={width} />
             </SkeletonTheme>
           ))}
-          {!this.props.isLoadingAttributes && this.props.filterAttributesInfo.map(attribute => (
+          {!this.props.isLoadingAttributes && this.props.filterAttributesInfo.map(attribute => {
+            if(Object.keys(this.state.valueSortByAttribute[attribute.id]).length === 1) return null;
+            return (
             <div className={this.accordionClasses(attribute.id)} key={attribute.id}>
               <Accordion classNames="filter-content" dropdownTitle={attribute.label || attribute.id} isDesktop={isDesktop}>
                 {attribute.description && (
@@ -176,7 +178,7 @@ class Sidebar extends PureComponent {
                 />
               </Accordion>
             </div>
-          ))}
+          )})}
           <Configure hitsPerPage={8} />
         </MediaCollapsible>
         <div className="hide-on-desktop">

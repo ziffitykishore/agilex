@@ -55,7 +55,7 @@
                        <td class="col subtotal" data-th="<?= __('Subtotal') ?>">
                           <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                               <span class="cart-price">
-                                  <span class="price"><?= $block->getCurrencyFormat($block->escapeHtml($item['SoldPrice'])) ?></span>
+                                  <span class="price"><?= $block->getCurrencyFormat($block->escapeHtml(($item['SoldPrice']*$item['Qty']))) ?></span>
                               </span>
                           </span>
                        </td>

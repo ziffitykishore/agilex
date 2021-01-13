@@ -11,7 +11,7 @@
     <!-- ko text: currentBillingAddress().city --><!-- /ko -->, <span data-bind="html: currentBillingAddress().region"></span> <!-- ko text: currentBillingAddress().postcode --><!-- /ko --><br/>
     <!-- ko text: getCountryName(currentBillingAddress().countryId) --><!-- /ko --><br/>
     <!-- ko if: (currentBillingAddress().telephone) -->
-    <a data-bind="text: currentBillingAddress().telephone, attr: {'href': 'tel:' + currentBillingAddress().telephone}"></a>
+    <span data-bind="text: currentBillingAddress().telephone"></span>
     <!-- /ko --><br/>
     <!-- ko foreach: { data: currentBillingAddress().customAttributes, as: 'element' } -->
         <!-- ko foreach: { data: Object.keys(element), as: 'attribute' } -->

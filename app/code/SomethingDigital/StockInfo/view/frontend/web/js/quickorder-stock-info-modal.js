@@ -34,6 +34,18 @@ define([
                 modal(options, this.modalWindow);
 
                 var self = this;
+                 // Stop Tab key Action On empty Product Popup
+                 var count=0;
+                 $(".fieldset").on('keydown', 'input[type=text]', function(e) {
+                  var keyCode = e.keyCode || e.which;
+                  if (keyCode == 9) {
+                      if($('.quickorder-product-info-wrapper').length == count){
+                          e.preventDefault();
+                      }
+                      count=$('.quickorder-product-info-wrapper').length;
+                       
+                  }
+               });
                 $('.block-addbysku').on('click',this.popupOpenerSelector, function () {
                     var data = [];
                     var stockData = $(this).parent().data('stock');
@@ -42,6 +54,11 @@ define([
                         $.each(stockItems, function(key, stockItem) {
                             data.push(stockItem);
                         });
+                    });
+                    
+                    // sort by label
+                    data.sort(function (a, b) {
+                        return b.label.localeCompare(a.label);
                     });
 
                     self.stockDataObservable(data);

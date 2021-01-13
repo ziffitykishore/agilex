@@ -65,7 +65,7 @@ define(
                 $("#SubmitWebpay").show();
                 $("#SubmitWebpaySend").hide();
                 $("#NewCenposPlugin").html("<div></div>");
-                var isToken = window.checkoutConfig.payment.swppayment.usetoken == "true";
+                var isToken = window.checkoutConfig.payment.swppayment.usetoken == "false";
                 var self = this;
                 try{
                     $.ajax({

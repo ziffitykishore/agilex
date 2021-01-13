@@ -375,7 +375,7 @@ return [
         'SomethingDigital_CustomerValidation' => 1,
         'SomethingDigital_ExtendedMiniCart' => 1,
         'SomethingDigital_FixProductBreadcrumbs' => 1,
-        'SomethingDigital_HideIndexer' => 0,
+        'SomethingDigital_HideIndexer' => 1,
         'SomethingDigital_Inventory' => 1,
         'SomethingDigital_LegacyRedirect' => 1,
         'SomethingDigital_Migration' => 1,

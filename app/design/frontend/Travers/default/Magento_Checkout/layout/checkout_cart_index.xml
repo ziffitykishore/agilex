@@ -10,5 +10,13 @@
         <referenceBlock name="checkout.cart.item.renderers.grouped.actions.edit" remove="true"/>
         <referenceBlock name="checkout.cart.item.renderers.downloadable.actions.edit" remove="true"/>
         <referenceBlock name="checkout.cart.item.renderers.bundle.actions.edit" remove="true"/>
+        <referenceContainer name="cart.summary">
+          <block class="Magento\Checkout\Block\Cart" name="checkout.cart.methods.top" template="Magento_Checkout::cart/methods.phtml" before="-">
+            <container name="checkout.cart.methods.additional" as="methods" label="Payment Methods After Checkout Button">
+              <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.top" template="Magento_Checkout::onepage/link.phtml" />
+              <block class="Magento\Checkout\Block\QuoteShortcutButtons" name="checkout.cart.shortcut.buttons.top" />
+            </container>
+          </block>
+        </referenceContainer>
     </body>
 </page>
