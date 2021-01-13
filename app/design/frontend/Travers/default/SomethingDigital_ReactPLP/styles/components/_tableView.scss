@@ -96,6 +96,21 @@
     }
 }
 
+.page-products .react-bootstrap-table {
+    thead,
+    tbody {
+        tr {
+            th,
+            td {
+                @media all and (-ms-high-contrast: none),
+                (-ms-high-contrast: active) {
+                    width: 16%
+                }
+            }
+        }
+    }
+}
+
 .catalog-category-view .grecaptcha-badge {
     visibility: hidden !important; // override inline styling
 }
