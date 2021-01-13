@@ -35,7 +35,7 @@ class StockStatusModal extends PureComponent {
               </tr>
             </thead>
             <tbody>
-              {this.props.hit.wh_sc_status !== 0 &&
+            {this.props.hit.wh_sc_status !== 0 &&
               <tr> 
                 <td><span>{this.props.hit.sku}</span></td>
                 <td><span>Duncan, SC</span></td>

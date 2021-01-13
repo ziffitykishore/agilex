@@ -339,6 +339,7 @@ return [
         'ShipperHQ_Logger' => 1,
         'ShipperHQ_Shipper' => 1,
         'ShipperHQ_Option' => 1,
+        'Magento_BundleConfig' => 1,
         'SomethingDigital_AdminNotify' => 1,
         'SomethingDigital_AlgoliaSearch' => 1,
         'SomethingDigital_ApiMocks' => 1,
@@ -512,7 +513,7 @@ return [
                 ],
                 'js' => [
                     'merge_files' => '0',
-                    'minify_files' => '1',
+                    'minify_files' => '0',
                     'minify_exclude' => '
                        /tiny_mce/\\n
                        cenpos\\.com/Plugins/jquery\\.viewprocess
