@@ -27,6 +27,12 @@
         scrollbar-width: none;
         -ms-overflow-style: none;
 
+        @media all and (-ms-high-contrast: none),
+                (-ms-high-contrast: active) {
+                    position: fixed;
+                    top: 212px;
+                }
+
         ::-webkit-scrollbar {
             display: none;
         }

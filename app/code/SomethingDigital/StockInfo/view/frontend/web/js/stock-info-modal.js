@@ -33,6 +33,11 @@ define([
                     data.push(stockItem);
                 });
             });
+              /** sort by Inventory by label */
+              data.sort(function (a, b) {
+                return b.label.localeCompare(a.label);
+             });
+             
             if (data.length) {
                 this.stockDataIsEmptyObservable(false);
             } else {

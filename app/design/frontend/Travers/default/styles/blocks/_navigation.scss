@@ -317,7 +317,8 @@ $nav-section-title__height: 60px;
             }
         }
 
-        .parent .level-top {
+        .parent .level-top,
+        li.level0 > a.level-top {
             text-transform: uppercase;
             letter-spacing: .5px;
             text-decoration: none;

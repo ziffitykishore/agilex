@@ -129,10 +129,18 @@ body {
             transform: translateY($page-header--sticky__height);
         }
 
-        .panel.wrapper,
-        .social-links,
         .quick-order-container {
-            display: none;
+            position: absolute;
+            top:-43px;
+            right:-55px;
+
+            li a {
+                font-size: 14px;
+            }
+        }
+
+        .contact-link {
+            padding-right: 90px
         }
 
         .header.content {
@@ -170,6 +178,60 @@ body {
     }
 }
 
+@media only screen and (max-width:880px) {
+	#algolia-autocomplete-container .aa-dropdown-menu {
+		left: 0 !important;
+		right: auto !important;
+	}
+	header.page-header.page-header--sticky #algolia-autocomplete-container {
+		position: absolute !important;
+		max-height: 450px;
+		width: 93%!important;
+		overflow-y: scroll;
+	}
+}
+
+@media only screen and (min-width:1201px) {
+	.right-panel .plp-content .numHits-view-switcher {
+		justify-content: flex-start;
+	}
+}
+
+@media only screen and (min-width:1025px) {
+    #algolia-autocomplete-container .other-sections {
+        overflow-y: auto;
+        padding-bottom: 50px;
+    }
+}
+
+.page-header a.phone-number,
+.page-header p.phone-number {
+    position: relative;
+    padding-left: 20px;
+}
+
+.page-header a.phone-number{
+    padding-left: 25px;
+}
+
+.page-header a.phone-number::before,
+.page-header p.phone-number::before {
+	content: '';
+    background-image: url(../svg/call.svg);
+    width: 14px;
+    height: 14px;
+    background-size: cover;
+    display: inline-block;
+    margin-right: 5px;
+    position: absolute;
+    left: 0px;
+    top: 3px;
+}
+
+.page-header a.phone-number::before {
+    left: 6px;
+    top: 6px;
+}
 //
 //  Account Navigation & Currency Switcher
 //  ---------------------------------------------
