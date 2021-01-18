@@ -71,7 +71,7 @@ class OrderDetails extends Template
         $items = $order->getData('LineItems');
         $total = 0;
         foreach ($items as $key => $item) {
-            $total += $item['SoldPrice'];
+            $total += ($item['SoldPrice']*$item['Qty']);
         }
         $total += $order->getData('ShipFee');
         $total += $order->getData('Tax');
@@ -89,7 +89,7 @@ class OrderDetails extends Template
         $items = $order->getData('LineItems');
         $total = 0;
         foreach ($items as $key => $item) {
-            $total += $item['SoldPrice'];
+            $total += ($item['SoldPrice']*$item['Qty']);
         }
 
         return $total;

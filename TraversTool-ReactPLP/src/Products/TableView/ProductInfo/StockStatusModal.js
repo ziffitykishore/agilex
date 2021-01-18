@@ -13,7 +13,7 @@ class StockStatusModal extends PureComponent {
 
   render() {
     const tableHeaders = ['SKU', 'Warehouse', 'Status', 'Qty'];
-
+    const donotshow = this.props.hit.wh_sc_status === 0 && this.props.hit.wh_ny_status === 0 && this.props.hit.wh_ca_status === 0;
     return (
       <div>
         <Modal
@@ -22,6 +22,10 @@ class StockStatusModal extends PureComponent {
         >
           <button className="modal-close-btn" type="button" aria-label="close" onClick={this.props.closeStockModal}>×</button>
           <h2>Check warehouse stock availability</h2>
+          {donotshow ?
+          <div style={{textAlign:"center"}}>
+             Stock Information not available for this item.
+          </div> :
           <table>
             <thead>
               <tr>
@@ -31,26 +35,33 @@ class StockStatusModal extends PureComponent {
               </tr>
             </thead>
             <tbody>
-              <tr>
+            {this.props.hit.wh_sc_status !== 0 &&
+              <tr> 
                 <td><span>{this.props.hit.sku}</span></td>
-                <td><span>Chatsworth, CA</span></td>
-                <td><span>{this.determineStockStatus(this.props.hit.wh_ca_qty)}</span></td>
-                <td><span>{this.props.hit.wh_ca_qty}</span></td>
+                <td><span>Duncan, SC</span></td>
+                <td><span>{this.determineStockStatus(this.props.hit.wh_sc_qty)}</span></td>
+                <td><span>{this.props.hit.wh_sc_qty}</span></td>
               </tr>
+              }
+              {this.props.hit.wh_ny_qty !== 0 &&
               <tr>
                 <td><span>{this.props.hit.sku}</span></td>
                 <td><span>Queens, NY</span></td>
                 <td><span>{this.determineStockStatus(this.props.hit.wh_ny_qty)}</span></td>
                 <td><span>{this.props.hit.wh_ny_qty}</span></td>
               </tr>
+              }
+              {this.props.hit.wh_ca_qty !== 0 &&
               <tr>
-                <td><span>{this.props.hit.sku}</span></td>
-                <td><span>Duncan, SC</span></td>
-                <td><span>{this.determineStockStatus(this.props.hit.wh_sc_qty)}</span></td>
-                <td><span>{this.props.hit.wh_sc_qty}</span></td>
+               <td><span>{this.props.hit.sku}</span></td>
+                <td><span>Chatsworth, CA</span></td>
+                <td><span>{this.determineStockStatus(this.props.hit.wh_ca_qty)}</span></td>
+                <td><span>{this.props.hit.wh_ca_qty}</span></td>
               </tr>
+              }
             </tbody>
           </table>
+  }
         </Modal>
       </div>
     )

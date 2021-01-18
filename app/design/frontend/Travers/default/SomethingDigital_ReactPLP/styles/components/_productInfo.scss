@@ -20,12 +20,18 @@
 
     &-content {
         position: sticky;
-        top: 120px;
+        top: 160px;
         padding: 0 $indent__m;
         padding-bottom: $indent__l;
         overflow-y: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
+
+        @media all and (-ms-high-contrast: none),
+                (-ms-high-contrast: active) {
+                    position: fixed;
+                    top: 252px;
+                }
 
         ::-webkit-scrollbar {
             display: none;

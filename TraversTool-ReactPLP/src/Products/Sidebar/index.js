@@ -178,7 +178,7 @@ class Sidebar extends PureComponent {
                 />
               </Accordion>
             </div>
-          )})}
+            )})}
           <Configure hitsPerPage={8} />
         </MediaCollapsible>
         <div className="hide-on-desktop">

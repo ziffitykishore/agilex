@@ -29,6 +29,9 @@ const Breadcrumbs = ({
         operator="or"
       />
       <div className={breadcrumbClasses}>
+      <div className="breadcrumbs-content">
+        <a href="/">Home</a>
+      </div>
         <Hits setCategoryId={setCategoryId} />
         <span className="breadcrumbs__current">{category.name}</span>
       </div>

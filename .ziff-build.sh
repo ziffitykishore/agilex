@@ -28,7 +28,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | d
 export NO_UPDATE_NOTIFIER=1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-nvm install 8.15.1
+nvm install 8.15.1 --latest-npm
+npm install -g requirejs
 nvm use 8.15.1
 
 mkdir -p /var/www/m2zdev/init/pub/static

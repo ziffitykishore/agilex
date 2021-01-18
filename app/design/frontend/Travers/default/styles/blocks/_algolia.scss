@@ -94,7 +94,9 @@
     &--sticky {
         .algolia-search-block {
             display: none;
-            max-width: 220px;
+            max-width: 530px;
+            width: calc(100% - 900px);
+            min-width: 210px;
             margin-right: 70px;
             padding-bottom: $indent__xs;
             flex-basis: auto;
