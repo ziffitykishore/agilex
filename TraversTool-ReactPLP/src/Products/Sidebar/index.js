@@ -119,7 +119,7 @@ class Sidebar extends PureComponent {
     if (!this.state.valueSortByAttribute || !(attribute.id in this.state.valueSortByAttribute)) {
       return orderBy(items, 'label');
     }
-
+    this.setState({[attribute.id]:items.length});
     // Avoid changing the inside of items - it makes us re-render slower.
     const sortOrders = this.state.valueSortByAttribute[attribute.id];
     const sortedItems = items.sort((a, b) => {
@@ -127,7 +127,7 @@ class Sidebar extends PureComponent {
       const sortB = sortOrders[b.label] || 999999;
       return sortA - sortB;
     });
-
+    
     return sortedItems;
   }
 
@@ -155,7 +155,9 @@ class Sidebar extends PureComponent {
               <Skeleton duration={1.7} count={1} height={25} width={width} />
             </SkeletonTheme>
           ))}
-          {!this.props.isLoadingAttributes && this.props.filterAttributesInfo.map(attribute => (
+          {!this.props.isLoadingAttributes && this.props.filterAttributesInfo.map(attribute => {
+            if(this.state[attribute.id] === 1) return null;
+            return (
             <div className={this.accordionClasses(attribute.id)} key={attribute.id}>
               <Accordion classNames="filter-content" dropdownTitle={attribute.label || attribute.id} isDesktop={isDesktop}>
                 {attribute.description && (
@@ -176,7 +178,7 @@ class Sidebar extends PureComponent {
                 />
               </Accordion>
             </div>
-          ))}
+            )})}
           <Configure hitsPerPage={8} />
         </MediaCollapsible>
         <div className="hide-on-desktop">
