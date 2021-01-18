@@ -156,7 +156,7 @@ class Sidebar extends PureComponent {
             </SkeletonTheme>
           ))}
           {!this.props.isLoadingAttributes && this.props.filterAttributesInfo.map(attribute => {
-            if(this.state[attribute.id] === 3) return null;
+            if(this.state[attribute.id] === 1) return null;
             return (
             <div className={this.accordionClasses(attribute.id)} key={attribute.id}>
               <Accordion classNames="filter-content" dropdownTitle={attribute.label || attribute.id} isDesktop={isDesktop}>
