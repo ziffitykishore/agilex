@@ -43,7 +43,7 @@ class StockStatusModal extends PureComponent {
                 <td><span>{this.props.hit.wh_sc_qty}</span></td>
               </tr>
               }
-              {this.props.hit.wh_ny_qty !== 0 &&
+              {this.props.hit.wh_ny_status !== 0 &&
               <tr>
                 <td><span>{this.props.hit.sku}</span></td>
                 <td><span>Queens, NY</span></td>
@@ -51,7 +51,7 @@ class StockStatusModal extends PureComponent {
                 <td><span>{this.props.hit.wh_ny_qty}</span></td>
               </tr>
               }
-              {this.props.hit.wh_ca_qty !== 0 &&
+              {this.props.hit.wh_ca_status !== 0 &&
               <tr>
                <td><span>{this.props.hit.sku}</span></td>
                 <td><span>Chatsworth, CA</span></td>
