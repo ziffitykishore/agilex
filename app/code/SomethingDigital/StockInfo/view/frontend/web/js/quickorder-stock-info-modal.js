@@ -52,15 +52,17 @@ define([
 
                     $.each(stockData, function(productId, stockItems) {
                         $.each(stockItems, function(key, stockItem) {
-                            data.push(stockItem);
+                            if(stockItem.label == "Duncan, SC"){
+                                data[0] = stockItem;
+                            }
+                            else if(stockItem.label == "Queens, NY"){
+                                data[1] = stockItem;
+                            }
+                            else{
+                                data[2] = stockItem;
+                            }
                         });
                     });
-                    
-                    // sort by label
-                    data.sort(function (a, b) {
-                        return b.label.localeCompare(a.label);
-                    });
-
                     self.stockDataObservable(data);
                     self.modalWindow.modal('openModal');
                 });
