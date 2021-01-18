@@ -109,6 +109,10 @@ for f in `find pub/static/frontend/Travers/default/en_US/ReactPLP -name '*.js'`;
     cp -f $f ${f/.js/.min.js};
 done
 
+mkdir -p pub/static/frontend/Travers/default/en_US_Source
+cp -R pub/static/frontend/Travers/default/en_US/. pub/static/frontend/Travers/default/en_US_Source
+$HOME/.nvm/versions/node/v8.15.1/bin/r.js -o build.js baseUrl="pub/static/frontend/Travers/default/en_US_Source/" dir="pub/static/frontend/Travers/default/en_US/"
+
 # Now, unfortunately, we need to take those built files into a separate directory.
 # Cloud doesn't copy pub/ across.
 if [ "$REMOVE_PUB_STATIC" == "no" ]; then
