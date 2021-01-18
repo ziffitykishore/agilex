@@ -18,6 +18,7 @@
                 "jquery/jquery.mobile.custom",
                 "jquery/jquery.cookie",
                 "algoliaBundle",
+                "ReactPLP/js/ReactPLP",
                 "WeltPixel_GoogleTagManager/js/weltpixel_gtm",
                 "jquery/patches/jquery-ui",
                 "jquery/jquery-migrate",
