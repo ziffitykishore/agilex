@@ -175,12 +175,12 @@ class StockData
     private function retrieveProductStockData($product)
     {
         $stock = [];
-        if ($product->getData('wh_ca_status')) {
+        if ($product->getData('wh_sc_status')) {
             $stock[] = [
                 'sku' => $product->getSku(),
-                'label' => __('Chatsworth, CA'),
-                'in_stock' => (bool)$product->getData('wh_ca_status') ? __('In Stock') : __('Out Of Stock'),
-                'qty' => $product->getData('wh_ca_qty')
+                'label' => __('Duncan, SC'),
+                'in_stock' => (bool)$product->getData('wh_sc_status') ? __('In Stock') : __('Out Of Stock'),
+                'qty' => $product->getData('wh_sc_qty')
             ];
         }
         if ($product->getData('wh_ny_status')) {
@@ -191,12 +191,13 @@ class StockData
                 'qty' => $product->getData('wh_ny_qty')
             ];
         }
-        if ($product->getData('wh_sc_status')) {
+        
+        if ($product->getData('wh_ca_status')) {
             $stock[] = [
                 'sku' => $product->getSku(),
-                'label' => __('Duncan, SC'),
-                'in_stock' => (bool)$product->getData('wh_sc_status') ? __('In Stock') : __('Out Of Stock'),
-                'qty' => $product->getData('wh_sc_qty')
+                'label' => __('Chatsworth, CA'),
+                'in_stock' => (bool)$product->getData('wh_ca_status') ? __('In Stock') : __('Out Of Stock'),
+                'qty' => $product->getData('wh_ca_qty')
             ];
         }
         return $stock;
