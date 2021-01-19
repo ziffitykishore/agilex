@@ -32,11 +32,16 @@
             <?php $items = $order->getData('LineItems'); ?>
             <tbody>
                 <?php foreach ($items as $item): ?>
+                    <?php
+                        $productUrl = $block->getProductUrl($item['SKU']);
+                        if($productUrl == null)
+                            $productUrl='#';
+                    ?>
                     <tr id="order-item-row-<?= $item['SKU'] ?>">
                        <td class="col name" data-th="<?= __('Item') ?>">
-                          <strong class="product name product-item-name"><a href="<?=$block->getProductUrl($item['SKU']) ?>"><?= $block->escapeHtml($item['Title']) ?></a></strong>
+                          <strong class="product name product-item-name"><a href="<?= $productUrl ?>"><?= $block->escapeHtml($item['Title']) ?></a></strong>
                        </td>
-                       <td class="col sku" data-th="<?= __('SKU') ?>"><a href="<?=$block->getProductUrl($item['SKU']) ?>"><?= $block->escapeHtml($item['SKU']) ?></a></td>
+                       <td class="col sku" data-th="<?= __('SKU') ?>"><a href="<?= $productUrl ?>"><?= $block->escapeHtml($item['SKU']) ?></a></td>
                        <td class="col price" data-th="<?= __('Price') ?>">
                             <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                                 <span class="cart-price">

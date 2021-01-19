@@ -10,6 +10,7 @@ use Magento\Framework\Registry;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Psr\Log\LoggerInterface;
 
 class OrderDetails extends Template
 {
@@ -38,12 +39,14 @@ class OrderDetails extends Template
         HttpContext $httpContext,
         PriceCurrencyInterface $priceCurrency,
         ProductRepositoryInterface $productRepository,
+        LoggerInterface $logger,
         array $data = []
     ) {
         $this->coreRegistry = $registry;
         $this->httpContext = $httpContext;
         $this->priceCurrency = $priceCurrency;
         $this->productRepository = $productRepository;
+        $this->logger = $logger;
         parent::__construct($context, $data);
     }
 
@@ -139,10 +142,11 @@ class OrderDetails extends Template
      */
     public function getProductUrl($sku)
     {
+        $productUrl = null;
         try {
             $productUrl = $this->productRepository->get($sku)->getProductUrl();
         } catch (NoSuchEntityException $noSuchEntityException) {
-            $productUrl = null;
+            $this->logger->critical('Product associated with the Sku '.$sku.' is not found');
         }
         return $productUrl;
     }
