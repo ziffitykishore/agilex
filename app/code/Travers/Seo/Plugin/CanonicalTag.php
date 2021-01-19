@@ -1,6 +1,6 @@
 <?php
 
-namespace Travers\Canonical\Plugin;
+namespace Travers\Seo\Plugin;
 
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\UrlInterface;
