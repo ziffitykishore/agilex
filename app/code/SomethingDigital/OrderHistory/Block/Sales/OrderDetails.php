@@ -8,6 +8,8 @@ use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\Registry;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class OrderDetails extends Template
 {
@@ -35,11 +37,13 @@ class OrderDetails extends Template
         Registry $registry,
         HttpContext $httpContext,
         PriceCurrencyInterface $priceCurrency,
+        ProductRepositoryInterface $productRepository,
         array $data = []
     ) {
         $this->coreRegistry = $registry;
         $this->httpContext = $httpContext;
         $this->priceCurrency = $priceCurrency;
+        $this->productRepository = $productRepository;
         parent::__construct($context, $data);
     }
 
@@ -128,5 +132,18 @@ class OrderDetails extends Template
     {
         $price = $this->priceCurrency->format($price,true,2);
         return $price;
+    }
+
+    /**
+     * Get product URL for specific sku
+     */
+    public function getProductUrl($sku)
+    {
+        try {
+            $productUrl = $this->productRepository->get($sku)->getProductUrl();
+        } catch (NoSuchEntityException $noSuchEntityException) {
+            $productUrl = null;
+        }
+        return $productUrl;
     }
 }
