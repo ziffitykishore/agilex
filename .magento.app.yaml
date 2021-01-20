@@ -112,7 +112,17 @@ crons:
     urapidflow_product_updates_import:
         spec: "15 1 * * *"
         cmd: "php bin/magento sd:urapidflow:run 'Auto Product Updates Import'"
-        
+    urapidflow_product_extras_additions_import:
+        spec: "30 1 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto Product Extras Additions Import'"
+    urapidflow_product_extras_updates_import:
+        spec: "45 1 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto Product Extras Updates Import'"
+
+
+
+
+
 # Environment variables
 variables:
     env:
