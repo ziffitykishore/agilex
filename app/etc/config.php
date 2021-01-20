@@ -407,6 +407,7 @@ return [
         'Temando_Shipping' => 0,
         'Taxjar_SalesTax' => 1,
         'Travers_OptimizeCrons' => 1,
+        'Travers_Seo' => 1,
         'SomethingDigital_ProductImportTweaks' => 1,
         'Unirgy_RapidFlowPro' => 1,
         'Unirgy_RapidFlowSales' => 1,
