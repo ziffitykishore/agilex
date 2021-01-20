@@ -34,8 +34,6 @@
                 <?php foreach ($items as $item): ?>
                     <?php
                         $productUrl = $block->getProductUrl($item['SKU']);
-                        if($productUrl == null)
-                            $productUrl='#';
                     ?>
                     <tr id="order-item-row-<?= $item['SKU'] ?>">
                        <td class="col name" data-th="<?= __('Item') ?>">

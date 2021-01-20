@@ -142,7 +142,7 @@ class OrderDetails extends Template
      */
     public function getProductUrl($sku)
     {
-        $productUrl = null;
+        $productUrl = '#';
         try {
             $productUrl = $this->productRepository->get($sku)->getProductUrl();
         } catch (NoSuchEntityException $noSuchEntityException) {
