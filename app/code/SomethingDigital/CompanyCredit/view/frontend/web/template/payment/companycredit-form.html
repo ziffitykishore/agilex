@@ -19,20 +19,22 @@
         <!-- ko foreach: getRegion('messages') -->
             <!-- ko template: getTemplate() --><!-- /ko -->
         <!--/ko-->
-        <div data-role="checkout-messages" class="messages" data-bind="visible: !isCanPlace() || isExceedLimit() || (areCurrenciesDifferent() && !isBaseCreditCurrencyRateEnabled())">
-            <div data-bind="visible: !isCanPlace()" role="alert" class="message message-error error">
-                <div data-ui-id="checkout-cart-validationmessages-message-error">
-                    <!-- ko i18n: 'Payment On Account cannot be used for this order because your order amount exceeds your credit amount.' --><!-- /ko -->
+        <div data-bind="visible: checkCreditMessage()">
+            <div data-role="checkout-messages" class="messages" data-bind="visible: !isCanPlace() || isExceedLimit() || (areCurrenciesDifferent() && !isBaseCreditCurrencyRateEnabled())">
+                <div data-bind="visible: !isCanPlace() && checkCreditMessage()" role="alert" class="message message-error error">
+                    <div data-ui-id="checkout-cart-validationmessages-message-error">
+                        <!-- ko i18n: 'Payment On Account cannot be used for this order because your order amount exceeds your credit amount.' --><!-- /ko -->
+                    </div>
                 </div>
-            </div>
-            <div data-bind="visible: (areCurrenciesDifferent() && !isBaseCreditCurrencyRateEnabled())" role="alert" class="message message-error error">
-                <div data-ui-id="checkout-cart-validationmessages-message-error">
-                    <!-- ko i18n: 'The Payment on Account method is not available in the selected currency. Please contact the seller.' --><!-- /ko -->
+                <div data-bind="visible: (areCurrenciesDifferent() && !isBaseCreditCurrencyRateEnabled()) && checkCreditMessage()" role="alert" class="message message-error error">
+                    <div data-ui-id="checkout-cart-validationmessages-message-error">
+                        <!-- ko i18n: 'The Payment on Account method is not available in the selected currency. Please contact the seller.' --><!-- /ko -->
+                    </div>
                 </div>
-            </div>
-            <div data-bind="visible: isExceedLimit()" role="alert" class="message message-notice notice">
-                <div data-ui-id="checkout-cart-validationmessages-message-error">
-                    <span data-bind="text: getExceedLimitMessage() "></span>
+                <div data-bind="visible: isExceedLimit() && checkCreditMessage()" role="alert" class="message message-notice notice">
+                    <div data-ui-id="checkout-cart-validationmessages-message-error">
+                        <span data-bind="text: getExceedLimitMessage() "></span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,4 +3,11 @@
     <type name="Magento\CompanyCredit\Controller\History\Index">
         <plugin name="SomethingDigital_CompanyCredit_History" type="SomethingDigital\CompanyCredit\Plugin\DisableCreditHistory"/>
     </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+       <arguments>
+           <argument name="configProviders" xsi:type="array">
+               <item name="additional_provider" xsi:type="object">SomethingDigital\CompanyCredit\Model\AdditionalConfigVars</item>
+           </argument>
+       </arguments>
+   </type>
 </config>
