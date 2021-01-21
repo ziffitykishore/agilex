@@ -3,7 +3,7 @@
     <default>
         <companycreditmessage>
             <general>
-                <enable>1</enable>
+                <enable>0</enable>
             </general>
         </companycreditmessage>
     </default>
