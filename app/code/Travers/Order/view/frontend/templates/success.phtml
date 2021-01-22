@@ -1,0 +1,156 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+/** @var $block \Travers\Order\Block\Onepage\Success 
+ * @var $order \Magento\Sales\Model\Order */
+
+$orderData = $block->getOrderDetails();
+$order = $orderData['order'];
+$paymentMethod = $order->getPayment()->getMethodInstance()->getTitle();
+?>
+
+<div class="checkout-success">
+    <?php if ($order->getId()):?>
+    <h1>Order Confirmed</h1>
+        <?php if ($block->getCanViewOrder()) :?>
+            <p><?= __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeHtml($block->getViewOrderUrl()), $block->escapeHtml($block->getOrderId()))) ?></p>
+        <?php  else :?>
+            <p><?= __('Your order # is: <span>%1</span>.', $block->escapeHtml($block->getOrderId())) ?></p>
+        <?php endif;?>
+            <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
+    <?php endif;?>
+    <div class="row">
+        <div class="column">
+            <table>
+                <tr><td>Ship to</td></tr>
+                <tr><td><?= $orderData['shipping']->getFirstname() . '&nbsp;' . $orderData['shipping']->getLastname(); ?></td></tr>
+                <tr><td><?= implode(',', $orderData['shipping']->getStreet()); ?></td></tr>
+                <tr><td><?= $orderData['shipping']->getCity() . ', ' . $orderData['shipping']->getRegion() . ', ' . $orderData['shipping']->getPostcode(); ?></td></tr>
+                <tr><td><?= $block->getCountryname($orderData['shipping']->getCountryId()); ?></td></tr>
+                <tr><td><?= $orderData['shipping']->getTelephone(); ?></td></tr>
+            </table>
+        </div>
+        <div class="column">
+            <table>
+                <tr><td>Bill to</td></tr>
+                <tr><td><?= $orderData['billing']->getFirstname() . '&nbsp;' . $orderData['billing']->getLastname(); ?></td></tr>
+                <tr><td><?= implode(',', $orderData['billing']->getStreet()); ?></td></tr>
+                <tr><td><?= $orderData['billing']->getCity() . ', ' . $orderData['billing']->getRegion() . ', ' . $orderData['billing']->getPostcode(); ?></td></tr>
+                <tr><td><?= $block->getCountryname($orderData['billing']->getCountryId()); ?></td></tr>
+                <tr><td><?= $orderData['billing']->getTelephone(); ?></td></tr>
+            </table>
+        </div>
+        <div class="column">
+            <div>Order Comments</div>
+            <div><?= $orderData['customerNote']; ?></div>
+        </div>
+    </div>
+            
+    <div class="row">
+        <div>Items Ordered:</div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <table>
+                <tr><th>Product Details</th><th>Price</th><th>Quantity</th><th>Sub Total</th></tr>
+                <?php
+                /**
+                 * @var \Magento\Sales\Model\Order\Item $item
+                 */
+                foreach ($orderData['orderItems'] as $item) {
+                    $itemdetails = $item->getData();
+                    ?>
+                    <tr><td>
+                            <div class="items">
+                                <div class="row">
+                                    <div class="col-xs-3 product-image">
+                                        <?php
+                                        /**
+                                         * @var \Magento\Catalog\Helper\Image $image
+                                         */
+                                        $image = $this->helper('Magento\Catalog\Helper\Image')->init(
+                                                $item->getProduct(), 'cart_page_product_thumbnail'
+                                        );
+                                        ?>
+                                        <img class="image" src="<?php echo $block->escapeUrl($image->getUrl()); ?>"
+                                             alt="<?php echo $block->escapeHtml($item->getName()); ?>"
+                                             width="100"/>
+                                    </div>   
+                                    <p>
+
+                                    </p>
+                                    <span class="sku">
+                                        <?php echo $block->escapeHtml($item->getSku()); ?>
+                                    </span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><?php echo ($item->getPrice() < 0 ? number_format(0, 2) : number_format($item->getPrice(), 2)) ?></td>
+                        <td><?php echo number_format($item->getQtyOrdered(), 0) ?></td>
+                        <td><?php echo number_format($item->getRowTotal(), 2) ?></td>
+                    </tr>
+
+                    <?php
+                }
+                ?>
+
+            </table>
+        </div>
+        <div class="column">
+            <table>
+                <div>Order Summary</div>
+                <tr><td>Shipping Method</td>
+                    <td><?php echo $order->getShippingDescription() ?></td></tr>
+                <tr><td>Payment Method</td><td><?php echo $paymentMethod ?></td></tr>
+                <tr><td>Subtotal</td>
+                    <td><?php
+                        echo $orderData['symbol'] .
+                        ($order->getSubtotal() < 0 ?
+                                number_format(0, 2) :
+                                number_format($order->getSubtotal(), 2)
+                        );
+                        ?></td>
+                </tr>
+                <tr><td>Shipping & Handling </td>
+                    <td> <?php
+                        echo $orderData['symbol'] .
+                        ($order->getShippingAmount() < 0 ?
+                                number_format(0, 2) :
+                                number_format($order->getShippingAmount(), 2)
+                        );
+                        ?></td></tr>
+                <tr><td>Tax</td>
+                    <td><?php
+                        echo $orderData['symbol'] .
+                        ($order->getTaxAmount() < 0 ?
+                                number_format(0, 2) :
+                                number_format($order->getTaxAmount(), 2)
+                        );
+                        ?></td></tr>
+                <tr><td>Order Total</td>
+                    <td><?php
+                        echo $orderData['symbol'] .
+                        ($order->getGrandTotal() < 0 ?
+                                number_format(0, 2) :
+                                number_format($order->getGrandTotal(), 2)
+                        );
+                        ?></td></tr>
+            </table>
+        </div>
+    </div>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <a class="action primary continue" href="<?= /* @escapeNotVerified */ $block->getContinueUrl() ?>"><span><?= /* @escapeNotVerified */ __('Continue Shopping') ?></span></a>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .column {
+  float: left;
+  width: 30%;
+  padding: 5px;
+}
+    </style>
+    
