@@ -10,7 +10,7 @@
         <move element="product.info.media" destination="product.hero.info"/>
         <move element="product.info.details" destination="product.hero.info"/>
         <move element="product.info.overview" destination="product.info.main" after="product.info.price"/>
-        <move element="catalog.product.related" destination="product.hero.container"/>
+        
         <referenceContainer name="content">
             <container name="product.hero.container" htmlTag="div" htmlClass="product-hero" before="-">
                 <container name="product.hero.info" htmlTag="div" htmlClass="product-hero__info" before="-"/>
