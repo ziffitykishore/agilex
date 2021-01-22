@@ -33,7 +33,6 @@ define(
                 },
     
                 checkCreditMessage: function () {   
-                    console.log(typeof this.config.credit_message);  
                     return this.config.credit_message;
                 },
             };
