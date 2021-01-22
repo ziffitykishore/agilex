@@ -15,7 +15,7 @@ define([
                 }
                 $('.product-info-main div.price-final_price > span:not(.old-price) .price').text(currencySymbol + price);
                 if (data[sku]['pricePer100']) {
-                    $('.price-per-each').text('$' + data[sku]['unitPrice'].toFixed(4));
+                    $('.pricePerEach').text('$' + data[sku]['unitPrice'].toFixed(4));
                 }
             }
         }
