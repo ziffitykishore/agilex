@@ -21,122 +21,179 @@ $paymentMethod = $order->getPayment()->getMethodInstance()->getTitle();
         <?php endif;?>
             <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
     <?php endif;?>
-    <div class="row">
-        <div class="column">
-            <table>
-                <tr><td>Ship to</td></tr>
-                <tr><td><?= $orderData['shipping']->getFirstname() . '&nbsp;' . $orderData['shipping']->getLastname(); ?></td></tr>
-                <tr><td><?= implode(',', $orderData['shipping']->getStreet()); ?></td></tr>
-                <tr><td><?= $orderData['shipping']->getCity() . ', ' . $orderData['shipping']->getRegion() . ', ' . $orderData['shipping']->getPostcode(); ?></td></tr>
-                <tr><td><?= $block->getCountryname($orderData['shipping']->getCountryId()); ?></td></tr>
-                <tr><td><?= $orderData['shipping']->getTelephone(); ?></td></tr>
-            </table>
+
+    <div class="shipping-information">
+        <div class="ship-to block">
+            <div class="block-inner">
+                <div class="block-title shipping-information-title">Ship To</div>
+                <div class="block-content shipping-information-content">
+                    <?= $orderData['shipping']->getFirstname() . '&nbsp;' . $orderData['shipping']->getLastname(); ?><br>
+                    <?= implode(',', $orderData['shipping']->getStreet()); ?><br>
+                    <?= $orderData['shipping']->getCity() . ', ' . $orderData['shipping']->getRegion() . ', ' . $orderData['shipping']->getPostcode(); ?><br>
+                    <?= $block->getCountryname($orderData['shipping']->getCountryId()); ?><br>
+                    <?= $orderData['shipping']->getTelephone(); ?>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <table>
-                <tr><td>Bill to</td></tr>
-                <tr><td><?= $orderData['billing']->getFirstname() . '&nbsp;' . $orderData['billing']->getLastname(); ?></td></tr>
-                <tr><td><?= implode(',', $orderData['billing']->getStreet()); ?></td></tr>
-                <tr><td><?= $orderData['billing']->getCity() . ', ' . $orderData['billing']->getRegion() . ', ' . $orderData['billing']->getPostcode(); ?></td></tr>
-                <tr><td><?= $block->getCountryname($orderData['billing']->getCountryId()); ?></td></tr>
-                <tr><td><?= $orderData['billing']->getTelephone(); ?></td></tr>
-            </table>
+        <div class="bill-to block">
+            <div class="block-inner">
+                <div class="block-title shipping-information-title">Bill To</div>
+                <div class="block-content shipping-information-content">
+                    <?= $orderData['billing']->getFirstname() . '&nbsp;' . $orderData['billing']->getLastname(); ?></br>
+                    <?= implode(',', $orderData['billing']->getStreet()); ?><br>
+                    <?= $orderData['billing']->getCity() . ', ' . $orderData['billing']->getRegion() . ', ' . $orderData['billing']->getPostcode(); ?><br>
+                    <?= $block->getCountryname($orderData['billing']->getCountryId()); ?><br>
+                    <?= $orderData['billing']->getTelephone(); ?><br>
+                </div>
+            </div>
         </div>
-        <div class="column">
-            <div>Order Comments</div>
-            <div><?= $orderData['customerNote']; ?></div>
+        <div class="order-comments block">
+            <div class="block-inner">
+                <div class="block-title comments-title">Order Comments</div>
+                <div class="block-content"><?= $orderData['customerNote']; ?></div>
+            </div>
         </div>
     </div>
-            
-    <div class="row">
-        <div>Items Ordered:</div>
-    </div>
-    <div class="row">
-        <div class="column">
-            <table>
-                <tr><th>Product Details</th><th>Price</th><th>Quantity</th><th>Sub Total</th></tr>
-                <?php
-                /**
-                 * @var \Magento\Sales\Model\Order\Item $item
-                 */
-                foreach ($orderData['orderItems'] as $item) {
-                    $itemdetails = $item->getData();
-                    ?>
-                    <tr><td>
-                            <div class="items">
-                                <div class="row">
-                                    <div class="col-xs-3 product-image">
-                                        <?php
-                                        /**
-                                         * @var \Magento\Catalog\Helper\Image $image
-                                         */
-                                        $image = $this->helper('Magento\Catalog\Helper\Image')->init(
-                                                $item->getProduct(), 'cart_page_product_thumbnail'
-                                        );
-                                        ?>
-                                        <img class="image" src="<?php echo $block->escapeUrl($image->getUrl()); ?>"
-                                             alt="<?php echo $block->escapeHtml($item->getName()); ?>"
-                                             width="100"/>
-                                    </div>   
-                                    <p>
 
-                                    </p>
-                                    <span class="sku">
-                                        <?php echo $block->escapeHtml($item->getSku()); ?>
-                                    </span>
-                                </div>
-                            </div>
-                        </td>
-                        <td><?php echo ($item->getPrice() < 0 ? number_format(0, 2) : number_format($item->getPrice(), 2)) ?></td>
-                        <td><?php echo number_format($item->getQtyOrdered(), 0) ?></td>
-                        <td><?php echo number_format($item->getRowTotal(), 2) ?></td>
-                    </tr>
-
+    <div class="cart-container">
+        <div class="form-cart">
+        <div class="cart-title">Items Ordered:</div>
+            <div class="cart table-wrapper">
+                <table class="cart items data table">
+                    <thead>
+                        <tr>
+                            <th class="col item" scope="col"><span>Product Details</span></th>
+                            <th class="col price" scope="col"><span>Price</span></th>
+                            <th class="col qty" scope="col"><span>Quantity</span></th>
+                            <th class="col subtotal" scope="col"><span>Sub Total</span></th>
+                        </tr>
+                    </thead>
                     <?php
-                }
-                ?>
-
-            </table>
+                        /**
+                         * @var \Magento\Sales\Model\Order\Item $item
+                         */
+                        foreach ($orderData['orderItems'] as $item) {
+                            $itemdetails = $item->getData();
+                            ?>
+                            <tbody class="cart item">
+                                <tr class="item-info">
+                                    <td data-th="Item" class="col item">
+                                        <span class="product-item-photo">
+                                            <span class="product-image-wrapper">
+                                            <?php
+                                                /**
+                                                 * @var \Magento\Catalog\Helper\Image $image
+                                                 */
+                                                $image = $this->helper('Magento\Catalog\Helper\Image')->init(
+                                                        $item->getProduct(), 'cart_page_product_thumbnail'
+                                                );
+                                                ?>
+                                                <img class="image" src="<?php echo $block->escapeUrl($image->getUrl()); ?>"
+                                                        alt="<?php echo $block->escapeHtml($item->getName()); ?>"
+                                                        width="100"/>
+                                            </span>
+                                        </span>
+                                        <div class="product-item-details">
+                                            <strong class="product-item-name">
+                                                <?php echo $block->escapeHtml($item->getName()); ?>
+                                            </strong>
+                                            <span class="sku">
+                                                <?php echo $block->escapeHtml($item->getSku()); ?>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td class="col price " data-th="Price">
+                                        <span class="price-excluding-tax" data-label="Excl. Tax">
+                                            <span class="cart-price">
+                                                <span class="price"><span class="price">$<?php echo ($item->getPrice() < 0 ? number_format(0, 2) : number_format($item->getPrice(), 2)) ?></span></span>
+                                            </span>
+                                        </span>
+                                    </td>
+                                    <td class="col qty" data-th="Qty">
+                                        <span class="qty-items"><?php echo number_format($item->getQtyOrdered(), 0) ?></span>
+                                    </td>
+                                    <td class="col subtotal" data-th="Subtotal">
+                                        <span class="price-excluding-tax" data-label="Excl. Tax">
+                                            <span class="cart-price">
+                                                <span class="price">$<?php echo number_format($item->getRowTotal(), 2) ?></span></span>
+                                        </span>
+                                    </td>
+                                </tr>
+                        <?php } ?>
+                </table>
+            </div>
         </div>
-        <div class="column">
-            <table>
-                <div>Order Summary</div>
-                <tr><td>Shipping Method</td>
-                    <td><?php echo $order->getShippingDescription() ?></td></tr>
-                <tr><td>Payment Method</td><td><?php echo $paymentMethod ?></td></tr>
-                <tr><td>Subtotal</td>
-                    <td><?php
+        <div class="cart-summary opc-block-summary">
+         <span class="title">Order Summary</span>
+        <table class="data table table-totals">
+            <tbody>
+                <tr class="totals shipping">
+                    <td class="mark">Shipping Method</td>
+                    <td class="amount"><?php echo $order->getShippingDescription() ?></td>
+                </tr>
+                <tr class="totals payment">
+                    <td class="mark">Payment Method</td>
+                    <td class="amount"><?php echo $paymentMethod ?></td>
+                </tr>
+                <tr class="totals sub">
+                    <td class="mark">Subtotal</td>
+                    <td class="amount">
+                        <span class="price" data-th="Subtotal">
+                        <?php
                         echo $orderData['symbol'] .
                         ($order->getSubtotal() < 0 ?
                                 number_format(0, 2) :
                                 number_format($order->getSubtotal(), 2)
                         );
-                        ?></td>
+                        ?>
+                        </span>
+                    </td>
                 </tr>
-                <tr><td>Shipping & Handling </td>
-                    <td> <?php
+                <tr class="totals">
+                    <td class="mark">Shipping & Handling </td>
+                    <td class="amount">
+                        <span class="price" data-th="Shipping & Handling">
+                        <?php
                         echo $orderData['symbol'] .
                         ($order->getShippingAmount() < 0 ?
                                 number_format(0, 2) :
                                 number_format($order->getShippingAmount(), 2)
                         );
-                        ?></td></tr>
-                <tr><td>Tax</td>
-                    <td><?php
+                        ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="totals">
+                    <td class="mark">Tax</td>
+                    <td class="amount">
+                        <span class="price" data-th="Tax">
+                        <?php
                         echo $orderData['symbol'] .
                         ($order->getTaxAmount() < 0 ?
                                 number_format(0, 2) :
                                 number_format($order->getTaxAmount(), 2)
                         );
-                        ?></td></tr>
-                <tr><td>Order Total</td>
-                    <td><?php
+                        ?>
+                        </span>
+                    </td>
+                </tr>
+                <tr class="grand totals">
+                    <td class="mark"><strong>Order Total</strong></td>
+                    <td class="amount" data-th="Order Total">
+                        <strong>
+                        <span class="price">
+                        <?php
                         echo $orderData['symbol'] .
                         ($order->getGrandTotal() < 0 ?
                                 number_format(0, 2) :
                                 number_format($order->getGrandTotal(), 2)
                         );
-                        ?></td></tr>
+                        ?>
+                        </span>
+                        </strong>
+                    </td>
+                </tr>
+                    </tbody>
             </table>
         </div>
     </div>
@@ -146,11 +203,3 @@ $paymentMethod = $order->getPayment()->getMethodInstance()->getTitle();
         </div>
     </div>
 </div>
-<style type="text/css">
-    .column {
-  float: left;
-  width: 30%;
-  padding: 5px;
-}
-    </style>
-    
