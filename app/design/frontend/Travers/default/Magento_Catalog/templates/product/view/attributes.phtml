@@ -17,7 +17,7 @@
     $_product = $block->getProduct();
 ?>
 <?php if ($_additional = $block->getAdditionalData()): ?>
-    <div class="additional-attributes-wrapper table-wrapper">
+    <div class="additional-attributes-wrapper table-wrapper" id="additional-attributes-wrapper">
         <div class="header">Product Specifications</div>
         <table class="data table additional-attributes" id="product-attribute-specs-table">
             <caption class="table-caption"><?= /* @escapeNotVerified */ __('More Information') ?></caption>
