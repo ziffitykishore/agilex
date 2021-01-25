@@ -1052,10 +1052,6 @@ body.catalog-product-compare-index {
     .additional-attributes-wrapper {
         margin-top: $indent__base;
 
-        @include min-screen($screen__m) {
-            margin-top: $indent__xl;
-        }
-
         .header {
             @include bryant-park-headings-h3;
             font-weight: $font-weight__bold;
