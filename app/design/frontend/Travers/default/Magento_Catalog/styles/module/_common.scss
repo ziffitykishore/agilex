@@ -135,6 +135,25 @@
 //  Product view
 //  ---------------------------------------------
 
+
+.catalog-product-view {
+    .breadcrumbs {
+        @include min-screen($screen__l) {
+            padding: 0 70px;
+            max-width: none;
+        }
+    }
+
+    .page-main {
+        max-width: none;
+    }
+
+    .page-title {
+        color: #636363;
+        margin-top: 0;
+    }
+}
+
 .product.media {
     .product.photo .photo.image {
         @extend .abs-adaptive-images-centered;
@@ -960,12 +979,68 @@ body.catalog-product-compare-index {
 // PDP Details Blocks
 .detail-blocks {
     order: 3;
+    margin-bottom: 40px;
+
+    .details-tab-wrapper {
+        border-top: 1px solid $c-grey;
+        border-bottom: 1px solid $c-grey;
+        padding: 30px 0;
+        margin-left: -20px;
+        margin-right: -20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $color-white;
+
+        @include max-screen($screen__xs) {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        &.js-sticky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+
+        .tab-link {
+            color: $text__color;
+            font-weight: 600;
+            @include bryant-park-headings-h3;
+            font-weight: $font-weight__bold;
+            text-transform: none;
+            text-decoration: none;
+            margin: 0 5%;
+            position: relative;
+
+            &:before {
+                content: '';
+                height: 5px;
+                width: 100%;
+                position: absolute;
+                background: $primary__color;
+                visibility: hidden;
+                bottom: -30px;
+            }
+
+            &.js-active {
+                color: $primary__color;
+                &:before {
+                    visibility: visible;
+                }
+            }
+        }
+    }
 
     .additional-attributes-wrapper,
     .detail-block-description {
         border: 1px solid $c-grey;
         max-width: 800px;
         width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .icon {
@@ -1036,6 +1111,10 @@ body.catalog-product-compare-index {
         box-sizing: border-box;
         margin-top: $indent__l;
 
+        .description {
+            display: block;
+        }
+
         .description .type {
             @include bryant-park-headings-h3;
             font-size: 18px;
@@ -1059,7 +1138,7 @@ body.catalog-product-compare-index {
         }
 
         .header {
-            margin-top: $indent__base;
+            margin-top: 0;
         }
 
         strong {
@@ -1092,17 +1171,115 @@ body.catalog-product-compare-index {
     }
 }
 
-.upsell {
-    position: static;
-    
-    .product-items {
-        display: flex;
-        flex-wrap: wrap;
+.block {
+    &.related,
+    &.upsell {
+        position: static;
 
-        .product-item {
-            margin: 0 0 30px;
-            width: 220px;
-            max-width: 50%;
+        .page-main & {
+            margin: 0;
+            @include min-screen($screen__l) {
+                padding: 0 50px;
+                max-width: none;
+            }
+        }
+        .block-actions {
+            display: none;
+        }
+        .block-title {
+            text-align: center;
+            h3 {
+                margin: 20px 0;
+            }
+        }
+        .products-grid {
+            .product-items {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: initial;
+                margin: 0;
+
+                @include max-screen($screen__m) {
+                    margin-left: -10px;
+                    margin-right: -10px;
+                }
+
+                .product-item {
+                    padding: 20px;
+                    margin: 0;
+                    flex: 0 0 25%;
+                    max-width: 25%;
+                    border: none;
+
+                    @include max-screen($screen__xl) {
+                        padding: 15px;
+                    }
+
+                    @include max-screen($screen__l) {
+                        flex: 0 0 percentage(1/3);
+                        max-width: percentage(1/3);
+                    }
+
+                    @include max-screen($screen__m) {
+                        flex: 0 0 percentage(1/2);
+                        max-width: percentage(1/2);
+                        padding: 10px;
+                    }
+
+                    &-info {
+                        border: 1px solid $c-grey;
+                        padding: 20px;
+                        width: auto;
+                        height: 100%;
+                        box-sizing: border-box;
+
+                        .product-photo--default {
+                            text-align: center;
+                        }
+
+                        .product-item-name {
+                            font-weight: normal;
+                            .product-item-link {
+                                font-size: 13px;
+                            }
+                        }
+
+
+                        .price-box .price {
+                            font-size: 14px;
+                        }
+
+                        .field.choice {
+                            display: none;
+                        }
+
+                        @include min-screen($screen__xl) {
+                            padding: 30px;
+                        }
+
+                        @include max-screen($screen__xl) {
+                            padding: 15px;
+                        }
+
+                        @include max-screen($screen__m) {
+                            padding: 10px;
+                        }
+                    }
+
+                    .product-item-actions {
+                        text-align: center;
+                    }
+
+                    .actions-primary {
+                        text-align: center;
+                        display: block;
+                    }
+
+                    .actions-secondary {
+                        display: none;
+                    }
+                }
+            }
         }
     }
 }
