@@ -1,7 +1,16 @@
 <?xml version="1.0"?>
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <move element="page.main.title" destination="content" before="-"/>
-    
+    <move element="page.main.title" destination="product.hero.container" before="-"/>
+
     <move element="catalog.product.related" destination="product.info.wrapper" after="-"/>
     <move element="product.info.upsell" destination="product.info.wrapper" after="-"/>
+
+    <referenceContainer name="product.detail.blocks">
+        <block name="product.detail.tab.heading" template="Magento_Catalog::product/view/details_tab.phtml" before="-" />
+        <container name="product.detail.reviews.wrap" htmlTag="div" htmlClass="detail-block-description">
+            <container name="product.detail.reviews.inner" htmlTag="div" htmlId="reviews">
+                <block name="product.detail.reviews.header" template="SomethingDigital_ProductDetails::reviews_header.phtml" before="-" />
+            </container>
+        </container>
+    </referenceContainer>
 </page>
