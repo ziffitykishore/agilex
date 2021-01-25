@@ -55,7 +55,7 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
                         <a href="<?= /* @escapeNotVerified */ $block->getProductUrl() ?>"><?= $block->escapeHtml($block->getProductName()) ?></a>
                     <?php else: ?>
                         <?= $block->escapeHtml($block->getProductName()) ?>
-                    <?php endif; ?>                    
+                    <?php endif; ?>
                 </strong>
                 <div>SKU #  <?= $block->escapeHtml($_item->getSku()) ?></div>
                 <?php if ($_options = $block->getOptionList()):?>
