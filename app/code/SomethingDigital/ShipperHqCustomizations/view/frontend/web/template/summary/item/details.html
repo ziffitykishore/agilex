@@ -18,6 +18,12 @@
                 <span class="label"><!-- ko i18n: 'Qty' --><!-- /ko --></span>
                 <span class="value" data-bind="text: $parent.qty"></span>
             </div>
+            <!-- ko foreach: window.checkoutConfig.quoteItemData -->
+                <!-- ko if: item_id == $parents[1].item_id -->
+                    <span class="label" data-bind="i18n: 'SKU # '"></span>
+                    <!-- ko text: sku --><!-- /ko -->
+                <!-- /ko -->
+            <!-- /ko -->
         </div>
         <!-- ko foreach: getRegion('after_details') -->
             <!-- ko template: getTemplate() --><!-- /ko -->
