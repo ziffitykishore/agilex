@@ -132,6 +132,16 @@ $checkout-step-title-mobile__font-size: 18px !default;
             .table {
                 margin-bottom: 0;
 
+                .totals {
+                    .amount {
+                        white-space: normal;
+                    }
+
+                    td {
+                        width: 50%;
+                    }
+                }
+
                 .grand.totals {
                     strong {
                         font-size: 16px;
