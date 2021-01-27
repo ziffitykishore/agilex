@@ -21,13 +21,10 @@ $checkout-summary-items__padding   : 15px !default;
     padding: $checkout-summary__padding;
     margin: 0 0 $indent__base;
 
-    & > .title {
-        @extend .abs-checkout-title;
+    .order-summary-title {
         display: flex;
         justify-content: space-between;
-        // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
-        margin-bottom: 0;
-
+        border-bottom: 1px solid #C2C2C2;
         .action-edit {
             @include lib-button-as-link();
             @include lib-button-reset();
@@ -41,6 +38,13 @@ $checkout-summary-items__padding   : 15px !default;
                 color: $secondary__color;
                 text-decoration: underline;
             }
+        }
+
+        & > .title {
+            @extend .abs-checkout-title;
+            // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
+            margin-bottom: 0;
+            border: none;
         }
     }
 
