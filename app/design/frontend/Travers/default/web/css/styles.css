@@ -20362,72 +20362,72 @@ form.methods-shipping .actions-toolbar .action.primary {
   background: transparent;
   padding: 22px 30px;
   margin: 0 0 20px; }
+  .opc-block-summary .order-summary-title .action-edit {
+    display: inline;
+    line-height: 1.5;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: #0361C1;
+    text-decoration: none;
+    transition: color .15s ease;
+    background-image: none;
+    background: none;
+    box-sizing: content-box;
+    border: 0;
+    box-shadow: none;
+    line-height: inherit;
+    padding: 0;
+    text-decoration: none;
+    text-shadow: none;
+    font-weight: 400;
+    -ms-flex-preferred-size: 35px;
+        flex-basis: 35px;
+    font-size: 16px;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline; }
+    .opc-block-summary .order-summary-title .action-edit:hover, .opc-block-summary .order-summary-title .action-edit:focus {
+      color: #0361C1;
+      text-decoration: underline; }
+    .opc-block-summary .order-summary-title .action-edit:visited {
+      color: #0361C1;
+      text-decoration: none; }
+    .opc-block-summary .order-summary-title .action-edit:active {
+      color: #0361C1;
+      text-decoration: none; }
+    .opc-block-summary .order-summary-title .action-edit:hover {
+      color: #0361C1; }
+    .opc-block-summary .order-summary-title .action-edit:hover, .opc-block-summary .order-summary-title .action-edit:active, .opc-block-summary .order-summary-title .action-edit:focus {
+      background: none;
+      border: 0; }
+    .opc-block-summary .order-summary-title .action-edit.disabled, .opc-block-summary .order-summary-title .action-edit[disabled],
+    fieldset[disabled] .opc-block-summary .order-summary-title .action-edit {
+      color: #0361C1;
+      opacity: 0.5;
+      cursor: default;
+      pointer-events: none;
+      text-decoration: underline; }
+    .opc-block-summary .order-summary-title .action-edit:focus, .opc-block-summary .order-summary-title .action-edit:active {
+      background: none;
+      border: none; }
+    .opc-block-summary .order-summary-title .action-edit:hover {
+      background: none;
+      border: none; }
+    .opc-block-summary .order-summary-title .action-edit.disabled, .opc-block-summary .order-summary-title .action-edit[disabled],
+    fieldset[disabled] .opc-block-summary .order-summary-title .action-edit {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.5; }
+    .opc-block-summary .order-summary-title .action-edit:hover, .opc-block-summary .order-summary-title .action-edit:focus {
+      color: #636363;
+      text-decoration: underline; }
   .opc-block-summary > .title {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: justify;
         justify-content: space-between;
     margin-bottom: 0; }
-    .opc-block-summary > .title .action-edit {
-      display: inline;
-      line-height: 1.5;
-      padding: 0;
-      background: none;
-      border: 0;
-      color: #0361C1;
-      text-decoration: none;
-      transition: color .15s ease;
-      background-image: none;
-      background: none;
-      box-sizing: content-box;
-      border: 0;
-      box-shadow: none;
-      line-height: inherit;
-      padding: 0;
-      text-decoration: none;
-      text-shadow: none;
-      font-weight: 400;
-      -ms-flex-preferred-size: 35px;
-          flex-basis: 35px;
-      font-size: 16px;
-      color: inherit;
-      font-weight: 600;
-      text-decoration: underline; }
-      .opc-block-summary > .title .action-edit:hover, .opc-block-summary > .title .action-edit:focus {
-        color: #0361C1;
-        text-decoration: underline; }
-      .opc-block-summary > .title .action-edit:visited {
-        color: #0361C1;
-        text-decoration: none; }
-      .opc-block-summary > .title .action-edit:active {
-        color: #0361C1;
-        text-decoration: none; }
-      .opc-block-summary > .title .action-edit:hover {
-        color: #0361C1; }
-      .opc-block-summary > .title .action-edit:hover, .opc-block-summary > .title .action-edit:active, .opc-block-summary > .title .action-edit:focus {
-        background: none;
-        border: 0; }
-      .opc-block-summary > .title .action-edit.disabled, .opc-block-summary > .title .action-edit[disabled],
-      fieldset[disabled] .opc-block-summary > .title .action-edit {
-        color: #0361C1;
-        opacity: 0.5;
-        cursor: default;
-        pointer-events: none;
-        text-decoration: underline; }
-      .opc-block-summary > .title .action-edit:focus, .opc-block-summary > .title .action-edit:active {
-        background: none;
-        border: none; }
-      .opc-block-summary > .title .action-edit:hover {
-        background: none;
-        border: none; }
-      .opc-block-summary > .title .action-edit.disabled, .opc-block-summary > .title .action-edit[disabled],
-      fieldset[disabled] .opc-block-summary > .title .action-edit {
-        cursor: not-allowed;
-        pointer-events: none;
-        opacity: 0.5; }
-      .opc-block-summary > .title .action-edit:hover, .opc-block-summary > .title .action-edit:focus {
-        color: #636363;
-        text-decoration: underline; }
   .opc-block-summary .mark .value {
     color: #636363;
     display: block; }
@@ -31206,3 +31206,4 @@ body {
 
 .block-cms-hierarchy-link-inline.widget {
   margin: 0; }
+
