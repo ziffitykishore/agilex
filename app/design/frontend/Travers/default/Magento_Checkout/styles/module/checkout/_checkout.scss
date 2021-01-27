@@ -37,6 +37,7 @@ $checkout-step-title-mobile__font-size: 18px !default;
         .form-cart {
             padding: 0;
             border: none;
+            margin-bottom: 20px;
             @include max-screen($screen__l) {
                 width: 100%;
             }
@@ -130,6 +131,16 @@ $checkout-step-title-mobile__font-size: 18px !default;
 
             .table {
                 margin-bottom: 0;
+
+                .totals {
+                    .amount {
+                        white-space: normal;
+                    }
+
+                    td {
+                        width: 50%;
+                    }
+                }
 
                 .grand.totals {
                     strong {
