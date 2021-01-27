@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<body>
+    <referenceContainer name="content">
+        <block name="checkout.order.success"  class="Travers\Order\Block\Onepage\Success" template="Travers_Order::success.phtml"/>
+    </referenceContainer>
+    <referenceBlock name="checkout.success" remove="true"/>                   
+</body>

@@ -1,0 +1,24 @@
+<div class="details-tab-wrapper">
+    <a href="#additional-attributes-wrapper" class="tab-link js-active" title="<?= $block->escapeHtml(__('Specifications')) ?>"><?= $block->escapeHtml(__('Specifications')) ?></a>
+    <a href="#description" class="tab-link" title="<?= $block->escapeHtml(__('Details')) ?>"><?= $block->escapeHtml(__('Details')) ?></a>
+    <a href="#reviews" class="tab-link" title="<?= $block->escapeHtml(__('Reviews')) ?>"><?= $block->escapeHtml(__('Reviews')) ?></a>
+</div>
+
+
+<script type="text/javascript">
+    require(['jquery'], function($) {
+        $HOLO-KROME('.details-tab-wrapper .tab-link').click(function (event) {
+            $('.details-tab-wrapper .tab-link').removeClass('js-active');
+            $(this).addClass('js-active');
+            tabHeight = $('.details-tab-wrapper').outerHeight();
+            anchor = $(this).attr('href').replace(/^.*?(#|$)/, '');
+            $('.detail-blocks div').each(function (index) {
+                if (this.id == anchor) {
+                    $('html, body').animate({
+                        scrollTop: $(this).offset().top - 40
+                    }, 300);
+                }
+            });
+        });
+    })
+</script>
