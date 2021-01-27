@@ -23,9 +23,25 @@ $checkout-summary-items__padding   : 15px !default;
 
     & > .title {
         @extend .abs-checkout-title;
-        display: block;
+        display: flex;
+        justify-content: space-between;
         // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
         margin-bottom: 0;
+
+        .action-edit {
+            @include lib-button-as-link();
+            @include lib-button-reset();
+            flex-basis: 35px;
+            font-size: 16px;
+            color: inherit;
+            font-weight: 600;
+            text-decoration: underline;
+
+            @include hover {
+                color: $secondary__color;
+                text-decoration: underline;
+            }
+        }
     }
 
     .table-totals {
