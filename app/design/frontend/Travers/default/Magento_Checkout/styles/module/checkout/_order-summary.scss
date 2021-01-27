@@ -21,13 +21,7 @@ $checkout-summary-items__padding   : 15px !default;
     padding: $checkout-summary__padding;
     margin: 0 0 $indent__base;
 
-    & > .title {
-        @extend .abs-checkout-title;
-        display: flex;
-        justify-content: space-between;
-        // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
-        margin-bottom: 0;
-
+    .order-summary-title {
         .action-edit {
             @include lib-button-as-link();
             @include lib-button-reset();
@@ -42,6 +36,14 @@ $checkout-summary-items__padding   : 15px !default;
                 text-decoration: underline;
             }
         }
+    }
+
+    & > .title {
+        @extend .abs-checkout-title;
+        display: flex;
+        justify-content: space-between;
+        // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
+        margin-bottom: 0;
     }
 
     .table-totals {
