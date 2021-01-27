@@ -991,6 +991,10 @@ body.catalog-product-compare-index {
         align-items: center;
         justify-content: center;
         background: $color-white;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 90px;
+        z-index: 9;
 
         @include max-screen($screen__xs) {
             margin-left: -15px;
@@ -1051,10 +1055,6 @@ body.catalog-product-compare-index {
 
     .additional-attributes-wrapper {
         margin-top: $indent__base;
-
-        @include min-screen($screen__m) {
-            margin-top: $indent__xl;
-        }
 
         .header {
             @include bryant-park-headings-h3;
