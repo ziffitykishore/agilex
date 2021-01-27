@@ -7,14 +7,6 @@
 
 <script type="text/javascript">
     require(['jquery'], function($) {
-        /* var elementPosition = $('.details-tab-wrapper').offset();
-        $(window).scroll(function(){
-            if($(window).scrollTop() > elementPosition.top){
-                $('.details-tab-wrapper').addClass('js-sticky');
-            } else {
-                $('.details-tab-wrapper').removeClass('js-sticky');
-            }
-        }); */
         $('.details-tab-wrapper .tab-link').click(function (event) {
             $('.details-tab-wrapper .tab-link').removeClass('js-active');
             $(this).addClass('js-active');
