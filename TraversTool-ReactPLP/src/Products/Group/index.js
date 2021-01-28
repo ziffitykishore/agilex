@@ -1,9 +1,10 @@
 import Description from './Description';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
 import LazyLoad from 'react-lazyload';
 import memoize from 'memoizee';
+import { ProductsContext } from '../ProductsContext';
 
 const makeRefinements = memoize((refinements, attribute, value) => {
   return { ...refinements, [attribute]: value };
@@ -50,9 +51,10 @@ const Group = ({
   const containerClassNames = classNames({
     groups: level === 1,
   });
-
+  const {position} = useContext(ProductsContext);
+  
   return (
-    <div className={containerClassNames}>
+    <div className={containerClassNames} style={{display:"flex",flexDirection:"column"}}>
       {groups[0].values.map(value => {
         if (!groupCounts[value] || groupCounts[value] < 1) {
           return null;
@@ -66,7 +68,8 @@ const Group = ({
         const allRefinements = makeRefinements(refinements, attribute, value);
 
         return (
-          <LazyLoad key={`${key}-lazy`} height={200} offset={1500}>
+          <div key={`${key}-lazy`} style={position && position[value]  ? {order:position[value]+""} : {}}>
+          <LazyLoad height={200} offset={1500}>
             <div className={className} key={key}>
               {nbHits[key] > 0 && (
                 <React.Fragment>
@@ -99,6 +102,7 @@ const Group = ({
               </Group>
             </div>
           </LazyLoad>
+          </div>
         );
       })}
     </div>
