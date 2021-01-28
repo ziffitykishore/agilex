@@ -13,7 +13,7 @@
 <?php if ($block->displayProductStockStatus()): ?>
     <p class="stock available" title="<?= /* @escapeNotVerified */ __('Availability:') ?>">
         <span><?= /* @escapeNotVerified */ $stockStatus['label'] ?></span>
-        <?php if (!$stockStatus['isZeroDNR']): ?>
+        <?php if (!$stockStatus['isZeroDNR'] && !$stockStatus['isZeroOAN']): ?>
             <span class="stock-info-popup-trigger"><?= __('Check Locations') ?></span>
         <?php endif; ?>
     </p>

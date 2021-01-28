@@ -56,6 +56,7 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
         $stockItem = $this->stockItem->load($product->getId(), 'product_id');
         $statusLabel = '';
         $isZeroDNR = false;
+        $isZeroOAN = false;
         if ($sxInventoryStatus == SxInventoryStatus::STATUS_DNR) {
             if ($stockItem->getQty() > 5) {
                 $statusLabel = __('In Stock');
@@ -70,6 +71,7 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
                 $statusLabel = __('In Stock');
             } else {
                 $statusLabel = __('Ships from Mfr.');
+                $isZeroOAN = true;
             }
         } else {
             if ($stockItem->getQty() > 0) {
@@ -80,7 +82,8 @@ class StockStatus implements \Magento\Framework\View\Element\Block\ArgumentInter
         }
         return [
             'label' => $statusLabel,
-            'isZeroDNR' => $isZeroDNR
+            'isZeroDNR' => $isZeroDNR,
+            'isZeroOAN' => $isZeroOAN
         ];
     }
 }
