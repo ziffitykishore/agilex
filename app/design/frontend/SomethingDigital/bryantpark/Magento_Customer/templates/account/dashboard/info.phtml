@@ -13,6 +13,24 @@
     <div class="block-content">
         <div class="box box-information">
             <strong class="box-title">
+                <span><?= $block->escapeHtml(__('Account Linking Status')) ?></span>
+            </strong>
+            <?php
+                $TraversCusId = null;
+                $TraversId = $block->getCustomer()->getCustomAttribute('travers_account_id');
+                if($TraversId)
+                    $TraversCusId = $TraversId->getValue();
+            ?>
+            <?php if($TraversCusId): ?>
+                <div class="box-content" style="color:green">
+                    Success
+                </div>
+            <?php else: ?>
+                <div class="box-content" style="color:red">
+                    Pending
+                </div>
+            <?php endif; ?>
+            <strong class="box-title">
                 <span><?= $block->escapeHtml(__('Contact Information')) ?></span>
             </strong>
             <div class="box-content">
