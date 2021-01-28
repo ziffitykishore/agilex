@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import { connectHits } from 'react-instantsearch-dom';
 import { getGroupImage, lowestPrice, renderHitProperty, round } from '../../helpers';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import memoize from 'memoizee';
+import { ProductsContext } from '../../ProductsContext';
 
 const buildPricingBySku = memoize((pricing) => {
    const hash = {};
@@ -44,7 +45,7 @@ const Hits = ({
 }) => {
   const currencySymbol = currency === 'CAD' ? 'CA $' : '$';
   const sortingArrow = <svg xmlns="http://www.w3.org/2000/svg" version="1.0" viewBox="-500, -600 ,1000, 1200"><path d="M100 600v-800l400 400v-300L0-600l-500 500v300l400-400v800z" /></svg>
-
+  const {products,setProducts} = useContext(ProductsContext);
   useEffect(() => {
     const groupImage = getGroupImage({ hits, urlToGroupingImagesCatalog });
 
@@ -53,7 +54,9 @@ const Hits = ({
         [groupName]: groupImage
       })
     }
-
+    if(hits.length && JSON.stringify(products[groupName]) !== JSON.stringify(hits)){
+      setProducts({...products,[groupName]:hits});
+    }
     setProductsShowingCount(hits.length);
   }, [hits])
 
