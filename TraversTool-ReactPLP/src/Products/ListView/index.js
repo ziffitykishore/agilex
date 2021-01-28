@@ -5,10 +5,12 @@ import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
 import GroupedList from './List/GroupedList';
 import { facetFilters } from '../helpers';
+import ProductsContextProvider from '../ProductsContext';
 
 class ListView extends PureComponent {
   render() {
     return (
+      <ProductsContextProvider>
       <React.Fragment>
         <div className="list-and-flyout">
           {this.props.groups.length ? (
@@ -41,7 +43,7 @@ class ListView extends PureComponent {
                     facetFilters={facetFilters(searchState)}
                     filterAttributesInfo={this.props.filterAttributesInfo}
                     groups={this.props.groups}
-                    groupName={this.props.groupName}
+                    groupName={groupName}
                     indexName={this.props.indexName}
                     isLoadingAttributes={this.props.isLoadingAttributes}
                     listAttributes={this.props.listAttributes}
@@ -80,6 +82,7 @@ class ListView extends PureComponent {
           )}
         </div>
       </React.Fragment>
+      </ProductsContextProvider>
     );
   };
 };

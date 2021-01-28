@@ -6,6 +6,7 @@ import React, { PureComponent } from 'react';
 import Table from './Table';
 import PropTypes from 'prop-types';
 import { debouncedForceCheck } from '../debouncedForceCheck';
+import ProductsContextProvider from '../ProductsContext';
 
 export default class TableView extends PureComponent {
   state = {
@@ -23,9 +24,14 @@ export default class TableView extends PureComponent {
       selectedProduct: hit,
     }, this.props.checkProductInfoView(true));
   }
+  groupOrder = () =>{
+      this.setState({
 
+      })
+  }
   render() {
     return (
+      <ProductsContextProvider>
       <React.Fragment>
         <div className="table-and-flyout">
           {this.props.groups.length ? (
@@ -98,6 +104,7 @@ export default class TableView extends PureComponent {
           />
         </div>
       </React.Fragment>
+      </ProductsContextProvider>
     );
   }
 };

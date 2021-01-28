@@ -21,11 +21,31 @@ $checkout-summary-items__padding   : 15px !default;
     padding: $checkout-summary__padding;
     margin: 0 0 $indent__base;
 
-    & > .title {
-        @extend .abs-checkout-title;
-        display: block;
-        // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
-        margin-bottom: 0;
+    .order-summary-title {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #C2C2C2;
+        .action-edit {
+            @include lib-button-as-link();
+            @include lib-button-reset();
+            flex-basis: 35px;
+            font-size: 16px;
+            color: inherit;
+            font-weight: 600;
+            text-decoration: underline;
+
+            @include hover {
+                color: $secondary__color;
+                text-decoration: underline;
+            }
+        }
+
+        & > .title {
+            @extend .abs-checkout-title;
+            // margin-bottom: 0 allows the bottom-border of .abs-checkout-title to act as a top-border for the following accordions
+            margin-bottom: 0;
+            border: none;
+        }
     }
 
     .table-totals {

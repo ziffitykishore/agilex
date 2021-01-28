@@ -316,7 +316,7 @@ $product-hero__button-and-catalog__width: 240px;
     color: $text__color;
     display: block;
     margin: $indent__m 0;
-    max-width: $product-hero__button-and-catalog__width;
+    max-width: $product-hero__button-and-catalog__width - 40;
 
     @include hover {
         text-decoration: none;
@@ -326,11 +326,17 @@ $product-hero__button-and-catalog__width: 240px;
             color: $link__hover__color;
         }
     }
+
+    .master-catalog-listing {
+        .header {
+            font-size: 15px;
+        }
+    }
 }
 
 .master-catalog-listing {
     border: 1px solid $c-grey;
-    max-width: 460px;
+    max-width: 400px;
     width: 100%;
     padding: 12px;
     box-sizing: border-box;
@@ -342,6 +348,7 @@ $product-hero__button-and-catalog__width: 240px;
         font-weight: $font-weight__semibold;
         margin: 0;
         margin-bottom: $indent__s;
+        font-size: 16px;
     }
 
     a {

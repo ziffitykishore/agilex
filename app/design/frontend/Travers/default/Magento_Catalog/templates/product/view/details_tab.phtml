@@ -7,7 +7,7 @@
 
 <script type="text/javascript">
     require(['jquery'], function($) {
-        $HOLO-KROME('.details-tab-wrapper .tab-link').click(function (event) {
+        $('.details-tab-wrapper .tab-link').click(function (event) {
             $('.details-tab-wrapper .tab-link').removeClass('js-active');
             $(this).addClass('js-active');
             tabHeight = $('.details-tab-wrapper').outerHeight();
@@ -15,8 +15,8 @@
             $('.detail-blocks div').each(function (index) {
                 if (this.id == anchor) {
                     $('html, body').animate({
-                        scrollTop: $(this).offset().top - 40
-                    }, 300);
+                        scrollTop: $(this).offset().top - 200
+                    }, 100);
                 }
             });
         });

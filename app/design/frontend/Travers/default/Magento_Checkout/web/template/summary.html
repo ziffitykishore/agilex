@@ -1,0 +1,18 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="opc-block-summary" data-bind="blockLoader: isLoading">
+	<div class="order-summary-title">
+		<span data-bind="i18n: 'Order Summary'" class="title"></span>
+
+    	<button class="action action-edit" data-bind="click: getCartPage">
+            <span data-bind="i18n: 'edit'"></span>
+        </button>
+    </div>
+    <!-- ko foreach: elems() -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!-- /ko -->
+</div>

@@ -111,9 +111,28 @@ crons:
         spec: "0 1 * * *"
         cmd: "php bin/magento sd:urapidflow:run 'Auto Product Additions Import'"
     urapidflow_product_updates_import:
-        spec: "15 1 * * *"
+        spec: "30 1 * * *"
         cmd: "php bin/magento sd:urapidflow:run 'Auto Product Updates Import'"
-        
+    urapidflow_product_extras_additions_import:
+        spec: "0 2 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto Product Extras Additions Import'"
+    urapidflow_product_extras_updates_import:
+        spec: "30 2 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto Product Extras Updates Import'"
+    urapidflow_inventory_update:
+        spec: "30 10-22/2 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto Inventory Update'"
+    urapidflow_sx_data_update:
+        spec: "45 10-22/2 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto SX Data Update'"
+    urapidflow_t_score_update:
+        spec: "30 7 * * *"
+        cmd: "php bin/magento sd:urapidflow:run 'Auto T-Score Update'"
+
+
+
+
+
 # Environment variables
 variables:
     env:
