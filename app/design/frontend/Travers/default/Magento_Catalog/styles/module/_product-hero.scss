@@ -62,6 +62,7 @@ $product-hero__button-and-catalog__width: 240px;
     .priceDesc {
         text-transform: uppercase;
         font-weight: $font-weight__extrabold;
+        margin-top: 10px;
         margin-bottom: 0;
         font-size: 16px;
     }
@@ -89,7 +90,7 @@ $product-hero__button-and-catalog__width: 240px;
         box-sizing: border-box;
 
         @include min-screen($screen__m) {
-            width: 48%;
+            width: 45%;
         }
     }
 
@@ -302,13 +303,18 @@ $product-hero__button-and-catalog__width: 240px;
         margin-top: $indent__xs;
     }
 
-    .fotorama__stage {
+    .fotorama__wrap {
         border: 1px solid $c-grey;
         box-sizing: border-box;
+        padding: 30px 0;
     }
 
     .fotorama__thumb-border {
         border: 2px solid $c-royal;
+    }
+
+    .fotorama__nav--thumbs {
+        text-align: center;
     }
 }
 
