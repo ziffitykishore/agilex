@@ -12,6 +12,22 @@
                 <width>1000</width>
                 <height>1000</height>
             </image>
+            <image id="product_page_image_small" type="thumbnail">
+                <width>60</width>
+                <height>60</height>
+            </image>
+            <image id="product_page_image_small" type="thumbnail">
+                <width>60</width>
+                <height>60</height>
+            </image>
+            <image id="product_page_main_image" type="image">
+                <width>600</width>
+                <height>500</height>
+            </image>
+            <image id="product_page_main_image_default" type="image">
+                <width>600</width>
+                <height>500</height>
+            </image>
         </images>
     </media>
 </view>
