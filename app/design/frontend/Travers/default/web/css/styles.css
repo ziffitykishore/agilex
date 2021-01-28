@@ -21312,6 +21312,11 @@ form.methods-shipping .actions-toolbar .action.primary {
 .checkout-agreement-item-content {
   overflow: auto; }
 
+.form-create-account .actions-toolbar .primary {
+  width: 100%; }
+  .form-create-account .actions-toolbar .primary .primary {
+    max-width: 200px; }
+
 .login-container {
   margin-top: 25px; }
   .login-container .block-new-customer .actions-toolbar {
@@ -31209,5 +31214,3 @@ body {
 
 .block-cms-hierarchy-link-inline.widget {
   margin: 0; }
-
-
