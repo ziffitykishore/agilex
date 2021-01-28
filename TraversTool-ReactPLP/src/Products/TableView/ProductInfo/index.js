@@ -68,7 +68,11 @@ class ProductInfo extends PureComponent {
             <button aria-label="Close" className="close-button" type="button" onClick={this.closeFlyout}>×</button>
             <a href={this.props.hit.url}><img src={this.props.hit.image_url} alt={this.props.hit.name}></img></a>
             <a href={this.props.hit.url} className="product-name"><p dangerouslySetInnerHTML={{ __html: this.props.hit.name }}></p></a>
-            <button type="button" className="stock-modal-trigger" onClick={this.openStockModal}>Check Locations</button>
+            {this.props.hits.sx_inventory_status === "Order as needed" ?
+            <span>Ships from Manufacture</span>
+              :
+              <button type="button" className="stock-modal-trigger" onClick={this.openStockModal}>Check Locations</button>
+            }
             <StockStatusModal
               closeStockModal={this.closeStockModal}
               hit={this.props.hit}
