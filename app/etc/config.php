@@ -406,6 +406,7 @@ return [
         'SomethingDigital_WebsiteSwitcher' => 1,
         'Temando_Shipping' => 0,
         'Taxjar_SalesTax' => 1,
+        'Travers_CustomerLinking' => 1,
         'Travers_OptimizeCrons' => 1,
         'Travers_Seo' => 1,
         'SomethingDigital_ProductImportTweaks' => 1,
