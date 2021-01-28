@@ -5,15 +5,19 @@ namespace Travers\CustomerLinking\Helper;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Mail\Template\TransportBuilder;
+use Magento\Framework\Translate\Inline\StateInterface;
+use Magento\Store\Model\ScopeInterface;
 
 class Data
 {
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        TransportBuilder $email
+        TransportBuilder $email,
+        StateInterface $inlineTranslation
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->email = $email;
+        $this->inlineTranslation = $inlineTranslation;
     }
 
     public function getConfigValue($path) 
@@ -31,7 +35,7 @@ class Data
 
     public function sendMail($message)
     {
-        try {var_dump($message);
+        try {
             $this->inlineTranslation->suspend();
             $sender = [
                 'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
@@ -54,7 +58,7 @@ class Data
             $transport->sendMessage();
             $this->inlineTranslation->resume();
         } catch (\Exception $e) {
-            $this->logger->debug($e->getMessage());
+            $this->logData($e->getMessage());
         }
     }
     
