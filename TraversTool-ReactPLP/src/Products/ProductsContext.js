@@ -25,7 +25,7 @@ const ProductsContextProvider = (props) => {
             productsKeys.map(key => {
                 let totalOrders = 0;
                 products[key].map(product => {
-                    if (product.sku_torders_12month) {
+                    if (product.ig_torders_12month) {
                         totalOrders += product.sku_torders_12month;
                     }
                 })
