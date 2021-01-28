@@ -45,7 +45,7 @@ class Consumer
                 else {
                     $this->helper->logData("Customer account linking failed for customer id ".$customerId." with message '".$message."'");
                     $count = 0;
-                    $this->helper->sendMail($message);
+                    $this->helper->sendMail($message, $customerId);
                 }
             }
         }
