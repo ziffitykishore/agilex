@@ -25,6 +25,7 @@ $_password-very-strong: #81b562 !default;
 //  _____________________________________________
 
 .form-create-account {
+    position: relative;
     .actions-toolbar {
         .primary {
             width: 100%;
@@ -32,6 +33,11 @@ $_password-very-strong: #81b562 !default;
                 max-width: 200px;
             }
         }
+    }
+
+    .field-recaptcha {
+        position: absolute;
+        opacity: 0;
     }
 }
 
