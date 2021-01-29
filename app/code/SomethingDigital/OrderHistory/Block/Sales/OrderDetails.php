@@ -69,6 +69,19 @@ class OrderDetails extends Template
     }
 
     /**
+     * Returns Discount Amount
+     *
+     */
+    public function getDiscount($lineItems)
+    {
+        $discountTotal = 0;
+        foreach($lineItems as $item) {
+            $discountTotal += $item['DiscountAmount'];
+        }
+        return $discountTotal;
+    }
+
+    /**
      * Calculate order grand total
      *
      * @return float

@@ -8,7 +8,7 @@ use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Data
+class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     public function __construct(
         ScopeConfigInterface $scopeConfig,
@@ -33,7 +33,7 @@ class Data
         $logger->info(print_r($message, true));
     }
 
-    public function sendMail($message)
+    public function sendMail($message, $customerId)
     {
         try {
             $this->inlineTranslation->suspend();
@@ -50,7 +50,8 @@ class Data
                     ]
                 )
                 ->setTemplateVars([
-                    'Message'  => $message
+                    'message'  => $message,
+                    'customerId' => $customerId
                 ])
                 ->setFrom($sender)
                 ->addTo($this->scopeConfig->getValue('sx/customer_linking/failure_email'))

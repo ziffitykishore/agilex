@@ -73,7 +73,7 @@ class OrdersApi extends Adapter
         $customerAccountId = $this->getCustomerAccountId();
 
         if ($customerAccountId) {
-            $this->requestPath = 'api/Order/' . $orderId;
+            $this->requestPath = 'api/Order/?sxOrderNumber=' . $orderId;
 
             return $this->getRequest();
         } else {
