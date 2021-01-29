@@ -10,6 +10,9 @@
                 <field id="failure_email" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>Error Email Reciepient</label>
                 </field>
+                <field id="preauth_description" translate="label" type="textarea" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>PreAuth Description</label>
+                </field>
             </group>
         </section>
     </system>
