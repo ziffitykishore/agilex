@@ -99,7 +99,6 @@ $product-hero__button-and-catalog__width: 240px;
         display: flex;
         flex-direction: column;
         box-sizing: border-box;
-        justify-content: space-between;
 
         @include max-screen($screen__m) {
             margin-bottom: $indent__m;
@@ -116,7 +115,6 @@ $product-hero__button-and-catalog__width: 240px;
 
         .product-add-form {
             order: 2;
-            margin-top: auto;
         }
 
         .product-social-links {
@@ -262,6 +260,7 @@ $product-hero__button-and-catalog__width: 240px;
     }
 
     .product-add-form {
+        margin-top: 20px;
         form {
             display: flex;
             flex-wrap: wrap;
@@ -278,7 +277,7 @@ $product-hero__button-and-catalog__width: 240px;
 
             .pricing {
                 flex-basis: 70%;
-                order: -1;
+                order: 3;
                 margin-left: $indent__xs;
                 margin-top: $indent__base;
                 font-size: $font-size__base--desktop;
@@ -301,6 +300,12 @@ $product-hero__button-and-catalog__width: 240px;
 
     .product-reviews-summary {
         margin-top: $indent__xs;
+    }
+
+    .gallery-placeholder {
+        &._block-content-loading {
+            overflow: hidden;
+        }
     }
 
     .fotorama__wrap {
