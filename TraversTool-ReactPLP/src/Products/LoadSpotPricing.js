@@ -30,9 +30,9 @@ function LoadSpotPricing({
 
   useEffect(() => {
     if (skus) {
-      // fetchContent(apiUrls.pricing.url, skus.toString()).then(newPricing => {
-      //   addPricing(newPricing);
-      // });
+      fetchContent(apiUrls.pricing.url, skus.toString()).then(newPricing => {
+        addPricing(newPricing);
+      });
     }
   }, [skus]);
 
