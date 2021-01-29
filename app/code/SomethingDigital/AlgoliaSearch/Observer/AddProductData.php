@@ -48,23 +48,23 @@ class AddProductData implements ObserverInterface
         $this->addStockData($product, $transport);
         $this->addTierPrices($product, $transport);
         $this->addRadius($product, $transport);
-        $this->addSkuWithoutHyphen($product, $transport);
+        $this->addAliasSku($product, $transport);
     }
 
     /**
-     * Add manufacturer_price attribute to algolia data
+     * Update the sku attribute to algolia data
      *
      * @param \Magento\Catalog\Model\Product $product
      * @param \Magento\Framework\DataObject $transport
      */
-    private function addSkuWithoutHyphen($product, $transport)
+    private function addAliasSku($product, $transport)
     {
         $algoliaProductData = $transport->getData();
         $hypen_removed = str_replace('-','',$product->getSku());
         $data[] =$product->getSku();
         array_push($data,$hypen_removed);
         $algoliaProductData['sku'] = $data;
-        
+
         $transport->setData($algoliaProductData);
     }
 
