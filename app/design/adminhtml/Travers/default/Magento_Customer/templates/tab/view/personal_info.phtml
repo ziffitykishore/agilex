@@ -27,7 +27,7 @@ $allowedAddressHtmlTags = ['b', 'br', 'em', 'i', 'li', 'ol', 'p', 'strong', 'sub
         </tr>
         <tr>
             <th><?= $block->escapeHtml(__('Last Account Linking Date:')) ?></th>
-            <td><?= $block->escapeHtml($this->formatDate($block->getLinkingDate(), \IntlDateFormatter::MEDIUM, true)) ?>
+            <td><?php if($block->getLinkingDate() != ''): ?><?= $block->escapeHtml($this->formatDate($block->getLinkingDate(), \IntlDateFormatter::MEDIUM, true)) ?><?php endif; ?></td>
         </tr>
         <tr>
             <th><?= $block->escapeHtml(__('Last Logged In:')) ?></th>
