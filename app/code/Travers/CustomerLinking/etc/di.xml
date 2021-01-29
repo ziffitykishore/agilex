@@ -7,4 +7,12 @@
             </argument>
         </arguments>
     </type>
+    <preference for="Magento\Customer\Block\Adminhtml\Edit\Tab\View\PersonalInfo" type="Travers\CustomerLinking\Block\Adminhtml\Edit\Tab\View\PersonalInfo" />
+    <type name="Magento\Theme\Model\View\Design">
+        <arguments>
+            <argument name="themes" xsi:type="array">
+                <item name="adminhtml" xsi:type="string">Travers/default</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
