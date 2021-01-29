@@ -15167,6 +15167,10 @@ body.catalog-product-compare-index .action.print {
       .detail-blocks .details-tab-wrapper {
         margin-left: -15px;
         margin-right: -15px; } }
+    @media only screen and (max-width: 768px) {
+      .detail-blocks .details-tab-wrapper {
+        padding: 18px 0;
+        top: 55px; } }
     .detail-blocks .details-tab-wrapper.js-sticky {
       position: fixed;
       top: 0;
@@ -15203,6 +15207,9 @@ body.catalog-product-compare-index .action.print {
       @media only screen and (min-width: 769px) {
         .detail-blocks .details-tab-wrapper .tab-link {
           font-size: 20px; } }
+      @media only screen and (max-width: 768px) {
+        .detail-blocks .details-tab-wrapper .tab-link {
+          font-size: 14px; } }
       .detail-blocks .details-tab-wrapper .tab-link:before {
         content: '';
         height: 5px;
@@ -15211,6 +15218,9 @@ body.catalog-product-compare-index .action.print {
         background: #00377B;
         visibility: hidden;
         bottom: -30px; }
+        @media only screen and (max-width: 768px) {
+          .detail-blocks .details-tab-wrapper .tab-link:before {
+            bottom: -18px; } }
       .detail-blocks .details-tab-wrapper .tab-link.js-active {
         color: #00377B; }
         .detail-blocks .details-tab-wrapper .tab-link.js-active:before {
@@ -15513,6 +15523,7 @@ body.catalog-product-compare-index .action.print {
   .product-hero .priceDesc {
     text-transform: uppercase;
     font-weight: 600;
+    margin-top: 10px;
     margin-bottom: 0;
     font-size: 16px; }
   .product-hero .pricePerEach {
@@ -15539,7 +15550,7 @@ body.catalog-product-compare-index .action.print {
      */ }
     @media only screen and (min-width: 769px) {
       .product-hero .product.media {
-        width: 48%; } }
+        width: 45%; } }
   .product-hero .product-info-main {
     -ms-flex-order: 2;
         order: 2;
@@ -15717,11 +15728,14 @@ body.catalog-product-compare-index .action.print {
         width: 100%; } }
   .product-hero .product-reviews-summary {
     margin-top: 5px; }
-  .product-hero .fotorama__stage {
+  .product-hero .fotorama__wrap {
     border: 1px solid #DCDCDC;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    padding: 30px 0; }
   .product-hero .fotorama__thumb-border {
     border: 2px solid #00377B; }
+  .product-hero .fotorama__nav--thumbs {
+    text-align: center; }
 
 .master-catalog-link {
   color: #333333;
@@ -31209,5 +31223,3 @@ body {
 
 .block-cms-hierarchy-link-inline.widget {
   margin: 0; }
-
-

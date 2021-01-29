@@ -28,6 +28,11 @@
                 <width>600</width>
                 <height>500</height>
             </image>
+            <image id="product_page_image_large" type="image"/>
+            <image id="product_page_image_medium" type="image">
+                <width>600</width>
+                <height>500</height>
+            </image>
         </images>
     </media>
 </view>
