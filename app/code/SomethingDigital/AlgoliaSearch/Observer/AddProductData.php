@@ -64,6 +64,7 @@ class AddProductData implements ObserverInterface
         $data[] =$product->getSku();
         array_push($data,$hypen_removed);
         $algoliaProductData['sku'] = $data;
+        
         $transport->setData($algoliaProductData);
     }
 
