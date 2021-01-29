@@ -98,7 +98,7 @@ $paymentMethod = $order->getPayment()->getMethodInstance()->getTitle();
                                                 <?php echo $block->escapeHtml($item->getName()); ?>
                                             </strong>
                                             <span class="sku">
-                                                <?php echo $block->escapeHtml($item->getSku()); ?>
+                                                <div>Item # <?php echo $block->escapeHtml($item->getSku()); ?></div>
                                             </span>
                                         </div>
                                     </td>
