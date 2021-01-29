@@ -34,17 +34,19 @@ $checkout-step-title-mobile__font-size: 18px !default;
                     margin-right: 0;
                 }
             }
+
+        .cart-title {
+            @include bryant-park-headings-h3;
+            margin-bottom: 20px;
+            font-weight: 600;
+            font-size: 16px;
+        }
         .form-cart {
             padding: 0;
             border: none;
             margin-bottom: 20px;
             @include max-screen($screen__l) {
                 width: 100%;
-            }
-            .cart-title {
-                margin-bottom: 20px;
-                font-weight: 600;
-                font-size: 16px;
             }
             .table-wrapper {
                 padding: 0;
@@ -64,6 +66,9 @@ $checkout-step-title-mobile__font-size: 18px !default;
                 .col {
                     padding-top: 20px;
                     font-size: 14px;
+                    @include min-screen($screen__m) {
+                        font-size: 16px;
+                    }
                 }
             }
 
@@ -127,6 +132,14 @@ $checkout-step-title-mobile__font-size: 18px !default;
                 text-transform: none;
                 font-family: "Roboto", Helvetica, Arial, sans-serif;
                 font-size: 14px;
+                font-weight: 500;
+                border-bottom: solid 1px #C2C2C2;
+                padding-bottom: 10px;
+                display: block;
+
+                @include min-screen($screen__m) {
+                    font-size: 16px;
+                }
             }
 
             .table {
@@ -152,7 +165,6 @@ $checkout-step-title-mobile__font-size: 18px !default;
             }
             @include min-screen($screen__l) {
                 width: 27%;
-                margin-top: 45px;
                 position: sticky;
                 top: 25px;
             }
@@ -213,11 +225,16 @@ $checkout-step-title-mobile__font-size: 18px !default;
             .block-title {
                 border-bottom: 1px solid #c2c2c2;
                 margin-bottom: 15px;
-                padding-bottom: 15px;
+                padding-bottom: 10px;
+                font-weight: 500;
 
                 @include max-screen($screen__l) {
                     margin-bottom: 10px;
                     padding-bottom: 10px;
+                }
+
+                @include min-screen($screen__m) {
+                    font-size: 16px;
                 }
             }
 
