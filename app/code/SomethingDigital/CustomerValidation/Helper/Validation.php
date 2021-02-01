@@ -51,6 +51,11 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function validate($traversAccountId, $accountZipCode) {
         $message = '';
+        if(!empty($accountZipCode) && empty($traversAccountId)) {
+            $message = __(
+                'Travers Account Number field can not be empty.'
+            );
+        }
         if(!empty($traversAccountId)) {
             $this->logData("Pre Auth process started with Travers Account Id : ".$traversAccountId." and Zip code : ".$accountZipCode);
             if (empty($accountZipCode)) {
