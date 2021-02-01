@@ -13,4 +13,7 @@ rabbitmq:
     type: rabbitmq:3.8
     disk: 2048
 
+elasticsearch:
+    type: elasticsearch:6.8
+    disk: 1024
 
