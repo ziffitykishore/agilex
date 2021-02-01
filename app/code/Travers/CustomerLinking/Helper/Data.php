@@ -36,13 +36,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function sendMail($message, $customerId)
     {
         try {
+            $templateId = $this->scopeConfig->getValue('sx/customer_linking/email_template');
             $this->inlineTranslation->suspend();
             $sender = [
                 'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
                 'email' => $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE),
             ];
             $transport = $this->email
-                ->setTemplateIdentifier('customer_account_linking_error')
+                ->setTemplateIdentifier($templateId)
                 ->setTemplateOptions(
                     [
                         'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
