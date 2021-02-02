@@ -163,9 +163,9 @@ class History extends SalesHistory
         return $collection;
     }
 
-    public function getViewUrl($order)
+    public function getViewUrl($sxId)
     {
-        return $this->getUrl('sales/order/detail', ['order' => $order->getData('SxId')]);
+        return $this->getUrl('sales/order/detail', ['order' => $sxId]);
     }
 
     public function formatTime($time = NULL, $format = \IntlDateFormatter::SHORT, $showDate = false)

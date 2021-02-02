@@ -7,10 +7,12 @@ import { connectHits } from 'react-instantsearch-dom';
 import { getGroupImage, renderHitProperty, round } from '../../helpers';
 import classNames from 'classnames';
 import LazyLoad from 'react-lazyload';
+import { ProductsContext } from '../../ProductsContext';
 
 // You will see both "formated" and "formatted" in this code. Algolia made a typo and we had to go with it
 
 class Hits extends PureComponent {
+  static contextType = ProductsContext
   componentDidMount = () => {
     if (this.props.setGroupImage) {
       const { hits, urlToGroupingImagesCatalog } = this.props;
@@ -19,12 +21,17 @@ class Hits extends PureComponent {
       this.props.setGroupImage({
         [this.props.groupName]: groupImage
       })
+    }  
+  }
+  getSnapshotBeforeUpdate(){
+    const {products,setProducts} = this.context; 
+    if(this.props.hits.length && JSON.stringify(products[this.props.groupName]) !== JSON.stringify(this.props.hits)){
+      setProducts({...products,[this.props.groupName]:this.props.hits});
     }
   }
-
   render() {
     this.props.setProductsShowingCount(this.props.hits.length);
-
+    
     return (
       <div className="list-view">
         {this.props.hits.filter(hit => hit.in_stock).map(hit => {
@@ -77,7 +84,11 @@ class Hits extends PureComponent {
                         )
                       )}
                       {rawTierGroups ? (
+                       <> 
                         <p className="as-low-as">As low as {currencySymbol + Number(lowestTierPrice).toFixed(2)}</p>
+                        <p>Base Price: {hit.price[this.props.currency].default_formated}</p>
+
+                       </>
                       ) : (
                         <React.Fragment>
                           {hit.exact_unit_price ? (

@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_topology.xsd">
+    <exchange name="sample_exchange" type="topic" connection="amqp" autoDelete="true" durable="true" >
+        <binding id="bindingid_publisher"  topic="sample_topic_name"  destinationType="queue" destination="queue-name"/>
+    </exchange>
+    <exchange name="customer_account_exchange" type="topic" connection="amqp" autoDelete="true" durable="true" >
+        <binding id="customer_account_binding"  topic="customer_account_linking"  destinationType="queue" destination="customer-queue"/>
+    </exchange>
+</config>

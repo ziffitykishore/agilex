@@ -20,6 +20,16 @@ $product-hero__button-and-catalog__width: 240px;
     display: flex;
     flex-wrap: wrap;
 
+    @include min-screen($screen__l) {
+        padding: 0 70px;
+        max-width: none;
+    }
+
+    @include min-screen($screen__xl) {
+        padding: 0 120px;
+        max-width: none;
+    }
+
     @include max-screen($screen__m) {
         flex-direction: column;
     }
@@ -28,7 +38,7 @@ $product-hero__button-and-catalog__width: 240px;
         display: flex;
         flex-wrap: wrap;
         align-content: start;
-        width: calc(100% - 250px);
+        width: 100%;
 
         @include max-screen($screen__l) {
             width: 100%;
@@ -52,6 +62,7 @@ $product-hero__button-and-catalog__width: 240px;
     .priceDesc {
         text-transform: uppercase;
         font-weight: $font-weight__extrabold;
+        margin-top: 10px;
         margin-bottom: 0;
         font-size: 16px;
     }
@@ -76,9 +87,10 @@ $product-hero__button-and-catalog__width: 240px;
     .product.media {
         order: 1;
         width: 100%;
+        box-sizing: border-box;
 
         @include min-screen($screen__m) {
-            width: calc(100% - #{$width__product-info} - #{$indent__xl});
+            width: 45%;
         }
     }
 
@@ -86,14 +98,15 @@ $product-hero__button-and-catalog__width: 240px;
         order: 2;
         display: flex;
         flex-direction: column;
+        box-sizing: border-box;
 
         @include max-screen($screen__m) {
             margin-bottom: $indent__m;
         }
 
         @include min-screen($screen__m) {
-            width: $width__product-info;
-            margin-left: $indent__xl;
+            width: 48%;
+            margin-left: $indent__xl - 10;
         }
 
         .product.attribute.overview {
@@ -107,6 +120,10 @@ $product-hero__button-and-catalog__width: 240px;
         .product-social-links {
             order: 3;
             margin-top: $indent__s;
+        }
+
+        .link-sharing {
+            display: none;
         }
 
         .stock-info-popup-trigger {
@@ -207,6 +224,10 @@ $product-hero__button-and-catalog__width: 240px;
     .product-info-stock-sku {
         margin-top: 20px;
 
+        @include min-screen($screen__m) {
+            margin-top: 0;
+        }
+
         span:not(.stock-info-popup-trigger) {
             margin-right: $indent__xs;
             font-size: $font-size__base;
@@ -239,6 +260,7 @@ $product-hero__button-and-catalog__width: 240px;
     }
 
     .product-add-form {
+        margin-top: 20px;
         form {
             display: flex;
             flex-wrap: wrap;
@@ -255,7 +277,7 @@ $product-hero__button-and-catalog__width: 240px;
 
             .pricing {
                 flex-basis: 70%;
-                order: -1;
+                order: 3;
                 margin-left: $indent__xs;
                 margin-top: $indent__base;
                 font-size: $font-size__base--desktop;
@@ -280,13 +302,24 @@ $product-hero__button-and-catalog__width: 240px;
         margin-top: $indent__xs;
     }
 
-    .fotorama__stage {
+    .gallery-placeholder {
+        &._block-content-loading {
+            overflow: hidden;
+        }
+    }
+
+    .fotorama__wrap {
         border: 1px solid $c-grey;
         box-sizing: border-box;
+        padding: 30px 0;
     }
 
     .fotorama__thumb-border {
         border: 2px solid $c-royal;
+    }
+
+    .fotorama__nav--thumbs {
+        text-align: center;
     }
 }
 
@@ -294,7 +327,7 @@ $product-hero__button-and-catalog__width: 240px;
     color: $text__color;
     display: block;
     margin: $indent__m 0;
-    max-width: $product-hero__button-and-catalog__width;
+    max-width: $product-hero__button-and-catalog__width - 40;
 
     @include hover {
         text-decoration: none;
@@ -304,11 +337,17 @@ $product-hero__button-and-catalog__width: 240px;
             color: $link__hover__color;
         }
     }
+
+    .master-catalog-listing {
+        .header {
+            font-size: 15px;
+        }
+    }
 }
 
 .master-catalog-listing {
     border: 1px solid $c-grey;
-    max-width: 460px;
+    max-width: 400px;
     width: 100%;
     padding: 12px;
     box-sizing: border-box;
@@ -320,6 +359,7 @@ $product-hero__button-and-catalog__width: 240px;
         font-weight: $font-weight__semibold;
         margin: 0;
         margin-bottom: $indent__s;
+        font-size: 16px;
     }
 
     a {

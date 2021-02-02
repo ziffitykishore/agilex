@@ -16,6 +16,7 @@
 
 // Customer registration helper
 $customerHelper = $this->helper(SomethingDigital\BryantPark\Helper\Customer::class);
+$preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
 ?>
 <?= $block->getChildHtml('form_fields_before') ?>
 <?php /* Extensions placeholder */ ?>
@@ -28,15 +29,6 @@ $customerHelper = $this->helper(SomethingDigital\BryantPark\Helper\Customer::cla
         <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
         <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
         <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
-
-        <?php if ($block->isNewsletterEnabled()): ?>
-        <div class="field choice newsletter">
-            <input type="checkbox" name="is_subscribed" title="<?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed" <?= $customerHelper->getNewsletterDefault() ?> class="checkbox"/>
-            <label for="is_subscribed" class="label"><span><?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?></span></label>
-        </div>
-            <?php /* Extensions placeholder */ ?>
-            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
-        <?php endif ?>
 
         <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
         <?php if ($_dob->isEnabled()): ?>
@@ -141,8 +133,25 @@ $customerHelper = $this->helper(SomethingDigital\BryantPark\Helper\Customer::cla
         <input type="hidden" name="default_billing" value="1"/>
         <input type="hidden" name="default_shipping" value="1"/>
     </fieldset>
-
 <?php endif; ?>
+    <fieldset class="fieldset create travers-account">
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Travers Account') ?></span></legend><br>
+        <div>
+            <?= $preAuthCofig->getConfigValue('sx/customer_linking/preauth_description'); ?>
+        </div><br>
+        <div class="field travers-account-number">
+            <label for="travers_account_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Travers Account Number(Optional)') ?></span></label>
+            <div class="control">
+                <input type="text" name="travers_account_id" id="travers_account_id" value="<?php echo $block->escapeHtml($block->getFormData()->getTraversAccountId()) ?>" title="<?php /* @escapeNotVerified */ echo __('Travers Account Number') ?>" class="input-text"/>
+            </div>
+        </div>
+        <div class="field account-zip-code">
+            <label for="account_zip_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Account Zip Code(Optional)') ?></span></label>
+            <div class="control">
+                <input type="text" name="account_zip_code" id="account_zip_code" value="<?php echo $block->escapeHtml($block->getFormData()->getAccountZipCode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account Zip Code') ?>" class="input-text"/>
+            </div>
+        </div>
+    </fieldset>
     <fieldset class="fieldset create account" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
         <legend class="legend"><span><?= /* @escapeNotVerified */ __('Sign-in Information') ?></span></legend><br>
         <div class="field required">
@@ -189,21 +198,15 @@ $customerHelper = $this->helper(SomethingDigital\BryantPark\Helper\Customer::cla
         </div>
         <?= $block->getChildHtml('form_additional_info') ?>
     </fieldset>
-    <fieldset class="fieldset create travers-account">
-        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Travers Account') ?></span></legend><br>
-        <div class="field travers-account-number">
-            <label for="travers_account_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Travers Account Number') ?></span></label>
-            <div class="control">
-                <input type="text" name="travers_account_id" id="travers_account_id" value="<?php echo $block->escapeHtml($block->getFormData()->getTraversAccountId()) ?>" title="<?php /* @escapeNotVerified */ echo __('Travers Account Number') ?>" class="input-text"/>
-            </div>
+    <?php if ($block->isNewsletterEnabled()): ?>
+        <div class="field choice newsletter">
+            <input type="checkbox" name="is_subscribed" title="<?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed" <?= $customerHelper->getNewsletterDefault() ?> class="checkbox"/>
+            <label for="is_subscribed" class="label"><span><?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?></span></label>
         </div>
-        <div class="field account-zip-code">
-            <label for="account_zip_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Account Zip Code') ?></span></label>
-            <div class="control">
-                <input type="text" name="account_zip_code" id="account_zip_code" value="<?php echo $block->escapeHtml($block->getFormData()->getAccountZipCode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account Zip Code') ?>" class="input-text"/>
-            </div>
-        </div>
-    </fieldset>
+            <?php /* Extensions placeholder */ ?>
+            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+    <?php endif ?>
+    <br>
     <div class="actions-toolbar">
         <div class="primary">
             <button type="submit" class="action submit primary" title="<?= /* @escapeNotVerified */ __('Create an Account') ?>"><span><?= /* @escapeNotVerified */ __('Create an Account') ?></span></button>

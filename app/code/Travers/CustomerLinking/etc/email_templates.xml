@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+	<template id="sx_customer_linking_email_template" label="Customer Account Linking" file="customer_account_linking_error.html" type="html" module="Travers_CustomerLinking" area="frontend"/>
+</config>

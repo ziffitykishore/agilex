@@ -49,7 +49,7 @@ if ($_attributeLabel && $_attributeLabel == 'SKU') {
 ?>
 
 <?php if ($_attributeValue): ?>
-<div class="product attribute <?= /* @escapeNotVerified */ $_className ?>">
+<div class="product attribute <?= /* @escapeNotVerified */ $_className ?>" id="<?= /* @escapeNotVerified */ $_className ?>">
     <?php if ($renderLabel): ?><strong class="type"><?= /* @escapeNotVerified */ $_attributeLabel ?></strong><?php endif; ?>
     <div class="value" <?= /* @escapeNotVerified */ $_attributeAddAttribute ?>><?= /* @escapeNotVerified */ $_attributeValue ?></div>
 </div>

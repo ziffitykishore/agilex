@@ -24,6 +24,23 @@ $_password-very-strong: #81b562 !default;
 //  Common
 //  _____________________________________________
 
+.form-create-account {
+    position: relative;
+    .actions-toolbar {
+        .primary {
+            width: 100%;
+            .primary {
+                max-width: 200px;
+            }
+        }
+    }
+
+    .field-recaptcha {
+        position: absolute;
+        opacity: 0;
+    }
+}
+
 .login-container {
     margin-top: $indent__m;
 

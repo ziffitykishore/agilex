@@ -51,23 +51,39 @@ class Validation extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function validate($traversAccountId, $accountZipCode) {
         $message = '';
-
-        if (!empty($traversAccountId) && empty($accountZipCode)) {
+        if(!empty($accountZipCode) && empty($traversAccountId)) {
             $message = __(
-                'Account Zip Code field can not be empty.'
+                'Travers Account Number field can not be empty.'
             );
-        } elseif (!empty($traversAccountId)) {
-            if ($this->isCustomerRegistered($traversAccountId)) {
+        }
+        if(!empty($traversAccountId)) {
+            $this->logData("Pre Auth process started with Travers Account Id : ".$traversAccountId." and Zip code : ".$accountZipCode);
+            if (empty($accountZipCode)) {
                 $message = __(
-                    'There is already an account with this account number.'
+                    'Account Zip Code field can not be empty.'
+                );
+            } elseif ($this->isCustomerRegistered($traversAccountId)) {
+                    $message = __(
+                        'There is already an account with this account number.'
+                    );
+            } elseif (!$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
+                $message = __(
+                    'Zip Code doesn\'t match customer number.'
                 );
             }
-        } elseif (!empty($traversAccountId) && !$this->isZipCodeValid($traversAccountId, $accountZipCode)) {
-            $message = __(
-                'Zip Code doesn\'t match customer number.'
-            );
-        }          
-
+        }
+        if($message != '')
+            $this->logData($message->getText().' '.$traversAccountId);
+        else
+        $this->logData('Pre Auth success for Account Id '.$traversAccountId);
         return $message;
+    }
+
+    private function logData($message = null, $enable = false)
+    {
+            $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/pre_auth.log');
+            $logger = new \Zend\Log\Logger();
+            $logger->addWriter($writer);
+            $logger->info(print_r($message, true));
     }
 }

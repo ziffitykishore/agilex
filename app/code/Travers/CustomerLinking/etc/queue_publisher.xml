@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_publisher.xsd">
+    <publisher topic="sample_topic_name">
+        <connection name="amqp" exchange="sample_exchange"/>
+    </publisher>
+    <publisher topic="customer_account_linking">
+        <connection name="amqp" exchange="customer_account_exchange"/>
+    </publisher>
+</config>

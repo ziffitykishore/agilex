@@ -59,7 +59,7 @@ class Index extends Action
         try {
             $prices = $this->spotPricingApi->getSpotPrice($skus);
             $store = $this->storeManager->getStore()->getStoreId();
-
+            
             if ($prices) {
                 foreach ($prices as $id => $productPrices) {
                     $spotPrice = $this->arrayManager->get('DiscountPrice', $productPrices, 0);
@@ -71,12 +71,12 @@ class Index extends Action
                         $price = $spotPrice;
                     }
                     $unitPrice = $price;
-                    if ($product->getExactUnitPrice()) {
+                    if (!empty($product->getExactUnitPrice()) && $product->getExactUnitPrice() > 0) {
                         $unitPrice = min($product->getExactUnitPrice(), $price);
                         $price = $this->currency->convert($unitPrice, $store) * 100;
                         $pricePer100 = true;
                     }
-                    if ($product->getSpecialExactUnitPrice()) {
+                    if (!empty($product->getSpecialExactUnitPrice()) && $product->getSpecialExactUnitPrice() > 0) {
                         $exactUnitPrice = min($product->getSpecialExactUnitPrice(), $price);
                         $price = $this->currency->convert($exactUnitPrice, $store) * 100;
                     }

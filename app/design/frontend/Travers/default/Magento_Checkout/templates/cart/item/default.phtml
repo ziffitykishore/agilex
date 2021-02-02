@@ -57,6 +57,7 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
                         <?= $block->escapeHtml($block->getProductName()) ?>
                     <?php endif; ?>
                 </strong>
+                <div>Item #  <?= $block->escapeHtml($_item->getSku()) ?></div>
                 <?php if ($_options = $block->getOptionList()):?>
                     <dl class="item-options">
                         <?php foreach ($_options as $_option) : ?>

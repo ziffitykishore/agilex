@@ -8,6 +8,9 @@ use Magento\Framework\App\Http\Context as HttpContext;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\Registry;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Psr\Log\LoggerInterface;
 
 class OrderDetails extends Template
 {
@@ -35,11 +38,15 @@ class OrderDetails extends Template
         Registry $registry,
         HttpContext $httpContext,
         PriceCurrencyInterface $priceCurrency,
+        ProductRepositoryInterface $productRepository,
+        LoggerInterface $logger,
         array $data = []
     ) {
         $this->coreRegistry = $registry;
         $this->httpContext = $httpContext;
         $this->priceCurrency = $priceCurrency;
+        $this->productRepository = $productRepository;
+        $this->logger = $logger;
         parent::__construct($context, $data);
     }
 
@@ -59,6 +66,19 @@ class OrderDetails extends Template
     public function getOrder()
     {
         return $this->coreRegistry->registry('sx_current_order');
+    }
+
+    /**
+     * Returns Discount Amount
+     *
+     */
+    public function getDiscount($lineItems)
+    {
+        $discountTotal = 0;
+        foreach($lineItems as $item) {
+            $discountTotal += $item['DiscountAmount'];
+        }
+        return $discountTotal;
     }
 
     /**
@@ -128,5 +148,19 @@ class OrderDetails extends Template
     {
         $price = $this->priceCurrency->format($price,true,2);
         return $price;
+    }
+
+    /**
+     * Get product URL for specific sku
+     */
+    public function getProductUrl($sku)
+    {
+        $productUrl = '#';
+        try {
+            $productUrl = $this->productRepository->get($sku)->getProductUrl();
+        } catch (NoSuchEntityException $noSuchEntityException) {
+            $this->logger->critical('Product associated with the Sku '.$sku.' is not found');
+        }
+        return $productUrl;
     }
 }

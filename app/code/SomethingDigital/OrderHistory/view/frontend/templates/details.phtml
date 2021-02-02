@@ -9,9 +9,9 @@
 ?>
 <?php /** @var  $block SomethingDigital\OrderHistory\Block\Sales\OrderDetails*/?>
 <div class="order-details-items ordered">
-    <?php $order = $block->getOrder() ?>
-    <?php $subtotal = $block->getOrderSubtotal($order); ?>
-    <?php $grandTotal = $block->getOrderGrandTotal($order); ?>
+    <?php $orderData = $block->getOrder() ?>
+    <?php $order = $orderData->getData()[0];?>
+    <?php $discountAmnt = $block->getDiscount($order['LineItems']); ?>
 
     <div class="order-title">
         <strong><?= /* @escapeNotVerified */ __('Items Ordered') ?></strong>
@@ -29,14 +29,17 @@
                     <th class="col subtotal"><?= /* @escapeNotVerified */ __('Subtotal') ?></th>
                 </tr>
             </thead>
-            <?php $items = $order->getData('LineItems'); ?>
+            <?php $items = $order['LineItems']; ?>
             <tbody>
                 <?php foreach ($items as $item): ?>
+                    <?php
+                        $productUrl = $block->getProductUrl($item['SKU']);
+                    ?>
                     <tr id="order-item-row-<?= $item['SKU'] ?>">
                        <td class="col name" data-th="<?= __('Item') ?>">
-                          <strong class="product name product-item-name"><?= $block->escapeHtml($item['Title']) ?></strong>
+                          <strong class="product name product-item-name"><a href="<?= $productUrl ?>"><?= $block->escapeHtml($item['Title']) ?></a></strong>
                        </td>
-                       <td class="col sku" data-th="<?= __('SKU') ?>"><?= $block->escapeHtml($item['SKU']) ?></td>
+                       <td class="col sku" data-th="<?= __('SKU') ?>"><a href="<?= $productUrl ?>"><?= $block->escapeHtml($item['SKU']) ?></a></td>
                        <td class="col price" data-th="<?= __('Price') ?>">
                             <span class="price-excluding-tax" data-label="<?= __('Excl. Tax') ?>">
                                 <span class="cart-price">
@@ -68,16 +71,16 @@
                         <?= __('Subtotal') ?>
                     </th>
                     <td class="amount" data-th="<?= __('Subtotal') ?>">
-                    <span class="price"><?= $block->getCurrencyFormat($subtotal) ?></span>
+                    <span class="price"><?= $block->getCurrencyFormat($order['TotalLineOrdered']) ?></span>
                     </td>
                 </tr>
-                <?php if ($order->getDiscountAmount() != 0): ?>
+                <?php if ($discountAmnt != 0): ?>
                     <tr class="discount_amount">
                         <th colspan="4" class="mark" scope="row">
                           <?= __('Discount') ?>
                         </th>
                         <td class="amount" data-th="<?= __('Subtotal') ?>">
-                        <span class="price"><?= $block->getCurrencyFormat($order->getData('DiscountAmount')) ?></span>                    
+                        <span class="price"><?= $block->getCurrencyFormat($discountAmnt) ?></span>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -86,7 +89,7 @@
                         <?= __('Shipping &amp; Handling') ?>
                     </th>
                     <td class="amount" data-th="<?= __('Shipping &amp; Handling') ?>">
-                        <span class="price"><?= $block->getCurrencyFormat($order->getData('ShipFee')) ?></span>                    
+                        <span class="price"><?= $block->getCurrencyFormat($order['ShippingCharge']) ?></span>
                     </td>
                 </tr>
                 <tr class="tax">
@@ -94,7 +97,7 @@
                         <?= __('Tax') ?>
                     </th>
                     <td class="amount" data-th="<?= __('Tax') ?>">
-                        <span class="price"><?= $block->getCurrencyFormat($order->getData('Tax')) ?></span>
+                        <span class="price"><?= $block->getCurrencyFormat($order['TaxTotal']) ?></span>
                     </td>
                 </tr>
                 <tr class="grand_total">
@@ -102,7 +105,7 @@
                         <strong><?= __('Grand Total') ?></strong>
                     </th>
                     <td class="amount" data-th="<?= __('Grand Total') ?>">
-                        <strong><span class="price"><?= $block->getCurrencyFormat($grandTotal) ?></span></strong>
+                        <strong><span class="price"><?= $block->getCurrencyFormat($order['TotalInvoiceAmount']) ?></span></strong>
                     </td>
                 </tr>
             </tfoot>
