@@ -26,6 +26,7 @@ relationships:
     database: "mysql:mysql"
     redis: "redis:redis"
     rabbitmq: "rabbitmq:rabbitmq"
+    elasticsearch: "elasticsearch:elasticsearch"
 
 # The configuration of app when it is exposed to the web.
 web:
@@ -128,10 +129,6 @@ crons:
     urapidflow_t_score_update:
         spec: "30 7 * * *"
         cmd: "php bin/magento sd:urapidflow:run 'Auto T-Score Update'"
-
-
-
-
 
 # Environment variables
 variables:
