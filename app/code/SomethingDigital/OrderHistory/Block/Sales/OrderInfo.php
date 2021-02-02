@@ -34,7 +34,7 @@ class OrderInfo extends Template
      */
     protected function _prepareLayout()
     {
-        $this->pageConfig->getTitle()->set(__('Order # %1', $this->getOrder()->getData('SxId')));
+        $this->pageConfig->getTitle()->set(__('Order # %1', $this->getOrder()->getData()[0]['OrderNumber']));
     }
 
     /**
