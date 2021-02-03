@@ -9,7 +9,7 @@ use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class Email extends \Magento\Framework\App\Helper\AbstractHelper
+class FailureEmail extends \Magento\Framework\App\Helper\AbstractHelper
 {
     protected $inlineTranslation;
     protected $escaper;
@@ -32,18 +32,20 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
         $this->scopeConfig = $scopeConfig;
     }
 
-    public function sendEmail($profileId)
+    public function sendEmail($profileId, $message)
     {
         $emails = explode(",", $this->scopeConfig->getValue('sx/customer_linking/failure_email'));
         foreach($emails as $email) {
             try {
+                $templateId = $this->scopeConfig->getValue('urapidflow/general/template');
+
                 $this->inlineTranslation->suspend();
                 $sender = [
                     'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
                     'email' => $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE),
                 ];
-                $transport = $this->transportBuilder
-                    ->setTemplateIdentifier('sd_email_urapidflow_notification')
+                $transport =  $this->transportBuilder
+                    ->setTemplateIdentifier($templateId)
                     ->setTemplateOptions(
                         [
                             'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
@@ -52,7 +54,8 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
                     )
                     ->setTemplateVars([
                         'profileId'  => $profileId,
-                        'time' => date('Y-m-d H:i:s')
+                        'time' => date('Y-m-d H:i:s'),
+                        'message' => $message
                     ])
                     ->setFrom($sender)
                     ->addTo($email)
