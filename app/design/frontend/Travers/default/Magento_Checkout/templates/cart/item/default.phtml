@@ -124,6 +124,9 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
                     <span><?= /* @escapeNotVerified */ __('Qty') ?></span>
                 </label>
                 <div class="control qty">
+                <?php 
+                    $stockItem = $product->getExtensionAttributes()->getStockItem();
+                ?>
                     <?php if ($_item->getPrice() != 0): ?>
                         <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
                                name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
@@ -131,6 +134,7 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
                                value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
                                type="number"
                                size="4"
+                               data-increment="<?= /* @escapeNotVerified */ $stockItem->getData('enable_qty_increments') ? $stockItem->getData('qty_increments') : 0;?>"
                                title="<?= $block->escapeHtml(__('Qty')) ?>"
                                class="input-text qty"
                                data-validate="{required:true,'validate-greater-than-zero':true}"
@@ -165,3 +169,19 @@ $originalSaveAmount = $originalPrice == 0 ? 0 : floor((($originalPrice - $finalP
         </td>
     </tr>
 </tbody>
+<script type="text/javascript">
+require(["jquery"],function($){
+    
+    $('#cart-<?php echo $_item->getId() ?>-qty').on("blur",function(e){ 
+        
+        incrementQty = $(this).attr('data-increment')
+        var currentQty = ($(this).val() == 0 || $(this).val() == '') ? incrementQty : $(this).val();
+        console.log(incrementQty);
+        if(incrementQty > 0){
+            var updateQty = parseInt(Math.ceil( currentQty / incrementQty) * incrementQty);
+            updateQty = ( updateQty == 0) ? currentQty : updateQty;
+            $('#cart-<?php echo $_item->getId() ?>-qty').val(updateQty)
+        }    
+    });
+});
+</script>
