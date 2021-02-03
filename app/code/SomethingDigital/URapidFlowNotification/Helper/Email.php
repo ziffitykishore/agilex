@@ -34,7 +34,7 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function sendEmail($profileId)
     {
-        $emails = explode(",", $this->scopeConfig->getValue('sx/customer_linking/failure_email'));
+        $emails = explode(",", $this->scopeConfig->getValue('urapidflow/general/email'));
         foreach($emails as $email) {
             try {
                 $this->inlineTranslation->suspend();
