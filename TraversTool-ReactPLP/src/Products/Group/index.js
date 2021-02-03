@@ -68,7 +68,7 @@ const Group = ({
         const allRefinements = makeRefinements(refinements, attribute, value);
 
         return (
-          <div key={`${key}-lazy`} style={position && position[value]  ? {order:position[value]+""} : {}}>
+          <div key={`${key}-lazy`} style={position && position[value]  ? {} : {}}>
           <LazyLoad height={200} offset={1500}>
             <div className={className} key={key}>
               {nbHits[key] > 0 && (
