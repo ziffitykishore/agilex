@@ -5,7 +5,7 @@
     */
     -->
 
-    <!-- ko if: checkSearchBar()-->
+    <!-- ko if: checkSearchBar() == 1 -->
     <div class="field address-search thisistest" data-bind="visible: (checkSearchBar() == 1)">
         <label for="address-search-input" class="label"><!-- ko i18n: 'Search Addresses' --><!-- /ko --></label>
         <div class="control">
@@ -18,7 +18,7 @@
         </div>
     </div>
     <!-- /ko -->
-    <!-- ko if: (visible)-->
+    <!-- ko if: (visible) -->
     <div class="field addresses">
         <div class="control">
             <div class="shipping-address-items" id="shipping-addresses">
