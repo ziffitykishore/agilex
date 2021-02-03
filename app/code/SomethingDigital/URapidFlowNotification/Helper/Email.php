@@ -35,33 +35,31 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
     public function sendEmail($profileId)
     {
         $emails = explode(",", $this->scopeConfig->getValue('urapidflow/general/email'));
-        foreach($emails as $email) {
-            try {
-                $this->inlineTranslation->suspend();
-                $sender = [
-                    'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
-                    'email' => $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE),
-                ];
-                $transport = $this->transportBuilder
-                    ->setTemplateIdentifier('sd_email_urapidflow_notification')
-                    ->setTemplateOptions(
-                        [
-                            'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                            'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
-                        ]
-                    )
-                    ->setTemplateVars([
-                        'profileId'  => $profileId,
-                        'time' => date('Y-m-d H:i:s')
-                    ])
-                    ->setFrom($sender)
-                    ->addTo($email)
-                    ->getTransport();
-                $transport->sendMessage();
-                $this->inlineTranslation->resume();
-            } catch (\Exception $e) {
-                $this->logger->debug($e->getMessage());
-            }
+        try {
+            $this->inlineTranslation->suspend();
+            $sender = [
+                'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
+                'email' => $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE),
+            ];
+            $transport = $this->transportBuilder
+                ->setTemplateIdentifier('sd_email_urapidflow_notification')
+                ->setTemplateOptions(
+                    [
+                        'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+                        'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                    ]
+                )
+                ->setTemplateVars([
+                    'profileId'  => $profileId,
+                    'time' => date('Y-m-d H:i:s')
+                ])
+                ->setFrom($sender)
+                ->addTo($emails)
+                ->getTransport();
+            $transport->sendMessage();
+            $this->inlineTranslation->resume();
+        } catch (\Exception $e) {
+            $this->logger->debug($e->getMessage());
         }
     }
 }

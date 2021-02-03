@@ -35,36 +35,35 @@ class FailureEmail extends \Magento\Framework\App\Helper\AbstractHelper
     public function sendEmail($profileId, $message)
     {
         $emails = explode(",", $this->scopeConfig->getValue('urapidflow/general/email'));
-        foreach($emails as $email) {
-            try {
-                $templateId = $this->scopeConfig->getValue('urapidflow/general/template');
 
-                $this->inlineTranslation->suspend();
-                $sender = [
-                    'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
-                    'email' => $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE),
-                ];
-                $transport =  $this->transportBuilder
-                    ->setTemplateIdentifier($templateId)
-                    ->setTemplateOptions(
-                        [
-                            'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                            'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
-                        ]
-                    )
-                    ->setTemplateVars([
-                        'profileId'  => $profileId,
-                        'time' => date('Y-m-d H:i:s'),
-                        'message' => $message
-                    ])
-                    ->setFrom($sender)
-                    ->addTo($email)
-                    ->getTransport();
-                $transport->sendMessage();
-                $this->inlineTranslation->resume();
-            } catch (\Exception $e) {
-                $this->logger->debug($e->getMessage());
-            }
+        try {
+            $templateId = $this->scopeConfig->getValue('urapidflow/general/template');
+
+            $this->inlineTranslation->suspend();
+            $sender = [
+                'name' => $this->scopeConfig->getValue('trans_email/ident_support/name',ScopeInterface::SCOPE_STORE),
+                'email' => $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE),
+            ];
+            $transport =  $this->transportBuilder
+                ->setTemplateIdentifier($templateId)
+                ->setTemplateOptions(
+                    [
+                        'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
+                        'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                    ]
+                )
+                ->setTemplateVars([
+                    'profileId'  => $profileId,
+                    'time' => date('Y-m-d H:i:s'),
+                    'message' => $message
+                ])
+                ->setFrom($sender)
+                ->addTo($emails)
+                ->getTransport();
+            $transport->sendMessage();
+            $this->inlineTranslation->resume();
+        } catch (\Exception $e) {
+            $this->logger->debug($e->getMessage());
         }
     }
 }
