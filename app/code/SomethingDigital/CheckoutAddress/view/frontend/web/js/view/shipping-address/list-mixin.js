@@ -32,9 +32,9 @@ define([
          */
         checkSearchBar: function () {
             if(customerData.addresses.length > 0){
-                return true;
+                return 1;
             } else{
-                return false;
+                return 0;
             }
              
         },
