@@ -22,11 +22,12 @@ class UpdateAjaxResponse
     }
 
     public function afterGetAffectedItems(Cart $subject, $result)
-    {
+    {        
         if (isset($result)) {
             foreach ($result as $item) {
                 $sku = $item['sku'];
                 $stockData = $this->stockData->getStockData($sku);
+                $result[$sku]['qty'] = ($this->stockData->getQtyIncrement($sku) > 0) ? $this->stockData->getQtyIncrement($sku) : $result[$sku]['qty'];
                 $result[$sku]['stockData'] = $stockData;
                 $result[$sku]['stockInfo'] = $this->stockData->getMinSaleQtyAndIncrementsInfo($sku);
             }

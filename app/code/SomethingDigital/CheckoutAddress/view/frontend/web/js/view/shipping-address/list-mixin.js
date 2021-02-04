@@ -7,6 +7,7 @@ define([
 
     var maxRender = 4;
 
+    var customerData = window.customerData;
     var mixin = {
 
         searchInput: ko.observable(''),
@@ -23,6 +24,19 @@ define([
                 data.isVisible(true);
             }
             renderedCount++;
+        },
+
+         /**
+         * Function to check the address search bar need on the top
+         *
+         */
+        checkSearchBar: function () {
+            if(customerData.addresses.length > 0){
+                return 1;
+            } else{
+                return 0;
+            }
+             
         },
 
         displayResults: function (query) {
@@ -64,7 +78,7 @@ define([
             this.searchInput.subscribe(function (changes) {
                 self.displayResults(changes);
             });
-
+           
             return this;
         },
 

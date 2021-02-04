@@ -17,6 +17,9 @@
         <?php if ($block->shouldRenderQuantity()): ?>
         <div class="field qty">
             <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
+            <?php 
+                $stockItem = $_product->getExtensionAttributes()->getStockItem();
+            ?>
             <div class="control">
                 <input type="number"
                        name="qty"
@@ -43,6 +46,20 @@
     </div>
 <?php endif; ?>
 <?php endif; ?>
+<script type="text/javascript">
+    require(["jquery"],function($){
+        incrementQty = parseInt(<?php echo $stockItem->getData('enable_qty_increments') ? $stockItem->getData('qty_increments') : 0;?>);
+        
+        $('#qty').on("blur",function(e){ 
+            var currentQty = ($(this).val() == 0 || $(this).val() == '') ? incrementQty : $(this).val();
+            if(incrementQty > 0){
+                var updateQty = parseInt(Math.ceil( currentQty / incrementQty) * incrementQty);
+                updateQty = ( updateQty == 0) ? currentQty : updateQty;
+                $('#qty').val(updateQty)
+            }    
+        });
+    });
+</script>
 <script type="text/x-magento-init">
     {
         "#product_addtocart_form": {

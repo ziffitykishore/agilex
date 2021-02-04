@@ -406,6 +406,7 @@ class Profile extends AbstractModel
 
     public function run()
     {
+        $this->email = $this->getObjectManager()->create('\SomethingDigital\URapidFlowNotification\Helper\FailureEmail'); //TL-671 Fix
         if ($this->isLocked()) {
             $this->_logger->warning(__('Profile is locked'));
             return $this;//TODO: (?) notify that is already running
@@ -422,9 +423,13 @@ class Profile extends AbstractModel
             $this->lock();
             $this->_run();
         } catch (Stop $e) {
+            $this->_logger->warning(__($e->getMessage()));
+            $this->email->sendEmail($this->getId(), $e->getMessage()); //TL-671 Fix
             $this->setCurrentActivity(__('Stopped'));
             $this->stop()->save();
         } catch (\Exception $e) {
+            $this->_logger->warning(__($e->getMessage()));
+            $this->email->sendEmail($this->getId(), $e->getMessage());  //TL-671 Fix
             $this->setCurrentActivity(__('Error'));
             $this->addValue('num_errors');
             $this->getLogger()->error($e->getMessage());
