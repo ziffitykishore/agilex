@@ -204,6 +204,18 @@ class StockData
     }
 
     /**
+     * Get product qty_increments
+     *
+     * @param $sku
+     * @return string
+     */
+    public function getQtyIncrement($sku)
+    {   
+        $stockItem = $this->getProduct($sku)->getExtensionAttributes()->getStockItem();
+        return $stockItem->getData('enable_qty_increments') ? $stockItem->getData('qty_increments') : 0 ;
+    }
+
+    /**
      * Get product min_sale_qty and qty_increments
      *
      * @param $sku
