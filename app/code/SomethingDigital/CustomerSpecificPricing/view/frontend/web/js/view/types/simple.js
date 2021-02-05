@@ -19,5 +19,9 @@ define([
                 }
             }
         }
-    }
+        setTimeout(function(){ 
+            $('.price-container').show();
+            $('.priceDesc').show();
+        }, 3000);
+    } 
 });
