@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="customer">
+            <group id="order_history_date" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customer Order History Limit</label>
+                <field id="history_date_limit" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Order History Days Limit</label>
+                    <validate>required-entry validate-digits validate-not-negative-number</validate>
+                    <comment><![CDATA[Order history from date calculated based on given Days]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
