@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_topology.xsd">
+    <exchange name="async_order_processing" type="topic" connection="amqp" autoDelete="true" durable="true" >
+        <binding id="async_order_binding"  topic="async_order"  destinationType="queue" destination="async-order"/>
+    </exchange>
+</config>
