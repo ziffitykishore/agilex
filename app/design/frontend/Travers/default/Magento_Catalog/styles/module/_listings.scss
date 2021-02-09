@@ -15,6 +15,29 @@ $product-name-link__text-decoration__visited: $link__hover__text-decoration !def
 //
 //  Product Lists
 //  _____________________________________________
+
+
+.page-products,
+.page-with-filter {
+    .filter-heading {
+        font-size: 20px;
+    }
+    .refinement-list {
+        .refinement-label {
+            font-size: 13px;
+        }
+    }
+    .category-title {
+        font-size: 30px;
+    }
+
+    .group-header {
+        h2 {
+            font-size: 24px;
+        }
+    }
+}
+
 .products {
     margin: $indent__l 0;
 }
