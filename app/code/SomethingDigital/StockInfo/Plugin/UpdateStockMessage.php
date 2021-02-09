@@ -49,7 +49,7 @@ class UpdateStockMessage
         }
         $product = $this->productRepository->getById($stockItem->getProductId());
         $sxInventory = $product->getData('sx_inventory_status');
-        if ($sxInventory == SxInventoryStatus::STATUS_STOCK) {
+        if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
             if (($stockItem->getQty() - $summaryQty < 0)
                 && $stockItem->getProductName()
                 && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
@@ -63,6 +63,18 @@ class UpdateStockMessage
                     $result->unsMessage();
                 }
             }
+        }
+        if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
+            if ($this->request->getControllerName() == 'cart' && $stockItem->getQty() - $summaryQty > 0) {
+                $result->setMessage(__('Ships Today'));
+            }
+        } elseif ($sxInventory == SxInventoryStatus::STATUS_DNR) {
+            if ($this->request->getControllerName() == 'cart' && $stockItem->getQty() > 0) {
+                $result->setMessage(__('Ships Today'));
+            }
+        } else {
+            // Hide default message on checkout summary as we already have it in blue.
+            $result->unsMessage();
         }
         return $result;
     }

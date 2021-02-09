@@ -59,7 +59,7 @@ class Index extends Action
             $sxInventory = $product->getData('sx_inventory_status');
             $stockItem = $this->stockItem->load($product->getId(), 'product_id');
 
-            if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_DNR) {
+            if ($sxInventory == SxInventoryStatus::STATUS_STOCK || $sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
                 if (($stockItem->getQty() - $item->getQty() < 0)
                     && ($stockItem->getBackorders() == \Magento\CatalogInventory\Model\Stock::BACKORDERS_YES_NOTIFY)
                 ) {
@@ -67,7 +67,7 @@ class Index extends Action
                     if ($stockItem->getQty() > 0)
                         $deliveryInfo[$sku] = __('Item(s) will be backordered. '.$stockItem->getQty().' item(s) will ship from available inventory and '.($item->getQty()-$stockItem->getQty()).' item(s) will ship as soon as possible.');
                 }
-            } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED) {
+            } elseif ($sxInventory == SxInventoryStatus::STATUS_ORDER_AS_NEEDED && $stockItem->getQty() <= 0) {
                $deliveryInfo[$sku] = __('Ships direct from manufacturer');
             } else {
                 $deliveryInfo[$sku] = '';
