@@ -211,8 +211,20 @@ class StockData
      */
     public function getQtyIncrement($sku)
     {   
-        $stockItem = $this->getProduct($sku)->getExtensionAttributes()->getStockItem();
-        return $stockItem->getData('enable_qty_increments') ? $stockItem->getData('qty_increments') : 0 ;
+        $result = 0;      
+        try {
+            $product = $this->getProduct($sku);
+            if ($product) {
+                $stockItem = $product->getExtensionAttributes()->getStockItem();
+            
+                if($stockItem){
+                   $result = $stockItem->getData('enable_qty_increments') ? $stockItem->getData('qty_increments') : 0 ; 
+                }
+            }
+        } catch (NoSuchEntityException $e) {
+            //no action required
+        }    
+        return $result;
     }
 
     /**
