@@ -1,0 +1,115 @@
+<?php $block= $block->getLayout()->createBlock('Travers\Feedback\Block\FeedbackForm'); ?>
+<div data-bind="mageInit: {
+        'Magento_Ui/js/modal/modal':{
+            'type': 'popup',
+            'title': 'Feedback',
+            'trigger': '[data-trigger=trigger]',
+            'responsive': true,
+            'height': 800,
+            'buttons': [],
+            'modalClass':'feedback_modal'
+
+        }}">
+    <div class="content">           
+        <form class="form contact"
+            action="<?php echo $block->getFormAction() ?>"
+            id="issue_submit"
+            method="post"
+            data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+            data-mage-init='{"validation":{}}'>
+        <fieldset class="fieldset">
+            <div class="field option required">
+                <label class="label" for="option"><span><?= $block->escapeHtml(__('Issue Type')) ?></span></label>
+                <div class="control">
+                    <select name="option" id="option" title="<?= $block->escapeHtmlAttr(__('Issue Type')) ?>"
+                           class="input-text" data-validate="{required:true}">
+                            <option value="0">Please Select Issue Type...</option>
+                            <?php 
+                            foreach ($block->getLabelList() as $key => $value):?>
+                               <option value="<?= $value ?>" ><?= str_replace("_"," ",$value)?></option>
+                            <?php endforeach; ?>
+                    </select>
+
+                </div>
+            </div>
+            <div class="field firstname required">
+                <label class="label" for="firstname"><span><?= $block->escapeHtml(__('First Name')) ?></span></label>
+                <div class="control">
+                    <input name="firstname" id="firstname" title="<?= $block->escapeHtmlAttr(__('First Name')) ?>"
+                           class="input-text" type="text" data-validate="{required:true}"/>
+                </div>
+            </div>
+           
+            <div class="field emailaddress required">
+                <label class="label" for="emailaddress"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+                <div class="control">
+                    <input name="emailaddress" id="emailaddress" title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                           class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="field summary">
+                <label class="label" for="summary"><span><?= $block->escapeHtml(__('Issue Summary')) ?></span></label>
+                <div class="control">
+                    <input name="summary" id="summary" title="<?= $block->escapeHtmlAttr(__('Issue Summary')) ?>"
+                           class="input-text" type="text" data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="field description">
+                <label class="label" for="description"><span><?= $block->escapeHtml(__('Issue Description')) ?></span></label>
+                <div class="control">
+                    <textarea name="description" id="description" title="<?= $block->escapeHtmlAttr(__('Issue Description')) ?>"
+                           class="input-text" col="4"></textarea>
+                </div>
+            </div>
+        </fieldset>
+        <div class="actions-toolbar">
+            <div class="primary left">
+                <input type="reset" class="clear_form action submit primary" value="clear"/>
+            </div>
+            <div class="primary right">
+                <button type="submit" id='issue-submit' title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                        class="action submit primary">
+                    <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<style>
+    .feedback-button {
+        transform: rotate(-90deg);
+        padding: 7px 15px;
+        position: fixed;
+        right: 0px;
+        font-family: verdana;
+        font-size: 15px;
+        color: rgb(255, 255, 255);
+        background: rgb(245, 146, 2);
+        z-index: 999;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 5px 5px 0px 0px;
+        margin-right: -43.5px;
+        top: 50%;
+        margin-top: -18.5px;
+        text-shadow: none;
+
+    }
+    #issue_submit .actions-toolbar{
+        margin-top: 30px
+    }
+    .left{
+        float:left !important
+    }
+    .right{
+        float:right !important
+    }
+    .feedback_modal .modal-content{
+        padding-bottom:0px
+    }
+    .feedback_modal .modal-inner-wrap{
+        padding: 40px 40px !important;
+    }
+</style>
