@@ -322,7 +322,7 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
                         maxValuesPerFacet: 1,
                         analytics: false
                     }, {
-                        includeAll: true,
+                        includeAll: false,
                         allTitle: algoliaConfig.translations.allDepartments
                     }),
                     displayKey: 'query',
