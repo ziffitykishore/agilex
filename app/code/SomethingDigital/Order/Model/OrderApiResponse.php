@@ -52,7 +52,7 @@ class OrderApiResponse
         if (!$status || !isset($response['body']['SxOrderId'])) {
             $this->logger->alert('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
             try {
-                if($response['status'] == 400) {
+                if($response['status'] == 500) {
                     $order->setState('holded')->setStatus('holded');
                     if($order->getSxRetryCount() == null)
                         $order->setSxRetryCount(4);
