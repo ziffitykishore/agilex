@@ -17,10 +17,13 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Stdlib\ArrayManager;
 use Magento\Theme\Block\Html\Pager;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\Stdlib\DateTime\DateTime;
 
 
 class History extends SalesHistory
 {
+    private const CUSTOMER_ORDER_HISTORY_LIMIT = 'customer/order_history_date/history_date_limit';
 
     /**
      * @var CustomerRepositoryInterface
@@ -69,6 +72,16 @@ class History extends SalesHistory
      */
     private $_pager;
 
+    /**
+     * @var ScopeConfigInterface
+     */
+    private $scopeConfig;
+
+    /**
+     * @var DateTime
+     */
+    private $date;
+
     public function __construct(
         Context $context,
         CollectionFactory $orderCollectionFactory,
@@ -82,7 +95,9 @@ class History extends SalesHistory
         RequestInterface $request,
         ArrayManager $arrayManager,
         \SomethingDigital\OrderHistory\Block\Pager\Pager $pager,
-        PriceCurrencyInterface $priceCurrency
+        PriceCurrencyInterface $priceCurrency,
+        ScopeConfigInterface $scopeConfig,
+        DateTime $date
     ) {
         $this->customerRepo = $customerRepo;
         $this->messageManager = $messageManager;
@@ -94,6 +109,8 @@ class History extends SalesHistory
         $this->priceCurrency = $priceCurrency;
         parent::__construct($context, $orderCollectionFactory, $customerSession, $orderConfig);
         $this->_pager = $pager;
+        $this->scopeConfig = $scopeConfig;
+        $this->date = $date;
     }
 
     protected function _prepareLayout()
@@ -120,11 +137,17 @@ class History extends SalesHistory
     public function getApiOrders($all = false)
     {
         $orders = [];
+        $limit_value = $this->scopeConfig->getValue(self::CUSTOMER_ORDER_HISTORY_LIMIT);
+        $start_date = date('m/d/Y', strtotime('-'. $limit_value .' days'));
+        $end_date = $this->date->gmtDate('m/d/Y');
+
         $params = [
             'poNumber' => $this->getRequest()->getParam('poNumber'),
             'sxOrderNumber' => $this->getRequest()->getParam('sxOrderNumber'),
             'productSku' => $this->getRequest()->getParam('productSku'),
-            'recordLimit' => 100
+            'recordLimit' => 100,
+            'startDate' => $start_date,
+            'endDate' => $end_date
         ];
         try {
             if (empty($this->ordersApiResponse)) {
