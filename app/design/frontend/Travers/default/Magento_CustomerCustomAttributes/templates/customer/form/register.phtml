@@ -142,7 +142,7 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
         <div class="field travers-account-number">
             <label for="travers_account_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Travers Account Number(Optional)') ?></span></label>
             <div class="control">
-                <input type="text" name="travers_account_id" id="travers_account_id" value="<?php echo $block->escapeHtml($block->getFormData()->getTraversAccountId()) ?>" title="<?php /* @escapeNotVerified */ echo __('Travers Account Number') ?>" class="input-text"/>
+                <input type="text" name="travers_account_id" id="travers_account_id" value="<?php echo $block->escapeHtml($preAuthCofig->getSessionAccountId()) ?>" title="<?php /* @escapeNotVerified */ echo __('Travers Account Number') ?>" class="input-text"/>
             </div>
         </div>
         <div class="field account-zip-code">
