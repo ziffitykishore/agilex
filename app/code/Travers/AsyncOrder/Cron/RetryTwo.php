@@ -5,7 +5,7 @@ namespace Travers\AsyncOrder\Cron;
 use Travers\AsyncOrder\Helper\Data;
 use SomethingDigital\Order\Model\OrderPlaceApi;
 
-class RetryOne
+class RetryTwo
 {
     public function __construct(
         \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollection,
@@ -26,11 +26,13 @@ class RetryOne
         try{
             $collection = $this->orderCollection->create();
             $collection->addFieldToFilter('sx_integration_status', 'failed');
-            $collection->addFieldToFilter('sx_retry_count', 4);
+            $collection->addFieldToFilter('sx_retry_count', ['lteq' => 3]);
+            $collection->addFieldToFilter('sx_retry_count', ['gteq' => 0]);
             foreach ($collection as $order) {
                 $this->helper->logData("Order sync retry triggered for Magento order id : ".$order->getId().".Retry count : ".$order->getSxRetryCount());
                 $this->sendSync($order);
-                $order->setSxRetryCount(3);
+                $retryCount = ($order->getSxRetryCount() - 1);
+                $order->setSxRetryCount($retryCount);
                 $order->save();
             }
 
@@ -39,7 +41,6 @@ class RetryOne
         catch(\Exception $e) {
             $this->helper->logData($e->getMessage());
         }
-
     }
     
     public function sendSync($order)

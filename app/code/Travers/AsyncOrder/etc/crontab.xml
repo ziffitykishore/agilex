@@ -4,5 +4,8 @@
 		<job instance="Travers\AsyncOrder\Cron\RetryOne" method="execute" name="failure_retry_cron">
 			<schedule>*/2 * * * *</schedule>
 		</job>
+		<job instance="Travers\AsyncOrder\Cron\RetryTwo" method="execute" name="failure_retry_cron_two">
+			<schedule>*/15 * * * *</schedule>
+		</job>
 	</group>
 </config>

@@ -52,6 +52,14 @@ class OrderApiResponse
         if (!$status || !isset($response['body']['SxOrderId'])) {
             $this->logger->alert('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
             try {
+                if($response['status'] == 400) {
+                    $order->setState('holded')->setStatus('holded');
+                    if($order->getSxRetryCount() == null)
+                        $order->setSxRetryCount(4);
+                }
+                else {
+                    $order->setState('Rejected')->setStatus('Rejected');
+                }
                 $order->setSxIntegrationStatus('failed');
                 $order->setSxIntegrationResponse(json_encode($response['body']));
                 $this->orderRepository->save($order);
@@ -98,6 +106,7 @@ class OrderApiResponse
             }
         }
         $order->setRealOrderId($sxOrderId);
+        $order->setState('processing')->setStatus('processing');
         $order->setSxIntegrationStatus('processing');
         $order->setSxIntegrationResponse(json_encode($response['body']));
         $this->orderRepository->save($order);

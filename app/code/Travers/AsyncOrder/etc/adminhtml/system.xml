@@ -11,6 +11,9 @@
                     <label>Enable Async Order Processing</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="success_message" translate="label" type="textarea" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Success Page Message (Optional)</label>
+                </field>
             </group>
         </section>
     </system>
