@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue_publisher.xsd">
+    <publisher topic="async_order">
+        <connection name="amqp" exchange="async_order_processing"/>
+    </publisher>
+</config>

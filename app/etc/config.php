@@ -408,6 +408,7 @@ return [
         'Taxjar_SalesTax' => 1,
         'Travers_CustomerLinking' => 1,
         'Travers_OptimizeCrons' => 1,
+        'Travers_AsyncOrder' => 1,
         'Travers_Seo' => 1,
         'SomethingDigital_ProductImportTweaks' => 1,
         'Unirgy_RapidFlowPro' => 1,
