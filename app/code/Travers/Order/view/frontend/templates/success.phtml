@@ -15,10 +15,12 @@ $_helper = $this->helper('Travers\AsyncOrder\Helper\Data');
 <div class="checkout-success">
     <?php if ($order->getId()):?>
     <h1>Order Confirmed</h1>
-
+        <?php if (!$_helper->getConfigValue('async_order/general/enable')): ?>
             <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
+        <?php else: ?>
+            <?= $_helper->getConfigValue('async_order/general/success_message'); ?>
+        <?php endif; ?>
     <?php endif;?>
-    <?= $_helper->getConfigValue('async_order/general/success_message'); ?>
     <div class="shipping-information">
         <div class="ship-to block">
             <div class="block-inner">
