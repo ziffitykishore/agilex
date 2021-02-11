@@ -112,7 +112,7 @@ class QuoteItemProcessor
 
             $items = $this->cart->getQuote()->getAllVisibleItems();
 
-            $totalItemQty = $qty;
+            $totalItemQty = (int)$qty;
             foreach ( $items as $quoteItem) {
                 if ($quoteItem->getProductId() == $id) {
                     $totalItemQty += $quoteItem->getQty();
