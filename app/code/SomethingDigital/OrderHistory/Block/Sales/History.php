@@ -24,6 +24,7 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 class History extends SalesHistory
 {
     private const CUSTOMER_ORDER_HISTORY_LIMIT = 'customer/order_history_date/history_date_limit';
+    private const CUSTOMER_ORDER_HISTORY_RECORD_LIMIT = 'customer/order_history_date/history_limit';
 
     /**
      * @var CustomerRepositoryInterface
@@ -137,18 +138,24 @@ class History extends SalesHistory
     public function getApiOrders($all = false)
     {
         $orders = [];
-        $limit_value = $this->scopeConfig->getValue(self::CUSTOMER_ORDER_HISTORY_LIMIT);
-        $start_date = date('m/d/Y', strtotime('-'. $limit_value .' days'));
-        $end_date = $this->date->gmtDate('m/d/Y');
-
+        $record_limit_value = (int)$this->scopeConfig->getValue(self::CUSTOMER_ORDER_HISTORY_RECORD_LIMIT);
         $params = [
             'poNumber' => $this->getRequest()->getParam('poNumber'),
             'sxOrderNumber' => $this->getRequest()->getParam('sxOrderNumber'),
             'productSku' => $this->getRequest()->getParam('productSku'),
-            'recordLimit' => 100,
-            'startDate' => $start_date,
-            'endDate' => $end_date
+            'recordLimit' => $record_limit_value
         ];
+
+        $limit_value = $this->scopeConfig->getValue(self::CUSTOMER_ORDER_HISTORY_LIMIT);
+        if (!empty($limit_value)) {
+            $start_date = date('m/d/Y', strtotime('-'. $limit_value .' days'));
+            $end_date = $this->date->gmtDate('m/d/Y');
+            $params = [
+                'startDate' => $start_date,
+                'endDate' => $end_date
+            ];
+        }
+        
         try {
             if (empty($this->ordersApiResponse)) {
                 $this->ordersApiResponse = $this->ordersApi->getOrders($params);

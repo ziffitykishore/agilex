@@ -26,13 +26,21 @@ class Index extends \Magento\Framework\App\Action\Action
             $out = $block->createIssue($post);
        
             // Display the succes form validation message
-            if($out['code'] == 201)
+            if($out['code'] == 201){
                 $this->messageManager->addSuccessMessage('Feedback Submitted!');
 
-            // Redirect to your form page (or anywhere you want...)
-            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-            $resultRedirect->setUrl($this->_redirect->getRefererUrl());
-            return $resultRedirect;
+                // Redirect to your form page (or anywhere you want...)
+                $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+                $resultRedirect->setUrl($this->_redirect->getRefererUrl());
+            } 
+            else{
+                $resultRedirect = $this->resultFactory
+                ->create(\Magento\Framework\Controller\ResultFactory::TYPE_JSON)
+                ->setData([
+                    'status'  => "400",
+                    'message' => "Please Try Later"
+                ]);
+            }
         }
        
     }

@@ -1,15 +1,6 @@
 <?php $block= $block->getLayout()->createBlock('Travers\Feedback\Block\FeedbackForm'); ?>
-<div data-bind="mageInit: {
-        'Magento_Ui/js/modal/modal':{
-            'type': 'popup',
-            'title': 'Feedback',
-            'trigger': '[data-trigger=trigger]',
-            'responsive': true,
-            'height': 800,
-            'buttons': [],
-            'modalClass':'feedback_modal'
 
-        }}">
+<div id="feedback_modal" class="feedback_modal" style="display:none;">
     <div class="content">           
         <form class="form contact"
             action="<?php echo $block->getFormAction() ?>"
@@ -51,7 +42,7 @@
                 <label class="label" for="summary"><span><?= $block->escapeHtml(__('Issue Summary')) ?></span></label>
                 <div class="control">
                     <input name="summary" id="summary" title="<?= $block->escapeHtmlAttr(__('Issue Summary')) ?>"
-                           class="input-text" type="text" data-validate="{required:true, 'validate-email':true}"/>
+                           class="input-text" type="text" data-validate="{required:true}"/>
                 </div>
             </div>
             <div class="field description">
@@ -62,12 +53,13 @@
                 </div>
             </div>
         </fieldset>
+        <input type="hidden" value="<?php echo $block->getRequest()->getUriString(); ?>" name="current_url" id="current_url"> 
         <div class="actions-toolbar">
             <div class="primary left">
                 <input type="reset" class="clear_form action submit primary" value="clear"/>
             </div>
             <div class="primary right">
-                <button type="submit" id='issue-submit' title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
+                <button type="submit" id='issue-submit_button' title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
                         class="action submit primary">
                     <span><?= $block->escapeHtml(__('Submit')) ?></span>
                 </button>
@@ -113,3 +105,52 @@
         padding: 40px 40px !important;
     }
 </style>
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                title: 'Feedback',
+                responsive: true,
+                buttons: [],
+                modalClass:'feedback_modal'
+            };
+
+            var popup = modal(options, $('#feedback_modal'));
+            $(".feedback-button").on('click', function() {
+                $("#feedback_modal").modal("openModal");
+            });
+
+            jQuery('body').on('click', '#issue_submit .action.submit', function(e){
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                var dataForm = jQuery('#issue_submit');
+                if(dataForm.validation('isValid') === false){
+                    return false;
+                }
+                jQuery.ajax({
+                    type: 'post',
+                    url: '<?php echo $block->getFormAction() ?>',
+                    data: jQuery('#issue_submit').serialize(),
+                    cache: false,
+                    showLoader: 'true',
+                    success: function(data, status, xhr) {
+                        $("#feedback_modal").modal("closeModal");
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        $("#feedback_modal").modal("closeModal");
+                    }
+                });
+                return false;
+            });
+
+        }
+    );
+</script>

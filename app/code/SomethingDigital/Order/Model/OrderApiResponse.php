@@ -9,6 +9,7 @@ use Magento\Customer\Api\AddressRepositoryInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use SomethingDigital\Order\Helper\Email;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Session\SessionManagerInterface;
 
 class OrderApiResponse
 {
@@ -30,7 +31,8 @@ class OrderApiResponse
         CustomerRepositoryInterface $customerRepository,
         AddressRepositoryInterface $addressRepository,
         OrderRepositoryInterface $orderRepository,
-        Email $email
+        Email $email,
+        SessionManagerInterface $session
     ) {
         $this->logger = $logger;
         $this->arrayManager = $arrayManager;
@@ -38,6 +40,7 @@ class OrderApiResponse
         $this->addressRepository = $addressRepository;
         $this->orderRepository = $orderRepository;
         $this->email = $email;
+        $this->session = $session;
     }
 
     /**
@@ -52,7 +55,7 @@ class OrderApiResponse
         if (!$status || !isset($response['body']['SxOrderId'])) {
             $this->logger->alert('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
             try {
-                if($response['status'] == 400) {
+                if($response['status'] == 500) {
                     $order->setState('holded')->setStatus('holded');
                     if($order->getSxRetryCount() == null)
                         $order->setSxRetryCount(4);
@@ -77,6 +80,8 @@ class OrderApiResponse
         $sxContactId = $this->arrayManager->get('body/SxContactId', $response);
         $sxOrderId = $this->arrayManager->get('body/SxOrderId', $response);
         $shipToId = $this->arrayManager->get('body/ShipToId', $response);
+
+        $this->session->setAccountId($sxCustomerId);
 
         if ($order->getCustomerId()) {
             $customer = $this->customerRepository->getById($order->getCustomerId());

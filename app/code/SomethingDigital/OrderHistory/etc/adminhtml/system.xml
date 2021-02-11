@@ -6,8 +6,13 @@
                 <label>Customer Order History Limit</label>
                 <field id="history_date_limit" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Order History Days Limit</label>
-                    <validate>required-entry validate-digits validate-not-negative-number</validate>
+                    <validate>validate-digits validate-not-negative-number</validate>
                     <comment><![CDATA[Order history from date calculated based on given Days]]></comment>
+                </field>
+                <field id="history_limit" translate="label" type="text" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Order History Record Limit</label>
+                    <validate>required-entry validate-digits validate-not-negative-number</validate>
+                    <comment><![CDATA[Order history record display based on given number]]></comment>
                 </field>
             </group>
         </section>

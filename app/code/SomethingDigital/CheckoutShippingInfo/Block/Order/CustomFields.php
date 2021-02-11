@@ -33,7 +33,6 @@ class CustomFields extends Template
     ) {
         $this->coreRegistry = $registry;
         $this->customFieldsRepository = $customFieldsRepository;
-        $this->_isScopePrivate = true;
         $this->_template = 'order/view/custom_fields.phtml';
         parent::__construct($context, $data);
     }

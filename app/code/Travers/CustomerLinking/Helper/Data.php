@@ -7,17 +7,20 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\Session\SessionManagerInterface;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         TransportBuilder $email,
-        StateInterface $inlineTranslation
+        StateInterface $inlineTranslation,
+        SessionManagerInterface $customerSession
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->email = $email;
         $this->inlineTranslation = $inlineTranslation;
+        $this->session = $customerSession;
     }
 
     public function getConfigValue($path) 
@@ -62,6 +65,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         } catch (\Exception $e) {
             $this->logData($e->getMessage());
         }
+    }
+
+    public function getSessionAccountId()
+    {
+        return $this->session->getAccountId();
     }
     
 }
