@@ -3,7 +3,8 @@
     <default>
         <customer>
             <order_history_date>
-                <history_date_limit>14</history_date_limit>
+                <history_date_limit></history_date_limit>
+                <history_limit>20</history_limit>
             </order_history_date>
         </customer>
     </default>
