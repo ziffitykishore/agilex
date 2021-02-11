@@ -8,6 +8,7 @@ use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\Session\SessionManagerInterface;
+use SomethingDigital\CustomerValidation\Model\CustomerApi;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -15,12 +16,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         ScopeConfigInterface $scopeConfig,
         TransportBuilder $email,
         StateInterface $inlineTranslation,
-        SessionManagerInterface $customerSession
+        SessionManagerInterface $customerSession,
+        CustomerApi $customerApi
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->email = $email;
         $this->inlineTranslation = $inlineTranslation;
         $this->session = $customerSession;
+        $this->customerApi = $customerApi;
     }
 
     public function getConfigValue($path) 
@@ -70,6 +73,21 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getSessionAccountId()
     {
         return $this->session->getAccountId();
+    }
+
+    public function getSessionZipCode()
+    {
+        try{
+            $traversAccountId = $this->getSessionAccountId();
+            if($traversAccountId) {
+                $customerApi = $this->customerApi->getCustomer($traversAccountId);
+                if($customerApi)
+                    return $customerApi['body']['Address']['PostalCode'];
+            }
+            return '';
+        } catch (\Exception $e) {
+           $this->logData($e->getMessage());
+        }
     }
     
 }
