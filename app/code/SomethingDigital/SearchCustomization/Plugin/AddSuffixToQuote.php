@@ -33,7 +33,7 @@ class AddSuffixToQuote
             $currentQuote = $this->cart->getQuote();
             if ($currentQuote) {
                 $quote = $this->quoteRepository->get($currentQuote->getId());
-                $quote->setSuffix($suffix);
+                //$quote->setSuffix($suffix);
                 $this->quoteRepository->save($quote);
             }
         }

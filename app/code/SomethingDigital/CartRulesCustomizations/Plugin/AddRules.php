@@ -106,7 +106,7 @@ class AddRules
             $currentQuote = $this->cart->getQuote();
             if ($currentQuote && $currentQuote->getId()) {
                 $quote = $this->quoteRepository->get($currentQuote->getId());
-                $quote->setSuffix($skuSuffix);
+                //$quote->setSuffix($skuSuffix);
             }
         }
 
