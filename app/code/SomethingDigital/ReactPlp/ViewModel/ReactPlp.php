@@ -175,7 +175,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
             'defaultListAttributes' => $this->getListAttributes(),
-            'defaultCategoryView' => $this->getCategoryView(),
+            'defaultView' => $this->getCategoryView(),
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
             'defaultTableAttributes' => $this->getTableAttributes(),
             'searchTableAttributes' => $this->getSearchTableAttributes(),
