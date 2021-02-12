@@ -60,7 +60,7 @@ class OrderApiResponse
             if($this->helper->getConfigValue('async_order/general/enable'))
                 $this->helper->logData('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
             try {
-                if($response['status'] == 500) {
+                if($response['status'] == 500 || $response['status'] == 503) {
                     $order->setState('holded')->setStatus('holded');
                     if($order->getSxRetryCount() == null)
                         $order->setSxRetryCount(4);
