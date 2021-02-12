@@ -38,7 +38,7 @@ class InstallData implements InstallDataInterface
 				'label' => 'Enable Table View',
                 'input' => 'select',
                 'source' => \Travers\CategoryTable\Model\Entity\Attribute\Source\CustomOption::class,
-                'default' => '1',
+                'default' => 'table',
 				'sort_order' => 100,
 				'global' => 1,
 				'visible' => true,
