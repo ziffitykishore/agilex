@@ -71,7 +71,8 @@ class SpotPricingApi extends Adapter
     public function getSpotPrice($productSkus, $suffix = null)
     {
         $customerAccountId = $this->getCustomerAccountId();
-
+        $skuCollectionSuffix = [];
+        $skuCollection = [];
         if (!$suffix) {
             $suffix = $this->sessionManager->getSkuSuffix();
             $suffixArr = [];
@@ -82,73 +83,77 @@ class SpotPricingApi extends Adapter
                         if ($suffixDecode && is_array($suffixDecode)) {
                             foreach ($suffixDecode as $suffixValue) {
                                 $suffixCode = explode('~', $suffixValue);
-                                if ($sku == $suffixCode[1]) {
-                                    $suffixArr['Suffix'] = $suffixCode[0];
-                                    $suffixArr['Sku'] = $suffixCode[1];
-                                }
+                                $suffixArr['Suffix'] = $suffixCode[0];
+                                $suffixArr['Sku'] = $suffixCode[1];
                             }
                         }
                     }
                 }
             }
+            $skuCollectionSuffix = [(object)$suffixArr];
         }
 
-        if (empty($suffix) && $this->request->getControllerName() == 'cart') {
+        $skuCollection_item = [];
+        if ($this->request->getControllerName() != 'result') {
             $items = $this->cart->getQuote()->getAllVisibleItems();
             $suffixArr = [];
-            foreach ( $items as $quoteItem) {
+            foreach ($items as $quoteItem) {
                 if ($productSkus && is_array($productSkus)) {
-                    $suffixArrstep = [];              
+                    $suffixArrstep = [];
                     foreach ($productSkus as $sku) {
                         if($quoteItem->getSku() == $sku) {
-                            $suffixArrstep['Suffix'] = $quoteItem->getData('suffix');
+                            if (!empty($quoteItem->getData('suffix'))) {
+                                $suffixArrstep['Suffix'] = $quoteItem->getData('suffix');
+                            }
                             $suffixArrstep['Sku'] = $quoteItem->getSku();
                         }
                     }
                 }
-                $suffixArr[] = (object)$suffixArrstep;
+                $suffixArr[] = $suffixArrstep;
             }
+            $skuCollection_item = (array_values($suffixArr));
         }
 
-        // var_dump($suffixArr);
-        // exit;
-
-        if ($customerAccountId === 0 && empty($suffixArr)) {
+        if(!empty($skuCollection_item)) {
+            $skuCollection = $skuCollection_item;
+        } else {
+            $skuCollection = $skuCollectionSuffix;
+        }
+        
+        if ($customerAccountId === 0 && empty($skuCollection)) {
             return false;
         }
 
-        $skuCollection = (object)$suffixArr;
-        
-
         if (!$this->isTestMode()) {
             if (!empty($customerAccountId) && $customerAccountId !== 0) {
-                $this->requestPath = $this->path.'/';
                 $this->requestBody = [
                     'TraversAccountId' => $customerAccountId,
-                    'Skus' => [$skuCollection]
-                ];
-            }elseif ($this->request->getControllerName() == 'cart') {
-                $suffix = $this->cart->getQuote()->getSuffix();
-                $suffix = $suffix ? $suffix : 'A';
-                $this->requestPath = $this->path.'/';
-                $this->requestBody = [
-                    'CartSuffix' => $suffix,
-                    'Skus' => [$skuCollection]
-                ];
-            }else {
-                $this->requestPath = $this->path.'/';
-                $this->requestBody = [
-                    'CartSuffix' => 'A',
-                    'Skus' => [$skuCollection]
+                    'Skus' => $skuCollection
                 ];
             }
+            $suffix = $this->cart->getQuote()->getSuffix();
+            $suffix = $suffix ? $suffix : 'A';
+            if (!empty($suffix)) {
+                $this->requestBody = [
+                    'CartSuffix' => $suffix,
+                    'Skus' => $skuCollection
+                ];
+            }
+            if (!empty($suffix) && !empty($customerAccountId) && $customerAccountId !== 0) {
+                $this->requestBody = [
+                    'TraversAccountId' => $customerAccountId,
+                    'CartSuffix' => $suffix,
+                    'Skus' => $skuCollection
+                ];
+            }
+            $this->requestPath = $this->path.'/';
         } else {
             $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
                 'customerId' => $customerAccountId,
                 'sku' => $productSku,
                 'suffix' => $suffix
             ]);
-        }       
+        }
 
         $response = $this->postRequest();
 
