@@ -33,11 +33,16 @@ class QuantityInput extends PureComponent {
   }
 
   handleClickOutside() {
-    if (this.state.value) {
-      return;
+    // if (this.state.value) {
+    //   return;
+    // }
+    if(this.props.hit.qty_increment){
+        const incrementQty = this.props.hit.qty_increment;
+        let updateQty = parseInt(Math.ceil( this.state.value / incrementQty) * incrementQty);
+        updateQty = ( updateQty == 0) ? this.state.value : updateQty;
+        this.props.setQuantity(updateQty);
     }
-
-    this.setNewValue(this.props.hit.min_sale_qty ? this.props.hit.min_sale_qty : 1);
+    //this.setNewValue(this.props.hit.min_sale_qty ? this.props.hit.min_sale_qty : 1);
   }
 
   render() {
@@ -51,6 +56,7 @@ class QuantityInput extends PureComponent {
           type="number"
           onClick={() => this.setNewValue('')}
           onFocus={() => this.setNewValue('')}
+          onBlur={this.handleClickOutside.bind(this)}
           value={this.state.value}
           step={this.props.hit.qty_increment ? this.props.hit.qty_increment : 1}
           onChange={e => this.props.setQuantity(e.target.value)}

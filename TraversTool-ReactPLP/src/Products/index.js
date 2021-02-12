@@ -239,7 +239,7 @@ class Products extends PureComponent {
       }
 
       this.setState({
-        filterAttributesInfo: currentAttributes(categoryAttributes.filter_attributes, this.props.defaultFilterAttributesInfo),
+        filterAttributesInfo: currentAttributes(categoryAttributes.filter_attributes, this.props.defaultFilterAttributesInfo,true),
         listAttributes: currentAttributes(categoryAttributes.list_attributes, this.props.defaultListAttributes),
         tableAttributes: currentAttributes(categoryAttributes.table_attributes, this.props.defaultTableAttributes)
       }, () => {
