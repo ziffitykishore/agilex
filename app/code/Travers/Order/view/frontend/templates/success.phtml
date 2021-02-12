@@ -14,7 +14,7 @@ $_helper = $this->helper('Travers\AsyncOrder\Helper\Data');
 
 <div class="checkout-success">
     <?php if ($order->getId()):?>
-    <h1>Order Confirmed</h1>
+    <h1>Order Confirmed <?php if($order->getRealOrderId()){ echo '#'.$order->getRealOrderId();} ?></h1>
         <?php if (!$_helper->getConfigValue('async_order/general/enable')): ?>
             <p><?= /* @escapeNotVerified */ __('We\'ll email you an order confirmation with details.') ?></p>
         <?php else: ?>
