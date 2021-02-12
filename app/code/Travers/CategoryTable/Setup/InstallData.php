@@ -37,15 +37,15 @@ class InstallData implements InstallDataInterface
 				'type' => 'varchar',
 				'label' => 'Enable Table View',
                 'input' => 'select',
-                'source' => \Magento\Eav\Model\Entity\Attribute\Source\Boolean::class,
+                'source' => \Travers\CategoryTable\Model\Entity\Attribute\Source\CustomOption::class,
                 'default' => '1',
 				'sort_order' => 100,
 				'global' => 1,
 				'visible' => true,
 				'required' => false,
 				'user_defined' => false,
-				'backend' => ''
-			]
+                'backend' => ''			
+                ]
 		);
 
     }

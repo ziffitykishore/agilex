@@ -148,7 +148,7 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
         <div class="field account-zip-code">
             <label for="account_zip_code" class="label"><span><?php /* @escapeNotVerified */ echo __('Account Zip Code(Optional)') ?></span></label>
             <div class="control">
-                <input type="text" name="account_zip_code" id="account_zip_code" value="<?php echo $block->escapeHtml($block->getFormData()->getAccountZipCode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account Zip Code') ?>" class="input-text"/>
+                <input type="text" name="account_zip_code" id="account_zip_code" value="<?php echo $block->escapeHtml($preAuthCofig->getSessionZipCode()) ?>" title="<?php /* @escapeNotVerified */ echo __('Account Zip Code') ?>" class="input-text"/>
             </div>
         </div>
     </fieldset>
