@@ -91,7 +91,7 @@ export function currentAttributes(categoryAttributes, defaultAttributes,changeOr
   });
   if(changeOrder){
     const index =  orderedCategoryAttributes.findIndex(data=>data.id === "shopby");
-    if(index){
+    if(index > 0){
       const shopByCategory = {...orderedCategoryAttributes[index]};
       orderedCategoryAttributes.splice(index,1);
       const newOrderedCategory = [shopByCategory].concat(orderedCategoryAttributes);
