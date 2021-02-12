@@ -74,7 +74,7 @@ export const lowestPrice = memoize((currency, hit, customerGroupId, spotPrice) =
   }
 });
 
-export function currentAttributes(categoryAttributes, defaultAttributes) {
+export function currentAttributes(categoryAttributes, defaultAttributes,changeOrder) {
   if (!categoryAttributes) {
     return defaultAttributes;
   }
@@ -89,7 +89,16 @@ export function currentAttributes(categoryAttributes, defaultAttributes) {
       }
     });
   });
-
+  if(changeOrder){
+    const index =  orderedCategoryAttributes.findIndex(data=>data.id === "shopby");
+    if(index > 0){
+      const shopByCategory = {...orderedCategoryAttributes[index]};
+      orderedCategoryAttributes.splice(index,1);
+      const newOrderedCategory = [shopByCategory].concat(orderedCategoryAttributes);
+      return newOrderedCategory;
+    }
+  }
+  
   return orderedCategoryAttributes;
 }
 
