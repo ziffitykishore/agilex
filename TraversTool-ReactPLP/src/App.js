@@ -257,6 +257,7 @@ class App extends Component {
                       swatchImages={this.props.swatchImages}
                       toggleSidebar={this.toggleSidebar}
                       urlToGroupingImagesCatalog={this.props.urlToGroupingImagesCatalog}
+                      defaultView={this.props.defaultView}
                     />
                   </div>
                 )}
@@ -345,6 +346,7 @@ App.propTypes = {
   searchTableAttributes: PropTypes.array.isRequired,
   swatchImages: PropTypes.object,
   urlToGroupingImagesCatalog: PropTypes.string.isRequired,
+  defaultView:PropTypes.string
 };
 
 export default withRouter(App);
