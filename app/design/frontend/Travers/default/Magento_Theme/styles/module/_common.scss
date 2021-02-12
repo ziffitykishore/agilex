@@ -812,3 +812,56 @@ body {
         margin-top: $indent__l;
     }
 }
+
+
+.action {
+    &.feedback-button {
+        background: $primary__color;
+        color: $color-white;
+        font-family: $font-family__base;
+        position: fixed;
+        top: 50%;
+        right: auto;
+        left: calc( 100% - 30px);
+        margin: 0;
+        border-radius: 5px 5px 0px 0px;
+        padding: 7px 10px;
+        font-size: 13px;
+        z-index: 888;
+        width: auto;
+        cursor: pointer;
+        transform-origin: 0% 0%;
+        transform: rotate(-90deg);
+
+        &:hover {
+            background: $c-sapphire;
+        }
+    }
+}
+
+.feedback_modal {
+    input[type="datetime"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="url"],
+    select,
+    textarea {
+        max-width: none;
+    }
+    .modal-inner-wrap {
+        @include min-screen($screen__m) {
+            max-width: 500px;
+        }
+        .fieldset {
+            .field {
+                .control {
+                    max-width: none;
+                }
+            }
+        }
+    }
+}
