@@ -155,7 +155,17 @@ class App extends Component {
       this.setState({ allOrderedAttributes });
     });
   }
-
+  changeFilterAttributes=()=>{
+  
+    const index =  this.props.defaultFilterAttributesInfo.findIndex(data=>data.id === "shopby");
+    if(index > 0){
+      const shopByCategory = {...this.props.defaultFilterAttributesInfo[index]};
+      this.props.defaultFilterAttributesInfo.splice(index,1);
+      const newOrderedCategory = [shopByCategory].concat(this.props.defaultFilterAttributesInfo);
+      return newOrderedCategory;
+    }
+    return this.props.defaultFilterAttributesInfo;
+  }
   static getDerivedStateFromProps(props, state) {
     // Syncs the refinement list (sidebar) with the url
     if (props.location !== state.lastLocation) {
@@ -238,7 +248,7 @@ class App extends Component {
                       currency={this.props.currency}
                       customerGroupId={this.props.customerGroupId}
                       deduplicate={this.deduplicate}
-                      defaultFilterAttributesInfo={this.props.defaultFilterAttributesInfo}
+                      defaultFilterAttributesInfo={this.changeFilterAttributes()}
                       defaultListAttributes={this.props.defaultListAttributes}
                       defaultTableAttributes={this.props.defaultTableAttributes}
                       flyoutAttributes={this.props.flyoutAttributes}
@@ -295,7 +305,7 @@ class App extends Component {
                       currency={this.props.currency}
                       customerGroupId={this.props.customerGroupId}
                       deduplicate={this.deduplicate}
-                      defaultFilterAttributesInfo={this.props.defaultFilterAttributesInfo}
+                      defaultFilterAttributesInfo={this.changeFilterAttributes()}
                       defaultListAttributes={this.props.defaultListAttributes}
                       defaultTableAttributes={this.props.defaultTableAttributes}
                       flyoutAttributes={this.props.flyoutAttributes}
