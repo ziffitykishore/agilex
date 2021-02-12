@@ -10,6 +10,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use SomethingDigital\Order\Helper\Email;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Session\SessionManagerInterface;
+use Travers\AsyncOrder\Helper\Data;
 
 class OrderApiResponse
 {
@@ -32,7 +33,8 @@ class OrderApiResponse
         AddressRepositoryInterface $addressRepository,
         OrderRepositoryInterface $orderRepository,
         Email $email,
-        SessionManagerInterface $session
+        SessionManagerInterface $session,
+        Data $helper
     ) {
         $this->logger = $logger;
         $this->arrayManager = $arrayManager;
@@ -41,6 +43,7 @@ class OrderApiResponse
         $this->orderRepository = $orderRepository;
         $this->email = $email;
         $this->session = $session;
+        $this->helper =$helper;
     }
 
     /**
@@ -54,8 +57,10 @@ class OrderApiResponse
     {
         if (!$status || !isset($response['body']['SxOrderId'])) {
             $this->logger->alert('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
+            if($this->helper->getConfigValue('async_order/general/enable'))
+                $this->helper->logData('Response from middleware order endpoint with error:' . json_encode($response) . ' Status: ' . $status);
             try {
-                if($response['status'] == 500) {
+                if($response['status'] == 500 || $response['status'] == 503) {
                     $order->setState('holded')->setStatus('holded');
                     if($order->getSxRetryCount() == null)
                         $order->setSxRetryCount(4);
