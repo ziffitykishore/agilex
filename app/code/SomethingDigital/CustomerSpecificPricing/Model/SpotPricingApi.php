@@ -16,6 +16,7 @@ use Magento\Framework\App\Cache\TypeListInterface;
 use Magento\Framework\Encryption\EncryptorInterface;
 use Magento\Framework\Pricing\PriceCurrencyInterface;
 use Magento\Framework\Stdlib\ArrayManager;
+use Magento\Framework\App\Request\Http;
 
 class SpotPricingApi extends Adapter
 {
@@ -26,6 +27,7 @@ class SpotPricingApi extends Adapter
     protected $cart;
     protected $currency;
     protected $arrayManager;
+    protected $request;
 
     public function __construct(
         ClientFactory $curlFactory,
@@ -40,7 +42,8 @@ class SpotPricingApi extends Adapter
         TypeListInterface $cacheTypeList,
         EncryptorInterface $encryptor,
         PriceCurrencyInterface $currency,
-        ArrayManager $arrayManager
+        ArrayManager $arrayManager,
+        Http $request
     ) {
         parent::__construct(
             $curlFactory,
@@ -57,6 +60,7 @@ class SpotPricingApi extends Adapter
         $this->cart = $cart;
         $this->currency = $currency;
         $this->arrayManager = $arrayManager;
+        $this->request = $request;
     }
 
     /**
@@ -67,36 +71,88 @@ class SpotPricingApi extends Adapter
     public function getSpotPrice($productSkus, $suffix = null)
     {
         $customerAccountId = $this->getCustomerAccountId();
-
+        $skuCollectionSuffix = [];
+        $skuCollection = [];
         if (!$suffix) {
             $suffix = $this->sessionManager->getSkuSuffix();
+            $suffixArr = [];
+            if (!empty($suffix)) {
+                $suffixDecode = json_decode($suffix);
+                if ($productSkus && is_array($productSkus)) {
+                    foreach ($productSkus as $sku) {
+                        if ($suffixDecode && is_array($suffixDecode)) {
+                            foreach ($suffixDecode as $suffixValue) {
+                                $suffixCode = explode('~', $suffixValue);
+                                $suffixArr['Suffix'] = $suffixCode[0];
+                                $suffixArr['Sku'] = $suffixCode[1];
+                            }
+                        }
+                    }
+                }
+            }
+            $skuCollectionSuffix = [(object)$suffixArr];
         }
 
-        if (empty($suffix)) {
-            $suffix = $this->cart->getQuote()->getSuffix();
+        $skuCollection_item = [];
+        if ($this->request->getControllerName() != 'result') {
+            $items = $this->cart->getQuote()->getAllVisibleItems();
+            $suffixArr = [];
+            foreach ($items as $quoteItem) {
+                if ($productSkus && is_array($productSkus)) {
+                    $suffixArrstep = [];
+                    foreach ($productSkus as $sku) {
+                        if($quoteItem->getSku() == $sku) {
+                            if (!empty($quoteItem->getData('suffix'))) {
+                                $suffixArrstep['Suffix'] = $quoteItem->getData('suffix');
+                            }
+                            $suffixArrstep['Sku'] = $quoteItem->getSku();
+                        }
+                    }
+                }
+                $suffixArr[] = $suffixArrstep;
+            }
+            $skuCollection_item = (array_values($suffixArr));
         }
 
-        if ($customerAccountId === 0 && empty($suffix)) {
+        if(!empty($skuCollection_item)) {
+            $skuCollection = $skuCollection_item;
+        } else {
+            $skuCollection = $skuCollectionSuffix;
+        }
+        
+        if ($customerAccountId === 0 && empty($skuCollection)) {
             return false;
         }
 
         if (!$this->isTestMode()) {
-            $this->requestPath = $this->path.'/?' . http_build_query([
-                'customerId' => $customerAccountId,
-                'brochurePrefix' => $suffix
-            ]);
+            if (!empty($customerAccountId) && $customerAccountId !== 0) {
+                $this->requestBody = [
+                    'TraversAccountId' => $customerAccountId,
+                    'Skus' => $skuCollection
+                ];
+            }
+            $suffix = $this->cart->getQuote()->getSuffix();
+            $suffix = $suffix ? $suffix : 'A';
+            if (!empty($suffix)) {
+                $this->requestBody = [
+                    'CartSuffix' => $suffix,
+                    'Skus' => $skuCollection
+                ];
+            }
+            if (!empty($suffix) && !empty($customerAccountId) && $customerAccountId !== 0) {
+                $this->requestBody = [
+                    'TraversAccountId' => $customerAccountId,
+                    'CartSuffix' => $suffix,
+                    'Skus' => $skuCollection
+                ];
+            }
+            $this->requestPath = $this->path.'/';
         } else {
             $this->requestPath = 'api-mocks/Pricing/GetPrice?'. http_build_query([
                 'customerId' => $customerAccountId,
                 'sku' => $productSku,
                 'suffix' => $suffix
             ]);
-        }
-
-        if ($productSkus && is_array($productSkus)) {
-            foreach ($productSkus as $sku) {
-                $this->requestBody[] = rawurlencode($sku);
-            }
         }
 
         $response = $this->postRequest();

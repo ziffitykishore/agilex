@@ -53,8 +53,10 @@ class Suffix
                 ->addAttributeToSelect(['sku'])
                 ->addAttributeToFilter('sku', array('like' => $suffixMatch.'%'));
 
+        $skuSuffixArr = [];
         foreach ($productcollection as $key => $product) {
             $sku = $product->getSku();
+            
             if ($queryText == $sku) {
                 $subject->getResponse()->setRedirect($product->getProductUrl());
             }
@@ -64,20 +66,25 @@ class Suffix
                 $suffixHasSymbols = strcspn($skuSuffix, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($skuSuffix);
 
                 if (!$suffixHasSymbols && $skuSuffix) {
-                    $this->session->setSkuSuffix($skuSuffix);
+                    $skuSuffixArr[] =  $skuSuffix .'~'. $sku;
+                    //$this->session->setSkuSuffix($skuSuffix);
                     $this->quote->repriceCustomerQuote();
 
                     $currentQuote = $this->cart->getQuote();
                     if ($currentQuote && $currentQuote->getId()) {
                         $quote = $this->quoteRepository->get($currentQuote->getId());
-                        $quote->setSuffix($skuSuffix);
+                        //$quote->setSuffix($skuSuffix);
                         $this->quoteRepository->save($quote);
                     }
                     $this->suffixFlag = true;
                 }
+                if(!empty($skuSuffixArr)) {
+                    $sessionData = json_encode($skuSuffixArr);
+                    $this->session->setSkuSuffix($sessionData);
+                }
 
                 $subject->getResponse()->setRedirect($product->getProductUrl());
             }
-        }
+        }        
     }
 }
