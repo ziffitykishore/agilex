@@ -57,7 +57,7 @@ class Index extends Action
         $canShowSuffix = false;
 
         try {
-            $prices = $this->spotPricingApi->getSpotPrice($skus);
+            $prices = $this->spotPricingApi->getSpotPriceDPD($skus);
             $store = $this->storeManager->getStore()->getStoreId();
             
             if ($prices) {
