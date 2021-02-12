@@ -42,7 +42,7 @@ class Products extends PureComponent {
     pricing: [],
     quantity: {},
     shouldTriggerSpotPricing: false,
-    view: 'table',
+    view: this.props.defaultView,
     listAttributes: this.props.defaultListAttributes,
     tableAttributes: this.props.defaultTableAttributes,
     filterAttributesInfo: this.props.defaultFilterAttributesInfo,
@@ -102,7 +102,7 @@ class Products extends PureComponent {
       maxValuesPerFacet: 500,
     }).then(res => {
       const { facets } = res;
-
+      
       if (!facets) {
         this.setState({
           groups: [],
@@ -495,6 +495,7 @@ Products.propTypes = {
   swatchImages: PropTypes.object,
   toggleSidebar: PropTypes.func.isRequired,
   urlToGroupingImagesCatalog: PropTypes.string.isRequired,
+  defaultView:PropTypes.string
 };
 
 export default Products;
