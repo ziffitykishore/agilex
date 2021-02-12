@@ -1,0 +1,6 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote_item" resource="default" engine="innodb">
+        <column xsi:type="varchar" name="suffix" length="10" nullable="true" comment="SKU Suffix"/>
+    </table>
+</schema>

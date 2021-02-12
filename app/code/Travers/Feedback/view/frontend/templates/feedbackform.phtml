@@ -14,7 +14,7 @@
                 <div class="control">
                     <select name="option" id="option" title="<?= $block->escapeHtmlAttr(__('Issue Type')) ?>"
                            class="input-text" data-validate="{required:true}">
-                            <option value="0">Please Select Issue Type...</option>
+                            <option value="">Please Select Issue Type...</option>
                             <?php 
                             foreach ($block->getLabelList() as $key => $value):?>
                                <option value="<?= $value ?>" ><?= str_replace("_"," ",$value)?></option>
@@ -23,22 +23,22 @@
 
                 </div>
             </div>
-            <div class="field firstname required">
-                <label class="label" for="firstname"><span><?= $block->escapeHtml(__('First Name')) ?></span></label>
+            <div class="field firstname">
+                <label class="label" for="firstname"><span><?= $block->escapeHtml(__('First & Last Name')) ?></span></label>
                 <div class="control">
-                    <input name="firstname" id="firstname" title="<?= $block->escapeHtmlAttr(__('First Name')) ?>"
-                           class="input-text" type="text" data-validate="{required:true}"/>
+                    <input name="firstname" id="firstname" title="<?= $block->escapeHtmlAttr(__('First & Last Name')) ?>"
+                           class="input-text" type="text"/>
                 </div>
             </div>
            
-            <div class="field emailaddress required">
+            <div class="field emailaddress">
                 <label class="label" for="emailaddress"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
                 <div class="control">
                     <input name="emailaddress" id="emailaddress" title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
-                           class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                           class="input-text" type="email"/>
                 </div>
             </div>
-            <div class="field summary">
+            <div class="field summary required">
                 <label class="label" for="summary"><span><?= $block->escapeHtml(__('Issue Summary')) ?></span></label>
                 <div class="control">
                     <input name="summary" id="summary" title="<?= $block->escapeHtmlAttr(__('Issue Summary')) ?>"
@@ -55,10 +55,7 @@
         </fieldset>
         <input type="hidden" value="<?php echo $block->getRequest()->getUriString(); ?>" name="current_url" id="current_url"> 
         <div class="actions-toolbar">
-            <div class="primary left">
-                <input type="reset" class="clear_form action submit primary" value="clear"/>
-            </div>
-            <div class="primary right">
+            <div class="primary">
                 <button type="submit" id='issue-submit_button' title="<?= $block->escapeHtmlAttr(__('Submit')) ?>"
                         class="action submit primary">
                     <span><?= $block->escapeHtml(__('Submit')) ?></span>
@@ -69,34 +66,8 @@
     </div>
 </div>
 <style>
-    .feedback-button {
-        transform: rotate(-90deg);
-        padding: 7px 15px;
-        position: fixed;
-        right: 0px;
-        font-family: verdana;
-        font-size: 15px;
-        color: rgb(255, 255, 255);
-        background: rgb(245, 146, 2);
-        z-index: 999;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        border-radius: 5px 5px 0px 0px;
-        margin-right: -43.5px;
-        top: 50%;
-        margin-top: -18.5px;
-        text-shadow: none;
-
-    }
     #issue_submit .actions-toolbar{
         margin-top: 30px
-    }
-    .left{
-        float:left !important
-    }
-    .right{
-        float:right !important
     }
     .feedback_modal .modal-content{
         padding-bottom:0px
@@ -120,15 +91,24 @@
                 title: 'Feedback',
                 responsive: true,
                 buttons: [],
-                modalClass:'feedback_modal'
+                modalClass:'feedback_modal',
+                clickableOverlay: true
             };
 
             var popup = modal(options, $('#feedback_modal'));
-            $(".feedback-button").on('click', function() {
+            $('body').on('click', '.feedback-button', function(e){
+                $('#issue_submit').trigger("reset");
                 $("#feedback_modal").modal("openModal");
             });
 
-            jQuery('body').on('click', '#issue_submit .action.submit', function(e){
+            $('body').on('click', '.feedback_modal', function(e){
+                if(jQuery(e.target).closest(".modal-inner-wrap").length == 0){
+                    $('#issue_submit').trigger("reset");
+                    $("#feedback_modal").modal("closeModal");
+                }
+            });
+
+            jQuery('body').on('click', '#issue_submit #issue-submit_button', function(e){
                 e.preventDefault();
                 e.stopImmediatePropagation();
                 var dataForm = jQuery('#issue_submit');

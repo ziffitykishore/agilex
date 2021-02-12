@@ -43,6 +43,7 @@ class UploadFileQuickOrder
         $maxSuffixLength = $this->config->getValue('catalog/search/max_suffix_length', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         $finalItems = [];
         $skuSuffix = '';
+        $skuSuffixArr = [];
         foreach ($items as $key => $item) {
             if (!$item['sku']) {
                 continue;
@@ -64,18 +65,22 @@ class UploadFileQuickOrder
                     $skuSuffix = substr($item['sku'], strlen($product->getSku()));
                     $suffixHasSymbols = strcspn($skuSuffix, '~!@#$%^&*()=+-_?:<>[]{}') !== strlen($skuSuffix);
                     if ($skuSuffix !== '' && !$suffixHasSymbols) {
-                        $this->session->setSkuSuffix($skuSuffix);
+                        //$this->session->setSkuSuffix($skuSuffix);
+                        $skuSuffixArr[] =  $skuSuffix .'~'.$product->getSku();
 
                         $currentQuote = $this->cart->getQuote();
 
                         if ($currentQuote->getId()) {
                             $quote = $this->quoteRepository->get($currentQuote->getId());
-                            $quote->setSuffix($skuSuffix);
+                            //$quote->setSuffix($skuSuffix);
                         }
                     }
                 }
             }
-
+        }
+        if(!empty($skuSuffixArr)) {
+            $sessionData = json_encode($skuSuffixArr);
+            $this->session->setSkuSuffix($sessionData);
         }
         if ($skuSuffix !== '') {
             $this->quote->repriceCustomerQuote($skuSuffix);
