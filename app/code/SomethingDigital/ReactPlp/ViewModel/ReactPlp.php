@@ -95,6 +95,19 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     }
 
     /**
+     * @return string
+     */
+    public function getCategoryView()
+    {
+        if ($this->request->getFullActionName() == 'catalog_category_view') {
+            $category = $this->coreRegistry->registry('current_category');
+            return $category->getEnableTableView();
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * @return string|null
      */
     public function getDisplayMode()
@@ -162,6 +175,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
             ],
             'flyoutAttributes' => $this->getFlyoutAttributes(),
             'defaultListAttributes' => $this->getListAttributes(),
+            'defaultCategoryView' => $this->getCategoryView(),
             'currency' => $this->storeManager->getStore()->getCurrentCurrency()->getCode(),
             'defaultTableAttributes' => $this->getTableAttributes(),
             'searchTableAttributes' => $this->getSearchTableAttributes(),
