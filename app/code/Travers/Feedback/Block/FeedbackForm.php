@@ -225,12 +225,21 @@ class FeedbackForm extends \Magento\Framework\View\Element\Template
                     'type' => 'paragraph',
                     'content' => [
                       0 => [
-                        'text' => $data['description'],
+                        'text' => $data['summary'],
                         'type' => 'text',
                       ],
                     ],
                   ],
                   3 => [
+                    'type' => 'paragraph',
+                    'content' => [
+                      0 => [
+                        'text' => $data['description'],
+                        'type' => 'text',
+                      ],
+                    ],
+                  ],
+                  4 => [
                     'type' => 'paragraph',
                     'content' => [
                       0 => [
