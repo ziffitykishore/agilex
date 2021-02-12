@@ -34,7 +34,6 @@ define([
                         data[0] = stockItem;
                     }
                     else if(stockItem.label == "Queens, NY"){
-                        console.log("testing");
                         data[1] = stockItem;
                     }
                     else{
