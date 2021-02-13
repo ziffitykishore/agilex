@@ -97,6 +97,15 @@
 
             var popup = modal(options, $('#feedback_modal'));
             $('body').on('click', '.feedback-button', function(e){
+                $("#issue_submit :input").each(function(){
+                    var attr = $(this).attr('aria-describedby');
+                    if (typeof attr !== typeof undefined && attr !== false) {
+                        $(this).removeAttr('aria-describedby');
+                        $(this).removeAttr('aria-invalid');
+                        $(this).next('div.mage-error').remove();
+                        $(this).removeClass('mage-error')
+                    }
+                });
                 $('#issue_submit').trigger("reset");
                 $("#feedback_modal").modal("openModal");
             });
