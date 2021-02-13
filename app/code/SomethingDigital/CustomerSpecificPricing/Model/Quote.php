@@ -146,6 +146,15 @@ class Quote
                             $customPrice = $tierPrice;
                             $item->setIsCustomerSpecificTierPriceApplied(true);
                         }
+                        $itemQuantity = $item->getQty();
+                        $rowtotal = $customPrice * $itemQuantity;
+                        if($rowtotal > 0) {
+                            $item->setData('row_total', $rowtotal);
+                        }
+                        if ($customPrice > 0) {
+                            $item->setData('price', $customPrice);
+                            $item->setData('base_price', $customPrice);
+                        }
                         $item->setCustomPrice($customPrice);
                         $item->setOriginalCustomPrice($customPrice);
                         $item->getProduct()->setIsSuperMode(true);
