@@ -207,7 +207,7 @@ class FeedbackForm extends \Magento\Framework\View\Element\Template
                     'type' => 'paragraph',
                     'content' => [
                       0 => [
-                        'text' => 'Customer Name: '.$data['firstname'] ? $data['firstname'] : "-",
+                        'text' => 'Customer Name: '.($data['firstname'] ? $data['firstname'] : "-"),
                         'type' => 'text',
                       ],
                     ],
@@ -216,7 +216,7 @@ class FeedbackForm extends \Magento\Framework\View\Element\Template
                     'type' => 'paragraph',
                     'content' => [
                       0 => [
-                        'text' => 'Customer Email: '.$data['emailaddress'] ? $data['emailaddress'] : '-',
+                        'text' => 'Customer Email: '.($data['emailaddress'] ? $data['emailaddress'] : '-'),
                         'type' => 'text',
                       ],
                     ],
