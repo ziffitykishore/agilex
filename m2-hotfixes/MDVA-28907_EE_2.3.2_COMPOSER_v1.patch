@@ -1,0 +1,52 @@
+diff --git a/vendor/magento/module-ui/Controller/Index/Render.php b/vendor/magento/module-ui/Controller/Index/Render.php
+index 6f0cc0b6595..f7a26cbb5c9 100644
+--- a/vendor/magento/module-ui/Controller/Index/Render.php
++++ b/vendor/magento/module-ui/Controller/Index/Render.php
+@@ -92,7 +92,7 @@ class Render extends \Magento\Framework\App\Action\Action
+     public function execute()
+     {
+         if ($this->_request->getParam('namespace') === null) {
+-            $this->_redirect('admin/noroute');
++            $this->_redirect('noroute');
+ 
+             return;
+         }
+diff --git a/vendor/magento/module-company/Controller/Ui/Render.php b/vendor/magento/module-company/Controller/Ui/Render.php
+index acd8a52ea..ea80fa709 100644
+--- a/vendor/magento/module-company/Controller/Ui/Render.php
++++ b/vendor/magento/module-company/Controller/Ui/Render.php
+@@ -6,7 +6,7 @@
+ namespace Magento\Company\Controller\Ui;
+ 
+ use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
+-use Magento\Ui\Controller\Adminhtml\Index\Render as UiRender;
++use Magento\Ui\Controller\Index\Render as UiRender;
+ 
+ /**
+  * Class Render
+diff --git a/vendor/magento/module-company-credit/Controller/Ui/Render.php b/vendor/magento/module-company-credit/Controller/Ui/Render.php
+index a187addb8..2503040ed 100644
+--- a/vendor/magento/module-company-credit/Controller/Ui/Render.php
++++ b/vendor/magento/module-company-credit/Controller/Ui/Render.php
+@@ -6,7 +6,7 @@
+ namespace Magento\CompanyCredit\Controller\Ui;
+ 
+ use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
+-use Magento\Ui\Controller\Adminhtml\Index\Render as UiRender;
++use Magento\Ui\Controller\Index\Render as UiRender;
+ 
+ /**
+  * Class Render.
+diff --git a/vendor/magento/module-requisition-list/Controller/Ui/Render.php b/vendor/magento/module-requisition-list/Controller/Ui/Render.php
+index 45741622b..03c8c633b 100644
+--- a/vendor/magento/module-requisition-list/Controller/Ui/Render.php
++++ b/vendor/magento/module-requisition-list/Controller/Ui/Render.php
+@@ -6,7 +6,7 @@
+ namespace Magento\RequisitionList\Controller\Ui;
+ 
+ use Magento\Framework\App\Action\HttpGetActionInterface as HttpGetActionInterface;
+-use Magento\Ui\Controller\Adminhtml\Index\Render as UiRender;
++use Magento\Ui\Controller\Index\Render as UiRender;
+ 
+ /**
+  * Class Render
