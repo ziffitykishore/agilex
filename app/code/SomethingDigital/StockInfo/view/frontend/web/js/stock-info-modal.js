@@ -29,15 +29,19 @@ define([
                 if (simpleProductId && simpleProductId != productId) {
                     return true;
                 }
+                var location = 0;
                 $.each(stockItems, function(key, stockItem) {
                     if(stockItem.label == "Duncan, SC"){
-                        data[0] = stockItem;
+                        data[location] = stockItem;
+                        location++;
                     }
                     else if(stockItem.label == "Queens, NY"){
-                        data[1] = stockItem;
+                        data[location] = stockItem;
+                        location++;
                     }
                     else{
-                        data[2] = stockItem;
+                        data[location] = stockItem;
+                        location++;
                     }
                 });
             });
