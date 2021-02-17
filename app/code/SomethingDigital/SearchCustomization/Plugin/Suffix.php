@@ -78,6 +78,7 @@ class Suffix
                     }
                     $this->suffixFlag = true;
                 }
+                $this->session->setSkuSuffix('');
                 if(!empty($skuSuffixArr)) {
                     $sessionData = json_encode($skuSuffixArr);
                     $this->session->setSkuSuffix($sessionData);
