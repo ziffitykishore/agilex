@@ -149,3 +149,28 @@
         </script>
     </div>
 </div>
+<script>
+    require(
+        [
+            'jquery',
+        ],
+        function(
+            $,
+        ) {
+            $('body').on('click', '.tocart', function(e){
+                flag =0;
+                $form = $('#form-addbysku')
+                $('input[name^="items"]').each(function() {
+                    if($(this).val() != ''){
+                        flag =1;
+                    } 
+                });
+                if( !flag ){
+                    $('.tocart').attr("disabled", true)
+                } else{
+                    $form.submit();
+                }
+            });
+        }
+    );
+</script>
