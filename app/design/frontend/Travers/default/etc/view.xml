@@ -20,19 +20,6 @@
                 <width>60</width>
                 <height>60</height>
             </image>
-            <image id="product_page_main_image" type="image">
-                <width>600</width>
-                <height>400</height>
-            </image>
-            <image id="product_page_main_image_default" type="image">
-                <width>600</width>
-                <height>400</height>
-            </image>
-            <image id="product_page_image_large" type="image"/>
-            <image id="product_page_image_medium" type="image">
-                <width>600</width>
-                <height>400</height>
-            </image>
         </images>
     </media>
 </view>
