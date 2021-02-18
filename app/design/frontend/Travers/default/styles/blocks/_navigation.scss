@@ -767,3 +767,14 @@ $nav-section-title__height: 60px;
         }
     }
 }
+
+@media screen and (min-height: 600px) {
+    .navigation {
+        .level-top.category-item {
+            .desktop-submenu.submenu {
+                overflow-y: auto !important;
+                max-height: calc(100vh - 200px);
+            }
+        }
+    }
+}
