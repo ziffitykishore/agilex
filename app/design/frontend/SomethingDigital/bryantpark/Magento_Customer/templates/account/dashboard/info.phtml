@@ -17,7 +17,13 @@ $displayMessage = $customer_helper->getCustomerLinkMessage();
             <strong class="box-title">
                 <span><?= $block->escapeHtml(__('Account Linking Status')) ?></span>
                 <?php if ($displayMessage) { ?>
-                    <span><?=$displayMessage?></span>
+                        <div class="field-tooltip toggle">
+                            <span class="field-tooltip-action" tabindex="0" data-toggle="dropdown" data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}" aria-haspopup="true" aria-expanded="false" role="button">
+                            </span>
+                            <div class="field-tooltip-content" data-target="dropdown" aria-hidden="true">
+                                <?= $displayMessage ?>
+                            </div>
+                        </div>
                 <?php } ?>
             </strong>
             <?php
