@@ -49,6 +49,7 @@ class AddProductData implements ObserverInterface
         $this->addTierPrices($product, $transport);
         $this->addRadius($product, $transport);
         $this->addAliasSku($product, $transport);
+        $this->addAliasAllAttr($product, $transport);
     }
 
     /**
@@ -65,6 +66,27 @@ class AddProductData implements ObserverInterface
         array_push($data,$hypen_removed);
         $algoliaProductData['sku'] = $data;
 
+        $transport->setData($algoliaProductData);
+    }
+
+     /**
+     * Update the all attribute to algolia data
+     *
+     * @param \Magento\Catalog\Model\Product $product
+     * @param \Magento\Framework\DataObject $transport
+     */
+    private function addAliasAllAttr($product, $transport)
+    {
+        $algoliaProductData = $transport->getData();
+        foreach ($algoliaProductData as $algoliaKey => $algolia) {
+            $data = [];
+            if (preg_match('/[\'^#~><>™"®°]/', $product->getData($algoliaKey))){
+                $quotes_removed = preg_replace('/[^A-Za-z0-9\ -+:_(),.!\/]/', '', $product->getData($algoliaKey));
+                $data[] =$product->getData($algoliaKey);
+                array_push($data,$quotes_removed);
+                $algoliaProductData[$algoliaKey] = $data;
+            }
+        }
         $transport->setData($algoliaProductData);
     }
 
