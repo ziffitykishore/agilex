@@ -305,6 +305,11 @@ $product-hero__button-and-catalog__width: 240px;
     .gallery-placeholder {
         &._block-content-loading {
             overflow: hidden;
+            border: 1px solid $c-grey;
+
+            .gallery-placeholder__image {
+                opacity: 0;
+            }
         }
     }
 
