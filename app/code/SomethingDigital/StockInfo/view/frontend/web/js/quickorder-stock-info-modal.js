@@ -39,7 +39,10 @@ define([
                     var keyCode = e.keyCode || e.which;
                     var values = $(this).val();
                     if (keyCode == 9 && values.length > 9 ) {
-                        $(this).next('.qty').find('input[type=number]').focus(); 
+                        $(this).next('.qty').find('input[type=number]').focus();
+                    } else{
+                        if(keyCode == 9)
+                            return false;
                     }
                 });
                 $('.block-addbysku').on('click',this.popupOpenerSelector, function () {
