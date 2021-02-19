@@ -52,6 +52,24 @@ class AttributeSorter
             //Add sku at beginning of array.
             array_unshift($tableAttributes, $skuValue);
         }
+
+        //Find position that UoM must be in the array
+        $uomPosition = array_search(
+            $uomValue,
+            $tableAttributes
+        );
+
+        $uomPushPos = min(7, sizeof($tableAttributes));
+        if ($uomPosition !== $uomPushPos) {
+            if ($uomPosition && $uomPosition >= 0) {
+                //If UoM is not in the position it must be, we remove the old position.
+                array_splice($tableAttributes, $uomPosition, 1);
+            }
+
+            //Add UoM to required array position.
+            array_splice($tableAttributes, $uomPushPos, 0, [$uomValue]);
+        }
+
         //Find position of Price in the array
         $pricePosition = array_search(
             $priceValue,
@@ -59,7 +77,7 @@ class AttributeSorter
         );
 
         //Find position that Price must be in the array.
-        $pricePushPos = min(7, sizeof($tableAttributes));
+        $pricePushPos = min(8, sizeof($tableAttributes));
 
         if ($pricePosition !== $pricePushPos) {
             if ($pricePosition && $pricePosition >= 0) {
@@ -69,23 +87,6 @@ class AttributeSorter
 
             //Add Price to required array position.
             array_splice($tableAttributes, $pricePushPos, 0, [$priceValue]);
-        }
-
-        //Find position that UoM must be in the array
-        $uomPosition = array_search(
-            $uomValue,
-            $tableAttributes
-        );
-
-        $uomPushPos = min(8, sizeof($tableAttributes));
-        if ($uomPosition !== $uomPushPos) {
-            if ($uomPosition && $uomPosition >= 0) {
-                //If UoM is not in the position it must be, we remove the old position.
-                array_splice($tableAttributes, $uomPosition, 1);
-            }
-
-            //Add UoM to required array position.
-            array_splice($tableAttributes, $uomPushPos, 0, [$uomValue]);
         }
 
         return $tableAttributes;
