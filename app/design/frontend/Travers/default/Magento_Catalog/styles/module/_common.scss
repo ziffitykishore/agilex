@@ -993,7 +993,7 @@ body.catalog-product-compare-index {
         position: -webkit-sticky;
         position: sticky;
         top: 90px;
-        z-index: 9;
+        z-index: 2;
 
         @include max-screen($screen__xs) {
             margin-left: -15px;

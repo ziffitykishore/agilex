@@ -11,6 +11,13 @@ $viewModel = $block->getViewModel();
         var props = <?php echo $viewModel->getJsProps() ?>;
         window.props = props;
         renderReactPLP(document.getElementById('react-plp'), props);
+
+        var searchQuery = jQuery('#current_url').val();
+        var query = searchQuery.split('?');
+        if(query[1]){
+            var newurl = window.location.protocol + "//" + window.location.host + window.location.pathname +'?'+query[1];
+            window.history.pushState({ path: newurl }, '', newurl);
+        }
     });
 });
 </script>
