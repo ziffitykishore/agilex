@@ -39,8 +39,16 @@ define([
                     var keyCode = e.keyCode || e.which;
                     var values = $(this).val();
                     if (keyCode == 9 && values.length > 9 ) {
-                        $(this).next('.qty').find('input[type=number]').focus(); 
+                        $(this).next('.qty').find('input[type=number]').focus();
+                        window.lastId = $(this).attr('id');
+                    } else{
+                        if(keyCode == 9)
+                            return false;
                     }
+                });
+                $('body').on('DOMSubtreeModified', '.product-block', function(){
+                    last_id = '#'+window.lastId
+                    $('body').find(last_id).focus();
                 });
                 $('.block-addbysku').on('click',this.popupOpenerSelector, function () {
                     var data = [];
