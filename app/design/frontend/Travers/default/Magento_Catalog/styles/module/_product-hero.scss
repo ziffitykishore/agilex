@@ -110,16 +110,21 @@ $product-hero__button-and-catalog__width: 240px;
         }
 
         .product.attribute.overview {
-            order: 1;
+            order: 2;
+            margin: $indent__s 0;
         }
 
         .product-add-form {
-            order: 2;
+            order: 1;
+        }
+
+        #short-desc-list {
+            padding-left: 0;
+	    list-style: none;
         }
 
         .product-social-links {
             order: 3;
-            margin-top: $indent__s;
         }
 
         .link-sharing {
@@ -260,7 +265,7 @@ $product-hero__button-and-catalog__width: 240px;
     }
 
     .product-add-form {
-        margin-top: 20px;
+        margin: $indent__base 0;
         form {
             display: flex;
             flex-wrap: wrap;
@@ -331,7 +336,7 @@ $product-hero__button-and-catalog__width: 240px;
 .master-catalog-link {
     color: $text__color;
     display: block;
-    margin: $indent__m 0;
+    margin: $indent__base 0;
     max-width: $product-hero__button-and-catalog__width - 40;
 
     @include hover {
