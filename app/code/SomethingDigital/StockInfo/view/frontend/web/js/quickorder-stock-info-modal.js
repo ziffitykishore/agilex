@@ -47,8 +47,7 @@ define([
                     }
                 });
                 $('body').on('DOMSubtreeModified', '.product-block', function(){
-                    last_id = '#'+window.lastId
-                    $('body').find(last_id).focus();
+                    $('body').find('#'+window.lastId).focus();
                 });
                 $('.block-addbysku').on('click',this.popupOpenerSelector, function () {
                     var data = [];
