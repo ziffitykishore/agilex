@@ -27,6 +27,10 @@ class UpdateAjaxResponse
             foreach ($result as $item) {
                 $sku = $item['sku'];
                 $stockData = $this->stockData->getStockData($sku);
+                if($result[$sku]['result'] === "You should correct the quantity for the product."){
+                    $result[$sku]['isError'] = 0;
+                    $result[$sku]['result'] = "";
+                }
                 $result[$sku]['qty'] = ($this->stockData->getQtyIncrement($sku) > 0) ? $this->stockData->getQtyIncrement($sku) : $result[$sku]['qty'];
                 $result[$sku]['stockData'] = $stockData;
                 $result[$sku]['stockInfo'] = $this->stockData->getMinSaleQtyAndIncrementsInfo($sku);
