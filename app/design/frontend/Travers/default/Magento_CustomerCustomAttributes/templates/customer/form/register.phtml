@@ -22,37 +22,88 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
-    <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
-    <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
-    <fieldset class="fieldset create info" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
-        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Personal Information') ?></span></legend><br>
-        <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
-        <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
-        <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
+    <div>    
+        <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
+        <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
+        <fieldset class="fieldset create info" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
+            <legend class="legend"><span><?= /* @escapeNotVerified */ __('Personal Information') ?></span></legend><br>
+            <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
+            <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
+            <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
 
-        <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
-        <?php if ($_dob->isEnabled()): ?>
-            <?= $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
-        <?php endif ?>
+            <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+            <?php if ($_dob->isEnabled()): ?>
+                <?= $_dob->setDate($block->getFormData()->getDob())->toHtml() ?>
+            <?php endif ?>
 
-        <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
-        <?php if ($_taxvat->isEnabled()): ?>
-            <?= $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
-        <?php endif ?>
+            <?php $_taxvat = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Taxvat') ?>
+            <?php if ($_taxvat->isEnabled()): ?>
+                <?= $_taxvat->setTaxvat($block->getFormData()->getTaxvat())->toHtml() ?>
+            <?php endif ?>
 
-        <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
-        <?php if ($_gender->isEnabled()): ?>
-            <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
-        <?php endif ?>
+            <?php $_gender = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Gender') ?>
+            <?php if ($_gender->isEnabled()): ?>
+                <?= $_gender->setGender($block->getFormData()->getGender())->toHtml() ?>
+            <?php endif ?>
 
-        <?php $customerAttributes = $block->getChildBlock('customer_form_user_attributes');?>
-        <?php if ($customerAttributes): ?>
-            <?php $customerAttributes->setObject($block->getFormData())->setEntityType('customer')->setShowContainer(false);?>
-            <?php $block->restoreSessionData($customerAttributes->getMetadataForm());?>
-            <?= $customerAttributes->toHtml() ?>
-        <?php endif;?>
+            <?php $customerAttributes = $block->getChildBlock('customer_form_user_attributes');?>
+            <?php if ($customerAttributes): ?>
+                <?php $customerAttributes->setObject($block->getFormData())->setEntityType('customer')->setShowContainer(false);?>
+                <?php $block->restoreSessionData($customerAttributes->getMetadataForm());?>
+                <?= $customerAttributes->toHtml() ?>
+            <?php endif;?>
 
-    </fieldset>
+        </fieldset>
+        <fieldset class="fieldset create account" data-hasrequired="">
+            <legend class="legend"><span><?= /* @escapeNotVerified */ __('Sign-in Information') ?></span></legend><br>
+            <div class="field required">
+                <label for="email_address" class="label"><span><?= /* @escapeNotVerified */ __('Email') ?></span></label>
+                <div class="control">
+                    <input type="email" name="email" id="email_address" autocomplete="email" value="<?= $block->escapeHtml($block->getFormData()->getEmail()) ?>" title="<?= /* @escapeNotVerified */ __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="field password required password-input" data-mage-init='{"passwordStrengthIndicator": {}}'>
+                <label for="password" class="label"><span><?= /* @escapeNotVerified */ __('Password') ?></span></label>
+                <div class="control">
+                    <input type="password" name="password" id="password"
+                        title="<?= /* @escapeNotVerified */ __('Password') ?>"
+                        class="input-text js-toggle-type"
+                        data-password-min-length="<?= $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
+                        data-password-min-character-sets="<?= $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
+                        data-validate="{required:true, 'validate-customer-password':true}"
+                        autocomplete="off">
+                    <?php
+                    /**
+                     * A toggle to show password in plain text. See showPassword.js
+                     * for the source to this.
+                     */
+                    ?>
+                    <button class="password-toggle" type="button" id="password-toggle">
+                        <span class="password-toggle__text password-toggle__text--show"><?= __('Show Password') ?></span>
+                        <span class="password-toggle__text password-toggle__text--hide"><?= __('Hide Password') ?></span>
+                    </button>
+                    <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                        <div id="password-strength-meter" class="password-strength-meter">
+                            <?= /* @escapeNotVerified */ __('Password Strength') ?>:
+                            <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                                <?= /* @escapeNotVerified */ __('No Password') ?>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field confirmation required">
+                <label for="password-confirmation" class="label"><span><?= /* @escapeNotVerified */ __('Confirm Password') ?></span></label>
+                <div class="control">
+                    <input type="hidden" name="password_confirmation" title="<?= /* @escapeNotVerified */ __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}"/>
+                </div>
+            </div>
+            <?= $block->getChildHtml('form_additional_info') ?>
+        </fieldset>
+    </div>
+    <div>
+        <?= /* @noEscape */ $this->getLayout()->createBlock(\Magento\Cms\Block\Block::class)->setBlockId('customer_registration_link')->toHtml(); ?>
+    </div>
 
 <?php if ($block->getShowAddressFields()): ?>
     <fieldset class="fieldset address">
@@ -152,52 +203,7 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
             </div>
         </div>
     </fieldset>
-    <fieldset class="fieldset create account" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
-        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Sign-in Information') ?></span></legend><br>
-        <div class="field required">
-            <label for="email_address" class="label"><span><?= /* @escapeNotVerified */ __('Email') ?></span></label>
-            <div class="control">
-                <input type="email" name="email" id="email_address" autocomplete="email" value="<?= $block->escapeHtml($block->getFormData()->getEmail()) ?>" title="<?= /* @escapeNotVerified */ __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}"/>
-            </div>
-        </div>
-        <div class="field password required password-input" data-mage-init='{"passwordStrengthIndicator": {}}'>
-            <label for="password" class="label"><span><?= /* @escapeNotVerified */ __('Password') ?></span></label>
-            <div class="control">
-                <input type="password" name="password" id="password"
-                       title="<?= /* @escapeNotVerified */ __('Password') ?>"
-                       class="input-text js-toggle-type"
-                       data-password-min-length="<?= $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
-                       data-password-min-character-sets="<?= $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
-                       data-validate="{required:true, 'validate-customer-password':true}"
-                       autocomplete="off">
-                <?php
-                /**
-                 * A toggle to show password in plain text. See showPassword.js
-                 * for the source to this.
-                 */
-                ?>
-                <button class="password-toggle" type="button" id="password-toggle">
-                    <span class="password-toggle__text password-toggle__text--show"><?= __('Show Password') ?></span>
-                    <span class="password-toggle__text password-toggle__text--hide"><?= __('Hide Password') ?></span>
-                </button>
-                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
-                    <div id="password-strength-meter" class="password-strength-meter">
-                        <?= /* @escapeNotVerified */ __('Password Strength') ?>:
-                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
-                            <?= /* @escapeNotVerified */ __('No Password') ?>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="field confirmation required">
-            <label for="password-confirmation" class="label"><span><?= /* @escapeNotVerified */ __('Confirm Password') ?></span></label>
-            <div class="control">
-                <input type="hidden" name="password_confirmation" title="<?= /* @escapeNotVerified */ __('Confirm Password') ?>" id="password-confirmation" class="input-text" data-validate="{required:true, equalTo:'#password'}"/>
-            </div>
-        </div>
-        <?= $block->getChildHtml('form_additional_info') ?>
-    </fieldset>
+  
     <?php if ($block->isNewsletterEnabled()): ?>
         <div class="field choice newsletter">
             <input type="checkbox" name="is_subscribed" title="<?= /* @escapeNotVerified */ __('Sign Up for Newsletter') ?>" value="1" id="is_subscribed" <?= $customerHelper->getNewsletterDefault() ?> class="checkbox"/>
