@@ -413,8 +413,9 @@
             $tocart-input-size: 43px;
             height: $tocart-input-size + 2px;
             text-align: center;
-            width: $tocart-input-size + 2px;
+            width: 70px;
             margin-top: $indent__xs;
+            padding: 0;
         }
     }
 
