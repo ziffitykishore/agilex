@@ -101,7 +101,7 @@ class ReactPlp implements \Magento\Framework\View\Element\Block\ArgumentInterfac
     {
         if ($this->request->getFullActionName() == 'catalog_category_view') {
             $category = $this->coreRegistry->registry('current_category');
-            return $category->getEnableTableView();
+            return (($category->getEnableTableView() != null) ? $category->getEnableTableView() : 'table') ;
         } else {
             return null;
         }
