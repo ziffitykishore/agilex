@@ -22,11 +22,12 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
 <?php /* Extensions placeholder */ ?>
 <?= $block->getChildHtml('customer.form.register.extra') ?>
 <form class="form create account form-create-account" action="<?= /* @escapeNotVerified */ $block->getPostActionUrl() ?>" method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
-    <div>    
+    <div class="customer-info-wrap">    
+    <div class="customer-info">    
         <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
         <?= /* @noEscape */ $block->getBlockHtml('formkey'); ?>
         <fieldset class="fieldset create info" data-hasrequired="<?= /* @escapeNotVerified */ __('* Required Fields') ?>">
-            <legend class="legend"><span><?= /* @escapeNotVerified */ __('Personal Information') ?></span></legend><br>
+            <legend class="legend"><span><?= /* @escapeNotVerified */ __('Personal Information') ?></span></legend>
             <input type="hidden" name="success_url" value="<?= /* @escapeNotVerified */ $block->getSuccessUrl() ?>"/>
             <input type="hidden" name="error_url" value="<?= /* @escapeNotVerified */ $block->getErrorUrl() ?>"/>
             <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
@@ -55,7 +56,7 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
 
         </fieldset>
         <fieldset class="fieldset create account" data-hasrequired="">
-            <legend class="legend"><span><?= /* @escapeNotVerified */ __('Sign-in Information') ?></span></legend><br>
+            <legend class="legend"><span><?= /* @escapeNotVerified */ __('Sign-in Information') ?></span></legend>
             <div class="field required">
                 <label for="email_address" class="label"><span><?= /* @escapeNotVerified */ __('Email') ?></span></label>
                 <div class="control">
@@ -101,13 +102,30 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
             <?= $block->getChildHtml('form_additional_info') ?>
         </fieldset>
     </div>
-    <div>
-        <?= /* @noEscape */ $this->getLayout()->createBlock(\Magento\Cms\Block\Block::class)->setBlockId('customer_registration_link')->toHtml(); ?>
+        <div class="customer-registration-block">
+            <?= /* @noEscape */ $this->getLayout()->createBlock(\Magento\Cms\Block\Block::class)->setBlockId('customer_registration_link')->toHtml(); ?>
+            <div class="inner-block">
+                <h3>Link your offline account</h3>
+                <ul>
+                    <li>Take advantage of your Negotiated Pricing</li>
+
+                    <li>Pay via your Travers' Open Terms</li>
+
+                    <li>View offline and online Order History</li>
+
+                    <li>Save your favorite products to Lists</li>
+
+                    <li>Checkout quickly using your Address Book</li>
+
+                    <li>View your Account Balance</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
 <?php if ($block->getShowAddressFields()): ?>
     <fieldset class="fieldset address">
-        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Address Information') ?></span></legend><br>
+        <legend class="legend"><span><?= /* @escapeNotVerified */ __('Address Information') ?></span></legend>
         <input type="hidden" name="create_address" value="1"/>
         <div class="field company">
             <label for="company" class="label"><span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('company') ?></span></label>
@@ -186,10 +204,10 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
     </fieldset>
 <?php endif; ?>
     <fieldset class="fieldset create travers-account">
-        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Travers Account') ?></span></legend><br>
+        <legend class="legend"><span><?php /* @escapeNotVerified */ echo __('Link your offline account (optional)') ?></span></legend>
         <div>
             <?= $preAuthCofig->getConfigValue('sx/customer_linking/preauth_description'); ?>
-        </div><br>
+        </div>
         <div class="field travers-account-number">
             <label for="travers_account_id" class="label"><span><?php /* @escapeNotVerified */ echo __('Travers Account Number(Optional)') ?></span></label>
             <div class="control">
@@ -218,7 +236,7 @@ $preAuthCofig = $this->helper(Travers\CustomerLinking\Helper\Data::class);
             <button type="submit" class="action submit primary" title="<?= /* @escapeNotVerified */ __('Create an Account') ?>"><span><?= /* @escapeNotVerified */ __('Create an Account') ?></span></button>
         </div>
         <div class="secondary">
-            <a class="action back" href="<?= $block->escapeUrl($block->getBackUrl()) ?>"><span><?= /* @escapeNotVerified */ __('Back') ?></span></a>
+            <p>To retreive your account, please call us at <a href="tel:1.800.221.0270">1.800.221.0270</a><span> Or login with an existing account <a class="action" href="<?= $block->getUrl('*/*/login'); ?>" title="Login">here</a>.
         </div>
     </div>
 </form>
