@@ -12,6 +12,8 @@ define([
 
         searchInput: ko.observable(''),
 
+        searchInputVisible: ko.observable(true),
+
         /**
          * Displays the first 5 elements plus the active(default) element during
          * initial rendering.
@@ -31,12 +33,11 @@ define([
          *
          */
         checkSearchBar: function () {
-            if(customerData.addresses.length > 0){
-                return true;
+            if(customerData.addresses != undefined && customerData.addresses.length > 0){
+                this.searchInputVisible(true);
             } else{
-                return false;
+                this.searchInputVisible(false);
             }
-             
         },
 
         displayResults: function (query) {
@@ -74,7 +75,7 @@ define([
             this._super();
 
             var self = this;
-
+            self.checkSearchBar();
             this.searchInput.subscribe(function (changes) {
                 self.displayResults(changes);
             });
