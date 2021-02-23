@@ -4,8 +4,8 @@
 * See COPYING.txt for license details.
 */
 -->
-<!-- ko if: (checkSearchBar) -->
-<div class="field address-search" data-bind="visible: (checkSearchBar)">
+<!-- ko if: (searchInputVisible()) -->
+<div class="field address-search" data-bind="visible: (searchInputVisible())">
     <label for="address-search-input" class="label"><!-- ko i18n: 'Search Addresses' --><!-- /ko --></label>
     <div class="control">
         <input type="text" class="input-text" id="address-search-input" data-bind="textInput: searchInput, attr: {placeholder: $t('Search address')}">
