@@ -33,9 +33,7 @@ define([
          *
          */
         checkSearchBar: function () {
-            if(customerData.addresses != undefined && customerData.addresses.length > 0){
-                this.searchInputVisible(true);
-            } else{
+            if(!(customerData.addresses != undefined && customerData.addresses.length > 0)){
                 this.searchInputVisible(false);
             }
         },
