@@ -18,6 +18,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+//Contact-us page contact tab zindex ajustment.
+.cms-contact-us div[data-content-type=tabs] .tabs-navigation li.tab-header.ui-state-active {
+    z-index: 2;
+}
+
 //
 //  Header
 //  ---------------------------------------------
