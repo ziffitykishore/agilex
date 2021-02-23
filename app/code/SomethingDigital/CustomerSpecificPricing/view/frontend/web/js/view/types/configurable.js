@@ -35,5 +35,9 @@ define([
                 $('.product-info-main .price').text(currencySymbol + data[sku]['price']);
             }
         }
+        setTimeout(function(){ 
+            $('.price-container').show();
+            $('.priceDesc').show();
+        }, 3000);
     }
 });
