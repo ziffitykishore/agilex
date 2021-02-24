@@ -707,3 +707,7 @@ $cart-image-mobile-width: 60px !default;
 .price--sale > .price {
     text-decoration: line-through;
 }
+.checkout-cart-index [type=checkbox]:not(.custom-input--disabled)+label,
+.checkout-cart-index [type=radio]:not(.custom-input--disabled)+label {
+    word-break: break-word;
+}
