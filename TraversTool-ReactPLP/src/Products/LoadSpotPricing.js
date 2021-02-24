@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connectHits } from 'react-instantsearch-dom';
-import { fetchContent } from '../ApiHelpers';
+import { fetchContentPost } from '../ApiHelpers';
 
 function LoadSpotPricing({
   addPricing,
@@ -30,7 +30,7 @@ function LoadSpotPricing({
 
   useEffect(() => {
     if (skus) {
-      fetchContent(apiUrls.pricing.url, skus.toString()).then(newPricing => {
+      fetchContentPost(apiUrls.pricing.url, JSON.stringify({ products: skus })).then(newPricing => {
         addPricing(newPricing);
       });
     }
