@@ -9,4 +9,5 @@
     <type name="Magento\ProductAlert\Helper\Data">
         <plugin name="SomethingDigital_ProductAlert" type="SomethingDigital\StockInfo\Plugin\HideStockInfoAlert" sortOrder="0" />
     </type>
+    <preference for="Magento\QuickOrder\Model\Cart" type="SomethingDigital\StockInfo\Model\Cart" />
 </config>
