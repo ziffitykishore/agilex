@@ -261,6 +261,8 @@ $cart-image-mobile-width: 60px !default;
         &.qty {
             .input-text {
                 @extend .abs-input-qty;
+                width: 70px;
+                padding: 0;
                 margin-top: -5px;
             }
 
