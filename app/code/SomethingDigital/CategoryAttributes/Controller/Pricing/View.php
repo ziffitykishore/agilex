@@ -37,12 +37,12 @@ class View extends \Magento\Framework\App\Action\Action
         parent::__construct($context);
     }
     
-    public function execute() 
+    public function execute()
     {       
-        $productsSkus = $this->getRequest()->getParam('products');
-
-        if ($productsSkus) {
-            $productsSkusArray = explode(',', $productsSkus);
+        $productsSkus = $this->getRequest()->getContent();
+        $skuArray = json_decode($productsSkus,true);
+        if (isset($skuArray['products'])) {
+            $productsSkusArray = $skuArray['products'];
             try {
                 $data = array();
                 $productsPrices = $this->spotPricingApi->getSpotPrice($productsSkusArray);
