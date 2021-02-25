@@ -121,6 +121,9 @@ class OrderApiResponse
         $order->setSxIntegrationResponse(json_encode($response['body']));
         $this->orderRepository->save($order);
 
+        if($this->helper->getConfigValue('sales/sx_order/enable'))
+            $this->email->sendSuccessEmail($order);
+
         return [
             'status' => true
         ];
