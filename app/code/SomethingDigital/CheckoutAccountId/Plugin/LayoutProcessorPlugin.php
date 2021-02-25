@@ -65,15 +65,15 @@ class LayoutProcessorPlugin
                     'id' => 'travers-account-id'
                 ],
                 'dataScope' => 'shippingAddress.travers_account_id',
-                'label' => 'Account #',
+                'label' => 'Traverse Account # (Optional)',
                 'provider' => 'checkoutProvider',
                 'visible' => true,
                 'validation' => [],
                 'sortOrder' => 200,
-                'id' => 'travers-account-id'
+                'id' => 'travers-account-id',
+                'tooltip'=>['description' => "If you have an existing Travers Tool Co account #, please add it here and we will link your order to your order history. You'll be able to set up a web account on the order confirmation screen."] 
             ];
         }
-
 
         return $jsLayout;
     }
