@@ -24,6 +24,33 @@ $_password-very-strong: #81b562 !default;
 //  Common
 //  _____________________________________________
 
+.field-tooltip {
+    font-weight: 100;
+    position: relative;
+    display: inline-block;
+    top: -3px;
+    margin-left: 5px;
+    .field-tooltip-content {
+        top:0;
+        width: 240px;
+    }
+    .field-tooltip-action:focus {
+        outline: none;
+    }
+    .field-tooltip-action:before{
+        content: "i";
+        color: #333;
+        font-size: 13px;
+        position: relative;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        border: 1px solid #333;
+        line-height: 12px;
+    }
+}
+
 .form-create-account {
     position: relative;
     .actions-toolbar {
