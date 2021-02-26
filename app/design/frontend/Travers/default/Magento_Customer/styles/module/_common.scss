@@ -153,14 +153,6 @@ $_password-very-strong: #81b562 !default;
             position: relative;
             font-family: $font-family__sans-serif;
             font-weight: 600;
-            &:after {
-                display: block;
-                content: '';
-                max-width: 400px;
-                border-bottom: 1px solid #C2C2C2;
-                padding-top: 10px;
-
-            }
         }
     }
 }
