@@ -10,7 +10,8 @@ use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Checkout\Block\Checkout\LayoutProcessor;
 
 class LayoutProcessorPlugin
-{
+{   
+    const XML_ACCOUNT_TOOLTIP = 'shipping/general_account/account_tooltip';
 
     /**
      * @var ScopeConfigInterface
@@ -53,7 +54,7 @@ class LayoutProcessorPlugin
         LayoutProcessor $subject,
         array  $jsLayout
     ) {
-
+        $message =  $this->scopeConfig->getValue(static::XML_ACCOUNT_TOOLTIP, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         if (!$this->customerSession->isLoggedIn()) {
             $jsLayout['components']['checkout']['children']['steps']['children']['shipping-step']['children']
             ['shippingAddress']['children']['before-form']['children']['travers_account_id'] = [
@@ -65,15 +66,15 @@ class LayoutProcessorPlugin
                     'id' => 'travers-account-id'
                 ],
                 'dataScope' => 'shippingAddress.travers_account_id',
-                'label' => 'Account #',
+                'label' => 'Traverse Account # (Optional)',
                 'provider' => 'checkoutProvider',
                 'visible' => true,
                 'validation' => [],
                 'sortOrder' => 200,
-                'id' => 'travers-account-id'
+                'id' => 'travers-account-id',
+                'tooltip'=>['description' => $message] 
             ];
         }
-
 
         return $jsLayout;
     }

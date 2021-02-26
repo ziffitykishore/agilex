@@ -38,5 +38,9 @@ define([
         if (maxSportPrice > maxPrice) {
             $('.product-info-main .price-to .price').text(currencySymbol + maxSportPrice);
         }
+        setTimeout(function(){ 
+            $('.price-container').show();
+            $('.priceDesc').show();
+        }, 3000);
     }
 });

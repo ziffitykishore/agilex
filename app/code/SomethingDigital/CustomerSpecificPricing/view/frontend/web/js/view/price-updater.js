@@ -39,6 +39,9 @@ define([
                 // In this case we don't want to update the prices
             });
         }
-
+        setTimeout(function(){ 
+            $('.price-container').show();
+            $('.priceDesc').show();
+        }, 3000);
     }
 });

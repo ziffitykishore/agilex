@@ -24,13 +24,67 @@ $_password-very-strong: #81b562 !default;
 //  Common
 //  _____________________________________________
 
+.account {
+    .field-tooltip {
+        font-weight: 100;
+        position: relative;
+        display: inline-block;
+        top: -3px;
+        margin-left: 5px;
+        .field-tooltip-content {
+            top:0;
+            width: 240px;
+        }
+        .field-tooltip-action:focus {
+            outline: none;
+        }
+        .field-tooltip-action:before{
+            content: "i";
+            color: #333;
+            font-size: 13px;
+            position: relative;
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid #333;
+            line-height: 12px;
+        }
+    }
+}
+
+    
+
 .form-create-account {
     position: relative;
+    .input-text {
+        max-width: none;
+    }
     .actions-toolbar {
+        display: flex;
+        justify-content: space-between;
         .primary {
-            width: 100%;
+            flex: 0 0 50%;
+            max-width: 50%;
             .primary {
                 max-width: 200px;
+            }
+        }
+
+        .secondary {
+            flex: 0 0 50%;
+            max-width: 50%;
+
+            a {
+                text-decoration: none;
+            }
+
+            p {
+                text-align: right;
+                font-size: 15px;
+                span {
+                    display: block;
+                }
             }
         }
     }
@@ -38,6 +92,68 @@ $_password-very-strong: #81b562 !default;
     .field-recaptcha {
         position: absolute;
         opacity: 0;
+    }
+
+    .fieldset.create.info,
+    .fieldset.create.account {
+        .legend {
+            display: none;
+        }
+    }
+
+    .customer-registration-block {
+        .inner-block {
+            border: 1px solid #333;
+            padding: 20px;
+            max-width: 320px;
+
+            h3 {
+                margin-top: 0;
+                font-weight: 600;
+                font-family: $font-family__sans-serif;
+                text-transform: none;
+                &:after {
+                    content: '';
+                    width: 90%;
+                    border-bottom:1px solid #333;
+                    display: block;
+                    padding-top: 5px;
+                }
+            }
+
+            ul {
+                padding: 0;
+                list-style: none;
+                li {
+                    font-family: $font-family__sans-serif;
+                    position: relative;
+                    font-weight:600;
+                    padding-left: 15px;
+                    &:before {
+                        content: '-';
+                        margin-right: 5px;
+                        display: inline-block;
+                        position: absolute;
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .travers-account {
+        margin-top: 30px;
+
+        &:before {
+            display: none;
+        }
+
+        .legend {
+            border: none;
+            position: relative;
+            font-family: $font-family__sans-serif;
+            font-weight: 600;
+        }
     }
 }
 
@@ -687,6 +803,16 @@ $_password-very-strong: #81b562 !default;
             position: relative;
         }
     }
+
+    .form.create.account {
+        .actions-toolbar {
+            .primary,
+            .secondary {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    }
 }
 
 @include max-screen($screen__l) {
@@ -746,10 +872,64 @@ $_password-very-strong: #81b562 !default;
 
     .form.password.reset,
     .form.send.confirmation,
-    .form.password.forget,
-    .form.create.account {
+    .form.password.forget {
         max-width: $form-field__width__desktop;
         width: 100%;
+    }
+
+
+    .form.create.account {
+        .field {
+            .control {
+                max-width: none;
+                width: 100%;
+            }
+        }
+
+        .customer-info-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .customer-info,
+            .customer-registration-block {
+                flex: 0 0 48%;
+                max-width: 48%;  
+                box-sizing: border-box;
+            }
+
+            .customer-registration-block {
+                margin-top: 50px;
+                padding-left: 50px;
+            }
+        }
+
+        .travers-account {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+
+            .legend {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+
+
+            .field {
+                flex: 0 0 48%;
+                max-width: 48%;   
+
+                .control {
+                    max-width: none;
+                    width: 100%;
+                }
+            }
+        }
+        .actions-toolbar {
+            .secondary {
+                margin-top: -20px;
+            }
+        }
     }
 
     //

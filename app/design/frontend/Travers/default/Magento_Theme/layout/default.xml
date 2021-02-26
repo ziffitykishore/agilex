@@ -48,5 +48,12 @@
     <move element="algolia.instant.wrapper" destination="header-wrapper" after="-"/>
     <move element="header_cms_links" destination="header.links" after="-"/>
     <move element="product.page.number" destination="product.info.social" before="-" />
+    <referenceContainer name="content">
+        <block name="customer.section.config" class="Magento\Customer\Block\SectionConfig"
+            template="Magento_Customer::js/section-config.phtml"/>
+        <block name="customer.customer.data"
+            class="Magento\Customer\Block\CustomerData"
+            template="Magento_Customer::js/customer-data.phtml"/>
+    </referenceContainer>
 </page>
 
