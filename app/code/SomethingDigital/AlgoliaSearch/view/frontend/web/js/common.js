@@ -274,7 +274,7 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
                     source: $.fn.autocomplete.sources.hits(algolia_client.initIndex(algoliaConfig.indexName + "_" + section.name), options),
                     name: i,
                     templates: {
-                        empty: '<div class="aa-no-results">' + algoliaConfig.translations.noResults + '</div>',
+                        empty: '',
                         suggestion: function (hit, payload) {
                             if (section.name === 'categories') {
                                 hit.displayKey = hit.path;

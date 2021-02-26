@@ -18,6 +18,11 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+//Contact-us page contact tab zindex ajustment.
+.cms-contact-us div[data-content-type=tabs] .tabs-navigation li.tab-header.ui-state-active {
+    z-index: 2;
+}
+
 //
 //  Header
 //  ---------------------------------------------
@@ -54,9 +59,7 @@ body {
         float: left;
         margin: 0;
         font-size: $font-size__base;
-        font-weight: $font-weight__semibold;
         color: $c-steel;
-        text-transform: uppercase;
         display: none;
         box-sizing: border-box;
 
@@ -211,50 +214,17 @@ body {
 }
 
 .page-header a.phone-number{
-    padding-left: 25px;
-}
-
-.page-header a.phone-number::before,
-.page-header p.phone-number::before {
-	content: '';
-    background-image: url(../svg/call.svg);
-    width: 14px;
-    height: 14px;
-    background-size: cover;
-    display: inline-block;
-    margin-right: 5px;
-    position: absolute;
-    left: 0px;
-    top: 3px;
-}
-
-.page-header a.phone-number::before {
-    left: 6px;
-    top: 6px;
+    padding-left: 10px;
 }
 
 .page-header .fax-number {
     display: inline-block;
-    font-size: 13px;
+    font-size: 15px;
     margin: 0 5px;
-    text-transform: uppercase;
-    font-weight: 500;
     position: relative;
     padding-left: 20px;
 }
 
-.page-header .fax-number::before {
-    content: '';
-    background-image: url(../svg/fax-number.svg);
-    width: 14px;
-    height: 14px;
-    background-size: cover;
-    display: inline-block;
-    margin-right: 5px;
-    position: absolute;
-    left: 0px;
-    top: 2px;
-}
 //
 //  Account Navigation & Currency Switcher
 //  ---------------------------------------------
@@ -305,7 +275,7 @@ body {
 
     > li,
     > .phone-number {
-        font-size: $font-size__base--desktop;
+        font-size: $font-size__headerbase--desktop;
         margin: 0 0 0 15px;
 
         &.welcome,
@@ -528,7 +498,7 @@ body {
 
     .phone-number {
         display: none;
-        font-size: 13px;
+        font-size: 15px;
 
         @include min-screen($mobile-nav__breakpoint) {
             display: block;
@@ -864,4 +834,11 @@ body {
             }
         }
     }
+}
+
+iframe#launcher{display:none !important}
+#chat-div-wrap{
+    right:24px !important;
+    bottom: 100px !important;
+   left: unset !important;
 }

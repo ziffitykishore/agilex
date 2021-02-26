@@ -112,28 +112,37 @@ class SpotPricingApi extends Adapter
      * @return array
      * @throws LocalizedException
      */
-    public function getSpotPriceDPD($productSkus, $suffix = null)
+    public function getSpotPricePDP($productSkus, $suffix = null)
     {
         $customerAccountId = $this->getCustomerAccountId();
-        $skuCollectionSuffix = [];
         $skuCollection = [];
         if (!$suffix) {
             $suffix = $this->sessionManager->getSkuSuffix();
             $suffixArr = [];
             if (!empty($suffix)) {
                 $suffixDecode = json_decode($suffix);
-                if ($productSkus && is_array($productSkus)) {
-                    foreach ($productSkus as $sku) {
-                        if ($suffixDecode && is_array($suffixDecode)) {
-                            foreach ($suffixDecode as $suffixValue) {
-                                $suffixCode = explode('~', $suffixValue);
-                                $suffixArr['Suffix'] = $suffixCode[0];
-                                $suffixArr['Sku'] = $suffixCode[1];
+                if ($suffixDecode && is_array($suffixDecode)) {
+                    foreach ($suffixDecode as $suffixValue) {
+                        $suffixCode = explode('~', $suffixValue);
+                        if ($productSkus && is_array($productSkus)) {
+                            foreach ($productSkus as $sku) {
+                                if ($suffixCode[1] == $sku) {
+                                    $suffixArr['Suffix'] = $suffixCode[0];
+                                    $suffixArr['Sku'] = $suffixCode[1];
+                                }
                             }
                         }
                     }
                 }
-            }            
+            }
+            if(empty($suffixArr)) {
+                if ($productSkus && is_array($productSkus)) {
+                    foreach ($productSkus as $sku) {
+                        $suffixArr['Sku'] = $sku;
+                    }
+                }
+            }
+            
             $skuCollection = [(object)$suffixArr];
         }
         

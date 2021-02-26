@@ -83,12 +83,10 @@ export function currentAttributes(categoryAttributes, defaultAttributes,changeOr
   let categoryAttributesArray = typeof categoryAttributes === 'object' ? Object.values(categoryAttributes) : categoryAttributes;
 
   categoryAttributesArray.map(categoryAttribute => {
-    defaultAttributes.map(defaultAttribute => {
-      if (categoryAttribute === defaultAttribute.id) {
-        orderedCategoryAttributes.push(defaultAttribute);
-      }
-    });
+    const item = defaultAttributes.find(({id}) => categoryAttribute === id);
+    item && orderedCategoryAttributes.push(item);
   });
+  
   if(changeOrder){
     const index =  orderedCategoryAttributes.findIndex(data=>data.id === "shopby");
     if(index > 0){

@@ -41,6 +41,7 @@ define([
 
                 if (!prices['QtyPrice1'] && !prices['QtyPrice2'] && !prices['QtyPrice3']) {
                   $('.as-low-as').hide();
+                  $('.prices-tier').hide();
                   return;
                 }
 

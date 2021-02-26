@@ -7,6 +7,8 @@
 // @codingStandardsIgnoreFile
 
 /** @var \Magento\Customer\Block\Account\Dashboard\Info $block */
+$customer_helper = $this->helper(\SomethingDigital\CustomerBalance\Helper\Data::class);
+$displayMessage = $customer_helper->getCustomerLinkMessage();
 ?>
 <div class="block block-dashboard-info">
     <div class="block-title"><h3><?= $block->escapeHtml(__('Account Information')) ?></h3></div>
@@ -14,6 +16,15 @@
         <div class="box box-information">
             <strong class="box-title">
                 <span><?= $block->escapeHtml(__('Account Linking Status')) ?></span>
+                <?php if ($displayMessage) { ?>
+                        <div class="field-tooltip toggle">
+                            <span class="field-tooltip-action" tabindex="0" data-toggle="dropdown" data-bind="mageInit: {'dropdown':{'activeClass': '_active'}}" aria-haspopup="true" aria-expanded="false" role="button">
+                            </span>
+                            <div class="field-tooltip-content" data-target="dropdown" aria-hidden="true">
+                                <?= $displayMessage ?>
+                            </div>
+                        </div>
+                <?php } ?>
             </strong>
             <?php
                 $TraversCusId = null;

@@ -35,19 +35,20 @@ define([
 
                 var self = this;
                  // Stop Tab key Action On empty Product Popup
-                 var count=0;
-                 $(".fieldset").on('keydown', 'input[type=text]', function(e) {          
-                  var keyCode = e.keyCode || e.which;
-                  if (keyCode == 9) {
-                    if($('.quickorder-product-info-wrapper').length == count)
-                    {
-                      $(this).trigger('change');
-                      e.preventDefault();                    
+                $(".fieldset").on('keydown', 'input[type=text]', function(e) {          
+                    var keyCode = e.keyCode || e.which;
+                    var values = $(this).val();
+                    if (keyCode == 9 && values.length > 9 ) {
+                        $(this).next('.qty').find('input[type=number]').focus();
+                        window.lastId = $(this).attr('id');
+                    } else{
+                        if(keyCode == 9)
+                            return false;
                     }
-                    count=$('.quickorder-product-info-wrapper').length;
-                    $(this).closest('.field').find('input[type=number]').focus();                       
-                  }
-               });
+                });
+                $('body').on('DOMSubtreeModified', '.product-block', function(){
+                    $('body').find('#'+window.lastId).focus();
+                });
                 $('.block-addbysku').on('click',this.popupOpenerSelector, function () {
                     var data = [];
                     var stockData = $(this).parent().data('stock');
