@@ -158,16 +158,30 @@
             $,
         ) {
             $('body').on('click', '.tocart', function(e){
-                flag =0;
+                flag = 0;
                 $form = $('#form-addbysku')
                 $('input[name^="items"]').each(function() {
-                    if($(this).val() != ''){
-                        flag =1;
+                    if($(this).val() != '') {
+                        flag = 1;
                     } 
                 });
-                if(!flag)
-                    $('.tocart').attr("disabled", true)
+                if(flag == 0) {
+                    e.preventDefault();
+                    $('.tocart').prop('disabled', true);
+                }                    
             });
+
+            // Add to list button hide based on text area length.
+            $(document).ready(function() {
+                $('.move-to-single-skus').prop('disabled', true);
+                $("#multiple_skus").keyup(function() {
+                    if($("#multiple_skus").val().length >= 10) {
+                        $('.move-to-single-skus').prop('disabled', false);
+                    } else {
+                        $('.move-to-single-skus').prop('disabled', true);
+                    }
+                });
+            });         
         }
     );
 </script>
