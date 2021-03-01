@@ -518,8 +518,8 @@ requirejs(['algoliaBundle'], function(algoliaBundle) {
             handleInputCrossAutocomplete(input);
         });
         /**Hide keyword when empty suggestions */
-        $(".aa-dataset-suggestions").on('DOMSubtreeModified', function() {
-            if ( $('.aa-dataset-suggestions').is(':empty') ) {
+        $("body").on('DOMSubtreeModified', function() {
+            if ($('.aa-dataset-suggestions').is(':empty')) {
                 $('#keyword-hide').hide();
             }else {
                 $('#keyword-hide').show();
