@@ -332,6 +332,8 @@ return [
         'MageWorx_SeoAll' => 1,
         'MageWorx_HtmlSitemap' => 1,
         'MageWorx_XmlSitemap' => 1,
+        'Mageplaza_Core' => 1,
+        'Mageplaza_Smtp' => 1,
         'OlegKoval_RegenerateUrlRewrites' => 1,
         'RocketWeb_ShoppingFeeds' => 1,
         'RocketWeb_ShoppingFeedsGoogle' => 1,

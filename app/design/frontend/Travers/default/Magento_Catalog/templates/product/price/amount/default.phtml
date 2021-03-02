@@ -31,5 +31,10 @@
     require(["jquery"],function($){
         $('.price-container').hide();
         $('.priceDesc').hide();   
+
+        setTimeout(function(){ 
+            $('.price-container').show();
+            $('.priceDesc').show();
+        }, 3000);
     });
 </script>
