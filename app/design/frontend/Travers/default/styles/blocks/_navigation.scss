@@ -768,7 +768,19 @@ $nav-section-title__height: 60px;
     }
 }
 
-@media screen and (min-height: 600px) {
+@include max-screen($mobile-nav__breakpoint) {
+	.page-header {
+        .navigation {
+            .level-top.category-item {
+                .desktop-submenu.submenu {
+                    left: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-height: 320px) {
     .page-header {
         .navigation {
             .level-top.category-item {
